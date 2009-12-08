@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
@@ -129,7 +130,7 @@ import org.apache.log4j.Logger;
 			"archrat");
 	
 	/**
-	 * List of moneys reward for each type of killed rats.
+	 * List of moneys quantities reward for each type of killed rats.
 	 */
 	private static final List<Integer> RAT_REWARDS = Arrays.asList(
 			10,
@@ -147,7 +148,8 @@ import org.apache.log4j.Logger;
 	class QuestTimer implements TurnListener {
 		public void onTurnReached(final int currentTurn) {
 			switch(phase){
-			case TPP_INACTIVE: // summon rats, make phase 1 and
+			case TPP_INACTIVE: 
+					// summon rats, make phase 1 and
 				    // start timer to phase 2.
 					logger.info("ThePiedPiper quest started.");
 					phase=TPP_Phase.TPP_INVASION;
@@ -155,7 +157,8 @@ import org.apache.log4j.Logger;
 					tellAllAboutRatsProblem();
 					step_0();
 				    break;
-			case TPP_INVASION: // remove rats, make phase 2 and 
+			case TPP_INVASION: 
+					// remove rats, make phase 2 and 
 				    // start timer to phase 0.
 					logger.info("ThePiedPiper quest timeout occured.");
 					phase=TPP_Phase.TPP_AWAITING;
@@ -303,7 +306,7 @@ import org.apache.log4j.Logger;
 		    player.setQuest(QUEST_SLOT, "rats;0;0;0;0;0;0");
 		};
 		
-		// we using here and after "i+1" becouse player's quest index 0
+		// we using here and after "i+1" because player's quest index 0
 		// is occupied by quest stage description.
 		if(player.getQuest(QUEST_SLOT,i+1)==""){
 			// something really wrong, will correct this...
@@ -336,7 +339,7 @@ import org.apache.log4j.Logger;
 				kills=Integer.decode(player.getQuest(QUEST_SLOT,i+1));				
 			} catch (NumberFormatException nfe) {
 				// player's quest slot don't contain valid number
-				// so he didnt killed such creatures.
+				// so he didn't killed such creatures.
 				kills=0;
 			};
 			
@@ -448,8 +451,16 @@ import org.apache.log4j.Logger;
 					rat.registerObjectsForNotification(ratsObserver);
 					// add unique noises to humanoids
 					if (tc==RAT_TYPES.indexOf("archrat")) {
-					rat.setNoises(Arrays.asList("We will capture Ados!",
-												"Our revenge will awesome!"));
+					final LinkedList<String> ll = new LinkedList<String>(
+							Arrays.asList("We will capture Ados!",
+										  "Our revenge will awesome!")); 	
+					LinkedHashMap<String, LinkedList<String>> lhm = 
+						new LinkedHashMap<String, LinkedList<String>>();
+					// add to all states except death.
+					lhm.put("idle", ll);
+					lhm.put("fight", ll);
+					lhm.put("follow", ll);
+					rat.setNoises(lhm);
 					};
 					StendhalRPAction.placeat(zone, rat, x, y);	
 					rats.add(rat);

@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -64,7 +65,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 
 	private List<EquipItem> equipsItems;
 
-	private List<String> creatureSays;
+	private LinkedHashMap<String, LinkedList<String>> creatureSays;
 
 	private Map<String, String> aiProfiles;
 
@@ -160,7 +161,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			ai = false;
 			dropsItems = new LinkedList<DropItem>();
 			equipsItems = new LinkedList<EquipItem>();
-			creatureSays = new LinkedList<String>();
+			creatureSays = new LinkedHashMap<String, LinkedList<String>>();
 			aiProfiles = new LinkedHashMap<String, String>();
 			description = null;
 		} else if (qName.equals("type")) {
@@ -266,8 +267,26 @@ public class CreaturesXMLLoader extends DefaultHandler {
 		} else if (ai && qName.equals("says")) {
 			says = true;
 		} else if (says && qName.equals("noise")) {
-			creatureSays.add(attrs.getValue("value"));
-		}
+			final String states = attrs.getValue("state");
+			final String value = attrs.getValue("value");
+			final List<String> keys=Arrays.asList(states.split(";"));
+			// no such state in noises, will add it
+			for (int i=0; i<keys.size(); i++) {
+				final String key=keys.get(i);
+				if(creatureSays.get(key)==null) {
+					final LinkedList<String> ll=new LinkedList<String>();
+					ll.add(value);
+					creatureSays.put(key, ll);
+					// no such value in existing state, will add it
+				} else if (creatureSays.get(key).indexOf(value)==-1) {
+					creatureSays.get(key).add(value);
+					// both state and value already exists
+				} else {
+					logger.warn("CreatureXMLLoader: creature ("+name+
+								"): double definition for noise \""+key+"\" ("+value+")");
+				}
+			}
+		} 
 	}
 
 	@Override

@@ -16,6 +16,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
 import org.apache.log4j.Logger;
@@ -63,9 +64,14 @@ public class ItemGuardCreature extends Creature {
 		this.itemType = itemType;
 		this.questSlot = questSlot;
 
-		noises = new LinkedList<String>(noises);
-		noises.add("Thou shall not obtain the " + itemType + "!");
-	
+		noises = new LinkedHashMap<String, LinkedList<String>>(noises);
+		final LinkedList<String> ll = new LinkedList<String>();
+		ll.add("Thou shall not obtain the " + itemType + "!");
+		// add to all states except death - in death player will get itemType.
+	    noises.put("idle", ll);
+	    noises.put("fight", ll);
+	    noises.put("follow", ll);
+	    
 		if (!SingletonRepository.getEntityManager().isItem(
 				itemType)) {
 			logger.error(copy.getName() + " drops unexisting item " + itemType);

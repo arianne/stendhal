@@ -19,10 +19,12 @@ import games.stendhal.server.entity.creature.impl.EquipItem;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
@@ -76,8 +78,8 @@ public class DefaultCreature {
 
 	private List<EquipItem> equipsItems;
 
-	private List<String> creatureSays;
-
+	private LinkedHashMap<String, LinkedList<String>> creatureSays;
+	
 	private Map<String, String> aiProfiles;
 
 	/** speed relative to player [0.0 ... 1.0] */
@@ -92,7 +94,8 @@ public class DefaultCreature {
 		this.tileid = tileid;
 		dropsItems = new LinkedList<DropItem>();
 		equipsItems = new LinkedList<EquipItem>();
-		creatureSays = new LinkedList<String>();
+		creatureSays = new LinkedHashMap<String, LinkedList<String>>();
+		
 		aiProfiles = new LinkedHashMap<String, String>();
 	}
 
@@ -161,11 +164,11 @@ public class DefaultCreature {
 		return height;
 	}
 
-	public void setNoiseLines(final List<String> creatureSays) {
+	public void setNoiseLines(final LinkedHashMap<String, LinkedList<String>> creatureSays) {
 		this.creatureSays = creatureSays;
 	}
-
-	public List<String> getNoiseLines() {
+	
+	public HashMap<String, LinkedList<String>> getNoiseLines() {
 		return creatureSays;
 	}
 
@@ -310,10 +313,17 @@ public class DefaultCreature {
 		os.append("    <ai>\n");
 		if (!creatureSays.isEmpty()) {
 			os.append("      <says>\n");
-			for (final String say : creatureSays) {
-				os.append("        <noise value=\"" + say + "\"/>\n");
+			
+			while(creatureSays.entrySet().iterator().hasNext()) {
+				final Entry<String, LinkedList<String>> entry =
+					creatureSays.entrySet().iterator().next();
+				for (int i=0; i<entry.getValue().size(); i++) {
+					os.append("        <noise state=\""+entry.getKey()+
+							"\" value=\"" + entry.getValue().get(i) + "\"/>\n");					
+				}
 			}
-			os.append("      </says>\n");
+
+		os.append("      </says>\n");
 		}
 		for (final Map.Entry<String, String> entry : aiProfiles.entrySet()) {
 			os.append("      <profile name=\"" + entry.getKey() + "\"");

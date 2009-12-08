@@ -3,7 +3,8 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Observer;
 
 /**
@@ -25,7 +26,7 @@ public class KillNotificationCreature extends Creature {
    }
    
    /**
-    * Will notify observers when event will occured (death). 
+    * Will notify observers when event will occurred (death). 
     */
    public void notifyRegisteredObjects() {
       registrator.setChanges();
@@ -44,9 +45,9 @@ public class KillNotificationCreature extends Creature {
     * override noises for changes.
     * 
     */
-   public void setNoises(final List<String> creatureNoises){
+   public void setNoises(final LinkedHashMap<String, LinkedList<String>> creatureNoises){
    	noises.clear();
-   	noises.addAll(creatureNoises);
+   	noises.putAll(creatureNoises);
    }
    
    /**

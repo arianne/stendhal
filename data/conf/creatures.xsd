@@ -113,6 +113,7 @@
 
 	<xsd:complexType name="Noise">
 		<xsd:attribute name="value" type="xsd:string" />
+		<xsd:attribute name="state" type="xsd:string"></xsd:attribute>
 	</xsd:complexType>
 
 	<xsd:complexType name="Profile">

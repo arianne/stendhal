@@ -17,6 +17,8 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
@@ -42,6 +44,7 @@ import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +59,7 @@ import marauroa.common.game.Definition.Type;
 import org.apache.log4j.Logger;
 
 /**
- * Serverside representation of a creature.
+ * Server-side representation of a creature.
  * <p>
  * A creature is defined as an entity which can move with certain speed, has
  * life points (HP) and can die.
@@ -83,7 +86,7 @@ public class Creature extends NPC {
 
 	
 	/**
-	 * Ths list of item names this creature may drop Note; per default this list
+	 * This list of item names this creature may drop Note; per default this list
 	 * is shared with all creatures of that class.
 	 */
 	protected List<DropItem> dropsItems;
@@ -97,7 +100,7 @@ public class Creature extends NPC {
 	/**
 	 * List of things this creature should say.
 	 */
-	protected List<String> noises;
+	protected LinkedHashMap<String, LinkedList<String>> noises;
 	
 	boolean isRespawned;
 	
@@ -236,7 +239,7 @@ public class Creature extends NPC {
 	public Creature(final String clazz, final String subclass, final String name, final int hp,
 			final int attack, final int defense, final int level, final int xp, final int width, final int height,
 			final double baseSpeed, final List<DropItem> dropItems,
-			final Map<String, String> aiProfiles, final List<String> noises,
+			final Map<String, String> aiProfiles, final LinkedHashMap<String, LinkedList<String>> noises,
 			final int respawnTime, final String description) {
 		this();
 
@@ -428,13 +431,11 @@ public class Creature extends NPC {
 		return true;
 	}
 
-	
 	@Override
 	public void onDead(final Entity killer, final boolean remove) {
-			if (point != null) {
-			point.notifyDead(this);
+		if (this.point != null) {
+			this.point.notifyDead(this);
 		}
-
 		super.onDead(killer, remove);
 	}
 
@@ -580,7 +581,7 @@ public class Creature extends NPC {
 	}
 
 	/**
-	 *  poisons attacktarget with the behaviour in Poisoner.
+	 *  poisons attacktarget with the behavior in Poisoner.
 	 * 
 	 * 
 	 * @throws NullPointerException if attacktarget is null
@@ -676,22 +677,24 @@ public class Creature extends NPC {
 				strategy.getBetterAttackPosition(this);
 				this.applyMovement();
 				if (strategy.canAttackNow(this)) {
-					
 					strategy.attack(this);
-				}
-		
+					this.makeNoiseChance(100, "fight");					
+		        } else {
+		        	// can't attack and trying to find better position
+		        	// treat it as creature follows player.
+		        	this.makeNoiseChance(100, "follow");
+		        }
 			} else {
 				this.stopAttack();
 				strategy.findNewTarget(this);
 				if (strategy.hasValidTarget(this)) {
 					this.setBusy();
+					// this event duration usually is only one turn
+					this.makeNoiseChance(100, "follow");
 				} else {
 				 	this.setIdle();
+					this.makeNoiseChance(100, "idle");	
 				}
-			}
-			// with a probability of 1 %, a random noise is made.
-			if (Rand.roll1D100() == 1) {
-				this.makeNoise();
 			}
 		}
 		this.notifyWorldAboutChanges();
@@ -699,15 +702,30 @@ public class Creature extends NPC {
 
 	/**
 	 * Random sound noises.
+	 * @param state - state for noises
 	 */
-	public void makeNoise() {
+	public void makeNoise(final String state) {
 		if (noises == null) {
 			return;
 		}
-
-		if (noises.size() > 0) {
-			final int pos = Rand.rand(noises.size());
-			say(noises.get(pos));
+		if (noises.get(state)==null) {
+			return;
+		}
+		if (noises.get(state).size() > 0) {
+			final int pos = Rand.rand(noises.get(state).size());
+			say(noises.get(state).get(pos));
+		}
+	}
+	
+	
+	/**
+	 * wrapper around makeNoise to simplify a code
+	 * @param prob - 1/chance of make noise
+	 * @param state - state for noises
+	 */
+	public void makeNoiseChance(int prob, final String state) {
+		if(Rand.rand(prob)==1) {
+			makeNoise(state);
 		}
 	}
 
