@@ -224,8 +224,10 @@ public class Market extends PassiveEntity {
 	 * @param p the removing player
 	 */
 	public void removeOffer(Offer o, Player p) {
-		p.equipOrPutOnGround(o.getItem());
-		o.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(o.getItem().getID());
+		Item item = o.getItem();
+		o.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(item.getID());
+		p.equipOrPutOnGround(item);
+		
 		this.getOffers().remove(o);
 		this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
 		this.getZone().storeToDatabase();
