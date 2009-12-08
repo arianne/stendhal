@@ -2,6 +2,8 @@ package games.stendhal.server.maps.semos.tavern.market;
 
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -15,6 +17,8 @@ import games.stendhal.server.entity.trade.Offer;
  *
  */
 public class AcceptOfferChatAction extends KnownOffersChatAction {
+	/** the logger instance. */
+	private static final Logger logger = Logger.getLogger(AcceptOfferChatAction.class);
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (sentence.hasError()) {
@@ -38,11 +42,23 @@ public class AcceptOfferChatAction extends KnownOffersChatAction {
 				Offer o = offerMap.get(offerNumber);
 				Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 				m.acceptOffer(o,player);
+				
+				// Tell the offerer
 				StringBuilder earningToFetchMessage = new StringBuilder();
-				earningToFetchMessage.append("Your ");
+				earningToFetchMessage.append("Harold tells you: tell ");
+				earningToFetchMessage.append(o.getOfferer());
+				earningToFetchMessage.append(" Your ");
 				earningToFetchMessage.append(o.getItem().getName());
 				earningToFetchMessage.append(" was sold. You can now fetch your earnings from me.");
-				SingletonRepository.getRuleProcessor().getPlayer(o.getOfferer()).sendPrivateText(earningToFetchMessage.toString());
+				
+				Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
+				if (postman != null) {
+					postman.sendPrivateText(earningToFetchMessage.toString());
+				} else {
+					earningToFetchMessage.insert(0, "Could not use postman for the following message: ");
+					logger.warn(earningToFetchMessage.toString());
+				}
+				
 				player.getZone().add(o, true);
 				npc.say("The offer has been accepted.");
 				// Obsolete the offers, since the list has changed
