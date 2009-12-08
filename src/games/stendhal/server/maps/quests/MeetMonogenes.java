@@ -76,13 +76,9 @@ public class MeetMonogenes extends AbstractQuest {
 			"And how are you supposed to know what's happening? By reading the Semos Tribune? Hah! Bye, then.",
 			null);
 
-		npc.add(
-			ConversationStates.ATTENDING,
+		npc.addReply(
 			"buildings",
-			null,
-			ConversationStates.ATTENDING,
-			"I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.",
-			null);
+			"I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.");
 
 		npc.add(
 			ConversationStates.ATTENDING,
@@ -143,6 +139,7 @@ public class MeetMonogenes extends AbstractQuest {
 		// });
 		npc.addGoodbye();
 	}
+
 	@Override
 	public String getName() {
 		return "MeetMonogenes";
