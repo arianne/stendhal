@@ -38,9 +38,9 @@ public class EditorXML {
 
 	private List<DefaultItem> itemsList;
 
-	public static final String itemsFile = "stendhal/data/conf/items.xml";
+	public static final String itemsFile = "/data/conf/items.xml";
 
-	public static final String creaturesFile = "stendhal/data/conf/creatures.xml";
+	public static final String creaturesFile = "data/conf/creatures.xml";
 
 	public static final String[] slots = new String[] { "bag", "lhand",
 			"rhand", "armor", "head", "legs", "cloak", "feet", "finger",

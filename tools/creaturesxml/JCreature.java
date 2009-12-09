@@ -25,6 +25,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -235,8 +236,12 @@ public class JCreature extends javax.swing.JFrame {
 		}
 
 		os = new StringBuilder("");
-		for (String line : actual.getNoiseLines()) {
-			os.append("says: " + line + "\n");
+		
+		HashMap<String, LinkedList<String>> noises = actual.getNoiseLines();
+		for (String profile : noises.keySet()) {
+			for (String line : noises.get(profile)) {
+				os.append("says[" + profile + "]: " + line + "\n");
+			}
 		}
 
 		Map<String, String> aiList = actual.getAIProfiles();
@@ -1303,7 +1308,7 @@ public class JCreature extends javax.swing.JFrame {
 				line = reader.readLine();
 			}
 			actual.setAIProfiles(profiles);
-			actual.setNoiseLines(noises);
+			//actual.setNoiseLines(noises);
 
 			xml.sortCreatures(filteredCreatures);
 			xml.updateFrameContents();
