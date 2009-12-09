@@ -33,31 +33,42 @@ public class ProlongOfferChatAction extends KnownOffersChatAction {
 				Offer o = offerMap.get(offerNumber);
 				if(o.getOfferer().equals(player.getName())) {
 					Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, o.getPrice()).intValue());
-					if(TradingUtility.substractTradingFee(player, o.getPrice())) {
-						prolongOffer(player, o);
-						npc.say("I prolonged your offer and took the fee of "+fee.toString()+" again.");
-						return;
+					if (player.isEquipped("money", fee)) { 
+						if (prolongOffer(player, o)) {
+							TradingUtility.substractTradingFee(player, o.getPrice());
+							npc.say("I prolonged your offer and took the fee of "+fee.toString()+" again.");
+						} else {
+							npc.say("Sorry, that offer has already been removed from the market.");
+						}
+						// Changed the status, or it has been changed by expiration. Obsolete the offers
+						manager.getOfferMap().put(player.getName(), null);
+					} else {
+						npc.say("You cannot afford the trading fee of "+fee.toString());
 					}
-					npc.say("You cannot afford the trading fee of "+fee.toString());
-					return;
+				} else {
+					npc.say("You can only prolong your own offers. Please say #show #mine to see only your offers.");
 				}
-				npc.say("You can only prolong your own offers. Please say #show #mine to see only your offers.");
+			} else {
+				npc.say("Sorry, please choose a number from those I told you to prolong your offer.");
 				return;
 			}
-			npc.say("Sorry, please choose a number from those I told you to prolong your offer.");
 		} catch (NumberFormatException e) {
 			npc.say("Sorry, please say #remove #number");
 		}
-		manager.getOfferMap().clear();
 	}
 
-	private void prolongOffer(Player player, Offer o) {
+	private boolean prolongOffer(Player player, Offer o) {
 		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		if (market != null) {
-			market.prolongOffer(o);
-			String messageNumberOfOffers = "You now have put "+Integer.valueOf(market.countOffersOfPlayer(player)).toString()+" offers.";
-			player.sendPrivateText(messageNumberOfOffers);
+			if (market.prolongOffer(o) != null) {
+				String messageNumberOfOffers = "You now have put "+Integer.valueOf(market.countOffersOfPlayer(player)).toString()+" offers.";
+				player.sendPrivateText(messageNumberOfOffers);
+				
+				return true;
+			}
 		}
+		
+		return false;
 	}
 
 }
