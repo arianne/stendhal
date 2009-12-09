@@ -291,4 +291,60 @@ public class TradeTest {
 		assertTrue(edeka.getExpiredOffersOlderThan(1000000000).contains(offer));
 		assertFalse(edeka.getExpiredOffersOlderThan(1000000000).contains(offer2));
 	}
+	
+	@Test
+	public void testProlongActive() {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		bob.equipToInventoryOnly(item);
+		
+		Offer offer = edeka.createOffer(bob, item, 10);
+		offer.put("timestamp", "0");
+		
+		edeka.prolongOffer(offer);
+		assertTrue(edeka.getOffersOlderThan(1000).size() == 0);
+		assertTrue(edeka.getOffers().size() == 1);
+	}
+	
+	@Test
+	public void testProlongExpired() {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		bob.equipToInventoryOnly(item);
+		
+		Offer offer = edeka.createOffer(bob, item, 10);
+		offer.put("timestamp", "0");
+		edeka.expireOffer(offer);
+		
+		edeka.prolongOffer(offer);
+		assertTrue(edeka.getOffersOlderThan(1000).size() == 0);
+		assertTrue(edeka.getOffers().size() == 1);
+		assertTrue(edeka.getExpiredOffers().size() == 0);
+	}
+	
+	@Test
+	public void testProlongCompletelyExpired() {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		bob.equipToInventoryOnly(item);
+		
+		Offer offer = edeka.createOffer(bob, item, 10);
+		offer.put("timestamp", "0");
+		edeka.expireOffer(offer);
+		edeka.removeExpiredOffer(offer);
+		
+		edeka.prolongOffer(offer);
+		
+		assertTrue(edeka.getOffers().size() == 0);
+		assertTrue(edeka.getExpiredOffers().size() == 0);
+	}
 }
