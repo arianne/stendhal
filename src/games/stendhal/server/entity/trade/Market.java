@@ -288,10 +288,13 @@ public class Market extends PassiveEntity {
 	public Offer prolongOffer(Offer o) {
 		if (this.expiredOffers.remove(o)) {
 			this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(o.getID());
-		}
-		if (this.offers.remove(o)) {
+		} else if (this.offers.remove(o)) {
 			this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
+		} else {
+			// Such an offer does not exist anymore
+			return null;
 		}
+		
 		final Offer offer = new Offer(o.getItem(), o.getPrice(), o.getOfferer());
 		getOffers().add(offer);
 		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
