@@ -234,9 +234,13 @@ public class Market extends PassiveEntity {
 		o.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(item.getID());
 		p.equipOrPutOnGround(item);
 		
-		this.getOffers().remove(o);
-		this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
-		this.getZone().storeToDatabase();
+		getOffers().remove(o);
+		getSlot(OFFERS_SLOT_NAME).remove(o.getID());
+		
+		getExpiredOffers().remove(o);
+		getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(o.getID());
+		
+		getZone().storeToDatabase();
 	}
 	
 	public void expireOffer(Offer o) {
