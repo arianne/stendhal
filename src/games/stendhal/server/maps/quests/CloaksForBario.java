@@ -199,6 +199,6 @@ public class CloaksForBario extends AbstractQuest {
 	}
 	@Override
 	public String getName() {
-		return "CloakCollector2";
+		return "CloaksForBario";
 	}
 }

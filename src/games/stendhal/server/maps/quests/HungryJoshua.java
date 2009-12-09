@@ -250,6 +250,6 @@ public class HungryJoshua extends AbstractQuest {
 	}
 	@Override
 	public String getName() {
-		return "HelpTomi";
+		return "HungryJoshua";
 	}
 }
