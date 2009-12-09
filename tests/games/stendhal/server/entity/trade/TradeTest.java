@@ -1,7 +1,9 @@
 package games.stendhal.server.entity.trade;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -26,6 +28,21 @@ public class TradeTest {
 	@AfterClass
 	public static void afterClass() {
 		MockStendlRPWorld.reset();
+	}
+	
+	@Test
+	public void testCreateOffer() {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		bob.equipToInventoryOnly(item);
+		
+		Offer offer = edeka.createOffer(bob, item, 10);
+		
+		assertTrue(edeka.getOffers().contains(offer));
+		assertNull(bob.getFirstEquipped("axe"));
 	}
 
 	@Test
@@ -135,4 +152,95 @@ public class TradeTest {
 				is(Boolean.FALSE));
 	}
 
+	@Test
+	public void testExpireOffer() {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		bob.equipToInventoryOnly(item);
+		
+		Offer offer = edeka.createOffer(bob, item, 10);
+		
+		edeka.expireOffer(offer);
+		assertFalse(edeka.getOffers().contains(offer));
+		assertTrue(edeka.getExpiredOffers().contains(offer));
+	}
+	
+	@Test
+	public void testRemoveExpiredOffer() {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		bob.equipToInventoryOnly(item);
+		
+		Offer offer = edeka.createOffer(bob, item, 10);
+		
+		edeka.expireOffer(offer);
+		edeka.removeExpiredOffer(offer);
+		assertFalse(edeka.getOffers().contains(offer));
+		assertFalse(edeka.getExpiredOffers().contains(offer));
+	}
+	
+	@Test
+	public void testRemoveOffer() {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		bob.equipToInventoryOnly(item);
+		
+		Offer offer = edeka.createOffer(bob, item, 10);
+		
+		edeka.removeOffer(offer, bob);
+		assertFalse(edeka.getOffers().contains(offer));
+		assertFalse(edeka.getExpiredOffers().contains(offer));
+		assertTrue(bob.getFirstEquipped("axe") != null);
+	}
+	
+	// returning the item to player from an offer that has expired
+	@Test
+	public void testRemoveExpiredOffer2() {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		bob.equipToInventoryOnly(item);
+		
+		Offer offer = edeka.createOffer(bob, item, 10);
+		
+		edeka.expireOffer(offer);
+		edeka.removeOffer(offer, bob);
+		
+		assertFalse(edeka.getOffers().contains(offer));
+		assertFalse(edeka.getExpiredOffers().contains(offer));
+		assertTrue(bob.getFirstEquipped("axe") != null);
+	}
+	
+	@Test
+	public void testRemoveNonExistingOffer() {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		bob.equipToInventoryOnly(item);
+		
+		// make an offer to the shop and make it disappear
+		Offer offer = edeka.createOffer(bob, item, 10);
+		edeka.expireOffer(offer);
+		edeka.removeExpiredOffer(offer);
+		
+		edeka.removeOffer(offer, bob);
+		bob.drop(item);
+		
+		assertFalse(edeka.getOffers().contains(offer));
+		assertFalse(edeka.getExpiredOffers().contains(offer));
+		assertNull(bob.getFirstEquipped("axe"));
+	}
 }
