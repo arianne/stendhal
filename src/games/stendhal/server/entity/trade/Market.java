@@ -323,7 +323,7 @@ public class Market extends PassiveEntity {
 	private List<Offer> getOlderThan(List<Offer> list, int seconds) {
 		List<Offer> old = new LinkedList<Offer>();
 		for (Offer offer : list) {
-			if (System.currentTimeMillis() > offer.getTimestamp() + 1000 * seconds) {
+			if (System.currentTimeMillis() > offer.getTimestamp() + 1000L * seconds) {
 				old.add(offer);
 			}
 		}
