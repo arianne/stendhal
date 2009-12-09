@@ -119,7 +119,7 @@ public class Market extends PassiveEntity {
 		if(!this.hasSlot(EARNINGS_SLOT_NAME)) {
 			addSlot(EARNINGS_SLOT_NAME);
 		}
-		if(!this.hasSlot(EARNINGS_SLOT_NAME)) {
+		if(!this.hasSlot(EXPIRED_OFFERS_SLOT_NAME)) {
 			addSlot(EXPIRED_OFFERS_SLOT_NAME);
 		}
 		store();
@@ -158,7 +158,7 @@ public class Market extends PassiveEntity {
 	 * @param offer
 	 * @param acceptingPlayer
 	 */
-	public void acceptOffer(final Offer offer, final Player acceptingPlayer) {
+	public boolean acceptOffer(final Offer offer, final Player acceptingPlayer) {
 		if (getOffers().contains(offer)) {
 			if (acceptingPlayer.drop("money", offer.getPrice().intValue())) {
 				Item item = offer.getItem();
@@ -169,9 +169,13 @@ public class Market extends PassiveEntity {
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				applyTradingBonus(acceptingPlayer);
+				
+				this.getZone().storeToDatabase();
+				return true;
 			}
 		}
-		this.getZone().storeToDatabase();
+		
+		return false;
 	}
 
 	private void applyTradingBonus(Player acceptingPlayer) {

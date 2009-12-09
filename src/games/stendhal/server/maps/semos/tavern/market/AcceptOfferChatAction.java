@@ -4,7 +4,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -41,28 +43,43 @@ public class AcceptOfferChatAction extends KnownOffersChatAction {
 			if(offerMap.containsKey(offerNumber)) {
 				Offer o = offerMap.get(offerNumber);
 				Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
-				m.acceptOffer(o,player);
-				
-				// Tell the offerer
-				StringBuilder earningToFetchMessage = new StringBuilder();
-				earningToFetchMessage.append("Harold tells you: tell ");
-				earningToFetchMessage.append(o.getOfferer());
-				earningToFetchMessage.append(" Your ");
-				earningToFetchMessage.append(o.getItem().getName());
-				earningToFetchMessage.append(" was sold. You can now fetch your earnings from me.");
-				
-				Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
-				if (postman != null) {
-					postman.sendPrivateText(earningToFetchMessage.toString());
+				if (m.acceptOffer(o,player)) {
+					// Succesful trade. Tell the offerer
+					StringBuilder earningToFetchMessage = new StringBuilder();
+					earningToFetchMessage.append("Harold tells you: tell ");
+					earningToFetchMessage.append(o.getOfferer());
+					earningToFetchMessage.append(" Your ");
+					earningToFetchMessage.append(o.getItem().getName());
+					earningToFetchMessage.append(" was sold. You can now fetch your earnings from me.");
+
+					Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
+					if (postman != null) {
+						postman.sendPrivateText(earningToFetchMessage.toString());
+					} else {
+						earningToFetchMessage.insert(0, "Could not use postman for the following message: ");
+						logger.warn(earningToFetchMessage.toString());
+					}
+
+					npc.say("The offer has been accepted.");
+					// Obsolete the offers, since the list has changed
+					manager.getOfferMap().put(player.getName(), null);
 				} else {
-					earningToFetchMessage.insert(0, "Could not use postman for the following message: ");
-					logger.warn(earningToFetchMessage.toString());
+					// Trade failed for some reason. Check why, and inform the player
+					if (!m.getOffers().contains(o)) {
+						int quantity = 1;
+						if (o.getItem() instanceof StackableItem) {
+							quantity = ((StackableItem) o.getItem()).getQuantity(); 
+						}
+						Grammar.thatthose(quantity);
+						npc.say("I'm sorry, but " + Grammar.thatthose(quantity) + " "
+								+ Grammar.quantityplnoun(quantity, o.getItem().getName())
+								+ " " + Grammar.isare(quantity)
+								+ " no longer for sale.");
+					} else {
+						npc.say("Sorry, you don't have enough money!");
+					}
 				}
 				
-				player.getZone().add(o, true);
-				npc.say("The offer has been accepted.");
-				// Obsolete the offers, since the list has changed
-				manager.getOfferMap().put(player.getName(), null);
 				return;
 			}
 			npc.say("Sorry, please choose a number from those I told you to accept an offer.");
