@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.TeleporterBehaviour;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -35,7 +36,7 @@ import java.util.List;
  * REPETITIONS:None
  */
 public class MeetSanta extends AbstractQuest implements LoginListener {
-	private static final String QUEST_SLOT = "meet_santa_08";
+	private static final String QUEST_SLOT = "meet_santa_09";
 
 	/** the Santa NPC. */
 	protected SpeakerNPC santa;
@@ -123,7 +124,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		final int hairnumber = outfit.getHair();
 		if ((hairnumber >= 50) && (hairnumber < 90)) {
 			final Date now = new Date();
-			final GregorianCalendar notXmas = new GregorianCalendar(2008, Calendar.JANUARY, 6);
+			final GregorianCalendar notXmas = new GregorianCalendar(2010, Calendar.JANUARY, 6);
 			final Date dateNotXmas = notXmas.getTime();
 			if (now.after(dateNotXmas)) {
 				final int newhair = hairnumber - 50;
@@ -137,10 +138,9 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	public void addToWorld() {
 		super.addToWorld();
 		SingletonRepository.getLoginNotifier().addListener(this);
-		/* activate santa here in 2008
+		// activate santa here in 2009
 		createSanta();
 		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!", false);
-		*/
 	}
 
 	@Override
