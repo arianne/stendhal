@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
+import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
@@ -47,7 +49,8 @@ public abstract class NPC extends RPEntity {
 			npc.isA("rpentity");
 			npc.addAttribute("class", Type.STRING);
 			npc.addAttribute("subclass", Type.STRING);
-			npc.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
+			//npc.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
+			npc.addRPEvent("text", Definition.VOLATILE);
 			npc.addAttribute("idea", Type.STRING, Definition.VOLATILE);
 			npc.addAttribute("outfit", Type.INT);
 		} catch (final SyntaxException e) {
@@ -94,7 +97,9 @@ public abstract class NPC extends RPEntity {
 	}
 
 	public void say(final String text) {
-		put("text", text);
+		final RPEvent rpe = new RPEvent(Events.PUBLIC_TEXT);
+		rpe.put("text", text);
+		this.addEvent(rpe);
 	}
 
 	/**

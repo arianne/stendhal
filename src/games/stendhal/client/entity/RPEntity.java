@@ -666,15 +666,22 @@ public abstract class RPEntity extends ActiveEntity {
 			onTalk(object.get("text"));
 		}
 
-		/*
-		 * Private message
-		 */
+
 		for (final RPEvent event : object.events()) {
+			/*
+			 * Private message
+			 */			
 			if (event.getName().equals(Events.PRIVATE_TEXT)) {
 				onPrivateListen(event.get("texttype"), event.get("text"));
 			}
 			if (event.getName().equals(Events.OPEN_OFFER_PANEL)) {
 				onPrivateListen("normal", "Open Panel!");
+			}
+			/*
+			 * noise / chat message
+			 */
+			if (event.getName().equals(Events.PUBLIC_TEXT)) {
+				onTalk(event.get("text"));
 			}
 		}
 
@@ -862,12 +869,19 @@ public abstract class RPEntity extends ActiveEntity {
 				onTalk(changes.get("text"));
 			}
 
-			/*
-			 * Private message
-			 */
+
 			for (final RPEvent event : changes.events()) {
+				/*
+				 * Private message
+				 */
 				if (event.getName().equals(Events.PRIVATE_TEXT)) {
 					onPrivateListen(event.get("texttype"), event.get("text"));
+				}
+				/*
+				 * noise / chat message
+				 */
+				if (event.getName().equals(Events.PUBLIC_TEXT)) {
+					onTalk(event.get("text"));
 				}
                 //				if (event.getName().equals(Events.OPEN_OFFER_PANEL)) {
                 //					j2DClient.get().addDialog(new TradePanel());
