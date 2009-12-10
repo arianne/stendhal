@@ -8,6 +8,7 @@ Changelog
 - fixed unwanted popping up of minimized keyring window
 - nicer answers when asking about your karma
 - collision fixes
+- a new version of the atlas with dungeon entrances: http://stendhal.game-host.org/wiki/index.php/File:WorldWithMarkedDungeons091122.png
 
 
 0.79.1: server only release
