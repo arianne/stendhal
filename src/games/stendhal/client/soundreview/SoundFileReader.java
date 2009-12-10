@@ -11,16 +11,12 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-public class SoundFileReader {
+class SoundFileReader {
 
 	/** expected location of the sound definition file (classloader). */
 	public static final String STORE_PROPERTYFILE = "data/sounds/";
 
 	private static Properties soundprops;
-
-	public SoundFileReader() {
-
-	}
 
 	public void init() {
 		init(STORE_PROPERTYFILE + "stensounds.properties");
@@ -28,13 +24,7 @@ public class SoundFileReader {
 	}
 
 	private void init(final String propertyfile) {
-
 		soundprops = loadSoundProperties(soundprops, propertyfile);
-
-	}
-
-	public void initWithXml() {
-
 	}
 
 	/**
