@@ -1,7 +1,6 @@
 Changelog
 ---------
 0.80
-- decorated Semos City for Christmas
 - some fancing work in Semos Village
 - /mute is now remembered across restarts
 - nicer urls for subpages on the website
@@ -10,6 +9,9 @@ Changelog
 - collision fixes
 - a new version of the atlas with dungeon entrances: http://stendhal.game-host.org/wiki/index.php/File:WorldWithMarkedDungeons091122.png
 
+0.79.2: server only release
+- decorated semos for christmas
+- added Santa
 
 0.79.1: server only release
 - fixed a duplicated corpse bug
