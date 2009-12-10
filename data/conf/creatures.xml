@@ -51,7 +51,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="click-clack-click"/>
+        <noise state="idle follow fight" value="click-clack-click"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -82,7 +82,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Squeak! Squeak!"/>
+        <noise state="idle follow fight" value="Squeak! Squeak!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -112,7 +112,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="squeak ... squeak!"/>
+        <noise state="idle follow fight" value="squeak ... squeak!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -142,8 +142,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="peep peep"/>
-        <noise state="idle;follow;fight" value="peep peep peep"/>
+        <noise state="idle follow fight" value="peep peep"/>
+        <noise state="idle follow fight" value="peep peep peep"/>
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
@@ -173,9 +173,9 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="oink"/>
-        <noise state="idle;follow;fight" value="oink oink"/>
-        <noise state="idle;follow;fight" value="shnuffle"/>
+        <noise state="idle follow fight" value="oink"/>
+        <noise state="idle follow fight" value="oink oink"/>
+        <noise state="idle follow fight" value="shnuffle"/>
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
@@ -229,8 +229,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="cluck cluck cluck"/>
-        <noise state="idle;follow;fight" value="cluck cluck"/>
+        <noise state="idle follow fight" value="cluck cluck cluck"/>
+        <noise state="idle follow fight" value="cluck cluck"/>
       </says>
       <profile name="animal"/>
       <profile name="non offensive"/>
@@ -260,8 +260,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="peep peep"/>
-        <noise state="idle;follow;fight" value="peep peep peep"/>
+        <noise state="idle follow fight" value="peep peep"/>
+        <noise state="idle follow fight" value="peep peep peep"/>
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
@@ -319,8 +319,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Oou! Oou!"/>
-        <noise state="idle;follow;fight" value="*flap* *flap*"/>
+        <noise state="idle follow fight" value="Oou! Oou!"/>
+        <noise state="idle follow fight" value="*flap* *flap*"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -378,7 +378,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Aooooooouuhhh!!"/>
+        <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -407,7 +407,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Oink!!"/>
+        <noise state="idle follow fight" value="Oink!!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -436,7 +436,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Baaaaaa"/>
+        <noise state="idle follow fight" value="Baaaaaa"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -465,7 +465,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Aooooooouuhhh!!"/>
+        <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -496,7 +496,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Aooooooouuhhh!!"/>
+        <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -579,8 +579,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Moooo       moooo           mooooooo"/>
-        <noise state="idle;follow;fight" value="mooooo"/>
+        <noise state="idle follow fight" value="Moooo       moooo           mooooooo"/>
+        <noise state="idle follow fight" value="mooooo"/>
       </says>
       <profile name="animal"/>
     </ai>
@@ -633,7 +633,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="neigghhh neigghhh"/>
+        <noise state="idle follow fight" value="neigghhh neigghhh"/>
       </says>
       <profile name="animal"/>
       <profile name="non offensive"/>
@@ -662,7 +662,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="naayyy"/>
+        <noise state="idle follow fight" value="naayyy"/>
       </says>
       <profile name="animal"/>
       <profile name="non offensive"/>
@@ -695,7 +695,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Giiiiiaaants! Run away!"/>
+        <noise state="idle follow fight" value="Giiiiiaaants! Run away!"/>
       </says>
       <profile name="offensive"/>
       <profile name="coward"/>
@@ -728,7 +728,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Giiiiiaaants! Run away!"/>
+        <noise state="idle follow fight" value="Giiiiiaaants! Run away!"/>
       </says>
       <profile name="offensive"/>
       <profile name="coward"/>
@@ -759,7 +759,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Grrr Grrr!"/>
+        <noise state="idle follow fight" value="Grrr Grrr!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -789,7 +789,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Roar!"/>
+        <noise state="idle follow fight" value="Roar!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -819,7 +819,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Roar!"/>
+        <noise state="idle follow fight" value="Roar!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -848,7 +848,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="MOOOOO!!!"/>
+        <noise state="idle follow fight" value="MOOOOO!!!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -878,7 +878,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="sssSSSsssss..."/>
+        <noise state="idle follow fight" value="sssSSSsssss..."/>
       </says>
       <profile name="poisonous" params="5,poison"/>
       <profile name="animal"/>
@@ -909,7 +909,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="SsSssSsssssss!"/>
+        <noise state="idle follow fight" value="SsSssSsssssss!"/>
       </says>
       <profile name="poisonous" params="5,poison"/>
       <profile name="animal"/>
@@ -940,7 +940,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Roar!"/>
+        <noise state="idle follow fight" value="Roar!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -970,7 +970,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Grooooaaaarrrr!"/>
+        <noise state="idle follow fight" value="Grooooaaaarrrr!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -1007,7 +1007,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Umm! Tasty meat."/>
+        <noise state="idle follow fight" value="Umm! Tasty meat."/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -1043,7 +1043,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Grrrr! Wooof!"/>
+        <noise state="idle follow fight" value="Grrrr! Wooof!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -1074,7 +1074,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="WHOOOOEOEOEZZZZZZ!!!"/>
+        <noise state="idle follow fight" value="WHOOOOEOEOEZZZZZZ!!!"/>
       </says>
       <profile name="non offensive"/>
       <profile name="animal"/>
@@ -1135,7 +1135,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Miiiiaaauuu!"/>
+        <noise state="idle follow fight" value="Miiiiaaauuu!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -1168,7 +1168,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Ready! Aim! Runnnnnnnnnnn"/>
+        <noise state="idle follow fight" value="Ready! Aim! Runnnnnnnnnnn"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -1201,7 +1201,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Ready! Aim! Runnnnnnnnnnn"/>
+        <noise state="idle follow fight" value="Ready! Aim! Runnnnnnnnnnn"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -1237,7 +1237,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Thou shall not pass!"/>
+        <noise state="idle follow fight" value="Thou shall not pass!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -1293,7 +1293,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Defend yourself! I can see you!"/>
+        <noise state="idle follow fight" value="Defend yourself! I can see you!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -1324,8 +1324,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="SHREEAK!!"/>
-        <noise state="idle;follow;fight" value="SHAAAAAAA!!"/>
+        <noise state="idle follow fight" value="SHREEAK!!"/>
+        <noise state="idle follow fight" value="SHAAAAAAA!!"/>
       </says>
       <profile name="poisonous" params="5,deadly poison"/>
       <profile name="brave"/>
@@ -1363,7 +1363,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Breakfast time!"/>
+        <noise state="idle follow fight" value="Breakfast time!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -1399,7 +1399,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Woorf wer warf!"/>
+        <noise state="idle follow fight" value="Woorf wer warf!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -1489,7 +1489,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Wssss! Warf wit!"/>
+        <noise state="idle follow fight" value="Wssss! Warf wit!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -1521,7 +1521,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="ROOOOAAAAR!"/>
+        <noise state="idle follow fight" value="ROOOOAAAAR!"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -1607,8 +1607,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="They're always after my Lucky Charms!!"/>
-        <noise state="idle;follow;fight" value="Clovers and rainbows... stars and horseshoes..."/>
+        <noise state="idle follow fight" value="They're always after my Lucky Charms!!"/>
+        <noise state="idle follow fight" value="Clovers and rainbows... stars and horseshoes..."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -1947,8 +1947,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Join me for a drink, lassie?"/>
-        <noise state="idle;follow;fight" value="Floating blue balloons..."/>
+        <noise state="idle follow fight" value="Join me for a drink, lassie?"/>
+        <noise state="idle follow fight" value="Floating blue balloons..."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -2149,7 +2149,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Ooooouuuuuh!"/>
+        <noise state="idle follow fight" value="Ooooouuuuuh!"/>
       </says>
       <profile name="offensive"/>
       <profile name="coward"/>
@@ -2244,7 +2244,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Thou shall not maim!"/>
+        <noise state="idle follow fight" value="Thou shall not maim!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -2315,7 +2315,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You, humans, never leave us alone!"/>
+        <noise state="idle follow fight" value="You, humans, never leave us alone!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -2351,7 +2351,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You humans never leave us alone!"/>
+        <noise state="idle follow fight" value="You humans never leave us alone!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -2411,7 +2411,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Rrrrrrrrr"/>
+        <noise state="idle follow fight" value="Rrrrrrrrr"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -2535,7 +2535,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="brrraaaaaaaaaains"/>
+        <noise state="idle follow fight" value="brrraaaaaaaaaains"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -2980,8 +2980,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Aye, my hearties!"/>
-        <noise state="idle;follow;fight" value="Yohoho and a boddle of rum!"/>
+        <noise state="idle follow fight" value="Aye, my hearties!"/>
+        <noise state="idle follow fight" value="Yohoho and a boddle of rum!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -3108,7 +3108,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Thou shall not kill!"/>
+        <noise state="idle follow fight" value="Thou shall not kill!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -3140,7 +3140,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Shiver me timbers!"/>
+        <noise state="idle follow fight" value="Shiver me timbers!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -3260,7 +3260,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Zag-Zag!"/>
+        <noise state="idle follow fight" value="Zag-Zag!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -3294,9 +3294,9 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You're messing with the rats?!"/>
-        <noise state="idle;follow;fight" value="Your death has come!"/>
-        <noise state="idle;follow;fight" value="Feel my wrath!"/>
+        <noise state="idle follow fight" value="You're messing with the rats?!"/>
+        <noise state="idle follow fight" value="Your death has come!"/>
+        <noise state="idle follow fight" value="Feel my wrath!"/>
       </says>
       <profile name="poisonous" params="40,greater poison"/>
       <profile name="brave"/>
@@ -3457,7 +3457,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="I'm no fluffy lamb!"/>
+        <noise state="idle follow fight" value="I'm no fluffy lamb!"/>
       </says>
       <profile name="poisonous" params="30,poison"/>
       <profile name="brave"/>
@@ -3520,7 +3520,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Thou shall not survive!"/>
+        <noise state="idle follow fight" value="Thou shall not survive!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -3580,9 +3580,9 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="The end of the world is nigh..."/>
-        <noise state="idle;follow;fight" value="Yield to the Power!"/>
-		<noise state="death" value="Meet you after Cataclysm."/>
+        <noise state="idle follow fight" value="The end of the world is nigh..."/>
+        <noise state="idle follow fight" value="Yield to the Power!"/>
+	<noise state="death" value="Meet you after Cataclysm."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -3616,7 +3616,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="bluuergghhhoooorrghhhhh"/>
+        <noise state="idle follow fight" value="bluuergghhhoooorrghhhhh"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -3759,8 +3759,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Judgement is coming!"/>
-        <noise state="idle;follow;fight" value="Uuuuhhhhh!, i'm gonna get you!"/>
+        <noise state="idle follow fight" value="Judgement is coming!"/>
+        <noise state="idle follow fight" value="Uuuuhhhhh!, i'm gonna get you!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -3791,7 +3791,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Get ready to walk the plank..."/>
+        <noise state="idle follow fight" value="Get ready to walk the plank..."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -3857,7 +3857,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Ou-Garrrr!"/>
+        <noise state="idle follow fight" value="Ou-Garrrr!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -3890,7 +3890,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You're baaaarmy to attack me!"/>
+        <noise state="idle follow fight" value="You're baaaarmy to attack me!"/>
       </says>
       <profile name="poisonous" params="35,poison"/>
       <profile name="brave"/>
@@ -4224,7 +4224,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Yummie!"/>
+        <noise state="idle follow fight" value="Yummie!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -4405,7 +4405,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Get your hands off my booty!"/>
+        <noise state="idle follow fight" value="Get your hands off my booty!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -4438,7 +4438,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Bah! Stay away!"/>
+        <noise state="idle follow fight" value="Bah! Stay away!"/>
       </says>
       <profile name="poisonous" params="40,greater poison"/>
       <profile name="brave"/>
@@ -4501,8 +4501,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="The Cataclysm cometh!"/>
-        <noise state="idle;follow;fight" value="Hail to the greater Power!"/>
+        <noise state="idle follow fight" value="The Cataclysm cometh!"/>
+        <noise state="idle follow fight" value="Hail to the greater Power!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -4690,9 +4690,9 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="I'm gonna tell my mommy."/>
-        <noise state="idle;follow;fight" value="Teacher, make him stop."/>
-        <noise state="idle;follow;fight" value="My dad can beat your dad."/>
+        <noise state="idle follow fight" value="I'm gonna tell my mommy."/>
+        <noise state="idle follow fight" value="Teacher, make him stop."/>
+        <noise state="idle follow fight" value="My dad can beat your dad."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -4812,7 +4812,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Thou shall not rob!"/>
+        <noise state="idle follow fight" value="Thou shall not rob!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -4842,7 +4842,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="My unnatural state should evoke fear in you ..."/>
+        <noise state="idle follow fight" value="My unnatural state should evoke fear in you ..."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -4998,7 +4998,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Baaaaack away!"/>
+        <noise state="idle follow fight" value="Baaaaack away!"/>
       </says>
       <profile name="poisonous" params="40,greater poison"/>
       <profile name="brave"/>
@@ -5212,7 +5212,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You will never find the way out!"/>
+        <noise state="idle follow fight" value="You will never find the way out!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -5246,10 +5246,10 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Come on, i dare you."/>
-        <noise state="idle;follow;fight" value="You want a piece of me?"/>
-        <noise state="idle;follow;fight" value="Any time you're ready."/>
-        <noise state="idle;follow;fight" value="Bring it on!"/>
+        <noise state="idle follow fight" value="Come on, i dare you."/>
+        <noise state="idle follow fight" value="You want a piece of me?"/>
+        <noise state="idle follow fight" value="Any time you're ready."/>
+        <noise state="idle follow fight" value="Bring it on!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -5312,7 +5312,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="We mighty duergars will crush the dwarves!"/>
+        <noise state="idle follow fight" value="We mighty duergars will crush the dwarves!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -5348,7 +5348,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="I always get my prey!"/>
+        <noise state="idle follow fight" value="I always get my prey!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -5569,8 +5569,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Don't interfere with pirate business. Our ship and who we keep on it is private!"/>
-        <noise state="idle;follow;fight" value="Shhh, don't let the secret out about the captive on our ship..."/>
+        <noise state="idle follow fight" value="Don't interfere with pirate business. Our ship and who we keep on it is private!"/>
+        <noise state="idle follow fight" value="Shhh, don't let the secret out about the captive on our ship..."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -5603,9 +5603,9 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Be quiet or I will lock you on my ship, just like I locked up the girl Susi!"/>
-        <noise state="idle;follow;fight" value="You remind me of the Ados girl we stole to clean our ship!"/>
-        <noise state="idle;follow;fight" value="You'd make a nice playmate for the Susi girl on our ship..."/>
+        <noise state="idle follow fight" value="Be quiet or I will lock you on my ship, just like I locked up the girl Susi!"/>
+        <noise state="idle follow fight" value="You remind me of the Ados girl we stole to clean our ship!"/>
+        <noise state="idle follow fight" value="You'd make a nice playmate for the Susi girl on our ship..."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -5939,8 +5939,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Who wakes me from my meditation?"/>
-        <noise state="idle;follow;fight" value="You will regret this!"/>
+        <noise state="idle follow fight" value="Who wakes me from my meditation?"/>
+        <noise state="idle follow fight" value="You will regret this!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -6150,7 +6150,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Hug?"/>
+        <noise state="idle follow fight" value="Hug?"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -6369,7 +6369,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Time to die."/>
+        <noise state="idle follow fight" value="Time to die."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -6431,7 +6431,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="King he say kill!"/>
+        <noise state="idle follow fight" value="King he say kill!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -6676,7 +6676,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Think not to defy the dark elves!"/>
+        <noise state="idle follow fight" value="Think not to defy the dark elves!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -6743,7 +6743,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Dwarves are the enemy ... but we kill all who cross our path!"/>
+        <noise state="idle follow fight" value="Dwarves are the enemy ... but we kill all who cross our path!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -6905,7 +6905,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="I am the king of this area!"/>
+        <noise state="idle follow fight" value="I am the king of this area!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -7003,8 +7003,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Uggga yggga arghhhhh"/>
-        <noise state="idle;follow;fight" value="Ooggga UGGga arhhh"/>
+        <noise state="idle follow fight" value="Uggga yggga arghhhhh"/>
+        <noise state="idle follow fight" value="Ooggga UGGga arhhh"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -7071,7 +7071,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Me destroy you!"/>
+        <noise state="idle follow fight" value="Me destroy you!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -7563,7 +7563,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="We will never return to the light!"/>
+        <noise state="idle follow fight" value="We will never return to the light!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -8117,7 +8117,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Thou shall not pillage!"/>
+        <noise state="idle follow fight" value="Thou shall not pillage!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -8356,7 +8356,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Our troops will crush you!"/>
+        <noise state="idle follow fight" value="Our troops will crush you!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -8512,7 +8512,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Defy order! Seek chaos!"/>
+        <noise state="idle follow fight" value="Defy order! Seek chaos!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -8661,7 +8661,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="The Spider Queen will avenge me!"/>
+        <noise state="idle follow fight" value="The Spider Queen will avenge me!"/>
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
@@ -8698,7 +8698,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="I want to grow to be mighty!"/>
+        <noise state="idle follow fight" value="I want to grow to be mighty!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -8732,8 +8732,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="grobble grubble grobble"/>
-        <noise state="idle;follow;fight" value="gribble grobble grubble"/>
+        <noise state="idle follow fight" value="grobble grubble grobble"/>
+        <noise state="idle follow fight" value="gribble grobble grubble"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -8864,7 +8864,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Ouurgghh!"/>
+        <noise state="idle follow fight" value="Ouurgghh!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -8956,7 +8956,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Our troops will crush you!"/>
+        <noise state="idle follow fight" value="Our troops will crush you!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -9085,7 +9085,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Chaos in the wrath!"/>
+        <noise state="idle follow fight" value="Chaos in the wrath!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -9121,7 +9121,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Keep away from me, sunlight dweller!"/>
+        <noise state="idle follow fight" value="Keep away from me, sunlight dweller!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -9220,7 +9220,7 @@
     </equips>
     <ai>      
      <says>
-        <noise state="idle;follow;fight" value="I will summon chaos and fury upon you!"/>
+        <noise state="idle follow fight" value="I will summon chaos and fury upon you!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -9317,7 +9317,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Keep away from me, sunlight dweller!"/>
+        <noise state="idle follow fight" value="Keep away from me, sunlight dweller!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -9353,7 +9353,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="My empire is undefeatable!"/>
+        <noise state="idle follow fight" value="My empire is undefeatable!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -9416,7 +9416,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Revere me, the Oni King!"/>
+        <noise state="idle follow fight" value="Revere me, the Oni King!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -9478,8 +9478,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Fee Fie Foe Fum!!"/>
-        <noise state="idle;follow;fight" value="I seek the blood of a Semos Man!"/>
+        <noise state="idle follow fight" value="Fee Fie Foe Fum!!"/>
+        <noise state="idle follow fight" value="I seek the blood of a Semos Man!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -9576,7 +9576,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="We might be in hiding, but we are STILL mighty."/>
+        <noise state="idle follow fight" value="We might be in hiding, but we are STILL mighty."/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -9644,7 +9644,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You must bow before the Oni Queen."/>
+        <noise state="idle follow fight" value="You must bow before the Oni Queen."/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -9677,7 +9677,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="The Queen of Spiders will take her revenge on you!"/>
+        <noise state="idle follow fight" value="The Queen of Spiders will take her revenge on you!"/>
       </says>
       <profile name="poisonous" params="15,greater poison"/>
       <profile name="brave"/>
@@ -9747,7 +9747,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Chaos will rule!"/>
+        <noise state="idle follow fight" value="Chaos will rule!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -9778,9 +9778,9 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You've been warned before."/>
-        <noise state="idle;follow;fight" value="Why do you return?"/>
-        <noise state="idle;follow;fight" value="Have you lost your marbles?"/>
+        <noise state="idle follow fight" value="You've been warned before."/>
+        <noise state="idle follow fight" value="Why do you return?"/>
+        <noise state="idle follow fight" value="Have you lost your marbles?"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -9814,8 +9814,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Fear the dark elf armies!"/>
-        <noise state="idle;follow;fight" value="We are the darkness you fear!"/>
+        <noise state="idle follow fight" value="Fear the dark elf armies!"/>
+        <noise state="idle follow fight" value="We are the darkness you fear!"/>
       </says>
       <profile name="poisonous" params="15,greater poison"/>
       <profile name="brave"/>
@@ -9849,8 +9849,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Gnomes! Run away!"/>
-        <noise state="idle;follow;fight" value="You may steal my money but you'll never take my heart!"/>
+        <noise state="idle follow fight" value="Gnomes! Run away!"/>
+        <noise state="idle follow fight" value="You may steal my money but you'll never take my heart!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -9918,8 +9918,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You will never see the light again!"/>
-        <noise state="idle;follow;fight" value="Darkness will fall upon you!"/>
+        <noise state="idle follow fight" value="You will never see the light again!"/>
+        <noise state="idle follow fight" value="Darkness will fall upon you!"/>
       </says>
       <profile name="poisonous" params="15,greater poison"/>
       <profile name="brave"/>
@@ -9988,8 +9988,8 @@
     </equips>
     <ai>
           <says>
-        <noise state="idle;follow;fight" value="You WILL show us the respect we deserve."/>
-        <noise state="idle;follow;fight" value="Care for a game of chess?"/>
+        <noise state="idle follow fight" value="You WILL show us the respect we deserve."/>
+        <noise state="idle follow fight" value="Care for a game of chess?"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -10023,8 +10023,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Thou shalt die!"/>
-        <noise state="idle;follow;fight" value="Worms will feast on your corpse!"/>
+        <noise state="idle follow fight" value="Thou shalt die!"/>
+        <noise state="idle follow fight" value="Worms will feast on your corpse!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -10058,8 +10058,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Wheee!!"/>
-        <noise state="idle;follow;fight" value="It's fun up here!"/>
+        <noise state="idle follow fight" value="Wheee!!"/>
+        <noise state="idle follow fight" value="It's fun up here!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -10095,8 +10095,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You disturbed my rest!"/>
-        <noise state="idle;follow;fight" value="Now, you will pay."/>
+        <noise state="idle follow fight" value="You disturbed my rest!"/>
+        <noise state="idle follow fight" value="Now, you will pay."/>
       </says>
       <profile name="poisonous" params="15,greater poison"/>
       <profile name="brave"/>
@@ -10164,8 +10164,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Wipe your feet before entering our domain."/>
-        <noise state="idle;follow;fight" value="I'll teach you to defile our sanctuary."/>
+        <noise state="idle follow fight" value="Wipe your feet before entering our domain."/>
+        <noise state="idle follow fight" value="I'll teach you to defile our sanctuary."/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -10331,7 +10331,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="I am become death, destroyer of worlds."/>
+        <noise state="idle follow fight" value="I am become death, destroyer of worlds."/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -10365,7 +10365,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Charrrrrrrrge!"/>
+        <noise state="idle follow fight" value="Charrrrrrrrge!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -10467,8 +10467,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You are DOOMED."/>
-        <noise state="idle;follow;fight" value="I am here to destroy all people."/>
+        <noise state="idle follow fight" value="You are DOOMED."/>
+        <noise state="idle follow fight" value="I am here to destroy all people."/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -10508,8 +10508,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Who dare challenge me?"/>
-        <noise state="idle;follow;fight" value="Leave me now, before it is too late!"/>
+        <noise state="idle follow fight" value="Who dare challenge me?"/>
+        <noise state="idle follow fight" value="Leave me now, before it is too late!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -10545,8 +10545,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Meet thy maker!"/>
-        <noise state="idle;follow;fight" value="Mere mortals cannot challenge me!"/>
+        <noise state="idle follow fight" value="Meet thy maker!"/>
+        <noise state="idle follow fight" value="Mere mortals cannot challenge me!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -10619,8 +10619,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Your time to die has come!"/>
-        <noise state="idle;follow;fight" value="Say goodbye to this world!"/>
+        <noise state="idle follow fight" value="Your time to die has come!"/>
+        <noise state="idle follow fight" value="Say goodbye to this world!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -10657,7 +10657,7 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Don't call me Friend."/>
+        <noise state="idle follow fight" value="Don't call me Friend."/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -10694,9 +10694,9 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Leave now, before it is too late for you."/>
-        <noise state="idle;follow;fight" value="Your destiny is not here."/>
-        <noise state="idle;follow;fight" value="Neither the earth nor the sky has a place for you..."/>
+        <noise state="idle follow fight" value="Leave now, before it is too late for you."/>
+        <noise state="idle follow fight" value="Your destiny is not here."/>
+        <noise state="idle follow fight" value="Neither the earth nor the sky has a place for you..."/>
       </says>
       <profile name="brave"/>
       <profile name="archer"/>
@@ -10795,8 +10795,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="Growwwwwwwrrrrrrr!"/>
-        <noise state="idle;follow;fight" value="Arrrrllllggggghhhh"/>
+        <noise state="idle follow fight" value="Growwwwwwwrrrrrrr!"/>
+        <noise state="idle follow fight" value="Arrrrllllggggghhhh"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -10834,8 +10834,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="My will be done over land and sky!"/>
-        <noise state="idle;follow;fight" value="Mine is the Power and the Glory!"/>
+        <noise state="idle follow fight" value="My will be done over land and sky!"/>
+        <noise state="idle follow fight" value="Mine is the Power and the Glory!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -10871,8 +10871,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="You will dream of me tonight..."/>
-        <noise state="idle;follow;fight" value="You will pay for your greed!"/>
+        <noise state="idle follow fight" value="You will dream of me tonight..."/>
+        <noise state="idle follow fight" value="You will pay for your greed!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -10912,8 +10912,8 @@
     </equips>
     <ai>
       <says>
-        <noise state="idle;follow;fight" value="I will strike you down with more power than you can imagine!!"/>
-        <noise state="idle;follow;fight" value="My will be done!"/>
+        <noise state="idle follow fight" value="I will strike you down with more power than you can imagine!!"/>
+        <noise state="idle follow fight" value="My will be done!"/>
       </says>
       <profile name="brave"/>
       <profile name="archer"/>

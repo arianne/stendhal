@@ -269,7 +269,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 		} else if (says && qName.equals("noise")) {
 			final String states = attrs.getValue("state");
 			final String value = attrs.getValue("value");
-			final List<String> keys=Arrays.asList(states.split(";"));
+			final List<String> keys=Arrays.asList(states.split(" "));
 			// no such state in noises, will add it
 			for (int i=0; i<keys.size(); i++) {
 				final String key=keys.get(i);
