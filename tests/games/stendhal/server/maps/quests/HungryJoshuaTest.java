@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -67,33 +68,33 @@ public class HungryJoshuaTest {
 		en = npc.getEngine();
 
 		en.step(player, "hi");
-		assertEquals("Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.", npc.get("text"));
+		assertEquals("Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I'm worried about my brother who lives in Ados. I need someone to take some #food to him.", npc.get("text"));
+		assertEquals("I'm worried about my brother who lives in Ados. I need someone to take some #food to him.", getReply(npc));
 		en.step(player, "food");
-		assertEquals("I think five sandwiches would be enough. My brother is called #Joshua. Can you help?", npc.get("text"));
+		assertEquals("I think five sandwiches would be enough. My brother is called #Joshua. Can you help?", getReply(npc));
 		en.step(player, "joshua");
-		assertEquals("He's the goldsmith in Ados. They're so short of supplies. Will you help?", npc.get("text"));
+		assertEquals("He's the goldsmith in Ados. They're so short of supplies. Will you help?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Thank you. Please tell him #food or #sandwich so he knows you're not just a customer.", npc.get("text"));
+		assertEquals("Thank you. Please tell him #food or #sandwich so he knows you're not just a customer.", getReply(npc));
 		assertThat(player.getQuest(questSlot), is("start"));
 		en.step(player, "food");
-		assertEquals("#Joshua will be getting hungry! Please hurry!", npc.get("text"));
+		assertEquals("#Joshua will be getting hungry! Please hurry!", getReply(npc));
 		en.step(player, "joshua");
-		assertEquals("My brother, the goldsmith in Ados.", npc.get("text"));
+		assertEquals("My brother, the goldsmith in Ados.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.", npc.get("text"));
+		assertEquals("Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Please don't forget the five #sandwiches for #Joshua!", npc.get("text"));
+		assertEquals("Please don't forget the five #sandwiches for #Joshua!", getReply(npc));
 		en.step(player, "sandwiches");
-		assertEquals("#Joshua will be getting hungry! Please hurry!", npc.get("text"));
+		assertEquals("#Joshua will be getting hungry! Please hurry!", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 
 		// -----------------------------------------------
 
@@ -110,17 +111,17 @@ public class HungryJoshuaTest {
 		final int xp = player.getXP();
 		
 		en.step(player, "hi");
-		assertEquals("Hi! I'm the local goldsmith. If you require me to #cast you a #'gold bar' just tell me!", npc.get("text"));
+		assertEquals("Hi! I'm the local goldsmith. If you require me to #cast you a #'gold bar' just tell me!", getReply(npc));
 		en.step(player, "food");
-		assertEquals("Oh great! Did my brother Xoderos send you with those sandwiches?", npc.get("text"));
+		assertEquals("Oh great! Did my brother Xoderos send you with those sandwiches?", getReply(npc));
 		en.step(player, "yes");
 		// [07:28] kymara earns 150 experience points.
-		assertEquals("Thank you! Please let Xoderos know that I am fine. Say my name, Joshua, so he knows that you saw me. He will probably give you something in return.", npc.get("text"));
+		assertEquals("Thank you! Please let Xoderos know that I am fine. Say my name, Joshua, so he knows that you saw me. He will probably give you something in return.", getReply(npc));
 		assertFalse(player.isEquipped("sandwich"));
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getQuest(questSlot), is("joshua"));
 		en.step(player, "bye");
-		assertEquals("Bye", npc.get("text"));
+		assertEquals("Bye", getReply(npc));
 
 		// -----------------------------------------------
 		npc = SingletonRepository.getNPCList().get("Xoderos");
@@ -128,17 +129,17 @@ public class HungryJoshuaTest {
 		final int xp2 = player.getXP();
 		
 		en.step(player, "hi");
-		assertEquals("Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.", npc.get("text"));
+		assertEquals("Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I do hope #Joshua is well ....", npc.get("text"));
+		assertEquals("I do hope #Joshua is well ....", getReply(npc));
 		en.step(player, "food");
-		assertEquals("I wish you could confirm for me that #Joshua is fine ...", npc.get("text"));
+		assertEquals("I wish you could confirm for me that #Joshua is fine ...", getReply(npc));
 		en.step(player, "joshua");
 		// [07:29] kymara earns 50 experience points.
-		assertEquals("I'm glad Joshua is well. Now, what can I do for you? I know, I'll fix that broken key ring that you're carrying ... there, it should work now!", npc.get("text"));
+		assertEquals("I'm glad Joshua is well. Now, what can I do for you? I know, I'll fix that broken key ring that you're carrying ... there, it should work now!", getReply(npc));
 		assertThat(player.getXP(), greaterThan(xp2));
 		assertTrue(player.isQuestCompleted(questSlot));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 	}
 }
