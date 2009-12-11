@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -68,13 +70,13 @@ public class LookBookforCerylTest {
 		final Engine jynathEngine = jynath.getEngine();
 		jynathEngine.step(pl, "Hi");
 		assertTrue(jynath.isTalking());
-		assertEquals("Greetings! How may I help you?", jynath.get("text"));
+		assertEquals("Greetings! How may I help you?", getReply(jynath));
 
 		jynathEngine.step(pl, "book");
 		assertTrue(jynath.isTalking());
 		assertEquals(
 				"Sssh! I'm concentrating on this potion recipe... it's a tricky one.",
-				jynath.get("text"));
+				getReply(jynath));
 
 		jynathEngine.step(pl, "bye");
 		assertFalse(jynath.isTalking());
@@ -93,7 +95,7 @@ public class LookBookforCerylTest {
 		assertTrue(ceryl.isTalking());
 		assertEquals(
 				"Haven't you got that #book back from #Jynath? Please go look for it, quickly!",
-				ceryl.get("text"));
+				getReply(ceryl));
 
 		assertEquals("start", pl.getQuest(LookBookforCerylTest.CERYL_BOOK));
 	}
@@ -109,26 +111,26 @@ public class LookBookforCerylTest {
 		final Engine cerylEngine = ceryl.getEngine();
 		cerylEngine.step(pl, "Hi");
 		assertTrue(ceryl.isTalking());
-		assertEquals("Greetings! How may I help you?", ceryl.get("text"));
+		assertEquals("Greetings! How may I help you?", getReply(ceryl));
 		cerylEngine.step(pl, ConversationPhrases.QUEST_MESSAGES.get(0));
 		assertTrue(ceryl.isTalking());
 		assertEquals("I am looking for a very special #book.",
-				ceryl.get("text"));
+				getReply(ceryl));
 		cerylEngine.step(pl, "book");
 		assertTrue(ceryl.isTalking());
 		assertEquals(
 				"Could you ask #Jynath to return her book? She's had it for months now, and people are looking for it.",
-				ceryl.get("text"));
+				getReply(ceryl));
 		cerylEngine.step(pl, ConversationPhrases.YES_MESSAGES.get(0));
 		assertTrue(ceryl.isTalking());
 		assertEquals(
 				"Great! Please get me it as quickly as possible... there's a huge waiting list!",
-				ceryl.get("text"));
+				getReply(ceryl));
 		assertEquals("start", pl.getQuest(LookBookforCerylTest.CERYL_BOOK));
 		cerylEngine.step(pl, "book");
 		assertTrue(ceryl.isTalking());
 		assertEquals("I really need that book now! Go to talk with #Jynath.",
-				ceryl.get("text"));
+				getReply(ceryl));
 		cerylEngine.step(pl, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(ceryl.isTalking());
 		final Engine jynathEngine = jynath.getEngine();
@@ -136,7 +138,7 @@ public class LookBookforCerylTest {
 		assertTrue(jynath.isTalking());
 		assertEquals(
 				"Oh, Ceryl's looking for that book back? My goodness! I completely forgot about it... here you go!",
-				jynath.get("text"));
+				getReply(jynath));
 		assertTrue(pl.isEquipped("black book"));
 		jynathEngine.step(pl, "bye");
 		assertFalse(jynath.isTalking());
@@ -145,13 +147,13 @@ public class LookBookforCerylTest {
 		assertTrue(jynath.isTalking());
 		assertEquals(
 				"You'd better take that book back to #Ceryl quickly... he'll be waiting for you.",
-				jynath.get("text"));
+				getReply(jynath));
 
 		jynathEngine.step(pl, "book");
 		assertTrue(jynath.isTalking());
 		assertEquals(
 				"You'd better take that book back to #Ceryl quickly... he'll be waiting for you.",
-				jynath.get("text"));
+				getReply(jynath));
 
 		jynathEngine.step(pl, "bye");
 		assertFalse(jynath.isTalking());
@@ -159,15 +161,15 @@ public class LookBookforCerylTest {
 		cerylEngine.step(pl, "Hi");
 		assertTrue(ceryl.isTalking());
 		assertEquals("Oh, you got the book back! Phew, thanks!",
-				ceryl.get("text"));
+				getReply(ceryl));
 		cerylEngine.step(pl, "bye");
 
 		cerylEngine.step(pl, "Hi");
 		assertTrue(ceryl.isTalking());
-		assertEquals("Greetings! How may I help you?", ceryl.get("text"));
+		assertEquals("Greetings! How may I help you?", getReply(ceryl));
 		cerylEngine.step(pl, "quest");
 		assertTrue(ceryl.isTalking());
-		assertEquals("I have nothing for you now.", ceryl.get("text"));
+		assertEquals("I have nothing for you now.", getReply(ceryl));
 
 	}
 
