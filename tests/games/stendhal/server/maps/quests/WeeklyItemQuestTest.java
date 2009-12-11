@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -59,13 +60,13 @@ public class WeeklyItemQuestTest {
 		en = npc.getEngine();
 
 		en.step(player, "hi");
-		assertEquals("Welcome to Kirdneh Museum.", npc.get("text"));
+		assertEquals("Welcome to Kirdneh Museum.", getReply(npc));
 		en.step(player, "task");
-		assertTrue(npc.get("text").startsWith("I want Kirdneh's museum to be the greatest in the land! Please fetch "));
+		assertTrue(getReply(npc).startsWith("I want Kirdneh's museum to be the greatest in the land! Please fetch "));
 		en.step(player, "complete");
-		assertTrue(npc.get("text").startsWith("You don't seem to have "));
+		assertTrue(getReply(npc).startsWith("You don't seem to have "));
 		en.step(player, "bye");
-		assertEquals("Good bye, it was pleasant talking with you.", npc.get("text"));
+		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
 		
 		player.setQuest(questSlot, "obsidian;100");
 		Item item = ItemTestHelper.createItem("obsidian");
@@ -73,47 +74,47 @@ public class WeeklyItemQuestTest {
 		final int xp = player.getXP();
 		
 		en.step(player, "hi");
-		assertEquals("Welcome to Kirdneh Museum.", npc.get("text"));
+		assertEquals("Welcome to Kirdneh Museum.", getReply(npc));
 		en.step(player, "complete");
 		assertFalse(player.isEquipped("obsidian"));
 		assertTrue(player.isEquipped("money"));
 		assertThat(player.getXP(), greaterThan(xp));
 		assertTrue(player.isQuestCompleted(questSlot));
-		assertTrue(npc.get("text").startsWith("Wonderful! Here is "));
+		assertTrue(getReply(npc).startsWith("Wonderful! Here is "));
 		en.step(player, "bye");
-		assertEquals("Good bye, it was pleasant talking with you.", npc.get("text"));
+		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
 		
 		en.step(player, "hi");
-		assertEquals("Welcome to Kirdneh Museum.", npc.get("text"));
+		assertEquals("Welcome to Kirdneh Museum.", getReply(npc));
 		en.step(player, "task");
-		assertThat(npc.get("text"), isOneOf("The museum can only afford to send you to fetch an item once a week. Please check back in 7 days.", 
+		assertThat(getReply(npc), isOneOf("The museum can only afford to send you to fetch an item once a week. Please check back in 7 days.", 
 				                            "The museum can only afford to send you to fetch an item once a week. Please check back in 1 week."));
 		en.step(player, "bye");
-		assertEquals("Good bye, it was pleasant talking with you.", npc.get("text"));
+		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
 
 		// -----------------------------------------------
 		player.setQuest(questSlot, "done;0");
 
 		en.step(player, "hi");
-		assertEquals("Welcome to Kirdneh Museum.", npc.get("text"));
+		assertEquals("Welcome to Kirdneh Museum.", getReply(npc));
 		en.step(player, "task");
-		assertTrue(npc.get("text").startsWith("I want Kirdneh's museum to be the greatest in the land! Please fetch "));
+		assertTrue(getReply(npc).startsWith("I want Kirdneh's museum to be the greatest in the land! Please fetch "));
 		en.step(player, "bye");
-		assertEquals("Good bye, it was pleasant talking with you.", npc.get("text"));
+		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
 
 		// -----------------------------------------------
 
 		player.setQuest(questSlot, "dark dagger;0");
 		en.step(player, "hi");
-		assertEquals("Welcome to Kirdneh Museum.", npc.get("text"));
+		assertEquals("Welcome to Kirdneh Museum.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("You're already on a quest to bring the museum a dark dagger. Please say #complete if you have it with you. But, perhaps that is now too rare an item. I can give you #another task, or you can return with what I first asked you.", npc.get("text"));
+		assertEquals("You're already on a quest to bring the museum a dark dagger. Please say #complete if you have it with you. But, perhaps that is now too rare an item. I can give you #another task, or you can return with what I first asked you.", getReply(npc));
 		en.step(player, "another");
-		assertEquals("I see. Please, ask me for another #quest when you think you can help Kirdneh museum again.", npc.get("text"));
+		assertEquals("I see. Please, ask me for another #quest when you think you can help Kirdneh museum again.", getReply(npc));
 		en.step(player, "quest");
-		assertTrue(npc.get("text").startsWith("I want Kirdneh's museum to be the greatest in the land! Please fetch "));
+		assertTrue(getReply(npc).startsWith("I want Kirdneh's museum to be the greatest in the land! Please fetch "));
 		en.step(player, "bye");
-		assertEquals("Good bye, it was pleasant talking with you.", npc.get("text"));
+		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
 		
 	}
 }
