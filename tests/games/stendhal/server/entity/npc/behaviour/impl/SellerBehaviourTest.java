@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.behaviour.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.player.Player;
@@ -67,16 +68,16 @@ public class SellerBehaviourTest {
 	    
 	    npc.getEngine().step(player, "hi");
 	    npc.getEngine().step(player, "buy 1 potion");
-		assertEquals("Sorry, I don't sell bottles of potion.", npc.getText());
+		assertEquals("Sorry, I don't sell bottles of potion.", getReply(npc));
 
 	    npc.getEngine().step(player, "buy wine");
-		assertEquals("Sorry, I don't sell glasses of wine.", npc.getText());
+		assertEquals("Sorry, I don't sell glasses of wine.", getReply(npc));
 
 	    npc.getEngine().step(player, "buy 1 glass of wine");
-		assertEquals("Sorry, I don't sell glasses of wine.", npc.getText());
+		assertEquals("Sorry, I don't sell glasses of wine.", getReply(npc));
 
 	    npc.getEngine().step(player, "buy 1 bottle of wine");
-		assertEquals("Sorry, I don't sell glasses of wine.", npc.getText());
+		assertEquals("Sorry, I don't sell glasses of wine.", getReply(npc));
 	}
 
 }

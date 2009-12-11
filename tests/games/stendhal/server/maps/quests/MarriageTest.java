@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -80,19 +81,19 @@ public class MarriageTest {
 		en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Welcome to this place of worship.", npc.get("text"));
+		assertEquals("Welcome to this place of worship.", getReply(npc));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I don't know what you need, dear child.", npc.get("text"));
+		assertEquals("I don't know what you need, dear child.", getReply(npc));
 		assertTrue(en.step(player, "engage"));
-		assertEquals("You have to tell me who you want to marry.", npc.get("text"));
+		assertEquals("You have to tell me who you want to marry.", getReply(npc));
 		assertTrue(en.step(player, "engage player2"));
-		assertEquals("player, do you want to get engaged to player2?", npc.get("text"));
+		assertEquals("player, do you want to get engaged to player2?", getReply(npc));
 		assertTrue(en.step(player, "yes"));
-		assertEquals("player2, do you want to get engaged to player?", npc.get("text"));
+		assertEquals("player2, do you want to get engaged to player?", getReply(npc));
 		assertTrue(en.step(player2, "yes"));
-		assertEquals("Congratulations, player and player2, you are now engaged! Please make sure you have been to Ognir to get wedding rings made before you go to the church for the service. And here are some invitations you can give to your guests.", npc.get("text"));
+		assertEquals("Congratulations, player and player2, you are now engaged! Please make sure you have been to Ognir to get wedding rings made before you go to the church for the service. And here are some invitations you can give to your guests.", getReply(npc));
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Goodbye, may peace be with you.", npc.get("text"));
+		assertEquals("Goodbye, may peace be with you.", getReply(npc));
 
 		assertEquals("engaged", player.getQuest(QUEST_SLOT));
 		assertEquals("engaged", player2.getQuest(QUEST_SLOT));
@@ -107,15 +108,15 @@ public class MarriageTest {
 		npc = SingletonRepository.getNPCList().get("Ognir");
 		en = npc.getEngine();
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		assertTrue(en.step(player, "task"));
-		assertEquals("Well, you could consider getting married to be a quest! Ask me about #'wedding rings' if you need one.", npc.get("text"));
+		assertEquals("Well, you could consider getting married to be a quest! Ask me about #'wedding rings' if you need one.", getReply(npc));
 		assertTrue(en.step(player, "wedding"));
-		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", npc.get("text"));
+		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", getReply(npc));
 		assertTrue(en.step(player, "yes"));
-		assertEquals("Come back when you have both the money and the gold.", npc.get("text"));
+		assertEquals("Come back when you have both the money and the gold.", getReply(npc));
 		assertTrue(en.step(player, "bye"));
 
 		// -----------------------------------------------
@@ -127,11 +128,11 @@ public class MarriageTest {
 		
 		en.step(player, "hi");
 		en.step(player, "task");
-		assertEquals("Well, you could consider getting married to be a quest! Ask me about #'wedding rings' if you need one.", npc.get("text"));
+		assertEquals("Well, you could consider getting married to be a quest! Ask me about #'wedding rings' if you need one.", getReply(npc));
 		en.step(player, "wedding");
-		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", npc.get("text"));
+		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Good, come back in 10 minutes and it will be ready. Goodbye until then.", npc.get("text"));
+		assertEquals("Good, come back in 10 minutes and it will be ready. Goodbye until then.", getReply(npc));
 		en.step(player, "bye");
 
 		assertTrue(player.getQuest(QUEST_SLOT).startsWith("forging"));
@@ -145,13 +146,13 @@ public class MarriageTest {
 		player2.getSlot("bag").add(item);
 
 		en.step(player2, "hi");
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player2, "help");
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		en.step(player2, "wedding");
-		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", npc.get("text"));
+		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", getReply(npc));
 		en.step(player2, "yes");
-		assertEquals("Good, come back in 10 minutes and it will be ready. Goodbye until then.", npc.get("text"));
+		assertEquals("Good, come back in 10 minutes and it will be ready. Goodbye until then.", getReply(npc));
 		en.step(player2, "bye");
 
 		assertTrue(player.getQuest(QUEST_SLOT).startsWith("forging"));
@@ -167,20 +168,20 @@ public class MarriageTest {
 		player.setQuest(QUEST_SLOT, "engaged");
 
 		en.step(player, "hi");
-		assertEquals("Good day! If you're a prospective groom I can #help you prepare for your wedding.", npc.get("text"));
+		assertEquals("Good day! If you're a prospective groom I can #help you prepare for your wedding.", getReply(npc));
 		en.step(player, "help");
-		assertEquals("Please tell me if you want to #'wear a suit' for your wedding.", npc.get("text"));
+		assertEquals("Please tell me if you want to #'wear a suit' for your wedding.", getReply(npc));
 		en.step(player, "wear");
-		assertEquals("To wear a suit will cost 50. Do you want to wear it?", npc.get("text"));
+		assertEquals("To wear a suit will cost 50. Do you want to wear it?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", npc.get("text"));
+		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", getReply(npc));
 		en.step(player2, "bye");
-		assertEquals("Good bye, I hope everything goes well for you.", npc.get("text"));
+		assertEquals("Good bye, I hope everything goes well for you.", getReply(npc));
 		
 		// now test that once you are married you cannot get the outfit again
 		player.setQuest(QUEST_SLOT, "just_married");
 		en.step(player, "hi");
-		assertEquals("Sorry, I can't help you, I am busy pressing suits.", npc.get("text"));
+		assertEquals("Sorry, I can't help you, I am busy pressing suits.", getReply(npc));
 		
 	}
 
@@ -193,20 +194,20 @@ public class MarriageTest {
 		
 		player2.setQuest(QUEST_SLOT, "engaged");
 		en.step(player2, "hi");
-		assertEquals("Welcome! If you're a bride-to-be I can #help you get ready for your wedding", npc.get("text"));
+		assertEquals("Welcome! If you're a bride-to-be I can #help you get ready for your wedding", getReply(npc));
 		en.step(player2, "help");
-		assertEquals("Just tell me if you want to #'wear a gown' for your wedding.", npc.get("text"));
+		assertEquals("Just tell me if you want to #'wear a gown' for your wedding.", getReply(npc));
 		en.step(player2, "wear a gown");
-		assertEquals("To wear a gown will cost 100. Do you want to wear it?", npc.get("text"));
+		assertEquals("To wear a gown will cost 100. Do you want to wear it?", getReply(npc));
 		en.step(player2, "yes");
-		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", npc.get("text"));
+		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", getReply(npc));
 		en.step(player2, "bye");
-		assertEquals("Have a lovely time!", npc.get("text"));
+		assertEquals("Have a lovely time!", getReply(npc));
 		
 		// now test that once you are married you cannot get the outfit again
 		player2.setQuest(QUEST_SLOT, "just_married");
 		en.step(player, "hi");
-		assertEquals("Sorry, I can't help you, I am busy getting dresses ready for brides-to-be!", npc.get("text"));
+		assertEquals("Sorry, I can't help you, I am busy getting dresses ready for brides-to-be!", getReply(npc));
 		
 	}
 
@@ -219,11 +220,11 @@ public class MarriageTest {
 		player2.setQuest("marriage", "forging;" + Long.MAX_VALUE);
 		
 		en.step(player, "hi");
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		en.step(player, "wedding");
-		assertTrue(npc.get("text").startsWith("I haven't finished making the wedding ring. Please check back"));
+		assertTrue(getReply(npc).startsWith("I haven't finished making the wedding ring. Please check back"));
 		en.step(player, "bye");
 
 		// Jump relativly forward in time (by pushing the past events to the beginning of time
@@ -235,26 +236,26 @@ public class MarriageTest {
 		
 		
 		en.step(player, "hi");
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		en.step(player, "wedding");
-		assertEquals("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...", npc.get("text"));
+		assertEquals("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...", getReply(npc));
 		// [14:25] player earns 500 experience points.
 		en.step(player, "hint");
-		assertEquals("When my wife and I got married we went to Fado hotel and hired special clothes. The dressing rooms are on your right when you go in, look for the wooden door. Good luck!", npc.get("text"));
+		assertEquals("When my wife and I got married we went to Fado hotel and hired special clothes. The dressing rooms are on your right when you go in, look for the wooden door. Good luck!", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye, my friend.", npc.get("text"));
+		assertEquals("Bye, my friend.", getReply(npc));
 
 		en.step(player2, "hi");
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player2, "help");
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		en.step(player2, "wedding");
-		assertEquals("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...", npc.get("text"));
+		assertEquals("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...", getReply(npc));
 		// [14:26] player2 earns 500 experience points.StendhalRPRuleProcessor.get()
 		en.step(player2, "bye");
-		assertEquals("Bye, my friend.", npc.get("text"));
+		assertEquals("Bye, my friend.", getReply(npc));
 
 		assertEquals("engaged_with_ring", player.getQuest(QUEST_SLOT));
 		assertEquals("engaged_with_ring", player2.getQuest(QUEST_SLOT));
@@ -262,15 +263,15 @@ public class MarriageTest {
 
 		// **player drops ring of life**
 		en.step(player, "hi");
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		en.step(player, "wedding");
-		assertEquals("Looking forward to your wedding? Make sure your fiancee gets a wedding ring made for you, too! Oh and remember to get #dressed up for the big day.", npc.get("text"));
+		assertEquals("Looking forward to your wedding? Make sure your fiancee gets a wedding ring made for you, too! Oh and remember to get #dressed up for the big day.", getReply(npc));
 		en.step(player, "dressed");
-		assertEquals("When my wife and I got married we went to Fado hotel and hired special clothes. The dressing rooms are on your right when you go in, look for the wooden door. Good luck!", npc.get("text"));
+		assertEquals("When my wife and I got married we went to Fado hotel and hired special clothes. The dressing rooms are on your right when you go in, look for the wooden door. Good luck!", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye, my friend.", npc.get("text"));
+		assertEquals("Bye, my friend.", getReply(npc));
 
 		assertEquals("engaged_with_ring", player.getQuest(QUEST_SLOT));
 		assertEquals("engaged_with_ring", player2.getQuest(QUEST_SLOT));
@@ -286,11 +287,11 @@ public class MarriageTest {
 		npc = SingletonRepository.getNPCList().get("Lukas");
 		en = npc.getEngine();
 		en.step(player2, "hi");
-		assertEquals("Welcome to this place of worship. Are you here to be #married?", npc.get("text"));
+		assertEquals("Welcome to this place of worship. Are you here to be #married?", getReply(npc));
 		en.step(player2, "married");
-		assertEquals("If you want to be engaged, speak to Sister Benedicta. She'll make sure the priest knows about your plans.", npc.get("text"));
+		assertEquals("If you want to be engaged, speak to Sister Benedicta. She'll make sure the priest knows about your plans.", getReply(npc));
 		en.step(player2, "task");
-		assertEquals("I have eveything I need. But it does bring me pleasure to see people #married.", npc.get("text"));
+		assertEquals("I have eveything I need. But it does bring me pleasure to see people #married.", getReply(npc));
 
 		assertEquals("engaged_with_ring", player.getQuest(QUEST_SLOT));
 		assertEquals("engaged_with_ring", player2.getQuest(QUEST_SLOT));
@@ -306,44 +307,44 @@ public class MarriageTest {
 		npc = SingletonRepository.getNPCList().get("Priest");
 		en = npc.getEngine();
 		en.step(player, "hi");
-		assertEquals("Welcome to the church!", npc.get("text"));
+		assertEquals("Welcome to the church!", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I can help you #marry your loved one. But you must be engaged under the supervision of Sister Benedicta, and have a #ring to give your partner.", npc.get("text"));
+		assertEquals("I can help you #marry your loved one. But you must be engaged under the supervision of Sister Benedicta, and have a #ring to give your partner.", getReply(npc));
 		en.step(player, "ring");
-		assertEquals("Once you are engaged, you can go to Ognir who works here in Fado to get your wedding rings made. I believe he also sells engagement rings, but they are purely for decoration. How wanton!", npc.get("text"));
+		assertEquals("Once you are engaged, you can go to Ognir who works here in Fado to get your wedding rings made. I believe he also sells engagement rings, but they are purely for decoration. How wanton!", getReply(npc));
 		en.step(player, "marry");
-		assertEquals("You have to tell me who you want to marry.", npc.get("text"));
+		assertEquals("You have to tell me who you want to marry.", getReply(npc));
 		en.step(player, "marry player2");
-		assertEquals("You must step in front of the altar if you want to marry.", npc.get("text"));
+		assertEquals("You must step in front of the altar if you want to marry.", getReply(npc));
 
 		player.setPosition(10, 9);
 		player2.setPosition(11, 9);
 
 		en.step(player, "marry player2");
-		assertEquals("player, do you really want to marry player2?", npc.get("text"));
+		assertEquals("player, do you really want to marry player2?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("What a pity! Goodbye!", npc.get("text"));
+		assertEquals("What a pity! Goodbye!", getReply(npc));
 
 		en.step(player, "hi");
-		assertEquals("Welcome to the church!", npc.get("text"));
+		assertEquals("Welcome to the church!", getReply(npc));
 		en.step(player, "marry player2");
-		assertEquals("player, do you really want to marry player2?", npc.get("text"));
+		assertEquals("player, do you really want to marry player2?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("player2, do you really want to marry player?", npc.get("text"));
+		assertEquals("player2, do you really want to marry player?", getReply(npc));
 		en.step(player2, "yes");
-		assertEquals("Congratulations, player and player2, you are now married! I don't really approve of this, but if you would like a honeymoon, go ask Linda in the hotel. Just say 'honeymoon' to her and she will understand.", npc.get("text"));
+		assertEquals("Congratulations, player and player2, you are now married! I don't really approve of this, but if you would like a honeymoon, go ask Linda in the hotel. Just say 'honeymoon' to her and she will understand.", getReply(npc));
 		en.step(player2, "bye");
 
 		en.step(player2, "hi");
-		assertEquals("Welcome to the church!", npc.get("text"));
+		assertEquals("Welcome to the church!", getReply(npc));
 		en.step(player2, "marry");
 		en.step(player2, "bye");
-		assertEquals("Go well, and safely.", npc.get("text"));
+		assertEquals("Go well, and safely.", getReply(npc));
 
 		en.step(player, "hi");
-		assertEquals("Welcome to the church!", npc.get("text"));
+		assertEquals("Welcome to the church!", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I can help you #marry your loved one. But you must be engaged under the supervision of Sister Benedicta, and have a #ring to give your partner.", npc.get("text"));
+		assertEquals("I can help you #marry your loved one. But you must be engaged under the supervision of Sister Benedicta, and have a #ring to give your partner.", getReply(npc));
 		en.step(player, "marry");
 		en.step(player, "bye");
 
@@ -361,11 +362,11 @@ public class MarriageTest {
 		npc = SingletonRepository.getNPCList().get("Linda");
 		en = npc.getEngine();
 		en.step(player, "hi");
-		assertEquals("Hello! Welcome to the Fado City Hotel! Can I #help you?", npc.get("text"));
+		assertEquals("Hello! Welcome to the Fado City Hotel! Can I #help you?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("When the building work on the hotel rooms is complete you will be able to #reserve one.", npc.get("text"));
+		assertEquals("When the building work on the hotel rooms is complete you will be able to #reserve one.", getReply(npc));
 		en.step(player, "honeymoon");
-		assertEquals("Could you get player2 to come to the reception desk, please. Then please read our catalogue here and tell me the room number that you would like.", npc.get("text"));
+		assertEquals("Could you get player2 to come to the reception desk, please. Then please read our catalogue here and tell me the room number that you would like.", getReply(npc));
 		// [14:34] You read:
 		// "0. Blue Paradise - with a flaming bed
 		// 1. Windy Love - be blown away

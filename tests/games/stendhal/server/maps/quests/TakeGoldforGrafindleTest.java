@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -62,61 +63,61 @@ public class TakeGoldforGrafindleTest {
 		final double karma = player.getKarma();
 		
 		en.step(player, "hi");
-		assertEquals("Greetings. If you need #help, please ask.", npc.get("text"));
+		assertEquals("Greetings. If you need #help, please ask.", getReply(npc));
 		en.step(player, "help");
-		assertEquals("That room has two chests owned by this bank and two owned by Semos bank.", npc.get("text"));
+		assertEquals("That room has two chests owned by this bank and two owned by Semos bank.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I need someone who can be trusted with #gold.", npc.get("text"));
+		assertEquals("I need someone who can be trusted with #gold.", getReply(npc));
 		en.step(player, "gold");
-		assertEquals("One of our customers needs to bank their gold bars here for safety. It's #Lorithien, she cannot close the Post Office so she never has time.", npc.get("text"));
+		assertEquals("One of our customers needs to bank their gold bars here for safety. It's #Lorithien, she cannot close the Post Office so she never has time.", getReply(npc));
 		en.step(player, "Lorithien");
-		assertEquals("She works in the post office here in Nalwor. It's a big responsibility, as those gold bars could be sold for a lot of money. Can you be trusted?", npc.get("text"));
+		assertEquals("She works in the post office here in Nalwor. It's a big responsibility, as those gold bars could be sold for a lot of money. Can you be trusted?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("Well, at least you are honest and told me from the start.", npc.get("text"));
+		assertEquals("Well, at least you are honest and told me from the start.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, young human.", npc.get("text"));
+		assertEquals("Goodbye, young human.", getReply(npc));
 		assertThat(player.getQuest(questSlot), is("rejected"));
 		assertThat(player.getKarma(), lessThan(karma));
 		
 		final double karma2 = player.getKarma();
 		en.step(player, "hi");
-		assertEquals("Greetings. If you need #help, please ask.", npc.get("text"));
+		assertEquals("Greetings. If you need #help, please ask.", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I need someone who can be trusted with #gold.", npc.get("text"));
+		assertEquals("I need someone who can be trusted with #gold.", getReply(npc));
 		en.step(player, "gold");
-		assertEquals("One of our customers needs to bank their gold bars here for safety. It's #Lorithien, she cannot close the Post Office so she never has time.", npc.get("text"));
+		assertEquals("One of our customers needs to bank their gold bars here for safety. It's #Lorithien, she cannot close the Post Office so she never has time.", getReply(npc));
 		// note we spelt this wrong but it was understood
 		en.step(player, "Lorithiten");
-		assertEquals("She works in the post office here in Nalwor. It's a big responsibility, as those gold bars could be sold for a lot of money. Can you be trusted?", npc.get("text"));
+		assertEquals("She works in the post office here in Nalwor. It's a big responsibility, as those gold bars could be sold for a lot of money. Can you be trusted?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.", npc.get("text"));
+		assertEquals("Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.", getReply(npc));
 		assertThat(player.getQuest(questSlot), is("start"));
 		assertThat(player.getKarma(), greaterThan(karma2));
 		
 		en.step(player, "hi");
-		assertEquals("Greetings. If you need #help, please ask.", npc.get("text"));
+		assertEquals("Greetings. If you need #help, please ask.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I need someone who can be trusted with #gold.", npc.get("text"));
+		assertEquals("I need someone who can be trusted with #gold.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, young human.", npc.get("text"));
+		assertEquals("Goodbye, young human.", getReply(npc));
 		// -----------------------------------------------
 
 		npc = SingletonRepository.getNPCList().get("Lorithien");
 		en = npc.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("I'm so glad you're here! I'll be much happier when this gold is safely in the bank.", npc.get("text"));
+		assertEquals("I'm so glad you're here! I'll be much happier when this gold is safely in the bank.", getReply(npc));
 		assertTrue(player.isEquipped("gold bar"));
 		assertThat(player.getQuest(questSlot), is("lorithien"));
 		en.step(player, "bye");
-		assertEquals("Bye - nice to meet you!", npc.get("text"));
+		assertEquals("Bye - nice to meet you!", getReply(npc));
 		
 		en.step(player, "hi");
-		assertEquals("Oh, please take that gold back to #Grafindle before it gets lost!", npc.get("text"));
+		assertEquals("Oh, please take that gold back to #Grafindle before it gets lost!", getReply(npc));
 		en.step(player, "grafindle");
-		assertEquals("Grafindle is the senior banker here in Nalwor, of course!", npc.get("text"));
+		assertEquals("Grafindle is the senior banker here in Nalwor, of course!", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye - nice to meet you!", npc.get("text"));
+		assertEquals("Bye - nice to meet you!", getReply(npc));
 
 		// -----------------------------------------------
 		npc = SingletonRepository.getNPCList().get("Grafindle");
@@ -126,9 +127,9 @@ public class TakeGoldforGrafindleTest {
 		
 		en.step(player, "hi");
 		// [09:40] kymara earns 200 experience points.
-		assertEquals("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.", npc.get("text"));
+		assertEquals("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, young human.", npc.get("text"));
+		assertEquals("Goodbye, young human.", getReply(npc));
 		assertThat(player.getXP(), greaterThan(xp));
 		assertTrue(player.isQuestCompleted(questSlot));
 		assertThat(player.getKarma(), greaterThan(karma3));
@@ -136,18 +137,18 @@ public class TakeGoldforGrafindleTest {
 		assertTrue(player.isEquipped("nalwor bank key"));
 		
 		en.step(player, "hi");
-		assertEquals("Greetings. If you need #help, please ask.", npc.get("text"));
+		assertEquals("Greetings. If you need #help, please ask.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I ask only that you are honest.", npc.get("text"));
+		assertEquals("I ask only that you are honest.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, young human.", npc.get("text"));	
+		assertEquals("Goodbye, young human.", getReply(npc));	
 		
 		npc = SingletonRepository.getNPCList().get("Lorithien");
 		en = npc.getEngine();
 		// return to post elf after quest done
 		en.step(player, "hi");
-		assertEquals("Hi, can I #help you?", npc.get("text"));
+		assertEquals("Hi, can I #help you?", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye - nice to meet you!", npc.get("text"));
+		assertEquals("Bye - nice to meet you!", getReply(npc));
 	}
 }
