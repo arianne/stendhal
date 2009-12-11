@@ -344,4 +344,23 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+
+  <item name="love potion">
+    <type class="drink" subclass="love_potion" tileid="-1"/>
+    <description>You see a love potion. It looks powerful so take care to use it carefully!</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+      <amount value="400"/>
+      <frequency value="1"/>
+      <quantity value="1"/>
+      <regen value="400"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="12000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
 </items>
