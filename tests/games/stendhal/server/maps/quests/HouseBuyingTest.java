@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
@@ -107,7 +108,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 		player.setAge(3700000);
 		assertTrue(en.step(player, "cost"));
-		assertEquals("The cost of a new house in Ados is 120000 money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.", npc.getText());
+		assertEquals("The cost of a new house in Ados is 120000 money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.", getReply(npc));
 		
 		// satisfy the rest of the ados conditions
 		player.setQuest("daily_item", "done");
@@ -119,7 +120,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "buy"));
 		assertEquals("The cost of a new house in Ados is 120000 money. Also, you must pay a house tax of 1000 money,"
 				+ " every month. If you have a house in mind, please tell me the number now. I will check availability. "
-				+ "The Ados houses are numbered from 50 to 77.", npc.getText());
+				+ "The Ados houses are numbered from 50 to 77.", getReply(npc));
 		
 		// add a portal to the maps so that there's something to check and sell
 		Portal destination = new Portal();
@@ -134,7 +135,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		HouseUtilities.clearCache();
 
 		assertTrue(en.step(player, "50"));
-		assertEquals("You do not have enough money to buy a house!", npc.getText());
+		assertEquals("You do not have enough money to buy a house!", getReply(npc));
 		
 		player.equip(SingletonRepository.getEntityManager().getItem("money"), 120000);
 		
@@ -144,7 +145,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "buy"));
 		assertTrue(en.step(player, "50"));
 		assertEquals("Congratulations, here is your key to ados house 50! Make sure you change the locks if you ever lose it."
-				+ " Do you want to buy a spare key, at a price of 1000 money?", npc.getText());
+				+ " Do you want to buy a spare key, at a price of 1000 money?", getReply(npc));
 
 		assertTrue(player.isEquipped("player's house key"));
 		

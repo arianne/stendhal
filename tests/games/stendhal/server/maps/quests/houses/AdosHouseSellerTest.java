@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -23,9 +24,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -46,14 +45,6 @@ public class AdosHouseSellerTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		SingletonRepository.getNPCList().clear();
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -87,20 +78,20 @@ public class AdosHouseSellerTest {
 		
 		en.step(george, "hi");
 		assertThat(en.getCurrentState(), is(ATTENDING));
-		assertThat(seller.getText(), is("Hello, george."));
+		assertThat(getReply(seller), is("Hello, george."));
 		
 		en.step(george, "job");
 		assertThat(en.getCurrentState(), is(ATTENDING));
-		assertThat(seller.getText(), containsString("Ados"));
+		assertThat(getReply(seller), containsString("Ados"));
 		
 		en.step(george, "cost");
 		assertThat(en.getCurrentState(), is(ATTENDING));
-		assertThat("player is too young", seller.getText(), containsString("you have spent at least"));
+		assertThat("player is too young", getReply(seller), containsString("you have spent at least"));
 	
 		george.setAge(300 * MathHelper.MINUTES_IN_ONE_HOUR + 1);
 		en.step(george, "cost");
 		assertThat(en.getCurrentState(), is(ATTENDING));
-		assertThat("player is old enough but has no quests done", seller.getText(), containsString("you must first prove yourself a worthy"));
+		assertThat("player is old enough but has no quests done", getReply(seller), containsString("you must first prove yourself a worthy"));
 
 	}
 	
@@ -115,7 +106,7 @@ public class AdosHouseSellerTest {
 		Player george = PlayerTestHelper.createPlayer("george");
 		
 		en.step(george, "51");
-		assertThat("no zones loaded", seller.getText(), is("Sorry I did not understand you, could you try saying the house number you want again please?"));
+		assertThat("no zones loaded", getReply(seller), is("Sorry I did not understand you, could you try saying the house number you want again please?"));
 	}
 
 	@Test
@@ -139,7 +130,7 @@ public class AdosHouseSellerTest {
 		Player george = PlayerTestHelper.createPlayer("george");
 		
 		en.step(george, "51");
-		assertThat("no zones loaded", seller.getText(), is("You do not have enough money to buy a house!"));
+		assertThat("no zones loaded", getReply(seller), is("You do not have enough money to buy a house!"));
 		assertThat(en.getCurrentState(), is(ATTENDING));
 		
 		en.setCurrentState(QUEST_OFFERED);
@@ -150,7 +141,7 @@ public class AdosHouseSellerTest {
 		assertFalse(george.isEquipped("house key"));
 		assertTrue(george.isEquipped("money", 120000));
 		en.step(george, "51");
-		assertThat(seller.getText(), containsString("Congratulations"));
+		assertThat(getReply(seller), containsString("Congratulations"));
 		assertFalse(george.isEquipped("money", 120000));
 		assertTrue(george.isEquipped("george's house key"));
 	

@@ -12,7 +12,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
 
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -48,18 +47,13 @@ public class LeaderNPCTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-
 	@Test
 	public void testHiAndBye() {
 		npc = SingletonRepository.getNPCList().get("Lieutenant Drilenun");
 		en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Oh hi, we're just taking a break here. My three cadets just got a reward from the Mayor for helping defend Semos.", npc.get("text"));
+		assertEquals("Oh hi, we're just taking a break here. My three cadets just got a reward from the Mayor for helping defend Semos.", getReply(npc));
 
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Don't forget to listen in on my teachings to these cadets, you may find it helpful!", npc.get("text"));

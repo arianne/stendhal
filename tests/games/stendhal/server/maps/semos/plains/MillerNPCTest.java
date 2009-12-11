@@ -50,7 +50,7 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Jenny"));
-		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", npc.get("text"));
+		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", getReply(npc));
 
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Bye.", npc.get("text"));

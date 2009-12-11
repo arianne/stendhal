@@ -1,12 +1,16 @@
 package games.stendhal.server.maps.quests;
 
-import static games.stendhal.server.entity.npc.ConversationStates.*;
+import static games.stendhal.server.entity.npc.ConversationStates.ATTENDING;
+import static games.stendhal.server.entity.npc.ConversationStates.IDLE;
+import static games.stendhal.server.entity.npc.ConversationStates.QUESTION_1;
+import static games.stendhal.server.entity.npc.ConversationStates.QUEST_OFFERED;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -15,16 +19,13 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import java.util.List;
 import java.util.Arrays;
-import org.junit.After;
+import java.util.List;
+
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-
-
 
 import utilities.PlayerTestHelper;
 
@@ -48,14 +49,6 @@ public class ElvishArmorTest {
 		SingletonRepository.getNPCList().clear();
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		npc.remove("text");
-	}
 	private static final String QUEST_SLOT = "elvish_armor";
 
 	private static final List<String> NEEDEDITEMS = Arrays.asList(
@@ -74,7 +67,7 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
-			assertThat(playerSays, npc.getText(), is("Greetings, traveller. I see that you have come far to be here. I am interested in anyone who has encountered our kin, the green elves of Nalwor. They guard their #secrets closely."));
+			assertThat(playerSays, getReply(npc), is("Greetings, traveller. I see that you have come far to be here. I am interested in anyone who has encountered our kin, the green elves of Nalwor. They guard their #secrets closely."));
 		}
 	}
 
@@ -88,7 +81,7 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(QUEST_OFFERED));
-			assertThat(playerSays, npc.getText(), is("They won't share knowledge of how to create the green armor, shields and the like. You would call them elvish items. I wonder if a traveller like you could bring me any?"));
+			assertThat(playerSays, getReply(npc), is("They won't share knowledge of how to create the green armor, shields and the like. You would call them elvish items. I wonder if a traveller like you could bring me any?"));
 		}
 	}
 
@@ -105,7 +98,7 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
-			assertThat(playerSays, npc.getText(), is("The secrets of the green elves shall be ours at last! Bring me all elvish equipment you can find, I'll reward you well!"));
+			assertThat(playerSays, getReply(npc), is("The secrets of the green elves shall be ours at last! Bring me all elvish equipment you can find, I'll reward you well!"));
 			assertTrue(playerSays, player.hasQuest(QUEST_SLOT));
 			assertThat(playerSays, player.getKarma(), greaterThan(oldkarma));
 		}
@@ -126,7 +119,7 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
-			assertThat(playerSays, npc.getText(), is("Another unhelpful soul, I see."));
+			assertThat(playerSays, getReply(npc), is("Another unhelpful soul, I see."));
 			assertFalse(playerSays, player.hasQuest(QUEST_SLOT));
 			assertThat(playerSays, player.getKarma(), lessThan(oldkarma));
 		}
@@ -149,7 +142,7 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
-			assertThat(playerSays, npc.getText(), is("Hello! I hope your search for elvish #equipment is going well?"));
+			assertThat(playerSays, getReply(npc), is("Hello! I hope your search for elvish #equipment is going well?"));
 		}
 	}
 
@@ -168,7 +161,7 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(QUESTION_1));
-			assertThat(playerSays, npc.getText(), is("Liar! You don't really have "
+			assertThat(playerSays, getReply(npc), is("Liar! You don't really have "
 					+ Grammar.a_noun(playerSays)	+ " with you."));
 		}
 	}
@@ -188,14 +181,14 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(QUESTION_1));
-			assertThat(playerSays, npc.getText(), is("Excellent work. Is there more that you plundered?"));
+			assertThat(playerSays, getReply(npc), is("Excellent work. Is there more that you plundered?"));
 
 			PlayerTestHelper.equipWithItem(player, playerSays);
 			npcEngine.setCurrentState(QUESTION_1);
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npc.getText(), is("You've already brought that elvish item to me."));
+			assertThat(playerSays, getReply(npc), is("You've already brought that elvish item to me."));
 			assertThat(playerSays, npcEngine.getCurrentState(), is(QUESTION_1));
 		}
 	}
@@ -214,7 +207,7 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 		}
 		assertThat(npcEngine.getCurrentState(), is(ATTENDING));
-		assertThat(npc.getText(), is("I will study these! The albino elves owe you a debt of thanks."));
+		assertThat(getReply(npc), is("I will study these! The albino elves owe you a debt of thanks."));
 		assertThat(player.getKarma(), greaterThan(oldKarma));
 		assertThat(player.getXP(), is(oldXp + 20000));
 	}
@@ -229,7 +222,7 @@ public class ElvishArmorTest {
 		npcEngine.step(player, "NotanItem");
 
 		assertThat(npcEngine.getCurrentState(), is(QUESTION_1));
-		assertThat(npc.getText(), is("I don't think that's a piece of elvish armor..."));
+		assertThat(getReply(npc), is("I don't think that's a piece of elvish armor..."));
 	}
 	
     @Ignore 
@@ -242,7 +235,7 @@ public class ElvishArmorTest {
                     npcEngine.step(player, playerSays);
 
                     assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
-                    assertThat(playerSays, npc.getText(), is("Bye."));
+                    assertThat(playerSays, getReply(npc), is("Bye."));
             }
     }
 
@@ -255,7 +248,7 @@ public class ElvishArmorTest {
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
-			assertThat(playerSays, npc.getText(), is("I understand, the green elves protect themselves well. If there's anything else I can do for you, just say."));
+			assertThat(playerSays, getReply(npc), is("I understand, the green elves protect themselves well. If there's anything else I can do for you, just say."));
 		}
 	}
 
@@ -272,7 +265,7 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npc.getText(), is("I understand, the green elves protect themselves well. If there's anything else I can do for you, just say."));
+			assertThat(playerSays, getReply(npc), is("I understand, the green elves protect themselves well. If there's anything else I can do for you, just say."));
 			assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
 
 		}
@@ -287,7 +280,7 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npc.getText(), is("Greetings again, old friend."));
+			assertThat(playerSays, getReply(npc), is("Greetings again, old friend."));
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
 
 		}
@@ -305,7 +298,7 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npc.getText(), is("If you have found any more elvish items, I'd be glad if you would #sell them to me. I would buy elvish armor, shield, legs, boots, cloak or sword. I would also buy a drow sword if you have one."));
+			assertThat(playerSays, getReply(npc), is("If you have found any more elvish items, I'd be glad if you would #sell them to me. I would buy elvish armor, shield, legs, boots, cloak or sword. I would also buy a drow sword if you have one."));
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
 		}
 	}
@@ -323,7 +316,7 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npc.getText(), is("I'm now busy studying the properties of the elvish armor you brought me. It really is intriguing. Until I can reproduce it, I would buy similar items from you."));
+			assertThat(playerSays, getReply(npc), is("I'm now busy studying the properties of the elvish armor you brought me. It really is intriguing. Until I can reproduce it, I would buy similar items from you."));
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
 
 		}
@@ -342,7 +335,7 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npc.getText(), is("As you already know, I seek elvish #equipment."));
+			assertThat(playerSays, getReply(npc), is("As you already know, I seek elvish #equipment."));
 			assertThat(playerSays, npcEngine.getCurrentState(), is(QUESTION_1));
 		}
 	}
@@ -356,7 +349,7 @@ public class ElvishArmorTest {
 
 			npcEngine.step(player, playerSays);
 
-			assertThat(playerSays, npc.getText(), is("I don't think I trust you well enough yet ... "));
+			assertThat(playerSays, getReply(npc), is("I don't think I trust you well enough yet ... "));
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ATTENDING));
 		}
 	}
