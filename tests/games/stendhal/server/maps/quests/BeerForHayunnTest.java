@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -74,11 +75,11 @@ public class BeerForHayunnTest {
 		assertTrue(hayunn.isTalking());
 		assertEquals(
 				"Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go?",
-				hayunn.get("text"));
+				getReply(hayunn));
 		en.step(player, "quest");
 		assertEquals(
 				"My mouth is dry, but I can't be seen to abandon this teaching room! Could you bring me some #beer from the #tavern?",
-				hayunn.get("text"));
+				getReply(hayunn));
 		en.step(player, "yes");
 		assertTrue(player.hasQuest("beer_hayunn"));
 		en.step(player, "bye");
@@ -102,11 +103,11 @@ public class BeerForHayunnTest {
 		assertTrue(hayunn.isTalking());
 		assertEquals(
 			"Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go?",
-				hayunn.get("text"));
+				getReply(hayunn));
 		en.step(player2, "quest");
 		assertEquals(
 				"My mouth is dry, but I can't be seen to abandon this teaching room! Could you bring me some #beer from the #tavern?",
-				hayunn.get("text"));
+				getReply(hayunn));
 		en.step(player2, "no");
 		assertTrue(player2.hasQuest("beer_hayunn"));
 		assertEquals("rejected", player2.getQuest("beer_hayunn"));

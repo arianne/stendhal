@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -65,7 +66,7 @@ public class CrownForTheWannaBeKingTest {
 			npcEngine.setCurrentState(ConversationStates.IDLE);
 			npcEngine.step(bob, playerSays);
 			assertThat(npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
-			assertEquals("Oh it's you again. Did you bring me any #items for my new crown?", npc.getText());
+			assertEquals("Oh it's you again. Did you bring me any #items for my new crown?", getReply(npc));
 		}
 	}
 
@@ -79,7 +80,7 @@ public class CrownForTheWannaBeKingTest {
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(true));
 			npcEngine.step(bob, playerSays);
 			assertThat(npcEngine.getCurrentState(), is(ConversationStates.IDLE));
-			assertEquals("My new crown will be ready soon and I will dethrone the king! Mwahahaha!", npc.getText());
+			assertEquals("My new crown will be ready soon and I will dethrone the king! Mwahahaha!", getReply(npc));
 		}
 	}
 
@@ -93,7 +94,7 @@ public class CrownForTheWannaBeKingTest {
 
 			npcEngine.step(bob, playerSays);
 			assertThat(npcEngine.getCurrentState(), is(ConversationStates.IDLE));
-			assertEquals("My new crown will be ready soon and I will dethrone the king! Mwahahaha!", npc.getText());
+			assertEquals("My new crown will be ready soon and I will dethrone the king! Mwahahaha!", getReply(npc));
 		}
 	}
 
@@ -109,7 +110,7 @@ public class CrownForTheWannaBeKingTest {
 			assertThat(npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
 			assertEquals(
 					"Greetings. Be quick with your matters, I have a lot of work to do. And next time clean your boots, you are lucky that I'm not the king...yet!",
-					npc.getText());
+					getReply(npc));
 		}
 	}
 
@@ -120,7 +121,7 @@ public class CrownForTheWannaBeKingTest {
 		assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 		npcEngine.step(bob, "crown");
 		assertThat(npcEngine.getCurrentState(), is(ConversationStates.QUEST_OFFERED));
-		assertEquals("Yes, I need jewels and gold for my new crown. Will you help me?", npc.getText());
+		assertEquals("Yes, I need jewels and gold for my new crown. Will you help me?", getReply(npc));
 	}
 
 	@Test
@@ -131,7 +132,7 @@ public class CrownForTheWannaBeKingTest {
 		assertThat(npcEngine.getCurrentState(), is(ConversationStates.IDLE));
 		assertEquals(
 				"As I said, find priestess Kendra Mattori in a temple at the city of wizards. She will give you your reward. Now go, I'm busy!",
-				npc.getText());
+				getReply(npc));
 	}
 
 	@Test
@@ -145,7 +146,7 @@ public class CrownForTheWannaBeKingTest {
 			assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
 			npcEngine.step(bob, playerSays);
 			assertThat(npcEngine.getCurrentState(), is(ConversationStates.IDLE));
-			assertEquals("Well don't come back before you find something for me!", npc.getText());
+			assertEquals("Well don't come back before you find something for me!", getReply(npc));
 		}
 	}
 
@@ -164,7 +165,7 @@ public class CrownForTheWannaBeKingTest {
 			assertEquals(
 					"I want my crown to be beautiful and shiny. I need 2 #carbuncles, 2 #diamonds, 4 #emeralds, 2 #'gold bars', 1 #obsidian, and 3 #sapphires."
 					+ " Do you have some of those now with you?",
-					npc.getText());
+					getReply(npc));
 		}
 	}
 
@@ -181,7 +182,7 @@ public class CrownForTheWannaBeKingTest {
 			assertThat(playerSays, bob.getKarma(), lessThan(oldkarma));
 			assertThat(playerSays, bob.hasQuest(QUEST_SLOT), is(true));
 			assertThat(playerSays, bob.getQuest(QUEST_SLOT), is("rejected"));
-			assertEquals("Oh you don't want to help me?! Get lost, you are wasting my precious time!", npc.getText());
+			assertEquals("Oh you don't want to help me?! Get lost, you are wasting my precious time!", getReply(npc));
 		}
 	}
 
@@ -221,7 +222,7 @@ public class CrownForTheWannaBeKingTest {
 		assertThat("items", npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
 		assertThat(
 				"items",
-				npc.getText(),
+				getReply(npc),
 				is("I need 2 #carbuncles, 2 #diamonds, 4 #emeralds, 2 #'gold bars', 1 #obsidian, and 3 #sapphires. Did you bring something?"));
 	}
 
@@ -255,7 +256,7 @@ public class CrownForTheWannaBeKingTest {
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
-			assertEquals("You have already brought that!", npc.getText());
+			assertEquals("You have already brought that!", getReply(npc));
 		}
 
 		for (final String playerSays : triggers) {
@@ -268,7 +269,7 @@ public class CrownForTheWannaBeKingTest {
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
-			assertEquals("You don't have " + playerSays + " with you!", npc.getText());
+			assertEquals("You don't have " + playerSays + " with you!", getReply(npc));
 		}
 
 		for (final String playerSays : triggers) {
@@ -283,7 +284,7 @@ public class CrownForTheWannaBeKingTest {
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
-			assertEquals("Good, do you have anything else?", npc.getText());
+			assertEquals("Good, do you have anything else?", getReply(npc));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 		}
 
@@ -299,7 +300,7 @@ public class CrownForTheWannaBeKingTest {
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
-			assertEquals("Good, do you have anything else?", npc.getText());
+			assertEquals("Good, do you have anything else?", getReply(npc));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 		}
 	}
@@ -321,7 +322,7 @@ public class CrownForTheWannaBeKingTest {
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
-			assertEquals("Good, do you have anything else?", npc.getText());
+			assertEquals("Good, do you have anything else?", getReply(npc));
 			assertThat(bob.getQuest(QUEST_SLOT), not((is(CrownForTheWannaBeKing.NEEDED_ITEMS))));
 		}
 
@@ -332,7 +333,7 @@ public class CrownForTheWannaBeKingTest {
 		npcEngine.step(bob, "gold bar");
 		assertEquals(
 				"You have served me well, my crown will be the mightiest of them all! Go to see Kendra Mattori in the Wizard City to get your #reward.",
-				npc.getText());
+				getReply(npc));
         assertThat("last thing brought", npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
         assertEquals("reward", bob.getQuest(QUEST_SLOT));
 
