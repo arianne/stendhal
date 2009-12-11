@@ -149,12 +149,6 @@ public class LookBookforCerylTest {
 				"You'd better take that book back to #Ceryl quickly... he'll be waiting for you.",
 				getReply(jynath));
 
-		jynathEngine.step(pl, "book");
-		assertTrue(jynath.isTalking());
-		assertEquals(
-				"You'd better take that book back to #Ceryl quickly... he'll be waiting for you.",
-				getReply(jynath));
-
 		jynathEngine.step(pl, "bye");
 		assertFalse(jynath.isTalking());
 
