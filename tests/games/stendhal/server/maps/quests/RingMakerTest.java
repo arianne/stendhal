@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -68,9 +69,9 @@ public class RingMakerTest {
 	@Test
 	public void testHiandBye() throws Exception {
 		en.step(player, "hi");
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Bye, my friend.", npc.get("text"));	
+		assertEquals("Bye, my friend.", getReply(npc));	
 		
 	}
 	
@@ -82,30 +83,30 @@ public class RingMakerTest {
 		npc = SingletonRepository.getNPCList().get("Ognir");
 		en = npc.getEngine();
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		assertTrue(en.step(player, "emerald"));
-		assertEquals("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward.", npc.get("text"));
+		assertEquals("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward.", getReply(npc));
 		assertTrue(en.step(player, "bye"));
 		// -----------------------------------------------
 		final RingOfLife ring = (RingOfLife) SingletonRepository.getEntityManager().getItem("emerald ring");
 		player.getSlot("bag").add(ring);
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		assertTrue(en.step(player, "emerald"));
-		assertEquals("I see you already have an emerald ring. If it gets broken, you can come to me to fix it.", npc.get("text"));
+		assertEquals("I see you already have an emerald ring. If it gets broken, you can come to me to fix it.", getReply(npc));
 
 		// break the ring don't give them money and make them lie that they have it
 		ring.damage();
 		assertTrue(en.step(player, "emerald"));
-		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", npc.get("text"));
+		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", getReply(npc));
 		assertTrue(en.step(player, "price"));
-		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", npc.get("text"));
+		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", getReply(npc));
 		assertTrue(en.step(player, "yes"));
-		assertEquals("Come back when you have the money, the gem and the gold. Goodbye.", npc.get("text"));
+		assertEquals("Come back when you have the money, the gem and the gold. Goodbye.", getReply(npc));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 	}
 	
@@ -120,17 +121,17 @@ public class RingMakerTest {
 		ring.damage();
 		player.getSlot("bag").add(ring);
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		assertTrue(en.step(player, "emerald"));
-		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", npc.get("text"));
+		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", getReply(npc));
 		assertTrue(en.step(player, "price"));
-		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", npc.get("text"));
+		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", getReply(npc));
 		assertTrue(en.step(player, "no"));
-		assertEquals("No problem, just come back when you have the money, the emerald, and the gold.", npc.get("text"));
+		assertEquals("No problem, just come back when you have the money, the emerald, and the gold.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye, my friend.", npc.get("text"));
+		assertEquals("Bye, my friend.", getReply(npc));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 	}
 
@@ -147,15 +148,15 @@ public class RingMakerTest {
 		
 
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		assertTrue(en.step(player, "emerald"));
-		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", npc.get("text"));
+		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", getReply(npc));
 		assertTrue(en.step(player, "price"));
-		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", npc.get("text"));		
+		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", getReply(npc));		
 		assertTrue(en.step(player, "yes"));
-		assertEquals("Okay, that's all I need to fix the ring. Come back in 10 minutes and it will be ready. Bye for now.", npc.get("text"));
+		assertEquals("Okay, that's all I need to fix the ring. Come back in 10 minutes and it will be ready. Bye for now.", getReply(npc));
 
 		assertTrue(player.getQuest(QUEST_SLOT).startsWith("forging"));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
@@ -167,11 +168,11 @@ public class RingMakerTest {
 		player.setQuest("fix_emerald_ring", "forging;" + Long.MAX_VALUE);
 		
 		en.step(player, "hi");
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		en.step(player, "emerald");
-		assertTrue(npc.get("text").startsWith("I haven't finished fixing your ring of life. Please check back"));
+		assertTrue(getReply(npc).startsWith("I haven't finished fixing your ring of life. Please check back"));
 		en.step(player, "bye");
 
 		// Jump relatively forward in time (by pushing the past events to the beginning of time
@@ -180,12 +181,12 @@ public class RingMakerTest {
 		player.setQuest("fix_emerald_ring", "forging;1");
 		
 		en.step(player, "hi");
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		final int oldXP = player.getXP();
 		en.step(player, "emerald");
-		assertEquals("I'm pleased to say, your ring of life is fixed! It's good as new now.", npc.get("text"));
+		assertEquals("I'm pleased to say, your ring of life is fixed! It's good as new now.", getReply(npc));
 		assertEquals("player earns 500 experience points.", oldXP + 500, player.getXP());
 		
 		final Item ring = player.getFirstEquipped("emerald ring");
@@ -196,7 +197,7 @@ public class RingMakerTest {
 		assertThat(en.getCurrentState(), is(ConversationStates.ATTENDING));
 		assertTrue(player.isQuestCompleted(QUEST_SLOT));
 		en.step(player, "bye");
-		assertEquals("Bye, my friend.", npc.get("text"));
+		assertEquals("Bye, my friend.", getReply(npc));
 	}
 	
 	@Test
@@ -239,7 +240,7 @@ public class RingMakerTest {
 			//queststate may not start with forging
 		hasnoRingPlayer.setQuest(QUEST_SLOT, "doesnotstartwithforging");
 		assertTrue(engine.step(hasnoRingPlayer, "life"));
-		assertThat(testNpc.getText(), is("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward."));
+		assertThat(getReply(testNpc), is("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward."));
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
 
 		assertFalse(hasnoRingPlayer.isEquipped("emerald ring"));
@@ -260,7 +261,7 @@ public class RingMakerTest {
 		assertEquals("You see ring of life. Wear it, and you risk less from death.", ringafter.getDescription());
 		assertEquals("You see the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.", ringafter.describe());
 
-		assertEquals("Bye, my friend.", npc.get("text"));
+		assertEquals("Bye, my friend.", getReply(npc));
 	
 	}
 
@@ -270,15 +271,15 @@ public class RingMakerTest {
 		PlayerTestHelper.equipWithStackableItem(testplayer, "emerald", 1);
 
 		assertTrue(en.step(testplayer, "hi"));
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		assertTrue(en.step(testplayer, "help"));
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		assertTrue(en.step(testplayer, "emerald"));
-		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", npc.get("text"));
+		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", getReply(npc));
 		assertTrue(en.step(testplayer, "price"));
-		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", npc.get("text"));		
+		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", getReply(npc));		
 		assertTrue(en.step(testplayer, "yes"));
-		assertEquals("Okay, that's all I need to fix the ring. Come back in 10 minutes and it will be ready. Bye for now.", npc.get("text"));
+		assertEquals("Okay, that's all I need to fix the ring. Come back in 10 minutes and it will be ready. Bye for now.", getReply(npc));
 
 		assertTrue(testplayer.getQuest(QUEST_SLOT).startsWith("forging"));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
@@ -286,11 +287,11 @@ public class RingMakerTest {
 		
 		
 		en.step(testplayer, "hi");
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(testplayer, "help");
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		en.step(testplayer, "emerald");
-		assertTrue(npc.get("text").startsWith("I haven't finished fixing your ring of life. Please check back"));
+		assertTrue(getReply(npc).startsWith("I haven't finished fixing your ring of life. Please check back"));
 		en.step(testplayer, "bye");
 
 		// Jump relatively forward in time (by pushing the past events to the beginning of time
@@ -300,12 +301,12 @@ public class RingMakerTest {
 		testplayer.setQuest(QUEST_SLOT, tokens[0] + ";1");
 		
 		en.step(testplayer, "hi");
-		assertEquals("Hi! Can I #help you?", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(testplayer, "help");
-		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", getReply(npc));
 		final int oldXP = testplayer.getXP();
 		en.step(testplayer, "emerald");
-		assertEquals("I'm pleased to say, your ring of life is fixed! It's good as new now.", npc.get("text"));
+		assertEquals("I'm pleased to say, your ring of life is fixed! It's good as new now.", getReply(npc));
 		assertEquals("player earns 500 experience points.", oldXP + 500, testplayer.getXP());
 		en.step(testplayer, "bye");
 	}
