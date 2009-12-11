@@ -715,8 +715,4 @@ public class SpeakerNPC extends NPC {
 	protected void handleSimpleCollision(final int nx, final int ny) {
 		stop();
 	}
-
-	public String getText() {
-		return get("text");
-	}
 }
