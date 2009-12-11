@@ -56,7 +56,7 @@ public class LeaderNPCTest {
 		assertEquals("Oh hi, we're just taking a break here. My three cadets just got a reward from the Mayor for helping defend Semos.", getReply(npc));
 
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Don't forget to listen in on my teachings to these cadets, you may find it helpful!", npc.get("text"));
+		assertEquals("Don't forget to listen in on my teachings to these cadets, you may find it helpful!", getReply(npc));
 	}
 
 	@Test

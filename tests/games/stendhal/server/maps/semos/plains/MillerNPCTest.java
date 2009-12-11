@@ -53,7 +53,7 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", getReply(npc));
 
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 	}
 
 	@Test
