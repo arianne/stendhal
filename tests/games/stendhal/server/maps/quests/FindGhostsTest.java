@@ -161,7 +161,7 @@ public class FindGhostsTest {
 		npcGhost = SingletonRepository.getNPCList().get("Mary");
 		enGhost = npcGhost.getEngine();
 		enGhost.step(player, "hi");
-		assertEquals("Remember my name ... Mary ... Mary ...", npcGhost.get("text"));
+		assertEquals("Remember my name ... Mary ... Mary ...", getReply(npcGhost));
 		assertEquals(oldxp + 100, player.getXP());
 		assertThat(player.getQuest("find_ghosts") , containsString("mary"));
 
@@ -176,7 +176,7 @@ public class FindGhostsTest {
 		enGhost.step(player, "hi");
 		assertEquals(
 				"Hello! Hardly anyone speaks to me. The other children pretend I don't exist. I hope you remember me.",
-				npcGhost.get("text"));
+				getReply(npcGhost));
 		// [22:26] superkym earns 100 experience points.
 		assertEquals(oldxp + 100, player.getXP());
 		assertThat(player.getQuest("find_ghosts").toLowerCase() , containsString("ben"));
@@ -188,7 +188,7 @@ public class FindGhostsTest {
 		npcGhost = SingletonRepository.getNPCList().get("Goran");
 		enGhost = npcGhost.getEngine();
 		enGhost.step(player, "hi");
-		assertEquals("Remember my name ... Goran ... Goran ...", npcGhost.get("text"));
+		assertEquals("Remember my name ... Goran ... Goran ...", getReply(npcGhost));
 		// [22:26] superkym earns 100 experience points.
 		assertEquals(oldxp + 100, player.getXP());
 		assertThat(player.getQuest("find_ghosts") , containsString("goran"));
@@ -200,7 +200,7 @@ public class FindGhostsTest {
 		npcGhost = SingletonRepository.getNPCList().get("Zak");
 		enGhost = npcGhost.getEngine();
 		enGhost.step(player, "hi");
-		assertEquals("Remember my name ... Zak ... Zak ...", npcGhost.get("text"));
+		assertEquals("Remember my name ... Zak ... Zak ...", getReply(npcGhost));
 		// [22:26] superkym earns 100 experience points.
 		assertEquals(oldxp + 100, player.getXP());
 		assertThat(player.getQuest("find_ghosts") , containsString("zak"));
