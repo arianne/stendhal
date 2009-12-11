@@ -144,8 +144,9 @@ public class CampfireTest {
 				getReply(npc));
 		assertTrue(en.step(player, "yes"));
 		assertEquals(0, player.getNumberOfEquipped("wood"));
-		assertTrue("Thank you! Here, take some meat!".equals(getReply(npc))
-				|| "Thank you! Here, take some ham!".equals(getReply(npc)));
+		String reply = getReply(npc);
+		assertTrue("Thank you! Here, take some meat!".equals(reply)
+				|| "Thank you! Here, take some ham!".equals(reply));
 		assertTrue((10 == player.getNumberOfEquipped("meat"))
 				|| (10 == player.getNumberOfEquipped("ham")));
 		assertTrue(en.step(player, "bye"));
