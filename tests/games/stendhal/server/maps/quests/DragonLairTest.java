@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.isOneOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -58,22 +59,22 @@ public class DragonLairTest {
 		
 		// see if level 0 player can enter (they could)
 		en.step(player, "hi");
-		assertEquals("Greetings, my fellow traveler. What may I do for you?", npc.get("text"));
+		assertEquals("Greetings, my fellow traveler. What may I do for you?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Would you like to visit our dragon lair?", npc.get("text"));
+		assertEquals("Would you like to visit our dragon lair?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("Ok, but our dragons will be sorry you didn't stop in for a visit.", npc.get("text"));
+		assertEquals("Ok, but our dragons will be sorry you didn't stop in for a visit.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Farewell. May your days be many and your heart be free.", npc.get("text"));
+		assertEquals("Farewell. May your days be many and your heart be free.", getReply(npc));
 
 		en.step(player, "hi");
-		assertEquals("Greetings, my fellow traveler. What may I do for you?", npc.get("text"));
+		assertEquals("Greetings, my fellow traveler. What may I do for you?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Would you like to visit our dragon lair?", npc.get("text"));
+		assertEquals("Would you like to visit our dragon lair?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Great! Enjoy your visit. I know THEY will. Oh, watch out, we have a couple chaos dragonriders exercising our dragons. Don't get in their way!", npc.get("text"));
+		assertEquals("Great! Enjoy your visit. I know THEY will. Oh, watch out, we have a couple chaos dragonriders exercising our dragons. Don't get in their way!", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Farewell. May your days be many and your heart be free.", npc.get("text"));
+		assertEquals("Farewell. May your days be many and your heart be free.", getReply(npc));
 		// [21:59] green dragon has been killed by kymara
 		// [21:59] kymara earns 1750 experience points.
 		// [21:59] red dragon has been killed by kymara
@@ -83,38 +84,38 @@ public class DragonLairTest {
 		assertTrue(player.isQuestCompleted(questSlot));
 				
 		en.step(player, "hi");
-		assertEquals("Greetings, my fellow traveler. What may I do for you?", npc.get("text"));
+		assertEquals("Greetings, my fellow traveler. What may I do for you?", getReply(npc));
 		en.step(player, "task");
-		assertThat(npc.getText(), isOneOf("I think they've had enough excitement for a while.  Come back in 7 days.",
+		assertThat(getReply(npc), isOneOf("I think they've had enough excitement for a while.  Come back in 7 days.",
 										  "I think they've had enough excitement for a while.  Come back in 1 week."));
 		en.step(player, "bye");
-		assertEquals("Farewell. May your days be many and your heart be free.", npc.get("text"));
+		assertEquals("Farewell. May your days be many and your heart be free.", getReply(npc));
 		
 		// [22:00] Admin kymara changed your state of the quest 'dragon_lair' from 'done;1219874335035' to 'done;0'
 		// [22:00] Changed the state of quest 'dragon_lair' from 'done;1219874335035' to 'done;0'
 		
 		player.setQuest(questSlot, "done;0");
 		en.step(player, "hi");
-		assertEquals("Greetings, my fellow traveler. What may I do for you?", npc.get("text"));
+		assertEquals("Greetings, my fellow traveler. What may I do for you?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Would you like to visit our dragons again?", npc.get("text"));
+		assertEquals("Would you like to visit our dragons again?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("Ok, but our dragons will be sorry you didn't stop in for a visit.", npc.get("text"));
+		assertEquals("Ok, but our dragons will be sorry you didn't stop in for a visit.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Farewell. May your days be many and your heart be free.", npc.get("text"));
+		assertEquals("Farewell. May your days be many and your heart be free.", getReply(npc));
 		
 		en.step(player, "hi");
-		assertEquals("Greetings, my fellow traveler. What may I do for you?", npc.get("text"));
+		assertEquals("Greetings, my fellow traveler. What may I do for you?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Would you like to visit our dragon lair?", npc.get("text"));
+		assertEquals("Would you like to visit our dragon lair?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Great! Enjoy your visit. I know THEY will. Oh, watch out, we have a couple chaos dragonriders exercising our dragons. Don't get in their way!", npc.get("text"));
+		assertEquals("Great! Enjoy your visit. I know THEY will. Oh, watch out, we have a couple chaos dragonriders exercising our dragons. Don't get in their way!", getReply(npc));
 		en.step(player, "bye");
 		// [22:01] chaos green dragonrider has been killed by kymara
 		// [22:01] kymara earns 31900 experience points.
 		// [22:01] bone dragon has been killed by kymara
 		// [22:01] kymara earns 2210 experience points.
-		assertEquals("Farewell. May your days be many and your heart be free.", npc.get("text"));
+		assertEquals("Farewell. May your days be many and your heart be free.", getReply(npc));
 		
 	}
 }

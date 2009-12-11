@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -59,65 +60,65 @@ public class HelpTomiTest {
 		en = npc.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("help!", npc.get("text"));
+		assertEquals("help!", getReply(npc));
 		en.step(player, "help");
-		assertEquals("where is my ice?", npc.get("text"));
+		assertEquals("where is my ice?", getReply(npc));
 		en.step(player, "ice");
-		assertEquals("my ice? ice plz", npc.get("text"));
+		assertEquals("my ice? ice plz", getReply(npc));
 		en.step(player, "task");
-		assertEquals("my ice? ice plz", npc.get("text"));
+		assertEquals("my ice? ice plz", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("bye", npc.get("text"));
+		assertEquals("bye", getReply(npc));
 		
 		Item item = ItemTestHelper.createItem("ice sword");
 		player.getSlot("bag").add(item);
 		final int xp = player.getXP();
 		en.step(player, "hi");
-		assertEquals("help!", npc.get("text"));
+		assertEquals("help!", getReply(npc));
 		en.step(player, "help");
-		assertEquals("where is my ice?", npc.get("text"));
+		assertEquals("where is my ice?", getReply(npc));
 		en.step(player, "ice");
-		assertEquals("my ice :)", npc.get("text"));
+		assertEquals("my ice :)", getReply(npc));
 		assertFalse(player.isEquipped("ice sword"));
 		assertThat(player.getXP(), greaterThan(xp));
 		assertTrue(player.isQuestCompleted(questSlot));
 		// [22:07] kymara earns 1000 experience points.
 		en.step(player, "bye");
-		assertEquals("bye", npc.get("text"));
+		assertEquals("bye", getReply(npc));
 		
 		en.step(player, "hi");
-		assertEquals("help!", npc.get("text"));
+		assertEquals("help!", getReply(npc));
 		en.step(player, "ice");
-		assertEquals("where is my ice?", npc.get("text"));
+		assertEquals("where is my ice?", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("bye", npc.get("text"));
+		assertEquals("bye", getReply(npc));
 		
 		item = ItemTestHelper.createItem("ice sword");
 		player.getSlot("bag").add(item);
 		final int xp2 = player.getXP();
 		en.step(player, "hi");
-		assertEquals("help!", npc.get("text"));
+		assertEquals("help!", getReply(npc));
 		en.step(player, "ice");
-		assertEquals("my ice :) :) ", npc.get("text"));
+		assertEquals("my ice :) :) ", getReply(npc));
 		assertFalse(player.isEquipped("ice sword"));
 		assertThat(player.getXP(), greaterThan(xp2));
 		assertTrue(player.isQuestCompleted(questSlot));
 		// [22:07] kymara earns 4000 experience points.
 		en.step(player, "bye");
-		assertEquals("bye", npc.get("text"));
+		assertEquals("bye", getReply(npc));
 		
 		item = ItemTestHelper.createItem("ice sword");
 		player.getSlot("bag").add(item);
 		final int xp3 = player.getXP();
 		en.step(player, "hi");
-		assertEquals("help!", npc.get("text"));
+		assertEquals("help!", getReply(npc));
 		en.step(player, "ice");
-		assertEquals("my ice :) :) :) ", npc.get("text"));
+		assertEquals("my ice :) :) :) ", getReply(npc));
 		assertFalse(player.isEquipped("ice sword"));
 		assertThat(player.getXP(), greaterThan(xp3));
 		assertTrue(player.isQuestCompleted(questSlot));
 		// [22:07] kymara earns 9000 experience points.
 		en.step(player, "bye");
-		assertEquals("bye", npc.get("text"));
+		assertEquals("bye", getReply(npc));
 	}
 }
