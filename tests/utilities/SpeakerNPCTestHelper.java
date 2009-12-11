@@ -1,5 +1,7 @@
 package utilities;
 
+import marauroa.common.game.RPEvent;
+import games.stendhal.common.constants.Events;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -20,4 +22,17 @@ public abstract class SpeakerNPCTestHelper {
 		return new SpeakerNPC(name);
 	}
 
+	public static String getReply(SpeakerNPC npc) {
+		String reply = null;
+		
+		for (RPEvent event : npc.events()) {
+			if (event.getName().equals(Events.PUBLIC_TEXT)) {
+				reply = event.get("text");
+			}
+		}
+		
+		npc.clearEvents();
+		
+		return reply;
+	}
 }
