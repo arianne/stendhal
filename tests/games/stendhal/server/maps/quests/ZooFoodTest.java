@@ -72,9 +72,7 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 				getReply(npc));
 		assertFalse(en.step(player, "bye"));
 		assertFalse(npc.isTalking());
-		assertEquals(
-				"Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
-				getReply(npc));
+		assertEquals(null, getReply(npc));
 
 	}
 
@@ -117,9 +115,7 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 				getReply(feelgoodNpc));
 		assertFalse(enFeelgood.step(player, "bye"));
 		assertFalse(feelgoodNpc.isTalking());
-		assertEquals(
-				"Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
-				getReply(feelgoodNpc));
+		assertEquals(null, getReply(feelgoodNpc));
 		// bother katinka again
 		assertTrue(enKatinka.step(player, "hi"));
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?",
