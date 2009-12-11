@@ -1,13 +1,15 @@
 package games.stendhal.server.entity.npc.fsm;
 
+import static games.stendhal.server.entity.npc.ConversationStates.ATTENDING;
+import static games.stendhal.server.entity.npc.ConversationStates.IDLE;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
-import static games.stendhal.server.entity.npc.ConversationStates.*;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -72,7 +74,7 @@ public class EngineTest {
 		en.add(IDLE, null, null, null, IDLE, null, new ChatAction() {
 
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-				
+				// empty method
 			}
 		});
 		assertThat(en.getTransitions().size(), is(2));
@@ -87,7 +89,7 @@ public class EngineTest {
 		en.add(IDLE, null, null, null, IDLE, null, new ChatAction() {
 
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-				
+				// empty method
 			}
 		});
 		assertThat(en.getTransitions().size(), is(1));
@@ -103,7 +105,7 @@ public class EngineTest {
 		ChatAction chatAction = new ChatAction() {
 
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-				
+				// empty method
 			}
 		};
 		en.add(IDLE, null, null, null, IDLE, null, chatAction);
@@ -120,13 +122,13 @@ public class EngineTest {
 		ChatAction chatAction1 = new ChatAction() {
 
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-				
+				// empty method
 			}
 		};
 		ChatAction chatAction2 = new ChatAction() {
 
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-				
+				// empty method
 			}
 		};
 		en.add(IDLE, null, null, null, IDLE, null, chatAction1);
@@ -166,7 +168,7 @@ public class EngineTest {
 		final Player pete = PlayerTestHelper.createPlayer("player");
 		en.step(pete, triggers);
 		assertEquals(nextState, en.getCurrentState());
-		assertEquals(bob.get("text"), reply);
+		assertEquals(reply, getReply(bob));
 	}
 
 }

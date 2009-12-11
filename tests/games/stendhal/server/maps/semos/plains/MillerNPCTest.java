@@ -2,6 +2,7 @@ package games.stendhal.server.maps.semos.plains;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -61,40 +62,40 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", npc.get("text"));
+		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", getReply(npc));
 
 		assertTrue(en.step(player, "job"));
-		assertEquals("I run this windmill, where I can #mill people's #grain into flour for them. I also supply the bakery in Semos.", npc.get("text"));
+		assertEquals("I run this windmill, where I can #mill people's #grain into flour for them. I also supply the bakery in Semos.", getReply(npc));
 
 		assertTrue(en.step(player, "grain"));
-		assertEquals("There's a farm nearby; they usually let people harvest there. You'll need a scythe, of course.", npc.get("text"));
+		assertEquals("There's a farm nearby; they usually let people harvest there. You'll need a scythe, of course.", getReply(npc));
 
 		assertTrue(en.step(player, "help"));
-		assertEquals("Do you know the bakery in Semos? I'm proud to say they use my flour. But the wolves ate my delivery boy again recently... they're probably running out.", npc.get("text"));
+		assertEquals("Do you know the bakery in Semos? I'm proud to say they use my flour. But the wolves ate my delivery boy again recently... they're probably running out.", getReply(npc));
 
 		assertTrue(en.step(player, "mill"));
-		assertEquals("I can only mill 1 sack of flour if you bring me 5 #'sheaves of grain'.", npc.get("text"));
+		assertEquals("I can only mill 1 sack of flour if you bring me 5 #'sheaves of grain'.", getReply(npc));
 
 		assertTrue(en.step(player, "mill two sacks of flour"));
-		assertEquals("I can only mill 2 sacks of flour if you bring me 10 #'sheaves of grain'.", npc.get("text"));
+		assertEquals("I can only mill 2 sacks of flour if you bring me 10 #'sheaves of grain'.", getReply(npc));
 
 		assertTrue(en.step(player, "mill grain"));
-		assertEquals("Sorry, I can only produce flour.", npc.get("text"));
+		assertEquals("Sorry, I can only produce flour.", getReply(npc));
 
 //TODO mf - complete milling test case
 //		assertTrue(equipWithItem(player, "scythe"));
 //
 //		assertTrue(equipWithItem(player, "chaos legs"));
 //		assertTrue(en.step(player, "sell chaos leg"));
-//		assertEquals("1 pair of chaos legs is worth 8000. Do you want to sell it?", npc.get("text"));
+//		assertEquals("1 pair of chaos legs is worth 8000. Do you want to sell it?", getReply(npc));
 //
 //		assertFalse(player.isEquipped("money", 8000));
 //		assertTrue(en.step(player, "yes"));
-//		assertEquals("Thanks! Here is your money.", npc.get("text"));
+//		assertEquals("Thanks! Here is your money.", getReply(npc));
 //		assertTrue(player.isEquipped("money", 8000));
 
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 	}
 
 }

@@ -2,7 +2,7 @@ package games.stendhal.server.maps.semos.townhall;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -10,12 +10,12 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
+
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
@@ -73,22 +73,22 @@ public class LeaderNPCTest {
 
 		//test the basic messages
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Oh hi, we're just taking a break here. My three cadets just got a reward from the Mayor for helping defend Semos.", npc.get("text"));
+		assertEquals("Oh hi, we're just taking a break here. My three cadets just got a reward from the Mayor for helping defend Semos.", getReply(npc));
 
 		assertTrue(en.step(player, "job"));
-		assertEquals("I'm in charge of these three cadets. They need a lot of instruction, which I will have to go back to soon. Feel free to listen in, you may learn something!", npc.get("text"));
+		assertEquals("I'm in charge of these three cadets. They need a lot of instruction, which I will have to go back to soon. Feel free to listen in, you may learn something!", getReply(npc));
 
 		assertTrue(en.step(player, "quest"));
-		assertEquals("Let me advise you on your #weapon.", npc.get("text"));
+		assertEquals("Let me advise you on your #weapon.", getReply(npc));
 
 		assertTrue(en.step(player, "help"));
-		assertEquals("I can give you advice on your #weapon.", npc.get("text"));
+		assertEquals("I can give you advice on your #weapon.", getReply(npc));
 
 		assertTrue(en.step(player, "offer"));
-		assertEquals("I'd like to comment on your #weapon, if I may.", npc.get("text"));
+		assertEquals("I'd like to comment on your #weapon, if I may.", getReply(npc));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("Oh, I can't comment on your weapon, as you have none equipped. That's not very wise in these dangerous times!", npc.get("text"));
+		assertEquals("Oh, I can't comment on your weapon, as you have none equipped. That's not very wise in these dangerous times!", getReply(npc));
 		
 		final Item weapon = new Item("club", "club", "subclass", null);
 		weapon.setEquipableSlots(Arrays.asList("lhand"));
@@ -99,7 +99,7 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("club"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("Well, your club has quite low damage capability, doesn't it? You should look for something with a better attack to rate ratio.", npc.get("text"));
+		assertEquals("Well, your club has quite low damage capability, doesn't it? You should look for something with a better attack to rate ratio.", getReply(npc));
 		
 		player.drop(weapon);
 		
@@ -111,7 +111,7 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("ice sword"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("That ice sword is a powerful weapon, it has a good damage to rate ratio.", npc.get("text"));
+		assertEquals("That ice sword is a powerful weapon, it has a good damage to rate ratio.", getReply(npc));
 		player.drop(weapon2);
 		
 		final Item weapon3 = new Item("vampire sword", "sword", "subclass", null);
@@ -123,7 +123,7 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("vampire sword"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("Well, your vampire sword has quite low damage capability, doesn't it? You should look for something with a better attack to rate ratio. The positive lifesteal of 0.1 will increase your health as you use it.", npc.get("text"));
+		assertEquals("Well, your vampire sword has quite low damage capability, doesn't it? You should look for something with a better attack to rate ratio. The positive lifesteal of 0.1 will increase your health as you use it.", getReply(npc));
 		player.drop(weapon3);
 		
 		final Item weapon4 = new Item("club of thorns", "club", "subclass", null);
@@ -135,7 +135,7 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("club of thorns"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("That club of thorns is a powerful weapon, it has a good damage to rate ratio. It should be useful against strong creatures. Remember though that something weaker but faster may suffice against lower level creatures. The negative lifesteal of -0.1 will drain your health as you use it.", npc.get("text"));
+		assertEquals("That club of thorns is a powerful weapon, it has a good damage to rate ratio. It should be useful against strong creatures. Remember though that something weaker but faster may suffice against lower level creatures. The negative lifesteal of -0.1 will drain your health as you use it.", getReply(npc));
 		player.drop(weapon4);
 		
 		final Item weapon5 = new Item("l hand sword", "sword", "subclass", null);
@@ -144,7 +144,7 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("l hand sword"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("I see you use twin swords. They have a superb damage capability but as you cannot wear a shield with them, you will find it harder to defend yourself if attacked.", npc.get("text"));
+		assertEquals("I see you use twin swords. They have a superb damage capability but as you cannot wear a shield with them, you will find it harder to defend yourself if attacked.", getReply(npc));
 		player.drop(weapon5);
 		
 		final Item weapon6 = new Item("black sword", "sword", "subclass", null);
@@ -155,7 +155,7 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("black sword"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("That black sword is a powerful weapon, it has a good damage to rate ratio. It should be useful against strong creatures. Remember though that something weaker but faster may suffice against lower level creatures.", npc.get("text"));
+		assertEquals("That black sword is a powerful weapon, it has a good damage to rate ratio. It should be useful against strong creatures. Remember though that something weaker but faster may suffice against lower level creatures.", getReply(npc));
 		player.drop(weapon6);
 		
 		final Item weapon7 = new Item("obsidian knife", "sword", "subclass", null);
@@ -166,7 +166,7 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("obsidian knife"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("That obsidian knife is a powerful weapon, it has a good damage to rate ratio. Despite the fast rate being useful, the low attack will not help you against strong creatures. Something heavier would be better then.", npc.get("text"));
+		assertEquals("That obsidian knife is a powerful weapon, it has a good damage to rate ratio. Despite the fast rate being useful, the low attack will not help you against strong creatures. Something heavier would be better then.", getReply(npc));
 		player.drop(weapon7);
 		
 		final Item weapon8 = new Item("assassin dagger", "sword", "subclass", null);
@@ -177,11 +177,11 @@ public class LeaderNPCTest {
 		assertTrue(player.isEquipped("assassin dagger"));
 		
 		assertTrue(en.step(player, "weapon"));
-		assertEquals("Well, your assassin dagger has quite low damage capability, doesn't it? You should look for something with a better attack to rate ratio. At least you can hit fast with it, so it may be good enough against creatures weaker than you.", npc.get("text"));		
+		assertEquals("Well, your assassin dagger has quite low damage capability, doesn't it? You should look for something with a better attack to rate ratio. At least you can hit fast with it, so it may be good enough against creatures weaker than you.", getReply(npc));		
 		player.drop(weapon8);
 		
 		//say goodbye
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Don't forget to listen in on my teachings to these cadets, you may find it helpful!", npc.get("text"));
+		assertEquals("Don't forget to listen in on my teachings to these cadets, you may find it helpful!", getReply(npc));
 	}
 }

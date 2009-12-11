@@ -1,9 +1,9 @@
 package games.stendhal.server.maps.semos.plains;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -51,10 +51,10 @@ public class ExperiencedWarriorNPCTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Greetings! How may I help you?", npc.get("text"));
+		assertEquals("Greetings! How may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Farewell and godspeed!", npc.get("text"));
+		assertEquals("Farewell and godspeed!", getReply(npc));
 	}
 
 	@Test
@@ -64,51 +64,51 @@ public class ExperiencedWarriorNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		//test the basic messages
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Greetings! How may I help you?", npc.get("text"));
+		assertEquals("Greetings! How may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "job"));
-		assertEquals("My job? I'm a well known warrior, strange that you haven't heard of me!", npc.get("text"));
+		assertEquals("My job? I'm a well known warrior, strange that you haven't heard of me!", getReply(npc));
 
 		assertTrue(en.step(player, "quest"));
-		assertEquals("Thanks, but I don't need any help at the moment.", npc.get("text"));
+		assertEquals("Thanks, but I don't need any help at the moment.", getReply(npc));
 
 		assertTrue(en.step(player, "help"));
-		assertEquals("If you want, I can tell you about the #creatures I have encountered.", npc.get("text"));
+		assertEquals("If you want, I can tell you about the #creatures I have encountered.", getReply(npc));
 
 		assertTrue(en.step(player, "offer"));
-		assertEquals("I offer you information on #creatures I've seen for a reasonable fee.", npc.get("text"));
+		assertEquals("I offer you information on #creatures I've seen for a reasonable fee.", getReply(npc));
 
 		assertTrue(en.step(player, "creatures"));
-		assertEquals("Which creature you would like to hear more about?", npc.get("text"));
+		assertEquals("Which creature you would like to hear more about?", getReply(npc));
 
 		//do a false monster test
 		assertTrue(en.step(player, "C-Monster"));
-		assertEquals("I have never heard of such a creature! Please tell the name again.", npc.get("text"));
+		assertEquals("I have never heard of such a creature! Please tell the name again.", getReply(npc));
 
 		//test with not having enough cash
 		assertTrue(en.step(player, "angel"));
-		assertEquals("This information costs 490. Are you still interested?", npc.get("text"));
+		assertEquals("This information costs 490. Are you still interested?", getReply(npc));
 
 		assertFalse(player.isEquipped("money", 490));
 		assertTrue(en.step(player, "yes"));
-		assertEquals("You don't have enough money with you.", npc.get("text"));
+		assertEquals("You don't have enough money with you.", getReply(npc));
 
 		//test with having the cash
 		assertTrue(equipWithMoney(player, 490));
 		assertTrue(player.isEquipped("money", 490));
 
 		assertTrue(en.step(player, "creatures"));
-		assertEquals("Which creature you would like to hear more about?", npc.get("text"));
+		assertEquals("Which creature you would like to hear more about?", getReply(npc));
 
 		assertTrue(en.step(player, "angel"));
-		assertEquals("This information costs 490. Are you still interested?", npc.get("text"));
+		assertEquals("This information costs 490. Are you still interested?", getReply(npc));
 
 		//lazy assertion since the phrases differ each time.  assume that the npc repeats the creature
 		assertTrue(en.step(player, "yes"));
-		assertTrue(npc.get("text").toLowerCase().contains("angel"));
+		assertTrue(getReply(npc).toLowerCase().contains("angel"));
 
 		//say goodbye
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Farewell and godspeed!", npc.get("text"));
+		assertEquals("Farewell and godspeed!", getReply(npc));
 	}
 }
