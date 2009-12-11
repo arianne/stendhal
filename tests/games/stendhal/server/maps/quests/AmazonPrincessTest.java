@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -61,7 +62,7 @@ public class AmazonPrincessTest {
 		en.setCurrentState(ConversationStates.ATTENDING);
 		player.setQuest(new AmazonPrincess().getSlotName(), "drinking;0");
 		en.step(player, "task");
-		assertEquals("The last cocktail you brought me was so lovely. Will you bring me another?", npc.get("text"));
+		assertEquals("The last cocktail you brought me was so lovely. Will you bring me another?", getReply(npc));
 		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 		en.step(player, "yes");
 		assertEquals("start", player.getQuest(new AmazonPrincess().getSlotName()));
@@ -72,82 +73,82 @@ public class AmazonPrincessTest {
 	@Test
 	public void testQuest() {
 		en.step(player, "hi");
-		assertEquals("Huh, what are you doing here?", npc.get("text"));
+		assertEquals("Huh, what are you doing here?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("Beware of my sisters on the island, they do not like strangers.", npc.get("text"));
+		assertEquals("Beware of my sisters on the island, they do not like strangers.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I'm looking for a drink, should be an exotic one. Can you bring me one?", npc.get("text"));
+		assertEquals("I'm looking for a drink, should be an exotic one. Can you bring me one?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Thank you! If you have found some, say #drink to me so I know you have it. I'll be sure to give you a nice reward.", npc.get("text"));
+		assertEquals("Thank you! If you have found some, say #drink to me so I know you have it. I'll be sure to give you a nice reward.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and beware of the barbarians.", npc.get("text"));
+		assertEquals("Goodbye, and beware of the barbarians.", getReply(npc));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Huh, what are you doing here?", npc.get("text"));
+		assertEquals("Huh, what are you doing here?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I like these exotic drinks, I forget the name of my favourite one.", npc.get("text"));
+		assertEquals("I like these exotic drinks, I forget the name of my favourite one.", getReply(npc));
 		en.step(player, "help");
-		assertEquals("Beware of my sisters on the island, they do not like strangers.", npc.get("text"));
+		assertEquals("Beware of my sisters on the island, they do not like strangers.", getReply(npc));
 		en.step(player, "pinacolada");
-		assertEquals("You don't have any drink I like yet. Go, and you better get an exotic one!", npc.get("text"));
+		assertEquals("You don't have any drink I like yet. Go, and you better get an exotic one!", getReply(npc));
 		en.step(player, "exotic drink");
 		en.step(player, "pinacolad");
-		assertEquals("You don't have any drink I like yet. Go, and you better get an exotic one!", npc.get("text"));
+		assertEquals("You don't have any drink I like yet. Go, and you better get an exotic one!", getReply(npc));
 		en.step(player, "help");
-		assertEquals("Beware of my sisters on the island, they do not like strangers.", npc.get("text"));
+		assertEquals("Beware of my sisters on the island, they do not like strangers.", getReply(npc));
 		en.step(player, "favor");
-		assertEquals("I like these exotic drinks, I forget the name of my favourite one.", npc.get("text"));
+		assertEquals("I like these exotic drinks, I forget the name of my favourite one.", getReply(npc));
 		en.step(player, "pinacolada");
-		assertEquals("You don't have any drink I like yet. Go, and you better get an exotic one!", npc.get("text"));
+		assertEquals("You don't have any drink I like yet. Go, and you better get an exotic one!", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and beware of the barbarians.", npc.get("text"));
+		assertEquals("Goodbye, and beware of the barbarians.", getReply(npc));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Huh, what are you doing here?", npc.get("text"));
+		assertEquals("Huh, what are you doing here?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("Beware of my sisters on the island, they do not like strangers.", npc.get("text"));
+		assertEquals("Beware of my sisters on the island, they do not like strangers.", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I like these exotic drinks, I forget the name of my favourite one.", npc.get("text"));
+		assertEquals("I like these exotic drinks, I forget the name of my favourite one.", getReply(npc));
 		en.step(player, "done");
 		en.step(player, "drink");
-		assertEquals("You don't have any drink I like yet. Go, and you better get an exotic one!", npc.get("text"));
+		assertEquals("You don't have any drink I like yet. Go, and you better get an exotic one!", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and beware of the barbarians.", npc.get("text"));
+		assertEquals("Goodbye, and beware of the barbarians.", getReply(npc));
 
 		// -----------------------------------------------
 		final Item item = ItemTestHelper.createItem("pina colada");
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");
-		assertEquals("Huh, what are you doing here?", npc.get("text"));
+		assertEquals("Huh, what are you doing here?", getReply(npc));
 		en.step(player, "pina colada");
-		assertTrue(npc.get("text").startsWith("Thank you!! Take these "));
+		assertTrue(getReply(npc).startsWith("Thank you!! Take these "));
 		assertTrue(player.isEquipped("fish pie"));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and beware of the barbarians.", npc.get("text"));
+		assertEquals("Goodbye, and beware of the barbarians.", getReply(npc));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Huh, what are you doing here?", npc.get("text"));
+		assertEquals("Huh, what are you doing here?", getReply(npc));
 		en.step(player, "task");
-		assertTrue(npc.get("text").startsWith("I'm sure I'll be too drunk to have another for at least"));
+		assertTrue(getReply(npc).startsWith("I'm sure I'll be too drunk to have another for at least"));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and beware of the barbarians.", npc.get("text"));
+		assertEquals("Goodbye, and beware of the barbarians.", getReply(npc));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Huh, what are you doing here?", npc.get("text"));
+		assertEquals("Huh, what are you doing here?", getReply(npc));
 		en.step(player, "pina colada");
-		assertEquals("Sometime you could do me a #favour ...", npc.get("text"));
+		assertEquals("Sometime you could do me a #favour ...", getReply(npc));
 		en.step(player, "favour");
-		assertTrue(npc.get("text").startsWith("I'm sure I'll be too drunk to have another for at least "));
+		assertTrue(getReply(npc).startsWith("I'm sure I'll be too drunk to have another for at least "));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and beware of the barbarians.", npc.get("text"));
+		assertEquals("Goodbye, and beware of the barbarians.", getReply(npc));
 	}
 }

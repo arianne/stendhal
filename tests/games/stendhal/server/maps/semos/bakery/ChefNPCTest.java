@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.bakery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -62,10 +63,10 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 	}
 
 	@Test
@@ -74,15 +75,15 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "make");
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"I can only make 1 sandwich if you bring me 1 #'loaf of bread', 1 #'piece of ham', and 2 #'pieces of cheese'.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 	}
 
 	@Test
@@ -91,7 +92,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
-				npc.get("text"));
+				getReply(npc));
 		final StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(2);
 		cheese.setID(new ID(2, ZONE_NAME));
@@ -111,7 +112,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"I need you to fetch me 1 #'loaf of bread', 1 #'piece of ham', and 2 #'pieces of cheese' for this job. Do you have it?",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST).split(";");
 		final String[] expected = { "1", "sandwich", "" };
@@ -121,7 +122,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"OK, I will make 1 sandwich for you, but that will take some time. Please come back in 3 minutes.",
-				npc.get("text"));
+				getReply(npc));
 		assertEquals(0, player.getNumberOfEquipped("cheese"));
 		assertEquals(0, player.getNumberOfEquipped("bread"));
 		assertEquals(0, player.getNumberOfEquipped("ham"));
@@ -132,7 +133,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals(
 				"Welcome back! I'm done with your order. Here you have 1 sandwich.",
-				npc.get("text"));
+				getReply(npc));
 		assertEquals(1, player.getNumberOfEquipped("sandwich"));
 	}
 
@@ -142,7 +143,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
-				npc.get("text"));
+				getReply(npc));
 		final StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(4);
 		cheese.setID(new ID(2, ZONE_NAME));
@@ -163,7 +164,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"I need you to fetch me 2 #'loaves of bread', 2 #'pieces of ham', and 4 #'pieces of cheese' for this job. Do you have it?",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST).split(";");
 		final String[] expected = { "2", "sandwich", "" };
@@ -173,7 +174,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"OK, I will make 2 sandwiches for you, but that will take some time. Please come back in 6 minutes.",
-				npc.get("text"));
+				getReply(npc));
 		assertEquals(0, player.getNumberOfEquipped("cheese"));
 		assertEquals(0, player.getNumberOfEquipped("bread"));
 		assertEquals(0, player.getNumberOfEquipped("ham"));
@@ -184,7 +185,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals(
 				"Welcome back! I'm done with your order. Here you have 2 sandwiches.",
-				npc.get("text"));
+				getReply(npc));
 		assertEquals(2, player.getNumberOfEquipped("sandwich"));
 	}
 
@@ -194,7 +195,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
-				npc.get("text"));
+				getReply(npc));
 		final StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(6);
 		cheese.setID(new ID(2, ZONE_NAME));
@@ -215,7 +216,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"I need you to fetch me 3 #'loaves of bread', 3 #'pieces of ham', and 6 #'pieces of cheese' for this job. Do you have it?",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST).split(";");
 		final String[] expected = { "3", "sandwich", "" };
@@ -225,7 +226,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"OK, I will make 3 sandwiches for you, but that will take some time. Please come back in 9 minutes.",
-				npc.get("text"));
+				getReply(npc));
 		assertEquals(0, player.getNumberOfEquipped("cheese"));
 		assertEquals(0, player.getNumberOfEquipped("bread"));
 		// 10 - 3 -> 7
@@ -237,7 +238,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals(
 				"Welcome back! I'm done with your order. Here you have 3 sandwiches.",
-				npc.get("text"));
+				getReply(npc));
 		assertEquals(3, player.getNumberOfEquipped("sandwich"));
 	}
 
