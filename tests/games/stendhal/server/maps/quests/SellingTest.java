@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.ados.bar.BarMaidNPC;
@@ -44,10 +45,10 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Siandra"));
-		assertEquals("Hi!", npc.get("text"));
+		assertEquals("Hi!", getReply(npc));
 
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Bye bye!", npc.get("text"));
+		assertEquals("Bye bye!", getReply(npc));
 	}
 
 	@Test
@@ -56,28 +57,28 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hi!", npc.get("text"));
+		assertEquals("Hi!", getReply(npc));
 
 		assertTrue(en.step(player, "job"));
-		assertEquals("I'm a bar maid. But we've run out of food to feed our customers, can you #offer any?", npc.get("text"));
+		assertEquals("I'm a bar maid. But we've run out of food to feed our customers, can you #offer any?", getReply(npc));
 
 		assertTrue(en.step(player, "task"));
-		assertEquals("Just #offers of food is enough, thank you.", npc.get("text"));
+		assertEquals("Just #offers of food is enough, thank you.", getReply(npc));
 
 		assertTrue(en.step(player, "offer"));
-		assertEquals("I buy cheese, meat, spinach, ham, flour, and porcini.", npc.get("text"));
+		assertEquals("I buy cheese, meat, spinach, ham, flour, and porcini.", getReply(npc));
 
 		assertTrue(en.step(player, "sell"));
-		assertEquals("Please tell me what you want to sell.", npc.get("text"));
+		assertEquals("Please tell me what you want to sell.", getReply(npc));
 
 		assertTrue(en.step(player, "sell house"));
-		assertEquals("Sorry, I don't buy any houses.", npc.get("text"));
+		assertEquals("Sorry, I don't buy any houses.", getReply(npc));
 
 		assertTrue(en.step(player, "sell cheese"));
-		assertEquals("1 piece of cheese is worth 5. Do you want to sell it?", npc.get("text"));
+		assertEquals("1 piece of cheese is worth 5. Do you want to sell it?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
-		assertEquals("Sorry! You don't have any piece of cheese.", npc.get("text"));
+		assertEquals("Sorry! You don't have any piece of cheese.", getReply(npc));
 
 		 // equip the player with enough cheese to be sold
 		assertFalse(player.isEquipped("cheese", 1));
@@ -86,13 +87,13 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
         assertFalse(player.isEquipped("cheese", 4));
 
 		assertTrue(en.step(player, "sell cheese"));
-		assertEquals("1 piece of cheese is worth 5. Do you want to sell it?", npc.get("text"));
+		assertEquals("1 piece of cheese is worth 5. Do you want to sell it?", getReply(npc));
 
 		 // ensure we currently don't have any money
 		assertFalse(player.isEquipped("money", 1));
 
 		assertTrue(en.step(player, "yes"));
-		assertEquals("Thanks! Here is your money.", npc.get("text"));
+		assertEquals("Thanks! Here is your money.", getReply(npc));
 
 		 // check if we got the promised money and the cheese is gone into Siandra's hands
 		assertTrue(player.isEquipped("money", 5));
@@ -101,12 +102,12 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 
 		 // test what happens when trying to sell nothing
 		assertTrue(en.step(player, "sell 0 cheese"));
-		assertEquals("Sorry, how many pieces of cheese do you want to sell?!", npc.get("text"));
+		assertEquals("Sorry, how many pieces of cheese do you want to sell?!", getReply(npc));
 		assertFalse(en.step(player, "yes"));
 
 		 // test what happens when trying to sell even less than nothing
 		assertTrue(en.step(player, "sell -5 cheese"));
-		assertEquals("Sorry, I did not understand you. negative amount: -5", npc.get("text"));
+		assertEquals("Sorry, I did not understand you. negative amount: -5", getReply(npc));
 		assertFalse(en.step(player, "yes"));
 	}
 

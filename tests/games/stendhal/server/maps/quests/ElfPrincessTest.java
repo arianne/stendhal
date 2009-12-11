@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -57,35 +58,36 @@ public class ElfPrincessTest {
 	@Test
 	public void testQuest() {
 		en.step(player, "hi");
-		assertEquals("Hail to thee, human.", npc.get("text"));
+		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "help");
-		assertEquals("A persistent person could do a #task for me.", npc.get("text"));
+		assertEquals("A persistent person could do a #task for me.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Will you find the wandering flower seller, Rose Leigh, and get from her my favourite flower, the Rhosyd?", npc.get("text"));
+		assertEquals("Will you find the wandering flower seller, Rose Leigh, and get from her my favourite flower, the Rhosyd?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("Oh, never mind. Bye then.", npc.get("text"));
+		assertEquals("Oh, never mind. Bye then.", getReply(npc));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Hail to thee, human.", npc.get("text"));
+		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Will you find the wandering flower seller, Rose Leigh, and get from her my favourite flower, the Rhosyd?", npc.get("text"));
+		assertEquals("Will you find the wandering flower seller, Rose Leigh, and get from her my favourite flower, the Rhosyd?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Thank you! Once you find it, say #flower to me so I know you have it. I'll be sure to give you a nice reward.", npc.get("text"));
+		assertEquals("Thank you! Once you find it, say #flower to me so I know you have it. I'll be sure to give you a nice reward.", getReply(npc));
 		en.step(player, "flower");
-		assertEquals("You don't seem to have a rhosyd bloom with you. But Rose Leigh wanders all over the island, I'm sure you'll find her one day!", npc.get("text"));
+		assertEquals("You don't seem to have a rhosyd bloom with you. But Rose Leigh wanders all over the island, I'm sure you'll find her one day!", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I do so love those pretty flowers from Rose Leigh ...", npc.get("text"));
+		assertEquals("I do so love those pretty flowers from Rose Leigh ...", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, strange one.", npc.get("text"));
+		assertEquals("Goodbye, strange one.", getReply(npc));
 
 		// -----------------------------------------------
 		// Find Rose Leigh and get the flower from her
 
-		assertTrue("Flowers! Get your fresh flowers here!".equals(npcRose.get("text")) || (npcRose.get("text") == null));
+		String roseSays = getReply(npcRose);
+		assertTrue("Flowers! Get your fresh flowers here!".equals(roseSays) || (roseSays == null));
 		enRose.step(player, "hi");
-		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.", npcRose.get("text"));
+		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.", getReply(npcRose));
 		assertEquals(ConversationStates.IDLE, enRose.getCurrentState());
 		
 
@@ -93,50 +95,50 @@ public class ElfPrincessTest {
 		// return to Tywysoga
 
 		en.step(player, "hi");
-		assertEquals("Hail to thee, human.", npc.get("text"));
+		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I do so love those pretty flowers from Rose Leigh ...", npc.get("text"));
+		assertEquals("I do so love those pretty flowers from Rose Leigh ...", getReply(npc));
 		en.step(player, "flower");
-		assertTrue(npc.get("text").startsWith("Thank you! Take these "));
+		assertTrue(getReply(npc).startsWith("Thank you! Take these "));
 		assertTrue(player.isEquipped("gold bar"));
 		// [00:09] superkym earns 5000 experience points.
 		en.step(player, "bye");
-		assertEquals("Goodbye, strange one.", npc.get("text"));
+		assertEquals("Goodbye, strange one.", getReply(npc));
 
 		// -----------------------------------------------
 		// talk to Rose Leigh without having an active task to fetch flowser
 
 		enRose.step(player, "hi");
-		assertEquals("I've got nothing for you today, sorry dearie. I'll be on my way now, bye.", npcRose.get("text"));
+		assertEquals("I've got nothing for you today, sorry dearie. I'll be on my way now, bye.", getReply(npcRose));
 
 		// -----------------------------------------------
 		// do the quest again
 
 		en.step(player, "hi");
-		assertEquals("Hail to thee, human.", npc.get("text"));
+		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("The last Rhosyd you brought me was so lovely. Will you find me another from Rose Leigh?", npc.get("text"));
+		assertEquals("The last Rhosyd you brought me was so lovely. Will you find me another from Rose Leigh?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Thank you! Once you find it, say #flower to me so I know you have it. I'll be sure to give you a nice reward.", npc.get("text"));
+		assertEquals("Thank you! Once you find it, say #flower to me so I know you have it. I'll be sure to give you a nice reward.", getReply(npc));
 		en.step(player, "flower");
-		assertEquals("You don't seem to have a rhosyd bloom with you. But Rose Leigh wanders all over the island, I'm sure you'll find her one day!", npc.get("text"));
+		assertEquals("You don't seem to have a rhosyd bloom with you. But Rose Leigh wanders all over the island, I'm sure you'll find her one day!", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, strange one.", npc.get("text"));
+		assertEquals("Goodbye, strange one.", getReply(npc));
 
 		// -----------------------------------------------
 
 		enRose.step(player, "hi");
-		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.", npcRose.get("text"));
+		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.", getReply(npcRose));
 		assertEquals(ConversationStates.IDLE, enRose.getCurrentState());
 	
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Hail to thee, human.", npc.get("text"));
+		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "flower");
-		assertTrue(npc.get("text").startsWith("Thank you! Take these "));
+		assertTrue(getReply(npc).startsWith("Thank you! Take these "));
 		// [00:10] superkym earns 5000 experience points.
 		en.step(player, "bye");
-		assertEquals("Goodbye, strange one.", npc.get("text"));
+		assertEquals("Goodbye, strange one.", getReply(npc));
 	}
 }
