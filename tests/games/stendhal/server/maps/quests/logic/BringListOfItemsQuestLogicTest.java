@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests.logic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -112,7 +113,7 @@ public class BringListOfItemsQuestLogicTest {
 		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals(quest.welcomeBeforeStartingQuest(), npc.get("text"));
+		assertEquals(quest.welcomeBeforeStartingQuest(), getReply(npc));
 	}
 
 	@Test
@@ -148,7 +149,7 @@ public class BringListOfItemsQuestLogicTest {
 		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals(quest.welcomeAfterQuestIsCompleted(), npc.get("text"));
+		assertEquals(quest.welcomeAfterQuestIsCompleted(), getReply(npc));
 	}
 
 	@Test
@@ -164,14 +165,14 @@ public class BringListOfItemsQuestLogicTest {
 		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), npc.get("text"));
+		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), getReply(npc));
 		npc.put("text", "");
 
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
-		assertEquals("answer to quest", quest.respondToQuest(), npc.get("text"));
+		assertEquals("answer to quest", quest.respondToQuest(), getReply(npc));
 
 		en.step(player, ConversationPhrases.YES_MESSAGES.get(0));
-		assertEquals("answer to quests accepted", quest.respondToQuestAcception(), npc.get("text"));
+		assertEquals("answer to quests accepted", quest.respondToQuestAcception(), getReply(npc));
 		assertTrue(player.hasQuest(quest.getSlotName()));
 		assertFalse(npc.isTalking());
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
@@ -179,27 +180,27 @@ public class BringListOfItemsQuestLogicTest {
 
 		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
 		assertEquals("i have not brought anything yet it should be all needed items",
-				"#one, #two, and #three", npc.get("text"));
+				"#one, #two, and #three", getReply(npc));
 
 		StackableItem item = new StackableItem("one", "", "", null);
 		item.setQuantity(10);
 		item.setID(new ID(2, "testzone"));
 		player.getSlot("bag").add(item);
 		en.step(player, "yes");
-		assertEquals("item brought", quest.askForItemsAfterPlayerSaidHeHasItems(), npc.get("text"));
+		assertEquals("item brought", quest.askForItemsAfterPlayerSaidHeHasItems(), getReply(npc));
 
 		en.step(player, "one");
-		assertEquals("item brought", quest.respondToItemBrought(), npc.get("text"));
+		assertEquals("item brought", quest.respondToItemBrought(), getReply(npc));
 		en.step(player, "one");
-		assertEquals("item brought", quest.respondToOfferOfNotMissingItem(), npc.get("text"));
+		assertEquals("item brought", quest.respondToOfferOfNotMissingItem(), getReply(npc));
 		npc.remove("text");
 		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
 		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
 		final List<String> missing = new LinkedList<String>(quest.getNeededItems());
 		missing.remove("one");
-		assertEquals("two and three are missing", "#two and #three", npc.get("text"));
+		assertEquals("two and three are missing", "#two and #three", getReply(npc));
 		en.step(player, "two");
-		assertEquals("item brought", quest.respondToOfferOfNotExistingItem("two"), npc.get("text"));
+		assertEquals("item brought", quest.respondToOfferOfNotExistingItem("two"), getReply(npc));
 
 		item = new StackableItem("two", "", "", null);
 		item.setQuantity(10);
@@ -210,9 +211,9 @@ public class BringListOfItemsQuestLogicTest {
 		item.setID(new ID(2, "testzone"));
 		player.getSlot("bag").add(item);
 		en.step(player, "three");
-		assertEquals("item brought", quest.respondToItemBrought(), npc.get("text"));
+		assertEquals("item brought", quest.respondToItemBrought(), getReply(npc));
 		en.step(player, "two");
-		assertEquals("last item brought", quest.respondToLastItemBrought(), npc.get("text"));
+		assertEquals("last item brought", quest.respondToLastItemBrought(), getReply(npc));
 	}
 
 	@Test
@@ -229,14 +230,14 @@ public class BringListOfItemsQuestLogicTest {
 		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), npc.get("text"));
+		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), getReply(npc));
 		npc.put("text", "");
 
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
-		assertEquals("answer to quest", quest.respondToQuest(), npc.get("text"));
+		assertEquals("answer to quest", quest.respondToQuest(), getReply(npc));
 
 		en.step(player, ConversationPhrases.YES_MESSAGES.get(0));
-		assertEquals("answer to quests accepted", quest.respondToQuestAcception(), npc.get("text"));
+		assertEquals("answer to quests accepted", quest.respondToQuestAcception(), getReply(npc));
 	}
 
 	@Test
@@ -252,14 +253,14 @@ public class BringListOfItemsQuestLogicTest {
 		final Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), npc.get("text"));
+		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), getReply(npc));
 		npc.put("text", "");
 
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
-		assertEquals("answer to quest", quest.respondToQuest(), npc.get("text"));
+		assertEquals("answer to quest", quest.respondToQuest(), getReply(npc));
 
 		en.step(player, "no");
-		assertEquals("answer to quests accepted", quest.respondToQuestRefusal(), npc.get("text"));
+		assertEquals("answer to quests accepted", quest.respondToQuestRefusal(), getReply(npc));
 	}
 
 	class MockBringListOfItemsQuest implements BringListOfItemsQuest {
