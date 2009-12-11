@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -55,7 +57,7 @@ public class BailActionTest {
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		en.setCurrentState(ConversationStates.ATTENDING);
 		en.step(player, "bail");
-		assertEquals("Coward, you haven't even #started!", th.get("text"));
+		assertEquals("Coward, you haven't even #started!", getReply(th));
 		th.put("text", "");
 	}
 
@@ -70,7 +72,7 @@ public class BailActionTest {
 		en.setCurrentState(ConversationStates.ATTENDING);
 		player.setQuest("deathmatch", "done");
 		en.step(player, "bail");
-		assertEquals("Coward, we haven't even #started!", th.get("text"));
+		assertEquals("Coward, we haven't even #started!", getReply(th));
 		th.put("text", "");
 
 	}
@@ -86,7 +88,7 @@ public class BailActionTest {
 		en.setCurrentState(ConversationStates.ATTENDING);
 		player.setQuest("deathmatch", "start");
 		en.step(player, "bail");
-		assertEquals("Coward! You're not as experienced as you used to be.", th.get("text"));
+		assertEquals("Coward! You're not as experienced as you used to be.", getReply(th));
 		th.put("text", "");
 	}
 
@@ -107,7 +109,7 @@ public class BailActionTest {
 		player.setQuest("deathmatch", "start");
 		en.step(player, "bail");
 		assertEquals("Coward! I'm sorry to inform you, for this your helmet has been magically weakened.",
-				th.get("text"));
+				getReply(th));
 
 	}
 

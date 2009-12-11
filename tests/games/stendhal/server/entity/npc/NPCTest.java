@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.ados.felinashouse.CatSellerNPC;
 
@@ -41,10 +42,10 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Felina"));
-		assertEquals("Greetings! How may I help you?", npc.get("text"));
+		assertEquals("Greetings! How may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 	}
 
 	@Test
@@ -53,14 +54,14 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		npc.listenTo(player, "hi");
-		assertEquals("Greetings! How may I help you?", npc.get("text"));
+		assertEquals("Greetings! How may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "job"));
-		assertEquals("I sell cats. Well, really they are just little kittens when I sell them to you but if you #care for them well they grow into cats.", npc.get("text"));
+		assertEquals("I sell cats. Well, really they are just little kittens when I sell them to you but if you #care for them well they grow into cats.", getReply(npc));
 
 		assertNotNull(npc.getAttending());
 		npc.preLogic();
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 		assertEquals(null, npc.getAttending());
 	}
 

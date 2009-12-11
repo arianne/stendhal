@@ -1,6 +1,8 @@
 package games.stendhal.server.maps.quests;
 
 import static junit.framework.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
@@ -71,19 +73,19 @@ public class FindGhostsTest {
 	@Test
 	public void testRejectQuest() {
 		en.step(player, "hi");
-		assertEquals("Wooouhhhhhh!", npc.get("text"));
+		assertEquals("Wooouhhhhhh!", getReply(npc));
 		en.step(player, "help");
 		assertEquals(
 				"Here is a warning: if you die, you will become a ghost like me, partially visible and intangible. But if you can find your way out of the afterlife, you will be reborn.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "task");
 		assertEquals(
 				"I feel so lonely. I only ever see creatures and alive people. If I knew about #spirits like me, I would feel better.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "spirits");
 		assertEquals(
 				"I sense that there are 4 other spirits, but if only I knew their names I could contact them. Will you find them, then come back and tell me their names?",
-				npc.get("text"));
+				getReply(npc));
 
 		// test case insensitive recognition of "no" and see if "0" is correctly handled as distinct
 		assertFalse(en.step(player, "0"));
@@ -91,62 +93,62 @@ public class FindGhostsTest {
 
 		assertEquals("rejected", player.getQuest("find_ghosts"));
 		assertEquals("Oh. Never mind. Perhaps since I'm only a ghost I couldn't offer you much reward anyway.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye", npc.get("text"));
+		assertEquals("Bye", getReply(npc));
 	}
 
 	@Test
 	public void testAcceptQuest() {
 		en.step(player, "hi");
-		assertEquals("Wooouhhhhhh!", npc.get("text"));
+		assertEquals("Wooouhhhhhh!", getReply(npc));
 		en.step(player, "task");
 		assertEquals(
 				"I feel so lonely. I only ever see creatures and alive people. If I knew about #spirits like me, I would feel better.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "yes");
-		assertEquals("That's lovely of you. Good luck searching for them.", npc.get("text"));
+		assertEquals("That's lovely of you. Good luck searching for them.", getReply(npc));
 		en.step(player, "hi");
 		en.step(player, "bye");
 		assertEquals("looking:said", player.getQuest("find_ghosts"));
-		assertEquals("Bye", npc.get("text"));
+		assertEquals("Bye", getReply(npc));
 	}
 
 	@Test
 	public void testRejectthenAcceptQuest() {
 		en.step(player, "hi");
-		assertEquals("Wooouhhhhhh!", npc.get("text"));
+		assertEquals("Wooouhhhhhh!", getReply(npc));
 		en.step(player, "help");
 		assertEquals(
 				"Here is a warning: if you die, you will become a ghost like me, partially visible and intangible. But if you can find your way out of the afterlife, you will be reborn.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "task");
 		assertEquals(
 				"I feel so lonely. I only ever see creatures and alive people. If I knew about #spirits like me, I would feel better.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "spirits");
 		assertEquals(
 				"I sense that there are 4 other spirits, but if only I knew their names I could contact them. Will you find them, then come back and tell me their names?",
-				npc.get("text"));
+				getReply(npc));
 		assertTrue(en.step(player, "no"));
 		assertEquals("rejected", player.getQuest("find_ghosts"));
 		assertEquals("Oh. Never mind. Perhaps since I'm only a ghost I couldn't offer you much reward anyway.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye", npc.get("text"));
+		assertEquals("Bye", getReply(npc));
 
 		en.step(player, "hi");
-		assertEquals("Wooouhhhhhh!", npc.get("text"));
+		assertEquals("Wooouhhhhhh!", getReply(npc));
 		assertTrue(en.step(player, "task"));
 		assertEquals(
 				"I feel so lonely. I only ever see creatures and alive people. If I knew about #spirits like me, I would feel better.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "yes");
-		assertEquals("That's lovely of you. Good luck searching for them.", npc.get("text"));
+		assertEquals("That's lovely of you. Good luck searching for them.", getReply(npc));
 		en.step(player, "hi");
 		en.step(player, "bye");
 		assertEquals("looking:said", player.getQuest("find_ghosts"));
-		assertEquals("Bye", npc.get("text"));
+		assertEquals("Bye", getReply(npc));
 	}
 
 	@Test
@@ -207,73 +209,73 @@ public class FindGhostsTest {
 		oldxp = player.getXP();
 		final int oldHP = player.getBaseHP();
 		en.step(player, "hi");
-		assertEquals("If you found any #spirits, please tell me their name.", npc.get("text"));
+		assertEquals("If you found any #spirits, please tell me their name.", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Sorry, I don't understand you. What name are you trying to say?", npc.get("text"));
+		assertEquals("Sorry, I don't understand you. What name are you trying to say?", getReply(npc));
 
 		en.step(player, "spirits");
 		assertEquals(
 				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
-				npc.get("text"));
+				getReply(npc));
 
 		assertThat(player.getQuest("find_ghosts").split(":")[0], containsString("mary"));
 		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("mary")));
 		en.step(player, "Mary");
-		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
+		assertEquals("Thank you. If you met any other spirits, please tell me their name.", getReply(npc));
 		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("mary"));
 		assertThat(player.getQuest("find_ghosts").split(":")[0],  not(containsString("Mary")));
 
 		en.step(player, "Mary");
-		assertEquals("You've told me that name already, thanks. If you met any other spirits, please tell me their name.", npc.get("text"));
+		assertEquals("You've told me that name already, thanks. If you met any other spirits, please tell me their name.", getReply(npc));
 
 		en.step(player, "Brandy");
-		assertEquals("Sorry, I don't understand you. What name are you trying to say?", npc.get("text"));
+		assertEquals("Sorry, I don't understand you. What name are you trying to say?", getReply(npc));
 
 		en.step(player, "spirits");
 		assertEquals(
 				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
-				npc.get("text"));
+				getReply(npc));
 
 		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("ben")));
 		en.step(player, "Ben");
-		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
+		assertEquals("Thank you. If you met any other spirits, please tell me their name.", getReply(npc));
 		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("ben"));
 
 		en.step(player, "spirits");
 		assertEquals(
 				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
-				npc.get("text"));
+				getReply(npc));
 
 		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("zak")));
 		en.step(player, "Zak");
-		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
+		assertEquals("Thank you. If you met any other spirits, please tell me their name.", getReply(npc));
 		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("zak"));
 
 		en.step(player, "spirits");
 		assertEquals(
 				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
-				npc.get("text"));
+				getReply(npc));
 
 		assertThat(player.getQuest("find_ghosts"), not(containsString("Goran")));
 		en.step(player, "Goran");
 		assertEquals(
 				"Thank you. Now that I know those 4 names, perhaps I can even reach the spirits with my mind. I can't give you anything of material value, but I have given you a boost to your basic wellbeing, which will last forever. May you live long, and prosper.",
-				npc.get("text"));
+				getReply(npc));
 		assertThat(player.getQuest("find_ghosts"), is("done"));
 		// [22:27] superkym heals 50 health points.
 		// [22:27] superkym earns 5000 experience points.
 		en.step(player, "bye");
-		assertEquals("Bye", npc.get("text"));
+		assertEquals("Bye", getReply(npc));
 		assertEquals(oldxp + 5000, player.getXP());
 		assertEquals(oldHP + 50, player.getBaseHP());
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Wooouhhhhhh!", npc.get("text"));
+		assertEquals("Wooouhhhhhh!", getReply(npc));
 		en.step(player, "task");
 		assertEquals("Thank you! I feel better now that I know the names of other spirits on Fauimoni.",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye", npc.get("text"));
+		assertEquals("Bye", getReply(npc));
 	}
 }

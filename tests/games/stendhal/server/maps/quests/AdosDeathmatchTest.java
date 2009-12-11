@@ -2,6 +2,8 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -57,26 +59,26 @@ public class AdosDeathmatchTest {
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		en.step(dmPlayer, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Hey there. You look like a reasonable fighter.", recruiter.get("text"));
+		assertEquals("Hey there. You look like a reasonable fighter.", getReply(recruiter));
 		
 		en.step(dmPlayer, "job");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("I'm recruiter for the Ados #deathmatch.", recruiter.get("text"));
+		assertEquals("I'm recruiter for the Ados #deathmatch.", getReply(recruiter));
 		
 		en.step(dmPlayer, "deathmatch");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Many dangerous creatures will attack you in the deathmatch arena. It is only for strong #heroes.", recruiter.get("text"));
+		assertEquals("Many dangerous creatures will attack you in the deathmatch arena. It is only for strong #heroes.", getReply(recruiter));
 		
 		
  		dmPlayer.setLevel(19);
  		en.step(dmPlayer, "challenge");
  		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
- 		assertEquals("Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.", recruiter.get("text"));
+ 		assertEquals("Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.", getReply(recruiter));
  		recruiter.remove("text");
 		
 		en.step(dmPlayer, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		assertEquals("I hope you will enjoy the Ados Deathmatch!", recruiter.get("text"));
+		assertEquals("I hope you will enjoy the Ados Deathmatch!", getReply(recruiter));
 		
 
 		
@@ -84,12 +86,12 @@ public class AdosDeathmatchTest {
 		//assertNotNull(dmPlayer.getZone());
 		en.step(dmPlayer, "hi");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		assertEquals("Hey there. You look like a reasonable fighter.", recruiter.get("text"));
+		assertEquals("Hey there. You look like a reasonable fighter.", getReply(recruiter));
 		recruiter.remove("text");
 		en.step(dmPlayer, "challenge");
 		
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		assertEquals(null, recruiter.get("text"));
+		assertEquals(null, getReply(recruiter));
 		assertNotNull(dmPlayer.getZone());
 		// no players already in zone, send straight in
 		assertEquals(ados_wall_n, dmPlayer.getZone());
@@ -107,7 +109,7 @@ public class AdosDeathmatchTest {
 		joiner.setLevel(20);
 		
 		en.step(joiner, "challenge");
-		assertEquals("There are heroes battling right now in the deathmatch, so it may be dangerous there. Do you want to join dmPlayer?", recruiter.get("text"));
+		assertEquals("There are heroes battling right now in the deathmatch, so it may be dangerous there. Do you want to join dmPlayer?", getReply(recruiter));
 		en.step(joiner, "yes");
 		assertEquals(ados_wall_n, joiner.getZone());
 		
