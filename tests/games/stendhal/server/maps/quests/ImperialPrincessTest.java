@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -61,7 +62,7 @@ public class ImperialPrincessTest {
 		en = npc.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("Leave me! Can't you see I am trying to eat?", npc.get("text"));
+		assertEquals("Leave me! Can't you see I am trying to eat?", getReply(npc));
 		
 		npc = SingletonRepository.getNPCList().get("Princess Ylflia");
 		en = npc.getEngine();
@@ -69,44 +70,44 @@ public class ImperialPrincessTest {
 		player.setLevel(270);
 		
 		en.step(player, "hi");
-		assertEquals("How do you do?", npc.get("text"));
+		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("Watch out for mad scientists. My father allowed them liberty to do some work in the basement and I am afraid things have got rather out of hand.", npc.get("text"));
+		assertEquals("Watch out for mad scientists. My father allowed them liberty to do some work in the basement and I am afraid things have got rather out of hand.", getReply(npc));
 		en.step(player, "offer");
-		assertEquals("Sorry, but I do not have anything to offer you. You could do me a #favour, though...", npc.get("text"));
+		assertEquals("Sorry, but I do not have anything to offer you. You could do me a #favour, though...", getReply(npc));
 		en.step(player, "favour");
-		assertEquals("I cannot free the captives in the basement but I could do one thing: ease their pain. I need #herbs for this.", npc.get("text"));
+		assertEquals("I cannot free the captives in the basement but I could do one thing: ease their pain. I need #herbs for this.", getReply(npc));
 		en.step(player, "herbs");
-		assertEquals("I need 7 arandula, 1 kokuda, 1 sclaria, 1 kekik, 28 potions and 14 antidotes. Will you get these items?", npc.get("text"));
+		assertEquals("I need 7 arandula, 1 kokuda, 1 sclaria, 1 kekik, 28 potions and 14 antidotes. Will you get these items?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("So you'll just let them suffer! How despicable.", npc.get("text"));
+		assertEquals("So you'll just let them suffer! How despicable.", getReply(npc));
 		assertThat(player.getQuest(questSlot), is("rejected"));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and good luck.", npc.get("text"));
+		assertEquals("Goodbye, and good luck.", getReply(npc));
 		
 		en.step(player, "hi");
-		assertEquals("How do you do?", npc.get("text"));
+		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I'm sure I asked you to do something for me, already.", npc.get("text"));
+		assertEquals("I'm sure I asked you to do something for me, already.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and good luck.", npc.get("text"));
+		assertEquals("Goodbye, and good luck.", getReply(npc));
 
 		en.step(player, "hi");
-		assertEquals("How do you do?", npc.get("text"));
+		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "herbs");
-		assertEquals("I need 7 arandula, 1 kokuda, 1 sclaria, 1 kekik, 28 potions and 14 antidotes. Will you get these items?", npc.get("text"));
+		assertEquals("I need 7 arandula, 1 kokuda, 1 sclaria, 1 kekik, 28 potions and 14 antidotes. Will you get these items?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Thank you! We must be subtle about this, I do not want the scientists suspecting I interfere. When you return with the items, please say codeword #herbs.", npc.get("text"));
+		assertEquals("Thank you! We must be subtle about this, I do not want the scientists suspecting I interfere. When you return with the items, please say codeword #herbs.", getReply(npc));
 		en.step(player, "herbs");
-		assertEquals("Shh! Don't say it till you have the 7 arandula, 1 #kokuda, 1 #sclaria, 1 #kekik, 28 potions and 14 antidotes. I don't want anyone suspecting our code.", npc.get("text"));
+		assertEquals("Shh! Don't say it till you have the 7 arandula, 1 #kokuda, 1 #sclaria, 1 #kekik, 28 potions and 14 antidotes. I don't want anyone suspecting our code.", getReply(npc));
 		en.step(player, "kokuda");
-		assertEquals("I believe that herb can only be found on Athor, though they guard their secrets closely over there.", npc.get("text"));
+		assertEquals("I believe that herb can only be found on Athor, though they guard their secrets closely over there.", getReply(npc));
 		en.step(player, "kekik");
-		assertEquals("My maid's friend Jenny has a source not far from her. The wooded areas at the eastern end of Nalwor river may have it. too.", npc.get("text"));
+		assertEquals("My maid's friend Jenny has a source not far from her. The wooded areas at the eastern end of Nalwor river may have it. too.", getReply(npc));
 		en.step(player, "sclaria");
-		assertEquals("Healers who use sclaria gather it in all sorts of places - around Or'ril, in Nalwor forest, I am sure you will find that without trouble.", npc.get("text"));
+		assertEquals("Healers who use sclaria gather it in all sorts of places - around Or'ril, in Nalwor forest, I am sure you will find that without trouble.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and good luck.", npc.get("text"));
+		assertEquals("Goodbye, and good luck.", getReply(npc));
 		// she should have stored the player level in the quest slot.
 		assertTrue(player.getQuest(questSlot).equals(Integer.toString(player.getLevel())));
 		
@@ -126,12 +127,12 @@ public class ImperialPrincessTest {
 		
 		final int xp = player.getXP();
 		en.step(player, "hi");
-		assertEquals("How do you do?", npc.get("text"));
+		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I'm sure I asked you to do something for me, already.", npc.get("text"));
+		assertEquals("I'm sure I asked you to do something for me, already.", getReply(npc));
 		// note the typos here, i should have said herbs but she understood herbd anyway.
 		en.step(player, "herbd");
-		assertEquals("Perfect! I will recommend you to my father, as a fine, helpful person. He will certainly agree you are eligible for citizenship of Kalavan.", npc.get("text"));
+		assertEquals("Perfect! I will recommend you to my father, as a fine, helpful person. He will certainly agree you are eligible for citizenship of Kalavan.", getReply(npc));
 		// [22:21] kymara earns 110400 experience points.
 		assertFalse(player.isEquipped("potion"));
 		assertFalse(player.isEquipped("antidote"));
@@ -142,14 +143,14 @@ public class ImperialPrincessTest {
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getQuest(questSlot), is("recommended"));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and good luck.", npc.get("text"));
+		assertEquals("Goodbye, and good luck.", getReply(npc));
 		
 		en.step(player, "hi");
-		assertEquals("How do you do?", npc.get("text"));
+		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Speak to my father, the King. I have asked him to grant you citizenship of Kalavan, to express my gratitude to you.", npc.get("text"));
+		assertEquals("Speak to my father, the King. I have asked him to grant you citizenship of Kalavan, to express my gratitude to you.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and good luck.", npc.get("text"));
+		assertEquals("Goodbye, and good luck.", getReply(npc));
 		
 		npc = SingletonRepository.getNPCList().get("King Cozart");
 		en = npc.getEngine();
@@ -157,23 +158,23 @@ public class ImperialPrincessTest {
 		final int xp2 = player.getXP();
 		en.step(player, "hi");
 		// [22:22] kymara earns 500 experience points.
-		assertEquals("Greetings! My wonderful daughter requests that I grant you citizenship of Kalavan City. Consider it done. Now, forgive me while I go back to my meal. Goodbye.", npc.get("text"));
+		assertEquals("Greetings! My wonderful daughter requests that I grant you citizenship of Kalavan City. Consider it done. Now, forgive me while I go back to my meal. Goodbye.", getReply(npc));
 		assertThat(player.getXP(), greaterThan(xp2));
 		assertTrue(player.isQuestCompleted(questSlot));
 		
 		// try going after quest is done
 		en.step(player, "hi");
-		assertEquals("Leave me! Can't you see I am trying to eat?", npc.get("text"));
+		assertEquals("Leave me! Can't you see I am trying to eat?", getReply(npc));
 		
 		npc = SingletonRepository.getNPCList().get("Princess Ylflia");
 		en = npc.getEngine();
 		
 		en.step(player, "hi");
-		assertEquals("How do you do?", npc.get("text"));
+		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("The trapped creatures looked much better last time I dared venture down to the basement, thank you!", npc.get("text"));
+		assertEquals("The trapped creatures looked much better last time I dared venture down to the basement, thank you!", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, and good luck.", npc.get("text"));
+		assertEquals("Goodbye, and good luck.", getReply(npc));
 		
 
 		
