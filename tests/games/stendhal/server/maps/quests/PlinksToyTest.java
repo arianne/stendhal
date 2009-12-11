@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.Arrays;
 
@@ -55,20 +56,20 @@ public class PlinksToyTest {
 	@Test
 	public void testQuest() {
 		en.step(player, "hi");
-		assertEquals("*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?", npc.get("text"));
+		assertEquals("*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?", getReply(npc));
 		en.step(player, "park!");
-		assertEquals("My parents told me not to go to the park by myself, but I got lost when I was playing... Please don't tell them! Can you bring my #teddy back?", npc.get("text"));
+		assertEquals("My parents told me not to go to the park by myself, but I got lost when I was playing... Please don't tell them! Can you bring my #teddy back?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("*sniff* Thanks a lot! *smile*", npc.get("text"));
+		assertEquals("*sniff* Thanks a lot! *smile*", getReply(npc));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?", npc.get("text"));
+		assertEquals("*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?", getReply(npc));
 		en.step(player, "teddy");
-		assertEquals("Teddy is my favourite toy! Please will you bring him back?", npc.get("text"));
+		assertEquals("Teddy is my favourite toy! Please will you bring him back?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("*sniff* Thanks a lot! *smile*", npc.get("text"));
+		assertEquals("*sniff* Thanks a lot! *smile*", getReply(npc));
 
 		// -----------------------------------------------
 		
@@ -83,15 +84,15 @@ public class PlinksToyTest {
 
 		en.step(player, "hi");
 		// [21:25] player earns 10 experience points.
-		assertEquals("You found him! *hugs teddy* Thank you, thank you! *smile*", npc.get("text"));
+		assertEquals("You found him! *hugs teddy* Thank you, thank you! *smile*", getReply(npc));
 
 		assertFalse(player.isEquipped("teddy"));
 
 		en.step(player, "help");
-		assertEquals("Be careful out east, there are wolves about!", npc.get("text"));
+		assertEquals("Be careful out east, there are wolves about!", getReply(npc));
 		en.step(player, "job");
-		assertEquals("I play all day.", npc.get("text"));
+		assertEquals("I play all day.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 	}
 }

@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests.houses;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
@@ -59,18 +60,18 @@ public class BuyHouseChatActionTest {
 		Player player = PlayerTestHelper.createPlayer("george");
 		Sentence sentence = ConversationParser.parse("51");
 		action.fire(player , sentence , engine);
-		assertThat(engine.getText(), is("You do not have enough money to buy a house!"));
+		assertThat(getReply(engine), is("You do not have enough money to buy a house!"));
 		housePortal.setOwner("jim");
 		
 		action.fire(player , sentence , engine);
-		assertThat(engine.getText(), containsString("Sorry, house 51 is sold"));
+		assertThat(getReply(engine), containsString("Sorry, house 51 is sold"));
 		
 		PlayerTestHelper.equipWithMoney(player, 1);
 	
 		housePortal.setOwner("");
 		
 		action.fire(player , sentence , engine);
-		assertThat(engine.getText(), containsString("Congratulation"));
+		assertThat(getReply(engine), containsString("Congratulation"));
 		assertFalse(player.isEquipped("money"));
 		
 	}
