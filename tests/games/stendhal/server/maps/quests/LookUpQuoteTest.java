@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -70,11 +72,11 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"Hello newcomer! I can #help you on your way to become a real fisherman!",
-				npc.get("text"));
+				getReply(npc));
 		assertTrue("test text recognition with additional text after 'bye'",
 				en1.step(player, "bye bye"));
 		assertFalse(npc.isTalking());
-		assertEquals("Goodbye.", npc.get("text"));
+		assertEquals("Goodbye.", getReply(npc));
 	}
 
 	@Test
@@ -86,20 +88,20 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 				player, "Hello"));
 		assertEquals(
 				"Hello newcomer! I can #help you on your way to become a real fisherman!",
-				pequodNpc.get("text"));
+				getReply(pequodNpc));
 
 		assertTrue(pequodEngine.step(player, "help"));
 		assertEquals(
 				"Nowadays you can read signposts, books and other things here in Faiumoni.",
-				pequodNpc.get("text"));
+				getReply(pequodNpc));
 
 		assertTrue(pequodEngine.step(player, "quest"));
 		assertEquals(
 				"Well, I once had a book with quotes of famous fishermen, but I lost it. And now I cannot remember a certain quote. Can you look it up for me?",
-				pequodNpc.get("text"));
+				getReply(pequodNpc));
 
 		assertTrue(pequodEngine.step(player, "yes"));
-		final String reply = pequodNpc.get("text");
+		final String reply = getReply(pequodNpc);
 		assertTrue(reply.startsWith("Please look up the famous quote by fisherman "));
 		// fish out the fisherman's man from Pequod's reply
 		final String fisherman = reply.substring(45, reply.length() - 1);
@@ -107,18 +109,18 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.getQuest(QUEST_SLOT).startsWith("fisherman "));
 
 		assertTrue(pequodEngine.step(player, "task"));
-		assertTrue(pequodNpc.get("text").startsWith("I already asked you for a favor already! Have you already looked up the famous quote by fisherman "));
+		assertTrue(getReply(pequodNpc).startsWith("I already asked you for a favor already! Have you already looked up the famous quote by fisherman "));
 
 		assertTrue(pequodEngine.step(player, "bye"));
-		assertEquals("Goodbye.", pequodNpc.get("text"));
+		assertEquals("Goodbye.", getReply(pequodNpc));
 
 		// bother Pequod again
 		assertTrue(pequodEngine.step(player, "hi"));
-		assertTrue(pequodNpc.get("text").startsWith("Welcome back! Did you look up the famous quote by fisherman "));
+		assertTrue(getReply(pequodNpc).startsWith("Welcome back! Did you look up the famous quote by fisherman "));
 		assertTrue("lie", pequodEngine.step(player, "yes")); 
-		assertEquals("So, what is it?", pequodNpc.get("text"));
+		assertEquals("So, what is it?", getReply(pequodNpc));
 		assertTrue(pequodEngine.step(player, "bye"));
-		assertEquals("Good bye - see you next time!", pequodNpc.get("text"));
+		assertEquals("Good bye - see you next time!", getReply(pequodNpc));
 
 		// determine the correct answer
 		String quote = "";
@@ -154,24 +156,24 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 
 		// bother Pequod again
 		assertTrue(pequodEngine.step(player, "hi"));
-		assertTrue(pequodNpc.get("text").startsWith("Welcome back! Did you look up the famous quote by fisherman "));
+		assertTrue(getReply(pequodNpc).startsWith("Welcome back! Did you look up the famous quote by fisherman "));
 		assertTrue("lie", pequodEngine.step(player, "yes")); 
-		assertEquals("So, what is it?", pequodNpc.get("text"));
+		assertEquals("So, what is it?", getReply(pequodNpc));
 
 		assertTrue(pequodEngine.step(player, quote));
 		assertEquals("Oh right, that's it! How could I forget this? Here, take this handy fishing rod as an acknowledgement of my gratitude!",
-				pequodNpc.get("text"));
+				getReply(pequodNpc));
 		assertEquals("done", player.getQuest(QUEST_SLOT));
 		assertTrue(player.isQuestCompleted(QUEST_SLOT));
 
 		assertTrue(pequodEngine.step(player, "bye"));
-		assertEquals("Goodbye.", pequodNpc.get("text"));
+		assertEquals("Goodbye.", getReply(pequodNpc));
 
 		// bother Pequod again
 		assertTrue(pequodEngine.step(player, "hi"));
-		assertTrue(pequodNpc.get("text").startsWith("Welcome back!"));
+		assertTrue(getReply(pequodNpc).startsWith("Welcome back!"));
 		assertTrue(pequodEngine.step(player, "quest"));
-		assertEquals("No, thanks. I have all I need.", pequodNpc.get("text"));
+		assertEquals("No, thanks. I have all I need.", getReply(pequodNpc));
 	}
 
 	@Test
