@@ -71,10 +71,10 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hello"));
-		assertEquals("Hello, player.", npc.get("text"));
+		assertEquals("Hello, player.", getReply(npc));
 
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Goodbye.", npc.get("text"));
+		assertEquals("Goodbye.", getReply(npc));
 	}
 	
 	@Test
@@ -83,16 +83,16 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hello, player.", npc.get("text"));
+		assertEquals("Hello, player.", getReply(npc));
 
 		assertTrue(en.step(player, "job"));
-		assertEquals("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.", npc.get("text"));
+		assertEquals("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.", getReply(npc));
 
 		assertTrue(en.step(player, "offer"));
-		assertEquals("I sell houses, please look at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.", npc.get("text"));
+		assertEquals("I sell houses, please look at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.", getReply(npc));
 
 		assertTrue(en.step(player, "quest"));
-		assertEquals("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.", npc.get("text"));
+		assertEquals("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.", getReply(npc));
 	}
 
 	@Test
@@ -101,10 +101,10 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hello, player.", npc.get("text"));
+		assertEquals("Hello, player.", getReply(npc));
 
 		assertTrue(en.step(player, "cost"));
-		assertTrue(npc.get("text").startsWith("The cost of a new house in Ados is 120000 money. But I am afraid I cannot trust you with house ownership just yet,"));
+		assertTrue(getReply(npc).startsWith("The cost of a new house in Ados is 120000 money. But I am afraid I cannot trust you with house ownership just yet,"));
 
 		player.setAge(3700000);
 		assertTrue(en.step(player, "cost"));
@@ -156,7 +156,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		
 		assertTrue(en.step(player, "no"));
 		assertEquals("No problem! Just so you know, if you need to #change your locks, I can do that, "
-				+ "and you can also #resell your house to me if you want to.", npc.get("text"));
+				+ "and you can also #resell your house to me if you want to.", getReply(npc));
 	}
 
 	@Test
@@ -165,13 +165,13 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Reg Denson"));
-		assertEquals("Hello, player.", npc.get("text"));
+		assertEquals("Hello, player.", getReply(npc));
 
 		assertTrue(en.step(player, "really"));
-		assertEquals("That's right, really, really, really. Really.", npc.get("text"));
+		assertEquals("That's right, really, really, really. Really.", getReply(npc));
 
 		assertTrue(en.step(player, "cost"));
-		assertTrue(npc.get("text").startsWith("The cost of a new house in Ados is 120000 money. But I am afraid I cannot trust you with house ownership just yet,"));
+		assertTrue(getReply(npc).startsWith("The cost of a new house in Ados is 120000 money. But I am afraid I cannot trust you with house ownership just yet,"));
 		assertFalse(en.step(player, "ok"));
 	}
 
