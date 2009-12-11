@@ -7,6 +7,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -79,7 +81,7 @@ public class KillDarkElvesTest {
 			assertEquals(
 					playerSays,
 					"I have a problem with some dark elves. I used to be in league with them... now they are too strong. There is access to their lair from a #secret #room in this hall.",
-					npc.getText());
+					getReply(npc));
 		}
 	}
 
@@ -97,7 +99,7 @@ public class KillDarkElvesTest {
 			assertEquals(
 					playerSays,
 					"It's that room downstairs with a grey roof and the evil face on the door. Inside you'll find what the dark elves were making, a mutant thing. Will you help?",
-					npc.getText());
+					getReply(npc));
 		}
 	}
 
@@ -115,7 +117,7 @@ public class KillDarkElvesTest {
 			assertEquals(
 					playerSays,
 					"The room is below us. It has a grey roof and a evil face for a door. I need you to kill all the dark elves and bring me the amulet from the mutant thing.",
-					npc.getText());
+					getReply(npc));
 		}
 	}
 
@@ -131,7 +133,7 @@ public class KillDarkElvesTest {
 			assertEquals(
 					playerSays,
 					"Don't you remember promising to sort out my dark elf problem? Kill every dark elf in the #secret room below - especially the snivelling dark elf captain and any evil dark elf archers you find! And bring me the amulet from the mutant thing.",
-					npc.getText());
+					getReply(npc));
 
 		}
 	}
@@ -148,7 +150,7 @@ public class KillDarkElvesTest {
 			assertEquals(
 					playerSays,
 					"I already asked you to kill every dark elf in the tunnel below the secret room. And bring me the amulet from the thing.",
-					npc.getText());
+					getReply(npc));
 
 		}
 	}
@@ -162,7 +164,7 @@ public class KillDarkElvesTest {
 			npcEngine.setCurrentState(ConversationStates.ATTENDING);
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
-			assertEquals(playerSays, "Thanks for your help. I am relieved to have the amulet back.", npc.getText());
+			assertEquals(playerSays, "Thanks for your help. I am relieved to have the amulet back.", getReply(npc));
 
 		}
 	}
@@ -182,7 +184,7 @@ public class KillDarkElvesTest {
 			npcEngine.step(bob, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUEST_STARTED));
-			assertEquals(playerSays, "What happened to the amulet? Remember I need it back!", npc.getText());
+			assertEquals(playerSays, "What happened to the amulet? Remember I need it back!", getReply(npc));
 
 		}
 	}
@@ -214,7 +216,7 @@ public class KillDarkElvesTest {
 			assertEquals(
 					playerSays,
 					"Many, many thanks. I am relieved to have that back. Here, take this ring. It can revive the powers of the dead.",
-					npc.getText());
+					getReply(npc));
 			assertFalse(bob.isEquipped("amulet"));
 			assertTrue(bob.isEquipped("emerald ring"));
 			assertThat(bob.getKarma(), greaterThan(karma));
@@ -238,7 +240,7 @@ public class KillDarkElvesTest {
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
 			assertEquals(playerSays,
 					"Good. Please kill every dark elf down there and get the amulet from the mutant thing.",
-					npc.getText());
+					getReply(npc));
 
 			assertFalse(bob.hasKilled(DARK_ELF_ARCHER));
 			assertFalse(bob.hasKilled(DARK_ELF_CAPTAIN));
@@ -264,7 +266,7 @@ public class KillDarkElvesTest {
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
 			assertEquals(playerSays,
 					"Then I fear for the safety of the Nalwor elves...",
-					npc.getText());
+					getReply(npc));
 			assertThat(bob.getKarma(), lessThan(oldKarma));
 			assertThat(bob.getQuest(QUEST_SLOT), is("rejected"));
 		}
