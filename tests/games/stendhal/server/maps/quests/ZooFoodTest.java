@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -54,11 +56,11 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?",
-				npc.get("text"));
+				getReply(npc));
 		assertTrue("test text recognition with additional text after 'bye'",
 				en1.step(player, "bye bye"));
 		assertFalse(npc.isTalking());
-		assertEquals("Goodbye!", npc.get("text"));
+		assertEquals("Goodbye!", getReply(npc));
 
 		npc = SingletonRepository.getNPCList().get("Dr. Feelgood");
 		assertNotNull(npc);
@@ -67,12 +69,12 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(npc.isTalking());
 		assertEquals(
 				"Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
-				npc.get("text"));
+				getReply(npc));
 		assertFalse(en.step(player, "bye"));
 		assertFalse(npc.isTalking());
 		assertEquals(
 				"Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
-				npc.get("text"));
+				getReply(npc));
 
 	}
 
@@ -90,21 +92,21 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 				player, "Hallo"));
 		assertEquals(
 				"Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?",
-				katinkaNpc.get("text"));
+				getReply(katinkaNpc));
 
 		assertTrue(enKatinka.step(player, "task"));
 		assertEquals(
 				"Our tigers, lions and bears are hungry. We need 10 pieces of ham to feed them. Can you help us?",
-				katinkaNpc.get("text"));
+				getReply(katinkaNpc));
 
 		assertTrue(enKatinka.step(player, "yes"));
 		assertTrue(player.hasQuest("zoo_food"));
 		assertEquals(
 				"Okay, but please don't let the poor animals suffer too long! Bring me the pieces of ham as soon as you get them.",
-				katinkaNpc.get("text"));
+				getReply(katinkaNpc));
 
 		assertTrue(enKatinka.step(player, "bye"));
-		assertEquals("Goodbye!", katinkaNpc.get("text"));
+		assertEquals("Goodbye!", getReply(katinkaNpc));
 		assertTrue(player.hasQuest("zoo_food"));
 		assertEquals("start", player.getQuest("zoo_food"));
 		// feelgood is still in sorrow
@@ -112,22 +114,22 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(feelgoodNpc.isTalking());
 		assertEquals(
 				"Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
-				feelgoodNpc.get("text"));
+				getReply(feelgoodNpc));
 		assertFalse(enFeelgood.step(player, "bye"));
 		assertFalse(feelgoodNpc.isTalking());
 		assertEquals(
 				"Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
-				feelgoodNpc.get("text"));
+				getReply(feelgoodNpc));
 		// bother katinka again
 		assertTrue(enKatinka.step(player, "hi"));
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?",
-				katinkaNpc.get("text"));
+				getReply(katinkaNpc));
 		assertTrue("lie", enKatinka.step(player, "yes")); 
 		assertEquals(
 				"*sigh* I SPECIFICALLY said that we need 10 pieces of ham!",
-				katinkaNpc.get("text"));
+				getReply(katinkaNpc));
 		assertTrue(enKatinka.step(player, "bye"));
-		assertEquals("Goodbye!", katinkaNpc.get("text"));
+		assertEquals("Goodbye!", getReply(katinkaNpc));
 		// equip player with to less needed stuff
 		final StackableItem ham = new StackableItem("ham", "", "", null);
 		ham.setQuantity(5);
@@ -138,13 +140,13 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		// bother katinka again
 		assertTrue(enKatinka.step(player, "hi"));
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?",
-				katinkaNpc.get("text"));
+				getReply(katinkaNpc));
 		assertTrue("lie", enKatinka.step(player, "yes")); 
 		assertEquals(
 				"*sigh* I SPECIFICALLY said that we need 10 pieces of ham!",
-				katinkaNpc.get("text"));
+				getReply(katinkaNpc));
 		assertTrue(enKatinka.step(player, "bye"));
-		assertEquals("Goodbye!", katinkaNpc.get("text"));
+		assertEquals("Goodbye!", getReply(katinkaNpc));
 		// equip player with to needed stuff
 		final StackableItem ham2 = new StackableItem("ham", "", "", null);
 		ham2.setQuantity(5);
@@ -154,25 +156,25 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		// bring stuff to katinka
 		assertTrue(enKatinka.step(player, "hi"));
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?",
-				katinkaNpc.get("text"));
+				getReply(katinkaNpc));
 		assertTrue(enKatinka.step(player, "yes"));
 		assertEquals("Thank you! You have rescued our rare animals.",
-				katinkaNpc.get("text"));
+				getReply(katinkaNpc));
 		assertTrue(enKatinka.step(player, "bye"));
-		assertEquals("Goodbye!", katinkaNpc.get("text"));
+		assertEquals("Goodbye!", getReply(katinkaNpc));
 		assertEquals("done", player.getQuest("zoo_food"));
 		// feelgood is reacting
 		assertTrue(enFeelgood.step(player, "hi"));
 		assertTrue(feelgoodNpc.isTalking());
 		assertEquals(
 				"Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?",
-				feelgoodNpc.get("text"));
+				getReply(feelgoodNpc));
 		assertTrue(enFeelgood.step(player, "offers"));
 
 		assertEquals(
 				"I sell antidote, minor potion, potion, and greater potion.",
-				feelgoodNpc.get("text"));
+				getReply(feelgoodNpc));
 		assertTrue(enFeelgood.step(player, "bye"));
-		assertEquals("Bye!", feelgoodNpc.get("text"));
+		assertEquals("Bye!", getReply(feelgoodNpc));
 	}
 }
