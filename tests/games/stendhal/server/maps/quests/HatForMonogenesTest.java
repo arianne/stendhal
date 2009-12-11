@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -71,101 +72,101 @@ public class HatForMonogenesTest {
 		en.step(player, "hi");
 		assertEquals(
 				"Hello there, stranger! Don't be too intimidated if people are quiet and reserved... the fear of Blordrough and his forces has spread all over the country, and we're all a bit concerned. I can offer a few tips on socializing though, would you like to hear them?",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "no");
 		assertEquals(
 				"And how are you supposed to know what's happening? By reading the Semos Tribune? Hah! Bye, then.",
-				npc.get("text"));
+				getReply(npc));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Hi again, player. How can I #help you this time?", npc.get("text"));
+		assertEquals("Hi again, player. How can I #help you this time?", getReply(npc));
 		en.step(player, "task");
 		assertEquals(
 				"Could you bring me a #hat to cover my bald head? Brrrrr! The days here in Semos are really getting colder...",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "hat");
 		assertEquals(
 				"You don't know what a hat is?! Anything light that can cover my head; like leather, for instance. Now, will you do it?",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "no");
 		assertEquals(
 				"You surely have more importants things to do, and little time to do them in. I'll just stay here and freeze to death, I guess... *sniff*",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Hi again, player. How can I #help you this time?", npc.get("text"));
+		assertEquals("Hi again, player. How can I #help you this time?", getReply(npc));
 		en.step(player, "task");
 		assertEquals(
 				"Could you bring me a #hat to cover my bald head? Brrrrr! The days here in Semos are really getting colder...",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "hat");
 		assertEquals(
 				"You don't know what a hat is?! Anything light that can cover my head; like leather, for instance. Now, will you do it?",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Thanks, my good friend. I'll be waiting here for your return!", npc.get("text"));
+		assertEquals("Thanks, my good friend. I'll be waiting here for your return!", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 
 		// -----------------------------------------------
 
 		final Item item = ItemTestHelper.createItem("money", 25);
 		player.getSlot("bag").add(item);
 		enXin.step(player, "hi");
-		assertEquals("Greetings! How may I help you?", npcXin.get("text"));
+		assertEquals("Greetings! How may I help you?", getReply(npcXin));
 		enXin.step(player, "buy leather helmet");
-		assertEquals("1 leather helmet will cost 25. Do you want to buy it?", npcXin.get("text"));
+		assertEquals("1 leather helmet will cost 25. Do you want to buy it?", getReply(npcXin));
 		enXin.step(player, "yes");
-		assertEquals("Congratulations! Here is your leather helmet!", npcXin.get("text"));
+		assertEquals("Congratulations! Here is your leather helmet!", getReply(npcXin));
 		enXin.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npcXin));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Hey! Is that leather hat for me?", npc.get("text"));
+		assertEquals("Hey! Is that leather hat for me?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("I guess someone more fortunate will get his hat today... *sneeze*", npc.get("text"));
+		assertEquals("I guess someone more fortunate will get his hat today... *sneeze*", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 		en.step(player, "hi");
-		assertEquals("Hey! Is that leather hat for me?", npc.get("text"));
+		assertEquals("Hey! Is that leather hat for me?", getReply(npc));
 		npc.remove("text");
 		player.drop("leather helmet");
 		int oldXP = player.getXP();
 		en.step(player, "yes");
 		assertEquals(oldXP, player.getXP());
-		assertEquals(null, npc.get("text"));
+		assertEquals(null, getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 
 		// -----------------------------------------------
 
 		en.step(player, "hi");
 		assertEquals(
 				"Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...",
-				npc.get("text"));
+				getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 
 		// -----------------------------------------------
 
 		player.equip("bag", SingletonRepository.getEntityManager().getItem("leather helmet"));
 		en.step(player, "hi");
-		assertEquals("Hey! Is that leather hat for me?", npc.get("text"));
+		assertEquals("Hey! Is that leather hat for me?", getReply(npc));
 		oldXP = player.getXP();
 		en.step(player, "yes");
 		assertEquals(oldXP + 50, player.getXP());
 
-		assertEquals("Bless you, my good friend! Now my head will stay nice and warm.", npc.get("text"));
+		assertEquals("Bless you, my good friend! Now my head will stay nice and warm.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", npc.get("text"));
+		assertEquals("Bye.", getReply(npc));
 		// (sorry i meant to put it on ground to test if he noticed it went
 		// missing, i did, but i forgot i had one on my head too, he took that.)
 	}
