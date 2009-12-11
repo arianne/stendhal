@@ -3,6 +3,8 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -43,16 +45,16 @@ public class CloakCollectorTest {
 		final Player monica = PlayerTestHelper.createPlayer("player");
 
 		en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
-		assertEquals(cc.welcomeBeforeStartingQuest(), npc.get("text"));
+		assertEquals(cc.welcomeBeforeStartingQuest(), getReply(npc));
 
 		en.stepTest(monica, cc.getAdditionalTriggerPhraseForQuest().get(0));
-		assertEquals(cc.respondToQuest(), npc.get("text"));
+		assertEquals(cc.respondToQuest(), getReply(npc));
 
 		en.stepTest(monica, cc.getTriggerPhraseToEnumerateMissingItems().get(0));
-		assertEquals(cc.firstAskForMissingItems(cc.getNeededItems()), npc.get("text"));
+		assertEquals(cc.firstAskForMissingItems(cc.getNeededItems()), getReply(npc));
 
 		en.stepTest(monica, "no");
-		assertEquals(cc.respondToQuestRefusal(), npc.get("text"));
+		assertEquals(cc.respondToQuestRefusal(), getReply(npc));
 	}
 
 	@Test
@@ -66,18 +68,18 @@ public class CloakCollectorTest {
 		final Player monica = PlayerTestHelper.createPlayer("monica");
 
 		en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
-		assertEquals(cc.welcomeBeforeStartingQuest(), npc.get("text"));
+		assertEquals(cc.welcomeBeforeStartingQuest(), getReply(npc));
 
 		en.stepTest(monica, cc.getAdditionalTriggerPhraseForQuest().get(0));
-		assertEquals(cc.respondToQuest(), npc.get("text"));
+		assertEquals(cc.respondToQuest(), getReply(npc));
 
 		en.stepTest(monica, "elf cloak");
 		assertEquals(
 				"You haven't seen one before? Well, it's a elf cloak. So, will you find them all?",
-				npc.get("text"));
+				getReply(npc));
 
 		en.stepTest(monica, ConversationPhrases.YES_MESSAGES.get(0));
-		assertEquals(cc.respondToQuestAcception(), npc.get("text"));
+		assertEquals(cc.respondToQuestAcception(), getReply(npc));
 		assertFalse(npc.isTalking());
 		npc.remove("text");
 
@@ -86,21 +88,21 @@ public class CloakCollectorTest {
 		assertFalse(cc.isCompleted(monica));
 
 		en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
-		assertEquals(cc.welcomeDuringActiveQuest(), npc.get("text"));
+		assertEquals(cc.welcomeDuringActiveQuest(), getReply(npc));
 		npc.remove("text");
 		en.stepTest(monica, ConversationPhrases.YES_MESSAGES.get(0));
-		assertEquals(cc.askForItemsAfterPlayerSaidHeHasItems(), npc.get("text"));
+		assertEquals(cc.askForItemsAfterPlayerSaidHeHasItems(), getReply(npc));
 
 		en.stepTest(monica, "elf cloak");
 		assertEquals(cc.respondToOfferOfNotExistingItem("elf cloak"),
-				npc.get("text"));
+				getReply(npc));
 
 		Item cloak = new Item("elf cloak", "", "", null);
 		monica.getSlot("bag").add(cloak);
 		en.stepTest(monica, "elf cloak");
-		assertEquals(cc.respondToItemBrought(), npc.get("text"));
+		assertEquals(cc.respondToItemBrought(), getReply(npc));
 		en.stepTest(monica, "elf cloak");
-		assertEquals(cc.respondToOfferOfNotMissingItem(), npc.get("text"));
+		assertEquals(cc.respondToOfferOfNotMissingItem(), getReply(npc));
 
 		cloak = new Item("stone cloak", "", "", null);
 		monica.getSlot("bag").add(cloak);
@@ -111,7 +113,7 @@ public class CloakCollectorTest {
 			en.step(monica, cloakName);
 		}
 
-		assertEquals(cc.respondToLastItemBrought(), npc.get("text"));
+		assertEquals(cc.respondToLastItemBrought(), getReply(npc));
 		en.step(monica, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertTrue(cc.isCompleted(monica));
 	}
