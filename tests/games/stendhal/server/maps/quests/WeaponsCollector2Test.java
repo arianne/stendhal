@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -53,16 +54,16 @@ public class WeaponsCollector2Test {
 		assertTrue(en.stepTest(pl, ConversationPhrases.GREETING_MESSAGES.get(0)));
 		assertEquals(
 				"Greetings, old friend. If you are willing, I have another #quest for you.",
-				npc.get("text"));
+				getReply(npc));
 
 		assertTrue(en.stepTest(pl, ConversationPhrases.QUEST_MESSAGES.get(0)));
 		assertEquals(
 				"Recent adventurers to these parts describe strange new creatures with weapons"
 						+ " I have never seen. Would you fight these creatures and bring their weapons to me?",
-				npc.get("text"));
+				getReply(npc));
 		en.stepTest(pl, "no");
 		assertEquals("Well, maybe someone else will happen by and help me.",
-				npc.get("text"));
+				getReply(npc));
 	}
 
 	@Test
@@ -81,55 +82,55 @@ public class WeaponsCollector2Test {
 		assertTrue(en.stepTest(pl, "hello"));
 		assertEquals(
 				"Greetings, old friend. If you are willing, I have another #quest for you.",
-				npc.get("text"));
+				getReply(npc));
 
 		assertTrue(en.stepTest(pl, "quest"));
 		assertEquals(
 				"Recent adventurers to these parts describe strange new creatures with weapons"
 						+ " I have never seen. Would you fight these creatures and bring their weapons to me?",
-				npc.get("text"));
+				getReply(npc));
 
 		assertTrue(en.stepTest(pl, ConversationPhrases.YES_MESSAGES.get(0)));
 		assertEquals(
 				"Wonderful. Now, the #list is small but the risk may be great. If you return safely, I have another reward for you.",
-				npc.get("text"));
+				getReply(npc));
 
 		assertTrue(en.stepTest(pl, "list"));
 		assertEquals(
 				"There are 3 weapons still missing from my newest collection: #'morning star', #staff, and #'great sword'."
 						+ " Do you have anything like that with you?",
-				npc.get("text"));
+				getReply(npc));
 
 		assertTrue(en.stepTest(pl, "no"));
 		assertEquals("Let me know as soon as you find them. Farewell.",
-				npc.get("text"));
+				getReply(npc));
 
 		// start another conversation
 		assertTrue(en.stepTest(pl, "hi"));
 		assertEquals(
 				"Welcome back. I hope you have come to help me with my latest #list of weapons.",
-				npc.get("text"));
+				getReply(npc));
 
 		assertTrue(en.stepTest(pl, "list"));
 		assertEquals(
 				"There are 3 weapons still missing from my newest collection: #'morning star', #staff, and #'great sword'."
 						+ " Do you have anything like that with you?",
-				npc.get("text"));
+				getReply(npc));
 
 		assertTrue(en.stepTest(pl, "yes"));
-		assertEquals("What did you find?", npc.get("text"));
+		assertEquals("What did you find?", getReply(npc));
 
 		Item weapon = new Item("morning star", "", "", null);
 		pl.getSlot("bag").add(weapon);
 
 		assertTrue(en.stepTest(pl, "morning star"));
 		assertEquals("Thank you very much! Do you have anything more for me?",
-				npc.get("text"));
+				getReply(npc));
 
 		assertTrue(en.stepTest(pl, "morning star"));
 		assertEquals(
 				"I already have that one. Do you have any other weapon for me?",
-				npc.get("text"));
+				getReply(npc));
 
 		for (final String cloakName : wc.getNeededItems()) {
 			weapon = new Item(cloakName, "", "", null);
@@ -139,7 +140,7 @@ public class WeaponsCollector2Test {
 
 		assertEquals(
 				"At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!",
-				npc.get("text"));
+				getReply(npc));
 		en.step(pl, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 
 		assertTrue(wc.isCompleted(pl));
