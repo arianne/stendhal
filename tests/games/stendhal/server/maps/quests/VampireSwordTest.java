@@ -8,6 +8,7 @@ import java.util.Date;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -87,7 +88,7 @@ public class VampireSwordTest {
 			en.setCurrentState(ConversationStates.ATTENDING);
 			
 			en.step(player, request);
-			assertEquals(request, "I can forge a powerful life stealing sword for you. You will need to go to the Catacombs below Semos Graveyard and fight the Vampire Lord. Are you interested?", npc.getText());
+			assertEquals(request, "I can forge a powerful life stealing sword for you. You will need to go to the Catacombs below Semos Graveyard and fight the Vampire Lord. Are you interested?", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.QUEST_OFFERED);
 		}
 	}
@@ -103,7 +104,7 @@ public class VampireSwordTest {
 			en.setCurrentState(ConversationStates.ATTENDING);
 			
 			en.step(player, request);
-			assertEquals(request, "What are you bothering me for now? You've got your sword, go and use it!", npc.getText());
+			assertEquals(request, "What are you bothering me for now? You've got your sword, go and use it!", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		}
 	}
@@ -122,7 +123,7 @@ public class VampireSwordTest {
 				en.setCurrentState(ConversationStates.ATTENDING);
 			
 				en.step(player, request);
-				assertEquals(request, "Why are you bothering me when you haven't completed your quest yet?", npc.getText());
+				assertEquals(request, "Why are you bothering me when you haven't completed your quest yet?", getReply(npc));
 				assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			}
 		}
@@ -139,7 +140,7 @@ public class VampireSwordTest {
 		en.setCurrentState(ConversationStates.QUEST_OFFERED);
 			
 		en.step(player, "no");
-		assertEquals("Refusing", "Oh, well forget it then. You must have a better sword than I can forge, huh? Bye.", npc.getText());
+		assertEquals("Refusing", "Oh, well forget it then. You must have a better sword than I can forge, huh? Bye.", getReply(npc));
 		assertEquals("karma penalty", karma - 5.0, player.getKarma(), 0.01);
 		assertFalse(player.isEquipped("empty goblet"));
 		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
@@ -157,7 +158,7 @@ public class VampireSwordTest {
 			en.setCurrentState(ConversationStates.QUEST_OFFERED);
 			
 			en.step(player, answer);
-			assertEquals("Then you need this #goblet. Take it to the Semos #Catacombs.", npc.getText());
+			assertEquals("Then you need this #goblet. Take it to the Semos #Catacombs.", getReply(npc));
 			assertEquals("karma bonus", karma + 5.0, player.getKarma(), 0.01);
 			assertTrue("Player is given a goblet", player.isEquipped("empty goblet"));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
@@ -172,11 +173,11 @@ public class VampireSwordTest {
 		
 		en.setCurrentState(ConversationStates.ATTENDING);
 		en.step(player, "catacombs");
-		assertEquals("answer to 'catacombs'", "The Catacombs of north Semos of the ancient #stories.", npc.getText());
+		assertEquals("answer to 'catacombs'", "The Catacombs of north Semos of the ancient #stories.", getReply(npc));
 		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		
 		en.step(player, "goblet");
-		assertEquals("answer to 'goblet'", "Go fill it with the blood of the enemies you meet in the #Catacombs.", npc.getText());
+		assertEquals("answer to 'goblet'", "Go fill it with the blood of the enemies you meet in the #Catacombs.", getReply(npc));
 	}
 	
 	@Test 
@@ -194,7 +195,7 @@ public class VampireSwordTest {
 			player.equipToInventoryOnly(goblet);
 			
 			en.step(player, hello);
-			assertEquals(hello, "Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!", npc.getText());
+			assertEquals(hello, "Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 		}
 	}
@@ -213,7 +214,7 @@ public class VampireSwordTest {
 			player.setQuest(questSlot, "start");
 			
 			en.step(player, hello);
-			assertEquals(hello, "I hope you didn't lose your goblet! Do you need another?", npc.getText());
+			assertEquals(hello, "I hope you didn't lose your goblet! Do you need another?", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.QUESTION_1);
 		}
 	}
@@ -233,7 +234,7 @@ public class VampireSwordTest {
 			player.setQuest(questSlot, "start");
 			
 			en.step(player, answer);
-			assertEquals(answer, "You stupid ..... Be more careful next time. Bye!", npc.getText());
+			assertEquals(answer, "You stupid ..... Be more careful next time. Bye!", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 			assertTrue("Player is given a goblet", player.isEquipped("empty goblet"));
 		}
@@ -252,7 +253,7 @@ public class VampireSwordTest {
 		player.setQuest(questSlot, "start");
 			
 		en.step(player, "no");
-		assertEquals("Then why are you back here? Go slay some vampires! Bye!", npc.getText());
+		assertEquals("Then why are you back here? Go slay some vampires! Bye!", getReply(npc));
 		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 		assertFalse("Player is not given a goblet", player.isEquipped("empty goblet"));
 	}
@@ -266,8 +267,9 @@ public class VampireSwordTest {
 			final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
 			
 			en.step(player, hello);
-			assertEquals("vampires greeting", "Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty goblet I will #fill it with blood for you in my cauldron.", npc.getText());
+			assertEquals("vampires greeting", "Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty goblet I will #fill it with blood for you in my cauldron.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
+			en.setCurrentState(ConversationStates.IDLE);
 		}
 	}
 	
@@ -278,8 +280,9 @@ public class VampireSwordTest {
 			final SpeakerNPC npc = vs.npcs.get(VAMPIRE_NPC);
 			final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
 			
+			en.setCurrentState(ConversationStates.ATTENDING);
 			en.step(player, bye);
-			assertEquals("vampires bye message", "*cough* ... farewell ... *cough*", npc.getText());
+			assertEquals("vampires bye message", "*cough* ... farewell ... *cough*", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 		}
 	}
@@ -294,7 +297,7 @@ public class VampireSwordTest {
 			en.setCurrentState(ConversationStates.ATTENDING);
 			
 			en.step(player, material);
-			assertEquals("answer to '" + material + "'", "I need blood. I can take it from the entrails of the alive and undead. I will mix the bloods together for you and #fill your #goblet, if you let me drink some too. But I'm afraid of the powerful #lord.", npc.getText());
+			assertEquals("answer to '" + material + "'", "I need blood. I can take it from the entrails of the alive and undead. I will mix the bloods together for you and #fill your #goblet, if you let me drink some too. But I'm afraid of the powerful #lord.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		}
 	}
@@ -309,7 +312,7 @@ public class VampireSwordTest {
 			en.setCurrentState(ConversationStates.ATTENDING);
 			
 			en.step(player, word);
-			assertEquals("answer to '" + word + "'", "The Vampire Lord rules these Catacombs! And I'm afraid of him. I can only help you if you kill him and bring me his skull ring with the #goblet.", npc.getText());
+			assertEquals("answer to '" + word + "'", "The Vampire Lord rules these Catacombs! And I'm afraid of him. I can only help you if you kill him and bring me his skull ring with the #goblet.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		}
 	}
@@ -324,7 +327,7 @@ public class VampireSwordTest {
 			en.setCurrentState(ConversationStates.ATTENDING);
 			
 			en.step(player, word);
-			assertEquals("answer to '" + word + "'", "Only a powerful talisman like this cauldron or a special goblet should contain blood.", npc.getText());
+			assertEquals("answer to '" + word + "'", "Only a powerful talisman like this cauldron or a special goblet should contain blood.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		}
 	}
@@ -342,7 +345,7 @@ public class VampireSwordTest {
 		// ending in the answer, so the order is very much implementation 
 		// defined. don't test for it - just test that Markovich wants 
 		// something
-		String answer = npc.getText();
+		String answer = getReply(npc);
 		assertTrue("answer to 'fill'", answer.startsWith("I can only fill 1 goblet if you bring me "));
 		assertEquals("should not have a '" + sickySlotName + "' slot", null, player.getQuest(sickySlotName));
 		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
@@ -364,7 +367,7 @@ public class VampireSwordTest {
 		player.equipToInventoryOnly(item);
 		
 		en.step(player, "fill");
-		String answer = npc.getText();
+		String answer = getReply(npc);
 		assertTrue("answer to 'fill'", answer.startsWith("I can only fill 1 goblet if you bring me "));
 		assertEquals("should not have a '" + sickySlotName + "' slot", null, player.getQuest(sickySlotName));
 		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
@@ -381,7 +384,7 @@ public class VampireSwordTest {
 		fillSlots(player);
 		
 		en.step(player, "fill");
-		String answer = npc.getText();
+		String answer = getReply(npc);
 		assertTrue("answer to 'fill'", answer.startsWith("I need you to fetch me "));
 		assertTrue("answer to 'fill'", answer.endsWith("for this job. Do you have it?"));
 		assertEquals(en.getCurrentState(), ConversationStates.PRODUCTION_OFFERED);
@@ -401,7 +404,7 @@ public class VampireSwordTest {
 			
 			// the code would allow filling more than 1 too, but that's really
 			// an implementation detail
-			assertEquals("answer to '" + yes + "'", "OK, I will fill 1 goblet for you, but that will take some time. Please come back in 5 minutes.", npc.getText());
+			assertEquals("answer to '" + yes + "'", "OK, I will fill 1 goblet for you, but that will take some time. Please come back in 5 minutes.", getReply(npc));
 			
 			assertFalse(player.isEquipped("goblet"));
 			for (String item : requiredForFilling.keySet()) {
@@ -428,7 +431,7 @@ public class VampireSwordTest {
 			// This will fail if someone manages to stop the test 
 			// within the loop and continue later. (Or to run it on a 
 			// ridiculously slow computer)
-			assertEquals("too early '" + hello + "'", "Welcome back! I'm still busy with your order to fill 1 goblet for you. Come back in 5 minutes to get it.", npc.getText());
+			assertEquals("too early '" + hello + "'", "Welcome back! I'm still busy with your order to fill 1 goblet for you. Come back in 5 minutes to get it.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			
 			// bothering Markovich should not affect the quest state
@@ -452,7 +455,7 @@ public class VampireSwordTest {
 			player.setQuest(sickySlotName, questState);
 			
 			en.step(player, hello);
-			assertTrue("''" + hello + "' in future", npc.getText().startsWith("Welcome back! I'm still busy with your order to fill 1 goblet for you. Come back in"));
+			assertTrue("''" + hello + "' in future", getReply(npc).startsWith("Welcome back! I'm still busy with your order to fill 1 goblet for you. Come back in"));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			
 			// bothering Markovich should not affect the quest state
@@ -475,7 +478,7 @@ public class VampireSwordTest {
 			player.setQuest(sickySlotName, questState);
 			
 			en.step(player, hello);
-			assertEquals("''" + hello + "' in past", "Welcome back! I'm done with your order. Here you have 1 goblet.", npc.getText());
+			assertEquals("''" + hello + "' in past", "Welcome back! I'm done with your order. Here you have 1 goblet.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			
 			assertEquals("done", player.getQuest(sickySlotName));
@@ -502,7 +505,7 @@ public class VampireSwordTest {
 			player.equipToInventoryOnly(item);
 			
 			en.step(player, hello);
-			assertEquals("You have battled hard to bring that goblet. I will use it to #forge the vampire sword", npc.getText());
+			assertEquals("You have battled hard to bring that goblet. I will use it to #forge the vampire sword", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.QUEST_ITEM_BROUGHT);
 		}
 	}
@@ -517,7 +520,7 @@ public class VampireSwordTest {
 		player.setQuest(questSlot, "start");
 		
 		en.step(player, "forge");
-		assertEquals("Bring me 10 #iron bars to forge the sword with. Don't forget to bring the goblet too.", npc.getText());
+		assertEquals("Bring me 10 #iron bars to forge the sword with. Don't forget to bring the goblet too.", getReply(npc));
 		assertEquals(en.getCurrentState(), ConversationStates.QUEST_ITEM_BROUGHT);
 	}
 	
@@ -531,7 +534,7 @@ public class VampireSwordTest {
 		player.setQuest(questSlot, "start");
 		
 		en.step(player, "iron");
-		assertEquals("You know, collect the iron ore lying around and get it cast! Bye!", npc.getText());
+		assertEquals("You know, collect the iron ore lying around and get it cast! Bye!", getReply(npc));
 		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 	}
 	
@@ -552,7 +555,7 @@ public class VampireSwordTest {
 			player.equipToInventoryOnly(item);
 			
 			en.step(player, hello);
-			assertEquals("You've brought everything I need to make the vampire sword. Come back in 10 minutes and it will be ready", npc.getText());
+			assertEquals("You've brought everything I need to make the vampire sword. Come back in 10 minutes and it will be ready", getReply(npc));
 			assertFalse("dwarf took the goblet", player.isEquipped("goblet"));
 			assertFalse("dwarf took the iron", player.isEquipped("iron"));
 			assertTrue("in forging state", player.getQuest(questSlot).startsWith("forging;"));
@@ -572,7 +575,7 @@ public class VampireSwordTest {
 			player.setQuest(questSlot, questState);
 			
 			en.step(player, hello);
-			assertEquals("too early '" + hello + "'", "I haven't finished forging the sword. Please check back in 10 minutes.", npc.getText());
+			assertEquals("too early '" + hello + "'", "I haven't finished forging the sword. Please check back in 10 minutes.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 			
 			// should not make any change in quest state, or give the sword
@@ -595,7 +598,7 @@ public class VampireSwordTest {
 			player.setQuest(questSlot, questState);
 			
 			en.step(player, hello);
-			assertEquals("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!", npc.getText());
+			assertEquals("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 			
 			assertEquals("done", player.getQuest(questSlot));
