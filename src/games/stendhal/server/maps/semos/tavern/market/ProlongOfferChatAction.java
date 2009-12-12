@@ -32,18 +32,23 @@ public class ProlongOfferChatAction extends KnownOffersChatAction {
 			if(offerMap.containsKey(offerNumber)) {
 				Offer o = offerMap.get(offerNumber);
 				if(o.getOfferer().equals(player.getName())) {
-					Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, o.getPrice()).intValue());
-					if (player.isEquipped("money", fee)) { 
-						if (prolongOffer(player, o)) {
-							TradingUtility.substractTradingFee(player, o.getPrice());
-							npc.say("I prolonged your offer and took the fee of "+fee.toString()+" again.");
+					if (!wouldOverflowMaxOffers(player, o)) {
+						Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, o.getPrice()).intValue());
+						if (player.isEquipped("money", fee)) { 
+							if (prolongOffer(player, o)) {
+								TradingUtility.substractTradingFee(player, o.getPrice());
+								npc.say("I prolonged your offer and took the fee of "+fee.toString()+" again.");
+							} else {
+								npc.say("Sorry, that offer has already been removed from the market.");
+							}
+							// Changed the status, or it has been changed by expiration. Obsolete the offers
+							manager.getOfferMap().put(player.getName(), null);
 						} else {
-							npc.say("Sorry, that offer has already been removed from the market.");
+							npc.say("You cannot afford the trading fee of "+fee.toString());
 						}
-						// Changed the status, or it has been changed by expiration. Obsolete the offers
-						manager.getOfferMap().put(player.getName(), null);
 					} else {
-						npc.say("You cannot afford the trading fee of "+fee.toString());
+						npc.say("Sorry, you can have only " + TradingUtility.MAX_NUMBER_OFF_OFFERS
+								+ " active offers at a time.");
 					}
 				} else {
 					npc.say("You can only prolong your own offers. Please say #show #mine to see only your offers.");
@@ -55,6 +60,24 @@ public class ProlongOfferChatAction extends KnownOffersChatAction {
 		} catch (NumberFormatException e) {
 			npc.say("Sorry, please say #remove #number");
 		}
+	}
+	
+	/**
+	 * Check if prolonging an offer would result the player having too many active offers on market.
+	 * 
+	 * @param player the player to be checked
+	 * @param offer the offer the player wants to prolong
+	 * @return true if prolonging the offer should be denied
+	 */
+	private boolean wouldOverflowMaxOffers(Player player, Offer offer) {
+		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
+		
+		if ((market.countOffersOfPlayer(player) == TradingUtility.MAX_NUMBER_OFF_OFFERS)
+				&& market.getExpiredOffers().contains(offer)) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	private boolean prolongOffer(Player player, Offer o) {
