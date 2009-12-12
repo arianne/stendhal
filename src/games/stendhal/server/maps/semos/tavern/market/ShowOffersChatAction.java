@@ -20,7 +20,9 @@ import marauroa.common.game.RPSlot;
  *
  */
 public class ShowOffersChatAction implements ChatAction {
-
+	/** Maximum list length that is shown to the players */
+	private static final int MAX_SHOWN_OFFERS = 20;
+	
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (sentence.hasError()) {
 			npc.say("Sorry, I did not understand you. "
@@ -73,6 +75,10 @@ public class ShowOffersChatAction implements ChatAction {
 					continue;
 				}
 				counter += 1;
+				if (counter > MAX_SHOWN_OFFERS) {
+					offersMessage.append("Only " + MAX_SHOWN_OFFERS + " first offers shown.");
+					return counter;
+				}
 				offersMessage.append(counter);
 				offersMessage.append(": ");
 				offersMessage.append(o.getItem().getName());
