@@ -103,7 +103,7 @@ public class ShowOffersChatAction implements ChatAction {
 	
 	private boolean checkForMyExpiredFilter(Sentence sentence) {
 		for (Expression expression : sentence) {
-			if(expression.toString().equals("expired")) {
+			if (expression.getNormalized().equals("expire")) {
 				return true;
 			}
 		}

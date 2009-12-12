@@ -104,6 +104,8 @@ exchange	VER
 exhibit	VER
 exit	VER
 explain	VER
+expire	VER
+expired	VER	=expire
 explore	VER
 farewell	VER
 feed	VER
