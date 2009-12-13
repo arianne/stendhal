@@ -41,6 +41,11 @@ public class PrepareOfferChatAction implements ChatAction {
 			if(TradingUtility.canPlayerAffordTradingFee(player, price)) {
 				Item item = player.getFirstEquipped(itemName);
 				if (item == null) {
+					// Some items are in plural. look for those
+					item = player.getFirstEquipped(Grammar.plural(itemName));
+				}
+				
+				if (item == null) {
 					npc.say("Sorry, but I don't think you have any " 
 							+ Grammar.plural(itemName)+ ".");
 					return;
