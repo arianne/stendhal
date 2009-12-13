@@ -1,5 +1,8 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.NameSearch;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -110,5 +113,23 @@ public class Behaviour {
 			return false;
 		}
     }
+
+	/**
+	 * a chat condition that checks whether transactions are possible at all
+	 * 
+	 * @return ChatCondition
+	 */
+	public ChatCondition getTransactionCodition() {
+		return new AlwaysTrueCondition();
+	}
+
+	/**
+	 * a chat action that is executed in case transaction are not possible
+	 *
+	 * @return ChatAction
+	 */
+	public ChatAction getRejectedTransactionAction() {
+		return null;
+	}
 
 }

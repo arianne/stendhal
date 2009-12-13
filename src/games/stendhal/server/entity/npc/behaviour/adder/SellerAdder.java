@@ -2,11 +2,13 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -43,8 +45,17 @@ public class SellerAdder {
 				ConversationStates.ATTENDING, null,
 				new ComplainAboutSentenceErrorAction());
 
+		ChatCondition condition = new AndCondition(
+			new NotCondition(new SentenceHasErrorCondition()),
+			new NotCondition(behaviour.getTransactionCodition()));
+		engine.add(ConversationStates.ATTENDING, "buy", condition,
+			ConversationStates.BUY_PRICE_OFFERED, null,
+			behaviour.getRejectedTransactionAction());
 
-		engine.add(ConversationStates.ATTENDING, "buy", new NotCondition(new SentenceHasErrorCondition()),
+		condition = new AndCondition(
+			new NotCondition(new SentenceHasErrorCondition()),
+			behaviour.getTransactionCodition());
+		engine.add(ConversationStates.ATTENDING, "buy", condition,
 				ConversationStates.BUY_PRICE_OFFERED, null,
 				new ChatAction() {
 
