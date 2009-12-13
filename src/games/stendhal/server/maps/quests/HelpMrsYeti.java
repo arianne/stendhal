@@ -1,8 +1,10 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -13,12 +15,17 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasPetOrSheepCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -47,15 +54,7 @@ The blacksmith is willing to help. But need some stuff too, to craft the magic k
 
 After bring the knife to the witch, he tell the player that she forgot an important item. The player has to get it and bring it to here. After a while the special potion is ready. And the player can bring it to Mrs. Yeti.
 
-Mrs. Yeti is very happy about the special potion. But she needs some other things to make her husband happy. The player has to collect some items for her. After player bring the items to her, she is happy as never befor.
-
-But there is a last thing to do, a monster has to be killed by player. After this favor, the player can go back to Mrs. Yeti and get the reward.
-
-What is needed:
-- special potion
-- magic knife (not for attacking)
-- an idea for reward
-
+Mrs. Yeti is very happy about the special potion. But she needs some other things to make her husband happy. The player has to collect a baby dragon for her. After player bring the baby dragon to her, she is happy as never befor.
  *
  * REWARD:
  * <ul>
@@ -71,14 +70,14 @@ What is needed:
  public class HelpMrsYeti extends AbstractQuest {
  
  	private static final String QUEST_SLOT = "mrsyeti";
- 	
+	private static final int DELAY_IN_MINUTES = 60*24;
  
  	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
 	private void startQuest() {
-		final SpeakerNPC npc = npcs.get("Mrs Yeti");	
+		final SpeakerNPC npc = npcs.get("Mrs. Yeti");	
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
@@ -116,7 +115,8 @@ What is needed:
 	// wine
 	// black pearl
 	final SpeakerNPC npc = npcs.get("Salva Mattori");
-		npc.add(ConversationStates.ATTENDING, "potion",
+	
+    	npc.add(ConversationStates.ATTENDING, "potion",
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 			    ConversationStates.ATTENDING, "I will help you make this potion, Mrs Yeti is an old friend of mine. But the blade on "
 				+ "my magic knife has snapped yet again. I need another. I get mine from Hackim Easso of Semos City, will you go to him and "
@@ -133,7 +133,7 @@ What is needed:
 	    npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","knife","potion"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "knife"),
 				new PlayerHasItemWithHimCondition("knife")),
-				ConversationStates.ATTENDING, "Very good! Now I need the items to make the love #potion. I need 3 lilia flowers, 8 sprigs of sclaria, 1 glass of wine and 1 black pearl. Please bring them all together at once.",
+				ConversationStates.ATTENDING, "Very good! Now I need the items to make the love #potion. I need 3 lilia flowers, 1 sprig of kokuda, 1 glass of wine and 1 black pearl. Please bring them all together at once and then ask me to make the #potion.",
 				new MultipleActions(new SetQuestAction(QUEST_SLOT, "potion"), new DropItemAction("knife")));
 
 	    npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","knife","potion"),
@@ -144,7 +144,7 @@ What is needed:
 
 		final List<ChatAction> potionactions = new LinkedList<ChatAction>();
 		potionactions.add(new DropItemAction("lilia",3));
-		potionactions.add(new DropItemAction("sclaria",8));
+		potionactions.add(new DropItemAction("kokuda"));
 		potionactions.add(new DropItemAction("wine"));
 		potionactions.add(new DropItemAction("black pearl"));
 		potionactions.add(new EquipItemAction("love potion"));
@@ -152,23 +152,23 @@ What is needed:
 		potionactions.add(new SetQuestAction(QUEST_SLOT, "gotpotion"));
 
 		// don't make player wait for potion - could add this in later if wanted
-		npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","knife","potion"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "knife"),
+		npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","potion"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "potion"),
 								 new PlayerHasItemWithHimCondition("lilia",3),
-								 new PlayerHasItemWithHimCondition("sclaria",8),
+								 new PlayerHasItemWithHimCondition("kokuda"),
 								 new PlayerHasItemWithHimCondition("wine"),
 								 new PlayerHasItemWithHimCondition("black pearl")),
-				ConversationStates.ATTENDING, "I see you have all the items for the potion. *mutters magic words* And now you have the love #potion. Wish Mrs Yeti good luck from me!",
+				ConversationStates.ATTENDING, "I see you have all the items for the potion. *mutters magic words* And now, ta da! You have the love potion. Wish Mrs Yeti good luck from me!",
 				new MultipleActions(potionactions));
 
-		npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","knife","potion"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "knife"),
+		npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","potion"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "potion"),
 								 new NotCondition(
 												  new AndCondition(new PlayerHasItemWithHimCondition("lilia",3),
-																   new PlayerHasItemWithHimCondition("sclaria",8),
+																   new PlayerHasItemWithHimCondition("kokuda"),
 																   new PlayerHasItemWithHimCondition("wine"),
 																   new PlayerHasItemWithHimCondition("black pearl")))),
-				ConversationStates.ATTENDING, "I need 3 lilia flowers, 8 sprigs of sclaria, 1 glass of wine and 1 black pearl to make the love potion. Please bring them all together at once. Thanks!", null);
+				ConversationStates.ATTENDING, "I need 3 lilia flowers, 1 sprig of kokuda, 1 glass of wine and 1 black pearl to make the love potion. Please bring them all together at once. Thanks!", null);
 				
 
 	}
@@ -189,39 +189,132 @@ What is needed:
 				ConversationStates.ATTENDING, "Ah, thank you very much! Now I will tell you a little secret of mine. I am not a blacksmith, "
 				+ "only an assistant. I can't make knives at all! But I sell Salva a normal knife and is happy enough with that! So just take her "
 				+ "a plain knife like you could buy from Xin Blanca in Semos Tavern. I'll tell her I made it! Oh and thanks for the pies!!!",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "knife", 1.0));
+				new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "knife", 1.0), new DropItemAction("pie",5)));
+
+	    npc.add(ConversationStates.ATTENDING, "pies",
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "pies"),
+				new NotCondition(new PlayerHasItemWithHimCondition("pie",5))),
+				ConversationStates.ATTENDING, "Arlindo from Ados makes the best meat and vegetable pies. Please remember to bring me 5, I am hungry!",
+				null);
 
 	}
 
 	private void bringPotion() {
-	final SpeakerNPC npc = npcs.get("Mrs Yeti");	
-	
+	final SpeakerNPC npc = npcs.get("Mrs. Yeti");	
+		final String extraTrigger = "potion";
+	    List<String> questTrigger;
+	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		questTrigger.add(extraTrigger);
+
 	    final List<ChatAction> tookpotionactions = new LinkedList<ChatAction>();
 		tookpotionactions.add(new DropItemAction("love potion"));
 		tookpotionactions.add(new IncreaseKarmaAction(10.0));
 		tookpotionactions.add(new IncreaseXPAction(1000));
-		tookpotionactions.add(new SetQuestAction(QUEST_SLOT, "presents"));
+		tookpotionactions.add(new SetQuestAction(QUEST_SLOT, "dragon"));
 
-		npc.add(ConversationStates.ATTENDING, "potion",
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
+		npc.add(ConversationStates.ATTENDING, questTrigger,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "gotpotion"),
 				new PlayerHasItemWithHimCondition("love potion")),
-				ConversationStates.ATTENDING, "Thank you! That looks so powerful I almost love you from smelling it! But don't worry I will save it for my husband. Need other stuff.", 
+				ConversationStates.ATTENDING, "Thank you! That looks so powerful I almost love you from smelling it! But don't worry I will save it for my husband. But he won't take it without some other temptation. I think he'd like a baby #dragon, if you'd be so kind as to bring one.", 
 				new MultipleActions(tookpotionactions));
 
 		npc.add(
-			ConversationStates.ATTENDING, "potion",
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("love potion"))),
+			ConversationStates.ATTENDING, questTrigger,
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "gotpotion"), new NotCondition(new PlayerHasItemWithHimCondition("love potion"))),
 			ConversationStates.ATTENDING,
-			"Please go to Salva Mattori in the magic city and ask her to make a love potion for you. Just tell her: #potion and she will understand.",
+			"What did you do with the love potion?",
 			null);
 		
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
-				new QuestInStateCondition(QUEST_SLOT, "start"),
+				questTrigger, 
+				new OrCondition(new QuestInStateCondition(QUEST_SLOT, "start"), 
+								new QuestInStateCondition(QUEST_SLOT, "pies"), 
+								new QuestInStateCondition(QUEST_SLOT, "knife")),
 				ConversationStates.ATTENDING,
-				"I am waiting for you to return with a love #potion.",
+				"I am waiting for you to return with a love potion. Please ask Salva Mattori in the magic city about: #potion.",
 				null);
 	}
+
+	private void bringDragon() {
+	final SpeakerNPC npc = npcs.get("Mrs. Yeti");
+
+	    final String extraTrigger = "dragon";
+	    List<String> questTrigger;
+	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		questTrigger.add(extraTrigger);
+
+		// easy to check if they have a pet or sheep at all
+	    npc.add(
+			ConversationStates.ATTENDING, questTrigger,
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "dragon"), 
+							 new NotCondition(new PlayerHasPetOrSheepCondition())),
+			ConversationStates.ATTENDING,
+			"You can get a baby dragon only if you have a mythical egg. Those, you must get from Morgrin at the wizard school. "
+			+ "Then Terry in Semos caves will hatch it.",
+			null);
+
+		// if they have any pet or sheep, then check if it's a baby dragon
+		npc.add(
+			ConversationStates.ATTENDING, questTrigger,
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "dragon"), 
+							 new PlayerHasPetOrSheepCondition()),
+			ConversationStates.ATTENDING,
+			null,
+			new ChatAction() {
+				public void fire(final Player player, final Sentence sentence,
+								 final SpeakerNPC npc) {
+					if(!player.hasPet()){
+						npc.say("That's a cute sheep you have there, but I need a baby dragon for Mr Yeti. Try Morgrin at the magic school.");
+						return;
+					}
+					Pet pet = player.getPet();
+					String petType = pet.get("type");
+					if("baby_dragon".equals(petType)) {
+						player.removePet(pet);
+						npc.say("Ah you brought the baby dragon! It will make such a wonderful stew. Baby dragon stew is my speciality and Mr Yeti loves it! You've made us both very happy! Come back in a day to see me for a #reward.");
+						player.addKarma(5.0);
+						player.addXP(500);
+						pet.delayedDamage(pet.getHP(), "Mrs. Yeti");
+						player.setQuest(QUEST_SLOT,"reward;"+System.currentTimeMillis());
+						player.notifyWorldAboutChanges();
+					} else {
+						npc.say("That's a cute pet you have there, but I need a baby dragon for Mr Yeti. Try Morgrin at the magic school.");  
+					}
+				}
+			});
+
+	}
+
+	private void getReward() {
+
+	final SpeakerNPC npc = npcs.get("Mrs. Yeti");
+
+	    final String extraTrigger = "reward";
+	    List<String> questTrigger;
+	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		questTrigger.add(extraTrigger);
+	
+	    npc.add(
+			ConversationStates.ATTENDING, questTrigger,
+			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reward"), 
+							 // delay is in minutes, last parameter is argument of timestamp
+							 new NotCondition(new TimePassedCondition(QUEST_SLOT,DELAY_IN_MINUTES,1))),
+			ConversationStates.ATTENDING,
+			null,
+			new StateTimeRemainingAction(QUEST_SLOT,"Hello I am still busy with that baby dragon stew for Mr Yeti. You can get your reward in",DELAY_IN_MINUTES,1));
+
+
+		npc.add(
+			ConversationStates.ATTENDING, questTrigger,
+			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reward"), 
+							 // delay is in minutes, last parameter is argument of timestamp
+							 new TimePassedCondition(QUEST_SLOT,DELAY_IN_MINUTES,1)),
+			ConversationStates.ATTENDING,
+			"Thank you! no reward yet.",
+			new SetQuestAction(QUEST_SLOT,"done"));
+
+	}
+
 	
 	@Override
 	public void addToWorld() {
@@ -231,6 +324,8 @@ What is needed:
 		makePotion();
 		makeMagicKnife();
 		bringPotion();
+		bringDragon();
+		getReward();
 	}
 
 	@Override

@@ -26,6 +26,7 @@ import games.stendhal.server.maps.quests.FindGhosts;
 import games.stendhal.server.maps.quests.FishermansLicenseCollector;
 import games.stendhal.server.maps.quests.FishermansLicenseQuiz;
 import games.stendhal.server.maps.quests.HatForMonogenes;
+import games.stendhal.server.maps.quests.HelpMrsYeti;
 import games.stendhal.server.maps.quests.HelpTomi;
 import games.stendhal.server.maps.quests.HouseBuying;
 import games.stendhal.server.maps.quests.HungryJoshua;
@@ -148,6 +149,7 @@ public class StendhalQuestSystem {
 		loadQuest(new HatForMonogenes());
 		// loadQuest(new HayunnCataclysm());
 		loadQuest(new HelpTomi());
+		loadQuest(new HelpMrsYeti());
 		loadQuest(new HouseBuying());
 		loadQuest(new HungryJoshua());
 		loadQuest(new IcecreamForAnnie());
