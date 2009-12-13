@@ -142,12 +142,15 @@ public class Market extends PassiveEntity {
 		}
 	
 		Offer offer = null;
+		String slotName = item.getContainerSlot().getName();
 		if(offerer.drop(item)) {
 			offer = new Offer(item, money, name);
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 			slot.add(offer);
 			getZone().storeToDatabase();
+			
+			new ItemLogger().addItemLogEntry(new ItemLogEntry(item, offerer, "slot-to-market", item.get("name"), Integer.toString(getQuantity(item)), "new offer", slotName));
 		}
 		
 		return offer;
@@ -169,6 +172,15 @@ public class Market extends PassiveEntity {
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				applyTradingBonus(acceptingPlayer);
+				
+				// log the item movement
+				String slotName = null;
+				String target = "ground";
+				if (item.getContainerSlot() != null) {
+					slotName = item.getContainerSlot().getName();
+					target = "slot";
+				}			
+				new ItemLogger().addItemLogEntry(new ItemLogEntry(item, acceptingPlayer, "market-to-" + target, item.get("name"), Integer.toString(getQuantity(item)), "accept offer", slotName));
 				
 				this.getZone().storeToDatabase();
 				return true;
@@ -241,6 +253,15 @@ public class Market extends PassiveEntity {
 		getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(o.getID());
 		
 		getZone().storeToDatabase();
+		
+		// log the item movement
+		String slotName = null;
+		String target = "ground";
+		if (item.getContainerSlot() != null) {
+			slotName = item.getContainerSlot().getName();
+			target = "slot";
+		}			
+		new ItemLogger().addItemLogEntry(new ItemLogEntry(item, p, "market-to-" + target, item.get("name"), Integer.toString(getQuantity(item)), "remove offer", slotName));
 	}
 	
 	public void expireOffer(Offer o) {
@@ -275,12 +296,8 @@ public class Market extends PassiveEntity {
 		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(offerToRemove.getID());
 		
 		Item item = offerToRemove.getItem();
-		int quantity = 1;
-		if (item instanceof StackableItem) {
-			quantity = ((StackableItem) item).getQuantity();
-		}
 		new ItemLogger().addItemLogEntry(new ItemLogEntry(item, 
-				null, "destroy", item.get("name"), Integer.toString(quantity), "timeout", "market"));
+				null, "destroy", item.get("name"), Integer.toString(getQuantity(item)), "timeout", "market"));
 		
 		this.getZone().storeToDatabase();
 	}
@@ -332,5 +349,14 @@ public class Market extends PassiveEntity {
 		}
 		
 		return old;
+	}
+	
+	private int getQuantity(Item item) {
+		int quantity = 1;
+		if (item instanceof StackableItem) {
+			quantity = ((StackableItem) item).getQuantity();
+		}
+		
+		return quantity;
 	}
 }
