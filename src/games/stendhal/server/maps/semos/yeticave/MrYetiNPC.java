@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.semos.yeticave;
 
-import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;

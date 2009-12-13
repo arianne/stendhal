@@ -54,9 +54,10 @@ public class MrsYetiNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
+				// for quest see games.stendhal.server.maps.quest.HelpMrsYeti
 				addGreeting("Greetings, strange foreigner!");
-				addJob("My job is to clean up all this around you!");
-				addHelp("I am not able to help you!");				
+				addJob("I go out to hunt for food while Mr Yeti makes his snow sculptures.");
+				addHelp("Be careful of the creatures lurking in these caves!");				
 				addGoodbye();
 			}
 		};
