@@ -49,7 +49,7 @@ public class SellerAdder {
 			new NotCondition(new SentenceHasErrorCondition()),
 			new NotCondition(behaviour.getTransactionCodition()));
 		engine.add(ConversationStates.ATTENDING, "buy", condition,
-			ConversationStates.BUY_PRICE_OFFERED, null,
+			ConversationStates.ATTENDING, null,
 			behaviour.getRejectedTransactionAction());
 
 		condition = new AndCondition(
