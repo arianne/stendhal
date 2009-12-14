@@ -5,12 +5,20 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.QuestCompletedSellerBehaviour;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+
 public class MrsYetiNPC implements ZoneConfigurator {
+
+	public static final int BUYING_PRICE = 10;
+ 	private static final String QUEST_SLOT = "mrsyeti";
+
 	/**
 	 * Configure a zone.
 	 *
@@ -54,6 +62,11 @@ public class MrsYetiNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
+
+				final Map<String, Integer> items = new HashMap<String, Integer>();
+				items.put("roach", BUYING_PRICE);
+
+				new SellerAdder().addSeller(this, new QuestCompletedSellerBehaviour(QUEST_SLOT, "I have a #task for you before I will sell you anything.", items));
 				// for quest see games.stendhal.server.maps.quest.HelpMrsYeti
 				addGreeting("Greetings, strange foreigner!");
 				addJob("I go out to hunt for food while Mr Yeti makes his snow sculptures.");

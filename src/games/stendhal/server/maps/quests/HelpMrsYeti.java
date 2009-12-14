@@ -310,8 +310,8 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 							 // delay is in minutes, last parameter is argument of timestamp
 							 new TimePassedCondition(QUEST_SLOT,DELAY_IN_MINUTES,1)),
 			ConversationStates.ATTENDING,
-			"Thank you! no reward yet.",
-			new SetQuestAction(QUEST_SLOT,"done"));
+			"Thank you! To say thank you, I'd like to offer you the chance to always #buy #roach from me cheaply. I have so much of it and perhaps you have a use for it.",
+			new MultipleActions(new SetQuestAction(QUEST_SLOT,"done"), new IncreaseXPAction(1000)));
 
 	}
 
