@@ -47,14 +47,14 @@ public class SellerAdder {
 
 		ChatCondition condition = new AndCondition(
 			new NotCondition(new SentenceHasErrorCondition()),
-			new NotCondition(behaviour.getTransactionCodition()));
+			new NotCondition(behaviour.getTransactionCondition()));
 		engine.add(ConversationStates.ATTENDING, "buy", condition,
 			ConversationStates.ATTENDING, null,
 			behaviour.getRejectedTransactionAction());
 
 		condition = new AndCondition(
 			new NotCondition(new SentenceHasErrorCondition()),
-			behaviour.getTransactionCodition());
+			behaviour.getTransactionCondition());
 		engine.add(ConversationStates.ATTENDING, "buy", condition,
 				ConversationStates.BUY_PRICE_OFFERED, null,
 				new ChatAction() {

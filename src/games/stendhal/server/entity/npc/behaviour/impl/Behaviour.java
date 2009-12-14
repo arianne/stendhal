@@ -119,7 +119,7 @@ public class Behaviour {
 	 * 
 	 * @return ChatCondition
 	 */
-	public ChatCondition getTransactionCodition() {
+	public ChatCondition getTransactionCondition() {
 		return new AlwaysTrueCondition();
 	}
 
