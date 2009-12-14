@@ -113,7 +113,7 @@ public class BuyerAdder {
 
 		engine.add(ConversationStates.SELL_PRICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, "Thanks.",
+				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final SpeakerNPC engine) {

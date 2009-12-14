@@ -110,7 +110,7 @@ public class SellerAdder {
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, "Thanks.",
+				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						final String itemName = behaviour.getChosenItemName();
