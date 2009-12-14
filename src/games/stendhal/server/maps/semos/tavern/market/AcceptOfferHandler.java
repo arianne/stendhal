@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -52,7 +53,8 @@ public class AcceptOfferHandler {
 				if(offerMap.containsKey(offerNumber)) {
 					Offer o = offerMap.get(offerNumber);
 					setOffer(o);
-					npc.say("Do you want to buy " + o.getItem().getName() + " for " + o.getPrice() + " money?");
+					int quantity = getQuantity(o.getItem());
+					npc.say("Do you want to buy " + Grammar.quantityplnoun(quantity, o.getItem().getName()) + " for " + o.getPrice() + " money?");
 					npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
 					return;
 				}
@@ -90,11 +92,7 @@ public class AcceptOfferHandler {
 			} else {
 				// Trade failed for some reason. Check why, and inform the player
 				if (!m.getOffers().contains(offer)) {
-					int quantity = 1;
-					if (offer.getItem() instanceof StackableItem) {
-						quantity = ((StackableItem) offer.getItem()).getQuantity(); 
-					}
-					Grammar.thatthose(quantity);
+					int quantity = getQuantity(offer.getItem());
 					npc.say("I'm sorry, but " + Grammar.thatthose(quantity) + " "
 							+ Grammar.quantityplnoun(quantity, offer.getItem().getName())
 							+ " " + Grammar.isare(quantity)
@@ -114,4 +112,12 @@ public class AcceptOfferHandler {
 		return offer;
 	}
 	
+	private int getQuantity(Item item) {
+		int quantity = 1;
+		if (item instanceof StackableItem) {
+			quantity = ((StackableItem) item).getQuantity();
+		}
+		
+		return quantity;
+	}
 }
