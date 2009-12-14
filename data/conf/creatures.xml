@@ -9524,7 +9524,7 @@
       <atk value="719"/>
       <def value="93"/>
       <hp value="1250"/>
-      <speed value="0.1"/>
+      <speed value="0.4"/>
       <size value="5,3"/>
     </attributes>
     <level value="113"/>
