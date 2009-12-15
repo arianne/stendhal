@@ -6,8 +6,6 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -17,10 +15,9 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
 
-public class AcceptOfferHandler {
+public class AcceptOfferHandler extends OfferHandler {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(AcceptOfferChatAction.class);
-	private Offer offer;
 	
 	public void add(SpeakerNPC npc) {
 		npc.add(ConversationStates.ATTENDING, "accept", null, ConversationStates.ATTENDING, null, 
@@ -102,22 +99,5 @@ public class AcceptOfferHandler {
 				}
 			}
 		}
-	}
-	
-	private void setOffer(Offer offer) {
-		this.offer = offer;
-	}
-	
-	private Offer getOffer() {
-		return offer;
-	}
-	
-	private int getQuantity(Item item) {
-		int quantity = 1;
-		if (item instanceof StackableItem) {
-			quantity = ((StackableItem) item).getQuantity();
-		}
-		
-		return quantity;
 	}
 }

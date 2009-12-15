@@ -3,8 +3,6 @@ package games.stendhal.server.maps.semos.tavern.market;
 import java.util.Map;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -14,9 +12,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
 
-public class ProlongOfferHandler {
-	private Offer offer;
-	
+public class ProlongOfferHandler extends OfferHandler {
 	public void add(SpeakerNPC npc) {
 		npc.add(ConversationStates.ATTENDING, "prolong", null, ConversationStates.ATTENDING, null, 
 				new ProlongOfferChatAction());
@@ -124,22 +120,5 @@ public class ProlongOfferHandler {
 			
 			return false;
 		}
-	}
-	
-	private void setOffer(Offer offer) {
-		this.offer = offer;
-	}
-	
-	private Offer getOffer() {
-		return offer;
-	}
-	
-	private int getQuantity(Item item) {
-		int quantity = 1;
-		if (item instanceof StackableItem) {
-			quantity = ((StackableItem) item).getQuantity();
-		}
-		
-		return quantity;
 	}
 }
