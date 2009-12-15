@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS kills (
   killer      VARCHAR(64),
   killed_type CHAR(1),
   killer_type CHAR(1),
+  day         DATE,
   cnt         INTEGER,
   PRIMARY KEY (id)
 ) TYPE=INNODB;
@@ -103,7 +104,7 @@ CREATE TABLE IF NOT EXISTS cid
   ) 
   TYPE=INNODB;
 
-/*CREATE INDEX i_halloffame_charname ON halloffame(charname);*/
+/*CREATE INDEX i_cid_charname ON cid(charname);*/
 
 
 create table if not exists words (
