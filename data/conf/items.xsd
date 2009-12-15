@@ -50,6 +50,7 @@
     		<element name="lifesteal" type="Q1:attribute" minOccurs="0"></element>
     		<element name="persistent" type="Q1:attribute" minOccurs="0"></element>
     		<element name="min_level" type="Q1:attribute" minOccurs="0"></element>
+    		<element name="undroppableondeath" type="Q1:attribute" minOccurs="0"></element>
     	</sequence>    	
     </complexType>
 

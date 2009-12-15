@@ -4,9 +4,11 @@
   <item name="club">
     <type class="club" subclass="club" tileid="-1"/>
     <description>You see a wooden club. It won't kill much but is better than no weapon.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="6"/>
       <rate value="4"/>
+      <undroppableondeath value="1" />
     </attributes>
     <weight value="2.0"/>
     <value value="2700"/>
