@@ -38,7 +38,7 @@ public final class MarketManagerNPC extends SpeakerNPC {
 		add(ConversationStates.ATTENDING, "show", null, ConversationStates.ATTENDING, null, new ShowOffersChatAction());
 		add(ConversationStates.ATTENDING, "fetch", null, ConversationStates.ATTENDING, null, new FetchEarningsChatAction());
 		new AcceptOfferHandler().add(this);
-		add(ConversationStates.ATTENDING, "remove", null, ConversationStates.ATTENDING, null, new RemoveOfferChatAction());
+		new RemoveOfferHandler().add(this);
 		new ProlongOfferHandler().add(this);
 		addGoodbye("Visit me again to see available offers, make a new offer or fetch your earnings!");
 	}
