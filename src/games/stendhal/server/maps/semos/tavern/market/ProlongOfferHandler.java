@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
+import games.stendhal.server.util.TimeUtil;
 
 public class ProlongOfferHandler extends OfferHandler {
 	public void add(SpeakerNPC npc) {
@@ -48,10 +49,26 @@ public class ProlongOfferHandler extends OfferHandler {
 					if(o.getOfferer().equals(player.getName())) {
 						setOffer(o);
 						int quantity = getQuantity(o.getItem());
-						npc.say("Do you want to prolong your offer of " 
-								+ Grammar.quantityplnoun(quantity, 
-								o.getItem().getName()) + " for " 
-								+ TradingUtility.calculateFee(player, o.getPrice()).intValue() + " money?");
+						StringBuilder message = new StringBuilder();
+						
+						if (TradeCenterZoneConfigurator.getShopFromZone(player.getZone()).getOffers().contains(o)) {
+							message.append("Your offer of ");
+							message.append(Grammar.quantityplnoun(quantity, o.getItem().getName()));
+							message.append(" would expire in ");
+							message.append(TimeUtil.approxTimeUntil((int) ((o.getTimestamp() - System.currentTimeMillis() + 1000 * OfferExpirer.TIME_TO_EXPIRING) / 1000)));
+							message.append(". Do you want to prolong it to last for ");
+							message.append(TimeUtil.timeUntil(OfferExpirer.TIME_TO_EXPIRING));
+							message.append(" for ");
+							message.append(TradingUtility.calculateFee(player, o.getPrice()).intValue());
+							message.append(" money?");
+						} else {
+							message.append("Do you want to prolong your offer of ");
+							message.append(Grammar.quantityplnoun(quantity, o.getItem().getName()));
+							message.append(" for ");
+							message.append(TradingUtility.calculateFee(player, o.getPrice()).intValue());
+							message.append(" money?");
+						}
+						npc.say(message.toString());
 						npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
 					} else {
 						npc.say("You can only prolong your own offers. Please say #show #mine to see only your offers.");

@@ -37,7 +37,7 @@ public class OfferExpirer implements TurnListener{
 	/**
 	 * Total time in seconds before expiring an offer.
 	 */
-	private static final int TIME_TO_EXPIRING = MathHelper.SECONDS_IN_ONE_HOUR * 2;
+	protected static final int TIME_TO_EXPIRING = MathHelper.SECONDS_IN_ONE_HOUR * 2;
 	// (DAYS_TO_WARNING + DAYS_TO_EXPIRING) * MathHelper.SECONDS_IN_ONE_DAY;
 	/**
 	 * Total time in seconds before removing an offer completely. 
