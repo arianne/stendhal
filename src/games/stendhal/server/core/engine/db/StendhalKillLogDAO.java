@@ -17,6 +17,8 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,20 +48,22 @@ public class StendhalKillLogDAO {
 		// try update in case we already have this combination
 		String query = "UPDATE kills SET cnt = cnt+1"
 			+ " WHERE killed = '[killed]' AND killed_type = '[killed_type]'"
-			+ " AND killer = '[killer]' AND killer_type = '[killer_type]';";
+			+ " AND killer = '[killer]' AND killer_type = '[killer_type]'"
+			+ " AND day = '[day]';";
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("killed", getEntityName(killed));
 		params.put("killed_type",  entityToType(killed));
-		params.put("killed", getEntityName(killer));
-		params.put("killed_type",  entityToType(killer));
-		
+		params.put("killer", getEntityName(killer));
+		params.put("killer_type",  entityToType(killer));
+		params.put("day", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+
 		final int rowCount = transaction.execute(query, params);
-		
+
 		// in case we did not have this combination yet, make an insert
 		if (rowCount == 0) {
-			query = "INSERT INTO kills (killed, killed_type, killer, killer_type, cnt)"
-				+ " VALUES ('[killed]', '[killed_type]', '[killer]', '[killer_type]', 1)";
+			query = "INSERT INTO kills (killed, killed_type, killer, killer_type, day, cnt)"
+				+ " VALUES ('[killed]', '[killed_type]', '[killer]', '[killer_type]', '[day]', 1)";
 			transaction.execute(query, params);
 		}
 
