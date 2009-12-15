@@ -67,6 +67,11 @@ public class StendhalPlayerDatabase {
 		final DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
 			new JDBCSQLHelper(transaction).runDBScript("games/stendhal/server/stendhal_init.sql");
+
+			if (!transaction.doesColumnExist("kills", "day")) {
+				transaction.execute("ALTER TABLE kills ADD COLUMN (day DATE);", null);
+			}
+
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			logger.error(e, e);
