@@ -5,7 +5,6 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class QuestCompletedBuyerBehaviour extends BuyerBehaviour {
@@ -22,7 +21,7 @@ public class QuestCompletedBuyerBehaviour extends BuyerBehaviour {
 	public ChatCondition getTransactionCondition() {
 		return new QuestCompletedCondition(questSlot);
 	}
-	
+
 	@Override 
 	public ChatAction getRejectedTransactionAction() {
 		return new SayTextAction(message);
