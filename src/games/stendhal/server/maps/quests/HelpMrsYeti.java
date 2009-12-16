@@ -180,7 +180,7 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 				+ "I need food! Bring me 5 #pies and I will help you!",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "pies", 1.0));
 
-	    npc.add(ConversationStates.ATTENDING, "pies",
+	    npc.add(ConversationStates.ATTENDING, Arrays.asList("salva", "pies"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "pies"),
 				new PlayerHasItemWithHimCondition("pie",5)),
 				ConversationStates.ATTENDING, "Ah, thank you very much! Now I will tell you a little secret of mine. I am not a blacksmith, "
@@ -188,7 +188,7 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 				+ "a plain knife like you could buy from Xin Blanca in Semos Tavern. I'll tell her I made it! Oh and thanks for the pies!!!",
 				new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "knife", 1.0), new DropItemAction("pie",5)));
 
-	    npc.add(ConversationStates.ATTENDING, "pies",
+	    npc.add(ConversationStates.ATTENDING, Arrays.asList("salva", "pies"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "pies"),
 				new NotCondition(new PlayerHasItemWithHimCondition("pie",5))),
 				ConversationStates.ATTENDING, "Arlindo from Ados makes the best meat and vegetable pies. Please remember to bring me 5, I am hungry!",
