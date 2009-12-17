@@ -27,6 +27,7 @@ import java.util.Map;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.SlotOwner;
 
 import org.apache.log4j.Logger;
 
@@ -228,7 +229,7 @@ public class WeddingRing extends Ring {
 	
 	// Check if there are more rings in the slot where this ring was added
 	@Override
-	public void setContainer(final RPObject container, final RPSlot slot) {
+	public void setContainer(final SlotOwner container, final RPSlot slot) {
 		WeddingRing oldRing = null;
 		// only bound rings destroy others
 		if ((slot != null) && (getBoundTo() != null)) {
