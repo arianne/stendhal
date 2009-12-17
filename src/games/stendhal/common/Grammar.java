@@ -648,7 +648,12 @@ public class Grammar {
 	 *         appropriate
 	 */
 	public static String quantityplnoun(final int quantity, final String noun) {
-		return "" + quantity + " " + plnoun(quantity, noun);
+		String end = plnoun(quantity, noun);
+		if (quantity == 1) {
+			return a_noun(end);
+		} else {
+			return Integer.toString(quantity) + " " + plural(noun);	
+		}
 	}
 
 	/**
