@@ -217,7 +217,7 @@ public class TextBoxFactory {
 					// could not break the line - the word's simply too long. Use more force to
 					// to fit it to the width
 					best = splitAggressively(candidate, width);
-					previous += best.getEndIndex();
+					previous = best.getEndIndex();
 				} else {
 					previous = best.getEndIndex();
 					// Trim the trailing white space
@@ -233,6 +233,11 @@ public class TextBoxFactory {
 				}
 
 				lines.add(best);
+				// Pick the shortest candidate possible (backtrack a bit, if needed)
+				if (iter.current() > previous + 1) {
+					iter.previous();
+				}
+
 				// a special check for a hard line break just after the word 
 				// that got moved to the next line
 				final CharacterIterator cit = iter.getText();
