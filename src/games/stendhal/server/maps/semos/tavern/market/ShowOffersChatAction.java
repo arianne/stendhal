@@ -1,6 +1,8 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -174,9 +176,16 @@ public class ShowOffersChatAction implements ChatAction {
 				message.append("Only " + MAX_SHOWN_OFFERS + " first offers shown.");
 				return counter;
 			}
+			
+			Item item = offer.getItem();
+			int quantity = 1;
+			if (item instanceof StackableItem) {
+				quantity = ((StackableItem) item).getQuantity();
+			}
+			
 			message.append(counter);
 			message.append(": ");
-			message.append(offer.getItem().getName());
+			message.append(Grammar.quantityplnoun(quantity, item.getName()));
 			message.append(" for ");
 			message.append(offer.getPrice());
 			message.append(" money");
