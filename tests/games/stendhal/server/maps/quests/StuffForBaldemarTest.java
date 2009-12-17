@@ -63,13 +63,13 @@ public class StuffForBaldemarTest {
 		bob.setQuest(sfb.getSlotName(), "start;20;0;0;0;0;0;0;0;0;0;0;0;0;0");
 		en.step(bob, "hi");
 		
-		assertEquals("I need several gems to grind into dust to mix with the mithril. I need 1 obsidian still.", getReply(baldemar));
+		assertEquals("I need several gems to grind into dust to mix with the mithril. I need an obsidian still.", getReply(baldemar));
 	
 		en.setCurrentState(ConversationStates.IDLE);
 		bob.setQuest(sfb.getSlotName(), "start;20;1;0;0;0;0;0;0;0;0;0;0;0;0");
 		en.step(bob, "hi");
 		
-		assertEquals("I need several gems to grind into dust to mix with the mithril. I need 1 diamond still.", getReply(baldemar));
+		assertEquals("I need several gems to grind into dust to mix with the mithril. I need a diamond still.", getReply(baldemar));
 	
 		en.setCurrentState(ConversationStates.IDLE);
 		bob.setQuest(sfb.getSlotName(), "start;20;1;1;1;0;0;0;0;0;0;0;0;0;0");
@@ -93,12 +93,12 @@ public class StuffForBaldemarTest {
 		bob.setQuest(sfb.getSlotName(), "start;20;1;1;5;10;10;0;0;0;0;0;0;0;0");
 		en.step(bob, "hi");
 		
-		assertEquals("I need 1 black shield to form the framework for your new shield.", getReply(baldemar));
+		assertEquals("I need a black shield to form the framework for your new shield.", getReply(baldemar));
 	
 		en.setCurrentState(ConversationStates.IDLE);
 		bob.setQuest(sfb.getSlotName(), "start;20;1;1;5;10;10;1;0;0;0;0;0;0;0");
 		en.step(bob, "hi");
-		assertEquals("I need 1 magic plate shield for the pieces and parts for your new shield.", getReply(baldemar));
+		assertEquals("I need a magic plate shield for the pieces and parts for your new shield.", getReply(baldemar));
 	
 		en.setCurrentState(ConversationStates.IDLE);
 		bob.setQuest(sfb.getSlotName(), "start;20;1;1;5;10;10;1;1;1;0;0;0;0;0");
@@ -129,7 +129,7 @@ public class StuffForBaldemarTest {
 		en.setCurrentState(ConversationStates.IDLE);
 		bob.setQuest(sfb.getSlotName(), "start;20;1;1;5;10;10;1;1;10;20;10;20;15;0"); 
 		en.step(bob, "hi");
-		assertEquals("I just LOVE those trinkets from athor. I need 1 snowglobe still.", getReply(baldemar));
+		assertEquals("I just LOVE those trinkets from athor. I need a snowglobe still.", getReply(baldemar));
 		
 		en.setCurrentState(ConversationStates.IDLE);
 		bob.setQuest(sfb.getSlotName(), "start;20;1;1;5;10;10;1;1;10;20;10;20;15;1"); 
@@ -158,7 +158,7 @@ public class StuffForBaldemarTest {
 		assertTrue(PlayerTestHelper.equipWithItem(jim, "black shield"));
 		
 		assertTrue(en.step(jim, "hi"));
-		assertEquals("I need 1 magic plate shield for the pieces and parts for your new shield.", getReply(baldemar));
+		assertEquals("I need a magic plate shield for the pieces and parts for your new shield.", getReply(baldemar));
 		assertTrue(PlayerTestHelper.equipWithItem(jim, "magic plate shield"));
 		assertTrue(jim.isEquipped("magic plate shield"));
 		assertTrue(PlayerTestHelper.equipWithStackableItem(jim, "gold bar", 10));

@@ -101,7 +101,7 @@ public class IcecreamForAnnieTest {
 		en.step(player, "offer");
 		assertEquals("I sell icecream.", getReply(npc));
 		en.step(player, "buy icecream");
-		assertEquals("1 icecream will cost 30. Do you want to buy it?", getReply(npc));
+		assertEquals("an icecream will cost 30. Do you want to buy it?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Congratulations! Here is your icecream!", getReply(npc));
 		en.step(player, "bye");

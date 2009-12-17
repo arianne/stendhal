@@ -346,7 +346,7 @@ public class VampireSwordTest {
 		// defined. don't test for it - just test that Markovich wants 
 		// something
 		String answer = getReply(npc);
-		assertTrue("answer to 'fill'", answer.startsWith("I can only fill 1 goblet if you bring me "));
+		assertTrue("answer to 'fill'", answer.startsWith("I can only fill a goblet if you bring me "));
 		assertEquals("should not have a '" + sickySlotName + "' slot", null, player.getQuest(sickySlotName));
 		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 	}
@@ -368,7 +368,7 @@ public class VampireSwordTest {
 		
 		en.step(player, "fill");
 		String answer = getReply(npc);
-		assertTrue("answer to 'fill'", answer.startsWith("I can only fill 1 goblet if you bring me "));
+		assertTrue("answer to 'fill'", answer.startsWith("I can only fill a goblet if you bring me "));
 		assertEquals("should not have a '" + sickySlotName + "' slot", null, player.getQuest(sickySlotName));
 		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 	}
@@ -404,7 +404,7 @@ public class VampireSwordTest {
 			
 			// the code would allow filling more than 1 too, but that's really
 			// an implementation detail
-			assertEquals("answer to '" + yes + "'", "OK, I will fill 1 goblet for you, but that will take some time. Please come back in 5 minutes.", getReply(npc));
+			assertEquals("answer to '" + yes + "'", "OK, I will fill a goblet for you, but that will take some time. Please come back in 5 minutes.", getReply(npc));
 			
 			assertFalse(player.isEquipped("goblet"));
 			for (String item : requiredForFilling.keySet()) {
@@ -431,7 +431,7 @@ public class VampireSwordTest {
 			// This will fail if someone manages to stop the test 
 			// within the loop and continue later. (Or to run it on a 
 			// ridiculously slow computer)
-			assertEquals("too early '" + hello + "'", "Welcome back! I'm still busy with your order to fill 1 goblet for you. Come back in 5 minutes to get it.", getReply(npc));
+			assertEquals("too early '" + hello + "'", "Welcome back! I'm still busy with your order to fill a goblet for you. Come back in 5 minutes to get it.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			
 			// bothering Markovich should not affect the quest state
@@ -455,7 +455,7 @@ public class VampireSwordTest {
 			player.setQuest(sickySlotName, questState);
 			
 			en.step(player, hello);
-			assertTrue("''" + hello + "' in future", getReply(npc).startsWith("Welcome back! I'm still busy with your order to fill 1 goblet for you. Come back in"));
+			assertTrue("''" + hello + "' in future", getReply(npc).startsWith("Welcome back! I'm still busy with your order to fill a goblet for you. Come back in"));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			
 			// bothering Markovich should not affect the quest state
@@ -478,7 +478,7 @@ public class VampireSwordTest {
 			player.setQuest(sickySlotName, questState);
 			
 			en.step(player, hello);
-			assertEquals("''" + hello + "' in past", "Welcome back! I'm done with your order. Here you have 1 goblet.", getReply(npc));
+			assertEquals("''" + hello + "' in past", "Welcome back! I'm done with your order. Here you have a goblet.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			
 			assertEquals("done", player.getQuest(sickySlotName));

@@ -86,7 +86,7 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, I don't buy any chocolates.", getReply(npc));
 
 		assertTrue(en.step(player, "sell chaos legs"));
-		assertEquals("1 pair of chaos legs is worth 8000. Do you want to sell it?", getReply(npc));
+		assertEquals("a pair of chaos legs is worth 8000. Do you want to sell it?", getReply(npc));
 
 		assertTrue(en.step(player, "no"));
 		assertEquals("Ok, then how else may I help you?", getReply(npc));
@@ -99,7 +99,7 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(equipWithItem(player, "chaos legs"));
 		assertTrue(en.step(player, "sell chaos leg"));
-		assertEquals("1 pair of chaos legs is worth 8000. Do you want to sell it?", getReply(npc));
+		assertEquals("a pair of chaos legs is worth 8000. Do you want to sell it?", getReply(npc));
 
 		assertFalse(player.isEquipped("money", 8000));
 		assertTrue(en.step(player, "yes"));

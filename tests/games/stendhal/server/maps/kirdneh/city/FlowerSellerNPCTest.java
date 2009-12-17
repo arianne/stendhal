@@ -80,13 +80,13 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, I don't sell glasses of wine.", getReply(npc));
 
 		assertTrue(en.step(player, "buy rose"));
-		assertEquals("1 rose will cost 50. Do you want to buy it?", getReply(npc));
+		assertEquals("a rose will cost 50. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "no"));
 		assertEquals("Ok, how else may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "buy rose"));
-		assertEquals("1 rose will cost 50. Do you want to buy it?", getReply(npc));
+		assertEquals("a rose will cost 50. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry, you don't have enough money!", getReply(npc));
@@ -100,7 +100,7 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		// equip with enough money to buy one rose
 		assertTrue(equipWithMoney(player, 50));
 		assertTrue(en.step(player, "buy rose"));
-		assertEquals("1 rose will cost 50. Do you want to buy it?", getReply(npc));
+		assertEquals("a rose will cost 50. Do you want to buy it?", getReply(npc));
 
 		assertFalse(player.isEquipped("rose"));
 

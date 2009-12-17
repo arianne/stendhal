@@ -84,13 +84,13 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, I don't sell someunknownthings.", getReply(npc));
 
 		assertTrue(en.step(player, "buy sheep"));
-		assertEquals("1 sheep will cost 30. Do you want to buy it?", getReply(npc));
+		assertEquals("a sheep will cost 30. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "no"));
 		assertEquals("Ok, how else may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "buy sheep"));
-		assertEquals("1 sheep will cost 30. Do you want to buy it?", getReply(npc));
+		assertEquals("a sheep will cost 30. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("You don't seem to have enough money.", getReply(npc));
@@ -105,7 +105,7 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Hmm... I just don't think you're cut out for taking care of a whole flock of sheep at once.", getReply(npc));
 
 		assertTrue(en.step(player, "buy sheep"));
-		assertEquals("1 sheep will cost 30. Do you want to buy it?", getReply(npc));
+		assertEquals("a sheep will cost 30. Do you want to buy it?", getReply(npc));
 
 		assertFalse(player.hasSheep());
 

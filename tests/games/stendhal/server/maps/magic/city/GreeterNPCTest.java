@@ -88,13 +88,13 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, I don't sell scrolls.", getReply(npc));
 
 		assertTrue(en.step(player, "buy summon scroll"));
-		assertEquals("1 summon scroll will cost 300. Do you want to buy it?", getReply(npc));
+		assertEquals("a summon scroll will cost 300. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "no"));
 		assertEquals("Ok, how else may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "buy summon scroll"));
-		assertEquals("1 summon scroll will cost 300. Do you want to buy it?", getReply(npc));
+		assertEquals("a summon scroll will cost 300. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry, you don't have enough money!", getReply(npc));
@@ -111,14 +111,14 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.isEquipped("summon scroll"));
 
 		assertTrue(en.step(player, "buy home scroll"));
-		assertEquals("1 home scroll will cost 375. Do you want to buy it?", getReply(npc));
+		assertEquals("a home scroll will cost 375. Do you want to buy it?", getReply(npc));
 
 		assertTrue(equipWithMoney(player, 300));
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry, you don't have enough money!", getReply(npc));
 
 		assertTrue(en.step(player, "buy home scroll"));
-		assertEquals("1 home scroll will cost 375. Do you want to buy it?", getReply(npc));
+		assertEquals("a home scroll will cost 375. Do you want to buy it?", getReply(npc));
 
 		// add another 75 coins to be able to buy the scroll
 		assertTrue(equipWithMoney(player, 75));
