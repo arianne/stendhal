@@ -1,16 +1,20 @@
 package games.stendhal.server.maps.ados.magician_house;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -84,6 +88,13 @@ public class WizardNPC implements ZoneConfigurator {
 				        ConversationStates.ATTENDING,
 				        "A summon scroll empowers you to summon animals to you; advanced magicians will be able to summon stronger monsters than others. Of course, these scrolls can be dangerous if misused.",
 				        null);
+				add(
+				        ConversationStates.ATTENDING,
+				        "maze",
+				        null,
+				        ConversationStates.ATTENDING,
+				        null,
+				        new SendToMazeChatAction());
 
 				addGoodbye();
 			}
@@ -93,5 +104,15 @@ public class WizardNPC implements ZoneConfigurator {
 		npc.setPosition(7, 2);
 		npc.initHP(100);
 		zone.add(npc);
+	}
+	
+	private class SendToMazeChatAction implements ChatAction {
+    	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+    		Maze maze = new Maze(player.getName() + "_maze", 128, 128);
+    		maze.setReturnLocation("int_ados_magician_house", player.getX(), player.getY());
+    		StendhalRPZone zone = maze.getZone();
+    		SingletonRepository.getRPWorld().addRPZone(zone);
+    		player.teleport(zone, maze.getStartPosition().x, maze.getStartPosition().y, Direction.DOWN, player);
+    	}
 	}
 }
