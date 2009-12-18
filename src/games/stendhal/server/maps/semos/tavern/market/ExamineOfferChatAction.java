@@ -2,10 +2,12 @@ package games.stendhal.server.maps.semos.tavern.market;
 
 import java.util.Map;
 
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Offer;
+import games.stendhal.server.events.ExamineEvent;
 
 public class ExamineOfferChatAction extends KnownOffersChatAction {
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
@@ -30,11 +32,19 @@ public class ExamineOfferChatAction extends KnownOffersChatAction {
 				Offer o = offerMap.get(offerNumber);
 				
 				player.sendPrivateText(o.getItem().describe());
+				showImage(player, o.getItem());
 				return;
 			}
 			npc.say("Sorry, please choose a number from those I told you.");
 		} catch (NumberFormatException e) {
 			npc.say("Sorry, please say #accept #number");
 		}
+	}
+	
+	private void showImage(Player player, Item item) {
+		String caption = item.getName();
+		String image = "items/" + item.getItemClass() + "/" + item.getItemSubclass() + ".png";
+		ExamineEvent event = new ExamineEvent(image, caption, "");
+		player.addEvent(event);
 	}
 }
