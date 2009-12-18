@@ -21,7 +21,7 @@ public class ExamineChatAction implements ChatAction {
 	}
 
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-		player.addEvent(new ExamineEvent(image, title, alt));
+		player.addEvent(new ExamineEvent("examine/" + image, title, alt));
 	}
 
 	@Override

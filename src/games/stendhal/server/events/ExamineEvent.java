@@ -19,6 +19,7 @@ public class ExamineEvent extends RPEvent {
 	private static final String PATH = "path";
 	private static final String ALT = "alt";
 	private static final String TITLE = "title";
+	private static final String IMAGE_PATH = "/data/sprites/";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(ExamineEvent.class);
@@ -47,7 +48,7 @@ public class ExamineEvent extends RPEvent {
 	 */
 	public ExamineEvent(final String image, final String title, final String alt) {
 		super(RPCLASS_NAME);
-		super.put(PATH, "/data/sprites/examine/" + image);
+		super.put(PATH, IMAGE_PATH + image);
 		super.put(TITLE, title);
 		super.put(ALT, alt);
 	}
