@@ -118,6 +118,7 @@ public class PlayerRPClass {
 		
 		player.addRPEvent("transition_graph", Definition.STANDARD);
 		player.addRPEvent("examine", Definition.STANDARD);
+		player.addRPEventWithSlots("show_item_list", Definition.STANDARD);
 	}
 
 }
