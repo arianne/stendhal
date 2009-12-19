@@ -9,6 +9,8 @@ import games.stendhal.server.events.ShowItemListEvent;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * Creates a portable NPC who gives ALL players powerful items, increases their
  * level and makes them admins. This is used on test-systems only. Therefore it
@@ -20,16 +22,31 @@ import java.util.List;
  */
 
 public class TestShowItemList extends ScriptImpl {
+	private static Logger logger = Logger.getLogger(TestShowItemList.class);
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 
 		List<Item> itemList = new LinkedList<Item>();
-		itemList.add(SingletonRepository.getEntityManager().getItem("club"));
-		itemList.add(SingletonRepository.getEntityManager().getItem("leather armor"));
-		ShowItemListEvent event = new ShowItemListEvent("Test-Title", itemList);
+
+		Item item = SingletonRepository.getEntityManager().getItem("club");
+		item.put("price", 100);
+		item.put("description", item.describe());
+		itemList.add(item);
+
+		item = SingletonRepository.getEntityManager().getItem("leather armor");
+		item.put("price", -100);
+		item.put("description", item.describe());
+		itemList.add(item);
+
+		item = SingletonRepository.getEntityManager().getItem("ice sword");
+		item.put("price", -10000);
+		item.put("description", item.describe());
+		itemList.add(item);
+
+		ShowItemListEvent event = new ShowItemListEvent("Aramyk Shop", itemList);
+		logger.info(event);
 		admin.addEvent(event);
 	}
-
 }
