@@ -3,11 +3,13 @@ package games.stendhal.server.script;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowItemListEvent;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Creates a portable NPC who gives ALL players powerful items, increases their
@@ -27,9 +29,17 @@ public class TestShowItemList extends ScriptImpl {
 
 		List<Item> itemList = new LinkedList<Item>();
 
-		itemList.add(prepareItem("club", 100));
-		itemList.add(prepareItem("leather armor", -100));
-		itemList.add(prepareItem("ice sword", -10000));
+		if (args.isEmpty()) {
+			itemList.add(prepareItem("club", 100));
+			itemList.add(prepareItem("leather armor", -100));
+			itemList.add(prepareItem("ice sword", -10000));
+		} else {
+			ShopList shops = SingletonRepository.getShopList();
+			Map<String, Integer> items = shops.get(args.get(0));
+			for (Map.Entry<String, Integer> entry : items.entrySet()) {
+				itemList.add(prepareItem(entry.getKey(), Integer.valueOf(entry.getValue())));
+			}
+		}
 
 		ShowItemListEvent event = new ShowItemListEvent("Aramyk Shop", itemList);
 		admin.addEvent(event);
