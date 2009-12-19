@@ -13,6 +13,7 @@ import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
 import games.stendhal.client.events.RPObjectChangeListener;
 import games.stendhal.client.gui.admin.TransitionDiagram;
+import games.stendhal.client.gui.imageviewer.ItemListImageViewerEvent;
 import games.stendhal.client.gui.imageviewer.RPEventImageViewer;
 
 import java.util.HashMap;
@@ -521,6 +522,8 @@ public class UserContext implements RPObjectChangeListener {
 						.get("data"));
 			} else if (rpevent.getName().equals("examine")) {
 				RPEventImageViewer.viewImage(rpevent);
+			} else if (rpevent.getName().equals("show_item_list")) {
+				new ItemListImageViewerEvent(rpevent).view();
 			}
 		}
 	}
