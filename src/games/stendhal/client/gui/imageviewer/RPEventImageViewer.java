@@ -52,6 +52,7 @@ public class RPEventImageViewer {
 	}
 
 	public void view() {
-		new ImageViewWindow(genURL(), title, alt);
+		final ViewPanel vp = new ImageViewPanel(genURL(), alt);
+		new ImageViewWindow(title, vp);
 	}
 }

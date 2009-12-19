@@ -1,12 +1,11 @@
 package games.stendhal.client.gui.imageviewer;
 
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.net.URL;
 
 /**
  * Opens an image resource at a given URL, and displays it in the client.
@@ -20,29 +19,17 @@ public class ImageViewWindow extends InternalManagedDialog {
 	 */
 	public static final int PADDING = 100;
 
-	private final URL url;
-	private String alt;
+	private ViewPanel viewPanel;
 
-	public ImageViewWindow(final URL url) {
-		this(url, "Examine", "Examine");
-	}
-
-	public ImageViewWindow(final URL url, final String title) {
-		this(url, title, title);
-	}
-
-	public ImageViewWindow(final URL url, final String title, final String alt) {
+	public ImageViewWindow(String title, ViewPanel viewPanel) {
 		super("examine", title);
-
-		this.url = url;
-		this.alt = alt;
-
+		this.viewPanel = viewPanel;
 		init();
 	}
 
 	public void init() {
-		final ImageViewPanel ivp = new ImageViewPanel(url, alt, genMaxSize());
-		setContent(ivp);
+		viewPanel.prepareView(genMaxSize());
+		setContent(viewPanel);
 		j2DClient.get().addWindow(this);
 		final Point center = genCenterPoint();
 		this.moveTo(center.x, center.y);

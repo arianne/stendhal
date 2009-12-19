@@ -1,8 +1,5 @@
 package games.stendhal.client.gui.imageviewer;
 
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
-
 import java.awt.Dimension;
 import java.awt.Image;
 import java.net.URL;
@@ -18,7 +15,7 @@ import org.apache.log4j.Logger;
  * @author timothyb89
  */
 @SuppressWarnings("serial")
-public class ImageViewPanel extends StyledJPanel {
+public class ImageViewPanel extends ViewPanel {
 
 	public static final String FONT_COLOR = "#FFFFFF";
 	public static final String FONT_SIZE = "5";
@@ -29,10 +26,14 @@ public class ImageViewPanel extends StyledJPanel {
 
 	private final URL url;
 	private final String alt;
-	public ImageViewPanel(final URL url, final String alt, final Dimension maxSize) {
-		super(WoodStyle.getInstance());
+
+	public ImageViewPanel(final URL url, final String alt) {
 		this.url = url;
 		this.alt = alt;
+	}
+
+	@Override
+	public void prepareView(final Dimension maxSize) {
 		initImage();
 		initComponents(maxSize);
 	}
