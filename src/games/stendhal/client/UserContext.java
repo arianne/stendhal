@@ -12,13 +12,9 @@ package games.stendhal.client;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
 import games.stendhal.client.events.RPObjectChangeListener;
-import games.stendhal.client.gui.admin.TransitionDiagram;
-import games.stendhal.client.gui.imageviewer.ItemListImageViewerEvent;
-import games.stendhal.client.gui.imageviewer.RPEventImageViewer;
 
 import java.util.HashMap;
 
-import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
@@ -473,7 +469,6 @@ public class UserContext implements RPObjectChangeListener {
 				adminlevel = object.getInt("adminlevel");
 				// fireAdminLevelChanged(adminlevel);
 			}
-			dispatchEvents(object, object);
 		}
 	}
 
@@ -499,34 +494,9 @@ public class UserContext implements RPObjectChangeListener {
 				sheepID = changes.getInt("sheep");
 				// fireOwnedSheep(sheepID);
 			}
-			dispatchEvents(object, changes);
 		}
 	}
 
-	/**
-	 * Debugging code for events.
-	 * 
-	 * @param object
-	 *            the base object
-	 * @param changes
-	 *            the changes
-	 */
-	private void dispatchEvents(final RPObject object, final RPObject changes) {
-		// TODO: clean this method, it is just a quick hack to understand the
-		// way RPEvents should be used
-		// We probably need a registry/factory to dispatch the different
-		// events to.
-		for (final RPEvent rpevent : object.events()) {
-			if (rpevent.getName().equals("transition_graph")) {
-				new TransitionDiagram().showTransitionDiagram(rpevent
-						.get("data"));
-			} else if (rpevent.getName().equals("examine")) {
-				RPEventImageViewer.viewImage(rpevent);
-			} else if (rpevent.getName().equals("show_item_list")) {
-				new ItemListImageViewerEvent(rpevent).view();
-			}
-		}
-	}
 
 	/**
 	 * An object removed attribute(s).

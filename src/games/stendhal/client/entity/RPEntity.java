@@ -16,9 +16,12 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.admin.TransitionDiagram;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
+import games.stendhal.client.gui.imageviewer.ItemListImageViewerEvent;
+import games.stendhal.client.gui.imageviewer.RPEventImageViewer;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
@@ -883,9 +886,14 @@ public abstract class RPEntity extends ActiveEntity {
 				if (event.getName().equals(Events.PUBLIC_TEXT)) {
 					onTalk(event.get("text"));
 				}
-                //				if (event.getName().equals(Events.OPEN_OFFER_PANEL)) {
-                //					j2DClient.get().addDialog(new TradePanel());
-                //				}
+
+				if (event.getName().equals("transition_graph")) {
+					new TransitionDiagram().showTransitionDiagram(event.get("data"));
+				} else if (event.getName().equals("examine")) {
+					RPEventImageViewer.viewImage(event);
+				} else if (event.getName().equals("show_item_list")) {
+					new ItemListImageViewerEvent(event).view();
+				}
 			}
 	
 			/*
