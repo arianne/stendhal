@@ -45,6 +45,7 @@ import games.stendhal.server.events.DamagedEvent;
 import games.stendhal.server.events.ExamineEvent;
 import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PrivateTextEvent;
+import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.events.TextEvent;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
@@ -197,6 +198,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("private_text")) {
 			PrivateTextEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("show_item_list")) {
+			ShowItemListEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("text")) {
 			TextEvent.generateRPClass();
