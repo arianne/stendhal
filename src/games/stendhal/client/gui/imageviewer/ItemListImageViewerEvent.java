@@ -42,7 +42,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		StringBuilder html = new StringBuilder();
 		html.append("<html><body style=\"color: #FFFFFF\">");
 		if (event.has("caption")) {
-			html.append("<p>" + event.get("caption") + "</p>");
+			html.append("<p>" + event.get("caption") + "</p><br>");
 		}
 		html.append("<table border=\"1\" width=\"400px\">");
 		html.append("<tr><th>Item</th><th>Price</th><th>Description</th></tr>");
@@ -72,7 +72,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		URL url = getItemImageURL(item);
 		String price = getFormatedPrice(item);
 
-		html.append("<tr><td>");
+		html.append("<tr  style=\"color: #D0D0D0\"><td>");
 		html.append("<img src=\"" + url.toString() + "\">");
 		html.append("</td><td>");
 		html.append(price);
