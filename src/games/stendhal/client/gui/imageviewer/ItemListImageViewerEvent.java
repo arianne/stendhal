@@ -40,7 +40,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 	public void prepareView(final Dimension maxSize) {
 		// only display when not null
 		StringBuilder html = new StringBuilder();
-		html.append("<html><body style=\"color: #FFFFFF\"><table border=\"1\">");
+		html.append("<html><body style=\"color: #FFFFFF\"><table border=\"1\" width=\"400px\">");
 		html.append("<tr><th>Item</th><th>Price</th><th>Description</th></tr>");
 
 		RPSlot slot = event.getSlot("content");
@@ -89,9 +89,9 @@ public class ItemListImageViewerEvent extends ViewPanel {
 			int priceInt = item.getInt("price");
 			price = "<span style=\"color: ";
 			if (priceInt < 0) {
-				price = price + "#F00\">";
+				price = price + "#FF0000\">";
 			} else {
-				price = price + "#0F0\">";
+				price = price + "#00FF00\">";
 			}
 			price = price + Math.abs(priceInt) + "</span>";
 		}
