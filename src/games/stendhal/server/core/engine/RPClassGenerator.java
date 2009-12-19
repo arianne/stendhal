@@ -47,6 +47,7 @@ import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.events.TextEvent;
+import games.stendhal.server.events.TransitionGraphEvent;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
@@ -201,6 +202,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("show_item_list")) {
 			ShowItemListEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("transition_graph")) {
+			TransitionGraphEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("text")) {
 			TextEvent.generateRPClass();

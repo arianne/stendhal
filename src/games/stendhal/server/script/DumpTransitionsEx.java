@@ -9,15 +9,13 @@ import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.TransitionGraphEvent;
 import games.stendhal.server.util.CountingMap;
 
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.Definition;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
-import marauroa.common.game.Definition.DefinitionClass;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
@@ -33,16 +31,8 @@ public class DumpTransitionsEx extends ScriptImpl {
 	private CountingMap<PreTransitionCondition> conditions;
 	private CountingMap<PostTransitionAction> actions;
 
-	public static void generateRPEvent() {
-		if (!RPClass.hasRPClass("transition_graph")) {
-    		final RPClass rpclass = new RPClass("transition_graph");
-    		rpclass.add(DefinitionClass.RPEVENT, "transition_graph", Definition.STANDARD);
-		}
-	}
-
 	@Override
 	public void execute(final Player admin, final List<String> args) {
-		generateRPEvent();
 
 		if (args.size() < 1) {
 			admin.sendPrivateText("/script DumpTransitionsEx.class <npcname>");
@@ -60,8 +50,8 @@ public class DumpTransitionsEx extends ScriptImpl {
 		}
 		dump(npc);
 
-		final RPEvent event = new RPEvent("transition_graph");
-		event.put("data", dumpedTable.toString());
+		String data = dumpedTable.toString();
+		final RPEvent event = new TransitionGraphEvent(data);
 		admin.addEvent(event);
 	}
 
