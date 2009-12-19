@@ -173,6 +173,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Unique database ID for logging
 		entity.addAttribute("logid", Type.INT, Definition.HIDDEN);
+
+		// used for show_item_list events used as shop signs.
+		entity.addAttribute("price", Type.INT, Definition.VOLATILE);
 	}
 
 	
