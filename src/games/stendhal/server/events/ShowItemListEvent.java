@@ -20,7 +20,10 @@ import org.apache.log4j.Logger;
  */
 public class ShowItemListEvent extends RPEvent {
 	private static final String RPCLASS_NAME = "show_item_list";
+	private static final String CONTENT_SLOT = "content";
+	private static final String CAPTION = "caption";
 	private static final String TITLE = "title";
+	
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(ShowItemListEvent.class);
@@ -32,7 +35,8 @@ public class ShowItemListEvent extends RPEvent {
 		try {
 			final RPClass rpclass = new RPClass(RPCLASS_NAME);
 			rpclass.add(DefinitionClass.ATTRIBUTE, TITLE, Type.STRING, Definition.PRIVATE);
-			rpclass.addRPSlot("content", 999);
+			rpclass.add(DefinitionClass.ATTRIBUTE, CAPTION, Type.STRING, Definition.PRIVATE);
+			rpclass.addRPSlot(CONTENT_SLOT, 999);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}
@@ -42,13 +46,15 @@ public class ShowItemListEvent extends RPEvent {
 	 * Creates a new ShowItemListEvent.
 	 *
 	 * @param title title of image viewer
+	 * @param caption caption to display above the table 
 	 * @param items items
 	 */
-	public ShowItemListEvent(final String title, final Collection<Item> items) {
+	public ShowItemListEvent(final String title, String caption, final Collection<Item> items) {
 		super(RPCLASS_NAME);
 		super.put(TITLE, title);
-		super.addSlot("content");
-		RPSlot slot = super.getSlot("content");
+		super.put(CAPTION, caption);
+		super.addSlot(CONTENT_SLOT);
+		RPSlot slot = super.getSlot(CONTENT_SLOT);
 		for (Item item : items) {
 			slot.add(item);
 		}

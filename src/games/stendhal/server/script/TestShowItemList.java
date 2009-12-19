@@ -41,7 +41,9 @@ public class TestShowItemList extends ScriptImpl {
 			}
 		}
 
-		ShowItemListEvent event = new ShowItemListEvent("Aramyk Shop", itemList);
+		ShowItemListEvent event = new ShowItemListEvent("Aramyk Shop", 
+				"Please talk to Aramyk to #buy or #sell items.", 
+				itemList);
 		admin.addEvent(event);
 	}
 
