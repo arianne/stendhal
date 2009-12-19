@@ -15,6 +15,7 @@ import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -27,6 +28,15 @@ public class Maze {
 	private static final Logger logger = Logger.getLogger(Maze.class);
 	
 	private static final int WALL_THICKNESS = 2;
+	private static final String[] prizes = {
+		"summon scroll",
+		"home scroll",
+		"ados city scroll",
+		"nalwor city scroll",
+		"kirdneh city scroll",
+		"kalavan city scroll",
+		"empty scroll"
+	};
 	
 	private String name;
 	private int width, height;
@@ -309,8 +319,27 @@ public class Maze {
 		zone.setMoveToAllowed(false);
 		zone.disallowIn();
 		
+		addPrizes(zone);
+		
 		zone.addMovementListener(new MazeMovementListener());
 		return zone;
+	}
+	
+	/**
+	 * Drop random prizes to the side corners.
+	 * 
+	 * @param zone the maze zone to drop the items
+	 */
+	private void addPrizes(StendhalRPZone zone) {
+		int idx = getCorners().indexOf(getStartPosition());
+		
+		for (int i = 1; i <= 3; i += 2) {
+			Item prize = SingletonRepository.getEntityManager().getItem(Rand.rand(prizes));
+			Point location = getCorners().get((idx + i) % 4);
+			prize.setPosition(location.x, location.y);
+			
+			zone.add(prize, true);
+		}
 	}
 	
 	/**
