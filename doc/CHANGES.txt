@@ -1,13 +1,30 @@
 Changelog
 ---------
 0.80
-- some fancing work in Semos Village
-- /mute is now remembered across restarts
-- nicer urls for subpages on the website
+*features*
+- Player-to-player trading facilitated by Harold in Semos Tavern
+- a maze created especially for you by Haizen
+- Help Mrs. Yeti quest
+- Sarzina has nicer answers when asking about your karma
+- QuestCompletedSeller and Buyer types
+*bug fixes*
+- Semos Village and south east of Semos city redesigned to direct new players better 
+- '/sound mute on' command is now simply '/mute'
+- /mute is remembered across restarts
 - fixed unwanted popping up of minimized keyring window
-- nicer answers when asking about your karma
 - collision fixes
+- entwives are faster
+- allowed distance to pass an item on the ground now matches the allowed distance to throw from bag
+- tell the user where the chatlog has been written after they right-click 'save' it
+- black pearl image is larger, in line with the other gems
+*code*
+- use item transformer for loading items
+*website*
+- nicer urls for subpages on the website
 - a new version of the atlas with dungeon entrances: http://stendhal.game-host.org/wiki/index.php/File:WorldWithMarkedDungeons091122.png
+- dedicated testing page on wiki http://stendhal.game-host.org/wiki/index.php/Stendhal_Testing
+- Stendhal Manual on the wiki updated with new images
+
 
 0.79.2: server only release
 - decorated semos for christmas
