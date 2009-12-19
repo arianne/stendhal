@@ -305,6 +305,10 @@ public class Maze {
 		portal.setPosition(pos.x, pos.y);
 		zone.add(portal);
 
+		// disable double click move and teleport in
+		zone.setMoveToAllowed(false);
+		zone.disallowIn();
+		
 		zone.addMovementListener(new MazeMovementListener());
 		return zone;
 	}
