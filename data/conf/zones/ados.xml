@@ -12,6 +12,47 @@
  
  <zone name="0_ados_mountain_n2_w" level="0" x="500512" y="499744" file="Level 0/ados/mountain_n2_w.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.entwives.EntwifeNPC"/>
+		<portal x="18" y="52" ref="ent1n">
+			<destination zone="0_ados_mountain_n2_w" ref="ent1s" />
+		</portal>
+		<portal x="18" y="53" ref="ent1s">
+			<destination zone="0_ados_mountain_n2_w" ref="ent1n" />
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+				<parameter name="minimum-level">100</parameter>
+				<parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+			</implementation>
+		</portal>
+		<portal x="19" y="52" ref="ent2n">
+			<destination zone="0_ados_mountain_n2_w" ref="ent2s" />
+		</portal>
+		<portal x="19" y="53" ref="ent2s">
+			<destination zone="0_ados_mountain_n2_w" ref="ent2n" />
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+				<parameter name="minimum-level">100</parameter>
+				<parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+			</implementation>
+		</portal>
+		<portal x="20" y="52" ref="ent3n">
+			<destination zone="0_ados_mountain_n2_w" ref="ent3s" />
+		</portal>
+		<portal x="20" y="53" ref="ent3s">
+			<destination zone="0_ados_mountain_n2_w" ref="ent3n" />
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+				<parameter name="minimum-level">100</parameter>
+				<parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+			</implementation>
+		</portal>
+		<portal x="21" y="52" ref="ent4n">
+			<destination zone="0_ados_mountain_n2_w" ref="ent4s" />
+		</portal>
+		<portal x="21" y="53" ref="ent4s">
+			<destination zone="0_ados_mountain_n2_w" ref="ent4n" />
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+				<parameter name="minimum-level">100</parameter>
+				<parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+			</implementation>
+		</portal>
+
     <!-- wishing well-->
   <entity x="86" y="21">
     <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
