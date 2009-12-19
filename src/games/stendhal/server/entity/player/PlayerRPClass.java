@@ -116,9 +116,9 @@ public class PlayerRPClass {
 		player.addAttribute("last_player_kill_time", Type.FLOAT,
 				Definition.STANDARD);
 		
-		player.addRPEvent("transition_graph", Definition.STANDARD);
-		player.addRPEvent("examine", Definition.STANDARD);
-		player.addRPEventWithSlots("show_item_list", Definition.STANDARD);
+		player.addRPEvent("transition_graph", Definition.PRIVATE);
+		player.addRPEvent("examine", Definition.PRIVATE);
+		player.addRPEventWithSlots("show_item_list", Definition.PRIVATE);
 	}
 
 }
