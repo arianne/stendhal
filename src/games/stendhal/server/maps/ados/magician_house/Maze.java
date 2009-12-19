@@ -31,6 +31,7 @@ public class Maze {
 	private String name;
 	private int width, height;
 	private Point startPosition;
+	private List<Point> corners = null;
 	
 	private StendhalMapStructure mapStructure;
 	private StendhalRPZone	zone = null;
@@ -62,7 +63,7 @@ public class Maze {
 	 */
 	public Point getStartPosition() {
 		if (startPosition == null) {
-			startPosition = new Point(WALL_THICKNESS, WALL_THICKNESS);
+			startPosition = Rand.rand(getCorners());
 		}
 		
 		return startPosition;
@@ -131,7 +132,8 @@ public class Maze {
 		
 		MazePainter painter = new MazePainter();
 		painter.paint(map);
-		painter.paintPortal(map, width - width % (WALL_THICKNESS + 1), height - height % (WALL_THICKNESS + 1));
+		Point pos = getPortalPosition();
+		painter.paintPortal(map, pos.x, pos.y);
 		
 		return map;
 	}
@@ -248,6 +250,31 @@ public class Maze {
 		setCollide(layer, width - width % (WALL_THICKNESS + 1), height - height % (WALL_THICKNESS + 1) - 1, false);
 	}
 	
+	private List<Point> getCorners() {
+		if (corners == null) {
+			corners = new LinkedList<Point>();
+			// Order is important. Opposite corners should not be next to each other
+			corners.add(new Point(WALL_THICKNESS, WALL_THICKNESS));
+			corners.add(new Point(width - width % (WALL_THICKNESS + 1) - 1, WALL_THICKNESS));
+			corners.add(new Point(width - width % (WALL_THICKNESS + 1) - 1, 
+					height - height % (WALL_THICKNESS + 1) - 1));
+			corners.add(new Point(WALL_THICKNESS, height - height % (WALL_THICKNESS + 1) - 1));
+		}
+		
+		return corners;
+	}
+	
+	private Point getPortalPosition() {
+		// opposite corner to start
+		Point start = getStartPosition();
+		Point pos = (Point) getCorners().get((getCorners().indexOf(start) + 2) % 4).clone();
+		// shift a bit to put the portal deeper in the corner
+		pos.x += (start.x > pos.x) ? -1 : 1;
+		pos.y += (start.y > pos.y) ? -1 : 1;
+		
+		return pos;
+	}
+	
 	private void setCollide(LayerDefinition layer, int x, int y, boolean collide) {
 		layer.set(x, y, collide ? 1 : 0);
 	}
@@ -274,7 +301,8 @@ public class Maze {
 		
 		// Create the return portal
 		Teleporter portal = new Teleporter(new Spot(SingletonRepository.getRPWorld().getZone(returnZoneName), returnX, returnY));
-		portal.setPosition(width - width % (WALL_THICKNESS + 1), height - height % (WALL_THICKNESS + 1));
+		Point pos = getPortalPosition();
+		portal.setPosition(pos.x, pos.y);
 		zone.add(portal);
 
 		zone.addMovementListener(new MazeMovementListener());
