@@ -6,7 +6,6 @@ Changelog
 - a maze created especially for you by Haizen
 - Help Mrs. Yeti quest
 - Sarzina has nicer answers when asking about your karma
-- QuestCompletedSeller and Buyer types
 *bug fixes*
 - Semos Village and south east of Semos city redesigned to direct new players better 
 - '/sound mute on' command is now simply '/mute'
@@ -19,6 +18,8 @@ Changelog
 - black pearl image is larger, in line with the other gems
 *code*
 - use item transformer for loading items
+- QuestCompletedSeller and Buyer types
+- NPC chat and creature noises using RPEvent
 *website*
 - nicer urls for subpages on the website
 - a new version of the atlas with dungeon entrances: http://stendhal.game-host.org/wiki/index.php/File:WorldWithMarkedDungeons091122.png
