@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="20" height="12" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="20" height="12" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/building/wall/int_blue_green.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png" trans="ff00ff"/>
  </tileset>
@@ -64,9 +63,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="468" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="469" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/carpets.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGAQHMU0wcpAHIxEU2peMJqZw919o5gwBgCddRkdwAMAAA==
+   H4sIAAAAAAAAAGNkYGAQHMU0wcpAHIxEU2peMJqZw919IwnfZIRgUvUBAL32xNnAAwAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="12">
