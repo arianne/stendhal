@@ -161,7 +161,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 						npc.say("Syntax: delete <nameofplayer>");
 						return;
 					}
-					final String playerName = sentence.getExpressionStringAfterVerb();
+					final String playerName = sentence.getOriginalText().substring("delete ".length()).trim();
 					if (rentedSignList.removeByName(playerName)) {
 						final String message = player.getName() + " deleted sign from " + playerName;
 						SingletonRepository.getRuleProcessor().sendMessageToSupporters("SignLessorNPC", message);
