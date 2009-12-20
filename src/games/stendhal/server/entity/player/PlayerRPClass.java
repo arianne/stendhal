@@ -118,7 +118,7 @@ public class PlayerRPClass {
 		
 		player.addRPEvent("transition_graph", Definition.PRIVATE);
 		player.addRPEvent("examine", Definition.PRIVATE);
-		player.addRPEventWithSlots("show_item_list", Definition.PRIVATE);
+		// player.addRPEventWithSlots("show_item_list", Definition.PRIVATE);
 	}
 
 }
