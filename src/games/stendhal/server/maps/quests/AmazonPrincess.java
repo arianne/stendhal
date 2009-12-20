@@ -133,12 +133,11 @@ npc.add(ConversationStates.ATTENDING,
 	 */
 	private void bringCocktailStep() {
 		final SpeakerNPC npc = npcs.get("Princess Esclara");
-		int pieAmount = Rand.roll1D6() + 1;
 		npc.add(
 			ConversationStates.ATTENDING, triggers,
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("pina colada")),
 			ConversationStates.ATTENDING, 
-			"Thank you!! Take these " + Integer.toString(pieAmount)	+ " fish pies from my cook, and this kiss, from me.",
+			null,
 			new MultipleActions(
 						new DropItemAction("pina colada"), 
 						new ChatAction() {
