@@ -347,11 +347,14 @@ import org.apache.log4j.Logger;
 		int kills = 0;		
 		for(int i=0; i<RAT_TYPES.size(); i++) {
 			try {
-				kills=Integer.decode(player.getQuest(QUEST_SLOT,i+1));				
+				final String killed = player.getQuest(QUEST_SLOT,i+1);
+				// have player quest slot or not yet?
+				if (killed != null) {
+					kills=Integer.decode(killed);					
+				}
 			} catch (NumberFormatException nfe) {
 				// player's quest slot don't contain valid number
 				// so he didn't killed such creatures.
-				kills=0;
 			};
 			
 			if(i==RAT_TYPES.size()) {
