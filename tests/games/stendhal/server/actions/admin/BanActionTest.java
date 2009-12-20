@@ -96,7 +96,7 @@ public class BanActionTest {
 			assertEquals("banned", accountDAO.getAccountStatus(transaction, player.getName()));
 			assertEquals("active", accountDAO.getAccountStatus(transaction, admin.getName()));
 			assertFalse(admin.events().isEmpty());
-			assertThat(admin.events().get(0).toString(), containsString("[private_text=Attributes of Class(): ")); 
+			assertThat(admin.events().get(0).toString(), containsString("RPEvent private_text with Attributes of Class(private_text): ")); 
 			assertThat(admin.events().get(0).toString(), containsString("[text=You have banned bobby for: whynot]"));
 			assertThat(admin.events().get(0).toString(), containsString("[texttype=PRIVMSG]"));
 	
