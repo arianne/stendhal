@@ -1,9 +1,13 @@
 package games.stendhal.client.gui.imageviewer;
 
+import games.stendhal.client.stendhal;
+
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.net.URL;
 
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
@@ -55,10 +59,21 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		
 		html.append("</table></body></html>");
 
-		final JLabel imageLabel = new JLabel(html.toString());
+		JLabel label = new JLabel(html.toString());
 
-		add(imageLabel);
-
+		// If there are too many entry, add a scrollbar.
+		// Note: setMaximumSize does not work, so we use setPreferredSize and check
+		//       the number of entries ourself.
+		if (slot.size() > 6) {
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setViewportView(label);
+			scrollPane.setPreferredSize(new Dimension(stendhal.screenSize.width - 80, stendhal.screenSize.height - 100));
+			add(scrollPane, BorderLayout.CENTER);
+		} else {
+			add(label);
+		}
+		
+		
 		setVisible(true);
 	}
 
