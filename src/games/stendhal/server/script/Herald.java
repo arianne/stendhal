@@ -24,11 +24,16 @@ import org.apache.log4j.Logger;
 
 
 /**
- * A herald which will tell news to citizens. 
+ * A herald which will tell news to citizens.
+ * @author yoriy
  */
 public class Herald extends ScriptImpl {
 
-	// after some thinking, i decided to not implement here 
+	// TODO: there is ability of using list of herald names,
+	// it will add to game more fun.
+    public final String HeraldName = "Patrick";
+
+    // after some thinking, i decided to not implement here 
 	// news records to file.
 	private Logger logger = Logger.getLogger(Herald.class);
     private final int REQUIRED_ADMINLEVEL_INFO = 100;
@@ -103,12 +108,12 @@ public class Herald extends ScriptImpl {
     }
     
     /**
-     * Herald turn listener object. 
+     * herald turn listener object. 
      */
     class HeraldListener implements TurnListener{
     	private int id;
     	/**
-    	 * function invokes by TurnNotifier each time when Herald have to speech.
+    	 * function invokes by TurnNotifier each time when herald have to speech.
     	 */
     	public void onTurnReached(int currentTurn) {
     		workWithCounters(id);
@@ -124,16 +129,16 @@ public class Herald extends ScriptImpl {
     
     /**
      * invokes by /script -load Herald.class,
-     * placing Herald near calling admin.
+     * placing herald near calling admin.
      */
 	@Override
 	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 		if (admin==null) {
-			logger.error("Herald: called by null admin", new Throwable());
+			logger.error("herald called by null admin", new Throwable());
 		}
 		if (sandbox.getZone(admin).collides(admin.getX()+1, admin.getY())) {
-			logger.info("Herald: place is occupied.");
-			admin.sendPrivateText("Spot (right) near you is occupied, can't place Herald here.");
+			logger.info("Spot for placing herald is occupied.");
+			admin.sendPrivateText("Spot (right) near you is occupied, can't place herald here.");
 			return;
 		}
 		sandbox.setZone(admin.getZone());
@@ -141,7 +146,7 @@ public class Herald extends ScriptImpl {
 	}
 
 	/**
-	 * function invokes by HeraldListener.onTurnReached each time when Herald have to speech.
+	 * function invokes by HeraldListener.onTurnReached each time when herald have to speech.
 	 * @param id - ID for news in news list
 	 */
 	public void workWithCounters(int id) {
@@ -160,7 +165,7 @@ public class Herald extends ScriptImpl {
 		final String text = heraldNews.get(index).getNews();
 		int counter = heraldNews.get(index).getCounter();
 		HeraldListener tnl = heraldNews.get(index).getTNL();
-		final SpeakerNPC npc = SingletonRepository.getNPCList().get("Herald");
+		final SpeakerNPC npc = SingletonRepository.getNPCList().get(HeraldName);
 		npc.say(text);
 		counter++;
 		turnNotifier.dontNotify(tnl);
@@ -179,14 +184,14 @@ public class Herald extends ScriptImpl {
 	}
 
 	/**
-	 * kind of Herald constructor
-	 * @param zone - zone to place Herald
+	 * kind of herald constructor
+	 * @param zone - zone to place herald
 	 * @param x - x coord in zone
 	 * @param y - y coord in zone
-	 * @return Herald NPC :-)
+	 * @return herald NPC :-)
 	 */
 	private SpeakerNPC GetHerald(StendhalRPZone zone, int x, int y) {
-		final SpeakerNPC npc = new SpeakerNPC("Herald") {
+		final SpeakerNPC npc = new SpeakerNPC(HeraldName) {
 			
 			/**
 			 * npc says his job list
