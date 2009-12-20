@@ -44,7 +44,27 @@ public class ItemListImageViewerEvent extends ViewPanel {
 
 	@Override
 	public void prepareView(final Dimension maxSize) {
-		// only display when not null
+		JLabel label = createLabel();
+
+		// If there are too many entry, add a scrollbar.
+		// Note: setMaximumSize does not work, so we use setPreferredSize and check
+		//       the number of entries ourself.
+		if (event.getSlot("content").size() > 6) {
+			StyledJPanel panel = new StyledJPanel(WoodStyle.getInstance());
+			JScrollPane scrollPane = new JScrollPane();
+			panel.add(label);
+			scrollPane.setViewportView(panel);
+			scrollPane.setPreferredSize(new Dimension(stendhal.screenSize.width - 80, stendhal.screenSize.height - 100));
+			add(scrollPane, BorderLayout.CENTER);
+		} else {
+			add(label);
+		}
+		
+		
+		setVisible(true);
+	}
+
+	private JLabel createLabel() {
 		StringBuilder html = new StringBuilder();
 		html.append("<html><body style=\"color: #FFFFFF\">");
 		if (event.has("caption")) {
@@ -62,23 +82,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		html.append("</table></body></html>");
 
 		JLabel label = new JLabel(html.toString());
-
-		// If there are too many entry, add a scrollbar.
-		// Note: setMaximumSize does not work, so we use setPreferredSize and check
-		//       the number of entries ourself.
-		if (slot.size() > 6) {
-			StyledJPanel panel = new StyledJPanel(WoodStyle.getInstance());
-			JScrollPane scrollPane = new JScrollPane();
-			panel.add(label);
-			scrollPane.setViewportView(panel);
-			scrollPane.setPreferredSize(new Dimension(stendhal.screenSize.width - 80, stendhal.screenSize.height - 100));
-			add(scrollPane, BorderLayout.CENTER);
-		} else {
-			add(label);
-		}
-		
-		
-		setVisible(true);
+		return label;
 	}
 
 	/**
