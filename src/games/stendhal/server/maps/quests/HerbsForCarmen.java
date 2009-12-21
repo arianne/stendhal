@@ -16,6 +16,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
@@ -81,17 +82,9 @@ public class HerbsForCarmen extends AbstractQuest {
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Carmen");
 
-		npc.addInitChatMessage(null, new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-				if (!player.hasQuest("herbs_for_carmen")) {
-					player.setQuest("herbs_for_carmen", "start");
-					engine.listenTo(player, "hi");
-				}
-			}
-			});
-
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT,"start"),
+			new AndCondition(new QuestNotStartedCondition(QUEST_SLOT),
+							 new NotCondition(new QuestInStateCondition(QUEST_SLOT,"rejected"))),
 			ConversationStates.QUESTION_1, 
 			"Hey you! Yes, you! Do you know me?", null);
 
@@ -103,7 +96,7 @@ public class HerbsForCarmen extends AbstractQuest {
 		npc.add(
 			ConversationStates.QUESTION_1,
 			ConversationPhrases.YES_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT,"start"),
+			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
 			"Great, so you know my job. My supply of healing #ingredients is running low.",
 			null);
@@ -111,7 +104,7 @@ public class HerbsForCarmen extends AbstractQuest {
 		npc.add(
 			ConversationStates.QUESTION_1,
 			ConversationPhrases.NO_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT,"start"),
+			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
 			"I am Carmen. I can heal you for free, until your powers become too strong. Many warriors ask for my help. Now my #ingredients are running out and I need to fill up my supplies.",
 			null);
@@ -119,7 +112,7 @@ public class HerbsForCarmen extends AbstractQuest {
 		npc.add(
 			ConversationStates.ATTENDING,
 			"ingredients",
-			new QuestInStateCondition(QUEST_SLOT,"start"),
+			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
 			"So many people are asking me to heal them. That uses many ingredients and now my inventories are near empty. Can you help me to fill them up? ",
 			null);
@@ -183,9 +176,7 @@ public class HerbsForCarmen extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Carmen");
 	
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-							 new NotCondition(new QuestInStateCondition(QUEST_SLOT,"start")),
-							 new NotCondition(new QuestInStateCondition(QUEST_SLOT,"rejected"))),
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
 				"Hi again. Did you bring me any #ingredients?",
 				null);
@@ -251,9 +242,7 @@ public class HerbsForCarmen extends AbstractQuest {
 
 		/* player says he didn't bring any items (says no) */
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
-				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-								 new NotCondition(new QuestInStateCondition(QUEST_SLOT,"start")),
-								 new NotCondition(new QuestInStateCondition(QUEST_SLOT,"rejected"))),
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Ok, well just let me know if I can #help you with anything else.", 
 				null);
@@ -261,9 +250,7 @@ public class HerbsForCarmen extends AbstractQuest {
 		/* player says he didn't bring any items to different question */
 		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.NO_MESSAGES,
-				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-								 new NotCondition(new QuestInStateCondition(QUEST_SLOT,"start")),
-								 new NotCondition(new QuestInStateCondition(QUEST_SLOT,"rejected"))),
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Ok, well just let me know if I can #help you with anything else.", null);
 
