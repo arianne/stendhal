@@ -121,33 +121,6 @@ class PlayerQuests {
 	 *            reset the player's status for the quest.
 	 */
 	public void setQuest(final String name, final int index, final String subStatus) {
-		/*String state = getQuest(name);
-		if (state == null) {
-			state = "";
-		}
-		int counter = 0;
-		StringTokenizer st = new StringTokenizer(state, ";");
-		StringBuilder res = new StringBuilder();
-		while (st.hasMoreTokens()) {
-			String token = st.nextToken();
-			if (counter > 0) {
-				res.append(";");
-			}
-			if (counter == index) {
-				res.append(subStatus);
-			} else {
-				res.append(token);
-			}
-			counter++;
-		}
-		for (int i = 0; i <= index - counter; i++) {
-			res.append(";");
-		}
-		if (counter <= index) {
-			res.append(subStatus);
-		}
-		// todo: handle counter < index;
-		setQuest(name, res.toString());*/
 		String state = getQuest(name);
 		if (state == null) {
 			state = "";
