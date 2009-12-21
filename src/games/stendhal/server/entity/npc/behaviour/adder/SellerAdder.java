@@ -78,18 +78,24 @@ public class SellerAdder {
 										+ " which I can sell at once is 1000.");
 								engine.setCurrentState(ConversationStates.ATTENDING);
 							} else if (behaviour.getAmount() > 0) {
-    							int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
-    									* behaviour.getAmount();
-    							String message = "";
-    							if (player.isBadBoy()) {
-    								price = (int) (SellerBehaviour.BAD_BOY_BUYING_PENALTY * price);
-    								
-    								message = "To friends I charge less, but you seem like you have played unfairly here. So,  ";
-    							}
-    							engine.say(message + Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
-    									+ " will cost " + price
-    									+ ". Do you want to buy "
-    									+ Grammar.itthem(behaviour.getAmount()) + "?");
+								int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
+									* behaviour.getAmount();
+
+								StringBuilder builder = new StringBuilder();
+								if (player.isBadBoy()) {
+									price = (int) (SellerBehaviour.BAD_BOY_BUYING_PENALTY * price);
+
+									builder.append("To friends I charge less, but you seem like you have played unfairly here. So,  ");
+									builder.append(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName()));
+								} else {
+									builder.append(Grammar.makeUpperCaseWord(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())));
+								}
+								builder.append(" will cost ");
+								builder.append(price);
+								builder.append(". Do you want to buy ");
+								builder.append(Grammar.itthem(behaviour.getAmount()));
+								builder.append("?");
+								engine.say(builder.toString());
 							} else {
 								engine.say("Sorry, how many " + Grammar.plural(behaviour.getChosenItemName()) + " do you want to buy?!");
 
