@@ -82,13 +82,13 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, I don't sell someunknownthings.", getReply(npc));
 
 		assertTrue(en.step(player, "buy ham"));
-		assertEquals("a piece of ham will cost 80. Do you want to buy it?", getReply(npc));
+		assertEquals("A piece of ham will cost 80. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "no"));
 		assertEquals("Ok, how else may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "buy ham"));
-		assertEquals("a piece of ham will cost 80. Do you want to buy it?", getReply(npc));
+		assertEquals("A piece of ham will cost 80. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry, you don't have enough money!", getReply(npc));
@@ -105,7 +105,7 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.isEquipped("ham", 5));
 
 		assertTrue(en.step(player, "buy ham"));
-		assertEquals("a piece of ham will cost 80. Do you want to buy it?", getReply(npc));
+		assertEquals("A piece of ham will cost 80. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Congratulations! Here is your piece of ham!", getReply(npc));

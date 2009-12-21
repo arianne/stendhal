@@ -85,13 +85,13 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, I don't sell bunches of socks.", getReply(npc));
 
 		assertTrue(en.step(player, "buy icecream"));
-		assertEquals("an icecream will cost 30. Do you want to buy it?", getReply(npc));
+		assertEquals("An icecream will cost 30. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "no"));
 		assertEquals("Ok, how else may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "buy icecream"));
-		assertEquals("an icecream will cost 30. Do you want to buy it?", getReply(npc));
+		assertEquals("An icecream will cost 30. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry, you don't have enough money!", getReply(npc));
@@ -106,7 +106,7 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, you don't have enough money!", getReply(npc));
 
 		assertTrue(en.step(player, "buy icecream"));
-		assertEquals("an icecream will cost 30. Do you want to buy it?", getReply(npc));
+		assertEquals("An icecream will cost 30. Do you want to buy it?", getReply(npc));
 
 		assertFalse(player.isEquipped("icecream"));
 
@@ -115,7 +115,7 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.isEquipped("icecream", 1));
 
 		assertTrue(en.step(player, "buy icecream"));
-		assertEquals("an icecream will cost 30. Do you want to buy it?", getReply(npc));
+		assertEquals("An icecream will cost 30. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Congratulations! Here is your icecream!", getReply(npc));

@@ -91,13 +91,13 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, I don't sell hand fulls of peace.", getReply(npc));
 
 		assertTrue(en.step(player, "buy cat"));
-		assertEquals("a cat will cost 100. Do you want to buy it?", getReply(npc));
+		assertEquals("A cat will cost 100. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "no"));
 		assertEquals("Ok, how else may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "buy cat"));
-		assertEquals("a cat will cost 100. Do you want to buy it?", getReply(npc));
+		assertEquals("A cat will cost 100. Do you want to buy it?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("You don't seem to have enough money.", getReply(npc));
@@ -111,7 +111,7 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		// equip with enough money to buy the cat
 		assertTrue(equipWithMoney(player, 500));
 		assertTrue(en.step(player, "buy cat"));
-		assertEquals("a cat will cost 100. Do you want to buy it?", getReply(npc));
+		assertEquals("A cat will cost 100. Do you want to buy it?", getReply(npc));
 
 		assertFalse(player.hasPet());
 

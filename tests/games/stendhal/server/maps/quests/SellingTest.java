@@ -75,7 +75,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, I don't buy any houses.", getReply(npc));
 
 		assertTrue(en.step(player, "sell cheese"));
-		assertEquals("a piece of cheese is worth 5. Do you want to sell it?", getReply(npc));
+		assertEquals("A piece of cheese is worth 5. Do you want to sell it?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry! You don't have any piece of cheese.", getReply(npc));
@@ -87,7 +87,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
         assertFalse(player.isEquipped("cheese", 4));
 
 		assertTrue(en.step(player, "sell cheese"));
-		assertEquals("a piece of cheese is worth 5. Do you want to sell it?", getReply(npc));
+		assertEquals("A piece of cheese is worth 5. Do you want to sell it?", getReply(npc));
 
 		 // ensure we currently don't have any money
 		assertFalse(player.isEquipped("money", 1));
