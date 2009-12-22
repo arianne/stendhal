@@ -114,7 +114,7 @@ public class HerbsForCarmen extends AbstractQuest {
 			"ingredients",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			"So many people are asking me to heal them. That uses many ingredients and now my inventories are near empty. Can you help me to fill them up? ",
+			"So many people are asking me to heal them. That uses many ingredients and now my inventories are near empty. Can you help me to fill them up?",
 			null);
 
 		npc.add(
