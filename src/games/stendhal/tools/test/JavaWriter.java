@@ -29,6 +29,7 @@ class JavaWriter {
 		out.println("import org.junit.Test;");
 		out.println();
 		out.println("import utilities.QuestHelper;");
+		out.println("import static utilities.SpeakerNPCTestHelper.getReply;");
 		out.println();
 		out.println("public class TODO_Test {");
 		out.println();
@@ -76,7 +77,7 @@ class JavaWriter {
 
 	public void npc(final String protagonist, final String text) {
 		out.println("\t\tassertEquals(\"" + StringEscapeUtils.escapeJava(text)
-				+ "\", npc.get(\"text\"));");
+				+ "\", getReply(npc));");
 	}
 
 	public void footer() {
