@@ -139,6 +139,10 @@ public class LearnAboutKarma extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
 			null, ConversationStates.ATTENDING,
 			"Fair enough! I could help you another way?", null);
+		
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.QUEST_MESSAGES,
+				null, ConversationStates.QUESTION_1,
+				"If you ask around for tasks, and you complete them, you'll increase your karma. Do you want to know what your karma is now?", null);
 	}
 
 	@Override
