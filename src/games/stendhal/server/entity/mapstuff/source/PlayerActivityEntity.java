@@ -117,15 +117,18 @@ public abstract class PlayerActivityEntity extends Entity implements
 	 * @return <code>true</code> if the entity was used.
 	 */
 	public boolean onUsed(final RPEntity entity) {
-		if (!entity.nextTo(this)) {
-			return false;
-		}
 
 		if (!(entity instanceof Player)) {
 			return false;
 		}
-
+		
 		final Player player = (Player) entity;
+		
+		if (!player.nextTo(this)) {
+			player.sendPrivateText("You are too far away from "+this.getName()+
+			   ", try to come closer.");			
+			return false;
+		}
 
 		if (isPrepared(player)) {
 			final Activity activity = new Activity(player);
