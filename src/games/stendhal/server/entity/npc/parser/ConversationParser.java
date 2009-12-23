@@ -197,7 +197,7 @@ public final class ConversationParser extends ErrorBuffer {
      */
     public static Sentence parse(String text, final ConversationContext ctx) {
         if (text != null) {
-            if ((ctx != null) && ctx.isForMatching()) {
+        	if ((ctx != null) && ctx.isForMatching()) {
                 final ExpressionMatcher matcher = new ExpressionMatcher();
 
                 // If the text begins with matching flags, skip normal sentence parsing and read in
@@ -208,10 +208,11 @@ public final class ConversationParser extends ErrorBuffer {
                     return matcher.parseSentence(text, ctx);
                 }
             }
+
         } else {
             text = "";
-        }
-
+        }       
+    	final String ot = text;
         final SentenceImplementation sentence = new SentenceImplementation(ctx);
 
         try {
@@ -248,7 +249,7 @@ public final class ConversationParser extends ErrorBuffer {
             sentence.setError(e.getMessage());
             e.printStackTrace();
         }
-
+        sentence.originalText = ot;
         return sentence;
     }
 
