@@ -52,6 +52,14 @@ public class FishSource extends PlayerActivityEntity {
 
 		setDescription("There is something in the water.");
 	}
+	
+	/**
+	 * source name.
+	 */
+	@Override
+	public String getName() {
+		return("fish");
+	}
 
 	//
 	// FishSource

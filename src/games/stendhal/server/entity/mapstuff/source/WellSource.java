@@ -36,7 +36,7 @@ public class WellSource extends PlayerActivityEntity {
 			"gold nugget", "potion", "home scroll", "greater potion",
 			"sapphire", "carbuncle", "horned golden helmet", "dark dagger",
 			"present" };
-
+	
 	/**
 	 * The chance that wishing is successful.
 	 */
@@ -56,6 +56,14 @@ public class WellSource extends PlayerActivityEntity {
 
 		setDescription("You see a wishing well. Something in it catches your eye.");
 		setResistance(0);
+	}
+	
+	/**
+	 * source name.
+	 */
+	@Override
+	public String getName() {
+		return("wishing well");
 	}
 
 	//

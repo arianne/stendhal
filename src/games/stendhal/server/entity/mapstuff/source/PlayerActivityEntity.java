@@ -36,6 +36,11 @@ public abstract class PlayerActivityEntity extends Entity implements
 	//
 	// PlayerActivityEntity
 	//
+	
+	/**
+	 * Returns source name (type of source).
+	 */
+	protected abstract String getName();
 
 	/**
 	 * Process the results of the activity.
@@ -51,6 +56,8 @@ public abstract class PlayerActivityEntity extends Entity implements
 		if (nextTo(player)) {
 			onFinished(player, isSuccessful(player));
 		} else {
+			player.sendPrivateText("You are too far away from "+this.getName()+
+								   ", try to come closer.");
 			onFinished(player, false);
 		}
 	}

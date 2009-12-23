@@ -54,7 +54,15 @@ public class GoldSource extends PlayerActivityEntity {
 	public GoldSource() {
 		this("gold nugget");
 	}
-
+	
+	/**
+	 * source name.
+	 */
+	@Override
+	public String getName() {
+		return("gold");
+	}
+	
 	/**
 	 * Create a gold source.
 	 * 
