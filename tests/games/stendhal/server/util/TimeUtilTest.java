@@ -17,6 +17,9 @@ public class TimeUtilTest {
 		Assert.assertEquals("138 weeks, 3 days, 4 hours, 6 minutes, 12 seconds", TimeUtil.timeUntil(83736372, true));
 	}
 
+	/**
+	 * Tests for approxTimeUntil.
+	 */
 	@Test
 	public void testApproxTimeUntil() {
 		Assert.assertEquals("less than a minute", TimeUtil.approxTimeUntil(5));

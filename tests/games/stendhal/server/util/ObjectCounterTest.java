@@ -18,6 +18,9 @@ public class ObjectCounterTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for add.
+	 */
 	@Test
 	public final void testAdd() {
 		final ObjectCounter<String> ocString = new ObjectCounter<String>();

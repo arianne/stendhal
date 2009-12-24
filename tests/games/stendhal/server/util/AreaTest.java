@@ -26,12 +26,18 @@ public class AreaTest {
 		return area;
 	}
 	
+	/**
+	 * Tests for createArea.
+	 */
 	@Test
 	public void testCreateArea() {
 		final Area area = createArea();
 		Assert.assertEquals(rect, area.getShape());
 	}
 
+	/**
+	 * Tests for inArea.
+	 */
 	@Test
 	public void testInArea() {
 		SingletonRepository.getRPWorld();
@@ -42,6 +48,9 @@ public class AreaTest {
 		Assert.assertTrue(area.contains(entity));
 	}
 
+	/**
+	 * Tests for notInArea.
+	 */
 	@Test
 	public void testNotInArea() {
 		SingletonRepository.getRPWorld();
@@ -60,6 +69,9 @@ public class AreaTest {
 		Assert.assertFalse(area.contains(entity));
 }
 	
+	/**
+	 * Tests for containsNull.
+	 */
 	@Test
 	public void testContainsNull() throws Exception {
 		

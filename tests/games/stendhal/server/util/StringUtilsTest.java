@@ -7,6 +7,9 @@ import org.junit.Test;
 
 public class StringUtilsTest {
 
+	/**
+	 * Tests for countUpperCase.
+	 */
 	@Test
 	public void testCountUpperCase() {
 		assertThat(StringUtils.countUpperCase(""), equalTo(0));
@@ -16,6 +19,9 @@ public class StringUtilsTest {
 		assertThat(StringUtils.countUpperCase("**A*B*"), equalTo(2));
 	}
 
+	/**
+	 * Tests for countLowerCase.
+	 */
 	@Test
 	public void testCountLowerCase() {
 		assertThat(StringUtils.countLowerCase(""), equalTo(0));

@@ -19,6 +19,9 @@ public class ListRaidsTest {
 	}
 
 
+	/**
+	 * Tests for name.
+	 */
 	@Test
 	public void testname() throws Exception {
 		ListRaids script = new ListRaids();
