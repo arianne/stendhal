@@ -201,6 +201,9 @@ public class ResultSetIteratorTest {
 		}
 	}
 
+	/**
+	 * Tests for resultSetIterator.
+	 */
 	@Test
 	public void testResultSetIterator() {
 		
@@ -208,6 +211,9 @@ public class ResultSetIteratorTest {
 		
 	}
 
+	/**
+	 * Tests for createObject.
+	 */
 	@Test
 	public void testCreateObject() {
 		final ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),
@@ -221,6 +227,9 @@ public class ResultSetIteratorTest {
 		assertThat(iter.createObject(), is("result"));
 	}
 
+	/**
+	 * Tests for hasNext.
+	 */
 	@Test
 	public void testHasNext() throws SQLException {
 		
@@ -255,6 +264,9 @@ public class ResultSetIteratorTest {
 		assertFalse(iter.hasNext());
 	}
 
+	/**
+	 * Tests for next.
+	 */
 	@Test
 	public void testNext() throws SQLException {
 		ResultSet localResultSet = createMock(ResultSet.class);
@@ -284,6 +296,9 @@ public class ResultSetIteratorTest {
 	}
 
 
+	/**
+	 * Tests for close.
+	 */
 	@Test
 	public void testClose() throws SQLException {
 		ResultSet resultSetClose = createMock(ResultSet.class);
@@ -302,6 +317,9 @@ public class ResultSetIteratorTest {
 
 	}
 
+	/**
+	 * Tests for remove.
+	 */
 	@Test
 	public void testRemove() throws SQLException {
 		ResultSet resultsetdelteThrowsException = createMock(ResultSet.class);
@@ -315,6 +333,9 @@ public class ResultSetIteratorTest {
 		verify(resultsetdelteThrowsException);
 	}
 
+	/**
+	 * Tests for iterator.
+	 */
 	@Test
 	public void testIterator() {
 		final ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),

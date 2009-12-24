@@ -26,6 +26,9 @@ public class UpdatePlayerEntitiesTest {
 	}
 
 	//@Ignore
+	/**
+	 * Tests for doUpdate.
+	 */
 	@Test
 	public void testDoUpdate() throws Exception, Throwable {
 		MockStendlRPWorld.get();

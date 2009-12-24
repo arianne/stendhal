@@ -21,6 +21,9 @@ public class PlayerModifierTest {
 		new DatabaseFactory().initializeDatabase();
 	}
 
+	/**
+	 * Tests for loadPlayer.
+	 */
 	@Ignore
 	@Test
 	public void testLoadPlayer() throws Exception {
@@ -42,6 +45,9 @@ public class PlayerModifierTest {
 		}
 	}
 
+	/**
+	 * Tests for loadPlayerNameIsNull.
+	 */
 	@Test
 	public void testLoadPlayerNameIsNull() throws Exception {
 		DBTransaction transaction = TransactionPool.get().beginWork();
@@ -57,6 +63,9 @@ public class PlayerModifierTest {
 		}
 	}
 
+	/**
+	 * Tests for modifyPlayer.
+	 */
 	@Ignore
 	@Test
 	public void testmodifyPlayer() throws Exception {

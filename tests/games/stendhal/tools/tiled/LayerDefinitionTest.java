@@ -49,6 +49,9 @@ public class LayerDefinitionTest {
 		map.addLayer(layer);
 	}
 
+	/**
+	 * Tests for belongToTileset.
+	 */
 	@Test
 	public void testBelongToTileset() {
 		final LayerDefinition layer = map.getLayer("layer1");
@@ -70,6 +73,9 @@ public class LayerDefinitionTest {
 		assertNull(layer.getTilesetFor(layer.getTileAt(57, 34)));
 	}
 
+	/**
+	 * Tests for serialization.
+	 */
 	@Test
 	public void testSerialization() throws IOException, ClassNotFoundException {
 		final ByteArrayOutputStream array = new ByteArrayOutputStream();

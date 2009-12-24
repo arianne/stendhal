@@ -9,6 +9,9 @@ import org.junit.Test;
 
 public class LineAnalyserTest {
 
+	/**
+	 * Tests for empty.
+	 */
 	@Test
 	public void testEmpty() {
 		final LineAnalyser analyser = new LineAnalyser("");
@@ -23,6 +26,9 @@ public class LineAnalyserTest {
 		assertFalse(analyser.isStatus());
 	}
 
+	/**
+	 * Tests for space.
+	 */
 	@Test
 	public void testSpace() {
 		final LineAnalyser analyser = new LineAnalyser(" ");
@@ -37,6 +43,9 @@ public class LineAnalyserTest {
 		assertFalse(analyser.isStatus());
 	}
 
+	/**
+	 * Tests for player.
+	 */
 	@Test
 	public void testPlayer() {
 		final LineAnalyser analyser = new LineAnalyser("[21:24] <player> hi");
@@ -51,6 +60,9 @@ public class LineAnalyserTest {
 		assertFalse(analyser.isStatus());
 	}
 
+	/**
+	 * Tests for nPC.
+	 */
 	@Test
 	public void testNPC() {
 		final LineAnalyser analyser = new LineAnalyser("[21:24] <Plink> *cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?");
@@ -65,6 +77,9 @@ public class LineAnalyserTest {
 		assertFalse(analyser.isStatus());
 	}
 
+	/**
+	 * Tests for comment.
+	 */
 	@Test
 	public void testComment() {
 		final LineAnalyser analyser = new LineAnalyser("// he doesn't do anything.");
@@ -79,6 +94,9 @@ public class LineAnalyserTest {
 		assertTrue(analyser.isStatus());
 	}
 
+	/**
+	 * Tests for status.
+	 */
 	@Test
 	public void testStatus() {
 		final LineAnalyser analyser = new LineAnalyser("[21:25] player earns 10 experience points.");

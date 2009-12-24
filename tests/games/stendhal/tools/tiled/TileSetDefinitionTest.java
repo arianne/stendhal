@@ -37,6 +37,9 @@ public class TileSetDefinitionTest {
 		map.addTileset(set);
 	}
 
+	/**
+	 * Tests for serialization.
+	 */
 	@Test
 	public void testSerialization() throws IOException, ClassNotFoundException {
 		final List<TileSetDefinition> tilesets = map.getTilesets();
