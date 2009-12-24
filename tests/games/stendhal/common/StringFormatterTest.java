@@ -16,6 +16,9 @@ public class StringFormatterTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for stringFormatter.
+	 */
 	@Test
 	public final void testStringFormatter() {
 		StringFormatter formatter = new StringFormatter("test");
@@ -28,6 +31,9 @@ public class StringFormatterTest {
 
 	}
 
+	/**
+	 * Tests for setStringString.
+	 */
 	@Test
 	public final void testSetStringString() {
 		final StringFormatter formatter = new StringFormatter(
@@ -43,6 +49,9 @@ public class StringFormatterTest {
 
 	}
 
+	/**
+	 * Tests for setStringInt.
+	 */
 	@Test
 	public final void testSetStringInt() {
 		final StringFormatter formatter = new StringFormatter(

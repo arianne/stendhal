@@ -7,6 +7,9 @@ import org.junit.Test;
 
 public class TestClasspathEntry {
 
+	/**
+	 * Tests for parsingSimpleJar.
+	 */
 	@Test
 	public void testParsingSimpleJar() {
 		final String test = "stendhal-0.54.jar";
@@ -17,6 +20,9 @@ public class TestClasspathEntry {
 		assertEquals(test + " version", "0.54", ce.getVersion());
 	}
 
+	/**
+	 * Tests for parsingJarInFolder.
+	 */
 	@Test
 	public void testParsingJarInFolder() {
 		final String test = "/tmp/stendhal-0.54.jar";
@@ -27,6 +33,9 @@ public class TestClasspathEntry {
 		assertEquals(test + " version", "0.54", ce.getVersion());
 	}
 
+	/**
+	 * Tests for compare.
+	 */
 	@Test
 	public void testCompare() {
 		final ClasspathEntry v054 = new ClasspathEntry("stendhal-0.54.jar");

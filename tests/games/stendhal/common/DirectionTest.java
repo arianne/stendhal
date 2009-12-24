@@ -12,6 +12,9 @@ import org.junit.Test;
 
 public class DirectionTest {
 
+	/**
+	 * Tests for build.
+	 */
 	@Test
 	public final void testBuild() {
 		assertSame(Direction.STOP, Direction.build(0));
@@ -21,6 +24,9 @@ public class DirectionTest {
 		assertSame(Direction.LEFT, Direction.build(4));
 	}
 
+	/**
+	 * Tests for getdx.
+	 */
 	@Test
 	public final void testGetdx() {
 		assertEquals(0, Direction.STOP.getdx());
@@ -31,6 +37,9 @@ public class DirectionTest {
 		assertEquals(-1, Direction.LEFT.getdx());
 	}
 
+	/**
+	 * Tests for getdy.
+	 */
 	@Test
 	public final void testGetdy() {
 		assertEquals(0, Direction.STOP.getdy());
@@ -41,6 +50,9 @@ public class DirectionTest {
 		assertEquals(1, Direction.DOWN.getdy());
 	}
 
+	/**
+	 * Tests for get.
+	 */
 	@Test
 	public final void testGet() {
 		assertEquals(0, Direction.STOP.get());
@@ -50,6 +62,9 @@ public class DirectionTest {
 		assertEquals(4, Direction.LEFT.get());
 	}
 
+	/**
+	 * Tests for oppositeDirection.
+	 */
 	@Test
 	public final void testOppositeDirection() {
 		assertEquals(Direction.UP, Direction.DOWN.oppositeDirection());
@@ -60,6 +75,9 @@ public class DirectionTest {
 		assertEquals(Direction.UP, Direction.UP.oppositeDirection()
 				.oppositeDirection());
 	}
+	/**
+	 * Tests for nextDirection.
+	 */
 	@Test
 	public final void testNextDirection() {
 		assertEquals(Direction.LEFT, Direction.STOP.nextDirection());
@@ -69,6 +87,9 @@ public class DirectionTest {
 		assertEquals(Direction.DOWN, Direction.RIGHT.nextDirection());
 	}
 
+	/**
+	 * Tests for rand.
+	 */
 	@Test(timeout = 10000)
 	public final void testRand() {
 

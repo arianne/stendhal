@@ -38,6 +38,9 @@ public class CollisionMapTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for collissionMap.
+	 */
 	@Test
 	public void testCollissionMap() throws Exception {
 		final CollisionMap map = new CollisionMap(1, 1);
@@ -49,6 +52,9 @@ public class CollisionMapTest {
 
 	}
 
+	/**
+	 * Tests for collides.
+	 */
 	@Test
 	public void testcollides() throws Exception {
 		final CollisionMap map = new CollisionMap(2, 2);
@@ -65,6 +71,9 @@ public class CollisionMapTest {
 		assertTrue(map.collides(0, 0, 2, 2));
 	}
 
+	/**
+	 * Tests for collides2.
+	 */
 	@Test
 	public void testcollides2() throws Exception {
 		final CollisionMap map = new CollisionMap(4, 4);
@@ -96,6 +105,9 @@ public class CollisionMapTest {
 
 	}
 
+	/**
+	 * Tests for collidesEdges.
+	 */
 	@Test
 	public void testcollidesEdges() throws Exception {
 		final CollisionMap map = new CollisionMap(4, 4);
@@ -121,6 +133,9 @@ public class CollisionMapTest {
 
 	}
 
+	/**
+	 * Tests for bitsetlogic.
+	 */
 	@Test
 	public void testbitsetlogic() throws Exception {
 		final BitSet setallfalse = new BitSet(7);
@@ -157,6 +172,9 @@ public class CollisionMapTest {
 
 	}
 
+	/**
+	 * Tests for clear.
+	 */
 	@Test
 	public void testClear() throws Exception {
 		final CollisionMap map = new CollisionMap(4, 4);
@@ -170,6 +188,9 @@ public class CollisionMapTest {
 
 	}
 	
+	/**
+	 * Tests for setCollideRectangle2D2x1.
+	 */
 	@Test
 	public void testsetCollideRectangle2D2x1() throws Exception {
 		final CollisionMap map = new CollisionMap(4, 4);
@@ -196,6 +217,9 @@ public class CollisionMapTest {
 		assertFalse(map.get(3, 3));
 
 	}
+	/**
+	 * Tests for setCollideRectangle2D2x3.
+	 */
 	@Test
 	public void testsetCollideRectangle2D2x3() throws Exception {
 		final CollisionMap map = new CollisionMap(4, 4);
@@ -224,6 +248,9 @@ public class CollisionMapTest {
 	}
 
 
+	/**
+	 * Tests for createLayerDefintion.
+	 */
 	@Test
 	public void testCreateLayerDefintion() throws Exception {
 		LayerDefinition layer;
@@ -246,6 +273,9 @@ public class CollisionMapTest {
 
 	}
 
+	/**
+	 * Tests for collidesEntity.
+	 */
 	@Test
 	public void testCollidesEntity() throws Exception {
 		final CollisionMap map = new CollisionMap(4, 4);

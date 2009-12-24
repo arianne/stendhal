@@ -21,11 +21,17 @@ public class RandTest {
 	public void tearDown() throws Exception {
 	}
 	
+	/**
+	 * Tests for randUniform.
+	 */
 	@Test
 	public void testRandUniform() throws Exception {
 		assertEquals(0, Rand.randUniform(0, 0));
 	}
 	
+	/**
+	 * Tests for randUniform2.
+	 */
 	@Test
 	public void testRandUniform2() throws Exception {
 		for (int i = 0; i < 10; i++) {

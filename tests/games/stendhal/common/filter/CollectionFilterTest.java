@@ -13,6 +13,9 @@ import utilities.PlayerTestHelper;
 
 public class CollectionFilterTest {
 
+	/**
+	 * Tests for filter.
+	 */
 	@Test
 	public final void testFilter() {
 		final Collection<Player> list = new LinkedList<Player>();

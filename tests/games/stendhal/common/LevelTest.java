@@ -16,17 +16,26 @@ public class LevelTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for maxLevel.
+	 */
 	@Test
 	public final void testMaxLevel() {
 		assertEquals(597, Level.maxLevel());
 
 	}
 
+	/**
+	 * Tests for getLevel.
+	 */
 	@Test
 	public final void testGetLevel() {
 		// assertELevel.getLevel()
 	}
 
+	/**
+	 * Tests for getXP.
+	 */
 	@Test
 	public final void testGetXP() {
 
@@ -37,6 +46,9 @@ public class LevelTest {
 		assertEquals(2118873200, Level.getXP(Level.maxLevel()));
 	}
 
+	/**
+	 * Tests for getNegativeXP.
+	 */
 	@Test
 	public final void testGetNegativeXP() {
 
@@ -44,12 +56,18 @@ public class LevelTest {
 		assertEquals(-1, Level.getXP(-10));
 	}
 
+	/**
+	 * Tests for getMoreThanMaxXP.
+	 */
 	@Test
 	public final void testGetMoreThanMaxXP() {
 		assertEquals(2129553600, Level.getXP(Level.maxLevel() + 1));
 		assertEquals(-1, Level.getXP(Level.maxLevel() + 2));
 	}
 
+	/**
+	 * Tests for changeLevel.
+	 */
 	@Test
 	public final void testChangeLevel() {
 		assertEquals(0, Level.changeLevel(0, 49));
@@ -64,12 +82,18 @@ public class LevelTest {
 
 	}
 
+	/**
+	 * Tests for getWisdom.
+	 */
 	@Test
 	public final void testGetWisdom() {
 		assertEquals(0.0, Level.getWisdom(0), 0.001);
 		assertEquals(0.9973688848712813, Level.getWisdom(Level.maxLevel()), 0.001);
 	}
 
+	/**
+	 * Tests for getWisdomOverMaxlevel.
+	 */
 	@Test(expected = ArrayIndexOutOfBoundsException.class)
 	public final void testGetWisdomOverMaxlevel() {
 		assertEquals(1.0, Level.getWisdom(Level.maxLevel() + 1), 0.001);

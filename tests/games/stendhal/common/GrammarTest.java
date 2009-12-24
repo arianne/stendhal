@@ -21,6 +21,9 @@ public class GrammarTest {
 		Log4J.init();
 	}
 
+	/**
+	 * Tests for itthem.
+	 */
 	@Test
 	public void testItthem() {
 		assertEquals("it", Grammar.itthem(1));
@@ -28,6 +31,9 @@ public class GrammarTest {
 		assertEquals("them", Grammar.itthem(0));
 	}
 
+	/**
+	 * Tests for itThem.
+	 */
 	@Test
 	public void testItThem() {
 		assertEquals("It", Grammar.ItThem(1));
@@ -35,6 +41,9 @@ public class GrammarTest {
 		assertEquals("Them", Grammar.ItThem(0));
 	}
 
+	/**
+	 * Tests for itthey.
+	 */
 	@Test
 	public void testItthey() {
 		assertEquals("it", Grammar.itthey(1));
@@ -42,6 +51,9 @@ public class GrammarTest {
 		assertEquals("they", Grammar.itthey(0));
 	}
 
+	/**
+	 * Tests for itThey.
+	 */
 	@Test
 	public void testItThey() {
 		assertEquals("It", Grammar.ItThey(1));
@@ -49,6 +61,9 @@ public class GrammarTest {
 		assertEquals("They", Grammar.ItThey(0));
 	}
 
+	/**
+	 * Tests for orderedInt.
+	 */
 	@Test
 	public void testOrderedInt() {
 		assertEquals("first", Grammar.ordered(1));
@@ -57,6 +72,9 @@ public class GrammarTest {
 		assertEquals("4", Grammar.ordered(4));
 	}
 
+	/**
+	 * Tests for isare.
+	 */
 	@Test
 	public void testIsare() {
 		assertEquals("is", Grammar.isare(1));
@@ -64,12 +82,18 @@ public class GrammarTest {
 		assertEquals("are", Grammar.isare(0));
 	}
 
+	/**
+	 * Tests for article_noun.
+	 */
 	@Test
 	public void testarticle_noun() {
 		assertEquals("the test", Grammar.article_noun("test", true));
 		assertEquals("a test", Grammar.article_noun("test", false));
 	}
 
+	/**
+	 * Tests for isAre.
+	 */
 	@Test
 	public void testIsAre() {
 		assertEquals("Is", Grammar.IsAre(1));
@@ -77,6 +101,9 @@ public class GrammarTest {
 		assertEquals("Are", Grammar.IsAre(0));
 	}
 
+	/**
+	 * Tests for a_noun.
+	 */
 	@Test
 	public void testa_noun() {
 		assertNull(Grammar.a_noun(null));
@@ -90,6 +117,9 @@ public class GrammarTest {
 		assertEquals("a eupepsia", Grammar.a_noun("eupepsia"));
 	}
 
+	/**
+	 * Tests for fullform.
+	 */
 	@Test
 	public void testFullform() {
 		assertEquals("piece of meat", Grammar.fullForm("Meat"));
@@ -114,6 +144,9 @@ public class GrammarTest {
 		assertEquals("pair of iron boots", Grammar.fullForm("iron boots"));
 	}
 
+	/**
+	 * Tests for a_noun.
+	 */
 	@Test
 	public void testA_noun() {
 		assertEquals("An eater", Grammar.A_noun("eater"));
@@ -124,6 +157,9 @@ public class GrammarTest {
 
 	}
 
+	/**
+	 * Tests for suffix_s.
+	 */
 	@Test
 	public void testSuffix_s() {
 		assertEquals("s'", Grammar.suffix_s("s"));
@@ -150,6 +186,9 @@ public class GrammarTest {
 		testSingularisationOfAGivenSingularWord(message, plural, singular);
 	}
 
+	/**
+	 * Tests for pluralItem.
+	 */
 	@Test
 	public void testPluralItem() {
 		testPluralisationAndSingularisation("money", "money");
@@ -548,6 +587,9 @@ public class GrammarTest {
 				"#bread"));
 	}
 
+	/**
+	 * Tests for enumerateCollectionCollection.
+	 */
 	@Test
 	public void testEnumerateCollectionCollection() throws Exception {
 		assertEquals("", Grammar.enumerateCollection(null));
@@ -567,6 +609,9 @@ public class GrammarTest {
 		assertEquals(Integer.valueOf(n), Grammar.number(string));
 	}
 
+	/**
+	 * Tests for numberStrings.
+	 */
 	@Test
 	public void testNumberStrings() {
 		assertEquals(Integer.valueOf(0), Grammar.number("zero"));
@@ -588,6 +633,9 @@ public class GrammarTest {
 		checkNumberString(12, "twelve");
 	}
 
+	/**
+	 * Tests for isPreposition.
+	 */
 	@Test
 	public void testIsPreposition() {
 		assertNotNull(ConversationParser.parse("on").getPreposition(0));
@@ -602,6 +650,9 @@ public class GrammarTest {
 		assertNull(ConversationParser.parse("kymara").getPreposition(0));
 	}
 
+	/**
+	 * Tests for extractNoun.
+	 */
 	@Test
 	public void testExtractNoun() {
 		assertEquals("bread", Grammar.extractNoun("loaf of bread"));
@@ -613,6 +664,9 @@ public class GrammarTest {
 		assertEquals("armor", Grammar.extractNoun("suit of armor"));
 	}
 
+	/**
+	 * Tests for normalizeVerbs.
+	 */
 	@Test
 	public void testNormalizeVerbs() {
 		assertNull(Grammar.normalizeRegularVerb("open"));
@@ -631,6 +685,9 @@ public class GrammarTest {
 		assertEquals("fish", Grammar.normalizeRegularVerb("fishing"));
 	}
 
+	/**
+	 * Tests for gerund.
+	 */
 	@Test
 	public void testGerund() {
 		assertTrue(Grammar.isGerund("doing"));
@@ -644,6 +701,9 @@ public class GrammarTest {
 		assertTrue(Grammar.isGerund("acting"));
 	}
 
+	/**
+	 * Tests for normalizeAdjectives.
+	 */
 	@Test
 	public void testNormalizeAdjectives() {
 		assertTrue(Grammar.isDerivedAdjective("nomadic"));
@@ -657,6 +717,9 @@ public class GrammarTest {
 	}
 	
 	
+	/**
+	 * Tests for leatherLegs.
+	 */
 	@Test
 	public void testLeatherLegs() throws Exception {
 		assertEquals("leather legs", Grammar.singular("leather legs"));

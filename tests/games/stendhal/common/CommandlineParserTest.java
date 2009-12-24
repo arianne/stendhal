@@ -31,6 +31,9 @@ public class CommandlineParserTest {
 		assertEquals(false, errors.hasError());
 	}
 
+	/**
+	 * Tests for readAllParameters.
+	 */
 	@Test
 	public final void testReadAllParameters() {
 		ErrorBuffer errors = new ErrorBuffer();
@@ -46,6 +49,9 @@ public class CommandlineParserTest {
 		assertEquals(false, errors.hasError());
 	}
 
+	/**
+	 * Tests for quoting.
+	 */
 	@Test
 	public final void testQuoting() {
 		final ErrorBuffer errors = new ErrorBuffer();
@@ -56,6 +62,9 @@ public class CommandlineParserTest {
 		assertEquals(null, parser.getNextParameter(errors));
 	}
 
+	/**
+	 * Tests for error.
+	 */
 	@Test
 	public final void testError() {
 		final ErrorBuffer errors = new ErrorBuffer();

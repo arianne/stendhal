@@ -6,6 +6,9 @@ import org.junit.Test;
 
 public class Base64Test {
 
+	/**
+	 * Tests for encode.
+	 */
 	@Test
 	public void testEncode() {
 		assertEquals("", new String(Base64.encode("".getBytes())));
@@ -16,6 +19,9 @@ public class Base64Test {
 	}
 
 
+	/**
+	 * Tests for dencode.
+	 */
 	@Test
 	public void testDencode() {
 		assertEquals("", new String(Base64.decode("".toCharArray())));

@@ -9,6 +9,9 @@ import org.junit.Test;
 
 public class TestVersion {
 
+	/**
+	 * Tests for extractVersion.
+	 */
 	@Test
 	public void testExtractVersion() {
 		assertEquals("extratVersion 0: ", "", Version.cut("0.52.1", 0));
@@ -21,6 +24,9 @@ public class TestVersion {
 				"0.52.1", 4));
 	}
 
+	/**
+	 * Tests for checkVersionCompatibility.
+	 */
 	@Test
 	public void testCheckVersionCompatibility() {
 		assertTrue("VersionCompatible 0.52 ~ 0.52", Version
@@ -35,6 +41,9 @@ public class TestVersion {
 				.checkCompatibility("0.52", "0.53"));
 	}
 
+	/**
+	 * Tests for compare.
+	 */
 	@Test
 	public void testCompare() {
 		assertEquals("VersionCompare 0.52 = 0.52", 0, Version.compare("0.52", "0.52"));
@@ -44,6 +53,9 @@ public class TestVersion {
 		assertEquals("VersionCompare 0.52 < 0.53", -1, Version.compare("0.52", "0.53"));
 	}
 
+	/**
+	 * Tests for compareInt.
+	 */
 	@Test
 	public void testCompareInt() {
 		assertEquals("VersionCompare 0.2 < 0.10", -8, Version.compare("0.2", "0.10"));
