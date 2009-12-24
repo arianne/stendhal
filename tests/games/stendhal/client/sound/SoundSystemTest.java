@@ -30,11 +30,17 @@ public class SoundSystemTest {
 	}
 
 
+	/**
+	 * Tests for contains.
+	 */
 	@Test
 	public final void testContains() {
 		assertFalse(SoundSystem.get().contains(""));
 	}
 
+	/**
+	 * Tests for setandGetMute.
+	 */
 	@Test
 	public final void testSetandGetMute() {
 		SoundSystem.get().setMute(true);
@@ -43,6 +49,9 @@ public class SoundSystemTest {
 		assertFalse("muted sound should be mute", SoundSystem.get().isMute());
 	}
 
+	/**
+	 * Tests for setAndGetVolume.
+	 */
 	@Test
 	public final void testSetAndGetVolume() {
 		SoundSystem.get().setVolume(0);
@@ -51,6 +60,9 @@ public class SoundSystemTest {
 		assertEquals(100, SoundSystem.get().getVolume());
 	}
 
+	/**
+	 * Tests for setVolumeOutOfBounds.
+	 */
 	@Test
 	public final void testSetVolumeOutOfBounds() {
 		SoundSystem.get().setVolume(-1);
@@ -60,6 +72,9 @@ public class SoundSystemTest {
 	}
 
 	
+	/**
+	 * Tests for get.
+	 */
 	@Test
 	public final void testGet() {
 		final SoundSystem ss1 = SoundSystem.get();
@@ -67,6 +82,9 @@ public class SoundSystemTest {
 		assertTrue("must receive identical instance", (ss1 == ss2));
 	}
 
+	/**
+	 * Tests for isValidEntry.
+	 */
 	@Test
 	public final void testisValidEntry() {
 

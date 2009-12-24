@@ -15,6 +15,9 @@ public class AddBuddyActionTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tests for execute.
+	 */
 	@Test
 	public void testExecute() {
 		new MockStendhalClient("") {
@@ -30,12 +33,18 @@ public class AddBuddyActionTest {
 		assertTrue(action.execute(new String []{"schnick"}, null));
 	}
 
+	/**
+	 * Tests for getMaximumParameters.
+	 */
 	@Test
 	public void testGetMaximumParameters() {
 		final AddBuddyAction action = new AddBuddyAction();
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
+	/**
+	 * Tests for getMinimumParameters.
+	 */
 	@Test
 	public void testGetMinimumParameters() {
 		final AddBuddyAction action = new AddBuddyAction();

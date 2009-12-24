@@ -48,12 +48,18 @@ public class SoundEffectMapTest {
 		sem2 = null;
 	}
 
+	/**
+	 * Tests for getInstance.
+	 */
 	@Test
 	public final void testGetInstance() {
 
 		assertEquals("Singleton instance is equal", sem, sem2);
 	}
 
+	/**
+	 * Tests for getByName.
+	 */
 	@Test
 	public final void testGetByName() {
 		final String key1 = "testGetByNameStringvalue";
@@ -68,6 +74,9 @@ public class SoundEffectMapTest {
 				.getByName(key));
 	}
 
+	/**
+	 * Tests for putStringString.
+	 */
 	@Test
 	public final void testPutStringString() {
 		final String key1 = "testPutStringString";
@@ -77,6 +86,9 @@ public class SoundEffectMapTest {
 
 	}
 
+	/**
+	 * Tests for putStringClipRunner.
+	 */
 	@Test
 	public final void testPutStringClipRunner() {
 		final String key = "testPutStringClipRunner";
@@ -85,6 +97,9 @@ public class SoundEffectMapTest {
 		assertTrue(SoundEffectMap.getInstance().containsKey(key));
 	}
 
+	/**
+	 * Tests for size.
+	 */
 	@Test
 	public final void testSize() {
 		final int size = SoundEffectMap.getInstance().size();

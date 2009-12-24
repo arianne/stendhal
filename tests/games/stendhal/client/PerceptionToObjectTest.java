@@ -49,6 +49,9 @@ public class PerceptionToObjectTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for onClear2Listeners1Object.
+	 */
 	@Test
 	public final void testOnClear2Listeners1Object() {
 		final PerceptionToObject pto = new PerceptionToObject();
@@ -90,6 +93,9 @@ public class PerceptionToObjectTest {
 	
 	
 	
+	/**
+	 * Tests for onClear.
+	 */
 	@Test
 	public final void testOnClear() {
 		final String attribute = "clear";
@@ -125,6 +131,9 @@ public class PerceptionToObjectTest {
 		assertFalse(pto.map.containsKey(object2.getID()));
 	}
 
+	/**
+	 * Tests for onDeleted.
+	 */
 	@Test
 	public final void testOnDeleted() {
 		final String attribute = "deleted";
@@ -159,6 +168,9 @@ public class PerceptionToObjectTest {
 		assertFalse(object2.has(attribute));
 	}
 
+	/**
+	 * Tests for onException.
+	 */
 	@Test
 	public final void testOnException() {
 		final String attribute = "clear";
@@ -192,6 +204,9 @@ public class PerceptionToObjectTest {
 		assertFalse(pto.map.containsKey(object2.getID()));
 	}
 
+	/**
+	 * Tests for onModifiedAdded.
+	 */
 	@Test
 	public final void testOnModifiedAdded() {
 		final PerceptionToObject pto = new PerceptionToObject();
@@ -227,6 +242,9 @@ public class PerceptionToObjectTest {
 		assertFalse(object2.has(attribute));
 	}
 
+	/**
+	 * Tests for onModifiedDeleted.
+	 */
 	@Test
 	public final void testOnModifiedDeleted() {
 		final PerceptionToObject pto = new PerceptionToObject();
@@ -263,6 +281,9 @@ public class PerceptionToObjectTest {
 
 	}
 
+	/**
+	 * Tests for onMyRPObject.
+	 */
 	@Test
 	public final void testOnMyRPObject() {
 		final PerceptionToObject pto = new PerceptionToObject();
@@ -304,6 +325,9 @@ public class PerceptionToObjectTest {
 	}
 
 	
+	/**
+	 * Tests for registerUnregister.
+	 */
 	@Test
 	public final void testRegisterUnregister() {
 		final PerceptionToObject pto = new PerceptionToObject();
@@ -333,6 +357,9 @@ public class PerceptionToObjectTest {
 		
 	}
 	
+	/**
+	 * Tests for absentObject.
+	 */
 	@Test
 	public final void testabsentObject() {
 		PerceptionToObject pto = new PerceptionToObject();

@@ -9,6 +9,9 @@ import org.junit.Test;
 
 public class RPObjectChangeDispatcherTest {
 
+	/**
+	 * Tests for dispatchModifyRemoved.
+	 */
 	@Test
 	public void testDispatchModifyRemoved() {
 		final RPObjectChangeListener listener = new RPObjectChangeListener() {

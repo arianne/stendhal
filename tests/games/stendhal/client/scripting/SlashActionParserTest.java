@@ -24,8 +24,11 @@ public class SlashActionParserTest {
 		SlashActionRepository.register();
 	}
 
+	/**
+	 * Tests for parse.
+	 */
 	@Test
-	public final void test() {
+	public final void testParse() {
 		SlashActionCommand cmd = SlashActionParser.parse("who");
 		assertFalse(cmd.hasError());
 		assertEquals("who", cmd.getName());
@@ -82,6 +85,9 @@ public class SlashActionParserTest {
 		assertEquals("thanks, I'm fine", cmd.getRemainder());
 	}
 
+	/**
+	 * Tests for quoting.
+	 */
 	@Test
 	public final void testQuoting() {
 		SlashActionCommand cmd = SlashActionParser.parse("where 'player 2'");
@@ -101,6 +107,9 @@ public class SlashActionParserTest {
 		assertEquals("", cmd.getRemainder());
 	}
 
+	/**
+	 * Tests for error.
+	 */
 	@Test
 	public final void testError() {
 		SlashActionCommand cmd = SlashActionParser.parse("");
@@ -112,6 +121,9 @@ public class SlashActionParserTest {
 		assertEquals("Unterminated quote", cmd.getErrorString());
 	}
 	
+	/**
+	 * Tests for ban.
+	 */
 	@Test
 	public final void testBan() {
 		SlashActionCommand cmd = SlashActionParser.parse("ban bob reason");

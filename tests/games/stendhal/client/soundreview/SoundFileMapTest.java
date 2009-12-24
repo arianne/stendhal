@@ -8,6 +8,9 @@ import org.junit.Test;
 
 public class SoundFileMapTest {
 
+	/**
+	 * Tests for isNull.
+	 */
 	@Test
 	public void testIsNull() {
 		final SoundFileMap sfm = new SoundFileMap();

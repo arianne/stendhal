@@ -44,6 +44,9 @@ public class PopupMenuListenerTest {
 
 	
 	boolean called;
+	/**
+	 * Tests for mousePressedMouseEvent.
+	 */
 	@Test
 	public final void testMousePressedMouseEvent() {
 		
@@ -56,6 +59,9 @@ public class PopupMenuListenerTest {
 		assertFalse(called);
 	}
 	
+	/**
+	 * Tests for mousePressedMouseEventIsTrigger.
+	 */
 	@Test
 	public final void testMousePressedMouseEventIsTrigger() {
 		final PopupMenuListener  listener = new PopupMenuListenerExtension();
@@ -67,6 +73,9 @@ public class PopupMenuListenerTest {
 		assertTrue(called);
 	}
 
+	/**
+	 * Tests for mouseReleasedMouseEvent.
+	 */
 	@Test
 	public final void testMouseReleasedMouseEvent() {
 		final PopupMenuListener  listener = new PopupMenuListenerExtension();
@@ -79,6 +88,9 @@ public class PopupMenuListenerTest {
 
 	}
 
+	/**
+	 * Tests for mouseReleasedMouseEventIsTrigger.
+	 */
 	@Test
 	public final void testMouseReleasedMouseEventIsTrigger() {
 		final PopupMenuListener  listener = new PopupMenuListenerExtension();

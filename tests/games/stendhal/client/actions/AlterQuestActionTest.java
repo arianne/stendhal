@@ -9,6 +9,9 @@ import marauroa.common.game.RPAction;
 import org.junit.Test;
 
 public class AlterQuestActionTest {
+	/**
+	 * Tests for execute.
+	 */
 	@Test
 	public void testExecute() {
 

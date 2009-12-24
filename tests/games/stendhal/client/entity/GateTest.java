@@ -37,6 +37,9 @@ public class GateTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for getArea.
+	 */
 	@Test
 	public void testGetArea() {
 		Gate g = new Gate();
@@ -52,6 +55,9 @@ public class GateTest {
 		
 	}
 
+	/**
+	 * Tests for getAudibleArea.
+	 */
 	@Test
 	public void testGetAudibleArea() {
 		Gate g = new Gate();
@@ -59,6 +65,9 @@ public class GateTest {
 		assertEquals(expected, g.getAudibleArea());
 	}
 
+	/**
+	 * Tests for getEntityClass.
+	 */
 	@Test
 	public void testGetEntityClass() {
 		Gate g = new Gate();
@@ -74,6 +83,9 @@ public class GateTest {
 		assertThat(g.getEntityClass(), is("class"));
 	}
 
+	/**
+	 * Tests for getEntitySubClass.
+	 */
 	@Test
 	public void testGetEntitySubClass() {
 		Gate g = new Gate();
@@ -89,6 +101,9 @@ public class GateTest {
 
 	}
 
+	/**
+	 * Tests for getHeight.
+	 */
 	@Test
 	public void testGetHeight() {
 		Gate g = new Gate();
@@ -102,6 +117,9 @@ public class GateTest {
 		
 	}
 
+	/**
+	 * Tests for getID.
+	 */
 	@Test
 	public void testGetID() {
 		Gate g = new Gate();
@@ -117,12 +135,18 @@ public class GateTest {
 		
 	}
 
+	/**
+	 * Tests for getName.
+	 */
 	@Test
 	public void testGetName() {
 		Gate g = new Gate();
 		assertThat(g.getName(), is(""));
 	}
 
+	/**
+	 * Tests for getRPObject.
+	 */
 	@Test
 	public void testGetRPObject() {
 		Gate g = new Gate();
@@ -137,6 +161,9 @@ public class GateTest {
 
 	}
 
+	/**
+	 * Tests for getResistance.
+	 */
 	@Test
 	public void testGetResistance() {
 		Gate g = new Gate();
@@ -151,6 +178,9 @@ public class GateTest {
 		assertThat(g.getResistance(), is(100));
 	}
 
+	/**
+	 * Tests for getResistanceIEntity.
+	 */
 	@Test
 	public void testGetResistanceIEntity() {
 		Gate g = new Gate();
@@ -166,11 +196,17 @@ public class GateTest {
 
 	}
 
+	/**
+	 * Tests for getSlot.
+	 */
 	@Test
 	public void testGetSlot() {
 		Gate g = new Gate();
 		assertThat(g.getSlot(null), nullValue());	}
 
+	/**
+	 * Tests for getTitle.
+	 */
 	@Test
 	public void testGetTitle() {
 		Gate g = new Gate();
@@ -186,6 +222,9 @@ public class GateTest {
 		
 	}
 
+	/**
+	 * Tests for getType.
+	 */
 	@Test
 	public void testGetType() {
 		Gate g = new Gate();
@@ -200,6 +239,9 @@ public class GateTest {
 		assertThat(g.getType(), is("type"));
 	}
 
+	/**
+	 * Tests for getVisibility.
+	 */
 	@Test
 	public void testGetVisibility() {
 		Gate g = new Gate();
@@ -207,6 +249,9 @@ public class GateTest {
 
 	}
 
+	/**
+	 * Tests for getWidth.
+	 */
 	@Test
 	public void testGetWidth() {
 		Gate g = new Gate();
@@ -221,6 +266,9 @@ public class GateTest {
 
 	}
 
+	/**
+	 * Tests for getX.
+	 */
 	@Test
 	public void testGetX() {
 		Gate g = new Gate();
@@ -235,6 +283,9 @@ public class GateTest {
 
 	}
 
+	/**
+	 * Tests for getY.
+	 */
 	@Test
 	public void testGetY() {
 		Gate g = new Gate();
@@ -248,6 +299,9 @@ public class GateTest {
 
 	}
 
+	/**
+	 * Tests for initialize.
+	 */
 	@Test
 	public void testInitialize() {
 		Gate g = new Gate();
@@ -264,6 +318,9 @@ public class GateTest {
 		assertSame(object, g.getRPObject());
 	}
 
+	/**
+	 * Tests for isOnGround.
+	 */
 	@Test
 	public void testIsOnGround() {
 		Gate g = new Gate();
@@ -271,6 +328,9 @@ public class GateTest {
 	}
 
 	
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public void testToString() {
 		Gate g = new Gate();

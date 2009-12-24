@@ -28,6 +28,9 @@ public class ItemImageTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for init.
+	 */
 	@Test
 	public final void testInit() {
 		ItemImage img = new ItemImage();

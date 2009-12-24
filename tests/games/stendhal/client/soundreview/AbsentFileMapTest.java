@@ -38,68 +38,107 @@ public class AbsentFileMapTest {
 		afm = null;
 	}
 
+	/**
+	 * Tests for clear.
+	 */
 	@Test
 	public void testClear() {
 		afm.clear();
 	}
 
+	/**
+	 * Tests for containsKey.
+	 */
 	@Test
 	public void testContainsKey() {
 
 		assertFalse(afm.containsKey(new Object()));
 	}
 
+	/**
+	 * Tests for containsValue.
+	 */
 	@Test
 	public void testContainsValue() {
 		assertFalse(afm.containsValue(new Object()));
 	}
 
+	/**
+	 * Tests for entrySet.
+	 */
 	@Test
 	public void testEntrySet() {
 		final Set<Entry<String, byte[]>> afmset = afm.entrySet();
 		assertNull(afmset);
 	}
 
+	/**
+	 * Tests for get.
+	 */
 	@Test
 	public void testGet() {
 		assertNull(afm.get(new Object()));
 	}
 
+	/**
+	 * Tests for isEmpty.
+	 */
 	@Test
 	public void testIsEmpty() {
 		assertTrue(afm.isEmpty());
 	}
 
+	/**
+	 * Tests for keySet.
+	 */
 	@Test
 	public void testKeySet() {
 		assertNull(afm.keySet());
 	}
 
+	/**
+	 * Tests for put.
+	 */
 	@Test(expected = IllegalStateException.class)
 	public void testPut() {
 		afm.put("testkey", new byte[1]);
 	}
 
+	/**
+	 * Tests for putAll.
+	 */
 	@Test(expected = IllegalStateException.class)
 	public void testPutAll() {
 		afm.putAll(new HashMap<String, byte[]>());
 	}
 
+	/**
+	 * Tests for remove.
+	 */
 	@Test
 	public void testRemove() {
 		assertNull(afm.remove(new Object()));
 	}
 
+	/**
+	 * Tests for size.
+	 */
 	@Test
 	public void testSize() {
 		assertEquals(0, afm.size());
 	}
 
+	/**
+	 * Tests for values.
+	 */
 	@Test
 	public void testValues() {
 		assertNull(afm.values());
 	}
 
+	/**
+	 * Tests for isNull.
+	 */
 	@Test
 	public void testIsNull() {
 		assertTrue(afm.isNull());

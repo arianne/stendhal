@@ -26,6 +26,9 @@ public class SummonAtActionTest {
 		assertEquals("Invalid amount: 5x", clientUI.getEventBuffer());
 	}
 
+	/**
+	 * Tests for execute.
+	 */
 	@Test
 	public void testExecute() {
 		// create client UI
@@ -50,6 +53,9 @@ public class SummonAtActionTest {
 		assertEquals("", clientUI.getEventBuffer());
 	}
 
+	/**
+	 * Tests for spaceHandling.
+	 */
 	@Test
 	public void testSpaceHandling() {
 		// create client UI
@@ -74,18 +80,27 @@ public class SummonAtActionTest {
 		assertEquals("", clientUI.getEventBuffer());
 	}
 
+	/**
+	 * Tests for getMaximumParameters.
+	 */
 	@Test
 	public void testGetMaximumParameters() {
 		final SummonAtAction action = new SummonAtAction();
 		assertEquals(3, action.getMaximumParameters());
 	}
 
+	/**
+	 * Tests for getMinimumParameters.
+	 */
 	@Test
 	public void testGetMinimumParameters() {
 		final SummonAtAction action = new SummonAtAction();
 		assertEquals(3, action.getMinimumParameters());
 	}
 
+	/**
+	 * Tests for fromChatline.
+	 */
 	@Test
 	public void testFromChatline() throws Exception {
 		// create client UI

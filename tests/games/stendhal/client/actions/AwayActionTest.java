@@ -14,6 +14,9 @@ public class AwayActionTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tests for execute.
+	 */
 	@Test
 	public void testExecute() {
 		new MockStendhalClient("") {
@@ -29,12 +32,18 @@ public class AwayActionTest {
 		assertTrue(action.execute(null, "schnick"));
 	}
 
+	/**
+	 * Tests for getMaximumParameters.
+	 */
 	@Test
 	public void testGetMaximumParameters() {
 		final AwayAction action = new AwayAction();
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
+	/**
+	 * Tests for getMinimumParameters.
+	 */
 	@Test
 	public void testGetMinimumParameters() {
 		final AwayAction action = new AwayAction();

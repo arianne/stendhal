@@ -15,6 +15,9 @@ public class EntityViewFactoryTest {
 		//GameScreen.setDefaultScreen(new MockScreen());
 	}
 
+	/**
+	 * Tests for create.
+	 */
 	@Test
 	public final void testCreate() {
 		assertEquals(EntityViewFactory.getViewClass("blood", null, null), Blood2DView.class);

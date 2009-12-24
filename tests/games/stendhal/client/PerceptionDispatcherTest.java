@@ -91,6 +91,9 @@ public class PerceptionDispatcherTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for onAdded.
+	 */
 	@Test
 	public void testOnAdded() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();
@@ -104,6 +107,9 @@ public class PerceptionDispatcherTest {
 		assertTrue(object.has(DISPATCHED));
 	}
 
+	/**
+	 * Tests for onClear.
+	 */
 	@Test
 	public void testOnClear() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();
@@ -116,6 +122,9 @@ public class PerceptionDispatcherTest {
 		assertTrue(changeListener.cleared);
 	}
 
+	/**
+	 * Tests for onDeleted.
+	 */
 	@Test
 	public void testOnDeleted() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();
@@ -129,6 +138,9 @@ public class PerceptionDispatcherTest {
 		assertTrue(object.has(DISPATCHED));
 	}
 
+	/**
+	 * Tests for onException.
+	 */
 	@Test
 	public void testOnException() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();
@@ -141,6 +153,9 @@ public class PerceptionDispatcherTest {
 		assertTrue(changeListener.onExceptionCalled);
 	}
 
+	/**
+	 * Tests for onModifiedAdded.
+	 */
 	@Test
 	public void testOnModifiedAdded() {
 
@@ -156,6 +171,9 @@ public class PerceptionDispatcherTest {
 
 	}
 
+	/**
+	 * Tests for onModifiedDeleted.
+	 */
 	@Test
 	public void testOnModifiedDeleted() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();
@@ -169,6 +187,9 @@ public class PerceptionDispatcherTest {
 		assertTrue(object.has(DISPATCHED));
 	}
 
+	/**
+	 * Tests for onMyRPObject.
+	 */
 	@Test
 	public void testOnMyRPObject() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();
@@ -183,6 +204,9 @@ public class PerceptionDispatcherTest {
 
 	}
 
+	/**
+	 * Tests for onPerceptionBegin.
+	 */
 	@Test
 	public void testOnPerceptionBegin() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();
@@ -196,6 +220,9 @@ public class PerceptionDispatcherTest {
 
 	}
 
+	/**
+	 * Tests for onPerceptionEnd.
+	 */
 	@Test
 	public void testOnPerceptionEnd() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();
@@ -209,6 +236,9 @@ public class PerceptionDispatcherTest {
 
 	}
 
+	/**
+	 * Tests for onSynced.
+	 */
 	@Test
 	public void testOnSynced() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();
@@ -222,6 +252,9 @@ public class PerceptionDispatcherTest {
 
 	}
 
+	/**
+	 * Tests for onUnsynced.
+	 */
 	@Test
 	public void testOnUnsynced() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();
@@ -235,6 +268,9 @@ public class PerceptionDispatcherTest {
 
 	}
 
+	/**
+	 * Tests for register.
+	 */
 	@Test
 	public void testRegister() {
 		final PerceptionDispatcher dispatch = new PerceptionDispatcher();

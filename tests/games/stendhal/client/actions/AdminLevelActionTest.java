@@ -15,6 +15,9 @@ public class AdminLevelActionTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tests for executeOneParam.
+	 */
 	@Test
 	public void testExecuteOneParam() {
 		new MockStendhalClient("") {
@@ -30,6 +33,9 @@ public class AdminLevelActionTest {
 		assertTrue(action.execute(new String[] { "schnick" }, null));
 	}
 
+	/**
+	 * Tests for executeSecondParamNull.
+	 */
 	@Test
 	public void testExecuteSecondParamNull() {
 
@@ -47,6 +53,9 @@ public class AdminLevelActionTest {
 		assertTrue(action.execute(new String[] { "schnick", null }, null));
 	}
 
+	/**
+	 * Tests for executeSecondParamValid.
+	 */
 	@Test
 	public void testExecuteSecondParamValid() {
 
@@ -64,12 +73,18 @@ public class AdminLevelActionTest {
 		assertTrue(action.execute(new String[] { "schnick", "100" }, null));
 	}
 
+	/**
+	 * Tests for getMaximumParameters.
+	 */
 	@Test
 	public void testGetMaximumParameters() {
 		final AdminLevelAction action = new AdminLevelAction();
 		assertThat(action.getMaximumParameters(), is(2));
 	}
 
+	/**
+	 * Tests for getMinimumParameters.
+	 */
 	@Test
 	public void testGetMinimumParameters() {
 		final AdminLevelAction action = new AdminLevelAction();

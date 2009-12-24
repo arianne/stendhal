@@ -15,6 +15,9 @@ public class AnswerActionTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tests for execute.
+	 */
 	@Test
 	public void testExecute() {
 		new MockStendhalClient("") {
@@ -30,12 +33,18 @@ public class AnswerActionTest {
 		assertTrue(action.execute(null, "schnick"));
 	}
 
+	/**
+	 * Tests for getMaximumParameters.
+	 */
 	@Test
 	public void testGetMaximumParameters() {
 		final AnswerAction action = new AnswerAction();
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
+	/**
+	 * Tests for getMinimumParameters.
+	 */
 	@Test
 	public void testGetMinimumParameters() {
 		final AnswerAction action = new AnswerAction();

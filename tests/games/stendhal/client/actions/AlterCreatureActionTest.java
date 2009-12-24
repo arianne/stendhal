@@ -16,6 +16,9 @@ public class AlterCreatureActionTest {
 	}
 
 
+	/**
+	 * Tests for execute.
+	 */
 	@Test
 	public void testExecute() {
 
@@ -35,12 +38,18 @@ public class AlterCreatureActionTest {
 
 	}
 
+	/**
+	 * Tests for getMaximumParameters.
+	 */
 	@Test
 	public void testGetMaximumParameters() {
 		final AlterCreatureAction action = new AlterCreatureAction();
 		assertThat(action.getMaximumParameters(), is(2));
 	}
 
+	/**
+	 * Tests for getMinimumParameters.
+	 */
 	@Test
 	public void testGetMinimumParameters() {
 		final AlterCreatureAction action = new AlterCreatureAction();

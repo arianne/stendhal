@@ -56,6 +56,9 @@ public class DropActionTest {
 		return rpo;
 	}
 
+	/**
+	 * Tests for noMoney.
+	 */
 	@Test
 	public void testNoMoney() {
 		final MockClientUI clientUI = new MockClientUI();
@@ -68,6 +71,9 @@ public class DropActionTest {
 		assertEquals("You don't have any money", clientUI.getEventBuffer());
 	}
 
+	/**
+	 * Tests for invalidAmount.
+	 */
 	@Test
 	public void testInvalidAmount() {
 		final MockClientUI clientUI = new MockClientUI();
@@ -80,6 +86,9 @@ public class DropActionTest {
 		assertEquals("Invalid quantity: 85x", clientUI.getEventBuffer());
 	}
 
+	/**
+	 * Tests for dropSingle.
+	 */
 	@Test
 	public void testDropSingle() {
 		// create client UI
@@ -110,6 +119,9 @@ public class DropActionTest {
 		assertEquals("", clientUI.getEventBuffer());
 	}
 
+	/**
+	 * Tests for dropMultiple.
+	 */
 	@Test
 	public void testDropMultiple() {
 		// create client UI
@@ -140,6 +152,9 @@ public class DropActionTest {
 		assertEquals("", clientUI.getEventBuffer());
 	}
 
+	/**
+	 * Tests for spaceHandling.
+	 */
 	@Test
 	public void testSpaceHandling() {
 		// create client UI
@@ -170,12 +185,18 @@ public class DropActionTest {
 		assertEquals("", clientUI.getEventBuffer());
 	}
 
+	/**
+	 * Tests for getMaximumParameters.
+	 */
 	@Test
 	public void testGetMaximumParameters() {
 		final DropAction action = new DropAction();
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
+	/**
+	 * Tests for getMinimumParameters.
+	 */
 	@Test
 	public void testGetMinimumParameters() {
 		final DropAction action = new DropAction();

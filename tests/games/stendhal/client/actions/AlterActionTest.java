@@ -15,6 +15,9 @@ public class AlterActionTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tests for execute.
+	 */
 	@Test
 	public void testExecute() {
 		new MockStendhalClient("") {
@@ -37,12 +40,18 @@ public class AlterActionTest {
 		assertTrue(action.execute(new String[] { "schnick", "schnack", "schnuck" }, "blabla"));
 	}
 
+	/**
+	 * Tests for getMaximumParameters.
+	 */
 	@Test
 	public void testGetMaximumParameters() {
 		final AlterAction action = new AlterAction();
 		assertThat(action.getMaximumParameters(), is(3));
 	}
 
+	/**
+	 * Tests for getMinimumParameters.
+	 */
 	@Test
 	public void testGetMinimumParameters() {
 		final AlterAction action = new AlterAction();

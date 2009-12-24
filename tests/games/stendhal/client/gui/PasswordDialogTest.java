@@ -8,6 +8,9 @@ import org.junit.Test;
 
 public class PasswordDialogTest {
 
+	/**
+	 * Tests for checkPass.
+	 */
 	@Test
 	public void testCheckPass() {
 		final PasswordDialog pwd = new PasswordDialog();

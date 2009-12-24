@@ -20,11 +20,17 @@ public class ChatCacheTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for chatCache.
+	 */
 	@Test
 	public void testChatCache() {
 		new ChatCache(null);
 	}
 
+	/**
+	 * Tests for getLines.
+	 */
 	@Test
 	public void testGetLines() {
 		ChatCache cache = new ChatCache(null);
@@ -34,6 +40,9 @@ public class ChatCacheTest {
 	}
 
 	
+	/**
+	 * Tests for getAndSetCurrent.
+	 */
 	@Test
 	public void testGetAndSetCurrent() {
 		ChatCache cache = new ChatCache(null);
@@ -44,6 +53,9 @@ public class ChatCacheTest {
 
 	}
 
+	/**
+	 * Tests for addlinetoCache.
+	 */
 	@Test
 	public void testAddlinetoCache() {
 		ChatCache cache = new ChatCache(null);
@@ -54,6 +66,9 @@ public class ChatCacheTest {
 		assertThat(cache.current(), is("two"));
 	}
 
+	/**
+	 * Tests for nextAndPrevious.
+	 */
 	@Test
 	public void testNextAndPrevious() throws Exception {
 		ChatCache cache = new ChatCache(null);
@@ -73,6 +88,9 @@ public class ChatCacheTest {
 
 	}
 
+	/**
+	 * Tests for nextOnEmptyCache.
+	 */
 	@Test
 	public void testNextOnEmptyCache() throws Exception {
 
@@ -87,6 +105,9 @@ public class ChatCacheTest {
 		}
 	}
 
+	/**
+	 * Tests for previousOnEmptyCache.
+	 */
 	public void testPreviousOnEmptyCache() throws Exception {
 
 		ChatCache cache = new ChatCache(null);

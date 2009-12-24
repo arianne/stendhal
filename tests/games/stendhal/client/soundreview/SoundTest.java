@@ -34,17 +34,26 @@ public class SoundTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for soundStringIntInt.
+	 */
 	@Test
 	public void testSoundStringIntInt() {
 		new Sound("bla", 0, 0);
 	}
 
+	/**
+	 * Tests for soundStringIntIntBoolean.
+	 */
 	@Test
 	public void testSoundStringIntIntBoolean() {
 		new Sound("bla", 0, 0, true);
 
 	}
 
+	/**
+	 * Tests for play.
+	 */
 	@Ignore // needs a way to actually play sound, fails on hudson even with virtual X
 	@Test
 	public void testPlay() {

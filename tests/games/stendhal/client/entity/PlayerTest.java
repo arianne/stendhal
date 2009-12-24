@@ -9,6 +9,9 @@ import marauroa.common.game.RPObject;
 import org.junit.Test;
 
 public class PlayerTest {
+	/**
+	 * Tests for getHearingArea.
+	 */
 	@Test
 	public final void testGetHearingArea() {
 		final RPObject rpo = new RPObject();
@@ -21,6 +24,9 @@ public class PlayerTest {
 		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
 	}
 	
+	/**
+	 * Tests for isBadBoy.
+	 */
 	@Test
 	public final void testIsBadBoy() {
 		Player george = new Player();
@@ -40,6 +46,9 @@ public class PlayerTest {
 		
 	}
 		
+	/**
+	 * Tests for amnesty.
+	 */
 	@Test
 	public final void testAmnesty() {
 		Player george = new Player();

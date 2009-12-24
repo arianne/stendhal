@@ -26,6 +26,9 @@ public class FormatTextParserTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for format.
+	 */
 	@Test
 	public void testFormat() throws Exception {
 		StringBuilder builder = new StringBuilder();

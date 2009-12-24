@@ -34,6 +34,9 @@ public class DomesticAnimalTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for onIdea.
+	 */
 	@Test
 	public void testOnIdea() {
 		

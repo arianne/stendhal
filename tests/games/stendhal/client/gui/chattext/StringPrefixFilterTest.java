@@ -27,6 +27,9 @@ public class StringPrefixFilterTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for filterCopy.
+	 */
 	@Test
 	public void testFilterCopy() {
 		StringPrefixFilter filter = new StringPrefixFilter("");
@@ -48,6 +51,9 @@ public class StringPrefixFilterTest {
 		
 	}
 
+	/**
+	 * Tests for filterCaseInsensitiveCopy.
+	 */
 	@Test
 	public void testFilterCaseInsensitiveCopy() {
 		StringPrefixFilter filter = new StringPrefixFilter("M");

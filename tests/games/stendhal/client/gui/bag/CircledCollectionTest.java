@@ -10,6 +10,9 @@ import org.junit.Test;
 
 public class CircledCollectionTest {
 
+	/**
+	 * Tests for add.
+	 */
 	@Test
 	public void testAdd() throws Exception {
 		CircledCollection<String> col = new CircledCollection<String>();
@@ -23,6 +26,9 @@ public class CircledCollectionTest {
 		
 	}
 	
+	/**
+	 * Tests for moveNext.
+	 */
 	@Test
 	public void testMoveNext() throws Exception {
 		CircledCollection<String> col = new CircledCollection<String>();

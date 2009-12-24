@@ -41,12 +41,18 @@ public class RPEntityTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for evaluateAttackEmptyObject.
+	 */
 	@Test
 	public void testEvaluateAttackEmptyObject() {
 		defender.evaluateAttack(object, attacker);
 		assertThat(attacker.getResolution(), is(Resolution.MISSED));
 	}
 
+	/**
+	 * Tests for evaluateAttackrisk0.
+	 */
 	@Test
 	public void testEvaluateAttackrisk0() {
 		object.put("risk", 0);
@@ -54,6 +60,9 @@ public class RPEntityTest {
 		assertThat(attacker.getResolution(), is(Resolution.MISSED));
 	}
 
+	/**
+	 * Tests for evaluateAttackriskMinus1.
+	 */
 	@Test
 	public void testEvaluateAttackriskMinus1() {
 		object.put("risk", -1);
@@ -61,6 +70,9 @@ public class RPEntityTest {
 		assertNull(attacker.getResolution());
 	}
 
+	/**
+	 * Tests for evaluateAttackNoRiskdamage0.
+	 */
 	@Test
 	public void testEvaluateAttackNoRiskdamage0() {
 		object.put("damage", 0);
@@ -68,6 +80,9 @@ public class RPEntityTest {
 		assertThat(attacker.getResolution(), is(Resolution.MISSED));
 	}
 
+	/**
+	 * Tests for evaluateAttackRisk0Damage0.
+	 */
 	@Test
 	public void testEvaluateAttackRisk0Damage0() {
 		object.put("risk", 0);
@@ -76,6 +91,9 @@ public class RPEntityTest {
 		assertThat(attacker.getResolution(), is(Resolution.MISSED));
 	}
 
+	/**
+	 * Tests for evaluateAttackRisk1Damage0.
+	 */
 	@Test
 	public void testEvaluateAttackRisk1Damage0() {
 		object.put("risk", 1);
@@ -84,6 +102,9 @@ public class RPEntityTest {
 		assertThat(attacker.getResolution(), is(Resolution.BLOCKED));
 	}
 
+	/**
+	 * Tests for evaluateAttackRisk1Damage1.
+	 */
 	@Test
 	public void testEvaluateAttackRisk1Damage1() {
 		object.put("risk", 1);

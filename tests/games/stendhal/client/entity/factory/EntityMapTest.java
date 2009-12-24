@@ -10,6 +10,9 @@ import org.junit.Test;
 
 public class EntityMapTest {
 
+	/**
+	 * Tests for getClassStringString.
+	 */
 	@Test
 	public final void testGetClassStringString() {
 		Class< ? extends IEntity> entClass = EntityMap.getClass("player", null,
@@ -19,6 +22,9 @@ public class EntityMapTest {
 		assertEquals(null, entClass);
 	}
 
+	/**
+	 * Tests for getClassGoldsource.
+	 */
 	@Test
 	public final void testGetClassGoldsource() {
 		Class< ? extends IEntity> entClass = EntityMap.getClass("gold_source",
@@ -28,6 +34,9 @@ public class EntityMapTest {
 		assertEquals(null, entClass);
 	}
 
+	/**
+	 * Tests for getSeed.
+	 */
 	@Test
 	public final void testGetSeed() {
 		Class< ? extends IEntity> entClass = EntityMap.getClass("gold_source",
@@ -36,6 +45,9 @@ public class EntityMapTest {
 		entClass = EntityMap.getClass(null, null, null);
 		assertEquals(null, entClass);
 	}
+	/**
+	 * Tests for getGate.
+	 */
 	@Test
 	public final void testGetGate() {
 		Class< ? extends IEntity> entClass = EntityMap.getClass("gate",

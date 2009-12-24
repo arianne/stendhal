@@ -12,6 +12,9 @@ import org.junit.Test;
 
 public class EntityTest {
 
+	/**
+	 * Tests for entity.
+	 */
 	@Test
 	public final void testEntity() {
 		final IEntity en = new MockEntity();
@@ -21,6 +24,9 @@ public class EntityTest {
 
 	}
 
+	/**
+	 * Tests for initialize.
+	 */
 	@Test
 	public final void testInitialize() {
 		MockEntity en;
@@ -34,6 +40,9 @@ public class EntityTest {
 		assertEquals("onPosition should only be called once ", 1, en.count);
 	}
 
+	/**
+	 * Tests for entityRPObject.
+	 */
 	@Test
 	public final void testEntityRPObject() {
 		final RPObject rpo = new RPObject();
@@ -47,6 +56,9 @@ public class EntityTest {
 
 	}
 
+	/**
+	 * Tests for getID.
+	 */
 	@Test
 	public final void testGetID() {
 
@@ -60,6 +72,9 @@ public class EntityTest {
 		assertEquals("woohoo", en.getID().getZoneID());
 	}
 
+	/**
+	 * Tests for getNamegetType.
+	 */
 	@Test
 	public final void testGetNamegetType() {
 		IEntity en;
@@ -79,6 +94,9 @@ public class EntityTest {
 		assertEquals("ragnarok", en.getName());
 	}
 
+	/**
+	 * Tests for getXGetY.
+	 */
 	@Test
 	public final void testGetXGetY() {
 		IEntity en;
@@ -88,6 +106,9 @@ public class EntityTest {
 		assertEquals(0.0, en.getY(), 0.001);
 	}
 
+	/**
+	 * Tests for distance.
+	 */
 	@Test
 	public final void testDistance() {
 		final Entity en = new MockEntity();
@@ -105,6 +126,9 @@ public class EntityTest {
 
 	}
 
+	/**
+	 * Tests for getSlot.
+	 */
 	@Test
 	public final void testGetSlot() {
 		final IEntity en = new MockEntity();

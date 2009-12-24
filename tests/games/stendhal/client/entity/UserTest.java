@@ -8,6 +8,9 @@ import org.junit.Test;
 
 public class UserTest {
 
+	/**
+	 * Tests for user.
+	 */
 	@Test
 	public final void testUser() {
 		final User user = new User();

@@ -13,6 +13,9 @@ public class SlashActionRepositoryTest {
 		SlashActionRepository.register();
 	}
 
+	/**
+	 * Tests for get.
+	 */
 	@Test
 	public void testGet() {
 		assertThat(SlashActionRepository.get("alter").toString(), containsString("AlterAction"));
