@@ -361,7 +361,7 @@
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${pagelayout_jar}"/>
-				
+				<pathelement path="${jorbis_jar}"/>
 			</classpath>
 		</javac>
 
@@ -512,6 +512,7 @@
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${pagelayout_jar}"/>
+        <copy todir="${buildroot}/stendhal-${version}/lib" file="${jorbis_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_sound_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
@@ -534,6 +535,7 @@
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${pagelayout_jar}"/>
+        <copy todir="${buildroot}/stendhal-${version}/lib" file="${jorbis_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
