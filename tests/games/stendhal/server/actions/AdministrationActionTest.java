@@ -74,6 +74,9 @@ public class AdministrationActionTest {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
+	/**
+	 * Tests for getLevelForCommand.
+	 */
 	@Test
 	public final void testGetLevelForCommand() {
 		assertEquals(-1, AdministrationAction.getLevelForCommand("unkown")
@@ -116,6 +119,9 @@ public class AdministrationActionTest {
 				.intValue());
 	}
 
+	/**
+	 * Tests for isPlayerAllowedToExecuteAdminCommand.
+	 */
 	@Test
 	public final void testIsPlayerAllowedToExecuteAdminCommand() {
 		final Player pl = PlayerTestHelper.createPlayer("player");
@@ -132,6 +138,9 @@ public class AdministrationActionTest {
 						"supportanswer", true));
 	}
 
+	/**
+	 * Tests for tellAllAction.
+	 */
 	@Test
 	public final void testTellAllAction() {
 		final Player pl = PlayerTestHelper.createPlayer("dummy");
@@ -150,6 +159,9 @@ public class AdministrationActionTest {
 	
 	}
 
+	/**
+	 * Tests for supportAnswerAction.
+	 */
 	@Test
 	public final void testSupportAnswerAction() {
 		final Player pl = PlayerTestHelper.createPlayer("player");
@@ -179,6 +191,9 @@ public class AdministrationActionTest {
 						.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for teleportActionToInvalidZone.
+	 */
 	@Test
 	public final void testTeleportActionToInvalidZone() {
 
@@ -208,6 +223,9 @@ public class AdministrationActionTest {
 						"Zone \"IRPZone.ID [id=non-existing-zone]\" not found. Similar zone names: ["));
 	}
 
+	/**
+	 * Tests for teleportActionToValidZone.
+	 */
 	@Test
 	public final void testTeleportActionToValidZone() {
 
@@ -247,6 +265,9 @@ public class AdministrationActionTest {
 		assertEquals("name must have changed, if action was executed", "hugo", bob.getName());
 	}
 
+	/**
+	 * Tests for teleportToActionPlayerNotThere.
+	 */
 	@Test
 	public final void testTeleportToActionPlayerNotThere() {
 		final Player pl = PlayerTestHelper.createPlayer("player");
@@ -258,6 +279,9 @@ public class AdministrationActionTest {
 		assertEquals("Player \"blah\" not found", pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for teleportToActionPlayerThere.
+	 */
 	@Test
 	public final void testTeleportToActionPlayerThere() {
 
@@ -275,6 +299,9 @@ public class AdministrationActionTest {
 		assertEquals("Position [0,0] is occupied", pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for onAlterActionWrongAttribute.
+	 */
 	@Test
 	public final void testOnAlterActionWrongAttribute() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
@@ -295,6 +322,9 @@ public class AdministrationActionTest {
 				pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for onAlterAction.
+	 */
 	@Test
 	public final void testOnAlterAction() {
 
@@ -320,6 +350,9 @@ public class AdministrationActionTest {
 				pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for onAlterActionTitle.
+	 */
 	@Test
 	public final void testOnAlterActionTitle() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
@@ -339,6 +372,9 @@ public class AdministrationActionTest {
 				.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for onAlterActionHP.
+	 */
 	@Test
 	public final void testOnAlterActionHP() {
 		final AdministrationAction aa = new AlterAction();
@@ -373,6 +409,9 @@ public class AdministrationActionTest {
 		assertEquals("may  change HP to 90 ", 90, pl.getHP());
 	}
 
+	/**
+	 * Tests for onAlterActionHPsub.
+	 */
 	@Test
 	public final void testOnAlterActionHPsub() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
@@ -395,6 +434,9 @@ public class AdministrationActionTest {
 		assertEquals(10, pl.getHP());
 	}
 
+	/**
+	 * Tests for onAlterActionHPadd.
+	 */
 	@Test
 	public final void testOnAlterActionHPadd() {
 
@@ -418,6 +460,9 @@ public class AdministrationActionTest {
 		assertEquals("set to max base_hp", 100, pl.getHP());
 	}
 
+	/**
+	 * Tests for alterCreatureEntityNotFound.
+	 */
 	@Test
 	public final void testAlterCreatureEntityNotFound() {
 		final Player pl = PlayerTestHelper.createPlayer("hugo");
@@ -434,6 +479,9 @@ public class AdministrationActionTest {
 		assertEquals("Entity not found", pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for summonAlterCreature.
+	 */
 	@Test
 	public final void testSummonAlterCreature() {
 
@@ -476,6 +524,9 @@ public class AdministrationActionTest {
 		assertEquals("xp", 8, rat.getXP());
 	}
 
+	/**
+	 * Tests for invisible.
+	 */
 	@Test
 	public final void testInvisible() {
 		final Player pl = PlayerTestHelper.createPlayer("hugo");
@@ -489,6 +540,9 @@ public class AdministrationActionTest {
 		assertFalse(pl.isInvisibleToCreatures());
 	}
 
+	/**
+	 * Tests for teleclickmode.
+	 */
 	@Test
 	public final void testTeleclickmode() {
 
@@ -503,6 +557,9 @@ public class AdministrationActionTest {
 		assertFalse(pl.isTeleclickEnabled());
 	}
 
+	/**
+	 * Tests for jail.
+	 */
 	@Test
 	public final void testJail() throws SQLException, IOException {
 		
@@ -573,6 +630,9 @@ public class AdministrationActionTest {
 		assertThat(player.events().get(0).get("text"), startsWith("You have been jailed by hugo for 1 minutes. Reason: whynot."));
 	}
 
+	/**
+	 * Tests for gag.
+	 */
 	@Test
 	public final void testGag() {
 		final Player pl = PlayerTestHelper.createPlayer("hugo");
@@ -617,6 +677,9 @@ public class AdministrationActionTest {
 				"You have gagged hugo for 1 minutes. Reason: "));
 	}
 
+	/**
+	 * Tests for onDestroyEntityNotFOund.
+	 */
 	@Test
 	public final void testOnDestroyEntityNotFOund() {
 		final Player pl = PlayerTestHelper.createPlayer("hugo");
@@ -628,6 +691,9 @@ public class AdministrationActionTest {
 		assertEquals("Entity not found", pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for onDestroyPlayer.
+	 */
 	@Test
 	public final void testOnDestroyPlayer() {
 		final Player pl = PlayerTestHelper.createPlayer("hugo");
@@ -643,6 +709,9 @@ public class AdministrationActionTest {
 		assertEquals("You can't remove players", pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for onDestroyNPC.
+	 */
 	@Test
 	public final void testOnDestroyNPC() {
 
@@ -665,6 +734,9 @@ public class AdministrationActionTest {
 		assertEquals("You can't remove SpeakerNPCs", pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for onDestroyRat.
+	 */
 	@Test
 	public final void testOnDestroyRat() {
 		CreatureTestHelper.generateRPClasses();
@@ -687,6 +759,9 @@ public class AdministrationActionTest {
 		assertEquals("Removed rat creature with ID #1", pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for onDestroyRatWithTargetID.
+	 */
 	@Test
 	public final void testOnDestroyRatWithTargetID() {
 
@@ -709,6 +784,9 @@ public class AdministrationActionTest {
 		assertEquals("Removed rat creature with ID #1", pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for onInspectRatWithTargetID.
+	 */
 	@Test
 	public final void testOnInspectRatWithTargetID() {
 		final Player pl = PlayerTestHelper.createPlayer("hugo");
@@ -733,6 +811,9 @@ public class AdministrationActionTest {
 						"Inspected creature is called \"rat\" and has the following attributes:"));
 	}
 
+	/**
+	 * Tests for onSummonAt.
+	 */
 	@Test
 	public final void testOnSummonAt() {
 		final Player player = PlayerTestHelper.createPlayer("hugo");

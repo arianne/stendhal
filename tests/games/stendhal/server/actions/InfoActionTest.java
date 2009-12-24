@@ -10,6 +10,9 @@ import utilities.PlayerTestHelper;
 
 public class InfoActionTest {
 
+	/**
+	 * Tests for execute.
+	 */
 	@Test
 	public void testExecute() throws Exception {
 		Player bob = PlayerTestHelper.createPlayer("bob");

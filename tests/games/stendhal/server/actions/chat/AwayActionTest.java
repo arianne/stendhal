@@ -10,6 +10,9 @@ import utilities.PlayerTestHelper;
 
 public class AwayActionTest {
 
+	/**
+	 * Tests for playerIsNull.
+	 */
 	@Test(expected = NullPointerException.class)
 	public void testPlayerIsNull() {
 		final RPAction action = new RPAction();
@@ -18,6 +21,9 @@ public class AwayActionTest {
 		aa.onAction(null, action);
 	}
 
+	/**
+	 * Tests for onAction.
+	 */
 	@Test
 	public void testOnAction() {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -31,6 +37,9 @@ public class AwayActionTest {
 		assertEquals("bla", bob.getAwayMessage());
 	}
 
+	/**
+	 * Tests for onInvalidAction.
+	 */
 	@Test
 	public void testOnInvalidAction() {
 		final Player bob = PlayerTestHelper.createPlayer("bob");

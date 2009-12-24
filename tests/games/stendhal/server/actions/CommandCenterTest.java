@@ -22,6 +22,9 @@ public class CommandCenterTest {
 
 	}
 
+	/**
+	 * Tests for register.
+	 */
 	@Test
 	public void testRegister() {
 		final ActionListener listener = new ActionListener() {
@@ -38,6 +41,9 @@ public class CommandCenterTest {
 		assertTrue(caster.has("success"));
 	}
 
+	/**
+	 * Tests for registerTwice.
+	 */
 	@Test
 	public void testRegisterTwice() {
 		CommandCenter.register("this", new ActionListener() {
@@ -54,12 +60,18 @@ public class CommandCenterTest {
 		});
 	}
 
+	/**
+	 * Tests for executeNullNull.
+	 */
 	@Test
 	public void testExecuteNullNull() {
 		CommandCenter.execute(null, null);
 
 	}
 
+	/**
+	 * Tests for executeUnknown.
+	 */
 	@Test
 	public void testExecuteUnknown() {
 		final RPAction action = new RPAction();

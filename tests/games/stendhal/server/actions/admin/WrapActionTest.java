@@ -26,6 +26,9 @@ public class WrapActionTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for onActionnotAtplayer.
+	 */
 	@Test
 	public void testOnActionnotAtplayer() {
 		final WrapAction wrap = new WrapAction();
@@ -49,6 +52,9 @@ public class WrapActionTest {
 		assertThat(player.events().get(0).get("text"), is("You don't have any what blabla"));
 	}
 
+	/**
+	 * Tests for onActionPotion.
+	 */
 	@Test
 	public void testOnActionPotion() {
 		final WrapAction wrap = new WrapAction();
@@ -69,6 +75,9 @@ public class WrapActionTest {
 
 	}
 
+	/**
+	 * Tests for onActionGreaterPotion.
+	 */
 	@Test
 	public void testOnActionGreaterPotion() {
 		
@@ -92,6 +101,9 @@ public class WrapActionTest {
 		
 	}
 
+	/**
+	 * Tests for onActionMithrilshield.
+	 */
 	@Test
 	public void testOnActionMithrilshield() {
 		final WrapAction wrap = new WrapAction();

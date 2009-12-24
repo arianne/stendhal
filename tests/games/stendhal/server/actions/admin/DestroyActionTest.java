@@ -28,6 +28,9 @@ public class DestroyActionTest {
 		MockStendlRPWorld.reset();
 	}
 	
+	/**
+	 * Tests for perform.
+	 */
 	@Test
 	public void testPerform() {
 		DestroyAction destroyAction = new DestroyAction();

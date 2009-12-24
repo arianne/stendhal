@@ -60,6 +60,9 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		return player;
 	}
 
+	/**
+	 * Tests for dropInvalidSourceSlot.
+	 */
 	@Test
 	public void testDropInvalidSourceSlot() {
 		final Player player = createTestPlayer("george");
@@ -75,6 +78,9 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		Assert.assertEquals("Source nonExistingSlotXXXXXX does not exist", player.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for dropNonExistingItem.
+	 */
 	@Test
 	public void testDropNonExistingItem() {
 		final Player player = createTestPlayer("bob");
@@ -93,6 +99,9 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		Assert.assertEquals("There is no such item in the bag of bob", player.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for onActioninJail.
+	 */
 	@Test
 	public void testOnActioninJail() {
 		final EquipmentAction action = new DropAction();
@@ -113,6 +122,9 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		assertTrue(bob.events().isEmpty());
 	}
 	
+	/**
+	 * Tests for dropItem.
+	 */
 	@Test
 	public void testDropItem() {
 		final Player player = PlayerTestHelper.createPlayer("bob");
@@ -142,6 +154,9 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		
 	}
 	
+	/**
+	 * Tests for dropSomeOfItem.
+	 */
 	@Test
 	public void testDropSomeOfItem() {
 		final Player player = PlayerTestHelper.createPlayer("bob");

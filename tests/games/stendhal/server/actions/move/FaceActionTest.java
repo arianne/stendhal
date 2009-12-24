@@ -24,6 +24,9 @@ public class FaceActionTest {
 	private Direction directionSet;
 	private boolean notifyCalled;
 
+	/**
+	 * Tests for onAction.
+	 */
 	@Test
 	public void testOnAction() {
 		final FaceAction fa = new FaceAction();

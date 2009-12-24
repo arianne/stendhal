@@ -50,6 +50,9 @@ public class AlterActionTest {
 
 	
 
+	/**
+	 * Tests for perform.
+	 */
 	@Test
 	public final void testPerform() {
 		AlterAction action = new AlterAction();
@@ -65,6 +68,9 @@ public class AlterActionTest {
 		assertEquals("Entity not found", player.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for unknownAttribute.
+	 */
 	@Test
 	public final void testUnknownAttribute() {
 		Player player = PlayerTestHelper.createPlayer("bob");
@@ -82,6 +88,9 @@ public class AlterActionTest {
 		assertEquals("Attribute you are altering is not defined in RPClass(player)", player.events().get(0).get("text"));
 	}
 	
+	/**
+	 * Tests for nameAttribute.
+	 */
 	@Test
 	public final void testNameAttribute() {
 		Player player = PlayerTestHelper.createPlayer("bob");
@@ -99,6 +108,9 @@ public class AlterActionTest {
 		assertEquals("Sorry, name cannot be changed.", player.events().get(0).get("text"));
 	}
 	
+	/**
+	 * Tests for adminlevelAttribute.
+	 */
 	@Test
 	public final void testAdminlevelAttribute() {
 		Player player = PlayerTestHelper.createPlayer("bob");
@@ -115,6 +127,9 @@ public class AlterActionTest {
 		assertFalse(player.events().isEmpty());
 		assertEquals("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.", player.events().get(0).get("text"));
 	}
+	/**
+	 * Tests for titleAttribute.
+	 */
 	@Test
 	public final void testTitleAttribute() {
 		Player player = PlayerTestHelper.createPlayer("bob");
@@ -132,6 +147,9 @@ public class AlterActionTest {
 		assertEquals("The title attribute may not be changed directly.", player.events().get(0).get("text"));
 	}
 	
+	/**
+	 * Tests for validAttributeInvalidNumber.
+	 */
 	@Test
 	public final void testValidAttributeInvalidNumber() {
 		Player player = PlayerTestHelper.createPlayer("bob");
@@ -149,6 +167,9 @@ public class AlterActionTest {
 		assertEquals("Please issue a numeric value instead of ''", player.events().get(0).get("text"));
 	}
 	
+	/**
+	 * Tests for validAttributeValidNumber.
+	 */
 	@Test
 	public final void testValidAttributeValidNumber() {
 		Player player = PlayerTestHelper.createPlayer("bob");
@@ -179,6 +200,9 @@ public class AlterActionTest {
 	}
 	
 	
+	/**
+	 * Tests for validAttributeValidName.
+	 */
 	@Test
 	public final void testValidAttributeValidName() {
 		Player player = PlayerTestHelper.createPlayer("bob");
@@ -211,6 +235,9 @@ public class AlterActionTest {
 		assertEquals(5, player.getHP());
 	}
 	
+	/**
+	 * Tests for validAttributeValidNameDifferentZone.
+	 */
 	@Test
 	public final void testValidAttributeValidNameDifferentZone() {
 		Player player = PlayerTestHelper.createPlayer("bob");
@@ -251,6 +278,9 @@ public class AlterActionTest {
 		assertEquals(5, playerAway.getHP());
 	}
 	
+	/**
+	 * Tests for hasNeededAttributes.
+	 */
 	@Test
 	public final void testHasNeededAttributes() {
 		AlterAction action = new AlterAction();
@@ -266,6 +296,9 @@ public class AlterActionTest {
 		assertTrue(action.hasNeededAttributes(rpAction));
 	}
 	
+	/**
+	 * Tests for isParsableByInteger.
+	 */
 	@Test
 	public final void testIsParsableByInteger() {
 		AlterAction action = new AlterAction();

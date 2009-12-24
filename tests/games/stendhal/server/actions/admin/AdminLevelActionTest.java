@@ -28,6 +28,9 @@ public class AdminLevelActionTest {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
+	/**
+	 * Tests for adminLevelAction0.
+	 */
 	@Test
 	public final void testAdminLevelAction0() {
 		final Player pl = PlayerTestHelper.createPlayer("player");
@@ -46,6 +49,9 @@ public class AdminLevelActionTest {
 		assertEquals("player changed your adminlevel from 0 to 0.", bob.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for adminLevelActioncasterNotSuper.
+	 */
 	@Test
 	public final void testAdminLevelActioncasterNotSuper() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
@@ -63,6 +69,9 @@ public class AdminLevelActionTest {
 				pl.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for adminLevelActionOverSuper.
+	 */
 	@Test
 	public final void testAdminLevelActionOverSuper() {
 		final Player pl = PlayerTestHelper.createPlayer("player");
@@ -86,6 +95,9 @@ public class AdminLevelActionTest {
 				.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for adminLevelActionPlayerFound.
+	 */
 	@Test
 	public final void testAdminLevelActionPlayerFound() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
@@ -99,6 +111,9 @@ public class AdminLevelActionTest {
 		CommandCenter.execute(pl, action);
 		assertEquals("bob has adminlevel 5000", pl.events().get(0).get("text"));
 	}
+	/**
+	 * Tests for adminLevelActionPlayerGhosted.
+	 */
 	@Test 
 	public final void testAdminLevelActionPlayerGhosted() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
@@ -122,6 +137,9 @@ public class AdminLevelActionTest {
 
 	}
 
+	/**
+	 * Tests for adminLevelActionPlayerFoundNoInteger.
+	 */
 	@Test
 	public final void testAdminLevelActionPlayerFoundNoInteger() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
@@ -138,6 +156,9 @@ public class AdminLevelActionTest {
 				.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for adminLevelActionPlayerNotFound.
+	 */
 	@Test
 	public final void testAdminLevelActionPlayerNotFound() {
 		final Player pl = PlayerTestHelper.createPlayer("player");

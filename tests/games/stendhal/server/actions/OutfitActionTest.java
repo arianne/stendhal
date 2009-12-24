@@ -17,6 +17,9 @@ public class OutfitActionTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tests for onWrongAction.
+	 */
 	@Test
 	public void testOnWrongAction() {
 		final OutfitAction oa = new OutfitAction();
@@ -26,6 +29,9 @@ public class OutfitActionTest {
 		assertTrue("no exception thrown", true);
 	}
 
+	/**
+	 * Tests for onActionWrongValue.
+	 */
 	@Test(expected = NumberFormatException.class)
 	public void testOnActionWrongValue() {
 		final OutfitAction oa = new OutfitAction();
@@ -35,6 +41,9 @@ public class OutfitActionTest {
 		oa.onAction(player, action);
 	}
 
+	/**
+	 * Tests for onAction.
+	 */
 	@Test
 	public void testOnAction() {
 		final OutfitAction oa = new OutfitAction();

@@ -29,6 +29,9 @@ public class UseActionTest {
 		Log4J.init();
 	}
 
+	/**
+	 * Tests for onActionItemInBag.
+	 */
 	@Test
 	public void testOnActionItemInBag() {
 		MockStendlRPWorld.get();
@@ -47,6 +50,9 @@ public class UseActionTest {
 		assertFalse(player.isEquipped("cheese"));
 	}
 
+	/**
+	 * Tests for onActionItemInBagWithTwoCheese.
+	 */
 	@Test
 	public void testOnActionItemInBagWithTwoCheese() {
 		MockStendlRPWorld.get();
@@ -66,6 +72,9 @@ public class UseActionTest {
 		assertTrue(player.isEquipped("cheese"));
 	}
 
+	/**
+	 * Tests for onActionIteminChest.
+	 */
 	@Test
 	public void testOnActionIteminChest() {
 		MockStendlRPWorld.get();
@@ -87,6 +96,9 @@ public class UseActionTest {
 		assertTrue(player.has("eating"));
 	}
 
+	/**
+	 * Tests for isItemBoundToOtherPlayer.
+	 */
 	@Test
 	public void testIsItemBoundToOtherPlayer() {
 		final UseAction ua = new UseAction();

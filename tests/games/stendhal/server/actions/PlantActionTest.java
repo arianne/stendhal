@@ -42,6 +42,9 @@ public class PlantActionTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for executeWithNUllValues.
+	 */
 	@Test
 	public void testExecuteWithNUllValues() {
 		final PlantAction plantAction = new PlantAction();
@@ -61,6 +64,9 @@ public class PlantActionTest {
 
 	}
 
+	/**
+	 * Tests for execute.
+	 */
 	@Test
 	public void testExecute() {
 		final PlantAction plantAction = new PlantAction();
@@ -85,6 +91,9 @@ public class PlantActionTest {
 	}
 	
 
+	/**
+	 * Tests for executeSeedInBag.
+	 */
 	@Test
 	public void testExecuteSeedInBag() {
 		final PlantAction plantAction = new PlantAction();
@@ -103,6 +112,9 @@ public class PlantActionTest {
 		assertFalse(plantAction.execute());
 	}
 
+	/**
+	 * Tests for executeNonameSeed.
+	 */
 	@Test
 	public void testExecuteNonameSeed() {
 		final PlantAction plantAction = new PlantAction();
@@ -136,6 +148,9 @@ public class PlantActionTest {
 
 	}
 	
+	/**
+	 * Tests for executeDaisiesSeed.
+	 */
 	@Test
 	public void testExecuteDaisiesSeed() {
 		final PlantAction plantAction = new PlantAction();

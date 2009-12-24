@@ -23,6 +23,9 @@ public class SourceObjectTest {
 		MockStendlRPWorld.get();
 	}
 
+	/**
+	 * Tests for isNotValid.
+	 */
 	@Test
 	public void testIsNotValid() {
 		SourceObject so = SourceObject.createSourceObject(null, null);
@@ -37,6 +40,9 @@ public class SourceObjectTest {
 		assertFalse("Player is not in zone", so.isValid());
 	}
 
+	/**
+	 * Tests for isValidNonContained.
+	 */
 	@Test
 	public void testIsValidNonContained() {
 		MockStendlRPWorld.get();
@@ -55,6 +61,9 @@ public class SourceObjectTest {
 		assertTrue(so.isValid());
 	}
 
+	/**
+	 * Tests for isValidContainedNoSlot.
+	 */
 	@Test
 	public void testIsValidContainedNoSlot() {
 		MockStendlRPWorld.get();
@@ -77,6 +86,9 @@ public class SourceObjectTest {
 		assertFalse("no slot defined", so.isValid());
 	}
 
+	/**
+	 * Tests for isValidContained.
+	 */
 	@Test
 	public void testIsValidContained() {
 		MockStendlRPWorld.get();
@@ -99,6 +111,9 @@ public class SourceObjectTest {
 		assertTrue("Unreachable slot", so.isValid());
 	}
 
+	/**
+	 * Tests for isValidContainedNotInslot.
+	 */
 	@Test
 	public void testIsValidContainedNotInslot() {
 		MockStendlRPWorld.get();
@@ -122,6 +137,9 @@ public class SourceObjectTest {
 		assertFalse("Itemnot in bag", so.isValid());
 	}
 
+	/**
+	 * Tests for isValidStackable.
+	 */
 	@Test
 	public void testIsValidStackable() {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -140,6 +158,9 @@ public class SourceObjectTest {
 		assertEquals("stackable returns full quantity", dropitem.getQuantity(), so.getQuantity());
 	}
 
+	/**
+	 * Tests for isValidStackableDropAFew.
+	 */
 	@Test
 	public void testIsValidStackableDropAFew() {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -158,6 +179,9 @@ public class SourceObjectTest {
 		assertEquals("return the amount to be dropped", amounttodrop, so.getQuantity());
 	}
 
+	/**
+	 * Tests for isValidStackableDropTooMany.
+	 */
 	@Test
 	public void testIsValidStackableDropTooMany() {
 		final Player bob = PlayerTestHelper.createPlayer("bob");

@@ -28,6 +28,9 @@ public class BanActionTest {
 		MockStendlRPWorld.get();
 	}
 
+	/**
+	 * Tests for perform.
+	 */
 	@Test
 	public void testPerform() throws Throwable {
 		DBTransaction transaction = TransactionPool.get().beginWork();
@@ -60,6 +63,9 @@ public class BanActionTest {
 		}
 	}
 	
+	/**
+	 * Tests for commandCenterPerform.
+	 */
 	@Test
 	public void testCommandCenterPerform() throws Throwable {
 		DBTransaction transaction = TransactionPool.get().beginWork();

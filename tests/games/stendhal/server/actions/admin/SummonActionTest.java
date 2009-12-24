@@ -51,6 +51,9 @@ public class SummonActionTest {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 	
+	/**
+	 * Tests for summonRat.
+	 */
 	@Test
 	public final void testSummonRat() {
 		final Player pl = PlayerTestHelper.createPlayer("hugo");
@@ -72,6 +75,9 @@ public class SummonActionTest {
 		assertTrue("RaidCreature", rat instanceof RaidCreature);
 	}
 
+	/**
+	 * Tests for summonDagger.
+	 */
 	@Test
 	public final void testSummonDagger() {
 
@@ -93,6 +99,9 @@ public class SummonActionTest {
 		assertEquals("dagger", item.get("subclass"));
 	}
 
+	/**
+	 * Tests for summonUnKnown.
+	 */
 	@Test
 	public final void testSummonUnKnown() {
 		final Player pl = PlayerTestHelper.createPlayer("hugo");
@@ -112,6 +121,9 @@ public class SummonActionTest {
 		assertNull(zone.getEntityAt(0, 0));
 	}
 	
+	/**
+	 * Tests for avoidNFE.
+	 */
 	@Test
 	public final void testAvoidNFE() {
 		final Player pl = PlayerTestHelper.createPlayer("hugo");

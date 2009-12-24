@@ -22,6 +22,9 @@ public class GhostModeActionTest {
 		MockStendlRPWorld.get();
 	}
 
+	/**
+	 * Tests for ghostmode.
+	 */
 	@Test
 	public final void testGhostmode() {
 		final Player hugo = PlayerTestHelper.createPlayer("hugo");

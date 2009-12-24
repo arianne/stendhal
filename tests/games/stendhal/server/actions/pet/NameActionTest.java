@@ -36,6 +36,9 @@ public class NameActionTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for onActionNoArgs.
+	 */
 	@Test
 	public void testOnActionNoArgs() {
 		final RPAction action = new RPAction();
@@ -45,6 +48,9 @@ public class NameActionTest {
 		assertThat(bob.events().get(0).get("text"), is("Please issue the old and the new name."));
 	}
 
+	/**
+	 * Tests for onActiondoesnotownoldname.
+	 */
 	@Test
 	public void testOnActiondoesnotownoldname() {
 		final RPAction action = new RPAction();
@@ -56,6 +62,9 @@ public class NameActionTest {
 		assertThat(bob.events().get(0).get("text"), is("You don't own any oldname"));
 	}
 	
+	/**
+	 * Tests for onActionOwnsPetOfDifferentName.
+	 */
 	@Test
 	public void testOnActionOwnsPetOfDifferentName() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -78,6 +87,9 @@ public class NameActionTest {
 		assertThat(pet.getTitle(), is("sheep"));
 	}
 
+	/**
+	 * Tests for onActionName.
+	 */
 	@Test
 	public void testOnActionName() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -100,6 +112,9 @@ public class NameActionTest {
 		assertThat(pet.getTitle(), is("newname"));
 	}
 	
+	/**
+	 * Tests for onActionNameWithQuotesAndSpace.
+	 */
 	@Test
 	public void testOnActionNameWithQuotesAndSpace() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -122,6 +137,9 @@ public class NameActionTest {
 		assertThat(pet.getTitle(), is("newname"));
 	}
 	
+	/**
+	 * Tests for onActionNameToExisting.
+	 */
 	@Test
 	public void testOnActionNameToExisting() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -143,6 +161,9 @@ public class NameActionTest {
 		assertThat(bob.events().get(0).get("text"), is("You own already a pet named 'sheep'"));
 	}
 	
+	/**
+	 * Tests for onActionRename.
+	 */
 	@Test
 	public void testOnActionRename() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -165,6 +186,9 @@ public class NameActionTest {
 		assertThat(pet.getTitle(), is("newname"));
 	}
 	
+	/**
+	 * Tests for onActionRenameBack.
+	 */
 	@Test
 	public void testOnActionRenameBack() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -187,6 +211,9 @@ public class NameActionTest {
 		assertThat(pet.getTitle(), is("sheep"));
 	}
 	
+	/**
+	 * Tests for onActionRenameWithGenericName.
+	 */
 	@Test
 	public void testOnActionRenameWithGenericName() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -209,6 +236,9 @@ public class NameActionTest {
 		assertThat(pet.getTitle(), is("newname"));
 	}
 	
+	/**
+	 * Tests for onActionRenameBackWithGenericName.
+	 */
 	@Test
 	public void testOnActionRenameBackWithGenericName() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -231,6 +261,9 @@ public class NameActionTest {
 		assertThat(pet.getTitle(), is("sheep"));
 	}
 	
+	/**
+	 * Tests for onActionLongestName.
+	 */
 	@Test
 	public void testOnActionLongestName() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -253,6 +286,9 @@ public class NameActionTest {
 		assertThat(pet.getTitle(), is("01234567890123456789"));
 	}
 	
+	/**
+	 * Tests for onActiontooLongName.
+	 */
 	@Test
 	public void testOnActiontooLongName() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -276,6 +312,9 @@ public class NameActionTest {
 		assertThat(pet.getTitle(), is("oldname"));
 	}
 	
+	/**
+	 * Tests for onActionEmptyName.
+	 */
 	@Test
 	public void testOnActionEmptyName() {
 		final StendhalRPZone zone = new StendhalRPZone("zone");

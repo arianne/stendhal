@@ -18,6 +18,9 @@ public class StopActionTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tests for onAction.
+	 */
 	@Test
 	public void testOnAction() {
 

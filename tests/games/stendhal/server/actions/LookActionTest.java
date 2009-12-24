@@ -54,6 +54,9 @@ public class LookActionTest {
 		zone.add(npc);
 	}
 
+	/**
+	 * Tests for look.
+	 */
 	@Test
 	public void testLook() {
 		final Player player1 = MockStendhalRPRuleProcessor.get().getPlayer("player1");
@@ -96,6 +99,9 @@ public class LookActionTest {
 
 	@Test
 	// Test for 1847043 - out-of-screen commands
+	/**
+	 * Tests for lookOutOfScreen.
+	 */
 	public void testLookOutOfScreen() {
 		final Player player1 = MockStendhalRPRuleProcessor.get().getPlayer("player1");
 		assertNotNull(player1);
@@ -150,6 +156,9 @@ public class LookActionTest {
 
 	@Test
 	// Test for 1864205 - /look adminname shows admin in ghostmode
+	/**
+	 * Tests for lookAdmin.
+	 */
 	public void testLookAdmin() {
 		final Player player1 =  MockStendhalRPRuleProcessor.get().getPlayer("player1");
 		assertNotNull(player1);

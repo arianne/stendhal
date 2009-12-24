@@ -40,6 +40,9 @@ public class PlayersQueryTest {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
+	/**
+	 * Tests for onAction.
+	 */
 	@Test
 	public void testOnAction() {
 		final ActionListener al = new PlayersQuery() {
@@ -67,6 +70,9 @@ public class PlayersQueryTest {
 		assertTrue(whereWasExecuted);
 	}
 
+	/**
+	 * Tests for onWho.
+	 */
 	@Test
 	public void testOnWho() {
 		final PlayersQuery pq = new PlayersQuery();
@@ -99,6 +105,9 @@ public class PlayersQueryTest {
 		assertThat(player.events().get(0).get("text"), equalTo("1 Players online: player(!0) "));
 	}
 
+	/**
+	 * Tests for onWhereNoTarget.
+	 */
 	@Test
 	public void testOnWhereNoTarget() {
 		final PlayersQuery pq = new PlayersQuery();
@@ -111,6 +120,9 @@ public class PlayersQueryTest {
 		assertTrue(player.events().isEmpty());
 	}
 
+	/**
+	 * Tests for onWhereNotThere.
+	 */
 	@Test
 	public void testOnWhereNotThere() {
 		final PlayersQuery pq = new PlayersQuery();
@@ -125,6 +137,9 @@ public class PlayersQueryTest {
 		assertThat(player.events().get(0).get("text"), equalTo("No player or pet named \"NotThere\" is currently logged in."));
 	}
 
+	/**
+	 * Tests for onWhere.
+	 */
 	@Test
 	public void testOnWhere() {
 		final PlayersQuery pq = new PlayersQuery();
@@ -155,6 +170,9 @@ public class PlayersQueryTest {
 		assertThat(player.events().get(0).get("text"), equalTo("No player or pet named \"ghosted\" is currently logged in."));
 	}
 
+	/**
+	 * Tests for onWhereSheep.
+	 */
 	@Test
 	public void testOnWhereSheep() {
 		final PlayersQuery pq = new PlayersQuery();
@@ -169,6 +187,9 @@ public class PlayersQueryTest {
 		assertThat(player.events().get(0).get("text"), equalTo("No player or pet named \"sheep\" is currently logged in."));
 	}
 
+	/**
+	 * Tests for onWherePetSheep.
+	 */
 	@Test
 	public void testOnWherePetSheep() {
 		SheepTestHelper.generateRPClasses();
