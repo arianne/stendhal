@@ -55,6 +55,9 @@ public class SpouseExtensionTest {
 		
 	}
 
+	/**
+	 * Tests for magic.
+	 */
 	@Test
 	public final void testMagic() {
 		final StendhalRPWorld world = MockStendlRPWorld.get();

@@ -12,6 +12,9 @@ import static org.junit.Assert.assertTrue;
 
 public class TextEventTest {
 
+	/**
+	 * Tests for textEvent.
+	 */
 	@Test
 	public void testTextEvent() {
 		TextEvent event = new TextEvent("text");
@@ -19,6 +22,9 @@ public class TextEventTest {
 		assertThat(event.get("text"), is("text"));
 	}
 
+	/**
+	 * Tests for generateRPClass.
+	 */
 	public void testGenerateRPClass() {
 		assertFalse(RPClass.hasRPClass("text"));
 		TextEvent.generateRPClass();

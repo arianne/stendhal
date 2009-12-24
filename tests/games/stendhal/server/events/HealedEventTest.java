@@ -8,12 +8,18 @@ import org.junit.Test;
 
 public class HealedEventTest {
 
+	/**
+	 * Tests for healedEvent.
+	 */
     @Test
     public void testHealedEvent() {
         HealedEvent event = new HealedEvent(1);
         assertThat(new Integer(event.getInt("amount")), is(new Integer(1)));
     }
     
+	/**
+	 * Tests for healedEventTryBroken.
+	 */
     @Ignore
     @Test
     public void testHealedEventTryBroken() {
