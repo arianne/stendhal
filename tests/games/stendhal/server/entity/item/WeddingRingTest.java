@@ -34,6 +34,9 @@ public class WeddingRingTest {
 		PlayerTestHelper.removeAllPlayers();
 	}
 	
+	/**
+	 * Tests for describe.
+	 */
 	@Test
 	public void testDescribe() {
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
@@ -42,6 +45,9 @@ public class WeddingRingTest {
 		assertThat(ring.describe(), is("You see a wedding ring. Its engraving says: \"In eternal love to juliet\"."));
 	}
 	
+	/**
+	 * Tests for onUsedNotMarried.
+	 */
 	@Test
 	public void testOnUsedNotMarried() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
@@ -51,6 +57,9 @@ public class WeddingRingTest {
 		assertEquals("This wedding ring hasn't been engraved yet.", romeo.events().get(0).get("text"));
 	}
 	
+	/**
+	 * Tests for onUsedNotOnline.
+	 */
 	@Test
 	public void testOnUsedNotOnline() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
@@ -61,6 +70,9 @@ public class WeddingRingTest {
 		assertEquals("juliet is not online.", romeo.events().get(0).get("text"));
 	}
 	
+	/**
+	 * Tests for onUsedOnlineButNotWearingTheRing.
+	 */
 	@Test
 	public void testOnUsedOnlineButNotWearingTheRing() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
@@ -74,6 +86,9 @@ public class WeddingRingTest {
 		assertEquals("juliet is not wearing the wedding ring.", romeo.events().get(0).get("text"));
 	}
 	
+	/**
+	 * Tests for onUsedOnlineButEngaged.
+	 */
 	@Test
 	public void testOnUsedOnlineButEngaged() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
@@ -91,6 +106,9 @@ public class WeddingRingTest {
 		assertEquals("Sorry, juliet has divorced you and is now engaged to someone else.", romeo.events().get(0).get("text"));
 	}
 	
+	/**
+	 * Tests for onUsedOnlineButRemarried.
+	 */
 	@Test
 	public void testOnUsedOnlineButRemarried() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
@@ -109,6 +127,9 @@ public class WeddingRingTest {
 		assertEquals("Sorry, juliet has divorced you and is now remarried.", romeo.events().get(0).get("text"));
 	}
 	
+	/**
+	 * Tests for noTeleportOut.
+	 */
 	@Test
 	public void testNoTeleportOut() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
@@ -133,6 +154,9 @@ public class WeddingRingTest {
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_semos_guard_house", 100, 100));
 	}
 	
+	/**
+	 * Tests for noTeleportIn.
+	 */
 	@Test
 	public void testNoTeleportIn() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
@@ -157,6 +181,9 @@ public class WeddingRingTest {
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_semos_guard_house", 100, 100));
 	}
 	
+	/**
+	 * Tests for notVisited.
+	 */
 	@Test
 	public void testNotVisited() {
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("moon", 10, 10));
@@ -176,6 +203,9 @@ public class WeddingRingTest {
 		assertEquals(romeo.events().get(0).get("text"), "Although you have heard a lot of rumors about the destination, you cannot join juliet there because it is still an unknown place for you.");
 	}
 	
+	/**
+	 * Tests for onUsedSuccesfull.
+	 */
 	@Test
 	public void testOnUsedSuccesfull() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
@@ -193,6 +223,9 @@ public class WeddingRingTest {
 		assertTrue(ring.onUsed(romeo));
 	}
 	
+	/**
+	 * Tests for coolingTime.
+	 */
 	@Test
 	public void testCoolingTime() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
@@ -212,6 +245,9 @@ public class WeddingRingTest {
 		assertTrue(romeo.events().get(0).get("text").startsWith("The ring has not yet regained its power."));
 	}
 	
+	/**
+	 * Tests for coolingTimePassed.
+	 */
 	@Test
 	public void testCoolingTimePassed() {
 		final Player romeo = PlayerTestHelper.createPlayer("romeo");
@@ -232,6 +268,9 @@ public class WeddingRingTest {
 		assertTrue(ring.onUsed(romeo));
 	}
 	
+	/**
+	 * Tests for addToSlotUnmarked.
+	 */
 	@Test
 	public void testAddToSlotUnmarked() {
 		final Player frodo = PlayerTestHelper.createPlayer("frodo");
@@ -245,6 +284,9 @@ public class WeddingRingTest {
 		assertEquals(frodo.getAllEquipped("wedding ring").size(), 2);
 	}
 	
+	/**
+	 * Tests for addToSlotOneMarked.
+	 */
 	@Test
 	public void testAddToSlotOneMarked() {
 		final Player frodo = PlayerTestHelper.createPlayer("frodo");
@@ -259,6 +301,9 @@ public class WeddingRingTest {
 		assertEquals(frodo.getAllEquipped("wedding ring").size(), 2);
 	}
 	
+	/**
+	 * Tests for addToSlotTwoMarkedSame.
+	 */
 	@Test
 	public void testAddToSlotTwoMarkedSame() {
 		final Player frodo = PlayerTestHelper.createPlayer("frodo");
@@ -286,6 +331,9 @@ public class WeddingRingTest {
 		assertTrue("Should use up the energy at destruction", frodo.events().get(0).get("text").startsWith("The ring has not yet regained its power."));
 	}
 	
+	/**
+	 * Tests for addToSlotTwoMarkedDifferent.
+	 */
 	@Test
 	public void testAddToSlotTwoMarkedDifferent() {
 		final Player frodo = PlayerTestHelper.createPlayer("frodo");

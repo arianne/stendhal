@@ -16,6 +16,9 @@ import utilities.RPClass.CreatureTestHelper;
 public class HealingbehaviourfactoryTest {
 	 boolean called;
 
+	/**
+	 * Tests for healNonHealer.
+	 */
 	@Test
 	public void testHealNonHealer() {
 		called = false;
@@ -42,12 +45,18 @@ public class HealingbehaviourfactoryTest {
 
 	}
 
+	/**
+	 * Tests for get.
+	 */
 	@Test
 	public void testGet() {
 		assertThat(Healingbehaviourfactory.get(null), instanceOf(NonHealingBehaviour.class));
 		assertThat(Healingbehaviourfactory.get("5,5"), instanceOf(Healer.class));
 	}
 
+	/**
+	 * Tests for getEmptyString.
+	 */
 	@Test(expected = NumberFormatException.class)
 	public void testGetEmptyString() {
 		assertThat(Healingbehaviourfactory.get(""), instanceOf(NonHealingBehaviour.class));

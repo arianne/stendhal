@@ -27,6 +27,9 @@ public class GagManagerTest {
 	  MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
+	/**
+	 * Tests for gagAbsentPlayer.
+	 */
 	@Test
 	public final void testGagAbsentPlayer() {
 		final Player policeman = PlayerTestHelper.createPlayer("player");
@@ -36,6 +39,9 @@ public class GagManagerTest {
 		assertFalse(GagManager.isGagged(bob));
 	}
 
+	/**
+	 * Tests for gagPlayer.
+	 */
 	@Test
 	public final void testGagPlayer() {
 		final Player policeman = PlayerTestHelper.createPlayer("player");
@@ -48,6 +54,9 @@ public class GagManagerTest {
 		assertFalse(GagManager.isGagged(bob));
 	}
 
+	/**
+	 * Tests for negativ.
+	 */
 	@Test
 	public final void testnegativ() {
 		final Player policeman = PlayerTestHelper.createPlayer("player");
@@ -59,6 +68,9 @@ public class GagManagerTest {
 		assertFalse(GagManager.isGagged(bob));
 	}
 
+	/**
+	 * Tests for onLoggedIn.
+	 */
 	@Test
 	public final void testOnLoggedIn() {
 		final Player policeman = PlayerTestHelper.createPlayer("player");
@@ -75,6 +87,9 @@ public class GagManagerTest {
 		assertFalse(GagManager.isGagged(bob));
 	}
 
+	/**
+	 * Tests for onLoggedInAfterExpiry.
+	 */
 	@Test
 	public final void testOnLoggedInAfterExpiry() {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -85,6 +100,9 @@ public class GagManagerTest {
 		assertFalse(GagManager.isGagged(bob));
 	}
 
+	/**
+	 * Tests for getTimeremaining.
+	 */
 	@Test
 	public final void testgetTimeremaining() {
 		final Player bob = PlayerTestHelper.createPlayer("player");

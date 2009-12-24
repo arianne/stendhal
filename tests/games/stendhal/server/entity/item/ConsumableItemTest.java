@@ -62,6 +62,9 @@ public class ConsumableItemTest {
 		c100_2 = new ConsumableItem("", "", "", attributes);
 	}
 
+	/**
+	 * Tests for listsort.
+	 */
 	@Test
 	public void testlistsort() {
 		final LinkedList<ConsumableItem> items = new LinkedList<ConsumableItem>();
@@ -80,6 +83,9 @@ public class ConsumableItemTest {
 
 	}
 
+	/**
+	 * Tests for listsort2.
+	 */
 	@Test
 	public void testlistsort2() {
 		final LinkedList<ConsumableItem> items = new LinkedList<ConsumableItem>();

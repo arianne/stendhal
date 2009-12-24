@@ -19,6 +19,9 @@ public class RingOfLifeTest {
 		ItemTestHelper.generateRPClasses();
 		
 	}
+	/**
+	 * Tests for describe.
+	 */
 	@Test
 	public void testDescribe() {
 		final RingOfLife ring = new RingOfLife();
@@ -31,6 +34,9 @@ public class RingOfLifeTest {
 		
 	}
 
+	/**
+	 * Tests for onUsed.
+	 */
 	@Test
 	public void testOnUsed() {
 		final RingOfLife ring = new RingOfLife();
@@ -46,6 +52,9 @@ public class RingOfLifeTest {
 
 	
 
+	/**
+	 * Tests for repair.
+	 */
 	@Test
 	public void testRepair() {
 		final RingOfLife ring = new RingOfLife();

@@ -23,6 +23,9 @@ public class QuestNotInStateConditionTest {
 		Log4J.init();
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		final String validState = "valid";
@@ -58,11 +61,17 @@ public class QuestNotInStateConditionTest {
 
 	}
 
+	/**
+	 * Tests for questNotInStateCondition.
+	 */
 	@Test
 	public final void testQuestNotInStateCondition() {
 		new QuestNotInStateCondition(QUESTNAME, "");
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals(
@@ -70,6 +79,9 @@ public class QuestNotInStateConditionTest {
 				new QuestNotInStateCondition(QUESTNAME, "testToString").toString());
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		final String state = "state";
@@ -107,6 +119,9 @@ public class QuestNotInStateConditionTest {
 		}));
 	}
 
+	/**
+	 * Tests for hashcode.
+	 */
 	@Test
 	public void testhashcode() throws Throwable {
 		final String state = "state";

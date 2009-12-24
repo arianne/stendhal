@@ -30,6 +30,9 @@ public class JokerExprMatcherTest {
 		assertFalse(matcher.match(e4, e5));
 	}
 
+	/**
+	 * Tests for sentenceMatching.
+	 */
 	@Test
 	public final void testSentenceMatching() {
 		final Sentence m1 = ConversationParser.parseForMatching("|JOKER|h*llo");

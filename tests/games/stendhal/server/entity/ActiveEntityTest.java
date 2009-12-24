@@ -9,6 +9,9 @@ import org.junit.Test;
 
 public class ActiveEntityTest {
 
+	/**
+	 * Tests for getDirectionTowardArea.
+	 */
 	@Test
 	public final void testGetDirectionTowardArea() {
 		final ActiveEntity ae = new ActiveEntity() {
@@ -39,6 +42,9 @@ public class ActiveEntityTest {
 		assertEquals(Direction.DOWN, ae.getDirectionToward(area));
 	}
 
+	/**
+	 * Tests for faceto.
+	 */
 	@Test
 	public final void testFaceto() {
 		final ActiveEntity ae = new ActiveEntity() {

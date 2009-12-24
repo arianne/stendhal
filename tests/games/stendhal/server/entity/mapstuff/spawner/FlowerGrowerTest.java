@@ -28,6 +28,9 @@ public class FlowerGrowerTest {
 		GrowingPassiveEntityRespawnPointTestHelper.generateRPClasses();
 	}
 
+	/**
+	 * Tests for onFruitPicked.
+	 */
 	@Test
 	public void testOnFruitPicked() {
 		final FlowerGrower fl = new FlowerGrower();
@@ -38,6 +41,9 @@ public class FlowerGrowerTest {
 		assertTrue(zone.getPlantGrowers().isEmpty());
 	}
 
+	/**
+	 * Tests for flowerGrower.
+	 */
 	@Test
 	public void testFlowerGrower() {
 		final FlowerGrower fl = new FlowerGrower();
@@ -45,6 +51,9 @@ public class FlowerGrowerTest {
 
 	}
 
+	/**
+	 * Tests for getDescription.
+	 */
 	@Test
 	public void testGetDescription() {
 		final FlowerGrower fl = new FlowerGrower();
@@ -68,6 +77,9 @@ public class FlowerGrowerTest {
 		assertThat(fl.describe(), is("You see an unripe lilia."));
 	}
 
+	/**
+	 * Tests for getDescriptionAnyitem.
+	 */
 	@Test
 	public void testGetDescriptionAnyitem() {
 		final FlowerGrower fl = new FlowerGrower("someotherItem");
@@ -91,6 +103,9 @@ public class FlowerGrowerTest {
 		assertThat(fl.describe(), is("You see an unripe someotherItem."));
 	}
 
+	/**
+	 * Tests for growOnFertileGround.
+	 */
 	@Test
 	public void testGrowOnFertileGround() throws Exception {
 		final FlowerGrower fl = new FlowerGrower();
@@ -105,6 +120,9 @@ public class FlowerGrowerTest {
 		assertThat(fl.getRipeness(), is(1));
 	}
 
+	/**
+	 * Tests for growOnFertileGround2.
+	 */
 	@Test
 	public void testGrowOnFertileGround2() throws Exception {
 		final FlowerGrower fl = new FlowerGrower();
@@ -119,6 +137,9 @@ public class FlowerGrowerTest {
 		assertThat(fl.getRipeness(), is(1));
 	}
 
+	/**
+	 * Tests for growFertileGroundElsewhere.
+	 */
 	@Test
 	public void testGrowFertileGroundElsewhere() throws Exception {
 		final FlowerGrower fl = new FlowerGrower();
@@ -131,6 +152,9 @@ public class FlowerGrowerTest {
 		assertFalse(fl.isOnFertileGround());
 	}
 
+	/**
+	 * Tests for growOnInFertileGround.
+	 */
 	@Test
 	public void testGrowOnInFertileGround() throws Exception {
 

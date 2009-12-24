@@ -27,6 +27,9 @@ public static void teardownAfterClass() throws Exception {
 	
 	MockStendlRPWorld.reset();
 }
+	/**
+	 * Tests for onWornOff.
+	 */
 	@Test
 	public void testOnWornOff() {
 		Map<String, Integer> pricelist = new HashMap<String, Integer>();

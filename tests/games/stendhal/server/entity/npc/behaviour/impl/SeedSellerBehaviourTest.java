@@ -27,6 +27,9 @@ public class SeedSellerBehaviourTest {
 		PlayerTestHelper.generateNPCRPClasses();
 	}
 
+	/**
+	 * Tests for transactAgreedDeal.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testTransactAgreedDeal() {
@@ -48,6 +51,9 @@ public class SeedSellerBehaviourTest {
 		assertEquals(90, ((Stackable) bob.getFirstEquipped("money")).getQuantity());
 	}
 
+	/**
+	 * Tests for getAskedItem.
+	 */
 	@Test
 	public void testGetAskedItem() {
 		final Map<String, Integer> pricelist = new HashMap<String, Integer>();

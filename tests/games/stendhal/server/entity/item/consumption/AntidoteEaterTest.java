@@ -32,6 +32,9 @@ public class AntidoteEaterTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() {
 		Player bob = PlayerTestHelper.createPlayer("bob");

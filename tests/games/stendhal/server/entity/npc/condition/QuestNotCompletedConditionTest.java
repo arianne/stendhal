@@ -28,6 +28,9 @@ public class QuestNotCompletedConditionTest {
 	}
 
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		assertTrue(new QuestNotCompletedCondition("questname").fire(
@@ -53,17 +56,26 @@ public class QuestNotCompletedConditionTest {
 
 	}
 
+	/**
+	 * Tests for questNotCompletedCondition.
+	 */
 	@Test
 	public final void testQuestNotCompletedCondition() {
 		new QuestNotCompletedCondition("questname");
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("QuestNotCompleted <questname>",
 				new QuestNotCompletedCondition("questname").toString());
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		assertFalse(new QuestNotCompletedCondition("questname").equals(null));
@@ -88,6 +100,9 @@ public class QuestNotCompletedConditionTest {
 		}));
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() throws Exception {
 		final QuestNotCompletedCondition obj = new QuestNotCompletedCondition(

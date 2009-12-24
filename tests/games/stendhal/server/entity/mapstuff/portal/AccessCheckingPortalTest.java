@@ -49,11 +49,17 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		assertTrue(SingletonRepository.getTurnNotifier().getEventListForDebugging().isEmpty());
 	}
 
+	/**
+	 * Tests for accessCheckingPortal.
+	 */
 	@Test
 	public final void testAccessCheckingPortal() {
 		new MockAccessCheckingPortal();
 	}
 
+	/**
+	 * Tests for onUsed.
+	 */
 	@Test
 	public final void testOnUsed() {
 		final AccessCheckingPortal port = new MockAccessCheckingPortal();
@@ -72,6 +78,9 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		assertTrue(port.onUsed(player));
 	}
 
+	/**
+	 * Tests for isAllowed.
+	 */
 	@Test
 	public final void testIsAllowed() {
 		final AccessCheckingPortal port = new MockAccessCheckingPortal();
@@ -81,6 +90,9 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		assertFalse(port.isAllowed(player));
 	}
 
+	/**
+	 * Tests for rejected.
+	 */
 	@Test
 	public final void testRejected() {
 		final AccessCheckingPortal port = new MockAccessCheckingPortal();
@@ -97,6 +109,9 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		assertEquals("rejected", player.events().get(0).get("text"));
 	}
 
+	/**
+	 * Tests for setRejectedMessage.
+	 */
 	@Test
 	public final void testSetRejectedMessage() {
 		final AccessCheckingPortal port = new MockAccessCheckingPortal();

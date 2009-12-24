@@ -24,6 +24,9 @@ public class PlayerDieerTest {
 		CorpseTestHelper.generateRPClasses();
 	}
 
+	/**
+	 * Tests for playerDieer.
+	 */
 	@Test
 	public void testPlayerDieer() {
 		final Player hasRingGood = PlayerTestHelper.createPlayer("bob");

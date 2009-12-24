@@ -32,11 +32,17 @@ public class AlwaysTrueConditionTest {
 		
 	}
 	
+	/**
+	 * Tests for constructor.
+	 */
 	@Test
 	public void testConstructor() throws Throwable {
 		new AlwaysTrueCondition();
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		assertFalse(new AlwaysTrueCondition().equals(null));
@@ -52,6 +58,9 @@ public class AlwaysTrueConditionTest {
 		}));
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public void testFire() throws Throwable {
 		assertTrue(new AlwaysTrueCondition().fire(
@@ -60,11 +69,17 @@ public class AlwaysTrueConditionTest {
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() throws Throwable {
 		assertEquals(17, new AlwaysTrueCondition().hashCode());
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public void testToString() throws Throwable {
 		assertEquals("true", new AlwaysTrueCondition().toString());

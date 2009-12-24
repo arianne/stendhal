@@ -10,6 +10,9 @@ import org.junit.Test;
 
 public class CellTest {
 
+	/**
+	 * Tests for cell.
+	 */
 	@Test
 	public void testCell() {
 		Point  p = new Point(2, 2);
@@ -17,6 +20,9 @@ public class CellTest {
 		assertSame(p, cell.getEntry());
 	}
 
+	/**
+	 * Tests for remove.
+	 */
 	@Test
 	public void testRemove() {
 		Cell cell = new Cell(new Point(0, 0));
@@ -24,6 +30,9 @@ public class CellTest {
 		assertFalse(cell.remove("jack"));
 		assertTrue(cell.isEmpty());
 	}
+	/**
+	 * Tests for add.
+	 */
 	@Test
 	public void testAdd() {
 		Cell cell = new Cell(new Point(0, 0));

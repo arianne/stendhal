@@ -17,12 +17,18 @@ public class BloodTest {
 		
 	}
 
+	/**
+	 * Tests for describe.
+	 */
 	@Test
 	public final void testDescribe() {
 		final Blood bl = new Blood();
 		assertEquals("You see a pool of blood.", bl.describe());
 	}
 
+	/**
+	 * Tests for bloodStringInt.
+	 */
 	@Test
 	public final void testBloodStringInt() {
 		final Blood bl = new Blood("blabla", 1);
@@ -30,6 +36,9 @@ public class BloodTest {
 		assertEquals("1", bl.get("amount"));
 	}
 
+	/**
+	 * Tests for onTurnReached.
+	 */
 	@Test
 	public final void testOnTurnReached() {
 		final StendhalRPZone zone = new StendhalRPZone("testzone");

@@ -9,6 +9,9 @@ import org.junit.Test;
 
 public class OutfitTest {
 
+	/**
+	 * Tests for outfit.
+	 */
 	@Test
 	public void testOutfit() {
 		final Outfit ou = new Outfit();
@@ -19,6 +22,9 @@ public class OutfitTest {
 
 	}
 
+	/**
+	 * Tests for outfitIntegerIntegerIntegerInteger.
+	 */
 	@Test
 	public void testOutfitIntegerIntegerIntegerInteger() {
 		final Outfit ou = new Outfit(1, 2, 3, 4);
@@ -34,6 +40,9 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(-4), outfit2.getBase());
 	}
 
+	/**
+	 * Tests for outfitInt.
+	 */
 	@Test
 	public void testOutfitInt() {
 		Outfit ou = new Outfit(0);
@@ -62,11 +71,17 @@ public class OutfitTest {
 
 	}
 
+	/**
+	 * Tests for getCode.
+	 */
 	@Test
 	public void testGetCode() {
 		assertEquals(12345678, new Outfit(12345678).getCode());
 	}
 
+	/**
+	 * Tests for putOver.
+	 */
 	@Test
 	public void testPutOver() {
 		Outfit orig = new Outfit(12345678);
@@ -104,6 +119,9 @@ public class OutfitTest {
 
 	}
 
+	/**
+	 * Tests for isPartOf.
+	 */
 	@Test
 	public void testIsPartOf() {
 		final Outfit of = new Outfit();
@@ -127,6 +145,9 @@ public class OutfitTest {
 
 	}
 
+	/**
+	 * Tests for isChoosableByPlayers.
+	 */
 	@Test
 	public void testIsChoosableByPlayers() {
 		Outfit of = new Outfit();
@@ -145,6 +166,9 @@ public class OutfitTest {
 
 	}
 
+	/**
+	 * Tests for isNaked.
+	 */
 	@Test
 	public void testIsNaked() {
 		Outfit of = new Outfit();

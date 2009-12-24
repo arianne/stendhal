@@ -25,6 +25,9 @@ public class GetBaseSpeed {
 		SheepTestHelper.generateRPClasses();
 	}
 
+	/**
+	 * Tests for getBaseSpeed.
+	 */
 	@Test
 	public void testgetBaseSpeed() {
 

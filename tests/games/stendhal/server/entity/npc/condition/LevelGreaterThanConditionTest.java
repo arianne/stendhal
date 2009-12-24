@@ -31,6 +31,9 @@ public class LevelGreaterThanConditionTest {
 	}
 
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public final void testHashCode() {
 		assertEquals(new LevelGreaterThanCondition(101).hashCode(),
@@ -38,6 +41,9 @@ public class LevelGreaterThanConditionTest {
 
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		assertTrue(new LevelGreaterThanCondition(99).fire(level100Player,
@@ -48,17 +54,26 @@ public class LevelGreaterThanConditionTest {
 				ConversationParser.parse("greaterthan"), null));
 	}
 
+	/**
+	 * Tests for levelGreaterThanCondition.
+	 */
 	@Test
 	public final void testLevelGreaterThanCondition() {
 		new LevelGreaterThanCondition(0);
 
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("level > 0 ", new LevelGreaterThanCondition(0).toString());
 	}
 
+	/**
+	 * Tests for equalsObject.
+	 */
 	@Test
 	public final void testEqualsObject() {
 		assertEquals(new LevelGreaterThanCondition(101),

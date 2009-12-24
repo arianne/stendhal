@@ -21,6 +21,9 @@ public class SeedTest {
 		GrowingPassiveEntityRespawnPointTestHelper.generateRPClasses();
 	}
 
+	/**
+	 * Tests for onUsed.
+	 */
 	@Test
 	public void testOnUsed() {
 		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");

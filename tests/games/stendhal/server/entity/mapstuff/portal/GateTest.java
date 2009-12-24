@@ -21,6 +21,9 @@ public class GateTest {
 		
 	}
 	
+	/**
+	 * Tests for openCloseGate.
+	 */
 	@Test
 	public void testOpenCloseGate() throws Exception {
 		
@@ -31,6 +34,9 @@ public class GateTest {
 		assertFalse(gate.isOpen());
 	}
 
+	/**
+	 * Tests for closeOpenGate.
+	 */
 	@Test
 	public void testCloseOpenGate() throws Exception {
 		final Gate gate = new Gate();
@@ -40,6 +46,9 @@ public class GateTest {
 		assertTrue(gate.isOpen());
 	}
 
+	/**
+	 * Tests for useGateNotNExtTo.
+	 */
 	@Test
 	public void testUseGateNotNExtTo() throws Exception {
 		final Gate gate = new Gate();
@@ -66,6 +75,9 @@ public class GateTest {
 		assertTrue(gate.isOpen());
 	}
 
+	/**
+	 * Tests for useGateNextTo.
+	 */
 	@Test
 	public void testUseGateNextTo() throws Exception {
 		final Gate gate = new Gate();
@@ -93,6 +105,9 @@ public class GateTest {
 		assertFalse(gate.isOpen());
 	}
 	
+	/**
+	 * Tests for isObstacle.
+	 */
 	@Test
 	public void testIsObstacle() throws Exception {
 		final Gate gate = new Gate();

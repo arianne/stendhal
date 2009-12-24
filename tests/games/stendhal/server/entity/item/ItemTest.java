@@ -38,6 +38,9 @@ public class ItemTest {
 		
 	}
 
+	/**
+	 * Tests for getName.
+	 */
 	@Test
 	public void testGetName() {
 		final Item mo = new Item("name1", "class", "subclass",
@@ -45,6 +48,9 @@ public class ItemTest {
 		assertEquals("name1", mo.getName());
 	}
 
+	/**
+	 * Tests for getAreaRectangle2DDoubleDouble.
+	 */
 	@Test
 	public void testGetAreaRectangle2DDoubleDouble() {
 		final Item mo = new Item("name1", "class", "subclass",
@@ -61,6 +67,9 @@ public class ItemTest {
 
 	}
 
+	/**
+	 * Tests for clone.
+	 */
 	@Test
 	public void testClone() throws Exception {
 		Map<String, String> attribs = new HashMap<String, String>();
@@ -77,6 +86,9 @@ public class ItemTest {
 
 	}
 	
+	/**
+	 * Tests for getDescription.
+	 */
 	@Test
 	public void testGetDescription() {
 		final Item mo = new Item("name1", "class", "subclass",
@@ -85,6 +97,9 @@ public class ItemTest {
 	}
 
 	
+	/**
+	 * Tests for describe.
+	 */
 	@Test
 	public void testDescribe() {
 		final Item item = new Item("name1", "class", "subclass",
@@ -105,6 +120,9 @@ public class ItemTest {
 	}
 	
 
+	/**
+	 * Tests for itemStringStringStringMapOfStringString.
+	 */
 	@Test
 	public void testItemStringStringStringMapOfStringString() {
 		final Map<String, String> attribs = new HashMap<String, String>();
@@ -116,6 +134,9 @@ public class ItemTest {
 		assertNull(mo.get("Noexistant"));
 	}
 
+	/**
+	 * Tests for itemItemwithAttributes.
+	 */
 	@Test
 	public void testItemItemwithAttributes() {
 		final Map<String, String> attribs = new HashMap<String, String>();
@@ -132,6 +153,9 @@ public class ItemTest {
 
 	@Test
 	// slots are copied by copy constructor
+	/**
+	 * Tests for itemItem.
+	 */
 	public void testItemItem() {
 		final LinkedList<String> slots = new LinkedList<String>();
 		slots.add("slot_1");
@@ -142,6 +166,9 @@ public class ItemTest {
 		assertEquals(slots, mo.getPossibleSlots());
 	}
 
+	/**
+	 * Tests for setEquipableSlots.
+	 */
 	@Test
 	public void testSetEquipableSlots() {
 		final Item mo = new Item("name1", "class", "subclass",
@@ -159,6 +186,9 @@ public class ItemTest {
 		assertEquals(slots, mo.getPossibleSlots());
 	}
 
+	/**
+	 * Tests for getAttack.
+	 */
 	@Test
 	public void testGetAttack() {
 		final Item mo = new Item("name1", "class", "subclass",
@@ -170,6 +200,9 @@ public class ItemTest {
 		assertEquals(2, mo.getAttack());
 	}
 
+	/**
+	 * Tests for getDefense.
+	 */
 	@Test
 	public void testGetDefense() {
 		final Item mo = new Item("name1", "class", "subclass",
@@ -181,6 +214,9 @@ public class ItemTest {
 		assertEquals(2, mo.getDefense());
 	}
 
+	/**
+	 * Tests for isPersistent.
+	 */
 	@Test
 	public void testIsPersistent() {
 		final Item mo = new Item("name1", "myClass", "subclass",
@@ -192,6 +228,9 @@ public class ItemTest {
 		assertFalse(mo.isPersistent());
 	}
 
+	/**
+	 * Tests for isOfClass.
+	 */
 	@Test
 	public void testIsOfClass() {
 		final Item mo = new Item("name1", "myClass", "subclass",
@@ -199,6 +238,9 @@ public class ItemTest {
 		assertTrue(mo.isOfClass("myClass"));
 	}
 
+	/**
+	 * Tests for getItemClass.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetItemClass() {
 		final Item mo = new Item("name1", "myClass", "subclass",
@@ -208,6 +250,9 @@ public class ItemTest {
 
 	}
 
+	/**
+	 * Tests for getItemSubclass.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetItemSubclass() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
@@ -216,6 +261,9 @@ public class ItemTest {
 		new Item("name1", "myClass", null, new HashMap<String, String>());
 	}
 
+	/**
+	 * Tests for getQuantity.
+	 */
 	@Test
 	public void testGetQuantity() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
@@ -223,6 +271,9 @@ public class ItemTest {
 		assertEquals("defaultquantity", 1, mo.getQuantity());
 	}
 	
+	/**
+	 * Tests for getQuantityOneSureness.
+	 */
 	@Test
 	public void testGetQuantityOneSureness() {
 		Map<String, String> map = new HashMap<String, String>();
@@ -232,6 +283,9 @@ public class ItemTest {
 		assertEquals("default", 1, mo.getQuantity());
 	}
 
+	/**
+	 * Tests for getPossibleSlots.
+	 */
 	@Test
 	public void testGetPossibleSlots() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
@@ -239,6 +293,9 @@ public class ItemTest {
 		assertTrue(mo.getPossibleSlots().isEmpty());
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public void testToString() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
@@ -248,6 +305,9 @@ public class ItemTest {
 		assertTrue(mo.toString(), mo.toString().contains("and RPSlots"));
 	}
 
+	/**
+	 * Tests for onPutOnGround.
+	 */
 	@Test
 	public void testOnPutOnGround() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
@@ -255,6 +315,9 @@ public class ItemTest {
 		mo.onPutOnGround(PlayerTestHelper.createPlayer("player"));
 	}
 
+	/**
+	 * Tests for onRemoveFromGround.
+	 */
 	@Test
 	public void testOnRemoveFromGround() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
@@ -262,6 +325,9 @@ public class ItemTest {
 		mo.onRemoveFromGround();
 	}
 
+	/**
+	 * Tests for onTurnReached.
+	 */
 	@Test
 	public void testOnTurnReached() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
@@ -274,6 +340,9 @@ public class ItemTest {
 		assertFalse(zone.has(mo.getID()));
 	}
 
+	/**
+	 * Tests for removeOne.
+	 */
 	@Test
 	public void testRemoveOne() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
@@ -289,6 +358,9 @@ public class ItemTest {
 		
 	}
 
+	/**
+	 * Tests for canBeEquippedIn.
+	 */
 	@Test
 	public void testCanBeEquippedIn() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
@@ -306,6 +378,9 @@ public class ItemTest {
 		assertFalse(mo.canBeEquippedIn("four"));
 	}
 
+	/**
+	 * Tests for removeFromWorld.
+	 */
 	@Test
 	public void testRemoveFromWorld() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
@@ -320,6 +395,9 @@ public class ItemTest {
 		assertFalse(zone.has(mo.getID()));
 	}
 
+	/**
+	 * Tests for getBoundTo.
+	 */
 	@Test
 	public void testGetBoundTo() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",

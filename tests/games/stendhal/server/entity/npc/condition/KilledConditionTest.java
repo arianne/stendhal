@@ -13,6 +13,9 @@ import utilities.PlayerTestHelper;
 
 public class KilledConditionTest {
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public final void testHashCode() {
 
@@ -24,6 +27,9 @@ public class KilledConditionTest {
 
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		KilledCondition kc = new KilledCondition();
@@ -43,12 +49,18 @@ public class KilledConditionTest {
 		assertTrue("bob killed a rat ", kc.fire(bob, null, null));
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		final KilledCondition kc = new KilledCondition("rat");
 		assertEquals("KilledCondition <[rat]>", kc.toString());
 	}
 
+	/**
+	 * Tests for equalsObject.
+	 */
 	@Test
 	public final void testEqualsObject() {
 		assertEquals(new KilledCondition("rat"), new KilledCondition("rat"));

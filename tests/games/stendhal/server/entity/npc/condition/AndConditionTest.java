@@ -46,11 +46,17 @@ public class AndConditionTest {
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 
+	/**
+	 * Tests for constructor.
+	 */
 	@Test
 	public void testConstructor() throws Throwable {
 		new AndCondition();
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		assertFalse(new AndCondition().equals(null));
@@ -72,6 +78,9 @@ public class AndConditionTest {
 		}));
 	}
 
+	/**
+	 * Tests for equalsthisandsingle.
+	 */
 	@Test
 	public void testEqualsthisandsingle() throws Exception {
 		final String QUEST_SLOT = "quest";
@@ -84,6 +93,9 @@ public class AndConditionTest {
 	}
 	
 	
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public void testFire() throws Throwable {
 
@@ -113,6 +125,9 @@ public class AndConditionTest {
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() throws Throwable {
 		final AndCondition obj = new AndCondition();
@@ -124,6 +139,9 @@ public class AndConditionTest {
 
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public void testToString() throws Throwable {
 		assertEquals("[]", new AndCondition().toString());

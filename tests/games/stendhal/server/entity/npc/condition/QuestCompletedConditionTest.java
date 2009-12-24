@@ -31,6 +31,9 @@ public class QuestCompletedConditionTest {
 		MockStendlRPWorld.reset();
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		assertFalse(new QuestCompletedCondition("questname").fire(
@@ -56,17 +59,26 @@ public class QuestCompletedConditionTest {
 
 	}
 
+	/**
+	 * Tests for questCompletedCondition.
+	 */
 	@Test
 	public final void testQuestCompletedCondition() {
 		new QuestCompletedCondition("questname");
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("QuestCompleted <questname>", new QuestCompletedCondition(
 				"questname").toString());
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		assertTrue(new QuestCompletedCondition("questname").equals(new QuestCompletedCondition(
@@ -91,6 +103,9 @@ public class QuestCompletedConditionTest {
 		}));
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() throws Exception {
 		assertEquals(new QuestCompletedCondition("questname").hashCode(),

@@ -40,6 +40,9 @@ public class ConversationParserTest {
 		assertEquals("cookie", sentence.getObjectName());
 	}
 
+	/**
+	 * Tests for verboseAmount.
+	 */
 	@Test
 	public final void testVerboseAmount() {
 		final Sentence sentence = ConversationParser.parse("eat four cookies");
@@ -50,6 +53,9 @@ public class ConversationParserTest {
 		assertEquals("cookie", sentence.getObjectName());
 	}
 
+	/**
+	 * Tests for case.
+	 */
 	@Test
 	public final void testCase() {
 		final Sentence sentence = ConversationParser.parse("buy No Bread");
@@ -65,6 +71,9 @@ public class ConversationParserTest {
 		assertEquals("buy bread", sentence.getNormalized());
 	}
 
+	/**
+	 * Tests for spaceHandling.
+	 */
 	@Test
 	public final void testSpaceHandling() {
 		Sentence sentence = ConversationParser.parse("drop  three \tmeat");
@@ -88,6 +97,9 @@ public class ConversationParserTest {
 		assertEquals("sell house", sentence.getNormalized());
 	}
 
+	/**
+	 * Tests for itemName.
+	 */
 	@Test
 	public final void testItemName() {
 		final Sentence sentence = ConversationParser.parse("buy fresh fish");
@@ -96,6 +108,9 @@ public class ConversationParserTest {
 		assertEquals("fresh fish", sentence.getObjectName());
 	}
 
+	/**
+	 * Tests for error.
+	 */
 	@Test
 	public final void testError() {
 		Sentence sentence = ConversationParser.parse("hello world");
@@ -110,6 +125,9 @@ public class ConversationParserTest {
 		assertEquals("negative amount: -10", sentence.getErrorString());
 	}
 
+	/**
+	 * Tests for isEmpty.
+	 */
 	@Test
 	public final void testIsEmpty() {
 		Sentence sentence = ConversationParser.parse("");
@@ -121,6 +139,9 @@ public class ConversationParserTest {
 		assertFalse(sentence.isEmpty());
 	}
 
+	/**
+	 * Tests for prepositions.
+	 */
 	@Test
 	public final void testPrepositions() {
 		final Sentence sentence = ConversationParser.parse("put dish on table");
@@ -133,6 +154,9 @@ public class ConversationParserTest {
 		assertEquals("table", sentence.getObject(1).getNormalized());
 	}
 
+	/**
+	 * Tests for pluralAndPrefix.
+	 */
 	@Test
 	public final void testPluralAndPrefix() {
 		Sentence sentence = ConversationParser.parse("buy seven bananas");
@@ -176,6 +200,9 @@ public class ConversationParserTest {
 		assertEquals("sell/VER mega poison/OBJ-FLU", sentence.toString());
 	}
 
+	/**
+	 * Tests for please.
+	 */
 	@Test
 	public final void testPlease() {
 		Sentence sentence = ConversationParser.parse("please open chest");
@@ -193,6 +220,9 @@ public class ConversationParserTest {
 		assertEquals("favour", sentence.getObject(0).getNormalized());
 	}
 
+	/**
+	 * Tests for me.
+	 */
 	@Test
 	public final void testMe() {
 		final Sentence sentence = ConversationParser.parse("me");
@@ -202,6 +232,9 @@ public class ConversationParserTest {
 		assertNull(sentence.getSubject(1));
 	}
 
+	/**
+	 * Tests for twoSubjects.
+	 */
 	@Test
 	public final void testTwoSubjects() {
 		Sentence sentence = ConversationParser.parse("i love you");
@@ -240,6 +273,9 @@ public class ConversationParserTest {
 		assertEquals("you/SUB-PRO buy/VER-CON ice cream/OBJ!", sentence.toString());
 	}
 
+	/**
+	 * Tests for punctuation.
+	 */
 	@Test
 	public final void testPunctuation() {
 		final Sentence sentence = ConversationParser.parse("give me 4 fishes, please");
@@ -254,6 +290,9 @@ public class ConversationParserTest {
 		//TODO mf - also handle "If i may ask, could you please give me 4 fishes?"
 	}
 
+	/**
+	 * Tests for compoundWords.
+	 */
 	@Test
 	public final void testCompoundWords() {
 		Sentence sentence = ConversationParser.parse("take golden ring");
@@ -307,6 +346,9 @@ public class ConversationParserTest {
 		assertEquals("summon scroll", sentence.getObjectName());
 	}
 
+	/**
+	 * Tests for smilies.
+	 */
 	@Test
 	public final void testSmilies() {
 		Sentence sentence = ConversationParser.parse(":-)");
@@ -328,6 +370,9 @@ public class ConversationParserTest {
 		assertEquals("kiss/VER", sentence.toString());
 	}
 
+	/**
+	 * Tests for nullPointer.
+	 */
 	@Test
 	public final void testNullPointer() {
 		final Sentence sentence = ConversationParser.parse(null);
@@ -342,6 +387,9 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 	}
 
+	/**
+	 * Tests for number.
+	 */
 	@Test
 	public final void testNumber() {
 		final Sentence sentence = ConversationParser.parse(Integer.valueOf(30).toString());

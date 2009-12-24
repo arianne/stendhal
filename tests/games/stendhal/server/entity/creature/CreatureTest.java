@@ -43,6 +43,9 @@ public class CreatureTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for getNearestEnemy.
+	 */
 	@Test
 	public void testGetNearestEnemy() {
 		
@@ -79,6 +82,9 @@ public class CreatureTest {
 		}
 	}
 
+	/**
+	 * Tests for hasTargetMoved.
+	 */
 	@Test
 	public void testhasTargetMoved() {
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
@@ -95,6 +101,9 @@ public class CreatureTest {
 		assertFalse(attacker.hasTargetMoved());
 	}
 
+	/**
+	 * Tests for isAttackTurn.
+	 */
 	@Test
 	public void testIsAttackTurn() {
 		final Creature creature = new Creature();

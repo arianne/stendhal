@@ -31,6 +31,9 @@ public class ChestTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for size.
+	 */
 	@Test(expected = SlotIsFullException.class)
 	public final void testSize() {
 		final Chest ch = new Chest();
@@ -44,6 +47,9 @@ public class ChestTest {
 		});
 	}
 
+	/**
+	 * Tests for open.
+	 */
 	@Test
 	public final void testOpen() {
 		final Chest ch = new Chest();
@@ -55,6 +61,9 @@ public class ChestTest {
 		assertFalse(ch.isOpen());
 	}
 
+	/**
+	 * Tests for onUsed.
+	 */
 	@Test
 	public final void testOnUsed() {
 		final Chest ch = new Chest();

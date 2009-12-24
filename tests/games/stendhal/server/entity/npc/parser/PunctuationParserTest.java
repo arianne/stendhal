@@ -32,6 +32,9 @@ public class PunctuationParserTest {
 	
 		
 	}
+	/**
+	 * Tests for onlyPunctuation.
+	 */
 	@Test
 	public final void testOnlyPunctuation() {
 		final String s = ".,?!";
@@ -41,6 +44,9 @@ public class PunctuationParserTest {
 		assertEquals("", p.getTrailingPunctuation());
 	}
 	
+	/**
+	 * Tests for emptyString.
+	 */
 	@Test
 	public final void testEmptyString() {
 		final PunctuationParser p = new PunctuationParser("");
@@ -50,6 +56,9 @@ public class PunctuationParserTest {
 	
 		
 	}
+	/**
+	 * Tests for onlyspacePunctuation.
+	 */
 	@Test
 	public final void testOnlyspacePunctuation() {
 		PunctuationParser p = new PunctuationParser(".,?! ");

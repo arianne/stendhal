@@ -35,6 +35,9 @@ public class LevelLessThanConditionTest {
 		level100Player.setLevel(100);
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public final void testHashCode() {
 		assertEquals(new LevelLessThanCondition(101).hashCode(),
@@ -42,6 +45,9 @@ public class LevelLessThanConditionTest {
 
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		assertFalse(new LevelLessThanCondition(99).fire(level100Player,
@@ -52,17 +58,26 @@ public class LevelLessThanConditionTest {
 				ConversationParser.parse("lessthan"), null));
 	}
 
+	/**
+	 * Tests for levelLessThanCondition.
+	 */
 	@Test
 	public final void testLevelLessThanCondition() {
 		new LevelLessThanCondition(0);
 
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("level < 0 ", new LevelLessThanCondition(0).toString());
 	}
 
+	/**
+	 * Tests for equalsObject.
+	 */
 	@Test
 	public final void testEqualsObject() {
 		assertEquals(new LevelLessThanCondition(101),

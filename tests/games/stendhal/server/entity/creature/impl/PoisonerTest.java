@@ -34,6 +34,9 @@ public class PoisonerTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for poisoner.
+	 */
 	@Test
 	public void testPoisoner() {
 		final String poisontype = "greater poison";
@@ -45,6 +48,9 @@ public class PoisonerTest {
 		assertTrue(victim.isPoisoned());
 	}
 
+	/**
+	 * Tests for poisonerProbabilityZero.
+	 */
 	@Test
 	public void testPoisonerProbabilityZero() {
 		final String poisontype = "greater poison";

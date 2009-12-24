@@ -25,6 +25,9 @@ public class NakedConditionTest {
 		MockStendlRPWorld.reset();
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		final Player bob = PlayerTestHelper.createPlayer("player");
@@ -38,11 +41,17 @@ public class NakedConditionTest {
 
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("naked?", new NakedCondition().toString());
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 
@@ -54,6 +63,9 @@ public class NakedConditionTest {
 
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public final void testHashCode() {
 		final NakedCondition obj = new NakedCondition();

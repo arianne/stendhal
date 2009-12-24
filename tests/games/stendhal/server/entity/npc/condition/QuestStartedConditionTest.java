@@ -22,6 +22,9 @@ public class QuestStartedConditionTest {
 		MockStendlRPWorld.get();
 	}
 	
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		assertFalse(new QuestStartedCondition("questname").fire(
@@ -47,17 +50,26 @@ public class QuestStartedConditionTest {
 
 	}
 
+	/**
+	 * Tests for questNotStartedCondition.
+	 */
 	@Test
 	public final void testQuestNotStartedCondition() {
 		new QuestStartedCondition("questname");
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("QuestStarted <questname>", new QuestStartedCondition(
 				"questname").toString());
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		assertFalse(new QuestStartedCondition("questname").equals(null));
@@ -81,6 +93,9 @@ public class QuestStartedConditionTest {
 	}
 
 
+	/**
+	 * Tests for hashcode.
+	 */
 	@Test
 	public void testHashcode() throws Throwable {
 		final QuestStartedCondition obj = new QuestStartedCondition("questname");

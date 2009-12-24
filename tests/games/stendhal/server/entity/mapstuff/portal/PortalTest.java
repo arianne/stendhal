@@ -27,6 +27,9 @@ public class PortalTest {
 		PortalTestHelper.generateRPClasses();
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 
@@ -34,6 +37,9 @@ public class PortalTest {
 		assertEquals("Portal[0,0]", port.toString());
 	}
 
+	/**
+	 * Tests for isHidden.
+	 */
 	@Test
 	public final void testIsHidden() {
 		final Portal port = new Portal();
@@ -42,6 +48,9 @@ public class PortalTest {
 		assertTrue(port.isHidden());
 	}
 
+	/**
+	 * Tests for setGetIdentifier.
+	 */
 	@Test
 	public final void testSetGetIdentifier() {
 
@@ -51,6 +60,9 @@ public class PortalTest {
 		assertSame(o, port.getIdentifier());
 	}
 
+	/**
+	 * Tests for destination.
+	 */
 	@Test
 	public final void testDestination() {
 
@@ -62,6 +74,9 @@ public class PortalTest {
 		assertEquals("zonename", port.getDestinationZone());
 	}
 
+	/**
+	 * Tests for usePortalWithNoDestination.
+	 */
 	@Test
 	public final void testUsePortalWithNoDestination() {
 
@@ -70,6 +85,9 @@ public class PortalTest {
 		assertFalse("port has no destination", port.usePortal(player));
 	}
 
+	/**
+	 * Tests for usePortalNotNextToPlayer.
+	 */
 	@Test
 	public final void testUsePortalNotNextToPlayer() {
 
@@ -79,6 +97,9 @@ public class PortalTest {
 		assertFalse("port is not nextto player", port.usePortal(player));
 	}
 
+	/**
+	 * Tests for usePortalHasInvalidDestination.
+	 */
 	@Test
 	public final void testUsePortalHasInvalidDestination() {
 
@@ -89,6 +110,9 @@ public class PortalTest {
 		assertFalse("port has invalid destination", port.usePortal(player));
 	}
 
+	/**
+	 * Tests for usePortalHasInvalidDestinationReference.
+	 */
 	@Test
 	public final void testUsePortalHasInvalidDestinationReference() {
 
@@ -101,6 +125,9 @@ public class PortalTest {
 		assertFalse("port has invalid destination", port.usePortal(player));
 	}
 
+	/**
+	 * Tests for usePortal.
+	 */
 	@Test
 	public final void testUsePortal() {
 
@@ -116,6 +143,9 @@ public class PortalTest {
 		assertTrue("all things are nice", port.usePortal(player));
 	}
 
+	/**
+	 * Tests for onUsed.
+	 */
 	@Test
 	public final void testOnUsed() {
 		final Portal port = new Portal() {
@@ -130,6 +160,9 @@ public class PortalTest {
 		assertEquals("renamed-bob", bob.getName());
 	}
 
+	/**
+	 * Tests for onUsedBackwards.
+	 */
 	@Test
 	public final void testOnUsedBackwards() {
 		final Portal port = new Portal();

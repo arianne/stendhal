@@ -13,6 +13,9 @@ public class GandhiTest {
 		MockStendlRPWorld.get();
 	}
 	
+	/**
+	 * Tests for attack.
+	 */
 	@Test
 	public void testAttack() {
 		final Gandhi g = new Gandhi();
@@ -22,6 +25,9 @@ public class GandhiTest {
 		assertFalse(c.isAttacking());
 	}
 
+	/**
+	 * Tests for canAttackNow.
+	 */
 	@Test
 	public void testCanAttackNow() {
 		final Gandhi g = new Gandhi();
@@ -30,6 +36,9 @@ public class GandhiTest {
 
 	
 	
+	/**
+	 * Tests for hasValidTarget.
+	 */
 	@Test
 	public void testHasValidTarget() {
 		final Gandhi g = new Gandhi();

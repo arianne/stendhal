@@ -27,12 +27,18 @@ public class BabyDragonTest {
 
 	List<String> foods = Arrays.asList("ham", "pizza", "meat");
 
+	/**
+	 * Tests for babyDragon.
+	 */
 	@Test
 	public void testBabyDragon() {
 		final BabyDragon drako = new BabyDragon();
 		assertThat(drako.getFoodNames(), is(foods));
 	}
 
+	/**
+	 * Tests for babyDragonPlayer.
+	 */
 	@Test
 	public void testBabyDragonPlayer() {
 
@@ -44,6 +50,9 @@ public class BabyDragonTest {
 		assertThat(drako.getFoodNames(), is(foods));
 	}
 
+	/**
+	 * Tests for babyDragonRPObjectPlayer.
+	 */
 	@Test
 	public void testBabyDragonRPObjectPlayer() {
 		final BabyDragon drako = new BabyDragon(new RPObject(), PlayerTestHelper.createPlayer("bob"));

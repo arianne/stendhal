@@ -36,6 +36,9 @@ public class ImmunizerTest {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
+	/**
+	 * Tests for feed.
+	 */
 	@Test
 	public void testFeed() {
 		int startTurn = TurnNotifier.get().getCurrentTurnForDebugging();

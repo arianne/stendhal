@@ -54,6 +54,9 @@ public class RPEntityTest {
 
 	}
 
+	/**
+	 * Tests for applydistanceattackModifiers.
+	 */
 	@Test
 	public void testApplydistanceattackModifiers() {
 
@@ -70,6 +73,9 @@ public class RPEntityTest {
 		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 64), is(0));
 	}
 
+	/**
+	 * Tests for calculateRiskForCanHit.
+	 */
 	@Test
 	public void testCalculateRiskForCanHit() {
 		final RPEntity entity = new RPEntity() {
@@ -172,6 +178,9 @@ public class RPEntityTest {
 				is(-100));
 	}
 
+	/**
+	 * Tests for getItemAtkforsimpleweapon.
+	 */
 	@Test
 	public void testGetItemAtkforsimpleweapon() {
 		final RPEntity entity = new RPEntity() {
@@ -203,6 +212,9 @@ public class RPEntityTest {
 
 	}
 
+	/**
+	 * Tests for getItemAtkforcheese.
+	 */
 	@Test
 	public void testGetItemAtkforcheese() {
 
@@ -234,6 +246,9 @@ public class RPEntityTest {
 		assertThat(entity.getItemAtk(), is(0f));
 	}
 
+	/**
+	 * Tests for getItemAtkforLeftandRightweaponCorrectlyWorn.
+	 */
 	@Test
 	public void testGetItemAtkforLeftandRightweaponCorrectlyWorn() {
 		ItemTestHelper.generateRPClasses();
@@ -268,6 +283,9 @@ public class RPEntityTest {
 						.getAttack())));
 	}
 
+	/**
+	 * Tests for getItemAtkforLeftandRightweaponIncorrectlyWorn.
+	 */
 	@Test
 	public void testGetItemAtkforLeftandRightweaponIncorrectlyWorn() {
 
@@ -303,6 +321,9 @@ public class RPEntityTest {
 
 	}
 
+	/**
+	 * Tests for attackCanHitreturnTruedamageZero.
+	 */
 	@Test
 	public void testAttackCanHitreturnTruedamageZero() {
 		MockStendlRPWorld.get();
@@ -363,6 +384,9 @@ public class RPEntityTest {
 		assertThat("no damage done ", attacker.get("damage"), is("0"));
 	}
 
+	/**
+	 * Tests for attackCanHitreturnTruedamage30.
+	 */
 	@Test
 	public void testAttackCanHitreturnTruedamage30() {
 		MockStendlRPWorld.get();
@@ -428,6 +452,9 @@ public class RPEntityTest {
 		assertThat("no damge done ", attacker.get("damage"), is("30"));
 	}
 
+	/**
+	 * Tests for isAttacking.
+	 */
 	@Test
 	public void testIsAttacking() {
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
@@ -445,6 +472,9 @@ public class RPEntityTest {
 
 	}
 
+	/**
+	 * Tests for setXP.
+	 */
 	@Test
 	public void testSetXP() throws Exception {
 
@@ -468,6 +498,9 @@ public class RPEntityTest {
 		assertThat(entity.getXP(), is(oldXP));
 	}
 
+	/**
+	 * Tests for addXP.
+	 */
 	@Test
 	public void testaddXP() throws Exception {
 
@@ -491,6 +524,9 @@ public class RPEntityTest {
 		assertThat(entity.getXP(), is(oldXP));
 	}
 
+	/**
+	 * Tests for getSlotNameToEquip.
+	 */
 	@Test
 	public void testGetSlotNameToEquip() {
 		final RPEntity baglessentity = new MockRPentity();

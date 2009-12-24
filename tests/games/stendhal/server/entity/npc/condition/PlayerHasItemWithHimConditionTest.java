@@ -20,6 +20,9 @@ public class PlayerHasItemWithHimConditionTest {
 		MockStendlRPWorld.get();
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public final void testHashCode() {
 		final PlayerHasItemWithHimCondition obj = new PlayerHasItemWithHimCondition(
@@ -35,6 +38,9 @@ public class PlayerHasItemWithHimConditionTest {
 
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		final Player player = PlayerTestHelper.createPlayer("player");
@@ -52,16 +58,25 @@ public class PlayerHasItemWithHimConditionTest {
 		assertTrue(cond.fire(player, null, null));
 	}
 
+	/**
+	 * Tests for playerHasItemWithHimConditionString.
+	 */
 	@Test
 	public final void testPlayerHasItemWithHimConditionString() {
 		new PlayerHasItemWithHimCondition("itemname");
 	}
 
+	/**
+	 * Tests for playerHasItemWithHimConditionStringInt.
+	 */
 	@Test
 	public final void testPlayerHasItemWithHimConditionStringInt() {
 		new PlayerHasItemWithHimCondition("itemname", 2);
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("player has item <1 itemname>",
@@ -73,6 +88,9 @@ public class PlayerHasItemWithHimConditionTest {
 
 	}
 
+	/**
+	 * Tests for equalsObject.
+	 */
 	@Test
 	public final void testEqualsObject() {
 		final String itemName = "itemname";

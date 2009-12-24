@@ -30,6 +30,9 @@ public class CaseInsensitiveExprMatcherTest {
 		assertFalse(matcher.match(e4, e5));
 	}
 
+	/**
+	 * Tests for sentenceMatching.
+	 */
 	@Test
 	public final void testSentenceMatching() {
 		Sentence m1 = ConversationParser.parseForMatching("|ICASE|hello");

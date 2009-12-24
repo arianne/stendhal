@@ -34,6 +34,9 @@ public class PassiveEntityRespawnPointFactoryTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for createHerb.
+	 */
 	@Test
 	public final void testCreateHerb() {
 		assertNull(PassiveEntityRespawnPointFactory.create("", 0, null, 0, 0));
@@ -62,6 +65,9 @@ public class PassiveEntityRespawnPointFactoryTest {
 
 	}
 
+	/**
+	 * Tests for createCorn.
+	 */
 	@Test
 	public final void testCreateCorn() {
 		assertNull(PassiveEntityRespawnPointFactory.create("", 0, null, 0, 0));
@@ -72,6 +78,9 @@ public class PassiveEntityRespawnPointFactoryTest {
 		assertTrue(grain instanceof GrainField);
 	}
 
+	/**
+	 * Tests for createMushroom.
+	 */
 	@Test
 	public final void testCreateMushroom() {
 		assertNull(PassiveEntityRespawnPointFactory.create("", 0, null, 0, 0));
@@ -102,6 +111,9 @@ public class PassiveEntityRespawnPointFactoryTest {
 
 	}
 
+	/**
+	 * Tests for createResource.
+	 */
 	@Test
 	public final void testCreateResource() {
 		assertNull(PassiveEntityRespawnPointFactory.create("", 0, null, 0, 0));
@@ -153,6 +165,9 @@ public class PassiveEntityRespawnPointFactoryTest {
 
 	}
 
+	/**
+	 * Tests for sheepfoodCorn.
+	 */
 	@Test
 	public final void testsheepfoodCorn() {
 		assertNull(PassiveEntityRespawnPointFactory.create("", 0, null, 0, 0));
@@ -163,6 +178,9 @@ public class PassiveEntityRespawnPointFactoryTest {
 		assertTrue(sheepfood instanceof SheepFood);
 	}
 
+	/**
+	 * Tests for createVegetable.
+	 */
 	@Test
 	public final void testCreateVegetable() {
 		assertNull(PassiveEntityRespawnPointFactory.create("", 0, null, 0, 0));
@@ -243,6 +261,9 @@ public class PassiveEntityRespawnPointFactoryTest {
 
 	}
 
+	/**
+	 * Tests for createJewelry.
+	 */
 	@Test
 	public final void testCreateJewelry() {
 		assertNull(PassiveEntityRespawnPointFactory.create("", 0, null, 0, 0));
@@ -275,6 +296,9 @@ public class PassiveEntityRespawnPointFactoryTest {
 
 	}
 
+	/**
+	 * Tests for createFruit.
+	 */
 	@Test
 	public final void testCreateFruit() {
 		assertNull(PassiveEntityRespawnPointFactory.create("", 0, null, 0, 0));
@@ -304,6 +328,9 @@ public class PassiveEntityRespawnPointFactoryTest {
 		assertNull(value_3);
 	}
 
+	/**
+	 * Tests for createMeatAndFish.
+	 */
 	@Test
 	public final void testCreateMeatAndFish() {
 		assertNull(PassiveEntityRespawnPointFactory.create("", 0, null, 0, 0));

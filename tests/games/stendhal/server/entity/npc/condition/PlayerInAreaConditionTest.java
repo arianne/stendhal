@@ -22,6 +22,9 @@ public class PlayerInAreaConditionTest {
 		MockStendlRPWorld.get();
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testHashCode() {
@@ -38,6 +41,9 @@ public class PlayerInAreaConditionTest {
 				new PlayerInAreaCondition(ar).hashCode());
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testFire() {
@@ -54,6 +60,9 @@ public class PlayerInAreaConditionTest {
 
 	}
 
+	/**
+	 * Tests for fireNPE.
+	 */
 	@Test(expected = NullPointerException.class)
 	public void testFireNPE() throws Exception {
 		final PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
@@ -61,6 +70,9 @@ public class PlayerInAreaConditionTest {
 		assertFalse(cond.fire(player, null, null));
 	}
 
+	/**
+	 * Tests for playerInAreaCondition.
+	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testPlayerInAreaCondition() {
@@ -71,6 +83,9 @@ public class PlayerInAreaConditionTest {
 			}));
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testToString() {
@@ -83,6 +98,9 @@ public class PlayerInAreaConditionTest {
 				new PlayerInAreaCondition(ar).toString());
 	}
 
+	/**
+	 * Tests for equalsObject.
+	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testEqualsObject() {

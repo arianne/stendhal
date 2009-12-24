@@ -25,11 +25,17 @@ public class OrConditionTest {
 
 	}
 
+	/**
+	 * Tests for constructor.
+	 */
 	@Test
 	public void testConstructor() throws Throwable {
 		new OrCondition();
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		assertFalse(new OrCondition().equals(null));
@@ -51,6 +57,9 @@ public class OrConditionTest {
 		}));
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public void testFire() throws Throwable {
 
@@ -85,6 +94,9 @@ public class OrConditionTest {
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() throws Throwable {
 		final OrCondition obj = new OrCondition();
@@ -95,6 +107,9 @@ public class OrConditionTest {
 
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public void testToString() throws Throwable {
 		assertEquals("or <[]>", new OrCondition().toString());

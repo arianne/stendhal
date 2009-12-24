@@ -24,6 +24,9 @@ public class SellerBehaviourTest {
 		PlayerTestHelper.generateNPCRPClasses();
 	}
 	
+	/**
+	 * Tests for sellerBehaviour.
+	 */
 	@Test
 	public void testSellerBehaviour() {
 		final SellerBehaviour sb = new SellerBehaviour();
@@ -34,6 +37,9 @@ public class SellerBehaviourTest {
 		assertTrue(sb.priceList.isEmpty());
 	}
 
+	/**
+	 * Tests for sellerBehaviourMapOfStringInteger.
+	 */
 	@Test
 	public void testSellerBehaviourMapOfStringInteger() {
 
@@ -56,6 +62,9 @@ public class SellerBehaviourTest {
 		assertNull(sb.chosenItemName);
 	}
 	
+	/**
+	 * Tests for bottlesGlasses.
+	 */
 	@Test
 	public void testBottlesGlasses() {
 		final Map<String, Integer> pricelist = new HashMap<String, Integer>();

@@ -25,6 +25,9 @@ public class QuestSmallerThanConditionTest {
 		MockStendhalRPRuleProcessor.get();
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		final Player bob = PlayerTestHelper.createPlayer("player");
@@ -62,12 +65,18 @@ public class QuestSmallerThanConditionTest {
 
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("QuestSmallerThan <questname[-1] = 2009>",
 				new QuestSmallerThanCondition(QUESTNAME, 2009).toString());
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		final int value = 2009;
@@ -91,6 +100,9 @@ public class QuestSmallerThanConditionTest {
 		}));
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() throws Throwable {
 

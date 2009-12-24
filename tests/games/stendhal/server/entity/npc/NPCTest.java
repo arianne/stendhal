@@ -36,6 +36,9 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Felina");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Felina");
@@ -48,6 +51,9 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye.", getReply(npc));
 	}
 
+	/**
+	 * Tests for logic.
+	 */
 	@Test
 	public void testLogic() {
 		final SpeakerNPC npc = getNPC("Felina");
@@ -65,6 +71,9 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(null, npc.getAttending());
 	}
 
+	/**
+	 * Tests for idea.
+	 */
 	@Test
 	public void testIdea() {
 		final SpeakerNPC npc = getNPC("Felina");
@@ -79,6 +88,9 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 
 	// players use _hi, _hello etc to avoid npcs answering when it's meant to 
 	// other players
+	/**
+	 * Tests for underscore.
+	 */
 	@Test
 	public void testUnderscore() {
 		for (String hello : ConversationPhrases.GREETING_MESSAGES) {

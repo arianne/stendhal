@@ -19,6 +19,9 @@ public class SimilarExprMatcherTest {
 		assertFalse(SimilarExprMatcher.isSimilar("", null, 0.1));
 	}
 	
+	/**
+	 * Tests for isSimilar.
+	 */
 	@Test
 	public final void testIsSimilar() {
 		assertEquals(true, SimilarExprMatcher.isSimilar(null, null, 0.5));
@@ -50,6 +53,9 @@ public class SimilarExprMatcherTest {
 		assertEquals(true, SimilarExprMatcher.isSimilar("abcabcabcabc-abc", "abc-abcabcabcabc", 0.1));
 	}
 
+	/**
+	 * Tests for similarMatching.
+	 */
 	@Test
 	public final void testSimilarMatching() {
 		final ExpressionMatcher matcher = new SimilarExprMatcher();
@@ -73,6 +79,9 @@ public class SimilarExprMatcherTest {
 		assertTrue(matcher.match(e7, e8));
 	}
 
+	/**
+	 * Tests for sentenceMatching.
+	 */
 	@Test
 	public final void testSentenceMatching() {
 		final Sentence m1 = ConversationParser.parseForMatching("|SIMILAR|hello");

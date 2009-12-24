@@ -17,6 +17,9 @@ public class HouseKeyTest {
 		MockStendlRPWorld.get();
 	}
 	
+	/**
+	 * Tests for creation.
+	 */
 	@Test
 	public void testCreation() {
 		final Item key = SingletonRepository.getEntityManager().getItem("house key");
@@ -25,6 +28,9 @@ public class HouseKeyTest {
 		assertTrue("The key is not persistent", key.isPersistent());
 	}
 	
+	/**
+	 * Tests for copy.
+	 */
 	@Test
 	public void testCopy() {
 		final HouseKey key = (HouseKey) SingletonRepository.getEntityManager().getItem("house key");
@@ -34,6 +40,9 @@ public class HouseKeyTest {
 		assertFalse(key == key2);
 	}
 	
+	/**
+	 * Tests for description.
+	 */
 	@Test
 	public void testDescription() {
 		final HouseKey key = (HouseKey) SingletonRepository.getEntityManager().getItem("house key");
@@ -43,6 +52,9 @@ public class HouseKeyTest {
 		assertEquals(key.describe(), "You see a key to Mr Taxman's property, outhouse.");
 	}
 	
+	/**
+	 * Tests for matches.
+	 */
 	@Test
 	public void testMatches() {
 		final HouseKey key = (HouseKey) SingletonRepository.getEntityManager().getItem("house key");
@@ -62,6 +74,9 @@ public class HouseKeyTest {
 		assertFalse(key.matches("outhouse", 41));
 	}
 	
+	/**
+	 * Tests for image.
+	 */
 	@Test
 	public void testImage() {
 		final HouseKey key = (HouseKey) SingletonRepository.getEntityManager().getItem("house key");

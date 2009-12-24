@@ -26,6 +26,9 @@ public class EntityTest {
 		MockStendlRPWorld.reset();
 	}
 
+	/**
+	 * Tests for nextTo.
+	 */
 	@Test
 	public void testnextTo() {
 		PlayerTestHelper.generatePlayerRPClasses();
@@ -85,6 +88,9 @@ public class EntityTest {
 
 	}
 
+	/**
+	 * Tests for squaredDistanceonebyone.
+	 */
 	@Test
 	public void testSquaredDistanceonebyone() {
 		final Entity en = new Entity() {
@@ -122,6 +128,9 @@ public class EntityTest {
 		assertThat("one tile between", en.squaredDistance(5, 6), is(1.0));
 		assertThat("one tile between", en.squaredDistance(6, 6), is(2.0));
 	}
+	/**
+	 * Tests for squaredDistanceonebytwo.
+	 */
 	@Test
 	public void testSquaredDistanceonebytwo() {
 		final Entity en = new Entity() { };
@@ -162,6 +171,9 @@ public class EntityTest {
 		assertThat("one tile between", en.squaredDistance(7, 6), is(2.0));
 
 	}
+	/**
+	 * Tests for squaredDistanceelevenbytwelve.
+	 */
 	@Test
 	public void testSquaredDistanceelevenbytwelve() {
 		final Entity en = new Entity() { };

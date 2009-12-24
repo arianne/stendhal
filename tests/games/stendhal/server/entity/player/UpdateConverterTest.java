@@ -25,6 +25,9 @@ public class UpdateConverterTest {
 		Log4J.init();
 	}
 
+	/**
+	 * Tests for transformString.
+	 */
 	@Test
 	public void testTransformString() {
 		assertEquals(null, UpdateConverter.updateItemName(null));
@@ -96,6 +99,9 @@ public class UpdateConverterTest {
 		assertTrue(player.hasKilled("cave rat"));
 	}
 
+	/**
+	 * Tests for renameQuest.
+	 */
 	@Test
 	public void testRenameQuest() {
 		final Player player = PlayerTestHelper.createPlayer("player");

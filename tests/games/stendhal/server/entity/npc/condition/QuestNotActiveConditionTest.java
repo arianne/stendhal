@@ -22,6 +22,9 @@ public class QuestNotActiveConditionTest {
 		Log4J.init();
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		assertThat(new QuestNotActiveCondition("questname").fire(
@@ -57,16 +60,25 @@ public class QuestNotActiveConditionTest {
 
 	}
 
+	/**
+	 * Tests for questNotActiveCondition.
+	 */
 	@Test
 	public final void testQuestNotActiveCondition() {
 		new QuestNotActiveCondition("questname");
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertThat(new QuestNotActiveCondition("questname").toString(), is("QuestNotActive <questname>"));
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		assertThat(new QuestNotActiveCondition("questname"), not(equalTo(null)));
@@ -98,6 +110,9 @@ public class QuestNotActiveConditionTest {
 			}));
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() throws Exception {
 		final QuestNotActiveCondition obj = new QuestNotActiveCondition("questname");

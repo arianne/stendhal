@@ -22,6 +22,9 @@ public class OfferTest {
 		MockStendlRPWorld.get();
 	}
 
+	/**
+	 * Tests for offer.
+	 */
 	@Test
 	public void testOffer() throws Exception {
 		Item item = SingletonRepository.getEntityManager().getItem("money");

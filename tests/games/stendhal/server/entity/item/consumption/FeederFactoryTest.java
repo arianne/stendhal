@@ -21,6 +21,9 @@ public class FeederFactoryTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for getEaterForSoup.
+	 */
 	@Test
 	public final void testGetEaterForSoup() {
 		ItemTestHelper.generateRPClasses();

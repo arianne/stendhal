@@ -13,6 +13,9 @@ import utilities.SpeakerNPCTestHelper;
 
 public class QuestNotStartedConditionTest {
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		assertTrue(new QuestNotStartedCondition("questname").fire(
@@ -37,17 +40,26 @@ public class QuestNotStartedConditionTest {
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 
+	/**
+	 * Tests for questNotStartedCondition.
+	 */
 	@Test
 	public final void testQuestNotStartedCondition() {
 		new QuestNotStartedCondition("questname");
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("QuestNotStarted <questname>",
 				new QuestNotStartedCondition("questname").toString());
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		assertFalse(new QuestNotStartedCondition("questname").equals(null));
@@ -75,6 +87,9 @@ public class QuestNotStartedConditionTest {
 		
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() throws Throwable {
 		final QuestNotStartedCondition obj = new QuestNotStartedCondition("questname");

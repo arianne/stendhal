@@ -41,6 +41,9 @@ public class SentenceTest {
 		assertEquals("it/OBJ-PRO fit/VER?", sentence.toString());
 	}
 
+	/**
+	 * Tests for sentenceType.
+	 */
 	@Test
 	public final void testSentenceType() {
 		Sentence sentence = ConversationParser.parse("buy banana!");
@@ -71,6 +74,9 @@ public class SentenceTest {
 		assertEquals("banana", sentence.getObject(1).getNormalized());
 	}
 
+	/**
+	 * Tests for enumerations.
+	 */
 	@Test
 	public final void testEnumerations() {
 		final Sentence sentence = ConversationParser.parse("it is raining cats and dogs");
@@ -82,6 +88,9 @@ public class SentenceTest {
 		assertEquals("dog", sentence.getSubject(1).getNormalized());
 	}
 
+	/**
+	 * Tests for comparison.
+	 */
 	@Test
 	public final void testComparison() {
 		final Sentence s1 = ConversationParser.parse("it is raining cats and dogs");
@@ -96,6 +105,9 @@ public class SentenceTest {
 		assertFalse(s1.equalsNormalized(s3));
 	}
 
+	/**
+	 * Tests for matching.
+	 */
 	@Test
 	public final void testMatching() {
 		Sentence s1 = ConversationParser.parse("buy banana");
@@ -151,6 +163,9 @@ public class SentenceTest {
 		assertTrue(s1.matchesStart(m1));
 	}
 
+	/**
+	 * Tests for numberMatching.
+	 */
 	@Test
 	public final void testNumberMatching() {
 		Sentence s = ConversationParser.parse("zero");
@@ -174,6 +189,9 @@ public class SentenceTest {
 		assertTrue(s.matchesNormalized("2"));
 	}
 
+	/**
+	 * Tests for typeMatching.
+	 */
 	@Test
 	public final void testTypeMatching() {
 		Sentence s1 = ConversationParser.parse("no");
@@ -194,6 +212,9 @@ public class SentenceTest {
 		assertTrue(s1.matchesFull(m1));
 	}
 
+	/**
+	 * Tests for diff.
+	 */
 	@Test
 	public final void testDiff() {
 		final Sentence s1 = ConversationParser.parse("it is raining cats and dogs");
@@ -218,6 +239,9 @@ public class SentenceTest {
 		assertEquals("-[catch] +[drive] -[bus] +[by] +[bike]", s2.diffNormalized(s3));
 	}
 
+	/**
+	 * Tests for specialCases.
+	 */
 	@Test
 	public final void testSpecialCases() {
 		Sentence sentence = ConversationParser.parse("where to");
@@ -229,6 +253,9 @@ public class SentenceTest {
 		assertEquals("they/SUB-PRO-PLU have/VER good pizza/OBJ-FOO", sentence.toString());
 	}
 
+	/**
+	 * Tests for withoutParser.
+	 */
 	@Test
 	public final void testWithoutParser() {
 		final Expression expr = new Expression("hello", "VER");

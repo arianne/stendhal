@@ -23,6 +23,9 @@ public class HousePortalTest {
 		HousePortal.generateRPClass();
 	}
 	
+	/**
+	 * Tests for creation.
+	 */
 	@Test
 	public void testCreation() {
 		final HousePortal portal = new HousePortal("henhouse");
@@ -32,6 +35,9 @@ public class HousePortalTest {
 		assertEquals("house_portal", portal.get("type"));
 	}
 	
+	/**
+	 * Tests for owner.
+	 */
 	@Test
 	public void testOwner() {
 		final HousePortal portal = new HousePortal("henhouse");
@@ -40,6 +46,9 @@ public class HousePortalTest {
 		assertEquals("Mr Taxman", portal.getOwner());
 	}
 	
+	/**
+	 * Tests for describe.
+	 */
 	@Test
 	public void testDescribe() {
 		final HousePortal portal = new HousePortal("henhouse");
@@ -48,6 +57,9 @@ public class HousePortalTest {
 		assertEquals("Here lives Mr Taxman.", portal.describe());
 	}
 	
+	/**
+	 * Tests for isAllowed.
+	 */
 	@Test
 	public void testIsAllowed() {
 		final HousePortal portal = new HousePortal("henhouse");
@@ -83,6 +95,9 @@ public class HousePortalTest {
 		assertTrue(portal.isAllowed(player));
 	}
 	
+	/**
+	 * Tests for changeLock.
+	 */
 	@Test
 	public void testChangeLock() {
 		final HousePortal portal = new HousePortal("henhouse");
@@ -92,6 +107,9 @@ public class HousePortalTest {
 		}
 	}
 	
+	/**
+	 * Tests for expiryTime.
+	 */
 	@Test
 	public void testExpiryTime() {
 		final HousePortal portal = new HousePortal("henhouse");
@@ -101,6 +119,9 @@ public class HousePortalTest {
 		assertEquals(-912234223, portal.getExpireTime());
 	}
 	
+	/**
+	 * Tests for getPortalNumber.
+	 */
 	@Test
 	public void testGetPortalNumber() {
 		HousePortal portal = new HousePortal("henhouse");

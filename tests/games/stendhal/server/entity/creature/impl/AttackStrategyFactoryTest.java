@@ -29,6 +29,9 @@ public class AttackStrategyFactoryTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for getArcher.
+	 */
 	@Test
 	public void testGetArcher() {
 		final Map<String, String> profiles = new HashMap<String, String>();
@@ -38,6 +41,9 @@ public class AttackStrategyFactoryTest {
 
 	}
 
+	/**
+	 * Tests for getGandhi.
+	 */
 	@Test
 	public void testGetGandhi() {
 		final Map<String, String> profiles = new HashMap<String, String>();
@@ -47,6 +53,9 @@ public class AttackStrategyFactoryTest {
 
 	}
 
+	/**
+	 * Tests for getCoward.
+	 */
 	@Test
 	public void testGetCoward() {
 		final Map<String, String> profiles = new HashMap<String, String>();
@@ -56,6 +65,9 @@ public class AttackStrategyFactoryTest {
 
 	}
 
+	/**
+	 * Tests for getStupidCoward.
+	 */
 	@Test
 	public void testGetStupidCoward() {
 		final Map<String, String> profiles = new HashMap<String, String>();

@@ -41,6 +41,9 @@ public class StackableItemTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for getQuantity.
+	 */
 	@Test
 	public void testGetQuantity() {
 		StackableItem stack = new StackableItem("item", "clazz", "subclass", null);
@@ -48,6 +51,9 @@ public class StackableItemTest {
 		
 	}
 
+	/**
+	 * Tests for removeOne.
+	 */
 	@Test
 	public void testRemoveOne() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -57,6 +63,9 @@ public class StackableItemTest {
 		assertThat(stack.getQuantity(), is(0));
 	}
 
+	/**
+	 * Tests for setQuantity.
+	 */
 	@Test
 	public void testSetQuantity() {
 		StackableItem stack = new StackableItem("item", "clazz", "subclass", null);
@@ -69,6 +78,9 @@ public class StackableItemTest {
 		assertThat(stack.getQuantity(), is(100));
 	}
 
+	/**
+	 * Tests for sub.
+	 */
 	@Test
 	public void testSub() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -90,6 +102,9 @@ public class StackableItemTest {
 		
 	}
 	
+	/**
+	 * Tests for subNegativeNumber.
+	 */
 	@Test
 	public void testSubNegativeNumber() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -100,6 +115,9 @@ public class StackableItemTest {
 	}
 	
 	
+	/**
+	 * Tests for subNegativeNumberSimilarToSplitOff.
+	 */
 	@Test
 	public void testSubNegativeNumberSimilarToSplitOff() {
 		final StackableItem subStack = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -113,6 +131,9 @@ public class StackableItemTest {
 		assertThat(subStack.getQuantity(), is(splitStack.getQuantity()));
 	}
 	
+	/**
+	 * Tests for addStackable.
+	 */
 	@Test
 	public void testAddStackable() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -123,6 +144,9 @@ public class StackableItemTest {
 		assertThat(stack.getQuantity(), is(2));
 	}
 
+	/**
+	 * Tests for splitOff.
+	 */
 	@Test
 	public void testSplitOff() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -143,6 +167,9 @@ public class StackableItemTest {
 		assertThat(stack.getQuantity(), is(99));
 	}
 
+	/**
+	 * Tests for splitOffNegativeNumber.
+	 */
 	@Test
 	public void testSplitOffNegativeNumber() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -152,6 +179,9 @@ public class StackableItemTest {
 		assertThat("similar to sub()", stack.getQuantity(), is(1));
 	}
 	
+	/**
+	 * Tests for isStackableMoney.
+	 */
 	@Test
 	public void testIsStackableMoney() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -161,6 +191,9 @@ public class StackableItemTest {
 		assertFalse(stack.isStackable(stack));
 	}
 	
+	/**
+	 * Tests for isStackableBaloon.
+	 */
 	@Test
 	public void testIsStackableBaloon() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("balloon");
@@ -170,6 +203,9 @@ public class StackableItemTest {
 		assertFalse(stack.isStackable(stack));
 	}
 	
+	/**
+	 * Tests for isStackableBaloonOnMoney.
+	 */
 	@Test
 	public void testIsStackableBaloonOnMoney() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("balloon");
@@ -179,6 +215,9 @@ public class StackableItemTest {
 		assertFalse(stack.isStackable(stack));
 	}
 	
+	/**
+	 * Tests for isStackableSummonScrolls.
+	 */
 	@Test
 	public void testIsStackableSummonScrolls() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("summon scroll");
@@ -188,6 +227,9 @@ public class StackableItemTest {
 		assertFalse(stack.isStackable(stack));
 	}
 	
+	/**
+	 * Tests for isStackableInvitationScrolls.
+	 */
 	@Test
 	public void testIsStackableInvitationScrolls() {
 		final StackableItem stack = (StackableItem) SingletonRepository.getEntityManager().getItem("invitation scroll");
@@ -197,6 +239,9 @@ public class StackableItemTest {
 		assertFalse(stack.isStackable(stack));
 	}
 	
+	/**
+	 * Tests for isStackableDifferentScrolls.
+	 */
 	@Test
 	public void testIsStackableDifferentScrolls() {
 	    final List<StackableItem> stackables = new LinkedList<StackableItem>();

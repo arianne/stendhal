@@ -19,6 +19,9 @@ public class AdminConditionTest extends PlayerTestHelper {
 		MockStendlRPWorld.get();
 	}
 	
+	/**
+	 * Tests for constructor.
+	 */
 	@Test
 	public void testConstructor() throws Throwable {
 		final AdminCondition adminCondition = new AdminCondition();
@@ -26,6 +29,9 @@ public class AdminConditionTest extends PlayerTestHelper {
 				adminCondition.hashCode());
 	}
 
+	/**
+	 * Tests for constructor1.
+	 */
 	@Test
 	public void testConstructor1() throws Throwable {
 		final AdminCondition adminCondition = new AdminCondition(100);
@@ -33,6 +39,9 @@ public class AdminConditionTest extends PlayerTestHelper {
 				adminCondition.hashCode());
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		final AdminCondition obj = new AdminCondition(100);
@@ -47,6 +56,9 @@ public class AdminConditionTest extends PlayerTestHelper {
 				}));
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public void testFire() throws Throwable {
 		assertTrue(new AdminCondition(0).fire(createPlayer("player"),
@@ -58,18 +70,27 @@ public class AdminConditionTest extends PlayerTestHelper {
 
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() throws Throwable {
 		assertEquals("result", 629, new AdminCondition(0).hashCode());
 		assertEquals("result", 729, new AdminCondition(100).hashCode());
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public void testToString() throws Throwable {
 		assertEquals("result", "admin <100>",
 				new AdminCondition(100).toString());
 	}
 
+	/**
+	 * Tests for fireThrowsNullPointerException.
+	 */
 	@Test(expected = NullPointerException.class)
 	public void testFireThrowsNullPointerException() throws Throwable {
 		new AdminCondition(100).fire(null, ConversationParser.parse("testAdminConditionText"),

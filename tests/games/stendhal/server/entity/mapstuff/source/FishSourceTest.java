@@ -26,6 +26,9 @@ public class FishSourceTest {
 		
 	}
 
+	/**
+	 * Tests for onUsed.
+	 */
 	@Test
 	public void testOnUsed() {
 		FishSourceTestHelper.generateRPClasses();

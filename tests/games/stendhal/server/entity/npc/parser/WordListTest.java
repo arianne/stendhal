@@ -54,6 +54,9 @@ public class WordListTest {
 		assertEquals("they", w.getPlurSing());
 	}
 
+	/**
+	 * Tests for verbs.
+	 */
 	@Test
 	public final void testVerbs() {
 		final WordList wl = WordList.getInstance();
@@ -74,6 +77,9 @@ public class WordListTest {
 		assertEquals(ExpressionType.VERB + ExpressionType.SUFFIX_PLURAL, w.getTypeString());
 	}
 
+	/**
+	 * Tests for adjectives.
+	 */
 	@Test
 	public final void testAdjectives() {
 		final WordList wl = WordList.getInstance();
@@ -94,6 +100,9 @@ public class WordListTest {
 		assertEquals(ExpressionType.ADJECTIVE, w.getTypeString());
 	}
 
+	/**
+	 * Tests for prepositions.
+	 */
 	@Test
 	public final void testPrepositions() {
 		final WordList wl = WordList.getInstance();
@@ -109,6 +118,9 @@ public class WordListTest {
 		assertEquals(ExpressionType.PREPOSITION, w.getTypeString());
 	}
 
+	/**
+	 * Tests for plural.
+	 */
 	@Test
 	public final void testPlural() {
 		final WordList wl = WordList.getInstance();
@@ -118,6 +130,9 @@ public class WordListTest {
 		assertEquals("cookies", wl.plural("cooky"));
 	}
 
+	/**
+	 * Tests for singular.
+	 */
 	@Test
 	public final void testSingular() {
 		final WordList wl = WordList.getInstance();
@@ -126,6 +141,9 @@ public class WordListTest {
 		assertEquals("cookie", wl.singular("cookies"));
 	}
 
+	/**
+	 * Tests for trimWords.
+	 */
 	@Test
 	public void testTrimWords() {
 		String word = "BLABLA";

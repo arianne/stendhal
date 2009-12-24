@@ -21,6 +21,9 @@ public class ExpressionMatcherTest {
 		assertFalse(matcher.isAnyFlagSet());
 	}
 
+	/**
+	 * Tests for parsing.
+	 */
 	@Test
 	public final void testParsing() {
 		final ExpressionMatcher matcher = new ExpressionMatcher();
@@ -61,6 +64,9 @@ public class ExpressionMatcherTest {
 		assertEquals("|EXACT|Hello world!", sentence.toString());
 	}
 
+	/**
+	 * Tests for typeMatching.
+	 */
 	@Test
 	public final void testTypeMatching() {
 		final ExpressionMatcher matcher = new ExpressionMatcher();
@@ -104,6 +110,9 @@ public class ExpressionMatcherTest {
 		assertFalse(matcher.match(e4, e5));
 	}
 
+	/**
+	 * Tests for exactMatching.
+	 */
 	@Test
 	public final void testExactMatching() {
 		final ExpressionMatcher matcher = new ExactExprMatcher();
@@ -123,6 +132,9 @@ public class ExpressionMatcherTest {
 		assertFalse(matcher.match(abcVER, aBc));
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public final void testEquals() {
 		final ExpressionMatcher m1 = new ExpressionMatcher();

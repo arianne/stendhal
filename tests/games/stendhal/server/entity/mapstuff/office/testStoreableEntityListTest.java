@@ -48,6 +48,9 @@ public class testStoreableEntityListTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for removeByName.
+	 */
 	@Test
 	public void testRemoveByName() {
 		final StendhalRPZone zone = new StendhalRPZone("name") {

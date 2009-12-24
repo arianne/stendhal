@@ -38,6 +38,9 @@ public class ExpressionTest {
 		assertFalse(expr3.matchesNormalizedSimilar(expr1));
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public final void testEquals() {
 		final Expression exp = new Expression("blabla");
@@ -65,6 +68,9 @@ public class ExpressionTest {
 		assertTrue(x.equals(y));
 	}
 
+	/**
+	 * Tests for triggerMatching.
+	 */
 	@Test
 	public final void testTriggerMatching() {
 		final Sentence s1 = ConversationParser.parse("spade");
@@ -77,6 +83,9 @@ public class ExpressionTest {
 		assertTrue(e2.matchesNormalized(e1));
 	}
 
+	/**
+	 * Tests for typeTriggerMatching.
+	 */
 	@Test
 	public final void testTypeTriggerMatching() {
 		// First show, that "do" without the exactMatching flag matches "done".
@@ -109,6 +118,9 @@ public class ExpressionTest {
 		assertTrue(e2.matchesNormalized(e1));
 	}
 
+	/**
+	 * Tests for exactTriggerMatching.
+	 */
 	@Test
 	public final void testExactTriggerMatching() {
 		// First show, that "do" without the exactMatching flag matches "done".

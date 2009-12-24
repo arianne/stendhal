@@ -6,6 +6,9 @@ import org.junit.Test;
 
 public class BehaviourTest {
 
+	/**
+	 * Tests for setAmount.
+	 */
 	@Test
 	public void testSetAmount() {
 		Behaviour beh = new Behaviour();

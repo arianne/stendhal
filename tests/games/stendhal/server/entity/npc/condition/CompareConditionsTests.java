@@ -44,6 +44,9 @@ public class CompareConditionsTests {
 
 	}
 
+	/**
+	 * Tests for name.
+	 */
 	@Test
 	public void testname() throws Exception {
 		for (final ChatCondition cond1 : conditionsA2) {

@@ -39,6 +39,9 @@ public class HandToHandTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for attack.
+	 */
 	@Test
 	public void testAttack() throws Exception {
 		MockStendhalRPRuleProcessor.get();
@@ -52,6 +55,9 @@ public class HandToHandTest {
 		verify(creature);
 	}
 
+	/**
+	 * Tests for notAttackTurnAttack.
+	 */
 	@Test
 	public void testNotAttackTurnAttack() throws Exception {
 		MockStendhalRPRuleProcessor.get();
@@ -63,6 +69,9 @@ public class HandToHandTest {
 		verify(creature);
 	}
 
+	/**
+	 * Tests for canAttackNow.
+	 */
 	@Test
 	public void testCanAttackNow() {
 		final HandToHand hth = new HandToHand();
@@ -88,6 +97,9 @@ public class HandToHandTest {
 
 	}
 
+	/**
+	 * Tests for canAttackNowBigCreature.
+	 */
 	@Test
 	public void testCanAttackNowBigCreature() {
 		final StendhalRPZone zone = new StendhalRPZone("hthtest");
@@ -122,6 +134,9 @@ public class HandToHandTest {
 
 	private static boolean mockinvisible;
 
+	/**
+	 * Tests for hasValidTargetNonAttacker.
+	 */
 	@Test
 	public void testhasValidTargetNonAttacker() {
 		HandToHand hth = new HandToHand();
@@ -134,6 +149,9 @@ public class HandToHandTest {
 		verify(nonAttacker);
 	}
 
+	/**
+	 * Tests for hasValidTargetInvisibleVictim.
+	 */
 	@Test
 	public void testhasValidTargetInvisibleVictim() {
 
@@ -153,6 +171,9 @@ public class HandToHandTest {
 
 	}
 
+	/**
+	 * Tests for hasValidTargetDifferentZones.
+	 */
 	@Test
 	public void testhasValidTargetDifferentZones() {
 
@@ -177,6 +198,9 @@ public class HandToHandTest {
 
 	}
 
+	/**
+	 * Tests for hasValidTargetvisibleVictim.
+	 */
 	@Test
 	public void testhasValidTargetvisibleVictim() {
 		ID id = new RPObject.ID(1, "zone");
@@ -204,6 +228,9 @@ public class HandToHandTest {
 
 	}
 
+	/**
+	 * Tests for hasValidTarget.
+	 */
 	@Test
 	public void testHasValidTarget() {
 		final StendhalRPZone zone = new StendhalRPZone("hthtest");
@@ -251,6 +278,9 @@ public class HandToHandTest {
 
 	}
 
+	/**
+	 * Tests for findNewtarget.
+	 */
 	@Test
 	public void testFindNewtarget() throws Exception {
 		MockStendhalRPRuleProcessor.get();

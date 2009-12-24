@@ -30,11 +30,17 @@ public class EngineTest {
 	}
 
 
+	/**
+	 * Tests for engine.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testEngine() {
 		new Engine(null);
 	}
 
+	/**
+	 * Tests for addSingleStringEmptyCondition.
+	 */
 	@Test
 	public void testAddSingleStringEmptyCondition() {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
@@ -55,6 +61,9 @@ public class EngineTest {
 		assertEquals(nextState, en.getCurrentState());
 	}
 	
+	/**
+	 * Tests for addBothActionsNull.
+	 */
 	@Test
 	public void testaddBothActionsNull() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
@@ -65,6 +74,9 @@ public class EngineTest {
 		assertThat(en.getTransitions().size(), is(1));
 	}
 	
+	/**
+	 * Tests for addExistingActionNull.
+	 */
 	@Test
 	public void testaddExistingActionNull() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
@@ -81,6 +93,9 @@ public class EngineTest {
 		
 	}
 	
+	/**
+	 * Tests for addnewNullAction.
+	 */
 	@Test
 	public void testaddnewNullAction() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
@@ -99,6 +114,9 @@ public class EngineTest {
 		
 	}
 	
+	/**
+	 * Tests for addSameAction.
+	 */
 	@Test
 	public void testaddSameAction() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
@@ -116,6 +134,9 @@ public class EngineTest {
 		
 	}
 	
+	/**
+	 * Tests for addNotSameAction.
+	 */
 	@Test
 	public void testaddNotSameAction() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
@@ -140,6 +161,9 @@ public class EngineTest {
 	}
 	
 
+	/**
+	 * Tests for addSingleStringValidCondition.
+	 */
 	@Test
 	public void testAddSingleStringValidCondition() {
 		final SpeakerNPC bob = new SpeakerNPC("bob");

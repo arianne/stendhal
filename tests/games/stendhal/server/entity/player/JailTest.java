@@ -38,6 +38,9 @@ public class JailTest {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
+	/**
+	 * Tests for criminalNotInworld.
+	 */
 	@Test
 	public final void testCriminalNotInworld() {
 		final Player policeman = PlayerTestHelper.createPlayer("police officer");
@@ -49,6 +52,9 @@ public class JailTest {
 		
 	}
 
+	/**
+	 * Tests for criminalimprison.
+	 */
 	@Test
 	public final void testCriminalimprison() throws Exception {
 		final Player policeman = PlayerTestHelper.createPlayer("police officer");
@@ -65,6 +71,9 @@ public class JailTest {
 	}
 
 	
+	/**
+	 * Tests for repeatedJailing.
+	 */
 	@Test
 	public final void testrepeatedJailing() throws Exception {
 
@@ -82,6 +91,9 @@ public class JailTest {
 		assertEquals("bob: 1 Minutes because: test2\n", SingletonRepository.getJail().listJailed().replace(jaillist, ""));
 		
 	}
+	/**
+	 * Tests for isInJail.
+	 */
 	@Test
 	public final void testIsInJail() throws Exception {
 

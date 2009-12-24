@@ -64,6 +64,9 @@ public class NotConditionTest {
 
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public final void testHashCode() {
 		final NotCondition obj = new NotCondition(trueCondition);
@@ -75,6 +78,9 @@ public class NotConditionTest {
 
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		assertFalse(new NotCondition(trueCondition).fire(
@@ -85,17 +91,26 @@ public class NotConditionTest {
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 
+	/**
+	 * Tests for notCondition.
+	 */
 	@Test
 	public final void testNotCondition() {
 		new NotCondition(trueCondition);
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("not <true>", new NotCondition(trueCondition).toString());
 		assertEquals("not <false>", new NotCondition(falsecondition).toString());
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 

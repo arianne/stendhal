@@ -15,6 +15,9 @@ public class OneWayPortalDestinationTest {
 		PortalTestHelper.generateRPClasses();
 	}
 
+	/**
+	 * Tests for setDestination.
+	 */
 	@Test (expected = IllegalArgumentException.class)
 	public final void testSetDestination() {
 		final OneWayPortalDestination owp = new OneWayPortalDestination();
@@ -22,11 +25,17 @@ public class OneWayPortalDestinationTest {
 
 	}
 
+	/**
+	 * Tests for loaded.
+	 */
 	@Test
 	public final void testLoaded() {
 		assertTrue(new OneWayPortalDestination().loaded());
 	}
 
+	/**
+	 * Tests for onUsed.
+	 */
 	@Test
 	public final void testOnUsed() {
 		assertFalse(new OneWayPortalDestination().onUsed(null));

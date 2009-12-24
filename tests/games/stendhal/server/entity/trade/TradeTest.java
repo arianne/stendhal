@@ -30,6 +30,9 @@ public class TradeTest {
 		MockStendlRPWorld.reset();
 	}
 	
+	/**
+	 * Tests for createOffer.
+	 */
 	@Test
 	public void testCreateOffer() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -45,6 +48,9 @@ public class TradeTest {
 		assertNull(bob.getFirstEquipped("axe"));
 	}
 
+	/**
+	 * Tests for successfullTrade.
+	 */
 	@Test
 	public void testSuccessfullTrade() {
 		Player george = PlayerTestHelper.createPlayer("george");
@@ -75,6 +81,9 @@ public class TradeTest {
 				is(Boolean.TRUE));
 	}
 	
+	/**
+	 * Tests for createNonExistingOffer.
+	 */
 	@Test
 	public void testCreateNonExistingOffer() {
 		StendhalRPZone zone = new StendhalRPZone("shop");
@@ -85,6 +94,9 @@ public class TradeTest {
 		assertNull("Creating offers for non existing items should fail", offer);
 	}
 	
+	/**
+	 * Tests for createOfferForBoundItem.
+	 */
 	@Test
 	public void testCreateOfferForBoundItem() {
 		StendhalRPZone zone = new StendhalRPZone("shop");
@@ -100,6 +112,9 @@ public class TradeTest {
 		assertThat(george.isEquipped("axe"), is(Boolean.TRUE));
 	}
 
+	/**
+	 * Tests for nonExistingOffer.
+	 */
 	@Test
 	public void testNonExistingOffer() {
 		StendhalRPZone zone = new StendhalRPZone("shop");
@@ -122,6 +137,9 @@ public class TradeTest {
 	}
 	
 	
+	/**
+	 * Tests for poorBuyer.
+	 */
 	@Test
 	public void testPoorBuyer() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -152,6 +170,9 @@ public class TradeTest {
 				is(Boolean.FALSE));
 	}
 
+	/**
+	 * Tests for expireOffer.
+	 */
 	@Test
 	public void testExpireOffer() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -168,6 +189,9 @@ public class TradeTest {
 		assertTrue(edeka.getExpiredOffers().contains(offer));
 	}
 	
+	/**
+	 * Tests for removeExpiredOffer.
+	 */
 	@Test
 	public void testRemoveExpiredOffer() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -185,6 +209,9 @@ public class TradeTest {
 		assertFalse(edeka.getExpiredOffers().contains(offer));
 	}
 	
+	/**
+	 * Tests for removeOffer.
+	 */
 	@Test
 	public void testRemoveOffer() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -203,6 +230,9 @@ public class TradeTest {
 	}
 	
 	// returning the item to player from an offer that has expired
+	/**
+	 * Tests for removeExpiredOffer2.
+	 */
 	@Test
 	public void testRemoveExpiredOffer2() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -222,6 +252,9 @@ public class TradeTest {
 		assertTrue(bob.getFirstEquipped("axe") != null);
 	}
 	
+	/**
+	 * Tests for removeNonExistingOffer.
+	 */
 	@Test
 	public void testRemoveNonExistingOffer() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -244,6 +277,9 @@ public class TradeTest {
 		assertNull(bob.getFirstEquipped("axe"));
 	}
 	
+	/**
+	 * Tests for getOffersOlderThan.
+	 */
 	@Test
 	public void testGetOffersOlderThan() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -267,6 +303,9 @@ public class TradeTest {
 		assertFalse(edeka.getOffersOlderThan(1000000000).contains(offer2));
 	}
 	
+	/**
+	 * Tests for getExpiredOffersOlderThan.
+	 */
 	@Test
 	public void testGetExpiredOffersOlderThan() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -292,6 +331,9 @@ public class TradeTest {
 		assertFalse(edeka.getExpiredOffersOlderThan(1000000000).contains(offer2));
 	}
 	
+	/**
+	 * Tests for prolongActive.
+	 */
 	@Test
 	public void testProlongActive() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -309,6 +351,9 @@ public class TradeTest {
 		assertTrue(edeka.getOffers().size() == 1);
 	}
 	
+	/**
+	 * Tests for prolongExpired.
+	 */
 	@Test
 	public void testProlongExpired() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -328,6 +373,9 @@ public class TradeTest {
 		assertTrue(edeka.getExpiredOffers().size() == 0);
 	}
 	
+	/**
+	 * Tests for prolongCompletelyExpired.
+	 */
 	@Test
 	public void testProlongCompletelyExpired() {
 		Player bob = PlayerTestHelper.createPlayer("bob");

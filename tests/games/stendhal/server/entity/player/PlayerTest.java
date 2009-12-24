@@ -40,11 +40,17 @@ public class PlayerTest {
 		killer = PlayerTestHelper.createPlayer("killer");	
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() {
 		assertThat(player.hashCode(), is(playername.hashCode()));
 	}
 
+	/**
+	 * Tests for equalsObject.
+	 */
 	@Test
 	public void testEqualsObject() {
 		assertThat(player, equalTo(player));
@@ -52,11 +58,17 @@ public class PlayerTest {
 		assertThat(player, not(equalTo(PlayerTestHelper.createPlayer(playername + 's'))));
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public void testToString() {
 		assertThat(player.toString(), is("Player [" + playername + ", " + playername.hashCode() + ']'));
 	}
 
+	/**
+	 * Tests for isObstacle.
+	 */
 	@Test
 	public void testIsObstacle() {
 		final Entity ent = new Entity() {
@@ -70,6 +82,9 @@ public class PlayerTest {
 		assertThat(player.getResistance(ent), is(95));
 	}
 
+	/**
+	 * Tests for onAdded.
+	 */
 	@Test
 	public void testOnAdded() {
 		
@@ -93,6 +108,9 @@ public class PlayerTest {
 		assertThat(player.get("visibility"), is("100"));
 	}
 
+	/**
+	 * Tests for describe.
+	 */
 	@Test
 	public void testDescribe() {
 		final int hours = player.getAge() / 60;
@@ -102,6 +120,9 @@ public class PlayerTest {
 				+ player.getLevel() + " and has been playing " + time + "."));
 	}
 	
+	/**
+	 * Tests for describeOfPlayerWithAwayMessage.
+	 */
 	@Test
 	public void testDescribeOfPlayerWithAwayMessage() {
 		final int hours = player.getAge() / 60;
@@ -117,6 +138,9 @@ public class PlayerTest {
 		assertThat(description, is(expectedDescription));
 	}
 	
+	/**
+	 * Tests for describeOfPlayerWithGrumpyMessage.
+	 */
 	@Test
 	public void testDescribeOfPlayerWithGrumpyMessage() {
 		final int hours = player.getAge() / 60;
@@ -132,6 +156,9 @@ public class PlayerTest {
 		assertThat(description, is(expectedDescription));
 	}
 
+	/**
+	 * Tests for describeOfPlayerWithAwayAndGrumpyMessage.
+	 */
 	@Test
 	public void testDescribeOfPlayerWithAwayAndGrumpyMessage() {
 		final int hours = player.getAge() / 60;
@@ -150,6 +177,9 @@ public class PlayerTest {
 		assertThat(description, is(expectedDescription));
 	}
 	
+	/**
+	 * Tests for isGhost.
+	 */
 	@Test
 	public void testIsGhost() {
 		assertFalse(player.isGhost());
@@ -160,6 +190,9 @@ public class PlayerTest {
 
 	}
 
+	/**
+	 * Tests for addGetUseKarma.
+	 */
 	@Test
 	public void testAddGetUseKarma() {
 
@@ -173,6 +206,9 @@ public class PlayerTest {
 
 	}
 
+	/**
+	 * Tests for isInvisible.
+	 */
 	@Test
 	public void testIsInvisible() {
 		final Player player2 = PlayerTestHelper.createPlayer("player2");
@@ -183,6 +219,9 @@ public class PlayerTest {
 		assertThat(player2.isInvisibleToCreatures(), not(is(true)));
 	}
 
+	/**
+	 * Tests for setImmune.
+	 */
 	@Test
 	public void testSetImmune() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -192,6 +231,9 @@ public class PlayerTest {
 	}
 
 	
+	/**
+	 * Tests for removeImmunity.
+	 */
 	@Test
 	public void testRemoveImmunity() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -203,6 +245,9 @@ public class PlayerTest {
 		
 	}
 	
+	/**
+	 * Tests for isBadBoy.
+	 */
 	@Test
 	public void testIsBadBoy() throws Exception {
 		assertFalse(player.isBadBoy());
@@ -213,6 +258,9 @@ public class PlayerTest {
 		assertFalse(player.isBadBoy());
 	}
 	
+	/**
+	 * Tests for rehabilitate.
+	 */
 	@Test
 	public void testRehabilitate() throws Exception {
 		assertFalse(player.isBadBoy());
@@ -227,6 +275,9 @@ public class PlayerTest {
 
 	}
 	
+	/**
+	 * Tests for getWidth.
+	 */
 	@Test
 	public void testgetWidth() throws Exception {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -244,6 +295,9 @@ public class PlayerTest {
 		assertThat(george.get("height"), is("1"));
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		Player player = PlayerTestHelper.createPlayer("questTestPlayer");

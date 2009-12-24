@@ -25,6 +25,9 @@ public class QuestInStateConditionTest {
 		MockStendhalRPRuleProcessor.get();
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public final void testFire() {
 		final String validState = "valid";
@@ -56,17 +59,26 @@ public class QuestInStateConditionTest {
 
 	}
 
+	/**
+	 * Tests for questInStateCondition.
+	 */
 	@Test
 	public final void testQuestInStateCondition() {
 		new QuestInStateCondition(QUESTNAME, "");
 	}
 
+	/**
+	 * Tests for toString.
+	 */
 	@Test
 	public final void testToString() {
 		assertEquals("QuestInState <questname[-1] = testToString>",
 				new QuestInStateCondition(QUESTNAME, "testToString").toString());
 	}
 
+	/**
+	 * Tests for equals.
+	 */
 	@Test
 	public void testEquals() throws Throwable {
 		final String state = "state";
@@ -99,6 +111,9 @@ public class QuestInStateConditionTest {
 		}));
 	}
 
+	/**
+	 * Tests for hashCode.
+	 */
 	@Test
 	public void testHashCode() throws Throwable {
 

@@ -32,6 +32,9 @@ public class SheepTest {
 		SheepFoodTestHelper.generateRPClasses();
 	}
 
+	/**
+	 * Tests for searchForFoodNotThere.
+	 */
 	@Test
 	public void testSearchForFoodNotThere() {
 		final Sheep meh = new Sheep();
@@ -40,6 +43,9 @@ public class SheepTest {
 		assertFalse(meh.searchForFood());
 	}
 
+	/**
+	 * Tests for searchForFoodNextTo.
+	 */
 	@Test
 	public void testSearchForFoodNextTo() {
 		final Sheep meh = new Sheep();
@@ -56,6 +62,9 @@ public class SheepTest {
 		assertEquals("eat", meh.getIdea());
 	}
 
+	/**
+	 * Tests for searchForFoodNotNextTo.
+	 */
 	@Test
 	public void testSearchForFoodNotNextTo() {
 		final Sheep meh = new Sheep();
@@ -76,6 +85,9 @@ public class SheepTest {
 		assertEquals("found food and thinks of it", "food", meh.getIdea());
 	}
 
+	/**
+	 * Tests for searchForBlockedFood.
+	 */
 	@Test
 	public void testSearchForBlockedFood() {
 		final Sheep meh = new Sheep();
@@ -100,6 +112,9 @@ public class SheepTest {
 		assertEquals(null, meh.getIdea());
 	}
 
+	/**
+	 * Tests for getFarerNotBlockedFood.
+	 */
 	@Test
 	public void testGetFarerNotBlockedFood() {
 
@@ -147,6 +162,9 @@ public class SheepTest {
 		assertEquals("food", meh.getIdea());
 	}
 
+	/**
+	 * Tests for describe.
+	 */
 	@Test
 	public void testDescribe() {
 		final Sheep meh = new Sheep();
@@ -157,11 +175,17 @@ public class SheepTest {
 
 	
 
+	/**
+	 * Tests for sheep.
+	 */
 	@Test
 	public void testSheep() {
 		new Sheep();
 	}
 
+	/**
+	 * Tests for sheepPlayer.
+	 */
 	@Test
 	public void testSheepPlayer() {
 		final StendhalRPZone zone = new StendhalRPZone("testzone", 10, 10);
@@ -176,6 +200,9 @@ public class SheepTest {
 		assertSame(meh, bob.getSheep());
 	}
 
+	/**
+	 * Tests for sheepRPObjectPlayer.
+	 */
 	@Test
 	public void testSheepRPObjectPlayer() {
 		final StendhalRPZone zone = new StendhalRPZone("testzone", 10, 10);
@@ -192,6 +219,9 @@ public class SheepTest {
 		assertSame(meh2, bob.getSheep());
 	}
 
+	/**
+	 * Tests for onHungry.
+	 */
 	@Test
 	public void testOnHungry() {
 		final Sheep meh = new Sheep();
@@ -205,6 +235,9 @@ public class SheepTest {
 		assertTrue("pretend hunting", meh.onHungry());
 	}
 
+	/**
+	 * Tests for onStarve.
+	 */
 	@Test
 	public void testOnStarve() {
 		CorpseTestHelper.generateRPClasses();
@@ -231,6 +264,9 @@ public class SheepTest {
 		assertEquals(0, meh.getHP());
 	}
 
+	/**
+	 * Tests for eat.
+	 */
 	@Test
 	public void testEat() {
 		final RPObject foodobject = new RPObject();
