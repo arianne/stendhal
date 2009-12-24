@@ -57,6 +57,9 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		player.removeQuest(QUEST);
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		en.step(player, "hi");
@@ -69,6 +72,9 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye.", getReply(npc));
 	}
 
+	/**
+	 * Tests for hiAndMakeNoStuff.
+	 */
 	@Test
 	public void testHiAndMakeNoStuff() {
 		en.step(player, "hi");
@@ -86,6 +92,9 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye.", getReply(npc));
 	}
 
+	/**
+	 * Tests for hiAndMakeWithStuffSingle.
+	 */
 	@Test
 	public void testHiAndMakeWithStuffSingle() {
 		en.step(player, "hi");
@@ -137,6 +146,9 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(1, player.getNumberOfEquipped("sandwich"));
 	}
 
+	/**
+	 * Tests for hiAndMakeWithStuffMultiple.
+	 */
 	@Test
 	public void testHiAndMakeWithStuffMultiple() {
 		en.step(player, "hi");
@@ -189,6 +201,9 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(2, player.getNumberOfEquipped("sandwich"));
 	}
 
+	/**
+	 * Tests for multipleWithoutName.
+	 */
 	@Test
 	public void testMultipleWithoutName() {
 		en.step(player, "hi");

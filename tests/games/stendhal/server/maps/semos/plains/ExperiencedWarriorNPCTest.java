@@ -45,6 +45,9 @@ public class ExperiencedWarriorNPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Starkad");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Starkad");
@@ -57,6 +60,9 @@ public class ExperiencedWarriorNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Farewell and godspeed!", getReply(npc));
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		final SpeakerNPC npc = getNPC("Starkad");

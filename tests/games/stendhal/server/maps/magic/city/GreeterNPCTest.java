@@ -39,6 +39,9 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Erodel Bmud");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Erodel Bmud");
@@ -52,6 +55,9 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Adieu.", getReply(npc));
 	}
 
+	/**
+	 * Tests for buyScroll.
+	 */
 	@Test
 	public void testBuyScroll() {
 		final SpeakerNPC npc = getNPC("Erodel Bmud");
@@ -129,6 +135,9 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.isEquipped("home scroll"));
 	}
 
+	/**
+	 * Tests for sellScroll.
+	 */
 	@Test
 	public void testSellScroll() {
 		final SpeakerNPC npc = getNPC("Erodel Bmud");

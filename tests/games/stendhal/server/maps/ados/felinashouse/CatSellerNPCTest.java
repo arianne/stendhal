@@ -43,6 +43,9 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Felina");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Felina");
@@ -55,6 +58,9 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye.", getReply(npc));
 	}
 
+	/**
+	 * Tests for buyCat.
+	 */
 	@Test
 	public void testBuyCat() {
 		final SpeakerNPC npc = getNPC("Felina");
@@ -121,6 +127,9 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.hasPet());
 	}
 
+	/**
+	 * Tests for sellCat.
+	 */
 	@Test
 	public void testSellCat() {
 		final SpeakerNPC npc = getNPC("Felina");

@@ -42,6 +42,9 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Nishiya");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Nishiya");
@@ -54,6 +57,9 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye.", getReply(npc));
 	}
 
+	/**
+	 * Tests for buySheep.
+	 */
 	@Test
 	public void testBuySheep() {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
@@ -115,6 +121,9 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.hasSheep());
 	}
 
+	/**
+	 * Tests for sellSheep.
+	 */
 	@Test
 	public void testSellSheep() {
 		final SpeakerNPC npc = getNPC("Nishiya");

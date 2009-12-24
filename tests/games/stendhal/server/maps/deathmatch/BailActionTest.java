@@ -47,6 +47,9 @@ public class BailActionTest {
 		NPCList.get().clear();
 	}
 
+	/**
+	 * Tests for bailNoDM.
+	 */
 	@Test
 	public void testBailNoDM() {
 		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
@@ -61,6 +64,9 @@ public class BailActionTest {
 		th.put("text", "");
 	}
 
+	/**
+	 * Tests for bailDoneDM.
+	 */
 	@Test
 	public void testBailDoneDM() {
 		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
@@ -77,6 +83,9 @@ public class BailActionTest {
 
 	}
 
+	/**
+	 * Tests for bailStartedDMNOhelmet.
+	 */
 	@Test
 	public void testBailStartedDMNOhelmet() {
 		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
@@ -92,6 +101,9 @@ public class BailActionTest {
 		th.put("text", "");
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public void testFire() {
 		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);

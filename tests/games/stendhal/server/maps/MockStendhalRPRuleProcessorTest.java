@@ -25,17 +25,26 @@ public class MockStendhalRPRuleProcessorTest {
 		
 		MockStendlRPWorld.reset();
 	}
+	/**
+	 * Tests for getTurn.
+	 */
 	@Test
 	public void testGetTurn() {
 		assertThat(MockStendhalRPRuleProcessor.get().getTurn(), is(0));
 	}
 
+	/**
+	 * Tests for get.
+	 */
 	@Test
 	public void testGet() {
 		assertSame(MockStendhalRPRuleProcessor.get(),
 				MockStendhalRPRuleProcessor.get());
 	}
 
+	/**
+	 * Tests for addPlayer.
+	 */
 	@Test
 	public void testAddPlayer() {
 		final MockStendhalRPRuleProcessor processor = MockStendhalRPRuleProcessor.get();

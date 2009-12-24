@@ -39,6 +39,9 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Sam");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Sam");
@@ -52,6 +55,9 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye, enjoy your day!", getReply(npc));
 	}
 
+	/**
+	 * Tests for buyIceCream.
+	 */
 	@Test
 	public void testBuyIceCream() {
 		final SpeakerNPC npc = getNPC("Sam");
@@ -126,6 +132,9 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(en.step(player, "yes"));
 	}
 
+	/**
+	 * Tests for sellIceCream.
+	 */
 	@Test
 	public void testSellIceCream() {
 		final SpeakerNPC npc = getNPC("Sam");

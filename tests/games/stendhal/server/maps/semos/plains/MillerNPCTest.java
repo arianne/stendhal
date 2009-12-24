@@ -44,6 +44,9 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Jenny");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Jenny");
@@ -56,6 +59,9 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye.", getReply(npc));
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		final SpeakerNPC npc = getNPC("Jenny");

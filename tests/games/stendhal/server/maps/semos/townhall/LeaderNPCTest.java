@@ -47,6 +47,9 @@ public class LeaderNPCTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		npc = SingletonRepository.getNPCList().get("Lieutenant Drilenun");
@@ -59,6 +62,9 @@ public class LeaderNPCTest {
 		assertEquals("Don't forget to listen in on my teachings to these cadets, you may find it helpful!", getReply(npc));
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 

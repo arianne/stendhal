@@ -30,6 +30,9 @@ public class BarMaidNPCTest {
 		MockStendlRPWorld.get();
 	}
 
+	/**
+	 * Tests for configureZone.
+	 */
 	@Test
 	public void testConfigureZone() {
 		
@@ -44,6 +47,9 @@ public class BarMaidNPCTest {
 		assertThat(barMaid.getDescription(), is("You see a pretty young bar maid."));
 	}
 
+	/**
+	 * Tests for hiandBye.
+	 */
 	@Test
 	public void testHiandBye() throws Exception {
 		SingletonRepository.getRPWorld();
@@ -66,6 +72,9 @@ public class BarMaidNPCTest {
 		assertThat(getReply(barMaid), is("Bye bye!"));
 	}
 
+	/**
+	 * Tests for jobOfferQuest.
+	 */
 	@Test
 	public void testJobOfferQuest() throws Exception {
 		SingletonRepository.getRPWorld();
@@ -95,6 +104,9 @@ public class BarMaidNPCTest {
 		assertThat("quest text", getReply(barMaid), is("Just #offers of food is enough, thank you."));
 	}
 
+	/**
+	 * Tests for buyerBehaviour.
+	 */
 	@Test
 	public void testBuyerBehaviour() throws Exception {
 		SingletonRepository.getRPWorld();

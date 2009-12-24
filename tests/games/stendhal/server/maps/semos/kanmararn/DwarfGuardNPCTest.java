@@ -43,6 +43,9 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Hunel");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Hunel");
@@ -63,6 +66,9 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye .. be careful ..", getReply(npc));
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		final SpeakerNPC npc = getNPC("Hunel");

@@ -45,12 +45,18 @@ public class FertileGroundsTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for configureZoneNullNull.
+	 */
 	@Test
 	public void testConfigureZoneNullNull() {
 		final FertileGrounds fg = new FertileGrounds();
 		fg.configureZone(null, null);
 	}
 
+	/**
+	 * Tests for configureZoneNullvalues.
+	 */
 	@Test
 	public void testConfigureZoneNullvalues() {
 		final FertileGrounds fg = new FertileGrounds();
@@ -64,6 +70,9 @@ public class FertileGroundsTest {
 		
 		fg.configureZone(zone, attribs);
 	}
+	/**
+	 * Tests for configureZone.
+	 */
 	@Test
 	public void testConfigureZone() {
 		final FertileGrounds fg = new FertileGrounds();

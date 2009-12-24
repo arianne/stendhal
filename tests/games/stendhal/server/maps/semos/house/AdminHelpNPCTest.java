@@ -44,6 +44,9 @@ public class AdminHelpNPCTest extends PlayerTestHelper {
 		player = createPlayer("bob");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 

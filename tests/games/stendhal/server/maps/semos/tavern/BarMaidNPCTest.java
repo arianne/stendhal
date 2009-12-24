@@ -40,6 +40,9 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Margaret");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Margaret");
@@ -52,6 +55,9 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye.", getReply(npc));
 	}
 
+	/**
+	 * Tests for buyHam.
+	 */
 	@Test
 	public void testBuyHam() {
 		final SpeakerNPC npc = getNPC("Margaret");
@@ -137,6 +143,9 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, the maximum number of ham which I can sell at once is 1000.", getReply(npc));
 	}
 
+	/**
+	 * Tests for sellHam.
+	 */
 	@Test
 	public void testSellHam() {
 		final SpeakerNPC npc = SingletonRepository.getNPCList().get("Margaret");

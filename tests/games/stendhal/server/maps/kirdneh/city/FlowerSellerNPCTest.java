@@ -38,6 +38,9 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Fleur");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Fleur");
@@ -50,6 +53,9 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Come back soon!", getReply(npc));
 	}
 
+	/**
+	 * Tests for buyFlower.
+	 */
 	@Test
 	public void testBuyFlower() {
 		final SpeakerNPC npc = getNPC("Fleur");
