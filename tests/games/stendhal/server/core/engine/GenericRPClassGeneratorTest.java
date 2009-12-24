@@ -24,6 +24,9 @@ public class GenericRPClassGeneratorTest {
 	public void after() throws Exception {
 	}
 	
+	/**
+	 * Tests for rPClassGeneration.
+	 */
 	@Test
 	public void testRPClassGeneration() throws Exception {
 		Class<?> clazz = new EntityGenerationTestEntity().getClass();

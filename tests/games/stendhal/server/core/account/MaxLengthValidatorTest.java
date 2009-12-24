@@ -13,6 +13,9 @@ public class MaxLengthValidatorTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tests for maxLengthValidator.
+	 */
 	@Test
 	public void testMaxLengthValidator() {
 		MaxLengthValidator validator = new MaxLengthValidator("four", 4);

@@ -8,6 +8,9 @@ import org.junit.Test;
 public class NotEmptyValidatorTest {
 
 
+	/**
+	 * Tests for validate.
+	 */
 	@Test
 	public final void testValidate() {
 		NotEmptyValidator nev = new NotEmptyValidator("");

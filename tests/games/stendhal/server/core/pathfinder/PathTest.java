@@ -50,6 +50,9 @@ public class PathTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for searchPathEntityIntInt.
+	 */
 	@Test
 	public void testSearchPathEntityIntInt() {
 		final Entity entity = new Entity() {

@@ -50,6 +50,9 @@ public class PlayerTransformerTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for transformUnderscore.
+	 */
 	@Test
 	public void testTransformUnderscore() {
 		RPObject obje = new RPObject();
@@ -64,6 +67,9 @@ public class PlayerTransformerTest {
 		
 		assertThat(transObj.getSlot("bag").getFirst().get("name"), is("leather armor"));
 	}
+	/**
+	 * Tests for transformBind.
+	 */
 	@Test
 	public void testTransformBind() {
 		RPObject obje = new RPObject();
@@ -83,6 +89,9 @@ public class PlayerTransformerTest {
 		RPObject transItem = bag.getFirst();
 		assertTrue(((Item) transItem).isBound());
 	}
+	/**
+	 * Tests for transformUnBind.
+	 */
 	@Test
 	public void testTransformUnBind() {
 		RPObject obje = new RPObject();

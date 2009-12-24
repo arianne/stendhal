@@ -24,6 +24,9 @@ public class KeepFirstTreeMapTest {
 		assertThat(map.get("b"), nullValue());
 	}
 
+	/**
+	 * Tests for keep.
+	 */
 	@Test
 	public void testKeep() {
 		Map<String, String> map = new KeepFirstTreeMap<String, String>();
@@ -34,6 +37,9 @@ public class KeepFirstTreeMapTest {
 		assertThat(map.get("b"), nullValue());
 	}
 	
+	/**
+	 * Tests for remove.
+	 */
 	@Test
 	public void testRemove() {
 		Map<String, String> map = new KeepFirstTreeMap<String, String>();
@@ -45,6 +51,9 @@ public class KeepFirstTreeMapTest {
 		assertThat(map.get("b"), nullValue());
 	}
 	
+	/**
+	 * Tests for putAll.
+	 */
 	@Test
 	public void testPutAll() {
 		Map<String, String> map = new KeepFirstTreeMap<String, String>();

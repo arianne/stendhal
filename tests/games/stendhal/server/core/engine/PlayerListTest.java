@@ -32,6 +32,9 @@ public class PlayerListTest {
 		MockStendlRPWorld.reset();
 	}
 
+	/**
+	 * Tests for playerList.
+	 */
 	@Test
 	public void testPlayerList() {
 		@SuppressWarnings("unused")
@@ -40,6 +43,9 @@ public class PlayerListTest {
 		
 	}
 
+	/**
+	 * Tests for getOnlinePlayer.
+	 */
 	@Test
 	public void testGetOnlinePlayer() {
 		final PlayerList list = new PlayerList();
@@ -57,6 +63,9 @@ public class PlayerListTest {
 		assertThat(list.size(), is(0));
 	}
 
+	/**
+	 * Tests for allPlayersModify.
+	 */
 	@Test
 	public void testAllPlayersModify() {
 		final Player jack = PlayerTestHelper.createPlayer("jack");
@@ -92,6 +101,9 @@ public class PlayerListTest {
 		assertEquals("", ghost.get(testString));
 	}
 
+	/**
+	 * Tests for allPlayersRemove.
+	 */
 	@Test
 	public void testAllPlayersRemove() {
 		final Player jack = PlayerTestHelper.createPlayer("jack");
@@ -112,6 +124,9 @@ public class PlayerListTest {
 		assertThat(list.size(), is(0));
 	}
 
+	/**
+	 * Tests for getOnlineCaseInsensitivePlayer.
+	 */
 	@Test
 	public void testGetOnlineCaseInsensitivePlayer() {
 		final PlayerList list = new PlayerList();
@@ -124,6 +139,9 @@ public class PlayerListTest {
 		assertSame(jack, list.getOnlinePlayer("jAck"));
 	}
 
+	/**
+	 * Tests for addPlayerWithEqualName.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddPlayerWithEqualName() {
 		final PlayerList list = new PlayerList();

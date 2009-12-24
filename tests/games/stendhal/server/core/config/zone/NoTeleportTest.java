@@ -29,6 +29,9 @@ public class NoTeleportTest {
 	public void tearDown() throws Exception {
 	}
 	
+	/**
+	 * Tests for configureZone.
+	 */
 	@Test
 	public void testConfigureZone() {
 		StendhalRPZone zone = new StendhalRPZone("testzone",  20, 20);

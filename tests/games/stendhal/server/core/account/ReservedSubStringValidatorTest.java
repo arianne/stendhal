@@ -7,6 +7,9 @@ import org.junit.Test;
 
 public class ReservedSubStringValidatorTest {
 
+	/**
+	 * Tests for validateAdmin.
+	 */
 	@Test
 	public final void testValidateAdmin() {
 		ReservedSubStringValidator rssv = new ReservedSubStringValidator("tadmin");
@@ -20,6 +23,9 @@ public class ReservedSubStringValidatorTest {
 	}
 
 
+	/**
+	 * Tests for validateGm.
+	 */
 	@Test
 	public final void testValidateGm() {
 		ReservedSubStringValidator rssv = new ReservedSubStringValidator("gm");

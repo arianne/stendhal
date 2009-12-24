@@ -26,6 +26,9 @@ public class CharacterCreatorTest {
 		ItemTestHelper.generateRPClasses();
 	}
 
+	/**
+	 * Tests for create.
+	 */
 	@Test
 	public void testCreate() throws SQLException {
 		cleanDB();

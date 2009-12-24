@@ -38,12 +38,18 @@ public class ConfigurableFactoryContextTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for configurableFactoryContext.
+	 */
 	@Test
 	public void testConfigurableFactoryContext() {
 		new ConfigurableFactoryContext(attributes);
 		assertTrue("noexecption", true);
 	}
 
+	/**
+	 * Tests for getBoolean.
+	 */
 	@Test
 	public void testGetBoolean() {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
@@ -55,6 +61,9 @@ public class ConfigurableFactoryContextTest {
 
 	}
 
+	/**
+	 * Tests for getNonExistingRequiredBoolean.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetNonExistingRequiredBoolean() {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
@@ -62,6 +71,9 @@ public class ConfigurableFactoryContextTest {
 		assertTrue(con.getRequiredBoolean("key"));
 	}
 
+	/**
+	 * Tests for getNonbooleanRequiredBoolean.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetNonbooleanRequiredBoolean() {
 
@@ -70,6 +82,9 @@ public class ConfigurableFactoryContextTest {
 		assertTrue(con.getRequiredBoolean("string"));
 	}
 
+	/**
+	 * Tests for getRequiredBoolean.
+	 */
 	@Test
 	public void testGetRequiredBoolean() {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
@@ -78,6 +93,9 @@ public class ConfigurableFactoryContextTest {
 		assertFalse(con.getRequiredBoolean("negative"));
 	}
 
+	/**
+	 * Tests for getInt.
+	 */
 	@Test
 	public void testGetInt() {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
@@ -87,6 +105,9 @@ public class ConfigurableFactoryContextTest {
 
 	}
 
+	/**
+	 * Tests for getNonExitantRequiredInt.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetNonExitantRequiredInt() {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
@@ -95,6 +116,9 @@ public class ConfigurableFactoryContextTest {
 
 	}
 
+	/**
+	 * Tests for getRequiredInt.
+	 */
 	public void testGetRequiredInt() {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
 				attributes);
@@ -102,6 +126,9 @@ public class ConfigurableFactoryContextTest {
 
 	}
 
+	/**
+	 * Tests for getString.
+	 */
 	@Test
 	public void testGetString() {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
@@ -111,6 +138,9 @@ public class ConfigurableFactoryContextTest {
 
 	}
 
+	/**
+	 * Tests for getRequiredString.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetRequiredString() {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(

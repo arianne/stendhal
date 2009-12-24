@@ -22,6 +22,9 @@ public class LowerCaseValidatorTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for lowerCaseValidator.
+	 */
 	@Test
 	public final void testLowerCaseValidator() {
 		LowerCaseValidator lcv = new LowerCaseValidator("A");
