@@ -33,6 +33,9 @@ public class WeaponsCollector2Test {
 		SingletonRepository.getNPCList().remove("Balduin");
 	}
 
+	/**
+	 * Tests for getSlotName.
+	 */
 	@Test
 	public final void testGetSlotName() {
 		final WeaponsCollector2 wc = new WeaponsCollector2();

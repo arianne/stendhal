@@ -46,6 +46,9 @@ public class StuffForVulcanusTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
+	/**
+	 * Tests for hiAndByeQuest.
+	 */
 	@Test
 	public void testHiAndByeQuest() {
 		assertTrue(en.step(player, "hi"));

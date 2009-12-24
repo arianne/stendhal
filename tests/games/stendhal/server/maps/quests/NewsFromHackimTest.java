@@ -51,6 +51,9 @@ public class NewsFromHackimTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		enHackim.step(player, "hi");

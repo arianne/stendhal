@@ -39,6 +39,9 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Siandra");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Siandra");
@@ -51,6 +54,9 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye bye!", getReply(npc));
 	}
 
+	/**
+	 * Tests for selling.
+	 */
 	@Test
 	public void testSelling() {
 		final SpeakerNPC npc = getNPC("Siandra");

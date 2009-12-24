@@ -41,11 +41,17 @@ public class ReverseArrowTest {
 	}
 
 	
+	/**
+	 * Tests for getSlotName.
+	 */
 	@Test
 	public void testGetSlotName() {
 		assertEquals("reverse_arrow", new ReverseArrow().getSlotName());
 	}
 
+	/**
+	 * Tests for addToWorld.
+	 */
 	@Test
 	public void testAddToWorld() {
 		
@@ -53,6 +59,9 @@ public class ReverseArrowTest {
 		arrowquest.addToWorld();
 	}
 
+	/**
+	 * Tests for finish.
+	 */
 	@Test
 	public void testFinish() {
 		ReverseArrow arrowquest = new ReverseArrow();

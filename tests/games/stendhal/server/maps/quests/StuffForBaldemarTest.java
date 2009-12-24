@@ -33,11 +33,17 @@ public class StuffForBaldemarTest {
 
 	
 	
+	/**
+	 * Tests for getSlotName.
+	 */
 	@Test
 	public void testGetSlotName() {
 		assertEquals("mithrilshield_quest", new StuffForBaldemar().getSlotName());
 	}
 
+	/**
+	 * Tests for step1.
+	 */
 	@Test
 	public void teststep1() throws Exception {
 		QuestHelper.setUpBeforeClass();
@@ -141,6 +147,9 @@ public class StuffForBaldemarTest {
 	}
 
 
+	/**
+	 * Tests for items.
+	 */
 @Test
 	public void testItems() {
 		Engine en = baldemar.getEngine();
@@ -173,6 +182,9 @@ public class StuffForBaldemarTest {
 		
 		assertEquals("This shield can only be given to those who have killed a black giant, and without the help of others.", getReply(baldemar));
 	}
+	/**
+	 * Tests for itemData.
+	 */
 	@Test
 	public void testItemData() throws Exception {
 		int needed = 20;

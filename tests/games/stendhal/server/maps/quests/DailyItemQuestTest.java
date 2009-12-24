@@ -53,6 +53,9 @@ public class DailyItemQuestTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		

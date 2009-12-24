@@ -53,6 +53,9 @@ public class HelpTomiTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		

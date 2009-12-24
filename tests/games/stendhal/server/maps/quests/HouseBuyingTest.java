@@ -64,6 +64,9 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Barrett Holmes", "Reg Denson", "Mr Taxman");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Reg Denson");
@@ -77,6 +80,9 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Goodbye.", getReply(npc));
 	}
 	
+	/**
+	 * Tests for generalStuff.
+	 */
 	@Test
 	public void testGeneralStuff() {
 		final SpeakerNPC npc = getNPC("Reg Denson");
@@ -95,6 +101,9 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.", getReply(npc));
 	}
 
+	/**
+	 * Tests for buyHouse.
+	 */
 	@Test
 	public void testBuyHouse() {
 		final SpeakerNPC npc = getNPC("Reg Denson");
@@ -159,6 +168,9 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 				+ "and you can also #resell your house to me if you want to.", getReply(npc));
 	}
 
+	/**
+	 * Tests for really.
+	 */
 	@Test
 	public void testReally() {
 		final SpeakerNPC npc = getNPC("Reg Denson");

@@ -24,12 +24,18 @@ public class MarriageQuestInfoTest {
 		
 		MockStendlRPWorld.reset();
 	}
+	/**
+	 * Tests for getQuestSlot.
+	 */
 	@Test
 	public void testGetQuestSlot() {
 		MarriageQuestInfo questinfo = new MarriageQuestInfo();
 		assertEquals("marriage", questinfo.getQuestSlot());
 	}
 
+	/**
+	 * Tests for getSpouseQuestSlot.
+	 */
 	@Test
 	public void testGetSpouseQuestSlot() {
 		MarriageQuestInfo questinfo = new MarriageQuestInfo();
@@ -37,6 +43,9 @@ public class MarriageQuestInfoTest {
 
 	}
 
+	/**
+	 * Tests for isMarried.
+	 */
 	@Test
 	public void testIsMarried() {
 		MarriageQuestInfo questinfo = new MarriageQuestInfo();
@@ -46,6 +55,9 @@ public class MarriageQuestInfoTest {
 		assertTrue(questinfo.isMarried(bob));
 	}
 
+	/**
+	 * Tests for isEngaged.
+	 */
 	@Test
 	public void testIsEngaged() {
 		MarriageQuestInfo questinfo = new MarriageQuestInfo();

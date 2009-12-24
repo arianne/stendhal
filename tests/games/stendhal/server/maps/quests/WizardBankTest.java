@@ -37,6 +37,9 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Javier X");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Javier X");
@@ -113,6 +116,9 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.", getReply(npc));
 	}
 
+	/**
+	 * Tests for replies.
+	 */
 	@Test
 	public void testReplies() {
 		 // A named player name needed to create the name based hash code.
@@ -153,6 +159,9 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(npc.isTalking());
 	}
 
+	/**
+	 * Tests for doQuest.
+	 */
 	@Test
 	public void testDoQuest() {
 		 // A named player name needed to create the name based hash code.

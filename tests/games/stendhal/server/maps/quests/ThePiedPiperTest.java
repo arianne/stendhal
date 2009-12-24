@@ -47,6 +47,9 @@ public class ThePiedPiperTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		
@@ -64,6 +67,9 @@ public class ThePiedPiperTest {
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 	}
+	/**
+	 * Tests for quest2.
+	 */
 	@Ignore
 	public void testQuest2() {
 		// [17:50] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!

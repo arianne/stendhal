@@ -43,6 +43,9 @@ public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Eonna");
 	}
 
+	/**
+	 * Tests for hiAndbye.
+	 */
 	@Test
 	public void testHiAndbye() {
 		assertTrue(!player.hasKilled("rat"));

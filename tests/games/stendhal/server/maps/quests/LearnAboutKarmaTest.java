@@ -43,6 +43,9 @@ public class LearnAboutKarmaTest {
 		player.addKarma(-1 * player.getKarma());
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		en.step(player, "hi");

@@ -71,6 +71,9 @@ public class CampfireTest {
 		NPCList.get().clear();
 	}
 
+	/**
+	 * Tests for canStartQuestNow.
+	 */
 	@Test
 	public void testCanStartQuestNow() throws Exception {
 		
@@ -101,6 +104,9 @@ public class CampfireTest {
 		assertTrue(en.step(player, "bye"));
 	}
 
+	/**
+	 * Tests for hiAndbye.
+	 */
 	@Test
 	public void testHiAndbye() {
 		
@@ -114,6 +120,9 @@ public class CampfireTest {
 		assertEquals("Bye.", getReply(npc));
 	}
 
+	/**
+	 * Tests for doQuest.
+	 */
 	@Test
 	public void testDoQuest() {
 		
@@ -155,11 +164,17 @@ public class CampfireTest {
 
 	}
 
+	/**
+	 * Tests for isRepeatable.
+	 */
 	@Test
 	public void testIsRepeatable() throws Exception {
 		assertTrue(new Campfire().isRepeatable(null));
 	}
 
+	/**
+	 * Tests for isCompleted.
+	 */
 	@Test
 	public void testIsCompleted() {
 		assertFalse(new Campfire().isCompleted(player));
@@ -174,6 +189,9 @@ public class CampfireTest {
 		assertTrue(new Campfire().isCompleted(player));
 	}
 
+	/**
+	 * Tests for jobAndOffer.
+	 */
 	@Test
 	public void testJobAndOffer() {
 		final Engine en = npc.getEngine();
@@ -196,6 +214,9 @@ public class CampfireTest {
 		assertEquals("Bye.", getReply(npc));
 	}
 	
+	/**
+	 * Tests for canNotRepeatYet.
+	 */
 	@Test
 	public void testCanNotRepeatYet() {
 		final String questState = Long.toString(new Date().getTime());
@@ -212,6 +233,9 @@ public class CampfireTest {
 		}
 	}
 	
+	/**
+	 * Tests for repeatQuest.
+	 */
 	@Test
 	public void testRepeatQuest() {
 		final String questState = Long.toString(new Date().getTime() - 6 * 60 * 1000);
@@ -227,6 +251,9 @@ public class CampfireTest {
 		}
 	}
 	
+	/**
+	 * Tests for allowRestartAfterRejecting.
+	 */
 	@Test
 	public void testAllowRestartAfterRejecting() {
 		for (String request : ConversationPhrases.QUEST_MESSAGES) {
@@ -241,6 +268,9 @@ public class CampfireTest {
 		}
 	}
 	
+	/**
+	 * Tests for refuseQuest.
+	 */
 	@Test
 	public void testRefuseQuest() {
 		final Engine en = npc.getEngine();

@@ -70,6 +70,9 @@ public class FindGhostsTest {
 		SingletonRepository.getNPCList().clear();
 	}
 
+	/**
+	 * Tests for rejectQuest.
+	 */
 	@Test
 	public void testRejectQuest() {
 		en.step(player, "hi");
@@ -98,6 +101,9 @@ public class FindGhostsTest {
 		assertEquals("Bye", getReply(npc));
 	}
 
+	/**
+	 * Tests for acceptQuest.
+	 */
 	@Test
 	public void testAcceptQuest() {
 		en.step(player, "hi");
@@ -114,6 +120,9 @@ public class FindGhostsTest {
 		assertEquals("Bye", getReply(npc));
 	}
 
+	/**
+	 * Tests for rejectthenAcceptQuest.
+	 */
 	@Test
 	public void testRejectthenAcceptQuest() {
 		en.step(player, "hi");
@@ -151,6 +160,9 @@ public class FindGhostsTest {
 		assertEquals("Bye", getReply(npc));
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		player.setXP(28900);

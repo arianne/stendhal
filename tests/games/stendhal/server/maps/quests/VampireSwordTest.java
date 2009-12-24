@@ -165,6 +165,9 @@ public class VampireSwordTest {
 		}
 	}
 	
+	/**
+	 * Tests for dwarfsExplanations.
+	 */
 	@Test
 	public void testDwarfsExplanations() {
 		final Player player = PlayerTestHelper.createPlayer("me");			
@@ -287,6 +290,9 @@ public class VampireSwordTest {
 		}
 	}
 	
+	/**
+	 * Tests for bloodMaterialDescription.
+	 */
 	@Test
 	public void testBloodMaterialDescription() {
 		for (String material : Arrays.asList("blood", "vampirette entrails", "bat entrails")) {
@@ -302,6 +308,9 @@ public class VampireSwordTest {
 		}
 	}
 	
+	/**
+	 * Tests for vampireLordDescription.
+	 */
 	@Test
 	public void testVampireLordDescription() {
 		for (String word : Arrays.asList("lord", "vampire", "skull ring")) {
@@ -317,6 +326,9 @@ public class VampireSwordTest {
 		}
 	}
 	
+	/**
+	 * Tests for vampiresGobletDescription.
+	 */
 	@Test
 	public void testVampiresGobletDescription() {
 		for (String word : Arrays.asList("empty goblet", "goblet")) {

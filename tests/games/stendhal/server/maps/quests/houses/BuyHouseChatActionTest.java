@@ -44,6 +44,9 @@ public class BuyHouseChatActionTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public void testFire() {
 		BuyHouseChatAction action = new BuyHouseChatAction(1, HouseSellerNPCBase.QUEST_SLOT);

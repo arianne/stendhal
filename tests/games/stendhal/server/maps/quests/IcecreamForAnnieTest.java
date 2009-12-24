@@ -58,6 +58,9 @@ public class IcecreamForAnnieTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		final double oldkarma = player.getKarma();

@@ -112,6 +112,9 @@ public class PizzaDeliveryTest {
 		player = PlayerTestHelper.createPlayerWithOutFit("player");
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		// first the basics, get a task, and deliver the pizza

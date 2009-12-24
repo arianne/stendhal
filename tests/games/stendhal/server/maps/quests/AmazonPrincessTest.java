@@ -52,11 +52,17 @@ public class AmazonPrincessTest {
 		SingletonRepository.getNPCList().clear();
 	}
 
+	/**
+	 * Tests for getSlotname.
+	 */
 	@Test
 	public void testGetSlotname() throws Exception {
 		assertEquals("amazon_princess", new AmazonPrincess().getSlotName());
 	}
 	
+	/**
+	 * Tests for hasRecovered.
+	 */
 	@Test
 	public void testhasRecovered() throws Exception {
 		en.setCurrentState(ConversationStates.ATTENDING);
@@ -70,6 +76,9 @@ public class AmazonPrincessTest {
 	}
 	
 	
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		en.step(player, "hi");

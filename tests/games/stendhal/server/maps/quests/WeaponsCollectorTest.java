@@ -34,6 +34,9 @@ public class WeaponsCollectorTest {
 		PlayerTestHelper.removeNPC("Balduin");
 	}
 
+	/**
+	 * Tests for getSlotName.
+	 */
 	@Test
 	public final void testGetSlotName() {
 		final WeaponsCollector wc = new WeaponsCollector();
@@ -119,12 +122,18 @@ public class WeaponsCollectorTest {
 		assertTrue(npc.isTalking());
 	}
 
+	/**
+	 * Tests for shouldWelcomeAfterQuestIsCompleted.
+	 */
 	@Test
 	public final void testShouldWelcomeAfterQuestIsCompleted() {
 		final WeaponsCollector wc = new WeaponsCollector();
 		assertFalse(wc.shouldWelcomeAfterQuestIsCompleted());
 	}
 
+	/**
+	 * Tests for rewardPlayer.
+	 */
 	@Test
 	public final void testRewardPlayer() {
 		final WeaponsCollector wc = new WeaponsCollector();

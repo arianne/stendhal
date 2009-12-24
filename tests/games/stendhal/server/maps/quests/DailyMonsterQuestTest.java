@@ -58,6 +58,9 @@ public class DailyMonsterQuestTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for fire.
+	 */
 	@Test
 	public void testfire() {
 
@@ -74,6 +77,9 @@ public class DailyMonsterQuestTest {
 		assertThat(en.getCurrentState(), is(ATTENDING));
 		assertTrue(bob.hasQuest("daily"));
 	}
+	/**
+	 * Tests for claimDone.
+	 */
 	@Test
 	public void testClaimDone() {
 
@@ -93,6 +99,9 @@ public class DailyMonsterQuestTest {
 	
 	
 	
+	/**
+	 * Tests for pickIdealCreature.
+	 */
 	@Test
 	public void testPickIdealCreature() {
 		final DailyMonsterQuest dmqp = new DailyMonsterQuest();
@@ -108,6 +117,9 @@ public class DailyMonsterQuestTest {
 
 	}
 
+	/**
+	 * Tests for pickIdealCreatureratLONGLIST.
+	 */
 	@Test
 	public void testPickIdealCreatureratLONGLIST() {
 		final DailyMonsterQuest dmqp = new DailyMonsterQuest();

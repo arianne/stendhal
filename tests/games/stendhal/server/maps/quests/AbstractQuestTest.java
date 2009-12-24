@@ -39,6 +39,9 @@ public class AbstractQuestTest {
 
 	private static String QUESTNAMESTRING = "test quest name";
 
+	/**
+	 * Tests for getHintGetHistory.
+	 */
 	@Test
 	public final void testGetHintGetHistory() {
 		final Player pl = PlayerTestHelper.createPlayer("player");
@@ -48,6 +51,9 @@ public class AbstractQuestTest {
 		assertTrue(quest.getHistory(pl).isEmpty());
 	}
 
+	/**
+	 * Tests for isCompleted.
+	 */
 	@Test
 	public final void testIsCompleted() {
 		final Player pl = PlayerTestHelper.createPlayer("player");
@@ -73,6 +79,9 @@ public class AbstractQuestTest {
 
 	}
 
+	/**
+	 * Tests for isRepeatable.
+	 */
 	@Test
 	public final void testIsRepeatable() {
 		final AbstractQuest quest = new Mockquest();
@@ -80,6 +89,9 @@ public class AbstractQuestTest {
 				quest.isRepeatable(null));
 	}
 
+	/**
+	 * Tests for isStarted.
+	 */
 	@Test
 	public final void testIsStarted() {
 		final AbstractQuest quest = new Mockquest();
@@ -88,12 +100,18 @@ public class AbstractQuestTest {
 		pl.setQuest(QUESTSlotSTRING, "whatever");
 	}
 
+	/**
+	 * Tests for isStartedthrowsNPEwithnullArgument.
+	 */
 	@Test(expected = NullPointerException.class)
 	public final void testIsStartedthrowsNPEwithnullArgument() {
 		final AbstractQuest quest = new Mockquest();
 		assertFalse(quest.isStarted(null));
 	}
 
+	/**
+	 * Tests for getName.
+	 */
 	@Test
 	public final void testGetName() {
 		final Player pl = PlayerTestHelper.createPlayer("player");

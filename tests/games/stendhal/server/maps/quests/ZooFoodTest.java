@@ -44,6 +44,9 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Katinka", "Dr. Feelgood");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final Player player = createPlayer("player");
@@ -76,6 +79,9 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 
 	}
 
+	/**
+	 * Tests for doQuest.
+	 */
 	@Test
 	public void testDoQuest() {
 		final Player player = createPlayer("player");

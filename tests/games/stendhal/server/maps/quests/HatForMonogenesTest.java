@@ -66,6 +66,9 @@ public class HatForMonogenesTest {
 
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		final Player player = PlayerTestHelper.createPlayer("player");
@@ -171,6 +174,9 @@ public class HatForMonogenesTest {
 		// missing, i did, but i forgot i had one on my head too, he took that.)
 	}
 
+	/**
+	 * Tests for getHistory.
+	 */
 	@Test
 	public void testGetHistory() {
 		final Player player = PlayerTestHelper.createPlayer("bob");

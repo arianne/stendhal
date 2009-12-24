@@ -48,6 +48,9 @@ public class AdosDeathmatchTest {
 	}
 	
 	
+	/**
+	 * Tests for recruiter.
+	 */
 	@Test
 	public void testRecruiter() throws Exception {
 		final SpeakerNPC recruiter = SingletonRepository.getNPCList().get("Thonatus");

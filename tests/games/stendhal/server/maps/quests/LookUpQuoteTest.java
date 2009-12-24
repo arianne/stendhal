@@ -62,6 +62,9 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Pequod");
 	}
 
+	/**
+	 * Tests for hiAndBye.
+	 */
 	@Test
 	public void testHiAndBye() {
 		final SpeakerNPC npc = getNPC("Pequod");
@@ -79,6 +82,9 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Goodbye.", getReply(npc));
 	}
 
+	/**
+	 * Tests for doQuest.
+	 */
 	@Test
 	public void testDoQuest() {
 		final SpeakerNPC pequodNpc = getNPC("Pequod");
@@ -176,6 +182,9 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("No, thanks. I have all I need.", getReply(pequodNpc));
 	}
 
+	/**
+	 * Tests for getHistory.
+	 */
 	@Test
 	public final void testGetHistory() {
 		assertTrue(quest.getHistory(player).isEmpty());

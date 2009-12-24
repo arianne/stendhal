@@ -55,6 +55,9 @@ public class ImperialPrincessTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		// try going to king cozart before favour is done for princess

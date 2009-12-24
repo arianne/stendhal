@@ -41,29 +41,44 @@ public class ToysCollectorTest {
 		SingletonRepository.getNPCList().remove("Anna");
 	}
 
+	/**
+	 * Tests for getNeededItems.
+	 */
 	@Test
 	public final void testGetNeededItems() {
 		assertEquals(Arrays.asList(new String[] { "teddy", "dice", "dress" }),
 				quest.getNeededItems());
 	}
 
+	/**
+	 * Tests for getSlotName.
+	 */
 	@Test
 	public final void testGetSlotName() {
 		assertEquals("toys_collector", quest.getSlotName());
 	}
 
+	/**
+	 * Tests for getTriggerPhraseToEnumerateMissingItems.
+	 */
 	@Test
 	public final void testGetTriggerPhraseToEnumerateMissingItems() {
 		assertEquals(ConversationPhrases.EMPTY,
 				quest.getTriggerPhraseToEnumerateMissingItems());
 	}
 
+	/**
+	 * Tests for getAdditionalTriggerPhraseForQuest.
+	 */
 	@Test
 	public final void testGetAdditionalTriggerPhraseForQuest() {
 		assertEquals(Arrays.asList(new String[] { "toys" }),
 				quest.getAdditionalTriggerPhraseForQuest());
 	}
 
+	/**
+	 * Tests for shouldWelcomeAfterQuestIsCompleted.
+	 */
 	@Test
 	public final void testShouldWelcomeAfterQuestIsCompleted() {
 		assertTrue(quest.shouldWelcomeAfterQuestIsCompleted());

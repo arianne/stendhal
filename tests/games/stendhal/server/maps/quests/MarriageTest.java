@@ -71,6 +71,9 @@ public class MarriageTest {
 		PlayerTestHelper.removePlayer(player2);
 	}
 
+	/**
+	 * Tests for gettingEngaged.
+	 */
 	@Test
 	public void testGettingEngaged() {
 		player.removeQuest(QUEST_SLOT);
@@ -99,6 +102,9 @@ public class MarriageTest {
 		assertEquals("engaged", player2.getQuest(QUEST_SLOT));
 	}
 
+	/**
+	 * Tests for orderWeddingRing.
+	 */
 	@Test
 	public void testOrderWeddingRing() {
 		player.setQuest(QUEST_SLOT, "engaged");
@@ -159,6 +165,9 @@ public class MarriageTest {
 		assertTrue(player2.getQuest(QUEST_SLOT).startsWith("forging"));
 	}
 
+	/**
+	 * Tests for buySuitForGroom.
+	 */
 	@Test
 	public void testBuySuitForGroom() {
 		// **at hotel's dressing room**
@@ -185,6 +194,9 @@ public class MarriageTest {
 		
 	}
 
+	/**
+	 * Tests for buyGownForBride.
+	 */
 	@Test
 	public void testBuyGownForBride() {
 		// **at hotel's dressing room**
@@ -211,6 +223,9 @@ public class MarriageTest {
 		
 	}
 
+	/**
+	 * Tests for fetchOrderedWeddingRings.
+	 */
 	@Test
 	public void testFetchOrderedWeddingRings() {
 		npc = SingletonRepository.getNPCList().get("Ognir");
@@ -277,6 +292,9 @@ public class MarriageTest {
 		assertEquals("engaged_with_ring", player2.getQuest(QUEST_SLOT));
 	}
 
+	/**
+	 * Tests for preWeddingTalk.
+	 */
 	@Test
 	public void testPreWeddingTalk() {
 		// **inside church**
@@ -297,6 +315,9 @@ public class MarriageTest {
 		assertEquals("engaged_with_ring", player2.getQuest(QUEST_SLOT));
 	}
 
+	/**
+	 * Tests for wedding.
+	 */
 	@Test
 	public void testWedding() {
 		// **inside church**
@@ -352,6 +373,9 @@ public class MarriageTest {
 		assertEquals("just_married", player2.getQuest(QUEST_SLOT));
 	}
 
+	/**
+	 * Tests for honeymoon.
+	 */
 	@Test
 	public void testHoneymoon() {
 		// **inside hotel**

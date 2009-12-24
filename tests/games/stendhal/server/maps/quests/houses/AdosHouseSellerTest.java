@@ -47,12 +47,18 @@ public class AdosHouseSellerTest {
 		SingletonRepository.getNPCList().clear();
 	}
 
+	/**
+	 * Tests for getCost.
+	 */
 	@Test
 	public void testGetCost() {
 		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
 		assertEquals(120000, seller.getCost());
 	}
 
+	/**
+	 * Tests for getLowestHouseNumber.
+	 */
 	@Test
 	public void testGetLowestHouseNumber() {
 		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
@@ -60,6 +66,9 @@ public class AdosHouseSellerTest {
 
 	}
 
+	/**
+	 * Tests for getHighestHouseNumber.
+	 */
 	@Test
 	public void testGetHighestHouseNumber() {
 		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
@@ -68,6 +77,9 @@ public class AdosHouseSellerTest {
 
 	}
 
+	/**
+	 * Tests for adosHouseSellerTooYoungNoQuests.
+	 */
 	@Test
 	public void testAdosHouseSellerTooYoungNoQuests() {
 		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
@@ -95,6 +107,9 @@ public class AdosHouseSellerTest {
 
 	}
 	
+	/**
+	 * Tests for adosHouseSellerNoZones.
+	 */
 	@Test
 	public void testAdosHouseSellerNoZones() {
 		HouseUtilities.clearCache();
@@ -109,6 +124,9 @@ public class AdosHouseSellerTest {
 		assertThat("no zones loaded", getReply(seller), is("Sorry I did not understand you, could you try saying the house number you want again please?"));
 	}
 
+	/**
+	 * Tests for adosHouseSeller.
+	 */
 	@Test
 	public void testAdosHouseSeller() {
 		

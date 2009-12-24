@@ -92,6 +92,9 @@ public class MithrilCloakTest {
 		player.setQuest("cloaks_collector_2", ";red cloak;elvish cloak;");
 	}
 	
+	/**
+	 * Tests for initialSteps.
+	 */
 	@Test
 	public void testInitialSteps() {
 		// start with the quest slot clean
@@ -157,6 +160,9 @@ public class MithrilCloakTest {
 		assertEquals("Bye, thanks for stepping in.", getReply(npc));
 	}
 	
+	/**
+	 * Tests for makingFabric.
+	 */
 	@Test 
 	public void testMakingFabric() {
 		player.setQuest(questSlot, "need_fabric");
@@ -329,6 +335,9 @@ public class MithrilCloakTest {
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", getReply(npc));
 	}
+	/**
+	 * Tests for gettingTools.
+	 */
 	@Test
 	public void testGettingTools() {
 		npc = SingletonRepository.getNPCList().get("Hogart");
@@ -488,6 +497,9 @@ public class MithrilCloakTest {
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", getReply(npc));
 	}
+	/**
+	 * Tests for twilightZone.
+	 */
 	@Test
 	public void testTwilightZone() {
 		npc = SingletonRepository.getNPCList().get("Pdiddi");
@@ -544,6 +556,9 @@ public class MithrilCloakTest {
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", getReply(npc));
 	}
+	/**
+	 * Tests for cloakForJosephine.
+	 */
 	@Test 
 	public void testCloakForJosephine() {
 		player.setQuest(questSlot, "taking_striped_cloak"); 
@@ -577,6 +592,9 @@ public class MithrilCloakTest {
 		assertEquals("Bye, thanks for stepping in.", getReply(npc));
 		
 	}
+	/**
+	 * Tests for makingClasp.
+	 */
 	@Test
 	public void testMakingClasp() {
 		player.setQuest(questSlot, "need_clasp"); 

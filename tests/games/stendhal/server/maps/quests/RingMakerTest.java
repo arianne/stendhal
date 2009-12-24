@@ -66,6 +66,9 @@ public class RingMakerTest {
 		en.setCurrentState(ConversationStates.IDLE);
 	}
 	
+	/**
+	 * Tests for hiandBye.
+	 */
 	@Test
 	public void testHiandBye() throws Exception {
 		en.step(player, "hi");
@@ -76,6 +79,9 @@ public class RingMakerTest {
 	}
 	
 	
+	/**
+	 * Tests for orderEmeraldRingWithoutEnoughmoney.
+	 */
 	@Test
 	public void testOrderEmeraldRingWithoutEnoughmoney() {
 		
@@ -110,6 +116,9 @@ public class RingMakerTest {
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 	}
 	
+	/**
+	 * Tests for orderEmeraldRingDeny.
+	 */
 	@Test
 	public void testOrderEmeraldRingDeny() {
 		
@@ -135,6 +144,9 @@ public class RingMakerTest {
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 	}
 
+	/**
+	 * Tests for orderEmeraldRing.
+	 */
 	@Test
 	public void testOrderEmeraldRing() {
 		
@@ -162,6 +174,9 @@ public class RingMakerTest {
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 	}
 
+	/**
+	 * Tests for fetchOrderedEmeraldRing.
+	 */
 	@Test
 	public void testFetchOrderedEmeraldRing() {
 
@@ -200,6 +215,9 @@ public class RingMakerTest {
 		assertEquals("Bye, my friend.", getReply(npc));
 	}
 	
+	/**
+	 * Tests for ringIsboundAfterfix.
+	 */
 	@Test
 	public void testRingIsboundAfterfix() {
 		RingMaker rm = new RingMaker();
@@ -214,6 +232,9 @@ public class RingMakerTest {
 		assertTrue(bob.getFirstEquipped("emerald ring").isBound());
 	}
 	
+	/**
+	 * Tests for ringIsUnboundAfterfix.
+	 */
 	@Test
 	public void testRingIsUnboundAfterfix() {
 		RingMaker rm = new RingMaker();
@@ -228,6 +249,9 @@ public class RingMakerTest {
 		assertFalse(bob.getFirstEquipped("emerald ring").isBound());
 	}
 	
+	/**
+	 * Tests for deliverBoundRinghasnoRing.
+	 */
 	@Test
 	public void testdeliverBoundRinghasnoRing() {
 		RingMaker rm = new RingMaker();
@@ -248,6 +272,9 @@ public class RingMakerTest {
 	}
 	
 	
+	/**
+	 * Tests for giveBoundRingGetBoundRing.
+	 */
 	@Test
 	public void testgiveBoundRingGetBoundRing() {
 		final RingOfLife ring = (RingOfLife) SingletonRepository.getEntityManager().getItem("emerald ring");
@@ -312,6 +339,9 @@ public class RingMakerTest {
 	}
 	
 	
+	/**
+	 * Tests for giveUnboundRingGetUnboundRing.
+	 */
 	@Test
 	public void testgiveUnboundRingGetUnboundRing() {
 		final RingOfLife ring = (RingOfLife) SingletonRepository.getEntityManager().getItem("emerald ring");
@@ -325,6 +355,9 @@ public class RingMakerTest {
 	
 	}
 	
+	/**
+	 * Tests for timeepiredCondition.
+	 */
 	@Test
 	public void testTimeepiredCondition() throws Exception {
 		RingMaker rm = new RingMaker();
@@ -335,6 +368,9 @@ public class RingMakerTest {
 		
 	}
 	
+	/**
+	 * Tests for notTimeepiredCondition.
+	 */
 	@Test
 	public void testnotTimeepiredCondition() throws Exception {
 		RingMaker rm = new RingMaker();
@@ -345,6 +381,9 @@ public class RingMakerTest {
 			
 	}
 	
+	/**
+	 * Tests for name.
+	 */
 	@Test
 	public void testname() throws Exception {
 		Scanner sc = new Scanner("forging;123").useDelimiter(";");

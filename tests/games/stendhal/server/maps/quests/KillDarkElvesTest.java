@@ -67,6 +67,9 @@ public class KillDarkElvesTest {
 		npc.remove("text");
 	}
 
+	/**
+	 * Tests for idleToAttending.
+	 */
 	@Test
 	public void testIdleToAttending() throws Exception {
 
@@ -85,6 +88,9 @@ public class KillDarkElvesTest {
 		}
 	}
 
+	/**
+	 * Tests for questOfferedToQuestOffered.
+	 */
 	@Test
 	public void testQuestOfferedToQuestOffered() throws Exception {
 
@@ -103,6 +109,9 @@ public class KillDarkElvesTest {
 		}
 	}
 
+	/**
+	 * Tests for questStartedTOAttending.
+	 */
 	@Test
 	public void testQuestStartedTOAttending() throws Exception {
 
@@ -121,6 +130,9 @@ public class KillDarkElvesTest {
 		}
 	}
 
+	/**
+	 * Tests for idleToQuestStarted.
+	 */
 	@Test
 	public void testIdleToQuestStarted() throws Exception {
 
@@ -138,6 +150,9 @@ public class KillDarkElvesTest {
 		}
 	}
 
+	/**
+	 * Tests for attendingToQuestOffered.
+	 */
 	@Test
 	public void testAttendingToQuestOffered() throws Exception {
 
@@ -155,6 +170,9 @@ public class KillDarkElvesTest {
 		}
 	}
 
+	/**
+	 * Tests for attendingToAttending.
+	 */
 	@Test
 	public void testAttendingToAttending() throws Exception {
 
@@ -169,6 +187,9 @@ public class KillDarkElvesTest {
 		}
 	}
 
+	/**
+	 * Tests for attendingToAttendingallKilledNoRing.
+	 */
 	@Test
 	public void testAttendingToAttendingallKilledNoRing() throws Exception {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
@@ -189,6 +210,9 @@ public class KillDarkElvesTest {
 		}
 	}
 
+	/**
+	 * Tests for attendingToAttendingallKilledRing.
+	 */
 	@Test
 	public void testAttendingToAttendingallKilledRing() throws Exception {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
@@ -226,6 +250,9 @@ public class KillDarkElvesTest {
 		}
 	}
 
+	/**
+	 * Tests for questOfferedToAttendingYes.
+	 */
 	@Test
 	public void testQuestOfferedToAttendingYes() throws Exception {
 
@@ -250,6 +277,9 @@ public class KillDarkElvesTest {
 		}
 	}
 
+	/**
+	 * Tests for questOfferedToAttendingNo.
+	 */
 	@Test
 	public void testQuestOfferedToAttendingNo() throws Exception {
 

@@ -64,6 +64,9 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Barrett Holmes", "Reg Denson", "Mr Taxman", "Cyk");
 	}
 	
+	/**
+	 * Tests for athorNPC.
+	 */
 	@Test
 	public void testAthorNPC() {
 		final SpeakerNPC npc = getNPC("Cyk");

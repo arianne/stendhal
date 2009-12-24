@@ -50,6 +50,9 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Tad", "Ilisa");
 	}
 
+	/**
+	 * Tests for hiAndbye.
+	 */
 	@Test
 	public void testHiAndbye() {
 		final SpeakerNPC npc = getNPC("Tad");
@@ -70,6 +73,9 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye.", getReply(npc));
 	}
 
+	/**
+	 * Tests for hiNoAndHiAgain.
+	 */
 	@Test
 	public void testHiNoAndHiAgain() {
 		final SpeakerNPC npc = getNPC("Tad");
@@ -95,6 +101,9 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		final SpeakerNPC tad = getNPC("Tad");

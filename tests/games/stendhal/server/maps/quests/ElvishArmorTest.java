@@ -57,6 +57,9 @@ public class ElvishArmorTest {
 
 	private static SpeakerNPC npc;
 
+	/**
+	 * Tests for idleTOAttending.
+	 */
 	@Test
 	public void testIdleTOAttending() {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
@@ -72,6 +75,9 @@ public class ElvishArmorTest {
 	}
 
 
+	/**
+	 * Tests for questOfferedToQuestOffered.
+	 */
 	@Test
 	public void testQuestOfferedToQuestOffered() {
 		for (final String playerSays : Arrays.asList("secrets")) {
@@ -86,6 +92,9 @@ public class ElvishArmorTest {
 	}
 
 
+	/**
+	 * Tests for questOfferedToIdle.
+	 */
 	@Test
 	public void testQuestOfferedToIdle() {
 		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
@@ -227,6 +236,9 @@ public class ElvishArmorTest {
 	
     @Ignore 
     // ignored because removed from quest logic now.
+	/**
+	 * Tests for question1toIdle.
+	 */
     public void testQuestion1toIdle() {
             for (final String playerSays : ConversationPhrases.GOODBYE_MESSAGES) {
                     final Player player = PlayerTestHelper.createPlayer("bob");
@@ -239,6 +251,9 @@ public class ElvishArmorTest {
             }
     }
 
+	/**
+	 * Tests for attendingToAttending.
+	 */
 	@Test
 	public void testAttendingToAttending() {
 		for (final String playerSays : Arrays.asList("no", "nothing")) {
@@ -271,6 +286,9 @@ public class ElvishArmorTest {
 		}
 	}
 
+	/**
+	 * Tests for idleToAttendingQuestCompleted.
+	 */
 	@Test
 	public void testIdleToAttendingQuestCompleted() {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
@@ -340,6 +358,9 @@ public class ElvishArmorTest {
 		}
 	}
 
+	/**
+	 * Tests for attendingtoAttendingOfferquestnotdone.
+	 */
 	@Test
 	public void testAttendingtoAttendingOfferquestnotdone() {
 		for (final String playerSays : ConversationPhrases.OFFER_MESSAGES) {

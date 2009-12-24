@@ -167,6 +167,9 @@ public class LookBookforCerylTest {
 
 	}
 
+	/**
+	 * Tests for addToWorld.
+	 */
 	@Test
 	public final void testAddToWorld() {
 		LookBookforCeryl quest;
@@ -174,6 +177,9 @@ public class LookBookforCerylTest {
 		quest.addToWorld();
 	}
 
+	/**
+	 * Tests for getHistory.
+	 */
 	@Test
 	public final void testGetHistory() {
 		final Player pl = PlayerTestHelper.createPlayer("player");
@@ -215,6 +221,9 @@ public class LookBookforCerylTest {
 				"FOUND_ITEM", "DONE"), quest.getHistory(pl));
 	}
 
+	/**
+	 * Tests for isCompleted.
+	 */
 	@Test
 	public final void testIsCompleted() {
 		LookBookforCeryl quest;
@@ -229,12 +238,18 @@ public class LookBookforCerylTest {
 		assertTrue(quest.isCompleted(pl));
 	}
 
+	/**
+	 * Tests for isRepeatable.
+	 */
 	@Test
 	public final void testIsRepeatable() {
 		final LookBookforCeryl quest = new LookBookforCeryl();
 		assertFalse(quest.isRepeatable(null));
 	}
 
+	/**
+	 * Tests for isStarted.
+	 */
 	@Test
 	public final void testIsStarted() {
 		final LookBookforCeryl quest = new LookBookforCeryl();

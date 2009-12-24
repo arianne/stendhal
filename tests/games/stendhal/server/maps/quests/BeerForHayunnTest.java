@@ -114,6 +114,9 @@ public class BeerForHayunnTest {
 		en.step(player2, "bye");
 	}
 
+	/**
+	 * Tests for getHistory.
+	 */
 	@Test
 	public void testgetHistory() {
 		final Player player = PlayerTestHelper.createPlayer("bob");

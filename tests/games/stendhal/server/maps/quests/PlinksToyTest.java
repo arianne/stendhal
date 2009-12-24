@@ -53,6 +53,9 @@ public class PlinksToyTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
+	/**
+	 * Tests for quest.
+	 */
 	@Test
 	public void testQuest() {
 		en.step(player, "hi");

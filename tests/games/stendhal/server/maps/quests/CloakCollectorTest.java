@@ -118,18 +118,27 @@ public class CloakCollectorTest {
 		assertTrue(cc.isCompleted(monica));
 	}
 
+	/**
+	 * Tests for getSlotName.
+	 */
 	@Test
 	public final void testGetSlotName() {
 		final CloakCollector cc = new CloakCollector();
 		assertEquals("cloaks_collector", cc.getSlotName());
 	}
 
+	/**
+	 * Tests for shouldWelcomeAfterQuestIsCompleted.
+	 */
 	@Test
 	public final void testShouldWelcomeAfterQuestIsCompleted() {
 		final CloakCollector cc = new CloakCollector();
 		assertFalse(cc.shouldWelcomeAfterQuestIsCompleted());
 	}
 
+	/**
+	 * Tests for rewardPlayer.
+	 */
 	@Test
 	public final void testRewardPlayer() {
 		final CloakCollector cc = new CloakCollector();

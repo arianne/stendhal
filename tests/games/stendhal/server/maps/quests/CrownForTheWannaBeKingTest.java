@@ -58,6 +58,9 @@ public class CrownForTheWannaBeKingTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for idleToQuestion1.
+	 */
 	@Test
 	public void testIdleToQuestion1() throws Exception {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
@@ -70,6 +73,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for idleToIdleQuestCompleted.
+	 */
 	@Test
 	public void testIdleToIdleQuestCompleted() throws Exception {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
@@ -84,6 +90,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for idleToIdleQuestinStatereward.
+	 */
 	@Test
 	public void testIdleToIdleQuestinStatereward() throws Exception {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
@@ -98,6 +107,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for idleToAttending.
+	 */
 	@Test
 	public void testIdleToAttending() throws Exception {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
@@ -114,6 +126,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for attendingToQuestOffered.
+	 */
 	@Test
 	public void testAttendingToQuestOffered() throws Exception {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -124,6 +139,9 @@ public class CrownForTheWannaBeKingTest {
 		assertEquals("Yes, I need jewels and gold for my new crown. Will you help me?", getReply(npc));
 	}
 
+	/**
+	 * Tests for attendingToIdle.
+	 */
 	@Test
 	public void testAttendingToIdle() throws Exception {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -135,6 +153,9 @@ public class CrownForTheWannaBeKingTest {
 				getReply(npc));
 	}
 
+	/**
+	 * Tests for attendingToIdleQuestNotCompleted.
+	 */
 	@Test
 	public void testAttendingToIdleQuestNotCompleted() throws Exception {
 		final String[] triggers = { "no", "nothing" };
@@ -150,6 +171,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for questOfferedToQuestion1.
+	 */
 	@Test
 	public void testQuestOfferedToQuestion1() throws Exception {
 		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
@@ -169,6 +193,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for questOfferedToIdle.
+	 */
 	@Test
 	public void testQuestOfferedToIdle() throws Exception {
 		final String[] triggers = { "no", "nothing" };
@@ -186,6 +213,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for attendingToAttending.
+	 */
 	@Test
 	public void testAttendingToAttending() throws Exception {
 		final String[] triggers = { "plan", "favor", "favour", "quest", "task", "work", "job", "trade", "deal", "offer" };
@@ -199,6 +229,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for question1toQuestion1.
+	 */
 	@Test
 	public void testQuestion1toQuestion1() throws Exception {
 		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
@@ -211,6 +244,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for question1toQuestion1PosactionList.
+	 */
 	@Test
 	public void testQuestion1toQuestion1PosactionList() throws Exception {
 		npc.remove("text");
@@ -226,6 +262,9 @@ public class CrownForTheWannaBeKingTest {
 				is("I need 2 #carbuncles, 2 #diamonds, 4 #emeralds, 2 #'gold bars', 1 #obsidian, and 3 #sapphires. Did you bring something?"));
 	}
 
+	/**
+	 * Tests for question1ToIdle.
+	 */
 	@Test
 	public void testQuestion1ToIdle() throws Exception {
 		final String[] triggers = { "no", "nothing" };
@@ -242,6 +281,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for question1ToQuestion1Itembrought.
+	 */
 	@Test
 	public void testQuestion1ToQuestion1Itembrought() throws Exception {
 		final String[] triggers = { "obsidian", "diamond", "carbuncle", "sapphire", "emerald", "gold bar" };
@@ -305,6 +347,9 @@ public class CrownForTheWannaBeKingTest {
 		}
 	}
 
+	/**
+	 * Tests for bringItems.
+	 */
 	@Test
 	public void testBringItems() throws Exception {
 		final Player bob = PlayerTestHelper.createPlayer("bob");

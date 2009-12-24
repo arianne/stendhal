@@ -46,12 +46,18 @@ public class BringListOfItemsQuestLogicTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Tests for bringListOfItemsQuestLogic.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testBringListOfItemsQuestLogic() {
 		final BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(new NullValueMockBringListOfItemsQuest());
 		logic.addToWorld();
 	}
 
+	/**
+	 * Tests for getListOfStillMissingItems.
+	 */
 	@Test
 	public final void testGetListOfStillMissingItems() {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(new NullValueMockBringListOfItemsQuest() {
@@ -101,6 +107,9 @@ public class BringListOfItemsQuestLogicTest {
 		assertEquals(Arrays.asList(new String[] { "#one" }), logic.getListOfStillMissingItems(bob, true));
 	}
 
+	/**
+	 * Tests for welcomeNewPlayer.
+	 */
 	@Test
 	public final void testWelcomeNewPlayer() {
 		final NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest();
@@ -116,6 +125,9 @@ public class BringListOfItemsQuestLogicTest {
 		assertEquals(quest.welcomeBeforeStartingQuest(), getReply(npc));
 	}
 
+	/**
+	 * Tests for shouldNotWelcomePlayerAfterQuest.
+	 */
 	@Test
 	public final void testShouldNotWelcomePlayerAfterQuest() {
 		final NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest();
@@ -131,6 +143,9 @@ public class BringListOfItemsQuestLogicTest {
 		assertFalse(npc.isTalking());
 	}
 
+	/**
+	 * Tests for shouldWelcomePlayerAfterQuest.
+	 */
 	@Test
 	public final void testShouldWelcomePlayerAfterQuest() {
 		final NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
@@ -216,6 +231,9 @@ public class BringListOfItemsQuestLogicTest {
 		assertEquals("last item brought", quest.respondToLastItemBrought(), getReply(npc));
 	}
 
+	/**
+	 * Tests for acceptQuest.
+	 */
 	@Test
 	public final void testAcceptQuest() {
 		final MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
@@ -240,6 +258,9 @@ public class BringListOfItemsQuestLogicTest {
 		assertEquals("answer to quests accepted", quest.respondToQuestAcception(), getReply(npc));
 	}
 
+	/**
+	 * Tests for rejectQuest.
+	 */
 	@Test
 	public final void testRejectQuest() {
 		final MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
