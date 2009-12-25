@@ -48,17 +48,11 @@ public class BuyerAdder {
 		condition = new AndCondition(
 			new NotCondition(new SentenceHasErrorCondition()),
 			behaviour.getTransactionCondition());
-		engine.add(ConversationStates.ATTENDING, "sell", null,
+		engine.add(ConversationStates.ATTENDING, "sell", condition,
 				ConversationStates.SELL_PRICE_OFFERED, null,
 				new ChatAction() {
 
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						if (sentence.hasError()) {
-							engine.say("Sorry, I did not understand you. "
-									+ sentence.getErrorString());
-							engine.setCurrentState(ConversationStates.ATTENDING);
-							return;
-						}
 						if (player.isBadBoy()) {
 							// don't buy from player killers at all
 							engine.say("Sorry, but I just can't trust you. You look too dangerous to deal with. Please go away.");
