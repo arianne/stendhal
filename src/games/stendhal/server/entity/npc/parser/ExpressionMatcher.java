@@ -349,7 +349,7 @@ public class ExpressionMatcher {
             return true;
         } else if (other == null) {
             return false;
-        } else if (other.getClass() == ExpressionMatcher.class) {
+        } else if (other instanceof ExpressionMatcher) {
             final ExpressionMatcher o = (ExpressionMatcher) other;
 
             if (typeMatching != o.typeMatching) {
