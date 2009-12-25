@@ -1,0 +1,6 @@
+<FindBugsFilter>
+	<Match> 
+		<Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
+		<Package name="~games\.stendhal\.server\.entity.*" />
+	</Match>
+</FindBugsFilter>
