@@ -207,7 +207,7 @@ public class Market extends PassiveEntity {
 			if(earning.getSeller().equals(earner.getName())) {
 				final StackableItem item = (StackableItem) SingletonRepository
 				.getEntityManager().getItem("money");
-				item.setQuantity(this.sumUpEarningsForPlayer(earner));
+				item.setQuantity(earning.getValue());
 				earner.equipToInventoryOnly(item);
 				earnings.remove(earning);
 				earningsToRemove.add(earning);
@@ -270,17 +270,6 @@ public class Market extends PassiveEntity {
 		this.expiredOffers.add(o);
 		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(o);
 		this.getZone().storeToDatabase();
-	}
-
-	private int sumUpEarningsForPlayer(final Player earner) {
-		int sum = 0;
-		for (final RPObject earningRPObject : this.getSlot(EARNINGS_SLOT_NAME)) {
-			Earning earning = (Earning) earningRPObject;
-			if(earning.getSeller().equals(earner.getName())) {
-				sum += earning .getValue().intValue();
-			}
-		}
-		return sum;
 	}
 
 	public List<Offer> getOffers() {

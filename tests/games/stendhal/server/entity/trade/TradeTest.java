@@ -82,6 +82,41 @@ public class TradeTest {
 	}
 	
 	/**
+	 * Tests that fetching earnings are calculated properly
+	 */
+	@Test
+	public void testFetchEarnings() {
+		Player george = PlayerTestHelper.createPlayer("george");
+		PlayerTestHelper.registerPlayer(george);
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		george.equipToInventoryOnly(item);
+		Offer offer = edeka.createOffer(george, item, 10);
+		
+		item = SingletonRepository.getEntityManager().getItem("carrot");
+		george.equipToInventoryOnly(item);
+		Offer offer2 = edeka.createOffer(george, item, 11);
+		
+		Player ernie = PlayerTestHelper.createPlayer("ernie");
+		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+		money.setQuantity(21);
+		ernie.equipToInventoryOnly(money);
+		edeka.acceptOffer(offer, ernie);
+		edeka.acceptOffer(offer2, ernie);
+		
+		edeka.fetchEarnings(george);
+		// Total earnings should be 21
+		int total = 0;
+		for (Item gMoney : george.getAllEquipped("money")) {
+			total += ((StackableItem) gMoney).getQuantity();
+		}
+		assertThat(total, is(21));
+	}
+	
+	/**
 	 * Tests for createNonExistingOffer.
 	 */
 	@Test
