@@ -394,11 +394,12 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected void onServerInfo(final String[] info) {
+		// ignore server response
 	}
 
 	@Override
 	protected void onPreviousLogins(final List<String> previousLogins) {
-
+		// TODO: display this to the player
 	}
 
 	/**
