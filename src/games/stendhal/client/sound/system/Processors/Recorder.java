@@ -45,7 +45,11 @@ public class Recorder extends SignalProcessor
     public synchronized void trim()
     {
         if(mData.length != mNumSamplesBuffered)
-            mData = Arrays.copyOf(mData, mNumSamplesBuffered);
+        {
+            float[] temp = new float[mNumSamplesBuffered];
+            System.arraycopy(mData, 0, temp, 0, mNumSamplesBuffered);
+            mData = temp;
+        }
     }
 
     @Override
