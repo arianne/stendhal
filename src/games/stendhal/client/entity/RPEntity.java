@@ -557,7 +557,6 @@ public abstract class RPEntity extends ActiveEntity {
 			
 			//an emote action is changed server side to an chat action with a leading !me
 			//this supports also invoking an emote with !me instead of /me
-			//raignarok@sourceforge.net
 			if (text.startsWith("!me")) {
 				line = line.replace("!me", getTitle());
 				j2DClient.get().addEventLine(new HeaderLessEventLine(line, NotificationType.EMOTE));
@@ -569,7 +568,7 @@ public abstract class RPEntity extends ActiveEntity {
 			}
 
 			// Allow for more characters and cut the text if possible at the
-			// nearest space etc. intensifly@gmx.com
+			// nearest space etc.
 			if (line.length() > 84) {
 				line = line.substring(0, 84);
 				int l = line.lastIndexOf(" ");
