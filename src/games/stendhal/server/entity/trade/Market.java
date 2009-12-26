@@ -135,8 +135,6 @@ public class Market extends PassiveEntity {
 	 */
 	public Offer createOffer(final Player offerer, final Item item,
 			final Integer money) {
-		String name = offerer.getName();
-
 		if (item == null || item.isBound()) {
 			return null;
 		}
@@ -144,7 +142,7 @@ public class Market extends PassiveEntity {
 		Offer offer = null;
 		String slotName = item.getContainerSlot().getName();
 		if(offerer.drop(item)) {
-			offer = new Offer(item, money, name);
+			offer = new Offer(item, money, offerer);
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 			slot.add(offer);
@@ -294,20 +292,19 @@ public class Market extends PassiveEntity {
 		this.getZone().storeToDatabase();
 	}
 
-	public Offer prolongOffer(Offer o) {
-		if (this.expiredOffers.remove(o)) {
-			this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(o.getID());
-		} else if (this.offers.remove(o)) {
-			this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
-		} else {
+	public Offer prolongOffer(Offer offer) {
+		offer.updateTimestamp();
+		if (this.expiredOffers.remove(offer)) {
+			// It had expired. Move to active offers slot.  
+			this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(offer.getID());
+			getOffers().add(offer);
+			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
+			slot.add(offer);
+		} else if (!this.offers.contains(offer)) {
 			// Such an offer does not exist anymore
 			return null;
 		}
 		
-		final Offer offer = new Offer(o.getItem(), o.getPrice(), o.getOfferer());
-		getOffers().add(offer);
-		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
-		slot.add(offer);
 		this.getZone().storeToDatabase();
 		return offer;
 	}
