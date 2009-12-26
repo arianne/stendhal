@@ -299,8 +299,10 @@
 		<copy todir="run_clnt/lib">
 			<fileset file="build/lib/${client_data}"/>
 			<fileset file="build/lib/${client_sound_data}"/>
-			<fileset file="libs/marauroa.jar"/>
-			<fileset file="libs/log4j.jar"/>
+			<fileset file="${marauroa_jar}"/>
+			<fileset file="${log4j_jar}"/>
+                        <fileset file="${pagelayout_jar}"/>
+                        <fileset file="${jorbis_jar}"/>
 		</copy>
 
 		<exec dir="." executable="java">
