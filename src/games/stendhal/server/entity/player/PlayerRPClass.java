@@ -79,7 +79,7 @@ public class PlayerRPClass {
 
 		// We use this for the buddy system
 		player.addRPSlot("!buddy", 1, Definition.PRIVATE);
-		player.addRPSlot("!ignore", 1, Definition.HIDDEN);
+		player.addRPSlot("!ignore", 1, Definition.PRIVATE);
 		player.addAttribute("online", Type.LONG_STRING,
 				(byte) (Definition.PRIVATE | Definition.VOLATILE));
 		player.addAttribute("offline", Type.LONG_STRING,
@@ -111,10 +111,8 @@ public class PlayerRPClass {
 		player.addRPSlot("!features", 1, Definition.PRIVATE);
 
 		// Last time this player attacked another player
-		player.addAttribute("last_pvp_action_time", Type.FLOAT,
-				Definition.HIDDEN);
-		player.addAttribute("last_player_kill_time", Type.FLOAT,
-				Definition.STANDARD);
+		player.addAttribute("last_pvp_action_time", Type.FLOAT, Definition.HIDDEN);
+		player.addAttribute("last_player_kill_time", Type.FLOAT, Definition.STANDARD);
 		
 		player.addRPEvent("transition_graph", Definition.PRIVATE);
 		player.addRPEvent("examine", Definition.PRIVATE);

@@ -2,6 +2,7 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.ItemTools;
+import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Outfit;
@@ -218,7 +219,7 @@ public abstract class UpdateConverter {
 	 * @param object 
 	 */
 	static void transformKillSlot(final RPObject object) {
-		final RPObject kills = Player.getKeyedSlotObject(object, "!kills");
+		final RPObject kills = KeyedSlotUtil.getKeyedSlotObject(object, "!kills");
 
 		if (kills != null) {
     		final RPObject newKills = new RPObject();

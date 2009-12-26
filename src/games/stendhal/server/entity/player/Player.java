@@ -12,12 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import static games.stendhal.common.constants.Actions.*;
-
+import static games.stendhal.common.constants.Actions.ADMINLEVEL;
+import static games.stendhal.common.constants.Actions.AWAY;
+import static games.stendhal.common.constants.Actions.GHOSTMODE;
+import static games.stendhal.common.constants.Actions.GRUMPY;
+import static games.stendhal.common.constants.Actions.INVISIBLE;
+import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 import games.stendhal.common.Constants;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.ItemTools;
+import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -678,29 +683,6 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * Returns the single object of a "keyed slot".
-	 * @param object 
-	 * 
-	 * @param name name of key slot
-	 * @return object or <code>null</code> it does not exist
-	 */
-	static RPObject getKeyedSlotObject(final RPObject object, final String name) {
-		if (!object.hasSlot(name)) {
-			logger.error("Expected to find " + name + " slot in " + object, new Throwable());
-			return null;
-		}
-
-		final RPSlot slot = object.getSlot(name);
-
-		if (slot.size() == 0) {
-			logger.error("Found empty " + name + " slot" + object, new Throwable());
-			return null;
-		}
-
-		return slot.iterator().next();
-	}
-	
-	/**
 	 * Get a keyed string value on a named slot.
 	 * 
 	 * @param name
@@ -711,16 +693,7 @@ public class Player extends RPEntity {
 	 * @return The keyed value of the slot, or <code>null</code> if not set.
 	 */
 	public String getKeyedSlot(final String name, final String key) {
-		final RPObject object = Player.getKeyedSlotObject(this, name);
-		if (object == null) {
-			return null;
-		}
-
-		if (object.has(key)) {
-			return object.get(key);
-		} else {
-			return null;
-		}
+		return KeyedSlotUtil.getKeyedSlot(this, name, key);
 	}
 
 	/**
@@ -737,19 +710,9 @@ public class Player extends RPEntity {
 	 *         there was a problem.
 	 */
 	public boolean setKeyedSlot(final String name, final String key, final String value) {
-		final RPObject object = Player.getKeyedSlotObject(this, name);
-		if (object == null) {
-			return false;
-		}
-
-		if (value != null) {
-			object.put(key, value);
-		} else if (object.has(key)) {
-			object.remove(key);
-		}
-
-		return true;
+		return KeyedSlotUtil.setKeyedSlot(this, name, key, value);
 	}
+
 
 	/**
 	 * Get a client feature value.

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -89,15 +90,14 @@ public class PlayerTest {
 	public void testOnAdded() {
 		
 		player.onAdded(new StendhalRPZone("playertest"));
-		RPObject object = Player.getKeyedSlotObject(player, "!visited");
+		RPObject object = KeyedSlotUtil.getKeyedSlotObject(player, "!visited");
 		if (object == null) {
 			fail("slot not found");
-
 		}
 		assertTrue(object.has("playertest"));
 		assertThat(player.get("visibility"), is("100"));
 		player.onAdded(new StendhalRPZone(PlayerDieer.DEFAULT_DEAD_AREA));
-		object = Player.getKeyedSlotObject(player, "!visited");
+		object = KeyedSlotUtil.getKeyedSlotObject(player, "!visited");
 		if (object == null) {
 			fail("slot not found");
 
