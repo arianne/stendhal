@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
+import games.stendhal.server.actions.CIDSubmitAction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -13,6 +14,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -28,6 +30,11 @@ public class TradeTest {
 	@AfterClass
 	public static void afterClass() {
 		MockStendlRPWorld.reset();
+	}
+	
+	@Before
+	public void before() {
+		CIDSubmitAction.nameList.clear();
 	}
 	
 	/**
@@ -429,5 +436,157 @@ public class TradeTest {
 		
 		assertTrue(edeka.getOffers().size() == 0);
 		assertTrue(edeka.getExpiredOffers().size() == 0);
+	}
+
+	/**
+	 * Tests that the trading score of 2 different players gets 
+	 * incremented when they have normal, unequal CIDs. 
+	 */
+	@Test
+	public void testIncreaseScore() {
+		Player george = PlayerTestHelper.createPlayer("george");
+		PlayerTestHelper.registerPlayer(george);
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		StackableItem erniesMoney = (StackableItem) SingletonRepository
+				.getEntityManager().getItem("money");
+		Integer price = Integer.valueOf(10);
+		erniesMoney.setQuantity(price);
+		george.equipToInventoryOnly(item);
+		
+		// ensure different CIDs
+		CIDSubmitAction.nameList.put("george", "georgescid");
+		CIDSubmitAction.nameList.put("ernie", "erniescid");
+		
+		Offer offer = edeka.createOffer(george, item, price);
+		Player ernie = PlayerTestHelper.createPlayer("ernie");
+		ernie.equipToInventoryOnly(erniesMoney);
+		
+		assertThat(ernie.getTradescore(), is(0));
+		assertThat(george.getTradescore(), is(0));
+		
+		edeka.acceptOffer(offer, ernie);
+		
+		assertThat(ernie.getTradescore(), is(1));
+		assertThat(george.getTradescore(), is(0));
+		
+		edeka.fetchEarnings(george);
+		
+		assertThat(ernie.getTradescore(), is(1));
+		assertThat(george.getTradescore(), is(1));
+	}
+	
+	/**
+	 * Tests that the trading score of 2 different players does not 
+	 * get incremented when seller does not have a CID. 
+	 */
+	@Test
+	public void testIncreaseScoreNoSellerCID() {
+		Player george = PlayerTestHelper.createPlayer("george");
+		PlayerTestHelper.registerPlayer(george);
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		StackableItem erniesMoney = (StackableItem) SingletonRepository
+				.getEntityManager().getItem("money");
+		Integer price = Integer.valueOf(10);
+		erniesMoney.setQuantity(price);
+		george.equipToInventoryOnly(item);
+		
+		CIDSubmitAction.nameList.put("ernie", "erniescid");
+		
+		Offer offer = edeka.createOffer(george, item, price);
+		Player ernie = PlayerTestHelper.createPlayer("ernie");
+		ernie.equipToInventoryOnly(erniesMoney);
+		
+		assertThat(ernie.getTradescore(), is(0));
+		assertThat(george.getTradescore(), is(0));
+		
+		edeka.acceptOffer(offer, ernie);
+		
+		assertThat(ernie.getTradescore(), is(0));
+		assertThat(george.getTradescore(), is(0));
+		
+		edeka.fetchEarnings(george);
+		
+		assertThat(ernie.getTradescore(), is(0));
+		assertThat(george.getTradescore(), is(0));
+	}
+	
+	/**
+	 * Tests that the trading score of 2 different players does not 
+	 * get incremented when the buyer does not have a CID. 
+	 */
+	@Test
+	public void testIncreaseScoreNoBuyerCID() {
+		Player george = PlayerTestHelper.createPlayer("george");
+		PlayerTestHelper.registerPlayer(george);
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		StackableItem erniesMoney = (StackableItem) SingletonRepository
+				.getEntityManager().getItem("money");
+		Integer price = Integer.valueOf(10);
+		erniesMoney.setQuantity(price);
+		george.equipToInventoryOnly(item);
+		
+		CIDSubmitAction.nameList.put("george", "georgescid");
+		
+		Offer offer = edeka.createOffer(george, item, price);
+		Player ernie = PlayerTestHelper.createPlayer("ernie");
+		ernie.equipToInventoryOnly(erniesMoney);
+		
+		assertThat(ernie.getTradescore(), is(0));
+		assertThat(george.getTradescore(), is(0));
+		
+		edeka.acceptOffer(offer, ernie);
+		
+		assertThat(ernie.getTradescore(), is(0));
+		assertThat(george.getTradescore(), is(0));
+		
+		edeka.fetchEarnings(george);
+		
+		assertThat(ernie.getTradescore(), is(0));
+		assertThat(george.getTradescore(), is(0));
+	}
+	
+	/**
+	 * Tests that the trading score of 2 different players does not 
+	 * get incremented when seller does not have a CID. 
+	 */
+	@Test
+	public void testIncreaseScoreSamePlayer() {
+		Player george = PlayerTestHelper.createPlayer("george");
+		PlayerTestHelper.registerPlayer(george);
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		StackableItem money = (StackableItem) SingletonRepository
+				.getEntityManager().getItem("money");
+		Integer price = Integer.valueOf(10);
+		money.setQuantity(price);
+		george.equipToInventoryOnly(item);
+		george.equipToInventoryOnly(money);
+		
+		CIDSubmitAction.nameList.put("george", "georgescid");
+		
+		Offer offer = edeka.createOffer(george, item, price);
+		
+		assertThat(george.getTradescore(), is(0));
+		
+		// switch cid in between
+		CIDSubmitAction.nameList.put("george", "georgesfakecid");
+		edeka.acceptOffer(offer, george);
+		
+		assertThat(george.getTradescore(), is(0));
+		
+		edeka.fetchEarnings(george);
+		
+		assertThat(george.getTradescore(), is(0));
 	}
 }
