@@ -8,6 +8,7 @@ import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.soundreview.HearingArea;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Grammar;
+import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.NotificationType;
 
 import java.awt.geom.Rectangle2D;
@@ -348,4 +349,16 @@ public class User extends Player {
 				+ (User.get().getY() - y2) * (User.get().getY() - y2);
 	}
 
+	/**
+	 * is the named player ignored?
+	 *
+	 * @param name name of player
+	 * @return true, if the player should be ignored; false otherwise
+	 */
+	public static boolean isIgnoring(String name) {
+		if (User.isNull()) {
+			return false;
+		}
+		return KeyedSlotUtil.getKeyedSlot(User.get().rpObject, "!ignore", "_" + name) != null;
+	}
 }
