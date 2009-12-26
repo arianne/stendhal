@@ -191,8 +191,8 @@ public class Market extends PassiveEntity {
 		return false;
 	}
 
-	private void applyTradingBonus(Player acceptingPlayer) {
-		acceptingPlayer.incrementTradescore();
+	private void applyTradingBonus(Player player) {
+		player.incrementTradescore();
 	}
 
 	/**
@@ -212,6 +212,9 @@ public class Market extends PassiveEntity {
 				earner.equipToInventoryOnly(item);
 				earnings.remove(earning);
 				earningsToRemove.add(earning);
+				if (earning.shouldReward()) {
+					applyTradingBonus(earner);
+				}
 			}
 		}
 		for(Earning earning : earningsToRemove) {
