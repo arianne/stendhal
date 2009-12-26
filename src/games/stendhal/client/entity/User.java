@@ -1,9 +1,9 @@
 package games.stendhal.client.entity;
 
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.World;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.soundreview.HearingArea;
 import games.stendhal.client.update.Version;
@@ -14,16 +14,31 @@ import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPObject;
 
+/**
+ * This class identifies the user of this client.
+ *
+ * @author durkham, hendrik
+ */
 public class User extends Player {
 
 	private static User instance;
 
 	private String serverVersion = null;
 
+	/**
+	 * is the user object not set, yet?
+	 *
+	 * @return true, if the the user object is unknown; false if it is known
+	 */
 	public static boolean isNull() {
 		return instance == null;
 	}
 
+	/**
+	 * gets the User object
+	 *
+	 * @return user object
+	 */
 	public static User get() {
 		return instance;
 	}
@@ -81,6 +96,11 @@ public class User extends Player {
 		j2DClient.get().addEventLine(new HeaderLessEventLine(text, NotificationType.INFORMATION));
 	}
 
+	/**
+	 * is this user an admin with an adminlevel equal or above 600?
+	 *
+	 * @return true, if the user is an admin; false otherwise
+	 */
 	public static boolean isAdmin() {
 		if (isNull()) {
 			return false;
@@ -95,6 +115,11 @@ public class User extends Player {
 				&& (me.rpObject.getInt("adminlevel") >= 600);
 	}
 
+	/**
+	 * gets the level of the current user
+	 *
+	 * @return level
+	 */
 	public static int getPlayerLevel() {
 		if (!isNull()) {
 			final User me = User.get();
@@ -107,10 +132,20 @@ public class User extends Player {
 		return 0;
 	}
 
+	/**
+	 * gets the ID of the user's rpobject
+	 *
+	 * @return ID
+	 */
 	public int getObjectID() {
 		return rpObject.getID().getObjectID();
 	}
 
+	/**
+	 * checks whether the user owns a sheep
+	 *
+	 * @return true, if the user owns a sheep; false otherwise
+	 */
 	public boolean hasSheep() {
 		if (rpObject == null) {
 			return false;
@@ -118,17 +153,32 @@ public class User extends Player {
 		return rpObject.has("sheep");
 	}
 
+	/**
+	 * checks whether the user owns a pet
+	 *
+	 * @return true, if the user owns a pet; false otherwise
+	 */
 	public boolean hasPet() {
 		if (rpObject == null) {
 			return false;
 		}
 		return rpObject.has("pet");
 	}
-	
+
+	/**
+	 * gets the ID of a sheep
+	 *
+	 * @return ID of sheep
+	 */
 	public int getSheepID() {
 		return rpObject.getInt("sheep");
 	}
-	
+
+	/**
+	 * gets the ID of a pet
+	 *
+	 * @return ID of pet
+	 */
 	public int getPetID() {
 		return rpObject.getInt("pet");
 	}
@@ -271,13 +321,25 @@ public class User extends Player {
 		}
 
 		return -1;
-    }
-	
+	}
+
+	/**
+	 * Is this object the user of this client?
+	 *
+	 * @return true
+	 */
 	@Override
 	boolean isUser() {
 		return true;
 	}
-	
+
+	/**
+	 * calculates the squared distance between the user and the specified coordinates
+	 *
+	 * @param x2 x coordinate
+	 * @param y2 y coordinate
+	 * @return the squared distance
+	 */
 	public static double squaredDistanceTo(final double x2, final double y2) {
 		if (User.isNull()) {
 			return Double.POSITIVE_INFINITY;
@@ -285,4 +347,5 @@ public class User extends Player {
 		return (User.get().getX() - x2) * (User.get().getX() - x2)
 				+ (User.get().getY() - y2) * (User.get().getY() - y2);
 	}
+
 }
