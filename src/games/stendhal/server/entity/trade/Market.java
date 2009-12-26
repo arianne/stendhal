@@ -157,7 +157,7 @@ public class Market extends PassiveEntity {
 	}
 
 	/**
-	 * Completes a trade of an offer by transfering item to accepting player and taking the money from him
+	 * Completes a trade of an offer by transferring item to accepting player and taking the money from him
 	 * @param offer
 	 * @param acceptingPlayer
 	 */
@@ -167,11 +167,14 @@ public class Market extends PassiveEntity {
 				Item item = offer.getItem();
 				offer.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(item.getID());
 				acceptingPlayer.equipOrPutOnGround(item);
-				final Earning earning = new Earning(item.getName(), offer.getPrice(), offer.getOfferer());
+				boolean reward = offer.shouldReward(acceptingPlayer); 
+				final Earning earning = new Earning(offer.getPrice(), offer.getOfferer(), reward);
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
-				applyTradingBonus(acceptingPlayer);
+				if (reward) {
+					applyTradingBonus(acceptingPlayer);
+				}
 				
 				// log the item movement
 				String slotName = null;

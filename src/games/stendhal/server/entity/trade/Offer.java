@@ -3,6 +3,7 @@ package games.stendhal.server.entity.trade;
 import games.stendhal.server.core.engine.transformer.ItemTransformer;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
@@ -106,6 +107,16 @@ public class Offer extends PassiveEntity {
 			logger.error("Invalid timestamp: " + get(TIMESTAMP), e);
 		}
 		return timeStamp;
+	}
+	
+	/**
+	 * Check whether accepting this offer should be rewarder in trade score.
+	 * 
+	 * @param player The player accepting the offer
+	 * @return True iff the accepting the offer should be rewarded
+	 */
+	public boolean shouldReward(Player player) {
+		return !player.getName().equals(getOfferer());
 	}
 
 	@Override
