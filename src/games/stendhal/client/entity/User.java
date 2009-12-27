@@ -359,6 +359,12 @@ public class User extends Player {
 		if (User.isNull()) {
 			return false;
 		}
+		
+		// compatibility with 0.79 server
+		if (!User.get().rpObject.hasSlot("!ignore")) {
+			return false;
+		}
+		// end compatibility
 		return KeyedSlotUtil.getKeyedSlot(User.get().rpObject, "!ignore", "_" + name) != null;
 	}
 }

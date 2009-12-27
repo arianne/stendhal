@@ -124,7 +124,7 @@ public class Player extends RPEntity {
 
 	@Override
 	public void onTalk(String text) {
-		if (User.isIgnoring(this.getName())) {
+		if (!User.isIgnoring(this.getName())) {
 			super.onTalk(text);
 		}
 	}
