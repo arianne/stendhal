@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.trade;
 
 import games.stendhal.server.entity.PassiveEntity;
-import games.stendhal.server.entity.item.Item;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
@@ -26,9 +25,10 @@ public class Earning extends PassiveEntity {
 	}
 
 	/**
-	 * constructs Earning from sold {@link Item} and price.
-	 * @param item the sold item
-	 * @param value the earned money
+	 * Constructs Earning for sold price.
+	 * @param value	Earned money
+	 * @param sellerName	Name of the selling player
+	 * @param shouldReward	True if the trade should be rewarded in trade score
 	 */
 	public Earning(final Integer value, final String sellerName, final boolean shouldReward) {
 		super();
