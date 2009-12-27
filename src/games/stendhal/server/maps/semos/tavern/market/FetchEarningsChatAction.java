@@ -23,20 +23,23 @@ public class FetchEarningsChatAction implements ChatAction {
 					+ sentence.getErrorString());
 			npc.setCurrentState(ConversationStates.ATTENDING);
 		} else if (sentence.getExpressions().iterator().next().toString().equals("fetch")){
-			handleSentence(player,sentence,npc);
+			handleSentence(player, npc);
 		}
 	}
 
-	private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
+	private void handleSentence(Player player, SpeakerNPC npc) {
 		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		Set<Earning> earnings = market.fetchEarnings(player);
 		int collectedSum = 0;
 		for (Earning earning : earnings) {
 			collectedSum += earning.getValue().intValue();
 		}
-		player.sendPrivateText("You collected "+Integer.valueOf(collectedSum).toString()+" money.");
-		npc.say("Your earnings have been paid to you");
+		if (collectedSum > 0) {
+			player.sendPrivateText("You collected "+Integer.valueOf(collectedSum).toString()+" money.");
+			npc.say("Your earnings have been paid to you");
+		} else {
+			npc.say("You do not have any earnings to collect.");
+		}
 		npc.setCurrentState(ConversationStates.ATTENDING);
 	}
-
 }
