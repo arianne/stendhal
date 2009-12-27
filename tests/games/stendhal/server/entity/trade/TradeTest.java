@@ -555,8 +555,8 @@ public class TradeTest {
 	}
 	
 	/**
-	 * Tests that the trading score of 2 different players does not 
-	 * get incremented when seller does not have a CID. 
+	 * Tests that the trading score does not change when a player
+	 * buys from himself.
 	 */
 	@Test
 	public void testIncreaseScoreSamePlayer() {
