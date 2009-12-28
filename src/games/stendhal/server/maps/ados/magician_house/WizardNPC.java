@@ -23,6 +23,7 @@ import java.util.Map;
 
 public class WizardNPC implements ZoneConfigurator {
 	private final ShopList shops = SingletonRepository.getShopList();
+	private MazeSign sign;
 
 	/**
 	 * Configure a zone.
@@ -32,6 +33,7 @@ public class WizardNPC implements ZoneConfigurator {
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildMagicianHouseArea(zone, attributes);
+		addMazeSign(zone);
 	}
 
 	private void buildMagicianHouseArea(final StendhalRPZone zone, final Map<String, String> attributes) {
@@ -110,10 +112,17 @@ public class WizardNPC implements ZoneConfigurator {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			Maze maze = new Maze(player.getName() + "_maze", 128, 128);
 			maze.setReturnLocation("int_ados_magician_house", player.getX(), player.getY());
+			maze.setSign(sign);
 			StendhalRPZone zone = maze.getZone();
 			SingletonRepository.getRPWorld().addRPZone(zone);
 			maze.startTiming();
 			player.teleport(zone, maze.getStartPosition().x, maze.getStartPosition().y, Direction.DOWN, player);
 		}
+	}
+	
+	private void addMazeSign(StendhalRPZone zone) {
+		sign = new MazeSign();
+		sign.setPosition(10, 7);
+		zone.add(sign);
 	}
 }

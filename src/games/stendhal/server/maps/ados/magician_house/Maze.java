@@ -64,6 +64,7 @@ public class Maze {
 	
 	/** The time when the player was sent to the maze. */
 	private long timeStamp;
+	private MazeSign sign;
 	
 	/**
 	 * Create a maze.
@@ -105,6 +106,14 @@ public class Maze {
 		returnZoneName= zoneName;
 		returnX = x;
 		returnY = y;
+	}
+	
+	/**
+	 * Set the sign for hall of fame.
+	 * @param sign sign
+	 */
+	public void setSign(MazeSign sign) {
+		this.sign = sign;
 	}
 	
 	/**
@@ -418,6 +427,7 @@ public class Maze {
 			boolean success = super.usePortal(player);
 			if (success) {
 				rewardPlayer(player);
+				sign.updatePlayers();
 			}
 			return success;
 		}
