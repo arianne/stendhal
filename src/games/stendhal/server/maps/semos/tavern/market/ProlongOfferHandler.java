@@ -14,6 +14,7 @@ import games.stendhal.server.entity.trade.Offer;
 import games.stendhal.server.util.TimeUtil;
 
 public class ProlongOfferHandler extends OfferHandler {
+	@Override
 	public void add(SpeakerNPC npc) {
 		npc.add(ConversationStates.ATTENDING, "prolong", null, ConversationStates.ATTENDING, null, 
 				new ProlongOfferChatAction());

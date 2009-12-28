@@ -19,6 +19,7 @@ public class AcceptOfferHandler extends OfferHandler {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(AcceptOfferChatAction.class);
 	
+	@Override
 	public void add(SpeakerNPC npc) {
 		npc.add(ConversationStates.ATTENDING, "accept", null, ConversationStates.ATTENDING, null, 
 				new AcceptOfferChatAction());
