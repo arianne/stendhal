@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
@@ -25,6 +26,16 @@ import games.stendhal.tools.tiled.StendhalMapStructure;
  * A random maze zone.
  */
 public class Maze {
+	/** 
+	 * Time in minutes how long the player can spend in the maze 
+	 * to earn <code>DEFAULT_REWARD_POINTS</code>. Shorter times 
+	 * get a higher reward, and longer times lower.
+	 */ 
+	private static final int DEFAULT_SOLVING_TIME = 5;
+	/** 
+	 * Amount of points for solving the maze in <code>DEFAULT_SOLVING_TIME</code>.
+	 */ 
+	private static final int DEFAULT_REWARD_POINTS = 100;
 	private static final Logger logger = Logger.getLogger(Maze.class);
 	
 	private static final int WALL_THICKNESS = 2;
@@ -50,6 +61,9 @@ public class Maze {
 	private String returnZoneName;
 	/** The coordinates where to return a leaving player */
 	private int returnX, returnY;
+	
+	/** The time when the player was sent to the maze. */
+	private long timeStamp;
 	
 	/**
 	 * Create a maze.
@@ -103,6 +117,13 @@ public class Maze {
 			zone = generateZone();
 		}
 		return zone;
+	}
+	
+	/**
+	 * Start timing how long the player takest to solve the maze.
+	 */
+	public void startTiming() {
+		timeStamp = System.currentTimeMillis();
 	}
 	
 	private StendhalMapStructure generateMapStructure(int width, int height) {
@@ -310,7 +331,7 @@ public class Maze {
 		}
 		
 		// Create the return portal
-		Teleporter portal = new Teleporter(new Spot(SingletonRepository.getRPWorld().getZone(returnZoneName), returnX, returnY));
+		Teleporter portal = new ReturnTeleporter(new Spot(SingletonRepository.getRPWorld().getZone(returnZoneName), returnX, returnY));
 		Point pos = getPortalPosition();
 		portal.setPosition(pos.x, pos.y);
 		zone.add(portal);
@@ -375,6 +396,30 @@ public class Maze {
 		public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 				final int oldY, final int newX, final int newY) {
 			// ignore
+		}
+	}
+	
+	protected void rewardPlayer(Player player) {
+		long timediff = System.currentTimeMillis() - timeStamp;
+		double normalized = timediff / (double) (DEFAULT_SOLVING_TIME * MathHelper.MILLISECONDS_IN_ONE_MINUTE);
+		// theoretical maximum e * DEFAULT_REWARD_POINTS
+		int points = (int) (DEFAULT_REWARD_POINTS * Math.exp(1 - normalized));
+		
+		SingletonRepository.getRuleProcessor().addHallOfFamePoints(player.getName(), "M", points);
+	}
+	
+	private class ReturnTeleporter extends Teleporter {
+		public ReturnTeleporter(Spot spot) {
+			super(spot);
+		}
+
+		@Override
+		protected boolean usePortal(final Player player) {
+			boolean success = super.usePortal(player);
+			if (success) {
+				rewardPlayer(player);
+			}
+			return success;
 		}
 	}
 }

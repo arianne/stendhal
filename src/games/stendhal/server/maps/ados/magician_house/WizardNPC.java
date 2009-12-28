@@ -107,12 +107,13 @@ public class WizardNPC implements ZoneConfigurator {
 	}
 	
 	private class SendToMazeChatAction implements ChatAction {
-    	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-    		Maze maze = new Maze(player.getName() + "_maze", 128, 128);
-    		maze.setReturnLocation("int_ados_magician_house", player.getX(), player.getY());
-    		StendhalRPZone zone = maze.getZone();
-    		SingletonRepository.getRPWorld().addRPZone(zone);
-    		player.teleport(zone, maze.getStartPosition().x, maze.getStartPosition().y, Direction.DOWN, player);
-    	}
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			Maze maze = new Maze(player.getName() + "_maze", 128, 128);
+			maze.setReturnLocation("int_ados_magician_house", player.getX(), player.getY());
+			StendhalRPZone zone = maze.getZone();
+			SingletonRepository.getRPWorld().addRPZone(zone);
+			maze.startTiming();
+			player.teleport(zone, maze.getStartPosition().x, maze.getStartPosition().y, Direction.DOWN, player);
+		}
 	}
 }
