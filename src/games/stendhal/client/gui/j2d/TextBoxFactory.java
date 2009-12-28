@@ -217,7 +217,9 @@ public class TextBoxFactory {
 					// could not break the line - the word's simply too long. Use more force to
 					// to fit it to the width
 					best = splitAggressively(candidate, width);
-					previous = best.getEndIndex();
+					// splitAggressively returns an iterator with its own indexing,
+					// so instead of using it directly we need to adjust the old one
+					previous += best.getEndIndex();
 				} else {
 					previous = best.getEndIndex();
 					// Trim the trailing white space
@@ -248,8 +250,11 @@ public class TextBoxFactory {
 
 				best = null;
 
-				if (lines.size() > 100) {
-					// TODO: fix this bug which can create an empty loop
+				if (lines.size() > 50) {
+					// Very large amount of lines won't fit on the screen anyway. 
+					// Also serves to cut infinite loops should there be bugs in this
+					// ridiculously complicated code. Unfortunately there's no tolerable
+					// way to get the raw string for proper reporting.
 					break;
 				}
 			}
