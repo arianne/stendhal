@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados.magician_house;
+package games.stendhal.server.maps.quests.maze;
 
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
@@ -25,7 +25,7 @@ import games.stendhal.tools.tiled.StendhalMapStructure;
 /**
  * A random maze zone.
  */
-public class Maze {
+public class MazeGenerator {
 	/** 
 	 * Time in minutes how long the player can spend in the maze 
 	 * to earn <code>DEFAULT_REWARD_POINTS</code>. Shorter times 
@@ -36,7 +36,7 @@ public class Maze {
 	 * Amount of points for solving the maze in <code>DEFAULT_SOLVING_TIME</code>.
 	 */ 
 	private static final int DEFAULT_REWARD_POINTS = 100;
-	private static final Logger logger = Logger.getLogger(Maze.class);
+	private static final Logger logger = Logger.getLogger(MazeGenerator.class);
 	
 	private static final int WALL_THICKNESS = 2;
 	private static final String[] prizes = {
@@ -73,7 +73,7 @@ public class Maze {
 	 * @param width Width of the generated zone
 	 * @param height Height of the generated zone
 	 */
-	public Maze(String name, int width, int height) {
+	public MazeGenerator(String name, int width, int height) {
 		this.name = name;
 		this.width = width;
 		this.height = height;

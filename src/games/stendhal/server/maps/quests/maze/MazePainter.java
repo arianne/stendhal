@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados.magician_house;
+package games.stendhal.server.maps.quests.maze;
 
 import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.StendhalMapStructure;

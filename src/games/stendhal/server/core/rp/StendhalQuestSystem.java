@@ -46,6 +46,7 @@ import games.stendhal.server.maps.quests.LearnAboutOrbs;
 import games.stendhal.server.maps.quests.LookBookforCeryl;
 import games.stendhal.server.maps.quests.LookUpQuote;
 import games.stendhal.server.maps.quests.Marriage;
+import games.stendhal.server.maps.quests.Maze;
 import games.stendhal.server.maps.quests.McPeglegIOU;
 import games.stendhal.server.maps.quests.MeetHackim;
 import games.stendhal.server.maps.quests.MeetHayunn;
@@ -170,6 +171,7 @@ public class StendhalQuestSystem {
 		loadQuest(new Marriage());
 		// loadQuet(new MonogenesCataclysm());
 		// loadQuest(new MeetBunny());
+		loadQuest(new Maze());
 		loadQuest(new MeetHackim());
 		loadQuest(new McPeglegIOU());
 		loadQuest(new MeetHayunn());

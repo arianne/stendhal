@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados.magician_house;
+package games.stendhal.server.maps.quests.maze;
 
 import java.util.List;
 import java.util.Iterator;
