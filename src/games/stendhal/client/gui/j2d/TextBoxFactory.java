@@ -189,7 +189,7 @@ public class TextBoxFactory {
 	 */
 	private List<AttributedCharacterIterator> splitFormatted(final AttributedString text, final int width) {
 		final List<AttributedCharacterIterator> lines = new LinkedList<AttributedCharacterIterator>();
-				
+
 		final BreakIterator iter = BreakIterator.getLineInstance();
 		iter.setText(text.getIterator());
 		
@@ -201,7 +201,7 @@ public class TextBoxFactory {
 			final AttributedCharacterIterator candidate = text.getIterator(null, previous, iter.current());
 
 			if (getPixelWidth(candidate) <= width) {
-				// check for line breaks withing the provided text
+				// check for line breaks within the provided text
 				// unfortunately, the BreakIterators are too dumb to tell *why* they consider the 
 				// location a break, so the check needs to be implemented here
 				final CharacterIterator cit = iter.getText();
@@ -247,6 +247,11 @@ public class TextBoxFactory {
 				}
 
 				best = null;
+
+				if (lines.size() > 100) {
+					// TODO: fix this bug which can create an empty loop
+					break;
+				}
 			}
 		}
 
