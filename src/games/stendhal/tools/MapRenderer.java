@@ -75,14 +75,6 @@ public class MapRenderer extends Task {
 			}
 		}
 
-		final OrthoMapView myView = new OrthoMapView(map);
-		myView.setZoom(0.0625);
-		final Dimension d = myView.getSize();
-		final BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
-		final Graphics2D g = i.createGraphics();
-		g.setClip(0, 0, d.width, d.height);
-		myView.paint(g);
-		g.dispose();
 
 		final String area = file.getParentFile().getName();
 		String level;
@@ -102,6 +94,21 @@ public class MapRenderer extends Task {
 					+ "_" + area + "_"
 					+ file.getName().replaceAll("\\.tmx", ".png");
 		}
+
+		final OrthoMapView myView = new OrthoMapView(map);
+		if (level.equals("int") && !area.equals("abstract")) {
+			myView.setZoom(0.25);
+		} else {
+			myView.setZoom(0.0625);
+		}
+
+		final Dimension d = myView.getSize();
+		final BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
+		final Graphics2D g = i.createGraphics();
+		g.setClip(0, 0, d.width, d.height);
+		myView.paint(g);
+		g.dispose();
+		
 
 		try {
 			ImageIO.write(i, "png", new File(filename));
