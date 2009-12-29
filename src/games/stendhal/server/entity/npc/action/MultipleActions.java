@@ -10,7 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * executes a list of actions. calls fire() of each action added, when its own
+ * executes a list of actions in the order they have been added. 
+ * It calls fire() of each action added, when its own
  * fire() is called.
  */
 public class MultipleActions implements ChatAction {
