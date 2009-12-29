@@ -13,7 +13,7 @@ import games.stendhal.server.entity.trade.Market;
  */
 public class TradingUtility {
 	
-	private static final int FEE_BONUS_CONSTANT = 10;
+	private static final double FEE_BONUS_CONSTANT = 10;
 	private static final double TRADING_FEE_PERCENTAGE = 0.01;
 	/** Ratio by which player killers should pay more */
 	private static final double TRADING_FEE_PLAYER_KILLER_PENALTY = 0.5;
