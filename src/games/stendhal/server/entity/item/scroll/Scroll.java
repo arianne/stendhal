@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -63,11 +64,33 @@ public class Scroll extends StackableItem implements UseListener {
 		}
 
 		if (user.nextTo((Entity) base)) {
+			// We need to remove the scroll before using it. Makes space in 
+			// the bag in the case of last empty scrolls, and prevents
+			// the player getting free replacement scrolls from bank vaults.
+			// Save the necessary information for backtracking:  
+			Scroll clone = (Scroll) clone();
+			Scroll splitted = (Scroll) splitOff(1);
+			StendhalRPZone zone = getZone();
 			if (useScroll((Player) user)) {
-				this.removeOne();
 				user.notifyWorldAboutChanges();
+				return true;
+			} else {
+				if (getQuantity() != 0) {
+					// Return what we just failed to use
+					add(splitted);
+				} else {
+					// Used the last scroll, but failed. Return the
+					// scroll to where it used to be
+					if (clone.isContained()) {
+						clone.getContainerSlot().add(clone);
+					} else {
+						// unset the zone first to avoid it looking like adding it to two zones
+						clone.onRemoved(zone);
+						zone.add(clone);
+					}
+				}
+				return false;
 			}
-			return true;
 		} else {
 			logger.debug("Scroll is too far away");
 			return false;
