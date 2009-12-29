@@ -5,7 +5,7 @@ import games.stendhal.tools.tiled.StendhalMapStructure;
 import games.stendhal.tools.tiled.TileSetDefinition;
 
 public class MazePainter {
-	class Style {		
+	private static class Style {		
 		protected static final int GROUND_INDEX = 42;
 		public static final int PORTAL_INDEX = 59;
 		protected final int[] wall = { 2, 4, 20, 3, 5, 15, 19, 16, 36, 32, 35, 31, 1 };
