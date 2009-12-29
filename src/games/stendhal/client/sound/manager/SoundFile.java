@@ -5,9 +5,9 @@
 
 package games.stendhal.client.sound.manager;
 
-import games.stendhal.client.sound.system.Processors.Recorder;
-import games.stendhal.client.sound.system.Processors.OggVorbisDecoder;
-import games.stendhal.client.sound.system.Processors.PCMStreamConverter;
+import games.stendhal.client.sound.system.processors.OggVorbisDecoder;
+import games.stendhal.client.sound.system.processors.PCMStreamConverter;
+import games.stendhal.client.sound.system.processors.Recorder;
 import games.stendhal.client.sound.system.SignalProcessor;
 
 import java.io.File;

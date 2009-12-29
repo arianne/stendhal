@@ -6,10 +6,10 @@
 package games.stendhal.client.sound.manager;
 
 import games.stendhal.common.math.Algebra;
-import games.stendhal.client.sound.system.Processors.Interruptor;
-import games.stendhal.client.sound.system.Processors.SoundLayers;
-import games.stendhal.client.sound.system.Processors.DirectedSound;
-import games.stendhal.client.sound.system.Processors.VolumeAdjustor;
+import games.stendhal.client.sound.system.processors.DirectedSound;
+import games.stendhal.client.sound.system.processors.Interruptor;
+import games.stendhal.client.sound.system.processors.SoundLayers;
+import games.stendhal.client.sound.system.processors.VolumeAdjustor;
 import games.stendhal.client.sound.system.SignalProcessor;
 import java.util.LinkedList;
 

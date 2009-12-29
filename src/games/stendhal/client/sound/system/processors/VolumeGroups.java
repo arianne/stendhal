@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package games.stendhal.client.sound.system.Processors;
+package games.stendhal.client.sound.system.processors;
 
 import java.util.ArrayList;
 import java.util.HashMap;

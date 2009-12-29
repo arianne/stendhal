@@ -5,8 +5,6 @@
 
 package games.stendhal.client.sound.system;
 
-import java.util.AbstractSequentialList;
-import java.util.ListIterator;
 
 /**
  * Every class that either wants to modify or generate a stream of

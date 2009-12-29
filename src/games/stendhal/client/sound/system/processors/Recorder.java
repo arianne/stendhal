@@ -3,10 +3,9 @@
  * and open the template in the editor.
  */
 
-package games.stendhal.client.sound.system.Processors;
+package games.stendhal.client.sound.system.processors;
 
 import games.stendhal.client.sound.system.SignalProcessor;
-import java.util.Arrays;
 
 /**
  *
