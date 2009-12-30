@@ -346,9 +346,6 @@ public class Market extends PassiveEntity {
 	private <T extends Dateable> List<T> getOlderThan(Iterable<T> set, int seconds) {
 		List<T> old = new LinkedList<T>();
 		for (T obj : set) {
-			if (obj instanceof Earning) {
-				System.err.println("EARNING!");
-			}
 			if (System.currentTimeMillis() > obj.getTimestamp() + 1000L * seconds) {
 				old.add(obj);
 			}
