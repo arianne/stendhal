@@ -334,10 +334,10 @@ public class Market extends PassiveEntity {
 	}
 	
 	/**
-	 * Get a list of expired offers whose timestamp is older than specified.
+	 * Get a list of earnings whose timestamp is older than specified.
 	 * 
 	 * @param seconds age of offers in seconds
-	 * @return list of expired offers that are older than the specified time
+	 * @return list of earnings that are older than the specified time
 	 */
 	public List<Earning> getEarningsOlderThan(int seconds) {
 		return getOlderThan(earnings, seconds);
