@@ -5,7 +5,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -57,9 +56,6 @@ public class WizardNPC implements ZoneConfigurator {
 
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("scrolls")));
 
-				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.ATTENDING,
-				        "I don't have any tasks for you right now. If you need anything from me, just ask.", null);
 				add(
 				        ConversationStates.ATTENDING,
 				        Arrays.asList("magic", "scroll", "scrolls"),
