@@ -197,7 +197,7 @@ public class Market extends PassiveEntity {
 	}
 
 	/**
-	 * The earnings for complete trades are paid to the player
+	 * The earnings for complete trades are paid to the player.
 	 * 
 	 * @param earner the player fetching his earnings
 	 * @return the fetched earnings
@@ -211,18 +211,29 @@ public class Market extends PassiveEntity {
 				.getEntityManager().getItem("money");
 				item.setQuantity(earning.getValue());
 				earner.equipToInventoryOnly(item);
-				earnings.remove(earning);
 				earningsToRemove.add(earning);
 				if (earning.shouldReward()) {
 					applyTradingBonus(earner);
 				}
 			}
 		}
+		
+		removeEarnings(earningsToRemove);
+		
+		return earningsToRemove;
+	}
+	
+	/**
+	 * Remove a set of earnings.
+	 * 
+	 * @param earningsToRemove The earnings to be removed
+	 */
+	public void removeEarnings(Iterable<Earning> earningsToRemove) {
 		for(Earning earning : earningsToRemove) {
+			earnings.remove(earning);
 			this.getSlot(EARNINGS_SLOT_NAME).remove(earning.getID());
 		}
 		this.getZone().storeToDatabase();
-		return earningsToRemove;
 	}
 	
 	/**

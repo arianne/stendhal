@@ -10,6 +10,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.trade.Earning;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
 import games.stendhal.server.util.TimeUtil;
@@ -30,6 +31,11 @@ public class OfferExpirer implements TurnListener{
 	//private static final int DAYS_TO_REMOVING = 7;
 	
 	/**
+	 * Time after earnings that the owner has not collected are pocketted by Harold.
+	 */
+	private static final int DAYS_BEFORE_REMOVING_EARNINGS = 30; 
+	
+	/**
 	 * Total time in seconds before sending the player a warning.
 	 */
 	private static final int TIME_TO_WARNING = MathHelper.SECONDS_IN_ONE_HOUR;
@@ -45,6 +51,8 @@ public class OfferExpirer implements TurnListener{
 	private static final int TIME_TO_REMOVING = MathHelper.SECONDS_IN_ONE_HOUR * 4;
 	// (DAYS_TO_WARNING + DAYS_TO_EXPIRING + DAYS_TO_REMOVING) * MathHelper.SECONDS_IN_ONE_DAY;
 	private long timeStamp = 0;
+	
+	private static final int TIME_TO_REMOVING_EARNINGS = DAYS_BEFORE_REMOVING_EARNINGS * MathHelper.SECONDS_IN_ONE_DAY;
 	
 	/**
 	 * Time between checks in seconds.
@@ -73,6 +81,7 @@ public class OfferExpirer implements TurnListener{
 		checkExpired();
 		checkWarnings();
 		checkRemoved();
+		checkRemovedEarnings();
 		
 		TurnNotifier.get().notifyInSeconds(CHECKING_INTERVAL, this);
 	}
@@ -153,5 +162,18 @@ public class OfferExpirer implements TurnListener{
 		// for figuring out if the player has been warned before. Thus storing the time value
 		// used here.
 		timeStamp = time;
+	}
+	
+	private void checkRemovedEarnings() {
+		List<Earning> list = market.getEarningsOlderThan(TIME_TO_REMOVING_EARNINGS);
+		for (Earning earning : list) {
+			StringBuilder builder = new StringBuilder();
+			builder.append("Your earning of ");
+			builder.append(earning.getValue());
+			builder.append(" money has expired and can no longer be collected.");
+			sendMessage(earning.getSeller(), builder);
+		}
+		
+		market.removeEarnings(list);
 	}
 }
