@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -19,6 +20,7 @@ import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.StendhalMapStructure;
 
@@ -36,6 +38,7 @@ public class MazeGenerator {
 	 * Amount of points for solving the maze in <code>DEFAULT_SOLVING_TIME</code>.
 	 */ 
 	private static final int DEFAULT_REWARD_POINTS = 100;
+	private static final int REWARD_XP = 30;
 	private static final Logger logger = Logger.getLogger(MazeGenerator.class);
 	
 	private static final int WALL_THICKNESS = 2;
@@ -415,6 +418,9 @@ public class MazeGenerator {
 		int points = (int) (DEFAULT_REWARD_POINTS * Math.exp(1 - normalized));
 		
 		SingletonRepository.getRuleProcessor().addHallOfFamePoints(player.getName(), "M", points);
+		player.sendPrivateText("You used " + TimeUtil.timeUntil((int) (timediff / 1000), true)
+				+ " to solve the maze. That was worth " + Grammar.quantityplnoun(points, "point") + ".");
+		player.addXP(REWARD_XP);
 	}
 	
 	private class ReturnTeleporter extends Teleporter {
