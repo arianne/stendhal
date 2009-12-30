@@ -168,6 +168,7 @@ public class Market extends PassiveEntity {
 				boolean reward = offer.shouldReward(acceptingPlayer); 
 				final Earning earning = new Earning(offer.getPrice(), offer.getOfferer(), reward);
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
+				earnings.add(earning);
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				if (reward) {
@@ -332,11 +333,24 @@ public class Market extends PassiveEntity {
 		return getOlderThan(expiredOffers, seconds);
 	}
 	
-	private List<Offer> getOlderThan(List<Offer> list, int seconds) {
-		List<Offer> old = new LinkedList<Offer>();
-		for (Offer offer : list) {
-			if (System.currentTimeMillis() > offer.getTimestamp() + 1000L * seconds) {
-				old.add(offer);
+	/**
+	 * Get a list of expired offers whose timestamp is older than specified.
+	 * 
+	 * @param seconds age of offers in seconds
+	 * @return list of expired offers that are older than the specified time
+	 */
+	public List<Earning> getEarningsOlderThan(int seconds) {
+		return getOlderThan(earnings, seconds);
+	}
+	
+	private <T extends Dateable> List<T> getOlderThan(Iterable<T> set, int seconds) {
+		List<T> old = new LinkedList<T>();
+		for (T obj : set) {
+			if (obj instanceof Earning) {
+				System.err.println("EARNING!");
+			}
+			if (System.currentTimeMillis() > obj.getTimestamp() + 1000L * seconds) {
+				old.add(obj);
 			}
 		}
 		

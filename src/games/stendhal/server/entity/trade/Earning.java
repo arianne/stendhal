@@ -1,17 +1,19 @@
 package games.stendhal.server.entity.trade;
 
-import games.stendhal.server.entity.PassiveEntity;
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.entity.Entity;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
 
-public class Earning extends PassiveEntity {
-	
+public class Earning extends Entity implements Dateable {
 	public static final String EARNING_RPCLASS_NAME = "earning";
 	
 	private static final String VALUE_ATTRIBUTE = "value";
 	private static final String REWARD_ATTRIBUTE = "reward";
 	private static final String NAME_ATTRIBUTE = "sellerName";
+	private static final String TIMESTAMP_ATTRIBUTE = "timestamp";
 	
 	private final Integer value;
 	private final String sellerName;
@@ -22,6 +24,7 @@ public class Earning extends PassiveEntity {
 		earningClass.addAttribute(VALUE_ATTRIBUTE, Type.INT);
 		earningClass.addAttribute(NAME_ATTRIBUTE, Type.STRING);
 		earningClass.addAttribute(REWARD_ATTRIBUTE, Type.INT);
+		earningClass.addAttribute(TIMESTAMP_ATTRIBUTE, Type.STRING);
 	}
 
 	/**
@@ -39,10 +42,14 @@ public class Earning extends PassiveEntity {
 		this.sellerName = sellerName;
 		put(NAME_ATTRIBUTE, sellerName);
 		put(REWARD_ATTRIBUTE, shouldReward ? 1 : 0);
+		put(TIMESTAMP_ATTRIBUTE, Long.toString(System.currentTimeMillis()));
 	}
 	
 	public Earning(final RPObject object) {
-		this(Integer.valueOf(object.getInt(VALUE_ATTRIBUTE)),object.get(NAME_ATTRIBUTE), object.getInt(REWARD_ATTRIBUTE) != 0);
+		super(object);
+		setRPClass(EARNING_RPCLASS_NAME);
+		value = getInt(VALUE_ATTRIBUTE);
+		sellerName = get(NAME_ATTRIBUTE);
 	}
 
 	/**
@@ -58,5 +65,15 @@ public class Earning extends PassiveEntity {
 
 	public boolean shouldReward() {
 		return (getInt(REWARD_ATTRIBUTE) != 0);
+	}
+	
+	public long getTimestamp() {
+		long timeStamp = 0;
+		try {
+			timeStamp = Long.parseLong(get(TIMESTAMP_ATTRIBUTE));
+		} catch (final NumberFormatException e) {
+			Logger.getLogger(Earning.class).error("Invalid timestamp: " + get(TIMESTAMP_ATTRIBUTE), e);
+		}
+		return timeStamp;
 	}
 }

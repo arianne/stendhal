@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
 
-public class Offer extends Entity {
+public class Offer extends Entity implements Dateable {
 	private static final Logger logger = Logger.getLogger(Offer.class);
 
 	private static final String OFFERER_ATTRIBUTE_NAME = "offerer";

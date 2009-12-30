@@ -374,6 +374,45 @@ public class TradeTest {
 	}
 	
 	/**
+	 * Tests that getEarningsOlderThan works as intended
+	 */
+	@Test
+	public void testGetEarningsOlderThan() {
+		Player george = PlayerTestHelper.createPlayer("george");
+		PlayerTestHelper.registerPlayer(george);
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		george.equipToInventoryOnly(item);
+		Offer offer = edeka.createOffer(george, item, 10);
+		
+		item = SingletonRepository.getEntityManager().getItem("carrot");
+		george.equipToInventoryOnly(item);
+		Offer offer2 = edeka.createOffer(george, item, 11);
+		
+		Player ernie = PlayerTestHelper.createPlayer("ernie");
+		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+		money.setQuantity(21);
+		ernie.equipToInventoryOnly(money);
+		
+		assertThat(edeka.getEarningsOlderThan(0).size(), is(0));
+		edeka.acceptOffer(offer, ernie);
+		assertThat(edeka.getEarningsOlderThan(-10).size(), is(1));
+		Earning earning1 = edeka.getEarningsOlderThan(-1).get(0);
+		edeka.acceptOffer(offer2, ernie);
+		assertThat(edeka.getEarningsOlderThan(-1).size(), is(2));
+		Earning earning2 = edeka.getEarningsOlderThan(-1).get(1);
+		earning1.put("timestamp", "0");
+		
+		// large numbers on purpose trying to overflow int
+		assertTrue(edeka.getEarningsOlderThan(1000000000).contains(earning1));
+		assertFalse(edeka.getEarningsOlderThan(1000000000).contains(earning2));
+	}
+
+	
+	/**
 	 * Tests for prolongActive.
 	 */
 	@Test
