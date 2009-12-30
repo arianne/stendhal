@@ -121,6 +121,14 @@ public class TradeTest {
 			total += ((StackableItem) gMoney).getQuantity();
 		}
 		assertThat(total, is(21));
+		
+		// Check that the earnings have been removed
+		total = 0;
+		assertThat(edeka.fetchEarnings(george).size(), is(0));
+		for (Item gMoney : george.getAllEquipped("money")) {
+			total += ((StackableItem) gMoney).getQuantity();
+		}
+		assertThat(total, is(21));
 	}
 	
 	/**
