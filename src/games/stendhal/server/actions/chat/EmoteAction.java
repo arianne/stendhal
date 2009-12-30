@@ -25,7 +25,7 @@ public class EmoteAction implements ActionListener {
 			//on the client side, !me is replaced with the name
 			final String text = "!me " + action.get(TEXT);
 			player.put("text", text);
-			//TODO: check what the null value is for. if unneeded remove it 
+ 
 			new GameEvent(player.getName(), "chat", null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
 
 			player.notifyWorldAboutChanges();
