@@ -279,7 +279,7 @@ public class j2DClient {
 
 		character = new Character(this, gameScreen);
 		addWindow(character);
-		settings.add(character, "Enable Character", gameScreen);
+		settings.add(character, "Show Character", gameScreen);
 
 		createAndAddOldBag(gameScreen);
 		//createAndAddNewBag(mainFrameContentPane);
@@ -287,7 +287,7 @@ public class j2DClient {
 		keyring = new KeyRing(gameScreen);
 		client.addFeatureChangeListener(keyring);
 		addWindow(keyring);
-		settings.add(keyring, "Enable Key Ring", gameScreen);
+		settings.add(keyring, "Show Key Ring", gameScreen);
 		
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
@@ -392,7 +392,7 @@ public class j2DClient {
 	private void createAndAddOldBag(final GameScreen gameScreen) {
 		inventory = new EntityContainer("bag", 3, 4, gameScreen);
 		addWindow(inventory);
-		settings.add(inventory, "Enable Bag", gameScreen);
+		settings.add(inventory, "Show Bag", gameScreen);
 	}
 	
 	private void createAndAddNewBag(final Container content) {
