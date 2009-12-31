@@ -142,13 +142,13 @@ public class SoundFile extends SignalProcessor implements Cloneable
     private SignalProcessor chooseDecoder(String filePath, Type fileType, int outputNumSamplesPerChannel)
     {
         SignalProcessor decoder = null;
+        InputStream  stream = this.getClass().getResourceAsStream("/" + filePath);
 
         switch(fileType)
         {
         case OGG:
             try
             {
-                InputStream  stream = this.getClass().getResourceAsStream("/" + filePath);
                 OggVorbisDecoder oggdec = new OggVorbisDecoder(stream, 256, outputNumSamplesPerChannel);
 
                 mNumChannels = oggdec.getNumChannels();
@@ -161,11 +161,11 @@ public class SoundFile extends SignalProcessor implements Cloneable
         case WAV:
             try
             {
-                AudioInputStream stream = AudioSystem.getAudioInputStream(new File(filePath));
-                decoder                 = new PCMStreamConverter(stream, stream.getFormat(), outputNumSamplesPerChannel);
+                AudioInputStream auidoStream = AudioSystem.getAudioInputStream(stream);
+                decoder                 = new PCMStreamConverter(auidoStream, auidoStream.getFormat(), outputNumSamplesPerChannel);
 
-                mNumChannels = stream.getFormat().getChannels();
-                mSampleRate  = (int)stream.getFormat().getSampleRate();
+                mNumChannels = auidoStream.getFormat().getChannels();
+                mSampleRate  = (int)auidoStream.getFormat().getSampleRate();
             }
             catch(Exception exception) { decoder = null; }
             break;
