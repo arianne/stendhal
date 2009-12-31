@@ -9,7 +9,7 @@ import marauroa.common.game.RPAction;
 class AlterCreatureAction implements SlashAction {
 
 	/**
-	 * Execute a chat command.
+	 * Alters an entity's attributes.
 	 * 
 	 * @param params
 	 *            The formal parameters.
@@ -24,7 +24,7 @@ class AlterCreatureAction implements SlashAction {
 		}
 		final RPAction alter = new RPAction();
 
-		alter.put("type", "alter");
+		alter.put("type", "altercreature");
 		alter.put("target", params[0]);
 		alter.put("text", params[1]);
 		StendhalClient.get().send(alter);
