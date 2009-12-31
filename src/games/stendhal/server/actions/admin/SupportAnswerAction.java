@@ -35,7 +35,7 @@ public class SupportAnswerAction extends AdministrationAction {
 					reply = "Hi, sorry to hear about that. But unfortunately support is not here to help you with social problems unless it gets way out of hand. This issue is discussed further on the stendhal FAQ and how to deal with it is described there. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_social_problems - hopefully the rest of your Stendhal experience will be more pleasant.";
 				} else if ("$ignore".equals(reply)) {
 					reply = "Sorry to hear that you have had some problems with another player. Please try to ignore them. You can use "
-						+ "#/ignore #playername to prevent private messages and there is a feature request to extend /ignore to public chat.";
+						+ "#/ignore #playername to prevent chat messages.";
 				} else if ("$faqpvp".equals(reply)) {
 					reply = "Hi, sorry to hear about that. Player attacks are actually within the rules of the game, and it is not something that support gets involved with for that reason. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_vs_Player - good luck for the future.";
 				} else if ("$wiki".equals(reply)) {
