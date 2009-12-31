@@ -5,14 +5,16 @@
 
 package games.stendhal.client.sound.manager;
 
+import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.client.sound.system.processors.OggVorbisDecoder;
 import games.stendhal.client.sound.system.processors.PCMStreamConverter;
 import games.stendhal.client.sound.system.processors.Recorder;
-import games.stendhal.client.sound.system.SignalProcessor;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -146,7 +148,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
         case OGG:
             try
             {
-                FileInputStream  stream = new FileInputStream(filePath);
+                InputStream  stream = this.getClass().getResourceAsStream("/" + filePath);
                 OggVorbisDecoder oggdec = new OggVorbisDecoder(stream, 256, outputNumSamplesPerChannel);
 
                 mNumChannels = oggdec.getNumChannels();
