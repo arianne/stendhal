@@ -5,22 +5,25 @@
 
 package games.stendhal.client.sound.manager;
 
-import games.stendhal.common.math.Algebra;
+import games.stendhal.client.sound.system.SignalProcessor;
+import games.stendhal.client.sound.system.SoundSystem;
+import games.stendhal.client.sound.system.SoundSystemException;
+import games.stendhal.client.sound.system.Time;
 import games.stendhal.client.sound.system.processors.DirectedSound;
 import games.stendhal.client.sound.system.processors.Interruptor;
 import games.stendhal.client.sound.system.processors.SoundLayers;
 import games.stendhal.client.sound.system.processors.VolumeAdjustor;
-import games.stendhal.client.sound.system.SignalProcessor;
-import java.util.LinkedList;
+import games.stendhal.common.math.Algebra;
 
-import games.stendhal.client.sound.system.SoundSystem;
-import games.stendhal.client.sound.system.SoundSystemException;
-import games.stendhal.client.sound.system.Time;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
+
 import javax.sound.sampled.AudioFormat;
+
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -28,6 +31,10 @@ import javax.sound.sampled.AudioFormat;
  */
 public class SoundManager
 {
+    private static Logger logger = Logger.getLogger(SoundManager.class);
+
+    private static SoundManager instance;
+
     private final static int                 OUTPUT_NUM_SAMPLES       = 256;
     private final static int                 DIMENSION                = 2;
     private final static float[]             HEARER_LOOKONG_DIRECTION = { 0.0f, 1.0f };
@@ -134,7 +141,20 @@ public class SoundManager
     private final SoundLayers              mSoundLayers    = new SoundLayers();
     private SoundSystem                    mSoundSystem    = null;
 
-    public SoundManager()
+    /**
+     * gets the sound manager
+     *
+     * @return SoundManager
+     */
+    public static SoundManager get()
+    {
+        if (instance == null) {
+           instance = new SoundManager();
+        }
+        return instance;
+    }
+
+    private SoundManager()
     {
         Algebra.mov_Vecf(mHearerPosition, 0.0f);
 
@@ -178,7 +198,10 @@ public class SoundManager
 
             mSounds.put(soundName, sound);
         }
-        catch(IOException exception) { }
+        catch(IOException exception)
+        {
+            logger.error(exception, exception);
+        }
     }
 
     public void closeSoundFile(String soundName)
@@ -264,6 +287,16 @@ public class SoundManager
 
         if(sound != null && sound.isActive())
             sound.channel.get().setAudibleArea(area);
+    }
+
+    /**
+     * checks whether the specified sound name is defined
+     *
+     * @param soundName name of sound
+     * @return true, if it is defined; false otherwise
+     */
+    public boolean hasSoundName(String soundName) {
+        return mSounds.get(soundName) != null;
     }
 
     public void close()
