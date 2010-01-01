@@ -31,6 +31,9 @@ public class DeepInspect extends ScriptImpl {
 			sb.append(value + ": " + player.get(value) + "\n");
 		}
 		
+		admin.sendPrivateText(sb.toString());
+		sb.setLength(0);
+
 		// inspect slots
 		for (final RPSlot slot : player.slots()) {
 			// don't return buddy-list for privacy reasons
@@ -44,8 +47,9 @@ public class DeepInspect extends ScriptImpl {
 			for (final RPObject object : slot) {
 				sb.append("   " + object + "\n");
 			}
-		}
 
-		admin.sendPrivateText(sb.toString());
+			admin.sendPrivateText(sb.toString());
+			sb.setLength(0);
+		}
 	}
 }
