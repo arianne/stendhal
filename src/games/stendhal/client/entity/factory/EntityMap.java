@@ -105,9 +105,11 @@ public final class EntityMap {
 		register("corpse", null, null, Corpse.class);
 
 		register("blood", null, null, Blood.class);
+
+		register("blackboard", null, null, Sign.class);
 		register("sign", null, null, Sign.class);
 		register("rented_sign", null, null, Sign.class);
-		register("blackboard", null, null, Sign.class);
+		register("shop_sign", null, null, Sign.class);
 		register("tradecentersign", null, null, Sign.class);
 
 		register("item", null, null, Item.class);

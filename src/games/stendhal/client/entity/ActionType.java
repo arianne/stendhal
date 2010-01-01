@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 public enum ActionType {
 	LOOK("look", "Look"),
 	READ("look", "Read"),
+	LOOK_CLOSELY("use", "Look closely"),
 	INSPECT("inspect", "Inspect"),
 	ATTACK("attack", "Attack"),
 	STOP_ATTACK("stop", "Stop attack"),
