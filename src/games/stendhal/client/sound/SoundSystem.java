@@ -30,6 +30,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.soundreview.AudioClip;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.MathHelper;
 
@@ -629,7 +630,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	}
 
 	private SoundSystem() {
-		init();
+		if (!SoundMaster.USE_NEW_SOUND_SYSTEM) {
+			init();
+		}
 	}
 
 	/**
@@ -656,6 +659,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	private String actualZone = "";
 
 	public void zoneEntered(final String zone) {
+		if (!SoundMaster.USE_NEW_SOUND_SYSTEM) {
+			return;
+		}
 		AmbientSound baseAmb;
 		AmbientSound ambient;
 		Point2D soundPos;
@@ -863,6 +869,10 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @see games.stendhal.client.WorldObjects.WorldListener#playerMoved(games.stendhal.client.entity.Player)
 	 */
 	public void playerMoved() {
+		if (!SoundMaster.USE_NEW_SOUND_SYSTEM) {
+			return;
+		}
+
 		// update ambient sounds about player position
 		if (isOperative()) {
 			if (!isMute()) {

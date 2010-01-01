@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 public class SoundMaster implements WorldListener {
 	private static Logger logger = Logger.getLogger(SoundMaster.class);
 
-	private static boolean USE_NEW_SOUND_SYSTEM = false;
+	public static final boolean USE_NEW_SOUND_SYSTEM = true;
 
 	private static SoundFileMap sfm;
 
