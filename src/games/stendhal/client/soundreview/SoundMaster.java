@@ -3,6 +3,8 @@ package games.stendhal.client.soundreview;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sound.manager.SoundManager;
+import games.stendhal.client.sound.system.Time;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -16,7 +18,13 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class SoundMaster implements Runnable, WorldListener {
+import org.apache.log4j.Logger;
+
+public class SoundMaster implements WorldListener {
+	private static Logger logger = Logger.getLogger(SoundMaster.class);
+
+	private static boolean USE_NEW_SOUND_SYSTEM = false;
+
 	private static SoundFileMap sfm;
 
 	private static Cliplistener cliplisten;
@@ -25,9 +33,6 @@ public class SoundMaster implements Runnable, WorldListener {
 
 	public static ConcurrentHashMap<Object, Line> playingClips = new ConcurrentHashMap<Object, Line>();
 
-	public void run() {
-	}
-
 	public void init() {
 		sfm = new SoundFileMap();
 		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
@@ -35,46 +40,53 @@ public class SoundMaster implements Runnable, WorldListener {
 
 		cliplisten = new Cliplistener();
 		WorldObjects.addWorldListener(this);
+		
+		
 	}
 
-	public static AudioClip play(final String soundName, final double x, final double y) {
-		return play(soundName, x, y, false);
-	}
-
-	public static AudioClip play(final String soundName, final double x, final double y,
-			final boolean loop) {
+	public static void play(final String soundName, final double x, final double y) {
 		if (!((x == 0) && (y == 0))) {
 			if (HearingArea.contains(x, y)) {
-				return play(soundName);
+				play(soundName);
 			}
 		}
-		return null;
 	}
 
-	public static AudioClip play(final String soundName) {
-		final boolean shallLoop = false;
-		return play(soundName, shallLoop);
-	}
-
-	public static AudioClip play(final String soundName, final boolean shallLoop) {
-		//TODO: make it run in soundmasterthread so that it wont crash main if malfunct
+	public static void play(final String soundName) {
 		if (isMute) {
-			return null;
+			return;
 		}
 		if (soundName == null) {
-			return null;
+			return;
 		}
 
 		// Is the sound manager not initialized?
 		if (sfm == null) {
-			return null;
+			return;
 		}
+		String mySoundName = soundName.replaceAll("\\.wav", "").replaceAll("\\.au", "").replaceAll("\\.aiff", "") + ".ogg";
 
+		if (USE_NEW_SOUND_SYSTEM) {
+			playUsingNewSoundSystem(mySoundName);
+		} else {
+			playUsingOldSoundSystem(soundName);
+		}
+	}
+
+	private static void playUsingNewSoundSystem(String mySoundName) {
+		SoundManager soundManager = SoundManager.get();
+		if (!soundManager.hasSoundName(mySoundName)) {
+			soundManager.openSoundFile("data/sounds/" + mySoundName, mySoundName);
+		}
+		logger.info("soundName: " + mySoundName);
+		soundManager.play(mySoundName, 0, null, false, new Time());
+	}
+
+	private static void playUsingOldSoundSystem(final String soundName) {
 		byte[] o;
-
 		o = sfm.get(soundName);
 		if (o == null) {
-			return null;
+			return;
 		}
 		try {
 			final AudioClip ac = new AudioClip(AudioSystem.getMixer(null), o, 100);
@@ -87,13 +99,9 @@ public class SoundMaster implements Runnable, WorldListener {
 
 				cl.addLineListener(cliplisten);
 				playingClips.putIfAbsent(cl, cl);
-				if (shallLoop) {
-					cl.loop(Clip.LOOP_CONTINUOUSLY);
-				} else {
-					cl.start();
-				}
+				cl.start();
 
-				return ac;
+				return;
 
 			}
 		} catch (final UnsupportedAudioFileException e) {
@@ -105,7 +113,6 @@ public class SoundMaster implements Runnable, WorldListener {
 		} catch (final IllegalArgumentException e) {
 			
 		}
-		return null;
 	}
 
 	class Cliplistener implements LineListener {
