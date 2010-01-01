@@ -52,7 +52,9 @@ public class ShowItemListEvent extends RPEvent {
 	public ShowItemListEvent(final String title, String caption, final Collection<Item> items) {
 		super(RPCLASS_NAME);
 		super.put(TITLE, title);
-		super.put(CAPTION, caption);
+		if (caption != null) {
+			super.put(CAPTION, caption);
+		}
 		super.addSlot(CONTENT_SLOT);
 		RPSlot slot = super.getSlot(CONTENT_SLOT);
 		for (Item item : items) {

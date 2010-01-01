@@ -44,6 +44,31 @@ public class ShopSignFactory implements ConfigurableFactory {
 		return ctx.getRequiredString("title");
 	}
 
+	/**
+	 * Extract the selling/buying-type from a context.
+	 * 
+	 * @param ctx
+	 *            The configuration context. Must provide 'seller'.
+	 * 
+	 * @return The sign title.
+	 */
+	private boolean getSeller(ConfigurableFactoryContext ctx) {
+		// TODO: make this a required field
+		return ctx.getBoolean("seller", true);
+	}
+
+	/**
+	 * Extract the caption from a context.
+	 * 
+	 * @param ctx
+	 *            The configuration context. May provide 'caption'.
+	 * 
+	 * @return The sign title.
+	 */
+	private String getCaption(ConfigurableFactoryContext ctx) {
+		return ctx.getString("caption", null);
+	}
+
 	//
 	// ConfigurableFactory
 	//
@@ -59,6 +84,7 @@ public class ShopSignFactory implements ConfigurableFactory {
 	 * @see ShopSign
 	 */
 	public Object create(final ConfigurableFactoryContext ctx) {
-		return new ShopSign(getShop(ctx), getTitle(ctx));
+		return new ShopSign(getShop(ctx), getTitle(ctx), getCaption(ctx), getSeller(ctx));
 	}
+
 }
