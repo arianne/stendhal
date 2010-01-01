@@ -1,19 +1,16 @@
 package games.stendhal.client.actions;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.client.MockStendhalClient;
-
 import marauroa.common.game.RPAction;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class AlterCreatureActionTest {
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
 
 
 	/**
@@ -26,7 +23,7 @@ public class AlterCreatureActionTest {
 			@Override
 			public void send(final RPAction action) {
 				client = null;
-				assertEquals("alter", action.get("type"));
+				assertEquals("altercreature", action.get("type"));
 				assertEquals("schnick", action.get("target"));
 				assertEquals("schnack", action.get("text"));
 			}
