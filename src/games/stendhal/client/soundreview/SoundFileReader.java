@@ -116,4 +116,8 @@ class SoundFileReader {
 			output.write(buffer, 0, len);
 		}
 	} // transferData
+	
+	public String getProperty(String key) {
+		return SoundFileReader.soundprops.getProperty(key);
+	}
 }

@@ -1,7 +1,6 @@
 package games.stendhal.client.soundreview;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assume.assumeTrue;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sound.SoundSystem;
@@ -62,13 +61,13 @@ public class SoundTest {
 		assumeTrue(SoundSystem.get().isOperative());
 		
 		Sound valid = new Sound("chicken-mix", 0, 0);
-		assertNull(valid.play());
+		valid.play();
 		valid = new Sound("chicken-mix", 1, 1);
 		assertNotNull("this sound exists", valid);
 		new User();
-		assertNotNull(valid.play());
+		valid.play();
 		final Sound invalid = new Sound("bla", 1, 1);
-		assertNull(invalid.play());
+		invalid.play();
 	}
 
 }

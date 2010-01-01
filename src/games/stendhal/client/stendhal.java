@@ -157,7 +157,5 @@ public class stendhal {
 	private static void startSoundMaster() {
 		final SoundMaster sm = new SoundMaster();
 		sm.init();
-		final Thread th = new Thread(sm);
-		th.start();
 	}
 }

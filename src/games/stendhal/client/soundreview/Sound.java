@@ -26,15 +26,15 @@ public class Sound {
 		// loop = shallLoop;
 	}
 
-	public AudioClip play() {
+	public void play() {
 		if (soundArray.containsKey(name)) {
 
-			return SoundMaster.play(
+			SoundMaster.play(
 					soundArray.get(name)[Rand.rand(soundArray.get(name).length)],
 					x, y);
 
 		} else {
-			return SoundMaster.play(name, x, y);
+			SoundMaster.play(name, x, y);
 		}
 	}
 
