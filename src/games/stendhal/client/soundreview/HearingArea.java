@@ -13,7 +13,7 @@ import java.awt.geom.Rectangle2D;
  */
 public abstract class HearingArea {
 
-	public static final int HEARINGDIST = 20;
+	public static final int HEARINGDIST = 10;
 
 	private static int left;
 
