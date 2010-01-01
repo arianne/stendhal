@@ -49,7 +49,7 @@ public class TradeTest {
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
 		
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		
 		assertTrue(edeka.getOffers().contains(offer));
 		assertNull(bob.getFirstEquipped("axe"));
@@ -71,7 +71,8 @@ public class TradeTest {
 		Integer price = Integer.valueOf(10);
 		erniesMoney.setQuantity(price);
 		george.equipToInventoryOnly(item);
-		Offer offer = edeka.createOffer(george, item, price);
+		Integer number = Integer.valueOf(1);
+		Offer offer = edeka.createOffer(george, item, price, number);
 		assertThat(offer.getItem(), is(item));
 		assertThat(offer.getPrice(), is(price));
 		assertThat(Boolean.valueOf(george.isEquipped(item.getName())),
@@ -101,11 +102,11 @@ public class TradeTest {
 		
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		george.equipToInventoryOnly(item);
-		Offer offer = edeka.createOffer(george, item, 10);
+		Offer offer = edeka.createOffer(george, item, 10, 1);
 		
 		item = SingletonRepository.getEntityManager().getItem("carrot");
 		george.equipToInventoryOnly(item);
-		Offer offer2 = edeka.createOffer(george, item, 11);
+		Offer offer2 = edeka.createOffer(george, item, 11, 1);
 		
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -131,6 +132,7 @@ public class TradeTest {
 		assertThat(total, is(21));
 	}
 	
+	
 	/**
 	 * Tests for createNonExistingOffer.
 	 */
@@ -140,7 +142,7 @@ public class TradeTest {
 		Market edeka = Market.createShop();
 		zone.add(edeka);
 		Player george = PlayerTestHelper.createPlayer("george");
-		Offer offer = edeka.createOffer(george, null, 42);
+		Offer offer = edeka.createOffer(george, null, 42, 1);
 		assertNull("Creating offers for non existing items should fail", offer);
 	}
 	
@@ -157,7 +159,7 @@ public class TradeTest {
 		item.setBoundTo("george");
 		george.equipToInventoryOnly(item);
 		
-		Offer offer = edeka.createOffer(george, item, 42);
+		Offer offer = edeka.createOffer(george, item, 42, 1);
 		assertNull("Creating offers for non bound items should fail", offer);
 		assertThat(george.isEquipped("axe"), is(Boolean.TRUE));
 	}
@@ -176,7 +178,7 @@ public class TradeTest {
 		Integer price = Integer.valueOf(10);
 		erniesMoney.setQuantity(price);
 		Player george = PlayerTestHelper.createPlayer("george");
-		Offer offer = new Offer(item, price, george);
+		Offer offer = new Offer(item, price, george, Integer.valueOf(1));
 
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);
@@ -203,7 +205,7 @@ public class TradeTest {
 		Integer tooFewMoney = price - 1;
 		erniesMoney.setQuantity(tooFewMoney);
 		bob.equipToInventoryOnly(item);
-		Offer offer = edeka.createOffer(bob, item, price);
+		Offer offer = edeka.createOffer(bob, item, price, Integer.valueOf(1));
 
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);
@@ -219,6 +221,38 @@ public class TradeTest {
 		assertThat(Boolean.valueOf(bob.isEquipped("money", price.intValue())),
 				is(Boolean.FALSE));
 	}
+	
+	@Test
+	public void testMultipleItems() {
+		Player george = PlayerTestHelper.createPlayer("george");
+		PlayerTestHelper.registerPlayer(george);
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("greater potion");
+		((StackableItem) item).setQuantity(6);
+		StackableItem erniesMoney = (StackableItem) SingletonRepository
+				.getEntityManager().getItem("money");
+		Integer price = Integer.valueOf(10);
+		erniesMoney.setQuantity(price);
+		george.equipToInventoryOnly(item);
+		Integer number = Integer.valueOf(5);
+		Offer offer = edeka.createOffer(george, item, price, number);
+		assertThat(offer.getItem(), is(item));
+		assertThat(offer.getPrice(), is(price));
+		assertThat(Boolean.valueOf(george.isEquipped(item.getName(), 1)),
+				is(Boolean.TRUE));
+		Player ernie = PlayerTestHelper.createPlayer("ernie");
+		ernie.equipToInventoryOnly(erniesMoney);
+		assertThat(ernie.isEquipped("money", price), is(Boolean.TRUE));
+		edeka.acceptOffer(offer, ernie);
+		assertThat(Boolean.valueOf(ernie.isEquipped("greater potion", 5)), is(Boolean.TRUE));
+		assertThat(ernie.isEquipped("money", price), is(Boolean.FALSE));
+		assertThat(Boolean.valueOf(george.isEquipped("money")), is(Boolean.FALSE));
+		edeka.fetchEarnings(george);
+		assertThat(Boolean.valueOf(george.isEquipped("money", price.intValue())),
+				is(Boolean.TRUE));
+	}
 
 	/**
 	 * Tests for expireOffer.
@@ -232,7 +266,7 @@ public class TradeTest {
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
 		
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		
 		edeka.expireOffer(offer);
 		assertFalse(edeka.getOffers().contains(offer));
@@ -251,7 +285,7 @@ public class TradeTest {
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
 		
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		
 		edeka.expireOffer(offer);
 		edeka.removeExpiredOffer(offer);
@@ -271,7 +305,7 @@ public class TradeTest {
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
 		
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		
 		edeka.removeOffer(offer, bob);
 		assertFalse(edeka.getOffers().contains(offer));
@@ -292,7 +326,7 @@ public class TradeTest {
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
 		
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		
 		edeka.expireOffer(offer);
 		edeka.removeOffer(offer, bob);
@@ -315,7 +349,7 @@ public class TradeTest {
 		bob.equipToInventoryOnly(item);
 		
 		// make an offer to the shop and make it disappear
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		edeka.expireOffer(offer);
 		edeka.removeExpiredOffer(offer);
 		
@@ -341,12 +375,12 @@ public class TradeTest {
 		
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		offer.put("timestamp", "0");
 		
 		Item item2 = SingletonRepository.getEntityManager().getItem("cheese");
 		bob.equipToInventoryOnly(item2);
-		Offer offer2 = edeka.createOffer(bob, item2, 10);
+		Offer offer2 = edeka.createOffer(bob, item2, 10, 1);
 		
 		// large numbers on purpose trying to overflow int
 		assertTrue(edeka.getOffersOlderThan(1000000000).contains(offer));
@@ -367,13 +401,13 @@ public class TradeTest {
 		
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		offer.put("timestamp", "0");
 		edeka.expireOffer(offer);
 		
 		Item item2 = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item2);
-		Offer offer2 = edeka.createOffer(bob, item2, 11);
+		Offer offer2 = edeka.createOffer(bob, item2, 11, 1);
 		edeka.expireOffer(offer2);
 		
 		// large numbers on purpose trying to overflow int
@@ -394,11 +428,11 @@ public class TradeTest {
 		
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		george.equipToInventoryOnly(item);
-		Offer offer = edeka.createOffer(george, item, 10);
+		Offer offer = edeka.createOffer(george, item, 10, 1);
 		
 		item = SingletonRepository.getEntityManager().getItem("carrot");
 		george.equipToInventoryOnly(item);
-		Offer offer2 = edeka.createOffer(george, item, 11);
+		Offer offer2 = edeka.createOffer(george, item, 11, 1);
 		
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -432,7 +466,7 @@ public class TradeTest {
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
 		
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		offer.put("timestamp", "0");
 		
 		edeka.prolongOffer(offer);
@@ -452,7 +486,7 @@ public class TradeTest {
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
 		
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		offer.put("timestamp", "0");
 		edeka.expireOffer(offer);
 		
@@ -474,7 +508,7 @@ public class TradeTest {
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
 		
-		Offer offer = edeka.createOffer(bob, item, 10);
+		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		offer.put("timestamp", "0");
 		edeka.expireOffer(offer);
 		edeka.removeExpiredOffer(offer);
@@ -507,7 +541,7 @@ public class TradeTest {
 		CIDSubmitAction.nameList.put("george", "georgescid");
 		CIDSubmitAction.nameList.put("ernie", "erniescid");
 		
-		Offer offer = edeka.createOffer(george, item, price);
+		Offer offer = edeka.createOffer(george, item, price, 1);
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);
 		
@@ -545,7 +579,7 @@ public class TradeTest {
 		
 		CIDSubmitAction.nameList.put("ernie", "erniescid");
 		
-		Offer offer = edeka.createOffer(george, item, price);
+		Offer offer = edeka.createOffer(george, item, price, 1);
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);
 		
@@ -583,7 +617,7 @@ public class TradeTest {
 		
 		CIDSubmitAction.nameList.put("george", "georgescid");
 		
-		Offer offer = edeka.createOffer(george, item, price);
+		Offer offer = edeka.createOffer(george, item, price, 1);
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);
 		
@@ -622,7 +656,7 @@ public class TradeTest {
 		
 		CIDSubmitAction.nameList.put("george", "georgescid");
 		
-		Offer offer = edeka.createOffer(george, item, price);
+		Offer offer = edeka.createOffer(george, item, price, Integer.valueOf(1));
 		
 		assertThat(george.getTradescore(), is(0));
 		
@@ -634,6 +668,6 @@ public class TradeTest {
 		
 		edeka.fetchEarnings(george);
 		
-		assertThat(george.getTradescore(), is(0));
+		assertThat(george.getTradescore(), is(1));
 	}
 }

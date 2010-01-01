@@ -3,6 +3,7 @@ package games.stendhal.server.entity.trade;
 import games.stendhal.server.core.engine.ItemLogEntry;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -131,24 +132,31 @@ public class Market extends PassiveEntity {
 	 * @param offerer offering player
 	 * @param item item to sell
 	 * @param money price for the item
+	 * @param number number of items to sell
 	 * @return the new created offer
 	 */
 	public Offer createOffer(final Player offerer, final Item item,
-			final Integer money) {
+			final Integer money, final Integer number) {
+		String name = offerer.getName();
+
 		if (item == null || item.isBound()) {
 			return null;
 		}
 	
 		Offer offer = null;
-		String slotName = item.getContainerSlot().getName();
-		if(offerer.drop(item)) {
-			offer = new Offer(item, money, offerer);
+		if(offerer.drop(item.getName())) {
+			if(item instanceof StackableItem) {
+				StackableItem itemStack = (StackableItem) item;
+				StackableItem rest = itemStack.splitOff(item.getQuantity()-number);
+				offerer.equipOrPutOnGround(rest);
+			}
+			offer = new Offer(item, money, offerer, number);
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 			slot.add(offer);
 			getZone().storeToDatabase();
 			
-			new ItemLogger().addItemLogEntry(new ItemLogEntry(item, offerer, "slot-to-market", item.get("name"), Integer.toString(getQuantity(item)), "new offer", slotName));
+			new ItemLogger().addItemLogEntry(new ItemLogEntry(item, offerer, "slot-to-market", item.get("name"), Integer.toString(getQuantity(item)), "new offer", OFFERS_SLOT_NAME));
 		}
 		
 		return offer;
@@ -212,9 +220,7 @@ public class Market extends PassiveEntity {
 				item.setQuantity(earning.getValue());
 				earner.equipToInventoryOnly(item);
 				earningsToRemove.add(earning);
-				if (earning.shouldReward()) {
-					applyTradingBonus(earner);
-				}
+				applyTradingBonus(earner);
 			}
 		}
 		
@@ -319,7 +325,14 @@ public class Market extends PassiveEntity {
 			// Such an offer does not exist anymore
 			return null;
 		}
-		
+		if (this.offers.remove(offer)) {
+			this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
+		}
+		Player offererPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOfferer());
+		final Offer o = new Offer(offer.getItem(), offer.getPrice(), offererPlayer, offer.getNumber());
+		getOffers().add(o);
+		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
+		slot.add(offer);
 		this.getZone().storeToDatabase();
 		return offer;
 	}

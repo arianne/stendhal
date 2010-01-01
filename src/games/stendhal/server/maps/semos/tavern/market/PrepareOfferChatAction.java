@@ -53,7 +53,7 @@ public class PrepareOfferChatAction implements ChatAction {
 					npc.say("That " + itemName + " can be used only by you. I can not sell it.");
 					return;
 				}
-				if (createOffer(player, item, price)) {
+				if (createOffer(player, item, price, number)) {
 					TradingUtility.substractTradingFee(player, price);
 					npc.say("I added your offer to the trading center and took the fee of "+fee.toString()+".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
@@ -69,7 +69,8 @@ public class PrepareOfferChatAction implements ChatAction {
 	}
 	
 	private int determineNumber(Sentence sentence) {
-		return 1;
+		Expression expression = sentence.getExpression(1,"");
+		return expression.getAmount();
 	}
 
 	/**
@@ -78,12 +79,13 @@ public class PrepareOfferChatAction implements ChatAction {
 	 * @param player the player who makes the offer
 	 * @param itemName name of the item for sale
 	 * @param price price for the item
+	 * @param number number of items to sell
 	 * @return true if making the offer was successful, false otherwise
 	 */
-	private boolean createOffer(Player player, Item item, int price) {
+	private boolean createOffer(Player player, Item item, int price, int number) {
 		Market shop = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		if(shop != null) {
-			Offer o = shop.createOffer(player, item, Integer.valueOf(price));
+			Offer o = shop.createOffer(player, item, Integer.valueOf(price), Integer.valueOf(number));
 			if (o == null) {
 				return false;
 			}
