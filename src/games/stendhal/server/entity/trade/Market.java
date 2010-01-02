@@ -134,30 +134,29 @@ public class Market extends PassiveEntity {
 	 * @param number number of items to sell
 	 * @return the new created offer
 	 */
-	public Offer createOffer(final Player offerer, final Item item,
+	public Offer createOffer(final Player offerer, Item item,
 			final Integer money, final Integer number) {
 		if (item == null || item.isBound()) {
 			return null;
 		}
 	
-		Offer offer = null;
-		if(offerer.drop(item.getName())) {
-			if(item instanceof StackableItem) {
-				StackableItem itemStack = (StackableItem) item;
-				StackableItem rest = itemStack.splitOff(item.getQuantity()-number);
-				if (rest != null) {
-					offerer.equipOrPutOnGround(rest);
-				}
+		if (item instanceof StackableItem) {
+			item = ((StackableItem) item).splitOff(number);
+			if (item == null) {
+				return null;
 			}
-			offer = new Offer(item, money, offerer);
-			getOffers().add(offer);
-			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
-			slot.add(offer);
-			getZone().storeToDatabase();
-			
-			new ItemLogger().addItemLogEntry(new ItemLogEntry(item, offerer, "slot-to-market", item.get("name"), Integer.toString(getQuantity(item)), "new offer", OFFERS_SLOT_NAME));
+		} else if (!offerer.drop(item)) {
+			return null;
 		}
 		
+		Offer offer = new Offer(item, money, offerer);
+		getOffers().add(offer);
+		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
+		slot.add(offer);
+		getZone().storeToDatabase();
+
+		new ItemLogger().addItemLogEntry(new ItemLogEntry(item, offerer, "slot-to-market", item.get("name"), Integer.toString(getQuantity(item)), "new offer", OFFERS_SLOT_NAME));
+
 		return offer;
 	}
 
