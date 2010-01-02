@@ -668,6 +668,6 @@ public class TradeTest {
 		
 		edeka.fetchEarnings(george);
 		
-		assertThat(george.getTradescore(), is(1));
+		assertThat(george.getTradescore(), is(0));
 	}
 }
