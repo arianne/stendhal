@@ -221,7 +221,9 @@ public class Market extends PassiveEntity {
 				item.setQuantity(earning.getValue());
 				earner.equipToInventoryOnly(item);
 				earningsToRemove.add(earning);
-				applyTradingBonus(earner);
+				if (earning.shouldReward()) {
+					applyTradingBonus(earner);
+				}
 			}
 		}
 		
