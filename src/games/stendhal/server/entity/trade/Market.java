@@ -326,13 +326,7 @@ public class Market extends PassiveEntity {
 			// Such an offer does not exist anymore
 			return null;
 		}
-		if (this.offers.remove(offer)) {
-			this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
-		}
-		final Offer o = new Offer(offer.getItem(), offer.getPrice(), player, offer.getNumber());
-		getOffers().add(o);
-		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
-		slot.add(offer);
+
 		this.getZone().storeToDatabase();
 		return offer;
 	}
