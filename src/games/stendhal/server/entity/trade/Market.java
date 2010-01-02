@@ -147,7 +147,9 @@ public class Market extends PassiveEntity {
 			if(item instanceof StackableItem) {
 				StackableItem itemStack = (StackableItem) item;
 				StackableItem rest = itemStack.splitOff(item.getQuantity()-number);
-				offerer.equipOrPutOnGround(rest);
+				if (rest != null) {
+					offerer.equipOrPutOnGround(rest);
+				}
 			}
 			offer = new Offer(item, money, offerer, number);
 			getOffers().add(offer);
