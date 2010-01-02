@@ -17,6 +17,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.UpdateConverter;
 import games.stendhal.server.entity.slot.BankSlot;
 import games.stendhal.server.entity.slot.Banks;
+import games.stendhal.server.entity.slot.PlayerKeyringSlot;
 import games.stendhal.server.entity.slot.PlayerSlot;
 
 import java.util.Arrays;
@@ -143,7 +144,12 @@ public class PlayerTransformer implements Transformer {
 		try {
 			for (final String slotName : slotsItems) {
 				final RPSlot slot = player.getSlot(slotName);
-				final PlayerSlot newSlot = new PlayerSlot(slotName);
+				final PlayerSlot newSlot;
+				if (slotName.equals("keyring")) {
+					newSlot = new PlayerKeyringSlot(slotName);
+				} else {
+					newSlot = new PlayerSlot(slotName);
+				}
 				loadSlotContent(player, slot, newSlot);
 			}
 
