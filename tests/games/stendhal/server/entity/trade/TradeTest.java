@@ -238,7 +238,8 @@ public class TradeTest {
 		george.equipToInventoryOnly(item);
 		Integer number = Integer.valueOf(5);
 		Offer offer = edeka.createOffer(george, item, price, number);
-		assertThat(offer.getItem(), is(item));
+		assertThat(offer.getItem().getName(), is("greater potion"));
+		assertThat(((StackableItem) offer.getItem()).getQuantity(), is(5));
 		assertThat(offer.getPrice(), is(price));
 		assertThat(Boolean.valueOf(george.isEquipped(item.getName(), 1)),
 				is(Boolean.TRUE));
