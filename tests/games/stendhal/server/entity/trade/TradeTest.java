@@ -242,6 +242,8 @@ public class TradeTest {
 		assertThat(offer.getPrice(), is(price));
 		assertThat(Boolean.valueOf(george.isEquipped(item.getName(), 1)),
 				is(Boolean.TRUE));
+		assertThat(Boolean.valueOf(george.isEquipped(item.getName(), 2)),
+				is(Boolean.FALSE));
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);
 		assertThat(ernie.isEquipped("money", price), is(Boolean.TRUE));
