@@ -31,7 +31,7 @@ public class OfferTest {
 		Integer price = Integer.valueOf(1);
 		String offererName = "george";
 		Player george = PlayerTestHelper.createPlayer(offererName);
-		Offer o = new Offer(item, price, george, 1);
+		Offer o = new Offer(item, price, george);
 		assertThat(o.getOfferer(), is(offererName));
 		assertThat(o.getInt("price"), is(price.intValue()));
 		assertThat((Item) o.getSlot("item").getFirst(), is(item));

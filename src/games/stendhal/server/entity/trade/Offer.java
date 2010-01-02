@@ -21,8 +21,7 @@ public class Offer extends Entity implements Dateable {
 	private static final String OFFERER_ATTRIBUTE_NAME = "offerer";
 	private static final String OFFERER_CID_ATTRIBUTE = "offerer_cid";
 	private static final String PRICE_ATTRIBUTE = "price";
-	private static final String NUMBER_ATTRIBUTE = "number";
-
+	
 	public static final String OFFER_ITEM_SLOT_NAME = "item";
 
 	public static final String OFFER_RPCLASS_NAME = "offer";
@@ -31,7 +30,6 @@ public class Offer extends Entity implements Dateable {
 	private Item item;
 	private final Integer price;
 	private final String offerer;
-	private final Integer number;
 
 	public static void generateRPClass() {
 		final RPClass offerRPClass = new RPClass(OFFER_RPCLASS_NAME);
@@ -40,14 +38,13 @@ public class Offer extends Entity implements Dateable {
 		offerRPClass.addAttribute(OFFERER_ATTRIBUTE_NAME, Type.STRING);
 		offerRPClass.addAttribute(OFFERER_CID_ATTRIBUTE, Type.STRING);
 		offerRPClass.addAttribute(TIMESTAMP, Type.STRING);
-		offerRPClass.addAttribute(NUMBER_ATTRIBUTE, Type.INT);
 		offerRPClass.addRPSlot(OFFER_ITEM_SLOT_NAME, 1);
 	}
 
 	/**
 	 * @param item
 	 */
-	public Offer(final Item item, final Integer price, final Player offerer, final Integer number) {
+	public Offer(final Item item, final Integer price, final Player offerer) {
 		super();
 		setRPClass("offer");
 		hide();
@@ -60,8 +57,6 @@ public class Offer extends Entity implements Dateable {
 		}
 		this.put(PRICE_ATTRIBUTE, price.intValue());
 		this.price = price;
-		this.put(NUMBER_ATTRIBUTE, number.intValue());
-		this.number = number;
 		this.put(OFFERER_ATTRIBUTE_NAME, offerer.getName());
 		this.offerer = offerer.getName();
 		put(OFFERER_CID_ATTRIBUTE, getPlayerCID(offerer));
@@ -74,7 +69,6 @@ public class Offer extends Entity implements Dateable {
 		hide();
 		
 		price = getInt(PRICE_ATTRIBUTE);
-		number = getInt(NUMBER_ATTRIBUTE);
 		offerer = get(OFFERER_ATTRIBUTE_NAME);
 		
 		getSlot(OFFER_ITEM_SLOT_NAME).clear();
@@ -171,9 +165,5 @@ public class Offer extends Entity implements Dateable {
 		} else {
 			return cid;
 		}
-	}
-
-	public Integer getNumber() {
-		return number;
 	}
 }

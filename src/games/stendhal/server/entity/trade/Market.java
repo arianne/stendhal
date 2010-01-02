@@ -149,7 +149,7 @@ public class Market extends PassiveEntity {
 					offerer.equipOrPutOnGround(rest);
 				}
 			}
-			offer = new Offer(item, money, offerer, number);
+			offer = new Offer(item, money, offerer);
 			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 			slot.add(offer);

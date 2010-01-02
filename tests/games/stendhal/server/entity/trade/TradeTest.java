@@ -178,7 +178,7 @@ public class TradeTest {
 		Integer price = Integer.valueOf(10);
 		erniesMoney.setQuantity(price);
 		Player george = PlayerTestHelper.createPlayer("george");
-		Offer offer = new Offer(item, price, george, Integer.valueOf(1));
+		Offer offer = new Offer(item, price, george);
 
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);
