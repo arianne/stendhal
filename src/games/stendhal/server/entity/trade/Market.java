@@ -312,7 +312,7 @@ public class Market extends PassiveEntity {
 		this.getZone().storeToDatabase();
 	}
 
-	public Offer prolongOffer(Offer offer) {
+	public Offer prolongOffer(Player player, Offer offer) {
 		offer.updateTimestamp();
 		if (this.expiredOffers.remove(offer)) {
 			// It had expired. Move to active offers slot.  
@@ -327,8 +327,7 @@ public class Market extends PassiveEntity {
 		if (this.offers.remove(offer)) {
 			this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 		}
-		Player offererPlayer = SingletonRepository.getRuleProcessor().getPlayer(offer.getOfferer());
-		final Offer o = new Offer(offer.getItem(), offer.getPrice(), offererPlayer, offer.getNumber());
+		final Offer o = new Offer(offer.getItem(), offer.getPrice(), player, offer.getNumber());
 		getOffers().add(o);
 		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 		slot.add(offer);

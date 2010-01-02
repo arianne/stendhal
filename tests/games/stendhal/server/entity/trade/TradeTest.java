@@ -469,7 +469,7 @@ public class TradeTest {
 		Offer offer = edeka.createOffer(bob, item, 10, 1);
 		offer.put("timestamp", "0");
 		
-		edeka.prolongOffer(offer);
+		edeka.prolongOffer(bob, offer);
 		assertTrue(edeka.getOffersOlderThan(1000).size() == 0);
 		assertTrue(edeka.getOffers().size() == 1);
 	}
@@ -490,7 +490,7 @@ public class TradeTest {
 		offer.put("timestamp", "0");
 		edeka.expireOffer(offer);
 		
-		edeka.prolongOffer(offer);
+		edeka.prolongOffer(bob, offer);
 		assertTrue(edeka.getOffersOlderThan(1000).size() == 0);
 		assertTrue(edeka.getOffers().size() == 1);
 		assertTrue(edeka.getExpiredOffers().size() == 0);
@@ -513,7 +513,7 @@ public class TradeTest {
 		edeka.expireOffer(offer);
 		edeka.removeExpiredOffer(offer);
 		
-		edeka.prolongOffer(offer);
+		edeka.prolongOffer(bob, offer);
 		
 		assertTrue(edeka.getOffers().size() == 0);
 		assertTrue(edeka.getExpiredOffers().size() == 0);

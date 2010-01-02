@@ -128,7 +128,7 @@ public class ProlongOfferHandler extends OfferHandler {
 		private boolean prolongOffer(Player player, Offer o) {
 			Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 			if (market != null) {
-				if (market.prolongOffer(o) != null) {
+				if (market.prolongOffer(player, o) != null) {
 					String messageNumberOfOffers = "You now have put "+Integer.valueOf(market.countOffersOfPlayer(player)).toString()+" offers.";
 					player.sendPrivateText(messageNumberOfOffers);
 					
