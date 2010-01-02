@@ -168,8 +168,11 @@ public class StendhalHallOfFameDAO {
 	 */
 	public void setHallOfFamePoints(final String charname, final String fametype, final int points) throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();
-		setHallOfFamePoints(transaction, charname, fametype, points);
-		TransactionPool.get().commit(transaction);
+		try {
+			setHallOfFamePoints(transaction, charname, fametype, points);
+		} finally {
+			TransactionPool.get().commit(transaction);
+		}
 	}
 
 	/**
