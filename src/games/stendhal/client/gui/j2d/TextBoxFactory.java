@@ -235,10 +235,6 @@ public class TextBoxFactory {
 				}
 
 				lines.add(best);
-				// Pick the shortest candidate possible (backtrack a bit, if needed)
-				if (iter.current() > previous + 1) {
-					iter.previous();
-				}
 
 				// a special check for a hard line break just after the word 
 				// that got moved to the next line
@@ -246,6 +242,11 @@ public class TextBoxFactory {
 				if (isHardLineBreak(cit)) {
 					lines.add(text.getIterator(null, previous, iter.current()));
 					previous = iter.current();
+				}
+				
+				// Pick the shortest candidate possible (backtrack a bit, if needed)
+				if (iter.current() > previous + 1) {
+					iter.previous();
 				}
 
 				best = null;
@@ -261,7 +262,7 @@ public class TextBoxFactory {
 		}
 
 		// add the rest of the text, if there's any
-		if (previous != iter.last()) {
+		if (previous < iter.last()) {
 			lines.add(text.getIterator(null, previous, iter.last()));
 		}
 
