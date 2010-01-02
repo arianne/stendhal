@@ -28,8 +28,9 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 		// src/games/stendhal/server/entity/RPEntity.java
 		super("keyring", 2, 4, gameScreen);
 
-		// Disable by default
-		disable();
+		// Hide by default
+		setMinimizeable(false);
+		setMinimized(true);
 	}
 
 	//
