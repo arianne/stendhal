@@ -144,8 +144,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		} else {
 			arrestWarrant.setStarted();
 			imprison(criminal, policeman, minutes);
-			criminal.sendPrivateText("You have been jailed by "
-					+ policeman.getName() + " for " + minutes
+			criminal.sendPrivateText("You have been jailed for " + minutes
 					+ " minutes. Reason: " + reason + ".");
 			
 			

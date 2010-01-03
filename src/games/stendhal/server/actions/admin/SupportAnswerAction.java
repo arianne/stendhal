@@ -64,7 +64,7 @@ public class SupportAnswerAction extends AdministrationAction {
 			final Player supported = SingletonRepository.getRuleProcessor().getPlayer(action.get(TARGET));
 			if (supported != null) {
 
-				supported.sendPrivateText(NotificationType.SUPPORT, "Support (" + player.getTitle() + ") tells you: " + reply + " \nIf you wish to reply, use /support.");
+				supported.sendPrivateText(NotificationType.SUPPORT, "Support tells you: " + reply + " \nIf you wish to reply, use /support.");
 				supported.notifyWorldAboutChanges();
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters(message);
 				
