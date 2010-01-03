@@ -28,7 +28,13 @@ public class PlayerRPClass {
 	static void generateRPClass() {
 		final RPClass player = new RPClass("player");
 		player.isA("rpentity");
+
+		// Note: text and private_text need to be kept because volatile 
+		//       attributes have been stored to the database in the past.
+		//       And old characters, who logged out in the same turn as a
+		//       private_text was set, cannot be loaded without this definition.
 		player.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
+		player.addAttribute("private_text", Type.LONG_STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
 		player.addRPEvent(Events.PRIVATE_TEXT, Definition.PRIVATE);
 		player.addRPEvent(Events.OPEN_OFFER_PANEL, Definition.PRIVATE);
