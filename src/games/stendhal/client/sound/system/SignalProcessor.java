@@ -138,7 +138,7 @@ public abstract class SignalProcessor
      * Connects this SignalProcessor to the next one
      * (it is inserted in the processing chain before nextProcessor)
      *
-     * @param nextProcessor
+     * @param processor nextProcessor
      */
     public final synchronized void insert(SignalProcessor processor, boolean before)
     {
