@@ -5,17 +5,25 @@ Changelog
 - Player-to-player trading facilitated by Harold in Semos Tavern
 - a maze created especially for you by Haizen
 - Help Mrs. Yeti quest
+- Herbs For Carmen quest
+- Kill Gnomes quest
 - Sarzina has nicer answers when asking about your karma
+- ShopSigns show item images, price and stats in a popup window
+- /ignore <player> ignores public chat from player as well as private
 *bug fixes*
 - Semos Village and south east of Semos city redesigned to direct new players better 
 - '/sound mute on' command is now simply '/mute'
 - /mute is remembered across restarts
 - fixed unwanted popping up of minimized keyring window
 - collision fixes
-- entwives are faster
+- entwives are faster, entrance to them has level check
 - allowed distance to pass an item on the ground now matches the allowed distance to throw from bag
 - tell the user where the chatlog has been written after they right-click 'save' it
 - black pearl image is larger, in line with the other gems
+- /altercreature works
+- keyring cannot be used at all till enabled by quest
+- add warning if a player is too far away from fish,gold,well source to use it
+- order corrected for using/removing scroll
 *code*
 - use item transformer for loading items
 - QuestCompletedSeller and Buyer types
