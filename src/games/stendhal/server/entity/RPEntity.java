@@ -31,6 +31,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -1346,6 +1347,15 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		for (final String slot : slotNames) {
 			if (hasSlot(slot)) {
 				final RPSlot rpslot = getSlot(slot);
+
+				// check that this slot is reachable (e. g. fixed keyring)
+				if (rpslot instanceof EntitySlot) {
+					EntitySlot entitySlot = (EntitySlot) rpslot;
+					if (!entitySlot.isReachableForThrowingThingsIntoBy(this)) {
+						continue;
+					}
+				}
+
 				if (!rpslot.isFull()) {
 					return slot;
 				}
