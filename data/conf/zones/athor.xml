@@ -361,37 +361,25 @@
 <!--  -->  
    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HotdogLadyNPC" />
       <entity x="34" y="65">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">
-Things I need to buy:
+	  	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+			<parameter name="shop">buy4hotdogs</parameter>
+			<parameter name="title">Sara Beth's hotdog shop (buying)</parameter>
+			<parameter name="seller">false</parameter>
+			<parameter name="caption">Sara Beth buys these things which are needed to make her snacks.</parameter>
+		</implementation>
 
-ham 15
-bread 15
-onion 20
-cheese 5
-sausage 30
-canned tuna 20
-cheese sausage 25
-
-     </attribute>
-     <attribute name="class">blackboard</attribute>
+		<attribute name="class">blackboard</attribute>
+ 
     </entity> 
       <entity x="39" y="65">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">
-Things you can buy:
+ 	  	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+			<parameter name="shop">sellhotdogs</parameter>
+			<parameter name="title">Sara Beth's hotdog shop (sells)</parameter>
+			<parameter name="seller">true</parameter>
+			<parameter name="caption">Sara Beth sells snacks.</parameter>
+		</implementation>
 
-hotdog 160
-sandwich 120
-cheeseydog 180
-tuna sandwich 130
-vanilla shake 110
-chocolate bar 100
-chocolate shake 110
-
-snowglobe 200
-     </attribute>
-     <attribute name="class">blackboard</attribute>
+		<attribute name="class">blackboard</attribute>
     </entity>
   
     

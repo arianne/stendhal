@@ -162,19 +162,13 @@
 			<attribute name="text">Warning: The mountain pass has been blocked by a landslide!</attribute>
 		</entity>
 		<entity x="40" y="110">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
-I buy many things:
-
-club  3
-cloak  25
-apple  5
-marbles  50
-wooden shield  20
-leather armor  25
-leather helmet  15
-   </attribute>
-			<attribute name="class">default</attribute>
+		 <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+		   <parameter name="shop">buy4gnomes</parameter>
+		   <parameter name="title">Garbiddle's shop</parameter>
+		   <parameter name="seller">false</parameter>
+		 </implementation>
+			
+	     <attribute name="class">default</attribute>
 		</entity>
 	</zone>
 
@@ -694,7 +688,9 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		<entity x="2" y="11">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
 				<parameter name="shop">sellstuff</parameter>
-				<parameter name="title">-- I sell --</parameter>
+				<parameter name="title">Xin Blanca's shop (selling)</parameter>
+				<parameter name="seller">true</parameter>
+				<parameter name="caption">You can buy these things from Xin Blanca.</parameter>
 			</implementation>
 
 			<attribute name="class">blackboard</attribute>
@@ -703,7 +699,9 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		<entity x="3" y="11">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
 				<parameter name="shop">buystuff</parameter>
-				<parameter name="title">-- I buy --</parameter>
+				<parameter name="title">Xin Blanca's shop (buying)</parameter>
+				<parameter name="seller">false</parameter>
+				<parameter name="caption">You can sell these things to Xin Blanca.</parameter>
 			</implementation>
 
 			<attribute name="class">blackboard</attribute>
@@ -734,13 +732,24 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		<entity x="11" y="4">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
 				<parameter name="shop">buyrare</parameter>
-				<parameter name="title">-- Buying --</parameter>
+				<parameter name="title">McPegleg's shop</parameter>
+				<parameter name="seller">false</parameter>
+				<parameter name="caption">You can sell these things to McPegleg.</parameter>
 			</implementation>
 
 			<attribute name="class">blackboard</attribute>
 		</entity>
 
+		<entity x="24" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+				<parameter name="shop">sellrangedstuff</parameter>
+				<parameter name="title">Ouchit's shop</parameter>
+				<parameter name="seller">true</parameter>
+				<parameter name="caption">Ouchit sells bows and arrows.</parameter>
+			</implementation>
 
+			<attribute name="class">blackboard</attribute>
+		</entity>
 	</zone>
 
 	<zone name="int_semos_temple" file="interiors/semos/temple.tmx">
@@ -828,7 +837,16 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 			<attribute name="class">naughtyteennpc</attribute>
 		</entity>
 
+		<entity x="25" y="11">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+				<parameter name="shop">selltools</parameter>
+				<parameter name="title">Tool shop</parameter>
+				<parameter name="seller">true</parameter>
+				<parameter name="caption">Xoderos sells useful tools.</parameter>
+			</implementation>
 
+			<attribute name="class">book_blue</attribute>
+		</entity>
 
 	</zone>
 
@@ -1512,7 +1530,9 @@ Mature sheep wanted: please speak to Sato
 		<entity x="4" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
 				<parameter name="shop">sellstuff2</parameter>
-				<parameter name="title">-- I sell --</parameter>
+				<parameter name="title">Wrvil's shop (selling)</parameter>
+				<parameter name="seller">true</parameter>
+				<parameter name="caption">You can buy these things from Wrvil.</parameter>
 			</implementation>
 
 			<attribute name="class">blackboard</attribute>
@@ -1521,7 +1541,9 @@ Mature sheep wanted: please speak to Sato
 		<entity x="6" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
 				<parameter name="shop">buystuff2</parameter>
-				<parameter name="title">-- I buy --</parameter>
+				<parameter name="title">Wrvil's shop (buying)</parameter>
+				<parameter name="seller">false</parameter>
+				<parameter name="caption">You can sell these things to Wrvil.</parameter>
 			</implementation>
 
 			<attribute name="class">blackboard</attribute>

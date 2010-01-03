@@ -157,7 +157,9 @@ below average.
 		<entity x="3" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
 				<parameter name="shop">elfbuyrare</parameter>
-				<parameter name="title">-- Buying --</parameter>
+				<parameter name="title">Elodrin's shop</parameter>
+				<parameter name="seller">false</parameter>
+				<parameter name="caption">Elodrin will buy these items.</parameter>
 			</implementation>
 
 			<attribute name="class">blackboard</attribute>
@@ -205,7 +207,9 @@ below average.
 		<entity x="15" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
 				<parameter name="shop">buyarcherstuff</parameter>
-				<parameter name="title">I buy the following:</parameter>
+				<parameter name="title">Merenwen's shop</parameter>
+				<parameter name="seller">false</parameter>
+				<parameter name="caption">You can sell these archery items to Merewen.</parameter>
 			</implementation>
 
 			<attribute name="class">blackboard</attribute>
@@ -352,32 +356,14 @@ below average.
 			</attribute>
 		</entity>
 		<entity x="23" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
-I buy vegetables:
+           <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+            <parameter name="shop">buyveggiesandherbs</parameter>
+            <parameter name="title">Chief Falatheen's shop</parameter>
+			<parameter name="seller">false</parameter>
+			<parameter name="caption">Chief Falatheen buys veggies and herbs.</parameter>
+           </implementation>
 
-leek 25
-salad 10
-carrot 5
-onion 20
-tomato 20
-broccoli 30
-courgette 10
-cauliflower 30
-     </attribute>
-			<attribute name="class">blackboard</attribute>
-		</entity>
-		<entity x="24" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
-I buy herbs:
-
-kekik 25
-kokuda 200
-sclaria 25
-arandula 10
-     </attribute>
-			<attribute name="class">blackboard</attribute>
+           <attribute name="class">blackboard</attribute>
 		</entity>
 		<portal x="6" y="0" ref="hqcellardown">
 			<destination zone="-1_nalwor_caves_e" ref="crawlyhole1" />
@@ -397,19 +383,12 @@ arandula 10
 		<configurator
 			class-name="games.stendhal.server.maps.nalwor.assassinhq.PrincipalNPC" />
 		<entity x="3" y="10">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
-We Buy Armor and Weapons:
-
-buckler 20
-aventail 25
-robins hat 30
-leather boots 25
-dwarf cloak 60
-dwarvish armor 17000
-
-assassin dagger 7000
-     </attribute>
+           <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+            <parameter name="shop">buy4assassins</parameter>
+            <parameter name="title">Femme Fatale's shop</parameter>
+			<parameter name="seller">false</parameter>
+			<parameter name="caption">Femme Fatale will buy armor for the assassins.</parameter>
+           </implementation>
 			<attribute name="class">blackboard</attribute>
 		</entity>
 		<portal x="24" y="11" ref="hq0up">

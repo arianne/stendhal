@@ -718,7 +718,9 @@ in roaches.
     <entity x="35" y="52">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyrare3</parameter>
-      <parameter name="title">-- Required --</parameter>
+      <parameter name="title">Mrotho's needs</parameter>
+      <parameter name="seller">false</parameter>
+	  <parameter name="caption">Mrotho will buy these items of armor.</parameter>
      </implementation>
 
      <attribute name="class">blackboard</attribute>
@@ -766,7 +768,9 @@ in roaches.
     <entity x="16" y="8">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buycloaks</parameter>
-      <parameter name="title">-- Buying --</parameter>
+      <parameter name="title">Ida's sewing room</parameter>
+      <parameter name="seller">false</parameter>
+	  <parameter name="caption">Ida will buy these cloaks.</parameter>
      </implementation>
 
      <attribute name="class">book_blue</attribute>
@@ -865,6 +869,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buychaos</parameter>
       <parameter name="title">Hunel (Kanmararn) suspected to buy:</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">transparent</attribute>
     </entity>
@@ -872,6 +877,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyelvish</parameter>
       <parameter name="title">Lupos (Fado Forest) suspected to buy:</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">transparent</attribute>
     </entity>
@@ -879,6 +885,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buy4hotdogs</parameter>
       <parameter name="title">Sara Beth (Athor) reported to buy:</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">transparent</attribute>
     </entity> 
@@ -886,6 +893,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buystuff</parameter>
       <parameter name="title">-- Xin Blanca (Semos) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
@@ -893,6 +901,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyrare</parameter>
       <parameter name="title">-- McPegLeg (Semos) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -900,6 +909,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buystuff2</parameter>
       <parameter name="title">-- Wrvil (Wo'fol) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -907,6 +917,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyiron</parameter>
       <parameter name="title">-- Loretta (Or'ril) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -915,6 +926,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyarcherstuff</parameter>
       <parameter name="title">-- Merenwen (Nalwor) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
      <attribute name="resistance">10</attribute>
@@ -923,6 +935,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buycloaks</parameter>
       <parameter name="title">-- Ida (Ados) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
      <attribute name="resistance">10</attribute>
@@ -931,6 +944,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyrare3</parameter>
       <parameter name="title">-- Mrotho (Ados) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -938,6 +952,7 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyfood</parameter>
       <parameter name="title">-- Siandra (Ados) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -945,33 +960,23 @@ disease poison 2000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyveggiesandherbs</parameter>
       <parameter name="title">-- Chief Falatheen Humble Dishwasher (Assassin HQ) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
-<!--had to do it by hand because boots&helm doesn't work in xml-->
     <entity x="17" y="12">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      <attribute name="text">-- Diehelm Brui (Mithrilbourgh) buys -- 
-steel boots 1000 
-golden boots 1500 
-shadow boots 2000
-stone boots 2500 
-chaos boots 4000
-green thing boots 6000
-xeno boots 8000
-golden helmet 3000
-shadow helmet 4000
-horned golden helmet 5000
-chaos helmet 6000
-magic chain helmet 8000
-black helmet 10000
-</attribute>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">boots&amp;helm</parameter>
+      <parameter name="title">-- Diehelm Brui (Mithrilbourgh) buys -- </parameter>
+      <parameter name="seller">false</parameter>
+     </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
     <entity x="18" y="12">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buymainio</parameter>
       <parameter name="title">-- Despot Halb Errvl (Mithrilbourgh) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
@@ -979,6 +984,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyprecious</parameter>
       <parameter name="title">-- Ognir (Fado) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -986,6 +992,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyrare2</parameter>
       <parameter name="title">-- Yorphin Baos (Fado) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -993,6 +1000,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyaxe</parameter>
       <parameter name="title">-- Woody (Fado) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
@@ -1000,6 +1008,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyamazoncloaks</parameter>
       <parameter name="title">-- Nicklesworth (Amazon) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
@@ -1007,6 +1016,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buykirdneharmor</parameter>
       <parameter name="title">-- Lawrence (Kirdneh) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -1014,6 +1024,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyfishes</parameter>
       <parameter name="title">-- Fishmonger (Kirdneh) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
@@ -1021,6 +1032,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyred</parameter>
       <parameter name="title">-- Pjotr Yearl (Sedah) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -1028,6 +1040,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buymagic</parameter>
       <parameter name="title">-- Vonda (Magic City) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
@@ -1035,6 +1048,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buy4gnomes</parameter>
       <parameter name="title">-- Garbiddle (Gnome Village - Semos) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity> 
@@ -1042,6 +1056,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyoddsandends</parameter>
       <parameter name="title">-- Ritati Dragontracker (Abandoned Keep) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>  
@@ -1049,6 +1064,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">elfbuyrare</parameter>
       <parameter name="title">-- Elodrin (Nalwor) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_red</attribute>
     </entity>
@@ -1056,6 +1072,7 @@ black helmet 10000
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buy4assassins</parameter>
       <parameter name="title">-- Femme Fatale (Assassin HQ) buys --</parameter>
+      <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">book_blue</attribute>
     </entity>
@@ -2368,20 +2385,14 @@ Southeast: Docks
   <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.OrcKillGiantDwarfNPC"/>
  
      <entity x="110" y="1">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">
-We Sell Armor and Weapons:
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+				<parameter name="shop">sellbetterstuff1</parameter>
+				<parameter name="title">Weapons and armor shop</parameter>
+				<parameter name="seller">true</parameter>
+				<parameter name="caption">You can buy good quality weapons and armor here.</parameter>
+			</implementation>
 
-Blue Boots (def 6) 3000
-Blue Striped Cloak (def 7) 5000
-Blue Legs (def 7) 6000
-Blue Helmet (def 7) 6000
-Blue Armor (def 13) 14000
-Blue Shield (def 30) 20000
-
-Assassin Dagger (atk 6 rate 2) 12000
-     </attribute>
-     <attribute name="class">blackboard</attribute>
+			<attribute name="class">blackboard</attribute>
     </entity>
 
 </zone>
@@ -2479,24 +2490,12 @@ Assassin Dagger (atk 6 rate 2) 12000
  <!--  Level -3 -->
 
   <zone name="-3_ados_abandoned_keep" level="-3" x="500512" y="499744" file="Level -3/ados/abandoned_keep.tmx">
-      <entity x="35" y="31">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">
-I buy several things:
-
-knife 5
-amulet 800
-dagger 20
-shuriken 20
-skull ring 250
-black pearl 100
-lucky charm 60
-greater antidote 80
-marbles 80
-magical needle 1000
-snowglobe 150
-silk gland 500
-     </attribute>
+    <entity x="35" y="31">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyoddsandends</parameter>
+      <parameter name="title">Ritati Dragontracker</parameter>
+      <parameter name="seller">false</parameter>
+     </implementation>
      <attribute name="class">blackboard</attribute>
     </entity>
     <entity x="25" y="32">
@@ -2527,20 +2526,14 @@ silk gland 500
   <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.DwarfWeaponArmorGuyNPC"/>
  
      <entity x="13" y="26">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">
-We Sell Armor and Weapons:
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+			<parameter name="shop">sellbetterstuff2</parameter>
+			<parameter name="title">Weapons and armor shop</parameter>
+			<parameter name="seller">true</parameter>
+			<parameter name="caption">You can buy excellent quality weapons and armor here.</parameter>
+		</implementation>
 
-Shadow Boots (def 9) 4000
-Shadow Cloak (def 13) 7000
-Shadow Legs (def 9) 10000
-Shadow Helmet (def 10) 8000
-Shadow Armor (def 17) 18000
-Shadow Shield (def 36) 30000
-
-Hell Dagger (atk 9 rate 2) 20000
-     </attribute>
-     <attribute name="class">blackboard</attribute>
+		<attribute name="class">blackboard</attribute>
     </entity>
 
  </zone>

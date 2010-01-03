@@ -241,7 +241,9 @@ bone dragon cloak, lich cloak, vampire cloak, blue dragon cloak ...
          <entity x="3" y="1">
            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
             <parameter name="shop">buyrare2</parameter>
-            <parameter name="title">-- Buying --</parameter>
+            <parameter name="title">Yorphin Baos' shop</parameter>
+			<parameter name="seller">false</parameter>
+			<parameter name="caption">Yorphin Baos will buy these items.</parameter>
            </implementation>
 
            <attribute name="class">blackboard</attribute>
@@ -252,7 +254,9 @@ bone dragon cloak, lich cloak, vampire cloak, blue dragon cloak ...
          <entity x="12" y="14">
            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
             <parameter name="shop">buyprecious</parameter>
-            <parameter name="title">-- Buying --</parameter>
+            <parameter name="title">Ognir's gem shop</parameter>
+			<parameter name="seller">false</parameter>
+			<parameter name="caption">Ognir will buy your precious stones and gold.</parameter>
            </implementation>
 
            <attribute name="class">book_red</attribute>
@@ -1286,7 +1290,9 @@ chocolate shake 110
   <entity x="7" y="5">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
         <parameter name="shop">buymagic</parameter>
-        <parameter name="title">Market rates:</parameter>
+        <parameter name="title">Vonda's shop</parameter>
+		<parameter name="seller">false</parameter>
+		<parameter name="caption">Vonda will pay the following market rates for your magic items:</parameter>
      </implementation>
      <attribute name="class">transparent</attribute>
    </entity>  
