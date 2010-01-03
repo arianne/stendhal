@@ -393,7 +393,7 @@
 			<fileset dir="${build_client}"/>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value="lib/log4j.jar lib/marauroa.jar lib/pagelayout1.16.jar lib/${client_data} lib/${client_sound_data}"/>
+				<attribute name="Class-path" value="lib/log4j.jar lib/marauroa.jar lib/pagelayout1.16.jar lib/jorbis.jar lib/${client_data} lib/${client_sound_data}"/>
 			</manifest>
 		</jar>
 
