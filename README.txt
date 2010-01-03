@@ -6,7 +6,7 @@
 | This program is distributed in the hope that it will be useful,
 | but WITHOUT ANY WARRANTY; without even the implied warranty of
 | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-| doc/GPL.license file for more details.
+| doc/LICENSE.txt file for more details.
 -------------------------------------------------------------------------------
 
 
@@ -29,11 +29,6 @@ Stendhal is totally platform independent, written using Java 1.5 and the Java2D 
 
 So what are you waiting for?! A whole new world awaits...
 
-
-Current Version
----------------
-
-Version 0.69
 
 
 How to play
@@ -70,15 +65,10 @@ You need to create the server.ini file by running
 
 (Please use ; instead of : on Microsoft Windows).
   
-It will create server.ini file that will work correctly with Marauroa 2.0 and above  
-
-If you have run previously a Stendhal server, you will need to dump your database
- as it is incompatible with it. The fastest way would be:
- 
-   drop database stendhal;
-   create database stendhal;
+It will create server.ini file that will work correctly with Marauroa 3.0 and above  
 
 For more details please see http://arianne.sourceforge.net/wiki/index.php?title=Host_a_Stendhal_Server
+
 
 How to compile Stendhal
 -----------------------
@@ -99,5 +89,8 @@ http://arianne.sourceforge.net/wiki/index.php?title=StendhalonEclipse
 Legal
 -----
 
-Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2008
+Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005-2008
 arianne_rpg at users dot sourceforge dot net
+
+Stendhal(c) is copyright of the Arianne Project, 2006-2009
+arianne-general at lists dot sourceforge dot net
