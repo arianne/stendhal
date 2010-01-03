@@ -34,7 +34,7 @@ public class PlayerRPClass {
 		//       And old characters, who logged out in the same turn as a
 		//       private_text was set, cannot be loaded without this definition.
 		player.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
-		player.addAttribute("private_text", Type.LONG_STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
+//		player.addAttribute("private_text", Type.LONG_STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
 		player.addRPEvent(Events.PRIVATE_TEXT, Definition.PRIVATE);
 		player.addRPEvent(Events.OPEN_OFFER_PANEL, Definition.PRIVATE);
