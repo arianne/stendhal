@@ -470,6 +470,7 @@
 			<fileset file="${log4j_jar}"/>
 			<fileset file="${marauroa_jar}"/>
 			<fileset file="${pagelayout_jar}"/>
+			<fileset file="${jorbis_jar}"/>
 		</signjar>
 	</target>
 
@@ -496,8 +497,15 @@
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${marauroa_jar}"/>
         <copy todir="${buildroot}/stendhal-server-${version}" file="runserver.sh"/>
         <copy todir="${buildroot}/stendhal-server-${version}" file="runserver.bat"/>
-		<copy todir="${buildroot}/stendhal-server-${version}/doc">
+		<copy todir="${buildroot}/stendhal-server-${version}/lib">
+			<fileset dir="libs">
+				<include name="*.txt"/>
+				<include name="*.html"/>
+			</fileset>
+		</copy>
+		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
+			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="README.txt"/>
 		<zip destfile="${buildroot}/stendhal-server-${version}.zip"
@@ -517,8 +525,15 @@
         <copy todir="${buildroot}/stendhal-${version}/lib" file="${jorbis_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_sound_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib">
+			<fileset dir="libs">
+				<include name="*.txt"/>
+				<include name="*.html"/>
+			</fileset>
+		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
+			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
@@ -537,10 +552,17 @@
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${pagelayout_jar}"/>
-        <copy todir="${buildroot}/stendhal-${version}/lib" file="${jorbis_jar}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${jorbis_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib">
+			<fileset dir="libs">
+				<include name="*.txt"/>
+				<include name="*.html"/>
+			</fileset>
+		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
+			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
@@ -553,8 +575,15 @@
 	<target name="dist_client_starter">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_starter_jarname}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib">
+			<fileset dir="libs">
+				<include name="*.txt"/>
+				<include name="*.html"/>
+			</fileset>
+		</copy>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
+			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
@@ -572,7 +601,7 @@
 
 		<mkdir dir="${buildroot}/stendhal-${version}-src/libs"/>
 		<copy todir="${buildroot}/stendhal-${version}-src/libs">
-					<fileset dir="libs"/>
+			<fileset dir="libs"/>
 		</copy>
 		
 		<copy todir="${buildroot}/stendhal-${version}-src/tests">
@@ -606,8 +635,15 @@
 		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.bat"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.sh"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file=".hotspotrc"/>
+		<copy todir="${buildroot}/stendhal-${version}-src/lib">
+			<fileset dir="libs">
+				<include name="*.txt"/>
+				<include name="*.html"/>
+			</fileset>
+		</copy>
 		<copy todir="${buildroot}/stendhal-${version}-src/doc">
 			<fileset dir="doc"/>
+			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 
 		<tar destfile="${buildroot}/stendhal-${version}-src.tar.gz" compression="gzip">
