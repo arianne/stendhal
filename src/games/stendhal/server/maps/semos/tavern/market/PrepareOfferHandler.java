@@ -118,7 +118,7 @@ public class PrepareOfferHandler {
 					npc.say("I added your offer to the trading center and took the fee of "+ fee +".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
 				} else {
-					npc.say("You don't have" + Grammar.quantityplnoun(quantity, item.getName()) + ".");
+					npc.say("You don't have " + Grammar.quantityplnoun(quantity, item.getName()) + ".");
 				}
 				return;
 			}
