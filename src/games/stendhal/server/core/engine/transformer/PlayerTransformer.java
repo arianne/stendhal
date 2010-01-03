@@ -44,7 +44,7 @@ public class PlayerTransformer implements Transformer {
 	/** these items should be unbound.*/
 	private static final List<String> ITEMS_TO_UNBIND = Arrays.asList("marked scroll");
 
-	/** these items should be delete for non admins */
+	/** these items should be deleted for non admins */
 	private static final List<String> ITEMS_FOR_ADMINS = Arrays.asList("rod of the gm", "master key");
 
 	public Player create(final RPObject object) {
