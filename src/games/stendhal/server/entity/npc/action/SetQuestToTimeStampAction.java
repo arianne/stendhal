@@ -1,0 +1,65 @@
+package games.stendhal.server.entity.npc.action;
+
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
+/**
+ * Sets the state of a quest to the current timestamp.
+ */
+public class SetQuestToTimeStampAction implements ChatAction {
+
+	private final String questname;
+	private final int index;
+
+	/**
+	 * Creates a new SetQuestToTimeStampAction.
+	 * 
+	 * @param questname name of quest-slot to change
+	 */
+	public SetQuestToTimeStampAction(final String questname) {
+		this.questname = questname;
+		this.index = -1;
+	}
+
+	/**
+	 * Creates a new SetQuestToTimeStampAction.
+	 * 
+	 * @param questname name of quest-slot to change
+	 * @param index index of sub state
+	 */
+	public SetQuestToTimeStampAction(final String questname, final int index) {
+		this.questname = questname;
+		this.index = index;
+	}
+
+	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		String state = Long.toString(System.currentTimeMillis());
+		if (index > -1) {
+			player.setQuest(questname, index, state);
+		} else {
+			player.setQuest(questname, state);
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "SetQuestToTimeStampAction<" + questname + "[" + index + "]>";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				SetQuestToTimeStampAction.class);
+	}
+}
