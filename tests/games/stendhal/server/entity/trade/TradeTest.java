@@ -256,6 +256,24 @@ public class TradeTest {
 		assertThat(Boolean.valueOf(george.isEquipped("money", price.intValue())),
 				is(Boolean.TRUE));
 	}
+	
+	/**
+	 * Test creating with stackable items that have been dropped
+	 */
+	@Test
+	public void testCheatWithStacks() {
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Player george = PlayerTestHelper.createPlayer("george");
+		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("meat");
+		// ensure the item gets an id
+		george.equipToInventoryOnly(item);
+		george.drop(item);
+		
+		Offer offer = edeka.createOffer(george, item, 42, 1);
+		assertNull("Creating offers for items that are not with the player should fail", offer);		
+	}
 
 	/**
 	 * Tests for expireOffer.

@@ -141,6 +141,9 @@ public class Market extends PassiveEntity {
 		}
 	
 		if (item instanceof StackableItem) {
+			if (!offerer.equals(item.getBaseContainer())) {
+				return null;
+			}
 			item = ((StackableItem) item).splitOff(number);
 			if (item == null) {
 				return null;
