@@ -627,7 +627,7 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		assertTrue(CommandCenter.execute(player, action));
-		assertThat(player.events().get(0).get("text"), startsWith("You have been jailed by hugo for 1 minutes. Reason: whynot."));
+		assertThat(player.events().get(0).get("text"), startsWith("You have been jailed for 1 minutes. Reason: whynot."));
 	}
 
 	/**
