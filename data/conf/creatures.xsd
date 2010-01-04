@@ -90,6 +90,7 @@
 			</xsd:element>
 			<xsd:element name="noise" minOccurs="0">
 				<xsd:complexType>
+					<xsd:attribute name="state" type="xsd:string" />
 					<xsd:attribute name="value" type="xsd:string" />
 				</xsd:complexType>
 			</xsd:element>
