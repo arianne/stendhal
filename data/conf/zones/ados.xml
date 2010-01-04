@@ -11,7 +11,8 @@
  </zone>
  
  <zone name="0_ados_mountain_n2_w" level="0" x="500512" y="499744" file="Level 0/ados/mountain_n2_w.tmx">
-  <configurator class-name="games.stendhal.server.maps.ados.entwives.EntwifeNPC"/>
+   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
+   <configurator class-name="games.stendhal.server.maps.ados.entwives.EntwifeNPC"/>
 		<portal x="18" y="52" ref="ent1n">
 			<destination zone="0_ados_mountain_n2_w" ref="ent1s" />
 			<attribute name="hidden"/>
