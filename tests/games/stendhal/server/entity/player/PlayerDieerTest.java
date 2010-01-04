@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -57,20 +58,28 @@ public class PlayerDieerTest {
 		assertFalse(ring.isBroken());
 		assertFalse(ring2.isBroken());
 
+		// dropItemsOn gets called before Player.onDead normally
+		// not doing that will result in an NPE
+		Corpse corpse = new Corpse(hasRingGood, "test");
+
 		final PlayerDieer dierWithRingGood = new PlayerDieer(hasRingGood);
+		dierWithRingGood.dropItemsOn(corpse);
 		dierWithRingGood.onDead(new Entity() {
 		});
 
-                final PlayerDieer dierWithRingBad = new PlayerDieer(hasRingBad);
-                dierWithRingBad.onDead(new Entity() {
-		    });
+		final PlayerDieer dierWithRingBad = new PlayerDieer(hasRingBad);
+		dierWithRingBad.dropItemsOn(corpse);
+		dierWithRingBad.onDead(new Entity() {
+		});
 
 		final PlayerDieer dierWithoutRingGood = new PlayerDieer(hasNoRingGood);
+		dierWithoutRingGood.dropItemsOn(corpse);
 		dierWithoutRingGood.onDead(new Entity() {
 		});
-                final PlayerDieer dierWithoutRingBad = new PlayerDieer(hasNoRingBad);
-                dierWithoutRingBad.onDead(new Entity() {
-		    });
+		final PlayerDieer dierWithoutRingBad = new PlayerDieer(hasNoRingBad);
+		dierWithoutRingBad.dropItemsOn(corpse);
+		dierWithoutRingBad.onDead(new Entity() {
+		});
 
 		assertTrue(ring.isBroken());
                 assertTrue(ring2.isBroken());
@@ -92,7 +101,4 @@ public class PlayerDieerTest {
 		assertThat("ring wearer, good, with broken ring, loses min 0 percent", hasRingGood.getXP(), lessThan(10001));
 		
 	}
-	
-	
-
 }
