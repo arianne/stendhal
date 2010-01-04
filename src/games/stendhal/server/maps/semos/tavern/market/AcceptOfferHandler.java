@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -18,10 +20,11 @@ import games.stendhal.server.entity.trade.Offer;
 public class AcceptOfferHandler extends OfferHandler {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(AcceptOfferChatAction.class);
+	private static final List<String> TRIGGERS = Arrays.asList("buy", "accept"); 
 	
 	@Override
 	public void add(SpeakerNPC npc) {
-		npc.add(ConversationStates.ATTENDING, "accept", null, ConversationStates.ATTENDING, null, 
+		npc.add(ConversationStates.ATTENDING, TRIGGERS, null, ConversationStates.ATTENDING, null, 
 				new AcceptOfferChatAction());
 		npc.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, 
 				ConversationStates.ATTENDING, null, new ConfirmAcceptOfferChatAction());
@@ -34,7 +37,7 @@ public class AcceptOfferHandler extends OfferHandler {
 			if (sentence.hasError()) {
 				npc.say("Sorry, I did not understand you. "
 						+ sentence.getErrorString());
-			} else if (sentence.getExpressions().iterator().next().toString().equals("accept")){
+			} else {
 				handleSentence(player,sentence,npc);
 			}
 		}
