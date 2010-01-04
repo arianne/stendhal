@@ -75,8 +75,7 @@ public class GagManager implements LoginListener {
 		// Send messages
 		policeman.sendPrivateText("You have gagged " + criminalName + " for "
 				+ minutes + " minutes. Reason: " + reason + ".");
-		criminal.sendPrivateText("You have been gagged by "
-				+ policeman.getTitle() + " for " + minutes
+		criminal.sendPrivateText("You have been gagged for " + minutes
 				+ " minutes. Reason: " + reason + ".");
 		SingletonRepository.getRuleProcessor().sendMessageToSupporters("GagManager", policeman.getName()
 				+ " gagged " + criminalName + " for " + minutes
