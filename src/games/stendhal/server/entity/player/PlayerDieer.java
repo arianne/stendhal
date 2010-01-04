@@ -78,6 +78,15 @@ public class PlayerDieer {
 			karma = karma / 100.0;
 
 			final List<RingOfLife> ringList = player.getAllEquippedWorkingRingOfLife();
+			// A very unlucky player might drop the ring too
+			for (Item item : drops) {
+				if (item instanceof RingOfLife) {
+					RingOfLife ring = (RingOfLife) item;
+					if (!ring.isBroken()) {
+						ringList.add((RingOfLife) item);
+					}
+				}
+			}
 			
 			logger.debug("ringlist " + ringList);
 	
@@ -89,8 +98,9 @@ public class PlayerDieer {
 			} else {
 			    // if player has positive karma, then they will lose between 0% and 1% skills - less than if karma ignored                             
 			    // if player has negative karma, they lose between 1% and 2% skills - more than if karma was ignored  
-			    ringList.get(0).damage();
-			    penaltyFactor = 0.99 + (karma / 100.0);
+				// Use up a random ring
+				Rand.rand(ringList).damage();
+				penaltyFactor = 0.99 + (karma / 100.0);
 			}
 			// note on karma: players can only hit the maximums of these ranges if they themselves had over 100 Karma, less than -100 karma, respectively.
 			// and even then, some chance will mean they are not guaranteed to hit the maximum 
