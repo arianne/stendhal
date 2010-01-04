@@ -207,8 +207,8 @@ public class RingMakerTest {
 		final Item ring = player.getFirstEquipped("emerald ring");
 		assertTrue(ring.isBound());
 		assertTrue(player.isBoundTo(ring));
-		assertEquals("You see ring of life. Wear it, and you risk less from death.", ring.getDescription());
-		assertEquals("You see the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.", ring.describe());
+		assertEquals("You see an emerald ring, known as ring of life. Wear it, and you risk less from death.", ring.getDescription());
+		assertEquals("You see an emerald ring, known as the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.", ring.describe());
 		assertThat(en.getCurrentState(), is(ConversationStates.ATTENDING));
 		assertTrue(player.isQuestCompleted(QUEST_SLOT));
 		en.step(player, "bye");
@@ -285,8 +285,8 @@ public class RingMakerTest {
 		final Item ringafter = player.getFirstEquipped("emerald ring");
 		assertTrue(ringafter.isBound());
 		assertTrue(player.isBoundTo(ringafter));
-		assertEquals("You see ring of life. Wear it, and you risk less from death.", ringafter.getDescription());
-		assertEquals("You see the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.", ringafter.describe());
+		assertEquals("You see an emerald ring, known as ring of life. Wear it, and you risk less from death.", ringafter.getDescription());
+		assertEquals("You see an emerald ring, known as the ring of life. Wear it, and you risk less from death. It is a special quest reward for player, and cannot be used by others.", ringafter.describe());
 
 		assertEquals("Bye, my friend.", getReply(npc));
 	

@@ -51,9 +51,9 @@ public class RingOfLife extends Ring {
 	public String describe() {
 		String text;
 		if (isBroken()) {
-			text = "You see the ring of life. The gleam is lost from the stone and it has no powers.";
+			text = "You see an emerald ring, known as the ring of life. The gleam is lost from the stone and it has no powers.";
 		} else {
-			text = "You see the ring of life. Wear it, and you risk less from death.";
+			text = "You see an emerald ring, known as the ring of life. Wear it, and you risk less from death.";
 		}
 		
 		if (isBound()) {
