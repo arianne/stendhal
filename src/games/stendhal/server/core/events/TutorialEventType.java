@@ -43,8 +43,8 @@ public enum TutorialEventType {
 				   "Do you like your outfit? If not, you can change it. Right click on yourself and choose \"Set Outfit\" to experiment with new hair, face, clothes and body."),
 	TIMED_RULES(
 				    "Thank you for continuing to play Stendhal. Now that you have played for some time, it's important that you read the rules at #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem"),
-	NEW_RELEASE77(
-			"Wedding rings have changed for this release. Marriage is a role playing feature so that you can marry a friend in the game. Unfortunately many people have married clones who are not real players - just a tool for free teleport and they remain low level. How to solve this unfair use of wedding rings? After careful consideration we have implemented a time delay between wedding ring use. The delay depends on the level ratio between you and your spouse; those with really low level clones will be able to get a free teleport much less often. For genuine couples who are close in level the delay can be as little as 5 minutes before you can use the ring again. Remember when we add new features: if you abuse it, you lose it.");
+	NEW_RELEASE80(
+				  "Welcome to Stendhal 0.80. Now #/ignore #player blocks both public and private chat from that player, so you have complete control of who you hear messages from. Remember, you can also type just #/ignore to get a list of who you are currently ignoring, and you can #/unignore #player too.");
 	private String message;
 
 	/**
