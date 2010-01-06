@@ -142,7 +142,7 @@ public class CommandCenter {
 			logger.warn(player + " tried to execute unknown action " + type);
 			if (player != null) {
 				player.sendPrivateText(NotificationType.ERROR,
-						"Unknown command " + type);
+						"Unknown command " + type + ". Please type /help to get a list.");
 			}
 		}
 	}
