@@ -100,7 +100,7 @@ public class PrepareOfferHandler {
 			}
 			npc.say("I am new on this job, i used to be a gatekeeper in Fado. I currently only accept "
 					+ TradingUtility.MAX_NUMBER_OFF_OFFERS
-					+ " offers because I am still learning and afraid that I might mess something up.");
+					+ " offers per person because I am still learning and afraid that I might mess something up.");
 		}
 
 		private int determineNumber(Sentence sentence) {
