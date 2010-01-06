@@ -20,15 +20,15 @@ public class OfferExpirer implements TurnListener{
 	/**
 	 * number of days after which an offer will expire after warning.
 	 */
-	//private static final int DAYS_TO_EXPIRING = 3;
+	private static final int DAYS_TO_EXPIRING = 3;
 	/**
 	 * number of days after which an offerer gets the expire warning.
 	 */
-	//private static final int DAYS_TO_WARNING = 4;
+	private static final int DAYS_TO_WARNING = 4;
 	/**
 	 * number of days after which an expired offer will be removed completely.
 	 */
-	//private static final int DAYS_TO_REMOVING = 7;
+	private static final int DAYS_TO_REMOVING = 7;
 	
 	/**
 	 * Time after earnings that the owner has not collected are pocketted by Harold.
@@ -38,18 +38,15 @@ public class OfferExpirer implements TurnListener{
 	/**
 	 * Total time in seconds before sending the player a warning.
 	 */
-	private static final int TIME_TO_WARNING = MathHelper.SECONDS_IN_ONE_HOUR;
-	// DAYS_TO_WARNING * MathHelper.SECONDS_IN_ONE_DAY;
+	private static final int TIME_TO_WARNING = DAYS_TO_WARNING * MathHelper.SECONDS_IN_ONE_DAY;
 	/**
 	 * Total time in seconds before expiring an offer.
 	 */
-	protected static final int TIME_TO_EXPIRING = MathHelper.SECONDS_IN_ONE_HOUR * 2;
-	// (DAYS_TO_WARNING + DAYS_TO_EXPIRING) * MathHelper.SECONDS_IN_ONE_DAY;
+	protected static final int TIME_TO_EXPIRING = (DAYS_TO_WARNING + DAYS_TO_EXPIRING) * MathHelper.SECONDS_IN_ONE_DAY;
 	/**
 	 * Total time in seconds before removing an offer completely. 
 	 */
-	private static final int TIME_TO_REMOVING = MathHelper.SECONDS_IN_ONE_HOUR * 4;
-	// (DAYS_TO_WARNING + DAYS_TO_EXPIRING + DAYS_TO_REMOVING) * MathHelper.SECONDS_IN_ONE_DAY;
+	private static final int TIME_TO_REMOVING = (DAYS_TO_WARNING + DAYS_TO_EXPIRING + DAYS_TO_REMOVING) * MathHelper.SECONDS_IN_ONE_DAY;
 	private long timeStamp = 0;
 	
 	private static final int TIME_TO_REMOVING_EARNINGS = DAYS_BEFORE_REMOVING_EARNINGS * MathHelper.SECONDS_IN_ONE_DAY;
