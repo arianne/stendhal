@@ -52,6 +52,8 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
@@ -63,6 +65,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 
 import marauroa.client.net.IPerceptionListener;
@@ -214,13 +217,13 @@ public class j2DClient {
 		 *  won't try to resize it
 		 */
 		pane.setMaximumSize(stendhal.screenSize);
-		pane.setMinimumSize(stendhal.screenSize);
 	
 		/*
 		 * Create the main game screen
 		 */
 		screen = new GameScreen(client);
 		GameScreen.setDefaultScreen(screen);
+		screen.getComponent().setMinimumSize(new Dimension(stendhal.screenSize.width, 0));
 		
 		// ... and put it on the ground layer of the pane
 		pane.add(screen.getComponent(), Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
@@ -303,7 +306,7 @@ public class j2DClient {
 		mainFrame = new MainFrame();
 		mainFrame.getMainFrame().getContentPane().setBackground(Color.black);
 		
-		// create the layout
+		// *** Create the layout ***
 		final Column leftColumn = new Column();
 		leftColumn.add(minimap.getComponent());
 		leftColumn.add(stats.getComponent());
@@ -321,18 +324,18 @@ public class j2DClient {
 		chatBox.setLayout(new BorderLayout());
 		chatBox.add(chatText.getPlayerChatText(), BorderLayout.NORTH);
 		chatBox.add(gameLog, BorderLayout.CENTER);
+		chatBox.setMinimumSize(chatText.getPlayerChatText().getMinimumSize());
 		
-		Column middleColumn = new Column();
-		middleColumn.add(pane);
-		middleColumn.setFixedWidth(true, pane);
-		middleColumn.add(chatBox);
-		middleColumn.linkWidth(pane, 1.0, chatBox);
-		middleColumn.setComponentGaps(0, 0);
-		
+		// Give the user the ability to make the the game area less tall
+		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
+		// Works for showing the resize, but is extremely flickery
+		//splitPane.setContinuousLayout(true);
+		pane.addComponentListener(new SplitPaneResizeListener(screen.getComponent()));
 		
 		final Row windowContent = new Row();
 		windowContent.add(leftColumn);
-		windowContent.add(middleColumn);
+		windowContent.add(splitPane);
+		windowContent.setFixedWidth(true, splitPane);
 		windowContent.setComponentGaps(0, 0);
 		final PageLayout layout = windowContent.createLayout(mainFrame.getMainFrame().getContentPane());
 		layout.setContainerGaps(0, 0);
@@ -1034,5 +1037,26 @@ public class j2DClient {
 	 */
 	public StendhalClient getClient() {
 		return client;
+	}
+	
+	/**
+	 * The layered pane where the game screen is does not automatically resize 
+	 * the game screen. This handler is needed to do that work.
+	 */
+	private static class SplitPaneResizeListener implements ComponentListener {
+		private Component child;
+		public SplitPaneResizeListener() {}
+		public SplitPaneResizeListener(Component child) {
+			this.child = child;
+		}
+		public void componentHidden(ComponentEvent e) {	}
+
+		public void componentMoved(ComponentEvent e) { 	}
+
+		public void componentResized(ComponentEvent e) {
+			child.setSize(e.getComponent().getSize());
+		}
+
+		public void componentShown(ComponentEvent e) { 	}
 	}
 }
