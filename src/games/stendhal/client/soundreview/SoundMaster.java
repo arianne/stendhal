@@ -3,8 +3,6 @@ package games.stendhal.client.soundreview;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.sound.manager.SoundManager;
-import games.stendhal.client.sound.system.Time;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -22,8 +20,6 @@ import org.apache.log4j.Logger;
 
 public class SoundMaster implements WorldListener {
 	private static Logger logger = Logger.getLogger(SoundMaster.class);
-
-	public static final boolean USE_NEW_SOUND_SYSTEM = false;
 
 	private static SoundFileMap sfm;
 
@@ -64,25 +60,7 @@ public class SoundMaster implements WorldListener {
 		if (sfm == null) {
 			return;
 		}
-		String mySoundName = soundName.replaceAll("\\.wav", "").replaceAll("\\.au", "").replaceAll("\\.aiff", "") + ".ogg";
 
-		if (USE_NEW_SOUND_SYSTEM) {
-			playUsingNewSoundSystem(mySoundName);
-		} else {
-			playUsingOldSoundSystem(soundName);
-		}
-	}
-
-	private static void playUsingNewSoundSystem(String mySoundName) {
-		SoundManager soundManager = SoundManager.get();
-		if (!soundManager.hasSoundName(mySoundName)) {
-			soundManager.openSoundFile("data/sounds/" + mySoundName, mySoundName);
-		}
-		logger.info("soundName: " + mySoundName);
-		soundManager.play(mySoundName, 0, null, false, new Time());
-	}
-
-	private static void playUsingOldSoundSystem(final String soundName) {
 		byte[] o;
 		o = sfm.get(soundName);
 		if (o == null) {
