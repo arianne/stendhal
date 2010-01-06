@@ -29,6 +29,7 @@ import games.stendhal.common.NotificationType;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -37,6 +38,8 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Transparency;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
@@ -133,8 +136,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	private int y;
 
 	/** Actual size of the screen in pixels. */
-	private final int sw;
-	private final int sh;
+	private int sw;
+	private int sh;
 
 	private long lastDrawYield = 0;
 	
@@ -170,6 +173,29 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	}
 
 	private TextBoxFactory textBoxFactory;
+	
+	/**
+	 * The canvas can be resized using a split pane. This is 
+	 * for adjusting the internal parameters for the change. 
+	 */
+	private class CanvasResizeListener implements ComponentListener {
+		public void componentHidden(ComponentEvent e) {	}
+
+		public void componentMoved(ComponentEvent e) { 	}
+
+		public void componentResized(ComponentEvent e) {
+			Dimension size = canvas.getSize(); 
+			if (!size.equals(stendhal.screenSize)) {
+				sw = Math.min(canvas.getWidth(), stendhal.screenSize.width);
+				sh = Math.min(canvas.getHeight(), stendhal.screenSize.height);
+				svx = -sw / 2;
+				svy = -svy / 2;
+				calculateView();
+			}
+		}
+
+		public void componentShown(ComponentEvent e) { 	}
+	}
 
 	/**
 	 * Create a game screen.
@@ -182,6 +208,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		canvas.setIgnoreRepaint(true);
 		
 		canvas.setSize(stendhal.screenSize);
+		canvas.addComponentListener(new CanvasResizeListener());
 		
 		gameLayers = client.getStaticGameLayers();
 
@@ -509,8 +536,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 		final int xTemp = (int) getViewX();
 		final int yTemp = (int) getViewY();
-		final int w = (int) getViewWidth();
-		final int h = (int) getViewHeight();
+		// round up to 32 pixel boundary
+		int tmp = (int) getViewWidth();
+		final int w = tmp + tmp % 32;
+		tmp = (int) getViewHeight();
+		final int h = tmp + tmp % 32;
 		
 		/*
 		 * End of the world (map falls short of the view)?
