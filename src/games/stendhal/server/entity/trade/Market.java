@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -34,16 +35,16 @@ public class Market extends PassiveEntity {
 	public static void generateRPClass() {
 		final RPClass shop = new RPClass(MARKET_RPCLASS_NAME);
 		shop.isA("entity");
-		shop.addRPSlot(OFFERS_SLOT_NAME,-1);
-		shop.addRPSlot(EARNINGS_SLOT_NAME, -1);
-		shop.addRPSlot(EXPIRED_OFFERS_SLOT_NAME, -1);
+		shop.addRPSlot(OFFERS_SLOT_NAME, -1, Definition.HIDDEN);
+		shop.addRPSlot(EARNINGS_SLOT_NAME, -1, Definition.HIDDEN);
+		shop.addRPSlot(EXPIRED_OFFERS_SLOT_NAME, -1, Definition.HIDDEN);
 	}
-	
+
 	public Market(final RPObject object) {
 		super(object);
 		this.setRPClass(MARKET_RPCLASS_NAME);
 		hide();
-		
+
 		// delete the slots whose contents get wrong types
 		// when loaded from the db
 		if(hasSlot(OFFERS_SLOT_NAME)) {
@@ -103,7 +104,7 @@ public class Market extends PassiveEntity {
 		}
 		store();
 	}
-	
+
 	public static Market createShop() {
 		Market shop = new Market();
 		return shop;
@@ -124,7 +125,7 @@ public class Market extends PassiveEntity {
 		}
 		store();
 	}
-	
+
 	/**
 	 * creates a new offer at the market
 	 * 
