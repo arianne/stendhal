@@ -75,7 +75,8 @@ public class ShowOffersChatAction implements ChatAction {
 		MarketManagerNPC marketNPC = (MarketManagerNPC) npc;
 		marketNPC.getOfferMap().put(player.getName(),new HashMap<String, Offer>());
 		
-		int counter = buildMessage(offersMessage, offers, marketNPC.getOfferMap().get(player.getName()));
+		boolean usingFilter = filterForMine || (wordFilter != null);
+		int counter = buildMessage(offersMessage, offers, marketNPC.getOfferMap().get(player.getName()), usingFilter);
 		if (counter > 0) {
 			player.sendPrivateText(offersMessage.toString());
 		}
@@ -164,16 +165,20 @@ public class ShowOffersChatAction implements ChatAction {
 	 * @param message message to fill with the offer list
 	 * @param offers list of offers to format
 	 * @param map offermap to be filled
+	 * @param usingFilter was a filter used?
 	 * 
 	 * @return number of offers added to the list and map
 	 */
-	private int buildMessage(StringBuilder message, List<Offer> offers, Map<String, Offer> map) {
+	private int buildMessage(StringBuilder message, List<Offer> offers, Map<String, Offer> map, boolean usingFilter) {
 		int counter = 0;
 		
 		for (Offer offer : offers) {
 			counter++;
 			if (counter > MAX_SHOWN_OFFERS) {
 				message.append("Only " + MAX_SHOWN_OFFERS + " first offers shown.");
+				if (!usingFilter) {
+					message.append(" You can filter the offer list. For example #show #meat will only show meat related offers.");
+				}
 				return counter;
 			}
 			

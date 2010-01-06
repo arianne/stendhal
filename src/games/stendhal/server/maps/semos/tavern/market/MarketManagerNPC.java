@@ -26,10 +26,11 @@ public final class MarketManagerNPC extends SpeakerNPC {
 		addOffer("To put an offer on the market, say #sell #item #price - and then anyone else can buy it, " +
                 "even if you are not here. For more details just ask for #help.");
 		addHelp("Would you like help in #buying or help in #selling?");
-		addReply("buying","If you want to buy something, say #show and I will list current open offers with an " +
+		addReply("buying", "If you want to buy something, say #show and I will list current open offers with an " +
 				 "offer number. If you want to accept one of the offers, say #accept #number to buy the " +
-				 "item offered with that number.");
-		addReply("selling","Say #sell #item #price to put an offer on the market. If you want to remove an " +
+				 "item offered with that number. I am happy to filter the offer list for you, just tell me for " +
+				 "example #show #meat to only see meat related offers.");
+		addReply("selling", "Say #sell #item #price to put an offer on the market. If you want to remove an " +
 				 "offer from the market, tell me #'show mine', so you will see only your offers. Say #remove " +
                  "#number afterward to remove a certain offer. If you have expired offers, you can ask for them " +
 				 "by saying #show #expired. You can prolong an expired offer by saying #prolong #number. If you already sold some items " +
