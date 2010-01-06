@@ -35,7 +35,7 @@ import java.util.List;
  * REPETITIONS:None
  */
 public class MeetSanta extends AbstractQuest implements LoginListener {
-	private static final String QUEST_SLOT = "meet_santa_09";
+	private static final String QUEST_SLOT = "meet_santa_10";
 
 	/** the Santa NPC. */
 	protected SpeakerNPC santa;
@@ -63,8 +63,8 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new QuestCompletedCondition(QUEST_SLOT),
-					ConversationStates.ATTENDING,
-					"Hi again!",
+					ConversationStates.IDLE,
+					"Hi again! Good bye, and remember to behave if you want a present next year!",
 				    new ChatAction() {
 					    public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) { 
 						addHat(player);	    
@@ -84,12 +84,9 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new QuestNotCompletedCondition(QUEST_SLOT),
-					ConversationStates.ATTENDING,
-					"Merry Christmas! I have a present and a hat for you.",
+					ConversationStates.IDLE,
+					"Merry Christmas! I have a present and a hat for you. Good bye, and remember to behave if you want a present next year!",
 					new MultipleActions(reward));
-
-				addJob("I am Santa Claus! Where have you been in these years?");
-				addGoodbye("Good bye, and remember to behave if you want a present next year!");
 			}
 		};
 		santa.setEntityClass("santaclausnpc");
@@ -123,7 +120,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		final int hairnumber = outfit.getHair();
 		if ((hairnumber >= 50) && (hairnumber < 90)) {
 			final Date now = new Date();
-			final GregorianCalendar notXmas = new GregorianCalendar(2010, Calendar.JANUARY, 6);
+			final GregorianCalendar notXmas = new GregorianCalendar(2011, Calendar.JANUARY, 6);
 			final Date dateNotXmas = notXmas.getTime();
 			if (now.after(dateNotXmas)) {
 				final int newhair = hairnumber - 50;
@@ -137,7 +134,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	public void addToWorld() {
 		super.addToWorld();
 		SingletonRepository.getLoginNotifier().addListener(this);
-		/* activate santa here in 2009
+		/* activate santa here in 2010
 		createSanta();
 		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!", false);
 		*/
