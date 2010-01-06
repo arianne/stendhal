@@ -330,7 +330,7 @@ public class j2DClient {
 		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
 		// Works for showing the resize, but is extremely flickery
 		//splitPane.setContinuousLayout(true);
-		pane.addComponentListener(new SplitPaneResizeListener(screen.getComponent()));
+		pane.addComponentListener(new SplitPaneResizeListener(screen.getComponent(), splitPane));
 		
 		final Row windowContent = new Row();
 		windowContent.add(leftColumn);
@@ -1045,16 +1045,29 @@ public class j2DClient {
 	 */
 	private static class SplitPaneResizeListener implements ComponentListener {
 		private Component child;
-		public SplitPaneResizeListener() {}
-		public SplitPaneResizeListener(Component child) {
+		private JSplitPane splitPane;
+		
+		public SplitPaneResizeListener(Component child, JSplitPane splitPane) {
 			this.child = child;
+			this.splitPane = splitPane;
 		}
+		
 		public void componentHidden(ComponentEvent e) {	}
 
 		public void componentMoved(ComponentEvent e) { 	}
 
 		public void componentResized(ComponentEvent e) {
-			child.setSize(e.getComponent().getSize());
+			Dimension newSize = e.getComponent().getSize();
+			if (newSize.height > stendhal.screenSize.height) {
+				/*
+				 *  There is no proper limit setting for JSplitPane,
+				 *  so return the divider to the maximum allowed height
+				 *  by force.
+				 */
+				splitPane.setDividerLocation(stendhal.screenSize.height);
+			} else {
+				child.setSize(newSize);
+			}
 		}
 
 		public void componentShown(ComponentEvent e) { 	}
