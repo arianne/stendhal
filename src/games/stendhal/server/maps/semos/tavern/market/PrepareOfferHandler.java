@@ -98,7 +98,9 @@ public class PrepareOfferHandler {
 				npc.say("You cannot afford the trading fee of " + fee.toString());
 				return;
 			}
-			npc.say("You may not place more than "+Integer.valueOf(TradingUtility.MAX_NUMBER_OFF_OFFERS).toString()+" offers.");
+			npc.say("I am new on this job, i used to be a gatekeeper in Fado. I currently only accept "
+					+ TradingUtility.MAX_NUMBER_OFF_OFFERS
+					+ " offers because I am still learning and afraid that I might mess something up.");
 		}
 
 		private int determineNumber(Sentence sentence) {
