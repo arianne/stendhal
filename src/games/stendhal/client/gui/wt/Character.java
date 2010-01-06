@@ -25,11 +25,9 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.gui.wt.core.WtPanel;
-import games.stendhal.client.gui.wt.core.WtTextPanel;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Constants;
-import games.stendhal.common.Level;
 
 import java.awt.Graphics2D;
 import java.util.HashMap;
@@ -45,29 +43,22 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  */
 public class Character extends WtPanel {
-
-	/** Panel width. */
-	private static final int PANEL_WIDTH = 170;
-
-	/** Panel height. */
-	private static final int PANEL_HEIGHT = 285;
-
 	/** Height/width of slots. */
 	private static final int SLOT_SIZE = 39; 
 
 	/** Space between slots. */
-	private static final int SLOT_SPACING = 3; 
+	private static final int SLOT_SPACING = 3;
+	
+	/** Panel width. */
+	private static final int PANEL_WIDTH = 3 * SLOT_SIZE + 4 * SLOT_SPACING + 4;
 
-	/** the stats panel. */
-	private final WtTextPanel statsPanel;
+	/** Panel height. */
+	private static final int PANEL_HEIGHT = 4 * SLOT_SIZE + 5 * SLOT_SPACING + 19;
 
 	private final Map<String, EntitySlot> slotPanels;
 
 	/** cached player entity. */
 	private User playerEntity;
-
-	/** the money we have. */
-	private int money;
 
 	/** the last player modification counter. */
 	private long oldPlayerModificationCount;
@@ -137,19 +128,6 @@ public class Character extends WtPanel {
 		for (final EntitySlot slot : slotPanels.values()) {
 			addChild(slot);
 		}
-
-		statsPanel = new WtTextPanel(
-				"stats",
-				5,
-				((SLOT_SIZE + SLOT_SPACING) * 4),
-				170,
-				100,
-				"HP: ${hp}/${maxhp}\nATK: ${atk}×${atkitem} (${atkxp})\nDEF: ${def}×${defitem} (${defxp})\nXP: ${xp}\n"
-				+ "Level: ${level} (${xptonextlevel})\nMoney: $${money}",
-				gameScreen);
-		statsPanel.setFrame(false);
-		statsPanel.setTitleBar(false);
-		addChild(statsPanel);
 	}
 
 	/** we're using the window manager. */
@@ -180,8 +158,6 @@ public class Character extends WtPanel {
 		if (!playerEntity.isModified(oldPlayerModificationCount)) {
 			return;
 		}
-
-		money = 0;
 
 		final GameObjects gameObjects = GameObjects.getInstance();
 
@@ -219,49 +195,9 @@ public class Character extends WtPanel {
 					entitySlot.setEntity(null);
 				}
 			}
-
-			// count all money
-			for (final RPObject content : slot) {
-				if (content.get("class").equals("money")
-						&& content.has("quantity")) {
-					money += content.getInt("quantity");
-				}
-			}
 		}
 
-		// atk and def +1 is more correct, because that's how the damage code 
-		// treats items (to avoid a multiply by zero in case of no weapon)
-		final int atkitem = playerEntity.getAtkItem() + 1;
-		final int defitem = playerEntity.getDefItem() + 1;
-
 		setTitletext(playerEntity.getName());
-		statsPanel.set("hp", playerEntity.getHP());
-		statsPanel.set("maxhp", playerEntity.getBase_hp());
-		statsPanel.set("atk", playerEntity.getAtk());
-		statsPanel.set("def", playerEntity.getDef());
-		statsPanel.set("atkitem", atkitem);
-		statsPanel.set("defitem", defitem);
-
-		/*
-		 * Show the amount of XP left to level up on ATK
-		 */
-		final int atkLvl = Level.getLevel(playerEntity.getAtkXp());
-		final int nextAtkXp = Level.getXP(atkLvl + 1) - playerEntity.getAtkXp();
-		statsPanel.set("atkxp", Integer.toString(nextAtkXp));
-
-		/*
-		 * Show the amount of XP left to level up on DEF
-		 */
-		final int defLvl = Level.getLevel(playerEntity.getDefXp());
-		final int nextDefXp = Level.getXP(defLvl + 1) - playerEntity.getDefXp();
-		statsPanel.set("defxp", Integer.toString(nextDefXp));
-
-		statsPanel.set("xp", playerEntity.getXp());
-		final int level = Level.getLevel(playerEntity.getXp());
-		statsPanel.set("level", level);
-		statsPanel.set("xptonextlevel", Level.getXP(level + 1)
-				- playerEntity.getXp());
-		statsPanel.set("money", money);
 
 		oldPlayerModificationCount = playerEntity.getModificationCount();
 	}
