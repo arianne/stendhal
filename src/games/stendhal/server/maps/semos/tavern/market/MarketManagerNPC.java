@@ -2,6 +2,8 @@ package games.stendhal.server.maps.semos.tavern.market;
 
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.TextHasParameterCondition;
 import games.stendhal.server.entity.trade.Offer;
 
 import java.util.HashMap;
@@ -36,7 +38,9 @@ public final class MarketManagerNPC extends SpeakerNPC {
 				 "by saying #show #expired. You can prolong an expired offer by saying #prolong #number. If you already sold some items " +
 				 "you can say #fetch to me and I will pay out your earnings.");
 		new PrepareOfferHandler().add(this);
-		add(ConversationStates.ATTENDING, "show", null, ConversationStates.ATTENDING, null, new ShowOffersChatAction());
+		add(ConversationStates.ATTENDING, "show", new NotCondition(new TextHasParameterCondition()),
+				ConversationStates.ATTENDING, null, new ShowOfferItemsChatAction());
+		add(ConversationStates.ATTENDING, "show", new TextHasParameterCondition(), ConversationStates.ATTENDING, null, new ShowOffersChatAction());
 		add(ConversationStates.ATTENDING, "fetch", null, ConversationStates.ATTENDING, null, new FetchEarningsChatAction());
 		new AcceptOfferHandler().add(this);
 		new RemoveOfferHandler().add(this);

@@ -23,8 +23,8 @@ import marauroa.common.game.RPSlot;
 
 /**
  * shows all current offers to the asking player
- * @author madmetzger
  *
+ * @author madmetzger, kiheru, hendrik
  */
 public class ShowOffersChatAction implements ChatAction {
 	/** Maximum list length that is shown to the players */
@@ -82,7 +82,7 @@ public class ShowOffersChatAction implements ChatAction {
 		}
 		if (counter == 0) {
 			String expiredAddition = onlyMyExpiredOffers ? "expired " : "";
-			player.sendPrivateText("There are currently no "+expiredAddition+"offers in the market.");
+			player.sendPrivateText("There are currently no " + expiredAddition + "offers in the market.");
 		}
 	}
 
