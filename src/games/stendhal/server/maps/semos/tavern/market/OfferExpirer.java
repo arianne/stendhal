@@ -54,8 +54,7 @@ public class OfferExpirer implements TurnListener{
 	/**
 	 * Time between checks in seconds.
 	 */
-	private static final int CHECKING_INTERVAL = MathHelper.SECONDS_IN_ONE_MINUTE;
-	// MathHelper.SECONDS_IN_ONE_HOUR;
+	private static final int CHECKING_INTERVAL = MathHelper.SECONDS_IN_ONE_HOUR;
 	
 	private Market market;
 	
