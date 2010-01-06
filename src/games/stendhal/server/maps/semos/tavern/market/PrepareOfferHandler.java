@@ -72,7 +72,7 @@ public class PrepareOfferHandler {
 					} else if (number > 1000) {
 						npc.say("Sorry, my storage is not large enough for such a huge amout of " + Grammar.plural(itemName) + ".");
 						return;
-					} else if (price > 100000) {
+					} else if (price > 1000000) {
 						npc.say("That is a huge amount of money you want for your " + Grammar.plural(itemName) + ". I am sorry I cannot accept this offer.");
 						return;
 					}
