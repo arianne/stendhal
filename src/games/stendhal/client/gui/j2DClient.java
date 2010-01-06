@@ -32,6 +32,7 @@ import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.map.MapPanelController;
+import games.stendhal.client.gui.stats.StatsPanelController;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
@@ -59,8 +60,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
@@ -197,6 +198,7 @@ public class j2DClient {
 		setDefault(this);
 		
 		minimap = new MapPanelController(client);
+		final StatsPanelController stats = StatsPanelController.get();
 		final BuddyPanelControler buddies = new BuddyPanelControler();
 		final JScrollPane buddyPane = new JScrollPane();
 		buddyPane.setViewportView(buddies.getComponent());
@@ -304,31 +306,37 @@ public class j2DClient {
 		// create the layout
 		final Column leftColumn = new Column();
 		leftColumn.add(minimap.getComponent());
+		leftColumn.add(stats.getComponent());
 		leftColumn.add(buddyPane);
 		// make the resizes affect the left panel rather than the game area
 		leftColumn.setFixedWidth(false, minimap.getComponent());
 		minimap.getComponent().setMinimumSize(new Dimension(0, 0));
 		buddyPane.setMinimumSize(new Dimension(0, 0));
-		// a workaround for PageLayout's inability to link cell heights
+		stats.getComponent().setMinimumSize(new Dimension(0, 0));
+		
 		leftColumn.setComponentGaps(0, 0);
-		final JPanel leftPanel = new JPanel();
-		leftColumn.createLayout(leftPanel).setContainerGaps(0, 0);
 		
-		final Row topRow = new Row();
-		topRow.add(leftPanel);
-		topRow.add(pane);
-		topRow.linkHeight(pane, 1.0, leftPanel);
-		topRow.setComponentGaps(0, 0);
+		// Chat entry and chat log
+		JPanel chatBox = new JPanel();
+		chatBox.setLayout(new BorderLayout());
+		chatBox.add(chatText.getPlayerChatText(), BorderLayout.NORTH);
+		chatBox.add(gameLog, BorderLayout.CENTER);
 		
-		final Column windowContent = new Column();
-		windowContent.add(topRow);
-		windowContent.add(chatText.getPlayerChatText());
-		windowContent.add(gameLog);
+		Column middleColumn = new Column();
+		middleColumn.add(pane);
+		middleColumn.setFixedWidth(true, pane);
+		middleColumn.add(chatBox);
+		middleColumn.linkWidth(pane, 1.0, chatBox);
+		middleColumn.setComponentGaps(0, 0);
+		
+		
+		final Row windowContent = new Row();
+		windowContent.add(leftColumn);
+		windowContent.add(middleColumn);
 		windowContent.setComponentGaps(0, 0);
-		windowContent.setFixedHeight(chatText.getPlayerChatText(), true);
 		final PageLayout layout = windowContent.createLayout(mainFrame.getMainFrame().getContentPane());
 		layout.setContainerGaps(0, 0);
-		
+				
 		/*
 		 * Handle focus assertion and window closing
 		 */
