@@ -37,17 +37,10 @@ public class BarMaidNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(17, 13));
-				nodes.add(new Node(17, 14));
-				nodes.add(new Node(16, 9));
-				nodes.add(new Node(13, 9));
-				nodes.add(new Node(13, 7));
-				nodes.add(new Node(13, 11));
-				nodes.add(new Node(23, 11));
-				nodes.add(new Node(23, 11));
-				nodes.add(new Node(23, 14));
-				nodes.add(new Node(23, 11));
-				nodes.add(new Node(17, 11));
+				nodes.add(new Node(11, 4));
+				nodes.add(new Node(18, 4));
+				nodes.add(new Node(18, 3));
+				nodes.add(new Node(11, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -63,7 +56,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 		};
 
 		margaret.setEntityClass("tavernbarmaidnpc");
-		margaret.setPosition(17, 13);
+		margaret.setPosition(11, 4);
 		margaret.initHP(100);
 		zone.add(margaret);
 	}
