@@ -147,7 +147,7 @@ public class AdministrationActionTest {
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		CommandCenter.execute(pl, new RPAction());
-		assertEquals("Unknown command null", pl.events().get(0).get("text"));
+		assertEquals("Unknown command null. Please type /help to get a list.", pl.events().get(0).get("text"));
 
 		pl.clearEvents();
 		pl.setAdminLevel(5000);

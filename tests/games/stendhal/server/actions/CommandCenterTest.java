@@ -79,7 +79,7 @@ public class CommandCenterTest {
 		action.put("type", "");
 		final Player caster = PlayerTestHelper.createPlayer("bob");
 		CommandCenter.execute(caster, action);
-		assertEquals("Unknown command ", caster.events().get(0).get("text"));
+		assertEquals("Unknown command . Please type /help to get a list.", caster.events().get(0).get("text"));
 	}
 
 }
