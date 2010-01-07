@@ -105,7 +105,7 @@ public class ZoneCollisionCheck extends ScriptImpl {
 			dy = 1;
 			break;
 		case SOUTH:
-			tmpy += zone.getWidth();
+			tmpy += zone.getHeight();
 			zoneY = zone.getHeight() - 1;
 			dx = 1;
 			break;
