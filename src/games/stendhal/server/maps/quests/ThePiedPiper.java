@@ -71,6 +71,7 @@ import org.apache.log4j.Logger;
 	private static final int MIN_QUEST_REPEAT_TIME = 60 * 60 * 24 * 7;	
 //	private static final int MAX_QUEST_REPEAT_TIME = 60 * 11;
 //	private static final int MIN_QUEST_REPEAT_TIME = 60 * 10;
+	private static final int QUEST_AWAITING_TIME = 60 * 60;
 
 	/**
 	 * related to quest part.
@@ -145,6 +146,50 @@ import org.apache.log4j.Logger;
 			360,
 			800);
 	
+	/**
+	 * summon rats, make phase INVASION and
+	 * start timer to phase AWAITING.
+	 */
+	protected void PhaseInactiveToInvasion() {
+		logger.info("ThePiedPiper quest started (phase INVASION).");
+		phase=TPP_Phase.TPP_INVASION;
+		summonRats();
+		tellAllAboutRatsProblem();
+		step_0();		
+	}
+	
+	/**
+	 * last rat killed.
+	 */
+	protected void PhaseInvasionToInactive() {
+		tellAllAboutNoRatsInCity();	
+		logger.info("ThePiedPiper quest: last rat was killed (phase INACTIVE).");
+		phase=TPP_Phase.TPP_INACTIVE;
+		step_0();		
+	}
+	
+	/**
+	 * remove rats, make phase AWAITING and 
+	 * start timer to phase INACTIVE.
+	 */
+	protected void PhaseInvasionToAwaiting() {
+		logger.info("ThePiedPiper quest timeout (phase AWAITING).");
+		phase=TPP_Phase.TPP_AWAITING;
+		removeAllRats();
+		tellAllAboutRatsIsWinners();
+		step_2();
+	}
+	
+	/**
+	 * make phase INACTIVE and
+	 * start timer to phase INVASION.
+	 */
+	protected void PhaseAwaitingToInactive() {
+		logger.info("ThePiedPiper quest is over (phase INACTIVE).");
+		phase=TPP_Phase.TPP_INACTIVE;
+		tellAllAboutRatsIsGone();
+		step_0();		
+	}
 	
 	final private QuestTimer questTimer = new QuestTimer();
 	/**
@@ -154,30 +199,13 @@ import org.apache.log4j.Logger;
 		public void onTurnReached(final int currentTurn) {
 			switch(phase){
 			case TPP_INACTIVE: 
-					// summon rats, make phase INVASION and
-				    // start timer to phase AWAITING.
-					logger.info("ThePiedPiper quest started.");
-					phase=TPP_Phase.TPP_INVASION;
-					summonRats();
-					tellAllAboutRatsProblem();
-					step_0();
+					PhaseInactiveToInvasion();
 				    break;
 			case TPP_INVASION: 
-					// remove rats, make phase AWAITING and 
-				    // start timer to phase INACTIVE.
-					logger.info("ThePiedPiper quest timeout occured.");
-					phase=TPP_Phase.TPP_AWAITING;
-					removeAllRats();
-					tellAllAboutRatsIsWinners();
-					step_2();
+					PhaseInvasionToAwaiting();
 				    break;
 			default: 
-					// make phase INACTIVE and
-					// start timer to phase INVASION.
-					logger.info("ThePiedPiper quest going inactive.");
-					phase=TPP_Phase.TPP_INACTIVE;
-					tellAllAboutRatsIsGone();
-					step_0();
+					PhaseAwaitingToInactive();
 					break;
 			}
 		}
@@ -269,17 +297,8 @@ import org.apache.log4j.Logger;
 				if(i==(RAT_TYPES.size()-1)) {
 					sb.append(" and ");
 				}; 				
-				/*
-				sb.append(kills);
-				sb.append(" "+RAT_TYPES.get(i));
-				*/
-				sb.append(Grammar.quantityplnoun(kills, RAT_TYPES.get(i)));
-				/*
-				if(kills!=1){
-					sb.append("s");
-				};
-				*/
-				
+
+				sb.append(Grammar.quantityplnoun(kills, RAT_TYPES.get(i)));			
 				sb.append(", ");
 				moneys = moneys + kills*RAT_REWARDS.get(i);
 			}
@@ -395,7 +414,7 @@ import org.apache.log4j.Logger;
 	}
 	
 	/**
-	 *  Rats is dead :-)
+	 *  Rats are dead :-)
 	 */
 	private void tellAllAboutNoRatsInCity() {
 		final String text = new String("Mayor Chalmers shouts: No #rats in Ados now, "+
@@ -489,11 +508,7 @@ import org.apache.log4j.Logger;
 	public void notifyDead(final RPEntity dead) {
 		rats.remove(rats.get(rats.indexOf(dead)));
 		if (rats.size()==0) {
-			// killed last rat
-			tellAllAboutNoRatsInCity();	
-			logger.info("Last rat was killed.");
-			phase=TPP_Phase.TPP_INACTIVE;
-			step_0();
+			PhaseInvasionToInactive();
 		};
     }
 	
@@ -520,29 +535,25 @@ import org.apache.log4j.Logger;
 		}
 	}
     
+
 	/**
-	 * function for calculating time of either next quest start or 
-	 * timeout of current quest.
-	 * 
-	 * @return
-	 * 			time in seconds to waiting.
+	 * Set new time period for quest timer (time to next quest phase).
+	 * @param max - maximal time in seconds
+	 * @param min - minimal time in seconds
 	 */
-	private int calculateNextQuestTime() {
-		final int time = MIN_QUEST_REPEAT_TIME + 
-			Rand.rand(MAX_QUEST_REPEAT_TIME - MIN_QUEST_REPEAT_TIME);
-		// limit between MAX_ and MIN_
-		return Math.min(time, MAX_QUEST_REPEAT_TIME);
+	private void NewNotificationTime(int max, int min) {
+		TurnNotifier.get().dontNotify(questTimer);
+		TurnNotifier.get().notifyInSeconds(
+				Rand.randUniform(max, min),	questTimer);
 	}
 	
 	/**
-	 *  Register TurnListener to have automatical quest start/stop.
+	 *  Register TurnListener to have automatical start/stop of quest.
 	 *  Quest will start or stop after time will over.
 	 */
 	private void step_0() {
-		TurnNotifier.get().dontNotify(questTimer);
-		TurnNotifier.get().notifyInSeconds(calculateNextQuestTime(), questTimer);
-	}
-	
+		NewNotificationTime(MAX_QUEST_REPEAT_TIME, MIN_QUEST_REPEAT_TIME);
+	}	
 
 	/**
 	 *   add states to NPC's FSM
@@ -563,9 +574,7 @@ import org.apache.log4j.Logger;
 	 */
 	private void step_2() {
 		if (phase==TPP_Phase.TPP_AWAITING) {
-			TurnNotifier.get().dontNotify(questTimer);
-			// one hour for overall Pied Piper's job.
-			TurnNotifier.get().notifyInSeconds(3600, questTimer);
+			NewNotificationTime(QUEST_AWAITING_TIME, QUEST_AWAITING_TIME);
 		}
 	}
 	
