@@ -11,6 +11,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.HierarchyBoundsListener;
+import java.awt.event.HierarchyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -24,6 +26,7 @@ public class QuitDialog {
 	public QuitDialog() {
 		quitDialog = buildQuitDialog();
 		quitDialog.setVisible(false);
+		quitDialog.addHierarchyBoundsListener(new ParentResizeListener());
 	}
 	/**
 	 * Build the in-window quit dialog [panel].
@@ -92,15 +95,31 @@ public class QuitDialog {
 		 */
 		StendhalClient.get().stop();
 
-		/*
-		 * Center dialog
-		 */
-		final Dimension psize = quitDialog.getPreferredSize();
-
-		quitDialog.setBounds((j2DClient.get().getWidth() - psize.width) / 2,
-				(j2DClient.get().getHeight() - psize.height) / 2, psize.width, psize.height);
+		centerDialog();
 
 		quitDialog.validate();
 		quitDialog.setVisible(true);
+	}
+	
+	private void centerDialog() {
+		final Dimension psize = quitDialog.getPreferredSize();
+		quitDialog.setBounds((j2DClient.get().getWidth() - psize.width) / 2,
+				(j2DClient.get().getHeight() - psize.height) / 2, psize.width, psize.height);
+	}
+	
+	/**
+	 * For keeping the dialog centered on game screen resizes.
+	 */
+	private class ParentResizeListener implements HierarchyBoundsListener {
+		public void ancestorMoved(HierarchyEvent e) {
+		}
+
+		public void ancestorResized(HierarchyEvent e) {
+			if (quitDialog.isVisible()) {
+				if (e.getChanged().equals(quitDialog.getParent())) {
+					centerDialog();
+				}
+			}
+		}
 	}
 }
