@@ -6,6 +6,8 @@ import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.SwingUtilities;
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -33,9 +35,13 @@ public class BuddyPanelControler implements PropertyChangeListener {
 		RPSlot buddyslot = (RPSlot) evt.getOldValue();
 		if (buddyslot != null) {
 			for (RPObject object : buddyslot) {
-				for (String buddyname : object) {
+				for (final String buddyname : object) {
 					if (!"id".equals(buddyname)) {
-						buddyPanel.remove(buddyname.substring(1));
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								buddyPanel.remove(buddyname.substring(1));		
+							}
+						});
 					}
 				}
 				return;
@@ -45,12 +51,20 @@ public class BuddyPanelControler implements PropertyChangeListener {
 
 		buddyslot = (RPSlot) evt.getNewValue();
 		for (RPObject object : buddyslot) {
-			for (String buddyname : object) {
+			for (final String buddyname : object) {
 				if (!"id".equals(buddyname)) {
 					if (object.get(buddyname).equals("0")) {
-						buddyPanel.setOffline(buddyname.substring(1));
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								buddyPanel.setOffline(buddyname.substring(1));
+							}
+						});
 					} else {
-						buddyPanel.setOnline(buddyname.substring(1));
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								buddyPanel.setOnline(buddyname.substring(1));
+							}
+						});
 					}
 				}
 			}
