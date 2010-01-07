@@ -41,11 +41,11 @@ public class RingOfLifeTest {
 	public void testOnUsed() {
 		final RingOfLife ring = new RingOfLife();
 		assertThat(ring.isBroken(), is(false));
-		assertThat(ring.describe(), is("You an emerald ring, known as see the ring of life. Wear it, and you risk less from death."));
+		assertThat(ring.describe(), is("You see an emerald ring, known as the ring of life. Wear it, and you risk less from death."));
 		
 		ring.onUsed(null);
 		assertThat(ring.isBroken(), is(false));
-		assertThat(ring.describe(), is("You an emerald ring, known as see the ring of life. Wear it, and you risk less from death."));
+		assertThat(ring.describe(), is("You see an emerald ring, known as the ring of life. Wear it, and you risk less from death."));
 		
 
 	}
