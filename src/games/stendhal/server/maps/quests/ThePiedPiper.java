@@ -65,13 +65,25 @@ import org.apache.log4j.Logger;
 	private LinkedList<KillNotificationCreature> rats = 
 		new LinkedList<KillNotificationCreature>();
  
-//  MAX time is 2 weeks
-	private static final int MAX_QUEST_REPEAT_TIME = 60 * 60 * 24 * 14;
-//	MIN time is 1 week
-	private static final int MIN_QUEST_REPEAT_TIME = 60 * 60 * 24 * 7;	
-//	private static final int MAX_QUEST_REPEAT_TIME = 60 * 11;
-//	private static final int MIN_QUEST_REPEAT_TIME = 60 * 10;
+
+	///*
+	// game timings
+	private static final int MAX_QUEST_INACTIVE_TIME = 60 * 60 * 24 * 14;
+	private static final int MIN_QUEST_INACTIVE_TIME = 60 * 60 * 24 * 7;	
+	private static final int QUEST_INVASION_TIME = 60 * 60 * 2;
 	private static final int QUEST_AWAITING_TIME = 60 * 60;
+	private static final int QUEST_SHOUT_TIME = 60 * 10;
+	//*/
+	
+	/*
+	// test timings
+	private static final int MAX_QUEST_INACTIVE_TIME = 60 * 11;
+	private static final int MIN_QUEST_INACTIVE_TIME = 60 * 10;
+	private static final int QUEST_INVASION_TIME = 60 * 20;
+	private static final int QUEST_AWAITING_TIME = 60 * 10;
+	private static final int QUEST_SHOUT_TIME = 60 * 1;
+	*/
+
 
 	/**
 	 * related to quest part.
@@ -145,6 +157,25 @@ import org.apache.log4j.Logger;
 			160,
 			360,
 			800);
+
+	
+	final private ShouterTimer shouterTimer = new ShouterTimer();
+	/**
+	 * timer for npc's shouts to player.
+	 */
+	class ShouterTimer implements TurnListener {
+		public void start() {
+			tellAllAboutRatsProblem();
+			TurnNotifier.get().dontNotify(this);
+			TurnNotifier.get().notifyInSeconds(QUEST_SHOUT_TIME, this);
+		}
+		public void stop() {
+			TurnNotifier.get().dontNotify(this);
+		}		
+		public void onTurnReached(int currentTurn) {
+			start();
+		}
+	}
 	
 	/**
 	 * summon rats, make phase INVASION and
@@ -154,8 +185,8 @@ import org.apache.log4j.Logger;
 		logger.info("ThePiedPiper quest started (phase INVASION).");
 		phase=TPP_Phase.TPP_INVASION;
 		summonRats();
-		tellAllAboutRatsProblem();
-		step_0();		
+		shouterTimer.start();
+		step_2();		
 	}
 	
 	/**
@@ -165,7 +196,8 @@ import org.apache.log4j.Logger;
 		tellAllAboutNoRatsInCity();	
 		logger.info("ThePiedPiper quest: last rat was killed (phase INACTIVE).");
 		phase=TPP_Phase.TPP_INACTIVE;
-		step_0();		
+		shouterTimer.stop();
+		step_1();		
 	}
 	
 	/**
@@ -176,8 +208,9 @@ import org.apache.log4j.Logger;
 		logger.info("ThePiedPiper quest timeout (phase AWAITING).");
 		phase=TPP_Phase.TPP_AWAITING;
 		removeAllRats();
+		shouterTimer.stop();
 		tellAllAboutRatsIsWinners();
-		step_2();
+		step_3();
 	}
 	
 	/**
@@ -187,8 +220,9 @@ import org.apache.log4j.Logger;
 	protected void PhaseAwaitingToInactive() {
 		logger.info("ThePiedPiper quest is over (phase INACTIVE).");
 		phase=TPP_Phase.TPP_INACTIVE;
+		shouterTimer.stop();
 		tellAllAboutRatsIsGone();
-		step_0();		
+		step_1();		
 	}
 	
 	final private QuestTimer questTimer = new QuestTimer();
@@ -209,8 +243,7 @@ import org.apache.log4j.Logger;
 					break;
 			}
 		}
-	}
-
+	}	
 	
 	/**
 	 * 
@@ -505,7 +538,7 @@ import org.apache.log4j.Logger;
 	 * @param dead
 	 * 			- creature that was just died.
 	 */
-	public void notifyDead(final RPEntity dead) {
+	private void notifyDead(final RPEntity dead) {
 		rats.remove(rats.get(rats.indexOf(dead)));
 		if (rats.size()==0) {
 			PhaseInvasionToInactive();
@@ -515,7 +548,7 @@ import org.apache.log4j.Logger;
 	/**
 	 * removing rats from the world
 	 */
-	public void removeAllRats() {
+	private void removeAllRats() {
 		final int sz=rats.size();
 		int i=0;
 		while(rats.size()!=0) {
@@ -548,17 +581,9 @@ import org.apache.log4j.Logger;
 	}
 	
 	/**
-	 *  Register TurnListener to have automatical start/stop of quest.
-	 *  Quest will start or stop after time will over.
-	 */
-	private void step_0() {
-		NewNotificationTime(MAX_QUEST_REPEAT_TIME, MIN_QUEST_REPEAT_TIME);
-	}	
-
-	/**
 	 *   add states to NPC's FSM
 	 */
-	private void step_1() {
+	private void step_0() {
 		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("rats"), null, 
 				ConversationStates.ATTENDING, null, new AnswerOrOfferRewardAction());
@@ -567,12 +592,26 @@ import org.apache.log4j.Logger;
 		npc.add(ConversationStates.ATTENDING, "details", null,
 				ConversationStates.ATTENDING, null, new DetailsKillingsAction());
 	}
+	
+	/**
+	 * Quest will start after quest inactive time period will over.
+	 */
+	private void step_1() {
+		NewNotificationTime(MAX_QUEST_INACTIVE_TIME, MIN_QUEST_INACTIVE_TIME);
+	}
 	 
+	/**
+	 * Quest will go to AWAITING state after invasion time period will over.
+	 */
+	private void step_2() {
+		NewNotificationTime(QUEST_INVASION_TIME, QUEST_INVASION_TIME);
+	}
+	
 	/**
 	 *  will start part II of this quest.
 	 *  currently makes quest inactive.
 	 */
-	private void step_2() {
+	private void step_3() {
 		if (phase==TPP_Phase.TPP_AWAITING) {
 			NewNotificationTime(QUEST_AWAITING_TIME, QUEST_AWAITING_TIME);
 		}
@@ -592,7 +631,7 @@ import org.apache.log4j.Logger;
 	public void addToWorld() {
 		step_0();
 	    step_1();
-	    step_2();
+	    step_3();
 		super.addToWorld();
 	}	
 }
