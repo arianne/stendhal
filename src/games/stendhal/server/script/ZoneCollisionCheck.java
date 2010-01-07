@@ -118,21 +118,37 @@ public class ZoneCollisionCheck extends ScriptImpl {
 				zone.getLevel(), tmpx, tmpy, entity);
 		if (neighbour != null) {
 			// find the starting coordinates for neighbour
-			int neighbourX = Math.abs(neighbour.getX() - zone.getX());
-			int neighbourY = Math.abs(neighbour.getY() - zone.getY());
+			int neighbourX = 0;
+			int neighbourY = 0;
+			
 			switch (border.opposite()) {
+			case NORTH:
+				neighbourX = zone.getX() - neighbour.getX();
+				neighbourY = 0;
+				break;
 			case EAST:
-				neighbourX--;
+				neighbourX = neighbour.getWidth() - 1;
+				neighbourY = zone.getY() - neighbour.getY();
 				break;
 			case SOUTH:
-				neighbourY--;
+				neighbourX = zone.getX() - neighbour.getX();
+				neighbourY = neighbour.getHeight() - 1; 
 				break;
-			default:
+			case WEST:
+				neighbourX = 0;
+				neighbourY = zone.getY() - neighbour.getY();
 			}
 	
 			// Walk through the border and check do the collisions match
-			while ((zoneX < zone.getWidth()) && (zoneY < zone.getHeight())
-					&& (neighbourX < neighbour.getWidth()) && (neighbourY < neighbour.getHeight())) {
+			while ((zoneX < zone.getWidth()) && (zoneY < zone.getHeight())) {
+				if ((neighbourX < 0) || (neighbourY < 0)) {
+					// haven't yet reached the point where to start checking
+					continue;
+				}
+				if ((neighbourX >= neighbour.getWidth()) || (neighbourY >= neighbour.getHeight())) {
+					// done checking all of the border
+					break;
+				}
 				
 				boolean zCollides = zone.collides(zoneX, zoneY);
 				boolean nCollides = neighbour.collides(neighbourX, neighbourY);
