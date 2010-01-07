@@ -66,7 +66,11 @@ public class PrepareOfferHandler {
 						npc.say("Sorry, but I don't think you have any " 
 								+ Grammar.plural(itemName)+ ".");
 						return;
-					} else if (item.isBound()) {
+					}
+					// The item name might not be what was used for looking it up (plurals)
+					itemName = item.getName();
+					
+					if (item.isBound()) {
 						npc.say("That " + itemName + " can be used only by you. I can not sell it.");
 						return;
 					} else if (number > 1000) {
