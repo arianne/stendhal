@@ -858,7 +858,7 @@ public class j2DClient {
 	 * @return The height.
 	 */
 	public int getHeight() {
-		return (int) stendhal.screenSize.getHeight();
+		return screen.getComponent().getHeight();
 	}
 
 	/**
@@ -867,7 +867,7 @@ public class j2DClient {
 	 * @return The width.
 	 */
 	public int getWidth() {
-		return (int) stendhal.screenSize.getWidth();
+		return screen.getComponent().getWidth();
 	}
 
 
@@ -888,7 +888,7 @@ public class j2DClient {
 	}
 
 	/**
-	 * Set the user's positiion.
+	 * Set the user's position.
 	 *
 	 * @param x
 	 *            The user's X coordinate.
