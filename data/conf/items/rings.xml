@@ -32,7 +32,7 @@
 
   <item name="emerald ring">
     <type class="ring" subclass="emerald-ring" tileid="-1"/>
-    <description>You see ring of life. Wear it, and you risk less from death.</description>
+    <description>You see an emerald ring, known as ring of life. Wear it, and you risk less from death.</description>
     <implementation class-name="games.stendhal.server.entity.item.RingOfLife"/>    <attributes>
       <amount value="1"/>
       <persistent value="1"/>
