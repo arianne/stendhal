@@ -71,13 +71,13 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	private static final Logger logger = Logger.getLogger(WtPanel.class);
 
 	/** size of the titlebar. */
-	private static final int TITLEBAR_SIZE = 14;
+	protected static final int TITLEBAR_SIZE = 14;
 
 	/** size of the titlebar font. */
 	private static final int TITLEBAR_FONT_SIZE = 12;
 
 	/** thickness of the frame. */
-	private static final int FRAME_SIZE = 3;
+	protected static final int FRAME_SIZE = 3;
 
 	/** panel has a title bar. */
 	private boolean titleBar;

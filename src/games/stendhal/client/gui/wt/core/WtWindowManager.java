@@ -173,9 +173,42 @@ public class WtWindowManager {
 			return;
 		}
 
+		restoreToScreen(panel, config);
+		
 		panel.moveTo(config.x, config.y);
 		panel.setMinimized(config.minimized);
 		panel.setVisible(config.visible);
+	}
+	
+	/**
+	 * Move a window back to screen if it's outside of it
+	 * @param panel The window to be moved
+	 * @param config The configuration parameters that should be modifies
+	 */
+	private void restoreToScreen(ManagedWindow panel, WindowConfiguration config) {
+		int width = 0;
+		int height = 0;
+		if (panel instanceof WtPanel) {
+			WtPanel wp = ((WtPanel) panel);
+			width = wp.getWidth();
+			height = WtPanel.FRAME_SIZE + WtPanel.TITLEBAR_SIZE;
+		}
+		
+		final int xDiff = stendhal.screenSize.width - config.x - width;
+		/*
+		 * -30 is a fudge factor to move only windows that are clearly
+		 * outside the screen. Some windows (EntityContainer) resize
+		 * themselves after being created, so we do not want to move 
+		 * windows that already would fit on the screen.
+		 */ 
+		if (xDiff < -30) {
+			config.x += xDiff;
+		}
+		
+		final int yDiff = stendhal.screenSize.height - config.y - height;
+		if (yDiff < 0) {
+			config.y += yDiff;
+		}
 	}
 
 	/**
