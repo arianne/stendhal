@@ -116,7 +116,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 			int priceInt = item.getInt("price");
 			price = "<span style=\"color: ";
 			if (priceInt < 0) {
-				price = price + "#FF0000\">";
+				price = price + "#FFFFFF\">";
 			} else {
 				price = price + "#00FF00\">";
 			}
