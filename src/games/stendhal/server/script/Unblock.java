@@ -1,13 +1,16 @@
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Moves players away that spend to much time in an restricted area
@@ -16,7 +19,7 @@ import java.util.List;
  */
 public class Unblock extends ScriptImpl implements TurnListener {
 	private static final int CHECK_INTERVAL = 30;
-	private List<PlayerPositionEntry> playerPositions = new LinkedList<PlayerPositionEntry>();
+	private Set<PlayerPositionEntry> playerPositions = new HashSet<PlayerPositionEntry>();
 
 	/**
 	 * records a player position in a specific turn
@@ -45,6 +48,66 @@ public class Unblock extends ScriptImpl implements TurnListener {
 			this.y = y;
 			this.turn = turn;
 		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result+ playerName.hashCode();
+			result = prime * result + turn;
+			result = prime * result + x;
+			result = prime * result + y;
+			result = prime * result + zoneName.hashCode();
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null) {
+				return false;
+			}
+			if (!(obj instanceof PlayerPositionEntry)) {
+				return false;
+			}
+			PlayerPositionEntry other = (PlayerPositionEntry) obj;
+			if (!playerName.equals(other.playerName)) {
+				return false;
+			}
+			if (x != other.x) {
+				return false;
+			}
+			if (y != other.y) {
+				return false;
+			}
+			if (!zoneName.equals(other.zoneName)) {
+				return false;
+			}
+			return true;
+		}
+
+		/**
+		 * has the player moved away including leaving the zone or logging out
+		 *
+		 * @return true if the player moved away, false if he is still in the restricted area
+		 */
+		public boolean hasPlayerMovedAway() {
+			Player player = SingletonRepository.getRuleProcessor().getPlayer(playerName);
+			if (player == null) {
+				return true;
+			}
+			if (!player.getZone().getName().equals(zoneName)) {
+				return true;
+			}
+			if (player.getX() != x) {
+				return true;
+			}
+			if (player.getY() != y) {
+				return true;
+			}
+			return false;
+		}
+
+		
 	}
 
 	/**
@@ -81,9 +144,17 @@ public class Unblock extends ScriptImpl implements TurnListener {
 		record();
 	}
 
-
+	/**
+	 * removes players that have moved away from the list
+	 */
 	private void cleanupList() {
-		// TODO Auto-generated method stub
+		Iterator<PlayerPositionEntry> itr = playerPositions.iterator();
+		while (itr.hasNext()) {
+			PlayerPositionEntry entry = itr.next();
+			if (entry.hasPlayerMovedAway()) {
+				itr.remove();
+			}
+		}
 		
 	}
 
