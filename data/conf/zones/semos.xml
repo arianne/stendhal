@@ -716,7 +716,16 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 			</implementation>
 		</entity>
 
+		<entity x="12" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+				<parameter name="shop">food&amp;drinks</parameter>
+				<parameter name="title">Semos Tavern's menu</parameter>
+				<parameter name="seller">true</parameter>
+				<parameter name="caption">You can buy these things by asking Margaret.</parameter>
+			</implementation>
 
+			<attribute name="class">book_red</attribute>
+		</entity>
 	</zone>
 
 	<zone name="int_semos_tavern_1" file="interiors/semos/tavern_1.tmx">
