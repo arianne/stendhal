@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -83,8 +84,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 
 			if ((questKill != null) && !"done".equals(questKill)) {
-				final String sayText = "You're already on a quest to slay a "
-						+ questKill + ". Say #complete if you're done with it!";
+				final String sayText = "You're already on a quest to slay " + Grammar.a_noun(questKill)
+				+ ". Say #complete if you're done with it!";
 				if (questLast != null) {
 					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
@@ -129,7 +130,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				creatureName = "rat";
 			}
 			
-			engine.say("Semos is in need of help. Go kill a " + creatureName
+			engine.say("Semos is in need of help. Go kill " + Grammar.a_noun(creatureName)
 					+ " and say #complete, once you're done.");
 			player.removeKill(creatureName);
 			questLast = "" + (new Date()).getTime();
@@ -274,8 +275,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				player.setQuest("daily", "done" + ";" + questLast + ";"
 						+ questCount);
 			} else {
-				engine.say("You didn't kill a "
-						+ questKill
+				engine.say("You didn't kill " + Grammar.a_noun(questKill)
 						+ " yet. Go and do it and say #complete only after you're done.");
 			}
 		}
