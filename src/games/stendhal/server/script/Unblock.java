@@ -4,6 +4,7 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.Area;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class Unblock extends ScriptImpl implements TurnListener {
 		private int x;
 		private int y;
 		private int turn;
+		private KeepFreeArea keepFreeArea;
 
 		/**
 		 * creates a new PlayerPositionEntry
@@ -43,8 +45,30 @@ public class Unblock extends ScriptImpl implements TurnListener {
 			this.y = y;
 			this.turn = turn;
 		}
+	}
 
-		
+	/**
+	 * an area to keep free with an associated teleportation target spot
+	 */
+	static class KeepFreeArea {
+		private Area area;
+		private int x;
+		private int y;
+
+		/**
+		 * creates a new KeepFreeArea
+		 *
+		 * @param area area to keep free
+		 * @param x teleportation target x
+		 * @param y teleportation target y
+		 */
+		public KeepFreeArea(Area area, int x, int y) {
+			super();
+			this.area = area;
+			this.x = x;
+			this.y = y;
+		}
+
 	}
 
 	/**
