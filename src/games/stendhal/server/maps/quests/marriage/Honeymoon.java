@@ -16,8 +16,6 @@ import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
 
-import marauroa.common.game.IRPZone;
-
 class Honeymoon {
 	private final NPCList npcs = SingletonRepository.getNPCList();
 	private MarriageQuestInfo marriage;
@@ -36,7 +34,7 @@ class Honeymoon {
 				ConversationStates.QUESTION_1, null,
 				new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-                        final IRPZone fadoHotel = npc.getZone();
+                        final StendhalRPZone fadoHotel = npc.getZone();
                         final Area hotelReception = new Area(fadoHotel, new Rectangle(11, 46, 19, 10));
 
                         Player husband;

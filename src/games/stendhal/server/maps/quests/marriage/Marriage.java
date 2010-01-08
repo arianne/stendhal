@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests.marriage;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -13,8 +14,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
-
-import marauroa.common.game.IRPZone;
 
 class Marriage {
 	private final NPCList npcs = SingletonRepository.getNPCList();
@@ -144,7 +143,7 @@ class Marriage {
 	
 	private void startMarriage(final SpeakerNPC priest, final Player player,
 			final String partnerName) {
-		final IRPZone churchZone = priest.getZone();
+		final StendhalRPZone churchZone = priest.getZone();
 		final Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 9, 4, 1));
 
 		groom = player;

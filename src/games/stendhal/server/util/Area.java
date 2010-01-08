@@ -19,8 +19,7 @@ import marauroa.common.game.IRPZone;
  */
 public class Area {
 
-	private final IRPZone zone;
-
+	private final StendhalRPZone zone;
 	private final Shape shape;
 
 	/**
@@ -31,7 +30,7 @@ public class Area {
 	 * @param shape
 	 *            shape on that map
 	 */
-	public Area(final IRPZone zone, final Rectangle2D shape) {
+	public Area(final StendhalRPZone zone, final Rectangle2D shape) {
 		this.zone = zone;
 		this.shape = shape;
 	}
@@ -72,7 +71,7 @@ public class Area {
 	 */
     public List<Player> getPlayers() {
 	// interface marauroa.common.game.IRPZone doesn't have a method getPlayers, so cast it to StendhalRPZone
-        final List<Player> playersInZone = ((StendhalRPZone) zone).getPlayers();
+        final List<Player> playersInZone = zone.getPlayers();
 	// for each of the players in the zone, check contains(player)
 	final List<Player> result = new LinkedList<Player>();
 	for (Player player : playersInZone) {

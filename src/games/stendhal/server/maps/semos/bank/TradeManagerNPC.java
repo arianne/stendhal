@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.semos.bank;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -10,8 +11,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
-
-import marauroa.common.game.IRPZone;
 
 public class TradeManagerNPC extends SpeakerNPCFactory {
 	
@@ -67,7 +66,7 @@ public class TradeManagerNPC extends SpeakerNPCFactory {
 	// check that trading area contains both alice and bob
 	private void startTrade(final SpeakerNPC npc, final Player player,
 			final String player2) {
-		final IRPZone bankZone = npc.getZone();
+		final StendhalRPZone bankZone = npc.getZone();
 		final Area tradingArea = new Area(bankZone, new Rectangle(32, 2, 12, 10));
 		
 		alice = player;
