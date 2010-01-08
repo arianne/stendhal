@@ -1,6 +1,8 @@
 package games.stendhal.server.script;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -18,9 +20,11 @@ import java.util.Set;
  * @author hendrik
  */
 public class Unblock extends ScriptImpl implements TurnListener {
-	private static final int CHECK_INTERVAL = 30;
+	private static final int CHECK_INTERVAL = 10;
+	private static final int GRACE_PERIOD_IN_TURNS = 200;
 	private Set<PlayerPositionEntry> playerPositions = new HashSet<PlayerPositionEntry>();
-
+	private Set<KeepFreeArea> keepFreeAreas = new HashSet<KeepFreeArea>();
+	
 	/**
 	 * records a player position in a specific turn
 	 */
@@ -34,19 +38,16 @@ public class Unblock extends ScriptImpl implements TurnListener {
 
 		/**
 		 * creates a new PlayerPositionEntry
-		 * @param playerName name of player
-		 * @param zoneName name of zone
-		 * @param x x
-		 * @param y y
-		 * @param turn turn number
+		 *
+		 * @param player Player
 		 */
-		public PlayerPositionEntry(String playerName, String zoneName, int x, int y, int turn) {
+		public PlayerPositionEntry(Player player) {
 			super();
-			this.playerName = playerName;
-			this.zoneName = zoneName;
-			this.x = x;
-			this.y = y;
-			this.turn = turn;
+			this.playerName = player.getName();
+			this.zoneName = player.getZone().getName();
+			this.x = player.getX();
+			this.y = player.getY();
+			this.turn = SingletonRepository.getRuleProcessor().getTurn();
 		}
 
 		@Override
@@ -54,7 +55,6 @@ public class Unblock extends ScriptImpl implements TurnListener {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result+ playerName.hashCode();
-			result = prime * result + turn;
 			result = prime * result + x;
 			result = prime * result + y;
 			result = prime * result + zoneName.hashCode();
@@ -107,7 +107,32 @@ public class Unblock extends ScriptImpl implements TurnListener {
 			return false;
 		}
 
-		
+		/**
+		 * gets the turn this entry was created
+		 *
+		 * @return turn
+		 */
+		public int getTurn() {
+			return turn;
+		}
+
+		/**
+		 * gets the KeepFreeArea
+		 *
+		 * @return KeepFreeArea
+		 */
+		public KeepFreeArea getKeepFreeArea() {
+			return keepFreeArea;
+		}
+
+		/**
+		 * gets the Player
+		 *
+		 * @return player or <code>null</code> in case the player logged out
+		 */
+		public Player getPlayer() {
+			return SingletonRepository.getRuleProcessor().getPlayer(playerName);
+		}
 	}
 
 	/**
@@ -132,6 +157,41 @@ public class Unblock extends ScriptImpl implements TurnListener {
 			this.y = y;
 		}
 
+		/**
+		 * gets a list of players who are within the restricted area
+		 *
+		 * @return list of players
+		 */
+		public List<Player> getPlayers() {
+			return area.getPlayers();
+		}
+
+		/**
+		 * gets the teleportation target x
+		 *
+		 * @return teleportation target x
+		 */
+		public int getX() {
+			return x;
+		}
+
+		/**
+		 * gets the teleportation target y
+		 *
+		 * @return teleportation target y
+		 */
+		public int getY() {
+			return y;
+		}
+
+		/**
+		 * gets the zone
+		 *
+		 * @return StendhalRPZone
+		 */
+		public StendhalRPZone getZone() {
+			return area.getZone();
+		}
 	}
 
 	/**
@@ -140,7 +200,7 @@ public class Unblock extends ScriptImpl implements TurnListener {
 	public void onTurnReached(int currentTurn) {
 		TurnNotifier.get().notifyInSeconds(CHECK_INTERVAL, this);
 		cleanupList();
-		teleportAway();
+		teleportAway(currentTurn);
 		record();
 	}
 
@@ -159,13 +219,40 @@ public class Unblock extends ScriptImpl implements TurnListener {
 	}
 
 
-	private void teleportAway() {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * teleports players out of the restricted area
+	 * 
+	 * @param turn current turn
+	 */
+	private void teleportAway(int turn) {
+		Iterator<PlayerPositionEntry> itr = playerPositions.iterator();
+		while (itr.hasNext()) {
+			PlayerPositionEntry entry = itr.next();
+			if (entry.getTurn() + GRACE_PERIOD_IN_TURNS < turn) {
+				itr.remove();
+				KeepFreeArea keepFreeArea = entry.getKeepFreeArea();
+				Player player = entry.getPlayer();
+				if (player == null) {
+					continue;
+				}
+				player.teleport(keepFreeArea.getZone(), keepFreeArea.getX(), keepFreeArea.getY(), Direction.DOWN, player);
+			}
+		}
 	}
 
+	/**
+	 * recors players who are within the restricted zone.
+	 */
 	private void record() {
-		// TODO Auto-generated method stub
+		for (KeepFreeArea keepFreeArea : keepFreeAreas) {
+			for (Player player : keepFreeArea.getPlayers()) {
+				// we do something dirty here with hashCode and equals (turn is ignored)
+				PlayerPositionEntry entry = new PlayerPositionEntry(player);
+				if (!playerPositions.contains(entry)) {
+					playerPositions.add(entry);
+				}
+			}
+		}
 		
 	}
 
