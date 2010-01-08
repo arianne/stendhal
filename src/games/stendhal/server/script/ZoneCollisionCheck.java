@@ -52,7 +52,8 @@ public class ZoneCollisionCheck extends ScriptImpl {
 	}
 	
 	private Entity entity;
-	private Player admin; 
+	private Player admin;
+	private int badnessThreshold = 1;
 	
 	@Override
 	public void execute(final Player admin, final List<String> args) {
@@ -62,10 +63,28 @@ public class ZoneCollisionCheck extends ScriptImpl {
 		entity = new Entity() {
 		};
 		
+		if (args.size() > 1) {
+			usage();
+			return;
+		} else if (args.size() == 1) {
+			String arg = args.get(0);
+			try {
+				badnessThreshold = Integer.parseInt(arg);
+			} catch (NumberFormatException e) {
+				admin.sendPrivateText("Invalid number: " + arg);
+				usage();
+				return;
+			}
+		}
+		
 		for (IRPZone izone : world) {
 			StendhalRPZone zone = (StendhalRPZone) izone;
 			checkZone(zone);
 		}
+	}
+	
+	private void usage() {
+		admin.sendPrivateText("Usage: /script ZoneCollisionCheck.class [badness]\n\tBadness parameter is the minimum number of failing checks next to each other");
 	}
 	
 	private void checkZone(StendhalRPZone zone) {
@@ -140,6 +159,7 @@ public class ZoneCollisionCheck extends ScriptImpl {
 			}
 	
 			// Walk through the border and check do the collisions match
+			int badness = 0;
 			while ((zoneX < zone.getWidth()) && (zoneY < zone.getHeight())) {
 				if ((neighbourX < 0) || (neighbourY < 0)) {
 					// haven't yet reached the point where to start checking
@@ -154,9 +174,14 @@ public class ZoneCollisionCheck extends ScriptImpl {
 				boolean nCollides = neighbour.collides(neighbourX, neighbourY);
 				
 				if (zCollides != nCollides) {
-					problems.add(collidesMessage(zone.getName(), zoneX, zoneY, zCollides)
-							+ " but " +
-							collidesMessage(neighbour.getName(), neighbourX, neighbourY, nCollides));
+					badness++;
+					if (badness >= badnessThreshold) {
+						problems.add(collidesMessage(zone.getName(), zoneX, zoneY, zCollides)
+								+ " but " +
+								collidesMessage(neighbour.getName(), neighbourX, neighbourY, nCollides));
+					}
+				} else {
+					badness = 0;
 				}
 				
 				zoneX += dx;
