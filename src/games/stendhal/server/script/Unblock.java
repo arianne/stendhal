@@ -2,6 +2,7 @@ package games.stendhal.server.script;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -263,6 +264,18 @@ public class Unblock extends ScriptImpl implements TurnListener {
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
 		TurnNotifier.get().dontNotify(this);
+
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
+
+		// bank entrance
+		keepFreeAreas.add(new KeepFreeArea(new Area(world.getZone("0_semos_city"), 17, 19, 3, 2), 23, 25));
+
+		// inn entrance
+		keepFreeAreas.add(new KeepFreeArea(new Area(world.getZone("0_semos_city"), 40, 38, 4, 3), 50, 40));
+
+		// inn exit
+		keepFreeAreas.add(new KeepFreeArea(new Area(world.getZone("int_semos_tavern_0"), 21, 15, 3, 2), 22, 11));
+
 		TurnNotifier.get().notifyInSeconds(CHECK_INTERVAL, this);
 	}
 
