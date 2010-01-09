@@ -141,4 +141,15 @@ public abstract class StandardClientFramework extends ClientFramework {
 	protected void onPreviousLogins(final List<String> previousLogins) {
 		// do nothing
 	}
-}
+
+
+	/**
+	 * prints the parmaeter required to connect to the server.
+	 */
+	public static void printConnectionParameters() {
+		System.out.println("* -h\tHost that is running Marauroa server");
+		System.out.println("* -P\tPort on which Marauroa server is running");
+		System.out.println("* -u\tUsername to log into Marauroa server");
+		System.out.println("* -p\tPassword to log into Marauroa server");
+		System.out.println("* -c\tCharacter used to log into Marauroa server");
+	}}

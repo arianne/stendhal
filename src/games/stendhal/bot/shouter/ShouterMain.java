@@ -115,14 +115,12 @@ public class ShouterMain extends StandardClientFramework {
 			System.out.println("  games.stendhal.bot.shouter.Shouter -u username -p pass -h host -P port -c character");
 			System.out.println();
 			System.out.println("Required parameters");
-			System.out.println("* -h\tHost that is running Marauroa server");
-			System.out.println("* -P\tPort on which Marauroa server is running");
-			System.out.println("* -u\tUsername to log into Marauroa server");
-			System.out.println("* -p\tPassword to log into Marauroa server");
-			System.out.println("* -c\tCharacter used to log into Marauroa server");
+			StandardClientFramework.printConnectionParameters();
 		} catch (final Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
 		}
 	}
+
+
 }
