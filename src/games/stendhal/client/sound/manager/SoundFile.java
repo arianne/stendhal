@@ -62,7 +62,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
         SignalProcessor decoder = chooseDecoder(filePath, fileType, outputNumSamplesPerChannel);
 
         if(decoder == null)
-            throw new IOException("could not load audio file");
+            throw new IOException("could not load audio file: " + filePath);
 
         if(enableStreaming)
         {
