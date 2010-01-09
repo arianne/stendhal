@@ -68,7 +68,7 @@ public class SoundManager
             mOutput      = mSoundSystem.openOutput(AUDIO_FORMAT);
             mLayerVolume = mSoundLayers.createVolumeAdjustor(0);
 
-            SignalProcessor.createChain(mInterruptor, this, mLayerVolume, mGlobalVolume, mDirectedSound, mOutput);
+            SignalProcessor.createChain(mInterruptor, this, /*mLayerVolume, */mGlobalVolume, mDirectedSound, mOutput);
         }
 
         boolean isActive      ()                            { return mIsActive.get();                      }
