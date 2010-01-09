@@ -190,6 +190,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 				sh = Math.min(canvas.getHeight(), stendhal.screenSize.height);
 				svx = -sw / 2;
 				svy = -svy / 2;
+				g2d.setClip(0, 0, sw, sh);
 				calculateView();
 			}
 		}
