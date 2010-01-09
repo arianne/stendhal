@@ -6,6 +6,8 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
+import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -19,6 +21,14 @@ public class PrepareOfferHandler {
 	private int quantity;
 	
 	public void add(SpeakerNPC npc) {
+		npc.add(ConversationStates.ATTENDING, "sell", 
+				new LevelLessThanCondition(6), 
+				ConversationStates.ATTENDING, 
+				"I am sorry, I currently only accept offers from people who have a good reputation. You can obtain acceptance by gaining experiance for example by helping people with their tasks or defending the city from evil creatures.", null);
+		npc.add(ConversationStates.ATTENDING, "sell", 
+				new LevelGreaterThanCondition(5), 
+				ConversationStates.ATTENDING, null, 
+				new PrepareOfferChatAction());
 		npc.add(ConversationStates.ATTENDING, "sell", null, ConversationStates.ATTENDING, null, 
 				new PrepareOfferChatAction());
 		npc.add(ConversationStates.SELL_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, 
