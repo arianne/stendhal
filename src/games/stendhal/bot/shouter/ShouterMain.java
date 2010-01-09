@@ -13,22 +13,16 @@
 package games.stendhal.bot.shouter;
 
 import games.stendhal.bot.core.PerceptionErrorListener;
-import games.stendhal.client.update.Version;
+import games.stendhal.bot.core.StandardClientFramework;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.SocketException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import marauroa.client.TimeoutException;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
-import marauroa.common.net.message.MessageS2CPerception;
-import marauroa.common.net.message.TransferContent;
 
 /**
  * Connects to the server and shouts a message.
@@ -46,10 +40,6 @@ public class ShouterMain {
 	protected String character;
 
 	private final String port;
-
-	protected long lastPerceptionTimestamp;
-
-	protected Map<RPObject.ID, RPObject> world_objects;
 
 	protected marauroa.client.ClientFramework clientManager;
 
@@ -79,67 +69,9 @@ public class ShouterMain {
 		character = c;
 		port = P;
 
-		world_objects = new HashMap<RPObject.ID, RPObject>();
-
 		handler = new PerceptionHandler(new PerceptionErrorListener());
 
-		clientManager = new marauroa.client.ClientFramework(
-				"games/stendhal/log4j.properties") {
-
-			@Override
-			protected String getGameName() {
-				return "stendhal";
-			}
-
-			@Override
-			protected String getVersionNumber() {
-				return Version.VERSION;
-			}
-
-			@Override
-			protected void onPerception(final MessageS2CPerception message) {
-				lastPerceptionTimestamp = System.currentTimeMillis();
-				try {
-					handler.apply(message, world_objects);
-				} catch (final Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			protected List<TransferContent> onTransferREQ(
-					final List<TransferContent> items) {
-				for (final TransferContent item : items) {
-					item.ack = true;
-				}
-
-				return items;
-			}
-
-			@Override
-			protected void onServerInfo(final String[] info) {
-				// do nothing
-			}
-
-			@Override
-			protected void onAvailableCharacters(final String[] characters) {
-				try {
-					chooseCharacter(character);
-				} catch (final Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			protected void onTransfer(final List<TransferContent> items) {
-				// do nothing
-			}
-
-			@Override
-			protected void onPreviousLogins(final List<String> previousLogins) {
-				// do nothing
-			}
-		};
+		clientManager = new StandardClientFramework(character, handler);
 	}
 
 	public void script() {
@@ -162,11 +94,9 @@ public class ShouterMain {
 			e.printStackTrace(System.err);
 			Runtime.getRuntime().halt(1);
 		}
-
 	}
 
-	private void readMessagesAndShoutThem() throws IOException,
-			InterruptedException {
+	private void readMessagesAndShoutThem() throws IOException, InterruptedException {
 		final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String line = br.readLine();
 		while (line != null) {
