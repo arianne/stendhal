@@ -32,8 +32,6 @@ public abstract class StandardClientFramework extends ClientFramework {
 
 	private final String port;
 
-	protected marauroa.client.ClientFramework clientManager;
-
 	protected PerceptionHandler handler;
 
 	protected Map<RPObject.ID, RPObject> worldObjects;
@@ -67,10 +65,10 @@ public abstract class StandardClientFramework extends ClientFramework {
 
 	public void script() {
 		try {
-			clientManager.connect(host, Integer.parseInt(port));
-			clientManager.login(username, password);
+			this.connect(host, Integer.parseInt(port));
+			this.login(username, password);
 			execute();
-			clientManager.logout();
+			this.logout();
 			System.exit(0);
 
 			// exit with an exit code of 1 on error

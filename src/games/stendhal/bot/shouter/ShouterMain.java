@@ -66,7 +66,7 @@ public class ShouterMain extends StandardClientFramework {
 		final RPAction chat = new RPAction();
 		chat.put("type", "tellall");
 		chat.put("text", message);
-		clientManager.send(chat);
+		this.send(chat);
 	}
 
 	/**
