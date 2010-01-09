@@ -36,6 +36,21 @@ public class Area {
 	}
 
 	/**
+	 * Creates a new Area.
+	 * 
+	 * @param zone name of the map
+	 * @param x x
+	 * @param y y
+	 * @param width width
+	 * @param height height
+	 */
+	public Area(final StendhalRPZone zone, int x, int y, int width, int height) {
+		this.zone = zone;
+		final Rectangle2D shape = new Rectangle2D.Double();
+		shape.setRect(x, y, width, height);
+		this.shape = shape;
+	}
+	/**
 	 * Checks whether an entity is in this area (e. g. on this zone and inside of
 	 * the shape)
 	 * 
