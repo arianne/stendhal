@@ -278,12 +278,12 @@ public class Unblock extends ScriptImpl implements TurnListener {
 
 		// inn entrance
 		rect = new Rectangle2D.Double();
-		rect.setRect(40, 38, 4, 32);
+		rect.setRect(40, 38, 4, 3);
 		keepFreeAreas.add(new KeepFreeArea(world.getZone("0_semos_city"), new Area(world.getZone("0_semos_city"), rect), 50, 40));
 
 		// inn exit
 		rect = new Rectangle2D.Double();
-		rect.setRect(21, 15, 3, 22);
+		rect.setRect(21, 15, 3, 2);
 		keepFreeAreas.add(new KeepFreeArea(world.getZone("int_semos_tavern_0"), new Area(world.getZone("int_semos_tavern_0"), rect), 22, 11));
 
 		TurnNotifier.get().notifyInSeconds(CHECK_INTERVAL, this);
