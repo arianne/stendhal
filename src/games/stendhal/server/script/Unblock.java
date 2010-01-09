@@ -42,13 +42,14 @@ public class Unblock extends ScriptImpl implements TurnListener {
 		 *
 		 * @param player Player
 		 */
-		public PlayerPositionEntry(Player player) {
+		public PlayerPositionEntry(Player player, KeepFreeArea keepFreeArea) {
 			super();
 			this.playerName = player.getName();
 			this.zoneName = player.getZone().getName();
 			this.x = player.getX();
 			this.y = player.getY();
 			this.turn = SingletonRepository.getRuleProcessor().getTurn();
+			this.keepFreeArea = keepFreeArea;
 		}
 
 		@Override
@@ -248,7 +249,7 @@ public class Unblock extends ScriptImpl implements TurnListener {
 		for (KeepFreeArea keepFreeArea : keepFreeAreas) {
 			for (Player player : keepFreeArea.getPlayers()) {
 				// we do something dirty here with hashCode and equals (turn is ignored)
-				PlayerPositionEntry entry = new PlayerPositionEntry(player);
+				PlayerPositionEntry entry = new PlayerPositionEntry(player, keepFreeArea);
 				if (!playerPositions.contains(entry)) {
 					playerPositions.add(entry);
 				}
@@ -268,7 +269,7 @@ public class Unblock extends ScriptImpl implements TurnListener {
 		StendhalRPWorld world = SingletonRepository.getRPWorld();
 
 		// bank entrance
-		keepFreeAreas.add(new KeepFreeArea(new Area(world.getZone("0_semos_city"), 17, 19, 3, 2), 23, 25));
+		keepFreeAreas.add(new KeepFreeArea(new Area(world.getZone("0_semos_city"), 17, 23, 3, 2), 23, 25));
 
 		// inn entrance
 		keepFreeAreas.add(new KeepFreeArea(new Area(world.getZone("0_semos_city"), 40, 38, 4, 3), 50, 40));
