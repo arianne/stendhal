@@ -2,11 +2,14 @@ package games.stendhal.bot.core;
 
 import games.stendhal.client.update.Version;
 
+import java.io.IOException;
+import java.net.SocketException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import marauroa.client.ClientFramework;
+import marauroa.client.TimeoutException;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.message.MessageS2CPerception;
@@ -17,19 +20,74 @@ import marauroa.common.net.message.TransferContent;
  * @author hendrik
  *
  */
-public class StandardClientFramework extends ClientFramework {
-	private String character;
-	private PerceptionHandler handler;
+public abstract class StandardClientFramework extends ClientFramework {
+
+	private final String host;
+
+	private final String username;
+
+	private final String password;
+
+	protected String character;
+
+	private final String port;
+
+	protected marauroa.client.ClientFramework clientManager;
+
+	protected PerceptionHandler handler;
+
 	protected Map<RPObject.ID, RPObject> worldObjects;
 
-
-	public StandardClientFramework(String character, PerceptionHandler handler) {
+	/**
+	 * Creates a ShouterMain.
+	 * 
+	 * @param h
+	 *            host
+	 * @param u
+	 *            username
+	 * @param p
+	 *            password
+	 * @param c
+	 *            character name
+	 * @param P
+	 *            port
+	 * @throws SocketException
+	 *             on an network error
+	 */
+	public StandardClientFramework(final String h, final String u, final String p, final String c, final String P) throws SocketException {
 		super("games/stendhal/log4j.properties");
-		this.character = character;
-		this.handler = handler;
+		this.host = h;
+		this.username = u;
+		this.password = p;
+		this.character = c;
+		this.port = P;
+		this.handler = new PerceptionHandler(new PerceptionErrorListener());
 		this.worldObjects = new HashMap<RPObject.ID, RPObject>();
 	}
-	
+
+	public void script() {
+		try {
+			clientManager.connect(host, Integer.parseInt(port));
+			clientManager.login(username, password);
+			execute();
+			clientManager.logout();
+			System.exit(0);
+
+			// exit with an exit code of 1 on error
+		} catch (final SocketException e) {
+			System.err.println("Socket Exception");
+			Runtime.getRuntime().halt(1);
+		} catch (final TimeoutException e) {
+			System.err.println("Cannot connect to Stendhal server. Server is down?");
+			Runtime.getRuntime().halt(1);
+		} catch (final Exception e) {
+			System.out.println(e);
+			e.printStackTrace(System.err);
+			Runtime.getRuntime().halt(1);
+		}
+	}
+
+	public abstract void execute() throws IOException, InterruptedException;
 
 	@Override
 	protected String getGameName() {

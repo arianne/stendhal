@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.bot.shouter;
 
-import games.stendhal.bot.core.PerceptionErrorListener;
 import games.stendhal.bot.core.StandardClientFramework;
 
 import java.io.BufferedReader;
@@ -20,8 +19,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.SocketException;
 
-import marauroa.client.TimeoutException;
-import marauroa.client.net.PerceptionHandler;
 import marauroa.common.game.RPAction;
 
 /**
@@ -29,21 +26,7 @@ import marauroa.common.game.RPAction;
  * 
  * @author hendrik
  */
-public class ShouterMain {
-
-	private final String host;
-
-	private final String username;
-
-	private final String password;
-
-	protected String character;
-
-	private final String port;
-
-	protected marauroa.client.ClientFramework clientManager;
-
-	protected PerceptionHandler handler;
+public class ShouterMain extends StandardClientFramework {
 
 	/**
 	 * Creates a ShouterMain.
@@ -61,42 +44,12 @@ public class ShouterMain {
 	 * @throws SocketException
 	 *             on an network error
 	 */
-	public ShouterMain(final String h, final String u, final String p, final String c, final String P)
-			throws SocketException {
-		host = h;
-		username = u;
-		password = p;
-		character = c;
-		port = P;
-
-		handler = new PerceptionHandler(new PerceptionErrorListener());
-
-		clientManager = new StandardClientFramework(character, handler);
+	public ShouterMain(final String h, final String u, final String p, final String c, final String P) throws SocketException {
+		super(h, u, p, c, P);
 	}
 
-	public void script() {
-		try {
-			clientManager.connect(host, Integer.parseInt(port));
-			clientManager.login(username, password);
-			readMessagesAndShoutThem();
-			clientManager.logout();
-			System.exit(0);
-
-			// exit with an exit code of 1 on error
-		} catch (final SocketException e) {
-			System.err.println("Socket Exception");
-			Runtime.getRuntime().halt(1);
-		} catch (final TimeoutException e) {
-			System.err.println("Cannot connect to Stendhal server. Server is down?");
-			Runtime.getRuntime().halt(1);
-		} catch (final Exception e) {
-			System.out.println(e);
-			e.printStackTrace(System.err);
-			Runtime.getRuntime().halt(1);
-		}
-	}
-
-	private void readMessagesAndShoutThem() throws IOException, InterruptedException {
+	@Override
+	public void execute() throws IOException, InterruptedException {
 		final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String line = br.readLine();
 		while (line != null) {
