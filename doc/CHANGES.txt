@@ -1,5 +1,12 @@
 Changelog
 ---------
+0.81
+*features*
+- player stats moved from the character window to the side panel
+- a dragbar for making the game screen smaller
+*bug fixes*
+- numerous small map fixes
+
 0.80
 *features*
 - Player-to-player trading facilitated by Harold in Semos Tavern
