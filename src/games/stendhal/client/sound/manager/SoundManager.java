@@ -161,6 +161,7 @@ public class SoundManager
         try
         {
             mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(70, Time.Unit.MILLI));
+            mSoundSystem.setDaemon(true);
             mSoundSystem.start();
         }
         catch(SoundSystemException exception)
