@@ -18,6 +18,7 @@ package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.gui.ManagedWindow;
+import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -1243,15 +1244,15 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	private void playCloseSound() {
-		SoundMaster.play("click-10.wav");
+		SoundMaster.play(SoundLayer.USER_INTERFACE, "click-10.wav");
 	}
 
 	protected void playOpenSound() {
 		//TODO: use polymorphism
 		if (name.equals("bag")) {
-			SoundMaster.play("click-8.wav");
+			SoundMaster.play(SoundLayer.USER_INTERFACE, "click-8.wav");
 		}  else if (name.equals("chest")) {
-			SoundMaster.play("click-5.wav");
+			SoundMaster.play(SoundLayer.USER_INTERFACE, "click-5.wav");
 		}
 	}
 

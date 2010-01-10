@@ -3,6 +3,7 @@ package games.stendhal.client.soundreview;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.sound.manager.SoundManager;
 import games.stendhal.client.sound.system.Time;
 
@@ -44,15 +45,15 @@ public class SoundMaster implements WorldListener {
 		
 	}
 
-	public static void play(final String soundName, final double x, final double y) {
+	public static void play(final SoundLayer soundLayer, final String soundName, final double x, final double y) {
 		if (!((x == 0) && (y == 0))) {
 			if (HearingArea.contains(x, y)) {
-				play(soundName);
+				play(soundLayer, soundName);
 			}
 		}
 	}
 
-	public static void play(final String soundName) {
+	public static void play(final SoundLayer soundLayer, final String soundName) {
 		if (isMute) {
 			return;
 		}
@@ -67,19 +68,19 @@ public class SoundMaster implements WorldListener {
 		String mySoundName = soundName.replaceAll("\\.wav", "").replaceAll("\\.au", "").replaceAll("\\.aiff", "") + ".ogg";
 
 		if (USE_NEW_SOUND_SYSTEM) {
-			playUsingNewSoundSystem(mySoundName);
+			playUsingNewSoundSystem(soundLayer.ordinal(), mySoundName);
 		} else {
 			playUsingOldSoundSystem(soundName);
 		}
 	}
 
-	private static void playUsingNewSoundSystem(String mySoundName) {
+	private static void playUsingNewSoundSystem(int soundLayer, String mySoundName) {
 		SoundManager soundManager = SoundManager.get();
 		if (!soundManager.hasSoundName(mySoundName)) {
 			soundManager.openSoundFile("data/sounds/" + mySoundName, mySoundName);
 		}
 		//logger.info("soundName: " + mySoundName);
-		soundManager.play(mySoundName, 0, SoundManager.INFINITE_AUDIBLE_AREA, false, new Time());
+		soundManager.play(mySoundName, soundLayer, SoundManager.INFINITE_AUDIBLE_AREA, false, new Time());
 	}
 
 	private static void playUsingOldSoundSystem(final String soundName) {

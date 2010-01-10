@@ -1,5 +1,6 @@
 package games.stendhal.client.soundreview;
 
+import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.common.Rand;
 
 import java.util.HashMap;
@@ -29,12 +30,12 @@ public class Sound {
 	public void play() {
 		if (soundArray.containsKey(name)) {
 
-			SoundMaster.play(
+			SoundMaster.play(SoundLayer.AMBIENT_SOUND, 
 					soundArray.get(name)[Rand.rand(soundArray.get(name).length)],
 					x, y);
 
 		} else {
-			SoundMaster.play(name, x, y);
+			SoundMaster.play(SoundLayer.AMBIENT_SOUND, name, x, y);
 		}
 	}
 

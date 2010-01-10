@@ -23,6 +23,7 @@
 
 package games.stendhal.client.entity;
 
+import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.soundreview.Sound;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
@@ -109,7 +110,7 @@ public class SoundObject extends InvisibleEntity {
 		if (Rand.rand(100) < chance) {
 			if (soundArray.containsKey(token)) {
 
-				SoundMaster.play(
+				SoundMaster.play(SoundLayer.AMBIENT_SOUND, 
 						soundArray.get(token)[Rand.rand(soundArray.get(token).length)],
 						x, y);
 

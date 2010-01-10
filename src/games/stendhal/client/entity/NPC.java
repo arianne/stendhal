@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
 import marauroa.common.game.RPObject;
@@ -94,7 +95,7 @@ public class NPC extends RPEntity {
 		if ((soundWait < System.currentTimeMillis()) && (Rand.rand(1000) < 5)) {
 
 			if (moveSounds != null) {
-				SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
+				SoundMaster.play(SoundLayer.CREATURE_NOISE, moveSounds[Rand.rand(moveSounds.length)], x, y);
 			}
 			soundWait = System.currentTimeMillis() + 2000L;
 		}

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
 
@@ -34,7 +35,7 @@ public class Pet extends DomesticAnimal {
 			} else {
 				token = soundnames[1][which];
 			}
-			SoundMaster.play(token, x, y); 
+			SoundMaster.play(SoundLayer.CREATURE_NOISE, token, x, y); 
 		}
 	}
 }

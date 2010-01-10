@@ -223,7 +223,7 @@ class SoundCycle extends Thread implements Cloneable {
 					terminate();
 				}
 			} else {
-				SoundMaster.play(token);
+				SoundMaster.play(SoundLayer.AMBIENT_SOUND, token);
 			}
 		}
 	} // run

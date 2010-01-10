@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.soundreview.SoundMaster;
 import marauroa.common.game.RPObject;
 
@@ -94,7 +95,7 @@ public abstract class Food extends Entity {
 			// TODO this causes problems because of unidentified content refresh
 			// events (e.g. synchronizing)
 			if (amount > oldAmount) {
-				SoundMaster.play("pop-2.wav", getX(), getY());
+				SoundMaster.play(SoundLayer.CREATURE_NOISE, "pop-2.wav", getX(), getY());
 			}
 
 			fireChange(PROP_AMOUNT);

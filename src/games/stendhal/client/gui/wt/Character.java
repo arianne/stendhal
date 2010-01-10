@@ -25,6 +25,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Constants;
@@ -218,6 +219,6 @@ public class Character extends WtPanel {
 
 	@Override
 	protected void playOpenSound() {
-		SoundMaster.play("click-6.wav");
+		SoundMaster.play(SoundLayer.USER_INTERFACE, "click-6.wav");
 	}
 }
