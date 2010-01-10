@@ -17,10 +17,19 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
 import games.stendhal.server.entity.player.Player;
 
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 import org.apache.log4j.Logger;
+import org.xml.sax.Attributes;
+import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * QUEST: Quest to solve a riddle to leave hell
@@ -44,29 +53,148 @@ import org.apache.log4j.Logger;
  */
 
 public class SolveRiddles extends AbstractQuest {
-	private static Logger logger = Logger.getLogger(SolveRiddles.class);
-	
 	private static final String QUEST_SLOT = "solve_riddles";
 	private static final int xpreward = 100;
-    private static final String RIDDLES_XML = "/data/conf/riddles.xml";
-    private static final String RIDDLES_EXAMPLE_XML = "/data/conf/riddles-example.xml";
-	private final Properties riddles = new Properties();
+	private Riddles riddles;
 
-	public SolveRiddles() {
-			InputStream fis = getClass().getResourceAsStream(RIDDLES_XML);
-			if (fis==null) {
-				logger.warn(RIDDLES_XML + " not found. Using " + RIDDLES_EXAMPLE_XML);
-				fis = getClass().getResourceAsStream(RIDDLES_EXAMPLE_XML);
-				if (fis == null) {
-					logger.error("Failed to load " + RIDDLES_EXAMPLE_XML);
+	private static class Riddles {
+		private static Logger logger = Logger.getLogger(Riddles.class);
+
+		private static final String RIDDLES_XML = "/data/conf/riddles.xml";
+		private static final String RIDDLES_EXAMPLE_XML = "/data/conf/riddles-example.xml";
+
+		Map<String, Collection<String>> riddleMap;
+
+		public Riddles() {
+			riddleMap = new HashMap<String, Collection<String>>();
+			new RiddleLoader().load(riddleMap);
+		}
+
+		/**
+		 * Check if an answer mathces the riddle.
+		 * 
+		 * @param riddle The riddle to be answered
+		 * @param answer The answer given by the player
+		 * @return <code>true</code> iff the answer is correct
+		 */
+		public boolean matches(String riddle, Sentence answer) {
+			final ConversationContext ctx = new ConvCtxForMatchingSource();
+			answer = ConversationParser.parse(answer.getOriginalText(), ctx);
+
+			for (String correct : riddleMap.get(riddle)) {
+				final Sentence expected = ConversationParser.parse(correct, new SimilarExprMatcher());
+				if (answer.matchesFull(expected)) {
+					return true;
 				}
 			}
-			
-			try {
-				riddles.loadFromXML(fis);
-			} catch (final Exception e) {
-				logger.error("Error loading riddles", e);
+			return false;
+		}
+
+		/**
+		 * Get a random riddle.
+		 * 
+		 * @return A random ridde
+		 */
+		String getRiddle() {
+			return Rand.rand(riddleMap.keySet());
+		}
+
+		/**
+		 * Loader for the riddles xml format.
+		 */
+		private static class RiddleLoader extends DefaultHandler {
+			Map<String, Collection<String>> riddles;
+			String currentKey;
+			String currentAnswer;
+
+			public void load(Map<String, Collection<String>> riddles) {
+				this.riddles = riddles;
+
+				InputStream in = getClass().getResourceAsStream(RIDDLES_XML);
+
+				if (in == null) {
+					logger.warn(RIDDLES_XML + " not found. Using " + RIDDLES_EXAMPLE_XML);
+					in = getClass().getResourceAsStream(RIDDLES_EXAMPLE_XML);
+					if (in == null) {
+						logger.error("Failed to load " + RIDDLES_EXAMPLE_XML);
+						return;
+					}
+				}
+
+				SAXParser parser;
+
+				// Use the default (non-validating) parser
+				final SAXParserFactory factory = SAXParserFactory.newInstance();
+				try {
+					parser = factory.newSAXParser();
+					parser.parse(in, this);
+				} catch (final Exception e) {
+					logger.error(e);
+				} finally {
+					try {
+						in.close();
+					} catch (IOException e) {
+						logger.error(e);
+					}
+				}
 			}
+
+			/**
+			 * Add an answer to a riddle. Add the riddle too if it did not exist before.
+			 * @param riddle The riddle to add an answer to
+			 * @param answer Asnwer to the riddle
+			 */
+			private void addAnswer(String riddle, String answer) {
+				Collection<String> answers = riddles.get(riddle);
+				if (answers == null) {
+					answers = new LinkedList<String>();
+					riddles.put(riddle, answers);
+				}
+				answers.add(answer);
+			}
+
+			@Override
+			public void startElement(final String uri, final String localName, final String qName, final Attributes attrs) {
+				if (qName.equals("entry")) {
+					final String key = attrs.getValue("key");
+					if (key == null) {
+						logger.warn("An entry without a key");
+					} else {
+						currentKey = key;
+					}
+				} else if (!(qName.equals("riddles") || qName.equals("comment"))) {
+					currentKey = null;
+					logger.warn("Unknown XML element: " + qName);
+				}
+			}
+
+			@Override
+			public void endElement(final String uri, final String lName, final String qName) {
+				if (qName.equals("entry")) {
+					if ((currentKey != null) && (currentAnswer != null)) {
+						addAnswer(currentKey, currentAnswer);
+					} else {
+						logger.error("Error reading riddles, Key=" + currentKey + " " + " Answer=" + currentAnswer);
+					}
+				} else {
+					currentKey = null;
+					currentAnswer = null;
+				}
+			}
+
+			@Override
+			public void characters(char[] ch, int start, int length) {
+				if (currentKey != null) {
+					currentAnswer = new String(ch, start, length);
+				} else {
+					currentAnswer = null;
+				}
+			}
+		}
+	}
+
+	public SolveRiddles() {
+		riddles = new Riddles();
 	}
 
 	@Override
@@ -86,7 +214,7 @@ public class SolveRiddles extends AbstractQuest {
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						// randomly choose from available riddles
-						final String riddle = Rand.rand(riddles.keySet()).toString();
+						final String riddle = riddles.getRiddle(); 
 						npc.say("Try this riddle: " + riddle);
 						player.setQuest(QUEST_SLOT, riddle);
 					}
@@ -110,13 +238,8 @@ public class SolveRiddles extends AbstractQuest {
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 					final String riddle = player.getQuest(QUEST_SLOT);
-					final String solution = riddles.get(riddle).toString();
 
-					final ConversationContext ctx = new ConvCtxForMatchingSource();
-					final Sentence answer = ConversationParser.parse(sentence.getOriginalText(), ctx);
-					final Sentence expected = ConversationParser.parse(solution, new SimilarExprMatcher());
-
-					if (answer.matchesFull(expected)) {
+					if (riddles.matches(riddle, sentence)) {
 						final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_afterlife");
 						player.teleport(zone, 31, 23, Direction.UP, player);
 						// clear quest slot so riddle is chosen randomly for player next time
