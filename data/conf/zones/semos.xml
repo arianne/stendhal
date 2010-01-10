@@ -186,8 +186,7 @@
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
 				<parameter name="quest">vs_quest</parameter>
-				<parameter name="rejected">You find it hard to enter. Perhaps you're not
-  prepared for what is below.</parameter>
+				<parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
 			</implementation>
 		</portal>
 
