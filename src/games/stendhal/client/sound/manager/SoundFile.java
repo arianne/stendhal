@@ -11,7 +11,6 @@ import games.stendhal.client.sound.system.processors.PCMStreamConverter;
 import games.stendhal.client.sound.system.processors.Recorder;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -123,7 +122,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
 
             try
             {
-                decoder.open(new FileInputStream(mFilePath), 256, mOutputNumSamples);
+                decoder.open(this.getClass().getResourceAsStream("/" + mFilePath), 256, mOutputNumSamples);
             }
             catch(IOException exception) { }
             
