@@ -630,7 +630,10 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	}
 
 	private SoundSystem() {
-		if (!SoundMaster.USE_NEW_SOUND_SYSTEM) {
+		if (SoundMaster.USE_NEW_SOUND_SYSTEM) {
+			logger.info("using ogg based sound system");
+		} else {
+			logger.info("using wav based sound system");
 			init();
 		}
 	}
