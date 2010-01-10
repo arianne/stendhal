@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 public class SoundMaster implements WorldListener {
 	private static Logger logger = Logger.getLogger(SoundMaster.class);
 
-	public static final boolean USE_NEW_SOUND_SYSTEM = false;
+	public static final boolean USE_NEW_SOUND_SYSTEM = Boolean.parseBoolean(System.getProperty("stendhal.newsound", "false"));
 
 	private static SoundFileMap sfm;
 
