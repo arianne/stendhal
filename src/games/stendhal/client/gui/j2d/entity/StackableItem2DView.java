@@ -14,6 +14,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.TextSprite;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -73,7 +74,7 @@ public class StackableItem2DView extends Item2DView {
 			label = Integer.toString(quantity);
 		}
 
-		return gameScreen.createString(label, Color.white);
+		return TextSprite.createTextSprite(label, Color.WHITE);
 	}
 
 	/**

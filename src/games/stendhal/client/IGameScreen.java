@@ -201,18 +201,6 @@ public interface IGameScreen {
 	void drawInScreen(Sprite sprite, int sx, int sy);
 
 	/**
-	 * Create a sprite representation of some text.
-	 *
-	 * @param text
-	 *            The text.
-	 * @param textColor
-	 *            The text color.
-	 *
-	 * @return A sprite.
-	 */
-	Sprite createString(String text, Color textColor);
-
-	/**
 	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
 	 * only with an outline border. <p>The area drawn extends 1 pixel out on all
 	 * side from what would normal be drawn by drawString().

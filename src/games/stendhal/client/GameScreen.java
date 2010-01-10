@@ -21,7 +21,6 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.wt.GroundContainer;
 import games.stendhal.client.gui.wt.core.WtPanel;
-import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.NotificationType;
@@ -32,12 +31,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Transparency;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.geom.Point2D;
@@ -1044,23 +1039,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	public void drawInScreen(final Sprite sprite, final int sx, final int sy) {
 		sprite.draw(getGraphics(), sx, sy);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#createString(java.lang.String,
-	 *      java.awt.Color)
-	 */
-	public Sprite createString(final String text, final Color textColor) {
-		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-		final Image image = gc.createCompatibleImage(getGraphics().getFontMetrics().stringWidth(
-				text) + 2, 16, Transparency.BITMASK);
-		final Graphics g2d = image.getGraphics();
-
-		drawOutlineString(g2d, textColor, text, 1, 10);
-
-		return new ImageSprite(image);
 	}
 
 	/*

@@ -19,6 +19,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.sprite.TextSprite;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 
@@ -209,7 +210,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			}
 		}
 
-		return gameScreen.createString(entity.getTitle(), nameColor);
+		return TextSprite.createTextSprite(entity.getTitle(), nameColor);
 	}
 
 	/**
