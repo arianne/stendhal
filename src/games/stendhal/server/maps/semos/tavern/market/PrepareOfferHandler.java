@@ -24,7 +24,7 @@ public class PrepareOfferHandler {
 		npc.add(ConversationStates.ATTENDING, "sell", 
 				new LevelLessThanCondition(6), 
 				ConversationStates.ATTENDING, 
-				"I am sorry, I currently only accept offers from people who have a good reputation. You can obtain acceptance by gaining experiance for example by helping people with their tasks or defending the city from evil creatures.", null);
+				"I am sorry, I currently only accepting offers from people who have a good reputation. You can obtain acceptance by gaining experiance for example by helping people with their tasks or defending the city from evil creatures.", null);
 		npc.add(ConversationStates.ATTENDING, "sell", 
 				new LevelGreaterThanCondition(5), 
 				ConversationStates.ATTENDING, null, 
