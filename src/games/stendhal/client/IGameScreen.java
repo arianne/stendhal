@@ -7,7 +7,6 @@ import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.NotificationType;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -199,26 +198,6 @@ public interface IGameScreen {
 	void draw(Sprite sprite, double wx, double wy);
 
 	void drawInScreen(Sprite sprite, int sx, int sy);
-
-	/**
-	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
-	 * only with an outline border. <p>The area drawn extends 1 pixel out on all
-	 * side from what would normal be drawn by drawString().
-	 * The outline color is calculated from the text color value.
-	 *
-	 * @param g
-	 *            The graphics context.
-	 * @param textColor
-	 *            The text color.
-	 * @param text
-	 *            The text to draw.
-	 * @param x
-	 *            The X position.
-	 * @param y
-	 *            The Y position.
-	 */
-	void drawOutlineString(final Graphics g,
-			final Color textColor, final String text, final int x, final int y);
 
 	/**
 	 * Convert a world unit value to a screen unit value.

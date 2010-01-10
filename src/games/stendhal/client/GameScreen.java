@@ -1044,60 +1044,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see games.stendhal.client.IGameScreen#drawOutlineString(java.awt.Graphics,
-	 *      java.awt.Color, java.lang.String, int, int)
-	 */
-	public void drawOutlineString(final Graphics g, final Color textColor,
-			final String text, final int x, final int y) {
-		/*
-		 * Use light gray as outline for colors < 25% bright. Luminance = 0.299R +
-		 * 0.587G + 0.114B
-		 */
-		final int lum = ((textColor.getRed() * 299) + (textColor.getGreen() * 587) + (textColor.getBlue() * 114)) / 1000;
-
-		Color outlineColor;
-		if (lum >= 64) {
-			outlineColor = Color.black;
-		} else {
-			outlineColor = Color.lightGray;
-		}
-		drawOutlineString(g, textColor, outlineColor, text, x, y);
-	}
-
-	/**
-	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
-	 * only with an outline border. The area drawn extends 1 pixel out on all
-	 * side from what would normal be drawn by drawString().
-	 *
-	 * @param g
-	 *            The graphics context.
-	 * @param textColor
-	 *            The text color.
-	 * @param outlineColor
-	 *            The outline color.
-	 * @param text
-	 *            The text to draw.
-	 * @param x
-	 *            The X position.
-	 * @param y
-	 *            The Y position.
-	 */
-	private void drawOutlineString(final Graphics g, final Color textColor,
-			final Color outlineColor, final String text, final int x,
-			final int y) {
-		g.setColor(outlineColor);
-		g.drawString(text, x - 1, y - 1);
-		g.drawString(text, x - 1, y + 1);
-		g.drawString(text, x + 1, y - 1);
-		g.drawString(text, x + 1, y + 1);
-
-		g.setColor(textColor);
-		g.drawString(text, x, y);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 *
 	 * @see games.stendhal.client.IGameScreen#convertWorldToScreen(double)
 	 */
 	public int convertWorldToScreen(final double w) {
