@@ -61,7 +61,7 @@ public abstract class RPEntity extends ActiveEntity {
 	public static final Property PROP_GHOSTMODE = new Property();
 
 	/**
-	 * Indicator text property.
+	 * Indicator text property. Fired if they are added or removed.
 	 */
 	public static final Property PROP_TEXT_INDICATORS = new Property();
 
@@ -836,15 +836,19 @@ public abstract class RPEntity extends ActiveEntity {
 		if (!textIndicators.isEmpty()) {
 			final Iterator<TextIndicator> iter = textIndicators.iterator();
 
+			boolean changed = false;
 			while (iter.hasNext()) {
 				final TextIndicator textIndicator = iter.next();
 
 				if (textIndicator.addAge(delta) > 2000L) {
 					iter.remove();
+					changed = true;
 				}
 			}
 
-			fireChange(PROP_TEXT_INDICATORS);
+			if (changed) {
+				fireChange(PROP_TEXT_INDICATORS);
+			}
 		}
 	}
 

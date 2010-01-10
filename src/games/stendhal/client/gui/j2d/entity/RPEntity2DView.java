@@ -24,7 +24,6 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;
-import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.HashMap;
@@ -53,6 +52,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	private static Sprite blockedSprite;
 
 	private static Sprite missedSprite;
+	
+	/** Temporary text sprites, like HP and XP changes. */
+	private Map<RPEntity.TextIndicator, Sprite> floaters = new HashMap<RPEntity.TextIndicator, Sprite>();
 
 	/**
 	 * Blade strike frame.
@@ -263,24 +265,14 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected void drawFloaters(final Graphics2D g2d, final int x, final int y,
 			final int width, final IGameScreen gameScreen) {
-		final FontMetrics fm = g2d.getFontMetrics();
-
-		final Iterator<RPEntity.TextIndicator> iter = ((RPEntity) entity).getTextIndicators();
-
-		while (iter.hasNext()) {
-			final RPEntity.TextIndicator indicator = iter.next();
-
+		for (Map.Entry<RPEntity.TextIndicator, Sprite> floater : floaters.entrySet()) {
+			final RPEntity.TextIndicator indicator = floater.getKey();
+			final Sprite sprite = floater.getValue();
 			final int age = indicator.getAge();
-			final String text = indicator.getText();
-
-			final int stringwidth = fm.stringWidth(text) + 2;
-
-			final int tx = x + ((width - stringwidth) / 2);
+			
+			final int tx = x + (width - sprite.getWidth()) / 2;
 			final int ty = y - (int) (age * 5L / 300L);
-
-			final Color color = indicator.getType().getColor();
-
-			gameScreen.drawOutlineString(g2d, color, text, tx, ty + 10);
+			sprite.draw(g2d, tx, ty);
 		}
 	}
 
@@ -731,7 +723,26 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			titleChanged = true;
 		} else if (property == RPEntity.PROP_TITLE_TYPE) {
 			titleChanged = true;
+		} else if (property == RPEntity.PROP_TEXT_INDICATORS) {
+			onFloatersChanged();
 		}
+	}
+	
+	private void onFloatersChanged() {
+		Iterator<RPEntity.TextIndicator> it = ((RPEntity) entity).getTextIndicators();
+		Map<RPEntity.TextIndicator, Sprite> newFloaters = new HashMap<RPEntity.TextIndicator, Sprite>();
+		
+		while (it.hasNext()) {
+			RPEntity.TextIndicator floater = it.next();
+			Sprite sprite = floaters.get(floater);
+			if (sprite == null) {
+				sprite = TextSprite.createTextSprite(floater.getText(), floater.getType().getColor());
+			}
+			
+			newFloaters.put(floater, sprite);
+		}
+		
+		floaters = newFloaters;
 	}
 
 	/**
