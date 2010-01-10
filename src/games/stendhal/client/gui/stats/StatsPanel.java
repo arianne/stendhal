@@ -170,10 +170,11 @@ public class StatsPanel extends StyledJPanel {
 	private void updateHP() {
 		final String text = "HP: " + hp + "/" + maxhp;
 		SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-            	hpLabel.setText(text);
-            }
-        });
+			public void run() {
+				hpLabel.setText(text);
+				hpLabel.paintImmediately(hpLabel.getVisibleRect());
+			}
+		});
 	}
 	
 	private void updateATK() {
@@ -183,6 +184,7 @@ public class StatsPanel extends StyledJPanel {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				atkLabel.setText(text);
+				atkLabel.paintImmediately(atkLabel.getVisibleRect());
 			}
 		});
 	}
@@ -194,6 +196,7 @@ public class StatsPanel extends StyledJPanel {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				defLabel.setText(text);
+				defLabel.paintImmediately(defLabel.getVisibleRect());
 			}
 		});
 	}
@@ -204,6 +207,7 @@ public class StatsPanel extends StyledJPanel {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				levelLabel.setText(text);
+				levelLabel.paintImmediately(levelLabel.getVisibleRect());
 			}
 		});
 	}
@@ -220,6 +224,7 @@ public class StatsPanel extends StyledJPanel {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				moneyLabel.setText("Money: " + amount);
+				moneyLabel.paintImmediately(moneyLabel.getVisibleRect());
 			}
 		});
 	}
