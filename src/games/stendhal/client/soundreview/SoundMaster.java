@@ -78,8 +78,8 @@ public class SoundMaster implements WorldListener {
 		if (!soundManager.hasSoundName(mySoundName)) {
 			soundManager.openSoundFile("data/sounds/" + mySoundName, mySoundName);
 		}
-		logger.info("soundName: " + mySoundName);
-		soundManager.play(mySoundName, 0, null, false, new Time());
+		//logger.info("soundName: " + mySoundName);
+		soundManager.play(mySoundName, 0, SoundManager.INFINITE_AUDIBLE_AREA, false, new Time());
 	}
 
 	private static void playUsingOldSoundSystem(final String soundName) {
