@@ -19,12 +19,16 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author silvio
  */
 public class SoundFile extends SignalProcessor implements Cloneable
 {
+    private static Logger logger = Logger.getLogger(SoundFile.class);
+
     public static enum Type { OGG, WAV }
 
     private SignalProcessor mPropagator;
@@ -155,7 +159,11 @@ public class SoundFile extends SignalProcessor implements Cloneable
                 mSampleRate  = oggdec.getSampleRate();
                 decoder      = oggdec;
             }
-            catch(Exception exception) { decoder = null; }
+            catch(Exception exception)
+            {
+                logger.warn(exception, exception);
+                decoder = null;
+            }
             break;
 
         case WAV:
