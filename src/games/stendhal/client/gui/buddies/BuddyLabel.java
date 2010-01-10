@@ -23,6 +23,7 @@ class BuddyLabel extends JLabel {
 
 	void setOnline(final boolean online) {
 			this.setEnabled(online);
+			paintImmediately(getVisibleRect());
 	}
 
 	public BuddyLabel() {
