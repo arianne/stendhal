@@ -334,7 +334,10 @@ public class SoundSystem extends Thread
         {
             for(Output output: mOutputs)
             {
-                assert output.mAudioFormat != null;
+                if (output.mAudioFormat == null) {
+                	// happens for example if the audio device is in use by an other application
+                	continue;
+                }
 
                 int numBytesPerSample = output.mAudioFormat.getSampleSizeInBits() / 8;
                 int numChannels       = output.mAudioFormat.getChannels();
