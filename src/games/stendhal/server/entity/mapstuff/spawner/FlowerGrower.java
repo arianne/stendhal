@@ -21,9 +21,8 @@ import marauroa.common.game.RPObject;
  * 
  */
 public class FlowerGrower extends VegetableGrower {
-
-	/* 50 hours for one growing step */
-	private static final int REGROWTURN_50_HOURS = 60000;
+	/** 5 hours for one growing step */
+	private static final int GROW_TIME_TURNS = 60000;
 	private static final String ITEM_NAME = "lilia";
 	private final String[] description = {
 			"You see a seed which has just been planted.",
@@ -47,7 +46,7 @@ public class FlowerGrower extends VegetableGrower {
 	 */
 	public FlowerGrower(final RPObject object, final String itemname) {
 		super(object, itemname);
-		meanTurnsForRegrow = REGROWTURN_50_HOURS;
+		meanTurnsForRegrow = GROW_TIME_TURNS;
 		setMaxRipeness(4);
 		store();
 	}
@@ -75,7 +74,7 @@ public class FlowerGrower extends VegetableGrower {
 	public FlowerGrower(final String infoString) {
 		super(infoString);
 		setMaxRipeness(4);
-		meanTurnsForRegrow = REGROWTURN_50_HOURS;
+		meanTurnsForRegrow = GROW_TIME_TURNS;
 		store();
 	}
 
@@ -140,10 +139,7 @@ public class FlowerGrower extends VegetableGrower {
 		} else {
 			if (getZone() != null) {
 				getZone().remove(this);
-				
-				notifyWorldAboutChanges();
 			}
-
 		}
 	}
 
