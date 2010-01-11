@@ -178,7 +178,7 @@
 			<parameter name="x">60</parameter>
 			<parameter name="y">44</parameter>
 			<parameter name="width">16</parameter>
-			<parameter name="height">34</parameter>
+			<parameter name="height">26</parameter>
 		</configurator>
 
 		<portal x="92" y="101" ref="catacombs_entrance">
