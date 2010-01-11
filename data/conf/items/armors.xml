@@ -363,7 +363,7 @@
 
   <item name="magic plate armor">
     <type class="armor" subclass="magic_plate_armor" tileid="-1"/>
-    <description>You see a suit of plate armor. The steel is well tempered and the suit is very strong. It has been magically enhanced.</description>
+    <description>You see a suit of magic plate armor. The steel is well tempered and the suit is very strong.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="24"/>
 	  <min_level value="150"/>
