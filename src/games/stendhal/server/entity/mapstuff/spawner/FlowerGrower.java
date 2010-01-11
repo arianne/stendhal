@@ -2,14 +2,11 @@ package games.stendhal.server.entity.mapstuff.spawner;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.engine.StendhalRPObjectFactory;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.area.FertileGround;
-
-import java.util.List;
 
 import marauroa.common.game.RPObject;
 
@@ -107,35 +104,38 @@ public class FlowerGrower extends VegetableGrower {
 	}
 
 	/**
-	 * Checks if this entity is on a fertile spot.
+	 * Checks if this entity is on a free fertile spot.
 	 * 
 	 * @return true if there is an item implementing FertileGround in the zone,
 	 *         and the position of this is in its area.
 	 */
-	public boolean isOnFertileGround() {
+	public boolean isOnFreeFertileGround() {
 		if (this.getZone() == null) {
 			return false;
 		} else {
+			
 			final StendhalRPZone zone = this.getZone();
-			final List<Entity> ferts = zone
-					.getFilteredEntities(new FilterCriteria<Entity>() {
-
-						public boolean passes(final Entity o) {
-							if (o instanceof FertileGround) {
-								return o.getArea().contains(getX(), getY());
-							}
-							return false;
-						}
-					});
-
-			return !ferts.isEmpty();
-
+			boolean passes = false; 
+			for (Entity entity : zone.getEntitiesAt(getX(), getY())) {
+				if (entity instanceof FlowerGrower) {
+					if (!equals(entity)) {
+						// There's already something else growing here
+						return false;
+					}
+				} else {
+					if (entity instanceof FertileGround) {
+						passes = true;
+					}
+				}
+			}
+			
+			return passes;
 		}
 	}
 
 	@Override
 	protected void growNewFruit() {
-		if (isOnFertileGround()) {
+		if (isOnFreeFertileGround()) {
 			super.growNewFruit();
 		} else {
 			if (getZone() != null) {

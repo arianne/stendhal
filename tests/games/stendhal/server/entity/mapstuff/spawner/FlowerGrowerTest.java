@@ -115,7 +115,7 @@ public class FlowerGrowerTest {
 		zone.add(entity);
 		zone.add(fl);
 
-		assertTrue(fl.isOnFertileGround());
+		assertTrue(fl.isOnFreeFertileGround());
 		fl.growNewFruit();
 		assertThat(fl.getRipeness(), is(1));
 	}
@@ -132,7 +132,7 @@ public class FlowerGrowerTest {
 
 		zone.add(fl);
 		zone.add(entity);
-		assertTrue(fl.isOnFertileGround());
+		assertTrue(fl.isOnFreeFertileGround());
 		fl.growNewFruit();
 		assertThat(fl.getRipeness(), is(1));
 	}
@@ -149,7 +149,7 @@ public class FlowerGrowerTest {
 		entity.setPosition(10, 10);
 		zone.add(fl);
 		zone.add(entity);
-		assertFalse(fl.isOnFertileGround());
+		assertFalse(fl.isOnFreeFertileGround());
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class FlowerGrowerTest {
 		final FlowerGrower fl = new FlowerGrower();
 		fl.setRipeness(0);
 
-		assertFalse(fl.isOnFertileGround());
+		assertFalse(fl.isOnFreeFertileGround());
 		fl.growNewFruit();
 		assertThat(fl.getRipeness(), is(0));
 	}
