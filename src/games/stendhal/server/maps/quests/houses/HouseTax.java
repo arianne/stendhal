@@ -229,9 +229,17 @@ class HouseTax implements TurnListener {
 						if (player.isEquipped("money", cost)) {
 							player.drop("money", cost);
 							setTaxesPaid(player, periods);
-							npc.say("Thank you! You have paid your taxes of " + Integer.toString(cost) + " money for the last " 
-									+ Grammar.quantityplnoun(periods, "month")
-									+ ".");
+							StringBuilder msg = new StringBuilder();
+							msg.append("Thank you! You have paid your taxes of ");
+							msg.append(cost);
+							msg.append(" money for the last ");
+							if (periods > 1) {
+								msg.append(periods);
+								msg.append(" months.");
+							} else {
+								msg.append("month.");
+							}
+							npc.say(msg.toString());
 						} else {
 							npc.say("You don't have enough money to pay your taxes. You need at least " 
 									+ cost + " money. Don't delay or the interest on what you owe will increase.");
