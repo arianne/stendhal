@@ -43,10 +43,12 @@ public class KTextEdit extends JPanel {
 	
 	
 	private final class TextPaneMouseListener extends MouseAdapter {
+		@Override
 		public void mousePressed(final MouseEvent e) {
 	        maybeShowPopup(e);
 	    }
 
+		@Override
 	    public void mouseReleased(final MouseEvent e) {
 	        maybeShowPopup(e);
 	    }
@@ -253,7 +255,7 @@ public class KTextEdit extends JPanel {
 			if (SwingUtilities.isEventDispatchThread()) {
 				handleAddLine(header, line, type);
 			} else {
-				SwingUtilities.invokeAndWait(new Runnable() {
+				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						handleAddLine(header, line, type);
 					}
