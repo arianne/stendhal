@@ -118,6 +118,7 @@ public class FlowerGrowerTest {
 		assertTrue(fl.isOnFreeFertileGround());
 		fl.growNewFruit();
 		assertThat(fl.getRipeness(), is(1));
+		assertTrue(zone.getPlantGrowers().contains(fl));
 	}
 
 	/**
@@ -135,6 +136,7 @@ public class FlowerGrowerTest {
 		assertTrue(fl.isOnFreeFertileGround());
 		fl.growNewFruit();
 		assertThat(fl.getRipeness(), is(1));
+		assertTrue(zone.getPlantGrowers().contains(fl));
 	}
 
 	/**
@@ -150,6 +152,11 @@ public class FlowerGrowerTest {
 		zone.add(fl);
 		zone.add(entity);
 		assertFalse(fl.isOnFreeFertileGround());
+		
+		// check it withers when grown
+		fl.growNewFruit();
+		assertThat(fl.getRipeness(), is(0));
+		assertFalse(zone.getPlantGrowers().contains(fl));
 	}
 
 	/**
@@ -164,5 +171,28 @@ public class FlowerGrowerTest {
 		assertFalse(fl.isOnFreeFertileGround());
 		fl.growNewFruit();
 		assertThat(fl.getRipeness(), is(0));
+	}
+	
+	/**
+	 * Check that growing on top of another FlowerGrower fails
+	 */
+	@Test
+	public void testGrowOnFreeFertileGroundReserved() throws Exception {
+		final FlowerGrower fl = new FlowerGrower();
+		final FlowerGrower fl2 = new FlowerGrower();
+		fl.setRipeness(0);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		final Entity entity = new Allotment();
+
+		zone.add(fl);
+		zone.add(fl2);
+		zone.add(entity);
+		assertFalse(fl.isOnFreeFertileGround());
+		fl.growNewFruit();
+		assertThat(fl.getRipeness(), is(0));
+		
+		// check that the right one got removed
+		assertTrue(zone.getPlantGrowers().contains(fl2));
+		assertFalse(zone.getPlantGrowers().contains(fl));
 	}
 }
