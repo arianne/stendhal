@@ -292,6 +292,10 @@ public class KTextEdit extends JPanel {
 					vbar.setValue(currentLocation);
 					setUnreadLinesWarning(true);
 				}
+				// A workaround for swing being otherwise too stupid to do that
+				// in certain conditions.
+				// revalidate() etc do _not_ help
+				textPane.paintImmediately(textPane.getVisibleRect());
 			}
 		});
 	}
