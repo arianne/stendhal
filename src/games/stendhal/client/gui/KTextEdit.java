@@ -255,7 +255,7 @@ public class KTextEdit extends JPanel {
 			if (SwingUtilities.isEventDispatchThread()) {
 				handleAddLine(header, line, type);
 			} else {
-				SwingUtilities.invokeLater(new Runnable() {
+				SwingUtilities.invokeAndWait(new Runnable() {
 					public void run() {
 						handleAddLine(header, line, type);
 					}
