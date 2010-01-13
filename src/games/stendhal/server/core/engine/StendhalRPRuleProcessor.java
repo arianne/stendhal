@@ -349,7 +349,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			try {
 				entry.first().onDead(entry.second());
 			} catch (final Exception e) {
-				logger.error("Player has logout before dead", e);
+				logger.error("error while handling killed entities", e);
 			}
 		}
 		entityToKill.clear();
