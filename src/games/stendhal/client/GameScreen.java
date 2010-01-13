@@ -36,7 +36,6 @@ import java.awt.Rectangle;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.util.Collections;
 import java.util.Comparator;
@@ -957,66 +956,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see games.stendhal.client.IGameScreen#convertWorldToScreenView(java.awt.geom.Rectangle2D)
-	 */
-	public Rectangle convertWorldToScreenView(final Rectangle2D wrect) {
-		return convertWorldToScreenView(wrect.getX(), wrect.getY(),
-				wrect.getWidth(), wrect.getHeight());
-	}
-
-	/**
-	 * Convert world coordinates to screen coordinates.
-	 *
-	 * @param wx
-	 *            World X coordinate.
-	 * @param wy
-	 *            World Y coordinate.
-	 * @param wwidth
-	 *            World area width.
-	 * @param wheight
-	 *            World area height.
-	 *
-	 * @return Screen rectangle (in integer values).
-	 */
-	private Rectangle convertWorldToScreenView(final double wx, final double wy,
-			final double wwidth, final double wheight) {
-		return new Rectangle(convertWorldXToScreenView(wx),
-				convertWorldYToScreenView(wy),
-				(int) (wwidth * SIZE_UNIT_PIXELS),
-				(int) (wheight * SIZE_UNIT_PIXELS));
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#isInScreen(java.awt.Rectangle)
-	 */
-	public boolean isInScreen(final Rectangle srect) {
-		return isInScreen(srect.x, srect.y, srect.width, srect.height);
-	}
-
-	/**
-	 * Determine if an area is in the screen view.
-	 *
-	 * @param sx
-	 *            Screen X coordinate.
-	 * @param sy
-	 *            Screen Y coordinate.
-	 * @param swidth
-	 *            Screen area width.
-	 * @param sheight
-	 *            Screen area height.
-	 *
-	 * @return <code>true</code> if some part of area in in the visible
-	 *         screen, otherwise <code>false</code>.
-	 */
-	private boolean isInScreen(final int sx, final int sy, final int swidth, final int sheight) {
-		return (((sx >= -swidth) && (sx < sw)) && ((sy >= -sheight) && (sy < sh)));
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
 	 * @see games.stendhal.client.IGameScreen#draw(games.stendhal.client.sprite.Sprite,
 	 *      int, int)
 	 */
@@ -1044,12 +983,14 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		sprite.draw(getGraphics(), sx, sy);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Convert a world unit value to a screen unit value.
 	 *
-	 * @see games.stendhal.client.IGameScreen#convertWorldToScreen(double)
+	 * @param w World value.
+	 *
+	 * @return A screen value (in pixels).
 	 */
-	public int convertWorldToScreen(final double w) {
+	private int convertWorldToScreen(final double w) {
 		return (int) (w * SIZE_UNIT_PIXELS);
 	}
 

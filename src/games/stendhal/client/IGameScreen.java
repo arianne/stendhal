@@ -9,9 +9,7 @@ import games.stendhal.common.NotificationType;
 
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 
 public interface IGameScreen {
 
@@ -164,27 +162,6 @@ public interface IGameScreen {
 	Point convertWorldToScreenView(double wx, double wy);
 
 	/**
-	 * Convert world coordinates to screen coordinates.
-	 *
-	 * @param wrect
-	 *            World area.
-	 *
-	 * @return Screen rectangle (in integer values).
-	 */
-	Rectangle convertWorldToScreenView(Rectangle2D wrect);
-
-	/**
-	 * Determine if an area is in the screen view.
-	 *
-	 * @param srect
-	 *            Screen area.
-	 *
-	 * @return <code>true</code> if some part of area in in the visible
-	 *         screen, otherwise <code>false</code>.
-	 */
-	boolean isInScreen(Rectangle srect);
-
-	/**
 	 * Draws a sprite in screen given its world coordinates.
 	 * 
 	 * @param sprite
@@ -198,16 +175,6 @@ public interface IGameScreen {
 	void draw(Sprite sprite, double wx, double wy);
 
 	void drawInScreen(Sprite sprite, int sx, int sy);
-
-	/**
-	 * Convert a world unit value to a screen unit value.
-	 *
-	 * @param w
-	 *            World value.
-	 *
-	 * @return A screen value (in pixels).
-	 */
-	int convertWorldToScreen(double w);
 
 	/**
 	 * Convert screen view coordinates to world coordinates.
