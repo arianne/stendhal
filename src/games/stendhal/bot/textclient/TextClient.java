@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.bot.textclient;
 
+import games.stendhal.bot.core.PerceptionErrorListener;
 import games.stendhal.client.stendhal;
 
 import java.net.SocketException;
@@ -19,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -56,49 +56,7 @@ public class TextClient extends Thread {
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
-		handler = new PerceptionHandler(new IPerceptionListener() {
-
-			public boolean onAdded(final RPObject object) {
-				return false;
-			}
-
-			public boolean onClear() {
-				return false;
-			}
-
-			public boolean onDeleted(final RPObject object) {
-				return false;
-			}
-
-			public void onException(final Exception exception,
-					final MessageS2CPerception perception) {
-				exception.printStackTrace();
-			}
-
-			public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
-				return false;
-			}
-
-			public boolean onModifiedDeleted(final RPObject object, final RPObject changes) {
-				return false;
-			}
-
-			public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
-				return false;
-			}
-
-			public void onPerceptionBegin(final byte type, final int timestamp) {
-			}
-
-			public void onPerceptionEnd(final byte type, final int timestamp) {
-			}
-
-			public void onSynced() {
-			}
-
-			public void onUnsynced() {
-			}
-		});
+		handler = new PerceptionHandler(new PerceptionErrorListener());
 
 		clientManager = new marauroa.client.ClientFramework(
 				"games/stendhal/log4j.properties") {
