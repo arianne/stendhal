@@ -12,173 +12,10 @@
  ***************************************************************************/
 package games.stendhal.bot.textclient;
 
-import games.stendhal.bot.core.PerceptionErrorListener;
-import games.stendhal.client.stendhal;
+import games.stendhal.bot.core.StandardClientFramework;
 
-import java.net.SocketException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+public class TextClient {
 
-import marauroa.client.net.PerceptionHandler;
-import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
-import marauroa.common.net.message.MessageS2CPerception;
-import marauroa.common.net.message.TransferContent;
-
-public class TextClient extends Thread {
-
-	private final String host;
-
-	private final String username;
-
-	private final String password;
-
-	private final String character;
-
-	private final String port;
-
-	private static boolean ShowWorld;
-
-	private final Map<RPObject.ID, RPObject> world_objects;
-
-	private final marauroa.client.ClientFramework clientManager;
-
-	private final PerceptionHandler handler;
-
-	public TextClient(final String h, final String u, final String p, final String c, final String P,
-			final boolean t) throws SocketException {
-		host = h;
-		username = u;
-		password = p;
-		character = c;
-		port = P;
-
-		world_objects = new HashMap<RPObject.ID, RPObject>();
-
-		handler = new PerceptionHandler(new PerceptionErrorListener());
-
-		clientManager = new marauroa.client.ClientFramework(
-				"games/stendhal/log4j.properties") {
-
-			@Override
-			protected String getGameName() {
-				return "stendhal";
-			}
-
-			@Override
-			protected String getVersionNumber() {
-				return stendhal.VERSION;
-			}
-
-			@Override
-			protected void onPerception(final MessageS2CPerception message) {
-				try {
-					System.out.println("Received perception "
-							+ message.getPerceptionTimestamp());
-
-					handler.apply(message, world_objects);
-					final int i = message.getPerceptionTimestamp();
-
-					final RPAction action = new RPAction();
-					if (i % 50 == 0) {
-						action.put("type", "move");
-						action.put("dy", "-1");
-						clientManager.send(action);
-					} else if (i % 50 == 20) {
-						action.put("type", "move");
-						action.put("dy", "1");
-						clientManager.send(action);
-					} else if (i % 50 == 21) {
-						action.put("type", "chat");
-						action.put("text", "Test");
-						clientManager.send(action);
-					}
-					if (ShowWorld) {
-						System.out.println("<World contents ------------------------------------->");
-						int j = 0;
-						for (final RPObject object : world_objects.values()) {
-							j++;
-							System.out.println(j + ". " + object);
-						}
-						System.out.println("</World contents ------------------------------------->");
-					}
-				} catch (final Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			protected List<TransferContent> onTransferREQ(
-					final List<TransferContent> items) {
-				for (final TransferContent item : items) {
-					item.ack = true;
-				}
-
-				return items;
-			}
-
-			@Override
-			protected void onTransfer(final List<TransferContent> items) {
-				System.out.println("Transfering ----");
-				for (final TransferContent item : items) {
-					System.out.println(item);
-				}
-			}
-
-			@Override
-			protected void onAvailableCharacters(final String[] characters) {
-				System.out.println("Characters available");
-				for (final String characterAvail : characters) {
-					System.out.println(characterAvail);
-				}
-
-				try {
-					chooseCharacter(character);
-				} catch (final Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			protected void onServerInfo(final String[] info) {
-				System.out.println("Server info");
-				for (final String info_string : info) {
-					System.out.println(info_string);
-				}
-			}
-
-			@Override
-			protected void onPreviousLogins(final List<String> previousLogins) {
-				System.out.println("Previous logins");
-				for (final String info_string : previousLogins) {
-					System.out.println(info_string);
-				}
-			}
-		};
-
-	}
-
-	@Override
-	public void run() {
-		try {
-			clientManager.connect(host, Integer.parseInt(port));
-			clientManager.login(username, password);
-		} catch (final Exception e) {
-			e.printStackTrace();
-			return;
-		}
-
-		final boolean cond = true;
-
-		while (cond) {
-			clientManager.loop(0);
-			try {
-				sleep(100);
-			} catch (final InterruptedException e) {
-			}
-		}
-	}
 
 	public static void main(final String[] args) {
 		try {
@@ -189,7 +26,7 @@ public class TextClient extends Thread {
 				String character = null;
 				String host = null;
 				String port = null;
-				boolean tcp = false;
+				boolean showWorld = false;
 
 				while (i != args.length) {
 					if (args[i].equals("-u")) {
@@ -204,10 +41,8 @@ public class TextClient extends Thread {
 						port = args[i + 1];
 					} else if (args[i].equals("-W")) {
 						if ("1".equals(args[i + 1])) {
-							ShowWorld = true;
+							showWorld = true;
 						}
-					} else if (args[i].equals("-t")) {
-						tcp = true;
 					}
 					i++;
 				}
@@ -216,8 +51,8 @@ public class TextClient extends Thread {
 						&& (character != null) && (host != null)
 						&& (port != null)) {
 					System.out.println("Parameter operation");
-					new TextClient(host, username, password, character, port,
-							tcp).start();
+					TextClientFramework client = new TextClientFramework(host, username, password, character, port, showWorld);
+					client.script();
 					return;
 				}
 			}
@@ -227,11 +62,7 @@ public class TextClient extends Thread {
 			System.out.println("  games.stendhal.textClient -u username -p pass -h host -P port -c character");
 			System.out.println();
 			System.out.println("Required parameters");
-			System.out.println("* -h\tHost that is running Marauroa server");
-			System.out.println("* -P\tPort on which Marauroa server is running");
-			System.out.println("* -u\tUsername to log into Marauroa server");
-			System.out.println("* -p\tPassword to log into Marauroa server");
-			System.out.println("* -c\tCharacter used to log into Marauroa server");
+			StandardClientFramework.printConnectionParameters();
 			System.out.println("Optional parameters");
 			System.out.println("* -W\tShow world content? 0 or 1");
 		} catch (final Exception e) {
