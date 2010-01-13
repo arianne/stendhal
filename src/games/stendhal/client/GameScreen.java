@@ -529,53 +529,53 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		 * layers
 		 */
 		final String set = gameLayers.getAreaName();
-
-		final int xTemp = (int) getViewX();
-		final int yTemp = (int) getViewY();
-		// round up to 32 pixel boundary
-		int tmp = (int) getViewWidth();
-		final int w = tmp + tmp % 32;
-		tmp = (int) getViewHeight();
-		final int h = tmp + tmp % 32;
 		
+		// An adjusted graphics object so that the drawn objects do not need to
+		// know about converting the position to screen
+		Graphics graphics = g2d.create();
+		int xAdjust = -getScreenViewX();
+		int yAdjust = -getScreenViewY();
+		graphics.translate(xAdjust, yAdjust);
 		/*
 		 * End of the world (map falls short of the view)?
 		 */
-		int px = convertWorldXToScreenView(Math.max(xTemp, 0));
-
-		if (px > 0) {
-			g2d.setColor(Color.black);
-			g2d.fillRect(0, 0, px, sh);
+		if (xAdjust > 0) {
+			g2d.setColor(Color.BLACK);
+			g2d.fillRect(0, 0, xAdjust, sh);
 		}
-
-		px = convertWorldXToScreenView(Math.min(xTemp + w, ww));
-
-		if (px < sw) {
-			g2d.setColor(Color.black);
-			g2d.fillRect(px, 0, sw - px, sh);
+		
+		if (yAdjust > 0) {
+			g2d.setColor(Color.BLACK);
+			g2d.fillRect(0, 0, sw, yAdjust);
 		}
-
-		int py = convertWorldYToScreenView(Math.max(yTemp, 0));
-
-		if (py > 0) {
-			g2d.setColor(Color.black);
-			g2d.fillRect(0, 0, sw, py);
+		
+		int tmpY = yAdjust + convertWorldToScreen(wh);
+		if (tmpY < sh) {
+			g2d.setColor(Color.BLACK);
+			g2d.fillRect(0, tmpY, sw, sh);
 		}
-
-		py = convertWorldYToScreenView(Math.min(yTemp + h, wh));
-
-		if (py < sh) {
-			g2d.setColor(Color.black);
-			g2d.fillRect(0, py, sw, sh - py);
+		
+		int tmpX = yAdjust + convertWorldToScreen(ww);
+		if (tmpY < sw) {
+			g2d.setColor(Color.BLACK);
+			g2d.fillRect(tmpX, 0, sw, sh);
 		}
-
-		gameLayers.draw(this, set, "0_floor", xTemp, yTemp, w, h);
-		gameLayers.draw(this, set, "1_terrain", xTemp, yTemp, w, h);
-		gameLayers.draw(this, set, "2_object", xTemp, yTemp, w, h);
+		
+		int layerWidth = (int) getViewWidth() + 2;
+		int layerHeight = (int) getViewHeight() + 2;
+		
+		final int xTemp = Math.max(0, (int) getViewX());
+		final int yTemp = Math.max(0, (int) getViewY());
+		
+		gameLayers.draw(graphics, set, "0_floor", xTemp, yTemp, layerWidth, layerHeight);
+		gameLayers.draw(graphics, set, "1_terrain", xTemp, yTemp, layerWidth, layerHeight);
+		gameLayers.draw(graphics, set, "2_object", xTemp, yTemp, layerWidth, layerHeight);
+		
 		drawEntities(g2d);
 
-		gameLayers.draw(this, set, "3_roof", xTemp, yTemp, w, h);
-		gameLayers.draw(this, set, "4_roof_add", xTemp, yTemp, w, h);
+		gameLayers.draw(graphics, set, "3_roof", xTemp, yTemp, layerWidth, layerHeight);
+		gameLayers.draw(graphics, set, "4_roof_add", xTemp, yTemp, layerWidth, layerHeight);
+		
 		drawTopEntities(g2d);
 		drawText(g2d);
 
@@ -596,6 +596,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		} else {
 			blinkOffline--;
 		}
+		graphics.dispose();
 
 		// On Ubuntu 9.10 with Sub Java 1.6.0_15 the client does not react to typed letters
 		// in the chat line without the Thread.yield. The problem does neither occure on OpenJDK

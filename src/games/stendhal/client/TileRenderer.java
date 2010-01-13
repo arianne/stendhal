@@ -16,7 +16,7 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.Tileset;
 import games.stendhal.tools.tiled.LayerDefinition;
 
-import java.awt.Point;
+import java.awt.Graphics;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -80,56 +80,26 @@ public class TileRenderer extends LayerRenderer {
 			spriteMap = null;
 		}
 	}
-
-	/**
-	 * Render the layer to screen. We assume that game screen will clip.
-	 * 
-	 * @param screen
-	 *            The screen to draw on.
-	 * @param x
-	 *            The view X world coordinate.
-	 * @param y
-	 *            The view Y world coordinate.
-	 * @param w
-	 *            The view world width.
-	 * @param h
-	 *            The view world height.
-	 */
+	
 	@Override
-	public void draw(final IGameScreen screen, int x, int y, final int w, final int h) {
+	public void draw(Graphics g, int x, int y, final int w, final int h) {
 		if (spriteMap == null) {
 			return;
 		}
 
-		final int x2 = Math.min(x + w + 1, getWidth());
-		final int y2 = Math.min(y + h + 1, getHeight());
+		final int endX = Math.min(x + w, getWidth());
+		final int endY= Math.min(y + h, getHeight());
 
-		if (x > 0) {
-			x--;
-		} else {
-			x = 0;
-		}
-
-		if (y > 0) {
-			y--;
-		} else {
-			y = 0;
-		}
-
-		final Point p = screen.convertWorldToScreenView(x, y);
-
-		int sy = p.y;
-
-		for (int j = y; j < y2; j++) {
+		int sy = y * IGameScreen.SIZE_UNIT_PIXELS;
+		for (int j = y; j < endY; j++) {
 			int mapidx = (j * width) + x;
-			int sx = p.x;
-
-			for (int i = x; i < x2; i++) {
-				spriteMap[mapidx].draw(screen.getGraphics(), sx, sy);
+			int sx = x * IGameScreen.SIZE_UNIT_PIXELS;
+			
+			for (int i = x; i < endX; i++) {
+				spriteMap[mapidx].draw(g, sx, sy);
 				mapidx++;
 				sx += IGameScreen.SIZE_UNIT_PIXELS;
 			}
-
 			sy += IGameScreen.SIZE_UNIT_PIXELS;
 		}
 	}

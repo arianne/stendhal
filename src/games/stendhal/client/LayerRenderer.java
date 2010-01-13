@@ -15,6 +15,8 @@ package games.stendhal.client;
 //
 //
 
+import java.awt.Graphics;
+
 import games.stendhal.client.sprite.Tileset;
 
 /**
@@ -42,37 +44,15 @@ public abstract class LayerRenderer {
 	}
 
 	/**
-	 * Render the layer to screen. We assume that game screen will clip.
+	 * Render the layer.
 	 * 
-	 * @param screen
-	 *            The screen to draw on.
+	 * @param g The graphics to draw to
+	 * @param x starting x coordinate in world units
+	 * @param y starting y coordinate in world units
+	 * @param w width in world units
+	 * @param h height in world units
 	 */
-	/*
-	public void draw(final IGameScreen screen) {
-		final int x = (int) screen.getViewX();
-		final int y = (int) screen.getViewY();
-		final int w = (int) screen.getViewWidth();
-		final int h = (int) screen.getViewHeight();
-
-		draw(screen, x, y, w, h);
-	}
-	*/
-
-	/**
-	 * Render the layer to screen. We assume that game screen will clip.
-	 * 
-	 * @param screen
-	 *            The screen to draw on.
-	 * @param x
-	 *            The view X world coordinate.
-	 * @param y
-	 *            The view Y world coordinate.
-	 * @param w
-	 *            The view world width.
-	 * @param h
-	 *            The view world height.
-	 */
-	public abstract void draw(IGameScreen screen, int x, int y, int w, int h);
+	public abstract void draw(Graphics g, int x, int y, int w, int h);
 
 	public abstract void setTileset(Tileset tileset);
 }

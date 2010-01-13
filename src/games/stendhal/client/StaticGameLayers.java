@@ -15,6 +15,7 @@ package games.stendhal.client;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.tools.tiled.LayerDefinition;
 
+import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.io.InputStream;
@@ -286,14 +287,14 @@ public class StaticGameLayers {
 		return area;
 	}
 
-	public void draw(final IGameScreen screen, final String area, final String layer, final int x,
+	public void draw(Graphics g, final String area, final String layer, final int x,
 			final int y, final int width, final int height) {
 		validate();
-
+		
 		final LayerRenderer lr = getLayer(area, layer);
 
 		if (lr != null) {
-			lr.draw(screen, x, y, width, height);
+			lr.draw(g, x, y, width, height);
 		}
 	}
 

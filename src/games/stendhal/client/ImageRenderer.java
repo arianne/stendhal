@@ -16,6 +16,7 @@ import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.Tileset;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 
@@ -41,35 +42,11 @@ public class ImageRenderer extends LayerRenderer {
 		}
 	}
 
-	/**
-	 * Render the layer to screen. We assume that game screen will clip.
-	 * 
-	 * @param screen
-	 *            The screen to draw on.
-	 */
-	public void draw(final IGameScreen screen) {
-		if (mySprite != null) {
-			screen.draw(mySprite, 0, 0);
-		}
-	}
-
-	/**
-	 * Render the layer to screen. We assume that game screen will clip.
-	 * 
-	 * @param screen
-	 *            The screen to draw on.
-	 * @param x
-	 *            The view X world coordinate.
-	 * @param y
-	 *            The view Y world coordinate.
-	 * @param w
-	 *            The view world width.
-	 * @param h
-	 *            The view world height.
-	 */
 	@Override
-	public void draw(final IGameScreen screen, final int x, final int y, final int w, final int h) {
-		draw(screen);
+	public void draw(Graphics g, int x, int y, int width, int height) {
+		if (mySprite != null) {
+			mySprite.draw(g, 0, 0);
+		}
 	}
 
 	@Override
