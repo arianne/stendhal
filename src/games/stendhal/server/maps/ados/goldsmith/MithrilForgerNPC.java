@@ -55,7 +55,7 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 				addReply("wood",
 		        		"The wood is for the fire. I hope you collect yours from the forest, and not the barbaric practise of killing ents.");
 				addReply(Arrays.asList("mithril ore", "mithril nugget"),
-				        "Nowadays These rare nuggets are only likely to be found in the Ados mountains. I have no idea if that area is still civilised...");
+				        "Nowadays these rare nuggets are only likely to be found in the Ados mountains. I have no idea if that area is still civilised...");
 				addReply(Arrays.asList("mithril bar", "mithril", "bar"),
 				        "Mithril is an incredibly valuable commodity, as it makes armor of astounding strength, yet remains featherlight. Guard any mithril stash you own with great care.");
 			}
