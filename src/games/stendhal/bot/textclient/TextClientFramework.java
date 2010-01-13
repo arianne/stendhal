@@ -79,8 +79,14 @@ public class TextClientFramework extends StandardClientFramework {
 
 	@Override
 	public void execute() throws IOException, InterruptedException {
-		// TODO Auto-generated method stub
-
+		while (true) {
+			loop(0);
+			try {
+				Thread.sleep(100);
+			} catch (final InterruptedException e) {
+				break;
+			}
+		}
 	}
 
 }
