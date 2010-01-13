@@ -10,6 +10,9 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import marauroa.server.game.db.DAORegister;
 
+/**
+ * changes the ghostmode flag of admins
+ */
 public class GhostModeAction extends AdministrationAction {
 
 	public static void register() {
@@ -19,6 +22,10 @@ public class GhostModeAction extends AdministrationAction {
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
+
+		if (alreadyInRequestedMode(player, action)) {
+			return;
+		}
 
 		if (player.isGhost()) {
 			activateGhostmode(player);
@@ -33,6 +40,22 @@ public class GhostModeAction extends AdministrationAction {
 		StendhalRPRuleProcessor.get().notifyOnlineStatus(!player.isGhost(), player.getName());
 		
 		player.notifyWorldAboutChanges();
+	}
+
+	/**
+	 * is the player already in teh requested mode?
+	 *
+	 * @param player Player
+	 * @param action request
+	 * @return true, if the requested and the current mode match, false otherwise
+	 */
+	private boolean alreadyInRequestedMode(final Player player, final RPAction action) {
+		if (!action.has("mode")) {
+			return false;
+		}
+
+		boolean requestedMode = Boolean.parseBoolean(action.get("mode"));
+		return (requestedMode == player.isGhost());
 	}
 
 	/**
