@@ -21,21 +21,11 @@ public class GhostModeAction extends AdministrationAction {
 	public void perform(final Player player, final RPAction action) {
 
 		if (player.isGhost()) {
-			player.setGhost(false);
-			new GameEvent(player.getName(), GHOSTMODE, "off").raise();
-
+			activateGhostmode(player);
 		} else {
-			/*
-			 * When we enter ghostmode we want our player to be also invisible.
-			 */
-			player.setInvisible(true);
-			new GameEvent(player.getName(), INVISIBLE, "on").raise();
-
-			player.setGhost(true);
-			new GameEvent(player.getName(), GHOSTMODE, "on").raise();
-	
-			
+			deactivateGhost(player);
 		}
+
 		/* Notify database that the player is in Ghost mode */
 		DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, !player.isGhost());
 		
@@ -43,6 +33,30 @@ public class GhostModeAction extends AdministrationAction {
 		StendhalRPRuleProcessor.get().notifyOnlineStatus(!player.isGhost(), player.getName());
 		
 		player.notifyWorldAboutChanges();
+	}
+
+	/**
+	 * deactivates ghostmode
+	 *
+	 * @param player the admin
+	 */
+	private void deactivateGhost(final Player player) {
+		player.setGhost(false);
+		new GameEvent(player.getName(), GHOSTMODE, "off").raise();
+	}
+
+
+	/**
+	 * activtes ghostmode and makes the player invisible to monsters.
+	 *
+	 * @param player the admin
+	 */
+	private void activateGhostmode(final Player player) {
+		player.setInvisible(true);
+		new GameEvent(player.getName(), INVISIBLE, "on").raise();
+
+		player.setGhost(true);
+		new GameEvent(player.getName(), GHOSTMODE, "on").raise();
 	}
 
 }
