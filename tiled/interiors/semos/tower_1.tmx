@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="Untitled" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
@@ -19,24 +18,45 @@
  <tileset name="windows" firstgid="62" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
+ <tileset name="collision" firstgid="78" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
+ </tileset>
+ <tileset name="entrance" firstgid="79" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/dark_red_ns_fancy.png"/>
+ </tileset>
+ <tileset name="stairs" firstgid="91" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/stairs/dark_stairs.png"/>
+ </tileset>
+ <tileset name="statue" firstgid="93" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone_3.png"/>
+ </tileset>
+ <tileset name="lamp" firstgid="96" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/lamp_blue.png"/>
+ </tileset>
+ <tileset name="paintings" firstgid="99" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/picture/oil_paintings.png"/>
+ </tileset>
+ <tileset name="throne" firstgid="115" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/throne_small.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2W204CMRCGCyIgKCDKFSZ4hZFDBI0KclDBI4f3fx3/JjRumu2005QAgYsvaZb+80HZnZ26EOKG4At8W/bcgrpHXuYaoAmuDMzAnPi8BdpEHVM+mquCM1BgUgTXHnXiciVwzqTsWcc3d/Cvz38BLgm4fqpWRcvdgRrBs+F3mfzy+pOlZmeVuwcPBAPiXJV/CEaaX15/sdR+FOa+pYjWjfP3xH9P6Wv+oaW2S/+L1o27B/TeEve9TH2zK9z7FvfZcOl/Ub/P8+eL+n8OftpP9RAuXL/ckwBJcBRgXRJ8fwocg3SAtY8/A7LgJMDa5B+DV4M/B/LgNMBa97+BdzAB0w2c/wf43ILzp/zrPH8X/ybvfwl3Hnd9f+1K/90nv23+DYmaf5XfNv/+gF/LHm6ms/Lb5l/JAiwd9nEzcv79A7hTp8UAEAAA
+   H4sIAAAAAAAAAO2WaU8CMRCGq4h4gOD1CRP9BEEhggS8QDnkUklM/P//xbcJjZtJOz1SAkY+PEmTzsyz292dnZIQoswwBhNLTAWUAvJl3jW4ARcG3sEHs18FNaaOKT+ZVwQ5cORJHlwF1NHlFcCxJyeBdULzNv7l+U/BGUOI31TrnOTdgkuGe8N9cX6512Zq1hd5d6DJ8Mycq/J3QFfjl3tPTO2WMPctBa1L/Q/it6c8avwdprZL/6N1KbS3mK5N1/8awr1v+X4bumuj/S/pD/n+QlHPZuPn/Vw/8sXXL2O2wDZIRVgXhL9/B6TBboR1iD8D9sB+hLXJ/wJeDf4DcAiyEdbU3wN9MADDFZz/Gxitwflz/mWev4t/le+/xHced/1//ZX++5/8tvk3Jmr+VX7b/DsFM0sM5cuyX1/4bfOv5BPMHeKSfDvEyPn3Byxtux8AEAAA
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAGNgGAWDBSQNtAPoAEaCH0fBKBgFQxNED7QDRsEoGAWjYBTQHcQPEzsoAbR0Hz6z6dkvoLVd/lA6kMb24AJBUDqECLUA/Gb32AAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO3OywpAIQhF0f61F91p/T8RFAQ3qIlItNdEUDlqzF9c9GZ+M2/SwY6kb9E7+RvAm0KvViB7ZDqB7Jtk5ftF+T4AAIC2CiBgmMMAEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAGNgGDwgYYDtT6SDHQl0sAMfoIcfR8EoGAWjYBSMglEwCkbBKCAGxA0TO8gBCVCalu6DmZ2ARY6e/YLRPsjgAQD2vav1ABAAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -49,9 +69,9 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="32">
+ <layer name="collision" width="32" height="32" opacity="0.39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO2WUQoAIAxCd8Luf5x+I9YgaxZMwb/yWTCqmVmTYaE53j6kx00+ot2c8ay/3X9lPjof0TrGfFbnR8rORzt53dgSX3zxxRdf/PFNYnBXfKZW/MwuM+flHyTbLM6pO5VnbCEAEAAA
   </data>
  </layer>
  <layer name="protection" width="32" height="32">
