@@ -68,8 +68,7 @@ class Door2DView extends StateEntity2DView {
 	 * @param gameScreen
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map,
-			final IGameScreen gameScreen) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		final String name = entity.getEntityClass();
 
 		final SpriteStore store = SpriteStore.get();
@@ -93,7 +92,7 @@ class Door2DView extends StateEntity2DView {
 					.getTile(tiles, 0, height, width, height));
 		}
 
-		calculateOffset(width, height, gameScreen);
+		calculateOffset(width, height);
 	}
 
 	/**

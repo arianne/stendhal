@@ -38,8 +38,7 @@ class Food2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map,
-			final IGameScreen gameScreen) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		final SpriteStore store = SpriteStore.get();
 		final Sprite tiles = store.getSprite(translate(entity.getType()));
 
@@ -47,10 +46,9 @@ class Food2DView extends StateEntity2DView {
 		int i = 0;
 
 		for (int y = 0; y < theight; y += IGameScreen.SIZE_UNIT_PIXELS) {
-			map
-					.put(Integer.valueOf(i++), store.getTile(tiles, 0, y,
-							IGameScreen.SIZE_UNIT_PIXELS,
-							IGameScreen.SIZE_UNIT_PIXELS));
+			map.put(Integer.valueOf(i++), store.getTile(tiles, 0, y,
+					IGameScreen.SIZE_UNIT_PIXELS,
+					IGameScreen.SIZE_UNIT_PIXELS));
 		}
 	}
 

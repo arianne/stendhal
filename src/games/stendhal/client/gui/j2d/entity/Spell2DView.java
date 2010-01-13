@@ -9,7 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.SpriteStore;
@@ -43,10 +42,11 @@ class Spell2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation(final IGameScreen gameScreen) {
+	protected void buildRepresentation() {
 		setSprite(SpriteStore.get()
 				.getSprite(translate(getClassResourcePath())));
 	}
+
 
 	/**
 	 * Determines on top of which other entities this entity should be drawn.

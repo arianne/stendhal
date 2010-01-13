@@ -150,10 +150,9 @@ class Creature2DView extends RPEntity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height,
-			final IGameScreen gameScreen) {
+	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 
-		super.draw(g2d, x, y, width, height, gameScreen);
+		super.draw(g2d, x, y, width, height);
 
 	}
 

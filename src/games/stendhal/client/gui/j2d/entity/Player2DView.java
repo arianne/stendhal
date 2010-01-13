@@ -151,9 +151,8 @@ class Player2DView extends RPEntity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height,
-			final IGameScreen gameScreen) {
-		super.draw(g2d, x, y, width, height, gameScreen);
+	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+		super.draw(g2d, x, y, width, height);
 
 		if (((Player) entity).isAway()) {
 			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);

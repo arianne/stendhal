@@ -9,7 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -38,23 +37,20 @@ abstract class StateEntity2DView extends Entity2DView {
 	//
 
 	/**
-	 * Build animations.
-	 * @param gameScreen 
+	 * Build animations. 
 	 */
-	protected void buildAnimations(final IGameScreen gameScreen) {
-		buildSprites(sprites, gameScreen);
+	protected void buildAnimations() {
+		buildSprites(sprites);
 	}
 
 	/**
 	 * Populate named state sprites.
 	 * 
 	 * @param map
-	 *            The map to populate.
-	 * @param gameScreen 
+	 *            The map to populate. 
 	 */
-	protected abstract void buildSprites(final Map<Object, Sprite> map,
-			IGameScreen gameScreen);
-
+	protected abstract void buildSprites(final Map<Object, Sprite> map);
+	
 	/**
 	 * Get a keyed state sprite.
 	 * 
@@ -100,20 +96,10 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * animation sprites and sets the default frame.
 	 */
 	@Override
-	protected void buildRepresentation(final IGameScreen gameScreen) {
-		buildAnimations(gameScreen);
+	protected void buildRepresentation() {
+		buildAnimations();
 
 		setSprite(getStateSprite());
-
-	}
-
-	/**
-	 * Handle updates.
-	 */
-	@Override
-	protected void update(final IGameScreen gameScreen) {
-		super.update(gameScreen);
-
 	}
 
 	protected void proceedChangedState() {

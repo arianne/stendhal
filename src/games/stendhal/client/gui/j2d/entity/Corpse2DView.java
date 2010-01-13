@@ -82,7 +82,7 @@ class Corpse2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation(final IGameScreen gameScreen) {
+	protected void buildRepresentation() {
 		final String imageName = entity.getRPObject().get("image");
 		final Sprite sprite = SpriteStore.get().getSprite(translate("corpse/"  + imageName));
 
@@ -91,7 +91,7 @@ class Corpse2DView extends Entity2DView {
 
 		setSprite(sprite);
 
-		calculateOffset(width, height, gameScreen);
+		calculateOffset(width, height);
 	}
 
 	/**

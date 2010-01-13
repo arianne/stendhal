@@ -1,6 +1,5 @@
 package games.stendhal.client.gui.j2d.entity;
 
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -44,8 +43,7 @@ public class Gate2DView extends Entity2DView {
 	}
 	
 	@Override
-	protected void buildRepresentation(final IGameScreen gameScreen) {
-
+	protected void buildRepresentation() {
 	}
 	
 	@Override
@@ -67,9 +65,10 @@ public class Gate2DView extends Entity2DView {
 			break;
 		}
 	}
+	
 	@Override
 	protected void drawEntity(final Graphics2D g2d, final int x, final int y, final int width,
-			final int height, final IGameScreen gameScreen) {
+			final int height) {
 	
 		if (entity.getRPObject().get(orientation).equals("h")) {
 			if (entity.getResistance() == 100) {

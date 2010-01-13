@@ -9,8 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.IGameScreen;
-
 import java.awt.Graphics2D;
 
 /**
@@ -22,11 +20,8 @@ class InvisibleEntity2DView extends Entity2DView {
 	// Entity2DView
 	//
 
-	/**
-	 * Build the visual representation of this entity.
-	 */
 	@Override
-	protected void buildRepresentation(final IGameScreen gameScreen) {
+	protected void buildRepresentation() {
 	}
 
 	/**
@@ -36,8 +31,8 @@ class InvisibleEntity2DView extends Entity2DView {
 	 *            The graphics to drawn on.
 	 */
 	@Override
-	public void draw(final Graphics2D g2d, final IGameScreen gameScreen) {
-		applyChanges(gameScreen);
+	public void draw(final Graphics2D g2d) {
+		applyChanges();
 	}
 
 	/**

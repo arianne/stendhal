@@ -65,7 +65,7 @@ class Ring2DView extends Item2DView {
 	 * 
 	 */
 	@Override
-	protected void buildRepresentation(final IGameScreen gameScreen) {
+	protected void buildRepresentation() {
 		final SpriteStore store = SpriteStore.get();
 		final Sprite tiles = store.getSprite(translate(getClassResourcePath()));
 
@@ -115,8 +115,8 @@ class Ring2DView extends Item2DView {
 	 * Handle updates.
 	 */
 	@Override
-	protected void update(final IGameScreen gameScreen) {
-		super.update(gameScreen);
+	protected void update() {
+		super.update();
 
 		if (stateChanged) {
 			setSprite(getStateSprite());

@@ -79,8 +79,7 @@ class Chest2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map,
-			final IGameScreen gameScreen) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		final SpriteStore store = SpriteStore.get();
 		final Sprite tiles = store.getSprite(translate(entity.getType()));
 
@@ -157,19 +156,19 @@ class Chest2DView extends StateEntity2DView {
 	 * Handle updates.
 	 */
 	@Override
-	protected void update(final IGameScreen gameScreen) {
-		super.update(gameScreen);
+	protected void update() {
+		super.update();
 
 		if (openChanged) {
 			if (((Chest) entity).isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
 					wtEntityContainer = inspector.inspectMe(entity, ((Chest) entity)
-							.getContent(), wtEntityContainer, 5, 6, gameScreen);
+							.getContent(), wtEntityContainer, 5, 6, GameScreen.get());
 				}
 			} else {
 				if (wtEntityContainer != null) {
-					wtEntityContainer.destroy(gameScreen);
+					wtEntityContainer.destroy(GameScreen.get());
 					wtEntityContainer = null;
 				}
 			}

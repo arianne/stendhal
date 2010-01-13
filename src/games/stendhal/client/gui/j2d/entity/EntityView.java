@@ -63,12 +63,12 @@ public interface EntityView {
 	void release(IGameScreen gameScreen);
 
 	Rectangle getArea();
-
-	void draw(final Graphics2D g2d, final IGameScreen gameScreen);
+	
+	void draw(final Graphics2D g2d);
 
 	int getZIndex();
 
-	void drawTop(Graphics2D g2d, IGameScreen gameScreen);
+	void drawTop(Graphics2D g2d);
 
 	void setContained(boolean b);
 

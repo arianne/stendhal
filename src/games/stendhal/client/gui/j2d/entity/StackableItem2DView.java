@@ -9,8 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.sprite.Sprite;
@@ -42,7 +40,7 @@ public class StackableItem2DView extends Item2DView {
 	@Override
 	public void initialize(final IEntity entity) {
 		super.initialize(entity);
-		quantitySprite = getQuantitySprite(GameScreen.get());
+		quantitySprite = getQuantitySprite();
 		quantityChanged = false;
 		showQuantity = true;
 	}
@@ -58,7 +56,7 @@ public class StackableItem2DView extends Item2DView {
 	 * @return A sprite representing the quantity, or <code>null</code> for
 	 *         none.
 	 */
-	protected Sprite getQuantitySprite(final IGameScreen gameScreen) {
+	protected Sprite getQuantitySprite() {
 		int quantity;
 		String label;
 
@@ -99,8 +97,8 @@ public class StackableItem2DView extends Item2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height, final IGameScreen gameScreen) {
-		super.draw(g2d, x, y, width, height, gameScreen);
+			final int width, final int height) {
+		super.draw(g2d, x, y, width, height);
 
 		if (showQuantity && (quantitySprite != null)) {
 			/*
@@ -140,11 +138,11 @@ public class StackableItem2DView extends Item2DView {
 	 * Update representation.
 	 */
 	@Override
-	protected void update(final IGameScreen gameScreen) {
-		super.update(gameScreen);
+	protected void update() {
+		super.update();
 
 		if (quantityChanged) {
-			quantitySprite = getQuantitySprite(gameScreen);
+			quantitySprite = getQuantitySprite();
 			quantityChanged = false;
 		}
 	}

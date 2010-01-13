@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.entity.EntityView;
@@ -161,7 +160,7 @@ class MoveableEntityContainer implements WtDraggable {
 			final Graphics2D cg = (Graphics2D) g.create();
 
 			cg.translate(x, y);
-			view.draw(cg, GameScreen.get());
+			view.draw(cg);
 			cg.dispose();
 		}
 	}

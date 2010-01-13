@@ -532,7 +532,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		
 		// An adjusted graphics object so that the drawn objects do not need to
 		// know about converting the position to screen
-		Graphics graphics = g2d.create();
+		Graphics2D graphics = (Graphics2D) g2d.create();
+		graphics.setClip(0, 0, getScreenWidth(), getScreenHeight());
 		int xAdjust = -getScreenViewX();
 		int yAdjust = -getScreenViewY();
 		graphics.translate(xAdjust, yAdjust);
@@ -571,12 +572,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		gameLayers.draw(graphics, set, "1_terrain", xTemp, yTemp, layerWidth, layerHeight);
 		gameLayers.draw(graphics, set, "2_object", xTemp, yTemp, layerWidth, layerHeight);
 		
-		drawEntities(g2d);
+		drawEntities(graphics);
 
 		gameLayers.draw(graphics, set, "3_roof", xTemp, yTemp, layerWidth, layerHeight);
 		gameLayers.draw(graphics, set, "4_roof_add", xTemp, yTemp, layerWidth, layerHeight);
 		
-		drawTopEntities(g2d);
+		drawTopEntities(graphics);
+		
 		drawText(g2d);
 
 		/*
@@ -613,7 +615,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	private void drawEntities(final Graphics2D g) {
 		for (final EntityView view : views) {
-			view.draw(g, this);
+			view.draw(g);
 		}
 	}
 
@@ -622,7 +624,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	private void drawTopEntities(final Graphics2D g) {
 		for (final EntityView view : views) {
-			view.drawTop(g, this);
+			view.drawTop(g);
 		}
 	}
 

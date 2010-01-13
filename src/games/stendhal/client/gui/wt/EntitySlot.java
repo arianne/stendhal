@@ -196,7 +196,7 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 			final Graphics2D vg = (Graphics2D) childArea.create(0, 0, getWidth(),
 					getHeight());
 			vg.translate(x, y);
-			view.draw(vg, gameScreen);
+			view.draw(vg);
 			vg.dispose();
 		} else if (placeholder != null) {
 			// Center the placeholder sprite

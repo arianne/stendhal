@@ -58,8 +58,7 @@ class GrainField2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map,
-			final IGameScreen gameScreen) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		int height;
 		int width;
 		String clazz;

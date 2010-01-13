@@ -22,11 +22,8 @@ class AnimatedLoopEntity2DView extends Entity2DView {
 	// Entity2DView
 	//
 
-	/**
-	 * Build the visual representation of this entity.
-	 */
 	@Override
-	protected void buildRepresentation(final IGameScreen gameScreen) {
+	protected void buildRepresentation() {
 		final SpriteStore store = SpriteStore.get();
 		Sprite sprite = store.getSprite(translate(entity.getType()));
 
@@ -45,6 +42,7 @@ class AnimatedLoopEntity2DView extends Entity2DView {
 
 		setSprite(sprite);
 	}
+
 
 	/**
 	 * Determines on top of which other entities this entity should be drawn.

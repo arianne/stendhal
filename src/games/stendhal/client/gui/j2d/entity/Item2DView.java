@@ -35,7 +35,7 @@ class Item2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation(final IGameScreen gameScreen) {
+	protected void buildRepresentation() {
 		final SpriteStore store = SpriteStore.get();
 		Sprite sprite = store.getSprite(translate(getClassResourcePath()));
 

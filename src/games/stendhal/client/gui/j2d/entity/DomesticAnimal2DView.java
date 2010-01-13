@@ -9,7 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.DomesticAnimal;
@@ -204,8 +203,8 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height, final IGameScreen gameScreen) {
-		super.draw(g2d, x, y, width, height, gameScreen);
+			final int width, final int height) {
+		super.draw(g2d, x, y, width, height);
 
 		if (ideaSprite != null) {
 			ideaSprite.draw(g2d, x + width - 8, y - 8);
@@ -216,8 +215,8 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 * Handle updates.
 	 */
 	@Override
-	protected void update(final IGameScreen gameScreen) {
-		super.update(gameScreen);
+	protected void update() {
+		super.update();
 
 		if (ideaChanged) {
 			ideaSprite = getIdeaSprite();

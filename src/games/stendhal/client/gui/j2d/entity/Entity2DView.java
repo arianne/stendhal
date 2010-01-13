@@ -135,12 +135,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	// Entity2DView
 	//
 
-	/*
+	/**
 	 * Handle entity changes
 	 */
-	protected void applyChanges(final IGameScreen gameScreen) {
+	protected void applyChanges() {
 		if (changed) {
-			update(gameScreen);
+			update();
 			changed = false;
 		}
 	}
@@ -157,10 +157,9 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	}
 
 	/**
-	 * Rebuild the representation using the base entity.
-	 * @param gameScreen 
+	 * Rebuild the representation using the base entity. 
 	 */
-	protected void buildRepresentation(final IGameScreen gameScreen) {
+	protected void buildRepresentation() {
 		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));
 	}
 
@@ -171,14 +170,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The sprite width (in pixels).
 	 * @param sheight
 	 *            The sprite height (in pixels).
-	 * @param screen 
 	 */
-	protected void calculateOffset(final int swidth, final int sheight,
-			final IGameScreen screen) {
+	protected void calculateOffset(final int swidth, final int sheight) {
 		final Rectangle2D area = entity.getArea();
 
-		calculateOffset(swidth, sheight, screen.convertWorldToScreen(area
-				.getWidth()), screen.convertWorldToScreen(area.getHeight()));
+		calculateOffset(swidth, sheight, (int) (IGameScreen.SIZE_UNIT_PIXELS * area.getWidth()),
+				(int) (IGameScreen.SIZE_UNIT_PIXELS * area.getHeight()));
 	}
 
 	/**
@@ -216,19 +213,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * 
 	 * @param g2d
 	 *            The graphics to drawn on.
-	 */
-	public void draw(final Graphics2D g2d, final IGameScreen gameScreen) {
-		applyChanges(gameScreen);
+	 */	
+	public void draw(final Graphics2D g2d) {
+		applyChanges();
 
 		final Rectangle r = getArea();
 
 		if (isContained()) {
 			r.setLocation(0, 0);
 		} else {
-			r.x -= gameScreen.getScreenViewX();
-			r.y -= gameScreen.getScreenViewY();
-
-			if (!gameScreen.isInScreen(r)) {
+			if (!isOnScreen(g2d, r)) {
 				return;
 			}
 		}
@@ -237,12 +231,18 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 		try {
 			g2d.setComposite(entityComposite);
-			draw(g2d, r.x, r.y, r.width, r.height, gameScreen);
+			draw(g2d, r.x, r.y, r.width, r.height);
 		} finally {
 			g2d.setComposite(oldComposite);
 		}
 
 		drawEffect(g2d, r.x, r.y, r.width, r.height);
+
+	}
+	
+	private boolean isOnScreen(Graphics2D g2d, Rectangle r) {
+		Rectangle clip = g2d.getClipBounds();
+		return ((clip == null) || r.intersects(g2d.getClipBounds()));
 	}
 
 	/**
@@ -261,15 +261,15 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param gameScreen 
 	 */
 	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height, final IGameScreen gameScreen) {
-		drawEntity(g2d, x, y, width, height, gameScreen);
+			final int width, final int height) {
+		drawEntity(g2d, x, y, width, height);
 
 		if (stendhal.SHOW_COLLISION_DETECTION) {
 			g2d.setColor(Color.blue);
 			g2d.drawRect(x, y, width, height);
 
 			g2d.setColor(Color.green);
-			g2d.draw(gameScreen.convertWorldToScreenView(entity.getArea()));
+			g2d.draw(entity.getArea());
 		}
 	}
 
@@ -304,11 +304,10 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param width
 	 *            The drawn entity width.
 	 * @param height
-	 *            The drawn entity height.
-	 * @param gameScreen 
+	 *            The drawn entity height. 
 	 */
 	protected void drawEntity(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height, final IGameScreen gameScreen) {
+			final int width, final int height) {
 		getSprite().draw(g2d, x, y);
 	}
 
@@ -319,16 +318,13 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
-	public void drawTop(final Graphics2D g2d, final IGameScreen gameScreen) {
+	public void drawTop(final Graphics2D g2d) {
 		final Rectangle r = getArea();
 
 		if (isContained()) {
 			r.setLocation(0, 0);
 		} else {
-			r.x -= gameScreen.getScreenViewX();
-			r.y -= gameScreen.getScreenViewY();
-
-			if (!gameScreen.isInScreen(r)) {
+			if (!isOnScreen(g2d, r)) {
 				return;
 			}
 		}
@@ -589,17 +585,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Handle updates.
-	 * @param gameScreen 
 	 */
-	protected void update(final IGameScreen gameScreen) {
+	protected void update() {
 		if (representationChanged) {
-			buildRepresentation(gameScreen);
+			buildRepresentation();
 			representationChanged = false;
 		}
 
 		if (positionChanged) {
-			x = gameScreen.convertWorldToScreen(entity.getX());
-			y = gameScreen.convertWorldToScreen(entity.getY());
+			x = (int) (IGameScreen.SIZE_UNIT_PIXELS * entity.getX());
+			y = (int) (IGameScreen.SIZE_UNIT_PIXELS * entity.getY());
 			positionChanged = false;
 		}
 
@@ -613,6 +608,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			animatedChanged = false;
 		}
 	}
+
 
 	//
 	// EntityChangeListener

@@ -9,7 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.ActiveEntity;
@@ -26,6 +25,7 @@ import games.stendhal.common.Direction;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -123,7 +123,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	@Override
 	public void initialize(final IEntity entity) {
 		super.initialize(entity);
-		titleSprite = createTitleSprite(GameScreen.get());
+		titleSprite = createTitleSprite();
 		titleChanged = false;
 	}
 	//
@@ -187,7 +187,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * 
 	 * @return The title sprite.
 	 */
-	protected Sprite createTitleSprite(final IGameScreen gameScreen) {
+	protected Sprite createTitleSprite() {
 		final String titleType = ((RPEntity) entity).getTitleType();
 		final int adminlevel = ((RPEntity) entity).getAdminLevel();
 		Color nameColor = null;
@@ -264,7 +264,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param gameScreen 
 	 */
 	protected void drawFloaters(final Graphics2D g2d, final int x, final int y,
-			final int width, final IGameScreen gameScreen) {
+			final int width) {
 		for (Map.Entry<RPEntity.TextIndicator, Sprite> floater : floaters.entrySet()) {
 			final RPEntity.TextIndicator indicator = floater.getKey();
 			final Sprite sprite = floater.getValue();
@@ -394,8 +394,12 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The rectangle around the entity
 	 */
 	protected void drawCombat(final Graphics2D g2d, final int x,
-							  final int y, final int width, final int height, final Rectangle srect) {
-
+							  final int y, final int width, final int height) {
+		Rectangle2D wrect = entity.getArea();
+		final Rectangle srect = new Rectangle((int) (wrect.getX() * IGameScreen.SIZE_UNIT_PIXELS),
+				(int) (wrect.getY() * IGameScreen.SIZE_UNIT_PIXELS), 
+				(int) (wrect.getWidth() * IGameScreen.SIZE_UNIT_PIXELS),
+				(int) (wrect.getHeight() * IGameScreen.SIZE_UNIT_PIXELS));
 		if (((RPEntity) entity).isBeingAttacked()) {
 			// Draw red box around 
 
@@ -534,15 +538,14 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param gameScreen
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map,
-			final IGameScreen gameScreen) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		final Sprite tiles = getAnimationSprite();
 
 		width = tiles.getWidth() / getTilesX();
 		height = tiles.getHeight() / getTilesY();
 
 		buildSprites(map, tiles, width, height);
-		calculateOffset(width, height, gameScreen);
+		calculateOffset(width, height);
 	}
 
 	//
@@ -585,12 +588,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height, final IGameScreen gameScreen) {
-		final Rectangle srect = gameScreen.convertWorldToScreenView(entity.getArea());
-
-		drawCombat(g2d, x, y, width, height, srect);
-
-		super.draw(g2d, x, y, width, height, gameScreen);
+			final int width, final int height) {
+		drawCombat(g2d, x, y, width, height);
+		super.draw(g2d, x, y, width, height);
 
 		if (!ideasontop) {
 			drawIdeas(g2d, x, y, height);
@@ -601,7 +601,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			g2d.drawRect(x, y, width, height);
 		}
 
-		drawFloaters(g2d, x, y, width, gameScreen);
+		drawFloaters(g2d, x, y, width);
 	}
 
 	/**
@@ -683,15 +683,12 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		return 8000;
 	}
 
-	/**
-	 * Handle updates.
-	 */
 	@Override
-	protected void update(final IGameScreen gameScreen) {
-		super.update(gameScreen);
+	protected void update() {
+		super.update();
 
 		if (titleChanged) {
-			titleSprite = createTitleSprite(gameScreen);
+			titleSprite = createTitleSprite();
 			titleChanged = false;
 		}
 	}
