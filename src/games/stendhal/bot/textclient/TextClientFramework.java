@@ -79,6 +79,8 @@ public class TextClientFramework extends StandardClientFramework {
 
 	@Override
 	public void execute() throws IOException, InterruptedException {
+		new LoginScript(this).adminLogin();
+
 		while (true) {
 			loop(0);
 			try {
