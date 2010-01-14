@@ -244,17 +244,8 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @return The minimum delays for each frame (in ms).
 	 */
-	public int[] getDelays() {
+	private int[] getDelays() {
 		return delays;
-	}
-
-	/**
-	 * Get the total duration of an animation cycle.
-	 * 
-	 * @return The total duration (in ms).
-	 */
-	public int getDuration() {
-		return duration;
 	}
 
 	/**
@@ -265,7 +256,7 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @return The frames.
 	 */
-	public Sprite[] getFrames() {
+	private Sprite[] getFrames() {
 		return frames;
 	}
 
@@ -274,7 +265,7 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @return The current frame index.
 	 */
-	public int getIndex() {
+	private int getIndex() {
 		return index;
 	}
 
@@ -287,7 +278,7 @@ public class AnimatedSprite implements Sprite {
 	 * @see #stop()
 	 * @see #setAnimating(boolean)
 	 */
-	public boolean isAnimating() {
+	private boolean isAnimating() {
 		return animating;
 	}
 
@@ -298,7 +289,7 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @see #setLoop(boolean)
 	 */
-	public boolean isLoop() {
+	private boolean isLoop() {
 		return loop;
 	}
 
@@ -311,16 +302,6 @@ public class AnimatedSprite implements Sprite {
 	}
 
 	/**
-	 * Set the sprite animating state.
-	 * 
-	 * @param animating
-	 *            <code>true</code> if animating.
-	 */
-	public void setAnimating(final boolean animating) {
-		this.animating = animating;
-	}
-
-	/**
 	 * Set the frame index to a specific value.
 	 * 
 	 * @param index
@@ -330,7 +311,7 @@ public class AnimatedSprite implements Sprite {
 	 *             If the index is less than 0 or greater than or equal to the
 	 *             number of frames.
 	 */
-	public void setIndex(final int index) {
+	private void setIndex(final int index) {
 		if ((index < 0) || (index >= frames.length)) {
 			throw new ArrayIndexOutOfBoundsException("Invalid index: " + index);
 		}
@@ -356,7 +337,7 @@ public class AnimatedSprite implements Sprite {
 	 * @param loop
 	 *            <code>true</code> if animation loops.
 	 */
-	public void setLoop(final boolean loop) {
+	private void setLoop(final boolean loop) {
 		this.loop = loop;
 	}
 
@@ -381,7 +362,7 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * Update the current frame sprite.
 	 */
-	protected void update() {
+	private void update() {
 		final long now = System.currentTimeMillis();
 		update((int) (now - lastUpdate));
 		lastUpdate = now;
@@ -512,7 +493,7 @@ public class AnimatedSprite implements Sprite {
 	 * @param delta
 	 *            The time since last update (in ms).
 	 */
-	public void update(final int delta) {
+	private void update(final int delta) {
 		cycleTime += delta;
 		cycleTime %= duration;
 
