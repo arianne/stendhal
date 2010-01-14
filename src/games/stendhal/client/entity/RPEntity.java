@@ -14,7 +14,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.admin.TransitionDiagram;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
@@ -537,7 +536,8 @@ public abstract class RPEntity extends ActiveEntity {
 
 		// Scene settings messages should not disturb playing, just create some atmosphere
 		if (type != NotificationType.SCENE_SETTING) {
-			GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
+			ClientSingletonRepository.getUserInterface().addGameScreenText(
+					getX() + (getWidth() / 2.0), getY(),
 					text.replace("|", ""), type, false);
 		}
 	}
@@ -599,7 +599,8 @@ public abstract class RPEntity extends ActiveEntity {
 				line = line + " ...";
 			}
 
-			GameScreen.get().addText(getX() + getWidth(), getY(), line,
+			ClientSingletonRepository.getUserInterface().addGameScreenText(
+					getX() + getWidth(), getY(), line,
 					NotificationType.NORMAL, true);
 		}
 	}
@@ -1152,7 +1153,8 @@ public abstract class RPEntity extends ActiveEntity {
 				ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text,
 						NotificationType.SIGNIFICANT_POSITIVE));
 
-				GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
+				ClientSingletonRepository.getUserInterface().addGameScreenText(
+						getX() + (getWidth() / 2.0), getY(),
 						text, NotificationType.SIGNIFICANT_POSITIVE, false);
 			}
 		}
