@@ -532,7 +532,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		// An adjusted graphics object so that the drawn objects do not need to
 		// know about converting the position to screen
 		Graphics2D graphics = (Graphics2D) g2d.create();
-		graphics.setClip(0, 0, getScreenWidth(), getScreenHeight());
+		if (graphics.getClipBounds() == null) {
+			graphics.setClip(0, 0, Math.min(canvas.getWidth(), stendhal.screenSize.width),
+					Math.min(canvas.getHeight(), stendhal.screenSize.height));
+		}
+
 		int xAdjust = -getScreenViewX();
 		int yAdjust = -getScreenViewY();
 		graphics.translate(xAdjust, yAdjust);
