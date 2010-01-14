@@ -58,7 +58,7 @@ public class WtWindowManager {
 	}
 
 	/** @return the windowmanagers instance. */
-	public static WtWindowManager getInstance() {
+	public static synchronized WtWindowManager getInstance() {
 		if (instance == null) {
 			instance = new WtWindowManager();
 		}
@@ -168,11 +168,7 @@ public class WtWindowManager {
 	 */
 	public void formatWindow(final ManagedWindow panel) {
 		final WindowConfiguration config = getConfig(panel);
-		if (config == null) {
-			// window not supervised
-			return;
-		}
-
+		
 		restoreToScreen(panel, config);
 		
 		panel.moveTo(config.x, config.y);
@@ -243,7 +239,7 @@ public class WtWindowManager {
 	}
 
 	/** encapsulates the configuration of a window. */
-	private class WindowConfiguration {
+	private static class WindowConfiguration {
 
 		/** name of the window. */
 		private String name;
