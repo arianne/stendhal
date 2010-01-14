@@ -28,9 +28,9 @@ public class GhostModeAction extends AdministrationAction {
 		}
 
 		if (player.isGhost()) {
-			activateGhostmode(player);
-		} else {
 			deactivateGhost(player);
+		} else {
+			activateGhostmode(player);
 		}
 
 		/* Notify database that the player is in Ghost mode */
