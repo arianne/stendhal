@@ -258,12 +258,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	}
 
 	/** @return screen width in world units. */
-	private double getViewWidth() {
+	private int getViewWidth() {
 		return sw / SIZE_UNIT_PIXELS;
 	}
 
 	/** @return screen height in world units .*/
-	private double getViewHeight() {
+	private int getViewHeight() {
 		return sh / SIZE_UNIT_PIXELS;
 	}
 	
@@ -561,8 +561,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			g2d.fillRect(tmpX, 0, sw, sh);
 		}
 		
-		int layerWidth = (int) getViewWidth() + 2;
-		int layerHeight = (int) getViewHeight() + 2;
+		int layerWidth = getViewWidth() + 2;
+		int layerHeight = getViewHeight() + 2;
 		
 		final int xTemp = Math.max(0, (int) getViewX());
 		final int yTemp = Math.max(0, (int) getViewY());
