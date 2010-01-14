@@ -265,7 +265,7 @@ public abstract class Pet extends DomesticAnimal {
 				if (owner == null) {
 					LOGGER.debug("Pet (ownerless and hungry but not starving) moves randomly");
 					moveRandomly();
-				} else if ((owner != null) && !nextTo(owner)) {
+				} else if (!nextTo(owner)) {
 					moveToOwner();
 				} else {
 					LOGGER.debug("Pet has nothing to do and is hungry but not starving");
