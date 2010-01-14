@@ -50,9 +50,15 @@ public class TextClient {
 				if ((username != null) && (password != null)
 						&& (character != null) && (host != null)
 						&& (port != null)) {
-					System.out.println("Parameter operation");
+					System.out.println("Connecting");
+					new TextUI();
+					Thread thread = new Thread(new InputReader());
+					thread.setDaemon(true);
+					thread.start();
+
 					TextClientFramework client = new TextClientFramework(host, username, password, character, port, showWorld);
 					client.script();
+
 					return;
 				}
 			}
