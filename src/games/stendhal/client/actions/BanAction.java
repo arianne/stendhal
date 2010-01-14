@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 public class BanAction implements SlashAction {
@@ -16,7 +16,7 @@ public boolean execute(final String[] params, final String remainder) {
 				}
 			}
 
-			StendhalClient.get().send(action);
+			ClientSingletonRepository.getClientFramework().send(action);
 
 			return true;
 		}

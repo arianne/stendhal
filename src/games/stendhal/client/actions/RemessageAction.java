@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -31,7 +31,7 @@ class RemessageAction implements SlashAction {
 		tell.put("target", messageCommand.getLastPlayerTell());
 		tell.put("text", remainder);
 
-		StendhalClient.get().send(tell);
+		ClientSingletonRepository.getClientFramework().send(tell);
 
 		return true;
 	}

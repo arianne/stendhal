@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.common.Grammar;
@@ -52,7 +52,7 @@ class SummonAtAction implements SlashAction {
 		summon.put("amount", amount);
 		summon.put("item", singularName);
 
-		StendhalClient.get().send(summon);
+		ClientSingletonRepository.getClientFramework().send(summon);
 
 		return true;
 	}

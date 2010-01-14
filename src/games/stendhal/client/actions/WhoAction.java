@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -23,7 +23,7 @@ class WhoAction implements SlashAction {
 
 		who.put("type", "who");
 
-		StendhalClient.get().send(who);
+		ClientSingletonRepository.getClientFramework().send(who);
 
 		return true;
 	}

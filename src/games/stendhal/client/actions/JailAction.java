@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -33,7 +33,7 @@ class JailAction implements SlashAction {
 		action.put("minutes", params[1]);
 		action.put("reason", remainder);
 
-		StendhalClient.get().send(action);
+		ClientSingletonRepository.getClientFramework().send(action);
 
 		return true;
 	}

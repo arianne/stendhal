@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -25,7 +25,7 @@ class AnswerAction implements SlashAction {
 		answer.put("type", "answer");
 		answer.put("text", remainder);
 
-		StendhalClient.get().send(answer);
+		ClientSingletonRepository.getClientFramework().send(answer);
 
 		return true;
 	}

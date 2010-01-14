@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -29,7 +29,7 @@ class AlterAction implements SlashAction {
 		alter.put("stat", params[1]);
 		alter.put("mode", params[2]);
 		alter.put("value", remainder);
-		StendhalClient.get().send(alter);
+		ClientSingletonRepository.getClientFramework().send(alter);
 
 		return true;
 	}

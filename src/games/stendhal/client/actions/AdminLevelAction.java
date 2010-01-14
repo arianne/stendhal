@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -31,7 +31,7 @@ class AdminLevelAction implements SlashAction {
 			adminlevel.put("newlevel", params[1]);
 		}
 
-		StendhalClient.get().send(adminlevel);
+		ClientSingletonRepository.getClientFramework().send(adminlevel);
 
 		return true;
 	}

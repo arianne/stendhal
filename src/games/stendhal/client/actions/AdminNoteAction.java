@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 public class AdminNoteAction implements SlashAction {
@@ -12,7 +12,7 @@ public class AdminNoteAction implements SlashAction {
 		action.put("target", params[0]);
 		action.put("note", remainder);
 
-		StendhalClient.get().send(action);
+		ClientSingletonRepository.getClientFramework().send(action);
 
 		return true;
 	}

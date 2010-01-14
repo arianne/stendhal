@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -24,7 +24,7 @@ class WhereAction implements SlashAction {
 		where.put("type", "where");
 		where.put("target", params[0]);
 
-		StendhalClient.get().send(where);
+		ClientSingletonRepository.getClientFramework().send(where);
 
 		return true;
 	}

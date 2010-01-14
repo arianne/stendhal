@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -24,7 +24,7 @@ class RemoveBuddyAction implements SlashAction {
 		remove.put("type", "removebuddy");
 		remove.put("target", params[0]);
 
-		StendhalClient.get().send(remove);
+		ClientSingletonRepository.getClientFramework().send(remove);
 
 		return true;
 	}

@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -23,7 +23,7 @@ class InvisibleAction implements SlashAction {
 
 		invisible.put("type", "invisible");
 
-		StendhalClient.get().send(invisible);
+		ClientSingletonRepository.getClientFramework().send(invisible);
 
 		return true;
 	}

@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -27,7 +27,7 @@ class AddBuddyAction implements SlashAction {
 		add.put("type", "addbuddy");
 		add.put("target", params[0]);
 
-		StendhalClient.get().send(add);
+		ClientSingletonRepository.getClientFramework().send(add);
 
 		return true;
 	}

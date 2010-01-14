@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -27,7 +27,7 @@ class TeleportAction implements SlashAction {
 		teleport.put("x", params[2]);
 		teleport.put("y", params[3]);
 
-		StendhalClient.get().send(teleport);
+		ClientSingletonRepository.getClientFramework().send(teleport);
 
 		return true;
 	}

@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -24,7 +24,7 @@ class TellAllAction implements SlashAction {
 		tellall.put("type", "tellall");
 		tellall.put("text", remainder);
 
-		StendhalClient.get().send(tellall);
+		ClientSingletonRepository.getClientFramework().send(tellall);
 
 		return true;
 	}

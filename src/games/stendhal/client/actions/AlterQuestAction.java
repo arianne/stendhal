@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 class AlterQuestAction implements SlashAction {
@@ -16,7 +16,7 @@ class AlterQuestAction implements SlashAction {
 		if ((params.length > 2) && (params[2] != null)) {
 			action.put("state", params[2]);
 		}
-		StendhalClient.get().send(action);
+		ClientSingletonRepository.getClientFramework().send(action);
 		return true;
 	}
 

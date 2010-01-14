@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
@@ -27,7 +27,7 @@ class CreateGuildAction implements SlashAction {
 			action.put("guilddescription", remainder);
 		}
 
-		StendhalClient.get().send(action);
+		ClientSingletonRepository.getClientFramework().send(action);
 
 		return true;
 	}
