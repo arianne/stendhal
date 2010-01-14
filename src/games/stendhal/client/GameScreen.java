@@ -448,6 +448,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 */
 	private void calculateView() {
+		// Coordinates for a screen centered on player
 		int cvx = (x * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sw / 2);
 		int cvy = (y * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sh / 2);
 
@@ -457,21 +458,17 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		if (cvx < 0) {
 			cvx = 0;
 		} else {
-			final int max = (ww * SIZE_UNIT_PIXELS) - sw;
-
-			if (cvx > max) {
-				cvx = max;
-			}
+			// The total width can be < screen width. Therefore set it at least to 0
+			final int maxX = Math.max((ww * SIZE_UNIT_PIXELS) - sw, 0);
+			cvx = Math.min(cvx, maxX);
 		}
 
 		if (cvy < 0) {
 			cvy = 0;
 		} else {
-			final int max = (wh * SIZE_UNIT_PIXELS) - sh;
-
-			if (cvy > max) {
-				cvy = max;
-			}
+			// The total height can be < screen height. Therefore set it at least to 0
+			final int maxY = Math.max((wh * SIZE_UNIT_PIXELS) - sh, 0);
+			cvy = Math.min(cvy, maxY);
 		}
 
 		dvx = cvx - svx;
