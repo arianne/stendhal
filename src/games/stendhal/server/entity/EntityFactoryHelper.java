@@ -14,6 +14,7 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 import games.stendhal.server.core.config.factory.ConfigurableFactoryHelper;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * A utility class for creating entities using ConfigurableFactory.
@@ -61,12 +62,12 @@ public class EntityFactoryHelper {
 		 * Apply optional attributes
 		 */
 		if (attributes != null) {
-			for (final String name : attributes.keySet()) {
+			for (Entry<String, String> entry : attributes.entrySet()) {
 				try {
-					entity.put(name, attributes.get(name));
+					entity.put(entry.getKey(), entry.getValue());
 				} catch (final Exception ex) {
 					throw new IllegalArgumentException(
-							"Unable to set attribute '" + name + "' on "
+							"Unable to set attribute '" + entry.getKey() + "' on "
 									+ entity.getClass().getName());
 				}
 			}
