@@ -101,6 +101,9 @@ public class StendhalClient extends ClientFramework {
 	public StendhalClient(final UserContext userContext, final PerceptionDispatcher perceptionDispatcher) {
 		super(LOG4J_PROPERTIES);
 		client = this;
+		ClientSingletonRepository.setClientFramework(this);
+
+
 		SoundSystem.get();
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();

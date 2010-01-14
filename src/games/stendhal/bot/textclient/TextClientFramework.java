@@ -8,6 +8,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.net.message.MessageS2CPerception;
 
 import games.stendhal.bot.core.StandardClientFramework;
+import games.stendhal.client.ClientSingletonRepository;
 
 /**
  * a text based ClientFramework
@@ -38,6 +39,7 @@ public class TextClientFramework extends StandardClientFramework {
 			throws SocketException {
 		super(h, u, p, c, P);
 		this.showWorld = showWorld;
+		ClientSingletonRepository.setClientFramework(this);
 	}
 
 	@Override
