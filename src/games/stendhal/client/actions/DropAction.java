@@ -2,7 +2,6 @@ package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.common.Constants;
 import games.stendhal.common.EquipActionConsts;
@@ -30,14 +29,14 @@ class DropAction implements SlashAction {
 
 		// Is there a numeric expression as first parameter?
 		if (params[0].matches("[0-9].*")) {
-    		try {
-    			quantity = Integer.parseInt(params[0]);
-    		} catch (final NumberFormatException ex) {
-    			j2DClient.get().addEventLine(new StandardEventLine("Invalid quantity: " + params[0]));
-    			return true;
-    		}
+			try {
+				quantity = Integer.parseInt(params[0]);
+			} catch (final NumberFormatException ex) {
+				ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid quantity: " + params[0]));
+				return true;
+			}
 
-    		itemName = remainder;
+			itemName = remainder;
 		} else {
 			quantity = 1;
 			itemName = (params[0] + " " + remainder).trim();
@@ -68,7 +67,7 @@ class DropAction implements SlashAction {
 				return true;
 			}
 		}
-		j2DClient.get().addEventLine(new StandardEventLine("You don't have any " + singularItemName));
+		ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("You don't have any " + singularItemName));
 		return true;
 	}
 

@@ -2,7 +2,6 @@ package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.common.NameBuilder;
 import marauroa.common.game.RPAction;
@@ -50,7 +49,7 @@ class SummonAction implements SlashAction {
         					nameBuilder.append(str);
         				}
         			} catch (final NumberFormatException e) {
-        				j2DClient.get().addEventLine(new StandardEventLine("Invalid number: " + str));
+        				ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid number: " + str));
         				return true;
         			}
     			} else {

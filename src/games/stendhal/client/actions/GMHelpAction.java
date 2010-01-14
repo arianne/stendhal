@@ -1,11 +1,11 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Display command usage. Eventually replace this with ChatCommand.usage().
@@ -105,7 +105,7 @@ class GMHelpAction implements SlashAction {
 			return false;
 		}
 		for (final String line : lines) {
-			j2DClient.get().addEventLine(new HeaderLessEventLine(line, NotificationType.CLIENT));
+			ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(line, NotificationType.CLIENT));
 		}
 
 		return true;

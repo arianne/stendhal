@@ -1,7 +1,6 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.common.Grammar;
 import marauroa.common.game.RPAction;
@@ -37,7 +36,7 @@ class SummonAtAction implements SlashAction {
     		try {
     			amount = Integer.parseInt(params[2]);
     		} catch (final NumberFormatException ex) {
-    			j2DClient.get().addEventLine(new StandardEventLine("Invalid amount: " + params[2]));
+    			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid amount: " + params[2]));
     			return true;
     		}
 

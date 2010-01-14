@@ -1,5 +1,6 @@
 package games.stendhal.bot.textclient;
 
+import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.scripting.ChatLineParser;
 
 import java.io.BufferedReader;
@@ -17,6 +18,7 @@ public class InputReader implements Runnable {
 	private static Logger logger = Logger.getLogger(InputReader.class);
 
 	public void run() {
+		SlashActionRepository.register();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
 			try {
