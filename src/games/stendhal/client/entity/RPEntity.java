@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.admin.TransitionDiagram;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
@@ -405,7 +405,7 @@ public abstract class RPEntity extends ActiveEntity {
 	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
 	// Creature
 	protected void nonCreatureClientAddEventLine(final String text) {
-		j2DClient.get().addEventLine(new StandardHeaderedEventLine(getTitle(), text));
+		ClientSingletonRepository.getUserInterface().addEventLine(new StandardHeaderedEventLine(getTitle(), text));
 	}
 
 	// When this entity attacks target.
@@ -457,7 +457,7 @@ public abstract class RPEntity extends ActiveEntity {
 				& (!stendhal.FILTER_ATTACK_MESSAGES);
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
-			j2DClient.get().addEventLine(new HeaderLessEventLine(
+			ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
 					getTitle() + " suffers "
 							+ Grammar.quantityplnoun(damage, "point")
 							+ " of damage from " + attacker.getTitle(),
@@ -510,7 +510,8 @@ public abstract class RPEntity extends ActiveEntity {
 	public final void onPoisoned(final int amount) {
 		if ((User.squaredDistanceTo(x, y) < 15 * 15)) {
 			poisoned = true;
-			j2DClient.get().addEventLine(new HeaderLessEventLine(
+			ClientSingletonRepository.getUserInterface().addEventLine(
+					new HeaderLessEventLine(
 					getTitle() + " is poisoned, losing "
 							+ Grammar.quantityplnoun(amount, "health point")
 							+ ".", NotificationType.NEGATIVE));
@@ -532,7 +533,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		
-		j2DClient.get().addEventLine(new HeaderLessEventLine(text, type));
+		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text, type));
 
 		// Scene settings messages should not disturb playing, just create some atmosphere
 		if (type != NotificationType.SCENE_SETTING) {
@@ -560,7 +561,7 @@ public abstract class RPEntity extends ActiveEntity {
 			//this supports also invoking an emote with !me instead of /me
 			if (text.startsWith("!me")) {
 				line = line.replace("!me", getTitle());
-				j2DClient.get().addEventLine(new HeaderLessEventLine(line, NotificationType.EMOTE));
+				ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(line, NotificationType.EMOTE));
 				
 				return;
 			} else {
@@ -1126,7 +1127,7 @@ public abstract class RPEntity extends ActiveEntity {
 				if (amount > 0) {
 					addTextIndicator("+" + amount,
 							NotificationType.SIGNIFICANT_POSITIVE);
-					j2DClient.get().addEventLine(new HeaderLessEventLine(
+					ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
 							getTitle()
 									+ " earns "
 									+ Grammar.quantityplnoun(amount,
@@ -1135,7 +1136,7 @@ public abstract class RPEntity extends ActiveEntity {
 				} else if (amount < 0) {
 					addTextIndicator("" + amount,
 							NotificationType.SIGNIFICANT_NEGATIVE);
-					j2DClient.get().addEventLine(new HeaderLessEventLine(
+					ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
 							getTitle()
 									+ " loses "
 									+ Grammar.quantityplnoun(-amount,
@@ -1148,7 +1149,7 @@ public abstract class RPEntity extends ActiveEntity {
 		if (changes.has("level") && object.has("level")) {
 			if (User.squaredDistanceTo(x, y) < 15 * 15) {
 				final String text = getTitle() + " reaches Level " + getLevel();
-				j2DClient.get().addEventLine(new HeaderLessEventLine(text,
+				ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text,
 						NotificationType.SIGNIFICANT_POSITIVE));
 
 				GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
@@ -1163,7 +1164,7 @@ public abstract class RPEntity extends ActiveEntity {
 			for (Entity ent : attackers) {
 					attackerNames.add(ent.getTitle());
 			}
-			j2DClient.get().addEventLine(new StandardEventLine(
+			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine(
 					getTitle() + " has been killed by " + Grammar.enumerateCollection(attackerNames)));
 		}
 	}

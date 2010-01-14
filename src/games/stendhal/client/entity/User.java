@@ -1,9 +1,9 @@
 package games.stendhal.client.entity;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.World;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.soundreview.HearingArea;
 import games.stendhal.client.update.Version;
@@ -94,7 +94,7 @@ public class User extends Player {
 		} else {
 			text = "You have been marked as being away.";
 		}
-		j2DClient.get().addEventLine(new HeaderLessEventLine(text, NotificationType.INFORMATION));
+		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text, NotificationType.INFORMATION));
 	}
 
 	/**
@@ -125,9 +125,9 @@ public class User extends Player {
 		if (!isNull()) {
 			final User me = User.get();
 
-    		if (me.rpObject != null) {
-    			return me.getLevel();
-    		}
+			if (me.rpObject != null) {
+				return me.getLevel();
+			}
 		}
 
 		return 0;
@@ -187,10 +187,11 @@ public class User extends Player {
 	@Override
 	public void onHealed(final int amount) {
 		super.onHealed(amount);
-		j2DClient.get().addEventLine(new HeaderLessEventLine(
-				getTitle() + " heals "
-						+ Grammar.quantityplnoun(amount, "health point") + ".",
-				NotificationType.POSITIVE));
+		ClientSingletonRepository.getUserInterface().addEventLine(
+			new HeaderLessEventLine(
+			getTitle() + " heals "
+			+ Grammar.quantityplnoun(amount, "health point") + ".",
+			NotificationType.POSITIVE));
 	}
 
 	/**
@@ -237,7 +238,8 @@ public class User extends Player {
 			if (changes.has("online")) {
 				final String[] players = changes.get("online").split(",");
 				for (final String playerName : players) {
-					j2DClient.get().addEventLine(new HeaderLessEventLine(
+					ClientSingletonRepository.getUserInterface().addEventLine(
+							new HeaderLessEventLine(
 							playerName + " has joined Stendhal.",
 							NotificationType.INFORMATION));
 				}
@@ -246,7 +248,8 @@ public class User extends Player {
 			if (changes.has("offline")) {
 				final String[] players = changes.get("offline").split(",");
 				for (final String playername : players) {
-					j2DClient.get().addEventLine(new HeaderLessEventLine(
+						ClientSingletonRepository.getUserInterface().addEventLine(
+							new HeaderLessEventLine(
 							playername + " has left Stendhal.",
 							NotificationType.INFORMATION));
 				}
@@ -256,7 +259,8 @@ public class User extends Player {
 				serverVersion = changes.get("release");
 				if (!Version.checkCompatibility(serverVersion,
 						stendhal.VERSION)) {
-					j2DClient.get().addEventLine(new HeaderLessEventLine(
+					ClientSingletonRepository.getUserInterface().addEventLine(
+							new HeaderLessEventLine(
 							"Your client may not function properly.\nThe version of this server is "
 									+ serverVersion
 									+ " but your client is version "
