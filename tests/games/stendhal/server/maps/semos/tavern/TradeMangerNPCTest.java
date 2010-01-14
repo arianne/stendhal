@@ -1,8 +1,6 @@
 package games.stendhal.server.maps.semos.tavern;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -20,9 +18,9 @@ import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
- * Test buying with fractional amounts.
+ * Test the trade center npc
  * 
- * @author Martin Fuchs
+ * @author madmetzger
  */
 public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 
