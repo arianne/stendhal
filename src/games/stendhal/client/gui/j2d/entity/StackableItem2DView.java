@@ -51,7 +51,6 @@ public class StackableItem2DView extends Item2DView {
 
 	/**
 	 * Get the appropriate quantity sprite.
-	 * @param gameScreen 
 	 * 
 	 * @return A sprite representing the quantity, or <code>null</code> for
 	 *         none.

@@ -258,7 +258,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The drawn entity width.
 	 * @param height
 	 *            The drawn entity height.
-	 * @param gameScreen 
 	 */
 	protected void draw(final Graphics2D g2d, final int x, final int y,
 			final int width, final int height) {
