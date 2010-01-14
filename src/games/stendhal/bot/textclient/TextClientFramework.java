@@ -50,19 +50,11 @@ public class TextClientFramework extends StandardClientFramework {
 			final int i = message.getPerceptionTimestamp();
 
 			final RPAction action = new RPAction();
-			if (i % 50 == 0) {
-				action.put("type", "move");
-				action.put("dy", "-1");
-				this.send(action);
-			} else if (i % 50 == 20) {
-				action.put("type", "move");
-				action.put("dy", "1");
-				this.send(action);
-			} else if (i % 50 == 21) {
+			/*if (i % 50 == 21) {
 				action.put("type", "chat");
 				action.put("text", "Test");
 				this.send(action);
-			}
+			}*/
 			if (showWorld) {
 				System.out.println("<World contents ------------------------------------->");
 				int j = 0;
