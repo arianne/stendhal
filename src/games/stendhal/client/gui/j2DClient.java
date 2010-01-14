@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.PerceptionListenerImpl;
@@ -79,7 +80,7 @@ import pagelayout.PageLayout;
 import pagelayout.Row;
 
 /** The main class that create the screen and starts the arianne client. */
-public class j2DClient {
+public class j2DClient implements UserInterface {
 	/**
 	 * A shared [singleton] copy.
 	 */
@@ -102,6 +103,7 @@ public class j2DClient {
 	 */
 	public static void setDefault(final j2DClient sharedUI) {
 		j2DClient.sharedUI = sharedUI;
+		ClientSingletonRepository.setUserInterface(sharedUI);
 	}
 
 

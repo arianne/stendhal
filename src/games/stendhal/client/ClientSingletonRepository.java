@@ -1,5 +1,6 @@
 package games.stendhal.client;
 
+import games.stendhal.client.gui.UserInterface;
 import marauroa.client.ClientFramework;
 
 /**
@@ -10,14 +11,17 @@ import marauroa.client.ClientFramework;
 public class ClientSingletonRepository {
 
 	private static ClientFramework clientFramework;
+	private static UserInterface userInterface;
 
 	/**
 	 * gets the ClientFramework
+	 *
 	 * @return ClientFramework
 	 */
 	public static ClientFramework getClientFramework() {
 		return clientFramework;
 	}
+
 
 	/**
 	 * sets the ClientFramework
@@ -28,4 +32,22 @@ public class ClientSingletonRepository {
 		ClientSingletonRepository.clientFramework = clientFramework;
 	}
 
+
+	/**
+	 * gets the user interface
+	 *
+	 * @return UserInterface
+	 */
+	public static UserInterface getUserInterface() {
+		return userInterface;
+	}
+
+	/**
+	 * sets the user interface
+	 *
+	 * @param userInterface UserInterface
+	 */
+	public static void setUserInterface(UserInterface userInterface) {
+		ClientSingletonRepository.userInterface = userInterface;
+	}
 }

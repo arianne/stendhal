@@ -9,6 +9,7 @@ import marauroa.common.net.message.MessageS2CPerception;
 
 import games.stendhal.bot.core.StandardClientFramework;
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.IDSend;
 
 /**
  * a text based ClientFramework
@@ -45,8 +46,7 @@ public class TextClientFramework extends StandardClientFramework {
 	@Override
 	protected void onPerception(final MessageS2CPerception message) {
 		try {
-			System.out.println("Received perception "
-					+ message.getPerceptionTimestamp());
+			// System.out.println("Received perception " + message.getPerceptionTimestamp());
 
 			handler.apply(message, worldObjects);
 			final int i = message.getPerceptionTimestamp();
@@ -73,6 +73,7 @@ public class TextClientFramework extends StandardClientFramework {
 
 	@Override
 	public void execute() throws IOException, InterruptedException {
+		IDSend.send();
 		new LoginScript(this).adminLogin();
 
 		while (true) {

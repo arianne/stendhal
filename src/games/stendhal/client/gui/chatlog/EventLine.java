@@ -36,4 +36,9 @@ public class EventLine {
 	public void setType(final NotificationType type) {
 		this.type = type;
 	}
+
+	@Override
+	public String toString() {
+		return type + ": " + header + text;
+	}
 }

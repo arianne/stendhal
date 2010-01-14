@@ -9,10 +9,10 @@ import java.io.OutputStreamWriter;
 import java.security.SecureRandom;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.io.Persistence;
+
+import org.apache.log4j.Logger;
 
 public class IDSend {
 	
@@ -41,7 +41,7 @@ public class IDSend {
 		action.put("type", "cid");
 		action.put("id", computerID);
 
-		StendhalClient.get().send(action);
+		ClientSingletonRepository.getClientFramework().send(action);
 		
 	}
 	

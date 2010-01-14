@@ -177,6 +177,6 @@ public class SlashActionParser extends CommandlineParser {
 		}
 
 		return true;
-    }
+	}
 
 }
