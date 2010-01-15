@@ -182,10 +182,10 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			if (!size.equals(stendhal.screenSize)) {
 				sw = Math.min(canvas.getWidth(), stendhal.screenSize.width);
 				sh = Math.min(canvas.getHeight(), stendhal.screenSize.height);
-				svx = -sw / 2;
-				svy = -svy / 2;
+				// Set the user clip to avoid drawing artefacts on some setups
 				g2d.setClip(0, 0, sw, sh);
 				calculateView();
+				center();
 			}
 		}
 
@@ -445,7 +445,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 	/**
 	 * Updates the view position to center the target position.
-	 *
+	 * Prefer top left if the map is smaller than the screen.
 	 */
 	private void calculateView() {
 		// Coordinates for a screen centered on player
@@ -455,22 +455,15 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		/*
 		 * Keep the world with-in the screen view
 		 */
-		if (cvx < 0) {
-			cvx = 0;
-		} else {
-			// The total width can be < screen width. Therefore set it at least to 0
-			final int maxX = Math.max((ww * SIZE_UNIT_PIXELS) - sw, 0);
-			cvx = Math.min(cvx, maxX);
-		}
-
-		if (cvy < 0) {
-			cvy = 0;
-		} else {
-			// The total height can be < screen height. Therefore set it at least to 0
-			final int maxY = Math.max((wh * SIZE_UNIT_PIXELS) - sh, 0);
-			cvy = Math.min(cvy, maxY);
-		}
-
+		final int maxX = ww * SIZE_UNIT_PIXELS - sw;
+		cvx = Math.min(cvx, maxX);
+		cvx = Math.max(cvx, 0);
+		
+		final int maxY = wh * SIZE_UNIT_PIXELS - sh;
+		cvy = Math.min(cvy, maxY);
+		cvy = Math.max(cvy, 0);
+		
+		// Differences from center
 		dvx = cvx - svx;
 		dvy = cvy - svy;
 	}
