@@ -147,8 +147,10 @@ public class StatsPanel extends StyledJPanel {
 				set = new HashMap<String, RPObject>();
 				money.put(slot, set);
 			}
-		} else if (set.containsKey(id)) {
-			// has been checked to be money before
+		} else if (set.containsKey(id) && object.has("quantity")) {
+			// Has been checked to be money before. Add only if there's 
+			// quantity though. Adding to empty slots can create add events without.
+			// Then the quantity has arrived in previous event
 			add = true;
 		}
 		
