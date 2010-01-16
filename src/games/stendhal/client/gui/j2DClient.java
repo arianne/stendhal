@@ -847,7 +847,7 @@ public class j2DClient implements UserInterface {
 	 */
 	public void addGameScreenText(final double x, final double y, final String text, final NotificationType type,
 			final boolean isTalking) {
-		screen.addText(x, y, text, type, false);
+		screen.addText(x, y, text, type, isTalking);
 	}
 
 	/**
