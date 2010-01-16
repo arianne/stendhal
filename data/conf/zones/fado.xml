@@ -630,18 +630,12 @@ For example say:  11  if you want the room called Water of Love.
 <zone name="0_fado_forest" level="0" x="499744" y="500512" file="Level 0/fado/forest.tmx">
  <configurator class-name="games.stendhal.server.maps.fado.forest.WoodCutterNPC" />
   <entity x="63" y="82">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-    <attribute name="text">
-I buy good axes:
-halberd            2000 
-golden twoside axe 4000 
-magic twoside axe  6000
-durin axe          8000
-black scythe       9000
-chaos axe         10000
-black halberd     12000
-          Signed, Woody
-    </attribute>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+    <parameter name="shop">buyaxe</parameter>
+    <parameter name="title">Woody's list of axes</parameter>
+	<parameter name="seller">false</parameter>
+	<parameter name="caption">Woody the Woodcutter will buy these axes:</parameter>
+    </implementation>
     <attribute name="class">signpost</attribute>
   </entity>
 
@@ -1138,20 +1132,13 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 <!-- Interiors for Magic underground city here -->
 <zone name="int_magic_theater" file="interiors/magic/theater.tmx">
    <configurator class-name="games.stendhal.server.maps.magic.theater.MagicBarmaidNPC" />
-      <entity x="16" y="1">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">
-Magic City Theater Concession:
-
-hotdog 160
-licorice 100
-sandwich 120
-cheeseydog 180
-tuna sandwich 130
-vanilla shake 110
-chocolate bar 100
-chocolate shake 110
-     </attribute>
+    <entity x="16" y="1">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">sellmagic</parameter>
+      <parameter name="title">Magic Theater Concession</parameter>
+	  <parameter name="seller">true</parameter>
+	  <parameter name="caption">Buy refreshments here:</parameter>
+     </implementation>
      <attribute name="class">blackboard</attribute>
     </entity>
    <configurator class-name="games.stendhal.server.maps.magic.theater.MithrilShieldForgerNPC" />

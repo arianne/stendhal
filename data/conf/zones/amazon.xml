@@ -46,20 +46,14 @@
  <zone name="0_amazon_island_ne" level="0" x="501152" y="499744" file="Level 0/amazon/island_ne.tmx">
   <configurator class-name="games.stendhal.server.maps.amazon.fleamarket.AmazonMermaidArmorNPC"/>
  <entity x="11" y="81">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">
-I buy good, quality cloaks:
-
-elf cloak  50
-lich cloak  10000
-xeno cloak  18000
-stone cloak  350
-vampire cloak  14000
-red dragon cloak  4000
-blue striped cloak 280
-     </attribute>
-     <attribute name="class">blackboard</attribute>
-    </entity>
+	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+		<parameter name="shop">buyamazoncloaks</parameter>
+		<parameter name="title">Cloaks bought here</parameter>
+		<parameter name="seller">false</parameter>
+		<parameter name="caption">Nicklesworth only buys good quality cloaks:</parameter>
+	</implementation>
+	<attribute name="class">blackboard</attribute>
+  </entity>
   <portal x="48" y="98" ref="in">
    <destination zone="int_amazon_princess_hut" ref="out"/>
   </portal>
