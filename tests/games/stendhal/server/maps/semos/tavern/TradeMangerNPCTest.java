@@ -42,7 +42,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	/**
-	 * Tests for hiAndBye.
+	 * Tests for successful placement of an offer.
 	 */
 	@Test
 	public void testSuccessfullOfferPlacement() {
