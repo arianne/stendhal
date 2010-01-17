@@ -68,7 +68,7 @@ public class SoundManager
             mOutput      = mSoundSystem.openOutput(AUDIO_FORMAT);
             mLayerVolume = mSoundLayers.createVolumeAdjustor(0);
 
-            SignalProcessor.createChain(mInterruptor, this, /*mLayerVolume, */mGlobalVolume, mDirectedSound, mOutput);
+            SignalProcessor.createChain(mInterruptor, this, mLayerVolume, mGlobalVolume, mDirectedSound, mOutput);
         }
 
         boolean isActive      ()                            { return mIsActive.get();                      }
@@ -247,6 +247,7 @@ public class SoundManager
             channel.setLayer(layerLevel);
             channel.setAudibleArea(area);
             channel.resumePlayback();
+            channel.update();
         }
         else
         {
@@ -255,6 +256,7 @@ public class SoundManager
             channel.setLayer(layerLevel);
             channel.setAudibleArea(area);
             channel.playSound(sound, fadeInDuration);
+            channel.update();
         }
     }
 
