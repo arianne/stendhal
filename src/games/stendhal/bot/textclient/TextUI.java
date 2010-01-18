@@ -11,6 +11,8 @@ import games.stendhal.common.NotificationType;
  * @author hendrik
  */
 public class TextUI implements UserInterface {
+	private static final String ESC_COLOR_RESET = "\u001B[m";
+	private static final String ESC_COLOR_INPUT = "\u001B[32m";
 
 	/**
 	 * creates a TextUI
@@ -25,7 +27,7 @@ public class TextUI implements UserInterface {
 	 * @param line to print
 	 */
 	public void addEventLine(EventLine line) {
-		System.out.println(line);
+		System.out.println(ESC_COLOR_RESET + line + ESC_COLOR_INPUT);
 	}
 
 	/**
