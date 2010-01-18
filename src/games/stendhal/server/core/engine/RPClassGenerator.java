@@ -42,7 +42,6 @@ import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
 import games.stendhal.server.events.BuddyLoginEvent;
 import games.stendhal.server.events.BuddyLogoutEvent;
-import games.stendhal.server.events.DamagedEvent;
 import games.stendhal.server.events.ExamineEvent;
 import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PrivateTextEvent;
@@ -191,9 +190,6 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("buddy_logout")) {
 			BuddyLogoutEvent.generateRPClass();
-		}
-		if (!RPClass.hasRPClass("damaged")) {
-			DamagedEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("examine")) {
 			ExamineEvent.generateRPClass();
