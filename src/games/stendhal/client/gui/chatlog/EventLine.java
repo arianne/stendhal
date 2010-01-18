@@ -39,6 +39,14 @@ public class EventLine {
 
 	@Override
 	public String toString() {
-		return type + ": " + header + text;
+		StringBuilder sb = new StringBuilder();
+		sb.append(type);
+		sb.append(": ");
+		if (header.length() > 0) {
+			sb.append(header);
+			sb.append(": ");
+		}
+		sb.append(text);
+		return sb.toString();
 	}
 }
