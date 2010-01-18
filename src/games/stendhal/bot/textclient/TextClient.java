@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.bot.textclient;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import games.stendhal.bot.core.StandardClientFramework;
 
 public class TextClient {
@@ -47,9 +50,14 @@ public class TextClient {
 					i++;
 				}
 
-				if ((username != null) && (password != null)
+				if ((username != null) 
 						&& (character != null) && (host != null)
 						&& (port != null)) {
+					if (password == null) {
+						System.out.print("Password: ");
+						BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+						password = br.readLine();
+					}
 					System.out.println("Connecting");
 					new TextUI();
 					Thread thread = new Thread(new InputReader());
