@@ -1,15 +1,18 @@
 package games.stendhal.bot.textclient;
 
-import java.io.IOException;
-import java.net.SocketException;
-
-import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
-import marauroa.common.net.message.MessageS2CPerception;
-
 import games.stendhal.bot.core.StandardClientFramework;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.IDSend;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
+import games.stendhal.common.NotificationType;
+
+import java.io.IOException;
+import java.net.SocketException;
+
+import marauroa.common.game.RPEvent;
+import marauroa.common.game.RPObject;
+import marauroa.common.net.message.MessageS2CPerception;
 
 /**
  * a text based ClientFramework
@@ -49,14 +52,9 @@ public class TextClientFramework extends StandardClientFramework {
 			// System.out.println("Received perception " + message.getPerceptionTimestamp());
 
 			handler.apply(message, worldObjects);
-			final int i = message.getPerceptionTimestamp();
 
-			final RPAction action = new RPAction();
-			/*if (i % 50 == 21) {
-				action.put("type", "chat");
-				action.put("text", "Test");
-				this.send(action);
-			}*/
+			handleChatEvents();
+
 			if (showWorld) {
 				System.out.println("<World contents ------------------------------------->");
 				int j = 0;
@@ -70,6 +68,51 @@ public class TextClientFramework extends StandardClientFramework {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * handles public and private chat
+	 */
+	private void handleChatEvents() {
+		try {
+			for (final RPObject object : worldObjects.values()) {
+
+				// ignore creatures and nameless things
+				if (object.getRPClass().subclassOf("creature") || !object.has("name")) {
+					continue;
+				}
+				String name = object.get("name");
+
+				// for all events
+				for (final RPEvent event : object.events()) {
+					if (event.getName().equals("private_text")) {
+
+						// private chat
+						String text = event.get("text");
+						NotificationType type;
+						try {
+							type = NotificationType.valueOf(event.get("texttype"));
+						} catch (final RuntimeException e) {
+							type = NotificationType.PRIVMSG;
+						}
+						ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text, type));
+
+					} else if (event.getName().equals("text")) {
+
+						// public chat
+						ClientSingletonRepository.getUserInterface().addEventLine(new StandardHeaderedEventLine(name, event.get("text")));
+					}
+				}
+
+				// old style text attribute
+				if (object.has("text")) {
+					ClientSingletonRepository.getUserInterface().addEventLine(new StandardHeaderedEventLine(name, object.get("text")));
+				}
+			}
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	@Override
 	public void execute() throws IOException, InterruptedException {
