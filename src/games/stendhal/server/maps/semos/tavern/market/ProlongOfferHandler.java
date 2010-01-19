@@ -79,7 +79,7 @@ public class ProlongOfferHandler extends OfferHandler {
 					return;
 				}
 			} catch (NumberFormatException e) {
-				npc.say("Sorry, please say #remove #number");
+				npc.say("Sorry, please say #prolong #number");
 			}
 		}
 	}
