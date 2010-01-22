@@ -487,10 +487,10 @@ tileset/object/lion_fountain.png * 2:0
 tileset/object/lion_fountain.png * 1:3
 tileset/object/lion_fountain.png * 3:1
 # vulcanus swings hammer
-tileset/object/vulcanus.png * 0:2:4
-tileset/object/vulcanus.png * 1:3:5
-tileset/object/vulcanus.png * 6:8:10
-tileset/object/vulcanus.png * 7:9:11
+tileset/object/vulcanus.png * 0:4:2
+tileset/object/vulcanus.png * 1:5:3
+tileset/object/vulcanus.png * 6:10:8
+tileset/object/vulcanus.png * 7:11:9
 # single tile sparkle
 tileset/furniture/light/sparkle.png * 0:1
 tileset/furniture/light/sparkle.png * 1:0
