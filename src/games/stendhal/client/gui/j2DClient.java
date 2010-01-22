@@ -329,7 +329,7 @@ public class j2DClient implements UserInterface {
 			 * layout managers happily ignore maximum and minimum
 			 * size constraints. A real fix would be writing
 			 * a better layout manager, but this will do for now.
-			 * (2009-01-22)
+			 * (2010-01-22)
 			 */
 			@Override
 			public Dimension getPreferredSize() {
