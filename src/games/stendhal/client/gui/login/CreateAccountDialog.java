@@ -17,7 +17,6 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.ProgressBar;
 import games.stendhal.client.update.ClientGameConfiguration;
 
-import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -219,7 +218,6 @@ public class CreateAccountDialog extends JDialog {
 		// CreateAccountDialog
 		this.setTitle("Create New Account");
 		this.setResizable(false);
-		this.setSize(new Dimension(350, 350));
 		// required on Compiz
 		this.pack(); 
 		this.setLocationRelativeTo(owner);
