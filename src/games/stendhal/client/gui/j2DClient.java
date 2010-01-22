@@ -323,7 +323,23 @@ public class j2DClient implements UserInterface {
 		leftColumn.setComponentGaps(0, 0);
 		
 		// Chat entry and chat log
-		JPanel chatBox = new JPanel();
+		final JPanel chatBox = new JPanel() {
+			/*
+			 * A workaround for the swing flaw that all the existing
+			 * layout managers happily ignore maximum and minimum
+			 * size constraints. A real fix would be writing
+			 * a better layout manager, but this will do for now.
+			 * (2009-01-22)
+			 */
+			@Override
+			public Dimension getPreferredSize() {
+				Dimension tmp = super.getPreferredSize();
+				if (tmp.width > stendhal.screenSize.width) {
+					tmp.width = stendhal.screenSize.width;
+				}
+				return tmp;
+			}
+		};
 		chatBox.setLayout(new BorderLayout());
 		chatBox.add(chatText.getPlayerChatText(), BorderLayout.NORTH);
 		chatBox.add(gameLog, BorderLayout.CENTER);
