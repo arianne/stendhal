@@ -73,6 +73,17 @@ public class BuyerAdder {
 										+ " which I can buy at once is 1000.");
 								engine.setCurrentState(ConversationStates.ATTENDING);
 							} else if (behaviour.getAmount() > 0) {
+								final String itemName=behaviour.getChosenItemName();
+								// will check if player have claimed amount of items
+								if(itemName.equals("sheep")) {
+									// player have no sheep...
+									if (!player.hasSheep()) {
+										engine.say("You don't have any sheep, " + player.getTitle() + "! What are you trying to pull?");
+										return;
+									}
+								} else {
+									
+								}
 								final int price = behaviour.getCharge(engine, player);
 
 								if (price != 0) {

@@ -60,7 +60,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 					final Sheep sheep = player.getSheep();
 					return getValue(sheep);
 				} else {
-					seller.say("You don't have any sheep, " + player.getTitle() + "! What are you trying to pull?");
+					// npc's answer was moved to BuyerAdder. 
 					return 0;
 				}
 			}
