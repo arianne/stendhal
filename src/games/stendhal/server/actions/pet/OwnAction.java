@@ -16,6 +16,7 @@ import static games.stendhal.common.constants.Actions.OWN;
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
@@ -65,18 +66,21 @@ public class OwnAction implements ActionListener {
 					// The animal is too far away
 					player.sendPrivateText("That " + animal.getTitle()
 							+ " is too far away.");
-				} else if (animal instanceof Sheep) {
-					if (player.getSheep() != null) {
-						player.sendPrivateText("You already own a sheep.");
-					} else {
-						player.setSheep((Sheep) animal);
+				} else {
+					if (animal instanceof Sheep) {
+						if (player.getSheep() != null) {
+							player.sendPrivateText("You already own a sheep.");
+						} else {
+							player.setSheep((Sheep) animal);
+						}
+					} else if (animal instanceof Pet) {
+						if (player.getPet() != null) {
+							player.sendPrivateText("You already own a pet.");
+						} else {
+							player.setPet((Pet) animal);
+						}
 					}
-				} else if (animal instanceof Pet) {
-					if (player.getPet() != null) {
-						player.sendPrivateText("You already own a pet.");
-					} else {
-						player.setPet((Pet) animal);
-					}
+					new GameEvent(player.getName(), "own", animal.getRPClass().getName(), animal.getName()).raise();
 				}
 			}
 		} 

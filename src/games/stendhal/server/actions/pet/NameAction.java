@@ -2,6 +2,7 @@ package games.stendhal.server.actions.pet;
 
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.player.Player;
 
@@ -39,7 +40,7 @@ public class NameAction implements ActionListener {
 		final List<DomesticAnimal> animals = player.getAnimals();
 
 		if (animals.isEmpty()) {
-    		player.sendPrivateText("You don't own any " + curName);
+			player.sendPrivateText("You don't own any " + curName);
 		} else {
 			DomesticAnimal animal = null;
 
@@ -72,14 +73,15 @@ public class NameAction implements ActionListener {
 								player.sendPrivateText("Congratulations, your " + curName + " is now called '"
 										+ newName + "'.");
 							}
+							new GameEvent(player.getName(), "name", animal.getRPClass().getName(), newName).raise();
 						}
 					} else {
 						player.sendPrivateText("Please don't use empty names.");
 					}
-    			} else {
-        			// see if we can move the word separator one space to the
+				} else {
+					// see if we can move the word separator one space to the
 					// right to search for a pet name
-    				final int idxSpace = newName.indexOf(' ');
+					final int idxSpace = newName.indexOf(' ');
 
     				if (idxSpace != -1) {
     					final int idxLastSpace = newName.lastIndexOf(' ', idxSpace);

@@ -6,6 +6,7 @@ import static games.stendhal.common.constants.Actions.SHEEP;
 import static games.stendhal.common.constants.Actions.SPECIES;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
@@ -23,39 +24,40 @@ public class ForsakeAction implements ActionListener {
 	
 	public void onAction(final Player player, final RPAction action) {
 		
-				if (action.has(SPECIES)) {
-				final String species = action.get(SPECIES);
+		if (action.has(SPECIES)) {
+			final String species = action.get(SPECIES);
 
-				if (species.equals(SHEEP)) {
-					final Sheep sheep = player.getSheep();
+			if (species.equals(SHEEP)) {
+				final Sheep sheep = player.getSheep();
 
-					if (sheep != null) {
-						player.removeSheep(sheep);
+				if (sheep != null) {
+					player.removeSheep(sheep);
 
-						// HACK: Avoid a problem on database
-						if (sheep.has(DB_ID)) {
-							sheep.remove(DB_ID);
-						}
-					} else {
-						logger.error("sheep not found in disown action: " + action.toString());
+					// HACK: Avoid a problem on database
+					if (sheep.has(DB_ID)) {
+						sheep.remove(DB_ID);
 					}
-				} else if (species.equals(PET)) {
-					final Pet pet = player.getPet();
+					new GameEvent(player.getName(), "foresake", species);
+				} else {
+					logger.error("sheep not found in disown action: " + action.toString());
+				}
+			} else if (species.equals(PET)) {
+				final Pet pet = player.getPet();
 
-					if (pet != null) {
-						player.removePet(pet);
+				if (pet != null) {
+					player.removePet(pet);
 
-						// HACK: Avoid a problem on database
-						if (pet.has(DB_ID)) {
-							pet.remove(DB_ID);
-						}
-					} else {
-						logger.error("pet not found in disown action: " + action.toString());
+					// HACK: Avoid a problem on database
+					if (pet.has(DB_ID)) {
+						pet.remove(DB_ID);
 					}
+					new GameEvent(player.getName(), "foresake", species);
+				} else {
+					logger.error("pet not found in disown action: " + action.toString());
 				}
 			}
 		}
-
+	}
 	
 
 }
