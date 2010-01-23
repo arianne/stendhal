@@ -205,7 +205,11 @@ public class StatsPanel extends StyledJPanel {
 	
 	private void updateLevel() {
 		final int next = Level.getXP(level + 1) - xp;
-		final String text = "Level: " + level + " (" + next + ")";
+		// Show "em-dash" for max level players rather than 
+		// a confusing negative required xp.
+		final String nextS = (next < 0) ? "\u2014" : Integer.toString(next);
+			
+		final String text = "Level: " + level + " (" + nextS + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				levelLabel.setText(text);
