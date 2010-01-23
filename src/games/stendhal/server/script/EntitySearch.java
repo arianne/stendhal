@@ -102,6 +102,35 @@ public class EntitySearch extends ScriptImpl {
 
 		sandbox.privateText(player, res.toString());
 	}
+	
+
+	private void findPet(Player player) {
+		final StringBuilder res = new StringBuilder();
+
+		res.append("\r\nDomestic animals):");
+
+		for (final IRPZone irpzone : SingletonRepository.getRPWorld()) {
+			final StendhalRPZone zone = (StendhalRPZone) irpzone;
+
+			for (final RPObject rpObj : zone) {
+				if (rpObj instanceof DomesticAnimal) { 
+					final DomesticAnimal pet = (DomesticAnimal) rpObj;
+					final String zoneName = zone.getName();
+					res.append("\r\n" + pet.getRPClass().getName());
+					res.append(" named " + pet.getTitle());
+					res.append(" (" + pet.getLevel() + ")");
+					res.append(" at " + zoneName + " " + pet.getX() + " " + pet.getY());
+					if (pet.getOwner() != null) {
+						res.append(" owned by " + pet.getOwner().getName());
+					}
+				}
+			}
+
+		}
+
+		sandbox.privateText(player, res.toString());
+	}
+
 
 	private boolean isACreatureButNoPet(final RPObject rpObj) {
 		return (rpObj instanceof Creature) && !(rpObj instanceof DomesticAnimal);
@@ -152,6 +181,8 @@ public class EntitySearch extends ScriptImpl {
 			findByCreatureName(admin, args.get(1));
 		} else if ((args.size() == 1) && args.get(0).equals("nonrespawn")) {
 			findNonRespawn(admin);
+		} else if ((args.size() == 1) && args.get(0).equals("pet")) {
+			findPet(admin);
 		} else if ((args.size() == 2) && args.get(0).equals("zname")) {
 			findByZoneName(admin, args.get(1));
 		} else {
