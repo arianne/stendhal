@@ -80,7 +80,7 @@ public class OwnAction implements ActionListener {
 							player.setPet((Pet) animal);
 						}
 					}
-					new GameEvent(player.getName(), "own", animal.getRPClass().getName(), animal.getName()).raise();
+					new GameEvent(player.getName(), "own", animal.getRPClass().getName(), animal.getTitle()).raise();
 				}
 			}
 		} 
