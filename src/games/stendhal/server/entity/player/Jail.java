@@ -166,8 +166,12 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			SingletonRepository.getTurnNotifier().dontNotify(jailer);
 
 			// Set a timer so that the inmate is automatically released after
-			// serving his sentence.
-			SingletonRepository.getTurnNotifier().notifyInSeconds(minutes * 60, jailer);
+			// serving his sentence. Negative times are treated as "forever",
+			// thus no turn notifiers are needed. Zero is useful for freeing
+			// players, so we handle that normally.
+			if (minutes >= 0) {
+				SingletonRepository.getTurnNotifier().notifyInSeconds(minutes * 60, jailer);
+			}
 		} else {
 			policeman.sendPrivateText("Could not find a cell for "
 					+ criminal.getName());
