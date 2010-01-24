@@ -163,7 +163,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	private int svy;
 
 	/**
-	 * The pan speed.
+	 * Current panning speed.
 	 */
 	private int speed;
 
@@ -409,31 +409,15 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 				 * Don't overshoot. Don't stall.
 				 */
 				if (dvx < 0) {
-					if (dx == 0) {
-						dx = -1;
-					} else if (dx < dvx) {
-						dx = dvx;
-					}
+					dx = Math.max(Math.min(-1, dx), dvx);
 				} else if (dvx > 0) {
-					if (dx == 0) {
-						dx = 1;
-					} else if (dx > dvx) {
-						dx = dvx;
-					}
+					dx = Math.min(Math.max(1, dx), dvx);
 				}
 
 				if (dvy < 0) {
-					if (dy == 0) {
-						dy = -1;
-					} else if (dy < dvy) {
-						dy = dvy;
-					}
+					dy = Math.max(Math.min(-1, dy), dvy);
 				} else if (dvy > 0) {
-					if (dy == 0) {
-						dy = 1;
-					} else if (dy > dvy) {
-						dy = dvy;
-					}
+					dy = Math.min(Math.max(1, dy), dvy);
 				}
 
 				/*
@@ -458,7 +442,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		int cvy = (y * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sh / 2);
 
 		/*
-		 * Keep the world with-in the screen view
+		 * Keep the world within the screen view
 		 */
 		final int maxX = ww * SIZE_UNIT_PIXELS - sw;
 		cvx = Math.min(cvx, maxX);
