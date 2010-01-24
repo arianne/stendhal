@@ -65,6 +65,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * A scale factor for panning delta (to allow non-float precision).
 	 */
 	protected static final int PAN_SCALE = 8;
+	/**
+	 * Speed factor for centering the screen. Smaller is faster,
+	 * and keeps the player closer to the center of the screen when walking.
+	 */
+	private static final int PAN_INERTIA = 15;
 	
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(GameScreen.class);
@@ -370,8 +375,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			/*
 			 * Calculate the target speed. The farther away, the faster.
 			 */
-			final int dux = dvx / 40;
-			final int duy = dvy / 40;
+			final int dux = dvx / PAN_INERTIA;
+			final int duy = dvy / PAN_INERTIA;
 
 			final int tspeed = ((dux * dux) + (duy * duy)) * PAN_SCALE;
 
