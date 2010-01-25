@@ -67,15 +67,6 @@ public class FindGhosts extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 	
-	@Override
-	public boolean isCompleted(final Player player) {
-		if (!player.hasQuest(QUEST_SLOT)) {
-			return false;
-		}
-
-		return missingNames(player).size() == 0;
-	}
-
 	private List<String> missingNames(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return NEEDED_SPIRITS;
@@ -86,15 +77,16 @@ public class FindGhosts extends AbstractQuest {
 		 */
 		final String npcDoneText = player.getQuest(QUEST_SLOT).toLowerCase();
 		final String[] doneAndFound = npcDoneText.split(":");
-		final String[] done = doneAndFound[1].split(";");
-		final List<String> doneList = Arrays.asList(done);
 		final List<String> result = new LinkedList<String>();
-		for (final String name : NEEDED_SPIRITS) {
+		if (doneAndFound.length > 1) {
+		    final String[] done = doneAndFound[1].split(";");
+		    final List<String> doneList = Arrays.asList(done);
+		    for (final String name : NEEDED_SPIRITS) {
 			if (!doneList.contains(name)) {
-				result.add(name);
+			    result.add(name);
 			}
+		    }
 		}
-
 		return result;
 	}
 
