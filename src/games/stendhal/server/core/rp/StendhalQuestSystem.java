@@ -262,9 +262,9 @@ public class StendhalQuestSystem {
 			if (quest.isStarted(player) && !quest.isCompleted(player)) {
 				if (!first) {
 					sb.append(", ");
-					first = false;
 				}
 				sb.append(quest.getName());
+				first = false;
 			}
 		}
 
@@ -275,9 +275,9 @@ public class StendhalQuestSystem {
 			if (quest.isCompleted(player)) {
 				if (!first) {
 					sb.append(", ");
-					first = false;
 				}
 				sb.append(quest.getName());
+				first = false;
 			}
 		}
 
