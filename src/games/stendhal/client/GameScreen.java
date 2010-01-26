@@ -539,7 +539,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		}
 		
 		int tmpX = yAdjust + convertWorldToScreen(ww);
-		if (tmpY < sw) {
+		if (tmpX < sw) {
 			g2d.setColor(Color.BLACK);
 			g2d.fillRect(tmpX, 0, sw, sh);
 		}
