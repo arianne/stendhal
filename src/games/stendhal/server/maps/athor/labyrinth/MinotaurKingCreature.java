@@ -28,7 +28,7 @@ public class MinotaurKingCreature implements ZoneConfigurator {
 
 		final Creature creature = new ItemGuardCreature(manager.getCreature("minotaur king"), "kokuda");
 
-		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 83, 103, creature, 1);
+		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 58, 55, creature, 1);
 
 		zone.add(point);
 	}
