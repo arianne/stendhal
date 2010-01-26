@@ -91,7 +91,7 @@ public class ImperialPrincessTest {
 		en.step(player, "hi");
 		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I'm sure I asked you to do something for me, already.", getReply(npc));
+		assertEquals("I cannot free the captives in the basement but I could do one thing: ease their pain. I need #herbs for this.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, and good luck.", getReply(npc));
 
