@@ -207,7 +207,7 @@ public class ImperialPrincess extends AbstractQuest {
 								engine.say("Perfect! I will recommend you to my father, as a fine, " +
 										"helpful person. He will certainly agree you are eligible for " +
 										"citizenship of Kalavan.");
-								player.addXP(Integer.valueOf(player.getQuest(QUEST_SLOT)) * 400);
+								player.addXP(level * 400);
 								player.setQuest(QUEST_SLOT, "recommended");
 								player.notifyWorldAboutChanges();
 							} else { 
