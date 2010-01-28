@@ -207,7 +207,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			entity.addAttribute("risk", Type.BYTE, Definition.VOLATILE);
 			entity.addAttribute("damage", Type.INT, Definition.VOLATILE);
 			entity.addAttribute("heal", Type.INT, Definition.VOLATILE);
-			//entity.addAttribute("target", Type.INT, Definition.VOLATILE);
+			// will not remove definition because old players could get
+			// message "Attribute not found" when logging in without it.
+			entity.addAttribute("target", Type.INT, Definition.VOLATILE);
 			entity.addAttribute("title_type", Type.STRING, Definition.VOLATILE);
 
 			entity.addRPSlot("head", 1, Definition.PRIVATE);
