@@ -179,10 +179,9 @@ public class Cache {
 
 				// get the stream
 				try {
-					return Persistence.get().getInputStream(true,
-							stendhal.STENDHAL_FOLDER + "cache/", item.name);
+					return Persistence.get().getInputStream(true, stendhal.STENDHAL_FOLDER + "cache/", item.name);
 				} catch (final IOException e) {
-					logger.error(e, e);
+					logger.warn("Cannot read cache file: " + item.name);
 				}
 			}
 		} catch (final NumberFormatException e) {
