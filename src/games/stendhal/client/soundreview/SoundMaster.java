@@ -65,7 +65,7 @@ public class SoundMaster implements WorldListener {
 		if (sfm == null) {
 			return;
 		}
-		String mySoundName = soundName.replaceAll("\\.wav", "").replaceAll("\\.au", "").replaceAll("\\.aiff", "") + ".ogg";
+		String mySoundName = soundName.replaceAll("\\.wav", ".ogg").replaceAll("\\.au", ".ogg").replaceAll("\\.aiff", ".ogg");
 
 		if (USE_NEW_SOUND_SYSTEM) {
 			playUsingNewSoundSystem(soundLayer.ordinal(), mySoundName);
