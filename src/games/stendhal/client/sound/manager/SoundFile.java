@@ -64,8 +64,9 @@ public class SoundFile extends SignalProcessor implements Cloneable
 
         SignalProcessor decoder = chooseDecoder(filePath, fileType, outputNumSamplesPerChannel);
 
-        if(decoder == null)
-            throw new IOException("could not load audio file: " + filePath);
+        if(decoder == null) {
+            return;
+        }
 
         if(enableStreaming)
         {
@@ -146,6 +147,11 @@ public class SoundFile extends SignalProcessor implements Cloneable
     {
         SignalProcessor decoder = null;
         InputStream  stream = this.getClass().getResourceAsStream("/" + filePath);
+
+        if (stream == null) {
+            logger.debug("Cannot open " + filePath);
+            return null;
+        }
 
         switch(fileType)
         {
