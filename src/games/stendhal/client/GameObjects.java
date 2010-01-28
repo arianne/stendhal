@@ -180,32 +180,28 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 *            The object.
 	 */
 	public void onAdded(final RPObject object) {
-		if (object.has("server-only")) {
-			logger.debug("Discarding object: " + object);
+		if (!object.getRPClass().subclassOf("entity")) {
+			logger.debug("Skipping non-entity object: " + object);
+			return;
+		}
+
+		// TODO: Remove once 'type' isn't used anymore
+		if (!object.has("type")) {
+			logger.error("Entity without type: " + object);
+			return;
+		}
+
+		final IEntity entity = add(object);
+
+		if (entity != null) {
+			if (entity.isOnGround()) {
+				GameScreen.get().addEntity(entity);
+				MapPanelController.get().addEntity(entity);
+			}
+
+			logger.debug("added " + entity);
 		} else {
-			if (!object.getRPClass().subclassOf("entity")) {
-				logger.debug("Skipping non-entity object: " + object);
-				return;
-			}
-
-			// TODO: Remove once 'type' isn't used anymore
-			if (!object.has("type")) {
-				logger.error("Entity without type: " + object);
-				return;
-			}
-
-			final IEntity entity = add(object);
-
-			if (entity != null) {
-				if (entity.isOnGround()) {
-					GameScreen.get().addEntity(entity);
-					MapPanelController.get().addEntity(entity);
-				}
-
-				logger.debug("added " + entity);
-			} else {
-				logger.error("No entity for: " + object);
-			}
+			logger.error("No entity for: " + object);
 		}
 	}
 
