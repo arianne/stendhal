@@ -17,7 +17,9 @@ import org.apache.log4j.Logger;
  * four parts by setting the other parts to <code>null</code>. For example,
  * you can create a dress outfit that you can combine with the player's current
  * so that the player gets the dress, but keeps his hair, head, and base.
- * 
+ *
+ * Not all outfits are choosable by players.
+ *  
  * @author daniel
  * 
  */

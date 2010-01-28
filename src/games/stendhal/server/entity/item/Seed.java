@@ -6,12 +6,25 @@ import games.stendhal.server.entity.RPEntity;
 
 import java.util.Map;
 
+/**
+ * A seed can be planted. 
+ * The plant action defines the behaviour (e.g. only plantable on fertile ground).
+ * The infostring stores what it will grow.
+ */
 public class Seed extends StackableItem implements UseListener {
 
 	public Seed(final Seed item) {
 		super(item);
 	}
 
+	/**
+	 * Creates a new seed
+	 * 
+	 * @param name
+	 * @param clazz
+	 * @param subclass
+	 * @param attributes
+	 */
 	public Seed(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}

@@ -96,6 +96,10 @@ public class WellSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected boolean isPrepared(final Player player) {
+        /*
+        * The player 'throws' money into the well, like a wishing well donation.
+        * Check they have it before they use the well.
+		*/
 		if (player.isEquipped("money", 30)) {
 			return true;
 		} else {
@@ -112,6 +116,9 @@ public class WellSource extends PlayerActivityEntity {
 	@Override
 	protected boolean isSuccessful(final Player player) {
 		final int random = Rand.roll1D100();
+        /*
+        * Use some karma to help decide if the outcome is successful
+		*/
 		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
 	}
 
@@ -137,7 +144,7 @@ public class WellSource extends PlayerActivityEntity {
 				item.setBoundTo(player.getName());
 			} else if (itemName.equals("money")) {
 				/*
-				 * Assign a random amount of money.
+				 * Assign a random amount of money from 1 to 100.
 				 */
 				((StackableItem) item).setQuantity(Rand.roll1D100());
 			}

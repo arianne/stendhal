@@ -124,6 +124,10 @@ public abstract class PlayerActivityEntity extends Entity implements
 		
 		final Player player = (Player) entity;
 		
+		/*
+		* The player must be next to the source to start to use it.
+		*/
+
 		if (!player.nextTo(this)) {
 			player.sendPrivateText("You are too far away from "+this.getName()+
 			   ", try to come closer.");			
