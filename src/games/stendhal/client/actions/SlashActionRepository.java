@@ -67,6 +67,7 @@ public class SlashActionRepository {
 		actions.put("teleportto", new TeleportToAction());
 		actions.put("tellall", new TellAllAction());
 		actions.put("tell", msg);
+		actions.put("testsound", new TestSoundAction());
 
 		actions.put("where", new WhereAction());
 		actions.put("who", new WhoAction());
