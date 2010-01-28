@@ -27,6 +27,8 @@ import org.apache.log4j.Logger;
  * prospecting action has finished. Therefore, make sure that two gold sources
  * are always at least 5 sec of walking away from each other, so that the player
  * can't prospect for gold at several sites simultaneously.
+ *
+ * Some karma is used to decide if the player was successful at the well or not.
  * 
  * @author daniel
  */
@@ -60,7 +62,7 @@ public class GoldSource extends PlayerActivityEntity {
 	 */
 	@Override
 	public String getName() {
-		return("gold");
+		return("gold rich water");
 	}
 	
 	/**
@@ -124,7 +126,10 @@ public class GoldSource extends PlayerActivityEntity {
 	@Override
 	protected boolean isSuccessful(final Player player) {
 		final int random = Rand.roll1D100();
-		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
+        /*
+        * Use some karma to help decide if the outcome is successful
+		*/
+        return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
 	}
 
 	/**
@@ -141,8 +146,8 @@ public class GoldSource extends PlayerActivityEntity {
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
 			if (item != null) {
-    			player.equipOrPutOnGround(item);
-    			player.sendPrivateText("You found "
+    			    player.equipOrPutOnGround(item);
+    			    player.sendPrivateText("You found "
     					+ Grammar.a_noun(item.getTitle()) + ".");
 			} else {
 				logger.error("could not find item: " + itemName);

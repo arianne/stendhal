@@ -56,7 +56,7 @@ public abstract class PlayerActivityEntity extends Entity implements
 		if (nextTo(player)) {
 			onFinished(player, isSuccessful(player));
 		} else {
-			player.sendPrivateText("You are too far away from "+this.getName()+
+			player.sendPrivateText("You are too far away from the "+this.getName()+
 								   ", try to come closer.");
 			onFinished(player, false);
 		}

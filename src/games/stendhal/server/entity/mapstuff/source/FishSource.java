@@ -25,6 +25,9 @@ import marauroa.common.game.RPClass;
  * are always at least 8 sec of walking away from each other, so that the player
  * can't fish at several sites simultaneously.
  * 
+ * Completion of the Fishermans Collector quest increases the chance of catching fish.
+ * Some karma is used to decide the outcome.
+ *
  * @author dine
  */
 public class FishSource extends PlayerActivityEntity {
@@ -58,7 +61,7 @@ public class FishSource extends PlayerActivityEntity {
 	 */
 	@Override
 	public String getName() {
-		return("fish");
+		return("fish in the water");
 	}
 
 	//
@@ -73,7 +76,7 @@ public class FishSource extends PlayerActivityEntity {
 	/**
 	 * Calculates the probability that the given player catches a fish. This is
 	 * based on the player's fishing skills, however even players with no skills
-	 * at all have a 5% probability of success.
+	 * at all have a 5% probability of success, before the karma effect.
 	 * 
 	 * @param player
 	 *            The player,
