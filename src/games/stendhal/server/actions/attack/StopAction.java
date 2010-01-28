@@ -31,7 +31,7 @@ public class StopAction implements ActionListener {
 		player.stop();
 
 		if (action.has(ATTACK)) {
-			player.stopAttack();
+			player.stopAttack(player.getAttackTarget());
 		}
 
 		player.notifyWorldAboutChanges();

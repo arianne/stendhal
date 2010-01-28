@@ -573,9 +573,9 @@ public class Creature extends NPC {
 
 	/** need to recalculate the ai when we stop the attack. */
 	@Override
-	public void stopAttack() {
+	public void stopAttack(RPEntity defender) {
 	
-		super.stopAttack();
+		super.stopAttack(defender);
 	}
 
 	/**
@@ -683,7 +683,7 @@ public class Creature extends NPC {
 		        	this.makeNoiseChance(100, "follow");
 		        }
 			} else {
-				this.stopAttack();
+				this.stopAttack(this.getAttackTarget());
 				strategy.findNewTarget(this);
 				if (strategy.hasValidTarget(this)) {
 					this.setBusy();
@@ -741,7 +741,7 @@ public class Creature extends NPC {
 		if (!isIdle) {
 			isIdle = true;
 			clearPath();
-			stopAttack();
+			stopAttack(getAttackTarget());
 			stop();
 		
 		} else {

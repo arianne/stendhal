@@ -184,7 +184,7 @@ public class StendhalRPAction {
 			logger.debug("Attack from " + player + " to " + defender
 					+ " stopped because target was lost("
 					+ zone.has(defender.getID()) + ") or dead.");
-			player.stopAttack();
+			player.stopAttack(defender);
 
 			return false;
 		}
@@ -419,7 +419,7 @@ public class StendhalRPAction {
 			final RPEntity rpentity = (RPEntity) entity;
 
 			rpentity.stop();
-			rpentity.stopAttack();
+			rpentity.stopAttack(rpentity.getAttackTarget());
 			rpentity.clearPath();
 		}
 

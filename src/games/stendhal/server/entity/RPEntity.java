@@ -32,6 +32,8 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.events.StartAttackEvent;
+import games.stendhal.server.events.StopAttackEvent;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -181,6 +183,8 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			stats = Statistics.getStatistics();
 			final RPClass entity = new RPClass("rpentity");
 			entity.isA("active_entity");
+			entity.addRPEvent("start_attack", Definition.VOLATILE);
+			entity.addRPEvent("stop_attack", Definition.VOLATILE);
 			entity.addAttribute("name", Type.STRING);
 			entity.addAttribute(ATTR_TITLE, Type.STRING);
 			entity.addAttribute("level", Type.SHORT);
@@ -203,7 +207,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			entity.addAttribute("risk", Type.BYTE, Definition.VOLATILE);
 			entity.addAttribute("damage", Type.INT, Definition.VOLATILE);
 			entity.addAttribute("heal", Type.INT, Definition.VOLATILE);
-			entity.addAttribute("target", Type.INT, Definition.VOLATILE);
+			//entity.addAttribute("target", Type.INT, Definition.VOLATILE);
 			entity.addAttribute("title_type", Type.STRING, Definition.VOLATILE);
 
 			entity.addRPSlot("head", 1, Definition.PRIVATE);
@@ -831,7 +835,9 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @param target
 	 */
 	public void setTarget(final RPEntity target) {
-		put("target", target.getID().getObjectID());
+		//put("target", target.getID().getObjectID());
+		final StartAttackEvent sae = new StartAttackEvent(target.getID().getObjectID());
+		this.addEvent(sae);
 		if (attackTarget != null) {
 			attackTarget.attackSources.remove(this);
 		}
@@ -839,7 +845,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	}
 
 	/** Modify the entity to stop attacking. */
-	public void stopAttack() {
+	public void stopAttack(final RPEntity target) {
 		if (has("risk")) {
 			remove("risk");
 		}
@@ -849,10 +855,13 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		if (has("heal")) {
 			remove("heal");
 		}
-		if (has("target")) {
-			remove("target");
+		//if (has("target")) {
+		//	remove("target");
+		//}
+		if (target!=null) {
+		final StopAttackEvent sae = new StopAttackEvent(target.getID().getObjectID());
+		this.addEvent(sae);
 		}
-
 		if (attackTarget != null) {
 			attackTarget.attackSources.remove(this);
 
@@ -1184,7 +1193,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 		// Corpse may want to know who this entity was attacking (RaidCreatureCorpse does), 
 		// so defer stopping. 
-		stopAttack();
+		stopAttack(this.attackTarget);
 		if (remove) {
 			zone.remove(this);
 		}

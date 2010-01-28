@@ -57,7 +57,7 @@ public class PlayerTransformer implements Transformer {
 
 		final Player player = new Player(object);
 		player.stop();
-		player.stopAttack();
+		player.stopAttack(player.getAttackTarget());
 
 		
 

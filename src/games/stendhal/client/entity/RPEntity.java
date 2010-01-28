@@ -407,6 +407,12 @@ public abstract class RPEntity extends ActiveEntity {
 		ClientSingletonRepository.getUserInterface().addEventLine(new StandardHeaderedEventLine(getTitle(), text));
 	}
 
+	public void onStartAttack(final IEntity target) {
+		attackTarget = (RPEntity) target;
+		this.onAttack(target);
+		attackTarget.onAttacked(this);
+	}
+	
 	// When this entity attacks target.
 	public void onAttack(final IEntity target) {
 		attacking = target.getID();
@@ -546,7 +552,15 @@ public abstract class RPEntity extends ActiveEntity {
 	public void onStopAttack() {
 		attacking = null;
 	}
-
+	
+	public void onStopAttack(final IEntity target) {
+		if(attackTarget != null) {
+		attackTarget.onStopAttacked(this);
+		attackTarget = null;
+		}
+		this.onStopAttack();
+	}
+	
 	// When attacker stop attacking us
 	public void onStopAttacked(final IEntity attacker) {
 		attackers.remove(attacker);
@@ -688,6 +702,16 @@ public abstract class RPEntity extends ActiveEntity {
 			if (event.getName().equals(Events.PUBLIC_TEXT)) {
 				onTalk(event.get("text"));
 			}
+			
+			if (event.getName().equals(Events.START_ATTACK)) {
+				onStartAttack(GameObjects.getInstance().get(new RPObject.ID(
+						event.getInt("target"), object.get("zoneid"))));
+			}
+			
+			if (event.getName().equals(Events.STOP_ATTACK)) {
+				onStopAttack(GameObjects.getInstance().get(new RPObject.ID(
+						event.getInt("target"), object.get("zoneid"))));				
+			}
 		}
 
 		/*
@@ -737,16 +761,17 @@ public abstract class RPEntity extends ActiveEntity {
 		/*
 		 * Attack Target
 		 */
+		/*
 		if (object.has("target")) {
 			final int target = object.getInt("target");
 
 			final RPObject.ID targetEntityID = new RPObject.ID(target,
 					object.get("zoneid"));
 
-			/*
-			 * TODO This is probably meaningless, as create order is
-			 * unpredictable, and the target entity may not have been added yet XXX
-			 */
+			//
+			// TODO This is probably meaningless, as create order is
+			// unpredictable, and the target entity may not have been added yet XXX
+			//
 			attackTarget = (RPEntity) GameObjects.getInstance().get(
 					targetEntityID);
 		
@@ -758,7 +783,7 @@ public abstract class RPEntity extends ActiveEntity {
 		} else {
 			attackTarget = null;
 		}
-
+		*/
 		if (attackTarget != null) {
 			evaluateAttack(object, attackTarget);
 		}
@@ -900,6 +925,16 @@ public abstract class RPEntity extends ActiveEntity {
 				} else if (event.getName().equals("show_item_list")) {
 					new ItemListImageViewerEvent(event).view();
 				}
+				
+				if (event.getName().equals(Events.START_ATTACK)) {
+					onStartAttack(GameObjects.getInstance().get(new RPObject.ID(
+							event.getInt("target"), object.get("zoneid"))));
+				}
+				
+				if (event.getName().equals(Events.STOP_ATTACK)) {
+					onStopAttack(GameObjects.getInstance().get(new RPObject.ID(
+							event.getInt("target"), object.get("zoneid"))));
+				}
 			}
 	
 			/*
@@ -984,6 +1019,7 @@ public abstract class RPEntity extends ActiveEntity {
 			/*
 			 * Attack Target
 			 */
+			/*
 			if (changes.has("target")) {
 				final int target = changes.getInt("target");
 
@@ -1009,7 +1045,8 @@ public abstract class RPEntity extends ActiveEntity {
 					}
 				}
 			}
-
+			*/
+			
 			if (attackTarget != null) {
 				int risk;
 				int damage;
