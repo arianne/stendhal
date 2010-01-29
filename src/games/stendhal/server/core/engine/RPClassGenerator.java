@@ -1,6 +1,7 @@
 package games.stendhal.server.core.engine;
 
 
+import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.rp.guilds.Guild;
 import games.stendhal.server.core.rp.guilds.GuildMember;
 import games.stendhal.server.core.rp.guilds.GuildPermission;
@@ -46,6 +47,7 @@ import games.stendhal.server.events.ExamineEvent;
 import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.ShowItemListEvent;
+import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.events.StartAttackEvent;
 import games.stendhal.server.events.StopAttackEvent;
 import games.stendhal.server.events.TextEvent;
@@ -204,6 +206,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("show_item_list")) {
 			ShowItemListEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass(Events.SOUND)) {
+			SoundEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("transition_graph")) {
 			TransitionGraphEvent.generateRPClass();

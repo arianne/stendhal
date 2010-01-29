@@ -916,6 +916,8 @@ public abstract class RPEntity extends ActiveEntity {
 				 */
 				if (event.getName().equals(Events.PUBLIC_TEXT)) {
 					onTalk(event.get("text"));
+				} else if (event.getName().equals(Events.SOUND)) {
+					SoundMaster.play(SoundLayer.CREATURE_NOISE, event.get("sound") + ".ogg", getX(), getY());
 				}
 
 				if (event.getName().equals("transition_graph")) {
