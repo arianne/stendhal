@@ -120,9 +120,14 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 
 		final MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
 
-		// Don't drag an item into the same slot
+		// Don't drag an item into the same slot...
 		if ((view != null) && (container.getEntity() == view.getEntity())) {
-			return false;
+			/*
+			 * ...but consider it always a successful drop since a valid
+			 * target was found. Otherwise an item dragged on top of
+			 * itself goes through the slot to the target below. 
+			 */
+			return true;
 		}
 
 		final RPAction action = new RPAction();
