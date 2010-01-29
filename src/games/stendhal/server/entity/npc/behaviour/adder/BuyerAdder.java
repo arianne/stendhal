@@ -14,6 +14,7 @@ import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 
 import org.apache.log4j.Logger;
 
@@ -120,12 +121,13 @@ public class BuyerAdder {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC engine) {
-						logger.debug("Buying something from player "
-								+ player.getName());
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						logger.debug("Buying something from player " + player.getName());
 
-						behaviour.transactAgreedDeal(engine, player);
+						boolean success = behaviour.transactAgreedDeal(engine, player);
+						if (success) {
+							engine.addEvent(new SoundEvent("coins-1"));
+						}
 					}
 				});
 
