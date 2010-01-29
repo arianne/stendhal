@@ -6,19 +6,22 @@
 package games.stendhal.client.sound.system;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
 import javax.sound.sampled.Control;
-import javax.sound.sampled.Mixer;
-import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.DataLine;
 import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.Mixer;
+import javax.sound.sampled.SourceDataLine;
+
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -26,6 +29,9 @@ import javax.sound.sampled.LineUnavailableException;
  */
 public class SoundSystem extends Thread
 {
+
+    private static Logger logger = Logger.getLogger(SoundSystem.class);
+
     public final static class Output extends SignalProcessor
     {
         private SourceDataLine mLine            = null; // the line we will write the PCM data to
@@ -282,7 +288,11 @@ public class SoundSystem extends Thread
         {
             long duration = System.nanoTime();
 
-            processOutputs();
+            try {
+                processOutputs();
+            } catch (RuntimeException e) {
+                logger.warn(e, e);
+            }
 
             duration                  = System.nanoTime() - duration;
             averageTimeToProcessSound = (averageTimeToProcessSound + duration) / 2.0;
