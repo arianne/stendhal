@@ -1235,11 +1235,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	private void clickSound(final boolean state) {
-		if (state) {
-			playOpenSound();
-		} else {
+	private void clickSound(final boolean stateMinimizing) {
+		if (stateMinimizing) {
 			playCloseSound();
+		} else {
+			playOpenSound();
 		}
 	}
 
