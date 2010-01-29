@@ -47,7 +47,9 @@ public class PCMStreamConverter extends SignalProcessor
 
         try
         {
-            mInputStream.close();
+            if (mInputStream != null) {
+                mInputStream.close();
+            }
         }
         catch(IOException exception)
         {
