@@ -101,7 +101,7 @@ public class StendhalWebsiteDAO {
 		params.put("atk", instance.getATK());
 		params.put("def", instance.getDEF());
 		params.put("hp", instance.getHP());
-		params.put("karma", instance.getKarma());
+		params.put("karma", (int) instance.getKarma());
 		params.put("head", extractName(instance.getHelmet()));
 		params.put("armor", extractName(instance.getArmor()));
 		params.put("lhand", extractHandName(instance, "lhand"));			
