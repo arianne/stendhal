@@ -29,11 +29,11 @@ public class DumpSpeakerNPCtoDB implements TurnListener {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
 			long start = System.currentTimeMillis();
+			transaction.execute("DELETE FROM npcs", null);
 			PreparedStatement stmt = transaction.prepareStatement("INSERT INTO npcs " +
 				"(name, title, class, outfit, hp, base_hp, zone, x, y, level, description, job)" +
 				" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
 
-			stmt.execute("DELETE FROM npcs");
 			for (SpeakerNPC npc : SingletonRepository.getNPCList()) {
 				dumpNPC(stmt, npc);
 			}
