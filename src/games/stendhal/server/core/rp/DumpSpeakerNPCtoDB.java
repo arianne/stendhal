@@ -33,7 +33,6 @@ public class DumpSpeakerNPCtoDB implements TurnListener {
 				"(name, title, class, outfit, hp, base_hp, zone, x, y, level, description, job)" +
 				" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
 
-			stmt.execute("start transaction;");
 			stmt.execute("DELETE FROM npcs");
 			for (SpeakerNPC npc : SingletonRepository.getNPCList()) {
 				dumpNPC(stmt, npc);
