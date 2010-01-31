@@ -29,18 +29,20 @@ public class OggVorbisDecoder extends SignalProcessor
     private int         mInputBufferSize = 0;
     private int         mReadPos         = 0;
     private boolean     mEndOfStream     = true;
+	private boolean     mLastPageWasRead = false;
     private boolean     mDecoderIsOpened = false;
     
     protected void init(InputStream stream, int inputBufferSize, int outputNumSamplesPerChannel) throws IOException
     {
-        mOggStreamState = new StreamState();
-        mOggSyncState   = new SyncState();
-        mVorbisDspState = new DspState();
-        mVorbisBlock    = new Block(mVorbisDspState);
-        mVorbisComment  = new Comment();
-        mVorbisInfo     = new Info();
-        mReadPos        = 0;
-        mEndOfStream    = false;
+        mOggStreamState  = new StreamState();
+        mOggSyncState    = new SyncState();
+        mVorbisDspState  = new DspState();
+        mVorbisBlock     = new Block(mVorbisDspState);
+        mVorbisComment   = new Comment();
+        mVorbisInfo      = new Info();
+        mReadPos         = 0;
+        mEndOfStream     = false;
+		mLastPageWasRead = false;
         
         mOggSyncState.init();
         mOggSyncState.buffer(inputBufferSize);  // add "inputBufferSize" bytes to the buffer
@@ -91,7 +93,7 @@ public class OggVorbisDecoder extends SignalProcessor
                             return null;
 
                     if(oggPage.eos() != 0)
-                        mEndOfStream = true;
+                        mLastPageWasRead = true;
                     
                     return oggPage;
                 }
@@ -162,6 +164,9 @@ public class OggVorbisDecoder extends SignalProcessor
 
     protected int read() throws IOException
     {
+		if(reachedEndOfStream()) // no more pcm data to read
+			return 0;
+
         int         outputBufferSize           = mOutputBuffer.length;
         int         outputNumSamplesPerChannel = outputBufferSize / mVorbisInfo.channels;
         float[][][] uniformPCMData             = new float[1][][];
@@ -176,11 +181,7 @@ public class OggVorbisDecoder extends SignalProcessor
             // if we read all pcm data from "uniformPCMData"
             if(sampleIdx >= receivedNumSamples)
             {
-                //System.out.println("range: " + receivedNumSamples);
                 mVorbisDspState.synthesis_read(receivedNumSamples); // tell dsp-state that we read all samples
-
-                if(reachedEndOfStream()) // no more pcm data to get
-                    break;
 
                 // receive the next chunk of uniform pcm data
                 receivedNumSamples = mVorbisDspState.synthesis_pcmout(uniformPCMData, PCMIndex);
@@ -190,6 +191,12 @@ public class OggVorbisDecoder extends SignalProcessor
                 if(receivedNumSamples == 0)
                 {
                     Packet oggPacket = readPacket(true);
+
+					if(oggPacket == null && mLastPageWasRead)
+					{
+						mEndOfStream = true;
+						return 0;
+					}
 
                     if(oggPacket == null || mVorbisBlock.synthesis(oggPacket) != 0)
                         continue; // if the packet we read from the stream is corrupted or has no audio data, we ignore it
@@ -211,7 +218,7 @@ public class OggVorbisDecoder extends SignalProcessor
                 ++sampleIdx;
             }
         }
-
+		
         mVorbisDspState.synthesis_read(sampleIdx);
         return numSamplesReadPerChannel;
     }
@@ -224,15 +231,16 @@ public class OggVorbisDecoder extends SignalProcessor
     @Override
     protected boolean generate()
     {
-        if(reachedEndOfStream())
-        {
-            super.quit();
-            return false;
-        }
-        
         try
         {
             int numSamples = read();
+
+			if(reachedEndOfStream())
+			{
+				super.quit();
+				return false;
+			}
+
             super.propagate(mOutputBuffer, numSamples, getNumChannels(), getSampleRate());
         }
         catch(IOException e)
