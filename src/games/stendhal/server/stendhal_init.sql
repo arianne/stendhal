@@ -31,7 +31,7 @@ create table if not exists character_stats
   timedate timestamp,
   primary key(name)
   )
-  TYPE=INNODB;
+ ;
 /*CREATE INDEX i_character_stats_name ON character_stats(name);*/
 
 create table if not exists halloffame
@@ -43,14 +43,14 @@ create table if not exists halloffame
 
   primary key(id)
   ) 
-  TYPE=INNODB;
+ ;
 
 /*CREATE INDEX i_halloffame_charname ON halloffame(charname);*/
 
   
 CREATE TABLE IF NOT EXISTS itemid (
   last_id INTEGER
-) TYPE=INNODB;
+);
 
 CREATE TABLE IF NOT EXISTS itemlog (
   id         INTEGER AUTO_INCREMENT NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS itemlog (
   param3     VARCHAR(64),
   param4     VARCHAR(64),
   PRIMARY KEY (id)
-) TYPE=INNODB;
+);
 
 /*CREATE INDEX i_itemlog_itemid ON itemlog(itemid);*/
 /*CREATE INDEX i_itemlog_source ON itemlog(source);*/
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS kills (
   day         DATE,
   cnt         INTEGER,
   PRIMARY KEY (id)
-) TYPE=INNODB;
+);
 
 /*CREATE INDEX i_kills_killed ON kills (killed_type, killed);*/
 /*CREATE INDEX i_kills_killer ON kills (killer_type, killer);*/
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS cid
   timedate TIMESTAMP,
   PRIMARY KEY(id)
   ) 
-  TYPE=INNODB;
+ ;
 
 /*CREATE INDEX i_cid_charname ON cid(charname);*/
 
@@ -115,7 +115,7 @@ create table if not exists words (
   value		INTEGER NULL,
   alias_id	INTEGER NULL,
   PRIMARY KEY (id)
-) TYPE=INNODB;
+);
 
 /*CREATE INDEX i_word_normalized ON words(normalized);*/
 
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS npcs (
   description      VARCHAR(1000),
   job       VARCHAR(1000),
   PRIMARY KEY (id)
-) TYPE=INNODB;
+);
 
 /*CREATE INDEX i_npcs_id ON npcs (id);*/
 /*CREATE INDEX i_npcs_name ON npcs (name);*/
