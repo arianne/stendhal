@@ -217,7 +217,7 @@ public class TilesetConverter {
 		}
 		TileLayer tileLayer = (TileLayer) layer;
 		for (int y = 0; y < tileLayer.getHeight(); y++) {
-			for (int x = 0; x < tileLayer.getHeight(); x++) {
+			for (int x = 0; x < tileLayer.getWidth(); x++) {
 				Tile tile = tileLayer.getTileAt(x, y);
 				if (tile != null) {
 					tile = translateTile(tile);
