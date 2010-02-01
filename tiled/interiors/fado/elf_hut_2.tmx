@@ -44,41 +44,38 @@
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="62" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/earthen_2.png"/>
- </tileset>
- <tileset name="Untitled" firstgid="89" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brownground.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="90" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="63" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="108" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="81" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/dark_barrel.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="110" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="83" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/small_barrel.png"/>
  </tileset>
- <tileset name="/home/kimmo/src/stendhal/tiled/tileset/building/wall/int_clay.png" firstgid="112" tilewidth="32" tileheight="32">
+ <tileset name="/home/kimmo/src/stendhal/tiled/tileset/building/wall/int_clay.png" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAItkYGCIpDLWwIEpMQ/dbErdRy2zsLmRWuFH7XgZxaN4FI9iamIAFpS+P0AGAAA=
+   H4sIAAAAAAAAALNjYGCwozLWwIEpMQ/dbErdRy2zsLmRWuFH7XgZxaN4FI9iamIASeV1aUAGAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACtgYGAopRIuA+IqIK4G4hAKcT0Qr4Ca5wPEfEDMzwABAkAsyEAa8EIzj1wgTWXzYIBS85goMA9dLzaAyzwDIDZEwkbEOJYE8wyx6E0G4nQgzgLibCqYR4r7jIHYBAmbUmgeuQDdPGn8yhkYGSDhBgqzVChNTPiRApDT0WDLH/Q2TwIqzkiGWRJo5i0GYicc2BmqxxGPGhBeDjVvDRCvxYPXA/EGIN5IQB0IbwJiAFLPuW1ABgAA
+   H4sIAAAAAAAAAAtlYGCIohKOBuJ4IE4A4mQKcQoQ90LNywJiPiDmZ4AAASAWZCANNKGZRy6QprJ5MECpeUwUmIeuFxvAZZ4BEBsiYSNiHEuCeYZY9HoAsQ8Q+wNxABXMI8V9xkBsgoRNKTSPXIBunjR+5QyMDJBwA4WZF5QmJvxIAcjpaLDlD3qbJwEVZyTDLAk08zqAuBMH7oLqqcCjBoR7oOZNBOJJePAUIJ4KxNMIqAPh6UAMAJiFbd9ABgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBiQh8S2oYJ5+UhsWyqYR01zhjtgpaJZZmh8LTLNyYXSLBSaM1wBJxFqcgkrGQUjHAAAPAnK20AGAAA=
+   H4sIAAAAAAAAAGNgGBgQjMS2oYJ5IUhsWyqYR01zhjtgpaJZZmh8LTLNCYLSLBSaM1wBJxFqgggrGQUjHAAAkJ9+hkAGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA3gAmJuKJsHiHnxqLWhkp3YzJGiktmjgHwQBcRxQJwIxEk41OTQzzmDAhCTLkHhBgqzGCiNL/xAYKSFITWByADpHeoAAN4RCh1ABgAA
+   H4sIAAAAAAAAAGNgoA3gAmJuKJsHiHnxqLWhkp3YzJGiktmjgHxgD8TOQOwGxO441ATSzzmDAhCTLkHhBgozRyiNL/xAYKSFITWByADpHeoAAOY87/NABgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">

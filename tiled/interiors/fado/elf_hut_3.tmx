@@ -32,33 +32,30 @@
   <image source="../../tileset/item/food/rustic_meals.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="44" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/earthen_2.png"/>
- </tileset>
- <tileset name="Untitled" firstgid="71" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="89" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="62" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/small_barrel.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="91" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="64" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="93" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="66" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_on_stone.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="94" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="67" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_on_metal.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="95" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="68" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/dress.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="96" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="69" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="99" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="72" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/book.png"/>
  </tileset>
- <tileset name="/home/kimmo/src/stendhal/tiled/tileset/building/wall/int_clay.png" firstgid="103" tilewidth="32" tileheight="32">
+ <tileset name="/home/kimmo/src/stendhal/tiled/tileset/building/wall/int_clay.png" firstgid="76" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -68,22 +65,22 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEtnYGDIoRLOBeJCINYBYl0KsR4Qz4eaZwrE0QwIgIuNC/ABsTmaeTFI8rjY+AC6eZQCdPNI9SMh80j1IxMaTYl/5YBYHgkrUNk8+UFmniIQKyFhZQrNAwFmNBrdvAAgDseCI4g0n9bpeaiYx04l8/jQ5Ek1F9k8OyC2x4MZCMiDsAPUvMVAvAQPXgbEy4F4BQF1ILwSiAF8Pm7YQAYAAA==
+   H4sIAAAAAAAAAPNhYGAIpBIOAuIwIE4C4mQKcQoQt0DNywFiBwYEwMXGBfiAOA/NPEckeVxsfADdPEoBunkOSHIOWNSTah6pfmRCoynxrxwQyyNhBSqbJz/IzFMEYiUkrEyheSDAjEajm2cKxDZYsC2R5tM6PQ8V89ipZB4fmjyp5iKbVwbE5XgwAwF5EK6AmtcBxJ14cDcQ9wBxLwF1INwHxAAuRvjVQAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGDogdqAdgAOwDBM7aAnSqGiWFhBrI/E1qGRuKpXMGUiQhMSOHzBX0BcM1nIBBOLI0BMFxJFUdEMUFNMCAAD6jhHKQAYAAA==
+   H4sIAAAAAAAAAGNgGDrAaaAdgAOwDBM7aAm8qWiWFhBrI/E1qGSuF5XMGUjgjsR2GTBX0BcM1nIBBJzJ0GMPxHZUdIM9FNMCAADju4CsQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHyAiw52xBDBHk5gJPhxKAF3IPbDgv0H0lFDELBRyRz0MocUcyOp5AZamRdFZfOQAQA+SrRBQAYAAA==
+   H4sIAAAAAAAAAGNgGHyAiw52OBLBHk5gJPhxKAEdIDbGgk0G0lFDELBRyRz0MocUc+2o5AZamWdPZfOQAQCSDofSQAYAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQQCxKobF4iEMdT2cxRMAroBQCwcs6wQAYAAA==
+   H4sIAAAAAAAAAGNgGAWjYBQQC1ypbJ4bELtQ2cxRMAroBQAALx38QAYAAA==
   </data>
  </layer>
  <layer name="objects" width="20" height="20">

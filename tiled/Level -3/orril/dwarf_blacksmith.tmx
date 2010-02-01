@@ -73,20 +73,17 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="171" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="earthen walls" firstgid="172" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/earthen_2.png"/>
- </tileset>
- <tileset name="/home/kimmo/src/stendhal/tiled/tileset/building/wall/int_clay.png" firstgid="199" tilewidth="32" tileheight="32">
+ <tileset name="/home/kimmo/src/stendhal/tiled/tileset/building/wall/int_clay.png" firstgid="172" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OMQ0AMAwDQQMofy5h16UAmiFDpBtutN6VpOA5Db8bff2Jfvfnhv7EB/1dfQCASRe4hTU5ABAAAA==
+   H4sIAAAAAAAAAO3OMQ0AMAwDQQMof1bh1KUAmiFDpBtutN6VpOA5Db8bff2Jfvfnhv7EB/1dfQCASRev1unSABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SSQrCQBBFcwJdxHleuFFRFOfh0LpTd+oNXHgYF+IPlKRokljdibipBw9C+jcPQjxPUULu8BpjE7bo+SG8w3cSzglnbdiBPjwad2ZwzlzQGd/Z9guwSJaMndlfwhVznUG/DCtklb3vRvQ3cMvcpejn6LkG62TD2Jn9OD67k0U/L9hdvPAfuwn6Up7wYHknigEcOvQDkr6nlBEc/7E/gdMUfV+w68H+l41LP/gH9hn5cugriqIoiqL8kjeRmG+mABAAAA==
+   H4sIAAAAAAAAAO2SSQrCQBBFcwJdxHleuFFRFOfh3qKuXIsHcKXiRfyBkhRNEqs7ETf14EFI/+ZBiOcpSsgeHmNswhY9n4R3+E7COeGsDTvQhzfjzgzOmQs64zvbfgEWyZKxM/tLuGKuM+iXYYWssvfdiP4Gbpm7FP0cPddgnWwYO7Mfx2d3tejnBbuDF/5jF0Ffyh0+Le9EMYBDh35A0veUMoLjP/YncJqi7wt2Pdj/snHpB//AIyNfDn1FURRFUZRf8gYxVauyABAAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">

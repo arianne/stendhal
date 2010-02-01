@@ -4,25 +4,22 @@
  <tileset name="../../tileset/ground/brown.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/wall/earthen_2.png" firstgid="6" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/earthen_2.png" trans="ff00ff"/>
- </tileset>
- <tileset name="../../tileset/item/corpse/skull_dark.png" firstgid="33" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/corpse/skull_dark.png" firstgid="6" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_dark.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/pot/pot_grey.png" firstgid="35" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/pot/pot_grey.png" firstgid="8" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_grey.png"/>
  </tileset>
- <tileset name="../../tileset/building/stairs/stairs.png" firstgid="36" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/stairs/stairs.png" firstgid="9" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="../../tileset/item/armor/weapons_rack.png" firstgid="40" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/armor/weapons_rack.png" firstgid="13" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="58" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="31" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="/home/kimmo/src/stendhal/tiled/tileset/building/wall/int_clay.png" firstgid="59" tilewidth="32" tileheight="32">
+ <tileset name="/home/kimmo/src/stendhal/tiled/tileset/building/wall/int_clay.png" firstgid="32" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
  <layer name="0_floor" width="8" height="8">
@@ -32,17 +29,17 @@
  </layer>
  <layer name="1_terrain" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNjYGCQwYG9gFiEATcQGiTyinjk84CYCwcuAmIAr57wCgABAAA=
+   H4sIAAAAAAAAANNmYGDQw4H1gdiUATfwHSTybHjkg4E4BAcOB2IAgmrqLQABAAA=
   </data>
  </layer>
  <layer name="2_object" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAyUoViVCLW0BIZAbALE5kBsSSUzAQLs8PkAAQAA
+   H4sIAAAAAAAAAGNgIAw4oJiLCLW0BGJALAnEMkAsRyUzAcbfIa8AAQAA
   </data>
  </layer>
  <layer name="3_roof" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGDxAA4i1gVgPiA3oZCcAdUbGOAABAAA=
+   H4sIAAAAAAAAAGNgGDyAF4gFgFgYiEXpZCcAafl9GQABAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="8" height="8">
@@ -57,7 +54,7 @@
  </layer>
  <layer name="collision" width="8" height="8" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNiYGCwIhKjA1zitJIn1l2E1CNjAIk5AGgAAQAA
+   H4sIAAAAAAAAAJNnYGCQJxKjA1zitJIn1l2E1CNjALI9gGEAAQAA
   </data>
  </layer>
  <layer name="protection" width="8" height="8">
