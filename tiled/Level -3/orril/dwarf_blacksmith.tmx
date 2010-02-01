@@ -76,8 +76,8 @@
  <tileset name="earthen walls" firstgid="172" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/earthen_2.png"/>
  </tileset>
- <tileset name="earthen" firstgid="199" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/earthen.png"/>
+ <tileset name="/home/kimmo/src/stendhal/tiled/tileset/building/wall/int_clay.png" firstgid="199" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
@@ -86,7 +86,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SuQrCQBRF8wVaxH0vbFQUxX35aO3UTi210S/yBp7kMSTxzSRi8w4cCJk7HAjxPEUJecFrjE3Youen8A7fSTgnnLVhB/rwaNyZwTlzQWd8Z9svwCJZMnZmfwlXzHUG/TKskFX2vhvR38Atc5ein6PnGqyTDWNn9uP47E4W/bxgd/HCf+wm6Et5wIPlnSgGcOjQD0j6nlJGcPzH/gROU/R9wa4H+182Lv3gH9hn5N2hryiKoiiK8kvegzN+XQAQAAA=
+   H4sIAAAAAAAAAO2SSQrCQBBFcwJdxHleuFFRFOfh0LpTd+oNXHgYF+IPlKRokljdibipBw9C+jcPQjxPUULu8BpjE7bo+SG8w3cSzglnbdiBPjwad2ZwzlzQGd/Z9guwSJaMndlfwhVznUG/DCtklb3vRvQ3cMvcpejn6LkG62TD2Jn9OD67k0U/L9hdvPAfuwn6Up7wYHknigEcOvQDkr6nlBEc/7E/gdMUfV+w68H+l41LP/gH9hn5cugriqIoiqL8kjeRmG+mABAAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">

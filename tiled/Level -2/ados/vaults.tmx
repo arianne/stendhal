@@ -52,46 +52,43 @@
  <tileset name="portal" firstgid="114" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="steps" firstgid="121" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/stairs/int_earthen.png"/>
- </tileset>
- <tileset name="for walls" firstgid="157" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/earthen_6.png"/>
- </tileset>
- <tileset name="int_blue_purple" firstgid="202" tilewidth="32" tileheight="32">
+ <tileset name="int_blue_purple" firstgid="121" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_purple.png"/>
  </tileset>
- <tileset name="int_blue_purple_2" firstgid="218" tilewidth="32" tileheight="32">
+ <tileset name="int_blue_purple_2" firstgid="137" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_purple_2.png"/>
  </tileset>
- <tileset name="bricked_paving" firstgid="226" tilewidth="32" tileheight="32">
+ <tileset name="bricked_paving" firstgid="145" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/bricked_paving.png"/>
  </tileset>
- <tileset name="int_purple_blue" firstgid="230" tilewidth="32" tileheight="32">
+ <tileset name="int_purple_blue" firstgid="149" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_purple_blue.png"/>
  </tileset>
- <tileset name="purple_tile" firstgid="246" tilewidth="32" tileheight="32">
+ <tileset name="purple_tile" firstgid="165" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/purple_tile.png"/>
  </tileset>
- <tileset name="nsew_stains" firstgid="258" tilewidth="32" tileheight="32">
+ <tileset name="nsew_stains" firstgid="177" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/nsew_stains.png"/>
  </tileset>
- <tileset name="floors_3" firstgid="262" tilewidth="32" tileheight="32">
+ <tileset name="floors_3" firstgid="181" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png"/>
+ </tileset>
+ <tileset name="/home/kimmo/src/stendhal/tiled/tileset/building/wall/int_clay.png" firstgid="193" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dMU7DQBCG0aBQc/8DcgaKgAQFVJMImbU9s8u8X/pKoo2fRZrIuVzMrPveintVanG34qqvR7fiPgZ6+Wnkb2PV16NbcaP2R90D1dejW3Gj7o/iP39xR9nzX6M4/r2K49+ruMrPfv5r+G+5B/ivUdxfrI6257++/x57/mv5x/tgrz3/Nf2PrPp6dCuu+jziL/7ir3z/551dJ3hP4i/+yvevfj/iL/7iL/7iL/7iL/763b/6POIv/uIv/jHPGOHPv6+/75jz58+fP/9Y/Jzn38s/3gP8+/n7/8+fP3/+/LP9nzZUff3481/Zf7SMZ0zz7x3/3vHvHf/e8e8d/97x7x3/3m3xn+35KHHV51k5/r3jr9WKqz6P+It/ZtdQ9Xn459rH7w13ugfiqs/Dnz9//tn3gM//71WfR/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/x1v+rziL/4i7/4i7/4i7/4i7/4i7/q/R89P/Poqq/Rfy6Of6/iRl7jiN/krvi9bt2P/7xljP+8ZWzkXO8nV33dZyljI+f6PLnq6z5LGat+j9ruP+trir/4i7/4a16rM15T/MVf/MVf8xZXfR7V+ptZv30BhyCy8QAAAQA=
+   H4sIAAAAAAAAAO3dMU7DQBCG0aBQc3nOQBGQOCMFVJMImbU9s8u8X/pKoo2fRZrIuVzMrPveintVanG34qqvR7fiPgZ6+Wnkb2PV16NbcaP2R90D1dejW3Gj7o/iP39xR9nzX6M4/r2K49+ruMrPfv5r+G+5B/ivUdxfrI6257++/x57/mv5x/tgrz3/Nf2PrPp6dCuu+jziL/7ir3z/551dJ3hP4i/+yvevfj/iL/7iL/7iL/7iL/763b/6POIv/uIv/jHPGOHPv6+/75jz58+fP/9Y/Jzn38s/3gP8+/n7/8+fP3/+/LP9nzZUff3481/Zf7SMZ0zz7x3/3vHvHf/e8e8d/97x7x3/3m3xn+35KHHV51k5/r3jr9WKqz6P+It/ZtdQ9Xn459rH7w13ugfiqs/Dnz9//tn3gM//71WfR/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/zFX/x1v+rziL/4i7/4i7/4i7/4i7/4i7/q/R89P/Poqq/Rfy6Of6/iRl7jiN/krvi9bt2P/7xljP+8ZWzkXO8nV33dZyljI+f6PLnq6z5LGat+j9ruP+trir/4i7/4a16rM15T/MVf/MVf8xZXfR7V+ptZv30BdmgjAgAAAQA=
   </data>
  </layer>
  <layer name="1_terrainz" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3du07DMBQA0BSVn+EhsTAxIgEbsAEzA08JPor/xBsoLSRNk/raOUe6EiShtWTHvnad0jREtbeI+VoAxHS1w/faN67M0knuAkAFdtlXj+X818/LxeqxsV0MPFezHO2mq89fd34pP8jiOsVNitsRX7PPGoL6pos2UrZ1Y/2U4z/xmP/Fcpa7AABACD7zBwAAoMvjwHNsZuhnoSXuG6KbNRu2pQ0BQB2M6VC+gxSHuQsBAABQqKcUzylecheELF5TvKV4z10QgEDsE4LYjlIc5y4EADBI+7kIz0kAAAAAAAAAADXyf4rysA8cAIhETlgvdQvTMrfbju9WBQAAAKhT5HUf6+YQm3sUAFYZH4HoIq8DALQN3fNnryDRaaNQnhLv2xpyf+sskN95z2PU5XKiaylDO4e4alZzoV3mGSXmYbWpIa9kc+odAICaRZlrnuYuANDLQ+v3KH0I9TEuzM9divsUS2txMDv6fGpn//cP93vTfKT47HGMaeTMNbv2mM11D9rvfqFP/fx1jXkEbdoEjE8uN4xnQObF/I852mZ82PRvI45FX7kLUICp6/m/66duM+ofGMs3GZRVhAAAAQA=
+   H4sIAAAAAAAAAO3du07DMBQA0HwPD4mFibESsAEbMDPwlODTUPkp/gJvVGkhaZrE1+450pUgSVtLduxr14GmIarPoO8FQEyXM37W14yfRRwnuQsAFZizrx7LYuXn5YZjYzsfeK5mOdpNV5+/6fxywzGmd5XiOsXNiO/ZZw1BfdNFGynbprF+yvGfeMz/YjnLXQAAIATf+QMAANDlYeA5tjP0u9AS9w3RzZoNu9KGAKAOxnQo30GKw9yFAAAAKNRjiqcUz7kLQhYvKV5TvOUuCEAg9glBbEcpjnMXAgAYpP1chOckAAAAAAAAAIAa+T9FedgHDgBEIiesl7qFaZnb7cbfVgUAAACoU+R1H+vmEJt7FADWGR+B6CKvAwC0Dd3zZ68g0WmjUJ4S79sacn/rLJDfoucx6nIx0bWUoZ1DXDbrudCceUaJeVhtasgr2Z56BwCgZlHmmqe5CwD0ct/6PUofQn2MC/vnNsVdimXuggCz0+dTO/u/f7nfm+Y9xUePY0wjZ67ZtcdsX/egrfYLfernr2vMI2jTJmB8crlhPAOyX8z/2Ee7jA/bvjbiWPSduwAFmLqe/7t+6jaj/oGx/ACsau4VAAABAA==
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
