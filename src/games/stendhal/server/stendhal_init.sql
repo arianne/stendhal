@@ -28,7 +28,7 @@ create table if not exists character_stats
   feet varchar(32),
   cloak varchar(32),
 
-  timedate timestamp,
+  timedate timestamp default CURRENT_TIMESTAMP,
   primary key(name)
   )
  ;
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS itemid (
 
 CREATE TABLE IF NOT EXISTS itemlog (
   id         INTEGER AUTO_INCREMENT NOT NULL,
-  timedate   TIMESTAMP,
+  timedate   TIMESTAMP default CURRENT_TIMESTAMP,
   itemid     INTEGER,
   source     VARCHAR(64),
   event      VARCHAR(64),
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS cid
   charname VARCHAR(64) NOT NULL,
   address VARCHAR(64) NOT NULL,
   cid VARCHAR(64) NOT NULL,
-  timedate TIMESTAMP,
+  timedate TIMESTAMP default CURRENT_TIMESTAMP,
   PRIMARY KEY(id)
   ) 
  ;
