@@ -19,6 +19,8 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
@@ -54,6 +56,17 @@ public class TilesetConverter {
 	 * For quick lookup by tileset name
 	 */
 	private HashMap<String, TileSet> setByName = new HashMap<String, TileSet>();
+	
+	/**
+	 * Helper to make <code>namePattern</code> construction a bit more readable.
+	 */
+	private String sep =  Pattern.quote(File.separator);
+	/**
+	 * A pattern for picking the name of the tileset from the image name.
+	 * The trailing "dir/image" without ".png" 
+	 */
+	Pattern namePattern = Pattern.compile(".*" + sep + "([^" + sep + "]+"
+			+ sep + "[^" + sep + "]+)\\.png$");
 	
 	/**
 	 * For returning the translated tile information.
@@ -157,6 +170,22 @@ public class TilesetConverter {
 	}
 	
 	/**
+	 * Construct a nice name for a tileset based on the image name.
+	 * The substring used for the name is specified in <code>namePattern</code>
+	 * 
+	 * @param name image path
+	 * @return a human readable tileset name
+	 */
+	private String constructTilesetName(String name) {
+		Matcher matcher = namePattern.matcher(name);
+		
+		if (matcher.find()) {
+			name = matcher.group(1);
+		}
+		return name;
+	}
+	
+	/**
 	 * Add all the tilesets that the translation mapping uses to a map.
 	 * 
 	 * @param map the map to add the tilesets to 
@@ -177,7 +206,7 @@ public class TilesetConverter {
 			if (!setByName.containsKey(name)) {
 				// The tileset's not yet included. Add it to the map
 				TileSet set = new TileSet();
-				set.setName(name);
+				set.setName(constructTilesetName(name));
 				BasicTileCutter cutter = new BasicTileCutter(32, 32, 0, 0);
 				set.importTileBitmap(name, cutter);
 				
