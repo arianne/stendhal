@@ -40,78 +40,78 @@
  <tileset name="paintings" firstgid="94" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
- <tileset name="grass" firstgid="110" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/grass_2.png"/>
- </tileset>
- <tileset name="flowers" firstgid="122" tilewidth="32" tileheight="32">
+ <tileset name="flowers" firstgid="110" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/hothouse_flowers.png"/>
  </tileset>
- <tileset name="warmer" firstgid="194" tilewidth="32" tileheight="32">
+ <tileset name="warmer" firstgid="182" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
- <tileset name="kitchen" firstgid="200" tilewidth="32" tileheight="32">
+ <tileset name="kitchen" firstgid="188" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="tile" firstgid="228" tilewidth="32" tileheight="32">
+ <tileset name="tile" firstgid="216" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/oriental_tan_tile.png"/>
  </tileset>
- <tileset name="red rug" firstgid="229" tilewidth="32" tileheight="32">
+ <tileset name="red rug" firstgid="217" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
- <tileset name="grass edges" firstgid="238" tilewidth="32" tileheight="32">
+ <tileset name="grass edges" firstgid="226" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
- <tileset name="wall" firstgid="274" tilewidth="32" tileheight="32">
+ <tileset name="wall" firstgid="262" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
  </tileset>
- <tileset name="green blue" firstgid="290" tilewidth="32" tileheight="32">
+ <tileset name="green blue" firstgid="278" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
- <tileset name="entrance" firstgid="306" tilewidth="32" tileheight="32">
+ <tileset name="entrance" firstgid="294" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green.png"/>
  </tileset>
- <tileset name="armchair" firstgid="314" tilewidth="32" tileheight="32">
+ <tileset name="armchair" firstgid="302" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/armchair_red.png"/>
  </tileset>
- <tileset name="corners" firstgid="326" tilewidth="32" tileheight="32">
+ <tileset name="corners" firstgid="314" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
- <tileset name="tiles" firstgid="350" tilewidth="32" tileheight="32">
+ <tileset name="tiles" firstgid="338" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
- <tileset name="bread" firstgid="359" tilewidth="32" tileheight="32">
+ <tileset name="bread" firstgid="347" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
  </tileset>
- <tileset name="bazaar produce" firstgid="363" tilewidth="32" tileheight="32">
+ <tileset name="bazaar produce" firstgid="351" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/bazaar_produce.png"/>
  </tileset>
- <tileset name="small pot plants" firstgid="367" tilewidth="32" tileheight="32">
+ <tileset name="small pot plants" firstgid="355" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/potted_plants1.png"/>
  </tileset>
- <tileset name="desk" firstgid="373" tilewidth="32" tileheight="32">
+ <tileset name="desk" firstgid="361" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/desk.png"/>
  </tileset>
- <tileset name="picture" firstgid="377" tilewidth="32" tileheight="32">
+ <tileset name="picture" firstgid="365" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/small_hills.png"/>
+ </tileset>
+ <tileset name="../../tileset/ground/grass_2.png" firstgid="368" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEtiZGBIGgQ4EQd+woAdj+ofGMzGAMG00P8UKP4Mip/jsQOX/hdA8ZdQ/IoMN74G6nkDxW8HMIypjZOhGJscAMVgYTgABAAA
+   H4sIAAAAAAAAAAtjZGAIGwQ4FAe+wYAdj+ofGMzGAMG00H8TKH4Lim/jsQOX/jtA8btQfI8MN94H6nkAxQ8HMIypjcOhGJscAGYX2aQABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKWROwrCQBRFo2AvovhFEfxAIOAXwY1YuQUbkehCXJeFVroR7TwDKcLjRid64fCYC+cxzFQKQVD9kRq0oA6TnDSgmfgRrAOd0JxvcIeR8V2KHr7LJcNXeYjumsPPiq8fwViQ9tswMAzFzi1dOSHtq/+bCr9Et2Puxf0PHm/g/Jh5gtD4sfCPpttwfjHPwldRO92Op6f/Kf/4K+Or/0szg7npOonfhd4XFrAUfR/eCXCyEgAEAAA=
+   H4sIAAAAAAAAAGNjZGDgIBNzAjEfEHMDsQqJmAeIeaH6FYHYigE70ELjnwDic0AshaYfBJiI0A8Ch3HoxwbOYxE7ToJ+XIBY/bpArI4FI+vnB2IJNCyJxcxAoBgLFCPrxxZ/qlj0/wTiAqB4KSOm+zOJCAOQ/kqgumoglkPTn41Ffw6amDeQ/xZIdzJg6scGsJkJMuMNkfrxAUr0m6PpxxZ/yFgNiNXRxASg+oWAWJgA1gBiTSziokAMABoYFhwABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQIBqRggdBcTRULFDQHwYiPOAcjmMDESBGCCOhbKPAPFRIL4AxJeA+CIQPyLOGDA4BsTHgfgKEF+FYlLAdSxi6UT6AwRCiFRnhUP8PvFWEQ3MKNRfhUUsDohdgNgViN3w6F0LxJ045NyB2AOIPfHo3wTEE4lwIy6wG4gnE6nWDhjP9kTGdQkWdU5AMWci9RczYjdjsAMAPwkIsgAEAAA=
+   H4sIAAAAAAAAAGNgQIB8RggdBcTRULFtQLwdiJOAcgmMDESBGCCOhbJ3APFOID4CxMeA+CgQXyPOGDDYBcS7gfgEEJ+EYlLAaSxi0UT6AwRCiFRnhUP8MvFWEQ3MKNSfh0UsDohdgNgViN3w6F0IxLU45NyB2AOIPfHoXwbErUS4ERdYD8TtRKo1AsazMZFxnYFFnRlQzJxI/emM2M0Y7AAA3/lUSAAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA6wJEFtFiOVLCUCXCdSHSnupxSY0tGuoQ6siUwrhVjUWZGQzgoYsZsx3AEA8ZE8FQAEAAA=
+   H4sIAAAAAAAAAGNgoA6wJEFtHCOVLCUCnCZSHSnupxSY0tGuoQ70iUwrqVjU6ZGQzlIYsZsx3AEA7tYyfwAEAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">

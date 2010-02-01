@@ -70,48 +70,48 @@
  <tileset name="table round white" firstgid="532" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_round_white.png"/>
  </tileset>
- <tileset name="grass2" firstgid="538" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/grass_2.png"/>
- </tileset>
- <tileset name="flowers red blue clusters" firstgid="550" tilewidth="32" tileheight="32">
+ <tileset name="flowers red blue clusters" firstgid="538" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/red_blue_clusters.png"/>
  </tileset>
- <tileset name="stone clock" firstgid="554" tilewidth="32" tileheight="32">
+ <tileset name="stone clock" firstgid="542" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/clock/stone_clock.png"/>
  </tileset>
- <tileset name="torch" firstgid="562" tilewidth="32" tileheight="32">
+ <tileset name="torch" firstgid="550" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/torch.png"/>
  </tileset>
- <tileset name="torch top" firstgid="563" tilewidth="32" tileheight="32">
+ <tileset name="torch top" firstgid="551" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/torch_top.png"/>
  </tileset>
- <tileset name="metal and stone" firstgid="567" tilewidth="32" tileheight="32">
+ <tileset name="metal and stone" firstgid="555" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
- <tileset name="collision" firstgid="573" tilewidth="32" tileheight="32">
+ <tileset name="collision" firstgid="561" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="sheep food" firstgid="574" tilewidth="32" tileheight="32">
+ <tileset name="sheep food" firstgid="562" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
+ </tileset>
+ <tileset name="../../tileset/ground/grass_2.png" firstgid="563" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UWwqAIBBFpYVEtaHez8/WERERrbuBGpIQ0tKxqI+Df557B52OMdb9sBCIiIgF/oSwa3bin4F+O2340T0Ao+Sd6YG7/SduDj1x/5HzTgozaDnu+DEDzp+6v2gONvymEPlzoCCiFPgroCaieaD/jftfZteZfv9XMuj+f6oZTPRXyaDLj07XWZHNoMOPLn9z+woZdPk9ZyfguOK3vX+/ygLhaajrgAwAAA==
+   H4sIAAAAAAAAAO2UWwqAIBBFpU1FtYjez8/WERERrbuBGpIQ0tKxqI+Df557B52OMdb9sBCIiIgF/oSwa3bin4F+O2340T0Ao+Sd6YG7/SduDj1x/5HzTgozaDnu+DEDzp+6v2gONvymEPlzoCCiFPgroCaieaD/jftfZteZfv9XMuj+f6oZTPRXyaDLj07XWZHNoMOPLn9z+woZdPk9ZyfguOK3vX+/ygJwmzaagAwAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2Wu07DMBSGHcNACwIJ1BuXtS0bBSaeCvUxCy1FSFwmGFiZACHBwm/lHHFk7DhO3bDwS59qp6k/O76kG0op/Uesg1WwD7o1swdWyN9W9afl8U/BTDAHH5m7jTP9Uz7Uv+EMUD4CI52Xi/xfluOZPrkP0rlIyvq5D/NAe+dWfZzQb/IZaC82qf2h8bcwb20xdz7/CPN84Fhvi4y/A28X9HRe9vlfsnydufpQ1/M34T6cCE49ezCV/9ixr8pei73fXCsafx3597v9A3FGu+pFecQafQL34NbDdVbs34Rri/apgesxeYXjDbw7uAv4OfZ5VSUNnSNT1s/nVZWs4XcTeC6IS9DUcf6YmHd93+rrFJ4ZcSXOrpB/G+3siPnnui9DWp9D6z+HLynH3yc3j5/7wTH74IHg9X+zhOdfJdK/CzqJUYHve+RvgmwJqBL3NMA39pE/U4AMAAA=
+   H4sIAAAAAAAAAO2WzU/CMByGu+JBwGii4WsbN/VoYvQPM/yZKggxUTjpwasnNSZ68W3WX/yltus6yrzwJk9ox+jTrh9jTwgh/4ku2AE5GDZMBlra3xfNp+fwT8GMMQefib2NM/lbHsu/UDKUj8GJLMpl/m/D8aI/qQ/cuU6q+qkPc097V0Z9EtGv8uVpLzSx/b7x9zBvfTZ3Lv855nlsWW/rjH8A7xCMZFF2+V+TYp3Z+tDU81ehPlwwLh17MJb/1LKvql4LvV9dKxt/E9n67f6MndG2elmesEafwRI8OFgk5f59uA70PlVQPSRvcLyDDwuPHj/FPK/qpC0LeKr66byqk1387hqeG80t6Mgwf0jUuz41+jqFZ6a5Y2eXz3+Ido7Y/FPdlVyvz9z4z+FKzPGn2k3jp35Q1D5YaWj932/g+dcJ96dgEBnh+X6k/R2QbABR4Z42+AHnvhQqgAwAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQIBoII4B4lggTgPidDxihPj4zMEFEoE4CYiTgTgDiDPxiBHi4zNnFJAGLgy0A0bBiAKGjAPtglEwCgYG8DAxMPAy4eYTC1ihetigNAuU/jfC8xY7GWFJLmAE2sUExMx0tBMZcDNBMClAnQmCcfGHKvgFTPc/gPjnCEj/qkCsBsTqA+gGfSLVAQCroPJUgAwAAA==
+   H4sIAAAAAAAAAGNgQIBoII4B4lggTgPidDxihPj4zMEFEoE4CYiTgTgDiDPxiBHi4zNnFJAGLgy0A0bBiAKGjAPtglEwCgYG8DAxMPAy4eYTC1ihetigNAuU/jfC8xY7GWFJLmAE2sUExMx0tBMZcDNBMClAmgmCcfGHKvgFTPc/gPjnCEj/qkCsBsTqA+gGfSLVAQDNNK+bgAwAAA==
   </data>
  </layer>
  <layer name="3_roof" width="32" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA/QYmJg0Gaik2VYgA7Qbl0y7f/GiF3cnATz9IBq9SnwP8wNpNhJT5ALxMVIOJ/O9hdjwfQEIP8HI2F6+59aAFdaH+5uMMaSr0ywiJniyX9mWOSINXcUUA5uA9PNnQFMv3eBdt/DZf9onI8CIoAAMJ0IMuHmj4JRMNiBHhB7AbEBEWoBwyScoYAMAAA=
+   H4sIAAAAAAAAAGNgoA+QY2JgkGeik2VYgALQbkUy7f/GiF1cmwTzlIBqlSnwP8wNpNhJT5ALxMVIOJ/O9hdjwfQEIP8HI2F6+59aAFdaH+5uUMeSrzSwiGniyX9aWOSINXcUUA5uA9PNnQFMv3eBdt/DZf9onI8CIoAAMJ0IMuHmj4JRMNiBHhB7AbEBEWoB2wsJVoAMAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="25">
@@ -121,12 +121,12 @@
  </layer>
  <layer name="objects" width="32" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OQREAAAQAMCeY/rE8hMDdlmARAAB8U7k9GFce/NE1j9XbgAwAAA==
+   H4sIAAAAAAAAAO3OQREAAAQAMCeS/uE8hMDdlmARAAB8U7k9GFce/NFviXIogAwAAA==
   </data>
  </layer>
  <layer name="collision" width="32" height="25" opacity="0.33">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VXQoAIQiEY+/V/a/Vayzt6MgkySb4kJUf/mT9aa1fTReG/7U/21FMKzsb/3xPIer8szWtVP+Iv7dPT0/sEqb/smph5Sqbv2J6bez5avPvT3xrzfhEf52n93bkJfr/VONb803JR/Oe5aOeYeJE5yP3PGwmltPev1ozGAodPSHHrIAMAAA=
+   H4sIAAAAAAAAAO2VXQoAIQiEY2/U/S/Xayzt6MgkySb4kJUf/mT9aa1fTReG/7U/21FMKzsb/3xPIer8szWtVP+Iv7dPT0/sEqb/smph5Sqbv2J6bez5avPvT3xrzfhEf52n93bkJfr/VONb803JR/Oe5aOeYeJE5yP3PGwmltPev1ozGAodCFR1kIAMAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="25">
