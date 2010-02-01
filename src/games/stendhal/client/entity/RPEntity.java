@@ -415,7 +415,9 @@ public abstract class RPEntity extends ActiveEntity {
 	
 	// When this entity attacks target.
 	public void onAttack(final IEntity target) {
+		if (target != null) {
 		attacking = target.getID();
+		}
 	}
 
 	// When this entity's attack is blocked by the adversary
