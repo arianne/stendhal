@@ -27,6 +27,7 @@ import tiled.core.TileLayer;
 import tiled.core.TileSet;
 import tiled.io.xml.XMLMapTransformer;
 import tiled.io.xml.XMLMapWriter;
+import tiled.mapeditor.util.cutter.BasicTileCutter;
 
 /**
  * A tool for converting tileset mappings. 
@@ -165,18 +166,7 @@ public class TilesetConverter {
 		// First build up the mapping of old sets
 		for (TileSet set : map.getTilesets()) {
 			setByName.put(set.getTilebmpFile(), set);
-		}
-		
-		/*
-		 * Oh, yay. Tiled likes to translate the filenames internally
-		 * to full paths.
-		 * Great fun with java to compare the paths when the system
-		 * allows no playing with directories whatsoever. We can't rely
-		 * on the current directory being the same as that of the map.
-		 * Building the full path from scratch, and hope for the best.  
-		 */
-		File f = new File(map.getFilename());
-		String dir = f.getParent();		
+		}		
 		
 		// then add all missing new sets
 		for (String name : mapping.getNewSets()) {
@@ -184,15 +174,12 @@ public class TilesetConverter {
 				continue;
 			}
 			
-			// try to reconstruct the full path of the tileset
-			File file = new File(dir + File.separator + name);
-			name = file.getCanonicalPath();
-			
 			if (!setByName.containsKey(name)) {
 				// The tileset's not yet included. Add it to the map
 				TileSet set = new TileSet();
-				set.setTilesetImageFilename(name);
 				set.setName(name);
+				BasicTileCutter cutter = new BasicTileCutter(32, 32, 0, 0);
+				set.importTileBitmap(name, cutter);
 				
 				setByName.put(name, set);
 				map.addTileset(set);
@@ -212,9 +199,8 @@ public class TilesetConverter {
 		TileSet set = tile.getTileSet();
 		TileInfo info = mapping.getTile(set.getTilebmpFile(), id);
 		if (info != null) {
-			tile = new Tile();
-			tile.setTileSet(setByName.get(info.file));
-			tile.setId(info.index);
+			TileSet newSet = setByName.get(info.file);
+			tile = newSet.getTile(info.index);
 		}
 		
 		return tile;
@@ -294,7 +280,14 @@ public class TilesetConverter {
 					newIndex = Integer.parseInt(elements[3]);
 				}
 				
-				// get the full paths because that's what tiled internally uses
+				/*
+				 * Oh, yay. Tiled likes to translate the filenames internally
+				 * to full paths.
+				 * Great fun with java to compare the paths when the system
+				 * allows no playing with directories whatsoever. We can't rely
+				 * on the current directory being the same as that of the map.
+				 * Building the full path from scratch, and hope for the best.  
+				 */
 				String path1 = (new File(dir + File.separator + elements[0])).getCanonicalPath();
 				String path2 = (new File(dir + File.separator + elements[2])).getCanonicalPath();
 				
