@@ -43,78 +43,72 @@
  <tileset name="entrance" firstgid="75" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns.png"/>
  </tileset>
- <tileset name="bed1" firstgid="87" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/bed_purple.png"/>
- </tileset>
- <tileset name="bed2" firstgid="90" tilewidth="32" tileheight="32">
+ <tileset name="bed2" firstgid="87" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/bed_grey.png"/>
  </tileset>
- <tileset name="bed3" firstgid="93" tilewidth="32" tileheight="32">
+ <tileset name="bed3" firstgid="90" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
- <tileset name="bed4" firstgid="95" tilewidth="32" tileheight="32">
+ <tileset name="bed4" firstgid="92" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/single_white.png"/>
  </tileset>
- <tileset name="drawer" firstgid="98" tilewidth="32" tileheight="32">
+ <tileset name="drawer" firstgid="95" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>
  </tileset>
- <tileset name="carpet_blue" firstgid="100" tilewidth="32" tileheight="32">
+ <tileset name="carpet_blue" firstgid="97" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
- <tileset name="carpet_red" firstgid="109" tilewidth="32" tileheight="32">
+ <tileset name="carpet_red" firstgid="106" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
- <tileset name="mannequins" firstgid="118" tilewidth="32" tileheight="32">
+ <tileset name="mannequins" firstgid="115" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/mannequins.png"/>
  </tileset>
- <tileset name="entrance_details" firstgid="146" tilewidth="32" tileheight="32">
+ <tileset name="entrance_details" firstgid="143" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
- <tileset name="stairs" firstgid="158" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="155" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="assassins" firstgid="162" tilewidth="32" tileheight="32">
+ <tileset name="assassins" firstgid="159" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>
  </tileset>
- <tileset name="newbed1" firstgid="172" tilewidth="32" tileheight="32">
+ <tileset name="newbed1" firstgid="169" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/single_white2.png"/>
  </tileset>
- <tileset name="newbed1 top" firstgid="175" tilewidth="32" tileheight="32">
+ <tileset name="newbed1 top" firstgid="172" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/single_white2_top_sheet.png"/>
  </tileset>
- <tileset name="newbed2" firstgid="176" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/bed_purple2.png"/>
- </tileset>
- <tileset name="newbed2 top" firstgid="179" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/bed_purple2_top_sheet.png"/>
- </tileset>
- <tileset name="newbed4" firstgid="180" tilewidth="32" tileheight="32">
+ <tileset name="newbed4" firstgid="173" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/bed_grey2.png"/>
  </tileset>
- <tileset name="newbed4 top" firstgid="183" tilewidth="32" tileheight="32">
+ <tileset name="newbed4 top" firstgid="176" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/bed_grey2_top_sheet.png"/>
  </tileset>
- <tileset name="floors" firstgid="184" tilewidth="32" tileheight="32">
+ <tileset name="floors" firstgid="177" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png"/>
+ </tileset>
+ <tileset name="bed/purple" firstgid="189" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/purple.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvFwMCwaxQz7EbDo/L45dHVDDb3kSo/ikfxKB7FIxUPdPk7Kj9a/w0EBgDjUfLCAAsAAA==
+   H4sIAAAAAAAAANvMwMCweRQzbEHDo/L45dHVDDb3kSo/ikfxKB7FIxUPdPk7Kj9a/w0EBgAzRelyAAsAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNmYGCwwYHtgNiaxvL2QOwAxIZo2BGI3egkb8CACUwHoXwKEKcCcRoW+bVE6M8F4nwK7M8C4mwgziFTfzEQl1JgP63kXYDYBA270kneHYg9cGAvOsiD8qftAGF8+Z/WmFD+pzUglD6pARYA8Twi7MeWPmmNkdO/5wBhQunfjg7yhOonZwLy1NCPr3x0JiA/nPSvxSI/lNxPrn5c9ZMTVD8l9Rsh/QNd/wEAdO+rtwALAAA=
+   H4sIAAAAAAAAALNmYGCwwYHtgNiaxvL2QOwAxIZo2BGI3egkb8CACUwHoXwiECcBcTIW+VVE6M8C4hwK7E8H4gwgziRTfwEQF1FgP63kXYDYBA270kneHYg9cGAvOsiD8qftAGF8+Z/WmFD+pzUglD6pAeYC8Wwi7MeWPmmNkdO/5wBhQunfjg7yhOonZwLy1NCPr3x0JiA/nPSvwiI/lNxPrn5c9ZMTVD8l9Rsh/QNd/wEA2N4FHgALAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA4oQGlFItVjA/J45JKINEOJAvvxgWQkNgsBtVFYxNYgsSVw6IsF4jgcchuQ2MwE7N9KQJ4csJGAPCMSOwaLfCISm48M+yPJ0EMukMUi5g3EPkDsi0MPreX9gNgfiAMGSD4QiIOAOHiA5EOAOBSIwwZIfhSM7DzAz4A/jcoRkGegUF6AgbI0LE6hfkEceogFUhTqB4F4ItQIAbEIATXY6mduJHY4Af3Y6gdkwENAHlv9LI3ExlXXwupQGSxy+NoOMNADpbHVz8iAnnXtYAcAUBUKiwALAAA=
+   H4sIAAAAAAAAAGNgIA4oQGlFItVjA/J45OKJNEOJAvvxgQQkNgsBteFYxFYisSVw6IsC4mgccnuR2MwE7F9HQJ4ccICAPCMSOxKLfBwSm48M+w+SoYdcIItFzBuIfYDYF4ceWsv7AbE/EAcMkHwgEAcBcfAAyYcAcSgQhw2Q/CgY2XmAnwF/GpUjIM9AobwAA2VpWJxC/YI49BALpCjUDwIxRKgRAmIRAmqw1c/cSOy9WOSRAbb6ARnwEJDHVj9LI7EP4NAHq0NlsMjhazvAQCeUxlY/IwN61rWDHQAAfzYqXQALAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGH5AdKAdQGOwHYvYegrN3Eyh/lFAGZgExJOBeMoAyU8F4mlAPH2A5EfBKBjNA6NgIAGldWgrlMZWPyOD0bp28AAAqqvpAgALAAA=
+   H4sIAAAAAAAAAGNgGH5AdKAdQGOwAYvYGgrNPESh/lFAGegH4glAPHGA5CcB8WQgnjJA8qNgFIzmgVEwkIDSOrQJSmOrn5HBaF07eAAAWOcjZQALAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="22">
@@ -124,7 +118,7 @@
  </layer>
  <layer name="objects" width="32" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDCazAI7eIDnZQA6zEIU4t94+CUTCQgJb5B1feIQeoQ/EoGAWjgDAgNl/jyqNLidA7WgcOLgAAJ4/LKQALAAA=
+   H4sIAAAAAAAAAGNgGAWDCSzFIzefDnZQAyzDIU4t94+CUTCQgJb5B1feIQeoQ/EoGAWjgDAgNl/jyqOLiNA7WgcOLgAAXeVvWgALAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="22" visible="0" opacity="0.37">
