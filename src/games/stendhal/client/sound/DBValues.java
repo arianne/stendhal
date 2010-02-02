@@ -21,6 +21,7 @@ package games.stendhal.client.sound;
  * @author astridemma 19.02.2007
  * 
  */
+@Deprecated
 class DBValues {
 	
 	/**

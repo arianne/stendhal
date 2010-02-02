@@ -90,6 +90,7 @@ import org.apache.log4j.Logger;
  * 
  * @author Jane Hunt
  */
+@Deprecated
 public class SoundSystem implements WorldObjects.WorldListener {
 
 	private static final String INT_SEMOS_BLACKSMITH = "int_semos_blacksmith";

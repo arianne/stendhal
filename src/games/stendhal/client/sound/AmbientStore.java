@@ -17,6 +17,7 @@ package games.stendhal.client.sound;
  * 
  * @author Jane Hunt
  */
+@Deprecated
 class AmbientStore {
 
 	public static final String BLACKBIRD_1 = "blackbird-1";

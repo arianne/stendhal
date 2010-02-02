@@ -5,6 +5,7 @@ import games.stendhal.common.Rand;
 
 import java.util.HashMap;
 
+@Deprecated
 public class Sound {
 	public static HashMap<String, String[]> soundArray;
 

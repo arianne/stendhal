@@ -11,6 +11,7 @@ import java.awt.geom.Rectangle2D;
  * @author astrid
  * 
  */
+@Deprecated
 public abstract class HearingArea {
 
 	public static final int HEARINGDIST = 10;

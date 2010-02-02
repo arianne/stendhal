@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
+@Deprecated
 class SoundFileReader {
 
 	/** expected location of the sound definition file (classloader). */

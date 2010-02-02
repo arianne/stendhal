@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+@Deprecated
 public class SoundFileMap implements Map<String, byte[]>, Nullable {
 
 	private Map<String, byte[]> fileMap = new AbsentFileMap();

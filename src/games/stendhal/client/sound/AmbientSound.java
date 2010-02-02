@@ -33,6 +33,7 @@ import org.apache.log4j.Logger;
  * 
  * @author Jane Hunt
  */
+@Deprecated
 class AmbientSound {
 
 	/** the logger instance. */

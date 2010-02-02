@@ -34,6 +34,7 @@ import org.apache.log4j.Logger;
  * entity has been supplied during creation. Global sounds always play
  * independent from player position.
  */
+@Deprecated
 class SoundCycle extends Thread implements Cloneable {
 
 	
