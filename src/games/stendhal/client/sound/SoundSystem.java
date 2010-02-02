@@ -662,7 +662,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	private String actualZone = "";
 
 	public void zoneEntered(final String zone) {
-		if (!SoundMaster.USE_NEW_SOUND_SYSTEM) {
+		if (SoundMaster.USE_NEW_SOUND_SYSTEM) {
 			return;
 		}
 		AmbientSound baseAmb;
