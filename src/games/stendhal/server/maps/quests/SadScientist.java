@@ -19,7 +19,37 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 
 import java.util.Arrays;
-
+/**
+ * QUEST: The Sad Scientist.
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li>Boris Karlova, a scientist in Kalavan</li>
+ * <li>Mayor Sakhs, the mayor of semos</li>
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * 		<li>Talk to Boris Karlova, a lonely scientist.</li>
+ * 		<li>Give him all stuff he needs for a present for his honey.</li>
+ * 		<li>Talk to semos mayor.</li>
+ * 		<li>Bring Karlova mayor's letter.</li>
+ * 		<li>Kill the Imperial Scientist.</li>
+ *		<li>Give him the flask with his brother's blood.</li> 
+ * </ul>
+ * 
+ * REWARD:
+ * <ul>
+ * 		<li>a pair of black legs</li>
+ * 		<li>20 Karma</li>
+ * 		<li>10000 XP</li>
+ * </ul>
+ * 
+ * REPETITIONS:
+ * <ul>
+ * 		<li>None</li>
+ * </ul>
+ */
 public class SadScientist extends AbstractQuest {
 	
 	public static final String QUEST_SLOT = "sad_scientist";
@@ -51,12 +81,12 @@ public class SadScientist extends AbstractQuest {
 	}
 
 	private void prepareScientist() {
-		SpeakerNPC npc = npcs.get("Boris Karlova");
-		startOfQuest(npc);
-		playerReturnsAfterStartWithItems(npc);
-		playerReturnsAfterStartWithoutItems(npc);
-		playerReturnsAfterGivingTooEarly(npc);
-		playerReturnsAfterGivingWhenFinished(npc);
+		SpeakerNPC scientistNpc = npcs.get("Boris Karlova");
+		startOfQuest(scientistNpc);
+		playerReturnsAfterStartWithItems(scientistNpc);
+		playerReturnsAfterStartWithoutItems(scientistNpc);
+		playerReturnsAfterGivingTooEarly(scientistNpc);
+		playerReturnsAfterGivingWhenFinished(scientistNpc);
 	}
 
 	private void playerReturnsAfterGivingWhenFinished(SpeakerNPC npc) {
