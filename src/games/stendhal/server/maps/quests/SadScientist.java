@@ -8,18 +8,22 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 
 import java.util.Arrays;
 
 public class SadScientist extends AbstractQuest {
 	
 	public static final String QUEST_SLOT = "sad_scientist";
+	private static final int REQUIRED_MINUTES = 20;
 
 
 	@Override
@@ -51,28 +55,45 @@ public class SadScientist extends AbstractQuest {
 		startOfQuest(npc);
 		playerReturnsAfterStartWithItems(npc);
 		playerReturnsAfterStartWithoutItems(npc);
+		playerReturnsAfterGivingTooEarly(npc);
+		playerReturnsAfterGivingWhenFinished(npc);
+	}
+
+	private void playerReturnsAfterGivingWhenFinished(SpeakerNPC npc) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void playerReturnsAfterGivingTooEarly(SpeakerNPC npc) {
+		ChatCondition condition = new AndCondition(
+				new QuestStateStartsWithCondition(QUEST_SLOT, "making;"),
+				new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)),
+				new QuestNotActiveCondition("mithril_cloak")
+			);
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				condition,
+				ConversationStates.IDLE, 
+				"Hello. Please return when you have everything what I need for the jewelled legs.",
+				new StateTimeRemainingAction(QUEST_SLOT, "Do you think I can work that fast? Go away. Come back in", REQUIRED_MINUTES, 1));
 	}
 
 	private void playerReturnsAfterStartWithoutItems(SpeakerNPC npc) {
-		ChatCondition condition = new NotCondition(
-									new AndCondition(
+		ChatCondition condition = new AndCondition(
 										new QuestInStateCondition(QUEST_SLOT, "start"),
-										new PlayerHasItemWithHimCondition("emerald"), 
-										new PlayerHasItemWithHimCondition("obsidian"),
-										new PlayerHasItemWithHimCondition("sapphire"),
-										new PlayerHasItemWithHimCondition("carbuncle",2),
-										new PlayerHasItemWithHimCondition("gold bar",20),
-										new PlayerHasItemWithHimCondition("mithril bar"),
-										new PlayerHasItemWithHimCondition("shadow legs"),
+										new NotCondition( new PlayerHasItemWithHimCondition("emerald")), 
+										new NotCondition( new PlayerHasItemWithHimCondition("obsidian")),
+										new NotCondition( new PlayerHasItemWithHimCondition("sapphire")),
+										new NotCondition( new PlayerHasItemWithHimCondition("carbuncle",2)),
+										new NotCondition( new PlayerHasItemWithHimCondition("gold bar",20)),
+										new NotCondition( new PlayerHasItemWithHimCondition("mithril bar")),
+										new NotCondition( new PlayerHasItemWithHimCondition("shadow legs")),
 										new QuestNotActiveCondition("mithril_cloak")
-										)
 									);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				condition,
 				ConversationStates.IDLE, 
 				"Hello. Please return when you have everything what I need for the jewelled legs.",
 				null);
-		
 	}
 
 	private void playerReturnsAfterStartWithItems(SpeakerNPC npc) {
