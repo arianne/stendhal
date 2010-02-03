@@ -1,75 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="19" height="18" tilewidth="32" tileheight="32">
- <tileset name="../../tileset/building/wall/earthen.png" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/earthen.png"/>
- </tileset>
- <tileset name="../../tileset/building/wall/earthen_3.png" firstgid="37" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/earthen_3.png"/>
- </tileset>
- <tileset name="../../tileset/item/pot/barrel.png" firstgid="65" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/pot/barrel.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/chair/wooden.png" firstgid="67" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/furniture/chair/wooden.png" firstgid="3" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden.png"/>
  </tileset>
- <tileset name="../../tileset/item/pot/pot_tall.png" firstgid="72" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/pot/pot_tall.png" firstgid="8" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_tall.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/table/wooden.png" firstgid="74" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/furniture/table/wooden.png" firstgid="10" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="75" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="11" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="76" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="12" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brownground2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="77" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="13" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/shadow.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="80" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="16" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="86" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="22" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
- <tileset name="plain colours" firstgid="88" tilewidth="32" tileheight="32">
+ <tileset name="plain colours" firstgid="24" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
- <tileset name="bench" firstgid="98" tilewidth="32" tileheight="32">
+ <tileset name="bench" firstgid="34" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
- <tileset name="square table" firstgid="101" tilewidth="32" tileheight="32">
+ <tileset name="square table" firstgid="37" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
- <tileset name="bottle and glass" firstgid="102" tilewidth="32" tileheight="32">
+ <tileset name="bottle and glass" firstgid="38" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
- <tileset name="cognac" firstgid="103" tilewidth="32" tileheight="32">
+ <tileset name="cognac" firstgid="39" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/cognac.png"/>
  </tileset>
- <tileset name="red wine" firstgid="105" tilewidth="32" tileheight="32">
+ <tileset name="red wine" firstgid="41" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
+ </tileset>
+ <tileset name="wall/int_sandstone" firstgid="45" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_sandstone.png"/>
  </tileset>
  <layer name="0_floor" width="19" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEtkYGBIpBP2QcLUModc87CZQY6ZxJhDjHmkmIPPPHLMwWYeJeagmzcSzKJm2FPbLGqmL2qne2rnR2LMo0eZAwAC4vEOWAUAAA==
+   H4sIAAAAAAAAAFNkYGBQpBPmQcLUModc87CZQY6ZxJhDjHmkmIPPPHLMwWYeJeagmzcSzKJm2FPbLGqmL2qne2rnR2LMo0eZAwAZRr8yWAUAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="19" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL2QzQrCMBCEo5d60Ut79aj4HlYFL4oivfvz/q/gDiSwhNlNbMGBgWxLv37ZEP6XtepUzky6k85H8pIHOF181ipeLVO7gDOod+0PjrkLy5A51nCe0hfpWzkynudzdGbGw3mr5pP0bPgjfSyyKbCQg8HBf67Sm8NqpKs4fxwn5C59SJfSReA7S26WE9Krc+5kueXfpWCPe8eJ8bAX664lDuOxu9ZyGG8Kx+KN5WjeRbXE+QJ+/wTOWAUAAA==
+   H4sIAAAAAAAAAL2Q2wrCMBBEA1YFXyyK9N3Lo1XxRv3/D3MHEljC7Ca24MBAtqWnJxvC/3JRncp5SJ/S+0he8gDnE58NilfL1C7gdOrd8INj7sLSZY41nL30QHpUjozn+SycmfFwfqt5KV0Z/kgTi7wKLGRucPCfVrpxWDdpH+eT44RspTvpWXoNfGfJzXJCGnXOnSy3/LsU7HHmODEe9mLdtcRhPHbXWg7jTeFYvLEczVurljhfM7W1ilgFAAA=
   </data>
  </layer>
  <layer name="2_object" width="19" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVhQJxFBXM8kNg5SGaTCpyA2JNy5xBlDyHgQVgJ0YCafnIkUl0GEKeRoH4UjAJsQBaI1aBsVSLUAwDuFE/oWAUAAA==
+   H4sIAAAAAAAAAGNgGAViQKxFBXM4kNg6SGaTCpiAmJNy5xBlDyHAQVgJ0YCafmIkUp0GEKuRoH4UjAJsQB+IzaFsMyLUAwCLdWqxWAUAAA==
   </data>
  </layer>
  <layer name="3_roof" width="19" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjADfIHmgHjIJRMAQBALflj5RYBQAA
+   H4sIAAAAAAAAAGNgGAWjADfQHmgHjIJRMAQBALfXZ65YBQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="19" height="18">
@@ -84,7 +81,7 @@
  </layer>
  <layer name="collision" width="19" height="18" visible="0" opacity="0.31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNmYGDwHsVgQE2zqGEeOhgoP5ECSAkbSs2jhnvQw4paZhELKDWPnHhG1keOe4hxH7XSG7XSLzXMIcUsABa5jUBYBQAA
+   H4sIAAAAAAAAAONmYGDgHsVgQE2zqGEeOhgoP5ECSAkbSs2jhnvQw4paZhELKDWPnHhG1keOe4hxH7XSG7XSLzXMIcUsACXzoohYBQAA
   </data>
  </layer>
  <layer name="protection" width="19" height="18">
