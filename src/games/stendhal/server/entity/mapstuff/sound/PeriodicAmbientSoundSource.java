@@ -12,7 +12,7 @@ import marauroa.common.game.RPEvent;
  * @author hendrik
  */
 public class PeriodicAmbientSoundSource extends PassiveEntity implements TurnListener {
-	private String sound;
+	private String[] sounds;
 	private int radius;
 	private int volume;
 	private int minInterval;
@@ -20,9 +20,15 @@ public class PeriodicAmbientSoundSource extends PassiveEntity implements TurnLis
 
 	/**
 	 * Create an ambient sound area.
+	 * 
+	 * @param sound   name of sound (or sounds) to play
+	 * @param radius  hearing radius
+	 * @param volume  volume
+	 * @param minInterval minimum time between two sounds in seconds
+	 * @param maxInterval maximum time between two sounds in seconds
 	 */
 	public PeriodicAmbientSoundSource(String sound, int radius, int volume, int minInterval, int maxInterval) {
-		this.sound = sound;
+		this.sounds = sound.split(", *");
 		this.radius = radius;
 		this.volume = volume;
 		this.minInterval = minInterval;
@@ -40,7 +46,12 @@ public class PeriodicAmbientSoundSource extends PassiveEntity implements TurnLis
 		TurnNotifier.get().notifyInSeconds((int) seconds, this);
 	}
 
+	/**
+	 * randomly picks a sound, sends a SoundEvent to the client
+	 * and sets the notifier up for the next sound.
+	 */
 	public void onTurnReached(int currentTurn) {
+		String sound = sounds[(int) (Math.random() * sounds.length)];
 		RPEvent event = new SoundEvent(sound, radius, volume, 1);
 		this.addEvent(event);
 		setupNotifier();
