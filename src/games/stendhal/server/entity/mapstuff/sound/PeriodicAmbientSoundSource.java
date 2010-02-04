@@ -1,7 +1,10 @@
 package games.stendhal.server.entity.mapstuff.sound;
 
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.events.SoundEvent;
+import marauroa.common.game.RPEvent;
 
 /**
  * Periodicially plays an ambient sound.
@@ -28,15 +31,19 @@ public class PeriodicAmbientSoundSource extends PassiveEntity implements TurnLis
 		setupNotifier();
 	}
 
+	/**
+	 * sets the turn notifier up to notify us at a random point in the 
+	 * future between minInterval and maxInterval
+	 */
 	private void setupNotifier() {
-		// TODO Auto-generated method stub
-		
+		double seconds = (Math.random() * (maxInterval - minInterval)) + minInterval;
+		TurnNotifier.get().notifyInSeconds((int) seconds, this);
 	}
 
 	public void onTurnReached(int currentTurn) {
-		// TODO Auto-generated method stub
-		
+		RPEvent event = new SoundEvent(sound, radius, volume, 1);
+		this.addEvent(event);
+		setupNotifier();
 	}
 
-	// TODO: generate turn listener
 }
