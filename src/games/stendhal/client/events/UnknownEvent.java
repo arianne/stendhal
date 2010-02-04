@@ -1,5 +1,7 @@
 package games.stendhal.client.events;
 
+import games.stendhal.client.entity.Entity;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -7,7 +9,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class UnknownEvent extends Event {
+public class UnknownEvent extends Event<Entity> {
 	private static Logger logger = Logger.getLogger(UnknownEvent.class);
 
 	@Override

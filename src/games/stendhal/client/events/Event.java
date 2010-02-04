@@ -7,9 +7,10 @@ import marauroa.common.game.RPEvent;
  * abstract parent class for client side event handling
  *
  * @author hendrik
+ * @param <T> entity
  */
-public abstract class Event {
-	protected Entity entity;
+public abstract class Event<T extends Entity> {
+	protected T entity;
 	protected RPEvent event;
 
 	/**
@@ -18,7 +19,7 @@ public abstract class Event {
 	 * @param entity the Entity which caused the event
 	 * @param event RPEvent
 	 */
-	public void init(Entity entity, RPEvent event) {
+	public void init(T entity, RPEvent event) {
 		this.entity = entity;
 		this.event = event;
 	}
