@@ -8,8 +8,9 @@ import org.apache.log4j.Logger;
  * an unknown event
  *
  * @author hendrik
+ * @param <T> entity
  */
-public class UnknownEvent extends Event<Entity> {
+public class UnknownEvent<T extends Entity> extends Event<T> {
 	private static Logger logger = Logger.getLogger(UnknownEvent.class);
 
 	@Override
