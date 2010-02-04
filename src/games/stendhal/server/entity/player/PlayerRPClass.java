@@ -37,7 +37,6 @@ public class PlayerRPClass {
 //		player.addAttribute("private_text", Type.LONG_STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
 		player.addRPEvent(Events.PRIVATE_TEXT, Definition.PRIVATE);
-		player.addRPEvent(Events.OPEN_OFFER_PANEL, Definition.PRIVATE);
 
 		player.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
 		player.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
