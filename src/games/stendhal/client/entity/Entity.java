@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.events.RPObjectChangeListener;
+import games.stendhal.client.listener.RPObjectChangeListener;
 import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Rectangle;

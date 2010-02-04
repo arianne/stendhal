@@ -9,7 +9,7 @@ import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WalkBlocker;
-import games.stendhal.client.events.PositionChangeListener;
+import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.common.CollisionDetection;
 
 import java.awt.Color;

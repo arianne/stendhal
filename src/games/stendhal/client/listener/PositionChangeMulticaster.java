@@ -4,7 +4,7 @@
  * $Id$
  */
 
-package games.stendhal.client.events;
+package games.stendhal.client.listener;
 
 
 //

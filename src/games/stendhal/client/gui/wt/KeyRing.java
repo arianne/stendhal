@@ -11,7 +11,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.events.FeatureChangeListener;
+import games.stendhal.client.listener.FeatureChangeListener;
 
 /**
  * A key ring.
