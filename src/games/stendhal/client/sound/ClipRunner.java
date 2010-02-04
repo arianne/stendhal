@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.Line;
 import javax.sound.sampled.LineEvent;
@@ -81,43 +80,7 @@ class ClipRunner implements LineListener {
 		return maxLength;
 	}
 
-	/**
-	 * Starts this clip to play with the given volume settings.
-	 * 
-	 * @param volume
-	 *            loudness in 0 .. 100
-	 * @param correctionDB
-	 *            decibel correction value from outward sources
-	 * @param volumeDelta
-	 * @return the AudioSystem <code>DataLine</code> object that is being
-	 *         played, or <b>null</b> on error
-	 */
-	DataLine play(final int volume, final float correctionDB, final float volumeDelta) {
-		final DataLine line = getAudioClip(volume, correctionDB, volumeDelta);
 
-		if (line != null) {
-			line.start();
-		}
-		return line;
-	}
-
-	/**
-	 * Starts this clip to loop endlessly with the given start volume setting.
-	 * 
-	 * @param volume
-	 *            loudness in 0 .. 100
-	 * @param volumeDelta
-	 * @return the AudioSystem <code>Clip</code> object that is being played,
-	 *         or <b>null</b> on error
-	 */
-	// private Clip loop(int volume, float correctionDB, float volumeDelta) {
-	// Clip line = getAudioClip(volume, correctionDB, volumeDelta);
-	//
-	// if (line != null) {
-	// line.loop(Clip.LOOP_CONTINUOUSLY);
-	// }
-	// return line;
-	// }
 	/**
 	 * Returns a runnable AudioSystem sound clip with the given volume settings.
 	 * 
