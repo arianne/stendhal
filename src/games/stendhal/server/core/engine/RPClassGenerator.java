@@ -29,6 +29,7 @@ import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
+import games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource;
 import games.stendhal.server.entity.mapstuff.source.FishSource;
 import games.stendhal.server.entity.mapstuff.source.GoldSource;
 import games.stendhal.server.entity.mapstuff.source.WellSource;
@@ -164,6 +165,9 @@ public class RPClassGenerator {
 		}
 
 		// PassiveEntityRespawnPoint sub-class
+		if (!RPClass.hasRPClass("ambient_sound_source")) {
+			LoopedAmbientSoundSource.generateRPClass();
+		}
 		if (!RPClass.hasRPClass("growing_entity_spawner")) {
 			GrowingPassiveEntityRespawnPoint.generateRPClass();
 		}

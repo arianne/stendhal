@@ -4,7 +4,7 @@
  * $Id$
  */
 
-package games.stendhal.server.entity.mapstuff.area;
+package games.stendhal.server.entity.mapstuff.sound;
 
 import games.stendhal.server.core.config.factory.ConfigurableFactory;
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
@@ -12,7 +12,7 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 /**
  * A factory for AmbientSoundSource.
  */
-public class AmbientSoundSourceFactory implements ConfigurableFactory {
+public class LoopedAmbientSoundSourceFactory implements ConfigurableFactory {
 
 
 	/**
@@ -57,12 +57,12 @@ public class AmbientSoundSourceFactory implements ConfigurableFactory {
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes.
-	 * @see AmbientSoundSource
+	 * @see LoopedAmbientSoundSource
 	 */
-	public AmbientSoundSource create(final ConfigurableFactoryContext ctx) {
-		AmbientSoundSource source;
+	public LoopedAmbientSoundSource create(final ConfigurableFactoryContext ctx) {
+		LoopedAmbientSoundSource source;
 
-		source = new AmbientSoundSource(getSound(ctx), getRadius(ctx), getVolume(ctx));
+		source = new LoopedAmbientSoundSource(getSound(ctx), getRadius(ctx), getVolume(ctx));
 
 		return source;
 	}

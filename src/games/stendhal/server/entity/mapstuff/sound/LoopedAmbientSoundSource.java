@@ -1,4 +1,4 @@
-package games.stendhal.server.entity.mapstuff.area;
+package games.stendhal.server.entity.mapstuff.sound;
 
 import games.stendhal.server.entity.PassiveEntity;
 import marauroa.common.game.RPClass;
@@ -9,14 +9,14 @@ import marauroa.common.game.Definition.Type;
  *
  * @author hendrik
  */
-public class AmbientSoundSource extends PassiveEntity {
-	private static final String RPCLASS_NAME = "ambient_sound_source";
+public class LoopedAmbientSoundSource extends PassiveEntity {
+	private static final String RPCLASS_NAME = "looped_ambient_sound_source";
 
 
 	/**
 	 * Create an ambient sound area.
 	 */
-	public AmbientSoundSource() {
+	public LoopedAmbientSoundSource() {
 		setRPClass(RPCLASS_NAME);
 	}
 
@@ -24,7 +24,7 @@ public class AmbientSoundSource extends PassiveEntity {
 	/**
 	 * Create an ambient sound area.
 	 */
-	public AmbientSoundSource(String sound, int radius, int volume) {
+	public LoopedAmbientSoundSource(String sound, int radius, int volume) {
 		setRPClass(RPCLASS_NAME);
 		put("sound", sound);
 		put("radius", radius);
