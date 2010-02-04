@@ -20,6 +20,7 @@ import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.UserContext;
 import games.stendhal.client.World;
+import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.IEntity;
@@ -43,6 +44,7 @@ import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.sound.SoundSystem;
+import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
@@ -405,6 +407,7 @@ public class j2DClient implements UserInterface {
 		SlashActionRepository.register();
 
 		checkAndComplainAboutJavaImplementation();
+		WorldObjects.addWorldListener(SoundSystemFacade.get());
 	} // constructor
 
 	private void checkAndComplainAboutJavaImplementation() {
