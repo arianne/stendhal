@@ -9,7 +9,7 @@ package games.stendhal.client;
 //
 //
 
-import games.stendhal.client.events.RPObjectChangeListener;
+import games.stendhal.client.listener.RPObjectChangeListener;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 

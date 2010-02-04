@@ -13,7 +13,6 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
@@ -21,6 +20,7 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.wt.GroundContainer;
 import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.NotificationType;

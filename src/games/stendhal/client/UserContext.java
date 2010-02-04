@@ -9,9 +9,9 @@ package games.stendhal.client;
 //
 //
 
-import games.stendhal.client.events.BuddyChangeListener;
-import games.stendhal.client.events.FeatureChangeListener;
-import games.stendhal.client.events.RPObjectChangeListener;
+import games.stendhal.client.listener.BuddyChangeListener;
+import games.stendhal.client.listener.FeatureChangeListener;
+import games.stendhal.client.listener.RPObjectChangeListener;
 
 import java.util.HashMap;
 

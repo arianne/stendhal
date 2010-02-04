@@ -16,8 +16,8 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.factory.EntityFactory;
-import games.stendhal.client.events.RPObjectChangeListener;
 import games.stendhal.client.gui.map.MapPanelController;
+import games.stendhal.client.listener.RPObjectChangeListener;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;

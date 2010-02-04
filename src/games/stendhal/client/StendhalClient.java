@@ -13,8 +13,8 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.User;
-import games.stendhal.client.events.BuddyChangeListener;
-import games.stendhal.client.events.FeatureChangeListener;
+import games.stendhal.client.listener.BuddyChangeListener;
+import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
