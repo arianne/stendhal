@@ -29,6 +29,7 @@ public class PeriodicAmbientSoundSource extends PassiveEntity implements TurnLis
 	 */
 	public PeriodicAmbientSoundSource(String sound, int radius, int volume, int minInterval, int maxInterval) {
 		setRPClass("entity");
+		put("type", "entity");
 		this.sounds = sound.split(", *");
 		this.radius = radius;
 		this.volume = volume;
@@ -55,6 +56,7 @@ public class PeriodicAmbientSoundSource extends PassiveEntity implements TurnLis
 		String sound = sounds[(int) (Math.random() * sounds.length)];
 		RPEvent event = new SoundEvent(sound, radius, volume, 1);
 		this.addEvent(event);
+		this.notifyWorldAboutChanges();
 		setupNotifier();
 	}
 
