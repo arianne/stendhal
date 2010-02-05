@@ -16,6 +16,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.factory.EntityFactory;
+import games.stendhal.client.events.EventDispatcher;
 import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.listener.RPObjectChangeListener;
 
@@ -214,12 +215,16 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 *            The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		final IEntity entity = objects.get(FQID.create(object));
+		final IEntity iEntity = objects.get(FQID.create(object));
 
-		if (entity instanceof Entity) {
-			((Entity) entity).onChangedAdded(object, changes);
+		if (iEntity instanceof Entity) {
+			Entity entity = (Entity) iEntity;
+			entity.onChangedAdded(object, changes);
+
+			EventDispatcher.dispatchEvents(changes, entity);
 		}
 	}
+
 
 	/**
 	 * An object removed attribute(s).
