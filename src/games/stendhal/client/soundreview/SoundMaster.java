@@ -21,7 +21,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.apache.log4j.Logger;
 
-@Deprecated
+
 public class SoundMaster implements WorldListener {
 	private static Logger logger = Logger.getLogger(SoundMaster.class);
 
