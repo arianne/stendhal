@@ -111,7 +111,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 
 
-	Entity() {
+	public Entity() {
 		clazz = null;
 		name = null;
 		subclazz = null;

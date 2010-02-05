@@ -21,6 +21,7 @@ import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Fire;
 import games.stendhal.client.entity.FishSource;
 import games.stendhal.client.entity.GameBoard;
@@ -71,6 +72,8 @@ public final class EntityMap {
 	 * Fills EntityMap with initial values.
 	 */
 	private static void register() {
+		register("entity", null, null, Entity.class);
+
 		register("player", null, null, Player.class);
 
 		register("creature", "ent", null, BossCreature.class);
