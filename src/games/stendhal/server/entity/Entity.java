@@ -14,6 +14,7 @@ package games.stendhal.server.entity;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
+import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
@@ -141,7 +142,12 @@ public abstract class Entity extends RPObject {
 		 * 100=Solid. Useful when mixed with effect.
 		 */
 		entity.addAttribute("visibility", Type.INT, Definition.VOLATILE);
+
+		// sound events
+		entity.addRPEvent(Events.SOUND, Definition.VOLATILE);
 	}
+
+
 	public void update() {
 		final int oldX = x;
 		final int oldY = y;

@@ -16,7 +16,6 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Constants;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
-import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -224,7 +223,6 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 			entity.addRPSlot("bag", 12, Definition.PRIVATE);
 			entity.addRPSlot("keyring", 8, Definition.PRIVATE);
 
-			entity.addRPEvent(Events.SOUND, Definition.VOLATILE);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}
