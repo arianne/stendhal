@@ -19,6 +19,9 @@ public enum SoundLayer {
 	/** noise made by creatures and NPCs */
 	CREATURE_NOISE,
 
+	/** noise made by weapons and armor */
+	FIGHTING_NOISE,
+
 	/** user interface feedback, opening of windows, private message notification */
 	USER_INTERFACE;
 }
