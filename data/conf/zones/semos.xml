@@ -809,6 +809,16 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		<portal x="15" y="14" ref="entrance">
 			<destination zone="0_semos_city" ref="blacksmith_entrance" />
 		</portal>
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">hammer-1, smith-1</parameter>
+				<parameter name="min">10</parameter>
+				<parameter name="max">60</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
+
 		<entity x="23" y="12">
 			<implementation
 				class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC">
@@ -821,7 +831,6 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 				<parameter name="node5">28,9</parameter>
 				<parameter name="node6">28,12</parameter>
 			</implementation>
-
 			<attribute name="class">blacksmithnpc</attribute>
 		</entity>
 
@@ -841,7 +850,6 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 				<parameter name="node9">7,7</parameter>
 				<parameter name="node10">7,2</parameter>
 			</implementation>
-
 			<attribute name="class">naughtyteennpc</attribute>
 		</entity>
 
