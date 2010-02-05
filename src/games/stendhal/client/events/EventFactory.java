@@ -13,11 +13,20 @@ import marauroa.common.game.RPEvent;
 public class EventFactory {
 
 	public static Event<? extends Entity> create(Entity entity, RPEvent rpevent) {
+		Event<? extends Entity> res = null;
 		if (entity instanceof RPEntity) {
-			return createEventsForRPEntity(entity, rpevent);
+			res = createEventsForRPEntity(entity, rpevent);
 		}
 
-		return createEventsForEntity(entity, rpevent);
+		if (res == null) {
+			res = createEventsForEntity(entity, rpevent);
+		}
+
+		if (res == null) {
+			res = new UnknownEvent<Entity>();
+		}
+
+		return res;
 	}
 
 	/**
@@ -29,7 +38,7 @@ public class EventFactory {
 	 */
 	private static Event<RPEntity> createEventsForRPEntity(Entity entity, RPEvent rpevent) {
 		String name = rpevent.getName();
-		Event<RPEntity> event = new UnknownEvent<RPEntity>();
+		Event<RPEntity> event = null;
 		if (name.equals(Events.PUBLIC_TEXT)) {
 			event = new PublicTextEvent();
 		} else if (name.equals(Events.PRIVATE_TEXT)) {
@@ -39,7 +48,10 @@ public class EventFactory {
 		} else if (name.equals(Events.STOP_ATTACK)) {
 			event = new StopAttackEvent();
 		}
-		event.init((RPEntity) entity, rpevent);
+
+		if (event != null) {
+			event.init((RPEntity) entity, rpevent);
+		}
 		return event;
 	}
 
@@ -62,11 +74,11 @@ public class EventFactory {
 			event = new SoundEvent();
 		} else if (name.equals("transition_graph")) {
 			event = new TransitionGraphEvent();
-		} else {
-			event = new UnknownEvent<Entity>();
 		}
 
-		event.init(entity, rpevent);
+		if (event != null) {
+			event.init(entity, rpevent);
+		}
 		return event;
 	}
 }
