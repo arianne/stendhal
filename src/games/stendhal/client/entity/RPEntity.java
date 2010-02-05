@@ -408,9 +408,11 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	public void onStartAttack(final IEntity target) {
+		if (target != null) {
 		attackTarget = (RPEntity) target;
 		this.onAttack(target);
 		attackTarget.onAttacked(this);
+		}
 	}
 	
 	// When this entity attacks target.
