@@ -28,6 +28,7 @@ public class PeriodicAmbientSoundSource extends PassiveEntity implements TurnLis
 	 * @param maxInterval maximum time between two sounds in seconds
 	 */
 	public PeriodicAmbientSoundSource(String sound, int radius, int volume, int minInterval, int maxInterval) {
+		setRPClass("entity");
 		this.sounds = sound.split(", *");
 		this.radius = radius;
 		this.volume = volume;
