@@ -1,6 +1,8 @@
 package games.stendhal.client.events;
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.RPEntity;
+import games.stendhal.common.constants.Events;
 import marauroa.common.game.RPEvent;
 
 /**
@@ -10,9 +12,60 @@ import marauroa.common.game.RPEvent;
  */
 public class EventFactory {
 
-	public static Event create(Entity entity, RPEvent rpevent) {
-		Event event = new UnknownEvent();
-		
+	public static Event<? extends Entity> create(Entity entity, RPEvent rpevent) {
+		if (entity instanceof RPEntity) {
+			return createEventsForRPEntity(entity, rpevent);
+		}
+
+		return createEventsForEntity(entity, rpevent);
+	}
+
+	/**
+	 * creates events for normal RPEntities
+	 *
+	 * @param entity  RPEntityEntity
+	 * @param rpevent RPEvent
+	 * @return Event handler
+	 */
+	private static Event<RPEntity> createEventsForRPEntity(Entity entity, RPEvent rpevent) {
+		String name = rpevent.getName();
+		Event<RPEntity> event = new UnknownEvent<RPEntity>();
+		if (name.equals(Events.PUBLIC_TEXT)) {
+			event = new PublicTextEvent();
+		} else if (name.equals(Events.PRIVATE_TEXT)) {
+			event = new PrivateTextEvent();
+		} else if (name.equals(Events.START_ATTACK)) {
+			event = new StartAttackEvent();
+		} else if (name.equals(Events.STOP_ATTACK)) {
+			event = new StopAttackEvent();
+		}
+		event.init((RPEntity) entity, rpevent);
+		return event;
+	}
+
+	/**
+	 * creates events for normal Entities
+	 *
+	 * @param entity  Entity
+	 * @param rpevent RPEvent
+	 * @return Event handler
+	 */
+	private static Event<Entity> createEventsForEntity(Entity entity, RPEvent rpevent) {
+		String name = rpevent.getName();
+		Event<Entity> event = null;
+
+		if (name.equals("examine")) {
+			event = new ExamineEvent();
+		} else if (name.equals("show_item_list")) {
+			event = new ShowItemListEvent();
+		} else if (name.equals(Events.SOUND)) {
+			event = new SoundEvent();
+		} else if (name.equals("transition_graph")) {
+			event = new TransitionGraphEvent();
+		} else {
+			event = new UnknownEvent<Entity>();
+		}
+
 		event.init(entity, rpevent);
 		return event;
 	}

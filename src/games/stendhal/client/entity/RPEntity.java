@@ -13,28 +13,22 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.admin.TransitionDiagram;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
-import games.stendhal.client.gui.imageviewer.ItemListImageViewerEvent;
-import games.stendhal.client.gui.imageviewer.RPEventImageViewer;
 import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
-import games.stendhal.common.constants.Events;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
@@ -409,9 +403,9 @@ public abstract class RPEntity extends ActiveEntity {
 
 	public void onStartAttack(final IEntity target) {
 		if (target != null) {
-		attackTarget = (RPEntity) target;
-		this.onAttack(target);
-		attackTarget.onAttacked(this);
+			attackTarget = (RPEntity) target;
+			this.onAttack(target);
+			attackTarget.onAttacked(this);
 		}
 	}
 	
@@ -689,33 +683,6 @@ public abstract class RPEntity extends ActiveEntity {
 			onTalk(object.get("text"));
 		}
 
-
-		for (final RPEvent event : object.events()) {
-			/*
-			 * Private message
-			 */			
-			if (event.getName().equals(Events.PRIVATE_TEXT)) {
-				onPrivateListen(event.get("texttype"), event.get("text"));
-			}
-
-			/*
-			 * noise / chat message
-			 */
-			if (event.getName().equals(Events.PUBLIC_TEXT)) {
-				onTalk(event.get("text"));
-			}
-			
-			if (event.getName().equals(Events.START_ATTACK)) {
-				onStartAttack(GameObjects.getInstance().get(new RPObject.ID(
-						event.getInt("target"), object.get("zoneid"))));
-			}
-			
-			if (event.getName().equals(Events.STOP_ATTACK)) {
-				onStopAttack(GameObjects.getInstance().get(new RPObject.ID(
-						event.getInt("target"), object.get("zoneid"))));				
-			}
-		}
-
 		/*
 		 * Outfit
 		 */
@@ -905,42 +872,6 @@ public abstract class RPEntity extends ActiveEntity {
 				onTalk(changes.get("text"));
 			}
 
-
-			for (final RPEvent event : changes.events()) {
-				/*
-				 * Private message
-				 */
-				if (event.getName().equals(Events.PRIVATE_TEXT)) {
-					onPrivateListen(event.get("texttype"), event.get("text"));
-				}
-				/*
-				 * noise / chat message
-				 */
-				if (event.getName().equals(Events.PUBLIC_TEXT)) {
-					onTalk(event.get("text"));
-				} else if (event.getName().equals(Events.SOUND)) {
-					SoundMaster.play(SoundLayer.CREATURE_NOISE, event.get("sound") + ".ogg", getX(), getY());
-				}
-
-				if (event.getName().equals("transition_graph")) {
-					new TransitionDiagram().showTransitionDiagram(event.get("data"));
-				} else if (event.getName().equals("examine")) {
-					RPEventImageViewer.viewImage(event);
-				} else if (event.getName().equals("show_item_list")) {
-					new ItemListImageViewerEvent(event).view();
-				}
-				
-				if (event.getName().equals(Events.START_ATTACK)) {
-					onStartAttack(GameObjects.getInstance().get(new RPObject.ID(
-							event.getInt("target"), object.get("zoneid"))));
-				}
-				
-				if (event.getName().equals(Events.STOP_ATTACK)) {
-					onStopAttack(GameObjects.getInstance().get(new RPObject.ID(
-							event.getInt("target"), object.get("zoneid"))));
-				}
-			}
-	
 			/*
 			 * Outfit
 			 */
