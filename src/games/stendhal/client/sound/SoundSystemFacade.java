@@ -2,6 +2,7 @@ package games.stendhal.client.sound;
 
 import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.manager.AudibleArea;
 import games.stendhal.client.sound.manager.AudibleCircleArea;
 import games.stendhal.client.sound.manager.SoundManager;
@@ -16,12 +17,18 @@ import games.stendhal.common.constants.SoundLayer;
 public class SoundSystemFacade implements WorldListener {
 	private static SoundSystemFacade instance;
 	private static Time fadingTime = new Time(100, Time.Unit.MILLI);
+	private boolean mute = false;
 
 	public static SoundSystemFacade get() {
 		if (instance == null) {
 			instance = new SoundSystemFacade();
 		}
 		return instance;
+	}
+
+	private SoundSystemFacade() {
+		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
+		setMute(!play);
 	}
 
 	public void playerMoved() {
@@ -38,6 +45,10 @@ public class SoundSystemFacade implements WorldListener {
 	}
 
 	public void playSound(String sound, double x, double y, int radius, int volume, int layer, boolean loop) {
+		if (mute) {
+			return;
+		}
+
 		SoundManager soundManager = SoundManager.get();
 		if (!soundManager.hasSoundName(sound)) {
 			String mySoundName = sound + ".ogg";
@@ -61,8 +72,11 @@ public class SoundSystemFacade implements WorldListener {
 	}
 
 	public void exit() {
-		// TODO Auto-generated method stub
-		
+		// exits  the sound system
+	}
+
+	public void setMute(boolean mute) {
+		this.mute = mute;
 	}
 
 
