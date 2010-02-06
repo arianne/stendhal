@@ -42,7 +42,6 @@ import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
-import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.CollisionDetection;
@@ -607,7 +606,7 @@ public class j2DClient implements UserInterface {
 			}
 		}
 	
-		SoundSystem.get().exit();
+		SoundSystemFacade.get().exit();
 	}
 
 	/**

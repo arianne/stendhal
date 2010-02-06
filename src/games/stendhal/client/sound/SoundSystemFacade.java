@@ -59,5 +59,10 @@ public class SoundSystemFacade implements WorldListener {
 		SoundManager.get().stop(soundName, fadingTime);
 	}
 
+	public void exit() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

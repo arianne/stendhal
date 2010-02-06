@@ -13,7 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.listener.RPObjectChangeListener;
-import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -485,7 +484,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * @see games.stendhal.client.entity.IEntity#release()
 	 */
 	public void release() {
-		SoundSystem.stopSoundCycle(ID_Token);
+		// ignored
 	}
 
 	/* (non-Javadoc)

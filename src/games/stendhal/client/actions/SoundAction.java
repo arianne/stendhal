@@ -3,7 +3,6 @@ package games.stendhal.client.actions;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.MathHelper;
 
@@ -42,7 +41,6 @@ class SoundAction implements SlashAction {
 		play = !play;
 		WtWindowManager.getInstance().setProperty("sound.play", Boolean.toString(play));
 		SoundMaster.setMute(!play);
-		SoundSystem.get().setMute(!play);
 	}
 
 	/**
@@ -66,7 +64,7 @@ class SoundAction implements SlashAction {
 		}
 
 		WtWindowManager.getInstance().setProperty("sound.volume", Integer.toString(vol));
-		SoundSystem.get().setVolume(vol);
+		// TODO: SoundSystem.get().setVolume(vol);
 	}
 
 	/**

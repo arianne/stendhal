@@ -15,7 +15,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.listener.BuddyChangeListener;
 import games.stendhal.client.listener.FeatureChangeListener;
-import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Debug;
@@ -102,9 +101,6 @@ public class StendhalClient extends ClientFramework {
 		super(LOG4J_PROPERTIES);
 		client = this;
 		ClientSingletonRepository.setClientFramework(this);
-
-
-		SoundSystem.get();
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 		staticLayers = new StaticGameLayers();

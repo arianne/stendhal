@@ -1,50 +1,14 @@
 package games.stendhal.client.soundreview;
 
-import games.stendhal.client.WorldObjects;
-import games.stendhal.client.WorldObjects.WorldListener;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.manager.SoundManager;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.constants.SoundLayer;
 
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.concurrent.ConcurrentHashMap;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.Line;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
-import org.apache.log4j.Logger;
-
-
-public class SoundMaster implements WorldListener {
-	private static Logger logger = Logger.getLogger(SoundMaster.class);
-
-	public static final boolean USE_NEW_SOUND_SYSTEM = Boolean.parseBoolean(System.getProperty("stendhal.newsound", "false"));
-
-	private static SoundFileMap sfm;
-
-	private static Cliplistener cliplisten;
+public class SoundMaster {
 
 	private static boolean isMute;
 
-	public static ConcurrentHashMap<Object, Line> playingClips = new ConcurrentHashMap<Object, Line>();
-
-	public void init() {
-		sfm = new SoundFileMap();
-		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
-		setMute(!play);
-
-		cliplisten = new Cliplistener();
-		WorldObjects.addWorldListener(this);
-		
-		
-	}
 
 	public static void play(final SoundLayer soundLayer, final String soundName, final double x, final double y) {
 		if (!((x == 0) && (y == 0))) {
@@ -62,21 +26,12 @@ public class SoundMaster implements WorldListener {
 			return;
 		}
 
-		// Is the sound manager not initialized?
-		if (sfm == null) {
-			return;
-		}
 		String mySoundName = soundName.replaceAll("\\.wav", ".ogg").replaceAll("\\.au", ".ogg").replaceAll("\\.aiff", ".ogg");
-
-		if (USE_NEW_SOUND_SYSTEM) {
-			playUsingNewSoundSystem(soundLayer.ordinal(), mySoundName);
-		} else {
-			playUsingOldSoundSystem(soundName);
-		}
+		playUsingNewSoundSystem(soundLayer.ordinal(), mySoundName);
 	}
 
 	private static void playUsingNewSoundSystem(int soundLayer, String mySoundName) {
-//	TODO:	SoundSystemFacade.get().playSound(sound, 1, 1, 100000, 100, soundLayer, false);
+		// TODO: SoundSystemFacade.get().playSound(sound, 1, 1, 100000, 100, soundLayer, false);
 
 		SoundManager soundManager = SoundManager.get();
 		if (!soundManager.hasSoundName(mySoundName)) {
@@ -86,81 +41,8 @@ public class SoundMaster implements WorldListener {
 		soundManager.play(mySoundName, soundLayer, SoundManager.INFINITE_AUDIBLE_AREA, false, new Time());
 	}
 
-	private static void playUsingOldSoundSystem(final String soundName) {
-		byte[] o;
-		o = sfm.get(soundName);
-		if (o == null) {
-			return;
-		}
-		try {
-			final AudioClip ac = new AudioClip(AudioSystem.getMixer(null), o, 100);
-
-			Clip cl;
-
-			cl = ac.openLine();
-
-			if (cl != null) {
-
-				cl.addLineListener(cliplisten);
-				playingClips.putIfAbsent(cl, cl);
-				cl.start();
-
-				return;
-
-			}
-		} catch (final UnsupportedAudioFileException e) {
-
-		} catch (final IOException e) {
-
-		} catch (final LineUnavailableException e) {
-
-		} catch (final IllegalArgumentException e) {
-			
-		}
-	}
-
-	class Cliplistener implements LineListener {
-		// dont remove this please astriddemma 12.04.2007
-		public void update(final LineEvent event) {
-
-			// if (event.getType().equals(LineEvent.Type.START)) {
-			//
-			// }
-			// if (event.getType().equals(LineEvent.Type.CLOSE)) {
-			// }
-			if (event.getType().equals(LineEvent.Type.STOP)) {
-				event.getLine().close();
-
-				playingClips.remove(event.getLine());
-			}
-
-			// if (event.getType().equals(LineEvent.Type.OPEN)) {
-			//
-			// }
-		}
-
-	}
-
-	public void playerMoved() {
-
-	}
-
-	// commented for release
-	public void zoneEntered(final String zoneName) {
-	}
-
-	public void zoneLeft(final String zoneName) {
-	}
-
 	public static void setMute(final boolean on) {
-		if (on) {
-			final Enumeration<Line> enu = playingClips.elements();
-			while (enu.hasMoreElements()) {
-				final Line lin = enu.nextElement();
-				lin.close();
-			}
-		}
-
+		// TODO: stop current active sounds (including loops)
 		isMute = on;
 	}
 }

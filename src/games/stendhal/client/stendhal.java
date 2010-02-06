@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import static java.io.File.separator;
 import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
-import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.Version;
 
@@ -24,8 +24,6 @@ import java.security.AccessControlException;
 import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
-
-import static java.io.File.separator;
 
 public class stendhal {
 
@@ -145,17 +143,11 @@ public class stendhal {
 		
 		waitForLogin();
 		IDSend.send();
-		startSoundMaster();
 		GameScreen gameScreen = GameScreen.get();
 		
 		final j2DClient locclient = new j2DClient(client, gameScreen, userContext);
 		perceptionDispatch.register(locclient.getPerceptionListener());
 		locclient.gameLoop(gameScreen);
 		locclient.cleanup();
-	}
-
-	private static void startSoundMaster() {
-		final SoundMaster sm = new SoundMaster();
-		sm.init();
 	}
 }
