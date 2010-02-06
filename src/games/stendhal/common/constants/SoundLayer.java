@@ -1,4 +1,4 @@
-package games.stendhal.client.sound;
+package games.stendhal.common.constants;
 
 /**
  * the layer on which a sound is played

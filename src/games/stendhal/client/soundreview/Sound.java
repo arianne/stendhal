@@ -1,7 +1,7 @@
 package games.stendhal.client.soundreview;
 
-import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.SoundLayer;
 
 import java.util.HashMap;
 

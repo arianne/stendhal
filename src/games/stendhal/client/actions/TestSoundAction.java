@@ -1,7 +1,7 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.soundreview.SoundMaster;
+import games.stendhal.common.constants.SoundLayer;
 
 
 /**

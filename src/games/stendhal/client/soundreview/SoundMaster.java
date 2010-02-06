@@ -3,9 +3,9 @@ package games.stendhal.client.soundreview;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.sound.manager.SoundManager;
 import games.stendhal.client.sound.system.Time;
+import games.stendhal.common.constants.SoundLayer;
 
 import java.io.IOException;
 import java.util.Enumeration;

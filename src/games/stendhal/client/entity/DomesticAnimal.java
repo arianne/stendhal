@@ -9,8 +9,8 @@ package games.stendhal.client.entity;
 //
 //
 
-import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.soundreview.SoundMaster;
+import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 /**

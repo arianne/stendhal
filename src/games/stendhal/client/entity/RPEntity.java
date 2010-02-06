@@ -17,12 +17,12 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
-import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.SoundLayer;
 
 import java.util.Collection;
 import java.util.Iterator;

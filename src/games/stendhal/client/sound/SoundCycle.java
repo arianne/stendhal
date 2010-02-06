@@ -17,6 +17,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.SoundObject;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.SoundLayer;
 
 import javax.sound.sampled.DataLine;
 

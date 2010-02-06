@@ -42,13 +42,13 @@ import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
-import games.stendhal.client.sound.SoundLayer;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
