@@ -13,6 +13,11 @@ public class PlayerChatBucket {
 
 	private IntRingBuffer lastChatTurns = new IntRingBuffer(5);
 
+	/**
+	 * checks that the bucket is not full, yet and adds the turn in case there is still room.
+	 *
+	 * @return true if the bucket is not full, yet; false otherwise.
+	 */
 	public boolean checkAndAdd() {
 		int turn = SingletonRepository.getRuleProcessor().getTurn();
 		boolean res = check(turn);
