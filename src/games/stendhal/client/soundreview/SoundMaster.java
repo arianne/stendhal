@@ -76,6 +76,8 @@ public class SoundMaster implements WorldListener {
 	}
 
 	private static void playUsingNewSoundSystem(int soundLayer, String mySoundName) {
+//	TODO:	SoundSystemFacade.get().playSound(sound, 1, 1, 100000, 100, soundLayer, false);
+
 		SoundManager soundManager = SoundManager.get();
 		if (!soundManager.hasSoundName(mySoundName)) {
 			soundManager.openSoundFile("data/sounds/" + mySoundName, mySoundName);
