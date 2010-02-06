@@ -393,8 +393,6 @@ The sharper minded amongst you might prefer to double-click directly on the crea
 			</implementation>
 		</entity>
 
-
-
 		<entity x="26" y="41">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
@@ -504,6 +502,68 @@ Mature sheep wanted: please speak to Sato.
 		<portal x="44" y="19" ref="bakery_entrance">
 			<destination zone="int_semos_bakery" ref="entrance" />
 		</portal>
+
+		<!-- birds and chicken -->
+		<entity x="29" y="8">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">blackbird-11, blackbird-6b, blackbird-7b, blackbird-8b</parameter>
+				<parameter name="min">30</parameter>
+				<parameter name="max">60</parameter>
+				<parameter name="radius">10</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="8" y="30">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">chicken-1</parameter>
+				<parameter name="min">10</parameter>
+				<parameter name="max">45</parameter>
+				<parameter name="radius">10</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="47" y="25">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">chicken-1</parameter>
+				<parameter name="min">10</parameter>
+				<parameter name="max">45</parameter>
+				<parameter name="radius">10</parameter>
+			</implementation>
+		</entity>
+
+		<!--  sounds from houses -->
+		<entity x="12" y="39">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">hammer-1, smith-1</parameter>
+				<parameter name="min">30</parameter>
+				<parameter name="max">60</parameter>
+				<parameter name="radius">4</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="44" y="39">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">kettle-1.ogg, bottle-2.ogg,, trash-1.ogg, trash-21.ogg, trash-3.ogg, metal-can-1.ogg, drain-water-11.ogg, dishbreak-1.ogg, dishbreak-2.ogg, dishes-1.ogg, dishes-21.ogg, creaky-door-1.ogg, creaky-door-2.ogg, ice-cubes-1.ogg, glass-break-1.ogg, window-close-1.ogg</parameter>
+				<parameter name="min">30</parameter>
+				<parameter name="max">60</parameter>
+				<parameter name="radius">10</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
+
+
+		<entity x="16" y="20">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">blackbird-11, blackbird-6b, blackbird-7b, blackbird-8b</parameter>
+				<parameter name="min">30</parameter>
+				<parameter name="max">60</parameter>
+				<parameter name="radius">10</parameter>
+			</implementation>
+		</entity>
+
+
+
 		<entity x="6" y="49">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
@@ -679,6 +739,16 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 				<parameter name="sound">the_old_tavern</parameter>
 			</implementation>
 		</entity>
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">kettle-1.ogg, bottle-2.ogg,, trash-1.ogg, trash-21.ogg, trash-3.ogg, metal-can-1.ogg, drain-water-11.ogg, dishbreak-1.ogg, dishbreak-2.ogg, dishes-1.ogg, dishes-21.ogg, creaky-door-1.ogg, creaky-door-2.ogg, ice-cubes-1.ogg, glass-break-1.ogg, window-close-1.ogg</parameter>
+				<parameter name="min">30</parameter>
+				<parameter name="max">60</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
+
 
 		<portal x="22" y="17" ref="entrance">
 			<destination zone="0_semos_city" ref="tavern_entrance" />
