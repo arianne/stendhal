@@ -53,6 +53,7 @@ public class SoundSystemFacade implements WorldListener {
 			myFadingTime = fadingTime;
 		}
 		soundManager.play(sound, layer, area, loop, myFadingTime);
+		soundManager.changeVolume(sound, ((float) volume) / 100);
 	}
 
 	public void stopSound(String soundName) {
