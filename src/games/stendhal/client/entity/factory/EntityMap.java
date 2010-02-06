@@ -32,6 +32,7 @@ import games.stendhal.client.entity.HousePortal;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.InvisibleEntity;
 import games.stendhal.client.entity.Item;
+import games.stendhal.client.entity.LoopedSoundSource;
 import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Pet;
 import games.stendhal.client.entity.PlantGrower;
@@ -149,6 +150,8 @@ public final class EntityMap {
 
 		register("gate", null, null, Gate.class);
 		register("game_board", null, null, GameBoard.class);
+
+		register("looped_sound_source", null, null, LoopedSoundSource.class);
 	}
 
 	/**
