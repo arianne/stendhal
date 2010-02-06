@@ -31,41 +31,7 @@ public class AmbientSoundFactory {
 	}
 
 	private void createForSemosVillageW() {
-		Point2D soundPos;
-		// global ambient
-		AmbientSound ambient = new AmbientSound("semos-village-overall-1", 10);
-		ambient.addLoop("wind-loop-1", 25, 0);
-		playAmbientSound(ambient);
 
-		// creaking tree and wind
-		ambient = AmbientStore.getAmbient("wind-tree-1");
-
-		soundPos = new Point2D.Double(13, 42);
-		ambient = new AmbientSound(ambient, "semos-village-tree", soundPos,
-				30, 25);
-		playAmbientSound(ambient);
-
-		// larks
-		AmbientSound baseAmb = AmbientStore.getAmbient("meadow-larks-1");
-
-		soundPos = new Point2D.Double(50, 16);
-		ambient = new AmbientSound(baseAmb, "semos-village-larks-1",
-				soundPos, 30, 50);
-		playAmbientSound(ambient);
-
-		// blackbirds
-		baseAmb = AmbientStore.getAmbient("blackbirds-1");
-
-		soundPos = new Point2D.Double(16, 20);
-		ambient = new AmbientSound(baseAmb, "semos-village-blackbirds-1", soundPos, 30, 50);
-		playAmbientSound(ambient);
-
-		// frog
-		baseAmb = AmbientStore.getAmbient("single-frog-1");
-
-		soundPos = new Point2D.Double(28, 15);
-		ambient = new AmbientSound(baseAmb, "semos-village-frog-1", soundPos, 6, 30);
-		playAmbientSound(ambient);
 	}
 
 	private void createForSemosCity() {
@@ -104,23 +70,6 @@ public class AmbientSoundFactory {
 	}
 
 	private void createForSemosBlacksmith() {
-		Point2D soundPos;
-		// global ambient
-		AmbientSound ambient = new AmbientSound("blacksmith-overall-1", 20);
-		ambient.addCycle("hammer", 45000, 20, 40, 65);
-		playAmbientSound(ambient);
-
-		soundPos = new Point2D.Double(11, 3);
-		ambient = new AmbientSound("blacksmith-forgefire-main", soundPos, 30, 50);
-		ambient.addLoop("forgefire-1", 50, 0);
-		ambient.addCycle("firesparks-1", 60000, 10, 50, 80);
-		playAmbientSound(ambient);
-
-		soundPos = new Point2D.Double(3, 3);
-		ambient = new AmbientSound("blacksmith-forgefire-side", soundPos, 6, 50);
-		ambient.addLoop("forgefire-2", 50, 0);
-		ambient.addLoop("forgefire-3", 50, 0);
-		playAmbientSound(ambient);
 	}
 
 	private void createForSemosRoeadE() {
