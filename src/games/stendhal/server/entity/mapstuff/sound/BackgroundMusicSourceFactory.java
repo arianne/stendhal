@@ -19,16 +19,16 @@ public class BackgroundMusicSourceFactory extends SoundSourceFactory {
 	 * @param ctx
 	 *            Configuration context.
 	 * 
-	 * @return An AmbientSoundSource.
+	 * @return An BackgroundMusicSource.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes.
 	 * @see LoopedAmbientSoundSource
 	 */
-	public LoopedAmbientSoundSource create(final ConfigurableFactoryContext ctx) {
-		LoopedAmbientSoundSource source;
+	public BackgroundMusicSource create(final ConfigurableFactoryContext ctx) {
+		BackgroundMusicSource source;
 
-		source = new LoopedAmbientSoundSource(getSound(ctx), getRadius(ctx), getVolume(ctx));
+		source = new BackgroundMusicSource(getSound(ctx), getRadius(ctx), getVolume(ctx));
 
 		return source;
 	}
