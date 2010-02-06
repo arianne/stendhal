@@ -5,7 +5,6 @@ import games.stendhal.client.World;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.client.soundreview.HearingArea;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.KeyedSlotUtil;
@@ -68,7 +67,6 @@ public class User extends Player {
 		super.onPosition(x, y);
 
 		WorldObjects.firePlayerMoved();
-		HearingArea.set(x, y);
 	}
 
 	private int modificationCount;
