@@ -1,6 +1,7 @@
 package games.stendhal.server.events;
 
 import games.stendhal.common.constants.Events;
+import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.Definition.DefinitionClass;
@@ -43,11 +44,11 @@ public class SoundEvent extends RPEvent {
 	 * @param volume volume
 	 * @param layer layer (e. g. ambient sound)
 	 */
-	public SoundEvent(String sound, int radius, int volume, int layer) {
+	public SoundEvent(String sound, int radius, int volume, SoundLayer layer) {
 		super(Events.SOUND);
 		put("sound", sound);
 		put("radius", radius);
 		put("volume", volume);
-		put("layer", layer);
+		put("layer", layer.ordinal());
 	}
 }

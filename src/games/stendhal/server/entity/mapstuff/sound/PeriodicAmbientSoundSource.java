@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.mapstuff.sound;
 
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.PassiveEntity;
@@ -54,7 +55,7 @@ public class PeriodicAmbientSoundSource extends PassiveEntity implements TurnLis
 	 */
 	public void onTurnReached(int currentTurn) {
 		String sound = sounds[(int) (Math.random() * sounds.length)];
-		RPEvent event = new SoundEvent(sound, radius, volume, 1);
+		RPEvent event = new SoundEvent(sound, radius, volume, SoundLayer.AMBIENT_SOUND);
 		this.addEvent(event);
 		this.notifyWorldAboutChanges();
 		setupNotifier();
