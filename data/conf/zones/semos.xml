@@ -638,6 +638,11 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		<configurator class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.tavern.market.TradeCenterZoneConfigurator" />
 
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">The_Old_Tavern</parameter>
+			</implementation>
+		</entity>
 
 		<portal x="22" y="17" ref="entrance">
 			<destination zone="0_semos_city" ref="tavern_entrance" />
@@ -818,6 +823,24 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 				<parameter name="volume">20</parameter>
 			</implementation>
 		</entity>
+
+		<entity x="11" y="3">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">fire-sparkes-1, fire-3, fire-8</parameter>
+				<parameter name="min">5</parameter>
+				<parameter name="max">30</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
+
+
+		<entity x="11" y="3">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">fire-5</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
+
 
 		<entity x="23" y="12">
 			<implementation
