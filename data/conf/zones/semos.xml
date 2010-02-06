@@ -359,6 +359,42 @@ The sharper minded amongst you might prefer to double-click directly on the crea
 			<destination zone="int_semos_hostel" ref="entrance_right" />
 		</portal>
 
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">wind-2</parameter>
+				<parameter name="volume">25</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="13" y="42">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">treecreak-1</parameter>
+				<parameter name="min">25</parameter>
+				<parameter name="max">60</parameter>
+				<parameter name="radius">10</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="50" y="16">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">lark-1, lark-2</parameter>
+				<parameter name="min">30</parameter>
+				<parameter name="max">60</parameter>
+				<parameter name="radius">10</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="16" y="20">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">blackbird-11, blackbird-6b, blackbird-7b, blackbird-8b</parameter>
+				<parameter name="min">30</parameter>
+				<parameter name="max">60</parameter>
+				<parameter name="radius">10</parameter>
+			</implementation>
+		</entity>
+
+
+
 		<entity x="26" y="41">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
@@ -640,7 +676,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">The_Old_Tavern</parameter>
+				<parameter name="sound">the_old_tavern</parameter>
 			</implementation>
 		</entity>
 
