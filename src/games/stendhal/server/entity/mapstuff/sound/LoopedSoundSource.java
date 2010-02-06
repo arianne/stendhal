@@ -33,6 +33,7 @@ public class LoopedSoundSource extends PassiveEntity {
 		put("sound", sound);
 		put("radius", radius);
 		put("volume", volume);
+		put("layer", layer.ordinal());
 	}
 
 
