@@ -47,7 +47,7 @@ public class SoundSystemFacade implements WorldListener {
 			}
 			soundManager.openSoundFile("data/" + type + "/" + mySoundName, sound);
 		}
-		AudibleArea area = new AudibleCircleArea(new float[]{ (float) x, (float) y}, radius, radius);
+		AudibleArea area = new AudibleCircleArea(new float[]{ (float) x, (float) y}, radius / 2, radius);
 		Time myFadingTime = new Time();
 		if (loop) {
 			myFadingTime = fadingTime;
