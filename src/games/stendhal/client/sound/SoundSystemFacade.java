@@ -15,7 +15,7 @@ import games.stendhal.common.constants.SoundLayer;
  */
 public class SoundSystemFacade implements WorldListener {
 	private static SoundSystemFacade instance;
-	private static Time fadingTime = new Time(1, Time.Unit.SEC);
+	private static Time fadingTime = new Time(100, Time.Unit.MILLI);
 
 	public static SoundSystemFacade get() {
 		if (instance == null) {
