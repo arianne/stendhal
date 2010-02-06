@@ -9,13 +9,12 @@ package games.stendhal.server.entity.mapstuff.sound;
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 
 /**
- * A factory for a LoopedAmbientSoundSource.
+ * A factory for a BackgroundMusicSource.
  */
-public class LoopedAmbientSoundSourceFactory extends SoundSourceFactory {
-
+public class BackgroundMusicSourceFactory extends SoundSourceFactory {
 
 	/**
-	 * Create an LoopedAmbientSoundSource.
+	 * Create an BackgroundMusicSource.
 	 * 
 	 * @param ctx
 	 *            Configuration context.
