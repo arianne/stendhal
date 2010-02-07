@@ -2,7 +2,6 @@ package games.stendhal.server.actions;
 
 import static org.junit.Assert.*;
 import games.stendhal.server.actions.attack.StopAction;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
 import marauroa.common.game.RPAction;
@@ -29,8 +28,9 @@ public class StopActionTest {
 		PlayerTestHelper.generatePlayerRPClasses();
 		final Player player = new Player(new RPObject()) {
 			@Override
-			public void stopAttack(RPEntity target) {
+			public void stopAttack() {
 				stopattack = true;
+
 			}
 
 			@Override
@@ -53,6 +53,7 @@ public class StopActionTest {
 
 		assertTrue(notify);
 		assertTrue(stopattack);
+
 	}
 
 	private boolean stopattack;

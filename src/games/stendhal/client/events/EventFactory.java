@@ -43,10 +43,6 @@ public class EventFactory {
 			event = new PublicTextEvent();
 		} else if (name.equals(Events.PRIVATE_TEXT)) {
 			event = new PrivateTextEvent();
-		} else if (name.equals(Events.START_ATTACK)) {
-			event = new StartAttackEvent();
-		} else if (name.equals(Events.STOP_ATTACK)) {
-			event = new StopAttackEvent();
 		}
 
 		if (event != null) {

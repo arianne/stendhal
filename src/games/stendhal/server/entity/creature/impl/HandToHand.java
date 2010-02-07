@@ -40,7 +40,7 @@ class HandToHand implements AttackStrategy {
 		}
 		if (!creature.hasPath()) {
 			if ((int) creature.squaredDistance(target) >= 1) {
-				creature.stopAttack(creature.getAttackTarget());
+				creature.stopAttack();
 				return;
 			}
 		}

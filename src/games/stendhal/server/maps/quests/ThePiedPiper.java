@@ -554,7 +554,7 @@ import org.apache.log4j.Logger;
 		while(rats.size()!=0) {
 			try {
 			final KillNotificationCreature rat = rats.get(0);
-			rat.stopAttack(rat.getAttackTarget());
+			rat.stopAttack();
 			rat.clearDropItemList();
 			rat.getZone().remove(rat);
 			rats.remove(0);

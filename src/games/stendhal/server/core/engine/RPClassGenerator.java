@@ -49,8 +49,6 @@ import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.events.SoundEvent;
-import games.stendhal.server.events.StartAttackEvent;
-import games.stendhal.server.events.StopAttackEvent;
 import games.stendhal.server.events.TextEvent;
 import games.stendhal.server.events.TransitionGraphEvent;
 import marauroa.common.game.RPClass;
@@ -220,12 +218,6 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass("text")) {
 			TextEvent.generateRPClass();
 		}
-		if (!RPClass.hasRPClass("start_attack")) {
-			StartAttackEvent.generateRPClass();
-		}
-		if (!RPClass.hasRPClass("stop_attack")) {
-			StopAttackEvent.generateRPClass();
-		}		
 
 		// guilds
 		if (!RPClass.hasRPClass("guild")) {

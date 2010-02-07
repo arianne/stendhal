@@ -181,7 +181,7 @@ public class Player extends RPEntity {
 	public static void destroy(final Player player) {
 		player.getPetOwner().destroy();
 		player.stop();
-		player.stopAttack(player.getAttackTarget());
+		player.stopAttack();
 
 		/*
 		 * Normally a zoneid attribute shouldn't logically exist after an entity

@@ -13,6 +13,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.GameObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
@@ -401,19 +402,9 @@ public abstract class RPEntity extends ActiveEntity {
 		ClientSingletonRepository.getUserInterface().addEventLine(new StandardHeaderedEventLine(getTitle(), text));
 	}
 
-	public void onStartAttack(final IEntity target) {
-		if (target != null) {
-			attackTarget = (RPEntity) target;
-			this.onAttack(target);
-			attackTarget.onAttacked(this);
-		}
-	}
-	
 	// When this entity attacks target.
 	public void onAttack(final IEntity target) {
-		if (target != null) {
 		attacking = target.getID();
-		}
 	}
 
 	// When this entity's attack is blocked by the adversary
@@ -549,14 +540,6 @@ public abstract class RPEntity extends ActiveEntity {
 	// When this entity stops attacking
 	public void onStopAttack() {
 		attacking = null;
-	}
-	
-	public void onStopAttack(final IEntity target) {
-		if(attackTarget != null) {
-		attackTarget.onStopAttacked(this);
-		attackTarget = null;
-		}
-		this.onStopAttack();
 	}
 	
 	// When attacker stop attacking us
@@ -730,7 +713,7 @@ public abstract class RPEntity extends ActiveEntity {
 		/*
 		 * Attack Target
 		 */
-		/*
+
 		if (object.has("target")) {
 			final int target = object.getInt("target");
 
@@ -752,7 +735,7 @@ public abstract class RPEntity extends ActiveEntity {
 		} else {
 			attackTarget = null;
 		}
-		*/
+
 		if (attackTarget != null) {
 			evaluateAttack(object, attackTarget);
 		}
@@ -954,7 +937,7 @@ public abstract class RPEntity extends ActiveEntity {
 			/*
 			 * Attack Target
 			 */
-			/*
+
 			if (changes.has("target")) {
 				final int target = changes.getInt("target");
 
@@ -980,7 +963,7 @@ public abstract class RPEntity extends ActiveEntity {
 					}
 				}
 			}
-			*/
+
 			
 			if (attackTarget != null) {
 				int risk;
