@@ -82,16 +82,44 @@ public class SadScientist extends AbstractQuest {
 
 	private void prepareScientist() {
 		SpeakerNPC scientistNpc = npcs.get("Boris Karlova");
+		SpeakerNPC mayorNpc = npcs.get("Mayor Sakhs");
 		startOfQuest(scientistNpc);
 		playerReturnsAfterStartWithItems(scientistNpc);
 		playerReturnsAfterStartWithoutItems(scientistNpc);
 		playerReturnsAfterGivingTooEarly(scientistNpc);
 		playerReturnsAfterGivingWhenFinished(scientistNpc);
+		playerVisitsMayorSakhs(mayorNpc);
+	}
+
+	private void playerVisitsMayorSakhs(SpeakerNPC mayorNpc) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void playerReturnsAfterGivingWhenFinished(SpeakerNPC npc) {
-		// TODO Auto-generated method stub
-		
+		ChatCondition condition = new AndCondition(
+				new QuestStateStartsWithCondition(QUEST_SLOT, "making;"),
+				new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1),
+				new QuestNotActiveCondition("mithril_cloak")
+			);
+		ChatAction action = new SetQuestAction(QUEST_SLOT,"mary");
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				condition,
+				ConversationStates.INFORMATION_1, 
+				"I finished the legs. But I cannot trust you. Before I give the" +
+				" jewelled legs to you, I need a message from my darling. Ask Mayor" +
+				" Sakhs for Mary. Can you do that for me?",
+				null);
+		npc.add(ConversationStates.INFORMATION_1, ConversationPhrases.YES_MESSAGES,
+				condition,
+				ConversationStates.IDLE, 
+				"Oh, thank you. I am waiting.",
+				action);
+		npc.add(ConversationStates.INFORMATION_1, ConversationPhrases.NO_MESSAGES,
+				condition,
+				ConversationStates.IDLE, 
+				"Pah! Bye!",
+				action);
 	}
 
 	private void playerReturnsAfterGivingTooEarly(SpeakerNPC npc) {
