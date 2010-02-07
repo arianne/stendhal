@@ -8,6 +8,7 @@ package games.stendhal.common.resource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
@@ -51,6 +52,52 @@ public class ResourceManager extends ResourceLocator
 		public boolean isLocatable(URI uri)
 		{
 			return new File(uri.getPath()).exists();
+		}
+	}
+
+	private class CPSchemeLocator implements ResourceLocator.Locator
+	{
+		final ArrayList<String> mPaths = new ArrayList<String>();
+
+		void addSearchPath(String path)
+		{
+			if(path.endsWith("/"))
+				path = path.substring(0, path.length() - 1);
+
+			if(!path.startsWith("/"))
+				path = "/" + path;
+			
+			mPaths.add(path);
+		}
+
+		public InputStream locate(URI uri)
+		{
+			for(String path: mPaths)
+			{
+				InputStream stream = this.getClass().getResourceAsStream(path + uri.getPath());
+
+				if(stream != null)
+					return stream;
+			}
+
+			return null;
+		}
+
+		public boolean isLocatable(URI uri)
+		{
+			InputStream stream = locate(uri);
+
+			try
+			{
+				stream.close();
+			}
+			catch(IOException exception)
+			{
+				assert false: exception;
+				stream = null;
+			}
+
+			return stream != null;
 		}
 	}
 
@@ -99,7 +146,7 @@ public class ResourceManager extends ResourceLocator
 		}
 	}
 
-	private final HashMap<String,SchemeLocator> mSchemeLocators = new HashMap<String,SchemeLocator>();
+	private final HashMap<String,CPSchemeLocator> mSchemeLocators = new HashMap<String,CPSchemeLocator>();
 	private File                                mRootDirectory  = null;
 
 	public void addScheme(String name, String ...searchPaths)
@@ -109,7 +156,7 @@ public class ResourceManager extends ResourceLocator
 
 		if(!mSchemeLocators.containsKey(name))
 		{
-			SchemeLocator locator = new SchemeLocator();
+			CPSchemeLocator locator = new CPSchemeLocator();
 
 			mSchemeLocators.put(name, locator);
 			setLocator(name, locator);
@@ -121,7 +168,7 @@ public class ResourceManager extends ResourceLocator
 
 	public void addSearchPath(String scheme, String path)
 	{
-		SchemeLocator locator = mSchemeLocators.get(scheme);
+		CPSchemeLocator locator = mSchemeLocators.get(scheme);
 		
 		assert locator != null;
 		assert path    != null;
