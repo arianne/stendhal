@@ -31,7 +31,8 @@ public class ResourceManager extends ResourceLocator
 
 		mSingleton.addScheme("sound" , "data/sounds");
 		mSingleton.addScheme("music" , "data/music");
-		//mSingleton.addScheme("scheme", "data/sounds");
+		mSingleton.addScheme("audio" , "data/sounds", "data/music");
+		//mSingleton.addScheme("scheme", "data/xml");
 	}
 	
 	private static class DefaultLocator implements ResourceLocator.Locator
@@ -60,8 +61,6 @@ public class ResourceManager extends ResourceLocator
 		void addSearchPath(String path)
 		{
 			File directory = new File(mRootDirectory, path);
-			
-			assert directory.isDirectory(): directory.getPath() + " is not a directory";
 
 			if(directory.isDirectory())
 				mDirectories.add(directory);
@@ -140,8 +139,6 @@ public class ResourceManager extends ResourceLocator
 		{
 			File file = new File(path);
 			
-			assert file.isDirectory(): file.getPath() + " is not a directory";
-
 			if(file.isDirectory())
 				mRootDirectory = file;
 		}
