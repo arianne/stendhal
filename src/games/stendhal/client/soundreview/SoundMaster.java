@@ -22,6 +22,12 @@ public class SoundMaster {
 		playUsingNewSoundSystem(soundLayer.ordinal(), soundName, area);
 	}
 
+
+	public static void play(final SoundLayer soundLayer, final String soundName, final double x, final double y, int radius) {
+		AudibleArea area = new AudibleCircleArea(new float[]{ (float) x, (float) y}, radius / 2, radius);
+		playUsingNewSoundSystem(soundLayer.ordinal(), soundName, area);
+	}
+
 	private static void playUsingNewSoundSystem(int soundLayer, String soundName, AudibleArea area) {
 		if (isMute) {
 			return;

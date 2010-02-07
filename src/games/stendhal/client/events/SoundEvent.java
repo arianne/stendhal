@@ -16,7 +16,7 @@ public class SoundEvent extends Event<Entity> {
 	 */
 	@Override
 	public void execute() {
-		SoundMaster.play(SoundLayer.CREATURE_NOISE, event.get("sound") + ".ogg", entity.getX(), entity.getY());
+		SoundMaster.play(SoundLayer.CREATURE_NOISE, event.get("sound") + ".ogg", entity.getX(), entity.getY(), event.getInt("radius"));
 	}
 
 }
