@@ -15,6 +15,8 @@ import games.stendhal.client.sound.system.processors.SoundLayers;
 import games.stendhal.client.sound.system.processors.VolumeAdjustor;
 import games.stendhal.common.math.Algebra;
 
+import games.stendhal.common.resource.File;
+import games.stendhal.common.resource.Resource;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -42,12 +44,22 @@ public class SoundManager
     public  final static InfiniteAudibleArea INFINITE_AUDIBLE_AREA    = new InfiniteAudibleArea();
     public  final static Time                ZERO_DURATION            = new Time();
 
-    private final static class Sound
+    public final static class Sound implements Cloneable
     {
         final AtomicReference<SoundFile>    file    = new AtomicReference<SoundFile>(null);
         final AtomicReference<SoundChannel> channel = new AtomicReference<SoundChannel>(null);
 
-        boolean isActive() { return channel.get() != null && channel.get().isActive(); }
+		@Override
+		public Sound clone() throws CloneNotSupportedException
+		{
+			Sound sound = new Sound();
+			sound.file.set(file.get().clone());
+			
+			return sound;
+		}
+
+
+        public boolean isActive() { return channel.get() != null && channel.get().isActive(); }
     }
 
     private final class SoundChannel extends SignalProcessor
@@ -146,6 +158,7 @@ public class SoundManager
      *
      * @return SoundManager
      */
+	@Deprecated
     public static SoundManager get()
     {
         if (instance == null) {
@@ -154,7 +167,7 @@ public class SoundManager
         return instance;
     }
 
-    private SoundManager()
+    protected SoundManager()
     {
         Algebra.mov_Vecf(mHearerPosition, 0.0f);
 
@@ -175,7 +188,8 @@ public class SoundManager
     {
         return mSoundSystem != null;
     }
-    
+
+	@Deprecated
     public void openSoundFile(String filePath, String soundName)
     {
         SoundFile.Type fileType = null;
@@ -192,9 +206,8 @@ public class SoundManager
 
         try
         {
-            SoundFile file = new SoundFile(filePath, fileType, OUTPUT_NUM_SAMPLES, true);
-
-            Sound sound = new Sound();
+            SoundFile file  = new SoundFile(new File(filePath, false), fileType, OUTPUT_NUM_SAMPLES, true);
+            Sound     sound = new Sound();
             sound.file.set(file);
 
             mSounds.put(soundName, sound);
@@ -204,7 +217,28 @@ public class SoundManager
             logger.error(exception, exception);
         }
     }
+	
+	public Sound openSound(Resource resource, SoundFile.Type fileType)
+    {
+		Sound sound = null;
 
+        try
+        {
+            SoundFile file = new SoundFile(resource, fileType, OUTPUT_NUM_SAMPLES, true);
+
+            sound = new Sound();
+            sound.file.set(file);
+        }
+        catch(IOException exception)
+		{
+			assert false: exception;
+			return null;
+		}
+
+		return sound;
+    }
+
+	@Deprecated
     public void closeSoundFile(String soundName)
     {
         Sound sound = mSounds.get(soundName);
@@ -232,6 +266,7 @@ public class SoundManager
         }
     }
 
+	@Deprecated
     public void play(String soundName, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration)
     {
         Sound sound = mSounds.get(soundName);
@@ -260,6 +295,7 @@ public class SoundManager
         }
     }
 
+	@Deprecated
     public void stop(String soundName, Time fadeOutDuration)
     {
         Sound sound = mSounds.get(soundName);
@@ -268,6 +304,7 @@ public class SoundManager
             sound.channel.get().stopPlayback(fadeOutDuration);
     }
 
+	@Deprecated
     public void changeVolume(String soundName, float volume)
     {
         Sound sound = mSounds.get(soundName);
@@ -276,6 +313,7 @@ public class SoundManager
             sound.channel.get().setVolume(volume);
     }
 
+	@Deprecated
     public void changeLayer(String soundName, int layerLevel)
     {
         Sound sound = mSounds.get(soundName);
@@ -284,6 +322,7 @@ public class SoundManager
             sound.channel.get().setLayer(layerLevel);
     }
 
+	@Deprecated
     public void changeAudibleArea(String soundName, AudibleArea area)
     {
         Sound sound = mSounds.get(soundName);
@@ -298,8 +337,61 @@ public class SoundManager
      * @param soundName name of sound
      * @return true, if it is defined; false otherwise
      */
+	@Deprecated
     public boolean hasSoundName(String soundName) {
         return mSounds.get(soundName) != null;
+    }
+
+	public void play(Sound sound, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration)
+    {
+        if(sound == null)
+            return;
+
+        if(sound.isActive())
+        {
+            SoundChannel channel = sound.channel.get();
+            channel.setAutoRepeat(autoRepeat);
+            channel.startFading(1.0f, fadeInDuration);
+			channel.setVolume(volume);
+            channel.setLayer(layerLevel);
+            channel.setAudibleArea(area);
+            channel.resumePlayback();
+			channel.update();
+        }
+        else
+        {
+            SoundChannel channel = findInactiveChannel();
+            channel.setAutoRepeat(autoRepeat);
+			channel.setVolume(volume);
+            channel.setLayer(layerLevel);
+            channel.setAudibleArea(area);
+            channel.playSound(sound, fadeInDuration);
+			channel.update();
+        }
+    }
+
+    public void stop(Sound sound, Time fadeOutDuration)
+    {
+        if(sound != null && sound.isActive())
+            sound.channel.get().stopPlayback(fadeOutDuration);
+    }
+
+    public void changeVolume(Sound sound, float volume)
+    {
+        if(sound != null && sound.isActive())
+            sound.channel.get().setVolume(volume);
+    }
+
+    public void changeLayer(Sound sound, int layerLevel)
+    {
+        if(sound != null && sound.isActive())
+            sound.channel.get().setLayer(layerLevel);
+    }
+
+    public void changeAudibleArea(Sound sound, AudibleArea area)
+    {
+        if(sound != null && sound.isActive())
+            sound.channel.get().setAudibleArea(area);
     }
 
     public void close()
