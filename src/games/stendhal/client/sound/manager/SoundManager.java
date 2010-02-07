@@ -206,7 +206,7 @@ public class SoundManager
 
         try
         {
-            SoundFile file  = new SoundFile(new File(filePath, false), fileType, OUTPUT_NUM_SAMPLES, true);
+            SoundFile file  = new SoundFile(new File(filePath, true), fileType, OUTPUT_NUM_SAMPLES, true);
             Sound     sound = new Sound();
             sound.file.set(file);
 
