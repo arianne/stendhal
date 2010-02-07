@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -17,6 +19,8 @@ import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
 /**
@@ -91,9 +95,30 @@ public class SadScientist extends AbstractQuest {
 		playerVisitsMayorSakhs(mayorNpc);
 	}
 
-	private void playerVisitsMayorSakhs(SpeakerNPC mayorNpc) {
-		// TODO Auto-generated method stub
-		
+	private void playerVisitsMayorSakhs(SpeakerNPC npc) {
+		ChatCondition condition = new AndCondition(
+				new QuestStateStartsWithCondition(QUEST_SLOT, "mary"),
+				new QuestNotActiveCondition("mithril_cloak")
+			);
+		ChatAction action = new ChatAction() {
+			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+				Item item = SingletonRepository.getEntityManager().getItem("note");
+				item.setInfoString(player.getName());
+				item.setDescription("You see a letter for Boris Karlova.");
+				item.setBoundTo(player.getName());
+				player.equipOrPutOnGround(item);
+			}
+		};
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("mary","Mary"),
+				condition,
+				ConversationStates.ATTENDING, 
+				"What? How do you know her? Well it is a sad story." +
+				" She was picking arandula for Ilisa (they were friends)" +
+				" and she saw the catacombs entrance. 3 months later a" +
+				" young hero saw her, and she was a vampirette. What a" +
+				" sad story. I kept this for her husband. A letter. " +
+				"I think he is in Kalavan." ,
+				action);
 	}
 
 	private void playerReturnsAfterGivingWhenFinished(SpeakerNPC npc) {
