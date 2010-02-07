@@ -16,7 +16,12 @@ public class SoundEvent extends Event<Entity> {
 	 */
 	@Override
 	public void execute() {
-		SoundMaster.play(SoundLayer.CREATURE_NOISE, event.get("sound") + ".ogg", entity.getX(), entity.getY(), event.getInt("radius"));
+		SoundLayer layer = SoundLayer.AMBIENT_SOUND;
+		int idx = event.getInt("layer");
+		if (idx < SoundLayer.values().length) {
+			layer = SoundLayer.values()[idx];
+		}
+		SoundMaster.play(layer, event.get("sound") + ".ogg", entity.getX(), entity.getY(), event.getInt("radius"));
 	}
 
 }
