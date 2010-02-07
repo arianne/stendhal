@@ -63,6 +63,27 @@ Walk on, and you will be returned to the land of the living...
 			<destination zone="int_pathfinding" ref="locked_outside"/>
 		</portal>
 
+		<!-- volume -->
+		<entity x="10" y="56">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">bird-2b</parameter>
+				<parameter name="min">5</parameter>
+				<parameter name="max">5</parameter>
+				<parameter name="radius">4</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+		<entity x="24" y="56">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">bird-2b</parameter>
+				<parameter name="min">5</parameter>
+				<parameter name="max">5</parameter>
+				<parameter name="radius">4</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
+
+		<!-- periodic and loop -->
 		<entity x="42" y="56">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
 				<parameter name="sound">bird-1b, bird-2b, bird-3b</parameter>
@@ -71,7 +92,6 @@ Walk on, and you will be returned to the land of the living...
 				<parameter name="radius">4</parameter>
 			</implementation>
 		</entity>
-
 		<entity x="56" y="56">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
 				<parameter name="sound">wind-2</parameter>

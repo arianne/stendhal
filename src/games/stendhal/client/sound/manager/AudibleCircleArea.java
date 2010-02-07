@@ -5,6 +5,8 @@
 
 package games.stendhal.client.sound.manager;
 
+import java.util.Arrays;
+
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Geometry;
 
@@ -53,4 +55,17 @@ public class AudibleCircleArea implements AudibleArea
     {
         Geometry.closestPoint_SpherePointf(result, mCenter, mInnerRadius, hearerPos);
     }
+
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("AudibleCircleArea [mCenter=");
+		sb.append(Arrays.toString(mCenter));
+		sb.append(", mInnerRadius=" + mInnerRadius);
+		sb.append(", mOuterRadius=");
+		sb.append(mOuterRadius + "]");
+		return sb.toString();
+	}
+
 }
