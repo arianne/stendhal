@@ -49,7 +49,7 @@ public class SoundMaster {
 			system.setSound(soundName, sound);
 		}
 
-		system.play(sound, 1.0f, 0, SoundSystemFacade.INFINITE_AUDIBLE_AREA, false, new Time());
+		system.play(sound, 1.0f, 0, area, false, new Time());
 		//logger.info("soundName: " + soundName);
 	}
 
