@@ -5,30 +5,33 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.manager.AudibleArea;
 import games.stendhal.client.sound.manager.AudibleCircleArea;
+import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.SoundManager;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.resource.ResourceLocator;
+import games.stendhal.common.resource.ResourceManager;
+import java.util.HashMap;
 
 /**
- * this class is the main interface between the game logic and the low level sound system
+ * this class is the main interface between the game logic and the low level sound system.
+ * it is a refinement of the manager.SoundManager class.
  *
- * @author hendrik
+ * @author hendrik, silvio
  */
-public class SoundSystemFacade implements WorldListener {
-	private static SoundSystemFacade instance;
-	private static Time fadingTime = new Time(100, Time.Unit.MILLI);
-	private boolean mute = false;
+public class SoundSystemFacade extends SoundManager implements WorldListener {
+	private final static SoundSystemFacade     singletonInstance = new SoundSystemFacade();
+	private final static Time                  fadingTime        = new Time(100, Time.Unit.MILLI);
+	private final        HashMap<String,Sound> sounds            = new HashMap<String, Sound>();
+	private final        ResourceLocator       resourceLocator   = ResourceManager.get();
+	private boolean                            mute              = false;
 
 	public static SoundSystemFacade get() {
-		if (instance == null) {
-			instance = new SoundSystemFacade();
-		}
-		return instance;
+		return singletonInstance;
 	}
 
 	private SoundSystemFacade() {
-		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
-		setMute(!play);
+		mute = !Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
 	}
 
 	public void playerMoved() {
@@ -49,27 +52,59 @@ public class SoundSystemFacade implements WorldListener {
 			return;
 		}
 
-		SoundManager soundManager = SoundManager.get();
-		if (!soundManager.hasSoundName(sound)) {
+		if (!super.hasSoundName(sound)) {
 			String mySoundName = sound + ".ogg";
 			String type = "sounds";
 			if (layer == SoundLayer.BACKGROUND_MUSIC) {
 				type = "music";
 			}
-			soundManager.openSoundFile("data/" + type + "/" + mySoundName, sound);
+			super.openSoundFile("data/" + type + "/" + mySoundName, sound);
 		}
 		AudibleArea area = new AudibleCircleArea(new float[]{ (float) x, (float) y}, radius / 2, radius);
 		Time myFadingTime = new Time();
 		if (loop) {
 			myFadingTime = fadingTime;
 		}
-		soundManager.changeVolume(sound, ((float) volume) / 100);
-		soundManager.play(sound, 0, area, loop, myFadingTime);
+		super.play(sound, 0, area, loop, myFadingTime);
+		super.changeVolume(sound, ((float) volume) / 100);
 	}
 
+	@Deprecated
 	public void stopSound(String soundName) {
 		SoundManager.get().stop(soundName, fadingTime);
 	}
+
+	public Sound setSound(String soundName, Sound sound) {
+		return sounds.put(soundName, sound);
+	}
+
+	public Sound getSound(String soundName) {
+		return sounds.get(soundName);
+	}
+	
+	public Sound openSound(String fileURI, SoundFile.Type fileType) {
+		return super.openSound(resourceLocator.getResource(fileURI), fileType);
+	}
+
+	public void play(String soundName, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration) {
+		super.play(getSound(soundName), volume, layerLevel, area, autoRepeat, fadeInDuration);
+    }
+
+    public void stop(String soundName, Time fadeOutDuration) {
+		super.stop(getSound(soundName), fadeOutDuration);
+    }
+
+    public void changeVolume(String soundName, float volume) {
+		super.changeVolume(getSound(soundName), volume);
+    }
+
+    public void changeLayer(String soundName, int layerLevel) {
+		super.changeLayer(getSound(soundName), layerLevel);
+    }
+
+    public void changeAudibleArea(String soundName, AudibleArea area){
+		changeAudibleArea(getSound(soundName), area);
+    }
 
 	public void exit() {
 		// exits  the sound system
@@ -78,6 +113,4 @@ public class SoundSystemFacade implements WorldListener {
 	public void setMute(boolean mute) {
 		this.mute = mute;
 	}
-
-
 }
