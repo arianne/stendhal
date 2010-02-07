@@ -24,6 +24,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 
@@ -32,7 +33,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	private String sound;
 	private int radius;
 	private int volume;
-	private int layer;
+	private SoundLayer layer = SoundLayer.AMBIENT_SOUND;
 
 
 
@@ -66,7 +67,10 @@ public class LoopedSoundSource extends InvisibleEntity {
 			volume = object.getInt("volume");
 		}
 		if (object.has("layer")) {
-			layer = object.getInt("layer");
+			int idx = object.getInt("layer");
+			if (idx < SoundLayer.values().length) {
+				layer = SoundLayer.values()[idx];
+			}
 		}
 	}
 

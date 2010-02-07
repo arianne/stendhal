@@ -44,7 +44,7 @@ public class SoundSystemFacade implements WorldListener {
 		// ignored
 	}
 
-	public void playSound(String sound, double x, double y, int radius, int volume, int layer, boolean loop) {
+	public void playSound(String sound, double x, double y, int radius, int volume, SoundLayer layer, boolean loop) {
 		if (mute) {
 			return;
 		}
@@ -53,7 +53,7 @@ public class SoundSystemFacade implements WorldListener {
 		if (!soundManager.hasSoundName(sound)) {
 			String mySoundName = sound + ".ogg";
 			String type = "sounds";
-			if (layer == SoundLayer.BACKGROUND_MUSIC.ordinal()) {
+			if (layer == SoundLayer.BACKGROUND_MUSIC) {
 				type = "music";
 			}
 			soundManager.openSoundFile("data/" + type + "/" + mySoundName, sound);
@@ -63,8 +63,8 @@ public class SoundSystemFacade implements WorldListener {
 		if (loop) {
 			myFadingTime = fadingTime;
 		}
-		soundManager.play(sound, layer, area, loop, myFadingTime);
 		soundManager.changeVolume(sound, ((float) volume) / 100);
+		soundManager.play(sound, 0, area, loop, myFadingTime);
 	}
 
 	public void stopSound(String soundName) {
