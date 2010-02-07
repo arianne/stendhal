@@ -34,16 +34,17 @@ So what are you waiting for?! A whole new world awaits...
 How to play
 -----------
 
-You need arianne's Stendhal client in order to be able to play Stendhal.
-You also need Sun Java JRE 1.5 or higher ( http://www.java.com/en/download )
+You need Java which you can download from http://www.java.com/en/download
+Java is included in most Linux Distribution. Both Sun Java and OpenJDK are supported.
 
 Please download Stendhal from http://arianne.sourceforge.net
 Then unzip the client zip into a new folder. 
 You can double click on stendhal-X.XX.jar and the client will run.
 
-If you prefer to run from command line, then just do:
+If you prefer to run from command line, then just execute this command
+in the stendhal folder:
 
-  java -jar path-to-folder/stendhal-X.XX.jar
+  java -jar stendhal-X.XX.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -56,8 +57,8 @@ http://arianne.sourceforge.net/wiki/index.php/StendhalManual, and there is
 Help from the client main menu too.
 
 
-How to create server
---------------------
+How to create a server
+----------------------
 
 You need to create the server.ini file by running 
 
@@ -75,8 +76,6 @@ How to compile Stendhal
 
 http://arianne.sourceforge.net/wiki/index.php/HowToBuildStendhal
 
-No warranties. But let us know if it doesn't work.
-
 
 Stendhal in Eclipse
 -------------------
@@ -92,5 +91,5 @@ Legal
 Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005-2008
 arianne_rpg at users dot sourceforge dot net
 
-Stendhal(c) is copyright of the Arianne Project, 2006-2009
+Stendhal(c) is copyright of the Arianne Project, 2006-2010
 arianne-general at lists dot sourceforge dot net
