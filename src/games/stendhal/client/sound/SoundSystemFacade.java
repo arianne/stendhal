@@ -9,6 +9,8 @@ import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.SoundManager;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.math.Algebra;
+import games.stendhal.common.math.Numeric;
 import games.stendhal.common.resource.ResourceLocator;
 import games.stendhal.common.resource.ResourceManager;
 import java.util.HashMap;
@@ -35,8 +37,9 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 	}
 
 	public void playerMoved() {
-		float[] position = new float[] {(float) User.get().getX(), (float) User.get().getY()};
-		SoundManager.get().setHearerPosition(position);
+		float[] position = Algebra.vecf((float)User.get().getX(), (float)User.get().getY());
+		setHearerPosition(position);
+		update();
 	}
 
 	public void zoneEntered(String zoneName) {
@@ -47,31 +50,30 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		// ignored
 	}
 
-	public void playSound(String sound, double x, double y, int radius, int volume, SoundLayer layer, boolean loop) {
-		if (mute) {
-			return;
-		}
+	public void playSound(String soundName, double x, double y, int radius, int volume, SoundLayer layer, boolean loop) {
+		if(!mute)
+		{
+			Sound sound = getSound(soundName);
 
-		if (!super.hasSoundName(sound)) {
-			String mySoundName = sound + ".ogg";
-			String type = "sounds";
-			if (layer == SoundLayer.BACKGROUND_MUSIC) {
-				type = "music";
+			if(sound == null) {
+				sound = openSound("audio:/" + soundName + ".ogg", SoundFile.Type.OGG);
+				setSound(soundName, sound);
 			}
-			super.openSoundFile("data/" + type + "/" + mySoundName, sound);
+
+			AudibleArea area         = new AudibleCircleArea(new float[]{ (float) x, (float) y}, radius / 2.0f, radius);
+			Time        myFadingTime = new Time();
+
+			if(loop) {
+				myFadingTime = fadingTime;
+			}
+
+			play(sound, Numeric.intToFloat(volume,100.0f), 0, area, loop, myFadingTime);
 		}
-		AudibleArea area = new AudibleCircleArea(new float[]{ (float) x, (float) y}, radius / 2, radius);
-		Time myFadingTime = new Time();
-		if (loop) {
-			myFadingTime = fadingTime;
-		}
-		super.play(sound, 0, area, loop, myFadingTime);
-		super.changeVolume(sound, ((float) volume) / 100);
 	}
 
 	@Deprecated
 	public void stopSound(String soundName) {
-		SoundManager.get().stop(soundName, fadingTime);
+		stop(soundName, fadingTime);
 	}
 
 	public Sound setSound(String soundName, Sound sound) {

@@ -1,8 +1,9 @@
 package games.stendhal.client.soundreview;
 
+import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.AudibleArea;
 import games.stendhal.client.sound.manager.AudibleCircleArea;
-import games.stendhal.client.sound.manager.SoundManager;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.constants.SoundLayer;
 
@@ -13,7 +14,7 @@ public class SoundMaster {
 
 
 	public static void play(final SoundLayer soundLayer, final String soundName) {
-		AudibleArea area = SoundManager.INFINITE_AUDIBLE_AREA;
+		AudibleArea area = SoundSystemFacade.INFINITE_AUDIBLE_AREA;
 		playUsingNewSoundSystem(soundLayer.ordinal(), soundName, area);
 	}
 
@@ -39,12 +40,17 @@ public class SoundMaster {
 		// TODO: SoundSystemFacade.get().playSound(sound, 1, 1, 100000, 100, soundLayer, false);
 
 		soundName = soundName.replaceAll("\\.wav", ".ogg").replaceAll("\\.au", ".ogg").replaceAll("\\.aiff", ".ogg");
-		SoundManager soundManager = SoundManager.get();
-		if (!soundManager.hasSoundName(soundName)) {
-			soundManager.openSoundFile("data/sounds/" + soundName, soundName);
+		
+		SoundSystemFacade       system = SoundSystemFacade.get();
+		SoundSystemFacade.Sound sound  = system.getSound(soundName);
+
+		if(sound == null) {
+			sound = system.openSound("audio:/" + soundName, SoundFile.Type.OGG);
+			system.setSound(soundName, sound);
 		}
-		//logger.info("soundName: " + mySoundName);
-		soundManager.play(soundName, soundLayer, area, false, new Time());
+
+		system.play(sound, 1.0f, 0, SoundSystemFacade.INFINITE_AUDIBLE_AREA, false, new Time());
+		//logger.info("soundName: " + soundName);
 	}
 
 }
