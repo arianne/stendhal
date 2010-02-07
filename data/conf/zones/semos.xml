@@ -544,7 +544,7 @@ Mature sheep wanted: please speak to Sato.
 
 		<entity x="44" y="39">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">kettle-1.ogg, bottle-2.ogg, trash-1.ogg, trash-21.ogg, trash-3.ogg, metal-can-1.ogg, drain-water-11.ogg, dishbreak-1.ogg, dishbreak-2.ogg, dishes-1.ogg, dishes-21.ogg, creaky-door-1.ogg, creaky-door-2.ogg, ice-cubes-1.ogg, glass-break-1.ogg, window-close-1.ogg</parameter>
+				<parameter name="sound">kettle-1, bottle-2, trash-1, trash-21, trash-3, metal-can-1, drain-water-11, dishbreak-1, dishbreak-2, dishes-1, dishes-21, creaky-door-1, creaky-door-2, ice-cubes-1, glass-break-1, window-close-1</parameter>
 				<parameter name="min">30</parameter>
 				<parameter name="max">60</parameter>
 				<parameter name="radius">10</parameter>
@@ -742,7 +742,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">kettle-1.ogg, bottle-2.ogg, trash-1.ogg, trash-21.ogg, trash-3.ogg, metal-can-1.ogg, drain-water-11.ogg, dishbreak-1.ogg, dishbreak-2.ogg, dishes-1.ogg, dishes-21.ogg, creaky-door-1.ogg, creaky-door-2.ogg, ice-cubes-1.ogg, glass-break-1.ogg, window-close-1.ogg</parameter>
+				<parameter name="sound">kettle-1, bottle-2, trash-1, trash-21, trash-3, metal-can-1, drain-water-11, dishbreak-1, dishbreak-2, dishes-1, dishes-21, creaky-door-1, creaky-door-2, ice-cubes-1, glass-break-1, window-close-1</parameter>
 				<parameter name="min">30</parameter>
 				<parameter name="max">60</parameter>
 				<parameter name="volume">20</parameter>
