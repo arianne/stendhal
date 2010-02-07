@@ -7,6 +7,7 @@ package games.stendhal.common.resource;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -47,14 +48,29 @@ public class File implements Resource
 
 	public String getURI()
 	{
-		return "file://" + new java.io.File(mPath).getAbsolutePath();
+		if(mFile != null)
+			return "file://" + mFile.getAbsolutePath();
+
+		return mPath;
 	}
 
 	public boolean exists()
 	{
 		if(mFile != null)
 			return mFile.exists();
-		
-		return this.getClass().getResource(mPath) != null;
+
+		InputStream stream = this.getClass().getResourceAsStream("/" + mPath);
+
+		try
+		{
+			stream.close();
+		}
+		catch(IOException exception)
+		{
+			assert false: exception;
+			stream = null;
+		}
+
+		return stream != null;
 	}
 }
