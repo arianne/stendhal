@@ -15,12 +15,12 @@
  </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DQQ0AAAwDoat/05OxDySsmqqqqqqqqqqqqqqqqqqqqvr6AFA+aDAAQAAA
+   H4sIAAAAAAAAAO3UMQrAIBBFQcXc/8ypAhI2IEJkYaeY8oOvWHtrrQMAAAAAAAAAAAAAAABsGpMTu0xG4M9dJs+7r8lKy+4uk6hhpWV3l43+2v1fLVXu/91S8f+PWk7soIobO1pEfQBAAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2XSRKFIAwFPcu//yH/yo2lkuGFye4qV8YkDSpwHAAAAAAA8/J7uO7u7ciT/9OY7Abzr42z5Jnp3ert3zu3qna1f+RS1VbGVfYwsjb+43sYWRv/8T1E8rb+mTv4W9eInf2jcTPs/99yW+qq57D3/0jpn83liVOBf+zeXQz+uVyeOBWz+fdmBn/PGqdeD6/9Z87CmbH07A+UVI2lt05mf5gBf+31VqfVg+eZUUR7an3fylqVKP2ralWCvy3GszZac1WfhS1Ez8Sj+1bxZf/onnCG9zZL1GF17xOvxy7zfnL1yOwFV2M3Hy9fd1f5r/h99DofAgAAAAAAAICNP/tkCPkAQAAA
+   H4sIAAAAAAAAAO2XQQ6FIAwFPcvPv/8ZXbkxorR9BawziStr2wEV2DYAAAAAgHX5Na6rexVp+bfGpBrMvzauJ89K79Zo/9G5VbWz/T2XqrYyLrOHmbXxn9/DzNr4z+/Bk/fpn1nBv3eNqOzvjVth/3+Xu6eueg5H/4+U/tFcljgV+PvuXcXgH8tliVOxmv9oVvC3rHHq9fDcf+QsHBlLy/5ASdZYWutE9ocR8Nded3WeerA8MwtvT0/ft7JWJkr/rFqZ4N8XY1kbe3Nln4V78J6JZ/et4sv+3j3hCu9tFK/D270PrB5V5v3g7BHZC76Naj5Wvu6u8n/j9zHqfAgAAAC1+Q9+DgAAoDI7lOAIoABAAAA=
   </data>
  </layer>
  <layer name="2_object" width="64" height="64">
