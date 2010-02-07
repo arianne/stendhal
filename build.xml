@@ -15,6 +15,7 @@
 	<property name="build_client" value="${buildroot}/build_client"/>
 	<property name="build_client_data" value="${buildroot}/build_client_data"/>
 	<property name="build_client_sound_data" value="${buildroot}/build_client_sound_data"/>
+	<property name="build_client_music_data" value="${buildroot}/build_client_music_data"/>
 
 	<property name="build_server" value="${buildroot}/build_server"/>
 	<property name="build_server_maps" value="${buildroot}/build_server_maps"/>
@@ -26,6 +27,7 @@
 	<property name="client_data" value="stendhal-data-${version}.jar"/>
 	<property name="client_jarname" value="stendhal-${version}.jar"/>
 	<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
+	<property name="client_music_data" value="stendhal-music-data-${version}.jar"/>
 	<property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
 
 	<property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
@@ -299,10 +301,11 @@
 		<copy todir="run_clnt/lib">
 			<fileset file="build/lib/${client_data}"/>
 			<fileset file="build/lib/${client_sound_data}"/>
+			<fileset file="build/lib/${client_music_data}"/>
 			<fileset file="${marauroa_jar}"/>
 			<fileset file="${log4j_jar}"/>
-                        <fileset file="${pagelayout_jar}"/>
-                        <fileset file="${jorbis_jar}"/>
+			<fileset file="${pagelayout_jar}"/>
+			<fileset file="${jorbis_jar}"/>
 		</copy>
 
 		<exec dir="." executable="java">
@@ -393,7 +396,7 @@
 			<fileset dir="${build_client}"/>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value="lib/log4j.jar lib/marauroa.jar lib/pagelayout1.16.jar lib/jorbis.jar lib/${client_data} lib/${client_sound_data}"/>
+				<attribute name="Class-path" value="lib/log4j.jar lib/marauroa.jar lib/pagelayout1.16.jar lib/jorbis.jar lib/${client_data} lib/${client_sound_data} lib/${client_music_data}"/>
 			</manifest>
 		</jar>
 
@@ -436,6 +439,18 @@
 		</copy>
 
 		<jar jarfile="${lib}/${client_sound_data}" basedir="${build_client_sound_data}"/>
+
+		<mkdir dir="${build_client_music_data}"/>
+
+		<copy todir="${build_client_music_data}/data/music">
+			<fileset dir="data/music">
+				<include name="**.*"/>
+				<exclude name="demiurgo_a_new_homeland.ogg" />
+			</fileset>
+		</copy>
+
+		<jar jarfile="${lib}/${client_music_data}" basedir="${build_client_music_data}"/>
+
 	</target>
 
 	<target name="docs" depends="server_build, client_build" description="Build javadocs for fixedStendhal">
@@ -522,8 +537,9 @@
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${pagelayout_jar}"/>
-        <copy todir="${buildroot}/stendhal-${version}/lib" file="${jorbis_jar}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${jorbis_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_sound_data}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_music_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib">
 			<fileset dir="libs">
@@ -865,34 +881,31 @@
 	
 	<target name="cobertura-instrument">
 		<cobertura-instrument todir="${build_cobertura}" datafile="${build_cobertura}/cobertura.ser">
-		    <ignore regex="org.apache.log4j.*" />
-		    <fileset dir="${build_server}">
-		        <include name="**/*.class" />
-		    </fileset>
+			<ignore regex="org.apache.log4j.*" />
+			<fileset dir="${build_server}">
+				<include name="**/*.class" />
+			</fileset>
 			<fileset dir="${build_server_maps}">
-		        <include name="**/*.class" />
-		    </fileset>
+				<include name="**/*.class" />
+			</fileset>
 			<fileset dir="${build_server_script}">
-		        <include name="**/*.class" />
-		    </fileset>
+				<include name="**/*.class" />
+			</fileset>
 			<fileset dir="${build_server_xmlconf}">
-		        <include name="**/*.class" />
-		    </fileset>
-		    <fileset dir="${build_client}">
-		        <include name="**/*.class" />
-		    </fileset>
+				<include name="**/*.class" />
+			</fileset>
+			<fileset dir="${build_client}">
+				<include name="**/*.class" />
+			</fileset>
 			<fileset dir="${build_client_data}">
 				<include name="**/*.class" />
 			</fileset>
-			<fileset dir="${build_client_sound_data}">
-		        <include name="**/*.class" />
-		    </fileset>
 			<fileset dir="${build_tools}">
-		        <include name="**/*.class" />
-		    </fileset>
+				<include name="**/*.class" />
+			</fileset>
 			<fileset dir="${build_stendhaltools}">
-		        <include name="**/*.class" />
-		    </fileset>
+				<include name="**/*.class" />
+			</fileset>
 		</cobertura-instrument>
 	</target>
 	
