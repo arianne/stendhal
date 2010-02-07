@@ -22,8 +22,8 @@ public class PeriodicAmbientSoundSourceFactory extends SoundSourceFactory {
 	 * @return minInterval
 	 */
 	private int getMinInterval(ConfigurableFactoryContext ctx) {
-		// default to 100%
-		return ctx.getInt("volume", 60);
+		// default to 1 minute
+		return ctx.getInt("min", 60);
 	}
 
 	/**
@@ -33,8 +33,8 @@ public class PeriodicAmbientSoundSourceFactory extends SoundSourceFactory {
 	 * @return maxInterval
 	 */
 	private int getMaxInterval(ConfigurableFactoryContext ctx) {
-		// default to 100%
-		return ctx.getInt("volume", 5 * 60);
+		// default to 5 minutes
+		return ctx.getInt("max", 5 * 60);
 	}
 
 	/**
