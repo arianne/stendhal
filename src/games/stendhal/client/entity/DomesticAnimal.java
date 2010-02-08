@@ -145,7 +145,7 @@ public abstract class DomesticAnimal extends RPEntity {
 			weight = changes.getInt("weight");
 
 			if (weight > oldWeight) {
-				SoundSystemFacade.get().play("eat-1.wav", getX(), getY(), SoundLayer.CREATURE_NOISE, 100);
+				SoundSystemFacade.get().play("eat-1", getX(), getY(), SoundLayer.CREATURE_NOISE, 100);
 			}
 
 			fireChange(PROP_WEIGHT);

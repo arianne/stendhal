@@ -95,7 +95,7 @@ public abstract class Food extends Entity {
 			// TODO this causes problems because of unidentified content refresh
 			// events (e.g. synchronizing)
 			if (amount > oldAmount) {
-				SoundSystemFacade.get().play("pop-2.wav", getX(), getY(), SoundLayer.CREATURE_NOISE, 100);
+				SoundSystemFacade.get().play("pop-2", getX(), getY(), SoundLayer.CREATURE_NOISE, 100);
 			}
 
 			fireChange(PROP_AMOUNT);

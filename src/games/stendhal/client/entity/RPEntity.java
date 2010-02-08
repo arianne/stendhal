@@ -86,9 +86,9 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	protected List<Entity> attackers;
 	
-	String[] attackSounds = { "punch-1.wav", "punch-2.wav", "punch-3.wav",
-			"punch-4.wav", "punch-5.wav", "punch-6.wav", "swingaxe-1.wav",
-			"slap-1.wav", "arrow-1.wav" };
+	String[] attackSounds = { "punch-1", "punch-2", "punch-3",
+			"punch-4", "punch-5", "punch-6", "swingaxe-1",
+			"slap-1", "arrow-1" };
 	
 	private boolean showBladeStrike;
 

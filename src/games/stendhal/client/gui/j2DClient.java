@@ -456,7 +456,7 @@ public class j2DClient implements UserInterface {
 		final GameObjects gameObjects = client.getGameObjects();
 		final StaticGameLayers gameLayers = client.getStaticGameLayers();
 
-		SoundSystemFacade.get().play("harp-1.wav", SoundLayer.BACKGROUND_MUSIC, 100);
+		SoundSystemFacade.get().play("harp-1", SoundLayer.BACKGROUND_MUSIC, 100);
 
 		// keep looping until the game ends
 		long refreshTime = System.currentTimeMillis();

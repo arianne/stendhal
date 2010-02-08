@@ -25,8 +25,8 @@ public class Sheep extends DomesticAnimal {
 	@Override
 	protected void probableChat(final int chance) {
 
-		final String[][] soundnames = { { "sheep-1.wav", "sheep-3.wav" },
-				{ "sheep-2.wav", "sheep-4.wav" } };
+		final String[][] soundnames = { { "sheep-1", "sheep-3" },
+				{ "sheep-2", "sheep-4" } };
 		final int which = Rand.rand(2);
 		if (Rand.rand(100) < chance) {
 			final String token;

@@ -43,35 +43,35 @@ public class NPC extends RPEntity {
 			setAudibleRange(3);
 			if (name.equals("Diogenes")) {
 				moveSounds = new String[2];
-				moveSounds[0] = "laugh-1.wav";
-				moveSounds[1] = "laugh-2.wav";
+				moveSounds[0] = "laugh-1";
+				moveSounds[1] = "laugh-2";
 				// SoundSystem.startSoundCycle(this, "Diogenes-patrol", 10000,
 				// 20, 50, 100);
 			} else if (name.equals("Carmen")) {
 				moveSounds = new String[2];
-				moveSounds[0] = "giggle-1.wav";
-				moveSounds[1] = "giggle-2.wav";
+				moveSounds[0] = "giggle-1";
+				moveSounds[1] = "giggle-2";
 
 				// SoundSystem.startSoundCycle(this, "Carmen-patrol", 60000, 20,
 				// 50, 75);
 			} else if (name.equals("Nishiya")) {
 				moveSounds = new String[3];
-				moveSounds[0] = "cough-11.wav";
-				moveSounds[1] = "cough-2.wav";
-				moveSounds[2] = "cough-3.wav";
+				moveSounds[0] = "cough-11";
+				moveSounds[1] = "cough-2";
+				moveSounds[2] = "cough-3";
 				// SoundSystem.startSoundCycle(this, "Nishiya-patrol", 40000,
 				// 20, 50, 80);
 			} else if (name.equals("Margaret")) {
 				moveSounds = new String[3];
-				moveSounds[0] = "hiccup-1.aiff";
-				moveSounds[1] = "hiccup-2.wav";
-				moveSounds[2] = "hiccup-3.wav";
+				moveSounds[0] = "hiccup-1";
+				moveSounds[1] = "hiccup-2";
+				moveSounds[2] = "hiccup-3";
 
 				// SoundSystem.startSoundCycle(this, "Margaret-patrol", 30000,
 				// 10, 30, 70);
 			} else if (name.equals("Sato")) {
 				moveSounds = new String[1];
-				moveSounds[0] = "sneeze-1.wav";
+				moveSounds[0] = "sneeze-1";
 				// SoundSystem.startSoundCycle(this, "Sato-patrol", 60000, 30,
 				// 50, 70);
 			}

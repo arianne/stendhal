@@ -180,6 +180,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 
 	@Override
 	protected void playOpenSound() {
-		SoundSystemFacade.get().play("click-4.wav", SoundLayer.USER_INTERFACE, 100);
+		SoundSystemFacade.get().play("click-4", SoundLayer.USER_INTERFACE, 100);
 	}
 }

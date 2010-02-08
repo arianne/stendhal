@@ -142,12 +142,10 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 			return;
 		}
 
-		soundName = soundName.replaceAll("\\.wav", ".ogg").replaceAll("\\.au", ".ogg").replaceAll("\\.aiff", ".ogg");
-		
 		SoundSystemFacade.Sound sound  = getSound(soundName);
 
 		if(sound == null) {
-			sound = openSound("audio:/" + soundName, SoundFile.Type.OGG);
+			sound = openSound("audio:/" + soundName + ".ogg", SoundFile.Type.OGG);
 			setSound(soundName, sound);
 		}
 
