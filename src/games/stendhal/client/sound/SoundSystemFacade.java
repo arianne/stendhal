@@ -50,7 +50,7 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		// ignored
 	}
 
-	public void playSound(String soundName, double x, double y, int radius, int volume, SoundLayer layer, boolean loop) {
+	public void playSound(String soundName, double x, double y, int radius, SoundLayer layer, int volume, boolean loop) {
 		if(!mute)
 		{
 			Sound sound = getSound(soundName);
@@ -88,25 +88,25 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		return super.openSound(resourceLocator.getResource(fileURI), fileType);
 	}
 
-	public void play(String soundName, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration) {
+	public void play(String soundName, AudibleArea area, int layerLevel, float volume, boolean autoRepeat, Time fadeInDuration) {
 		super.play(getSound(soundName), volume, layerLevel, area, autoRepeat, fadeInDuration);
-    }
+	}
 
-    public void stop(String soundName, Time fadeOutDuration) {
+	public void stop(String soundName, Time fadeOutDuration) {
 		super.stop(getSound(soundName), fadeOutDuration);
-    }
+	}
 
-    public void changeVolume(String soundName, float volume) {
+	public void changeVolume(String soundName, float volume) {
 		super.changeVolume(getSound(soundName), volume);
-    }
+	}
 
-    public void changeLayer(String soundName, int layerLevel) {
+	public void changeLayer(String soundName, int layerLevel) {
 		super.changeLayer(getSound(soundName), layerLevel);
-    }
+	}
 
-    public void changeAudibleArea(String soundName, AudibleArea area){
+	public void changeAudibleArea(String soundName, AudibleArea area){
 		changeAudibleArea(getSound(soundName), area);
-    }
+	}
 
 	public void exit() {
 		// exits  the sound system
@@ -114,5 +114,43 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 
 	public void setMute(boolean mute) {
 		this.mute = mute;
+	}
+
+
+
+	public void play(final String soundName, final SoundLayer soundLayer, int volume) {
+		AudibleArea area = SoundManager.INFINITE_AUDIBLE_AREA;
+		playNonLoopedSound(soundName, area, soundLayer.ordinal(), volume);
+	}
+
+	public void play(final String soundName, final double x, final double y, final SoundLayer soundLayer, int volume) {
+		AudibleArea area = new AudibleCircleArea(new float[]{ (float) x, (float) y}, 8, 12);
+		playNonLoopedSound(soundName, area, soundLayer.ordinal(), volume);
+	}
+
+
+	public void play(final String soundName, final double x, final double y, int radius, final SoundLayer soundLayer, int volume) {
+		AudibleArea area = new AudibleCircleArea(new float[]{ (float) x, (float) y}, radius / 2, radius);
+		playNonLoopedSound(soundName, area, soundLayer.ordinal(), volume);
+	}
+
+	public void playNonLoopedSound(String soundName, AudibleArea area, int soundLayer, int volume) {
+		if (mute) {
+			return;
+		}
+		if (soundName == null) {
+			return;
+		}
+
+		soundName = soundName.replaceAll("\\.wav", ".ogg").replaceAll("\\.au", ".ogg").replaceAll("\\.aiff", ".ogg");
+		
+		SoundSystemFacade.Sound sound  = getSound(soundName);
+
+		if(sound == null) {
+			sound = openSound("audio:/" + soundName, SoundFile.Type.OGG);
+			setSound(soundName, sound);
+		}
+
+		play(sound, 1.0f, 0, area, false, new Time());
 	}
 }

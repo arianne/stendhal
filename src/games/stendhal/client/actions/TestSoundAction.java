@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.soundreview.SoundMaster;
+import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.constants.SoundLayer;
 
 
@@ -20,7 +20,7 @@ class TestSoundAction implements SlashAction {
 	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(final String[] params, final String remainder) {
-		SoundMaster.play(SoundLayer.USER_INTERFACE, params[0]);
+		SoundSystemFacade.get().play(params[0], SoundLayer.USER_INTERFACE, 100);
 		return true;
 	}
 

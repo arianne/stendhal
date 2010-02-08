@@ -18,7 +18,7 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
-import games.stendhal.client.soundreview.SoundMaster;
+import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
@@ -441,7 +441,7 @@ public abstract class RPEntity extends ActiveEntity {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.HIT;
 		try {
-			SoundMaster.play(SoundLayer.CREATURE_NOISE, attackSounds[Rand.rand(attackSounds.length)], x, y);
+			SoundSystemFacade.get().play(attackSounds[Rand.rand(attackSounds.length)], x, y, SoundLayer.CREATURE_NOISE, 100);
 		} catch (final NullPointerException e) {
 			// ignore errors
 		}

@@ -1,7 +1,7 @@
 package games.stendhal.client.events;
 
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.soundreview.SoundMaster;
+import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.constants.SoundLayer;
 
 /**
@@ -21,7 +21,7 @@ public class SoundEvent extends Event<Entity> {
 		if (idx < SoundLayer.values().length) {
 			layer = SoundLayer.values()[idx];
 		}
-		SoundMaster.play(layer, event.get("sound") + ".ogg", entity.getX(), entity.getY(), event.getInt("radius"));
+		SoundSystemFacade.get().play(event.get("sound") + ".ogg", entity.getX(), entity.getY(), event.getInt("radius"), layer, 100);
 	}
 
 }

@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.soundreview.SoundMaster;
+import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.SoundLayer;
 
@@ -35,7 +35,7 @@ public class Sheep extends DomesticAnimal {
 			} else {
 				token = soundnames[1][which];
 			}
-			SoundMaster.play(SoundLayer.CREATURE_NOISE, token, x, y); 
+			SoundSystemFacade.get().play(token, x, y, SoundLayer.CREATURE_NOISE, 100); 
 		}
 	}
 }

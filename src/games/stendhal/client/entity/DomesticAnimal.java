@@ -9,7 +9,7 @@ package games.stendhal.client.entity;
 //
 //
 
-import games.stendhal.client.soundreview.SoundMaster;
+import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
@@ -145,7 +145,7 @@ public abstract class DomesticAnimal extends RPEntity {
 			weight = changes.getInt("weight");
 
 			if (weight > oldWeight) {
-				SoundMaster.play(SoundLayer.CREATURE_NOISE, "eat-1.wav", getX(), getY());
+				SoundSystemFacade.get().play("eat-1.wav", getX(), getY(), SoundLayer.CREATURE_NOISE, 100);
 			}
 
 			fireChange(PROP_WEIGHT);

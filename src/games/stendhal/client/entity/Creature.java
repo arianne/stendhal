@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.soundreview.SoundMaster;
+import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.SoundLayer;
 
@@ -218,7 +218,7 @@ public class Creature extends RPEntity {
 
 		if ((soundWait < System.currentTimeMillis()) && (Rand.rand(100) < 5)) {
 			if (moveSounds != null) {
-				SoundMaster.play(SoundLayer.CREATURE_NOISE, moveSounds[Rand.rand(moveSounds.length)], x, y);
+				SoundSystemFacade.get().play(moveSounds[Rand.rand(moveSounds.length)], x, y, SoundLayer.CREATURE_NOISE, 100);
 			}
 
 			soundWait = System.currentTimeMillis() + 1000L;

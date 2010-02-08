@@ -43,7 +43,6 @@ import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
 import games.stendhal.client.sound.SoundSystemFacade;
-import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
@@ -457,7 +456,7 @@ public class j2DClient implements UserInterface {
 		final GameObjects gameObjects = client.getGameObjects();
 		final StaticGameLayers gameLayers = client.getStaticGameLayers();
 
-		SoundMaster.play(SoundLayer.BACKGROUND_MUSIC, "harp-1.wav");
+		SoundSystemFacade.get().play("harp-1.wav", SoundLayer.BACKGROUND_MUSIC, 100);
 
 		// keep looping until the game ends
 		long refreshTime = System.currentTimeMillis();

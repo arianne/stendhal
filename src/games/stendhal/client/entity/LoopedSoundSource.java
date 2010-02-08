@@ -78,7 +78,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	 * plays the sound
 	 */
 	private void play() {
-		SoundSystemFacade.get().playSound(sound, x, y, radius, volume, layer, true);
+		SoundSystemFacade.get().playSound(sound, x, y, radius, layer, volume, true);
 	}
 
 	/**
