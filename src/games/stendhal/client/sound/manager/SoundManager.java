@@ -392,7 +392,7 @@ public class SoundManager
         if(sound != null && sound.isActive())
             sound.channel.get().setAudibleArea(area);
     }
-
+	
     public void close()
     {
         if(isSoundSystemRunnig())
@@ -414,7 +414,10 @@ public class SoundManager
         for(SoundChannel channel: mChannels)
         {
             if(!channel.isActive())
+			{
                 foundChannel = channel;
+				break;
+			}
         }
 
         if(foundChannel == null)
