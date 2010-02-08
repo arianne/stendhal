@@ -131,14 +131,11 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 			sound = openSound("audio:/" + soundName + ".ogg", SoundFile.Type.OGG);
 			setSound(soundName, sound);
 		}
+
 		if (sound != null) {
-			try {
-				sound = (Sound) sound.clone();
-			} catch (CloneNotSupportedException e) {
-				logger.error(e, e);
-				sound = null;
-			}
+			sound = sound.clone();
 		}
+
 		return sound;
 	}
 }
