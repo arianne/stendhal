@@ -41,6 +41,12 @@ class SoundAction implements SlashAction {
 		play = !play;
 		WtWindowManager.getInstance().setProperty("sound.play", Boolean.toString(play));
 		SoundSystemFacade.get().setMute(!play);
+		String qualifier = " ";
+		if (!play) {
+			qualifier=" not ";
+		}
+		j2DClient.get().addEventLine(new StandardEventLine(
+				"Sounds are" +qualifier + "now on."));
 	}
 
 	/**
