@@ -87,7 +87,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
     public int getSampleRate () { return mSampleRate;  }
 
     @Override
-    public SoundFile clone() throws CloneNotSupportedException
+    public SoundFile clone()
     {
         SoundFile file = null;
         

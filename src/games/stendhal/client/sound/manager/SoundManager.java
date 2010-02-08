@@ -50,14 +50,13 @@ public class SoundManager
         final AtomicReference<SoundChannel> channel = new AtomicReference<SoundChannel>(null);
 
 		@Override
-		public Sound clone() throws CloneNotSupportedException
+		public Sound clone()
 		{
 			Sound sound = new Sound();
 			sound.file.set(file.get().clone());
 			
 			return sound;
 		}
-
 
         public boolean isActive() { return channel.get() != null && channel.get().isActive(); }
     }
