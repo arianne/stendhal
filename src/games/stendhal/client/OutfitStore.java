@@ -16,10 +16,14 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Graphics;
 
+import org.apache.log4j.Logger;
+
 /**
  * An outfit store.
  */
 public class OutfitStore {
+	private Logger logger = Logger.getLogger(OutfitStore.class);
+
 	/**
 	 * The singleton.
 	 */
@@ -58,7 +62,6 @@ public class OutfitStore {
 	 * @return A walking state tileset.
 	 */
 	protected Sprite buildOutfit(int code) {
-			
 		int basecode = code % 100;
 		code /= 100;
 		
@@ -71,40 +74,24 @@ public class OutfitStore {
 		int haircode = code % 100;
 
 		
-		/*
-		 * Base (body) layer
-		 */
+		// Base (body) layer
 		Sprite layer = getBaseSprite(basecode);
-
 		if (layer == null) {
-			throw new IllegalArgumentException(
-					"No base image found for outfit: " + code);
+			throw new IllegalArgumentException("No base image found for outfit: " + code);
 		}
-		
+
 		final ImageSprite sprite = new ImageSprite(layer);
 		final Graphics g = sprite.getGraphics();
 
-		/*
-		 * Dress layer
-		 */
-		
-
+		// Dress layer
 		layer = getDressSprite(dresscode);
 		layer.draw(g, 0, 0);
 
-		/*
-		 * Head layer
-		 */
-		
-
+		// Head layer
 		layer = getHeadSprite(headcode);
 		layer.draw(g, 0, 0);
 
-		/*
-		 * Hair layer
-		 */
-		
-
+		// Hair layer
 		layer = getHairSprite(haircode);
 		layer.draw(g, 0, 0);
 
@@ -170,8 +157,12 @@ public class OutfitStore {
 	 * @return The failsafe outfit tileset.
 	 */
 	public Sprite getFailsafeOutfit() {
-		// TODO: Need a failsafe that depends on minimal resources
-		return getOutfit(0);
+		try {
+			return getOutfit(0);
+		} catch (RuntimeException e) {
+			logger.warn("Cannot build failsafe outfit. Trying to use standard failsafe sprite.", e);
+			return store.getFailsafe();
+		}
 	}
 
 	/**
