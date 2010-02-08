@@ -23,7 +23,7 @@ public class ThePiedPiperTest {
 
 
 	// private static String questSlot = "the_pied_piper";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -33,11 +33,11 @@ public class ThePiedPiperTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-	
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 		new MayorNPC().configureZone(zone, null);
 
-				
+
 		final AbstractQuest quest = new ThePiedPiper();
 		quest.addToWorld();
 
@@ -52,16 +52,20 @@ public class ThePiedPiperTest {
 	 */
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Mayor Chalmers");
 		en = npc.getEngine();
 
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("Ados isn't now under rats invasion. You still can get #reward for last time you helped. You can ask #details if you want", getReply(npc));
+		assertEquals("Ados isn't being invaded by rats right now. You can still "+
+							  "get a #reward for the last time you helped. You can ask for #details "+
+							  "if you want.", getReply(npc));
 		en.step(player, "details");
-		assertEquals("You killed no rats during #rats invasion. For get #reward you have to kill at least one rat at that time.", getReply(npc));
+		assertEquals("You killed no rats during the #rats invasion. "+
+				  "To get a #reward you have to kill at least "+
+				  "one rat at that time.", getReply(npc));
 		en.step(player, "reward");
 		assertEquals("You didn't kill any rats which invaded the city, so you don't deserve a reward.", getReply(npc));
 		en.step(player, "bye");
@@ -77,96 +81,110 @@ public class ThePiedPiperTest {
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("There is still about 27 rats alive.", getReply(npc));
+		assertEquals("There are still about 27 rats alive.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 
-	
+
 		// [17:58] Mayor Chalmers shouts: No rats in Ados now, exclude those who always lived in storage and haunted house. Rats hunters are welcome to get their reward.
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("Ados isn't now under rats invasion. You still can get reward for last time you helped. You can ask details if you want", getReply(npc));
+		assertEquals("Ados isn't being invaded by rats right now. You can still "+
+							  "get a #reward for the last time you helped. You can ask for #details "+
+							  "if you want.", getReply(npc));
 		en.step(player, "details");
-		assertEquals("Well, from last reward, you killed 19 rats, 3 caverats, 0 venomrats, 5 razorrats, 0 giantrats,  and 0 archrats, so i have to give you 1050 moneys as reward for that job.", getReply(npc));
+		assertEquals("Well, from the last reward, you killed 19 rats, 3 caverats, 0 venomrats, 5 razorrats, 0 giantrats, and 0 archrats, so I will give you 1050 money as a #reward for that job.", getReply(npc));
 		en.step(player, "reward");
-		assertEquals("Here is your 1050 moneys, thank you very much for your help.", getReply(npc));
+		assertEquals("Here is your 1050 money, thank you very much for your help.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-		
+
 		// [18:09] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
-		
+
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
 		assertEquals("There is still about 30 rats alive.", getReply(npc));
 		en.step(player, "details");
-		assertEquals("You killed no rats during rats invasion. For get reward you have to kill at least one rat at that time.", getReply(npc));
+		assertEquals("You killed no rats during the #rats invasion. "+
+				  "To get a #reward you have to kill at least "+
+				  "one rat at that time.", getReply(npc));
 		en.step(player, "reward");
-		assertEquals("Ados is under rats invasion. I dont want reward you now,  until all rats will die.", getReply(npc));
+		assertEquals("Ados is being invaded by rats! "+
+				  "I dont want to reward you now, "+
+  				  " until all rats are dead.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 		// [18:14] rat has been killed by helga
 		// [18:14] helga earns 5 experience points.
-	    
+
 		// [18:19] Mayor Chalmers shouts: Saddanly, rats captured city, they are living now under all Ados buildings. I am now in need of call Piped Piper, rats exterminator. Thank to all who tryed to clean up Ados,  you are welcome to get your reward.
-		
+
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("I called rats exterminator. You can get reward for your help now, ask about details if you want to know it.", getReply(npc));
+		assertEquals("I called a rats exterminator. "+
+	    		"You can get #reward for your help now, ask about #details "+
+				  "if you want to know more.", getReply(npc));
 		en.step(player, "details");
-		assertEquals("Well, from last reward, you killed a rat, 0 caverats, 0 venomrats, 0 razorrats, 0 giantrats,  and 0 archrats, so i have to give you 10 moneys as reward for that job.", getReply(npc));
+		assertEquals("Well, from the last reward, you killed a rat, 0 caverats, 0 venomrats, 0 razorrats, 0 giantrats, and 0 archrats, so I will give you 10 money as a #reward for that job.", getReply(npc));
 		en.step(player, "reward");
-		assertEquals("Here is your 10 moneys, thank you very much for your help.", getReply(npc));
+		assertEquals("Here is your 10 money, thank you very much for your help.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-		
+
 		// [19:20] Mayor Chalmers shouts: Thanx gods, rats is gone now, Pied Piper hypnotized them and lead away to dungeons. Those of you, who helped to Ados city with rats problem, can get your reward now.
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("Ados isn't now under rats invasion. You still can get reward for last time you helped. You can ask details if you want", getReply(npc));
+		assertEquals("Ados isn't being invaded by rats right now. You can still "+
+				  "get a #reward for the last time you helped. You can ask for #details "+
+				  "if you want.", getReply(npc));
 		en.step(player, "details");
-		assertEquals("You killed no rats during rats invasion. For get reward you have to kill at least one rat at that time.", getReply(npc));
+		assertEquals("You killed no rats during the #rats invasion. "+
+				  "To get a #reward you have to kill at least "+
+				  "one rat at that time.", getReply(npc));
 		en.step(player, "reward");
 		assertEquals("You didn't kill any rats which invaded the city, so you don't deserve a reward.", getReply(npc));
-		en.step(player, "rats");
-		assertEquals("Ados isn't now under rats invasion. You still can get reward for last time you helped. You can ask details if you want", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "reward");
 		assertEquals("You didn't kill any rats which invaded the city, so you don't deserve a reward.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-		
+
 		// [19:31] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "reward");
-		assertEquals("Ados is under rats invasion. I dont want reward you now,  until all rats will die.", getReply(npc));
+		assertEquals("Ados is being invaded by rats! "+
+				  "I dont want to reward you now, "+
+  				  " until all rats are dead.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("There is still about 2 rats alive.", getReply(npc));
+		assertEquals("There are still about 2 rats alive.", getReply(npc));
 		assertEquals("Good day to you.", getReply(npc));
 
 		// [19:42] Mayor Chalmers shouts: No rats in Ados now, exclude those who always lived in storage and haunted house. Rats hunters are welcome to get their reward.
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("Ados isn't now under rats invasion. You still can get reward for last time you helped. You can ask details if you want", getReply(npc));
+		assertEquals("Ados isn't being invaded by rats right now. You can still "+
+				  "get a #reward for the last time you helped. You can ask for #details "+
+				  "if you want.", getReply(npc));
 		en.step(player, "details");
-		assertEquals("Well, from last reward, you killed 23 rats, 3 caverats, 3 venomrats, a razorrat, a giantrat,  and 3 archrats, so i have to give you 3510 moneys as reward for that job.", getReply(npc));
+		assertEquals("Well, from the last reward, you killed 23 rats, 3 caverats, 3 venomrats, a razorrat, a giantrat, and 3 archrats, so I will give you 3510 money as a reward for that job.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-		
+
 		// NOTE: this is testing a different quest
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -179,27 +197,29 @@ public class ThePiedPiperTest {
 		// [19:51] helga earns 1281887 experience points.
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-		
+
 		// [19:52] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
 		// [19:52] caverat has been killed by helga
 		// [19:52] helga earns 10 experience points.
-		
+
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("There is still about 37 rats alive.", getReply(npc));
+		assertEquals("There are still about 37 rats alive.", getReply(npc));
 		en.step(player, "details");
-		assertEquals("Well, from last reward, you killed 23 rats, 4 caverats, 3 venomrats, a razorrat, a giantrat,  and 3 archrats, so i have to give you 3530 moneys as reward for that job.", getReply(npc));
+		assertEquals("Well, from the last reward, you killed 23 rats, 4 caverats, 3 venomrats, a razorrat, a giantrat, and 3 archrats, so I will give you 3530 money as a reward for that job.", getReply(npc));
 		assertEquals("Good day to you.", getReply(npc));
-		
+
 		// [19:52] razorrat has been killed by helga
 		// [19:52] helga earns 80 experience points.
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "details");
-		assertEquals("Well, from last reward, you killed 23 rats, 4 caverats, 3 venomrats, 2 razorrats, a giantrat,  and 3 archrats, so i have to give you 3690 moneys as reward for that job.", getReply(npc));
+		assertEquals("Well, from last reward, you killed 23 rats, 4 caverats, 3 venomrats, 2 razorrats, a giantrat, and 3 archrats, so I will give you 3690 money as a reward for that job.", getReply(npc));
 		en.step(player, "reward");
-		assertEquals("Ados is under rats invasion. I dont want reward you now,  until all rats will die.", getReply(npc));
+		assertEquals("Ados is being invaded by rats! "+
+				  "I dont want to reward you now, "+
+  				  " until all rats are dead.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 
