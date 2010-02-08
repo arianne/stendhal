@@ -21,7 +21,11 @@ public class SoundEvent extends Event<Entity> {
 		if (idx < SoundLayer.values().length) {
 			layer = SoundLayer.values()[idx];
 		}
-		SoundSystemFacade.get().play(event.get("sound") + ".ogg", entity.getX(), entity.getY(), event.getInt("radius"), layer, 100);
+		int volume = 100;
+		if (event.has("volume")) {
+			volume = event.getInt("volume");
+		}
+		SoundSystemFacade.get().play(event.get("sound"), entity.getX(), entity.getY(), event.getInt("radius"), layer, volume);
 	}
 
 }

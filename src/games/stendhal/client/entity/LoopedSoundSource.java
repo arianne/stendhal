@@ -24,6 +24,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.manager.SoundManager.Sound;
 import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
@@ -35,13 +36,13 @@ public class LoopedSoundSource extends InvisibleEntity {
 	private int volume;
 	private SoundLayer layer = SoundLayer.AMBIENT_SOUND;
 
-
+	private Sound soundObject;
 
 	@Override
 	public void onChangedAdded(RPObject object, RPObject changes) {
 		// stop the current sound
 		if (sound != null) {
-			SoundSystemFacade.get().stopSound(sound);
+			SoundSystemFacade.get().stop(soundObject);
 		}
 
 		// udpate
@@ -78,7 +79,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	 * plays the sound
 	 */
 	private void play() {
-		SoundSystemFacade.get().playSound(sound, x, y, radius, layer, volume, true);
+		soundObject = SoundSystemFacade.get().start(sound, x, y, radius, layer, volume, true);
 	}
 
 	/**
@@ -90,6 +91,6 @@ public class LoopedSoundSource extends InvisibleEntity {
 	@Override
 	public void release() {
 		super.release();
-		SoundSystemFacade.get().stopSound(sound);
+		SoundSystemFacade.get().stop(soundObject);
 	}
 }
