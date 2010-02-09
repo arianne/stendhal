@@ -24,7 +24,7 @@ public class BareBonesBrowserLaunch {
 	static final String[] browsers = { "google-chrome", "firefox", "opera",
 			"konqueror", "epiphany", "seamonkey", "galeon", "kazehakase",
 			"mozilla" };
-	static final String errMsg = "Error attempting to launch web browser";
+	static final String errMsg = "Error attempting to launch web browser:\n ";
 
 	/**
 	 * Opens the specified web page in the user's default browser
@@ -67,10 +67,8 @@ public class BareBonesBrowserLaunch {
 						throw new Exception(Arrays.toString(browsers));
 				}
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, errMsg + "\n"
-						+ e.toString());
+				JOptionPane.showMessageDialog(null, errMsg + url);
 			}
 		}
 	}
-
 }

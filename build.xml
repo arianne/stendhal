@@ -408,10 +408,6 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${build_client_data}/data/docu">
-			<fileset dir="${docu}"/>
-		</copy>
-
 		<copy todir="${build_client_data}/data/tileset">
 			<fileset dir="${tiled}/tileset"/>
 		</copy>
