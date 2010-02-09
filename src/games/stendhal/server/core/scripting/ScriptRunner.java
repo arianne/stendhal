@@ -15,6 +15,7 @@ import games.stendhal.server.extension.StendhalServerExtension;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -166,7 +167,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 	 * @param filterTerm filter
 	 * @return true
 	 */
-	private boolean listScripts(final Player player, final List<String> filterTerm) {
+	private boolean listScripts(final Player player, List<String> filterTerm) {
 		// *.groovy scripts is in data/script/
 		final File dirGroovy = new File(scriptDir);
 		// *.class scripts is in data/script/games/stendhal/server/script/
@@ -182,36 +183,51 @@ public class ScriptRunner extends StendhalServerExtension implements
 					return (name.endsWith(".class") && (name.indexOf('$') == -1));
 				}
 			});
-
-		// concatenating String arrays strs1 and strs2 to strs
-		final String[] scripts= new String[scriptsGroovy.length + scriptsJava.length];
-		System.arraycopy(scriptsGroovy, 0, scripts, 0, scriptsGroovy.length);
-		System.arraycopy(scriptsJava, 0, scripts, scriptsGroovy.length, scriptsJava.length);
-
+        		
+		int scriptsGroovyLength = 0;
+		if (scriptsGroovy!=null) {
+			scriptsGroovyLength=scriptsGroovy.length;
+		}
+		int scriptsJavaLength = 0;
+		if (scriptsJava!=null) {
+			scriptsJavaLength=scriptsJava.length;
+		}
+		final int scriptsLength = scriptsGroovyLength + scriptsJavaLength; 
+		// concatenating String arrays scriptsGroovy and scriptsJava to scripts
+		final String[] scripts= new String[scriptsLength];
+		
+		if (scriptsGroovy!=null) {
+		System.arraycopy(scriptsGroovy, 0, scripts, 0, scriptsGroovyLength);
+		}
+		
+		if (scriptsJava!=null) {
+		System.arraycopy(scriptsJava, 0, scripts, scriptsGroovyLength, scriptsJavaLength);
+		}
+		
 		StringBuilder stringBuilder = new StringBuilder();
 
-		if (filterTerm.size()>0) {
-			// FIXME: currently only one argument can be parsed becouse 
-			// mother function (public void onAction()) hides arguments in case 
-			// if several arguments given.
-			stringBuilder.append("results for /script -list " + filterTerm.get(0) + " command:\n");
-		} else {
-			stringBuilder.append("results for /script -list command:\n");
+		if (!filterTerm.isEmpty()) {
+			stringBuilder.append("results for /script ");
+			for (int i=0; i<filterTerm.size(); i++) {
+				stringBuilder.append(" "+ filterTerm.get(i));
+			}
+			stringBuilder.append(":\n");
 		}
 
-		for (int i = 0; i < scripts.length; i++) {
+		for (int i = 0; i < scriptsLength; i++) {
 			// if arguments given, will look for matches.
-			if (filterTerm.size()>0) {
+			if (!filterTerm.isEmpty()) {
 				int j = 0;					
-				//for (j = 0; j < args.size(); j++) {
+				for (j = 0; j < filterTerm.size(); j++) {
 					if (scripts[i].matches(searchTermToRegex(filterTerm.get(j)))) {
 						stringBuilder.append(scripts[i]+"\n");
 					}
-				//}
+				}
 			} else {
 				stringBuilder.append(scripts[i]+"\n");
 			}
 		}	
+		stringBuilder.append("(end of listing).");
 		player.sendPrivateText(stringBuilder.toString());
 		return true;
 	}
@@ -227,11 +243,10 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 	public void onAction(final Player player, final RPAction action) {
 
-		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player,
-				"script", true)) {
+		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
 			return;
 		}
-		String text = "usage: #/script #[-execute|-load>|-unload] #<filename> #[<args>]\n mode is either load (default) or remove";
+		String text = "usage: #/script #[-list|-execute|-load|-unload] #<filename> #[<args>]\n mode is either load (default) or remove";
 		if (action.has("target")) {
 
 			// concat target and args to get the original string back
@@ -239,22 +254,23 @@ public class ScriptRunner extends StendhalServerExtension implements
 			if (action.has("args")) {
 				cmd = cmd + " " + action.get("args");
 			}
-
 			// in the simplest case there is only one argument which is the
-			// scriptname
+			// script name
 			String mode = "execute";
 			String script = cmd;
-
-			// parse args if the is a space
-			int pos = cmd.indexOf(' ');
-			if (pos > -1) {
-				// analyse the first word: mode or filename?
+			
+			/* 
+			 // parse args if there is a space
+			 int pos = cmd.indexOf(' ');
+			 if (pos > -1) {
+				// Analyze the first word: mode or filename?
 				String temp = cmd.substring(0, pos);
 				cmd = cmd.substring(pos + 1);
 				if (temp.startsWith("-")) {
 					// it is "mode"
 					mode = temp.substring(1);
 					pos = cmd.indexOf(' ');
+
 					if (pos > -1) {
 						temp = cmd.substring(0, pos);
 						cmd = cmd.substring(pos + 1);
@@ -263,6 +279,31 @@ public class ScriptRunner extends StendhalServerExtension implements
 					}
 				}
 				script = temp;
+			 }
+			 */
+			
+			// parts of script command. 
+			final List<String> parts = Arrays.asList(cmd.split(" "));
+			cmd = "";
+			int scp = 0;
+			if (!parts.isEmpty()) {
+				if (parts.get(0).startsWith("-")) {
+					// it is "mode"
+					mode = parts.get(0).substring(1);
+					scp = 1;
+				}
+				// determine where is script name
+				if (scp < parts.size()) {
+					script = parts.get(scp);
+				}
+				// concatenating script arguments
+				for (int i = scp+1; i<parts.size(); i++) {
+					 cmd = cmd + " " + parts.get(i);				
+				}
+				// for list mode we dont have script name
+				if ("list".equals(mode)) {
+					 cmd = script + " " + cmd;
+				}
 			}
 
 			// use the same routine as in the client to parse quoted arguments
@@ -276,8 +317,8 @@ public class ScriptRunner extends StendhalServerExtension implements
 			// execute script
 			script = script.trim();
 			if ("list".equals(mode) || script.endsWith(".groovy") || script.endsWith(".class")) {
-				final boolean res = perform(script, mode, player, args);
-
+				boolean res = false;
+				res = perform(script, mode, player, args);
 				if (res) {
 					StringBuilder stringBuilder = new StringBuilder();
 					if (!"list".equals(mode)) {
@@ -286,9 +327,11 @@ public class ScriptRunner extends StendhalServerExtension implements
 					stringBuilder.append("\" was successfully ");
 					stringBuilder.append(mode);
 					} else {
-						stringBuilder.append("script directories was successfully list");
+						// we dont want spam messages.
+						//stringBuilder.append("script directories was successfully list");
+						return;
 					}
-					if (mode == "execute") {
+					if ("execute".equals(mode)) {
 						stringBuilder.append("d");
 					} else {
 						stringBuilder.append("ed");
@@ -304,7 +347,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 						stringBuilder.append("Script \"");
 						stringBuilder.append(script);
 						stringBuilder.append("\" was either not found, or encountered an error during ");
-						if (mode == "execute") {
+						if ("execute".equals(mode)) {
 							stringBuilder.append("execution");
 						} else {
 							stringBuilder.append(mode);
