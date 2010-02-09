@@ -244,6 +244,10 @@ import org.apache.log4j.Logger;
 			}
 		}
 	}
+	
+	protected int getRatsCount() {
+		return(rats.size());
+	}
 
 	/**
 	 *
