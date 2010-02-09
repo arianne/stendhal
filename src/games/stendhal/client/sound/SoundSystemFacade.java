@@ -102,12 +102,12 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 	}
 
 	public void play(final String soundName, final double x, final double y, final SoundLayer soundLayer, int volume) {
-		AudibleArea area = new AudibleCircleArea(new float[] { (float) x, (float) y }, 8, 12);
+		AudibleArea area = new AudibleCircleArea(new float[] { (float) x, (float) y }, 3, 18);
 		playNonLoopedSound(soundName, area, soundLayer.ordinal(), volume);
 	}
 
 	public void play(final String soundName, final double x, final double y, int radius, final SoundLayer soundLayer, int volume) {
-		AudibleArea area = new AudibleCircleArea(new float[] { (float) x, (float) y }, radius / 2, radius);
+		AudibleArea area = new AudibleCircleArea(new float[] { (float) x, (float) y }, radius / 4.0f, radius);
 		playNonLoopedSound(soundName, area, soundLayer.ordinal(), volume);
 	}
 
