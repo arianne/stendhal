@@ -1919,6 +1919,7 @@ My fee:
  </zone>
 
   <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="Level 0/ados/forest_w2.tmx">
+   <configurator class-name="games.stendhal.server.maps.ados.forest.FarmerNPC"/>
    <portal x="21" y="100" ref="farm">
     <destination zone="int_ados_farm_house" ref="in"/>
    </portal>
