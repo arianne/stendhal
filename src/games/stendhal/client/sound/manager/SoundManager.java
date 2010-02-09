@@ -38,6 +38,7 @@ public class SoundManager
     private static SoundManager instance;
 
     private final static int                 OUTPUT_NUM_SAMPLES       = 256;
+	private final static int                 USE_NUM_MIXER_LINES      = 15;
     private final static int                 DIMENSION                = 2;
     private final static float[]             HEARER_LOOKONG_DIRECTION = { 0.0f, 1.0f };
     private final static AudioFormat         AUDIO_FORMAT             = new AudioFormat(44100, 16, 2, true, false);
@@ -172,7 +173,7 @@ public class SoundManager
 
         try
         {
-            mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(70, Time.Unit.MILLI));
+            mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(70, Time.Unit.MILLI), USE_NUM_MIXER_LINES);
             mSoundSystem.setDaemon(true);
             mSoundSystem.start();
         }
@@ -421,7 +422,7 @@ public class SoundManager
         }
 
         if(foundChannel == null)
-        {
+		{
             mChannels.add(new SoundChannel());
             foundChannel = mChannels.getLast();
         }

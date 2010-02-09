@@ -29,9 +29,6 @@ import org.apache.log4j.Logger;
  */
 public class SoundSystem extends Thread
 {
-
-    private static Logger logger = Logger.getLogger(SoundSystem.class);
-
     public final static class Output extends SignalProcessor
     {
         private SourceDataLine mLine            = null; // the line we will write the PCM data to
@@ -125,20 +122,23 @@ public class SoundSystem extends Thread
         }
     }
 
+	private final static Logger     logger                 = Logger.getLogger(SoundSystem.class);
     private final ArrayList<Output> mOutputs               = new ArrayList<Output>();
     private final Output            mMixOutput             = new Output();
     private Mixer                   mMixer                 = null;
     private Time                    mBufferDuration        = null;
     private final AtomicBoolean     mSystemIsRunning       = new AtomicBoolean(false);
     private final AtomicBoolean     mUseDynamicLoadScaling = new AtomicBoolean(false);
+	private final int               mMaxNumLines;
     
-    public SoundSystem(AudioFormat audioFormat, Time bufferDuration) throws SoundSystemException
+    public SoundSystem(AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines) throws SoundSystemException
     {
         assert audioFormat    != null;
         assert bufferDuration != null;
 
         mMixer          = tryToFindMixer(audioFormat);
         mBufferDuration = bufferDuration;
+		mMaxNumLines    = useMaxMixerLines;
 
         if(mMixer == null)
         {
@@ -151,6 +151,7 @@ public class SoundSystem extends Thread
                 if(!AudioSystem.isLineSupported(datalineInfo))
                     throw new SoundSystemException("line is not supported - " + audioFormat.toString());
 
+				mMixOutput.mAudioFormat = audioFormat;
                 mMixOutput.mLine.open();
             }
             catch(LineUnavailableException exception)
@@ -159,15 +160,49 @@ public class SoundSystem extends Thread
                 throw new SoundSystemException("line is unavailable - " + exception.toString());
             }
         }
+		else
+		{
+			DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
+
+			try
+            {
+                mMixOutput.mLine        = (SourceDataLine)mMixer.getLine(info);
+                mMixOutput.mAudioFormat = audioFormat;
+                mMixOutput.mLine.open();
+            }
+            catch(LineUnavailableException e)
+            {
+                mMixOutput.mLine.close();
+                mMixOutput.mLine        = null;
+                mMixOutput.mAudioFormat = null;
+            }
+		}
     }
 
-    public SoundSystem(Mixer mixer, Time bufferDuration)
+    public SoundSystem(Mixer mixer, AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
     {
+		assert audioFormat    != null;
         assert mixer          != null;
         assert bufferDuration != null;
 
         mMixer          = mixer;
         mBufferDuration = bufferDuration;
+		mMaxNumLines    = useMaxMixerLines;
+
+		DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
+
+		try
+		{
+			mMixOutput.mLine        = (SourceDataLine)mMixer.getLine(info);
+			mMixOutput.mAudioFormat = audioFormat;
+			mMixOutput.mLine.open();
+		}
+		catch(LineUnavailableException e)
+		{
+			mMixOutput.mLine.close();
+			mMixOutput.mLine        = null;
+			mMixOutput.mAudioFormat = null;
+		}
     }
 
     public SoundSystem(SourceDataLine outputLine, Time bufferDuration) throws SoundSystemException
@@ -186,7 +221,8 @@ public class SoundSystem extends Thread
                 throw new SoundSystemException(e.toString());
             }
         }
-        
+
+		mMaxNumLines            = 0;
         mMixOutput.mLine        = outputLine;
         mMixOutput.mAudioFormat = outputLine.getFormat();
         mMixOutput.mNumChannels = mMixOutput.mAudioFormat.getChannels();
@@ -195,12 +231,12 @@ public class SoundSystem extends Thread
     }
 
     public Output openOutput(AudioFormat audioFormat)
-    {
+	{
         Output        output          = new Output();
         DataLine.Info info            = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
         boolean       lineUnavailable = false;
         
-        if(mMixer != null && mMixer.isLineSupported(info))
+        if(mMixer != null && mMixer.isLineSupported(info) && mOutputs.size() < mMaxNumLines)
         {
             try
             {
@@ -213,7 +249,7 @@ public class SoundSystem extends Thread
                 output.mLine.close();
                 output.mLine        = null;
                 output.mAudioFormat = null;
-                lineUnavailable = true;
+                lineUnavailable     = true;
             }
         }
         else
@@ -288,9 +324,12 @@ public class SoundSystem extends Thread
         {
             long duration = System.nanoTime();
 
-            try {
+            try
+			{
                 processOutputs();
-            } catch (RuntimeException e) {
+            }
+			catch(RuntimeException e)
+			{
                 logger.warn(e, e);
             }
 
@@ -344,10 +383,9 @@ public class SoundSystem extends Thread
         {
             for(Output output: mOutputs)
             {
-                if (output.mAudioFormat == null) {
-                	// happens for example if the audio device is in use by an other application
-                	continue;
-                }
+				/* happens for example if the audio device is in use by an other applicatin
+                if(output.mAudioFormat == null)
+                	continue; //*/
 
                 int numBytesPerSample = output.mAudioFormat.getSampleSizeInBits() / 8;
                 int numChannels       = output.mAudioFormat.getChannels();
@@ -414,16 +452,13 @@ public class SoundSystem extends Thread
                     int numBytesWritable =
                             min(output.mLine.available(), output.getRemainingBytesToWrite(), output.mRemainingBytesToWritePerCycle);
 
-                    if(numBytesWritable > 0)
-                    {
-                        output.mRemainingBytesToWritePerCycle -= output.writeToLine(numBytesWritable);
+					output.mRemainingBytesToWritePerCycle -= output.writeToLine(numBytesWritable);
 
-                        if(output.wasAllDataWritten())
-                            output.clearData();
+					if(output.wasAllDataWritten())
+						output.clearData();
 
-                        if(output.mRemainingBytesToWritePerCycle <= 0)
-                            iOutput.remove();
-                    }
+					if(output.mRemainingBytesToWritePerCycle <= 0)
+						iOutput.remove();
                 }
                 else
                 {
