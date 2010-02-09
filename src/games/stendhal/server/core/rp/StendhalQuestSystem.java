@@ -9,6 +9,7 @@ import games.stendhal.server.maps.quests.ArmorForDagobert;
 import games.stendhal.server.maps.quests.Balloon;
 import games.stendhal.server.maps.quests.BeerForHayunn;
 import games.stendhal.server.maps.quests.Blackjack;
+import games.stendhal.server.maps.quests.BowsForOuchit;
 import games.stendhal.server.maps.quests.Campfire;
 import games.stendhal.server.maps.quests.CleanStorageSpace;
 import games.stendhal.server.maps.quests.CloakCollector;
@@ -131,6 +132,7 @@ public class StendhalQuestSystem {
 		loadQuest(new Balloon());
 		loadQuest(new BeerForHayunn());
 		loadQuest(new Blackjack());
+		loadQuest(new BowsForOuchit());
 		loadQuest(new Campfire());
 		//loadQuest(new CarmenCataclysm());
 		loadQuest(new CleanStorageSpace());
