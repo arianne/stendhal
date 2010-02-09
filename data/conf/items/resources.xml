@@ -304,6 +304,20 @@
       <slot name="bag"/>
     </equipable>
   </item>
-
+  
+  <item name="horse hair">
+    <type class="resource" subclass="horsehair" tileid="-1"/>
+    <description>You see some horse hairs.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
 
 </items>
