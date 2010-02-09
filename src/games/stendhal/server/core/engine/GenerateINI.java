@@ -21,6 +21,8 @@ public class GenerateINI {
 			new InputStreamReader(System.in));
 	private static String gameName;
 
+	private static String databaseSystem;
+
 	private static String databaseName;
 
 	private static String databaseHost;
@@ -82,8 +84,7 @@ public class GenerateINI {
 	 *            the error message to print when failing
 	 * @return string read from input
 	 */
-	public static String getStringWithoutDefault(final BufferedReader input,
-			final String errorMessage) {
+	public static String getStringWithoutDefault(final BufferedReader input, final String errorMessage) {
 		String ret = "";
 		try {
 			ret = input.readLine();
@@ -109,8 +110,7 @@ public class GenerateINI {
 	 */
 	public static String uppcaseFirstLetter(final String source) {
 		if (source.length() > 0) {
-			return Character.toUpperCase(source.charAt(0))
-					+ source.substring(1);
+			return Character.toUpperCase(source.charAt(0)) + source.substring(1);
 		}
 		return source;
 	}
@@ -121,25 +121,27 @@ public class GenerateINI {
 
 		/** Write configuration for database */
 		databaseImplementation = getDatabaseImplementation();
-		databaseName = getDatabaseName();
-		databaseHost = getDatabaseHost();
-		databaseUsername = getDatabaseUsername();
-		databasePassword = getDatabasePassword();
+		databaseSystem = getDatabaseSystem();
+		if (databaseSystem.equals("mysql")) {
+			databaseName = getDatabaseName();
+			databaseHost = getDatabaseHost();
+			databaseUsername = getDatabaseUsername();
+			databasePassword = getDatabasePassword();
+			System.out.println("Using \"" + databaseName + "\" as database name\n");
+			System.out.println("Using \"" + databaseHost + "\" as database host\n");
+			System.out.println("Using \"" + databaseUsername + "\" as database user\n");
+			System.out.println("Using \"" + databasePassword + "\" as database user password\n");
 
-		System.out.println("Using \"" + databaseName + "\" as database name\n");
-		System.out.println("Using \"" + databaseHost + "\" as database host\n");
-		System.out.println("Using \"" + databaseUsername
-				+ "\" as database user\n");
-		System.out.println("Using \"" + databasePassword
-				+ "\" as database user password\n");
-
-		System.out.println("In order to make these options effective please run:");
-		System.out.println("# mysql");
-		System.out.println("  create database " + databaseName + ";");
-		System.out.println("  grant all on " + databaseName + ".* to "
-				+ databaseUsername + "@localhost identified by '"
-				+ databasePassword + "';");
-		System.out.println("  exit");
+			System.out.println("In order to make these options effective please run:");
+			System.out.println("# mysql");
+			System.out.println("  create database " + databaseName + ";");
+			System.out.println("  grant all on " + databaseName + ".* to "
+					+ databaseUsername + "@localhost identified by '"
+					+ databasePassword + "';");
+			System.out.println("  exit");
+		} else {
+			System.out.println("Using integrated h2 database.");
+		}
 
 		tcpPort = getTCPPort();
 
@@ -160,6 +162,16 @@ public class GenerateINI {
 		out.close();
 
 		System.out.println(FILENAME + " has been generated.");
+	}
+
+	private static String getDatabaseSystem() {
+		String temp = "";
+		do {
+			System.out.println("Which database system do you want to use? \"h2\" is an integrated database that ");
+			System.out.println("works out of the box, \"mysql\" requires a MySQL server. If in doubt, say \"h2\": ");
+			temp = getStringWithDefault(in, "h2").toLowerCase().trim();
+		} while (!temp.equals("h2") && !temp.equals("mysql"));
+		return temp;
 	}
 
 	private static String getRSAKeyBits() {
@@ -199,11 +211,16 @@ public class GenerateINI {
 		out.println("factory_implementation=games.stendhal.server.core.engine.StendhalRPObjectFactory");
 		out.println();
 		out.println("# Database information. Edit to match your configuration.");
-		out.println("jdbc_url=jdbc:mysql://" + databaseHost + "/"
-				+ databaseName);
-		out.println("jdbc_class=com.mysql.jdbc.Driver");
-		out.println("jdbc_user=" + databaseUsername);
-		out.println("jdbc_pwd=" + databasePassword);
+		if (databaseSystem.equals("mysql")) {
+			out.println("jdbc_url=jdbc:mysql://" + databaseHost + "/" + databaseName);
+			out.println("jdbc_class=com.mysql.jdbc.Driver");
+			out.println("jdbc_user=" + databaseUsername);
+			out.println("jdbc_pwd=" + databasePassword);
+		} else {
+			out.println("database_adapter=marauroa.server.db.adapter.H2DatabaseAdapter");
+			out.println("jdbc_url=jdbc:h2:~/stendhal/database/h2db");
+			out.println("jdbc_class=org.h2.Driver");
+		}
 		out.println();
 		out.println("# TCP port stendhald will use. ");
 		out.println("tcp_port=" + tcpPort);
