@@ -132,9 +132,13 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 			setSound(soundName, sound);
 		}
 
+		// TODO: Sound objects need to be cloned here to set individual properties
+		// But as long as that crashes the client because of OutOfMemoryErrors,
+		// we have to live with only one sound source per file doing the right thingy.
+		/*
 		if (sound != null) {
 			sound = sound.clone();
-		}
+		}*/
 
 		return sound;
 	}
