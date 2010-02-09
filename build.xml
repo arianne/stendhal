@@ -523,6 +523,8 @@
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="README.txt"/>
+		<mkdir dir="${buildroot}/stendhal-server-${version}/log" />
+		<touch file="${buildroot}/stendhal-server-${version}/log/empty" />
 		<zip destfile="${buildroot}/stendhal-server-${version}.zip"
 			basedir="${buildroot}/stendhal-server-${version}"/>
 		<delete dir="${buildroot}/stendhal-server-${version}"/>
