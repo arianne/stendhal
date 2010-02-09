@@ -221,7 +221,7 @@ public class Creature extends RPEntity {
 				SoundSystemFacade.get().play(moveSounds[Rand.rand(moveSounds.length)], x, y, SoundLayer.CREATURE_NOISE, 100);
 			}
 
-			soundWait = System.currentTimeMillis() + 1000L;
+			soundWait = System.currentTimeMillis() + 10000L;
 		}
 	}
 
