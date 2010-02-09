@@ -14,11 +14,9 @@ import games.stendhal.client.sound.system.processors.Interruptor;
 import games.stendhal.client.sound.system.processors.SoundLayers;
 import games.stendhal.client.sound.system.processors.VolumeAdjustor;
 import games.stendhal.common.math.Algebra;
-
-import games.stendhal.common.resource.File;
 import games.stendhal.common.resource.Resource;
+
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -33,9 +31,7 @@ import org.apache.log4j.Logger;
  */
 public class SoundManager
 {
-    private static Logger logger = Logger.getLogger(SoundManager.class);
-
-    private static SoundManager instance;
+    private final static Logger logger = Logger.getLogger(SoundManager.class);
 
     private final static int                 OUTPUT_NUM_SAMPLES       = 256;
 	private final static int                 USE_NUM_MIXER_LINES      = 15;
@@ -147,25 +143,10 @@ public class SoundManager
         }
     }
     
-    private final HashMap<String,Sound>    mSounds         = new HashMap<String,Sound>();
     private final LinkedList<SoundChannel> mChannels       = new LinkedList<SoundChannel>();
     private final float[]                  mHearerPosition = new float[DIMENSION];
     private final SoundLayers              mSoundLayers    = new SoundLayers();
     private SoundSystem                    mSoundSystem    = null;
-
-    /**
-     * gets the sound manager
-     *
-     * @return SoundManager
-     */
-	@Deprecated
-    public static SoundManager get()
-    {
-        if (instance == null) {
-           instance = new SoundManager();
-        }
-        return instance;
-    }
 
     protected SoundManager()
     {
@@ -189,35 +170,6 @@ public class SoundManager
         return mSoundSystem != null;
     }
 
-	@Deprecated
-    public void openSoundFile(String filePath, String soundName)
-    {
-        SoundFile.Type fileType = null;
-
-        if(filePath.matches(".*\\.wav"))
-            fileType = SoundFile.Type.WAV;
-        else if(filePath.matches(".*\\.ogg"))
-            fileType = SoundFile.Type.OGG;
-        else
-        {
-            assert false: "could not open audio file - unknown file name extension";
-            return;
-        }
-
-        try
-        {
-            SoundFile file  = new SoundFile(new File(filePath, true), fileType, OUTPUT_NUM_SAMPLES, true);
-            Sound     sound = new Sound();
-            sound.file.set(file);
-
-            mSounds.put(soundName, sound);
-        }
-        catch(IOException exception)
-        {
-            logger.error(exception, exception);
-        }
-    }
-	
 	public Sound openSound(Resource resource, SoundFile.Type fileType)
     {
 		Sound sound = null;
@@ -238,20 +190,6 @@ public class SoundManager
 		return sound;
     }
 
-	@Deprecated
-    public void closeSoundFile(String soundName)
-    {
-        Sound sound = mSounds.get(soundName);
-
-        if(sound != null)
-        {
-            if(sound.channel != null)
-                sound.channel.get().stopPlayback(ZERO_DURATION);
-
-            mSounds.remove(soundName);
-        }
-    }
-
     public void setHearerPosition(float[] position)
     {
         Algebra.mov_Vecf(mHearerPosition, position);
@@ -264,82 +202,6 @@ public class SoundManager
             if(channel.isActive())
                 channel.update();
         }
-    }
-
-	@Deprecated
-    public void play(String soundName, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration)
-    {
-        Sound sound = mSounds.get(soundName);
-        
-        if(sound == null)
-            return;
-
-        if(sound.isActive())
-        {
-            SoundChannel channel = sound.channel.get();
-            channel.setAutoRepeat(autoRepeat);
-            channel.startFading(1.0f, fadeInDuration);
-            channel.setLayer(layerLevel);
-            channel.setAudibleArea(area);
-            channel.resumePlayback();
-            channel.update();
-        }
-        else
-        {
-            SoundChannel channel = findInactiveChannel();
-            channel.setAutoRepeat(autoRepeat);
-            channel.setLayer(layerLevel);
-            channel.setAudibleArea(area);
-            channel.playSound(sound, fadeInDuration);
-            channel.update();
-        }
-    }
-
-	@Deprecated
-    public void stop(String soundName, Time fadeOutDuration)
-    {
-        Sound sound = mSounds.get(soundName);
-
-        if(sound != null && sound.isActive())
-            sound.channel.get().stopPlayback(fadeOutDuration);
-    }
-
-	@Deprecated
-    public void changeVolume(String soundName, float volume)
-    {
-        Sound sound = mSounds.get(soundName);
-
-        if(sound != null && sound.isActive())
-            sound.channel.get().setVolume(volume);
-    }
-
-	@Deprecated
-    public void changeLayer(String soundName, int layerLevel)
-    {
-        Sound sound = mSounds.get(soundName);
-
-        if(sound != null && sound.isActive())
-            sound.channel.get().setLayer(layerLevel);
-    }
-
-	@Deprecated
-    public void changeAudibleArea(String soundName, AudibleArea area)
-    {
-        Sound sound = mSounds.get(soundName);
-
-        if(sound != null && sound.isActive())
-            sound.channel.get().setAudibleArea(area);
-    }
-
-    /**
-     * checks whether the specified sound name is defined
-     *
-     * @param soundName name of sound
-     * @return true, if it is defined; false otherwise
-     */
-	@Deprecated
-    public boolean hasSoundName(String soundName) {
-        return mSounds.get(soundName) != null;
     }
 
 	public void play(Sound sound, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration)
