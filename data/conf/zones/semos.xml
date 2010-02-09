@@ -848,6 +848,13 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 			<destination zone="int_semos_tavern_0" ref="upstairs" />
 		</portal>
 
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_old_tavern</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
+
 		<entity x="11" y="4">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
 				<parameter name="shop">buyrare</parameter>
