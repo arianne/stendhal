@@ -18,119 +18,6 @@ package games.stendhal.client.sound.system;
  */
 public abstract class SignalProcessor
 {
-/*    private static class ChainIterator implements ListIterator<SignalProcessor>
-    {
-        SignalProcessor mCurrent;
-        SignalProcessor mLastReturned;
-        int             mIndex;
-
-        private ChainIterator(SignalProcessor begin, int index)
-        {
-            mLastReturned = null;
-            mCurrent      = begin;
-            mIndex        = index;
-        }
-
-        public boolean hasNext      () { return mCurrent != null; }
-        public boolean hasPrevious  () { return mCurrent != null; }
-        public int     nextIndex    () { return mIndex;           }
-        public int     previousIndex() { return mIndex - 1;       }
-
-        public SignalProcessor next()
-        {
-            assert mCurrent != null;
-            
-            mLastReturned = mCurrent;
-            mCurrent      = mCurrent.mNext;
-            ++mIndex;
-
-            return mLastReturned;
-        }
-
-        public SignalProcessor previous()
-        {
-            assert mCurrent != null;
-
-            mLastReturned = mCurrent;
-            mCurrent      = mCurrent.mPrev;
-            --mIndex;
-            
-            return mLastReturned;
-        }
-
-        public void remove()
-        {
-            assert mLastReturned != null;
-            mLastReturned.disconnect();
-        }
-
-        public void set(SignalProcessor processor)
-        {
-            assert mLastReturned != null;
-            mLastReturned.replace(processor);
-        }
-
-        public void add(SignalProcessor processor)
-        {
-            assert mLastReturned != null;
-            mLastReturned.insert(processor, true);
-        }
-    }
-
-    public static class Chain extends AbstractSequentialList<SignalProcessor>
-    {
-        private SignalProcessor mFirst = null;
-
-        public Chain(SignalProcessor first) { mFirst = first; }
-
-        public Chain(SignalProcessor ...processors)
-        {
-            int l = processors.length;
-
-            if(l >= 1)
-                mFirst = processors[0];
-
-            if(l >= 2)
-            {
-                for(int i=1; i<(l - 1); ++i)
-                    processors[i].insert(processors[i-1], false);
-
-                processors[0  ].connectTo(processors[1  ], true);
-                processors[l-1].connectTo(processors[l-2], false);
-            }
-        }
-
-        @Override
-        public ListIterator<SignalProcessor> listIterator(int startIndex)
-        {
-            int             index = 0;
-            SignalProcessor begin = mFirst;
-
-            for(int i=0; i<startIndex && (begin != null); ++i)
-            {
-                begin = begin.mNext;
-                ++index;
-            }
-            
-            return new ChainIterator(begin, index);
-        }
-
-        @Override
-        public int size()
-        {
-            int             size  = 0;
-            SignalProcessor begin = mFirst;
-
-            while(begin != null)
-            {
-                begin = begin.mNext;
-                ++size;
-            }
-            
-            return size;
-        }
-    }//*/
-
     private SignalProcessor mNext = null;
     private SignalProcessor mPrev = null;
 
@@ -249,7 +136,8 @@ public abstract class SignalProcessor
      */
     public final void disconnect()
     {
-        insert(null, true);
+        mNext = null;
+        mPrev = null;
     }
     
     /**
@@ -320,7 +208,7 @@ public abstract class SignalProcessor
      * 
      * @param processors any number of SignalProcessors to insert together
      */
-    public static void/*Chain*/ createChain(SignalProcessor ...processors)
+    public static void createChain(SignalProcessor ...processors)
     {
         int l = processors.length;
 
@@ -332,10 +220,5 @@ public abstract class SignalProcessor
             processors[0  ].connectTo(processors[1  ], true);
             processors[l-1].connectTo(processors[l-2], false);
         }
-
-        //if(l >= 1)
-        //    return new Chain(processors[0]);
-
-        //return null;
     }
 }
