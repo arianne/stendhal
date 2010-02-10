@@ -4,13 +4,31 @@ Changelog
 *features*
 - player stats moved from the character window to the side panel
 - a dragbar for making the game screen smaller (handy for netbooks)
+- new quest from Ouchit with new NPC in ados forest
+- having multiple correct answers for a riddle now possible
+- athor labyrinth redrawn 
+- h2 database support
 
 *bug fixes*
 - numerous small map fixes
+- poorly organised tilesets reorganised
+- list quests output fixed
+- split grain field
+- show a long dash rather than a negative number for required xp for max level players
+- feedback on using portals and chests from too far away
+- fixed "Drag and drop sometimes misses slots and hits ground instead" (was for drag and drop onto same slot)
+- better reject message for inactive accounts
+
+*code*
+- sound system rewritten and using oggs 
+- more client refactoring
 
 *website*
 - fixed a directory traversing vulnerability on http://arianne.sf.net
   (special thanks to Ed Milner for discovering and reporting it)
+- account history
+- adminlevel shown
+
 
 
 
