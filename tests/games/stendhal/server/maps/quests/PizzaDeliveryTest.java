@@ -414,7 +414,7 @@ public class PizzaDeliveryTest {
 		en.step(player, "pizza");
 		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", getReply(npc1));
 		en.step(player, "task");
-		assertEquals("You still have to deliver a pizza Cyk, and hurry!", getReply(npc1));
+		assertEquals("You still have to deliver a pizza to Cyk, and hurry!", getReply(npc1));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc1));
 		

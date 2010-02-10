@@ -465,16 +465,20 @@ public class PizzaDelivery extends AbstractQuest {
 								.split(";");
 						final String customerName = questData[0];
 						if (isDeliveryTooLate(player)) {
-							// If the player still carries the pizza,
+							// If the player still carries any pizza due for an NPC,
 							// take it away because the baker is angry,
 							// and because the player probably won't
 							// deliver it anymore anyway.
-							player.dropAll("pizza");
+							for (final Item pizza : player.getAllEquipped("pizza")) {
+								if (pizza.getInfoString()!=null) {
+									player.drop(pizza);
+								}
+							}
 							npc.say("I see you failed to deliver the pizza to "
 								+ customerName
 								+ " in time. Are you sure you will be more reliable this time?");
 						} else {
-							npc.say("You still have to deliver a pizza "
+							npc.say("You still have to deliver a pizza to "
 									+ customerName + ", and hurry!");
 							npc.setCurrentState(ConversationStates.ATTENDING);
 						}
