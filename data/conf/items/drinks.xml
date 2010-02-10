@@ -363,4 +363,20 @@
     </equipable>
   </item>
 
+	<item name="flask with blood">
+		<type class="drink" subclass="blood_flask" tileid="-1" />
+		<description>You see a flask with Boris' brother's blood.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item" />
+		<attributes>
+			<quantity value="1" />
+		</attributes>
+		<weight value="1.0" />
+		<value value="1" />
+		<equipable>
+			<slot name="bag" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+		</equipable>
+	</item>
+
 </items>

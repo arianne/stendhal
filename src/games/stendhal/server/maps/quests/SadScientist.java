@@ -8,10 +8,12 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.KilledCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -56,6 +58,7 @@ import java.util.Arrays;
  */
 public class SadScientist extends AbstractQuest {
 	
+	private static final String LETTER_DESCRIPTION = "You see a letter for Boris Karlova.";
 	public static final String QUEST_SLOT = "sad_scientist";
 	private static final int REQUIRED_MINUTES = 20;
 
@@ -85,26 +88,75 @@ public class SadScientist extends AbstractQuest {
 	}
 
 	private void prepareScientist() {
-		SpeakerNPC scientistNpc = npcs.get("Boris Karlova");
-		SpeakerNPC mayorNpc = npcs.get("Mayor Sakhs");
+		final SpeakerNPC scientistNpc = npcs.get("Boris Karlova");
+		final SpeakerNPC mayorNpc = npcs.get("Mayor Sakhs");
 		startOfQuest(scientistNpc);
 		playerReturnsAfterStartWithItems(scientistNpc);
 		playerReturnsAfterStartWithoutItems(scientistNpc);
 		playerReturnsAfterGivingTooEarly(scientistNpc);
 		playerReturnsAfterGivingWhenFinished(scientistNpc);
 		playerVisitsMayorSakhs(mayorNpc);
+		playerReturnsWithLetter(scientistNpc);
+		playerReturnsAfterKillingTheImperialScientist(scientistNpc);
 	}
 
-	private void playerVisitsMayorSakhs(SpeakerNPC npc) {
-		ChatCondition condition = new AndCondition(
-				new QuestStateStartsWithCondition(QUEST_SLOT, "mary"),
+	private void playerReturnsAfterKillingTheImperialScientist(
+			SpeakerNPC npc) {
+		final ChatCondition condition = new AndCondition(
+				new QuestStateStartsWithCondition(QUEST_SLOT, "kill_scientist"),
+				new KilledCondition("imperial scientist"),
+				new PlayerHasItemWithHimCondition("flask with blood"),
 				new QuestNotActiveCondition("mithril_cloak")
 			);
-		ChatAction action = new ChatAction() {
-			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-				Item item = SingletonRepository.getEntityManager().getItem("note");
+		ChatAction action = new MultipleActions(
+										new SetQuestAction(QUEST_SLOT, "decorating;"+System.currentTimeMillis())
+										);
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				condition, ConversationStates.ATTENDING, 
+				"Ha, ha, ha! I will cover legs with this blood and they will transform in my #symbol.", 
+				null);
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("symbol", "Symbol"),
+				condition, ConversationStates.IDLE, 
+				"I am going to create a pair of black legs. Come back in 5 minutes.", 
+				action);
+	}
+
+	private void playerReturnsWithLetter(final SpeakerNPC npc) {
+		final ChatCondition condition = new AndCondition(
+				new QuestStateStartsWithCondition(QUEST_SLOT, "find_mary"),
+				new PlayerHasItemWithHimCondition("note"),
+				new QuestNotActiveCondition("mithril_cloak")
+			);
+		final ChatAction action = new MultipleActions(
+					new SetQuestAction(QUEST_SLOT, "kill_scientist")
+				);
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				condition,
+				ConversationStates.INFORMATION_2,
+				"Hello! Do you have anything for me?",
+				null);
+		npc.add(ConversationStates.INFORMATION_2, Arrays.asList("Letter","letter"),
+				condition,
+				ConversationStates.ATTENDING,
+				"Oh no! I feel the pain. I do not need this item anymore. I want to transform it. I want to make it a symbol of pain. You! Go kill my brother, the Imperial Scientist. Give me his blood in this bottle.",
+				action);
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.GOODBYE_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, "kill_scientist"),
+				ConversationStates.INFORMATION_2,
+				"Do it!",
+				null);
+	}
+
+	private void playerVisitsMayorSakhs(final SpeakerNPC npc) {
+		final ChatCondition condition = new AndCondition(
+				new QuestStateStartsWithCondition(QUEST_SLOT, "find_mary"),
+				new QuestNotActiveCondition("mithril_cloak")
+			);
+		final ChatAction action = new ChatAction() {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				final Item item = SingletonRepository.getEntityManager().getItem("note");
 				item.setInfoString(player.getName());
-				item.setDescription("You see a letter for Boris Karlova.");
+				item.setDescription(LETTER_DESCRIPTION);
 				item.setBoundTo(player.getName());
 				player.equipOrPutOnGround(item);
 			}
@@ -121,13 +173,13 @@ public class SadScientist extends AbstractQuest {
 				action);
 	}
 
-	private void playerReturnsAfterGivingWhenFinished(SpeakerNPC npc) {
-		ChatCondition condition = new AndCondition(
+	private void playerReturnsAfterGivingWhenFinished(final SpeakerNPC npc) {
+		final ChatCondition condition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT, "making;"),
 				new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1),
 				new QuestNotActiveCondition("mithril_cloak")
 			);
-		ChatAction action = new SetQuestAction(QUEST_SLOT,"mary");
+		final ChatAction action = new SetQuestAction(QUEST_SLOT,"mary");
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				condition,
 				ConversationStates.INFORMATION_1, 
@@ -147,8 +199,8 @@ public class SadScientist extends AbstractQuest {
 				action);
 	}
 
-	private void playerReturnsAfterGivingTooEarly(SpeakerNPC npc) {
-		ChatCondition condition = new AndCondition(
+	private void playerReturnsAfterGivingTooEarly(final SpeakerNPC npc) {
+		final ChatCondition condition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT, "making;"),
 				new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)),
 				new QuestNotActiveCondition("mithril_cloak")
@@ -160,8 +212,8 @@ public class SadScientist extends AbstractQuest {
 				new StateTimeRemainingAction(QUEST_SLOT, "Do you think I can work that fast? Go away. Come back in", REQUIRED_MINUTES, 1));
 	}
 
-	private void playerReturnsAfterStartWithoutItems(SpeakerNPC npc) {
-		ChatCondition condition = new AndCondition(
+	private void playerReturnsAfterStartWithoutItems(final SpeakerNPC npc) {
+		final ChatCondition condition = new AndCondition(
 										new QuestInStateCondition(QUEST_SLOT, "start"),
 										new NotCondition( new PlayerHasItemWithHimCondition("emerald")), 
 										new NotCondition( new PlayerHasItemWithHimCondition("obsidian")),
@@ -179,9 +231,9 @@ public class SadScientist extends AbstractQuest {
 				null);
 	}
 
-	private void playerReturnsAfterStartWithItems(SpeakerNPC npc) {
+	private void playerReturnsAfterStartWithItems(final SpeakerNPC npc) {
 		//player returns after start
-		AndCondition condition = new AndCondition(
+		final AndCondition condition = new AndCondition(
 									new QuestInStateCondition(QUEST_SLOT, "start"),
 									new PlayerHasItemWithHimCondition("emerald"), 
 									new PlayerHasItemWithHimCondition("obsidian"),
@@ -197,7 +249,7 @@ public class SadScientist extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				"Hello. Did you bring what I need?",
 				null);
-		ChatAction action = new MultipleActions(
+		final ChatAction action = new MultipleActions(
 									new SetQuestAction(QUEST_SLOT,"making;"+System.currentTimeMillis()),
 									new DropItemAction("emerald"),
 									new DropItemAction("obsidian"),
@@ -218,7 +270,7 @@ public class SadScientist extends AbstractQuest {
 				null);
 	}
 
-	private void startOfQuest(SpeakerNPC npc) {
+	private void startOfQuest(final SpeakerNPC npc) {
 		//offer the quest
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 

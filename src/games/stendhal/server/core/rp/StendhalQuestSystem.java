@@ -67,6 +67,7 @@ import games.stendhal.server.maps.quests.QuestInfo;
 import games.stendhal.server.maps.quests.RainbowBeans;
 import games.stendhal.server.maps.quests.ReverseArrow;
 import games.stendhal.server.maps.quests.RingMaker;
+import games.stendhal.server.maps.quests.SadScientist;
 import games.stendhal.server.maps.quests.SemosMineTownRevivalWeeks;
 import games.stendhal.server.maps.quests.SevenCherubs;
 import games.stendhal.server.maps.quests.Snowballs;
@@ -193,6 +194,7 @@ public class StendhalQuestSystem {
 		loadQuest(new RainbowBeans());
 		loadQuest(new ReverseArrow());
 		loadQuest(new RingMaker());
+		loadQuest(new SadScientist());
 		// loadQuet(new SatoCataclysm());
 		if (System.getProperty("stendhal.minetown") != null) {
 			loadQuest(new SemosMineTownRevivalWeeks());
