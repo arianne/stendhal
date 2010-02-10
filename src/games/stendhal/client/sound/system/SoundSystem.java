@@ -40,25 +40,26 @@ public class SoundSystem extends Thread
         private int            mNumChannels     = 0;
         private int            mNumSamples      = 0;
         private int            mSampleRate      = 0;
+		private boolean        mPCMWasConverted = false;
 
         private int mRemainingBytesToWritePerCycle = 0;
 
         private int     getRemainingBytesToWrite() { return mPCM.length - mNumBytesWritten;  }
         private int     getRemainingSamplesToMix() { return mNumSamples - mNumSamplesMixed;  }
         private boolean receivedData            () { return mUniformPCM != null;             }
-        private boolean wasPCMConverted         () { return mPCM        != null;             }
+        private boolean wasPCMConverted         () { return mPCMWasConverted;                }
         private boolean isLineUsable            () { return mLine       != null;             }
         private boolean wasAllDataWritten       () { return mNumBytesWritten >= mPCM.length; }
         private boolean whereAllSamplesMixed    () { return mNumSamplesMixed >= mNumSamples; }
 
         private int writeToLine(int numBytes)
         {
-            assert mAudioFormat.getChannels()        == mNumChannels;
-            assert (int)mAudioFormat.getSampleRate() == mSampleRate;
+			assert mAudioFormat.getChannels()        == mNumChannels;
+			assert (int)mAudioFormat.getSampleRate() == mSampleRate;
 
-             int written = mLine.write(mPCM, mNumBytesWritten, numBytes);
-             mNumBytesWritten += written;
-             return written;
+			int written = mLine.write(mPCM, mNumBytesWritten, numBytes);
+			mNumBytesWritten += written;
+			return written;
         }
 
         private int mixToOutput(Output output, int offsetInSamples, int numSamplesToMix)
@@ -76,7 +77,8 @@ public class SoundSystem extends Thread
             assert (mAudioFormat.getSampleSizeInBits() % 8) == 0;
 
             int numBytesPerSample = mAudioFormat.getSampleSizeInBits() / 8;
-            mPCM = SoundSystem.convertUniformPCM(mUniformPCM, mNumSamples * mNumChannels, numBytesPerSample);
+            mPCM             = SoundSystem.convertUniformPCM(mPCM, mUniformPCM, mNumSamples * mNumChannels, numBytesPerSample);
+			mPCMWasConverted = true;
         }
 
         private void clearData()
@@ -84,7 +86,7 @@ public class SoundSystem extends Thread
             mNumBytesWritten = 0;
             mNumSamplesMixed = 0;
             mUniformPCM      = null;
-            mPCM             = null;
+			mPCMWasConverted = false;
         }
 
         @Override
@@ -562,10 +564,12 @@ public class SoundSystem extends Thread
         return mixers[0];
     }
 
-    private static byte[] convertUniformPCM(float[] uniformSamples, int numUniformSamples, int numBytesPerSample)
+    private static byte[] convertUniformPCM(byte[] pcmBuffer, float[] uniformSamples, int numUniformSamples, int numBytesPerSample)
     {
-        int    numBitsPerSample = numBytesPerSample * 8;
-        byte[] pcmData          = new byte[numBytesPerSample * numUniformSamples];
+        int numBitsPerSample = numBytesPerSample * 8;
+
+		if(pcmBuffer == null || pcmBuffer.length < (numBytesPerSample * numUniformSamples))
+			pcmBuffer = new byte[numBytesPerSample * numUniformSamples];
 
         long maxValue = (long)((Math.pow(2, numBitsPerSample) - 1.0) / 2.0);
 
@@ -578,10 +582,10 @@ public class SoundSystem extends Thread
             value = (value < -maxValue) ? (-maxValue) : (value);
 
             for(int n=0; n<numBytesPerSample; ++n)
-                pcmData[index + n] = (byte)(value >>> (n*8));
+                pcmBuffer[index + n] = (byte)(value >>> (n*8));
         }
 
-        return pcmData;
+        return pcmBuffer;
     }
 
     private static void mixUniformPCM(float[] result, int rBegin, float[] data, int dBegin, int numSamples)

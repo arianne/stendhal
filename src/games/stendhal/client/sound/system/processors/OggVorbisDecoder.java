@@ -23,7 +23,8 @@ public class OggVorbisDecoder extends SignalProcessor
     private Comment     mVorbisComment  = null;
     private Info        mVorbisInfo     = null;
 
-    private InputStream mIStream         = null;
+	private float[][][] mUniformPCMData  = null;
+	int[]               mPCMIndex        = null;
     private float[]     mOutputBuffer    = null;
     private byte[]      mInputBuffer     = null;
     private int         mInputBufferSize = 0;
@@ -31,6 +32,7 @@ public class OggVorbisDecoder extends SignalProcessor
     private boolean     mEndOfStream     = true;
 	private boolean     mLastPageWasRead = false;
     private boolean     mDecoderIsOpened = false;
+	private InputStream mIStream         = null;
     
     protected void init(InputStream stream, int inputBufferSize, int outputNumSamplesPerChannel) throws IOException
     {
@@ -53,8 +55,11 @@ public class OggVorbisDecoder extends SignalProcessor
         if(!readHeader())
             throw new IOException("could not read ogg headers");
 
-        // IMPORTANT: read the header first before setting up the output buffer
-        mOutputBuffer    = new float[outputNumSamplesPerChannel * getNumChannels()];
+        // IMPORTANT: read the header first before setting up the buffers
+		//            or else getNumChannels() will not return the right number
+		mUniformPCMData  = new float[1][][];
+		mPCMIndex        = new int[getNumChannels()];
+		mOutputBuffer    = new float[outputNumSamplesPerChannel * getNumChannels()];
         mDecoderIsOpened = true;
     }
 
@@ -167,14 +172,11 @@ public class OggVorbisDecoder extends SignalProcessor
 		if(reachedEndOfStream()) // no more pcm data to read
 			return 0;
 
-        int         outputBufferSize           = mOutputBuffer.length;
-        int         outputNumSamplesPerChannel = outputBufferSize / mVorbisInfo.channels;
-        float[][][] uniformPCMData             = new float[1][][];
-        int[]       PCMIndex                   = new int[mVorbisInfo.channels];
-
-        int receivedNumSamples       = 0;
-        int numSamplesReadPerChannel = 0;
-        int sampleIdx                = 0;
+        int outputBufferSize           = mOutputBuffer.length;
+        int outputNumSamplesPerChannel = outputBufferSize / mVorbisInfo.channels;
+        int receivedNumSamples         = 0;
+        int numSamplesReadPerChannel   = 0;
+        int sampleIdx                  = 0;
 
         while(numSamplesReadPerChannel < outputNumSamplesPerChannel)
         {
@@ -184,7 +186,7 @@ public class OggVorbisDecoder extends SignalProcessor
                 mVorbisDspState.synthesis_read(receivedNumSamples); // tell dsp-state that we read all samples
 
                 // receive the next chunk of uniform pcm data
-                receivedNumSamples = mVorbisDspState.synthesis_pcmout(uniformPCMData, PCMIndex);
+                receivedNumSamples = mVorbisDspState.synthesis_pcmout(mUniformPCMData, mPCMIndex);
                 sampleIdx          = 0; // reset sample index
 
                 // if there are no more samples in the packet, we read in a new packet from the stream
@@ -210,7 +212,7 @@ public class OggVorbisDecoder extends SignalProcessor
 
                 for(int c=0; c<mVorbisInfo.channels; ++c)
                 {
-                    float outputValue = uniformPCMData[0][c][PCMIndex[c] + sampleIdx];                    
+                    float outputValue = mUniformPCMData[0][c][mPCMIndex[c] + sampleIdx];
                     mOutputBuffer[outputIndex + c] = outputValue;
                 }
 
