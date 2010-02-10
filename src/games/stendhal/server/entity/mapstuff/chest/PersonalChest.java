@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.PersonalChestSlot;
 
 import java.lang.reflect.Constructor;
@@ -210,7 +211,10 @@ public class PersonalChest extends Chest {
 			notifyWorldAboutChanges();
 			return true;
 		}
-
+		if (user instanceof Player) {
+			final Player player = (Player) user;
+			player.sendPrivateText("You cannot reach the chest from there.");
+		}
 		return false;
 	}
 

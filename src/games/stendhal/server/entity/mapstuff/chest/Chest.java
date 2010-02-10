@@ -17,6 +17,7 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.ChestSlot;
 
 import java.util.Iterator;
@@ -168,7 +169,10 @@ public class Chest extends Entity implements UseListener {
 			notifyWorldAboutChanges();
 			return true;
 		}
-
+		if (user instanceof Player) {
+			final Player player = (Player) user;
+			player.sendPrivateText("You cannot reach the chest from there.");
+		}
 		return false;
 	}
 
