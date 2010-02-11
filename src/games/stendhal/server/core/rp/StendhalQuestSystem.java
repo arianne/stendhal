@@ -67,7 +67,6 @@ import games.stendhal.server.maps.quests.QuestInfo;
 import games.stendhal.server.maps.quests.RainbowBeans;
 import games.stendhal.server.maps.quests.ReverseArrow;
 import games.stendhal.server.maps.quests.RingMaker;
-import games.stendhal.server.maps.quests.SadScientist;
 import games.stendhal.server.maps.quests.SemosMineTownRevivalWeeks;
 import games.stendhal.server.maps.quests.SevenCherubs;
 import games.stendhal.server.maps.quests.Snowballs;
