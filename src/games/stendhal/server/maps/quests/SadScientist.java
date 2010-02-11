@@ -105,11 +105,12 @@ public class SadScientist extends AbstractQuest {
 		final ChatCondition condition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT, "kill_scientist"),
 				new KilledCondition("imperial scientist"),
-				new PlayerHasItemWithHimCondition("flask with blood"),
+				new PlayerHasItemWithHimCondition("goblet"),
 				new QuestNotActiveCondition("mithril_cloak")
 			);
 		ChatAction action = new MultipleActions(
-										new SetQuestAction(QUEST_SLOT, "decorating;"+System.currentTimeMillis())
+										new SetQuestAction(QUEST_SLOT, "decorating;"+System.currentTimeMillis()),
+										new DropItemAction("goblet",1)
 										);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				condition, ConversationStates.ATTENDING, 
@@ -213,17 +214,18 @@ public class SadScientist extends AbstractQuest {
 	}
 
 	private void playerReturnsAfterStartWithoutItems(final SpeakerNPC npc) {
-		final ChatCondition condition = new AndCondition(
-										new QuestInStateCondition(QUEST_SLOT, "start"),
-										new NotCondition( new PlayerHasItemWithHimCondition("emerald")), 
-										new NotCondition( new PlayerHasItemWithHimCondition("obsidian")),
-										new NotCondition( new PlayerHasItemWithHimCondition("sapphire")),
-										new NotCondition( new PlayerHasItemWithHimCondition("carbuncle",2)),
-										new NotCondition( new PlayerHasItemWithHimCondition("gold bar",20)),
-										new NotCondition( new PlayerHasItemWithHimCondition("mithril bar")),
-										new NotCondition( new PlayerHasItemWithHimCondition("shadow legs")),
-										new QuestNotActiveCondition("mithril_cloak")
-									);
+		final ChatCondition condition = new NotCondition(
+												new AndCondition(
+													new QuestInStateCondition(QUEST_SLOT, "start"),
+													new PlayerHasItemWithHimCondition("emerald"), 
+													new PlayerHasItemWithHimCondition("obsidian"),
+													new PlayerHasItemWithHimCondition("sapphire"),
+													new PlayerHasItemWithHimCondition("carbuncle",2),
+													new PlayerHasItemWithHimCondition("gold bar",20),
+													new PlayerHasItemWithHimCondition("mithril bar"),
+													new PlayerHasItemWithHimCondition("shadow legs"),
+													new QuestNotActiveCondition("mithril_cloak")
+												));
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				condition,
 				ConversationStates.IDLE, 
