@@ -194,7 +194,7 @@ public class StendhalQuestSystem {
 		loadQuest(new RainbowBeans());
 		loadQuest(new ReverseArrow());
 		loadQuest(new RingMaker());
-		loadQuest(new SadScientist());
+		//loadQuest(new SadScientist());
 		// loadQuet(new SatoCataclysm());
 		if (System.getProperty("stendhal.minetown") != null) {
 			loadQuest(new SemosMineTownRevivalWeeks());
