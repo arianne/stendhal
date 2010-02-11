@@ -18,7 +18,12 @@ class QuitAction implements SlashAction {
 	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(final String[] params, final String remainder) {
-		j2DClient.get().requestQuit();
+		j2DClient client = j2DClient.get();
+		if (client != null) {
+			client.requestQuit();
+		} else {
+			System.exit(0);
+		}
 
 		return true;
 	}
