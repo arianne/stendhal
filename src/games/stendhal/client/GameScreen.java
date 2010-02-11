@@ -494,6 +494,14 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			canvas.createBufferStrategy(2);
 			buffer = canvas.getBufferStrategy();
 			g2d = buffer.getDrawGraphics(); 
+		} else if (buffer.contentsLost() || buffer.contentsRestored()) {
+			/*
+			 * On some systems (windows) the draw buffer can get lost in
+			 * certain conditions. Recreate it if that has happened.
+			 */
+			final Graphics old = g2d;
+			g2d = buffer.getDrawGraphics();
+			old.dispose();
 		}
 		
 		return g2d;
