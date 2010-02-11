@@ -1,5 +1,10 @@
 package games.stendhal.client.actions;
 
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.gui.chatlog.StandardEventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sound.SoundSystemFacade;
+
 
 /**
  * Set sound characteristics.
@@ -17,7 +22,15 @@ class MuteAction implements SlashAction {
 	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(final String[] params, final String remainder) {
-		new SoundAction().toggleMute();
+		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
+		play = !play;
+		WtWindowManager.getInstance().setProperty("sound.play", Boolean.toString(play));
+		SoundSystemFacade.get().setMute(!play);
+		if (play) {
+			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Sounds are now on."));
+		} else {
+			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Sounds are now off. (You may need to change the zone to stop the background music)."));
+		}
 		return true;
 	}
 

@@ -1,9 +1,9 @@
 package games.stendhal.client.actions;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.MathHelper;
 
 /**
@@ -25,7 +25,7 @@ class SoundAction implements SlashAction {
 		final String command = params[0];
 
 		if (command.equals("mute")) {
-			toggleMute();
+			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Please use /mute."));
 		} else if (command.equals("volume")) {
 			volume(params);
 		}
@@ -33,21 +33,6 @@ class SoundAction implements SlashAction {
 		return true;
 	}
 
-	/**
-	 * toggles the mute state of sounds.
-	 */
-	void toggleMute() {
-		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
-		play = !play;
-		WtWindowManager.getInstance().setProperty("sound.play", Boolean.toString(play));
-		SoundSystemFacade.get().setMute(!play);
-		String qualifier = " ";
-		if (!play) {
-			qualifier=" not ";
-		}
-		j2DClient.get().addEventLine(new StandardEventLine(
-				"Sounds are" +qualifier + "now on."));
-	}
 
 	/**
 	 * sets the volume of sounds
