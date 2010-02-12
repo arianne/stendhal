@@ -360,12 +360,20 @@ The sharper minded amongst you might prefer to double-click directly on the crea
 		</portal>
 
 		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-				<parameter name="sound">wind-2</parameter>
-				<parameter name="volume">25</parameter>
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_old_tavern</parameter>
+				<parameter name="volume">20</parameter>
 			</implementation>
 		</entity>
 
+	<!-- 
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">wind-2</parameter>
+				<parameter name="volume">5</parameter>
+			</implementation>
+		</entity>
+-->
 		<entity x="13" y="42">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
 				<parameter name="sound">treecreak-1</parameter>
@@ -502,6 +510,13 @@ Mature sheep wanted: please speak to Sato.
 		<portal x="44" y="19" ref="bakery_entrance">
 			<destination zone="int_semos_bakery" ref="entrance" />
 		</portal>
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_old_tavern</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 
 		<!-- birds and chicken -->
 		<entity x="29" y="8">
@@ -737,6 +752,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_old_tavern</parameter>
+				<parameter name="volume">80</parameter>
 			</implementation>
 		</entity>
 
@@ -1108,6 +1124,13 @@ Holy mackerel! These chips are tasty.
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
 		</portal>
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_old_tavern</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 
 		<entity x="9" y="23">
 			<implementation
@@ -1954,15 +1977,35 @@ Mature sheep wanted: please speak to Sato
 		<configurator
 			class-name="games.stendhal.server.maps.semos.caves.BabyDragonSellerNPC" />
 
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="-1_kotoch_entrance_n" level="-1" x="499744" y="500000"
 		file="Level -1/kotoch/entrance_n.tmx">
 		<configurator class-name="games.stendhal.server.maps.kotoch.SmithNPC" />
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="-1_semos_dungeon" level="-1" x="500064" y="500000"
 		file="Level -1/semos/dungeon.tmx">
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="-1_semos_jail" level="-1" x="499872" y="500000"
@@ -2004,10 +2047,24 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-1_semos_catacombs_ne" level="-1" x="500064" y="499872"
 		file="Level -1/semos/catacombs_ne.tmx">
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="-1_semos_catacombs_nw" level="-1" x="500000" y="499872"
 		file="Level -1/semos/catacombs_nw.tmx">
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="-1_semos_catacombs_se" level="-1" x="500064" y="499936"
@@ -2015,10 +2072,24 @@ Mature sheep wanted: please speak to Sato
 		<portal x="28" y="37" ref="entrance" replacing="true">
 			<destination zone="0_semos_plains_n" ref="catacombs_entrance" />
 		</portal>
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="-1_semos_catacombs_sw" level="-1" x="500000" y="499936"
 		file="Level -1/semos/catacombs_sw.tmx">
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 
@@ -2091,6 +2162,13 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-2_semos_dungeon" level="-2" x="500096" y="500032"
 		file="Level -2/semos/dungeon.tmx">
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="-2_semos_jail" level="-2" x="499872" y="500000"
@@ -2296,6 +2374,13 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-3_semos_dungeon" level="-3" x="500096" y="500032"
 		file="Level -3/semos/dungeon.tmx">
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="-3_semos_catacombs" level="-3" x="500064" y="499872"
@@ -2305,6 +2390,14 @@ Mature sheep wanted: please speak to Sato
 		<portal x="30" y="57" ref="upstairs" replacing="true">
 			<destination zone="-2_semos_catacombs" ref="downstairs" />
 		</portal>
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
+
 		<entity x="60" y="61">
 			<!--
 				all dialogs for this NPC are quest-related, so we don't need a
@@ -2328,6 +2421,14 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-4_semos_dungeon" level="-4" x="500096" y="500064"
 		file="Level -4/semos/dungeon.tmx">
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_forsaken_mine</parameter>
+				<parameter name="volume">20</parameter>
+			</implementation>
+		</entity>
+
 		<entity x="67" y="13">
 			<implementation
 				class-name="games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC">
