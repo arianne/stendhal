@@ -5,7 +5,7 @@
 
 package games.stendhal.client.sound.system;
 
-import java.util.ArrayList;
+import games.stendhal.common.memory.Field;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -124,14 +124,16 @@ public class SoundSystem extends Thread
         }
     }
 
-	private final static Logger     logger                 = Logger.getLogger(SoundSystem.class);
-    private final ArrayList<Output> mOutputs               = new ArrayList<Output>();
-    private final Output            mMixOutput             = new Output();
-    private Mixer                   mMixer                 = null;
-    private Time                    mBufferDuration        = null;
-    private final AtomicBoolean     mSystemIsRunning       = new AtomicBoolean(false);
-    private final AtomicBoolean     mUseDynamicLoadScaling = new AtomicBoolean(false);
-	private final int               mMaxNumLines;
+	private final static Logger      logger                 = Logger.getLogger(SoundSystem.class);
+    private final LinkedList<Output> mOutputs               = new LinkedList<Output>();
+    private final Output             mMixOutput             = new Output();
+    private Mixer                    mMixer                 = null;
+    private Time                     mBufferDuration        = null;
+    private final AtomicBoolean      mSystemIsRunning       = new AtomicBoolean(false);
+    private final AtomicBoolean      mUseDynamicLoadScaling = new AtomicBoolean(false);
+	float[]                          mMixBuffer             = null;
+	byte[]                           mPCMBuffer             = null;
+	private final int                mMaxNumLines;
     
     public SoundSystem(AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines) throws SoundSystemException
     {
@@ -355,7 +357,7 @@ public class SoundSystem extends Thread
     {
         return Math.min(a, Math.min(b,c));
     }
-    
+
     private void prepareManualMixing()
     {
         int numBytesPerSample = mMixOutput.mAudioFormat.getSampleSizeInBits() / 8;
@@ -363,9 +365,8 @@ public class SoundSystem extends Thread
         int sampleRate        = (int)mMixOutput.mAudioFormat.getSampleRate();
         int numSamples        = (int)mBufferDuration.getInSamples(sampleRate);
 
-        if(mMixOutput.mUniformPCM == null || mMixOutput.mUniformPCM.length < (numSamples * numChannels))
-            mMixOutput.mUniformPCM = new float[numSamples * numChannels];
-
+		mMixBuffer                                = Field.expand(mMixBuffer, (numSamples * numChannels), false);
+		mMixOutput.mUniformPCM                    = mMixBuffer;
         mMixOutput.mNumSamples                    = numSamples;
         mMixOutput.mRemainingBytesToWritePerCycle = numSamples * numChannels * numBytesPerSample;
         Arrays.fill(mMixOutput.mUniformPCM, 0, numSamples, 0.0f);
@@ -567,11 +568,9 @@ public class SoundSystem extends Thread
     private static byte[] convertUniformPCM(byte[] pcmBuffer, float[] uniformSamples, int numUniformSamples, int numBytesPerSample)
     {
         int numBitsPerSample = numBytesPerSample * 8;
+		long maxValue        = (long)((Math.pow(2, numBitsPerSample) - 1.0) / 2.0);
 
-		if(pcmBuffer == null || pcmBuffer.length < (numBytesPerSample * numUniformSamples))
-			pcmBuffer = new byte[numBytesPerSample * numUniformSamples];
-
-        long maxValue = (long)((Math.pow(2, numBitsPerSample) - 1.0) / 2.0);
+		pcmBuffer = Field.expand(pcmBuffer, (numBytesPerSample * numUniformSamples), false);
 
         for(int i=0; i<numUniformSamples; ++i)
         {

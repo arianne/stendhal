@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.IOException;
 import com.jcraft.jogg.*;
 import com.jcraft.jorbis.*;
+import games.stendhal.common.memory.Field;
 /**
  *
  * @author silvio
@@ -23,7 +24,7 @@ public class OggVorbisDecoder extends SignalProcessor
     private Comment     mVorbisComment  = null;
     private Info        mVorbisInfo     = null;
 
-	private float[][][] mUniformPCMData  = null;
+	private float[][][] mUniformPCMData  = new float[1][][];
 	int[]               mPCMIndex        = null;
     private float[]     mOutputBuffer    = null;
     private byte[]      mInputBuffer     = null;
@@ -57,9 +58,8 @@ public class OggVorbisDecoder extends SignalProcessor
 
         // IMPORTANT: read the header first before setting up the buffers
 		//            or else getNumChannels() will not return the right number
-		mUniformPCMData  = new float[1][][];
-		mPCMIndex        = new int[getNumChannels()];
-		mOutputBuffer    = new float[outputNumSamplesPerChannel * getNumChannels()];
+		mPCMIndex        = Field.expand(mPCMIndex    , getNumChannels()                               , false);
+		mOutputBuffer    = Field.expand(mOutputBuffer, (outputNumSamplesPerChannel * getNumChannels()), false);
         mDecoderIsOpened = true;
     }
 
@@ -287,7 +287,6 @@ public class OggVorbisDecoder extends SignalProcessor
             assert false: exception.toString();
         }
         
-        mOutputBuffer    = null;
         mIStream         = null;
         mDecoderIsOpened = false;
         mEndOfStream     = true;

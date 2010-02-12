@@ -7,6 +7,7 @@ package games.stendhal.client.sound.system.processors;
 
 import games.stendhal.common.math.Algebra;
 import games.stendhal.client.sound.system.SignalProcessor;
+import games.stendhal.common.memory.Field;
 
 /**
  *
@@ -14,10 +15,11 @@ import games.stendhal.client.sound.system.SignalProcessor;
  */
 public class DirectedSound extends SignalProcessor
 {
-    private final float[] mUpVector  = { 0.0f, 1.0f, 0.0f };
-    private float         mIntensity = 1.0f;
-    private float         mLVolume   = 1.0f;
-    private float         mRVolume   = 1.0f;
+    private final float[] mUpVector     = { 0.0f, 1.0f, 0.0f };
+    private float         mIntensity    = 1.0f;
+    private float         mLVolume      = 1.0f;
+    private float         mRVolume      = 1.0f;
+	private float[]       mOutputBuffer = null;
 
     public DirectedSound() { }
     
@@ -95,15 +97,15 @@ public class DirectedSound extends SignalProcessor
 
         if(channels == 1)
         {
-            float[] newData = new float[samples * 2];
+			mOutputBuffer = Field.expand(mOutputBuffer, (samples * 2), false);
 
             for(int i=0; i<samples; ++i)
             {
-                newData[i*2 + 0] = data[i] * mLVolume; // multiply with the positional volume
-                newData[i*2 + 1] = data[i] * mRVolume; // do the same for the right channel
+                mOutputBuffer[i*2 + 0] = data[i] * mLVolume; // multiply with the positional volume
+                mOutputBuffer[i*2 + 1] = data[i] * mRVolume; // do the same for the right channel
             }
 
-            data     = newData;
+            data     = mOutputBuffer;
             channels = 2;
         }
         else // if(channels == 2)
