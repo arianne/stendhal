@@ -17,6 +17,7 @@ import games.stendhal.common.math.Algebra;
 import games.stendhal.common.resource.Resource;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -33,7 +34,8 @@ public class SoundManager
 {
     private final static Logger logger = Logger.getLogger(SoundManager.class);
 
-    private final static int                 OUTPUT_NUM_SAMPLES       = 256;
+    private final static int                 OUTPUT_NUM_SAMPLES       = 512;
+	private final static int                 SOUND_CHANNEL_LIMIT      = 50;
 	private final static int                 USE_NUM_MIXER_LINES      = 15;
     private final static int                 DIMENSION                = 2;
     private final static float[]             HEARER_LOOKONG_DIRECTION = { 0.0f, 1.0f };
@@ -57,7 +59,9 @@ public class SoundManager
 
         public boolean isActive() { return channel.get() != null && channel.get().isActive(); }
     }
+
     private static int counter = 0;
+	
     private final class SoundChannel extends SignalProcessor
     {
         final float[]                      mSoundPosition = new float[DIMENSION];
@@ -67,10 +71,9 @@ public class SoundManager
         final Interruptor                  mInterruptor   = new Interruptor();
         final DirectedSound                mDirectedSound = new DirectedSound();
         final VolumeAdjustor               mGlobalVolume  = new VolumeAdjustor();
-        SoundLayers.VolumeAdjustor         mLayerVolume   = null;
-        SoundSystem.Output                 mOutput        = null;
-        Sound                              mSound         = null;
-
+        final SoundLayers.VolumeAdjustor   mLayerVolume;
+        final SoundSystem.Output           mOutput;
+        Sound                              mSound = null;
 
         SoundChannel()
         {
@@ -87,7 +90,7 @@ public class SoundManager
         void    setLayer      (int level)                   { mLayerVolume.setLayer(level);                }
         void    setAudibleArea(AudibleArea area)            { mAudibleArea.set(area);                      }
         void    resumePlayback()                            { mInterruptor.play();                         }
-
+		void    close         ()                            { mSoundSystem.closeOutput(mOutput);           }
         
         void playSound(Sound newSound, Time time)
         {
@@ -112,12 +115,11 @@ public class SoundManager
             }
 
             mSound = newSound;
-            if (newSound == null) {
-            	counter--;
-            } else {
-            	counter++;
-            }
+
+            if(newSound == null) { counter--; }
+			else                 { counter++; }
             System.out.println((System.currentTimeMillis() / 1000) + " counter: " + counter);
+
             mIsActive.set(newSound != null);
         }
 
@@ -163,7 +165,7 @@ public class SoundManager
 
         try
         {
-            mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(70, Time.Unit.MILLI), USE_NUM_MIXER_LINES);
+            mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(15, Time.Unit.MILLI), USE_NUM_MIXER_LINES);
             mSoundSystem.setDaemon(true);
             mSoundSystem.start();
         }
@@ -231,13 +233,16 @@ public class SoundManager
         }
         else
         {
-            SoundChannel channel = findInactiveChannel();
+            SoundChannel channel = getInactiveChannel();
             channel.setAutoRepeat(autoRepeat);
 			channel.setVolume(volume);
             channel.setLayer(layerLevel);
             channel.setAudibleArea(area);
             channel.playSound(sound, fadeInDuration);
 			channel.update();
+
+			closeInactiveChannels(SOUND_CHANNEL_LIMIT);
+			System.out.println("num channels open: " + mChannels.size());
         }
     }
 
@@ -279,7 +284,26 @@ public class SoundManager
         }
     }
 
-    private SoundChannel findInactiveChannel()
+	private void closeInactiveChannels(int leaveNumChannelsOpen)
+	{
+		Iterator<SoundChannel> iChannel = mChannels.iterator();
+
+		while(iChannel.hasNext())
+		{
+			if(mChannels.size() <= leaveNumChannelsOpen)
+				break;
+			
+			SoundChannel currChannel = iChannel.next();
+
+			if(!currChannel.isActive())
+			{
+				currChannel.close();
+				iChannel.remove();
+			}
+		}
+	}
+	
+    private SoundChannel getInactiveChannel()
     {
         SoundChannel foundChannel = null;
 
@@ -294,8 +318,8 @@ public class SoundManager
 
         if(foundChannel == null)
 		{
-            mChannels.add(new SoundChannel());
-            foundChannel = mChannels.getLast();
+			foundChannel = new SoundChannel();
+            mChannels.add(foundChannel);
         }
 
         return foundChannel;
