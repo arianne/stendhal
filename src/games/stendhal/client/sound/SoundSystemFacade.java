@@ -70,7 +70,11 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 				myFadingTime = fadingTime;
 			}
 
-			play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, loop, myFadingTime);
+			float vol = Numeric.intToFloat(volume, 100.0f);
+			play(sound, vol, 0, area, loop, myFadingTime);
+			
+			// This is a work around because the music is played at 100% unless it is already playing otherwise.
+			changeVolume(sound, vol);
 			return sound;
 		}
 		return null;
