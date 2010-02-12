@@ -11,6 +11,14 @@
  <zone name="7_kikareukin_clouds" level="7" x="499616" y="499744" file="Level 7/kikareukin/clouds.tmx">
 <!--Don't allow teleporting in as we don't want marked scrolls made or ring abused-->
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
+
+	<entity x="1" y="1">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+			<parameter name="sound">wind-2</parameter>
+			<parameter name="volume">20</parameter>
+		</implementation>
+	</entity>
+
   <entity x="0" y="0">
 	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
 		<parameter name="coversZone">true</parameter>
@@ -31,6 +39,14 @@
  <!-- Level 6 -->
 
  <zone name="6_kikareukin_islands" level="6" x="499616" y="499744" file="Level 6/kikareukin/islands.tmx">
+
+	<entity x="1" y="1">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+			<parameter name="sound">wind-2</parameter>
+			<parameter name="volume">20</parameter>
+		</implementation>
+	</entity>
+
   <entity x="0" y="0">
     <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
   	<parameter name="coversZone">true</parameter>
