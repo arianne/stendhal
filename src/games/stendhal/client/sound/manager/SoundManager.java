@@ -57,7 +57,7 @@ public class SoundManager
 
         public boolean isActive() { return channel.get() != null && channel.get().isActive(); }
     }
-
+    private static int counter = 0;
     private final class SoundChannel extends SignalProcessor
     {
         final float[]                      mSoundPosition = new float[DIMENSION];
@@ -70,6 +70,7 @@ public class SoundManager
         SoundLayers.VolumeAdjustor         mLayerVolume   = null;
         SoundSystem.Output                 mOutput        = null;
         Sound                              mSound         = null;
+
 
         SoundChannel()
         {
@@ -87,6 +88,7 @@ public class SoundManager
         void    setAudibleArea(AudibleArea area)            { mAudibleArea.set(area);                      }
         void    resumePlayback()                            { mInterruptor.play();                         }
 
+        
         void playSound(Sound newSound, Time time)
         {
             if(mSound != null)
@@ -110,6 +112,12 @@ public class SoundManager
             }
 
             mSound = newSound;
+            if (newSound == null) {
+            	counter--;
+            } else {
+            	counter++;
+            }
+            System.out.println((System.currentTimeMillis() / 1000) + " counter: " + counter);
             mIsActive.set(newSound != null);
         }
 
@@ -141,6 +149,7 @@ public class SoundManager
                 super.quit();
             }
         }
+
     }
     
     private final LinkedList<SoundChannel> mChannels       = new LinkedList<SoundChannel>();
