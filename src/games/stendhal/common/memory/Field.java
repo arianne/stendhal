@@ -21,7 +21,7 @@ public class Field
 	 * @param array
 	 * @param newSize
 	 * @param keepData
-	 * @return
+	 * @return - new or old array
 	 */
 	public static byte[] expand(byte[] array, int newSize, boolean keepData)
 	{
@@ -48,7 +48,7 @@ public class Field
 	 * @param array
 	 * @param newSize
 	 * @param keepData
-	 * @return
+	 * @return - new or old array
 	 */
 	public static int[] expand(int[] array, int newSize, boolean keepData)
 	{
@@ -75,7 +75,7 @@ public class Field
 	 * @param array
 	 * @param newSize
 	 * @param keepData
-	 * @return
+	 * @return - new or old array
 	 */
 	public static float[] expand(float[] array, int newSize, boolean keepData)
 	{
