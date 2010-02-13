@@ -187,8 +187,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			if (!size.equals(stendhal.screenSize)) {
 				sw = Math.min(canvas.getWidth(), stendhal.screenSize.width);
 				sh = Math.min(canvas.getHeight(), stendhal.screenSize.height);
-				// Set the user clip to avoid drawing artefacts on some setups
-				g2d.setClip(0, 0, sw, sh);
+				/*
+				 * Set the user clip to avoid drawing artifacts on some setups
+				 * Changing the size can destroy the drawing buffer, so the
+				 * call to getGraphics() is necessary.
+				 */
+				getGraphics().setClip(0, 0, sw, sh);
 				calculateView();
 				center();
 			}
