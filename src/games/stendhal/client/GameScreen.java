@@ -81,7 +81,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 	private Canvas canvas;
 	private BufferStrategy buffer;
-	private Graphics g2d;
 	/**
 	 * Static game layers.
 	 */
@@ -187,12 +186,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			if (!size.equals(stendhal.screenSize)) {
 				sw = Math.min(canvas.getWidth(), stendhal.screenSize.width);
 				sh = Math.min(canvas.getHeight(), stendhal.screenSize.height);
-				/*
-				 * Set the user clip to avoid drawing artifacts on some setups
-				 * Changing the size can destroy the drawing buffer, so the
-				 * call to getGraphics() is necessary.
-				 */
-				getGraphics().setClip(0, 0, sw, sh);
+				// Reset the view so that the player is in the center
 				calculateView();
 				center();
 			}
@@ -486,6 +480,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 			draw((Graphics2D) g);
 
 			buffer.show();
+			g.dispose();
 		}
 	}
 	
@@ -493,22 +488,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		/*
 		 *  swing does not want to give a valid GraphicsConfiguration until the
 		 *  window has been drawn, so this can not be done in the constructor.
-		 */ 
+		 */
 		if (buffer == null) {
 			canvas.createBufferStrategy(2);
-			buffer = canvas.getBufferStrategy();
-			g2d = buffer.getDrawGraphics(); 
-		} else if (buffer.contentsLost() || buffer.contentsRestored()) {
-			/*
-			 * On some systems (windows) the draw buffer can get lost in
-			 * certain conditions. Recreate it if that has happened.
-			 */
-			final Graphics old = g2d;
-			g2d = buffer.getDrawGraphics();
-			old.dispose();
+			buffer = canvas.getBufferStrategy(); 
 		}
 		
-		return g2d;
+		return buffer.getDrawGraphics();
 	}
 	
 	private void draw(final Graphics2D g2d) {
