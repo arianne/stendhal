@@ -3,7 +3,7 @@
 	xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="lucky charm">
     <type class="special" subclass="lucky_charm" tileid="-1"/>
-    <description/>
+    <description>You see a lucky charm. Some believe that it helps their karma in some way, but others think that is superstition.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
 	   </attributes>
@@ -20,7 +20,7 @@
 
    <item name="mithril clasp">
     <type class="special" subclass="mithril_clasp" tileid="-1"/>
-    <description>You see a clasp made from mithril, it would provide the fastening for a cloak..</description>
+    <description>You see a clasp made from mithril, it would provide the fastening for a cloak.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
