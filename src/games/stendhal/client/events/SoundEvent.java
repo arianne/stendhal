@@ -25,7 +25,11 @@ public class SoundEvent extends Event<Entity> {
 		if (event.has("volume")) {
 			volume = event.getInt("volume");
 		}
-		SoundSystemFacade.get().play(event.get("sound"), entity.getX(), entity.getY(), event.getInt("radius"), layer, volume);
+		int radius = 100000;
+		if (event.has("radius")) {
+			radius = event.getInt("radius");
+		}
+		SoundSystemFacade.get().play(event.get("sound"), entity.getX(), entity.getY(), radius, layer, volume);
 	}
 
 }

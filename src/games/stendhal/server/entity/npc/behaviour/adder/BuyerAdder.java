@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -126,7 +127,7 @@ public class BuyerAdder {
 
 						boolean success = behaviour.transactAgreedDeal(engine, player);
 						if (success) {
-							engine.addEvent(new SoundEvent("coins-1"));
+							engine.addEvent(new SoundEvent("coins-1", SoundLayer.CREATURE_NOISE));
 						}
 					}
 				});
