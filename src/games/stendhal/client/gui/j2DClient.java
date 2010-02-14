@@ -346,7 +346,7 @@ public class j2DClient implements UserInterface {
 		chatBox.setMinimumSize(chatText.getPlayerChatText().getMinimumSize());
 		
 		// Give the user the ability to make the the game area less tall
-		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
+		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
 		// Works for showing the resize, but is extremely flickery
 		//splitPane.setContinuousLayout(true);
 		pane.addComponentListener(new SplitPaneResizeListener(screen.getComponent(), splitPane));
@@ -397,6 +397,11 @@ public class j2DClient implements UserInterface {
 				
 				mainFrame.getMainFrame().setMinimumSize(new Dimension(width, height));
 				mainFrame.getMainFrame().setVisible(true);
+				/*
+				 * Needed for small screens; Sometimes the divider is placed
+				 * incorrectly unless we explicitly set it.
+				 */
+				splitPane.setDividerLocation(stendhal.screenSize.height + 1);
 			}
 		});
 		directionRelease = null;
@@ -1094,7 +1099,7 @@ public class j2DClient implements UserInterface {
 				 *  so return the divider to the maximum allowed height
 				 *  by force.
 				 */
-				splitPane.setDividerLocation(stendhal.screenSize.height);
+				splitPane.setDividerLocation(stendhal.screenSize.height + 1);
 			} else {
 				child.setSize(newSize);
 			}
