@@ -34,9 +34,9 @@ public class SoundManager
 {
     private final static Logger logger = Logger.getLogger(SoundManager.class);
 
-    private final static int                 OUTPUT_NUM_SAMPLES       = 512;
+    private final static int                 OUTPUT_NUM_SAMPLES       = 256;
 	private final static int                 SOUND_CHANNEL_LIMIT      = 50;
-	private final static int                 USE_NUM_MIXER_LINES      = 15;
+	private final static int                 USE_NUM_MIXER_LINES      = 20;
     private final static int                 DIMENSION                = 2;
     private final static float[]             HEARER_LOOKONG_DIRECTION = { 0.0f, 1.0f };
     private final static AudioFormat         AUDIO_FORMAT             = new AudioFormat(44100, 16, 2, true, false);
@@ -115,11 +115,11 @@ public class SoundManager
             }
 
             mSound = newSound;
-
+/*
             if(newSound == null) { counter--; }
 			else                 { counter++; }
             System.out.println((System.currentTimeMillis() / 1000) + " counter: " + counter);
-
+//*/
             mIsActive.set(newSound != null);
         }
 
@@ -183,11 +183,16 @@ public class SoundManager
 
 	public Sound openSound(Resource resource, SoundFile.Type fileType)
     {
+		return openSound(resource, fileType, OUTPUT_NUM_SAMPLES, true);
+    }
+
+	public Sound openSound(Resource resource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
+    {
 		Sound sound = null;
 
         try
         {
-            SoundFile file = new SoundFile(resource, fileType, OUTPUT_NUM_SAMPLES, true);
+            SoundFile file = new SoundFile(resource, fileType, numSamplesPerChunk, enableStreaming);
 
             sound = new Sound();
             sound.file.set(file);
@@ -242,7 +247,6 @@ public class SoundManager
 			channel.update();
 
 			closeInactiveChannels(SOUND_CHANNEL_LIMIT);
-			System.out.println("num channels open: " + mChannels.size());
         }
     }
 
