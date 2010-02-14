@@ -30,9 +30,10 @@ public class SoundEvent extends RPEvent {
 	 *
 	 * @param sound name of sound to play
 	 */
-	public SoundEvent(final String sound) {
+	public SoundEvent(final String sound, SoundLayer layer) {
 		super(Events.SOUND);
 		put("sound", sound);
+		put("layer", layer.ordinal());
 	}
 
 
