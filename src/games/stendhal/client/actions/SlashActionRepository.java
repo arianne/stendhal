@@ -34,6 +34,8 @@ public class SlashActionRepository {
 		
 		actions.put("drop", new DropAction());
 
+		actions.put("faq", new FAQAction());
+
 		actions.put("gag", new GagAction());
 		actions.put("gmhelp", new GMHelpAction());
 		actions.put("grumpy", new GrumpyAction());
@@ -47,6 +49,7 @@ public class SlashActionRepository {
 		actions.put("jail", new JailAction());
 		actions.put("joinguild", new CreateGuildAction());
 
+		actions.put("manual", new ManualAction());
 		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
 		actions.put("mute", new MuteAction());
