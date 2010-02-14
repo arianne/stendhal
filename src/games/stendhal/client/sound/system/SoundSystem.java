@@ -21,146 +21,261 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
 
-import org.apache.log4j.Logger;
-
 /**
  *
  * @author silvio
  */
 public class SoundSystem extends Thread
 {
-    public final static class Output extends SignalProcessor
-    {
-        private SourceDataLine mLine            = null; // the line we will write the PCM data to
-        private AudioFormat    mAudioFormat     = null; // the audio format the line was opened with
-        private float[]        mUniformPCM      = null; // the interleaved uniform PCM data. every samples value ranges form -1.0 to 1.0
-        private byte[]         mPCM             = null; // the uniform PCM data converted to the format defined in "mAudioFormat"
-        private int            mNumBytesWritten = 0;    // number of bytes of "mPCM" we have written to "mLine"
-        private int            mNumSamplesMixed = 0;    // number of samples we have mixed into the line of "mMixedOutput"
-        private int            mNumChannels     = 0;
-        private int            mNumSamples      = 0;
-        private int            mSampleRate      = 0;
-		private boolean        mPCMWasConverted = false;
+	public static abstract class Output extends SignalProcessor { }
 
-        private int mRemainingBytesToWritePerCycle = 0;
+	private static class SystemOutput extends Output
+	{
+		final SourceDataLine mLine;                   // the line we will write the PCM data to
+        float[]              mAudioBuffer     = null; // the interleaved uniform PCM data
+		int                  mNumSamples      = 0;    //
+        byte[]               mPCMBuffer       = null; // the uniform PCM data converted to the format defined in "mAudioFormat"
+		int                  mPCMBufferSize   = 0;    //
+		int                  mNumBytesWritten = 0;    // number of bytes from "mPCMBuffer" we have written to "mLine"
+		int                  mNumBytesToWrite = 0;
 
-        private int     getRemainingBytesToWrite() { return mPCM.length - mNumBytesWritten;  }
-        private int     getRemainingSamplesToMix() { return mNumSamples - mNumSamplesMixed;  }
-        private boolean receivedData            () { return mUniformPCM != null;             }
-        private boolean wasPCMConverted         () { return mPCMWasConverted;                }
-        private boolean isLineUsable            () { return mLine       != null;             }
-        private boolean wasAllDataWritten       () { return mNumBytesWritten >= mPCM.length; }
-        private boolean whereAllSamplesMixed    () { return mNumSamplesMixed >= mNumSamples; }
+		SystemOutput(SourceDataLine line)
+		{
+			assert line != null;
+			assert line.isOpen();
+			mLine = line;
+			mLine.start();
+		}
 
-        private int writeToLine(int numBytes)
+		boolean     isOpen              () { return mLine.isOpen();                              }
+        boolean     receivedData        () { return mNumSamples    > 0;                          }
+        boolean     isConverted         () { return mPCMBufferSize > 0;                          }
+		AudioFormat getAudioFormat      () { return mLine.getFormat();                           }
+		float[]     getBuffer           () { return mAudioBuffer;                                }
+		int         getNumSamples       () { return mNumSamples;                                 }
+		int         getNumChannels      () { return mLine.getFormat().getChannels();             }
+		int         getSampleRate       () { return (int)mLine.getFormat().getSampleRate();      }
+		int         getNumBytesPerSample() { return mLine.getFormat().getSampleSizeInBits() / 8; }
+		int         available           () { return mLine.available();                           }
+		int         getNumBytesToWrite  () { return mNumBytesToWrite;                            }
+
+		void close()
+		{
+			mLine.close();
+			mAudioBuffer = null;
+			mPCMBuffer   = null;
+			reset();
+		}
+
+		void reset()
+		{
+			mNumBytesWritten = 0;
+			mNumSamples      = 0;
+			mPCMBufferSize   = 0;
+		}
+
+		void setBuffer(float[] buffer, int numSamples)
+		{
+			assert numSamples <= buffer.length;
+			assert (numSamples % getNumChannels()) == 0;
+
+			mAudioBuffer = buffer;
+			mNumSamples  = numSamples;
+		}
+
+		void setNumBytesToWrite(int numBytesToWrite)
+		{
+			int frameSize = getNumBytesPerSample() * getNumChannels();
+			
+			numBytesToWrite /= frameSize;
+			numBytesToWrite *= frameSize;
+			mNumBytesToWrite = numBytesToWrite;
+		}
+
+		void convert()
         {
-			assert mAudioFormat.getChannels()        == mNumChannels;
-			assert (int)mAudioFormat.getSampleRate() == mSampleRate;
+            assert (mLine.getFormat().getSampleSizeInBits() % 8) == 0;
 
-			int written = mLine.write(mPCM, mNumBytesWritten, numBytes);
-			mNumBytesWritten += written;
-			return written;
+            int numBytesPerSample = getNumBytesPerSample();
+			int numBytes          = numBytesPerSample * mNumSamples;
+
+			mPCMBuffer     = Field.expand(mPCMBuffer, numBytes, false);
+            mPCMBuffer     = SoundSystem.convertUniformPCM(mPCMBuffer, mAudioBuffer, mNumSamples, numBytesPerSample);
+			mPCMBufferSize = numBytes;
         }
 
-        private int mixToOutput(Output output, int offsetInSamples, int numSamplesToMix)
+		boolean write(int numBytes)
         {
-            assert output.mAudioFormat.getChannels()        == mNumChannels;
-            assert (int)output.mAudioFormat.getSampleRate() == mSampleRate;
+			int frameSize                 = getNumBytesPerSample() * getNumChannels();
+			int numRemainingBytesInBuffer = mPCMBufferSize - mNumBytesWritten;
 
-            SoundSystem.mixUniformPCM(output.mUniformPCM, offsetInSamples*mNumChannels, mUniformPCM, mNumSamplesMixed*mNumChannels, numSamplesToMix*mNumChannels);
-            mNumSamplesMixed += numSamplesToMix;
-            return numSamplesToMix;
+			numBytes  = Math.min(numBytes, numRemainingBytesInBuffer);
+			numBytes  = Math.min(numBytes, mNumBytesToWrite         );
+			numBytes  = Math.min(numBytes, mLine.available()        );
+			numBytes /= frameSize;
+			numBytes *= frameSize;
+			
+			numBytes = mLine.write(mPCMBuffer, mNumBytesWritten, numBytes);
+
+			mNumBytesWritten          += numBytes;
+			mNumBytesToWrite          -= numBytes;
+			numRemainingBytesInBuffer -= numBytes;
+			
+			if(numRemainingBytesInBuffer < frameSize)
+				reset();
+
+			if(mNumBytesToWrite < frameSize)
+				return false;
+
+			return true;
         }
 
-        private void convertPCM()
+		@Override
+        protected void modify(float[] buffer, int frames, int channels, int rate)
         {
-            assert (mAudioFormat.getSampleSizeInBits() % 8) == 0;
-
-            int numBytesPerSample = mAudioFormat.getSampleSizeInBits() / 8;
-            mPCM             = SoundSystem.convertUniformPCM(mPCM, mUniformPCM, mNumSamples * mNumChannels, numBytesPerSample);
-			mPCMWasConverted = true;
-        }
-
-        private void clearData()
-        {
-            mNumBytesWritten = 0;
-            mNumSamplesMixed = 0;
-            mUniformPCM      = null;
-			mPCMWasConverted = false;
-        }
-
-        @Override
-        protected void modify(float[] buffer, int samples, int channels, int rate)
-        {
-            if(buffer != null && samples > 0 && channels > 0 && rate > 0)
+            if(buffer != null && frames > 0 && channels > 0 && rate > 0)
             {
-                assert samples <= buffer.length;
+                assert frames <= buffer.length;
+				buffer = SoundSystem.convertChannels(buffer, frames, channels, getNumChannels());
 
-                mUniformPCM  = buffer;
-                mNumChannels = channels;
-                mNumSamples  = samples;
-                mSampleRate  = rate;
-
-                if(!SoundSystem.convertChannels(this))
+                if(buffer != null)
                 {
-                    assert false: "could not convert channels";
-
-                    mUniformPCM  = null;
-                    mNumChannels = 0;
-                    mNumSamples  = 0;
-                    mSampleRate  = 0;
+					setBuffer(buffer, (frames * getNumChannels()));
                 }
+				else assert false: "could not convert channels";
 
-                if(!SoundSystem.convertSampleRate(this))
-                {
-                    assert false: "could not convert sample rate";
+				buffer = SoundSystem.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
 
-                    mUniformPCM  = null;
-                    mNumChannels = 0;
-                    mNumSamples  = 0;
-                    mSampleRate  = 0;
-                }
+				if(buffer != null)
+				{
+					float ratio = (float)frames / (float)rate;
+					setBuffer(buffer, (int)(ratio * getSampleRate() * channels));
+				}
+				else assert false: "could not convert sample rate";
             }
         }
-    }
+	}
 
-	private final static Logger      logger                 = Logger.getLogger(SoundSystem.class);
-    private final LinkedList<Output> mOutputs               = new LinkedList<Output>();
-    private final Output             mMixOutput             = new Output();
-    private Mixer                    mMixer                 = null;
-    private Time                     mBufferDuration        = null;
-    private final AtomicBoolean      mSystemIsRunning       = new AtomicBoolean(false);
-    private final AtomicBoolean      mUseDynamicLoadScaling = new AtomicBoolean(false);
-	float[]                          mMixBuffer             = null;
-	byte[]                           mPCMBuffer             = null;
-	private final int                mMaxNumLines;
+	private static class MixerOutput extends Output
+	{
+		AudioFormat  mAudioFormat;
+		float[]      mAudioBuffer     = null; // the interleaved uniform PCM data
+		int          mNumSamples      = 0;    //
+		int          mNumSamplesMixed = 0;
+
+		MixerOutput(AudioFormat format)
+		{
+			assert format != null;
+			mAudioFormat  = format;
+		}
+
+		boolean receivedData  () { return mNumSamples > 0;                   }
+		int     getNumChannels() { return mAudioFormat.getChannels();        }
+		int     getSampleRate () { return (int)mAudioFormat.getSampleRate(); }
+
+		void reset()
+		{
+			mNumSamples      = 0;
+			mNumSamplesMixed = 0;
+		}
+
+		void setBuffer(float[] buffer, int numSamples)
+		{
+			assert numSamples <= buffer.length;
+			assert (numSamples % getNumChannels()) == 0;
+
+			mAudioBuffer = buffer;
+			mNumSamples  = numSamples;
+		}
+		
+		boolean mix(float[] buffer, int size)
+		{
+			int offset          = 0;
+			int numSamplesToMix = size;
+
+			while(numSamplesToMix > 0)
+			{
+				if(!receivedData())
+					request();
+
+				if(!receivedData())
+					return false;
+
+				int numSamples = mNumSamples - mNumSamplesMixed;
+				numSamples = Math.min(numSamples, numSamplesToMix);
+
+				SoundSystem.mixUniformPCM(buffer, offset, mAudioBuffer, mNumSamplesMixed, numSamples);
+
+				offset           += numSamples;
+				mNumSamplesMixed += numSamples;
+				numSamplesToMix  -= numSamples;
+
+				if(mNumSamples == mNumSamplesMixed)
+					reset();
+			}
+
+			return true;
+		}
+
+		@Override
+        protected void modify(float[] buffer, int frames, int channels, int rate)
+        {
+            if(buffer != null && frames > 0 && channels > 0 && rate > 0)
+            {
+                assert frames <= buffer.length;
+				buffer = SoundSystem.convertChannels(buffer, frames, channels, getNumChannels());
+
+                if(buffer != null)
+                {
+					setBuffer(buffer, (frames * getNumChannels()));
+                }
+				else assert false: "could not convert channels";
+
+				buffer = SoundSystem.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
+
+				if(buffer != null)
+				{
+					float ratio = (float)frames / (float)rate;
+					setBuffer(buffer, (int)(ratio * getSampleRate() * channels));
+				}
+				else assert false: "could not convert sample rate";
+            }
+        }
+	}
+
+	private final LinkedList<SystemOutput> mSystemOutputs         = new LinkedList<SystemOutput>();
+	private final LinkedList<MixerOutput>  mMixerOutputs          = new LinkedList<MixerOutput>();
+	private SystemOutput                   mMixSystemOutput       = null;
+    private Mixer                          mSystemMixer           = null;
+    private Time                           mBufferDuration        = null;
+    private final AtomicBoolean            mSystemIsRunning       = new AtomicBoolean(false);
+    private final AtomicBoolean            mUseDynamicLoadScaling = new AtomicBoolean(false);
+	float[]                                mMixBuffer             = null;
+	private final int                      mMaxNumLines;
     
     public SoundSystem(AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines) throws SoundSystemException
     {
         assert audioFormat    != null;
         assert bufferDuration != null;
 
-        mMixer          = tryToFindMixer(audioFormat);
+        mSystemMixer    = tryToFindMixer(audioFormat);
         mBufferDuration = bufferDuration;
 		mMaxNumLines    = useMaxMixerLines;
 
-        if(mMixer == null)
+        if(mSystemMixer == null)
         {
             DataLine.Info datalineInfo = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
 
             try
             {
-                mMixOutput.mLine = (SourceDataLine)AudioSystem.getLine(datalineInfo);
-
-                if(!AudioSystem.isLineSupported(datalineInfo))
-                    throw new SoundSystemException("line is not supported - " + audioFormat.toString());
-
-				mMixOutput.mAudioFormat = audioFormat;
-                mMixOutput.mLine.open();
+                SourceDataLine line = (SourceDataLine)AudioSystem.getLine(datalineInfo);
+                line.open();
+				
+				mMixSystemOutput = new SystemOutput(line);
+				mSystemOutputs.add(mMixSystemOutput);
             }
             catch(LineUnavailableException exception)
             {
-                mMixOutput.mLine.close();
                 throw new SoundSystemException("line is unavailable - " + exception.toString());
             }
         }
@@ -170,26 +285,23 @@ public class SoundSystem extends Thread
 
 			try
             {
-                mMixOutput.mLine        = (SourceDataLine)mMixer.getLine(info);
-                mMixOutput.mAudioFormat = audioFormat;
-                mMixOutput.mLine.open();
+                SourceDataLine line = (SourceDataLine)mSystemMixer.getLine(info);
+                line.open();
+
+				mMixSystemOutput = new SystemOutput(line);
+				mSystemOutputs.add(mMixSystemOutput);
             }
-            catch(LineUnavailableException e)
-            {
-                mMixOutput.mLine.close();
-                mMixOutput.mLine        = null;
-                mMixOutput.mAudioFormat = null;
-            }
+            catch(LineUnavailableException e) { }
 		}
     }
-
+//*
     public SoundSystem(Mixer mixer, AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
     {
 		assert audioFormat    != null;
         assert mixer          != null;
         assert bufferDuration != null;
 
-        mMixer          = mixer;
+        mSystemMixer    = mixer;
         mBufferDuration = bufferDuration;
 		mMaxNumLines    = useMaxMixerLines;
 
@@ -197,16 +309,13 @@ public class SoundSystem extends Thread
 
 		try
 		{
-			mMixOutput.mLine        = (SourceDataLine)mMixer.getLine(info);
-			mMixOutput.mAudioFormat = audioFormat;
-			mMixOutput.mLine.open();
+			SourceDataLine line = (SourceDataLine)mSystemMixer.getLine(info);
+			line.open();
+
+			mMixSystemOutput = new SystemOutput(line);
+			mSystemOutputs.add(mMixSystemOutput);
 		}
-		catch(LineUnavailableException e)
-		{
-			mMixOutput.mLine.close();
-			mMixOutput.mLine        = null;
-			mMixOutput.mAudioFormat = null;
-		}
+		catch(LineUnavailableException e) { }
     }
 
     public SoundSystem(SourceDataLine outputLine, Time bufferDuration) throws SoundSystemException
@@ -225,90 +334,76 @@ public class SoundSystem extends Thread
                 throw new SoundSystemException(e.toString());
             }
         }
-
-		mMaxNumLines            = 0;
-        mMixOutput.mLine        = outputLine;
-        mMixOutput.mAudioFormat = outputLine.getFormat();
-        mMixOutput.mNumChannels = mMixOutput.mAudioFormat.getChannels();
-        mMixOutput.mSampleRate  = (int)mMixOutput.mAudioFormat.getSampleRate();
-        mBufferDuration         = bufferDuration;
+		
+		mMaxNumLines     = 0;
+        mBufferDuration  = bufferDuration;
+		mMixSystemOutput = new SystemOutput(outputLine);
+		mSystemOutputs.add(mMixSystemOutput);
     }
 
-    public Output openOutput(AudioFormat audioFormat)
+	public Output openOutput(AudioFormat audioFormat)
 	{
-        Output        output          = new Output();
-        DataLine.Info info            = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
-        boolean       lineUnavailable = false;
-        
-        if(mMixer != null && mMixer.isLineSupported(info) && mOutputs.size() < mMaxNumLines)
+		DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
+
+        if(mSystemMixer != null && mSystemMixer.isLineSupported(info) && mSystemOutputs.size() < mMaxNumLines)
         {
             try
             {
-                output.mLine        = (SourceDataLine)mMixer.getLine(info);
-                output.mAudioFormat = audioFormat;
-                output.mLine.open();
+                SourceDataLine line = (SourceDataLine)mSystemMixer.getLine(info);
+                line.open();
+
+				SystemOutput output = new SystemOutput(line);
+
+				synchronized(mSystemOutputs)
+				{
+					mSystemOutputs.add(output);
+				}
+				
+				return output;
             }
-            catch(LineUnavailableException e)
-            {
-                output.mLine.close();
-                output.mLine        = null;
-                output.mAudioFormat = null;
-                lineUnavailable     = true;
-            }
-        }
-        else
-        {
-            lineUnavailable = true;
+            catch(LineUnavailableException e) { }
         }
 
-        if(lineUnavailable && mMixOutput.isLineUsable())
-            output.mAudioFormat = mMixOutput.mAudioFormat;
+		if(mMixSystemOutput != null)
+		{
+			MixerOutput output = new MixerOutput(mMixSystemOutput.getAudioFormat());
 
-        synchronized(this)
-        {
-            mOutputs.add(output);
-        }
-        
-        return output;
-    }
+			synchronized(mMixerOutputs)
+			{
+				mMixerOutputs.add(output);
+			}
+
+			return output;
+		}
+		
+		return null;
+	}
 
     public synchronized void closeOutput(Output output)
     {
-        if(output.isLineUsable())
-        {
-            output.mLine.close();
-            output.mLine = null;
-        }
+		output.disconnect();
 
-        output.clearData();
-        output.disconnect();
+		if(output instanceof SystemOutput)
+		{
+			SystemOutput systemOutput = (SystemOutput)output;
+			systemOutput.close();
+			mSystemOutputs.remove(systemOutput);
+		}
 
-        mOutputs.remove(output);
+		if(output instanceof MixerOutput)
+		{
+			MixerOutput mixerOutput = (MixerOutput)output;
+			mMixerOutputs.remove(mixerOutput);
+		}
     }
 
-    public synchronized void closeAllOutputs()
+    public void closeAllOutputs()
     {
-        for(Output output: mOutputs)
-        {
-            if(output.isLineUsable())
-            {
-                output.mLine.close();
-                output.mLine = null;
-            }
+		for(SystemOutput output: mSystemOutputs)
+			closeOutput(output);
 
-            output.clearData();
-            output.disconnect();
-        }
-
-        mOutputs.clear();
-
-        if(mMixOutput.isLineUsable())
-        {
-            mMixOutput.mLine.stop();
-            mMixOutput.mLine.close();
-            mMixOutput.mLine = null;
-            mMixOutput.clearData();
-        }
+		for(MixerOutput output: mMixerOutputs)
+			closeOutput(output);
     }
 
     public void close()
@@ -322,21 +417,14 @@ public class SoundSystem extends Thread
         mSystemIsRunning.set(true);
 
         double averageTimeToProcessSound = mBufferDuration.getInNanoSeconds();
-        double multiplicator             = 0.995;
+        double multiplicator             = 0.990;
         
         while(mSystemIsRunning.get())
         {
             long duration = System.nanoTime();
 
-            try
-			{
-                processOutputs();
-            }
-			catch(RuntimeException e)
-			{
-                logger.warn(e, e);
-            }
-
+			processOutputs();
+           
             duration                  = System.nanoTime() - duration;
             averageTimeToProcessSound = (averageTimeToProcessSound + duration) / 2.0;
 
@@ -353,131 +441,72 @@ public class SoundSystem extends Thread
         closeAllOutputs();
     }
 
-    private int min(int a, int b, int c)
-    {
-        return Math.min(a, Math.min(b,c));
-    }
+	private void processOutputs()
+	{
+		LinkedList<SystemOutput> sysOutputs;
+		LinkedList<MixerOutput>  mixOutputs;
 
-    private void prepareManualMixing()
-    {
-        int numBytesPerSample = mMixOutput.mAudioFormat.getSampleSizeInBits() / 8;
-        int numChannels       = mMixOutput.mAudioFormat.getChannels();
-        int sampleRate        = (int)mMixOutput.mAudioFormat.getSampleRate();
-        int numSamples        = (int)mBufferDuration.getInSamples(sampleRate);
+		synchronized(mSystemOutputs)
+		{
+			sysOutputs = (LinkedList<SystemOutput>)mSystemOutputs.clone();
+		}
 
-		mMixBuffer                                = Field.expand(mMixBuffer, (numSamples * numChannels), false);
-		mMixOutput.mUniformPCM                    = mMixBuffer;
-        mMixOutput.mNumSamples                    = numSamples;
-        mMixOutput.mRemainingBytesToWritePerCycle = numSamples * numChannels * numBytesPerSample;
-        Arrays.fill(mMixOutput.mUniformPCM, 0, numSamples, 0.0f);
-    }
-    
-    private void processOutputs()
-    {
-        LinkedList<Output> outputsWithUsableLines = new LinkedList<Output>();
+		synchronized(mMixerOutputs)
+		{
+			mixOutputs = (LinkedList<MixerOutput>)mMixerOutputs.clone();
+		}
 
-        if(mMixOutput.isLineUsable())
-        {
-            prepareManualMixing();
-            outputsWithUsableLines.add(mMixOutput);
-        }
+		for(SystemOutput output: sysOutputs)
+		{
+			int sampleRate        = output.getSampleRate();
+			int numBytesPerSample = output.getAudioFormat().getSampleSizeInBits() / 8;
+			int numChannels       = output.getNumChannels();
+			int numBytesToWrite   = (int)(mBufferDuration.getInSamples(sampleRate) * numChannels * numBytesPerSample);
 
-        synchronized(this)
-        {
-            for(Output output: mOutputs)
-            {
-				/* happens for example if the audio device is in use by an other applicatin
-                if(output.mAudioFormat == null)
-                	continue; //*/
+			output.setNumBytesToWrite(numBytesToWrite);
+		}
 
-                int numBytesPerSample = output.mAudioFormat.getSampleSizeInBits() / 8;
-                int numChannels       = output.mAudioFormat.getChannels();
-                int sampleRate        = (int)output.mAudioFormat.getSampleRate();
+		int numSamples = mMixSystemOutput.getNumBytesToWrite() / mMixSystemOutput.getNumBytesPerSample();
+		mMixBuffer = Field.expand(mMixBuffer, numSamples, false);
+		Arrays.fill(mMixBuffer, 0, numSamples, 0.0f);
 
-                if(output.isLineUsable())
-                {
-                    output.mRemainingBytesToWritePerCycle =
-                            (int)mBufferDuration.getInSamples(sampleRate) * numChannels * numBytesPerSample;
+		for(MixerOutput output: mixOutputs)
+			output.mix(mMixBuffer, numSamples);
 
-                    outputsWithUsableLines.add(output);
-                }
-                else if(mMixOutput.isLineUsable())
-                {
-                    int remainingSamplesToMix = mMixOutput.mNumSamples;
-                    int numSmplesMixed        = 0;
+		mMixSystemOutput.setBuffer(mMixBuffer, numSamples);
+		
+		while(!sysOutputs.isEmpty())
+		{
+			boolean buffersAreFull = true;
 
-                    while(remainingSamplesToMix > 0)
-                    {
-                        if(!output.receivedData())
-                            output.request(); // if we got no sound data we request it
+			for(Iterator<SystemOutput> iOutput = sysOutputs.iterator(); iOutput.hasNext(); )
+			{
+				SystemOutput output = iOutput.next();
 
-                        if(output.receivedData())
-                        {
-                            int numSamplesToMix = Math.min(output.getRemainingSamplesToMix(), remainingSamplesToMix);
-                            int count           = output.mixToOutput(mMixOutput, numSmplesMixed, numSamplesToMix);
+				if(output.isOpen())
+				{
+					if(!output.receivedData())
+						output.request(); // if we got no sound data we request it
 
-                            remainingSamplesToMix -= count;
-                            numSmplesMixed        += count;
+					if(output.receivedData())
+					{
+						if(!output.isConverted())
+							output.convert();
 
-                            if(output.whereAllSamplesMixed())
-                                output.clearData();
-                        }
-                        else break;
-                    }
-                }
-            }
-        }
+						buffersAreFull = buffersAreFull && (output.available() == 0);
 
-        while(!outputsWithUsableLines.isEmpty())
-        {
-            boolean lineBuffersAreFull = true;
+						if(output.write(256))
+							continue;
+					}
+				}
 
-            for(Iterator<Output> iOutput = outputsWithUsableLines.iterator(); iOutput.hasNext(); )
-            {
-                Output output = iOutput.next();
+				iOutput.remove();
+			}
 
-                if(!output.receivedData())
-                    output.request(); // if we got no sound data we request it
-
-                if(output.receivedData())
-                {
-                    if(!output.mLine.isRunning())
-                        output.mLine.start();
-
-                    if(!output.wasPCMConverted())
-                        output.convertPCM();
-
-                    assert output.getRemainingBytesToWrite()     != 0;
-                    assert output.mRemainingBytesToWritePerCycle != 0;
-
-                    lineBuffersAreFull = lineBuffersAreFull && (output.mLine.available() == 0);
-                    
-                    int numBytesWritable =
-                            min(output.mLine.available(), output.getRemainingBytesToWrite(), output.mRemainingBytesToWritePerCycle);
-
-					output.mRemainingBytesToWritePerCycle -= output.writeToLine(numBytesWritable);
-
-					if(output.wasAllDataWritten())
-						output.clearData();
-
-					if(output.mRemainingBytesToWritePerCycle <= 0)
-						iOutput.remove();
-                }
-                else
-                {
-                    // if after we requested data we still don't have any, we quit processing of this output
-                    iOutput.remove();
-                    break;
-                }
-            }
-
-            if(lineBuffersAreFull)
-            {
-                if(!mUseDynamicLoadScaling.get())
-                    suspendThread(50);
-            }
-        }
-    }
+			if(buffersAreFull && !mUseDynamicLoadScaling.get())
+				suspendThread(50);
+		}
+	}
 
     @Override
     public String toString()
@@ -585,7 +614,7 @@ public class SoundSystem extends Thread
         }
 
         return pcmBuffer;
-    }
+	}
 
     private static void mixUniformPCM(float[] result, int rBegin, float[] data, int dBegin, int numSamples)
     {
@@ -598,7 +627,7 @@ public class SoundSystem extends Thread
         }
     }
 
-    private static boolean convertChannels(Output output)
+	private static float[] convertChannels(float[] buffer, int numFrames, int numChannels, int numRequiredChannels)
     {
         /* Assignments for audio channels
          * channel 0: Front left
@@ -611,51 +640,49 @@ public class SoundSystem extends Thread
          * channel 7: Surround back right - ## NEEDS CONFIRMATION ##
          */
 
-        if(!output.receivedData() || output.mNumChannels == output.mAudioFormat.getChannels())
-            return true;
-
-        int numRequiredChannels = output.mAudioFormat.getChannels();
+        if(numChannels == numRequiredChannels)
+            return buffer;
 
         // we have to reduce the number of channels
-        if(output.mNumChannels > numRequiredChannels)
+        if(numChannels > numRequiredChannels)
         {
             // stereo/multichannel to mono - maybe this won't work properly for more than 2 channels
             //                             - ## NEEDS CONFIRMATION ##
             if(numRequiredChannels == 1)
             {
-                for(int i=0; i<output.mNumSamples; ++i)
+                for(int i=0; i<numFrames; ++i)
                 {
-                    int index   = i * output.mNumChannels;
+                    int index   = i * numChannels;
                     float value = 0.0f;
 
-                    for(int c=0; c<output.mNumChannels; ++c)
-                        value += output.mUniformPCM[index + c];
+                    for(int c=0; c<numChannels; ++c)
+                        value += buffer[index + c];
 
-                    output.mUniformPCM[i] = value / (float)output.mNumChannels;
+                    buffer[i] = value / (float)numChannels;
                 }
             }
             else
             {
                 // not implemented yet
-                return false;
+                buffer = null;
             }
         }
         else // we have to increase the number of channels
         {
             // mono to stereo/multichannel
-            if(output.mNumChannels == 1)
+            if(numChannels == 1)
             {
-                float[] newUniformPCM = new float[output.mNumSamples * numRequiredChannels];
+                float[] newUniformPCM = new float[numFrames * numRequiredChannels];
 
-                for(int i=0; i<output.mNumSamples; ++i)
+                for(int i=0; i<numFrames; ++i)
                 {
                     int index = i * numRequiredChannels;
 
                     for(int c=0; c<numRequiredChannels; ++c)
-                        newUniformPCM[index + c] = output.mUniformPCM[i];
+                        newUniformPCM[index + c] = buffer[i];
                 }
 
-                output.mUniformPCM = newUniformPCM;
+                buffer = newUniformPCM;
             }
             else // stereo/multichannel to multichannel
             {
@@ -668,20 +695,19 @@ public class SoundSystem extends Thread
                  */
 
                 // not implemented yet
-                return false;
+                buffer = null;
             }
         }
 
-        output.mNumChannels = numRequiredChannels;
-        return true;
+        return buffer;
     }
 
-    private static boolean convertSampleRate(Output output)
+	private static float[] convertSampleRate(float[] buffer, int numSamples, int numChannels, int sampleRate, int toSampleRate)
     {
-        if(!output.receivedData() || output.mSampleRate == (int)output.mAudioFormat.getSampleRate())
-            return true;
+        if(sampleRate == toSampleRate)
+            return buffer;
 
         // not implemented yet
-        return false;
+        return null;
     }
 }
