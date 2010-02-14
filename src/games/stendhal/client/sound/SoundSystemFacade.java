@@ -32,7 +32,7 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 	private final HashMap<String, Sound> sounds = new HashMap<String, Sound>();
 	private final ResourceLocator resourceLocator = ResourceManager.get();
 	private boolean mute = false;
-
+	
 	public static SoundSystemFacade get() {
 		return singletonInstance;
 	}
@@ -88,8 +88,12 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		return sounds.get(soundName);
 	}
 
-	private Sound openSound(String fileURI, SoundFile.Type fileType) {
+	public Sound openSound(String fileURI, SoundFile.Type fileType) {
 		return super.openSound(resourceLocator.getResource(fileURI), fileType);
+	}
+
+	public Sound openSound(String fileURI, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming) {
+		return super.openSound(resourceLocator.getResource(fileURI), fileType, numSamplesPerChunk, enableStreaming);
 	}
 
 	public void setMute(boolean mute) {
@@ -102,7 +106,7 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 	}
 
 	public void play(final String soundName, final double x, final double y, final SoundLayer soundLayer, int volume) {
-		AudibleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), 3, 18);
+		AudibleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), 3, 20);
 		playNonLoopedSound(soundName, area, soundLayer.ordinal(), volume);
 	}
 
@@ -128,7 +132,7 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		Sound sound = getSound(soundName);
 
 		if (sound == null) {
-			sound = openSound("audio:/" + soundName + ".ogg", SoundFile.Type.OGG);
+			sound = openSound("audio:/" + soundName + ".ogg", SoundFile.Type.OGG, 256, false);
 			setSound(soundName, sound);
 		}
 
