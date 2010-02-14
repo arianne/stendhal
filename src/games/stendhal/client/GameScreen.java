@@ -183,13 +183,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 		public void componentResized(ComponentEvent e) {
 			Dimension size = canvas.getSize(); 
-			if (!size.equals(stendhal.screenSize)) {
-				sw = Math.min(canvas.getWidth(), stendhal.screenSize.width);
-				sh = Math.min(canvas.getHeight(), stendhal.screenSize.height);
-				// Reset the view so that the player is in the center
-				calculateView();
-				center();
-			}
+
+			sw = Math.min(canvas.getWidth(), stendhal.screenSize.width);
+			sh = Math.min(canvas.getHeight(), stendhal.screenSize.height);
+			// Reset the view so that the player is in the center
+			calculateView();
+			center();
 		}
 
 		public void componentShown(ComponentEvent e) { 	}
