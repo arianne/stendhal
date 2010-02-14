@@ -724,7 +724,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		</entity>
 
 		<!--  table on the left -->
-		<entity x="44" y="39">
+		<entity x="45" y="39">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
 			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
@@ -733,7 +733,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		</entity>
 
 		<!--  table on the right -->
-		<entity x="47" y="39">
+		<entity x="48" y="39">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
 			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
