@@ -12,16 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.Rand;
-import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPObject;
 
-public class Creature extends RPEntity {
+public class Creature extends AudibleEntity {
 	/**
 	 * Debug property.
 	 */
@@ -102,95 +100,42 @@ public class Creature extends RPEntity {
 		if (object.has("name")) {
 			final String name = object.get("name");
 
+			addSoundsToGroup("attack",
+				"punch-1"   , "punch-2", "punch-3",
+				"punch-4"   , "punch-5", "punch-6",
+				"swingaxe-1", "slap-1" , "arrow-1");
+
 			if (type.startsWith("creature")) {
 				if (name.equals("wolf")) {
-					moveSounds = new String[] { "bark-1", "howl-5",
-							"howl-2", "howl-11" };
-
-				} else if (name.equals("rat") || name.equals("caverat")
-						|| name.equals("venomrat")) {
-					moveSounds = new String[2];
-					moveSounds[0] = "rats-2";
-					moveSounds[1] = "rats-41";
-					// moveSounds[2]="rats-3";
-
+					addSoundsToGroup("move", "bark-1", "howl-5", "howl-2", "howl-11");
+				} else if (name.equals("rat") || name.equals("caverat") || name.equals("venomrat")) {
+					addSoundsToGroup("move", "rats-2", "rats-41"/*, "rats-3*/);
 				} else if (name.equals("razorrat")) {
-					moveSounds = new String[1];
-					moveSounds[0] = "rats-1";
-
+					addSoundsToGroup("move", "rats-1");
 				} else if (name.equals("gargoyle")) {
-					moveSounds = new String[3];
-					moveSounds[0] = "hyena-1";
-					moveSounds[1] = "hyena-2";
-					moveSounds[2] = "hyena-3";
-
+					addSoundsToGroup("move", "hyena-1", "hyena-2", "hyena-3");
 				} else if (name.equals("boar")) {
-					moveSounds = new String[2];
-					moveSounds[0] = "pig-1";
-					moveSounds[1] = "pig-2";
-
+					addSoundsToGroup("move", "pig-1", "pig-2");
 				} else if (name.equals("bear")) {
-					moveSounds = new String[3];
-					moveSounds[0] = "bear-1";
-					moveSounds[1] = "bear-2";
-					moveSounds[2] = "bear-3";
-
+					addSoundsToGroup("move", "bear-1", "bear-2", "bear-3");
 				} else if (name.equals("giantrat")) {
-					moveSounds = new String[2];
-					moveSounds[0] = "bobcat-1";
-					moveSounds[1] = "leopard-11";
-
+					addSoundsToGroup("move", "bobcat-1", "leopard-11");
 				} else if (name.equals("cobra")) {
-					moveSounds = new String[1];
-					moveSounds[0] = "snake-1";
-
+					addSoundsToGroup("move", "snake-1");
 				} else if (name.equals("kobold")) {
-					moveSounds = new String[4];
-					moveSounds[0] = "panda-1";
-					moveSounds[1] = "panda-2";
-					moveSounds[2] = "racoon-1";
-					moveSounds[3] = "lama-1";
-
+					addSoundsToGroup("move", "panda-1", "panda-2", "racoon-1", "lama-1");
 				} else if (name.equals("goblin")) {
-					moveSounds = new String[2];
-					moveSounds[0] = "saur-3";
-					moveSounds[1] = "saur-4";
-
+					addSoundsToGroup("move", "saur-3", "saur-4");
 				} else if (name.equals("troll")) {
-					moveSounds = new String[5];
-					moveSounds[0] = "gorilla-1";
-					moveSounds[1] = "gorilla-2";
-					moveSounds[2] = "gorilla-3";
-					moveSounds[3] = "gorilla-4";
-					moveSounds[4] = "gorilla-5";
-
+					addSoundsToGroup("move", "gorilla-1", "gorilla-2", "gorilla-3", "gorilla-4", "gorilla-5");
 				} else if (name.equals("orc")) {
-					moveSounds = new String[2];
-					moveSounds[0] = "lion-11";
-					moveSounds[1] = "lion-22";
-
+					addSoundsToGroup("move", "lion-11", "lion-22");
 				} else if (name.equals("ogre")) {
-					moveSounds = new String[4];
-					moveSounds[0] = "yell-1";
-					moveSounds[1] = "groan-1";
-					moveSounds[2] = "moan-1";
-					moveSounds[3] = "fart-1";
-
+					addSoundsToGroup("move", "yell-1", "groan-1", "moan-1", "fart-1");
 				} else if (name.equals("skeleton")) {
-					moveSounds = new String[5];
-					moveSounds[0] = "bones-1";
-					moveSounds[1] = "evillaugh-3";
-					moveSounds[2] = "evillaugh-5";
-					moveSounds[3] = "ghost-1";
-					moveSounds[4] = "ghost-2";
-
+					addSoundsToGroup("move", "bones-1", "evillaugh-3", "evillaugh-5", "ghost-1", "ghost-2");
 				} else if (name.equals("cyclops")) {
-					moveSounds = new String[4];
-					moveSounds[0] = "laugh-33";
-					moveSounds[1] = "evillaugh-4";
-					moveSounds[2] = "grunt-1";
-					moveSounds[3] = "grunt-2";
-
+					addSoundsToGroup("move", "yell-1", "laugh-33", "evillaugh-4", "grunt-1", "grunt-2");
 				}
 			}
 		}
@@ -201,8 +146,6 @@ public class Creature extends RPEntity {
 			metamorphosis = null;
 		}
 	}
-
-	private long soundWait;
 
 	/**
 	 * When the entity's position changed.
@@ -215,15 +158,15 @@ public class Creature extends RPEntity {
 	@Override
 	protected void onPosition(final double x, final double y) {
 		super.onPosition(x, y);
-
-		if ((soundWait < System.currentTimeMillis()) && (Rand.rand(100) < 5)) {
-			if (moveSounds != null) {
-				SoundSystemFacade.get().play(moveSounds[Rand.rand(moveSounds.length)], x, y, SoundLayer.CREATURE_NOISE, 100);
-			}
-
-			soundWait = System.currentTimeMillis() + 1000L;
-		}
+		playRandomSoundFromGroup("move", 1.0f, 1000);
 	}
+
+	@Override
+	public void onDamaged(Entity attacker, int damage) {
+		super.onDamaged(attacker, damage);
+		playRandomSoundFromGroup("attack", 1.0f);
+	}
+
 
 	//
 	// RPObjectChangeListener

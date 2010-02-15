@@ -19,7 +19,7 @@ import marauroa.common.game.RPObject;
 /**
  * A food entity.
  */
-public abstract class Food extends Entity {
+public abstract class Food extends AudibleEntity {
 	/**
 	 * Amount property.
 	 */
@@ -64,6 +64,7 @@ public abstract class Food extends Entity {
 	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
+		addSoundsToGroup("food", "pop-2");
 
 		if (object.has("amount")) {
 			amount = object.getInt("amount");
@@ -95,7 +96,7 @@ public abstract class Food extends Entity {
 			// TODO this causes problems because of unidentified content refresh
 			// events (e.g. synchronizing)
 			if (amount > oldAmount) {
-				SoundSystemFacade.get().play("pop-2", getX(), getY(), SoundLayer.CREATURE_NOISE, 100);
+				playRandomSoundFromGroup("food", 1.0f);
 			}
 
 			fireChange(PROP_AMOUNT);

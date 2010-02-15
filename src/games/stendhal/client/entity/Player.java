@@ -16,7 +16,7 @@ import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPObject;
 
 /** A Player entity. */
-public class Player extends RPEntity {
+public class Player extends AudibleEntity {
 	
 	/**
 	 * Away property.
@@ -129,6 +129,21 @@ public class Player extends RPEntity {
 		}
 	}
 
+	@Override
+	public void initialize(RPObject object) {
+		super.initialize(object);
+
+		addSoundsToGroup("attack",
+			"punch-1"   , "punch-2", "punch-3",
+			"punch-4"   , "punch-5", "punch-6",
+			"swingaxe-1", "slap-1" , "arrow-1");
+	}
+
+	@Override
+	public void onDamaged(Entity attacker, int damage) {
+		super.onDamaged(attacker, damage);
+		playRandomSoundFromGroup("attack", 1.0f);
+	}
 
 	//
 	// RPObjectChangeListener
