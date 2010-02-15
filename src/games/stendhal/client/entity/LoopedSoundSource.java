@@ -81,7 +81,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	 */
 	private void play() {
 		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float)x, (float)y), radius / 2.0f, radius);
-		float             vol  = 0.7f; //Numeric.intToFloat(volume, 100.0f);
+		float             vol  = Numeric.intToFloat(volume, 100.0f);
 		SoundSystemFacade.get().play(sound, vol, 0, area, true, new Time(3, Time.Unit.SEC));
 	}
 
