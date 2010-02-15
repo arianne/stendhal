@@ -24,8 +24,12 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.sound.SoundSystemFacade;
-import games.stendhal.client.sound.manager.SoundManager.Sound;
+import games.stendhal.client.sound.manager.AudibleCircleArea;
+import games.stendhal.client.sound.manager.SoundFile;
+import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.math.Algebra;
+import games.stendhal.common.math.Numeric;
 import marauroa.common.game.RPObject;
 
 
@@ -36,19 +40,15 @@ public class LoopedSoundSource extends InvisibleEntity {
 	private int volume;
 	private SoundLayer layer = SoundLayer.AMBIENT_SOUND;
 
-	private Sound soundObject;
-
 	@Override
 	public void onChangedAdded(RPObject object, RPObject changes) {
 		// stop the current sound
-		if (sound != null) {
-			SoundSystemFacade.get().stop(soundObject);
-		}
+		SoundSystemFacade.get().stop(sound, new Time(3, Time.Unit.SEC));
 
 		// udpate
 		super.onChangedAdded(object, changes);
+		
 		update(changes);
-
 		play();
 	}
 
@@ -60,6 +60,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	private void update(RPObject object) {
 		if (object.has("sound")) {
 			sound = object.get("sound");
+			SoundSystemFacade.get().loadSound(sound, "audio:/" + sound + ".ogg", SoundFile.Type.OGG, true);
 		}
 		if (object.has("radius")) {
 			radius = object.getInt("radius");
@@ -79,7 +80,9 @@ public class LoopedSoundSource extends InvisibleEntity {
 	 * plays the sound
 	 */
 	private void play() {
-		soundObject = SoundSystemFacade.get().start(sound, x, y, radius, layer, volume, true);
+		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float)x, (float)y), radius / 2.0f, radius);
+		float             vol  = 0.7f; //Numeric.intToFloat(volume, 100.0f);
+		SoundSystemFacade.get().play(sound, vol, 0, area, true, new Time(3, Time.Unit.SEC));
 	}
 
 	/**
@@ -91,6 +94,6 @@ public class LoopedSoundSource extends InvisibleEntity {
 	@Override
 	public void release() {
 		super.release();
-		SoundSystemFacade.get().stop(soundObject);
+		SoundSystemFacade.get().stop(sound, new Time(3, Time.Unit.SEC));
 	}
 }
