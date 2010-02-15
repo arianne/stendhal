@@ -6,6 +6,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.manager.AudibleArea;
 import games.stendhal.client.sound.manager.AudibleCircleArea;
 import games.stendhal.client.sound.manager.SoundFile;
+import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.client.sound.manager.SoundManager;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.constants.SoundLayer;
@@ -59,6 +60,7 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		// exits the sound system
 	}
 
+	@Deprecated
 	public Sound start(String soundName, double x, double y, int radius, SoundLayer layer, int volume, boolean loop) {
 		if (!mute) {
 			Sound sound = prepareSound(soundName);
@@ -76,15 +78,16 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		return null;
 	}
 
+	@Deprecated
 	public void stop(Sound sound) {
 		stop(sound, fadingTime);
 	}
 
-	private Sound setSound(String soundName, Sound sound) {
-		return sounds.put(soundName, sound);
+	public void stop(String soundName, Time fadeOutDuration) {
+		super.stop(getSound(soundName), fadeOutDuration);
 	}
 
-	private Sound getSound(String soundName) {
+	public Sound getSound(String soundName) {
 		return sounds.get(soundName);
 	}
 
@@ -96,25 +99,47 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		return super.openSound(resourceLocator.getResource(fileURI), fileType, numSamplesPerChunk, enableStreaming);
 	}
 
+	public Sound loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
+		Sound sound = sounds.get(name);
+
+		if(sound == null) {
+			sound = super.openSound(resourceLocator.getResource(fileURI), fileType, 256, enableStreaming);
+
+			if(sound != null) {
+				sounds.put(name, sound);
+			}
+		}
+
+		return sound;
+	}
+
 	public void setMute(boolean mute) {
 		this.mute = mute;
 	}
 
 	public void play(final String soundName, final SoundLayer soundLayer, int volume) {
 		AudibleArea area = SoundManager.INFINITE_AUDIBLE_AREA;
-		playNonLoopedSound(soundName, area, soundLayer.ordinal(), volume);
+		Sound sound = loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
+		play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, false, new Time());
 	}
 
 	public void play(final String soundName, final double x, final double y, final SoundLayer soundLayer, int volume) {
 		AudibleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), 3, 20);
-		playNonLoopedSound(soundName, area, soundLayer.ordinal(), volume);
+		Sound sound = loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
+		play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, false, new Time());
 	}
 
 	public void play(final String soundName, final double x, final double y, int radius, final SoundLayer soundLayer, int volume) {
 		AudibleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), radius / 4.0f, radius);
-		playNonLoopedSound(soundName, area, soundLayer.ordinal(), volume);
+		Sound sound = loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
+		play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, false, new Time());
 	}
 
+	public void play(String soundName, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration) {
+		super.play(getSound(soundName), volume, layerLevel, area, autoRepeat, fadeInDuration);
+	}
+
+	@Deprecated
 	public void playNonLoopedSound(String soundName, AudibleArea area, int soundLayer, int volume) {
 		if (mute) {
 			return;
@@ -124,17 +149,13 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, false, new Time());
 	}
 
+	@Deprecated
 	public Sound prepareSound(String soundName) {
 		if (soundName == null) {
 			return null;
 		}
 
-		Sound sound = getSound(soundName);
-
-		if (sound == null) {
-			sound = openSound("audio:/" + soundName + ".ogg", SoundFile.Type.OGG, 256, false);
-			setSound(soundName, sound);
-		}
+		Sound sound = loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
 
 		if (sound != null) {
 			sound = sound.clone();
