@@ -18,6 +18,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.util.List;
 
@@ -103,6 +104,14 @@ class Player2DView extends RPEntity2DView {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
 			return store.getFailsafeOutfit();
 		}
+	}
+	
+	@Override
+	protected AlphaComposite getComposite() {
+		if (User.isIgnoring(entity.getName())) {
+			return AlphaComposite.DstOut;
+		}
+		return super.getComposite();
 	}
 
 	/**
