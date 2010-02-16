@@ -37,7 +37,7 @@ public class UpdatePlayerEntitiesTest {
 			
 			PlayerModifier pm = new PlayerModifier();
 			Player loaded = pm.loadPlayer(transaction, "george");
-			assertNotNull("pm can only handle existing players, so if this fails first create a player in db by login", loaded);
+			assertNotNull("pm can only handle existing players, so if this fails first create a player called george in db by login", loaded);
 			if (loaded.getSlot("bag").size() > 0) {
 				loaded.getSlot("bag").remove(loaded.getSlot("bag").getFirst().getID());
 			}
