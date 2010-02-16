@@ -2,14 +2,23 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import games.stendhal.client.entity.Creature;
+import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.creature.KillNotificationCreature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.townhall.MayorNPC;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -25,36 +34,48 @@ public class ThePiedPiperTest {
 	// private static String questSlot = "the_pied_piper";
 
 	private Player player = null;
-	private SpeakerNPC npc = null;
-	private Engine en = null;
+	private static SpeakerNPC npc = null;
+	private static Engine en = null;
 	final static ThePiedPiper quest = new ThePiedPiper();
+	private int rewardMoneys = 0;
+	private int[] killedRats = {0,0,0,0,0,0};
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
+		
+		final StendhalRPZone playerzone = new StendhalRPZone("int_semos_guard_house");
+		SingletonRepository.getRPWorld().addRPZone(playerzone);
 
+		for(int i=0; i<ThePiedPiper.RAT_ZONES.size();i++) {
+			StendhalRPZone ratZone = new StendhalRPZone(ThePiedPiper.RAT_ZONES.get(i),100,100);
+			SingletonRepository.getRPWorld().addRPZone(ratZone);
+		}
+		
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 		new MayorNPC().configureZone(zone, null);
-
 		quest.addToWorld();
-
+		npc = SingletonRepository.getNPCList().get("Mayor Chalmers");
+		en = npc.getEngine();		
 	}
 	@Before
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");
+		player.setAdminLevel(600);
+		player.setATKXP(100000000);
+		player.setDEFXP(100000000);
+		player.setXP(100000000);
+		player.setHP(10000);		
 	}
 
 	/**
 	 * Tests for quest.
 	 */
 	@Test
-	public void testQuest() {
-
-		npc = SingletonRepository.getNPCList().get("Mayor Chalmers");
-		en = npc.getEngine();
-
+	public void testInactivePhase() {
+		
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
@@ -73,10 +94,10 @@ public class ThePiedPiperTest {
 	/**
 	 * Tests for quest2.
 	 */
-	@Ignore
-	public void testQuest2() {
+	@Test
+	public void testInvasionPhaseStart() {
 		// [17:50] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
-
+		quest.PhaseInactiveToInvasion();
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
@@ -85,9 +106,44 @@ public class ThePiedPiperTest {
 		assertEquals("Good day to you.", getReply(npc));
 	}
 	
-	@Ignore
-	public void testQuest3() {
-
+	private void killRat(KillNotificationCreature rat, int count) {
+		player.teleport(rat.getZone(), rat.getX()+1, rat.getY(), null, player);
+		player.setTarget(rat);
+		player.attack();
+		int turn=0;
+		while(player.isAttacking()) {
+			turn = SingletonRepository.getTurnNotifier().getCurrentTurnForDebugging();
+			SingletonRepository.getTurnNotifier().logic(turn+1);
+			//prevent player killing
+			player.setHP(10000);
+			if(player.isPoisoned()) {
+				player.healPoison();
+			};
+			player.teleport(rat.getZone(), rat.getX()+1, rat.getY(), null, player);
+			player.setTarget(rat);
+			player.attack();
+		}
+		Logger.getLogger("ThePiedPiperTest").info(
+				"turn: "+turn+"; killed "+rat.getName()+
+				". #"+count+" (totally "+quest.rats.size()+")");
+	}
+	
+	private void killRats(int numb) {
+		int count=0;
+		for (int i=0; i<numb;i++) {
+			String name = quest.rats.get(numb-i-1).getName();
+			int kind = ThePiedPiper.RAT_TYPES.indexOf(name);
+			killRat(quest.rats.get(numb-i-1),count);
+			count++;			
+			killedRats[kind]++;
+			rewardMoneys = rewardMoneys + ThePiedPiper.RAT_REWARDS.get(kind);
+			Logger.getLogger("ThePiedPiperTest").info("quest slot: "+player.getQuest("the_pied_piper"));
+		}		
+	}
+	
+	@Test
+	public void testInvasionPhaseEnd() {
+		killRats(quest.rats.size());
 		// [17:58] Mayor Chalmers shouts: No rats in Ados now, exclude those who always lived in storage and haunted house. Rats hunters are welcome to get their reward.
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -96,15 +152,20 @@ public class ThePiedPiperTest {
 							  "get a #reward for the last time you helped. You can ask for #details "+
 							  "if you want.", getReply(npc));
 		en.step(player, "details");
-		assertEquals("Well, from the last reward, you killed 19 rats, 3 caverats, 0 venomrats, 5 razorrats, 0 giantrats, and 0 archrats, so I will give you 1050 money as a #reward for that job.", getReply(npc));
+		
+		assertEquals("Well, from the last reward, you killed "+
+				"19 rats, 3 caverats, 0 venomrats, 5 razorrats, 0 giantrats, and 0 archrats"+
+				", so I will give you "+rewardMoneys+
+				" money as a #reward for that job.", getReply(npc));
 		en.step(player, "reward");
-		assertEquals("Here is your 1050 money, thank you very much for your help.", getReply(npc));
+		
+		assertEquals("Here is your "+ rewardMoneys +" money, thank you very much for your help.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 	}
 	
 	@Ignore
-	public void testQuest4() {
+	public void testInvasionPhase2() {
 		// [18:09] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
 
 		en.step(player, "hi");
@@ -126,7 +187,7 @@ public class ThePiedPiperTest {
 	}
 	
 	@Ignore
-	public void testQuest5() {	
+	public void testAwaitingPhaseStart() {	
 		// [18:19] Mayor Chalmers shouts: Saddanly, rats captured city, they are living now under all Ados buildings. I am now in need of call Piped Piper, rats exterminator. Thank to all who tryed to clean up Ados,  you are welcome to get your reward.
 
 		en.step(player, "hi");
@@ -144,7 +205,7 @@ public class ThePiedPiperTest {
 	}
 	
 	@Ignore
-	public void testQuest6() {
+	public void testAwaitingPhaseEnd() {
 		// [19:20] Mayor Chalmers shouts: Thanx gods, rats is gone now, Pied Piper hypnotized them and lead away to dungeons. Those of you, who helped to Ados city with rats problem, can get your reward now.
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
