@@ -62,7 +62,7 @@ import org.apache.log4j.Logger;
 
 	private static final String QUEST_SLOT = "the_pied_piper";
 	private static Logger logger = Logger.getLogger(ThePiedPiper.class);
-	private LinkedList<KillNotificationCreature> rats =
+	protected LinkedList<KillNotificationCreature> rats =
 		new LinkedList<KillNotificationCreature>();
 
 
@@ -114,7 +114,7 @@ import org.apache.log4j.Logger;
 	 * TODO: add other Ados buildings here, and improve summonRats() function
 	 *       to avoid placing rats inside closed areas within houses.
 	 */
-	private static final List<String> RAT_ZONES = Arrays.asList(
+	protected static final List<String> RAT_ZONES = Arrays.asList(
 //			"int_ados_haunted_house",
 //			"int_ados_storage",
 			"int_ados_barracks_0",
@@ -139,7 +139,7 @@ import org.apache.log4j.Logger;
 	/**
 	 * List of creatures types to create.
 	 */
-	private static final List<String> RAT_TYPES = Arrays.asList(
+	protected static final List<String> RAT_TYPES = Arrays.asList(
 			"rat",
 			"caverat",
 			"venomrat",
@@ -150,7 +150,7 @@ import org.apache.log4j.Logger;
 	/**
 	 * List of moneys quantities reward for each type of killed rats.
 	 */
-	private static final List<Integer> RAT_REWARDS = Arrays.asList(
+	protected static final List<Integer> RAT_REWARDS = Arrays.asList(
 			10,
 			20,
 			100,
