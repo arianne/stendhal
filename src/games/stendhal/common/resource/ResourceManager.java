@@ -55,11 +55,18 @@ public class ResourceManager extends ResourceLocator
 		}
 	}
 
-	private class CPSchemeLocator implements ResourceLocator.Locator
+	private interface SchemeLocator
+	{
+		void        addSearchPath(String path);
+		InputStream locate       (URI uri);
+		boolean     isLocatable  (URI uri);
+	}
+
+	private class CPSchemeLocator implements ResourceLocator.Locator, SchemeLocator
 	{
 		final ArrayList<String> mPaths = new ArrayList<String>();
 
-		void addSearchPath(String path)
+		public void addSearchPath(String path)
 		{
 			if(path.endsWith("/"))
 				path = path.substring(0, path.length() - 1);
@@ -87,25 +94,27 @@ public class ResourceManager extends ResourceLocator
 		{
 			InputStream stream = locate(uri);
 
-			try
+			if(stream != null)
 			{
-				stream.close();
+				try
+				{
+					stream.close();
+				}
+				catch(IOException exception)
+				{
+					assert false: exception;
+					stream = null;
+				}
 			}
-			catch(IOException exception)
-			{
-				assert false: exception;
-				stream = null;
-			}
-
 			return stream != null;
 		}
 	}
 
-	private class SchemeLocator implements ResourceLocator.Locator
+	private class FSSchemeLocator implements ResourceLocator.Locator, SchemeLocator
 	{
 		final ArrayList<File> mDirectories = new ArrayList<File>();
 
-		void addSearchPath(String path)
+		public void addSearchPath(String path)
 		{
 			File directory = new File(mRootDirectory, path);
 
@@ -113,7 +122,7 @@ public class ResourceManager extends ResourceLocator
 				mDirectories.add(directory);
 		}
 
-		File locateFile(URI uri)
+		public File locateFile(URI uri)
 		{
 			for(File directory: mDirectories)
 			{
@@ -146,7 +155,7 @@ public class ResourceManager extends ResourceLocator
 		}
 	}
 
-	private final HashMap<String,CPSchemeLocator> mSchemeLocators = new HashMap<String,CPSchemeLocator>();
+	private final HashMap<String,SchemeLocator> mSchemeLocators = new HashMap<String,SchemeLocator>();
 	private File                                mRootDirectory  = null;
 
 	public void addScheme(String name, String ...searchPaths)
@@ -156,10 +165,10 @@ public class ResourceManager extends ResourceLocator
 
 		if(!mSchemeLocators.containsKey(name))
 		{
-			CPSchemeLocator locator = new CPSchemeLocator();
+			SchemeLocator locator = new CPSchemeLocator();
 
 			mSchemeLocators.put(name, locator);
-			setLocator(name, locator);
+			setLocator(name, (Locator)locator);
 
 			for(String path: searchPaths)
 				locator.addSearchPath(path);
@@ -168,7 +177,7 @@ public class ResourceManager extends ResourceLocator
 
 	public void addSearchPath(String scheme, String path)
 	{
-		CPSchemeLocator locator = mSchemeLocators.get(scheme);
+		SchemeLocator locator = mSchemeLocators.get(scheme);
 		
 		assert locator != null;
 		assert path    != null;
