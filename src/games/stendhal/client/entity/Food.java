@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.sound.SoundSystemFacade;
-import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 /**

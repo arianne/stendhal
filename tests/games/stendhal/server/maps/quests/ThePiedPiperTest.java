@@ -1,16 +1,9 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import games.stendhal.client.entity.Creature;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.KillNotificationCreature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -28,7 +21,6 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class ThePiedPiperTest {
 
