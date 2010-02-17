@@ -1,17 +1,23 @@
 package games.stendhal.server.actions.admin;
 
-import static games.stendhal.common.constants.Actions.SUPPORTANSWER;
-import static games.stendhal.common.constants.Actions.TARGET;
-import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.actions.admin.support.SupportMessageTemplatesFactory;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Map;
+
 import marauroa.common.game.RPAction;
+import static games.stendhal.common.constants.Actions.SUPPORTANSWER;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TEXT;
 
 public class SupportAnswerAction extends AdministrationAction {
+	
+	private static final Map<String, String> messageTemplates = new SupportMessageTemplatesFactory().getTemplates();
 
 	public static void register() {
 		CommandCenter.register(SUPPORTANSWER, new SupportAnswerAction(), 50);
@@ -29,34 +35,14 @@ public class SupportAnswerAction extends AdministrationAction {
 			// test for use of standard response shortcut, and replace the reply message if so
 			// if you alter these please update client/actions/GMHelpAction (or put the string replies in a common file if you like)
 			if (reply.startsWith("$")) {
-				if ("$faq".equals(reply)) {
-					reply = "Hi, you will find the answer to your question in the Stendhal FAQ. It's very helpful so please read it thoroughly! #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ. Thanks for playing Stendhal!";
-				} else if ("$faqsocial".equals(reply)) {
-					reply = "Hi, sorry to hear about that. But unfortunately support is not here to help you with social problems unless it gets way out of hand. This issue is discussed further on the stendhal FAQ and how to deal with it is described there. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_social_problems - hopefully the rest of your Stendhal experience will be more pleasant.";
-				} else if ("$ignore".equals(reply)) {
-					reply = "Sorry to hear that you have had some problems with another player. Please try to ignore them. You can use "
-						+ "#/ignore #playername to prevent chat messages.";
-				} else if ("$faqpvp".equals(reply)) {
-					reply = "Hi, sorry to hear about that. Player attacks are actually within the rules of the game, and it is not something that support gets involved with for that reason. Please read carefully #http://stendhal.game-host.org/wiki/index.php/StendhalFAQ#Player_vs_Player - good luck for the future.";
-				} else if ("$wiki".equals(reply)) {
-					reply = "Hi, this is a question which is answered on the Stendhal wiki, please look on #http://stendhal.game-host.org/wiki/index.php/Stendhal as this is full of useful information. Thanks for playing Stendhal.";
-				} else if ("$knownbug".equals(reply)) {
-					reply = "Hi, thank you for telling us about this bug, we have found it ourselves too and it's already reported. Thank you though and please do keep reporting bugs if you see them!";
-				} else if ("$bugstracker".equals(reply)) {
-					reply = "Hi, it sounds like you have found a new bug. Please could you create a bug report, details on how to do this are at #http://stendhal.game-host.org/wiki/index.php/SubmitBug - thank you very much.";
-				} else if ("$rules".equals(reply)) {
-					reply = "Please read the Stendhal Rules at #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem - thank you.";
-				} else if ("$notsupport".equals(reply)) {
-					reply = "Sorry, but support cannot help with this issue. Please use #http://stendhal.game-host.org and the wiki #http://stendhal.game-host.org/wiki/index.php/Stendhal as information sources.";
-				} else if ("$spam".equals(reply)) {
-					reply = "Repeatedly saying the same thing over and over again is considered spamming, and this is against the rules of the game. Please do not spam, and please read #http://stendhal.game-host.org/wiki/index.php/StendhalRuleSystem, thank you.";
+				if (messageTemplates.containsKey(reply)) {
+					reply = messageTemplates.get(reply);
 				} else {
 					player.sendPrivateText(reply + " is not a recognised shortcut. Did you mean $faq, $faqsocial, $ignore, $faqpvp, $wiki, $knownbug, $bugstracker, $rules, $notsupport or $spam?");
 					// send no support answer message if the shortcut wasn't understood
 					return;
 				}				
 			}
-			
 			final String message = player.getTitle() + " answers " + Grammar.suffix_s(action.get(TARGET))
 					+ " support question: " + reply;
 
@@ -73,5 +59,4 @@ public class SupportAnswerAction extends AdministrationAction {
 			}
 		}
 	}
-
 }
