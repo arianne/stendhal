@@ -3,6 +3,11 @@ package games.stendhal.common.messages;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * provides a single point where to define support message templates
+ * @author madmetzger
+ *
+ */
 public class SupportMessageTemplatesFactory {
 	
 	private static final String TEMPLATE_PREFIX = "$";
