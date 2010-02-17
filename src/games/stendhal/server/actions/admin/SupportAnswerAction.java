@@ -2,8 +2,8 @@ package games.stendhal.server.actions.admin;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.messages.SupportMessageTemplatesFactory;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.actions.admin.support.SupportMessageTemplatesFactory;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;

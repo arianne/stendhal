@@ -1,4 +1,4 @@
-package games.stendhal.server.actions.admin.support;
+package games.stendhal.common.messages;
 
 import java.util.HashMap;
 import java.util.Map;
