@@ -8,6 +8,7 @@ Changelog
 - having multiple correct answers for a riddle now possible
 - athor labyrinth redrawn 
 - h2 database support
+- ignored players are drawn as black forms
 
 *bug fixes*
 - numerous small map fixes
@@ -18,6 +19,7 @@ Changelog
 - feedback on using portals and chests from too far away
 - fixed "Drag and drop sometimes misses slots and hits ground instead" (was for drag and drop onto same slot)
 - better reject message for inactive accounts
+- fixed leander stealing all the pizzas of a player who has failed the quest previously
 
 *code*
 - sound system rewritten and using oggs 
