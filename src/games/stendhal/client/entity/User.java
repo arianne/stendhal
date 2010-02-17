@@ -7,10 +7,10 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Grammar;
-import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.NotificationType;
 
 import java.awt.geom.Rectangle2D;
+import java.util.HashSet;
 
 import marauroa.common.game.RPObject;
 
@@ -22,6 +22,7 @@ import marauroa.common.game.RPObject;
 public class User extends Player {
 
 	private static User instance;
+	private HashSet<String> ignore = new HashSet<String>();
 
 	private String serverVersion = null;
 
@@ -267,6 +268,13 @@ public class User extends Player {
 							NotificationType.ERROR));
 				}
 			}
+			
+			if (changes.hasSlot("!ignore")) {
+				RPObject ign = changes.getSlot("!ignore").getFirst();
+				if (ign != null) {
+					addIgnore(ign);
+				}
+			}
 		}
 	}
 
@@ -274,6 +282,12 @@ public class User extends Player {
 	public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		modificationCount++;
 		super.onChangedRemoved(base, diff);
+		if (diff.hasSlot("!ignore")) {
+			RPObject ign = diff.getSlot("!ignore").getFirst();
+			if (ign != null) {
+				removeIgnore(ign);
+			}			
+		}
 	}
 
 	/**
@@ -362,11 +376,34 @@ public class User extends Player {
 			return false;
 		}
 		
-		// compatibility with 0.79 server
-		if (!User.get().rpObject.hasSlot("!ignore")) {
-			return false;
+		return User.get().ignore.contains(name);
+	}
+
+	/**
+	 * Add players to the set of ignored players.
+	 * Player names are the attributes prefixed with '_'.
+	 *  
+	 * @param ignoreObj The container object for player names
+	 */
+	private void addIgnore(RPObject ignoreObj) {
+		for (String attr : ignoreObj) {
+			if (attr.charAt(0) == '_') {
+				ignore.add(attr.substring(1));
+			}
 		}
-		// end compatibility
-		return KeyedSlotUtil.getKeyedSlot(User.get().rpObject, "!ignore", "_" + name) != null;
+	}
+	
+	/**
+	 * Remove players from the set of ignored players.
+	 * Player names are the attributes prefixed with '_'.
+	 * 
+	 * @param ignoreObj The container object for player names
+	 */
+	private void removeIgnore(RPObject ignoreObj) {
+		for (String attr : ignoreObj) {
+			if (attr.charAt(0) == '_') {
+				ignore.remove(attr.substring(1));
+			}
+		}
 	}
 }
