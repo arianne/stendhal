@@ -36,7 +36,7 @@ public class SoundManager
 
     private final static int                 OUTPUT_NUM_SAMPLES       = 256;
 	private final static int                 SOUND_CHANNEL_LIMIT      = 50;
-	private final static int                 USE_NUM_MIXER_LINES      = 20;
+	private final static int                 USE_NUM_MIXER_LINES      = 0;
     private final static int                 DIMENSION                = 2;
     private final static float[]             HEARER_LOOKONG_DIRECTION = { 0.0f, 1.0f };
     private final static AudioFormat         AUDIO_FORMAT             = new AudioFormat(44100, 16, 2, true, false);
@@ -53,7 +53,6 @@ public class SoundManager
 		{
 			Sound sound = new Sound();
 			sound.file.set(file.get().clone());
-			
 			return sound;
 		}
 
@@ -92,7 +91,7 @@ public class SoundManager
         void    resumePlayback()                            { mInterruptor.play();                         }
 		void    close         ()                            { mSoundSystem.closeOutput(mOutput);           }
         
-        void playSound(Sound newSound, Time time)
+        void playSound(Sound newSound, float volume, Time time)
         {
             if(mSound != null)
             {
@@ -109,17 +108,12 @@ public class SoundManager
                 
                 mInterruptor.play();
                 mGlobalVolume.setVolume(0.0f);
-                mGlobalVolume.startFading(1.0f, time);
+                mGlobalVolume.startFading(volume, time);
                 newSound.channel.set(this);
                 newSound.file.get().connectTo(mInterruptor, true);
             }
 
             mSound = newSound;
-/*
-            if(newSound == null) { counter--; }
-			else                 { counter++; }
-            System.out.println((System.currentTimeMillis() / 1000) + " counter: " + counter);
-//*/
             mIsActive.set(newSound != null);
         }
 
@@ -147,11 +141,10 @@ public class SoundManager
             }
             else
             {
-                playSound(null, null);
+                playSound(null, 0, null);
                 super.quit();
             }
         }
-
     }
     
     private final LinkedList<SoundChannel> mChannels       = new LinkedList<SoundChannel>();
@@ -240,10 +233,9 @@ public class SoundManager
         {
             SoundChannel channel = getInactiveChannel();
             channel.setAutoRepeat(autoRepeat);
-			channel.setVolume(volume);
             channel.setLayer(layerLevel);
             channel.setAudibleArea(area);
-            channel.playSound(sound, fadeInDuration);
+            channel.playSound(sound, volume, fadeInDuration);
 			channel.update();
 
 			closeInactiveChannels(SOUND_CHANNEL_LIMIT);
