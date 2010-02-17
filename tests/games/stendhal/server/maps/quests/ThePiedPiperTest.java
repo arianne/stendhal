@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.client.entity.Creature;
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
@@ -141,6 +142,22 @@ public class ThePiedPiperTest {
 		}		
 	}
 	
+	private String details() {
+		final StringBuilder sb = new StringBuilder();
+		int kills = 0;
+		for(int i=0; i<ThePiedPiper.RAT_TYPES.size(); i++) {
+				kills=killedRats[i];
+			// must add 'and' word before last creature in list
+			if(i==(ThePiedPiper.RAT_TYPES.size()-1)) {
+				sb.append("and ");
+			};
+
+			sb.append(Grammar.quantityplnoun(kills, ThePiedPiper.RAT_TYPES.get(i)));
+			sb.append(", ");
+		}
+		return(sb.toString());
+	}
+	
 	@Test
 	public void testInvasionPhaseEnd() {
 		killRats(quest.getRatsCount());
@@ -154,8 +171,8 @@ public class ThePiedPiperTest {
 		en.step(player, "details");
 		
 		assertEquals("Well, from the last reward, you killed "+
-				"19 rats, 3 caverats, 0 venomrats, 5 razorrats, 0 giantrats, and 0 archrats"+
-				", so I will give you "+rewardMoneys+
+				details()+
+				"so I will give you "+rewardMoneys+
 				" money as a #reward for that job.", getReply(npc));
 		en.step(player, "reward");
 		
