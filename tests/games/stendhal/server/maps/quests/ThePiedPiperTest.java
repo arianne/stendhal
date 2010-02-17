@@ -15,6 +15,7 @@ import games.stendhal.server.entity.creature.KillNotificationCreature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.townhall.MayorNPC;
 
@@ -32,7 +33,6 @@ public class ThePiedPiperTest {
 
 
 	// private static String questSlot = "the_pied_piper";
-
 	private Player player = null;
 	private static SpeakerNPC npc = null;
 	private static Engine en = null;
@@ -63,11 +63,13 @@ public class ThePiedPiperTest {
 	@Before
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");
+		PlayerTestHelper.registerPlayer(player);
+		PlayerTestHelper.equipWithItem(player, "golden blade");
 		player.setAdminLevel(600);
 		player.setATKXP(100000000);
 		player.setDEFXP(100000000);
 		player.setXP(100000000);
-		player.setHP(10000);		
+		player.setHP(10000);	
 	}
 
 	/**
@@ -107,14 +109,9 @@ public class ThePiedPiperTest {
 	}
 	
 	private void killRat(KillNotificationCreature rat, int count) {
-		player.teleport(rat.getZone(), rat.getX()+1, rat.getY(), null, player);
-		player.setTarget(rat);
-		player.attack();
-		int turn=0;
-		while(player.isAttacking()) {
-			turn = SingletonRepository.getTurnNotifier().getCurrentTurnForDebugging();
-			SingletonRepository.getTurnNotifier().logic(turn+1);
-			//prevent player killing
+		do {
+			MockStendhalRPRuleProcessor.get().beginTurn();
+			// prevent player killing
 			player.setHP(10000);
 			if(player.isPoisoned()) {
 				player.healPoison();
@@ -122,28 +119,31 @@ public class ThePiedPiperTest {
 			player.teleport(rat.getZone(), rat.getX()+1, rat.getY(), null, player);
 			player.setTarget(rat);
 			player.attack();
-		}
+			MockStendhalRPRuleProcessor.get().endTurn();
+		} while (player.isAttacking());
 		Logger.getLogger("ThePiedPiperTest").info(
-				"turn: "+turn+"; killed "+rat.getName()+
-				". #"+count+" (totally "+quest.rats.size()+")");
+				"killed "+rat.getName()+". #"+count);
+		MockStendhalRPRuleProcessor.get().beginTurn();
+		MockStendhalRPRuleProcessor.get().endTurn();
 	}
 	
 	private void killRats(int numb) {
 		int count=0;
+		Logger.getLogger("ThePiedPiperTest").info("number of rats to kill: "+numb);
 		for (int i=0; i<numb;i++) {
-			String name = quest.rats.get(numb-i-1).getName();
+			String name = quest.rats.get(0).getName();
 			int kind = ThePiedPiper.RAT_TYPES.indexOf(name);
-			killRat(quest.rats.get(numb-i-1),count);
+			killRat(quest.rats.get(0),count);
 			count++;			
 			killedRats[kind]++;
 			rewardMoneys = rewardMoneys + ThePiedPiper.RAT_REWARDS.get(kind);
-			Logger.getLogger("ThePiedPiperTest").info("quest slot: "+player.getQuest("the_pied_piper"));
+			//Logger.getLogger("ThePiedPiperTest").info("quest slot: "+player.getQuest("the_pied_piper"));
 		}		
 	}
 	
 	@Test
 	public void testInvasionPhaseEnd() {
-		killRats(quest.rats.size());
+		killRats(quest.getRatsCount());
 		// [17:58] Mayor Chalmers shouts: No rats in Ados now, exclude those who always lived in storage and haunted house. Rats hunters are welcome to get their reward.
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
