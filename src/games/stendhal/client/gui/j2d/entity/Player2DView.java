@@ -42,6 +42,8 @@ class Player2DView extends RPEntity2DView {
 	 * Sprite representing grumpy.
 	 */
 	private static Sprite grumpySprite;
+	
+	private boolean ignored = false;
 
 	
 	/**
@@ -108,7 +110,8 @@ class Player2DView extends RPEntity2DView {
 	
 	@Override
 	protected AlphaComposite getComposite() {
-		if (User.isIgnoring(entity.getName())) {
+		// Check for ghostmode to avoid ignored ghostmode admins becoming visible
+		if (User.isIgnoring(entity.getName()) && !((RPEntity) entity).isGhostMode()) {
 			return AlphaComposite.DstOut;
 		}
 		return super.getComposite();
@@ -161,6 +164,13 @@ class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+		boolean newIgnoreStatus = User.isIgnoring(entity.getName());
+		if (newIgnoreStatus != ignored) {
+			visibilityChanged = true;
+			ignored = newIgnoreStatus;
+			markChanged();
+		}
+		
 		super.draw(g2d, x, y, width, height);
 
 		if (((Player) entity).isAway()) {
