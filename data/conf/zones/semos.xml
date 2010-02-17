@@ -1980,7 +1980,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -1992,7 +1992,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2003,7 +2003,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2051,7 +2051,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2062,7 +2062,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2076,7 +2076,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2087,7 +2087,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2166,7 +2166,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2378,7 +2378,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2394,7 +2394,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 
@@ -2425,7 +2425,7 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 
