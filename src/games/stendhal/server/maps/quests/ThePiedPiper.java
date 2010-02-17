@@ -498,7 +498,8 @@ import org.apache.log4j.Logger;
 		for(int j=0; j<(RAT_ZONES.size()); j++) {
 			final StendhalRPZone zone = (StendhalRPZone) SingletonRepository.getRPWorld().getRPZone(
 					RAT_ZONES.get(j));
-			for(int i=minRats ; i<maxRats; i++) {
+			final int ratsCount = Rand.rand(maxRats-minRats)+minRats;
+			for(int i=0 ; i<ratsCount; i++) {
 				final int x=Rand.rand(zone.getWidth());
 				final int y=Rand.rand(zone.getHeight());
 				// Gaussian distribution
@@ -543,7 +544,11 @@ import org.apache.log4j.Logger;
 	 * 			- creature that was just died.
 	 */
 	private void notifyDead(final RPEntity dead) {
-		rats.remove(rats.get(rats.indexOf(dead)));
+		if (rats.indexOf(dead)!=-1) {
+			rats.remove(rats.indexOf(dead));
+		} else {
+			logger.warn("killed creature isn't in control list ("+dead.toString()+").");
+		}
 		if (rats.size()==0) {
 			PhaseInvasionToInactive();
 		};
