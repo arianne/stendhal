@@ -60,29 +60,6 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		// exits the sound system
 	}
 
-	@Deprecated
-	public Sound start(String soundName, double x, double y, int radius, SoundLayer layer, int volume, boolean loop) {
-		if (!mute) {
-			Sound sound = prepareSound(soundName);
-
-			AudibleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), radius / 2.0f, radius);
-			Time myFadingTime = new Time();
-
-			if (loop) {
-				myFadingTime = fadingTime;
-			}
-
-			play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, loop, myFadingTime);
-			return sound;
-		}
-		return null;
-	}
-
-	@Deprecated
-	public void stop(Sound sound) {
-		stop(sound, fadingTime);
-	}
-
 	public void stop(String soundName, Time fadeOutDuration) {
 		super.stop(getSound(soundName), fadeOutDuration);
 	}
@@ -135,32 +112,4 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, false, new Time());
 	}
 
-	public void play(String soundName, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration) {
-		super.play(getSound(soundName), volume, layerLevel, area, autoRepeat, fadeInDuration);
-	}
-
-	@Deprecated
-	public void playNonLoopedSound(String soundName, AudibleArea area, int soundLayer, int volume) {
-		if (mute) {
-			return;
-		}
-
-		SoundSystemFacade.Sound sound = prepareSound(soundName);
-		play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, false, new Time());
-	}
-
-	@Deprecated
-	public Sound prepareSound(String soundName) {
-		if (soundName == null) {
-			return null;
-		}
-
-		Sound sound = loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
-
-		if (sound != null) {
-			sound = sound.clone();
-		}
-
-		return sound;
-	}
 }
