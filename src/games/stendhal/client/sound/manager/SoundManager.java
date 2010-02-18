@@ -58,8 +58,6 @@ public class SoundManager
 
         public boolean isActive() { return channel.get() != null && channel.get().isActive(); }
     }
-
-    private static int counter = 0;
 	
     private final class SoundChannel extends SignalProcessor
     {
@@ -119,6 +117,9 @@ public class SoundManager
 
         void stopPlayback(Time time)
         {
+			if(time == null)
+				time = ZERO_DURATION;
+			
             mAutoRepeat.set(false);
             mGlobalVolume.startFading(0.0f, time);
             mInterruptor.stop(time);
@@ -151,6 +152,7 @@ public class SoundManager
     private final float[]                  mHearerPosition = new float[DIMENSION];
     private final SoundLayers              mSoundLayers    = new SoundLayers();
     private SoundSystem                    mSoundSystem    = null;
+	private boolean                        mMute           = false;
 
     protected SoundManager()
     {
@@ -202,7 +204,7 @@ public class SoundManager
 
 	public void play(Sound sound, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration)
     {
-        if(sound == null)
+        if(sound == null || mMute)
             return;
 
         if(sound.isActive())
@@ -252,6 +254,17 @@ public class SoundManager
         if(sound != null && sound.isActive())
             sound.channel.get().setAudibleArea(area);
     }
+
+	public void mute(boolean turnMuteOn, Time turnOffDuration)
+	{
+		if(turnMuteOn && !mMute)
+		{
+			for(SoundChannel channel: mChannels)
+				channel.stopPlayback(turnOffDuration);
+		}
+		
+		mMute = turnMuteOn;
+	}
 	
     public void close()
     {
