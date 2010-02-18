@@ -62,6 +62,6 @@ public class NPC extends AudibleEntity {
 	@Override
 	protected void onPosition(final double x, final double y) {
 		super.onPosition(x, y);
-		playRandomSoundFromGroup("move", 1.0f, 2000);
+		playRandomSoundFromGroup("move", 1.0f, 20000);
 	}
 }
