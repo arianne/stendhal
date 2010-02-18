@@ -49,6 +49,7 @@ public class Analyser {
 					oldItemInfo = new ItemInfo();
 					oldItemInfo.setItemid(entry.getItemid());
 					oldItemInfo.setName("");
+					oldItemInfo.setQuantity("1");
 					oldItemInfo.setOwner(entry.getSource());
 				}
 
