@@ -8,6 +8,7 @@ package games.stendhal.tools.loganalyser.itemlog.consistency;
  */
 public class LogEntry {
 	private final String timestamp;
+	private final String id;
 	private final String itemid;
 	private final String source;
 	private final String event;
@@ -28,7 +29,8 @@ public class LogEntry {
 	 * @param param3 additional param3
 	 * @param param4 additional param4
 	 */
-	public LogEntry(final String timestamp, final String itemid, final String source, final String event, final String param1, final String param2, final String param3, final String param4) {
+	public LogEntry(final String id, final String timestamp, final String itemid, final String source, final String event, final String param1, final String param2, final String param3, final String param4) {
+		this.id = id;
 	    this.timestamp = timestamp;
 	    this.itemid = itemid;
 	    this.source = source;
@@ -92,4 +94,8 @@ public class LogEntry {
     	
     	return sb.toString();
     }
+
+	public String getId() {
+		return id;
+	}
 }

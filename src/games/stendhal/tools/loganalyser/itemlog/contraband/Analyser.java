@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
  */
 public class Analyser {
 	private static Logger logger = Logger.getLogger(Analyser.class);
-	private static final String SQL = "SELECT timedate, itemid, source, "
+	private static final String SQL = "SELECT id, timedate, itemid, source, "
 		+ "event, param1, param2, param3, param4 FROM itemlog_analyse "
 		+ " WHERE timedate > '[timedate]'"
 		+ " ORDER BY itemid, id";
@@ -88,7 +88,25 @@ public class Analyser {
 	}
 
 	private void logTransfer(ItemInfo oldItemInfo, ItemInfo itemInfo, LogEntry entry) {
-		System.out.println(itemInfo + " " + oldItemInfo.getOwner() + " " + itemInfo.getOwner());
+		DBTransaction transaction = TransactionPool.get().beginWork();
+		try {
+			String query = "INSERT INTO itemtransfer_analyse (itemid, name, quantity, giver, receiver, oldid) VALUES ([itemid], '[name]', '[quantity]', '[giver]', '[receiver]', [oldid]);";
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("itemid", oldItemInfo.getItemid());
+			params.put("name", oldItemInfo.getName());
+			params.put("quantity", itemInfo.getQuantity());
+			params.put("giver", oldItemInfo.getOwner());
+			params.put("receiver", itemInfo.getOwner());
+			params.put("oldid", entry.getId());
+			
+			transaction.execute(query, params);
+			//System.out.println(itemInfo + " " + oldItemInfo.getOwner() + " " + itemInfo.getOwner());
+
+			TransactionPool.get().commit(transaction);
+		} catch (Exception e) {
+			TransactionPool.get().rollback(transaction);
+			logger.error(e, e);
+		}
 	}
 
 	/**

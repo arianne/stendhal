@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 public class Analyser {
 	private static Logger logger = Logger.getLogger(Analyser.class);
-	private static final String SQL = "SELECT timedate, itemid, source, "
+	private static final String SQL = "SELECT id, timedate, itemid, source, "
 		+ "event, param1, param2, param3, param4 FROM itemlog "
 		+ " WHERE timedate > '[timedate]'"
 		+ " ORDER BY itemid, timedate";

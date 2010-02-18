@@ -40,6 +40,7 @@ public class LogEntryIterator extends ResultSetIterator<LogEntry> {
     protected LogEntry createObject() {
 		try {
 			return new LogEntry(
+				resultSet.getString("id"),
 				resultSet.getString("timedate"),
 				resultSet.getString("itemid"),
 	    		resultSet.getString("source"),
