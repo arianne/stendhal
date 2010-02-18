@@ -75,6 +75,12 @@ public class LoopedSoundSource extends InvisibleEntity {
 				layer = SoundLayer.values()[idx];
 			}
 		}
+
+		if (object.has("sound") || object.has("layer")) {
+			if (layer != SoundLayer.BACKGROUND_MUSIC) {
+				sound = sound.clone();
+			}
+		}
 	}
 
 	/**
