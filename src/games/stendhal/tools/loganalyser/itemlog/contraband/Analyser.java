@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
@@ -26,7 +27,7 @@ public class Analyser {
 	private static final String SQL = "SELECT timedate, itemid, source, "
 		+ "event, param1, param2, param3, param4 FROM itemlog_analyse "
 		+ " WHERE timedate > '[timedate]'"
-		+ " ORDER BY itemid, timedate";
+		+ " ORDER BY itemid, id";
 
 	private LogEntryIterator queryDatabase(final DBTransaction transaction, final String timedate) throws SQLException {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -39,21 +40,21 @@ public class Analyser {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
 			final Iterator<LogEntry> itr = queryDatabase(transaction, timedate);
-			String itemid = "-1";
-			ItemInfo oldItemInfo = null;
+			ItemInfo oldItemInfo = new ItemInfo();
 			while (itr.hasNext()) {
-				ItemInfo itemInfo = null;
 				final LogEntry entry = itr.next();
 
 				// detect group change (next item)
-				if (!entry.getItemid().equals(itemid)) {
+				if (!entry.getItemid().equals(oldItemInfo.getItemid())) {
 					oldItemInfo = new ItemInfo();
 					oldItemInfo.setItemid(entry.getItemid());
 					oldItemInfo.setName("");
+					oldItemInfo.setOwner(entry.getSource());
 				}
-				
-				itemInfo = (ItemInfo) oldItemInfo.clone();
 
+				ItemInfo itemInfo = (ItemInfo) oldItemInfo.clone();
+
+				itemInfo.setOwner(entry.getSource());
 				ItemEventType eventType = ItemEventTypeFactory.create(entry.getEvent());
 				eventType.process(entry, itemInfo);
 
@@ -75,19 +76,18 @@ public class Analyser {
 | split out        | 
 | splitted out     | 
 */
-
+				oldItemInfo = itemInfo;
 			}
 			TransactionPool.get().commit(transaction);
 		} catch (Exception e) {
 			TransactionPool.get().rollback(transaction);
 			logger.error(e, e);
 		}
+		System.exit(0);
 	}
 
-	private void logTransfer(ItemInfo oldItemInfo, ItemInfo itemInfo,
-			LogEntry entry) {
-		// TODO Auto-generated method stub
-		
+	private void logTransfer(ItemInfo oldItemInfo, ItemInfo itemInfo, LogEntry entry) {
+		System.out.println(itemInfo + " " + oldItemInfo.getOwner() + " " + itemInfo.getOwner());
 	}
 
 	/**
@@ -97,8 +97,9 @@ public class Analyser {
 	 */
 	public static void main(final String[] args) {
 		Log4J.init();
+		Configuration.setConfigurationFile("/home/hendrik/workspace/stendhal/server_strato.ini");
 		new DatabaseFactory().initializeDatabase();	
-		String timedate = "2010-02-01";
+		String timedate = "2000-01-01";
 		if (args.length > 0) {
 			timedate = args[0];
 		}

@@ -52,4 +52,11 @@ public class ItemInfo implements Cloneable {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "ItemInfo [itemid=" + itemid + ", name=" + name + ", owner="
+				+ owner + ", quantity=" + quantity + "]";
+	}
+
+	
 }
