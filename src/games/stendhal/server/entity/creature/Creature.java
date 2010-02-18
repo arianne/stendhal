@@ -493,8 +493,6 @@ public class Creature extends NPC {
 			if (enemy.isInvisibleToCreatures()) {
 				continue;
 			}
-			assert (enemy.getZone() == getZone());
-			
 
 			final double squaredDistance = this.squaredDistance(enemy);
 			if (squaredDistance <= (range * range)) {

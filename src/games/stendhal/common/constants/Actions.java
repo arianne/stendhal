@@ -178,13 +178,7 @@ public final class Actions {
 	public static final String MESSAGE = "message";
 	public static final String TEXT = "text";
 
-	 /**
-	  *    Prevents even the native class from
-	  *    calling this ctor as well.
-	  *    @throws AssertionError in any case when called.
-	  *
-	 */
 	private Actions() {
-	    throw new AssertionError();
+		// hide constructor
 	}
 }

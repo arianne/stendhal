@@ -29,7 +29,6 @@ class Patroller extends StandOnIdle {
 				if (weWouldLeaveArea(creature, Direction.STOP)) {
 					initArea(creature);
 				}
-				assert (!weWouldLeaveArea(creature, Direction.STOP));
 				Direction currentDir = creature.getDirection();
 				if ((currentDir == Direction.STOP)
 						|| weWouldLeaveArea(creature, creature.getDirection())
