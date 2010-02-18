@@ -29,6 +29,8 @@ public class SoundSystem extends Thread
 {
 	public static abstract class Output extends SignalProcessor { }
 
+	private static class DummyOutput extends Output { }
+
 	private static class SystemOutput extends Output
 	{
 		final SourceDataLine mLine;                   // the line we will write the PCM data to
@@ -166,7 +168,7 @@ public class SoundSystem extends Thread
 		MixerOutput(AudioFormat format)
 		{
 			assert format != null;
-			mAudioFormat  = format;
+			mAudioFormat = format;
 		}
 
 		boolean receivedData  () { return mNumSamples > 0;                   }
@@ -253,7 +255,7 @@ public class SoundSystem extends Thread
 	float[]                                mMixBuffer             = null;
 	private final int                      mMaxNumLines;
     
-    public SoundSystem(AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines) throws SoundSystemException
+    public SoundSystem(AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
     {
         assert audioFormat    != null;
         assert bufferDuration != null;
@@ -272,11 +274,10 @@ public class SoundSystem extends Thread
                 line.open();
 				
 				mMixSystemOutput = new SystemOutput(line);
-				mSystemOutputs.add(mMixSystemOutput);
             }
             catch(LineUnavailableException exception)
             {
-                throw new SoundSystemException("line is unavailable - " + exception.toString());
+				// TODO: logging
             }
         }
 		else
@@ -289,12 +290,14 @@ public class SoundSystem extends Thread
                 line.open();
 
 				mMixSystemOutput = new SystemOutput(line);
-				mSystemOutputs.add(mMixSystemOutput);
             }
-            catch(LineUnavailableException e) { }
+            catch(LineUnavailableException e)
+			{
+				// TODO: logging
+			}
 		}
     }
-//*
+
     public SoundSystem(Mixer mixer, AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
     {
 		assert audioFormat    != null;
@@ -313,16 +316,21 @@ public class SoundSystem extends Thread
 			line.open();
 
 			mMixSystemOutput = new SystemOutput(line);
-			mSystemOutputs.add(mMixSystemOutput);
 		}
-		catch(LineUnavailableException e) { }
+		catch(LineUnavailableException e)
+		{
+			// TODO: logging
+		}
     }
 
-    public SoundSystem(SourceDataLine outputLine, Time bufferDuration) throws SoundSystemException
+    public SoundSystem(SourceDataLine outputLine, Time bufferDuration)
     {
         assert outputLine     != null;
         assert bufferDuration != null;
 
+		mMaxNumLines     = 0;
+        mBufferDuration  = bufferDuration;
+		
         if(!outputLine.isOpen())
         {
             try
@@ -331,14 +339,12 @@ public class SoundSystem extends Thread
             }
             catch(LineUnavailableException e)
             {
-                throw new SoundSystemException(e.toString());
+				// TODO: logging
+                return;
             }
         }
 		
-		mMaxNumLines     = 0;
-        mBufferDuration  = bufferDuration;
 		mMixSystemOutput = new SystemOutput(outputLine);
-		mSystemOutputs.add(mMixSystemOutput);
     }
 
 	public Output openOutput(AudioFormat audioFormat)
@@ -376,7 +382,7 @@ public class SoundSystem extends Thread
 			return output;
 		}
 		
-		return null;
+		return new DummyOutput();
 	}
 
     public synchronized void closeOutput(Output output)
@@ -417,7 +423,7 @@ public class SoundSystem extends Thread
         mSystemIsRunning.set(true);
 
         double averageTimeToProcessSound = mBufferDuration.getInNanoSeconds();
-        double multiplicator             = 0.990;
+        double multiplicator             = 0.900;
         
         while(mSystemIsRunning.get())
         {
@@ -439,8 +445,10 @@ public class SoundSystem extends Thread
         }
 
         closeAllOutputs();
+		closeOutput(mMixSystemOutput);
     }
 
+	@SuppressWarnings("unchecked")
 	private void processOutputs()
 	{
 		LinkedList<SystemOutput> sysOutputs;
@@ -456,6 +464,9 @@ public class SoundSystem extends Thread
 			mixOutputs = (LinkedList<MixerOutput>)mMixerOutputs.clone();
 		}
 
+		if(mMixSystemOutput != null)
+			sysOutputs.add(mMixSystemOutput);
+
 		for(SystemOutput output: sysOutputs)
 		{
 			int sampleRate        = output.getSampleRate();
@@ -466,14 +477,17 @@ public class SoundSystem extends Thread
 			output.setNumBytesToWrite(numBytesToWrite);
 		}
 
-		int numSamples = mMixSystemOutput.getNumBytesToWrite() / mMixSystemOutput.getNumBytesPerSample();
-		mMixBuffer = Field.expand(mMixBuffer, numSamples, false);
-		Arrays.fill(mMixBuffer, 0, numSamples, 0.0f);
+		if(mMixSystemOutput != null)
+		{
+			int numSamples = mMixSystemOutput.getNumBytesToWrite() / mMixSystemOutput.getNumBytesPerSample();
+			mMixBuffer = Field.expand(mMixBuffer, numSamples, false);
+			Arrays.fill(mMixBuffer, 0, numSamples, 0.0f);
 
-		for(MixerOutput output: mixOutputs)
-			output.mix(mMixBuffer, numSamples);
+			for(MixerOutput output: mixOutputs)
+				output.mix(mMixBuffer, numSamples);
 
-		mMixSystemOutput.setBuffer(mMixBuffer, numSamples);
+			mMixSystemOutput.setBuffer(mMixBuffer, numSamples);
+		}
 		
 		while(!sysOutputs.isEmpty())
 		{

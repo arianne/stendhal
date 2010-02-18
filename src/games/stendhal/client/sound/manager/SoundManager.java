@@ -156,22 +156,9 @@ public class SoundManager
     {
         Algebra.mov_Vecf(mHearerPosition, 0.0f);
 
-        try
-        {
-            mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(15, Time.Unit.MILLI), USE_NUM_MIXER_LINES);
-            mSoundSystem.setDaemon(true);
-            mSoundSystem.start();
-        }
-        catch(SoundSystemException exception)
-        {
-            mSoundSystem = null;
-            // TODO: write error message into logger
-        }
-    }
-
-    public boolean isSoundSystemRunnig()
-    {
-        return mSoundSystem != null;
+		mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(15, Time.Unit.MILLI), USE_NUM_MIXER_LINES);
+		mSoundSystem.setDaemon(true);
+		mSoundSystem.start();
     }
 
 	public Sound openSound(Resource resource, SoundFile.Type fileType)
@@ -268,16 +255,13 @@ public class SoundManager
 	
     public void close()
     {
-        if(isSoundSystemRunnig())
-        {
-            mSoundSystem.close();
+		mSoundSystem.close();
 
-            try
-            {
-                mSoundSystem.join();
-            }
-            catch(InterruptedException exception) { }
-        }
+		try
+		{
+			mSoundSystem.join();
+		}
+		catch(InterruptedException exception) { }
     }
 
 	private void closeInactiveChannels(int leaveNumChannelsOpen)
