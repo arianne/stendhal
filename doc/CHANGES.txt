@@ -1,5 +1,9 @@
 Changelog
 ---------
+
+0.80.1: server only release
+* fixed logout while dying
+
 0.80
 *features*
 - Player-to-player trading facilitated by Harold in Semos Tavern

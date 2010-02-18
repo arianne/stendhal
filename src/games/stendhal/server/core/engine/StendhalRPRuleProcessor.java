@@ -36,6 +36,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -210,15 +211,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * 
 	 * @param entity
 	 *            The entity to check.
-	 * @return true if the given entity has been killed this turn.
+	 * @return pair of killed, killer if the specified entity did logout while dying, <code>null</code> otherwise.
 	 */
-	private boolean wasKilled(final RPEntity entity) {
-		for (final Pair<RPEntity, Entity> entry : entityToKill) {
+	private Pair<RPEntity, Entity> removedKilled(final RPEntity entity) {
+		Iterator<Pair<RPEntity, Entity>> itr = entityToKill.iterator();
+		while (itr.hasNext()) {
+			Pair<RPEntity, Entity> entry = itr.next();
 			if (entity.equals(entry.first())) {
-				return true;
+				itr.remove();
+				return entry;
 			}
 		}
-		return false;
+		return null;
 	}
 
 	/**
@@ -495,10 +499,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public synchronized boolean onExit(final RPObject object) {
 		try {
 			final Player player = (Player) object;
-			if (wasKilled(player)) {
-				logger.info("Logged out shortly before death: Killing it now :)");
-				player.onDead(killerOf(player));
+
+			Pair<RPEntity, Entity> entry = removedKilled(player);
+			if (entry != null) {
+				logger.info(object.get("name") + " logged out shortly before death: Killing it now :)");
+				entry.first().onDead(entry.second());
 			}
+
 			if (!player.isGhost()) {
 				notifyOnlineStatus(false, player.getName());
 			}
