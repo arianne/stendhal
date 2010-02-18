@@ -44,6 +44,12 @@ public class ItemInfo implements Cloneable {
 		this.owner = owner;
 	}
 
-	
+	public Object clone() {
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
 
 }

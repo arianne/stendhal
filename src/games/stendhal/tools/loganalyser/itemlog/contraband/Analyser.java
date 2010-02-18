@@ -40,16 +40,26 @@ public class Analyser {
 		try {
 			final Iterator<LogEntry> itr = queryDatabase(transaction, timedate);
 			String itemid = "-1";
-			ItemInfo itemInfo = null;
+			ItemInfo oldItemInfo = null;
 			while (itr.hasNext()) {
+				ItemInfo itemInfo = null;
 				final LogEntry entry = itr.next();
 
 				// detect group change (next item)
 				if (!entry.getItemid().equals(itemid)) {
-					itemInfo = new ItemInfo();
-					itemInfo.setItemid(entry.getItemid());
+					oldItemInfo = new ItemInfo();
+					oldItemInfo.setItemid(entry.getItemid());
+					oldItemInfo.setName("");
 				}
+				
+				itemInfo = (ItemInfo) oldItemInfo.clone();
 
+				ItemEventType eventType = ItemEventTypeFactory.create(entry.getEvent());
+				eventType.process(entry, itemInfo);
+
+				if (!oldItemInfo.getOwner().equals(itemInfo.getOwner())) {
+					logTransfer(oldItemInfo, itemInfo, entry);
+				}
 /*
 | create           | 
 | destroy          | 
@@ -72,6 +82,12 @@ public class Analyser {
 			TransactionPool.get().rollback(transaction);
 			logger.error(e, e);
 		}
+	}
+
+	private void logTransfer(ItemInfo oldItemInfo, ItemInfo itemInfo,
+			LogEntry entry) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
