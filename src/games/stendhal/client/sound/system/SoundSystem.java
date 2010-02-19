@@ -20,6 +20,7 @@ import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -89,9 +90,9 @@ public class SoundSystem extends Thread
 		{
 			int frameSize = getNumBytesPerSample() * getNumChannels();
 			
-			numBytesToWrite /= frameSize;
-			numBytesToWrite *= frameSize;
-			mNumBytesToWrite = numBytesToWrite;
+			mNumBytesToWrite  = numBytesToWrite;
+			mNumBytesToWrite /= frameSize;
+			mNumBytesToWrite *= frameSize;
 		}
 
 		void convert()
@@ -116,8 +117,7 @@ public class SoundSystem extends Thread
 			numBytes  = Math.min(numBytes, mLine.available()        );
 			numBytes /= frameSize;
 			numBytes *= frameSize;
-			
-			numBytes = mLine.write(mPCMBuffer, mNumBytesWritten, numBytes);
+			numBytes  = mLine.write(mPCMBuffer, mNumBytesWritten, numBytes);
 
 			mNumBytesWritten          += numBytes;
 			mNumBytesToWrite          -= numBytes;
@@ -137,14 +137,18 @@ public class SoundSystem extends Thread
         {
             if(buffer != null && frames > 0 && channels > 0 && rate > 0)
             {
-                assert frames <= buffer.length;
+                assert (frames * channels) <= buffer.length;
 				buffer = SoundSystem.convertChannels(buffer, frames, channels, getNumChannels());
 
                 if(buffer != null)
                 {
 					setBuffer(buffer, (frames * getNumChannels()));
                 }
-				else assert false: "could not convert channels";
+				else
+				{
+					setBuffer(null, 0);
+					//assert false: "could not convert channels";
+				}
 
 				buffer = SoundSystem.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
 
@@ -153,7 +157,11 @@ public class SoundSystem extends Thread
 					float ratio = (float)frames / (float)rate;
 					setBuffer(buffer, (int)(ratio * getSampleRate() * channels));
 				}
-				else assert false: "could not convert sample rate";
+				else
+				{
+					setBuffer(null, 0);
+					//assert false: "could not convert sample rate";
+				}
             }
         }
 	}
@@ -224,14 +232,18 @@ public class SoundSystem extends Thread
         {
             if(buffer != null && frames > 0 && channels > 0 && rate > 0)
             {
-                assert frames <= buffer.length;
+                assert (frames * channels) <= buffer.length;
 				buffer = SoundSystem.convertChannels(buffer, frames, channels, getNumChannels());
 
                 if(buffer != null)
                 {
 					setBuffer(buffer, (frames * getNumChannels()));
                 }
-				else assert false: "could not convert channels";
+				else
+				{
+					setBuffer(null, 0);
+					//assert false: "could not convert channels";
+				}
 
 				buffer = SoundSystem.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
 
@@ -240,11 +252,16 @@ public class SoundSystem extends Thread
 					float ratio = (float)frames / (float)rate;
 					setBuffer(buffer, (int)(ratio * getSampleRate() * channels));
 				}
-				else assert false: "could not convert sample rate";
+				else
+				{
+					setBuffer(null, 0);
+					//assert false: "could not convert sample rate";
+				}
             }
         }
 	}
 
+	private final static Logger            logger                 = Logger.getLogger(SoundSystem.class);
 	private final LinkedList<SystemOutput> mSystemOutputs         = new LinkedList<SystemOutput>();
 	private final LinkedList<MixerOutput>  mMixerOutputs          = new LinkedList<MixerOutput>();
 	private SystemOutput                   mMixSystemOutput       = null;
@@ -257,8 +274,12 @@ public class SoundSystem extends Thread
     
     public SoundSystem(AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
     {
-        assert audioFormat    != null;
-        assert bufferDuration != null;
+		if(audioFormat == null)
+			throw new IllegalArgumentException("audioFormat argument must not be null");
+		if(bufferDuration == null)
+			throw new IllegalArgumentException("bufferDuration argument must not be null");
+
+		logger.info("opening sound system and trying to find optimal system mixer device / output line");
 
         mSystemMixer    = tryToFindMixer(audioFormat);
         mBufferDuration = bufferDuration;
@@ -266,6 +287,8 @@ public class SoundSystem extends Thread
 
         if(mSystemMixer == null)
         {
+			logger.warn("cannot find a system mixer device. manual mixing will be the only option");
+
             DataLine.Info datalineInfo = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
 
             try
@@ -275,9 +298,9 @@ public class SoundSystem extends Thread
 				
 				mMixSystemOutput = new SystemOutput(line);
             }
-            catch(LineUnavailableException exception)
+            catch(LineUnavailableException e)
             {
-				// TODO: logging
+				logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
             }
         }
 		else
@@ -293,16 +316,21 @@ public class SoundSystem extends Thread
             }
             catch(LineUnavailableException e)
 			{
-				// TODO: logging
+				logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
 			}
 		}
     }
 
     public SoundSystem(Mixer mixer, AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
     {
-		assert audioFormat    != null;
-        assert mixer          != null;
-        assert bufferDuration != null;
+		if(mixer == null)
+			throw new IllegalArgumentException("mixer argument must not be null");
+		if(audioFormat == null)
+			throw new IllegalArgumentException("audioFormat argument must not be null");
+		if(bufferDuration == null)
+			throw new IllegalArgumentException("bufferDuration argument must not be null");
+
+		logger.info("opening sound system using specified system mixer device");
 
         mSystemMixer    = mixer;
         mBufferDuration = bufferDuration;
@@ -319,14 +347,18 @@ public class SoundSystem extends Thread
 		}
 		catch(LineUnavailableException e)
 		{
-			// TODO: logging
+			logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
 		}
     }
 
     public SoundSystem(SourceDataLine outputLine, Time bufferDuration)
     {
-        assert outputLine     != null;
-        assert bufferDuration != null;
+		if(outputLine == null)
+			throw new IllegalArgumentException("outputLine argument must not be null");
+		if(bufferDuration == null)
+			throw new IllegalArgumentException("bufferDuration argument must not be null");
+
+		logger.info("opening sound system");
 
 		mMaxNumLines     = 0;
         mBufferDuration  = bufferDuration;
@@ -339,16 +371,19 @@ public class SoundSystem extends Thread
             }
             catch(LineUnavailableException e)
             {
-				// TODO: logging
-                return;
+				logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
+				return;
             }
         }
-		
+
 		mMixSystemOutput = new SystemOutput(outputLine);
     }
 
 	public Output openOutput(AudioFormat audioFormat)
 	{
+		if(audioFormat == null)
+			throw new IllegalArgumentException("audioFormat argument must not be null");
+
 		DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
 
         if(mSystemMixer != null && mSystemMixer.isLineSupported(info) && mSystemOutputs.size() < mMaxNumLines)
@@ -364,7 +399,8 @@ public class SoundSystem extends Thread
 				{
 					mSystemOutputs.add(output);
 				}
-				
+
+				logger.debug("opening a system output (using a system mixer device)");
 				return output;
             }
             catch(LineUnavailableException e) { }
@@ -379,41 +415,53 @@ public class SoundSystem extends Thread
 				mMixerOutputs.add(output);
 			}
 
+			logger.debug("opening a mixer output (using manual mixing)");
 			return output;
 		}
-		
+
+		logger.debug("opening a dummy output (no output line could be received)");
 		return new DummyOutput();
 	}
 
     public synchronized void closeOutput(Output output)
     {
-		output.disconnect();
-
-		if(output instanceof SystemOutput)
+		if(output != null)
 		{
-			SystemOutput systemOutput = (SystemOutput)output;
-			systemOutput.close();
-			mSystemOutputs.remove(systemOutput);
-		}
+			output.disconnect();
 
-		if(output instanceof MixerOutput)
-		{
-			MixerOutput mixerOutput = (MixerOutput)output;
-			mMixerOutputs.remove(mixerOutput);
+			if(output instanceof SystemOutput)
+			{
+				logger.debug("closing a system output");
+
+				SystemOutput systemOutput = (SystemOutput)output;
+				systemOutput.close();
+				mSystemOutputs.remove(systemOutput);
+			}
+
+			if(output instanceof MixerOutput)
+			{
+				logger.debug("closing a mixer output");
+
+				MixerOutput mixerOutput = (MixerOutput)output;
+				mMixerOutputs.remove(mixerOutput);
+			}
 		}
     }
 
-    public void closeAllOutputs()
+    public synchronized void closeAllOutputs()
     {
+		logger.debug("closing all outputs excluding the output for manual mixing");
+		
 		for(SystemOutput output: mSystemOutputs)
-			closeOutput(output);
+			output.close();
 
-		for(MixerOutput output: mMixerOutputs)
-			closeOutput(output);
+		mSystemOutputs.clear();
+		mMixerOutputs.clear();
     }
 
-    public void close()
+    public void exit()
     {
+		logger.info("stopping sound system");
         mSystemIsRunning.set(false);
     }
 
@@ -423,7 +471,7 @@ public class SoundSystem extends Thread
         mSystemIsRunning.set(true);
 
         double averageTimeToProcessSound = mBufferDuration.getInNanoSeconds();
-        double multiplicator             = 0.900;
+        double multiplicator             = 0.990;
         
         while(mSystemIsRunning.get())
         {
