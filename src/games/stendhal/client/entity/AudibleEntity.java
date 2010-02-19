@@ -20,7 +20,7 @@ import java.util.HashMap;
  */
 public abstract class AudibleEntity extends RPEntity {
 
-	private AudibleCircleArea mAudibleArea = new AudibleCircleArea(Algebra.vecf(0, 0), 3, 20);
+	private AudibleCircleArea mAudibleArea = new AudibleCircleArea(Algebra.vecf(0, 0), 1.5f, 23);
 	private HashMap<String, ArrayList<String>> mSoundGroups = new HashMap<String, ArrayList<String>>();
 	private long mWaitTime = 0;
 

@@ -31,15 +31,14 @@ import org.apache.log4j.Logger;
  */
 public class SoundManager
 {
-    private final static Logger logger = Logger.getLogger(SoundManager.class);
-
+    private final static Logger              logger                   = Logger.getLogger(SoundManager.class);
     private final static int                 OUTPUT_NUM_SAMPLES       = 256;
 	private final static int                 SOUND_CHANNEL_LIMIT      = 50;
 	private final static int                 USE_NUM_MIXER_LINES      = 0;
     private final static int                 DIMENSION                = 2;
     private final static float[]             HEARER_LOOKONG_DIRECTION = { 0.0f, 1.0f };
     private final static AudioFormat         AUDIO_FORMAT             = new AudioFormat(44100, 16, 2, true, false);
-    public  final static InfiniteAudibleArea INFINITE_AUDIBLE_AREA    = new InfiniteAudibleArea();
+    private final static InfiniteAudibleArea INFINITE_AUDIBLE_AREA    = new InfiniteAudibleArea();
     public  final static Time                ZERO_DURATION            = new Time();
 
     public final static class Sound implements Cloneable
@@ -84,10 +83,17 @@ public class SoundManager
         void    setVolume     (float volume)                { mGlobalVolume.setVolume(volume);             }
         void    startFading   (float volume, Time duration) { mGlobalVolume.startFading(volume, duration); }
         void    setLayer      (int level)                   { mLayerVolume.setLayer(level);                }
-        void    setAudibleArea(AudibleArea area)            { mAudibleArea.set(area);                      }
         void    resumePlayback()                            { mInterruptor.play();                         }
 		void    close         ()                            { mSoundSystem.closeOutput(mOutput);           }
-        
+
+		void setAudibleArea(AudibleArea area)
+		{
+			if(area == null)
+				area = INFINITE_AUDIBLE_AREA;
+			
+			mAudibleArea.set(area);
+		}
+
         void playSound(Sound newSound, float volume, Time time)
         {
             if(mSound != null)
@@ -150,8 +156,8 @@ public class SoundManager
     private final LinkedList<SoundChannel> mChannels       = new LinkedList<SoundChannel>();
     private final float[]                  mHearerPosition = new float[DIMENSION];
     private final SoundLayers              mSoundLayers    = new SoundLayers();
-    private SoundSystem                    mSoundSystem    = null;
 	private boolean                        mMute           = false;
+	private SoundSystem                    mSoundSystem;
 
     protected SoundManager()
     {
@@ -174,13 +180,12 @@ public class SoundManager
         try
         {
             SoundFile file = new SoundFile(resource, fileType, numSamplesPerChunk, enableStreaming);
-
             sound = new Sound();
             sound.file.set(file);
         }
         catch(IOException exception)
 		{
-			assert false: exception;
+			logger.warn(exception);
 			return null;
 		}
 
@@ -254,31 +259,40 @@ public class SoundManager
             sound.channel.get().setAudibleArea(area);
     }
 
-	public void mute(boolean turnMuteOn, Time turnOffDuration)
+	public void mute(boolean turnOffSound, Time turnOffDuration)
 	{
-		if(turnMuteOn && !mMute)
+		if(turnOffSound && !mMute)
 		{
+			logger.info("turning off audio");
+
 			for(SoundChannel channel: mChannels)
 				channel.stopPlayback(turnOffDuration);
 		}
+
+		if(!turnOffSound && mMute)
+			logger.info("turning on audio");
 		
-		mMute = turnMuteOn;
+		mMute = turnOffSound;
 	}
 	
-    public void close()
+    public void exit()
     {
-		mSoundSystem.close();
+		mSoundSystem.exit();
 
 		try
 		{
 			mSoundSystem.join();
 		}
-		catch(InterruptedException exception) { }
+		catch(InterruptedException exception)
+		{
+			logger.warn("joining sound system thread was interrupted: " + exception);
+		}
     }
 
 	private void closeInactiveChannels(int leaveNumChannelsOpen)
 	{
-		Iterator<SoundChannel> iChannel = mChannels.iterator();
+		int                    numChannels = mChannels.size();
+		Iterator<SoundChannel> iChannel    = mChannels.iterator();
 
 		while(iChannel.hasNext())
 		{
@@ -293,6 +307,11 @@ public class SoundManager
 				iChannel.remove();
 			}
 		}
+
+		numChannels -= mChannels.size();
+
+		if(numChannels > 0)
+			logger.debug("close " + numChannels + " inactive sound channels");
 	}
 	
     private SoundChannel getInactiveChannel()
@@ -312,6 +331,8 @@ public class SoundManager
 		{
 			foundChannel = new SoundChannel();
             mChannels.add(foundChannel);
+
+			logger.debug("open new sound channel (number " + mChannels.size() + ")");
         }
 
         return foundChannel;

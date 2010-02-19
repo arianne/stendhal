@@ -7,20 +7,19 @@
  *  Created 21.01.2006
  *  Version
  *
- This program is free software. You can use, redistribute and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation, version 2 of the License.
+This program is free software. You can use, redistribute and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, version 2 of the License.
 
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA 02111-1307, USA, or go to
- http://www.gnu.org/copyleft/gpl.html.
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA 02111-1307, USA, or go to
+http://www.gnu.org/copyleft/gpl.html.
  */
-
 package games.stendhal.client.entity;
 
 import games.stendhal.client.sound.SoundSystemFacade;
@@ -33,22 +32,22 @@ import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Numeric;
 import marauroa.common.game.RPObject;
 
-
 public class LoopedSoundSource extends InvisibleEntity {
 
 	private Sound sound;
 	private int radius;
 	private int volume;
 	private SoundLayer layer = SoundLayer.AMBIENT_SOUND;
+	private Time fadingDuration = new Time();
 
 	@Override
 	public void onChangedAdded(RPObject object, RPObject changes) {
 		// stop the current sound
-		SoundSystemFacade.get().stop(sound, new Time(3, Time.Unit.SEC));
+		SoundSystemFacade.get().stop(sound, fadingDuration);
 
 		// udpate
 		super.onChangedAdded(object, changes);
-		
+
 		update(changes);
 		play();
 	}
@@ -74,6 +73,12 @@ public class LoopedSoundSource extends InvisibleEntity {
 			if (idx < SoundLayer.values().length) {
 				layer = SoundLayer.values()[idx];
 			}
+
+			if (layer == SoundLayer.BACKGROUND_MUSIC) {
+				fadingDuration.set(3, Time.Unit.SEC);
+			} else {
+				fadingDuration.set(100, Time.Unit.MILLI);
+			}
 		}
 
 		if (object.has("sound") || object.has("layer")) {
@@ -87,9 +92,9 @@ public class LoopedSoundSource extends InvisibleEntity {
 	 * plays the sound
 	 */
 	private void play() {
-		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float)x, (float)y), radius / 2.0f, radius);
-		float             vol  = Numeric.intToFloat(volume, 100.0f);
-		SoundSystemFacade.get().play(sound, vol, 0, area, true, new Time(3, Time.Unit.SEC));
+		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), radius / 2.0f, radius);
+		float vol = Numeric.intToFloat(volume, 100.0f);
+		SoundSystemFacade.get().play(sound, vol, 0, area, true, fadingDuration);
 	}
 
 	/**
@@ -101,6 +106,6 @@ public class LoopedSoundSource extends InvisibleEntity {
 	@Override
 	public void release() {
 		super.release();
-		SoundSystemFacade.get().stop(sound, new Time(3, Time.Unit.SEC));
+		SoundSystemFacade.get().stop(sound, fadingDuration);
 	}
 }
