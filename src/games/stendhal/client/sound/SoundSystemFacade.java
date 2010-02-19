@@ -27,7 +27,6 @@ import org.apache.log4j.Logger;
  */
 public class SoundSystemFacade extends SoundManager implements WorldListener {
 	private static final Logger logger = Logger.getLogger(SoundSystemFacade.class);
-
 	private static final SoundSystemFacade singletonInstance = new SoundSystemFacade();
 	private final HashMap<String, Sound> sounds = new HashMap<String, Sound>();
 	private final ResourceLocator resourceLocator = ResourceManager.get();
@@ -53,10 +52,6 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 
 	public void zoneLeft(String zoneName) {
 		// ignored
-	}
-
-	public void exit() {
-		// exits the sound system
 	}
 
 	public void stop(String soundName, Time fadeOutDuration) {
@@ -90,9 +85,8 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 	}
 
 	public void play(final String soundName, final SoundLayer soundLayer, int volume) {
-		AudibleArea area = SoundManager.INFINITE_AUDIBLE_AREA;
 		Sound sound = loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
-		super.play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, false, new Time());
+		super.play(sound, Numeric.intToFloat(volume, 100.0f), 0, null, false, new Time());
 	}
 
 	public void play(final String soundName, final double x, final double y, final SoundLayer soundLayer, int volume) {
