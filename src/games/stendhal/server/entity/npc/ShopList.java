@@ -378,7 +378,7 @@ public class ShopList {
 		// kirdneh city fishy market)
 		shops.add("buyfishes", "perch", 22);
 		shops.add("buyfishes", "mackerel", 20);
-		shops.add("buyfishes", "roach", 30);
+		shops.add("buyfishes", "roach", 10);
 		shops.add("buyfishes", "char", 30);
 		shops.add("buyfishes", "clownfish", 30);
 		shops.add("buyfishes", "surgeonfish", 15);
