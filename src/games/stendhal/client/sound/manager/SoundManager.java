@@ -7,7 +7,6 @@ package games.stendhal.client.sound.manager;
 
 import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.client.sound.system.SoundSystem;
-import games.stendhal.client.sound.system.SoundSystemException;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.client.sound.system.processors.DirectedSound;
 import games.stendhal.client.sound.system.processors.Interruptor;
