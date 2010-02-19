@@ -4,6 +4,7 @@ import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.system.Time;
 
 
 /**
@@ -25,7 +26,7 @@ class MuteAction implements SlashAction {
 		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
 		play = !play;
 		WtWindowManager.getInstance().setProperty("sound.play", Boolean.toString(play));
-		SoundSystemFacade.get().setMute(!play);
+		SoundSystemFacade.get().mute(!play, new Time(2, Time.Unit.SEC));
 		if (play) {
 			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Sounds are now on."));
 		} else {

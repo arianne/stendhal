@@ -12,15 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.sound.SoundSystemFacade;
-import games.stendhal.common.Rand;
-import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 /**
  * An NPC entity.
  */
-public class NPC extends RPEntity {
+public class NPC extends AudibleEntity {
 	//
 	// Entity
 	//
@@ -40,45 +37,19 @@ public class NPC extends RPEntity {
 		final String type = getType();
 
 		if (type.startsWith("npc")) {
-			setAudibleRange(3);
 			if (name.equals("Diogenes")) {
-				moveSounds = new String[2];
-				moveSounds[0] = "laugh-1";
-				moveSounds[1] = "laugh-2";
-				// SoundSystem.startSoundCycle(this, "Diogenes-patrol", 10000,
-				// 20, 50, 100);
+				addSoundsToGroup("move", "laugh-1", "laugh-2");
 			} else if (name.equals("Carmen")) {
-				moveSounds = new String[2];
-				moveSounds[0] = "giggle-1";
-				moveSounds[1] = "giggle-2";
-
-				// SoundSystem.startSoundCycle(this, "Carmen-patrol", 60000, 20,
-				// 50, 75);
+				addSoundsToGroup("move", "giggle-1", "giggle-2");
 			} else if (name.equals("Nishiya")) {
-				moveSounds = new String[3];
-				moveSounds[0] = "cough-11";
-				moveSounds[1] = "cough-2";
-				moveSounds[2] = "cough-3";
-				// SoundSystem.startSoundCycle(this, "Nishiya-patrol", 40000,
-				// 20, 50, 80);
+				addSoundsToGroup("move", "cough-11", "cough-2", "cough-3");
 			} else if (name.equals("Margaret")) {
-				moveSounds = new String[3];
-				moveSounds[0] = "hiccup-1";
-				moveSounds[1] = "hiccup-2";
-				moveSounds[2] = "hiccup-3";
-
-				// SoundSystem.startSoundCycle(this, "Margaret-patrol", 30000,
-				// 10, 30, 70);
+				addSoundsToGroup("move", "hiccup-1", "hiccup-2", "hiccup-3");
 			} else if (name.equals("Sato")) {
-				moveSounds = new String[1];
-				moveSounds[0] = "sneeze-1";
-				// SoundSystem.startSoundCycle(this, "Sato-patrol", 60000, 30,
-				// 50, 70);
+				addSoundsToGroup("move", "hiccup-1", "sneeze-1");
 			}
 		}
 	}
-
-	private long soundWait;
 
 	/**
 	 * When the entity's position changed.
@@ -91,13 +62,6 @@ public class NPC extends RPEntity {
 	@Override
 	protected void onPosition(final double x, final double y) {
 		super.onPosition(x, y);
-
-		if ((soundWait < System.currentTimeMillis()) && (Rand.rand(1000) < 5)) {
-
-			if (moveSounds != null) {
-				SoundSystemFacade.get().play(moveSounds[Rand.rand(moveSounds.length)], x, y, SoundLayer.CREATURE_NOISE, 100);
-			}
-			soundWait = System.currentTimeMillis() + 2000L;
-		}
+		playRandomSoundFromGroup("move", 1.0f, 20000);
 	}
 }

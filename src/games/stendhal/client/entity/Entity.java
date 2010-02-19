@@ -28,14 +28,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * 
 	 */
 	public final byte[] ID_Token = new byte[0];
-	
-	/**
-	 * an array of sounds. out of these randomnly chosen sounds are played while
-	 * moving.
-	 */
-	protected String[] moveSounds;
-
-	
 
 	/** The current x location of this entity. */
 	protected double x;
@@ -85,11 +77,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * The entity type.
 	 */
 	protected String type;
-
-	/**
-	 * Defines the distance in which the entity is heard by Player.
-	 */
-	protected double audibleRange = Double.POSITIVE_INFINITY;
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling in
@@ -268,26 +255,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 */
 	public boolean isOnGround() {
 		return !rpObject.isContained();
-	}
-
-	/* (non-Javadoc)
-	 * @see games.stendhal.client.entity.IEntity#getAudibleArea()
-	 */
-	public Rectangle2D getAudibleArea() {
-		if (audibleRange == Double.POSITIVE_INFINITY) {
-			return null;
-		}
-
-		final double tempWidth = audibleRange * 2;
-		return new Rectangle2D.Double(getX() - audibleRange, getY()
-				- audibleRange, tempWidth, tempWidth);
-	}
-
-	/* (non-Javadoc)
-	 * @see games.stendhal.client.entity.IEntity#setAudibleRange(double)
-	 */
-	public void setAudibleRange(final double range) {
-		audibleRange = range;
 	}
 
 	/**

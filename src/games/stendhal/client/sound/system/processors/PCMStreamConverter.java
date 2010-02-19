@@ -6,6 +6,7 @@
 package games.stendhal.client.sound.system.processors;
 
 import games.stendhal.client.sound.system.SignalProcessor;
+import games.stendhal.common.memory.Field;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.sound.sampled.AudioFormat;
@@ -18,8 +19,8 @@ public class PCMStreamConverter extends SignalProcessor
 {
     private InputStream mInputStream;
     private AudioFormat mAudioFormat;
-    private float[]     mOutputBuffer;
-    private byte[]      mInputBuffer;
+    private float[]     mOutputBuffer = null;
+    private byte[]      mInputBuffer  = null;
     private int         mNumSamplesToBuffer;
     private boolean     mEndOfStream;
     private boolean     mConverterIsOpened;
@@ -45,18 +46,19 @@ public class PCMStreamConverter extends SignalProcessor
         mEndOfStream       = true;
         mConverterIsOpened = false;
 
-        try
-        {
-            if (mInputStream != null) {
-                mInputStream.close();
-            }
-        }
-        catch(IOException exception)
-        {
-            assert false: exception.toString();
-        }
+		if(mInputStream != null)
+		{
+			try
+			{
+				 mInputStream.close();
+			}
+			catch(IOException exception)
+			{
+				assert false: exception.toString();
+			}
 
-        mInputStream = null;
+			mInputStream = null;
+		}
     }
 
     private void init(InputStream stream, AudioFormat format, int outputNumSamplesPerChannel)
@@ -69,12 +71,8 @@ public class PCMStreamConverter extends SignalProcessor
         int outputBufferSize = outputNumSamplesPerChannel * format.getChannels();
         int inputBufferSize  = outputNumSamplesPerChannel * format.getFrameSize();
 
-        if(mInputBuffer == null || mInputBuffer.length < inputBufferSize)
-            mInputBuffer = new byte[inputBufferSize];
-        
-        if(mOutputBuffer == null || mOutputBuffer.length < outputBufferSize)
-            mOutputBuffer = new float[outputBufferSize];
-
+		mInputBuffer        = Field.expand(mInputBuffer , inputBufferSize , false);
+		mOutputBuffer       = Field.expand(mOutputBuffer, outputBufferSize, false);
         mInputStream        = stream;
         mAudioFormat        = format;
         mNumSamplesToBuffer = outputNumSamplesPerChannel;

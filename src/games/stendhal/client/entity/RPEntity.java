@@ -18,12 +18,9 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
-import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
-import games.stendhal.common.Rand;
-import games.stendhal.common.constants.SoundLayer;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -85,11 +82,11 @@ public abstract class RPEntity extends ActiveEntity {
 	 * The entities attacking this entity.
 	 */
 	protected List<Entity> attackers;
-	
+/*
 	String[] attackSounds = { "punch-1", "punch-2", "punch-3",
 			"punch-4", "punch-5", "punch-6", "swingaxe-1",
 			"slap-1", "arrow-1" };
-	
+	*/
 	private boolean showBladeStrike;
 
 	public enum Resolution {
@@ -440,11 +437,11 @@ public abstract class RPEntity extends ActiveEntity {
 	public void onDamaged(final Entity attacker, final int damage) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.HIT;
-		try {
+		/*try {
 			SoundSystemFacade.get().play(attackSounds[Rand.rand(attackSounds.length)], x, y, SoundLayer.CREATURE_NOISE, 100);
 		} catch (final NullPointerException e) {
 			// ignore errors
-		}
+		}*/
 
 		boolean showAttackInfoForPlayer = (this.isUser() || attacker.isUser());
 		showAttackInfoForPlayer = showAttackInfoForPlayer

@@ -7,7 +7,6 @@ package games.stendhal.client.sound.manager;
 
 import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.client.sound.system.SoundSystem;
-import games.stendhal.client.sound.system.SoundSystemException;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.client.sound.system.processors.DirectedSound;
 import games.stendhal.client.sound.system.processors.Interruptor;
@@ -17,6 +16,7 @@ import games.stendhal.common.math.Algebra;
 import games.stendhal.common.resource.Resource;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -34,7 +34,8 @@ public class SoundManager
     private final static Logger logger = Logger.getLogger(SoundManager.class);
 
     private final static int                 OUTPUT_NUM_SAMPLES       = 256;
-	private final static int                 USE_NUM_MIXER_LINES      = 15;
+	private final static int                 SOUND_CHANNEL_LIMIT      = 50;
+	private final static int                 USE_NUM_MIXER_LINES      = 0;
     private final static int                 DIMENSION                = 2;
     private final static float[]             HEARER_LOOKONG_DIRECTION = { 0.0f, 1.0f };
     private final static AudioFormat         AUDIO_FORMAT             = new AudioFormat(44100, 16, 2, true, false);
@@ -51,13 +52,12 @@ public class SoundManager
 		{
 			Sound sound = new Sound();
 			sound.file.set(file.get().clone());
-			
 			return sound;
 		}
 
         public boolean isActive() { return channel.get() != null && channel.get().isActive(); }
     }
-
+	
     private final class SoundChannel extends SignalProcessor
     {
         final float[]                      mSoundPosition = new float[DIMENSION];
@@ -67,9 +67,9 @@ public class SoundManager
         final Interruptor                  mInterruptor   = new Interruptor();
         final DirectedSound                mDirectedSound = new DirectedSound();
         final VolumeAdjustor               mGlobalVolume  = new VolumeAdjustor();
-        SoundLayers.VolumeAdjustor         mLayerVolume   = null;
-        SoundSystem.Output                 mOutput        = null;
-        Sound                              mSound         = null;
+        final SoundLayers.VolumeAdjustor   mLayerVolume;
+        final SoundSystem.Output           mOutput;
+        Sound                              mSound = null;
 
         SoundChannel()
         {
@@ -86,8 +86,9 @@ public class SoundManager
         void    setLayer      (int level)                   { mLayerVolume.setLayer(level);                }
         void    setAudibleArea(AudibleArea area)            { mAudibleArea.set(area);                      }
         void    resumePlayback()                            { mInterruptor.play();                         }
-
-        void playSound(Sound newSound, Time time)
+		void    close         ()                            { mSoundSystem.closeOutput(mOutput);           }
+        
+        void playSound(Sound newSound, float volume, Time time)
         {
             if(mSound != null)
             {
@@ -104,7 +105,7 @@ public class SoundManager
                 
                 mInterruptor.play();
                 mGlobalVolume.setVolume(0.0f);
-                mGlobalVolume.startFading(1.0f, time);
+                mGlobalVolume.startFading(volume, time);
                 newSound.channel.set(this);
                 newSound.file.get().connectTo(mInterruptor, true);
             }
@@ -115,6 +116,9 @@ public class SoundManager
 
         void stopPlayback(Time time)
         {
+			if(time == null)
+				time = ZERO_DURATION;
+			
             mAutoRepeat.set(false);
             mGlobalVolume.startFading(0.0f, time);
             mInterruptor.stop(time);
@@ -137,7 +141,7 @@ public class SoundManager
             }
             else
             {
-                playSound(null, null);
+                playSound(null, 0, null);
                 super.quit();
             }
         }
@@ -147,36 +151,29 @@ public class SoundManager
     private final float[]                  mHearerPosition = new float[DIMENSION];
     private final SoundLayers              mSoundLayers    = new SoundLayers();
     private SoundSystem                    mSoundSystem    = null;
+	private boolean                        mMute           = false;
 
     protected SoundManager()
     {
         Algebra.mov_Vecf(mHearerPosition, 0.0f);
 
-        try
-        {
-            mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(70, Time.Unit.MILLI), USE_NUM_MIXER_LINES);
-            mSoundSystem.setDaemon(true);
-            mSoundSystem.start();
-        }
-        catch(SoundSystemException exception)
-        {
-            mSoundSystem = null;
-            // TODO: write error message into logger
-        }
-    }
-
-    public boolean isSoundSystemRunnig()
-    {
-        return mSoundSystem != null;
+		mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(15, Time.Unit.MILLI), USE_NUM_MIXER_LINES);
+		mSoundSystem.setDaemon(true);
+		mSoundSystem.start();
     }
 
 	public Sound openSound(Resource resource, SoundFile.Type fileType)
+    {
+		return openSound(resource, fileType, OUTPUT_NUM_SAMPLES, true);
+    }
+
+	public Sound openSound(Resource resource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
     {
 		Sound sound = null;
 
         try
         {
-            SoundFile file = new SoundFile(resource, fileType, OUTPUT_NUM_SAMPLES, true);
+            SoundFile file = new SoundFile(resource, fileType, numSamplesPerChunk, enableStreaming);
 
             sound = new Sound();
             sound.file.set(file);
@@ -206,7 +203,7 @@ public class SoundManager
 
 	public void play(Sound sound, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration)
     {
-        if(sound == null)
+        if(sound == null || mMute)
             return;
 
         if(sound.isActive())
@@ -222,13 +219,14 @@ public class SoundManager
         }
         else
         {
-            SoundChannel channel = findInactiveChannel();
+            SoundChannel channel = getInactiveChannel();
             channel.setAutoRepeat(autoRepeat);
-			channel.setVolume(volume);
             channel.setLayer(layerLevel);
             channel.setAudibleArea(area);
-            channel.playSound(sound, fadeInDuration);
+            channel.playSound(sound, volume, fadeInDuration);
 			channel.update();
+
+			closeInactiveChannels(SOUND_CHANNEL_LIMIT);
         }
     }
 
@@ -255,22 +253,49 @@ public class SoundManager
         if(sound != null && sound.isActive())
             sound.channel.get().setAudibleArea(area);
     }
+
+	public void mute(boolean turnMuteOn, Time turnOffDuration)
+	{
+		if(turnMuteOn && !mMute)
+		{
+			for(SoundChannel channel: mChannels)
+				channel.stopPlayback(turnOffDuration);
+		}
+		
+		mMute = turnMuteOn;
+	}
 	
     public void close()
     {
-        if(isSoundSystemRunnig())
-        {
-            mSoundSystem.close();
+		mSoundSystem.close();
 
-            try
-            {
-                mSoundSystem.join();
-            }
-            catch(InterruptedException exception) { }
-        }
+		try
+		{
+			mSoundSystem.join();
+		}
+		catch(InterruptedException exception) { }
     }
 
-    private SoundChannel findInactiveChannel()
+	private void closeInactiveChannels(int leaveNumChannelsOpen)
+	{
+		Iterator<SoundChannel> iChannel = mChannels.iterator();
+
+		while(iChannel.hasNext())
+		{
+			if(mChannels.size() <= leaveNumChannelsOpen)
+				break;
+			
+			SoundChannel currChannel = iChannel.next();
+
+			if(!currChannel.isActive())
+			{
+				currChannel.close();
+				iChannel.remove();
+			}
+		}
+	}
+	
+    private SoundChannel getInactiveChannel()
     {
         SoundChannel foundChannel = null;
 
@@ -285,8 +310,8 @@ public class SoundManager
 
         if(foundChannel == null)
 		{
-            mChannels.add(new SoundChannel());
-            foundChannel = mChannels.getLast();
+			foundChannel = new SoundChannel();
+            mChannels.add(foundChannel);
         }
 
         return foundChannel;

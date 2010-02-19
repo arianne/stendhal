@@ -146,24 +146,6 @@ public interface IEntity {
 	boolean isOnGround();
 
 	/**
-	 * @return the absolute world area (coordinates) to which audibility of
-	 * entity sounds is confined. Returns <b>null</b> if confines do not exist
-	 * (audible everywhere).
-	 */
-	Rectangle2D getAudibleArea();
-
-	/**
-	 * Sets the audible range as radius distance from this entity's position,
-	 * expressed in coordinate units. This reflects an abstract capacity of this
-	 * unit to emit sounds and influences the result of
-	 * <code>getAudibleArea()</code>.
-	 * 
-	 * @param range
-	 *            double audibility area radius in coordinate units
-	 */
-	void setAudibleRange(final double range);
-
-	/**
 	 * Get the resistance this has on other entities (0-100).
 	 * 
 	 * @return The resistance.

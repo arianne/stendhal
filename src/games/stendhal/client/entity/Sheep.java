@@ -12,9 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.Rand;
-import games.stendhal.common.constants.SoundLayer;
+import marauroa.common.game.RPObject;
 
 /** A Sheep entity. */
 public class Sheep extends DomesticAnimal {
@@ -23,19 +22,20 @@ public class Sheep extends DomesticAnimal {
 	//
 
 	@Override
-	protected void probableChat(final int chance) {
+	public void initialize(RPObject object) {
+		super.initialize(object);
+		addSoundsToGroup("small", "sheep-2", "sheep-4");
+		addSoundsToGroup("big"  , "sheep-1", "sheep-3");
+	}
 
-		final String[][] soundnames = { { "sheep-1", "sheep-3" },
-				{ "sheep-2", "sheep-4" } };
-		final int which = Rand.rand(2);
+	@Override
+	protected void probableChat(final int chance) {
 		if (Rand.rand(100) < chance) {
-			final String token;
 			if (getWeight() > 50) {
-				token = soundnames[0][which];
+				playRandomSoundFromGroup("big", 1.0f);
 			} else {
-				token = soundnames[1][which];
+				playRandomSoundFromGroup("small", 1.0f);
 			}
-			SoundSystemFacade.get().play(token, x, y, SoundLayer.CREATURE_NOISE, 100); 
 		}
 	}
 }
