@@ -18,14 +18,16 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class VolumeAdjustor extends SignalProcessor
 {
-    private final AtomicInteger mCurrentVolume  = new AtomicInteger();
-    private final AtomicInteger mTargetVolume   = new AtomicInteger();
-    private final AtomicLong    mFadingDuration = new AtomicLong();
+    private final AtomicInteger mCurrentVolume      = new AtomicInteger();
+    private final AtomicInteger mTargetVolume       = new AtomicInteger();
+	private final AtomicInteger mVolumeBeforeFading = new AtomicInteger();
+    private final AtomicLong    mFadingDuration     = new AtomicLong();
 
     public VolumeAdjustor()
     {
         mCurrentVolume.set(floatToInt(1.0f));
         mTargetVolume.set(floatToInt(1.0f));
+		mVolumeBeforeFading.set(floatToInt(1.0f));
         mFadingDuration.set(0);
     }
     
@@ -33,12 +35,14 @@ public class VolumeAdjustor extends SignalProcessor
     {
         mCurrentVolume.set(floatToInt(volume));
         mTargetVolume.set(floatToInt(volume));
+		mVolumeBeforeFading.set(floatToInt(volume));
         mFadingDuration.set(0);
     }
 
     public void setVolume(float volume)
     {
         mCurrentVolume.set(floatToInt(volume));
+		mVolumeBeforeFading.set(floatToInt(volume));
         mFadingDuration.set(0);
     }
 
@@ -49,6 +53,8 @@ public class VolumeAdjustor extends SignalProcessor
 
     public void startFading(float volume, Time duration)
     {
+		mVolumeBeforeFading.set(mCurrentVolume.get());
+		
         if(duration.getInNanoSeconds() <= 0)
         {
             mCurrentVolume.set(floatToInt(volume));
@@ -57,6 +63,20 @@ public class VolumeAdjustor extends SignalProcessor
         else
         {
             mTargetVolume.set(floatToInt(volume));
+            mFadingDuration.set(duration.getInNanoSeconds());
+        }
+    }
+
+	public void startFading(Time duration)
+    {
+        if(duration.getInNanoSeconds() <= 0)
+        {
+            mCurrentVolume.set(mVolumeBeforeFading.get());
+            mFadingDuration.set(0);
+        }
+        else
+        {
+            mTargetVolume.set(mVolumeBeforeFading.get());
             mFadingDuration.set(duration.getInNanoSeconds());
         }
     }
