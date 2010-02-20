@@ -13,7 +13,7 @@ package games.stendhal.client.sound.system;
  * 
  * @author silvio
  */
-public class Time
+public class Time implements Cloneable
 {
     /**
      * Enumeration of different time units
@@ -41,6 +41,11 @@ public class Time
     public Time()
     {
         mNanoSeconds = 0;
+    }
+
+	public Time(long nanos)
+    {
+        mNanoSeconds = nanos;
     }
     
     /**
@@ -83,6 +88,11 @@ public class Time
     public double getInMinutes     () { return (double)mNanoSeconds / (double)Unit.MIN.getNanos();   }
     public double getInHours       () { return (double)mNanoSeconds / (double)Unit.HOUR.getNanos();  }
 
+	void add(Time time ) { mNanoSeconds += time.mNanoSeconds; }
+	void sub(Time time ) { mNanoSeconds -= time.mNanoSeconds; }
+	void add(long nanos) { mNanoSeconds += nanos;             }
+	void sub(long nanos) { mNanoSeconds -= nanos;             }
+	
     /**
      * Calculates the number of samples for a given sample rate
      * that would fit into this time range
@@ -95,4 +105,10 @@ public class Time
         double seconds = (double)mNanoSeconds / (double)Unit.SEC.getNanos();
         return seconds * (double)sampleRate;
     }
+	
+	@Override
+	public Time clone()
+	{
+		return new Time(mNanoSeconds);
+	}
 }
