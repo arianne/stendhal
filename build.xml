@@ -214,7 +214,7 @@
 		<jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">
 			<manifest>
 				<attribute name="Main-Class" value="marauroa.server.marauroad"/>
-				<attribute name="Class-path" value="marauroa.jar ${maps_jarname} ${xmlconf_jarname} ${maps_jarname} commons-lang.jar log4j.jar groovy.jar ${mysqldriver_jarname} mysql.jar h2.jar"/>
+				<attribute name="Class-path" value=". marauroa.jar ${maps_jarname} ${xmlconf_jarname} ${maps_jarname} commons-lang.jar log4j.jar groovy.jar ${mysqldriver_jarname} mysql.jar h2.jar"/>
 			</manifest>
 		</jar>
 
