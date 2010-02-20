@@ -18,41 +18,46 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class VolumeAdjustor extends SignalProcessor
 {
-    private final AtomicInteger mVolume1  = new AtomicInteger();
-    private final AtomicInteger mVolume2  = new AtomicInteger();
-    private final AtomicLong    mDuration = new AtomicLong();
+    private final AtomicInteger mCurrentVolume  = new AtomicInteger();
+    private final AtomicInteger mTargetVolume   = new AtomicInteger();
+    private final AtomicLong    mFadingDuration = new AtomicLong();
 
     public VolumeAdjustor()
     {
-        mVolume1.set(floatToInt(1.0f));
-        mVolume2.set(floatToInt(1.0f));
-        mDuration.set(0);
+        mCurrentVolume.set(floatToInt(1.0f));
+        mTargetVolume.set(floatToInt(1.0f));
+        mFadingDuration.set(0);
     }
     
     public VolumeAdjustor(float volume)
     {
-        mVolume1.set(floatToInt(volume));
-        mVolume2.set(floatToInt(volume));
-        mDuration.set(0);
+        mCurrentVolume.set(floatToInt(volume));
+        mTargetVolume.set(floatToInt(volume));
+        mFadingDuration.set(0);
     }
 
     public void setVolume(float volume)
     {
-        mVolume1.set(floatToInt(volume));
-        mDuration.set(0);
+        mCurrentVolume.set(floatToInt(volume));
+        mFadingDuration.set(0);
     }
+
+	public float getVolume()
+	{
+		return intToFloat(mCurrentVolume.get());
+	}
 
     public void startFading(float volume, Time duration)
     {
         if(duration.getInNanoSeconds() <= 0)
         {
-            mVolume1.set(floatToInt(volume));
-            mDuration.set(0);
+            mCurrentVolume.set(floatToInt(volume));
+            mFadingDuration.set(0);
         }
         else
         {
-            mVolume2.set(floatToInt(volume));
-            mDuration.set(duration.getInNanoSeconds());
+            mTargetVolume.set(floatToInt(volume));
+            mFadingDuration.set(duration.getInNanoSeconds());
         }
     }
     
@@ -61,29 +66,30 @@ public class VolumeAdjustor extends SignalProcessor
     {
         assert data.length >= (samples * channels);
 
-        if(mDuration.get() <= 0)
+        if(mFadingDuration.get() <= 0)
         {
-            float volume = intToFloat(mVolume1.get());
+            float volume = intToFloat(mCurrentVolume.get());
 
             // if volume is zero we return without processing the audio data
             if(Algebra.isEqual_Scalf(volume, 0.0f))
                 return;
 
-            // if volume is 1 we propagate the unmodified audio data
             if(!Algebra.isEqual_Scalf(volume, 1.0f))
             {
                 for(int i=0; i<(samples*channels); ++i)
                     data[i] *= volume;
             }
+
+			// else if volume is 1 we propagate the unmodified audio data
         }
         else
         {
-            Time fadingDuration  = new Time(mDuration.get(), Time.Unit.NANO);
+            Time fadingDuration  = new Time(mFadingDuration.get(), Time.Unit.NANO);
             Time segmentDuration = new Time(samples, rate);
 
             int   numSamples    = samples;
-            float volume        = intToFloat(mVolume1.get());
-            float volumeSegment = intToFloat(mVolume2.get()) - intToFloat(mVolume1.get());
+            float volume        = intToFloat(mCurrentVolume.get());
+            float volumeSegment = intToFloat(mTargetVolume.get()) - intToFloat(mCurrentVolume.get());
 
             if(segmentDuration.getInNanoSeconds() > fadingDuration.getInNanoSeconds())
                 numSamples = (int)fadingDuration.getInSamples(rate);
@@ -102,8 +108,8 @@ public class VolumeAdjustor extends SignalProcessor
             for(int i=(numSamples * channels); i<(samples * channels); ++i)
                 data[i] *= volume + volumeSegment;
 
-            mVolume1.addAndGet(floatToInt(volumeSegment));
-            mDuration.addAndGet(-segmentDuration.getInNanoSeconds());
+            mCurrentVolume.addAndGet(floatToInt(volumeSegment));
+            mFadingDuration.addAndGet(-segmentDuration.getInNanoSeconds());
         }
 
         super.propagate(data, samples, channels, rate);
