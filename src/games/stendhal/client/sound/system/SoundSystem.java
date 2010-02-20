@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Control;
@@ -35,6 +37,7 @@ public class SoundSystem extends Thread
 	private static class SystemOutput extends Output
 	{
 		final SourceDataLine mLine;                   // the line we will write the PCM data to
+		final AudioFormat    mFormat;
         float[]              mAudioBuffer     = null; // the interleaved uniform PCM data
 		int                  mNumSamples      = 0;    //
         byte[]               mPCMBuffer       = null; // the uniform PCM data converted to the format defined in "mAudioFormat"
@@ -46,21 +49,22 @@ public class SoundSystem extends Thread
 		{
 			assert line != null;
 			assert line.isOpen();
-			mLine = line;
+			mLine   = line;
+			mFormat = line.getFormat();
 			mLine.start();
 		}
 
-		boolean     isOpen              () { return mLine.isOpen();                              }
-        boolean     receivedData        () { return mNumSamples    > 0;                          }
-        boolean     isConverted         () { return mPCMBufferSize > 0;                          }
-		AudioFormat getAudioFormat      () { return mLine.getFormat();                           }
-		float[]     getBuffer           () { return mAudioBuffer;                                }
-		int         getNumSamples       () { return mNumSamples;                                 }
-		int         getNumChannels      () { return mLine.getFormat().getChannels();             }
-		int         getSampleRate       () { return (int)mLine.getFormat().getSampleRate();      }
-		int         getNumBytesPerSample() { return mLine.getFormat().getSampleSizeInBits() / 8; }
-		int         available           () { return mLine.available();                           }
-		int         getNumBytesToWrite  () { return mNumBytesToWrite;                            }
+		boolean     isOpen              () { return mLine.isOpen();                    }
+        boolean     receivedData        () { return mNumSamples    > 0;                }
+        boolean     isConverted         () { return mPCMBufferSize > 0;                }
+		AudioFormat getAudioFormat      () { return mFormat;                           }
+		float[]     getBuffer           () { return mAudioBuffer;                      }
+		int         getNumSamples       () { return mNumSamples;                       }
+		int         getNumChannels      () { return mFormat.getChannels();             }
+		int         getSampleRate       () { return (int)mFormat.getSampleRate();      }
+		int         getNumBytesPerSample() { return mFormat.getSampleSizeInBits() / 8; }
+		int         available           () { return mLine.available();                 }
+		int         getNumBytesToWrite  () { return mNumBytesToWrite;                  }
 
 		void close()
 		{
@@ -261,94 +265,42 @@ public class SoundSystem extends Thread
         }
 	}
 
-	private final static Logger            logger                 = Logger.getLogger(SoundSystem.class);
+	private final static int    STATE_RUNNING = 1;
+	private final static int    STATE_PAUSING = 2;
+	private final static int    STATE_EXITING = 3;
+	private final static Time   ZERO_DURATION = new Time();
+	private final static Logger logger        = Logger.getLogger(SoundSystem.class);
+
 	private final LinkedList<SystemOutput> mSystemOutputs         = new LinkedList<SystemOutput>();
 	private final LinkedList<MixerOutput>  mMixerOutputs          = new LinkedList<MixerOutput>();
 	private SystemOutput                   mMixSystemOutput       = null;
     private Mixer                          mSystemMixer           = null;
     private Time                           mBufferDuration        = null;
-    private final AtomicBoolean            mSystemIsRunning       = new AtomicBoolean(false);
     private final AtomicBoolean            mUseDynamicLoadScaling = new AtomicBoolean(false);
-	float[]                                mMixBuffer             = null;
-	private final int                      mMaxNumLines;
-    
-    public SoundSystem(AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
-    {
-		if(audioFormat == null)
-			throw new IllegalArgumentException("audioFormat argument must not be null");
-		if(bufferDuration == null)
-			throw new IllegalArgumentException("bufferDuration argument must not be null");
-
-		logger.info("opening sound system and trying to find optimal system mixer device / output line");
-
-        mSystemMixer    = tryToFindMixer(audioFormat);
-        mBufferDuration = bufferDuration;
-		mMaxNumLines    = useMaxMixerLines;
-
-        if(mSystemMixer == null)
-        {
-			logger.warn("cannot find a system mixer device. manual mixing will be the only option");
-
-            DataLine.Info datalineInfo = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
-
-            try
-            {
-                SourceDataLine line = (SourceDataLine)AudioSystem.getLine(datalineInfo);
-                line.open();
-				
-				mMixSystemOutput = new SystemOutput(line);
-            }
-            catch(LineUnavailableException e)
-            {
-				logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
-            }
-        }
-		else
-		{
-			DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
-
-			try
-            {
-                SourceDataLine line = (SourceDataLine)mSystemMixer.getLine(info);
-                line.open();
-
-				mMixSystemOutput = new SystemOutput(line);
-            }
-            catch(LineUnavailableException e)
-			{
-				logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
-			}
-		}
-    }
+	private final AtomicReference<Time>    mStateChangeDelay      = new AtomicReference<Time>();
+	private final AtomicInteger            mTargetSystemState     = new AtomicInteger();
+	private int                            mCurrentSystemState;
+	private int                            mMaxNumLines           = 0;
+	private float[]                        mMixBuffer             = null;
 
     public SoundSystem(Mixer mixer, AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
     {
-		if(mixer == null)
-			throw new IllegalArgumentException("mixer argument must not be null");
 		if(audioFormat == null)
 			throw new IllegalArgumentException("audioFormat argument must not be null");
 		if(bufferDuration == null)
 			throw new IllegalArgumentException("bufferDuration argument must not be null");
 
-		logger.info("opening sound system using specified system mixer device");
-
-        mSystemMixer    = mixer;
-        mBufferDuration = bufferDuration;
-		mMaxNumLines    = useMaxMixerLines;
-
-		DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
-
-		try
+		if(mixer == null)
 		{
-			SourceDataLine line = (SourceDataLine)mSystemMixer.getLine(info);
-			line.open();
-
-			mMixSystemOutput = new SystemOutput(line);
+			logger.info("opening sound system and trying to find optimal system mixer device / output line");
+			mixer = tryToFindMixer(audioFormat);
 		}
-		catch(LineUnavailableException e)
+		else
 		{
-			logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
+			logger.info("opening sound system using specified system mixer device");
 		}
+		
+		init(mixer, audioFormat, bufferDuration, useMaxMixerLines);
     }
 
     public SoundSystem(SourceDataLine outputLine, Time bufferDuration)
@@ -358,10 +310,10 @@ public class SoundSystem extends Thread
 		if(bufferDuration == null)
 			throw new IllegalArgumentException("bufferDuration argument must not be null");
 
-		logger.info("opening sound system");
-
-		mMaxNumLines     = 0;
-        mBufferDuration  = bufferDuration;
+		logger.info("opening sound system with only manual mixing enabled");
+		
+        mBufferDuration = bufferDuration;
+		mMaxNumLines    = 0;
 		
         if(!outputLine.isOpen())
         {
@@ -378,6 +330,16 @@ public class SoundSystem extends Thread
 
 		mMixSystemOutput = new SystemOutput(outputLine);
     }
+
+	public void suspend(Time delay)
+	{
+		changeSystemState(STATE_PAUSING, delay);
+	}
+
+	public void proceed(Time delay)
+	{
+		changeSystemState(STATE_RUNNING, delay);
+	}
 
 	public Output openOutput(AudioFormat audioFormat)
 	{
@@ -423,78 +385,150 @@ public class SoundSystem extends Thread
 		return new DummyOutput();
 	}
 
-    public synchronized void closeOutput(Output output)
+    public void closeOutput(Output output)
     {
 		if(output != null)
 		{
 			output.disconnect();
 
-			if(output instanceof SystemOutput)
+			synchronized(mSystemOutputs)
 			{
-				logger.debug("closing a system output");
+				if(output instanceof SystemOutput)
+				{
+					logger.debug("closing a system output");
 
-				SystemOutput systemOutput = (SystemOutput)output;
-				systemOutput.close();
-				mSystemOutputs.remove(systemOutput);
+					SystemOutput systemOutput = (SystemOutput)output;
+					systemOutput.close();
+					mSystemOutputs.remove(systemOutput);
+				}
 			}
 
-			if(output instanceof MixerOutput)
+			synchronized(mMixerOutputs)
 			{
-				logger.debug("closing a mixer output");
+				if(output instanceof MixerOutput)
+				{
+					logger.debug("closing a mixer output");
 
-				MixerOutput mixerOutput = (MixerOutput)output;
-				mMixerOutputs.remove(mixerOutput);
+					MixerOutput mixerOutput = (MixerOutput)output;
+					mMixerOutputs.remove(mixerOutput);
+				}
 			}
 		}
     }
 
-    public synchronized void closeAllOutputs()
+    public void closeAllOutputs()
     {
 		logger.debug("closing all outputs excluding the output for manual mixing");
-		
-		for(SystemOutput output: mSystemOutputs)
-			output.close();
 
-		mSystemOutputs.clear();
-		mMixerOutputs.clear();
+		synchronized(mSystemOutputs)
+		{
+			for(SystemOutput output: mSystemOutputs)
+				output.close();
+			
+			mSystemOutputs.clear();
+		}
+
+		synchronized(mMixerOutputs)
+		{
+			mMixerOutputs.clear();
+		}
     }
 
-    public void exit()
+    public void exit(Time delay)
     {
 		logger.info("stopping sound system");
-        mSystemIsRunning.set(false);
+		changeSystemState(STATE_EXITING, delay);
     }
 
     @Override
     public void run()
     {
-        mSystemIsRunning.set(true);
+		class StateChanger
+		{
+			long    mSystemTime  = 0;
+			boolean mChangeState = false;
 
-        double averageTimeToProcessSound = mBufferDuration.getInNanoSeconds();
-        double multiplicator             = 0.990;
-        
-        while(mSystemIsRunning.get())
+			void processStateChange()
+			{
+				if(!mChangeState)
+				{
+					if(mCurrentSystemState != mTargetSystemState.get())
+					{
+						if(mStateChangeDelay.get().getInNanoSeconds() <= 0)
+						{
+							mCurrentSystemState = mTargetSystemState.get();
+							return;
+						}
+
+						mSystemTime  = System.nanoTime();
+						mChangeState = true;
+					}
+				}
+				else
+				{
+					if((System.nanoTime() - mSystemTime) >= mStateChangeDelay.get().getInNanoSeconds())
+					{
+						mCurrentSystemState = mTargetSystemState.get();
+						mChangeState        = false;
+					}
+				}
+			}
+		}
+
+        double       averageTimeToProcessSound = 0;//mBufferDuration.getInNanoSeconds();
+        double       multiplicator             = 0.995;
+		StateChanger stateChanger              = new StateChanger();
+
+		mCurrentSystemState = STATE_RUNNING;
+		mTargetSystemState.set(STATE_RUNNING);
+		mStateChangeDelay.set(ZERO_DURATION);
+
+        while(mCurrentSystemState != STATE_EXITING)
         {
-            long duration = System.nanoTime();
+			stateChanger.processStateChange();
 
-			processOutputs();
-           
-            duration                  = System.nanoTime() - duration;
-            averageTimeToProcessSound = (averageTimeToProcessSound + duration) / 2.0;
+			switch(mCurrentSystemState)
+			{
+			case STATE_RUNNING:
+				{
+					long duration = System.nanoTime();
 
-            if(averageTimeToProcessSound > mBufferDuration.getInNanoSeconds())
-                averageTimeToProcessSound = mBufferDuration.getInNanoSeconds();
+					processOutputs();
 
-            if(mUseDynamicLoadScaling.get())
-            {
-                long nanos = (long)((mBufferDuration.getInNanoSeconds() - averageTimeToProcessSound) * multiplicator);
-                suspendThread(nanos);
-            }
+					if(mUseDynamicLoadScaling.get())
+					{
+						duration                  = System.nanoTime() - duration;
+						averageTimeToProcessSound = (averageTimeToProcessSound + duration) / 2.0;
+
+						if(averageTimeToProcessSound > mBufferDuration.getInNanoSeconds())
+							averageTimeToProcessSound = mBufferDuration.getInNanoSeconds();
+
+						long nanos = (long)((mBufferDuration.getInNanoSeconds() - averageTimeToProcessSound) * multiplicator);
+						suspendThread(nanos);
+					}
+				}
+				break;
+
+			case STATE_PAUSING:
+				suspendThread(50);
+				break;
+			}
         }
 
         closeAllOutputs();
 		closeOutput(mMixSystemOutput);
     }
+
+	private void changeSystemState(int state, Time delay)
+	{
+		if(delay == null)
+			delay = ZERO_DURATION;
+		else
+			delay = delay.clone();
+
+		mStateChangeDelay.set(delay);
+		mTargetSystemState.set(state);
+	}
 
 	@SuppressWarnings("unchecked")
 	private void processOutputs()
@@ -557,7 +591,7 @@ public class SoundSystem extends Thread
 
 						buffersAreFull = buffersAreFull && (output.available() == 0);
 
-						if(output.write(256))
+						if(output.write(1000))
 							continue;
 					}
 				}
@@ -570,46 +604,55 @@ public class SoundSystem extends Thread
 		}
 	}
 
-    @Override
-    public String toString()
-    {
-        String text = new String();
-        int    ctr  = 1;
+	private void init(Mixer mixer, AudioFormat audioFormat, Time bufferDuration, int useMaxMixerLines)
+	{
+        mSystemMixer     = mixer;
+        mBufferDuration  = bufferDuration;
+		mMixSystemOutput = null;
 
-        for(Mixer.Info info: AudioSystem.getMixerInfo())
+		if(mSystemMixer != null)
+		{
+			DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
+
+			try
+            {
+                SourceDataLine line = (SourceDataLine)mSystemMixer.getLine(info);
+                line.open();
+
+				mMixSystemOutput = new SystemOutput(line);
+				mMaxNumLines     = mSystemMixer.getMaxLines(info);
+				mMaxNumLines     = (mMaxNumLines == AudioSystem.NOT_SPECIFIED) ? (Integer.MAX_VALUE) : (mMaxNumLines);
+				mMaxNumLines     = Math.min(useMaxMixerLines, (mMaxNumLines - 1));
+            }
+            catch(LineUnavailableException e)
+			{
+				logger.warn("cannot open output line of system mixer device: \"" + e + "\"");
+			}
+		}
+
+        if(mSystemMixer == null)
         {
-            Mixer         mixer        = AudioSystem.getMixer(info);
-            Line.Info[]   lineInfos    = mixer.getSourceLineInfo();
-            Control[]     controls     = mixer.getControls();
-            AudioFormat   audioFormat  = new AudioFormat(44100, 16, 2, true, false);
+			logger.info("try to open a common output line");
+
             DataLine.Info datalineInfo = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
 
-            text += "[" + ctr + "] " + info.getName() + " - " + info.getDescription() + "\n";
-
-            if(controls.length > 0)
+            try
             {
-                text += "    controls:\n";
+                SourceDataLine line = (SourceDataLine)AudioSystem.getLine(datalineInfo);
+                line.open();
 
-                for(Control c: controls)
-                    text += "        " + c.toString() + "\n";
+				mMixSystemOutput = new SystemOutput(line);
+				mMaxNumLines     = 0;
             }
-            else text += "    no controls\n";
-
-            if(lineInfos.length > 0)
+            catch(LineUnavailableException e)
             {
-                text += "    number of lines " + audioFormat.toString() + " = " + mixer.getMaxLines(datalineInfo) + "\n";
-
-                for(Line.Info l: lineInfos)
-                    text += "        " + l.toString() + "\n";
+				logger.warn("cannot open common output line for manual mixing of audio data: \"" + e + "\"");
             }
-            else text += "    no lines\n";
-
-            text += "\n";
-            ctr  += 1;
         }
 
-        return text;
-    }
+		if(mSystemMixer == null && mMixSystemOutput == null)
+			mMaxNumLines = 0;
+	}
 
     private void suspendThread(long nanos)
     {
