@@ -544,9 +544,7 @@ import org.apache.log4j.Logger;
 	 * 			- creature that was just died.
 	 */
 	private void notifyDead(final RPEntity dead) {
-		if (rats.indexOf(dead)!=-1) {
-			rats.remove(rats.indexOf(dead));
-		} else {
+		if (!rats.remove(dead)) {
 			logger.warn("killed creature isn't in control list ("+dead.toString()+").");
 		}
 		if (rats.size()==0) {
