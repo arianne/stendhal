@@ -150,7 +150,7 @@ public class ThePiedPiperTest {
 		return(sb.toString());
 	}
 	
-	@Test
+	@Ignore
 	public void testInvasionPhaseEnd() {
 		killRats(quest.getRatsCount());
 		// [17:58] Mayor Chalmers shouts: No rats in Ados now, exclude those who always lived in storage and haunted house. Rats hunters are welcome to get their reward.
