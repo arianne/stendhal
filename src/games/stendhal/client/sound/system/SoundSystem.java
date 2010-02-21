@@ -265,9 +265,9 @@ public class SoundSystem extends Thread
         }
 	}
 
+	private final static int    STATE_EXITING = 0;
 	private final static int    STATE_RUNNING = 1;
 	private final static int    STATE_PAUSING = 2;
-	private final static int    STATE_EXITING = 3;
 	private final static Time   ZERO_DURATION = new Time();
 	private final static Logger logger        = Logger.getLogger(SoundSystem.class);
 
@@ -277,9 +277,9 @@ public class SoundSystem extends Thread
     private Mixer                          mSystemMixer           = null;
     private Time                           mBufferDuration        = null;
     private final AtomicBoolean            mUseDynamicLoadScaling = new AtomicBoolean(false);
-	private final AtomicReference<Time>    mStateChangeDelay      = new AtomicReference<Time>();
-	private final AtomicInteger            mTargetSystemState     = new AtomicInteger();
-	private int                            mCurrentSystemState;
+	private final AtomicReference<Time>    mStateChangeDelay      = new AtomicReference<Time>(ZERO_DURATION);
+	private final AtomicInteger            mTargetSystemState     = new AtomicInteger(0);
+	private int                            mCurrentSystemState    = 0;
 	private int                            mMaxNumLines           = 0;
 	private float[]                        mMixBuffer             = null;
 
@@ -323,6 +323,11 @@ public class SoundSystem extends Thread
             }
             catch(LineUnavailableException e)
             {
+				logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
+				return;
+            }
+			catch(SecurityException e)
+			{
 				logger.warn("cannot open output line for manual mixing of audio data: \"" + e + "\"");
 				return;
             }
@@ -628,6 +633,14 @@ public class SoundSystem extends Thread
 			{
 				logger.warn("cannot open output line of system mixer device: \"" + e + "\"");
 			}
+			catch(IllegalArgumentException e)
+			{
+				logger.warn("cannot open output line of system mixer device: \"" + e + "\"");
+			}
+			catch(SecurityException e)
+			{
+				logger.warn("cannot open output line of system mixer device: \"" + e + "\"");
+			}
 		}
 
         if(mSystemMixer == null)
@@ -648,6 +661,14 @@ public class SoundSystem extends Thread
             {
 				logger.warn("cannot open common output line for manual mixing of audio data: \"" + e + "\"");
             }
+			catch(IllegalArgumentException e)
+			{
+				logger.warn("cannot open common output line for manual mixing of audio data: \"" + e + "\"");
+			}
+			catch(SecurityException e)
+			{
+				logger.warn("cannot open common output line for manual mixing of audio data: \"" + e + "\"");
+			}
         }
 
 		if(mSystemMixer == null && mMixSystemOutput == null)
