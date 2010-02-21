@@ -32,6 +32,7 @@ public class ThePiedPiperTest {
 	final static ThePiedPiper quest = new ThePiedPiper();
 	private int rewardMoneys = 0;
 	private int[] killedRats = {0,0,0,0,0,0};
+	private static Logger logger = Logger.getLogger(ThePiedPiperTest.class);
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -93,10 +94,12 @@ public class ThePiedPiperTest {
 	public void testInvasionPhaseStart() {
 		// [17:50] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
 		quest.PhaseInactiveToInvasion();
-		en.step(player, "hi");
+        en.step(player, "bye"); // in case if previous test was failed
+        en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("There are still about "+quest.getRatsCount()+" rats alive.", getReply(npc));
+		assertEquals("There " + Grammar.isare(quest.getRatsCount()) + 
+				" still about "+ quest.getRatsCount() + " rats alive.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 	}
@@ -104,6 +107,7 @@ public class ThePiedPiperTest {
 	private void killRat(KillNotificationCreature rat, int count) {
 		do {
 			MockStendhalRPRuleProcessor.get().beginTurn();
+
 			// prevent player killing
 			player.setHP(10000);
 			if(player.isPoisoned()) {
@@ -113,16 +117,15 @@ public class ThePiedPiperTest {
 			player.setTarget(rat);
 			player.attack();
 			MockStendhalRPRuleProcessor.get().endTurn();
+			MockStendhalRPRuleProcessor.get().beginTurn();
+			MockStendhalRPRuleProcessor.get().endTurn();
 		} while (player.isAttacking());
-		Logger.getLogger("ThePiedPiperTest").info(
-				"killed "+rat.getName()+". #"+count);
-		MockStendhalRPRuleProcessor.get().beginTurn();
-		MockStendhalRPRuleProcessor.get().endTurn();
+		logger.info("killed "+rat.getName()+". #"+count);
 	}
 	
 	private void killRats(int numb) {
 		int count=0;
-		Logger.getLogger("ThePiedPiperTest").info("number of rats to kill: "+numb);
+		logger.info("number of rats to kill: "+numb);
 		for (int i=0; i<numb;i++) {
 			String name = quest.rats.get(0).getName();
 			int kind = ThePiedPiper.RAT_TYPES.indexOf(name);
@@ -130,7 +133,7 @@ public class ThePiedPiperTest {
 			count++;			
 			killedRats[kind]++;
 			rewardMoneys = rewardMoneys + ThePiedPiper.RAT_REWARDS.get(kind);
-			//Logger.getLogger("ThePiedPiperTest").info("quest slot: "+player.getQuest("the_pied_piper"));
+			//logger.info("quest slot: "+player.getQuest("the_pied_piper"));
 		}		
 	}
 	
@@ -154,6 +157,7 @@ public class ThePiedPiperTest {
 	public void testInvasionPhaseEnd() {
 		killRats(quest.getRatsCount());
 		// [17:58] Mayor Chalmers shouts: No rats in Ados now, exclude those who always lived in storage and haunted house. Rats hunters are welcome to get their reward.
+        en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
@@ -176,11 +180,13 @@ public class ThePiedPiperTest {
 	@Ignore
 	public void testInvasionPhase2() {
 		// [18:09] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
-
+		quest.PhaseInactiveToInvasion();
+		en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("There is still about 30 rats alive.", getReply(npc));
+		assertEquals("There "+ Grammar.isare(quest.getRatsCount()) +
+				" still about "+ quest.getRatsCount() +" rats alive.", getReply(npc));
 		en.step(player, "details");
 		assertEquals("You killed no rats during the #rats invasion. "+
 				  "To get a #reward you have to kill at least "+
