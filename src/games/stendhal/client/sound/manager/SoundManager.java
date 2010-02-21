@@ -110,10 +110,8 @@ public class SoundManager
 			mAudibleArea.set(area);
 		}
 
-        void playSound(Sound newSound, float volume, Time time)
+        synchronized void playSound(Sound newSound, float volume, Time time)
         {
-			mIsActive.set(true);
-			
             if(mSound != null)
             {
                 mSound.file.get().disconnect();
@@ -135,7 +133,7 @@ public class SoundManager
             }
 
             mSound = newSound;
-            mIsActive.set(newSound != null);
+			mIsActive.set(newSound != null);
         }
 
         void stopPlayback(Time time)
@@ -191,7 +189,7 @@ public class SoundManager
 		return openSound(resource, fileType, OUTPUT_NUM_SAMPLES, true);
     }
 
-	public Sound openSound(Resource resource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
+	public synchronized Sound openSound(Resource resource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
     {
 		Sound sound = null;
 
@@ -210,12 +208,12 @@ public class SoundManager
 		return sound;
     }
 
-    public void setHearerPosition(float[] position)
+    public synchronized void setHearerPosition(float[] position)
     {
         Algebra.mov_Vecf(mHearerPosition, position);
     }
 
-    public void update()
+    public synchronized void update()
     {
         for(SoundChannel channel: mChannels)
         {
@@ -224,7 +222,7 @@ public class SoundManager
         }
     }
 
-	public void play(Sound sound, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration)
+	public synchronized void play(Sound sound, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration)
     {
         if(sound == null)
             return;
@@ -256,31 +254,31 @@ public class SoundManager
         }
     }
 
-    public void stop(Sound sound, Time fadeOutDuration)
+    public synchronized void stop(Sound sound, Time fadeOutDuration)
     {
         if(sound != null && sound.isActive())
             sound.channel.get().stopPlayback(fadeOutDuration);
     }
 
-    public void changeVolume(Sound sound, float volume)
+    public synchronized void changeVolume(Sound sound, float volume)
     {
         if(sound != null && sound.isActive())
             sound.channel.get().setVolume(volume);
     }
 
-    public void changeLayer(Sound sound, int layerLevel)
+    public synchronized void changeLayer(Sound sound, int layerLevel)
     {
         if(sound != null && sound.isActive())
             sound.channel.get().setLayer(layerLevel);
     }
 
-    public void changeAudibleArea(Sound sound, AudibleArea area)
+    public synchronized void changeAudibleArea(Sound sound, AudibleArea area)
     {
         if(sound != null && sound.isActive())
             sound.channel.get().setAudibleArea(area);
     }
 
-	public void mute(boolean turnOffSound, boolean useFading, Time delay)
+	public synchronized void mute(boolean turnOffSound, boolean useFading, Time delay)
 	{
 		if(turnOffSound && !mMute)
 		{
@@ -311,7 +309,7 @@ public class SoundManager
 		mMute = turnOffSound;
 	}
 
-	public List<Sound> getActiveSounds()
+	public synchronized List<Sound> getActiveSounds()
 	{
 		ArrayList<Sound> sounds = new ArrayList<Sound>(mChannels.size());
 
@@ -327,7 +325,7 @@ public class SoundManager
 		return sounds;
 	}
 	
-    public void exit()
+    public synchronized void exit()
     {
 		mSoundSystem.exit(null);
 
