@@ -514,10 +514,13 @@
 				<include name="*.html"/>
 			</fileset>
 		</copy>
-		<copy todir="${buildroot}/stendhal-${version}/doc">
+		<copy todir="${buildroot}/stendhal-server-${version}/doc">
 			<fileset dir="doc"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
+		
+	    <copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.txt"/>
+
 		<copy todir="${buildroot}/stendhal-server-${version}" file="README.txt"/>
 		<mkdir dir="${buildroot}/stendhal-server-${version}/log" />
 		<touch file="${buildroot}/stendhal-server-${version}/log/empty" />
