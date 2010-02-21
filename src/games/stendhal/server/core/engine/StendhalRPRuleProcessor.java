@@ -388,14 +388,22 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		if (adminNames == null) {
 			adminNames = new LinkedList<String>();
 
-			final String adminFilename = "data/conf/admins.list";
-
+			String adminFilename = "data/conf/admins.txt";
+			final String adminFilenameAlt = "data/conf/admins.list";
+			
 			try {
-				final InputStream is = player.getClass().getClassLoader().getResourceAsStream(
+				InputStream is = player.getClass().getClassLoader().getResourceAsStream(
 						adminFilename);
 
 				if (is == null) {
-					logger.info("data/conf/admins.list does not exist.");
+					// backwards compatibility for those who used to have admins.list
+					is = player.getClass().getClassLoader().getResourceAsStream(
+							adminFilenameAlt);
+					if (is == null) {
+						logger.info("Neither " + adminFilename + " nor " + adminFilenameAlt + " exist.");
+					}
+					// update filename for any error messages
+					adminFilename = adminFilenameAlt;
 				} else {
 
 					final BufferedReader in = new BufferedReader(
