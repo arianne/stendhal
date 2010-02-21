@@ -12,30 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.sound.SoundSystemFacade;
-import games.stendhal.common.Rand;
-import games.stendhal.common.constants.SoundLayer;
+import marauroa.common.game.RPObject;
 
 /** A Pet entity. */
 public class Pet extends DomesticAnimal {
-	//
-	// DomesticAnimal
-	//
+	
+	@Override
+	public void initialize(RPObject object) {
+		super.initialize(object);
+	}
 
 	@Override
 	protected void probableChat(final int chance) {
-		final String[][] soundnames = { { "pet-1", "pet-3" },
-				{ "pet-2", "pet-4" } };
-		final int which = Rand.rand(2);
-		if (Rand.rand(100) < chance) {
-			
-			final String token;
-			if (getWeight() > 50) {
-				token = soundnames[0][which];
-			} else {
-				token = soundnames[1][which];
-			}
-			SoundSystemFacade.get().play(token, x, y, SoundLayer.CREATURE_NOISE, 100); 
-		}
 	}
 }
