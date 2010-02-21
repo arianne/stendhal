@@ -37,7 +37,7 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 
 	private SoundSystemFacade() {
 		boolean mute = !Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
-		super.mute(mute, null);
+		super.mute(mute, true, null);
 	}
 
 	public void playerMoved() {
