@@ -5,6 +5,7 @@
 
 package games.stendhal.client.sound.system;
 
+import games.stendhal.common.math.Dsp;
 import games.stendhal.common.memory.Field;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -107,7 +108,7 @@ public class SoundSystem extends Thread
 			int numBytes          = numBytesPerSample * mNumSamples;
 
 			mPCMBuffer     = Field.expand(mPCMBuffer, numBytes, false);
-            mPCMBuffer     = SoundSystem.convertUniformPCM(mPCMBuffer, mAudioBuffer, mNumSamples, numBytesPerSample);
+            mPCMBuffer     = Dsp.convertUniformPCM(mPCMBuffer, mAudioBuffer, mNumSamples, numBytesPerSample);
 			mPCMBufferSize = numBytes;
         }
 
@@ -142,7 +143,7 @@ public class SoundSystem extends Thread
             if(buffer != null && frames > 0 && channels > 0 && rate > 0)
             {
                 assert (frames * channels) <= buffer.length;
-				buffer = SoundSystem.convertChannels(buffer, frames, channels, getNumChannels());
+				buffer = Dsp.convertChannels(buffer, frames, channels, getNumChannels());
 
                 if(buffer != null)
                 {
@@ -154,7 +155,7 @@ public class SoundSystem extends Thread
 					//assert false: "could not convert channels";
 				}
 
-				buffer = SoundSystem.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
+				buffer = Dsp.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
 
 				if(buffer != null)
 				{
@@ -218,7 +219,7 @@ public class SoundSystem extends Thread
 				int numSamples = mNumSamples - mNumSamplesMixed;
 				numSamples = Math.min(numSamples, numSamplesToMix);
 
-				SoundSystem.mixUniformPCM(buffer, offset, mAudioBuffer, mNumSamplesMixed, numSamples);
+				Dsp.mixUniformPCM(buffer, offset, mAudioBuffer, mNumSamplesMixed, numSamples);
 
 				offset           += numSamples;
 				mNumSamplesMixed += numSamples;
@@ -237,7 +238,7 @@ public class SoundSystem extends Thread
             if(buffer != null && frames > 0 && channels > 0 && rate > 0)
             {
                 assert (frames * channels) <= buffer.length;
-				buffer = SoundSystem.convertChannels(buffer, frames, channels, getNumChannels());
+				buffer = Dsp.convertChannels(buffer, frames, channels, getNumChannels());
 
                 if(buffer != null)
                 {
@@ -249,7 +250,7 @@ public class SoundSystem extends Thread
 					//assert false: "could not convert channels";
 				}
 
-				buffer = SoundSystem.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
+				buffer = Dsp.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
 
 				if(buffer != null)
 				{
@@ -718,122 +719,5 @@ public class SoundSystem extends Thread
             return null;
         
         return mixers[0];
-    }
-
-    private static byte[] convertUniformPCM(byte[] pcmBuffer, float[] uniformSamples, int numUniformSamples, int numBytesPerSample)
-    {
-        int numBitsPerSample = numBytesPerSample * 8;
-		long maxValue        = (long)((Math.pow(2, numBitsPerSample) - 1.0) / 2.0);
-
-		pcmBuffer = Field.expand(pcmBuffer, (numBytesPerSample * numUniformSamples), false);
-
-        for(int i=0; i<numUniformSamples; ++i)
-        {
-            long value = (long)(uniformSamples[i] * maxValue);
-            int  index = i * numBytesPerSample;
-
-            value = (value >  maxValue) ? ( maxValue) : (value);
-            value = (value < -maxValue) ? (-maxValue) : (value);
-
-            for(int n=0; n<numBytesPerSample; ++n)
-                pcmBuffer[index + n] = (byte)(value >>> (n*8));
-        }
-
-        return pcmBuffer;
-	}
-
-    private static void mixUniformPCM(float[] result, int rBegin, float[] data, int dBegin, int numSamples)
-    {
-        for(int i=0; i<numSamples; ++i)
-        {
-            float A = result[rBegin + i];
-            float B = data[dBegin + i];
-
-            result[rBegin + i] = A + B - A * B;
-        }
-    }
-
-	private static float[] convertChannels(float[] buffer, int numFrames, int numChannels, int numRequiredChannels)
-    {
-        /* Assignments for audio channels
-         * channel 0: Front left
-         * channel 1: Front right
-         * channel 2: Center
-         * channel 3: Low frequency (subwoofer)
-         * channel 4: Surround left       - ## NEEDS CONFIRMATION ##
-         * channel 5: Surround right      - ## NEEDS CONFIRMATION ##
-         * channel 6: Surround back left  - ## NEEDS CONFIRMATION ##
-         * channel 7: Surround back right - ## NEEDS CONFIRMATION ##
-         */
-
-        if(numChannels == numRequiredChannels)
-            return buffer;
-
-        // we have to reduce the number of channels
-        if(numChannels > numRequiredChannels)
-        {
-            // stereo/multichannel to mono - maybe this won't work properly for more than 2 channels
-            //                             - ## NEEDS CONFIRMATION ##
-            if(numRequiredChannels == 1)
-            {
-                for(int i=0; i<numFrames; ++i)
-                {
-                    int index   = i * numChannels;
-                    float value = 0.0f;
-
-                    for(int c=0; c<numChannels; ++c)
-                        value += buffer[index + c];
-
-                    buffer[i] = value / (float)numChannels;
-                }
-            }
-            else
-            {
-                // not implemented yet
-                buffer = null;
-            }
-        }
-        else // we have to increase the number of channels
-        {
-            // mono to stereo/multichannel
-            if(numChannels == 1)
-            {
-                float[] newUniformPCM = new float[numFrames * numRequiredChannels];
-
-                for(int i=0; i<numFrames; ++i)
-                {
-                    int index = i * numRequiredChannels;
-
-                    for(int c=0; c<numRequiredChannels; ++c)
-                        newUniformPCM[index + c] = buffer[i];
-                }
-
-                buffer = newUniformPCM;
-            }
-            else // stereo/multichannel to multichannel
-            {
-                /* Stereo widening (from wikipedia):
-                 * Widening of the stereo image can be achieved by manipulating the
-                 * relationship of the side signal S and the center signal C
-                 * C = (L + R) / 2; S = (L - R) / 2
-                 * A positive part of the side signal S is now fed into the left channel
-                 * and a part with its phase inverted to the right channel.
-                 */
-
-                // not implemented yet
-                buffer = null;
-            }
-        }
-
-        return buffer;
-    }
-
-	private static float[] convertSampleRate(float[] buffer, int numSamples, int numChannels, int sampleRate, int toSampleRate)
-    {
-        if(sampleRate == toSampleRate)
-            return buffer;
-
-        // not implemented yet
-        return null;
     }
 }
