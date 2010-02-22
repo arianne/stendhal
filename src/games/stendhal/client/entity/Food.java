@@ -62,7 +62,8 @@ public abstract class Food extends AudibleEntity {
 	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
-		addSoundsToGroup("food", "pop-2");
+
+		addSounds("ambient", "food", "pop-2");
 
 		if (object.has("amount")) {
 			amount = object.getInt("amount");
@@ -94,7 +95,7 @@ public abstract class Food extends AudibleEntity {
 			// TODO this causes problems because of unidentified content refresh
 			// events (e.g. synchronizing)
 			if (amount > oldAmount) {
-				playRandomSoundFromGroup("food", 1.0f);
+				playRandomSoundFromCategory("ambient", "food");
 			}
 
 			fireChange(PROP_AMOUNT);

@@ -38,15 +38,15 @@ public class NPC extends AudibleEntity {
 
 		if (type.startsWith("npc")) {
 			if (name.equals("Diogenes")) {
-				addSoundsToGroup("move", "laugh-1", "laugh-2");
+				addSounds("npc", "move", "laugh-1", "laugh-2");
 			} else if (name.equals("Carmen")) {
-				addSoundsToGroup("move", "giggle-1", "giggle-2");
+				addSounds("npc", "move", "giggle-1", "giggle-2");
 			} else if (name.equals("Nishiya")) {
-				addSoundsToGroup("move", "cough-11", "cough-2", "cough-3");
+				addSounds("npc", "move", "cough-11", "cough-2", "cough-3");
 			} else if (name.equals("Margaret")) {
-				addSoundsToGroup("move", "hiccup-1", "hiccup-2", "hiccup-3");
+				addSounds("npc", "move", "hiccup-1", "hiccup-2", "hiccup-3");
 			} else if (name.equals("Sato")) {
-				addSoundsToGroup("move", "hiccup-1", "sneeze-1");
+				addSounds("npc", "move", "hiccup-1", "sneeze-1");
 			}
 		}
 	}
@@ -62,6 +62,6 @@ public class NPC extends AudibleEntity {
 	@Override
 	protected void onPosition(final double x, final double y) {
 		super.onPosition(x, y);
-		playRandomSoundFromGroup("move", 1.0f, 20000);
+		playRandomSoundFromGroup("npc", "move", 20000);
 	}
 }

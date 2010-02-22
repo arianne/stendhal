@@ -24,17 +24,17 @@ public class Sheep extends DomesticAnimal {
 	@Override
 	public void initialize(RPObject object) {
 		super.initialize(object);
-		addSoundsToGroup("small", "sheep-2", "sheep-4");
-		addSoundsToGroup("big"  , "sheep-1", "sheep-3");
+		addSounds("npc", "small", "sheep-2", "sheep-4");
+		addSounds("npc", "big"  , "sheep-1", "sheep-3");
 	}
 
 	@Override
 	protected void probableChat(final int chance) {
 		if (Rand.rand(100) < chance) {
 			if (getWeight() > 50) {
-				playRandomSoundFromGroup("big", 1.0f);
+				playRandomSoundFromCategory("npc", "big");
 			} else {
-				playRandomSoundFromGroup("small", 1.0f);
+				playRandomSoundFromCategory("npc", "small");
 			}
 		}
 	}

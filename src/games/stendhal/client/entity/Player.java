@@ -132,8 +132,8 @@ public class Player extends AudibleEntity {
 	@Override
 	public void initialize(RPObject object) {
 		super.initialize(object);
-
-		addSoundsToGroup("attack",
+		
+		addSounds("sfx", "attack",
 			"punch-1"   , "punch-2", "punch-3",
 			"punch-4"   , "punch-5", "punch-6",
 			"swingaxe-1", "slap-1" , "arrow-1");
@@ -142,7 +142,7 @@ public class Player extends AudibleEntity {
 	@Override
 	public void onDamaged(Entity attacker, int damage) {
 		super.onDamaged(attacker, damage);
-		playRandomSoundFromGroup("attack", 1.0f);
+		playRandomSoundFromCategory("sfx", "attack");
 	}
 
 	//

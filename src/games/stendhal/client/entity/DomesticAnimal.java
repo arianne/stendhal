@@ -88,7 +88,8 @@ public abstract class DomesticAnimal extends AudibleEntity {
 	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
-		addSoundsToGroup("eat", "eat-1");
+
+		addSounds("npc", "eat", "eat-1");
 		
 		/*
 		 * Idea
@@ -144,7 +145,7 @@ public abstract class DomesticAnimal extends AudibleEntity {
 			weight = changes.getInt("weight");
 
 			if (weight > oldWeight) {
-				playRandomSoundFromGroup("eat", 1.0f);
+				playRandomSoundFromCategory("npc", "eat");
 			}
 
 			fireChange(PROP_WEIGHT);

@@ -24,7 +24,7 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.sound.manager.AudibleCircleArea;
-import games.stendhal.client.sound.manager.SoundFile;
+import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.client.sound.manager.SoundManager.Sound;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.constants.SoundLayer;
@@ -34,11 +34,12 @@ import marauroa.common.game.RPObject;
 
 public class LoopedSoundSource extends InvisibleEntity {
 
-	private Sound sound;
+	private String                  soundName      = null;
+	private Sound                   sound          = null;
+	private SoundSystemFacade.Group group          = null;
+	private Time                    fadingDuration = new Time();
 	private int radius;
-	private int volume;
-	private SoundLayer layer = SoundLayer.AMBIENT_SOUND;
-	private Time fadingDuration = new Time();
+	private float volume;
 
 	@Override
 	public void onChangedAdded(RPObject object, RPObject changes) {
@@ -58,33 +59,52 @@ public class LoopedSoundSource extends InvisibleEntity {
 	 * @param object object to read from
 	 */
 	private void update(RPObject object) {
-		if (object.has("sound")) {
-			String soundName = object.get("sound");
-			sound = SoundSystemFacade.get().loadSound(soundName, "audio:/" + soundName + ".ogg", SoundFile.Type.OGG, true);
-		}
+
+		boolean streaming = false;
+
 		if (object.has("radius")) {
 			radius = object.getInt("radius");
 		}
 		if (object.has("volume")) {
-			volume = object.getInt("volume");
+			volume = Numeric.intToFloat(object.getInt("volume"), 100.0f);
 		}
 		if (object.has("layer")) {
 			int idx = object.getInt("layer");
+			SoundLayer layer = null;
+
 			if (idx < SoundLayer.values().length) {
 				layer = SoundLayer.values()[idx];
 			}
 
+			switch(layer)
+			{
+			case AMBIENT_SOUND:
+				group = SoundSystemFacade.get().getGroup("ambient");
+				break;
+			case BACKGROUND_MUSIC:
+				group = SoundSystemFacade.get().getGroup("music");
+				break;
+			case CREATURE_NOISE:
+				group = SoundSystemFacade.get().getGroup("creature");
+				break;
+			case FIGHTING_NOISE:
+				group = SoundSystemFacade.get().getGroup("sfx");
+				break;
+			case USER_INTERFACE:
+				group = SoundSystemFacade.get().getGroup("gui");
+				break;
+			}
+
+			fadingDuration.set(100, Time.Unit.MILLI);
+
 			if (layer == SoundLayer.BACKGROUND_MUSIC) {
+				streaming = true;
 				fadingDuration.set(3, Time.Unit.SEC);
-			} else {
-				fadingDuration.set(100, Time.Unit.MILLI);
 			}
 		}
-
-		if (object.has("sound") || object.has("layer")) {
-			if (layer != SoundLayer.BACKGROUND_MUSIC) {
-				sound = sound.clone();
-			}
+		if (object.has("sound")) {
+			soundName = object.get("sound");
+			group.loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, streaming);
 		}
 	}
 
@@ -93,8 +113,8 @@ public class LoopedSoundSource extends InvisibleEntity {
 	 */
 	private void play() {
 		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), radius / 2.0f, radius);
-		float vol = Numeric.intToFloat(volume, 100.0f);
-		SoundSystemFacade.get().play(sound, vol, 0, area, true, fadingDuration);
+		boolean cloneSound = group != SoundSystemFacade.get().getGroup("music");
+		sound = group.play(soundName, 0, area, fadingDuration, true, cloneSound);
 	}
 
 	/**

@@ -7,7 +7,6 @@ package games.stendhal.client.entity;
 import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.sound.manager.AudibleCircleArea;
 import games.stendhal.client.sound.manager.SoundFile.Type;
-import games.stendhal.client.sound.manager.SoundManager.Sound;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.Rand;
 import games.stendhal.common.math.Algebra;
@@ -21,47 +20,33 @@ import java.util.HashMap;
 public abstract class AudibleEntity extends RPEntity {
 
 	private AudibleCircleArea mAudibleArea = new AudibleCircleArea(Algebra.vecf(0, 0), 1.5f, 23);
-	private HashMap<String, ArrayList<String>> mSoundGroups = new HashMap<String, ArrayList<String>>();
+	private HashMap<String, ArrayList<String>> mCategorys = new HashMap<String, ArrayList<String>>();
 	private long mWaitTime = 0;
 
-	protected void addSoundsToGroup(String groupName, String... soundNames) {
-		ArrayList<String> soundNameList = mSoundGroups.get(groupName);
+	protected void addSounds(String groupName, String categoryName, String... soundNames) {
+		ArrayList<String> soundNameList = mCategorys.get(categoryName);
+		SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup(groupName);
 
 		if (soundNameList == null) {
 			soundNameList = new ArrayList<String>();
-			mSoundGroups.put(groupName, soundNameList);
+			mCategorys.put(categoryName, soundNameList);
 		}
 
 		for (String name : soundNames) {
-			if (SoundSystemFacade.get().loadSound(name, "audio:/" + name + ".ogg", Type.OGG, false) != null) {
+			if (group.loadSound(name, "audio:/" + name + ".ogg", Type.OGG, false)) {
 				soundNameList.add(name);
 			}
 		}
 	}
 
-	protected Sound getRandomSoundFromGroup(String groupName, boolean getCloned) {
-		ArrayList<String> soundNameList = mSoundGroups.get(groupName);
+	protected String getRandomSoundFromCategory(String groupName) {
+		ArrayList<String> soundNameList = mCategorys.get(groupName);
 
 		if (soundNameList != null) {
-			String name = soundNameList.get(Rand.rand(soundNameList.size()));
-			Sound sound = SoundSystemFacade.get().getSound(name);
-
-			if (sound != null && getCloned) {
-				return sound.clone();
-			}
+			return soundNameList.get(Rand.rand(soundNameList.size()));
 		}
 
 		return null;
-	}
-
-	protected Sound getSound(String soundName, boolean getCloned) {
-		Sound sound = SoundSystemFacade.get().getSound(soundName);
-
-		if (sound != null && getCloned) {
-			sound = sound.clone();
-		}
-
-		return sound;
 	}
 
 	@Override
@@ -71,20 +56,20 @@ public abstract class AudibleEntity extends RPEntity {
 		SoundSystemFacade.get().update();
 	}
 
-	protected void playRandomSoundFromGroup(String groupName, float volume) {
-		Sound sound = getRandomSoundFromGroup(groupName, true);
-		SoundSystemFacade.get().play(sound, volume, 0, mAudibleArea, false, new Time());
+	protected void playSound(String groupName, String soundName) {
+		SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup(groupName);
+		group.play(soundName, 0, mAudibleArea, new Time(), false, true);
 	}
 
-	protected void playRandomSoundFromGroup(String groupName, float volume, long waitTimeInMilliSec) {
+	protected void playRandomSoundFromCategory(String groupName, String categoryName) {
+		SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup(groupName);
+		group.play(getRandomSoundFromCategory(categoryName), 0, mAudibleArea, new Time(), false, true);
+	}
+
+	protected void playRandomSoundFromGroup(String groupName, String categoryName, long waitTimeInMilliSec) {
 		if (mWaitTime < System.currentTimeMillis() && Rand.rand(100) < 5) {
-			playRandomSoundFromGroup(groupName, volume);
+			playRandomSoundFromCategory(groupName, categoryName);
 			mWaitTime = System.currentTimeMillis() + waitTimeInMilliSec;
 		}
-	}
-
-	protected void playSound(String soundName, float volume) {
-		Sound sound = getSound(soundName, true);
-		SoundSystemFacade.get().play(sound, volume, 0, mAudibleArea, false, new Time());
 	}
 }

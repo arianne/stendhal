@@ -26,18 +26,88 @@ import org.apache.log4j.Logger;
  * @author hendrik, silvio
  */
 public class SoundSystemFacade extends SoundManager implements WorldListener {
-	private static final Logger logger = Logger.getLogger(SoundSystemFacade.class);
-	private static final SoundSystemFacade singletonInstance = new SoundSystemFacade();
-	private final HashMap<String, Sound> sounds = new HashMap<String, Sound>();
-	private final ResourceLocator resourceLocator = ResourceManager.get();
+
+	public class Group {
+
+		private boolean mEnabled = true;
+		private float mVolume = 1.0f;
+		private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
+
+		public boolean loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
+			Sound sound = SoundSystemFacade.this.mSounds.get(name);
+
+			if (sound == null) {
+				sound = openSound(mResourceLocator.getResource(fileURI), fileType, 256, enableStreaming);
+
+				if (sound != null)
+					SoundSystemFacade.this.mSounds.put(name, sound);
+			}
+
+			if (sound != null)
+				mSounds.put(name, sound);
+
+			return sound != null;
+		}
+
+		public float getVolume() {
+			return mVolume;
+		}
+
+		public void changeVolume(float volume) {
+			mVolume = mMasterVolume * volume;
+
+			for (Sound sound : getActiveSounds()) {
+				if (sound.getAttachment() == this) {
+					SoundSystemFacade.this.changeVolume(sound, mVolume);
+				}
+			}
+		}
+
+		public void setSound(String name, Sound sound) {
+			if (sound != null) {
+				mSounds.put(name, sound);
+			}
+		}
+
+		public Sound play(String soundName, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean cloneSound) {
+			if (mEnabled) {				
+				Sound sound = mSounds.get(soundName);
+
+				if (sound != null) {
+					if (cloneSound)
+						sound = sound.clone();
+
+					sound.setAttachment(this);
+					SoundSystemFacade.this.play(sound, mVolume, layerLevel, area, autoRepeat, fadeInDuration);
+				}
+
+				return sound;
+			}
+
+			return null;
+		}
+	}
 	
+	private static final Logger logger = Logger.getLogger(SoundSystemFacade.class);
+	private static final SoundSystemFacade mSingletonInstance = new SoundSystemFacade();
+	private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
+	private final HashMap<String, Group> mGroups = new HashMap<String, Group>();
+	private final ResourceLocator mResourceLocator = ResourceManager.get();
+	private float mMasterVolume = 1.0f;
+
 	public static SoundSystemFacade get() {
-		return singletonInstance;
+		return mSingletonInstance;
 	}
 
 	private SoundSystemFacade() {
 		boolean mute = !Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
-		super.mute(mute, true, null);
+		super.mute(mute, false, null);
+		
+		getGroup("music").changeVolume(0.5f);
+		getGroup("ambient").changeVolume(1.0f);
+		getGroup("npc").changeVolume(0.8f);
+		getGroup("sfx").changeVolume(0.4f);
+		getGroup("gui").changeVolume(1.0f);
 	}
 
 	public void playerMoved() {
@@ -54,30 +124,37 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		// ignored
 	}
 
-	public void stop(String soundName, Time fadeOutDuration) {
-		super.stop(getSound(soundName), fadeOutDuration);
+	public Group getGroup(String groupName) {
+		Group group = mGroups.get(groupName);
+
+		if (group == null) {
+			group = new Group();
+			mGroups.put(groupName, group);
+		}
+
+		return group;
 	}
 
 	public Sound getSound(String soundName) {
-		return sounds.get(soundName);
+		return mSounds.get(soundName);
 	}
 
 	public Sound openSound(String fileURI, SoundFile.Type fileType) {
-		return super.openSound(resourceLocator.getResource(fileURI), fileType);
+		return super.openSound(mResourceLocator.getResource(fileURI), fileType);
 	}
 
 	public Sound openSound(String fileURI, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming) {
-		return super.openSound(resourceLocator.getResource(fileURI), fileType, numSamplesPerChunk, enableStreaming);
+		return super.openSound(mResourceLocator.getResource(fileURI), fileType, numSamplesPerChunk, enableStreaming);
 	}
 
 	public Sound loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
-		Sound sound = sounds.get(name);
+		Sound sound = mSounds.get(name);
 
-		if(sound == null) {
-			sound = super.openSound(resourceLocator.getResource(fileURI), fileType, 256, enableStreaming);
+		if (sound == null) {
+			sound = super.openSound(mResourceLocator.getResource(fileURI), fileType, 256, enableStreaming);
 
-			if(sound != null) {
-				sounds.put(name, sound);
+			if (sound != null) {
+				mSounds.put(name, sound);
 			}
 		}
 
@@ -88,17 +165,4 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		Sound sound = loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
 		super.play(sound, Numeric.intToFloat(volume, 100.0f), 0, null, false, new Time());
 	}
-
-	public void play(final String soundName, final double x, final double y, final SoundLayer soundLayer, int volume) {
-		AudibleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), 3, 20);
-		Sound sound = loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
-		super.play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, false, new Time());
-	}
-
-	public void play(final String soundName, final double x, final double y, int radius, final SoundLayer soundLayer, int volume) {
-		AudibleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), radius / 4.0f, radius);
-		Sound sound = loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
-		super.play(sound, Numeric.intToFloat(volume, 100.0f), 0, area, false, new Time());
-	}
-
 }
