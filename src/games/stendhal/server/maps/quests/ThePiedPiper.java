@@ -66,24 +66,35 @@ import org.apache.log4j.Logger;
 		new LinkedList<KillNotificationCreature>();
 
 
-	///*
-	// game timings
-	private static final int MAX_QUEST_INACTIVE_TIME = 60 * 60 * 24 * 14;
-	private static final int MIN_QUEST_INACTIVE_TIME = 60 * 60 * 24 * 7;
-	private static final int QUEST_INVASION_TIME = 60 * 60 * 2;
-	private static final int QUEST_AWAITING_TIME = 60 * 60;
-	private static final int QUEST_SHOUT_TIME = 60 * 10;
-	//*/
+    // timings unit is second.
+	private static int QUEST_INACTIVE_TIME_MAX = 1;
+	private static int QUEST_INACTIVE_TIME_MIN = 1;
+	private static int QUEST_INVASION_TIME = 1;
+	private static int QUEST_AWAITING_TIME = 1;
+	private static int QUEST_SHOUT_TIME = 1;
 
-	/*
-	// test timings
-	private static final int MAX_QUEST_INACTIVE_TIME = 60 * 11;
-	private static final int MIN_QUEST_INACTIVE_TIME = 60 * 10;
-	private static final int QUEST_INVASION_TIME = 60 * 20;
-	private static final int QUEST_AWAITING_TIME = 60 * 10;
-	private static final int QUEST_SHOUT_TIME = 60 * 1;
-	*/
-
+	/**
+	 * function will set timings to either test server or game server.
+	 * 	TODO: use configuration file for storing timings
+	 */
+	private void adjustTimings() {
+		if (System.getProperty("stendhal.testserver") == null) {		
+			// game timings
+			QUEST_INACTIVE_TIME_MAX = 60 * 60 * 24 * 14;
+			QUEST_INACTIVE_TIME_MIN = 60 * 60 * 24 * 7;
+			QUEST_INVASION_TIME = 60 * 60 * 2;
+			QUEST_AWAITING_TIME = 60 * 60;
+			QUEST_SHOUT_TIME = 60 * 10;
+			} 
+		else {	
+			// test timings
+			QUEST_INACTIVE_TIME_MAX = 60 * 11;
+			QUEST_INACTIVE_TIME_MIN = 60 * 10;
+			QUEST_INVASION_TIME = 60 * 20;
+			QUEST_AWAITING_TIME = 60 * 10;
+			QUEST_SHOUT_TIME = 60 * 1;
+			}
+	}
 
 	/**
 	 * related to quest part.
@@ -158,6 +169,12 @@ import org.apache.log4j.Logger;
 			360,
 			800);
 
+	/**
+	 * constructor
+	 */
+	public ThePiedPiper() {
+		adjustTimings();
+	}
 
 	final private ShouterTimer shouterTimer = new ShouterTimer();
 	/**
@@ -604,7 +621,7 @@ import org.apache.log4j.Logger;
 	 * Quest will start after quest inactive time period will over.
 	 */
 	private void step_1() {
-		NewNotificationTime(MAX_QUEST_INACTIVE_TIME, MIN_QUEST_INACTIVE_TIME);
+		NewNotificationTime(QUEST_INACTIVE_TIME_MAX, QUEST_INACTIVE_TIME_MIN);
 	}
 
 	/**
