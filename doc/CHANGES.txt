@@ -1,5 +1,11 @@
 Changelog
 ---------
+0.81.1
+*bug fixes*
+- prevent client crash on empty soundNameList
+- renamed admins.list to admins.txt to simplify installation on windows with hidden file name extensions
+- fixed a server side classpath issue
+
 0.81
 *features*
 - player stats moved from the character window to the side panel
