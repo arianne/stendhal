@@ -17,7 +17,6 @@ import games.stendhal.server.maps.ados.townhall.MayorNPC;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -167,7 +166,6 @@ public class ThePiedPiperTest {
 
 		killRats(quest.getRatsCount());
 		// [17:58] Mayor Chalmers shouts: No rats in Ados now, exclude those who always lived in storage and haunted house. Rats hunters are welcome to get their reward.
-        en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
@@ -210,7 +208,6 @@ public class ThePiedPiperTest {
 		assertEquals("Good day to you.", getReply(npc));
 
 		killRats(quest.getRatsCount());
-        en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
@@ -273,7 +270,6 @@ public class ThePiedPiperTest {
 		
 		// [19:20] Mayor Chalmers shouts: Thanx gods, rats is gone now, Pied Piper hypnotized them and lead away to dungeons. Those of you, who helped to Ados city with rats problem, can get your reward now.
 		quest.PhaseAwaitingToInactive();
-		en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
@@ -296,5 +292,4 @@ public class ThePiedPiperTest {
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 	}
-
 }
