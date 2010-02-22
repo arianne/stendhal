@@ -42,7 +42,7 @@ public abstract class AudibleEntity extends RPEntity {
 	protected Sound getRandomSoundFromGroup(String groupName, boolean getCloned) {
 		ArrayList<String> soundNameList = mSoundGroups.get(groupName);
 
-		if (soundNameList != null) {
+		if ((soundNameList != null) && !soundNameList.isEmpty()) {
 			String name = soundNameList.get(Rand.rand(soundNameList.size()));
 			Sound sound = SoundSystemFacade.get().getSound(name);
 
