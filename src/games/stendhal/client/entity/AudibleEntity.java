@@ -29,13 +29,16 @@ public abstract class AudibleEntity extends RPEntity {
 
 		if (soundNameList == null) {
 			soundNameList = new ArrayList<String>();
-			mCategorys.put(categoryName, soundNameList);
 		}
 
 		for (String name : soundNames) {
 			if (group.loadSound(name, "audio:/" + name + ".ogg", Type.OGG, false)) {
 				soundNameList.add(name);
 			}
+		}
+
+		if (soundNameList.size() > 0) {
+			mCategorys.put(categoryName, soundNameList);
 		}
 	}
 
