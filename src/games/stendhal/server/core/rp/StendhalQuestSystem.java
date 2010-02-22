@@ -76,6 +76,7 @@ import games.stendhal.server.maps.quests.StuffForBaldemar;
 import games.stendhal.server.maps.quests.StuffForVulcanus;
 import games.stendhal.server.maps.quests.SuntanCreamForZara;
 import games.stendhal.server.maps.quests.TakeGoldforGrafindle;
+import games.stendhal.server.maps.quests.ThePiedPiper;
 import games.stendhal.server.maps.quests.ToysCollector;
 import games.stendhal.server.maps.quests.VampireSword;
 import games.stendhal.server.maps.quests.WeaponsCollector;
@@ -207,6 +208,7 @@ public class StendhalQuestSystem {
 		loadQuest(new StuffForVulcanus());
 		loadQuest(new SuntanCreamForZara());
 		loadQuest(new TakeGoldforGrafindle());
+		loadQuest(new ThePiedPiper());
 		loadQuest(new ToysCollector());
 		loadQuest(new VampireSword());
 		loadQuest(new WeaponsCollector());
