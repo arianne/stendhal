@@ -77,7 +77,7 @@ public class OutfitStore {
 		// Base (body) layer
 		Sprite layer = getBaseSprite(basecode);
 		if (layer == null) {
-			throw new IllegalArgumentException("No base image found for outfit: " + code);
+			throw new IllegalArgumentException("No base image found for outfit: " + basecode);
 		}
 
 		final ImageSprite sprite = new ImageSprite(layer);
