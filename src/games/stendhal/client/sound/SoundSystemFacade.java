@@ -27,6 +27,17 @@ import org.apache.log4j.Logger;
  */
 public class SoundSystemFacade extends SoundManager implements WorldListener {
 
+	private static class Multiplicator {
+
+		public Multiplicator(float v, Group g) {
+			value = v;
+			group = g;
+		}
+
+		float value;
+		Group group;
+	}
+
 	public class Group {
 
 		private boolean mEnabled = true;
@@ -57,8 +68,10 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 			mVolume = mMasterVolume * volume;
 
 			for (Sound sound : getActiveSounds()) {
-				if (sound.getAttachment() == this) {
-					SoundSystemFacade.this.changeVolume(sound, mVolume);
+				Multiplicator multiplicator = sound.getAttachment(Multiplicator.class);
+
+				if (multiplicator != null && multiplicator.group == this) {
+					SoundSystemFacade.this.changeVolume(sound, (mVolume * multiplicator.value));
 				}
 			}
 		}
@@ -70,15 +83,20 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		}
 
 		public Sound play(String soundName, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean cloneSound) {
-			if (mEnabled) {				
+			return play(soundName, 1.0f, layerLevel, area, fadeInDuration, autoRepeat, cloneSound);
+		}
+
+		public Sound play(String soundName, float volume, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
+			
+			if (mEnabled) {
 				Sound sound = mSounds.get(soundName);
 
 				if (sound != null) {
-					if (cloneSound)
+					if (clone)
 						sound = sound.clone();
 
-					sound.setAttachment(this);
-					SoundSystemFacade.this.play(sound, mVolume, layerLevel, area, autoRepeat, fadeInDuration);
+					sound.setAttachment(new Multiplicator(volume, this));
+					SoundSystemFacade.this.play(sound, (mVolume * volume), layerLevel, area, autoRepeat, fadeInDuration);
 				}
 
 				return sound;
@@ -103,11 +121,11 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		boolean mute = !Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
 		super.mute(mute, false, null);
 		
-		getGroup("music").changeVolume(0.5f);
+		getGroup("music").changeVolume(1.0f);
 		getGroup("ambient").changeVolume(1.0f);
-		getGroup("creature").changeVolume(0.8f);
-		getGroup("npc").changeVolume(0.8f);
-		getGroup("sfx").changeVolume(0.4f);
+		getGroup("creature").changeVolume(1.0f);
+		getGroup("npc").changeVolume(1.0f);
+		getGroup("sfx").changeVolume(1.0f);
 		getGroup("gui").changeVolume(1.0f);
 	}
 

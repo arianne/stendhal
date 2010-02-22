@@ -59,10 +59,17 @@ public class SoundManager
 		}
 
 		@SuppressWarnings("unchecked")
-		public <T> T   getAttachment(Class<T> clazz) { return (T)object;                                         }
-		public Object  getAttachment()               { return object;                                            }
-        public boolean isActive()                    { return channel.get() != null && channel.get().isActive(); }
-		public void    setAttachment(Object obj)     { object = obj;                                             }
+		public <T> T getAttachment(Class<T> clazz)
+		{
+			if(clazz.isInstance(object))
+				return (T)object;
+
+			return null;
+		}
+
+		public Object  getAttachment()           { return object;                                            }
+        public boolean isActive()                { return channel.get() != null && channel.get().isActive(); }
+		public void    setAttachment(Object obj) { object = obj;                                             }
     }
 	
     private final class SoundChannel extends SignalProcessor

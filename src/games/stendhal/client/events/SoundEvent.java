@@ -6,6 +6,7 @@ import games.stendhal.client.sound.manager.AudibleCircleArea;
 import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.math.Algebra;
+import games.stendhal.common.math.Numeric;
 
 /**
  * plays a sound
@@ -24,9 +25,9 @@ public class SoundEvent extends Event<Entity> {
 		if (idx < SoundLayer.values().length) {
 			layer = SoundLayer.values()[idx];
 		}
-		int volume = 100;
+		float volume = 1.0f;
 		if (event.has("volume")) {
-			volume = event.getInt("volume");
+			volume = Numeric.intToFloat(event.getInt("volume"), 100.0f);
 		}
 		int radius = 100000;
 		if (event.has("radius")) {
@@ -57,7 +58,7 @@ public class SoundEvent extends Event<Entity> {
 		String soundName = event.get("sound");
 		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float)entity.getX(), (float)entity.getY()), radius/4.0f, radius);
 		group.loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
-		group.play(soundName, 0, area, null, false, true);
+		group.play(soundName, volume, 0, area, null, false, true);
 	}
 
 }

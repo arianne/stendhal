@@ -114,7 +114,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	private void play() {
 		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), radius / 2.0f, radius);
 		boolean cloneSound = group != SoundSystemFacade.get().getGroup("music");
-		sound = group.play(soundName, 0, area, fadingDuration, true, cloneSound);
+		sound = group.play(soundName, volume, 0, area, fadingDuration, true, cloneSound);
 	}
 
 	/**
