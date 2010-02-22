@@ -609,7 +609,7 @@ import org.apache.log4j.Logger;
 	 */
 	private void step_0() {
 		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("rats"), null,
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("rats", "rats!"), null,
 				ConversationStates.ATTENDING, null, new AnswerOrOfferRewardAction());
 		npc.add(ConversationStates.ATTENDING, "reward", null,
 				ConversationStates.ATTENDING, null, new RewardPlayerAction());
