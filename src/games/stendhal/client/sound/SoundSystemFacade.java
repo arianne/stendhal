@@ -105,6 +105,7 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		
 		getGroup("music").changeVolume(0.5f);
 		getGroup("ambient").changeVolume(1.0f);
+		getGroup("creature").changeVolume(0.8f);
 		getGroup("npc").changeVolume(0.8f);
 		getGroup("sfx").changeVolume(0.4f);
 		getGroup("gui").changeVolume(1.0f);
