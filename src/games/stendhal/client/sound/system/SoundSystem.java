@@ -219,7 +219,7 @@ public class SoundSystem extends Thread
 				int numSamples = mNumSamples - mNumSamplesMixed;
 				numSamples = Math.min(numSamples, numSamplesToMix);
 
-				Dsp.mixUniformPCM(buffer, offset, mAudioBuffer, mNumSamplesMixed, numSamples);
+				Dsp.mixAudioData(buffer, offset, mAudioBuffer, mNumSamplesMixed, numSamples, 1.0f);
 
 				offset           += numSamples;
 				mNumSamplesMixed += numSamples;

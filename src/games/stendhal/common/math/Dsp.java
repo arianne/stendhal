@@ -35,14 +35,14 @@ public class Dsp
         return pcmBuffer;
 	}
 
-    public static void mixUniformPCM(float[] result, int rOffset, float[] samples, int sOffset, int numSamples)
+	public static void mixAudioData(float[] result, int rOffset, float[] samples, int sOffset, int numSamples, float intensity)
     {
 		int rEnd = rOffset + numSamples;
 
 		while(rOffset < rEnd)
 		{
 			float A = result[rOffset];
-            float B = samples[sOffset];
+            float B = samples[sOffset] * intensity;
 
             result[rOffset] = A + B - A * B;
 
