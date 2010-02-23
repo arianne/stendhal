@@ -4,7 +4,6 @@ import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.manager.AudibleArea;
-import games.stendhal.client.sound.manager.AudibleCircleArea;
 import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.client.sound.manager.SoundManager;
@@ -16,8 +15,6 @@ import games.stendhal.common.resource.ResourceLocator;
 import games.stendhal.common.resource.ResourceManager;
 
 import java.util.HashMap;
-
-import org.apache.log4j.Logger;
 
 /**
  * this class is the main interface between the game logic and the low level
@@ -65,25 +62,19 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		}
 
 		public void changeVolume(float volume) {
-			mVolume = mMasterVolume * volume;
+			mVolume = volume;
 
 			for (Sound sound : getActiveSounds()) {
 				Multiplicator multiplicator = sound.getAttachment(Multiplicator.class);
 
 				if (multiplicator != null && multiplicator.group == this) {
-					SoundSystemFacade.this.changeVolume(sound, (mVolume * multiplicator.value));
+					SoundSystemFacade.this.changeVolume(sound, (mMasterVolume * mVolume * multiplicator.value));
 				}
 			}
 		}
 
-		public void setSound(String name, Sound sound) {
-			if (sound != null) {
-				mSounds.put(name, sound);
-			}
-		}
-
-		public Sound play(String soundName, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean cloneSound) {
-			return play(soundName, 1.0f, layerLevel, area, fadeInDuration, autoRepeat, cloneSound);
+		public Sound play(String soundName, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
+			return play(soundName, 1.0f, layerLevel, area, fadeInDuration, autoRepeat, clone);
 		}
 
 		public Sound play(String soundName, float volume, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
@@ -96,7 +87,7 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 						sound = sound.clone();
 
 					sound.setAttachment(new Multiplicator(volume, this));
-					SoundSystemFacade.this.play(sound, (mVolume * volume), layerLevel, area, autoRepeat, fadeInDuration);
+					SoundSystemFacade.this.play(sound, (mMasterVolume * mVolume * volume), layerLevel, area, autoRepeat, fadeInDuration);
 				}
 
 				return sound;
@@ -106,7 +97,6 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		}
 	}
 	
-	private static final Logger logger = Logger.getLogger(SoundSystemFacade.class);
 	private static final SoundSystemFacade mSingletonInstance = new SoundSystemFacade();
 	private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
 	private final HashMap<String, Group> mGroups = new HashMap<String, Group>();
@@ -132,7 +122,7 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 	public void playerMoved() {
 		float[] position = Algebra.vecf((float) User.get().getX(), (float) User.get().getY());
 		super.setHearerPosition(position);
-		update();
+		super.update();
 	}
 
 	public void zoneEntered(String zoneName) {
@@ -154,23 +144,27 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		return group;
 	}
 
-	public Sound getSound(String soundName) {
-		return mSounds.get(soundName);
+	public void changeVolume(float volume) {
+		mMasterVolume = volume;
+
+		for (Sound sound : getActiveSounds()) {
+			Multiplicator multiplicator = sound.getAttachment(Multiplicator.class);
+
+			if (multiplicator != null) {
+				super.changeVolume(sound, (mMasterVolume * multiplicator.group.mVolume * multiplicator.value));
+			}
+		}
 	}
 
-	public Sound openSound(String fileURI, SoundFile.Type fileType) {
-		return super.openSound(mResourceLocator.getResource(fileURI), fileType);
-	}
-
-	public Sound openSound(String fileURI, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming) {
+	private Sound openSound(String fileURI, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming) {
 		return super.openSound(mResourceLocator.getResource(fileURI), fileType, numSamplesPerChunk, enableStreaming);
 	}
 
-	public Sound loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
+	private Sound loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
 		Sound sound = mSounds.get(name);
 
 		if (sound == null) {
-			sound = super.openSound(mResourceLocator.getResource(fileURI), fileType, 256, enableStreaming);
+			sound = openSound(fileURI, fileType, 256, enableStreaming);
 
 			if (sound != null) {
 				mSounds.put(name, sound);
