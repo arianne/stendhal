@@ -43,6 +43,7 @@ import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
 import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
@@ -461,8 +462,16 @@ public class j2DClient implements UserInterface {
 		final GameObjects gameObjects = client.getGameObjects();
 		final StaticGameLayers gameLayers = client.getStaticGameLayers();
 
-		SoundSystemFacade.get().play("harp-1", SoundLayer.BACKGROUND_MUSIC, 100);
+		SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup("gui");
+		group.loadSound("harp-1", "audio:/harp-1.ogg", Type.OGG, false);
+		group.loadSound("click-4", "audio:/click-4.ogg", Type.OGG, false);
+		group.loadSound("click-5", "audio:/click-5.ogg", Type.OGG, false);
+		group.loadSound("click-6", "audio:/click-6.ogg", Type.OGG, false);
+		group.loadSound("click-8", "audio:/click-8.ogg", Type.OGG, false);
+		group.loadSound("click-10", "audio:/click-10.ogg", Type.OGG, false);
 
+		group.play("harp-1", 0, null, null, false, true);
+		
 		// keep looping until the game ends
 		long refreshTime = System.currentTimeMillis();
 		long lastFpsTime = refreshTime;

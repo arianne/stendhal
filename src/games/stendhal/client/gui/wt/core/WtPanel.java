@@ -1244,15 +1244,15 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	private void playCloseSound() {
-		SoundSystemFacade.get().play("click-10", SoundLayer.USER_INTERFACE, 100);
+		SoundSystemFacade.get().getGroup("gui").play("click-10", 0, null, null, false, true);
 	}
 
 	protected void playOpenSound() {
 		//TODO: use polymorphism
 		if (name.equals("bag")) {
-			SoundSystemFacade.get().play("click-8", SoundLayer.USER_INTERFACE, 100);
+			SoundSystemFacade.get().getGroup("gui").play("click-8", 0, null, null, false, true);
 		}  else if (name.equals("chest")) {
-			SoundSystemFacade.get().play("click-5", SoundLayer.USER_INTERFACE, 100);
+			SoundSystemFacade.get().getGroup("gui").play("click-5", 0, null, null, false, true);
 		}
 	}
 

@@ -219,6 +219,6 @@ public class Character extends WtPanel {
 
 	@Override
 	protected void playOpenSound() {
-		SoundSystemFacade.get().play("click-6", SoundLayer.USER_INTERFACE, 100);
+		SoundSystemFacade.get().getGroup("gui").play("click-6", 0, null, null, false, true);
 	}
 }
