@@ -10,16 +10,15 @@ import games.stendhal.client.sound.system.SoundSystemNG;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.client.sound.system.processors.DirectedSound;
 import games.stendhal.client.sound.system.processors.Interruptor;
-import games.stendhal.client.sound.system.processors.SoundLayers;
 import games.stendhal.client.sound.system.processors.VolumeAdjustor;
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.resource.Resource;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -299,7 +298,7 @@ public class SoundManagerNG
 		mMute = turnOffSound;
 	}
 
-	public synchronized List<Sound> getActiveSounds()
+	public synchronized Collection<Sound> getActiveSounds()
 	{
 		ArrayList<Sound> sounds = new ArrayList<Sound>(mChannels.size());
 

@@ -17,9 +17,9 @@ import games.stendhal.common.resource.Resource;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -310,7 +310,7 @@ public class SoundManager
 		mMute = turnOffSound;
 	}
 
-	public synchronized List<Sound> getActiveSounds()
+	public synchronized Collection<Sound> getActiveSounds()
 	{
 		ArrayList<Sound> sounds = new ArrayList<Sound>(mChannels.size());
 
