@@ -59,6 +59,22 @@ public class Dsp
         }//*/
     }
 
+	public static void blendAudioData(float[] result, int rOffset, float[] samples, int sOffset, int numSamples, float intensity)
+    {
+		int rEnd = rOffset + numSamples;
+
+		while(rOffset < rEnd)
+		{
+			float A = result[rOffset];
+            float B = samples[sOffset];
+
+            result[rOffset] = A + (B - A) * intensity;
+
+			++rOffset;
+			++sOffset;
+		}
+    }
+
 	public static float[] convertChannels(float[] samples, int numFrames, int numChannels, int numRequiredChannels)
     {
         /* Assignments for audio channels
