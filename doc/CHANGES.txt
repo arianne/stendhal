@@ -5,6 +5,7 @@ Changelog
 - prevent client crash on empty soundNameList
 - renamed admins.list to admins.txt to simplify installation on windows with hidden file name extensions
 - fixed a server side classpath issue
+- updated to Marauroa 3.5 to fix an issue with null-values in the timedate columns in gameEvents and account
 
 0.81
 *features*
