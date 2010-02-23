@@ -157,27 +157,4 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 			}
 		}
 	}
-
-	private Sound openSound(String fileURI, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming) {
-		return super.openSound(mResourceLocator.getResource(fileURI), fileType, numSamplesPerChunk, enableStreaming);
-	}
-
-	private Sound loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
-		Sound sound = mSounds.get(name);
-
-		if (sound == null) {
-			sound = openSound(fileURI, fileType, 256, enableStreaming);
-
-			if (sound != null) {
-				mSounds.put(name, sound);
-			}
-		}
-
-		return sound;
-	}
-
-	public void play(final String soundName, final SoundLayer soundLayer, int volume) {
-		Sound sound = loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
-		super.play(sound, Numeric.intToFloat(volume, 100.0f), 0, null, false, new Time());
-	}
 }
