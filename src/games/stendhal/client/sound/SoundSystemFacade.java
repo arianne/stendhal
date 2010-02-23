@@ -14,6 +14,7 @@ import games.stendhal.common.math.Numeric;
 import games.stendhal.common.resource.ResourceLocator;
 import games.stendhal.common.resource.ResourceManager;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -110,13 +111,6 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 	private SoundSystemFacade() {
 		boolean mute = !Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
 		super.mute(mute, false, null);
-		
-		getGroup("music").changeVolume(1.0f);
-		getGroup("ambient").changeVolume(1.0f);
-		getGroup("creature").changeVolume(1.0f);
-		getGroup("npc").changeVolume(1.0f);
-		getGroup("sfx").changeVolume(1.0f);
-		getGroup("gui").changeVolume(1.0f);
 	}
 
 	public void playerMoved() {
@@ -142,6 +136,14 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 		}
 
 		return group;
+	}
+
+	public Collection<String> getGroupNames() {
+		return mGroups.keySet();
+	}
+
+	public float getVolume() {
+		return mMasterVolume;
 	}
 
 	public void changeVolume(float volume) {
