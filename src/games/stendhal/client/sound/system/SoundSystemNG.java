@@ -335,9 +335,10 @@ public class SoundSystemNG extends Thread
 		return mCurrentSystemState.get() == STATE_RUNNING;
 	}
 
-	public Output openOutput(int level)
+	public Output openOutput(int layerLevel, SignalProcessor ...processorChain)
 	{
-		Output output = new Output(mAudioFormat, level);
+		Output output = new Output(mAudioFormat, layerLevel);
+		SignalProcessor.createChain(Field.append(processorChain, processorChain.length, output));
 
 		synchronized(mMixerOutputs)
 		{

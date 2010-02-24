@@ -83,8 +83,7 @@ public class SoundManagerNG
 
         SoundChannel()
         {
-            mOutput = mSoundSystem.openOutput(0);
-            SignalProcessor.createChain(mInterruptor, this, mGlobalVolume, mDirectedSound, mOutput);
+			mOutput = mSoundSystem.openOutput(0, mInterruptor, this, mGlobalVolume, mDirectedSound);
         }
 
         boolean isActive      ()                            { return mIsActive.get();                      }
@@ -92,7 +91,7 @@ public class SoundManagerNG
         void    setVolume     (float volume)                { mGlobalVolume.setVolume(volume);             }
         void    startFading   (float volume, Time duration) { mGlobalVolume.startFading(volume, duration); }
 		void    startFading   (Time duration)               { mGlobalVolume.startFading(duration);         }
-        void    setLayer      (int level)                   { mOutput.setLevel(level);                     }
+        void    setLayer      (int layer)                   { mOutput.setLevel(layer);                     }
         void    resumePlayback()                            { mInterruptor.play();                         }
 		void    close         ()                            { mSoundSystem.closeOutput(mOutput);           }
 		Sound   getSoundObject()                            { return mSound;                               }
