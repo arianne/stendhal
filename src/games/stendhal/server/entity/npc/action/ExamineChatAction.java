@@ -9,11 +9,23 @@ import games.stendhal.server.events.ExamineEvent;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+/**
+ * Opens an examine window on the client
+ *
+ * @author hendrik
+ */
 public class ExamineChatAction implements ChatAction {
 	private final String image;
 	private final String title;
 	private final String alt;
 
+	/**
+	 * Creates a new ExamineChatAction
+	 *
+	 * @param image the image to display
+	 * @param title the title
+	 * @param alt alternative text i ncase the image cannot be displayed
+	 */
 	public ExamineChatAction(final String image, final String title, final String alt) {
 		this.image = image;
 		this.title = title;

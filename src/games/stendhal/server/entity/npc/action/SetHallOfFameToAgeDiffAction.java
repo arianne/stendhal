@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
 
 /**
- * Sets the current state of a quest.
+ * Write the difference between the players current age and the one stored in the quest slot to the hall of fame database table.
  */
 public class SetHallOfFameToAgeDiffAction implements ChatAction {
 	private static final Logger logger = Logger.getLogger(SetHallOfFameToAgeDiffAction.class);
