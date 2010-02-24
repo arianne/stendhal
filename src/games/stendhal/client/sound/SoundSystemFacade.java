@@ -5,12 +5,9 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.manager.AudibleArea;
 import games.stendhal.client.sound.manager.SoundFile;
-import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.client.sound.manager.SoundManager;
 import games.stendhal.client.sound.system.Time;
-import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.math.Algebra;
-import games.stendhal.common.math.Numeric;
 import games.stendhal.common.resource.ResourceLocator;
 import games.stendhal.common.resource.ResourceManager;
 
