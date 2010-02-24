@@ -95,22 +95,23 @@ public abstract class SignalProcessor
         if(before)
         {
             if(mPrev != null)
+			{
                 mPrev.mNext = null;
-
-            mPrev = null;
+				mPrev       = null;
+			}
         }
         else
         {
             if(mNext != null)
+			{
                 mNext.mPrev = null;
-
-            mNext = null;
+				mNext       = null;
+			}
         }
     }
 
     /**
      * Replaces this SignalProcessor with "processor" in the processing chain
-     * it is a member of
      * 
      * @param processor
      */
@@ -122,6 +123,10 @@ public abstract class SignalProcessor
         if(processor != null)
         {
             processor.disconnect();
+
+			if(mNext != null) { mNext.mPrev = processor; }
+			if(mPrev != null) { mPrev.mNext = processor; }
+			
             processor.mNext = mNext;
             processor.mPrev = mPrev;
         }
@@ -133,11 +138,21 @@ public abstract class SignalProcessor
 
     /**
      * Removes this SignalProcessor fom the processing chain
+	 * leaving adjacent SignalProcessors disconnected
      */
     public final void disconnect()
     {
-        mNext = null;
-        mPrev = null;
+		if(mNext != null)
+		{
+			mNext.mPrev = null;
+			mNext       = null;
+		}
+
+		if(mPrev != null)
+		{
+			mPrev.mNext = null;
+			mPrev       = null;
+		}
     }
     
     /**
@@ -184,14 +199,16 @@ public abstract class SignalProcessor
      *              data[4] and data[5] are the left and right channels of sample 2
      *              and so on ...
      *
+	 * The number of samples can be calculated through: frames * channels
+	 * 
      * @param data     the audio data
-     * @param samples  the number of samples per channel contained in data
+     * @param frames   the number of frames contained in "data"
      * @param channels number of channels
      * @param rate     the sample rate
      */
-    protected void modify(float[] data, int samples, int channels, int rate)
+    protected void modify(float[] data, int frames, int channels, int rate)
     {
-        propagate(data, samples, channels, rate);
+        propagate(data, frames, channels, rate);
     }
 
     /**
