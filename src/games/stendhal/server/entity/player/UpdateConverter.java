@@ -17,7 +17,10 @@ import java.util.List;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
+import org.apache.log4j.Logger;
+
 public abstract class UpdateConverter {
+	private static Logger logger = Logger.getLogger(UpdateConverter.class);
 
 	private static final List<String> ITEM_NAMES_OLD = Arrays.asList(
 			"flail_+2", "leather_armor_+1", "leather_cuirass_+1",
@@ -212,6 +215,12 @@ public abstract class UpdateConverter {
     
     	// port to 0.66
     	transformKillSlot(object);
+
+    	// port to 0.81 because of a bug in 0.80 which allowed 0 hp by double killing on logout during dying
+    	if (object.getInt("hp") <= 0) {
+    		logger.warn("Setting hp to 1 for player " + object);
+    		object.put("hp", 1);
+    	}
     }
 
 	/**
