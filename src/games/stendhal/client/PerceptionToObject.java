@@ -34,6 +34,7 @@ public class PerceptionToObject implements IPerceptionListener {
 	 */
 	public boolean onAdded(final RPObject object) {
 		of.onAdded(object, this);
+		this.onModifiedAdded(object, object);
 		return false;
 	}
 
