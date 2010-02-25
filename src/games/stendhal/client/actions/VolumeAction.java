@@ -1,13 +1,9 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystemFacade;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.math.Numeric;
-import java.util.Arrays;
 
 /**
  * Set sound characteristics.
@@ -25,60 +21,45 @@ class VolumeAction implements SlashAction {
 	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(final String[] params, final String remainder) {
-		if(params[0].equals("show"))
-		{
+		if (params[0].equals("show")) {
 			float volume = SoundSystemFacade.get().getVolume();
 			j2DClient.get().addEventLine(new StandardEventLine("master -> " + Numeric.floatToInt(volume, 100.0f)));
 
-			for(String name: SoundSystemFacade.get().getGroupNames())
-			{
+			for (String name : SoundSystemFacade.get().getGroupNames()) {
 				volume = SoundSystemFacade.get().getGroup(name).getVolume();
 				j2DClient.get().addEventLine(new StandardEventLine(name + " -> " + Numeric.floatToInt(volume, 100.0f)));
 			}
-		}
-		else
-		{
+		} else {
 			changeVolume(params[0], params[1]);
 		}
 		return true;
 	}
 
-	private void changeVolume(String groupName, String volumeString)
-	{
-		try
-		{
+	private void changeVolume(String groupName, String volumeString) {
+		try {
 			boolean groupExists = false;
 
-			for(String name: SoundSystemFacade.get().getGroupNames())
-			{
-				if(name.equals(groupName))
-				{
+			for (String name : SoundSystemFacade.get().getGroupNames()) {
+				if (name.equals(groupName)) {
 					groupExists = true;
 					break;
 				}
 			}
 
-			if(groupExists)
-			{
+			if (groupExists) {
 				int volume = Integer.parseInt(volumeString);
 				SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup(groupName);
 				group.changeVolume(Numeric.intToFloat(volume, 100.0f));
-			}
-			else
-			{
-				if(groupName.equals("master"))
-				{
+			} else {
+				if (groupName.equals("master")) {
 					int volume = Integer.parseInt(volumeString);
 					SoundSystemFacade.get().changeVolume(Numeric.intToFloat(volume, 100.0f));
-				}
-				else
-				{
-					j2DClient.get().addEventLine(new StandardEventLine("no sound group \"" + groupName + "\" does exist"));
+				} else {
+					j2DClient.get().addEventLine(new StandardEventLine("No sound group \"" + groupName + "\" does exist"));
+					j2DClient.get().addEventLine(new StandardEventLine("Please type \"/volume show\" for a valid list of groups"));
 				}
 			}
-		}
-		catch(NumberFormatException exception)
-		{
+		} catch (NumberFormatException exception) {
 			j2DClient.get().addEventLine(new StandardEventLine(volumeString + " is not a valid number"));
 		}
 	}
