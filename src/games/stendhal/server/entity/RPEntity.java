@@ -54,7 +54,7 @@ import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
-public abstract class RPEntity extends GuidedEntity implements Constants {
+public abstract class RPEntity extends GuidedEntity {
 	
 	private static final float WEAPON_DEF_MULTIPLIER = 4.0f;
 
@@ -1427,7 +1427,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 
 		int toDrop = amount;
 
-		for (final String slotName : CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = getSlot(slotName);
 
 			Iterator<RPObject> objectsIterator = slot.iterator();
@@ -1505,7 +1505,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 * @return true iff dropping the item was successful.
 	 */
 	public boolean drop(final Item item) {
-		for (final String slotName : CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = getSlot(slotName);
 
 			final Iterator<RPObject> objectsIterator = slot.iterator();
@@ -1540,7 +1540,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 		}
 		int found = 0;
 
-		for (final String slotName : CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = getSlot(slotName);
 
 			for (final RPObject object : slot) {
@@ -1585,7 +1585,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	public int getNumberOfEquipped(final String name) {
 		int result = 0;
 
-		for (final String slotName : CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = getSlot(slotName);
 
 			for (final RPObject object : slot) {
@@ -1635,7 +1635,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	 *         found
 	 */
 	public Item getFirstEquipped(final String name) {
-		for (final String slotName : CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = getSlot(slotName);
 
 			for (final RPObject object : slot) {
@@ -1663,7 +1663,7 @@ public abstract class RPEntity extends GuidedEntity implements Constants {
 	public List<Item> getAllEquipped(final String name) {
 		final List<Item> result = new LinkedList<Item>();
 
-		for (final String slotName : CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = getSlot(slotName);
 
 			for (final RPObject object : slot) {

@@ -1740,7 +1740,7 @@ public class Player extends RPEntity {
 	public List<RingOfLife> getAllEquippedWorkingRingOfLife() {
 		final List<RingOfLife> result = new LinkedList<RingOfLife>();
 
-		for (final String slotName : CARRYING_SLOTS) {
+		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = getSlot(slotName);
 
 			for (final RPObject object : slot) {
