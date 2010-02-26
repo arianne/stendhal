@@ -92,7 +92,7 @@ public class SummonAction extends AdministrationAction {
 			player.getZone().add(gate);
 			return;
 		}
-		System.out.println(action);
+
 		try {
 			if (action.has(CREATURE) && action.has(X) && action.has(Y)) {
 				final StendhalRPZone zone = player.getZone();
