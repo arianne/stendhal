@@ -225,23 +225,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return null;
 	}
 
-	/**
-	 * Returns the entity which has killed the given RPEntity this turn.
-	 * 
-	 * @param entity
-	 *            The killed RPEntity.
-	 * @return The killer, or null if the given RPEntity hasn't been killed this
-	 *         turn.
-	 */
-	private Entity killerOf(final RPEntity entity) {
-		for (final Pair<RPEntity, Entity> entry : entityToKill) {
-			if (entity.equals(entry.first())) {
-				return entry.second();
-			}
-		}
-		return null;
-	}
-
 	public void removePlayerText(final Player player) {
 		playersRmText.add(player);
 	}
