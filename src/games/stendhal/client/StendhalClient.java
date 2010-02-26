@@ -576,14 +576,14 @@ public class StendhalClient extends ClientFramework {
 	public Cache getCache() {
 		return cache;
 	}
-	class MoveRPAction extends RPAction {
+	static class MoveRPAction extends RPAction {
 		public MoveRPAction(final Direction dir) {
 			put("type", "move");
 			put("dir", dir.get());
 		}
 	}
 
-	class FaceRPAction extends RPAction {
+	static class FaceRPAction extends RPAction {
 		public FaceRPAction(final Direction dir) {
 			put("type", "face");
 			put("dir", dir.get());
