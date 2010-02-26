@@ -12,8 +12,14 @@ import java.util.Vector;
  */
 public class CommandlineParser {
 
+	/** a character iterator over the text */
 	protected final CharacterIterator ci;
 
+	/**
+	 * Creates a new CommandlineParser
+	 *
+	 * @param text text to parse
+	 */
 	public CommandlineParser(final String text) {
 		ci = new StringCharacterIterator(text);
 	}
