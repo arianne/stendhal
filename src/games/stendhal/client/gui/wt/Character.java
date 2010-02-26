@@ -28,7 +28,6 @@ import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Constants;
-import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.Graphics2D;
 import java.util.HashMap;
