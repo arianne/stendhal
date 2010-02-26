@@ -61,6 +61,7 @@ public class ZoneCollisionCheck extends ScriptImpl {
 		this.admin = admin;
 		
 		entity = new Entity() {
+			// anon subclass to allow instantiation.
 		};
 		
 		if (args.size() > 1) {

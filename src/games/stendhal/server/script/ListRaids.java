@@ -8,7 +8,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+/**
+ * Lists raid scripts
+ */
 public class ListRaids extends ScriptImpl {
+	private static Logger logger = Logger.getLogger(ListRaids.class);
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -24,19 +30,18 @@ public class ListRaids extends ScriptImpl {
 			}
 
 		} catch (final ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e, e);
 		} catch (final SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e, e);
 		}
 		admin.sendPrivateText(textToSend);
 	}
 
 	@SuppressWarnings("unchecked")
-	public static ArrayList<Class> getClasses(final String pckgname)
+	private static ArrayList<Class> getClasses(final String pckgname)
 			throws ClassNotFoundException {
 		final ArrayList<Class> classes = new ArrayList<Class>();
+
 		// Get a File object for the package
 		File directory = null;
 		try {

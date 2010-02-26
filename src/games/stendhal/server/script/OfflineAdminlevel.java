@@ -17,6 +17,11 @@ import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Changes the admin level of an offline player.
+ *
+ * @author hendrik
+ */
 public class OfflineAdminlevel extends ScriptImpl {
 	private static Logger logger = Logger.getLogger(OfflineAdminlevel.class);
 

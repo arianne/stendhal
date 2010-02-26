@@ -41,6 +41,7 @@ public class Unblock extends ScriptImpl implements TurnListener {
 		 * creates a new PlayerPositionEntry
 		 *
 		 * @param player Player
+		 * @param keepFreeArea area to keep free
 		 */
 		public PlayerPositionEntry(Player player, KeepFreeArea keepFreeArea) {
 			super();

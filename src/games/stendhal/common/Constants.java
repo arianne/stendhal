@@ -1,6 +1,9 @@
 package games.stendhal.common;
+
+/**
+ * Constants about slots
+ */
 public final class Constants {
-	
 	/**
 	 * All the slots considered to be "with" the entity. Listed in priority
 	 * order (i.e. bag first).
