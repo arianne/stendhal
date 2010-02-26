@@ -887,11 +887,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			panelGraphics.setFont(font
 					.deriveFont(Font.BOLD, TITLEBAR_FONT_SIZE));
 			panelGraphics.drawString(titleText, 3, TITLEBAR_FONT_SIZE);
-
-			// update clipping
-			panelGraphics = panelGraphics.create(0, TITLEBAR_SIZE + 2, width
-					- (FRAME_SIZE * 2), height - (FRAME_SIZE * 2)
-					- TITLEBAR_SIZE - 2);
 		}
 
 		final BufferedImage image = gc.createCompatibleImage(width, localHeight);
