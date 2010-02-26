@@ -39,17 +39,17 @@ public class TileStore implements Tileset {
 	/**
 	 * The base directory for tileset resources.
 	 */
-	protected static String baseFolder = getResourceBase();
+	protected static final String baseFolder = getResourceBase();
 
 	/**
 	 * The tileset animation map.
 	 */
-	protected static TilesetGroupAnimationMap animationMap = createAnimationMap();
+	protected static final TilesetGroupAnimationMap animationMap = createAnimationMap();
 
 	/**
 	 * A cache of loaded tilesets. 
 	 */
-	protected static Map<String, Tileset> tilesetsLoaded = new HashMap<String, Tileset>();
+	protected static final Map<String, Tileset> tilesetsLoaded = new HashMap<String, Tileset>();
 
 	/**
 	 * The sprite store.
