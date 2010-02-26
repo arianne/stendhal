@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Display command usage. Eventually replace this with ChatCommand.usage().
@@ -106,8 +107,8 @@ class GMHelpAction implements SlashAction {
 	private List<String> buildHelpSupportResponse() {
 		List<String> lines = new LinkedList<String>();
 		Map<String, String> templates = new SupportMessageTemplatesFactory().getTemplates();
-		for (String key: templates.keySet()) {
-			lines.add(key + " - " + templates.get(key));
+		for (Entry<String, String> template : templates.entrySet()) {
+			lines.add(template.getKey() + " - " + template.getValue());
 		}
 		return lines;
 	}
