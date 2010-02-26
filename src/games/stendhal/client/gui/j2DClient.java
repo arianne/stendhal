@@ -47,7 +47,6 @@ import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
-import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
