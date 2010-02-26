@@ -128,7 +128,7 @@ public abstract class Entity extends RPObject {
 		entity.addAttribute("height", Type.SHORT, Definition.VOLATILE);
 
 		/*
-		 * If this is set, the client will discard/ignore entity
+		 * Obsolete and ignored by the client. Do not use.
 		 */
 		entity.addAttribute("server-only", Type.FLAG, Definition.VOLATILE);
 
