@@ -9,14 +9,11 @@ package games.stendhal.client.sprite;
 //
 //
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Transparency;
-import java.awt.image.BufferedImage;
 
 /**
  * A sprite to be displayed on the screen. Note that a sprite contains no state
@@ -124,42 +121,6 @@ public class ImageSprite implements Sprite {
 	 */
 	public Graphics getGraphics() {
 		return image.getGraphics();
-	}
-
-	/** overlays the image with the given color and returns a new image. 
-	 * @param color 
-	 * @param alpha 
-	 * @return a new overlayed Image 
-	 */
-	private Image getModifiedImage(final Color color, final float alpha) {
-		final BufferedImage i = getGC().createCompatibleImage(getWidth(),
-				getHeight(), Transparency.TRANSLUCENT);
-		draw(i.getGraphics(), 0, 0);
-		final Graphics2D g = i.createGraphics();
-		g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(),
-				(int) (alpha * 255)));
-		g.fillRect(0, 0, i.getWidth(), i.getHeight());
-
-		return i;
-	}
-
-	/** @return a brighter version of the sprite. */
-	public synchronized ImageSprite brighter() {
-		if (brighterSprite == null) {
-			brighterSprite = new ImageSprite(
-					getModifiedImage(Color.WHITE, 0.3f));
-			brighterSprite.darkerSprite = this;
-		}
-		return brighterSprite;
-	}
-
-	/** @return a darker version of the sprite. */
-	public synchronized ImageSprite darker() {
-		if (darkerSprite == null) {
-			darkerSprite = new ImageSprite(getModifiedImage(Color.BLACK, 0.3f));
-			darkerSprite.brighterSprite = this;
-		}
-		return darkerSprite;
 	}
 
 	//
