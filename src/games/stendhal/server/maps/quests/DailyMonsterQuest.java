@@ -45,7 +45,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily";
 
-	class DailyQuestAction implements ChatAction {
+	static class DailyQuestAction implements ChatAction {
 
 		/** All creatures, sorted by level. */
 		private List<Creature> sortedcreatures;
@@ -235,7 +235,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		}
 	}
 
-	class DailyQuestCompleteAction implements ChatAction {
+	static class DailyQuestCompleteAction implements ChatAction {
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("daily");
@@ -281,7 +281,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		}
 	}
 
-	class DailyQuestAbortAction implements ChatAction {
+	static class DailyQuestAbortAction implements ChatAction {
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("daily");

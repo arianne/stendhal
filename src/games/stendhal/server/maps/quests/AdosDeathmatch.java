@@ -51,6 +51,7 @@ public class AdosDeathmatch extends AbstractQuest {
 	    // constructor for quest system
 	    logger.debug("little constructor for quest system", new Throwable());
 	}
+
 	@Override
 	public String getSlotName() {
 		return "adosdeathmatch";
@@ -198,7 +199,7 @@ public class AdosDeathmatch extends AbstractQuest {
 	}
 
 
-	class DeathMatchEmptyCondition implements ChatCondition {
+	static class DeathMatchEmptyCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			final List<Player> dmplayers = arena.getPlayers();
 			return (dmplayers.size() == 0);

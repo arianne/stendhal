@@ -15,6 +15,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.DailyMonsterQuest.DailyQuestAction;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -105,7 +106,7 @@ public class DailyMonsterQuestTest {
 	@Test
 	public void testPickIdealCreature() {
 		final DailyMonsterQuest dmqp = new DailyMonsterQuest();
-		final DailyMonsterQuest.DailyQuestAction dmqpick = dmqp.new DailyQuestAction();
+		final DailyMonsterQuest.DailyQuestAction dmqpick = new DailyQuestAction();
 		CreatureTestHelper.generateRPClasses();
 		assertNull("empty list", dmqpick.pickIdealCreature(-1, false, new LinkedList<Creature>()));
 		final LinkedList<Creature> creatureList = new LinkedList<Creature>();
@@ -123,7 +124,7 @@ public class DailyMonsterQuestTest {
 	@Test
 	public void testPickIdealCreatureratLONGLIST() {
 		final DailyMonsterQuest dmqp = new DailyMonsterQuest();
-		final DailyMonsterQuest.DailyQuestAction dmqpick = dmqp.new DailyQuestAction();
+		final DailyMonsterQuest.DailyQuestAction dmqpick = new DailyQuestAction();
 		CreatureTestHelper.generateRPClasses();
 		final LinkedList<Creature> creatureList = new LinkedList<Creature>();
 		Creature creat;

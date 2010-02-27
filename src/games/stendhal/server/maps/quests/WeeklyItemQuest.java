@@ -47,7 +47,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 	private static final long expireDelay = 6L * MathHelper.MILLISECONDS_IN_ONE_WEEK; 
 
-	class WeeklyQuestAction implements ChatAction {
+	static class WeeklyQuestAction implements ChatAction {
 
 		/**
 		 * All items which are hard enough to find but not tooo hard and not in Daily quest. If you want to do
@@ -116,7 +116,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		}
 	}
 
-	class WeeklyQuestCompleteAction implements ChatAction {
+	static class WeeklyQuestCompleteAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("weekly_item");
 			String questKill = null;
@@ -168,7 +168,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		}
 	}
 
-	class WeeklyQuestAbortAction implements ChatAction {
+	static class WeeklyQuestAbortAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("weekly_item");
 			String questKill = null;

@@ -41,7 +41,7 @@ public class DailyItemQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily_item";
 
-	class DailyQuestAction implements ChatAction {
+	static class DailyQuestAction implements ChatAction {
 
 		/**
 		 * All items which are possible/easy enough to find. If you want to do
@@ -139,7 +139,7 @@ public class DailyItemQuest extends AbstractQuest {
 		}
 	}
 
-	class DailyQuestCompleteAction implements ChatAction {
+	static class DailyQuestCompleteAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("daily_item");
 			String questKill = null;
@@ -185,7 +185,7 @@ public class DailyItemQuest extends AbstractQuest {
 		}
 	}
 
-	class DailyQuestAbortAction implements ChatAction {
+	static class DailyQuestAbortAction implements ChatAction {
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 			final String questInfo = player.getQuest("daily_item");
