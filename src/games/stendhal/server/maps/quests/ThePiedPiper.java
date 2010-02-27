@@ -75,9 +75,8 @@ import org.apache.log4j.Logger;
 
 	/**
 	 * function will set timings to either test server or game server.
-	 * 	TODO: use configuration file for storing timings
 	 */
-	private void adjustTimings() {
+	private static void adjustTimings() {
 		if (System.getProperty("stendhal.testserver") == null) {		
 			// game timings
 			QUEST_INACTIVE_TIME_MAX = 60 * 60 * 24 * 14;
@@ -429,9 +428,6 @@ import org.apache.log4j.Logger;
 				// player's quest slot don't contain valid number
 				// so he didn't killed such creatures.
 			};
-
-			if(i==RAT_TYPES.size()) {
-			}
 			moneys = moneys + kills*RAT_REWARDS.get(i);
 		};
 		return(moneys);
@@ -452,7 +448,7 @@ import org.apache.log4j.Logger;
 	        		final Player player = (Player) circs.getKiller();
 	        		killsRecorder(player, circs.getVictim());
 	        	}
-	        	notifyDead((RPEntity)circs.getVictim());
+	        	notifyDead(circs.getVictim());
 	        	};
 	        };
 	    }
