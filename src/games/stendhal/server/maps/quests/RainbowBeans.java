@@ -62,8 +62,6 @@ public class RainbowBeans extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "rainbow_beans";
 
-	/** The RainbowBeansScroll for porting back. */
-	private static RainbowBeansScroll scroll;
 
 
 
@@ -217,15 +215,12 @@ public class RainbowBeans extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		if (scroll == null) {
-			scroll = (RainbowBeansScroll) SingletonRepository.getEntityManager().getItem("rainbow beans");
-		}
-
 		/* login notifier to teleport away players logging into the dream world.
 		 * there is a note in TimedTeleportScroll that it should be done there or its subclass.
 		 */
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
 			public void onLoggedIn(final Player player) {
+				RainbowBeansScroll scroll = (RainbowBeansScroll) SingletonRepository.getEntityManager().getItem("rainbow beans");
 				scroll.teleportBack(player);
 			}
 

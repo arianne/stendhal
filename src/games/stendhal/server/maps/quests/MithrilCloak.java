@@ -67,24 +67,15 @@ public class MithrilCloak extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-
-	/** The twilight moss scroll for teleporting back. */
-	private static TwilightMossScroll scroll;
-
-
-	
 	
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		if (scroll == null) {
-			scroll = (TwilightMossScroll) SingletonRepository.getEntityManager().getItem("twilight moss");
-		}
 
-		/* login notifier to teleport away players logging into the twilight zone.
-		 */
+		// login notifier to teleport away players logging into the twilight zone.
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
 			public void onLoggedIn(final Player player) {
+				TwilightMossScroll scroll = (TwilightMossScroll) SingletonRepository.getEntityManager().getItem("twilight moss");
 				scroll.teleportBack(player);
 			}
 

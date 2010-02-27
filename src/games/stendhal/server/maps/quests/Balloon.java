@@ -16,22 +16,18 @@ import games.stendhal.server.entity.player.Player;
  */
 public class Balloon extends AbstractQuest {
 
-
 	private static final String BALLOON = "balloon";
-	private static BalloonScroll scroll;
 
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		if (scroll == null) {
-			scroll = (BalloonScroll) SingletonRepository.getEntityManager().getItem(BALLOON);
-		}
 
 		/* login notifier to teleport away players logging into the clouds.
 		 * there is a note in TimedTeleportScroll that it should be done there or its subclass.
 		 */
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
 			public void onLoggedIn(final Player player) {
+				BalloonScroll scroll = (BalloonScroll) SingletonRepository.getEntityManager().getItem(BALLOON);
 				scroll.teleportBack(player);
 			}
 
