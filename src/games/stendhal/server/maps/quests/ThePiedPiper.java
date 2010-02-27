@@ -198,7 +198,7 @@ import org.apache.log4j.Logger;
 	 * summon rats, make phase INVASION and
 	 * start timer to phase AWAITING.
 	 */
-	protected void PhaseInactiveToInvasion() {
+	protected void phaseInactiveToInvasion() {
 		logger.info("ThePiedPiper quest started (phase INVASION).");
 		phase=TPP_Phase.TPP_INVASION;
 		summonRats();
@@ -209,7 +209,7 @@ import org.apache.log4j.Logger;
 	/**
 	 * last rat killed.
 	 */
-	protected void PhaseInvasionToInactive() {
+	protected void phaseInvasionToInactive() {
 		tellAllAboutNoRatsInCity();
 		logger.info("ThePiedPiper quest: last rat was killed (phase INACTIVE).");
 		phase=TPP_Phase.TPP_INACTIVE;
@@ -221,7 +221,7 @@ import org.apache.log4j.Logger;
 	 * remove rats, make phase AWAITING and
 	 * start timer to phase INACTIVE.
 	 */
-	protected void PhaseInvasionToAwaiting() {
+	protected void phaseInvasionToAwaiting() {
 		logger.info("ThePiedPiper quest timeout (phase AWAITING).");
 		phase=TPP_Phase.TPP_AWAITING;
 		removeAllRats();
@@ -234,7 +234,7 @@ import org.apache.log4j.Logger;
 	 * make phase INACTIVE and
 	 * start timer to phase INVASION.
 	 */
-	protected void PhaseAwaitingToInactive() {
+	protected void phaseAwaitingToInactive() {
 		logger.info("ThePiedPiper quest is over (phase INACTIVE).");
 		phase=TPP_Phase.TPP_INACTIVE;
 		shouterTimer.stop();
@@ -250,13 +250,13 @@ import org.apache.log4j.Logger;
 		public void onTurnReached(final int currentTurn) {
 			switch(phase){
 			case TPP_INACTIVE:
-					PhaseInactiveToInvasion();
+					phaseInactiveToInvasion();
 				    break;
 			case TPP_INVASION:
-					PhaseInvasionToAwaiting();
+					phaseInvasionToAwaiting();
 				    break;
 			default:
-					PhaseAwaitingToInactive();
+					phaseAwaitingToInactive();
 					break;
 			}
 		}
@@ -565,7 +565,7 @@ import org.apache.log4j.Logger;
 			logger.warn("killed creature isn't in control list ("+dead.toString()+").");
 		}
 		if (rats.size()==0) {
-			PhaseInvasionToInactive();
+			phaseInvasionToInactive();
 		};
     }
 
@@ -598,7 +598,7 @@ import org.apache.log4j.Logger;
 	 * @param max - maximal time in seconds
 	 * @param min - minimal time in seconds
 	 */
-	private void NewNotificationTime(int max, int min) {
+	private void newNotificationTime(int max, int min) {
 		TurnNotifier.get().dontNotify(questTimer);
 		TurnNotifier.get().notifyInSeconds(
 				Rand.randUniform(max, min),	questTimer);
@@ -621,14 +621,14 @@ import org.apache.log4j.Logger;
 	 * Quest will start after quest inactive time period will over.
 	 */
 	private void step_1() {
-		NewNotificationTime(QUEST_INACTIVE_TIME_MAX, QUEST_INACTIVE_TIME_MIN);
+		newNotificationTime(QUEST_INACTIVE_TIME_MAX, QUEST_INACTIVE_TIME_MIN);
 	}
 
 	/**
 	 * Quest will go to AWAITING state after invasion time period will over.
 	 */
 	private void step_2() {
-		NewNotificationTime(QUEST_INVASION_TIME, QUEST_INVASION_TIME);
+		newNotificationTime(QUEST_INVASION_TIME, QUEST_INVASION_TIME);
 	}
 
 	/**
@@ -637,7 +637,7 @@ import org.apache.log4j.Logger;
 	 */
 	private void step_3() {
 		if (phase==TPP_Phase.TPP_AWAITING) {
-			NewNotificationTime(QUEST_AWAITING_TIME, QUEST_AWAITING_TIME);
+			newNotificationTime(QUEST_AWAITING_TIME, QUEST_AWAITING_TIME);
 		}
 	}
 

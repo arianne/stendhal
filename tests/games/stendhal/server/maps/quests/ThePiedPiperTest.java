@@ -154,7 +154,7 @@ public class ThePiedPiperTest {
 	@Test
 	public void testInvasionPhase() {
 		// [17:50] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
-		quest.PhaseInactiveToInvasion();
+		quest.phaseInactiveToInvasion();
         en.step(player, "bye"); // in case if previous test was failed
         en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -189,7 +189,7 @@ public class ThePiedPiperTest {
 	public void testAccumulatingRewards() {
 		int tempReward = 0;
 		// [18:09] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
-		quest.PhaseInactiveToInvasion();
+		quest.phaseInactiveToInvasion();
 		en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -222,7 +222,7 @@ public class ThePiedPiperTest {
 		tempReward = rewardMoneys;
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-		quest.PhaseInactiveToInvasion();	
+		quest.phaseInactiveToInvasion();	
 		killRats(quest.getRatsCount());
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -248,10 +248,10 @@ public class ThePiedPiperTest {
 	 */
 	@Test
 	public void testAwaitingPhase() {	
-		quest.PhaseInactiveToInvasion();		
+		quest.phaseInactiveToInvasion();		
 		killRats(quest.getRatsCount()/2);
 		// [18:19] Mayor Chalmers shouts: Saddanly, rats captured city, they are living now under all Ados buildings. I am now in need of call Piped Piper, rats exterminator. Thank to all who tryed to clean up Ados,  you are welcome to get your reward.
-		quest.PhaseInvasionToAwaiting();		
+		quest.phaseInvasionToAwaiting();		
 		en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -269,7 +269,7 @@ public class ThePiedPiperTest {
 		assertEquals("Good day to you.", getReply(npc));
 		
 		// [19:20] Mayor Chalmers shouts: Thanx gods, rats is gone now, Pied Piper hypnotized them and lead away to dungeons. Those of you, who helped to Ados city with rats problem, can get your reward now.
-		quest.PhaseAwaitingToInactive();
+		quest.phaseAwaitingToInactive();
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
