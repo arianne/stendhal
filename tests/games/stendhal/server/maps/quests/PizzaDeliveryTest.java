@@ -7,9 +7,12 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -302,22 +305,22 @@ public class PizzaDeliveryTest {
 		assertEquals("Bye, come back soon.", getReply(npc1));
 		assertFalse(player.isEquipped("pizza"));
 		
-		// TODO I (kym) commented this out because it fails but I can't see why.
-		// item = ItemTestHelper.createItem("pizza");
-//		player.getSlot("bag").add(item);
-//		// try taking any pizza to fidorea when we didn't have a quest slot activated
-//		player.removeQuest(questSlot);
-//		assertFalse(player.hasQuest(questSlot));
-//		
-//		en.step(player, "hi");
-//		assertEquals("Hi, there. Do you need #help with anything?", getReply(npc));
-//		en.step(player, "pizza");
-//		assertEquals("Eek! This pizza is all dirty! Did you find it on the ground?", getReply(npc));
-//		assertTrue(player.isEquipped("pizza"));
-//		en.step(player, "bye");
-//		assertEquals("Bye, come back soon.", getReply(npc));
-//		// put the extra one on the ground now, we don't want it
-//		player.drop("pizza");
+		// try taking any pizza to fidorea when we didn't have a quest slot activated
+		item = ItemTestHelper.createItem("pizza");
+		player.getSlot("bag").add(item);
+		player.removeQuest(questSlot);
+		assertFalse(player.hasQuest(questSlot));
+		
+		en.step(player, "hi");
+		assertEquals("Hi, there. Do you need #help with anything?", getReply(npc1));
+		en.step(player, "pizza");
+		// The flavor won't match
+		assertEquals("No, thanks. I like Pizza Napoli better.", getReply(npc1));
+		assertTrue(player.isEquipped("pizza"));
+		en.step(player, "bye");
+		assertEquals("Bye, come back soon.", getReply(npc1));
+		// put the extra one on the ground now, we don't want it
+		player.drop("pizza");
 		
 		npc1 = SingletonRepository.getNPCList().get("Leander");
 		en = npc1.getEngine();
@@ -456,6 +459,29 @@ public class PizzaDeliveryTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc1));
 		
-		// TODO: test go back to leander when the time has run out but you didn't take it
+		// Check coming back to leander after a failure
+		// Add a test pizza, one that leander should not steal
+		item = ItemTestHelper.createItem("pizza");
+		player.getSlot("bag").add(item);
+		// and then the pizza that belongs to Haizen
+		item = ItemTestHelper.createItem("pizza");
+		item.setInfoString("Pizza Diavolo");	
+		player.getSlot("bag").add(item);
+		// Haizen allows 4 min delay. Set the time stamp 5min  to the past 
+		player.setQuest(questSlot, "Haizen;" + (System.currentTimeMillis() - 1000 * 60 * 5));
+		en = leander.getEngine();
+		en.setCurrentState(ConversationStates.IDLE);
+		en.step(player, "hi");
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", getReply(leander));
+		en.step(player, "task");
+		assertEquals("I see you failed to deliver the pizza to Haizen in time. Are you sure you will be more reliable this time?", getReply(leander));
+		// Leander will take the pizza
+		List<Item> pizzas = player.getAllEquipped("pizza");
+		assertEquals(pizzas.size(), 1);
+		assertEquals(pizzas.get(0).getInfoString(), null);
+		// after this we should be like any other player wanting to deliver a pizza, phew
+		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
+		en.step(player, "bye");
+		assertEquals("Bye.", getReply(leander));
 	}
 }
