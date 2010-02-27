@@ -3,4 +3,7 @@
 		<Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
 		<Package name="~games\.stendhal\.server\.entity.*" />
 	</Match>
+	<Match> 
+		<Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
+	</Match>
 </FindBugsFilter>
