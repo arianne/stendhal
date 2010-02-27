@@ -73,6 +73,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private RPServerManager rpman;
 
+	/** a list of online players */
 	protected PlayerList onlinePlayers;
 	private final List<Player> playersRmText;
 
@@ -82,12 +83,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private final List<Pair<RPEntity, Entity>> entityToKill;
 
+	/** a list of zone that should be removed (like vaults) */
 	private List<StendhalRPZone> zonesToRemove = new LinkedList<StendhalRPZone>();
 
-	public PlayerList getOnlinePlayers() {
-		return onlinePlayers;
-	}
-
+	/**
+	 * creates a new StendhalRPRuleProcessor
+	 */
 	protected StendhalRPRuleProcessor() {
 		onlinePlayers = new PlayerList();
 		playersRmText = new LinkedList<Player>();
@@ -95,17 +96,31 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private void init() {
-		instance = this;
 		String[] params = {};
 		new GameEvent("server system", "startup", params).raise();
 	}
 
+	/**
+	 * gets the singleton instance of StendhalRPRuleProcessor
+	 *
+	 * @return StendhalRPRuleProcessor
+	 */
 	public static StendhalRPRuleProcessor get() {
 		if (instance == null) {
-			instance = new StendhalRPRuleProcessor();
+			StendhalRPRuleProcessor instance = new StendhalRPRuleProcessor();
 			instance.init();
+			StendhalRPRuleProcessor.instance = instance;
 		}
 		return instance;
+	}
+
+	/**
+	 * gets a list of online players
+	 *
+	 * @return list of online players
+	 */
+	public PlayerList getOnlinePlayers() {
+		return onlinePlayers;
 	}
 
 	/**
@@ -202,6 +217,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return false;
 	}
 
+	/**
+	 * kills an RPEntity
+	 *
+	 * @param entity
+	 * @param killer
+	 */
 	public void killRPEntity(final RPEntity entity, final Entity killer) {
 		entityToKill.add(new Pair<RPEntity, Entity>(entity, killer));
 	}
@@ -367,7 +388,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param player
 	 *            Player to check for super admin status.
 	 */
-	void  readAdminsFromFile(final Player player) {
+	static void readAdminsFromFile(final Player player) {
 		if (adminNames == null) {
 			adminNames = new LinkedList<String>();
 
@@ -592,13 +613,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return SingletonRepository.getRuleProcessor().onlinePlayers.size();
 	}
 
+	/**
+	 * notifies buddies about going online/offline
+	 *
+	 * @param isOnline did the player login?
+	 * @param name name of the player
+	 */
 	public void notifyOnlineStatus(final boolean isOnline, final String name) {
 		if (instance != null) {
 			if (isOnline) {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(final Player player) {
 						player.notifyOnline(name);
-
 					}
 				});
 
@@ -606,13 +632,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(final Player player) {
 						player.notifyOffline(name);
-
 					}
 				});
 			}
 		}
 	}
 
+	/**
+	 * removes a zone (like a personalized vault)
+	 *
+	 * @param zone StendhalRPZone to remove
+	 */
 	public void removeZone(final StendhalRPZone zone) {
 		zonesToRemove.add(zone);
 	}
