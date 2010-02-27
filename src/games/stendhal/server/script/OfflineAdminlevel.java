@@ -14,6 +14,13 @@ import marauroa.common.game.RPObject;
  */
 public class OfflineAdminlevel extends AbstractOfflineAction {
 
+	/**
+	 * validates the parameters, sends an error message, if something is wrong with them
+	 *
+	 * @param admin admin executing the script
+	 * @param args arguments for the script
+	 * @return true if the parameters are valid, false otherwise
+	 */
 	@Override
 	public boolean validateParameters(final Player admin, final List<String> args) {
 		if (args.size() != 2) {
@@ -23,6 +30,13 @@ public class OfflineAdminlevel extends AbstractOfflineAction {
 		return true;
 	}
 
+	/**
+	 * processes the requested operation on the loaded object
+	 *
+	 * @param admin admin executing the script
+	 * @param object the RPObject of the player loaded from the database
+	 * @param args arguments for the script
+	 */
 	@Override
 	public void process(final Player admin, RPObject object, final List<String> args) {
 		String playerName = args.get(0);

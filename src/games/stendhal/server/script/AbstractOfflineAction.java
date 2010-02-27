@@ -17,7 +17,7 @@ import marauroa.server.game.db.DAORegister;
 import org.apache.log4j.Logger;
 
 /**
- * Changes the attributes of an offline player.
+ * An abstract super class for actions on offline players
  *
  * @author hendrik
  */
