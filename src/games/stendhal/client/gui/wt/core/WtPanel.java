@@ -22,7 +22,6 @@ import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Debug;
-import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
