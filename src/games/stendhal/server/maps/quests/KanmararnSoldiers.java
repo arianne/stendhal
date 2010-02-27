@@ -150,7 +150,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	class HenryQuestAction implements ChatAction {
+	static class HenryQuestAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			if (!player.isQuestCompleted(QUEST_SLOT)
 					&& !"map".equals(player.getQuest(QUEST_SLOT))) {
@@ -162,19 +162,19 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	class HenryQuestNotCompletedCondition implements ChatCondition {
+	static class HenryQuestNotCompletedCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
-	class HenryQuestCompletedCondition implements ChatCondition {
+	static class HenryQuestCompletedCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
-	class HenryQuestCompleteAction implements ChatAction {
+	static class HenryQuestCompleteAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
 			final List<Item> allLeatherLegs = player.getAllEquipped("leather legs");
