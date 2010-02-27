@@ -40,7 +40,7 @@ public class ItemImageLoader {
 			return img;
 		} else {
 			try {
-				final URL resource = SpriteStore.get().getResourceURL(path);
+				final URL resource = this.getClass().getClassLoader().getResource(path);
 				if (resource != null) {
 					img = read(resource);
 					ImageMap.put(path, img);

@@ -19,7 +19,6 @@ import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -177,7 +176,7 @@ public class SpriteStore {
 	 * @return if sprite exists in store false otherwise
 	 */
 	public boolean existsSprite(final String ref) {
-		final URL url = getResourceURL(ref);
+		final URL url = this.getClass().getClassLoader().getResource(ref);
 		return url != null;
 	}
 
@@ -198,7 +197,7 @@ public class SpriteStore {
 				logger.info("Loading sprite from a URL...");
 				url = new URL(ref);
 			} else {
-				url = getResourceURL(ref);
+				url = this.getClass().getClassLoader().getResource(ref);
 			}
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);
@@ -306,55 +305,4 @@ public class SpriteStore {
 		return tile;
 	}
 
-	/**
-	 * gets a resource URL. Use this method instead of classLoader.getResouce()
-	 * because there are still clients around with a broken classloader
-	 * prefering old resources. This method ensures we get the sprite from the
-	 * appropriate place, this helps with deploying the game with things like
-	 * webstart and updates.
-	 * 
-	 * @param ref
-	 *            name of resource
-	 * @return URL to this resouce
-	 */
-	public URL getResourceURL(final String ref) {
-		return doOldBootstrapClassloaderWorkaround(ref);
-	}
-
-	/**
-	 * Warning, ugly workaround for a bug in Bootstrap.java prior (including)
-	 * version 0.57. There are still old version of Bootstrap araound as this
-	 * file cannot be updated with the automatic updater.
-	 * 
-	 * @param ref
-	 *            resource name
-	 * @return URL to that resource or null in case it was not found
-	 */
-	private URL doOldBootstrapClassloaderWorkaround(final String ref) {
-		URL url = null;
-		try {
-			final ClassLoader classloader = this.getClass().getClassLoader();
-			final Method method = ClassLoader.class.getDeclaredMethod("findResource",
-					String.class);
-			method.setAccessible(true);
-
-			url = (URL) method.invoke(classloader, ref);
-			if (url == null) {
-				final ClassLoader parent = classloader.getParent();
-				if (parent != null) {
-					url = parent.getResource(ref);
-				}
-			}
-		} catch (final Exception e) {
-			if (doOldBootstrapClassloaderWorkaroundFirst) {
-				logger.error(e, e);
-				e.printStackTrace(System.err);
-				doOldBootstrapClassloaderWorkaroundFirst = false;
-			}
-		}
-		if (url == null) {
-			url = this.getClass().getClassLoader().getResource(ref);
-		}
-		return url;
-	}
 }

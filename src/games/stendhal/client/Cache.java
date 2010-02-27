@@ -1,6 +1,5 @@
 package games.stendhal.client;
 
-import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.io.File;
@@ -54,7 +53,7 @@ public class Cache {
 	protected void init() {
 		try {
 			prefilledCacheManager = new Properties();
-			final URL url = SpriteStore.get().getResourceURL("cache/stendhal.cache");
+			final URL url = this.getClass().getClassLoader().getResource("cache/stendhal.cache");
 			if (url != null) {
 				final InputStream is = url.openStream();
 				prefilledCacheManager.load(is);
@@ -154,7 +153,7 @@ public class Cache {
 				&& (Integer.parseInt(timestamp) == item.timestamp)) {
 
 			// get the stream
-			final URL url = SpriteStore.get().getResourceURL(name);
+			final URL url = this.getClass().getClassLoader().getResource(name);
 			if (url != null) {
 				try {
 					logger.debug("Content " + item.name

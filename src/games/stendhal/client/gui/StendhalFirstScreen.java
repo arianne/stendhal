@@ -62,7 +62,7 @@ public class StendhalFirstScreen extends JFrame {
 		super();
 		this.client = client;
 
-		final URL url = SpriteStore.get().getResourceURL(
+		final URL url = this.getClass().getClassLoader().getResource(
 				ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
 		final ImageIcon imageIcon = new ImageIcon(url);
 		background = imageIcon.getImage();
@@ -182,7 +182,7 @@ public class StendhalFirstScreen extends JFrame {
 		this.setLocation(new Point(100, 100));
 		this.setResizable(false);
 
-		final URL url = SpriteStore.get().getResourceURL(
+		final URL url = this.getClass().getClassLoader().getResource(
 				ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 		pack();

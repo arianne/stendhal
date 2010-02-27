@@ -43,7 +43,7 @@ public class ProgressBar extends JFrame {
 
 	public ProgressBar(final Window w) {
 		super("Connecting...");
-		final URL url = SpriteStore.get().getResourceURL(
+		final URL url = this.getClass().getClassLoader().getResource(
 				ClientGameConfiguration.get("GAME_ICON"));
 		setIconImage(new ImageIcon(url).getImage());
 		this.frame = w;

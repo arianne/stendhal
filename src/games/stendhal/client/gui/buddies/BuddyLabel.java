@@ -1,7 +1,5 @@
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.sprite.SpriteStore;
-
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -14,12 +12,12 @@ class BuddyLabel extends JLabel {
 	/**
 	 * The online icon image.
 	 */
-	private static ImageIcon onlineIcon = new ImageIcon(SpriteStore.get().getResourceURL("data/gui/buddy_online.png"));
+	private static ImageIcon onlineIcon = new ImageIcon(BuddyLabel.class.getClassLoader().getResource("data/gui/buddy_online.png"));
 
 	/**
 	 * The offline icon image.
 	 */
-	private static ImageIcon offlineIcon = new ImageIcon(SpriteStore.get().getResourceURL("data/gui/buddy_offline.png"));
+	private static ImageIcon offlineIcon = new ImageIcon(BuddyLabel.class.getClassLoader().getResource("data/gui/buddy_offline.png"));
 
 	void setOnline(final boolean online) {
 			this.setEnabled(online);

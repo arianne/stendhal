@@ -39,27 +39,27 @@ public class TileStore implements Tileset {
 	/**
 	 * The base directory for tileset resources.
 	 */
-	protected static final String baseFolder = getResourceBase();
+	private static final String baseFolder = getResourceBase();
 
 	/**
 	 * The tileset animation map.
 	 */
-	protected static final TilesetGroupAnimationMap animationMap = createAnimationMap();
+	private static final TilesetGroupAnimationMap animationMap = createAnimationMap();
 
 	/**
 	 * A cache of loaded tilesets. 
 	 */
-	protected static final Map<String, Tileset> tilesetsLoaded = new HashMap<String, Tileset>();
+	private static final Map<String, Tileset> tilesetsLoaded = new HashMap<String, Tileset>();
 
 	/**
 	 * The sprite store.
 	 */
-	protected SpriteStore store;
+	private SpriteStore store;
 
 	/**
 	 * The tile sprites.
 	 */
-	protected ArrayList<Sprite> tiles;
+	private ArrayList<Sprite> tiles;
 
 	/**
 	 * Create a tile store.
@@ -181,8 +181,7 @@ public class TileStore implements Tileset {
 	protected static TilesetGroupAnimationMap createAnimationMap() {
 		final TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 
-		final URL url = SpriteStore.get().getResourceURL(
-				baseFolder + "tileset/animation.seq");
+		final URL url = TileStore.class.getClassLoader().getResource(baseFolder + "tileset/animation.seq");
 
 		if (url != null) {
 			try {
@@ -211,7 +210,7 @@ public class TileStore implements Tileset {
 	private static String getResourceBase() {
 		String path = "data/";
 
-		if (SpriteStore.get().getResourceURL("tiled/tileset/README") != null) {
+		if (TileStore.class.getClassLoader().getResource("tiled/tileset/README") != null) {
 			logger.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
 			path = "tiled/";
 		}

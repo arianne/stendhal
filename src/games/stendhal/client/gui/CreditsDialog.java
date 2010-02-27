@@ -105,7 +105,7 @@ public class CreditsDialog extends JDialog {
 	 * @return list of lines
 	 */
 	private List<String> readCredits() {
-		final URL url = SpriteStore.get().getResourceURL(
+		final URL url = this.getClass().getClassLoader().getResource(
 				"games/stendhal/client/gui/credits.txt");
 		final List<String> res = new LinkedList<String>();
 		try {

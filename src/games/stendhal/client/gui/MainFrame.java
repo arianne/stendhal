@@ -32,7 +32,7 @@ public class MainFrame {
 	}
 
 	private void setIcon() {
-		final URL url = SpriteStore.get().getResourceURL(
+		final URL url = this.getClass().getClassLoader().getResource(
 				ClientGameConfiguration.get("GAME_ICON"));
 		getMainFrame().setIconImage(new ImageIcon(url).getImage());
 	}
