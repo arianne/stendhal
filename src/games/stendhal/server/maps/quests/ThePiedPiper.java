@@ -462,8 +462,8 @@ import org.apache.log4j.Logger;
 	 *  Red alert! Rats in the Ados city!
 	 */
 	private void tellAllAboutRatsProblem() {
-		final String text = new String("Mayor Chalmers shouts: Ados City is being invaded by #rats!"+
-				                          " Anyone who will help to clean up city, will be rewarded!");
+		final String text = "Mayor Chalmers shouts: Ados City is being invaded by #rats!"+
+			              " Anyone who will help to clean up city, will be rewarded!";
 		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
 	}
 
@@ -471,10 +471,10 @@ import org.apache.log4j.Logger;
 	 *  Rats are dead :-)
 	 */
 	private void tellAllAboutNoRatsInCity() {
-		final String text = new String("Mayor Chalmers shouts: No #rats in Ados survived, "+
-				                          "excluded those who always lived in the "+
-				                          "haunted house. "+
-				                          "Rat hunters are welcome to get their #reward.");
+		final String text = "Mayor Chalmers shouts: No #rats in Ados survived, "+
+				            "excluded those who always lived in the "+
+				            "haunted house. "+
+				            "Rat hunters are welcome to get their #reward.";
 		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
 	}
 
@@ -482,11 +482,11 @@ import org.apache.log4j.Logger;
 	 *  Rats now living under all buildings. Need to call Pied Piper :-)
 	 */
 	private void tellAllAboutRatsIsWinners() {
-		final String text = new String("Mayor Chalmers shouts: Suddenly, #rats have captured city, "+
-										  "they are living now under all Ados buildings. "+
-				                          "I now need to call the Pied Piper, a rat exterminator. "+
-				                          "Thank to all who tried to clean up Ados, "+
-				                          " you are welcome to get your #reward.");
+		final String text = "Mayor Chalmers shouts: Suddenly, #rats have captured city, "+
+							"they are living now under all Ados buildings. "+
+				            "I now need to call the Pied Piper, a rat exterminator. "+
+				            "Thank to all who tried to clean up Ados, "+
+				            " you are welcome to get your #reward.";
 		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
 	}
 
@@ -494,10 +494,10 @@ import org.apache.log4j.Logger;
 	 *  Pied Piper sent rats away:-)
 	 */
 	private void tellAllAboutRatsIsGone() {
-		final String text = new String("Mayor Chalmers shouts: Thankfully, all #rats are gone now, the Pied Piper " +
-										"hypnotized them and led them away to dungeons. "+
-				                        "Those of you, who helped Ados City with the rats problem, "+
-										"can get your #reward now.");
+		final String text = "Mayor Chalmers shouts: Thankfully, all #rats are gone now, the Pied Piper " +
+							"hypnotized them and led them away to dungeons. "+
+				            "Those of you, who helped Ados City with the rats problem, "+
+							"can get your #reward now.";
 		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
 	}
 
