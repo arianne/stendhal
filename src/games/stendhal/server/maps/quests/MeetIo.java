@@ -104,7 +104,7 @@ public class MeetIo extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_4,
-			"Press #Shift+Up at the same time to recall things you previously said, in case you need to repeat yourself. You can also use #Ctrl+L if you are having trouble. Okay, shall we move on to the fifth lesson?",
+			"Press #Shift+Up at the same time to recall things you previously said, in case you need to repeat yourself. Okay, shall we move on to the fifth lesson?",
 			null);
 
 		npc.add(
@@ -112,7 +112,7 @@ public class MeetIo extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_5,
-			"Type #/support #<message> to report a problem to any administrators who happen to be online at that moment. You can also try IRC, if you are still having problems; start up any IRC client and join channel ##arianne on the server #'irc.freenode.net'\nOkay, time for your last lesson in mental manipulation!",
+			"Type #/support #<message> to report a problem. You can also try the IRC channel ##arianne on #'irc.freenode.net'. There is a web frontend at #http://stendhal.game-host.org/development/chat.html \nOkay, time for your last lesson in mental manipulation!",
 			null);
 
 		npc.add(
