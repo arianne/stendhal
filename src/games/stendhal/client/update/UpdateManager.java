@@ -257,7 +257,7 @@ public class UpdateManager {
 	 * Downloads the specified file
 	 *
 	 * @param file name of file
-	 * @return true, if the download was succesful, false otherwise
+	 * @return true, if the download was successful, false otherwise
 	 */
 	private boolean downloadFile(final String file) {
 		boolean res = tryDownloadFromPreferedLocation(file);
@@ -295,7 +295,7 @@ public class UpdateManager {
 	}
 
 	/**
-	 * tries to download the file from a prefered, but less stable location.
+	 * tries to download the file from a preferred, but less stable location.
 	 * errors are only logged to stdout and not displayed to the user because
 	 * if this download fails, the one from the normal location is tried.
 	 *
@@ -307,7 +307,7 @@ public class UpdateManager {
 		// is a prefered download location specified?
 		String preferedLocationFolder = updateProp.getProperty("location.prefered.folder");
 		String preferedLocationSuffix = updateProp.getProperty("location.prefered.suffix", "");
-		System.out.println("checking for prefered location: preferedLocationFolder=" + preferedLocationFolder + " preferedLocationSuffix=" + preferedLocationSuffix);
+		System.out.println("checking for preferred location: preferredLocationFolder=" + preferedLocationFolder + " preferredLocationSuffix=" + preferedLocationSuffix);
 		if (preferedLocationFolder == null) {
 			// no prefered location specified
 			return false;
