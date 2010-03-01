@@ -91,7 +91,7 @@ public class SoundManagerNG
         void    setVolume     (float volume)                { mGlobalVolume.setVolume(volume);             }
         void    startFading   (float volume, Time duration) { mGlobalVolume.startFading(volume, duration); }
 		void    startFading   (Time duration)               { mGlobalVolume.startFading(duration);         }
-        void    setLayer      (int layer)                   { mOutput.setLevel(layer);                     }
+        void    setLayer      (int layer)                   { /*mOutput.setLayer(layer);*/                 }
         void    resumePlayback()                            { mInterruptor.play();                         }
 		void    close         ()                            { mSoundSystem.closeOutput(mOutput);           }
 		Sound   getSoundObject()                            { return mSound;                               }
@@ -111,7 +111,7 @@ public class SoundManagerNG
                 mSound.file.get().disconnect();
                 mSound.file.get().restart();
                 mSound.channel.set(null);
-                mOutput.setVolume(0.0f);
+                mOutput.setIntensity(0.0f);
             }
 
             if(newSound != null)
@@ -145,7 +145,7 @@ public class SoundManagerNG
             float intensity = mAudibleArea.get().getHearingIntensity(mHearerPosition);
             mAudibleArea.get().getClosestPoint(mSoundPosition, mHearerPosition);
             mDirectedSound.setPositions2D(mSoundPosition, mHearerPosition, HEARER_LOOKONG_DIRECTION, intensity);
-			mOutput.setVolume(intensity);
+			mOutput.setIntensity(intensity);
         }
 
         @Override

@@ -10,7 +10,6 @@ import games.stendhal.common.math.Numeric;
 import games.stendhal.common.memory.Field;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -157,16 +156,15 @@ public class SoundSystemNG extends Thread
         }
 	}
 
-	public static class Output extends SignalProcessor implements Comparable<Output>
+	public static class Output extends SignalProcessor
 	{
-		final static int PRECISION = 1000000;
-
 		AudioFormat         mAudioFormat;
 		float[]             mAudioBuffer     = null; // the interleaved normalized PCM data
+		float[]             mMixingBuffer    = null;
 		int                 mNumSamples      = 0;    // the number of samples received
 		int                 mNumSamplesMixed = 0;
 		final AtomicInteger mLevel           = new AtomicInteger(0);
-		final AtomicInteger mVolume          = new AtomicInteger(PRECISION);
+		final AtomicInteger mIntensity       = new AtomicInteger(PRECISION);
 
 		Output(AudioFormat format, int level)
 		{
@@ -175,17 +173,25 @@ public class SoundSystemNG extends Thread
 			mLevel.set(level);
 		}
 
-		public void setLevel (int level)    { mLevel.set(level);                                  }
-		public void setVolume(float volume) { mVolume.set(Numeric.floatToInt(volume, PRECISION)); }
+		public void  setIntensity(float intensity) { mIntensity.set(Numeric.floatToInt(intensity, PRECISION)); }
+		public float getIntensity()                { return Numeric.intToFloat(mIntensity.get(), PRECISION);   }
 
-		boolean receivedData  () { return mNumSamples > 0;                   }
-		int     getNumChannels() { return mAudioFormat.getChannels();        }
-		int     getSampleRate () { return (int)mAudioFormat.getSampleRate(); }
+		boolean receivedData   () { return mNumSamples > 0;                   }
+		int     getNumChannels () { return mAudioFormat.getChannels();        }
+		int     getSampleRate  () { return (int)mAudioFormat.getSampleRate(); }
+		int     getLayer       () { return mLevel.get();                      }
+		float[] getMixingBuffer() { return mMixingBuffer;                     }
 
 		void reset()
 		{
 			mNumSamples      = 0;
 			mNumSamplesMixed = 0;
+		}
+
+		void clearMixingBuffer(int bufferSize)
+		{
+			mMixingBuffer = Field.expand(mMixingBuffer, bufferSize, false);
+			Arrays.fill(mMixingBuffer, 0.0f);
 		}
 		
 		void setBuffer(float[] buffer, int numSamples)
@@ -213,7 +219,7 @@ public class SoundSystemNG extends Thread
 				int numSamples = mNumSamples - mNumSamplesMixed;
 				numSamples = Math.min(numSamples, numSamplesToMix);
 
-				Dsp.mixAudioData(buffer, offset, mAudioBuffer, mNumSamplesMixed, numSamples, Numeric.intToFloat(mVolume.get(), PRECISION));
+				Dsp.mixAudioData(buffer, offset, mAudioBuffer, mNumSamplesMixed, numSamples, Numeric.intToFloat(mIntensity.get(), PRECISION));
 
 				offset           += numSamples;
 				mNumSamplesMixed += numSamples;
@@ -241,7 +247,7 @@ public class SoundSystemNG extends Thread
 				else
 				{
 					setBuffer(null, 0);
-					//assert false: "could not convert channels";
+					assert false: "could not convert channels";
 				}
 
 				buffer = Dsp.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
@@ -254,16 +260,10 @@ public class SoundSystemNG extends Thread
 				else
 				{
 					setBuffer(null, 0);
-					//assert false: "could not convert sample rate";
+					assert false: "could not convert sample rate";
 				}
             }
         }
-
-		public int compareTo(Output output)
-		{
-			Integer integer = output.mLevel.get();
-			return integer.compareTo(mLevel.get());
-		}
 	}
 
 	private final static int    STATE_EXITING   = 0;
@@ -272,17 +272,18 @@ public class SoundSystemNG extends Thread
 	private final static int    STATE_SUSPENDED = 3;
 	private final static Time   ZERO_DURATION   = new Time();
 	private final static int    SLEEP_DURATION  = 100; // in nano seconds
+	private final static int    PRECISION       = 1000000;
 	private final static Logger logger          = Logger.getLogger(SoundSystemNG.class);
 
-	private final LinkedList<Output>    mMixerOutputs          = new LinkedList<Output>();
-	private SystemOutput                mSystemOutput          = null;
-    private AudioFormat                 mAudioFormat           = null;
-    private Time                        mBufferDuration        = null;
-    private final AtomicBoolean         mUseDynamicLoadScaling = new AtomicBoolean(false);
-	private final AtomicReference<Time> mStateChangeDelay      = new AtomicReference<Time>(ZERO_DURATION);
-	private final AtomicInteger         mTargetSystemState     = new AtomicInteger(STATE_EXITING);
-	private final AtomicInteger         mCurrentSystemState    = new AtomicInteger(STATE_EXITING);
-	private float[]                     mMixBuffer             = null;
+	private final LinkedList<Output>     mMixerOutputs          = new LinkedList<Output>();
+	private SystemOutput                 mSystemOutput          = null;
+    private AudioFormat                  mAudioFormat           = null;
+    private Time                         mBufferDuration        = null;
+    private final AtomicBoolean          mUseDynamicLoadScaling = new AtomicBoolean(false);
+	private final AtomicReference<Time>  mStateChangeDelay      = new AtomicReference<Time>(ZERO_DURATION);
+	private final AtomicInteger          mTargetSystemState     = new AtomicInteger(STATE_EXITING);
+	private final AtomicInteger          mCurrentSystemState    = new AtomicInteger(STATE_EXITING);
+	private float[]                      mMixBuffer             = null;
 
     public SoundSystemNG(Mixer mixer, AudioFormat audioFormat, Time bufferDuration)
     {
@@ -335,9 +336,9 @@ public class SoundSystemNG extends Thread
 		return mCurrentSystemState.get() == STATE_RUNNING;
 	}
 
-	public Output openOutput(int layerLevel, SignalProcessor ...processorChain)
+	public Output openOutput(int layerID, SignalProcessor ...processorChain)
 	{
-		Output output = new Output(mAudioFormat, layerLevel);
+		Output output = new Output(mAudioFormat, layerID);
 		SignalProcessor.createChain(Field.append(processorChain, processorChain.length, output));
 
 		synchronized(mMixerOutputs)
@@ -358,9 +359,7 @@ public class SoundSystemNG extends Thread
 			synchronized(mMixerOutputs)
 			{
 				logger.debug("closing a mixer output");
-
-				Output mixerOutput = (Output)output;
-				mMixerOutputs.remove(mixerOutput);
+				mMixerOutputs.remove(output);
 			}
 		}
     }
@@ -494,11 +493,8 @@ public class SoundSystemNG extends Thread
 
 		synchronized(mMixerOutputs)
 		{
-
 			mixOutputs = (LinkedList<Output>)mMixerOutputs.clone();
 		}
-
-		Collections.sort(mixOutputs);
 
 		int sampleRate        = mSystemOutput.getSampleRate();
 		int numBytesPerSample = mSystemOutput.getNumBytesPerSample();
@@ -512,7 +508,7 @@ public class SoundSystemNG extends Thread
 
 		mMixBuffer = Field.expand(mMixBuffer, numSamples, false);
 		Arrays.fill(mMixBuffer, 0, numSamples, 0.0f);
-
+		
 		for(Output output: mixOutputs)
 			output.mix(mMixBuffer, numSamples);
 
