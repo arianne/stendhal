@@ -20,7 +20,7 @@ public class Field
 	 * Only if keepData is set to true, the data of the array will be copied to the
 	 * new allocated array
 	 *
-	 * @param field
+	 * @param field original array (can be null)
 	 * @param newSize
 	 * @param keepData
 	 * @return - new or old array
@@ -47,7 +47,7 @@ public class Field
 	 * Only if keepData is set to true, the data of the array will be copied to the
 	 * new allocated array
 	 *
-	 * @param field
+	 * @param field original array (can be null)
 	 * @param newSize
 	 * @param keepData
 	 * @return - new or old array
@@ -74,7 +74,7 @@ public class Field
 	 * Only if keepData is set to true, the data of the array will be copied to the
 	 * new allocated array
 	 * 
-	 * @param field
+	 * @param field original array (can be null)
 	 * @param newSize
 	 * @param keepData
 	 * @return - new or old array
@@ -102,18 +102,22 @@ public class Field
 	 * new allocated array
 	 *
 	 * @param <T> any object
-	 * @param field
+	 * @param field original array (must not be null)
 	 * @param newSize
 	 * @param keepData
 	 * @return - new or old array
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T[] expand(T[] field, int newSize, boolean keepData)
 	{
-		if(field == null || field.length < newSize)
+		if(field == null)
+			throw new IllegalArgumentException("argument field must not be null");
+
+		if(field.length < newSize)
 		{
 			Class componentType = field.getClass().getComponentType();
-			T[]   newArray      = (T[])Array.newInstance(componentType, newSize);
+
+			@SuppressWarnings("unchecked")
+			T[] newArray = (T[])Array.newInstance(componentType, newSize);
 
 			if(keepData && field != null)
 				System.arraycopy(field, 0, newArray, 0, field.length);
@@ -169,7 +173,7 @@ public class Field
 	/**
 	 * This method shifts a part of an array to the right
 	 * 
-	 * @param field the whole array
+	 * @param field the whole array (must not be null)
 	 * @param offset the starting offset of the data to be shifted
 	 * @param size the size of the part to be shifted
 	 * @param shiftCount how much entries the data is shifted
@@ -211,7 +215,7 @@ public class Field
 	/**
 	 * Appends entries to an array. The array will be expanded if needed
 	 *
-	 * @param field the array that gets entries appended
+	 * @param field the array that gets entries appended (must not be null)
 	 * @param size indicates the size of the array (this can differ from field.length)
 	 * @param values the entries to get appended
 	 * @return
@@ -251,7 +255,7 @@ public class Field
 	/**
 	 * Inserts entirs into an array at a specific position. The array will be expanded if needed
 	 *
-	 * @param field the array where the data should be inserted
+	 * @param field the array where the data should be inserted (must not be null)
 	 * @param index the position where the data should be inserted
 	 * @param size indicates the size of the array (this can differ from field.length)
 	 * @param values the entries to be inserted
