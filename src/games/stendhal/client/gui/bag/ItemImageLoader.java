@@ -2,8 +2,6 @@ package games.stendhal.client.gui.bag;
 
 import static javax.imageio.ImageIO.read;
 
-import games.stendhal.client.sprite.SpriteStore;
-
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Transparency;
