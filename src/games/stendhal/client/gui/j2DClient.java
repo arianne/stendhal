@@ -410,7 +410,11 @@ public class j2DClient implements UserInterface {
 		SlashActionRepository.register();
 
 		checkAndComplainAboutJavaImplementation();
-		WorldObjects.addWorldListener(SoundSystemFacade.get());
+		try {
+			WorldObjects.addWorldListener(SoundSystemFacade.get());
+		} catch (RuntimeException e) {
+			logger.error(e, e);
+		}
 	} // constructor
 
 	private void checkAndComplainAboutJavaImplementation() {
