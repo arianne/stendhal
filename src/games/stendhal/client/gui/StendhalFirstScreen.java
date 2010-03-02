@@ -16,7 +16,6 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.login.CreateAccountDialog;
 import games.stendhal.client.gui.login.LoginDialog;
-import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
