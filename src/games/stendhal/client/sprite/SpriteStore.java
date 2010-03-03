@@ -205,6 +205,7 @@ public class SpriteStore {
 				// avoid infinite loop and stack overflow in case of missing
 				// failsafe icon
 				if (ref.equals(FAILSAFE_ICON_REF)) {
+					logger.error("Cannot find FAILSAFE_ICON_REF: " + FAILSAFE_ICON_REF);
 					return null;
 				} else {
 					return getFailsafe();
@@ -214,8 +215,14 @@ public class SpriteStore {
 			// use ImageIO to read the image in
 			sourceImage = ImageIO.read(url);
 		} catch (final IOException e) {
-			logger.error("Failed to load: " + ref, e);
-			return null;
+			logger.error("Failed to read: " + ref, e);
+
+			if (ref.equals(FAILSAFE_ICON_REF)) {
+				logger.error("Cannot read FAILSAFE_ICON_REF: " + FAILSAFE_ICON_REF);
+				return null;
+			} else {
+				return getFailsafe();
+			}
 		}
 
 		// create an accelerated image of the right size to store our sprite in
