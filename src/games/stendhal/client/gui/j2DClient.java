@@ -461,13 +461,7 @@ public class j2DClient implements UserInterface {
 		final GameObjects gameObjects = client.getGameObjects();
 		final StaticGameLayers gameLayers = client.getStaticGameLayers();
 
-		SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup("gui");
-		group.loadSound("harp-1", "audio:/harp-1.ogg", Type.OGG, false);
-		group.loadSound("click-4", "audio:/click-4.ogg", Type.OGG, false);
-		group.loadSound("click-5", "audio:/click-5.ogg", Type.OGG, false);
-		group.loadSound("click-6", "audio:/click-6.ogg", Type.OGG, false);
-		group.loadSound("click-8", "audio:/click-8.ogg", Type.OGG, false);
-		group.loadSound("click-10", "audio:/click-10.ogg", Type.OGG, false);
+		SoundSystemFacade.Group group = initSoundSystem();
 
 		group.play("harp-1", 0, null, null, false, true);
 		
@@ -619,6 +613,16 @@ public class j2DClient implements UserInterface {
 		}
 	
 		SoundSystemFacade.get().exit();
+	}
+	private SoundSystemFacade.Group initSoundSystem() {
+		SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup("gui");
+		group.loadSound("harp-1", "audio:/harp-1.ogg", Type.OGG, false);
+		group.loadSound("click-4", "audio:/click-4.ogg", Type.OGG, false);
+		group.loadSound("click-5", "audio:/click-5.ogg", Type.OGG, false);
+		group.loadSound("click-6", "audio:/click-6.ogg", Type.OGG, false);
+		group.loadSound("click-8", "audio:/click-8.ogg", Type.OGG, false);
+		group.loadSound("click-10", "audio:/click-10.ogg", Type.OGG, false);
+		return group;
 	}
 
 	/**
