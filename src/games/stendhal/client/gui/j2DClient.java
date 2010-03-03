@@ -461,9 +461,12 @@ public class j2DClient implements UserInterface {
 		final GameObjects gameObjects = client.getGameObjects();
 		final StaticGameLayers gameLayers = client.getStaticGameLayers();
 
-		SoundSystemFacade.Group group = initSoundSystem();
-
-		group.play("harp-1", 0, null, null, false, true);
+		try {
+			SoundSystemFacade.Group group = initSoundSystem();
+			group.play("harp-1", 0, null, null, false, true);
+		} catch (RuntimeException e) {
+			logger.error(e, e);
+		}
 		
 		// keep looping until the game ends
 		long refreshTime = System.currentTimeMillis();
@@ -474,141 +477,145 @@ public class j2DClient implements UserInterface {
 
 		boolean canExit = false;
 		while (!canExit) {
-			fps++;
-			// figure out what time it is right after the screen flip then
-			// later we can figure out how long we have been doing redrawing
-			// / networking, then we know how long we need to sleep to make
-			// the next flip happen at the right time
-
-			screen.nextFrame();
-			final long now = System.currentTimeMillis();
-			final int delta = (int) (now - refreshTime);
-			refreshTime = now;
-
-			logger.debug("Move objects");
-			gameObjects.update(delta);
-
-			if (!client.isInBatchUpdate() && gameLayers.changedArea()) {
-				/*
-				 * Update the screen
-				 */
-				screen.setMaxWorldSize(gameLayers.getWidth(),
-						gameLayers.getHeight());
-				screen.center();
-
-				// [Re]create the map
+			try {
+				fps++;
+				// figure out what time it is right after the screen flip then
+				// later we can figure out how long we have been doing redrawing
+				// / networking, then we know how long we need to sleep to make
+				// the next flip happen at the right time
 	
-				final CollisionDetection cd = gameLayers.getCollisionDetection();
-				final CollisionDetection pd = gameLayers.getProtectionDetection();
-				
-				if (cd != null) {
-					minimap.update(cd, pd,
-							screen.getComponent().getGraphicsConfiguration(),
-							gameLayers.getArea());
-				} 
-				gameLayers.resetChangedArea();
-			}
-
-			final User user = User.get();
-
-			if (user != null) {
-				// check if the player object has changed.
-				// Note: this is an exact object reference check
-				if (user != lastuser) {
-					character.setPlayer(user);
-					keyring.setSlot(user, "keyring", gameScreen);
-					inventory.setSlot(user, "bag", gameScreen);
-
-					lastuser = user;
-				}
-			}
-
-			if (!client.isInBatchUpdate()) {
-				if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
-					logger.debug("Draw screen");
-					screen.draw();
-					minimap.refresh();
-				}
-			}
-
-			logger.debug("Query network");
-
-			if (client.loop(0)) {
-				lastMessageHandle = refreshTime;
-			}
-
-			/*
-			 * Process delayed direction release
-			 */
-			if ((directionRelease != null) && directionRelease.hasExpired()) {
-				client.removeDirection(directionRelease.getDirection(),
-						directionRelease.isFacing());
-
-				directionRelease = null;
-			}
-
-			if (logger.isDebugEnabled()) {
-				if ((refreshTime - lastFpsTime) >= 1000L) {
-					logger.debug("FPS: " + fps);
-					final long freeMemory = Runtime.getRuntime().freeMemory() / 1024;
-					final long totalMemory = Runtime.getRuntime().totalMemory() / 1024;
-
-					logger.debug("Total/Used memory: " + totalMemory + "/"
-							+ (totalMemory - freeMemory));
-
-					fps = 0;
-					lastFpsTime = refreshTime;
-				}
-			}
-
-			// Shows a offline icon if no messages are received in 120 seconds.
-			if ((refreshTime - lastMessageHandle > 120000L)
-					|| !client.getConnectionState()) {
-				setOffline(true);
-			} else {
-				setOffline(false);
-			}
-
-			logger.debug("Start sleeping");
-			// we know how long we want per screen refresh (40ms) then
-			// we add the refresh time and subtract the current time
-			// leaving us with the amount we still need to sleep.
-			long wait = frameLength + refreshTime - System.currentTimeMillis();
-
-			if (wait > 0) {
-				if (wait > 100L) {
-					logger.info("Waiting " + wait + " ms");
-					wait = 100L;
-				}
-
-				try {
-					Thread.sleep(wait);
-				} catch (final InterruptedException e) {
-				}
-			}
-
-			logger.debug("End sleeping");
-
-			if (!gameRunning) {
-				logger.info("Request logout");
-				try {
+				screen.nextFrame();
+				final long now = System.currentTimeMillis();
+				final int delta = (int) (now - refreshTime);
+				refreshTime = now;
+	
+				logger.debug("Move objects");
+				gameObjects.update(delta);
+	
+				if (!client.isInBatchUpdate() && gameLayers.changedArea()) {
 					/*
-					 * We request server permision to logout. Server can deny
-					 * it.
+					 * Update the screen
 					 */
-					if (client.logout()) {
-						canExit = true;
-					} else {
-						logger.warn("You can't logout now.");
-						gameRunning = true;
+					screen.setMaxWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
+					screen.center();
+	
+					// [Re]create the map
+		
+					final CollisionDetection cd = gameLayers.getCollisionDetection();
+					final CollisionDetection pd = gameLayers.getProtectionDetection();
+					
+					if (cd != null) {
+						minimap.update(cd, pd,
+								screen.getComponent().getGraphicsConfiguration(),
+								gameLayers.getArea());
+					} 
+					gameLayers.resetChangedArea();
+				}
+	
+				final User user = User.get();
+	
+				if (user != null) {
+					// check if the player object has changed.
+					// Note: this is an exact object reference check
+					if (user != lastuser) {
+						character.setPlayer(user);
+						keyring.setSlot(user, "keyring", gameScreen);
+						inventory.setSlot(user, "bag", gameScreen);
+	
+						lastuser = user;
 					}
-				} catch (final Exception e) {
-					/*
-					 * If we get a timeout exception we accept exit request.
-					 */
-					canExit = true;
-					logger.error(e, e);
 				}
+	
+				if (!client.isInBatchUpdate()) {
+					if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
+						logger.debug("Draw screen");
+						screen.draw();
+						minimap.refresh();
+					}
+				}
+	
+				logger.debug("Query network");
+	
+				if (client.loop(0)) {
+					lastMessageHandle = refreshTime;
+				}
+	
+				/*
+				 * Process delayed direction release
+				 */
+				if ((directionRelease != null) && directionRelease.hasExpired()) {
+					client.removeDirection(directionRelease.getDirection(),
+							directionRelease.isFacing());
+	
+					directionRelease = null;
+				}
+	
+				if (logger.isDebugEnabled()) {
+					if ((refreshTime - lastFpsTime) >= 1000L) {
+						logger.debug("FPS: " + fps);
+						final long freeMemory = Runtime.getRuntime().freeMemory() / 1024;
+						final long totalMemory = Runtime.getRuntime().totalMemory() / 1024;
+	
+						logger.debug("Total/Used memory: " + totalMemory + "/"
+								+ (totalMemory - freeMemory));
+	
+						fps = 0;
+						lastFpsTime = refreshTime;
+					}
+				}
+	
+				// Shows a offline icon if no messages are received in 120 seconds.
+				if ((refreshTime - lastMessageHandle > 120000L)
+						|| !client.getConnectionState()) {
+					setOffline(true);
+				} else {
+					setOffline(false);
+				}
+	
+				logger.debug("Start sleeping");
+				// we know how long we want per screen refresh (40ms) then
+				// we add the refresh time and subtract the current time
+				// leaving us with the amount we still need to sleep.
+				long wait = frameLength + refreshTime - System.currentTimeMillis();
+	
+				if (wait > 0) {
+					if (wait > 100L) {
+						logger.info("Waiting " + wait + " ms");
+						wait = 100L;
+					}
+	
+					try {
+						Thread.sleep(wait);
+					} catch (final InterruptedException e) {
+						logger.error(e, e);
+					}
+				}
+	
+				logger.debug("End sleeping");
+	
+				if (!gameRunning) {
+					logger.info("Request logout");
+					try {
+						/*
+						 * We request server permision to logout. Server can deny
+						 * it.
+						 */
+						if (client.logout()) {
+							canExit = true;
+						} else {
+							logger.warn("You can't logout now.");
+							gameRunning = true;
+						}
+					} catch (final Exception e) {
+						/*
+						 * If we get a timeout exception we accept exit request.
+						 */
+						canExit = true;
+						logger.error(e, e);
+					}
+				}
+			} catch (RuntimeException e) {
+				logger.error(e, e);
 			}
 		}
 	
