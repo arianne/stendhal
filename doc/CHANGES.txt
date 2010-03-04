@@ -1,9 +1,21 @@
 Changelog
 ---------
 0.82
-*features*
+*features
 *bug fixes*
 
+
+0.81.2
+*bug fixes*
+- fixed a crash on Linux using alsa (non pulse) audio drivers and Sun Java (not OpenJDK) 
+  if all channels are in use by another application
+- fixed rare InvalidVersionExceptions in the network code on high latency connections 
+  (for example for people living outside Europe to an server in Europe)
+- handle failure to load sprite images more gracefully
+- improved logging of uncaught exceptions 
+
+0.81.2 contains the first results of the Client Quality Weeks. Thanks everyone for providing
+your error log files and pleace continue to do so.
 
 
 0.81.1
