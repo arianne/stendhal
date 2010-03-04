@@ -56,6 +56,8 @@ import org.apache.log4j.Logger;
  * can not be used for anything but trivial cases, so using Canvas instead
  */
 public class GameScreen implements PositionChangeListener, IGameScreen {
+	private static Logger logger = Logger.getLogger(GameScreen.class);
+
 	/**
 	 * Comparator used to sort entities to display.
 	 */
@@ -594,7 +596,11 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 */
 	private void drawEntities(final Graphics2D g) {
 		for (final EntityView view : views) {
-			view.draw(g);
+			try {
+				view.draw(g);
+			} catch (RuntimeException e) {
+				logger.error(e, e);
+			}
 		}
 	}
 
