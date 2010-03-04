@@ -110,7 +110,7 @@ public class stendhal {
 		logger.info("Java-VM: " + System.getProperty("java.vm.vendor") + " "
 				+ System.getProperty("java.vm.name") + " "
 				+ System.getProperty("java.vm.version"));
-
+		LogUncaughtExceptionHandler.setup();
 	}
 
 	/**
