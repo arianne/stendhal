@@ -274,7 +274,7 @@ public class SoundSystemNG extends Thread
 
 	private final LinkedList<Output>     mMixerOutputs          = new LinkedList<Output>();
 	private volatile SystemOutput        mSystemOutput          = null;
-    private volatile AudioFormat         mAudioFormat           = null;
+    private AudioFormat                  mAudioFormat           = null;
     private final AtomicReference<Time>  mBufferDuration        = new AtomicReference<Time>(null);
     private final AtomicBoolean          mUseDynamicLoadScaling = new AtomicBoolean(false);
 	private final AtomicReference<Time>  mStateChangeDelay      = new AtomicReference<Time>(ZERO_DURATION);
@@ -282,6 +282,13 @@ public class SoundSystemNG extends Thread
 	private final AtomicInteger          mCurrentSystemState    = new AtomicInteger(STATE_EXITING);
 	private float[]                      mMixBuffer             = null;
 
+	public SoundSystemNG(AudioFormat audioFormat, Time bufferDuration)
+	{
+		mAudioFormat  = audioFormat;
+		mSystemOutput = null;
+		mBufferDuration.set(bufferDuration);
+	}
+	
     public SoundSystemNG(Mixer mixer, AudioFormat audioFormat, Time bufferDuration)
     {
 		if(audioFormat == null)
@@ -325,23 +332,18 @@ public class SoundSystemNG extends Thread
 		changeSystemState(STATE_RUNNING, delay);
 	}
 
-	public void proceed(Time delay, Mixer mixer, AudioFormat audioFormat, Time bufferDuration)
+	public void proceed(Time delay, Mixer mixer)
     {
-		if(audioFormat == null)
-			throw new IllegalArgumentException("audioFormat argument must not be null");
-		if(bufferDuration == null)
-			throw new IllegalArgumentException("bufferDuration argument must not be null");
-
 		if(mixer == null)
 		{
 			logger.info("try to find an optimal system mixer device");
-			mixer = tryToFindMixer(audioFormat);
+			mixer = tryToFindMixer(mAudioFormat);
 
 			if(mixer == null)
 				logger.warn("could not find a system mixer device");
 		}
 
-		init(mixer, null, audioFormat, bufferDuration);
+		init(mixer, null, mAudioFormat, mBufferDuration.get());
 		changeSystemState(STATE_RUNNING, delay);
 	}
 
@@ -448,13 +450,11 @@ public class SoundSystemNG extends Thread
 				{
 					changeSystemState(STATE_SUSPENDED, null);
 					logger.warn("no output line was opened. sound system will be suspended");
-					continue;
 				}
 				else if(!mSystemOutput.isReady() && !mSystemOutput.start())
 				{
 					changeSystemState(STATE_SUSPENDED, null);
 					logger.warn("suspend sound system due to unavailability of an output line");
-					continue;
 				}
 				else
 				{

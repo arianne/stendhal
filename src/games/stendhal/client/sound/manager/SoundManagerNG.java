@@ -177,6 +177,19 @@ public class SoundManagerNG
 		mSoundSystem.setDaemon(true);
 		mSoundSystem.start();
     }
+
+	protected SoundManagerNG(boolean mute)
+    {
+        Algebra.mov_Vecf(mHearerPosition, 0.0f);
+
+		if(mute)
+			mSoundSystem = new SoundSystemNG(AUDIO_FORMAT, BUFFER_DURATION);
+		else
+			mSoundSystem = new SoundSystemNG(null, AUDIO_FORMAT, BUFFER_DURATION);
+
+		mSoundSystem.setDaemon(true);
+		mSoundSystem.start();
+    }
 	
 	public synchronized Sound openSound(Resource resource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
     {
@@ -285,7 +298,7 @@ public class SoundManagerNG
 		if(!turnOffSound && mMute)
 		{
 			logger.info("turning on audio");
-			mSoundSystem.proceed(null, null, AUDIO_FORMAT, BUFFER_DURATION);
+			mSoundSystem.proceed(null, null);
 
 			if(useFading)
 			{
