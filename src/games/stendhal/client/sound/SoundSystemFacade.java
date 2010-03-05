@@ -6,6 +6,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.manager.AudibleArea;
 import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.SoundManager;
+import games.stendhal.client.sound.manager.SoundManagerNG;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.resource.ResourceLocator;
@@ -20,7 +21,7 @@ import java.util.HashMap;
  * 
  * @author hendrik, silvio
  */
-public class SoundSystemFacade extends SoundManager implements WorldListener {
+public class SoundSystemFacade extends SoundManagerNG implements WorldListener {
 
 	private static class Multiplicator {
 
@@ -106,8 +107,7 @@ public class SoundSystemFacade extends SoundManager implements WorldListener {
 	}
 
 	private SoundSystemFacade() {
-		boolean mute = !Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
-		super.mute(mute, false, null);
+		super(!Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true")));
 	}
 
 	public void playerMoved() {

@@ -25,7 +25,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.sound.manager.AudibleCircleArea;
 import games.stendhal.client.sound.manager.SoundFile.Type;
-import games.stendhal.client.sound.manager.SoundManager.Sound;
+import games.stendhal.client.sound.manager.SoundManagerNG.Sound;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.math.Algebra;

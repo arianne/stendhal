@@ -39,7 +39,7 @@ public class SoundManagerNG
     private final static AudioFormat         AUDIO_FORMAT             = new AudioFormat(44100, 16, 2, true, false);
     private final static InfiniteAudibleArea INFINITE_AUDIBLE_AREA    = new InfiniteAudibleArea();
 	private final static Time                BUFFER_DURATION          = new Time(15, Time.Unit.MILLI);
-    public  final static Time                ZERO_DURATION            = new Time();
+    private final static Time                ZERO_DURATION            = new Time();
 
     public final static class Sound implements Cloneable
     {
@@ -181,8 +181,9 @@ public class SoundManagerNG
 	protected SoundManagerNG(boolean mute)
     {
         Algebra.mov_Vecf(mHearerPosition, 0.0f);
+		mMute = mute;
 
-		if(mute)
+		if(mMute)
 			mSoundSystem = new SoundSystemNG(AUDIO_FORMAT, BUFFER_DURATION);
 		else
 			mSoundSystem = new SoundSystemNG(null, AUDIO_FORMAT, BUFFER_DURATION);
