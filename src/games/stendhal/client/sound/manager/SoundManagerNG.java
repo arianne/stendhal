@@ -38,6 +38,7 @@ public class SoundManagerNG
     private final static float[]             HEARER_LOOKONG_DIRECTION = { 0.0f, 1.0f };
     private final static AudioFormat         AUDIO_FORMAT             = new AudioFormat(44100, 16, 2, true, false);
     private final static InfiniteAudibleArea INFINITE_AUDIBLE_AREA    = new InfiniteAudibleArea();
+	private final static Time                BUFFER_DURATION          = new Time(15, Time.Unit.MILLI);
     public  final static Time                ZERO_DURATION            = new Time();
 
     public final static class Sound implements Cloneable
@@ -172,7 +173,7 @@ public class SoundManagerNG
     {
         Algebra.mov_Vecf(mHearerPosition, 0.0f);
 
-		mSoundSystem = new SoundSystemNG(null, AUDIO_FORMAT, new Time(15, Time.Unit.MILLI));
+		mSoundSystem = new SoundSystemNG(null, AUDIO_FORMAT, BUFFER_DURATION);
 		mSoundSystem.setDaemon(true);
 		mSoundSystem.start();
     }
@@ -284,7 +285,7 @@ public class SoundManagerNG
 		if(!turnOffSound && mMute)
 		{
 			logger.info("turning on audio");
-			mSoundSystem.proceed(null);
+			mSoundSystem.proceed(null, null, AUDIO_FORMAT, BUFFER_DURATION);
 
 			if(useFading)
 			{
