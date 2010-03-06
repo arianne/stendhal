@@ -31,11 +31,17 @@ public class AdminPortal extends ScriptImpl {
 					"This script creates portals:\n" + 
 					"/script AdminPortal.class <destination-zone> <destination-ref>\n" + 
 					"/script AdminPortal.class <name> <destination-zone> <destination-ref>\n" + 
-					"/script AdminPortal.class <name> <destination-zone> <destination-ref> level <min-level> <max-level> <reject-message>" + 
+					"/script AdminPortal.class <name> <destination-zone> <destination-ref> level <min-level> <max-level> [<reject-message>]" + 
 					"");
 		}
 	}
 
+	/**
+	 * creates a portal
+	 *
+	 * @param admin the admin to send errors to
+	 * @param args arguments
+	 */
 	private void createPortal(final Player admin, final List<String> args) {
 		sandbox.setZone(sandbox.getZone(admin));
 		int x = admin.getX();
@@ -51,6 +57,12 @@ public class AdminPortal extends ScriptImpl {
 		sandbox.add(portal);
 	}
 
+	/**
+	 * gets the index offset for the destination
+	 *
+	 * @param args arguments
+	 * @return 0 if there is no name, 1 otherwise
+	 */
 	private int getDestinationOffset(List<String> args) {
 		if (args.size() > 2) {
 			return 1;
@@ -59,6 +71,12 @@ public class AdminPortal extends ScriptImpl {
 		}
 	}
 
+	/**
+	 * instantiates a portal based on its type
+	 *
+	 * @param args arguments
+	 * @return Portal or subclass of Portal
+	 */
 	private Portal instantiatePortal(List<String> args) {
 		if (args.size() < 3) {
 			return new Portal();
@@ -72,6 +90,12 @@ public class AdminPortal extends ScriptImpl {
 		throw new IllegalArgumentException("Invalid portal type.");
 	}
 
+	/**
+	 * sets the portal name if it is specified
+	 *
+	 * @param args arguments
+	 * @param portal portal to set the name on
+	 */
 	private void setPortalName(final List<String> args, Portal portal) {
 		if (args.size() > 2) {
 			portal.setIdentifier(args.get(0));
