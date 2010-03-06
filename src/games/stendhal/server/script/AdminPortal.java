@@ -78,7 +78,7 @@ public class AdminPortal extends ScriptImpl {
 	 * @return Portal or subclass of Portal
 	 */
 	private Portal instantiatePortal(List<String> args) {
-		if (args.size() < 3) {
+		if (args.size() < 4) {
 			return new Portal();
 		} else if (args.get(3).equals("level")) {
 			String rejectMessage = null;
