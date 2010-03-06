@@ -5,7 +5,6 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.manager.AudibleArea;
 import games.stendhal.client.sound.manager.SoundFile;
-import games.stendhal.client.sound.manager.SoundManager;
 import games.stendhal.client.sound.manager.SoundManagerNG;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.math.Algebra;
