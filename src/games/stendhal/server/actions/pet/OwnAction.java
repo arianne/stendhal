@@ -30,61 +30,122 @@ import java.util.List;
 
 import marauroa.common.game.RPAction;
 
+/**
+ * Owns an domestic animal like a sheep.
+ */
 public class OwnAction implements ActionListener {
 
-
+	/**
+	 * registers the action in the command center.
+	 */
 	public static void register() {
 		CommandCenter.register(OWN, new OwnAction());
 	}
 
+	/**
+	 * processes the requested action.
+	 * 
+	 * @param player the caller of the action
+	 * @param action the action to be performed
+	 */
 	public void onAction(final Player player, final RPAction action) {
 		if (!action.has(TARGET)) {
 			return;
 		}
 
-		// evaluate the target parameter
 		final Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), player);
-
 		if (entity != null) {
-			// Make sure the entity is valid (hacked client?)
-			if (!(entity instanceof DomesticAnimal)) {
-				player.sendPrivateText("Maybe you should stick to owning domestic animals.");
+			if (checkEntityIsDomesticAnimal(player, entity)) {
 				return;
 			}
 
-			final DomesticAnimal animal = (DomesticAnimal) entity;
-			final Player owner = animal.getOwner();
-
-			if (owner != null) {
-				player.sendPrivateText("This animal is already owned by "
-						+ owner.getTitle());
-			} else {
-				final List<Node> path = Path.searchPath(player, player.getX(),
-						player.getY(), animal.getArea(), 7);
-
-				if (path.isEmpty() && !animal.nextTo(player)) {
-					// The animal is too far away
-					player.sendPrivateText("That " + animal.getTitle()
-							+ " is too far away.");
-				} else {
-					if (animal instanceof Sheep) {
-						if (player.getSheep() != null) {
-							player.sendPrivateText("You already own a sheep.");
-						} else {
-							player.setSheep((Sheep) animal);
-						}
-					} else if (animal instanceof Pet) {
-						if (player.getPet() != null) {
-							player.sendPrivateText("You already own a pet.");
-						} else {
-							player.setPet((Pet) animal);
-						}
-					}
-					new GameEvent(player.getName(), "own", animal.getRPClass().getName(), animal.getTitle()).raise();
-				}
+			DomesticAnimal animal = (DomesticAnimal) entity;
+			if (!checkNotOwned(player, animal)) {
+				return;
 			}
-		} 
+
+			if (!checkEntityIsReachable(player, animal)) {
+				return;
+			}
+
+			// all checks have been okay, so lets own it
+			own(player, animal); 
+		}
 
 		player.notifyWorldAboutChanges();
+	}
+
+	/**
+	 * checks whether the entity is a domestic animal.
+	 *
+	 * @param player player to complain to
+	 * @param entity entity to check
+	 * @return true if it is a domestic animal
+	 */
+	private boolean checkEntityIsDomesticAnimal(final Player player, final Entity entity) {
+		// Make sure the entity is valid (hacked client?)
+		if (!(entity instanceof DomesticAnimal)) {
+			player.sendPrivateText("Maybe you should stick to owning domestic animals.");
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * checks whether this animal is already owned.
+	 *
+	 * @param player player to complain to
+	 * @param animal animal to check
+	 * @return true if the animal is unowned.
+	 */
+	private boolean checkNotOwned(final Player player, DomesticAnimal animal) {
+		final Player owner = animal.getOwner();
+		if (owner != null) {
+			player.sendPrivateText("This animal is already owned by " + owner.getTitle());
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * checks whether this entity is reachable (whether a path exists) 
+	 *
+	 * @param player player to complain to
+	 * @param animal entity to check
+	 * @return true if the entity is reachable.
+	 */
+	private boolean checkEntityIsReachable(final Player player, final Entity entity) {
+		final List<Node> path = Path.searchPath(player, player.getX(),
+				player.getY(), entity.getArea(), 7);
+
+		if (path.isEmpty() && !entity.nextTo(player)) {
+			// The animal is too far away
+			player.sendPrivateText("That " + entity.getTitle() + " is too far away.");
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * owns an domestic animal
+	 *
+	 * @param player new owner
+	 * @param animal animal to be owned
+	 */
+	private void own(final Player player, final DomesticAnimal animal) {
+		if (animal instanceof Sheep) {
+			if (player.getSheep() != null) {
+				player.sendPrivateText("You already own a sheep.");
+			} else {
+				player.setSheep((Sheep) animal);
+			}
+		} else if (animal instanceof Pet) {
+			if (player.getPet() != null) {
+				player.sendPrivateText("You already own a pet.");
+			} else {
+				player.setPet((Pet) animal);
+			}
+		}
+		new GameEvent(player.getName(), "own", animal.getRPClass().getName(), animal.getTitle()).raise();
 	}
 }
