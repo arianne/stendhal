@@ -53,7 +53,7 @@ public class AdminPortal extends ScriptImpl {
 		int destinationOffset = getDestinationOffset(args);
 		portal.setDestination(args.get(destinationOffset), args.get(destinationOffset + 1));
 
-		// add sign to game
+		// add entity to game
 		sandbox.add(portal);
 	}
 
