@@ -60,14 +60,14 @@ public class AdminPortal extends ScriptImpl {
 	}
 
 	private Portal instantiatePortal(List<String> args) {
-		if (args.size() < 4) {
+		if (args.size() < 3) {
 			return new Portal();
-		} else if (args.get(4).equals("level")) {
+		} else if (args.get(3).equals("level")) {
 			String rejectMessage = null;
 			if (args.size() == 7) {
 				rejectMessage = args.get(6);
 			}
-			return new LevelCheckingPortal(Integer.parseInt(args.get(5)), Integer.parseInt(args.get(6)), rejectMessage);
+			return new LevelCheckingPortal(Integer.parseInt(args.get(4)), Integer.parseInt(args.get(5)), rejectMessage);
 		}
 		throw new IllegalArgumentException("Invalid portal type.");
 	}
