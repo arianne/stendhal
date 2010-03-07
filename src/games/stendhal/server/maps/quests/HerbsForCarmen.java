@@ -12,6 +12,7 @@ import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -83,8 +84,10 @@ public class HerbsForCarmen extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Carmen");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestNotStartedCondition(QUEST_SLOT),
-							 new NotCondition(new QuestInStateCondition(QUEST_SLOT,"rejected"))),
+			new AndCondition(
+					new LevelGreaterThanCondition(2),
+					new QuestNotStartedCondition(QUEST_SLOT),
+					new NotCondition(new QuestInStateCondition(QUEST_SLOT,"rejected"))),
 			ConversationStates.QUESTION_1, 
 			"Hey you! Yes, you! Do you know me?", null);
 
