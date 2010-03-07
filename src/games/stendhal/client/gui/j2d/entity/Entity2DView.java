@@ -700,7 +700,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		// return prematurely if view has already been released
 		if (entity == null) {
 			Logger.getLogger(Entity2DView.class).warn(
-					"View already released - action not processed: " + at);
+					"View " + this + " already released - action not processed: " + at);
 			return;
 		}
 
