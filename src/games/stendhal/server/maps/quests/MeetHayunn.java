@@ -108,6 +108,7 @@ public class MeetHayunn extends AbstractQuest {
 				new MultipleActions(actions));
 
 		// player wants to learn more from Hayunn
+		// TODO: convert those to tutorial events, to make it less boring for new players yes, yes, yes, yes, yes, yes
 		npc.add(
 			ConversationStates.INFORMATION_1,
 			ConversationPhrases.YES_MESSAGES,
