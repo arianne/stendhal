@@ -5,6 +5,7 @@
 
 package games.stendhal.client.sound.manager;
 
+import games.stendhal.client.sound.manager.DeviceEvaluator.Device;
 import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.client.sound.system.SoundSystemNG;
 import games.stendhal.client.sound.system.Time;
@@ -19,11 +20,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.sound.sampled.AudioFormat;
 
+import javax.sound.sampled.SourceDataLine;
 import org.apache.log4j.Logger;
 
 /**
@@ -36,7 +39,6 @@ public class SoundManagerNG
 	private final static int                 SOUND_CHANNEL_LIMIT      = 50;
     private final static int                 DIMENSION                = 2;
     private final static float[]             HEARER_LOOKONG_DIRECTION = { 0.0f, 1.0f };
-    private final static AudioFormat         AUDIO_FORMAT             = new AudioFormat(44100, 16, 2, true, false);
     private final static InfiniteAudibleArea INFINITE_AUDIBLE_AREA    = new InfiniteAudibleArea();
 	private final static Time                BUFFER_DURATION          = new Time(15, Time.Unit.MILLI);
     private final static Time                ZERO_DURATION            = new Time();
@@ -163,30 +165,30 @@ public class SoundManagerNG
             }
         }
     }
-    
-    private final LinkedList<SoundChannel> mChannels       = new LinkedList<SoundChannel>();
-    private final float[]                  mHearerPosition = new float[DIMENSION];
-	private boolean                        mMute           = false;
+
+	private final Collection<Device>       mDevices;
+	private final AudioFormat              mAudioFormat;
+    private final LinkedList<SoundChannel> mChannels        = new LinkedList<SoundChannel>();
+    private final float[]                  mHearerPosition  = new float[DIMENSION];
+	private boolean                        mMute            = false;
 	private SoundSystemNG                  mSoundSystem;
 
-    protected SoundManagerNG()
+	protected SoundManagerNG(boolean mute, Collection<Device> devices, AudioFormat audioFormat)
     {
         Algebra.mov_Vecf(mHearerPosition, 0.0f);
-
-		mSoundSystem = new SoundSystemNG(null, AUDIO_FORMAT, BUFFER_DURATION);
-		mSoundSystem.setDaemon(true);
-		mSoundSystem.start();
-    }
-
-	protected SoundManagerNG(boolean mute)
-    {
-        Algebra.mov_Vecf(mHearerPosition, 0.0f);
-		mMute = mute;
-
-		if(mMute)
-			mSoundSystem = new SoundSystemNG(AUDIO_FORMAT, BUFFER_DURATION);
+		mDevices     = devices;
+		mAudioFormat = audioFormat;
+		
+		if(mMute || devices.size() == 0)
+		{
+			mSoundSystem = new SoundSystemNG(mAudioFormat, BUFFER_DURATION);
+			mMute        = true;
+		}
 		else
-			mSoundSystem = new SoundSystemNG(null, AUDIO_FORMAT, BUFFER_DURATION);
+		{
+			mSoundSystem = new SoundSystemNG(getOutputLine(), BUFFER_DURATION);
+			mMute        = false;
+		}
 
 		mSoundSystem.setDaemon(true);
 		mSoundSystem.start();
@@ -299,7 +301,7 @@ public class SoundManagerNG
 		if(!turnOffSound && mMute)
 		{
 			logger.info("turning on audio");
-			mSoundSystem.proceed(null, null);
+			mSoundSystem.proceed(null, getOutputLine());
 
 			if(useFading)
 			{
@@ -390,4 +392,17 @@ public class SoundManagerNG
 
         return foundChannel;
     }
+
+	private SourceDataLine getOutputLine()
+	{
+		for(Device device: mDevices)
+		{
+			SourceDataLine line = device.getLine(SourceDataLine.class, mAudioFormat);
+
+			if(line != null)
+				return line;
+		}
+
+		return null;
+	}
 }

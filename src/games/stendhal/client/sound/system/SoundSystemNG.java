@@ -316,7 +316,7 @@ public class SoundSystemNG extends Thread
 			throw new IllegalArgumentException("bufferDuration argument must not be null");
 
 		logger.info("opening sound system with specified output line");
-		init(null, outputLine, mAudioFormat, bufferDuration);
+		init(null, outputLine, outputLine.getFormat(), bufferDuration);
     }
 
 	public void suspend(Time delay, boolean closeSystemOutput)
@@ -332,21 +332,15 @@ public class SoundSystemNG extends Thread
 		changeSystemState(STATE_RUNNING, delay);
 	}
 
-	public void proceed(Time delay, Mixer mixer)
+	public void proceed(Time delay, SourceDataLine outputLine)
     {
-		if(mixer == null)
-		{
-			logger.info("try to find an optimal system mixer device");
-			mixer = tryToFindMixer(mAudioFormat);
+		if(outputLine == null)
+			throw new IllegalArgumentException("outputLine argument must not be null");
 
-			if(mixer == null)
-				logger.warn("could not find a system mixer device");
-		}
-
-		init(mixer, null, mAudioFormat, mBufferDuration.get());
+		init(null, outputLine, outputLine.getFormat(), mBufferDuration.get());
 		changeSystemState(STATE_RUNNING, delay);
 	}
-
+	
 	public boolean isRunning()
 	{
 		return mCurrentSystemState.get() == STATE_RUNNING;

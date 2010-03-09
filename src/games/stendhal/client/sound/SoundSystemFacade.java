@@ -4,6 +4,7 @@ import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.manager.AudibleArea;
+import games.stendhal.client.sound.manager.DeviceEvaluator;
 import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.SoundManagerNG;
 import games.stendhal.client.sound.system.Time;
@@ -13,6 +14,8 @@ import games.stendhal.common.resource.ResourceManager;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.regex.Pattern;
+import javax.sound.sampled.AudioFormat;
 
 /**
  * this class is the main interface between the game logic and the low level
@@ -76,7 +79,7 @@ public class SoundSystemFacade extends SoundManagerNG implements WorldListener {
 		}
 
 		public Sound play(String soundName, float volume, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
-			
+
 			if (mEnabled) {
 				Sound sound = mSounds.get(soundName);
 
@@ -94,8 +97,21 @@ public class SoundSystemFacade extends SoundManagerNG implements WorldListener {
 			return null;
 		}
 	}
-	
-	private static final SoundSystemFacade mSingletonInstance = new SoundSystemFacade();
+
+	private static final AudioFormat mAudioFormat;
+	private static final DeviceEvaluator mDeviceEvaluator;
+	private static final SoundSystemFacade mSingletonInstance;
+
+	static
+	{
+		mDeviceEvaluator = new DeviceEvaluator();
+		mDeviceEvaluator.setRating(Pattern.compile(".*pulseaudio.*", Pattern.CASE_INSENSITIVE), null, 1);
+		mDeviceEvaluator.setRating(Pattern.compile(".*Java Sound Audio Engine.*"), null, -1);
+
+		mAudioFormat = new AudioFormat(44100, 16, 2, true, false);
+		mSingletonInstance = new SoundSystemFacade();
+	}
+
 	private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
 	private final HashMap<String, Group> mGroups = new HashMap<String, Group>();
 	private final ResourceLocator mResourceLocator = ResourceManager.get();
@@ -106,7 +122,8 @@ public class SoundSystemFacade extends SoundManagerNG implements WorldListener {
 	}
 
 	private SoundSystemFacade() {
-		super(!Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true")));
+		super(!Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true")),
+				mDeviceEvaluator.createDeviceList(mAudioFormat), mAudioFormat);
 	}
 
 	public void playerMoved() {

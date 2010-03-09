@@ -100,8 +100,8 @@ public class DeviceEvaluator
 		ArrayList<Device> list = (ArrayList<Device>)mDevices.clone();
 		sortDeviceList(list, audioFormat);
 
-		final DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
-		ListIterator<Device> iterator = list.listIterator(list.size());
+		final DataLine.Info  dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+		ListIterator<Device> iterator     = list.listIterator(list.size());
 
 		while(iterator.hasPrevious())
 		{
@@ -150,7 +150,8 @@ public class DeviceEvaluator
 	{
 		AudioFormat     format    = new AudioFormat(44100, 16, 2, true, false);
 		DeviceEvaluator evaluator = new DeviceEvaluator();
-		evaluator.setRating(Pattern.compile(".*PulseAudio.*"), null, 1);
+		evaluator.setRating(Pattern.compile(".*PulseAudio.*")             , null, 1);
+		evaluator.setRating(Pattern.compile(".*Java Sound Audio Engine.*"), null,-1);
 		
 		List<DeviceEvaluator.Device> list = evaluator.createDeviceList(format);
 
