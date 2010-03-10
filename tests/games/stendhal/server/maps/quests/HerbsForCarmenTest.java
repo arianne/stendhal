@@ -52,6 +52,7 @@ public class HerbsForCarmenTest {
 	@Before
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");
+		player.setLevel(10);
 	}
 
 	/**
