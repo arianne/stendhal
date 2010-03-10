@@ -42,6 +42,7 @@ public class DeviceEvaluator
 
 		public String getName       () { return mName;        }
 		public String getDescription() { return mDescription; }
+		public int    getRating     () { return mRating;      }
 
 		public <T> int getMaxLines(Class<T> lineClass, AudioFormat audioFormat)
 		{

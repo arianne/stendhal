@@ -178,8 +178,16 @@ public class SoundManagerNG
         Algebra.mov_Vecf(mHearerPosition, 0.0f);
 		mDevices     = devices;
 		mAudioFormat = audioFormat;
+
+		logger.info("initializing sound system");
+
+		if(devices != null)
+		{
+			for(Device device: devices)
+				logger.info("available device: " + device.getName() + " - " + device.getDescription() + " (" + device.getRating() + ")");
+		}
 		
-		if(mMute || devices.size() == 0)
+		if(mMute || devices != null && devices.size() == 0)
 		{
 			mSoundSystem = new SoundSystemNG(mAudioFormat, BUFFER_DURATION);
 			mMute        = true;

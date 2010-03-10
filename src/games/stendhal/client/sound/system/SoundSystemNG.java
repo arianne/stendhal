@@ -10,17 +10,13 @@ import games.stendhal.common.math.Numeric;
 import games.stendhal.common.memory.Field;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
 
 import org.apache.log4j.Logger;
@@ -268,13 +264,13 @@ public class SoundSystemNG extends Thread
 	private final static int    STATE_PAUSING   = 2;
 	private final static int    STATE_SUSPENDED = 3;
 	private final static Time   ZERO_DURATION   = new Time();
-	private final static int    SLEEP_DURATION  = 100; // in nano seconds
+	private final static Time   SLEEP_DURATION  = new Time(100);
 	private final static int    PRECISION       = 1000000;
 	private final static Logger logger          = Logger.getLogger(SoundSystemNG.class);
 
 	private final LinkedList<Output>     mMixerOutputs          = new LinkedList<Output>();
 	private volatile SystemOutput        mSystemOutput          = null;
-    private AudioFormat                  mAudioFormat           = null;
+    private volatile AudioFormat         mAudioFormat           = null;
     private final AtomicReference<Time>  mBufferDuration        = new AtomicReference<Time>(null);
     private final AtomicBoolean          mUseDynamicLoadScaling = new AtomicBoolean(false);
 	private final AtomicReference<Time>  mStateChangeDelay      = new AtomicReference<Time>(ZERO_DURATION);
@@ -284,29 +280,8 @@ public class SoundSystemNG extends Thread
 
 	public SoundSystemNG(AudioFormat audioFormat, Time bufferDuration)
 	{
-		mAudioFormat  = audioFormat;
-		mSystemOutput = null;
-		mBufferDuration.set(bufferDuration);
+		init(null, audioFormat, bufferDuration);
 	}
-	
-    public SoundSystemNG(Mixer mixer, AudioFormat audioFormat, Time bufferDuration)
-    {
-		if(audioFormat == null)
-			throw new IllegalArgumentException("audioFormat argument must not be null");
-		if(bufferDuration == null)
-			throw new IllegalArgumentException("bufferDuration argument must not be null");
-
-		if(mixer == null)
-		{
-			logger.info("try to find an optimal system mixer device");
-			mixer = tryToFindMixer(audioFormat);
-
-			if(mixer == null)
-				logger.warn("could not find a system mixer device");
-		}
-		
-		init(mixer, null, audioFormat, bufferDuration);
-    }
 
     public SoundSystemNG(SourceDataLine outputLine, Time bufferDuration)
     {
@@ -315,8 +290,7 @@ public class SoundSystemNG extends Thread
 		if(bufferDuration == null)
 			throw new IllegalArgumentException("bufferDuration argument must not be null");
 
-		logger.info("opening sound system with specified output line");
-		init(null, outputLine, outputLine.getFormat(), bufferDuration);
+		init(outputLine, outputLine.getFormat(), bufferDuration);
     }
 
 	public void suspend(Time delay, boolean closeSystemOutput)
@@ -334,10 +308,10 @@ public class SoundSystemNG extends Thread
 
 	public void proceed(Time delay, SourceDataLine outputLine)
     {
-		if(outputLine == null)
-			throw new IllegalArgumentException("outputLine argument must not be null");
-
-		init(null, outputLine, outputLine.getFormat(), mBufferDuration.get());
+		if(outputLine != null && !outputLine.getFormat().matches(mAudioFormat))
+			throw new IllegalArgumentException("outputLine has the wrong audio format");
+		
+		init(outputLine, mAudioFormat, mBufferDuration.get());
 		changeSystemState(STATE_RUNNING, delay);
 	}
 	
@@ -473,13 +447,13 @@ public class SoundSystemNG extends Thread
 
 			case STATE_PAUSING:
 				mSystemOutput.pause();
-				threadSleep(SLEEP_DURATION);
+				threadSleep(SLEEP_DURATION.getInNanoSeconds());
 				break;
 
 			case STATE_SUSPENDED:
 				if(mSystemOutput != null)
 					mSystemOutput.close();
-				threadSleep(SLEEP_DURATION);
+				threadSleep(SLEEP_DURATION.getInNanoSeconds());
 				break;
 			}
         }
@@ -505,19 +479,20 @@ public class SoundSystemNG extends Thread
 	private void processOutputs()
 	{
 		LinkedList<Output> mixerOutputs;
+		SystemOutput       systemOutput = mSystemOutput;
 
 		synchronized(mMixerOutputs)
 		{
 			mixerOutputs = (LinkedList<Output>)mMixerOutputs.clone();
 		}
 
-		int sampleRate        = mSystemOutput.getSampleRate();
-		int numBytesPerSample = mSystemOutput.getNumBytesPerSample();
-		int numChannels       = mSystemOutput.getNumChannels();
+		int sampleRate        = systemOutput.getSampleRate();
+		int numBytesPerSample = systemOutput.getNumBytesPerSample();
+		int numChannels       = systemOutput.getNumChannels();
 		int numBytesToWrite   = (int)(mBufferDuration.get().getInSamples(sampleRate) * numChannels * numBytesPerSample);
 
-		mSystemOutput.setNumBytesToWrite(numBytesToWrite);
-		numBytesToWrite = mSystemOutput.getNumBytesToWrite();
+		systemOutput.setNumBytesToWrite(numBytesToWrite);
+		numBytesToWrite = systemOutput.getNumBytesToWrite();
 
 		int numSamples = numBytesToWrite / numBytesPerSample;
 
@@ -527,72 +502,29 @@ public class SoundSystemNG extends Thread
 		for(Output output: mixerOutputs)
 			output.mix(mMixBuffer, numSamples);
 
-		mSystemOutput.setBuffer(mMixBuffer, numSamples);
-		mSystemOutput.convert();
+		systemOutput.setBuffer(mMixBuffer, numSamples);
+		systemOutput.convert();
 
-		while(mSystemOutput.write(Integer.MAX_VALUE))
+		while(systemOutput.write(Integer.MAX_VALUE))
 		{
-			if(!mUseDynamicLoadScaling.get() && mSystemOutput.available() == 0)
-				threadSleep(SLEEP_DURATION);
+			if(!mUseDynamicLoadScaling.get() && systemOutput.available() == 0)
+				threadSleep(SLEEP_DURATION.getInNanoSeconds());
 		}
 	}
 
-	private void init(Mixer mixer, SourceDataLine line, AudioFormat audioFormat, Time bufferDuration)
+	private void init(SourceDataLine line, AudioFormat audioFormat, Time bufferDuration)
 	{
 		mBufferDuration.set(bufferDuration);
-        mAudioFormat  = audioFormat;
-		mSystemOutput = null;
+        mAudioFormat = audioFormat;
 
-		DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat, AudioSystem.NOT_SPECIFIED);
-
-		if(mixer != null)
+		if(line != null)
 		{
-			logger.info("try to receive an output line from system mixer device");
-
-			try
-            {
-                SourceDataLine dataLine = (SourceDataLine)mixer.getLine(info);
-				
-				mSystemOutput = new SystemOutput(dataLine);
-				logger.info("received line \"" + dataLine + "\" with format \"" + audioFormat + "\"");
-				return;
-            }
-            catch(LineUnavailableException e)
-			{
-				logger.warn("got no output line from system mixer device: \"" + e + "\"");
-			}
-			catch(IllegalArgumentException e)
-			{
-				logger.warn("got no output line from system mixer device: \"" + e + "\"");
-			}
-			catch(SecurityException e)
-			{
-				logger.warn("got no output line from system mixer device: \"" + e + "\"");
-			}
-		}
-		
-		try
-		{
-			if(line == null)
-			{
-				logger.info("try to receive a common output line");
-				line = (SourceDataLine)AudioSystem.getLine(info);
-			}
-
+			logger.info("opening sound system with line \"" + line + "\" and audio format \"" + audioFormat + "\"");
 			mSystemOutput = new SystemOutput(line);
-			logger.info("received line \"" + line + "\" with format \"" + audioFormat + "\"");
 		}
-		catch(LineUnavailableException e)
+		else
 		{
-			logger.warn("got no common output line: \"" + e + "\"");
-		}
-		catch(IllegalArgumentException e)
-		{
-			logger.warn("got no common output line: \"" + e + "\"");
-		}
-		catch(SecurityException e)
-		{
-			logger.warn("got no common output line: \"" + e + "\"");
+			mSystemOutput = null;
 		}
 	}
 
@@ -607,37 +539,5 @@ public class SoundSystemNG extends Thread
             sleep(millis, (int)nanos);
         }
         catch(InterruptedException ex) { }
-    }
-
-    private static Mixer tryToFindMixer(AudioFormat audioFormat)
-    {
-        Mixer.Info[]        mixerInfos   = AudioSystem.getMixerInfo();
-        Mixer[]             mixers       = new Mixer[mixerInfos.length];
-        final DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
-
-        if(mixers.length == 0)
-            return null;
-
-        for(int i=0; i<mixerInfos.length; ++i)
-            mixers[i] = AudioSystem.getMixer(mixerInfos[i]);
-        
-        Arrays.sort(mixers, new Comparator<Mixer>()
-        {
-            public int compare(Mixer mixer1, Mixer mixer2)
-            {
-                int numLines1 = mixer1.getMaxLines(dataLineInfo);
-                int numLines2 = mixer2.getMaxLines(dataLineInfo);
-
-                if(numLines1 == AudioSystem.NOT_SPECIFIED || numLines1 > numLines2)
-                    return -1;
-
-                return 1;
-            }
-        });
-
-        if(mixers[0].getMaxLines(dataLineInfo) == 0)
-            return null;
-        
-        return mixers[0];
     }
 }
