@@ -2,6 +2,7 @@ package games.stendhal.client.gui.chattext;
 
 
 import games.stendhal.client.stendhal;
+import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.scripting.ChatLineParser;
 
 import java.awt.Component;
@@ -55,6 +56,10 @@ public class ChatTextController {
 						}
 					}
 
+				}
+
+				if (keypressed == KeyEvent.VK_F1) {
+					SlashActionRepository.get("manual").execute(null, null);
 				}
 		};		
 
