@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spells xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../spells.xsd ">
+	<spell name="Healing">
+		<implementation />
+		<nature />
+		<attributes>
+			<mana />
+			<cooldown />
+			<minimum-level />
+			<range />
+			<atk />
+			<def />
+			<amount />
+			<regen />
+			<rate />			
+			<lifesteal />
+		</attributes>
+	</spell>
+</spells>
