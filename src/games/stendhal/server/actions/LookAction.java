@@ -33,6 +33,12 @@ public class LookAction implements ActionListener {
 		CommandCenter.register(LOOK, new LookAction());
 	}
 
+	/**
+	 * processes the requested action.
+	 * 
+	 * @param player the caller of the action
+	 * @param action the action to be performed
+	 */
 	public void onAction(final Player player, final RPAction action) {
 		Entity entity = EntityHelper.entityFromSlot(player, action);
 
