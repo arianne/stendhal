@@ -159,14 +159,18 @@ public class SoundManager
 	private boolean                        mMute           = false;
 	private SoundSystem                    mSoundSystem;
 
-    protected SoundManager()
-    {
-        Algebra.mov_Vecf(mHearerPosition, 0.0f);
+	protected SoundManager()
+	{
+		try {
+			Algebra.mov_Vecf(mHearerPosition, 0.0f);
 
-		mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(15, Time.Unit.MILLI), USE_NUM_MIXER_LINES);
-		mSoundSystem.setDaemon(true);
-		mSoundSystem.start();
-    }
+			mSoundSystem = new SoundSystem(AUDIO_FORMAT, new Time(15, Time.Unit.MILLI), USE_NUM_MIXER_LINES);
+			mSoundSystem.setDaemon(true);
+			mSoundSystem.start();
+		} catch (RuntimeException e) {
+			logger.error(e, e);
+		}
+	}
 
 	public Sound openSound(Resource resource, SoundFile.Type fileType)
     {

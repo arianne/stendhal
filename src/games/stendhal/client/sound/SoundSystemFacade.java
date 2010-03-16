@@ -27,12 +27,15 @@ import org.apache.log4j.Logger;
  */
 public class SoundSystemFacade extends SoundManager implements WorldListener {
 	private static final Logger logger = Logger.getLogger(SoundSystemFacade.class);
-	private static final SoundSystemFacade singletonInstance = new SoundSystemFacade();
+	private static SoundSystemFacade instance;
 	private final HashMap<String, Sound> sounds = new HashMap<String, Sound>();
 	private final ResourceLocator resourceLocator = ResourceManager.get();
 	
 	public static SoundSystemFacade get() {
-		return singletonInstance;
+		if (instance == null) {
+			instance = new SoundSystemFacade();
+		}
+		return instance;
 	}
 
 	private SoundSystemFacade() {
