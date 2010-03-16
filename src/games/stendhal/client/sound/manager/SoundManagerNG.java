@@ -20,13 +20,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.sound.sampled.AudioFormat;
-
 import javax.sound.sampled.SourceDataLine;
+
 import org.apache.log4j.Logger;
 
 /**
