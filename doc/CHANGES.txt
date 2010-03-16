@@ -1,5 +1,8 @@
 Changelog
 ---------
+0.81.3
+- prevent crash on "No line matching interface" (fixes #2970406)
+
 0.81.2
 *bug fixes*
 - fixed a crash on Linux using alsa (non pulse) audio drivers and Sun Java (not OpenJDK) 
