@@ -16,7 +16,6 @@ import marauroa.server.db.JDBCSQLHelper;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
-import marauroa.server.game.db.GameEventDAO;
 
 import org.apache.log4j.Logger;
 
@@ -49,7 +48,7 @@ public class StendhalPlayerDatabase {
 			try {
 				for (GameEvent current = GameEventQueue.getGameEvents().poll();
 					current != null; current = GameEventQueue.getGameEvents().poll()) {
-					DAORegister.get().get(GameEventDAO.class).addGameEvent(transaction, current.source, current.event, current.params);
+					// DAORegister.get().get(GameEventDAO.class).addGameEvent(transaction, current.source, current.event, current.params);
 					if ("server system".equals(current.source) && "shutdown".equals(current.event)) {
 						shouldStop = true;
 					}
