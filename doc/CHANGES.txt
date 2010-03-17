@@ -2,7 +2,12 @@ Changelog
 ---------
 0.82
 *features
+- open manual on key F1
+
 *bug fixes*
+
+
+
 
 
 0.81.3
@@ -19,7 +24,6 @@ Changelog
 
 0.81.2 contains the first results of the Client Quality Weeks. Thanks everyone for providing
 your error log files and pleace continue to do so.
-
 
 0.81.1
 *bug fixes*
