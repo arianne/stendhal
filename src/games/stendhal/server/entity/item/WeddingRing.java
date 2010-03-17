@@ -14,7 +14,6 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
-import games.stendhal.server.core.engine.ItemLogEntry;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -248,7 +247,7 @@ public class WeddingRing extends Ring {
 		if (oldRing != null) {
 			// The player is cheating with multiple rings. Explode the 
 			// old ring, and use up the energy of this one
-			destroyRing(oldRing, slot);
+			destroyRing(container, oldRing, slot);
 			storeLastUsed();
 		}
 		
@@ -258,14 +257,21 @@ public class WeddingRing extends Ring {
 	/**
 	 * Destroy a wedding ring.
 	 * To be used when a ring is put in a same slot with another.
+	 * @param container 
 	 * 
 	 * @param rings the ring to be destroyed
 	 */
-	private void destroyRing(final WeddingRing ring, final RPSlot slot) {
+	private void destroyRing(SlotOwner container, final WeddingRing ring, final RPSlot slot) {
 		// The players need to be told first, while the ring still
 		// exist in the world
 		informNearbyPlayers(ring);
-		new ItemLogger().addItemLogEntry(new ItemLogEntry(ring, null, "destroy", ring.get("name"), "1", "another ring", slot.getName()));
+
+		RPEntity player = null;
+		if (container instanceof RPEntity) {
+			player = (RPEntity) container;
+		}
+
+		new ItemLogger().destroy(player, slot, ring, "another ring");
 		ring.removeFromWorld();
 		logger.info("Destroyed a wedding ring: " + ring);
 	}

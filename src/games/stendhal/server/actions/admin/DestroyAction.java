@@ -4,7 +4,6 @@ import static games.stendhal.common.constants.Actions.NAME;
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
-import games.stendhal.server.core.engine.ItemLogEntry;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
@@ -61,7 +60,7 @@ class DestroyAction extends AdministrationAction {
 				if (quantity == null) {
 					quantity = "1";
 				}
-				new ItemLogger().addItemLogEntry(new ItemLogEntry(inspected, player, "destroy", inspected.get("name"), quantity, "by admin", slotName));
+				new ItemLogger().destroy(player, inspected.getContainerSlot(), inspected, "admin");
 			}
 
 			String slotname = inspected.getContainerSlot().getName();
@@ -105,7 +104,7 @@ class DestroyAction extends AdministrationAction {
 					if (quantity == null) {
 						quantity = "1";
 					}
-					new ItemLogger().addItemLogEntry(new ItemLogEntry(inspected, player, "destroy", inspected.get("name"), quantity, "admin", null));
+					new ItemLogger().destroy(player, null, inspected, "admin");
 				}
 				zone.remove(inspected);
 			} else {

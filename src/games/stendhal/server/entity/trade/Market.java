@@ -1,8 +1,8 @@
 package games.stendhal.server.entity.trade;
 
-import games.stendhal.server.core.engine.ItemLogEntry;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.dbcommand.LogSimpleItemEventCommand;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -159,7 +159,7 @@ public class Market extends PassiveEntity {
 		slot.add(offer);
 		getZone().storeToDatabase();
 
-		new ItemLogger().addItemLogEntry(new ItemLogEntry(item, offerer, "slot-to-market", item.get("name"), Integer.toString(getQuantity(item)), "new offer", OFFERS_SLOT_NAME));
+		new ItemLogger().addLogItemEventCommand(new LogSimpleItemEventCommand(item, offerer, "slot-to-market", item.get("name"), Integer.toString(getQuantity(item)), "new offer", OFFERS_SLOT_NAME));
 
 		return offer;
 	}
@@ -192,7 +192,7 @@ public class Market extends PassiveEntity {
 					slotName = item.getContainerSlot().getName();
 					target = "slot";
 				}			
-				new ItemLogger().addItemLogEntry(new ItemLogEntry(item, acceptingPlayer, "market-to-" + target, item.get("name"), Integer.toString(getQuantity(item)), "accept offer", slotName));
+				new ItemLogger().addLogItemEventCommand(new LogSimpleItemEventCommand(item, acceptingPlayer, "market-to-" + target, item.get("name"), Integer.toString(getQuantity(item)), "accept offer", slotName));
 				
 				this.getZone().storeToDatabase();
 				return true;
@@ -287,7 +287,7 @@ public class Market extends PassiveEntity {
 			slotName = item.getContainerSlot().getName();
 			target = "slot";
 		}			
-		new ItemLogger().addItemLogEntry(new ItemLogEntry(item, p, "market-to-" + target, item.get("name"), Integer.toString(getQuantity(item)), "remove offer", slotName));
+		new ItemLogger().addLogItemEventCommand(new LogSimpleItemEventCommand(item, p, "market-to-" + target, item.get("name"), Integer.toString(getQuantity(item)), "remove offer", slotName));
 	}
 	
 	public void expireOffer(Offer o) {
@@ -311,9 +311,8 @@ public class Market extends PassiveEntity {
 		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(offerToRemove.getID());
 		
 		Item item = offerToRemove.getItem();
-		new ItemLogger().addItemLogEntry(new ItemLogEntry(item, 
-				null, "destroy", item.get("name"), Integer.toString(getQuantity(item)), "timeout", "market"));
-		
+		new ItemLogger().destroy(null, this.getSlot(EXPIRED_OFFERS_SLOT_NAME), item, "timeout");
+
 		this.getZone().storeToDatabase();
 	}
 
