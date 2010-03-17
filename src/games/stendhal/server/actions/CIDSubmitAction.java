@@ -13,15 +13,15 @@ package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.CID;
 import static games.stendhal.common.constants.Actions.ID;
+import games.stendhal.server.core.engine.dbcommand.LogCidCommand;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import games.stendhal.server.core.engine.db.CidDAO;
-import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
+import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.container.PlayerEntryContainer;
-import marauroa.server.game.db.DAORegister;
 
 public class CIDSubmitAction implements ActionListener {
 	
@@ -56,7 +56,7 @@ public class CIDSubmitAction implements ActionListener {
 			nameList.put(pName, cid);
 
 			String address = PlayerEntryContainer.getContainer().get(player).getAddress().getHostAddress();
-			DAORegister.get().get(CidDAO.class).log(pName, address, cid);
+			DBCommandQueue.get().enqueue(new LogCidCommand(pName, address, cid));
 			
 		}
 	}
