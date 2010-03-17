@@ -52,6 +52,14 @@ public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
 
 	protected abstract void log(DBTransaction transaction) throws SQLException;
 
+	protected String getQuantity(final RPObject item) {
+		int quantity = 1;
+		if (item.has("quantity")) {
+			quantity = item.getInt("quantity");
+		}
+		return Integer.toString(quantity);
+	}
+
 	/**
 	 * Assigns the next logid to the specified item in case it does not already have one.
 	 *
@@ -94,13 +102,18 @@ public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
 	}
 
 	protected void itemLogWriteEntry(final DBTransaction transaction, final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) throws SQLException {
+		int itemid = item.getInt(ATTR_ITEM_LOGID);
+		itemLogWriteEntry(transaction, itemid, player, event, param1, param2, param3, param4);
+	}
+
+	protected void itemLogWriteEntry(final DBTransaction transaction, final int itemid, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) throws SQLException {
 		String playerName = null;
 		if (player != null) {
 			playerName = player.getName();
 		}
 		final String query = "INSERT INTO itemlog (itemid, source, event, " 
 			+ "param1, param2, param3, param4) VALUES (" 
-			+ item.getInt(ATTR_ITEM_LOGID) + ", '" 
+			+ itemid + ", '" 
 			+ StringChecker.trimAndEscapeSQLString(playerName, 64) + "', '" 
 			+ StringChecker.trimAndEscapeSQLString(event, 64) + "', '" 
 			+ StringChecker.trimAndEscapeSQLString(param1, 64) + "', '" 
