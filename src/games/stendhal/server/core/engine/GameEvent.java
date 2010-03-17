@@ -1,5 +1,9 @@
 package games.stendhal.server.core.engine;
 
+import marauroa.server.db.command.DBCommand;
+import marauroa.server.db.command.DBCommandQueue;
+import marauroa.server.game.dbcommand.LogGameEventCommand;
+
 
 public class GameEvent {
 	public final String source;
@@ -14,6 +18,7 @@ public class GameEvent {
 
 	public void raise() {
 		GameEventQueue.add(this);
-
+		DBCommand command = new LogGameEventCommand(source, event, params);
+		DBCommandQueue.get().enqueue(command);
 	}
 }
