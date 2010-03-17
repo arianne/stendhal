@@ -1,0 +1,46 @@
+/***************************************************************************
+ *                    (C) Copyright 2007-2010 - Stendhal                   *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+package games.stendhal.server.core.engine.dbcommand;
+
+import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
+import games.stendhal.server.entity.Entity;
+import marauroa.server.db.command.AbstractDBCommand;
+import marauroa.server.game.db.DAORegister;
+
+/**
+ * logs kill events
+ *
+ * @author hendrik
+ */
+public class LogKillEventCommand extends AbstractDBCommand {
+	
+	private Entity frozenKilled;
+	private Entity frozenKiller;
+
+	/**
+	 * creates a new LogKillEventCommand
+	 *
+	 * @param killed killed entity
+	 * @param killer killer entity
+	 */
+	public LogKillEventCommand(Entity killed, Entity killer) {
+		this.frozenKilled = (Entity) killed.clone();
+		this.frozenKiller = (Entity) killer.clone();
+	}
+
+	@Override
+	public void execute() {
+		StendhalKillLogDAO killLog = DAORegister.get().get(StendhalKillLogDAO.class);
+		killLog.logKill(frozenKilled, frozenKiller);
+	}
+
+}

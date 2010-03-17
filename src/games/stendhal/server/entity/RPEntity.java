@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
+import games.stendhal.server.core.engine.dbcommand.LogKillEventCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.creature.Creature;
@@ -49,6 +50,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
+import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
 
@@ -1140,7 +1142,8 @@ public abstract class RPEntity extends GuidedEntity {
 		if (killer instanceof RPEntity) {
 			new GameEvent(killerName, "killed", killLog.getEntityName(this), killLog.entityToType(killer), killLog.entityToType(this)).raise();
 		}
-		killLog.logKill(this, killer);
+
+		DBCommandQueue.get().enqueue(new LogKillEventCommand(this, killer));
 
 		onDead(killerName, remove);
 	}
