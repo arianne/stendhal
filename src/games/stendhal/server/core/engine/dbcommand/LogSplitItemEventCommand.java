@@ -29,7 +29,6 @@ public class LogSplitItemEventCommand extends AbstractLogItemEventCommand {
 	private RPObject frozenItem;
 	private RPObject frozenNewItem;
 	private RPEntity player;
-	private int quantity;
 
 	/**
 	 * logs merging of item stacks
@@ -37,15 +36,13 @@ public class LogSplitItemEventCommand extends AbstractLogItemEventCommand {
 	 * @param player   Player performing the merge
 	 * @param item     item to split out from
 	 * @param newItem  new item created out of the old stack
-	 * @param quantity amount of items split off
 	 */
-	public LogSplitItemEventCommand(RPEntity player, RPObject item, RPObject newItem, int quantity) {
+	public LogSplitItemEventCommand(RPEntity player, RPObject item, RPObject newItem) {
 		this.player = player;
 		this.liveItem = item;
 		this.liveNewItem = newItem;
 		this.frozenItem = (RPObject) item.clone();
 		this.frozenNewItem = (RPObject) newItem.clone();
-		this.quantity = quantity;
 	}
 
 	@Override
