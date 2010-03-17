@@ -1,9 +1,9 @@
 /* $Id$ */
 package games.stendhal.server.core.rp;
 
-import games.stendhal.server.core.engine.db.StendhalNPCDAO;
+import games.stendhal.server.core.engine.dbcommand.DumpSpeakerNPCsCommand;
 import games.stendhal.server.core.events.TurnListener;
-import marauroa.server.game.db.DAORegister;
+import marauroa.server.db.command.DBCommandQueue;
 
 /**
  * Dumps information of all SpeakerNPCs to the database
@@ -13,6 +13,6 @@ import marauroa.server.game.db.DAORegister;
 public class DumpSpeakerNPCtoDB implements TurnListener {
 
 	public void onTurnReached(int currentTurn) {
-		DAORegister.get().get(StendhalNPCDAO.class).dumpNPCs();
+		DBCommandQueue.get().enqueue(new DumpSpeakerNPCsCommand());
 	}
 }
