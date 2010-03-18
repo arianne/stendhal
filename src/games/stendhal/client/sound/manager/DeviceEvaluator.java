@@ -102,18 +102,16 @@ public class DeviceEvaluator
 		sortDeviceList(list, audioFormat);
 
 		final DataLine.Info  dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
-		ListIterator<Device> iterator     = list.listIterator(list.size());
+		ListIterator<Device> iterator     = list.listIterator();
 
-		while(iterator.hasPrevious())
+		while(iterator.hasNext())
 		{
-			Device device = iterator.previous();
+			Device device = iterator.next();
 
-			if(device.mMixer.getMaxLines(dataLineInfo) != 0)
-				break;
-
-			iterator.remove();
+			if(device.mMixer.getMaxLines(dataLineInfo) == 0)
+				iterator.remove();
 		}
-		
+
 		return list;
 	}
 
