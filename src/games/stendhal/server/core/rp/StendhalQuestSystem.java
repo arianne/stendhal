@@ -50,6 +50,7 @@ import games.stendhal.server.maps.quests.LookUpQuote;
 import games.stendhal.server.maps.quests.Marriage;
 import games.stendhal.server.maps.quests.Maze;
 import games.stendhal.server.maps.quests.McPeglegIOU;
+import games.stendhal.server.maps.quests.MeetBunny;
 import games.stendhal.server.maps.quests.MeetHackim;
 import games.stendhal.server.maps.quests.MeetHayunn;
 import games.stendhal.server.maps.quests.MeetIo;
@@ -175,7 +176,7 @@ public class StendhalQuestSystem {
 		loadQuest(new KillSpiders());
 		loadQuest(new Marriage());
 		// loadQuet(new MonogenesCataclysm());
-		// loadQuest(new MeetBunny());
+		loadQuest(new MeetBunny());
 		loadQuest(new Maze());
 		loadQuest(new MeetHackim());
 		loadQuest(new McPeglegIOU());
@@ -183,7 +184,7 @@ public class StendhalQuestSystem {
 		loadQuest(new MeetIo());
 		loadQuest(new MeetKetteh());
 		loadQuest(new MeetMonogenes());
-	    loadQuest(new MeetSanta());
+		loadQuest(new MeetSanta());
 		loadQuest(new MeetZynn());
 		loadQuest(new MithrilCloak());
 		loadQuest(new NewsFromHackim());
