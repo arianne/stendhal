@@ -102,17 +102,17 @@ public class TextBoxFactory {
 	  */
 	private void drawBubble(final Graphics2D g2d, final Color fillColor, 
 			final Color outLineColor, final int width, final int height) {
-		g2d.setColor(fillColor);
-		g2d.fillRoundRect(BUBBLE_OFFSET, 0, width, height, ARC_DIAMETER, ARC_DIAMETER);
-		
+		/*
+		 * There's an one pixel difference in how sun java and openjdk
+		 * do drawRoundRect, so we use fillRoundRect for both the
+		 * outline and the fill to have pretty bubbles on both
+		 */
 		g2d.setColor(outLineColor);
-		// The definition of the arcs for fillRoundRect() and drawRoundRect() are the
-		// same according to java docs, but apparently they are drawn differently anyway.
-		// The widhts and heights are different by 1 (documented).
-		g2d.drawRoundRect(BUBBLE_OFFSET, 0, width - 1, height - 1, ARC_DIAMETER - 2, ARC_DIAMETER - 2);
+		g2d.fillRoundRect(BUBBLE_OFFSET, 0, width, height, ARC_DIAMETER, ARC_DIAMETER);
+		g2d.setColor(fillColor);
+		g2d.fillRoundRect(BUBBLE_OFFSET + 1, 1, width - 2, height - 2, ARC_DIAMETER, ARC_DIAMETER);
 		
 		// The bubble handle
-		g2d.setColor(fillColor);
 		final Polygon p = new Polygon();
 		p.addPoint(BUBBLE_OFFSET + 1, MARGIN_WIDTH + 1);
 		p.addPoint(0, LINE_HEIGHT);
@@ -120,7 +120,7 @@ public class TextBoxFactory {
 		g2d.fillPolygon(p);
 		
 		g2d.setColor(outLineColor);
-		g2d.drawLine(0, LINE_HEIGHT, BUBBLE_OFFSET, MARGIN_WIDTH);
+		g2d.drawLine(0, LINE_HEIGHT, BUBBLE_OFFSET, MARGIN_WIDTH + 1);
 		g2d.drawLine(0, LINE_HEIGHT, BUBBLE_OFFSET, LINE_HEIGHT / 2 + MARGIN_WIDTH);
 	}
 	
