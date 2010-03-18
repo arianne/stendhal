@@ -11,8 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
+import java.sql.SQLException;
+
 import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
 import games.stendhal.server.entity.Entity;
+import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
 
@@ -38,9 +41,9 @@ public class LogKillEventCommand extends AbstractDBCommand {
 	}
 
 	@Override
-	public void execute() {
+	public void execute(DBTransaction transaction) throws SQLException {
 		StendhalKillLogDAO killLog = DAORegister.get().get(StendhalKillLogDAO.class);
-		killLog.logKill(frozenKilled, frozenKiller);
+		killLog.logKill(transaction, frozenKilled, frozenKiller);
 	}
 
 }

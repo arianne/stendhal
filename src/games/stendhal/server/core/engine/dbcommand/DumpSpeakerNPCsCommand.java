@@ -11,7 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
+import java.sql.SQLException;
+
 import games.stendhal.server.core.engine.db.StendhalNPCDAO;
+import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
 
@@ -23,8 +26,8 @@ import marauroa.server.game.db.DAORegister;
 public class DumpSpeakerNPCsCommand extends AbstractDBCommand {
 
 	@Override
-	public void execute() {
-		DAORegister.get().get(StendhalNPCDAO.class).dumpNPCs();
+	public void execute(DBTransaction transaction) throws SQLException {
+		DAORegister.get().get(StendhalNPCDAO.class).dumpNPCs(transaction);
 	}
 
 }

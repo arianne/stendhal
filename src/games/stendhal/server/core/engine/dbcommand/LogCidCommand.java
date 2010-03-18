@@ -11,7 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
+import java.sql.SQLException;
+
 import games.stendhal.server.core.engine.db.CidDAO;
+import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
 
@@ -38,8 +41,8 @@ public class LogCidCommand extends AbstractDBCommand {
 	}
 
 	@Override
-	public void execute() {
-		DAORegister.get().get(CidDAO.class).log(playerName, address, cid);
+	public void execute(DBTransaction transaction) throws SQLException {
+		DAORegister.get().get(CidDAO.class).log(transaction, playerName, address, cid);
 	}
 
 }

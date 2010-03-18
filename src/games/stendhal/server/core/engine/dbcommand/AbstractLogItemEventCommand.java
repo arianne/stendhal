@@ -18,7 +18,6 @@ import java.sql.SQLException;
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.StringChecker;
-import marauroa.server.db.TransactionPool;
 import marauroa.server.db.command.AbstractDBCommand;
 
 import org.apache.log4j.Logger;
@@ -34,18 +33,8 @@ public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
 	private static final Logger logger = Logger.getLogger(AbstractLogItemEventCommand.class);
 
 	@Override
-	public void execute() {
-
-		final DBTransaction transaction = TransactionPool.get().beginWork();
-		try {
-
-			log(transaction);
-
-			TransactionPool.get().commit(transaction);
-		} catch (final SQLException e) {
-			logger.error(e, e);
-			TransactionPool.get().rollback(transaction);
-		}
+	public void execute(DBTransaction transaction) throws SQLException {
+		log(transaction);
 	}
 
 

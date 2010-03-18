@@ -25,7 +25,7 @@ public class CidDAO {
 	 * @param cid       cid
 	 * @throws SQLException in case of an database error
 	 */
-	private void log(DBTransaction transaction, String charname, String address, String cid) throws SQLException {
+	public void log(DBTransaction transaction, String charname, String address, String cid) throws SQLException {
 		String query = "insert into cid(charname, address, cid) values ('[charname]', '[address]', '[cid]')";
 		logger.debug("loadCharacter is executing query " + query);
 		Map<String, Object> params = new HashMap<String, Object>();
