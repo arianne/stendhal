@@ -329,6 +329,12 @@
    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
    <attribute name="description">You see a barbecue, ready to grill some ham. Careful, it's very hot!</attribute>
   </entity>
+  <!-- The random orb -->
+  <entity x="60" y="90">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.RandomDestinationPortal"/>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+  </entity>
  </zone>
 <!-- These are the houses which players can own. Comment out the common chests
    	until zone memory is possible, or players will lose their stuff -->
