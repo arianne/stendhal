@@ -1,0 +1,188 @@
+/***************************************************************************
+ *                      (C) Copyright 2010 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+package games.stendhal.server.entity.mapstuff.portal;
+
+import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.Spot;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.player.Player;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import marauroa.common.game.IRPZone;
+
+/**
+ * A portal that sends the using player to a randomly
+ * chosen destination. Valid destinations are filtered
+ * based on the player's level from a pre-defined list
+ * of interesting places.
+ */
+public class RandomDestinationPortal extends QuestCompletedPortal {
+	private static final String questslot = "learn_scrying";
+	private static Logger logger = Logger.getLogger(RandomDestinationPortal.class);
+
+	/**
+	 * A class to store the location and suggested minimum level
+	 * for a place.
+	 */
+	private static class Location {
+		String zoneName;
+		int level, x, y;
+		Spot spot;
+
+		/**
+		 * Create a new <code>Location</code>.
+		 * 
+		 * @param zoneName name of the zone of the teleportation destination
+		 * @param level minimum level of a player to consider the location possible
+		 * @param x x coordinate of the destination
+		 * @param y y coordinate of the destination
+		 */
+		public Location(String zoneName, int level, int x, int y) {
+			this.zoneName = zoneName;
+			this.level = level;
+			this.x = x;
+			this.y = y;
+		}
+
+		/**
+		 * Get the minimum level needed for the location
+		 * 
+		 * @return minimum level
+		 */
+		public int getLevel() {
+			return level;
+		}
+
+		/**
+		 * Get the spot represented by this location
+		 *  
+		 * @return a teleport destination
+		 */
+		public Spot getSpot() {
+			/*
+			 * The spots need to be initialized lazily, instead
+			 * of doing it in the constructor, because not all
+			 * zones have been loaded by the time this portal is
+			 * created.
+			 */
+			if (spot == null) {
+				IRPZone zone = SingletonRepository.getRPWorld().getRPZone(zoneName);
+				// All locations should be valid, but do not crash in case not all maps
+				// are not loaded.
+				if (zone != null) {
+					spot = new Spot((StendhalRPZone) zone, x, y);
+				} else {
+					logger.error("Can not find zone: " + zoneName);
+				}
+			}
+			
+			return spot;
+		}
+	}
+
+	/**
+	 * A list of interesting locations
+	 */
+	private final List<Location> locations = new ArrayList<Location>();
+
+	/**
+	 * Create a new <code>RandomDestinationPortal</code>
+	 */
+	public RandomDestinationPortal() {
+		super(questslot);
+		initLocations();
+	}
+
+	/**
+	 * Initialize the locations set
+	 */
+	private void initLocations() {
+		locations.add(new Location("0_semos_mountain_n_w2", 10, 62, 116));	// gnome village
+		locations.add(new Location("0_fado_forest", 20, 66, 35));			// fairy ring
+		locations.add(new Location("hell", 200, 66, 77));					// hell
+	}
+
+	/**
+	 * Get a random location to teleport a player.
+	 * 
+	 * @param player the player using the portal
+	 * @return a location the player is allowed to go to,
+	 * or <code>null</code> if there are no appropriate places 
+	 */
+	private Location getRandomLocation(Player player) {
+		List allowed = getAllowedLocations(player);
+		if (allowed.size() > 0) {
+			return Rand.rand(getAllowedLocations(player));
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Get a list of locations appropriate for a player
+	 * 
+	 * @param player the player using the portal
+	 * @return list of locations
+	 */
+	private List<Location> getAllowedLocations(Player player) {
+		List<Location> allowed = new LinkedList<Location>();
+		int level = player.getLevel();
+		for (Location l : locations) {
+			if (level >= l.getLevel()) {
+				allowed.add(l);
+			}
+		}
+		
+		return allowed;
+	}
+
+	/**
+	 * Use the portal.
+	 * 
+	 * @param player
+	 *            the Player who wants to use this portal
+	 * @return <code>true</code> if the portal worked, <code>false</code>
+	 *         otherwise.
+	 */
+	@Override
+	protected boolean usePortal(final Player player) {
+		if (!nextTo(player)) {
+			// Too far to use the portal
+			return false;
+		}
+
+		Location location = getRandomLocation(player);
+		if (location == null) {
+			player.sendPrivateText("You can not concentrate well enough to use this orb");
+			return false;
+		}
+		
+		Spot spot = getRandomLocation(player).getSpot();
+		
+		if (spot == null) {
+			logger.error("Failed to determine destination spot.");
+			return false;
+		}
+
+		if (player.teleport(spot.getZone(), spot.getX(), spot.getY(), null, null)) {
+			player.stop();
+		}
+
+		return true;
+	}
+}
