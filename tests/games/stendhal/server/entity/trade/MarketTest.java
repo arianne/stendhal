@@ -1,10 +1,14 @@
 package games.stendhal.server.entity.trade;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
+
+import java.util.List;
+
 import games.stendhal.server.actions.CIDSubmitAction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,7 +24,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
-public class TradeTest {
+public class MarketTest {
 
 	@BeforeClass
 	public static void beforeClass() {
@@ -538,6 +542,38 @@ public class TradeTest {
 		
 		assertTrue(edeka.getOffers().size() == 0);
 		assertTrue(edeka.getExpiredOffers().size() == 0);
+	}
+	
+	@Test
+	public void testExpireEarnings() {
+		Player george = PlayerTestHelper.createPlayer("george");
+		PlayerTestHelper.registerPlayer(george);
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market edeka = Market.createShop();
+		zone.add(edeka);
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		StackableItem erniesMoney = (StackableItem) SingletonRepository
+				.getEntityManager().getItem("money");
+		Integer price = Integer.valueOf(10);
+		erniesMoney.setQuantity(price);
+		george.equipToInventoryOnly(item);
+		Integer number = Integer.valueOf(1);
+		Offer offer = edeka.createOffer(george, item, price, number);
+		assertThat(offer.getItem(), is(item));
+		assertThat(offer.getPrice(), is(price));
+		assertThat(Boolean.valueOf(george.isEquipped(item.getName())),
+				is(Boolean.FALSE));
+		Player ernie = PlayerTestHelper.createPlayer("ernie");
+		ernie.equipToInventoryOnly(erniesMoney);
+		assertThat(ernie.isEquipped("money", price), is(Boolean.TRUE));
+		edeka.acceptOffer(offer, ernie);
+		assertThat(Boolean.valueOf(ernie.isEquipped("axe")), is(Boolean.TRUE));
+		assertThat(ernie.isEquipped("money", price), is(Boolean.FALSE));
+		assertThat(Boolean.valueOf(george.isEquipped("money")), is(Boolean.FALSE));
+		List<Earning> earningsOlderThan = edeka.getEarningsOlderThan(-1);
+		assertThat(Boolean.valueOf(earningsOlderThan.isEmpty()), is(Boolean.FALSE));
+		edeka.removeEarnings(earningsOlderThan);
+		assertThat(Boolean.valueOf(edeka.getEarningsOlderThan(-1).isEmpty()), is(Boolean.TRUE));
 	}
 
 	/**
