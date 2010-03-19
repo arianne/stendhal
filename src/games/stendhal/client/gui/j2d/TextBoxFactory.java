@@ -126,10 +126,12 @@ public class TextBoxFactory {
 	
 	private void drawRectangle(final Graphics2D g2d, final Color fillColor, 
 			final Color outLineColor, final int width, final int height) {
-		g2d.setColor(fillColor);
-		g2d.fillRect(BUBBLE_OFFSET, 0, width, height);
+		// Using filled rectangles to work around a rendering 
+		// incompatibility in openjdk.
 		g2d.setColor(outLineColor);
-		g2d.drawRect(BUBBLE_OFFSET, 0, width - 1, height - 1);
+		g2d.fillRect(BUBBLE_OFFSET, 0, width, height);
+		g2d.setColor(fillColor);
+		g2d.fillRect(BUBBLE_OFFSET + 1, 1, width - 2, height -2);
 	}
 
 	public AttributedString formatLine(final String line,
