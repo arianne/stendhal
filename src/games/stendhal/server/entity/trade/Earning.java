@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.trade;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.entity.Entity;
@@ -76,4 +78,21 @@ public class Earning extends Entity implements Dateable {
 		}
 		return timeStamp;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj, false, Earning.class);
+	}	
+	
 }
