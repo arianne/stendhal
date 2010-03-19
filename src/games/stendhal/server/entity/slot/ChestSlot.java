@@ -14,6 +14,11 @@ public class ChestSlot extends LootableSlot {
 	private static Logger logger = Logger.getLogger(ChestSlot.class);
 	private final Chest chest;
 
+	/**
+	 * Creates a ChestSlot
+	 *
+	 * @param owner Chest owning this slot
+	 */
 	public ChestSlot(final Chest owner) {
 	    super(owner);
 	    this.chest = owner;

@@ -14,6 +14,11 @@ public class PersonalChestSlot extends ChestSlot {
 	private static Logger logger = Logger.getLogger(PersonalChestSlot.class);
 	private final PersonalChest chest;
 
+	/**
+	 * create a new PersonalChestSlot
+	 *
+	 * @param owner personal chest owning this slot
+	 */
 	public PersonalChestSlot(final PersonalChest owner) {
 	    super(owner);
 	    this.chest = owner;
@@ -30,7 +35,7 @@ public class PersonalChestSlot extends ChestSlot {
 
 		// Yes, this comparison of references is by design: Two player objects
 		// are equal if they are for the same character but could be from two 
-		// different session. Marauroa is supposted to prevent two session
+		// different session. Marauroa is supposed to prevent two session
 		// for the same character being active at the same time, but we should
 		// not depend on this as the banks have had lots of bugs in the past.
 	    if (chest.getAttending() != entity) {
