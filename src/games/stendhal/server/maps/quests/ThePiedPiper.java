@@ -36,6 +36,7 @@ import org.apache.log4j.Logger;
  * <li> George
  * <li> Anna
  * <li> Jens
+ * <li> Susi
  * <li> Pied Piper
  * </ul>
  *
