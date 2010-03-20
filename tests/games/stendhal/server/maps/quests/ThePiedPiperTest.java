@@ -58,8 +58,8 @@ public class ThePiedPiperTest {
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");
 		PlayerTestHelper.registerPlayer(player);
-		PlayerTestHelper.equipWithItem(player, "golden blade");
-		player.setAdminLevel(600);
+		PlayerTestHelper.equipWithItem(player, "rod of the gm");
+		player.setAdminLevel(1000);
 		player.setATKXP(100000000);
 		player.setDEFXP(100000000);
 		player.setXP(100000000);
