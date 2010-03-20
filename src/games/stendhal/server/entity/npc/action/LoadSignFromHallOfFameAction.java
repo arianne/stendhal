@@ -1,15 +1,12 @@
 package games.stendhal.server.entity.npc.action;
 
-import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
+import games.stendhal.server.entity.mapstuff.sign.SignFromHallOfFameLoader;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
-
-import marauroa.server.game.db.DAORegister;
 
 
 /**
@@ -44,9 +41,8 @@ public class LoadSignFromHallOfFameAction implements ChatAction {
 
 
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-		List<String> players = DAORegister.get().get(StendhalHallOfFameDAO.class).getCharactersByFametype(fametype, max, ascending);
-		sign.setText(introduction + players);
-		sign.notifyWorldAboutChanges();
+		SignFromHallOfFameLoader loader = new SignFromHallOfFameLoader(sign, introduction, fametype, max, ascending, false);
+		TurnNotifier.get().notifyInTurns(0, loader);
 	}
 
 }

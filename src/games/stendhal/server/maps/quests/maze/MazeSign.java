@@ -1,14 +1,15 @@
 package games.stendhal.server.maps.quests.maze;
 
-import java.util.List;
-import java.util.Iterator;
-
-import marauroa.server.game.db.DAORegister;
-import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
+import games.stendhal.server.entity.mapstuff.sign.SignFromHallOfFameLoader;
 
 public class MazeSign extends Sign {
-	private static final int SIGN_LENGTH = 10; 
+	private static final int SIGN_LENGTH = 10;
+
+	/**
+	 * creates a new maze sign.
+	 */
 	public MazeSign() {
 		updatePlayers();
 		put("class", "book_blue");
@@ -18,17 +19,8 @@ public class MazeSign extends Sign {
 	 * Update the player list written on the sign.
 	 */
 	public void updatePlayers() {
-		List<String> players = DAORegister.get().get(StendhalHallOfFameDAO.class).getCharactersByFametype("M", SIGN_LENGTH, false);
-		StringBuilder builder = new StringBuilder();
-		Iterator<String> it = players.iterator();
-		
-		while (it.hasNext()) {
-			builder.append(it.next());
-			if (it.hasNext()) {
-				builder.append("\n");
-			}
-		}
-		setText("The best maze runners:\n" + builder.toString());
-		notifyWorldAboutChanges();
+		String introduction = "The best maze runners:\n";
+		SignFromHallOfFameLoader loader = new SignFromHallOfFameLoader(this, introduction, "M", SIGN_LENGTH, false, true);
+		TurnNotifier.get().notifyInTurns(0, loader);
 	}
 }
