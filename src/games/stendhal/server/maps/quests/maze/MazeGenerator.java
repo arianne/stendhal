@@ -1,20 +1,12 @@
 package games.stendhal.server.maps.quests.maze;
 
-import java.awt.Point;
-import java.awt.geom.Rectangle2D;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.item.Item;
@@ -23,6 +15,17 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.StendhalMapStructure;
+
+import java.awt.Point;
+import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+import marauroa.server.db.command.DBCommandQueue;
+
+import org.apache.log4j.Logger;
 
 /**
  * A random maze zone.
@@ -417,7 +420,8 @@ public class MazeGenerator {
 		// theoretical maximum e * DEFAULT_REWARD_POINTS
 		int points = (int) (DEFAULT_REWARD_POINTS * Math.exp(1 - normalized));
 		
-		SingletonRepository.getRuleProcessor().addHallOfFamePoints(player.getName(), "M", points);
+		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), "M", points, true));
+
 		player.sendPrivateText("You used " + TimeUtil.timeUntil((int) (timediff / 1000), true)
 				+ " to solve the maze. That was worth " + Grammar.quantityplnoun(points, "point") + ".");
 		player.addXP(REWARD_XP);

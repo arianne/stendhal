@@ -1,13 +1,14 @@
 package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import marauroa.server.db.command.DBCommandQueue;
 
 /**
  * Handles player claim of victory by giving reward after verifing the winning.
@@ -38,9 +39,8 @@ public class DoneAction implements ChatAction {
 	 * @param player Player
 	 */
 	private void updatePoints(final Player player) {
-		final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
-		rules.addHallOfFamePoints(player.getName(), "D", deathmatchState.getPoints());
+		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), "D", deathmatchState.getPoints(), true));
 	}
 
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {

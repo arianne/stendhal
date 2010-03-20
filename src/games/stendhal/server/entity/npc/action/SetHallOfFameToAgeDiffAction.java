@@ -1,25 +1,19 @@
 package games.stendhal.server.entity.npc.action;
 
-import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
+import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-
-import java.sql.SQLException;
-
-import marauroa.server.game.db.DAORegister;
+import marauroa.server.db.command.DBCommandQueue;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.log4j.Logger;
 
 /**
  * Write the difference between the players current age and the one stored in the quest slot to the hall of fame database table.
  */
 public class SetHallOfFameToAgeDiffAction implements ChatAction {
-	private static final Logger logger = Logger.getLogger(SetHallOfFameToAgeDiffAction.class);
-
 	private final String questname;
 	private final int index;
 	private final String fametype;
@@ -63,11 +57,7 @@ public class SetHallOfFameToAgeDiffAction implements ChatAction {
 		}
 
 		int diff = player.getAge() - Integer.parseInt(orgAge);
-		try {
-			DAORegister.get().get(StendhalHallOfFameDAO.class).setHallOfFamePoints(player.getName(), fametype, diff);
-		} catch (SQLException e) {
-			logger.error(e, e);
-		}
+		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), fametype, diff, false));
 	}
 
 	@Override

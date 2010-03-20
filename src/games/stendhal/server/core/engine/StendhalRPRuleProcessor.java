@@ -123,32 +123,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return onlinePlayers;
 	}
 
-	/**
-	 * Add points to the named player in the specified hall of fame.
-	 * 
-	 * @param playername
-	 *            name of the player
-	 * @param fametype
-	 *            type of the hall of fame
-	 * @param points
-	 *            points to add
-	 */
-	public void addHallOfFamePoints(final String playername, final String fametype, final int points) {
-		final TransactionPool transactionPool = SingletonRepository.getTransactionPool();
-		final DBTransaction transaction = transactionPool.beginWork();
-		final StendhalHallOfFameDAO hallOfFameDAO = DAORegister.get().get(StendhalHallOfFameDAO.class);
-		
-		try {
-			final int oldPoints = hallOfFameDAO.getHallOfFamePoints(transaction, playername, fametype);
-			final int totalPoints = oldPoints + points;
-			hallOfFameDAO.setHallOfFamePoints(transaction, playername, fametype, totalPoints);
-			transactionPool.commit(transaction);
-		} catch (final Exception e) {
-			transactionPool.rollback(transaction);			
-			logger.warn("Can't store game event", e);
-		}
-	}
-
 	public void setContext(final RPServerManager rpman) {
 		try {
 			/*
