@@ -11,6 +11,7 @@ Changelog
 
 *admins*
 - new /script AdminPortal.class
+- support answer contains the name of the asking player in the greeting
 
 *website*
 - added detail view of news items on their own pages (with nice urls)
