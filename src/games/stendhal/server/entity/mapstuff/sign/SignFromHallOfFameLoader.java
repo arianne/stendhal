@@ -55,8 +55,6 @@ public class SignFromHallOfFameLoader implements TurnListener {
 	}
 
 
-
-	@Override
 	public void onTurnReached(int currentTurn) {
 		// if there is no result, wait some more
 		List<ReadCharactersFromHallOfFameCommand> list = DBCommandQueue.get().getResults(ReadCharactersFromHallOfFameCommand.class, handle);
