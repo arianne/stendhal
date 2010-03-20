@@ -124,25 +124,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * Gets the points of named player in the specified hall of fame.
-	 * 
-	 * @param playername
-	 *            name of the player
-	 * @param fametype
-	 *            type of the hall of fame
-	 * @return points points to add
-	 */
-	public int getHallOfFamePoints(final String playername, final String fametype) {
-		int res = 0;
-		try {
-			res = DAORegister.get().get(StendhalHallOfFameDAO.class).getHallOfFamePoints(playername, fametype);
-		} catch (final Exception e) {
-			logger.warn("Can't store game event", e);
-		}
-		return res;
-	}
-
-	/**
 	 * Add points to the named player in the specified hall of fame.
 	 * 
 	 * @param playername
