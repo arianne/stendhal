@@ -89,14 +89,11 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 		setBackground(Color.black);
 		updateSize(new Dimension(WIDTH, HEIGHT + TITLE_HEIGHT));
 		
-		// handle double clicks for moving.
-		// should we do single clicks instead?
+		// handle clicks for moving.
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(final MouseEvent e) {
-				if (e.getClickCount() == 2) {
-					onDoubleClick(e.getPoint());
-				}
+				movePlayer(e.getPoint());
 			}
 		});
 	}
@@ -354,7 +351,7 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 	 * Tell the player to move to point p
 	 * @param p the point
 	 */
-	private void onDoubleClick(final Point p) {
+	private void movePlayer(final Point p) {
 		// Ignore clicks to the title area 
 		if (p.y <= height) {
 			final RPAction action = new RPAction();

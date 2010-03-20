@@ -123,6 +123,9 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 				view.onAction(ActionType.LOOK);
 				return true;
 			}
+		} else {
+			createAndSendMoveToAction(point);
+			return true;
 		}
 
 		return false;

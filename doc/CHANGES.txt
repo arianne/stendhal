@@ -2,12 +2,13 @@ Changelog
 ---------
 0.82
 *features
+- single click movement
 - easter bunny
 - pied piper quest
 - open manual on key F1
 - added /volume support for sound
 - added sound groups (attacks, background music, gui)
-- asynchronous database access for logging
+- asynchronous database access
 
 *admins*
 - new /script AdminPortal.class
