@@ -52,6 +52,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ComponentEvent;
@@ -1125,5 +1126,15 @@ public class j2DClient implements UserInterface {
 		}
 
 		public void componentShown(ComponentEvent e) { 	}
+	}
+
+
+	/**
+	 * sets the cursor
+	 *
+	 * @param cursor Cursor
+	 */
+	public void setCursor(Cursor cursor) {
+		pane.setCursor(cursor);
 	}
 }

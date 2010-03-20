@@ -200,6 +200,31 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	}
 
 
+
+	@Override
+	public synchronized void mouseMoved(MouseEvent e) {
+		super.mouseMoved(e);
+		if ((e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0) {
+			return;
+		}
+		
+		if (System.getProperty("stendhal.cursor") != null) {
+
+			Cursor cursor = Cursor.getDefaultCursor();
+			if (getWtPanelAt(e.getPoint()) == null) {
+				final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
+				final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+				if (view != null) {
+					// TODO: ask EntityView about cursor
+					cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+				} else {
+					// TODO: display a cursor with a walking idea
+					cursor = Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR);
+				}
+			}
+			ui.setCursor(cursor);
+		}
+	}
 	
 	
 	//
