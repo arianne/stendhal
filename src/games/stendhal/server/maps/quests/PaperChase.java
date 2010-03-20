@@ -10,7 +10,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
-import games.stendhal.server.entity.npc.action.LoadSignFromHallOfFame;
+import games.stendhal.server.entity.npc.action.LoadSignFromHallOfFameAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetHallOfFameToAgeDiffAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -153,7 +153,7 @@ public class PaperChase extends AbstractQuest {
 		sign.setPosition(94, 110);
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 		zone.add(sign);
-		loadSignFromHallOfFame = new LoadSignFromHallOfFame(sign, "Those who travelled the world:\n", "P", 2000, true);
+		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(sign, "Those who travelled the world:\n", "P", 2000, true);
 		loadSignFromHallOfFame.fire(null, null, null);
 	}
 

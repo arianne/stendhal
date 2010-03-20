@@ -112,6 +112,7 @@ public class StendhalHallOfFameDAO {
 	 * @param fametype type of fame
 	 * @param max maximum number of returned characters
 	 * @param ascending sort ascending or descending
+	 * @return list of character names
 	 * @throws SQLException in case of an database error
 	 */
 	public List<String> getCharactersByFametype(DBTransaction transaction, String fametype, int max, boolean ascending) throws SQLException {
@@ -181,6 +182,7 @@ public class StendhalHallOfFameDAO {
 	 * @param fametype type of fame
 	 * @param max maximum number of returned characters
 	 * @param ascending sort ascending or descending
+	 * @return list of character names
 	 */
 	public List<String> getCharactersByFametype(String fametype, int max, boolean ascending) {
 		DBTransaction transaction = TransactionPool.get().beginWork();

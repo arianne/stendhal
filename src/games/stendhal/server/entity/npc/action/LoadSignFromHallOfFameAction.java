@@ -17,7 +17,7 @@ import marauroa.server.game.db.DAORegister;
  *
  * @author hendrik
  */
-public class LoadSignFromHallOfFame implements ChatAction {
+public class LoadSignFromHallOfFameAction implements ChatAction {
 
 	private Sign sign;
 	private String introduction;
@@ -34,7 +34,7 @@ public class LoadSignFromHallOfFame implements ChatAction {
 	 * @param max maximum number of returned characters
 	 * @param ascending sort ascending or descending
 	 */
-	public LoadSignFromHallOfFame(Sign sign, String introduction, String fametype, int max, boolean ascending) {
+	public LoadSignFromHallOfFameAction(Sign sign, String introduction, String fametype, int max, boolean ascending) {
 		this.sign = sign;
 		this.introduction = introduction;
 		this.fametype = fametype;
