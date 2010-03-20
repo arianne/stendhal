@@ -51,7 +51,6 @@ class NotifyPlayerAboutHallOfFamePoints implements TurnListener {
 
 
 
-	@Override
 	public void onTurnReached(int currentTurn) {
 		// if there is no result, wait some more
 		List<ReadHallOfFamePointsCommand> list = DBCommandQueue.get().getResults(ReadHallOfFamePointsCommand.class, handle);
