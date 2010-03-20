@@ -15,17 +15,20 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 
+import java.awt.Cursor;
 import java.awt.Point;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
 import marauroa.common.game.RPAction;
@@ -123,7 +126,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 				view.onAction(ActionType.LOOK);
 				return true;
 			}
-		} else {
+		} else if (getWtPanelAt(p) == null) {
 			createAndSendMoveToAction(point);
 			return true;
 		}
@@ -196,10 +199,13 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		return false;
 	}
 
+
+	
+	
 	//
 	// WtDropTarget
 	//
-
+	
 	/**
 	 * called when an object is dropped.
 	 * 
@@ -264,4 +270,6 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			return newContainer;
 		}
 	}
+	
+	
 }

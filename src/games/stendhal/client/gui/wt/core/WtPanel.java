@@ -1262,6 +1262,29 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			return false;
 		}
 
+		WtPanel panel = getWtPanelAt(p);
+		if (panel != null) {
+			final Point p2 = p.getLocation();
+			p2.translate(-getClientX(), -getClientY());
+			final Point point = p2.getLocation();
+			point.translate(-panel.getX(), -panel.getY());
+			// right-click the child
+			panel.onMouseDoubleClick(point);
+
+			// the doubleclick hit the window, bail out
+			return true;
+		}
+		// not processed
+		return false;
+	}
+
+	/**
+	 * gets the panel at the specified point
+	 *
+	 * @param p point
+	 * @return WtPanel or <code>null</code> if there is no pannel at that location
+	 */
+	public synchronized WtPanel getWtPanelAt(final Point p) {
 		// translate point to client coordinates
 		final Point p2 = p.getLocation();
 		p2.translate(-getClientX(), -getClientY());
@@ -1270,17 +1293,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		for (final WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(p2.x, p2.y)) {
-				final Point point = p2.getLocation();
-				point.translate(-panel.getX(), -panel.getY());
-				// right-click the child
-				panel.onMouseDoubleClick(point);
-
-				// the doubleclick hit the window, bail out
-				return true;
+				return panel;
 			}
 		}
-		// not processed
-		return false;
+		return null;
 	}
 
 	/**
