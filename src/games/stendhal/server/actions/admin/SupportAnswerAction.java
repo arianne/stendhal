@@ -34,20 +34,25 @@ public class SupportAnswerAction extends AdministrationAction {
 			
 			// test for use of standard response shortcut, and replace the reply message if so
 			// if you alter these please update client/actions/GMHelpAction (or put the string replies in a common file if you like)
+			final Player supported = SingletonRepository.getRuleProcessor().getPlayer(action.get(TARGET));
+			
 			if (reply.startsWith("$")) {
 				if (messageTemplates.containsKey(reply)) {
 					reply = messageTemplates.get(reply);
+					if (supported != null) {
+						reply = String.format(reply, supported.getTitle());
+					}
 				} else {
 					player.sendPrivateText(reply + " is not a recognised shortcut. Did you mean $faq, $faqsocial, $ignore, $faqpvp, $wiki, $knownbug, $bugstracker, $rules, $notsupport or $spam?");
 					// send no support answer message if the shortcut wasn't understood
 					return;
 				}				
 			}
+			
 			final String message = player.getTitle() + " answers " + Grammar.suffix_s(action.get(TARGET))
 					+ " support question: " + reply;
 
 			new GameEvent(player.getName(), SUPPORTANSWER, action.get(TARGET), reply).raise();
-			final Player supported = SingletonRepository.getRuleProcessor().getPlayer(action.get(TARGET));
 			if (supported != null) {
 
 				supported.sendPrivateText(NotificationType.SUPPORT, "Support (" + player.getTitle() + ") tells you: " + reply + " \nIf you wish to reply, use /support.");
