@@ -138,7 +138,7 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 		locations.add(new Location("int_oni_palace_1", 150, 28, 28));		// oni palace
 		locations.add(new Location("-4_ados_abandoned_keep", 150, 11, 27));	// -4 abandoned keep
 		locations.add(new Location("-2_semos_mine_w2", 150, 22, 39));		// balrog semos mines
-		locations.add(new Location("-1_nalwor_drows_tunnel_n", 170, 58, 44)); // nalwor drow tunnel where thing is
+		locations.add(new Location("-1_nalwor_drows_tunnel_n", 170, 58, 44)); // nalwor drow tunnel (main)
 		locations.add(new Location("-6_ados_abandoned_keep", 170, 15, 19));	// -6 ados abandoned keep
 		locations.add(new Location("int_mithrilbourgh_stores", 170, 6, 5));	// mithrilbourgh stores
 		locations.add(new Location("hell", 200, 66, 77));					// hell
@@ -196,12 +196,15 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 	protected boolean usePortal(final Player player) {
 		if (!nextTo(player)) {
 			// Too far to use the portal
+			player.sendPrivateText("You must stand nearer to use the orb.");
 			return false;
 		}
 
 		Location location = getRandomLocation(player);
+		
+		// Would happen if the player was below the minimum level for any location
 		if (location == null) {
-			player.sendPrivateText("You can not concentrate well enough to use this orb");
+			player.sendPrivateText("You can not concentrate well enough to use this orb.");
 			return false;
 		}
 		
