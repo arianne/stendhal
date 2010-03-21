@@ -158,7 +158,7 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 	 * or <code>null</code> if there are no appropriate places 
 	 */
 	private Location getRandomLocation(Player player) {
-		List allowed = getAllowedLocations(player);
+		List<Location> allowed = getAllowedLocations(player);
 		if (allowed.size() > 0) {
 			return Rand.rand(getAllowedLocations(player));
 		} else {
