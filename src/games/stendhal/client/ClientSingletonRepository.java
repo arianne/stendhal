@@ -1,6 +1,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.gui.UserInterface;
+import games.stendhal.client.sound.SoundSystemFacade;
 import marauroa.client.ClientFramework;
 
 /**
@@ -49,5 +50,14 @@ public class ClientSingletonRepository {
 	 */
 	public static void setUserInterface(UserInterface userInterface) {
 		ClientSingletonRepository.userInterface = userInterface;
+	}
+
+	/**
+	 * gets the sound system
+	 *
+	 * @return SoundSystemFacade
+	 */
+	public static SoundSystemFacade getSound() {
+		return userInterface.getSoundSystemFacade();
 	}
 }

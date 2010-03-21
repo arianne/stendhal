@@ -42,8 +42,10 @@ import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
+import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.sound.manager.SoundFile.Type;
+import games.stendhal.client.sound.nosound.NoSoundFacade;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
@@ -189,6 +191,8 @@ public class j2DClient implements UserInterface {
 	 * The stendhal client.
 	 */
 	protected StendhalClient client;
+
+	private SoundSystemFacade soundSystemFacade;
 
 
 	/**
@@ -411,7 +415,7 @@ public class j2DClient implements UserInterface {
 		SlashActionRepository.register();
 
 		checkAndComplainAboutJavaImplementation();
-		WorldObjects.addWorldListener(SoundSystemFacade.get());
+		WorldObjects.addWorldListener(getSoundSystemFacade());
 	} // constructor
 
 	private void checkAndComplainAboutJavaImplementation() {
@@ -463,7 +467,7 @@ public class j2DClient implements UserInterface {
 		final StaticGameLayers gameLayers = client.getStaticGameLayers();
 
 		try {
-			SoundSystemFacade.Group group = initSoundSystem();
+			SoundGroup group = initSoundSystem();
 			group.play("harp-1", 0, null, null, false, true);
 		} catch (RuntimeException e) {
 			logger.error(e, e);
@@ -620,10 +624,10 @@ public class j2DClient implements UserInterface {
 			}
 		}
 	
-		SoundSystemFacade.get().exit();
+		getSoundSystemFacade().exit();
 	}
-	private SoundSystemFacade.Group initSoundSystem() {
-		SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup("gui");
+	private SoundGroup initSoundSystem() {
+		SoundGroup group = getSoundSystemFacade().getGroup("gui");
 		group.loadSound("harp-1", "audio:/harp-1.ogg", Type.OGG, false);
 		group.loadSound("click-4", "audio:/click-4.ogg", Type.OGG, false);
 		group.loadSound("click-5", "audio:/click-5.ogg", Type.OGG, false);
@@ -1136,5 +1140,24 @@ public class j2DClient implements UserInterface {
 	 */
 	public void setCursor(Cursor cursor) {
 		pane.setCursor(cursor);
+	}
+
+	/**
+	 * gets the sound system
+	 *
+	 * @return SoundSystemFacade
+	 */
+	public SoundSystemFacade getSoundSystemFacade() {
+		if (soundSystemFacade == null) {
+			try {
+				soundSystemFacade = new games.stendhal.client.sound.sound.SoundSystemFacadeImpl();
+			} catch (RuntimeException e) {
+				soundSystemFacade = new NoSoundFacade();
+				logger.error(e, e);
+				soundSystemFacade = new NoSoundFacade();
+				logger.error(e, e);
+			}
+		}
+		return soundSystemFacade;
 	}
 }

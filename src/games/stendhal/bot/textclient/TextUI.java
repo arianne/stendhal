@@ -3,6 +3,8 @@ package games.stendhal.bot.textclient;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.nosound.NoSoundFacade;
 import games.stendhal.common.NotificationType;
 
 /**
@@ -14,11 +16,14 @@ public class TextUI implements UserInterface {
 	private static final String ESC_COLOR_RESET = "\u001B[m";
 	private static final String ESC_COLOR_INPUT = "\u001B[32m";
 
+	private SoundSystemFacade soundSystemFacade;
+
 	/**
 	 * creates a TextUI
 	 */
 	public TextUI() {
 		ClientSingletonRepository.setUserInterface(this);
+		soundSystemFacade = new NoSoundFacade();
 	}
 
 	/**
@@ -44,6 +49,15 @@ public class TextUI implements UserInterface {
 			boolean isTalking) {
 		// ignored
 		
+	}
+
+	/**
+	 * gets the sound system
+	 *
+	 * @return SoundSystemFacade
+	 */
+	public SoundSystemFacade getSoundSystemFacade() {
+		return soundSystemFacade;
 	}
 
 }

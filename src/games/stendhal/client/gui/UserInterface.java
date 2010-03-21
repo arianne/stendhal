@@ -1,6 +1,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.common.NotificationType;
 
 /**
@@ -28,4 +29,14 @@ public interface UserInterface {
 	public void addGameScreenText(final double x, final double y, 
 			final String text, final NotificationType type,
 			final boolean isTalking);
+	
+
+
+	/**
+	 * gets the sound system
+	 *
+	 * @return SoundSystemFacade
+	 */
+	public SoundSystemFacade getSoundSystemFacade();
+
 }
