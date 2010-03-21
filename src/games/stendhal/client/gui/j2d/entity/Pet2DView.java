@@ -78,7 +78,7 @@ class Pet2DView extends DomesticAnimal2DView {
 		switch (at) {
 		case LEAVE_PET:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
-
+			break;
 		default:
 			super.onAction(at);
 			break;
