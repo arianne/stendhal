@@ -2,172 +2,41 @@ package games.stendhal.client.sound;
 
 import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.sound.manager.AudibleArea;
-import games.stendhal.client.sound.manager.DeviceEvaluator;
-import games.stendhal.client.sound.manager.SoundFile;
-import games.stendhal.client.sound.manager.SoundManagerNG;
+import games.stendhal.client.sound.manager.SoundManagerNG.Sound;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.math.Algebra;
-import games.stendhal.common.resource.ResourceLocator;
-import games.stendhal.common.resource.ResourceManager;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.regex.Pattern;
-import javax.sound.sampled.AudioFormat;
 
 /**
- * this class is the main interface between the game logic and the low level
- * sound system. it is a refinement of the manager.SoundManager class.
+ * this class is the interface between the game logic and the
+ * sound system.
  * 
  * @author hendrik, silvio
  */
-public class SoundSystemFacade extends SoundManagerNG implements WorldListener {
+// TODO: Do not extend WorldListener
+public interface SoundSystemFacade extends WorldListener {
 
-	private static class Multiplicator {
+	public void playerMoved();
 
-		public Multiplicator(float v, Group g) {
-			value = v;
-			group = g;
-		}
+	public void zoneEntered(String zoneName);
 
-		float value;
-		Group group;
-	}
+	public void zoneLeft(String zoneName);
 
-	public class Group {
+	public void exit();
 
-		private boolean mEnabled = true;
-		private float mVolume = 1.0f;
-		private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
+	public SoundGroup getGroup(String groupName);
 
-		public boolean loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
-			Sound sound = SoundSystemFacade.this.mSounds.get(name);
+	public void update();
 
-			if (sound == null) {
-				sound = openSound(mResourceLocator.getResource(fileURI), fileType, 256, enableStreaming);
+	public void stop(SoundHandle sound, Time fadingDuration);
 
-				if (sound != null)
-					SoundSystemFacade.this.mSounds.put(name, sound);
-			}
+	public void mute(boolean turnOffSound, boolean useFading, Time delay);
 
-			if (sound != null)
-				mSounds.put(name, sound);
+	public float getVolume();
 
-			return sound != null;
-		}
+	public Collection<String> getGroupNames();
 
-		public float getVolume() {
-			return mVolume;
-		}
+	public void changeVolume(float volume);
 
-		public void changeVolume(float volume) {
-			mVolume = volume;
-
-			for (Sound sound : getActiveSounds()) {
-				Multiplicator multiplicator = sound.getAttachment(Multiplicator.class);
-
-				if (multiplicator != null && multiplicator.group == this) {
-					SoundSystemFacade.this.changeVolume(sound, (mMasterVolume * mVolume * multiplicator.value));
-				}
-			}
-		}
-
-		public Sound play(String soundName, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
-			return play(soundName, 1.0f, layerLevel, area, fadeInDuration, autoRepeat, clone);
-		}
-
-		public Sound play(String soundName, float volume, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
-
-			if (mEnabled) {
-				Sound sound = mSounds.get(soundName);
-
-				if (sound != null) {
-					if (clone)
-						sound = sound.clone();
-
-					sound.setAttachment(new Multiplicator(volume, this));
-					SoundSystemFacade.this.play(sound, (mMasterVolume * mVolume * volume), layerLevel, area, autoRepeat, fadeInDuration);
-				}
-
-				return sound;
-			}
-
-			return null;
-		}
-	}
-
-	private static final AudioFormat mAudioFormat;
-	private static final DeviceEvaluator mDeviceEvaluator;
-	private static final SoundSystemFacade mSingletonInstance;
-
-	static
-	{
-		mDeviceEvaluator = new DeviceEvaluator();
-		mDeviceEvaluator.setRating(Pattern.compile(".*pulseaudio.*", Pattern.CASE_INSENSITIVE), null, 1);
-		mDeviceEvaluator.setRating(Pattern.compile(".*Java Sound Audio Engine.*"), null, -1);
-
-		mAudioFormat = new AudioFormat(44100, 16, 2, true, false);
-		mSingletonInstance = new SoundSystemFacade();
-	}
-
-	private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
-	private final HashMap<String, Group> mGroups = new HashMap<String, Group>();
-	private final ResourceLocator mResourceLocator = ResourceManager.get();
-	private float mMasterVolume = 1.0f;
-
-	public static SoundSystemFacade get() {
-		return mSingletonInstance;
-	}
-
-	private SoundSystemFacade() {
-		super(!Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true")),
-				mDeviceEvaluator.createDeviceList(mAudioFormat), mAudioFormat);
-	}
-
-	public void playerMoved() {
-		float[] position = Algebra.vecf((float) User.get().getX(), (float) User.get().getY());
-		super.setHearerPosition(position);
-		super.update();
-	}
-
-	public void zoneEntered(String zoneName) {
-		// ignored
-	}
-
-	public void zoneLeft(String zoneName) {
-		// ignored
-	}
-
-	public Group getGroup(String groupName) {
-		Group group = mGroups.get(groupName);
-
-		if (group == null) {
-			group = new Group();
-			mGroups.put(groupName, group);
-		}
-
-		return group;
-	}
-
-	public Collection<String> getGroupNames() {
-		return mGroups.keySet();
-	}
-
-	public float getVolume() {
-		return mMasterVolume;
-	}
-
-	public void changeVolume(float volume) {
-		mMasterVolume = volume;
-
-		for (Sound sound : getActiveSounds()) {
-			Multiplicator multiplicator = sound.getAttachment(Multiplicator.class);
-
-			if (multiplicator != null) {
-				super.changeVolume(sound, (mMasterVolume * multiplicator.group.mVolume * multiplicator.value));
-			}
-		}
-	}
 }
