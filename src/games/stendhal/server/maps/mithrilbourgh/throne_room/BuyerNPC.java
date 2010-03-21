@@ -46,7 +46,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addJob("Isn't it clear by my title...?");
 				addReply("mainio", "My advisors tell me the word means 'excellent' in some foreign language. If it is so, my men must wear it! I do not think Diehelm Brui is equipping them well enough!");
 				addHelp("My army must have the best items. #Offer me some of the rare #mainio armor I have heard tell of, and I will pay you handsomely.");
-				addQuest("The Mithrilbourgh Army and I are not in need of your services at present.");
+				//addQuest("The Mithrilbourgh Army and I are not in need of your services at present.");
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buymainio")), true);
  				addGoodbye("Bye.");
 			}
