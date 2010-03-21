@@ -118,7 +118,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 
 		// for the clicked entity....
 		final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
-		if (view != null) {
+		if ((view != null) && view.isInteractive()) {
 			if (ui.isCtrlDown()) {
 				view.onAction();
 				return true;
@@ -153,7 +153,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 
 		final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
 
-		if (view != null) {
+		if ((view != null) && view.isInteractive()) {
 			// ... do the default action
 			view.onAction();
 			return true;
@@ -214,7 +214,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			if (getWtPanelAt(e.getPoint()) == null) {
 				final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
 				final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
-				if (view != null) {
+				if ((view != null) && view.isInteractive()) {
 					// TODO: ask EntityView about cursor
 					cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
 				} else {
