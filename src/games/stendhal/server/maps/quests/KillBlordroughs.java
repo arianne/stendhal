@@ -227,7 +227,7 @@ import org.apache.log4j.Logger;
 	 * class for quest talking.
 	 */
 	class QuestAction implements ChatAction {
-		@Override
+
 		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 			if(questInProgress(player)) {
 				int killed = getKilledCreaturesNumber(player);

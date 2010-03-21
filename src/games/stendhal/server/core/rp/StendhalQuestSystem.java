@@ -39,7 +39,6 @@ import games.stendhal.server.maps.quests.IntroducePlayers;
 import games.stendhal.server.maps.quests.JailedBarbarian;
 import games.stendhal.server.maps.quests.JailedDwarf;
 import games.stendhal.server.maps.quests.KanmararnSoldiers;
-import games.stendhal.server.maps.quests.KillBlordroughs;
 import games.stendhal.server.maps.quests.KillDarkElves;
 import games.stendhal.server.maps.quests.KillDhohrNuggetcutter;
 import games.stendhal.server.maps.quests.KillGnomes;
