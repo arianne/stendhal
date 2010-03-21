@@ -5,6 +5,7 @@
 
 package games.stendhal.client.sound.manager;
 
+import games.stendhal.client.sound.SoundHandle;
 import games.stendhal.client.sound.manager.DeviceEvaluator.Device;
 import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.client.sound.system.SoundSystemNG;
@@ -42,7 +43,7 @@ public class SoundManagerNG
 	private final static Time                BUFFER_DURATION          = new Time(15, Time.Unit.MILLI);
     private final static Time                ZERO_DURATION            = new Time();
 
-    public final static class Sound implements Cloneable
+    public final static class Sound implements SoundHandle, Cloneable
     {
         final AtomicReference<SoundFile>    file    = new AtomicReference<SoundFile>(null);
         final AtomicReference<SoundChannel> channel = new AtomicReference<SoundChannel>(null);
