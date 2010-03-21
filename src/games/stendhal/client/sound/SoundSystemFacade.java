@@ -1,10 +1,7 @@
 package games.stendhal.client.sound;
 
 import games.stendhal.client.WorldObjects.WorldListener;
-import games.stendhal.client.entity.User;
-import games.stendhal.client.sound.manager.SoundManagerNG.Sound;
 import games.stendhal.client.sound.system.Time;
-import games.stendhal.common.math.Algebra;
 
 import java.util.Collection;
 

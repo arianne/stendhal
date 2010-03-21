@@ -25,7 +25,6 @@ import games.stendhal.client.gui.wt.core.WtButton;
 import games.stendhal.client.gui.wt.core.WtClickListener;
 import games.stendhal.client.gui.wt.core.WtCloseListener;
 import games.stendhal.client.gui.wt.core.WtPanel;
-import games.stendhal.client.sound.SoundSystemFacade;
 
 import java.awt.Point;
 import java.util.HashMap;
