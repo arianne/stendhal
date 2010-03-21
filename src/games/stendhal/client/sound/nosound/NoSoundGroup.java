@@ -17,7 +17,7 @@ public class NoSoundGroup implements SoundGroup {
 		return 0;
 	}
 
-	public boolean loadSound(String string, String string2, Type ogg, boolean b) {
+	public boolean loadSound(String name, String fileURI, Type fileType, boolean enableStreaming) {
 		// do nothing
 		return false;
 	}

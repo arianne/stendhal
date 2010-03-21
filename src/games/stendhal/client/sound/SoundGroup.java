@@ -6,7 +6,7 @@ import games.stendhal.client.sound.system.Time;
 
 public interface SoundGroup {
 
-	public boolean loadSound(String string, String string2, Type ogg, boolean b);
+	public boolean loadSound(String name, String fileURI, Type fileType, boolean enableStreaming);
 
 	public SoundHandle play(String soundName, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone);
 
