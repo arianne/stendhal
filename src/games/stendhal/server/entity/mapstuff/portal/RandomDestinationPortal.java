@@ -112,9 +112,42 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 	 * Initialize the locations set
 	 */
 	private void initLocations() {
-		locations.add(new Location("0_semos_mountain_n_w2", 10, 62, 116));	// gnome village
+		locations.add(new Location("0_semos_mountain_n_w2", 10, 65, 116));	// gnome village
+		locations.add(new Location("0_ados_outside_nw", 10, 52, 39)); 		// ados zoo 
+		locations.add(new Location("0_kirdneh_city", 15, 63, 26));			// kirdneh city
 		locations.add(new Location("0_fado_forest", 20, 66, 35));			// fairy ring
+		locations.add(new Location("0_orril_castle", 20, 62, 75));          // orril castle
+		locations.add(new Location("int_ados_haunted_house", 25, 4, 27));	// haunted house
+		locations.add(new Location("-2_orril_dungeon", 25, 106, 21));		// rat dungeon
+		locations.add(new Location("-1_semos_mine_nw", 30, 22, 75));		// kobold city
+		locations.add(new Location("0_athor_island", 30, 77, 73));          // athor island
+        locations.add(new Location("-1_ados_wall", 30, 91, 62));			// ados sewers    	
+        locations.add(new Location("-2_kotoch_entrance", 30, 20, 111));     // orc dungeons
+        locations.add(new Location("0_nalwor_city", 60, 88, 85));           // nalwor city
+        locations.add(new Location("-1_semos_yeti_cave", 60, 13, 39));		// yeti cave		
+        locations.add(new Location("-2_ados_outside_nw", 70, 28, 5));       // dwarfs/bario
+        locations.add(new Location("0_ados_mountain_n2", 70,  52, 28));		// barbarian camp
+        locations.add(new Location("1_kikareukin_cave", 70, 18, 97));		// 1 kika
+        locations.add(new Location("-6_kanmararn_city", 70, 33, 52));       // kanmararn 
+		locations.add(new Location("-2_orril_lich_palace", 70, 67, 118));   // lich palace
+		locations.add(new Location("-2_orril_dwarf_mine", 70, 50, 40));     // dwarf mine
+		locations.add(new Location("0_amazon_island_nw", 90, 30, 30));      // amazon island
+		locations.add(new Location("-1_ados_abandoned_keep", 90, 3, 103));  // abandoned keep
+		locations.add(new Location("-1_fado_great_cave_n_e2", 120, 113, 19)); // magic city
+		locations.add(new Location("int_kalavan_castle_basement", 150, 30,103)); // kalavan castle
+		locations.add(new Location("int_oni_palace_1", 150, 28, 28));		// oni palace
+		locations.add(new Location("-4_ados_abandoned_keep", 150, 11, 27));	// -4 abandoned keep
+		locations.add(new Location("-2_semos_mine_w2", 150, 22, 39));		// balrog semos mines
+		locations.add(new Location("-1_nalwor_drows_tunnel_n", 170, 58, 44)); // nalwor drow tunnel where thing is
+		locations.add(new Location("-6_ados_abandoned_keep", 170, 15, 19));	// -6 ados abandoned keep
+		locations.add(new Location("int_mithrilbourgh_stores", 170, 6, 5));	// mithrilbourgh stores
 		locations.add(new Location("hell", 200, 66, 77));					// hell
+		locations.add(new Location("-1_fado_great_cave_w2", 200, 90, 57));  // sedah
+		locations.add(new Location("4_kikareukin_cave", 200, 10, 10)); 		// 4 kika
+		locations.add(new Location("5_kikareukin_cave", 200, 31, 100)); 	// 5 kika
+		locations.add(new Location("-2_semos_mine_e2", 200, 4, 5));			// chaos mines
+		locations.add(new Location("-1_ados_outside_w", 200, 33, 30)); 		// -1 ados wall
+		locations.add(new Location("6_kikareukin_islands", 200, 10, 10));	// 6 kika
 	}
 
 	/**
