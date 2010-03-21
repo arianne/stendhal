@@ -101,14 +101,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	private boolean changed;
 
-	/**
-	 * Create a 2D view of an entity.
-	 */
-	public Entity2DView() {
-		
-		
-	}
-
 	public void initialize(final IEntity entity) {
 		if (entity == null) {
 			throw new IllegalArgumentException("entity must not be null");
@@ -728,6 +720,15 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 					"Unknown action not processed: " + at);
 			break;
 		}
+	}
+
+	/**
+	 * is this entity interactive so that the player can click or move it?
+	 * 
+	 * @return true if the player can interact with it, false otherwise.
+	 */
+	public boolean isInteractive() {
+		return true;
 	}
 
 	/**

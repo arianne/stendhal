@@ -74,4 +74,10 @@ public interface EntityView {
 
 	void initialize(IEntity entity);
 
+	/**
+	 * is this entity interactive so that the player can click or move it?
+	 * 
+	 * @return true if the player can interact with it, false otherwise.
+	 */
+	boolean isInteractive();
 }

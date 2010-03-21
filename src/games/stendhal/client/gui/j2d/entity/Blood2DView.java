@@ -75,9 +75,16 @@ class Blood2DView extends StateEntity2DView {
 		return 2000;
 	}
 
+	@Override
+	public boolean isInteractive() {
+		return false;
+	}
+
+
 	//
 	// EntityChangeListener
 	//
+
 
 	/**
 	 * An entity was changed.
