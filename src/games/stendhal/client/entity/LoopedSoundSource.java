@@ -22,10 +22,11 @@ http://www.gnu.org/copyleft/gpl.html.
  */
 package games.stendhal.client.entity;
 
-import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.sound.SoundGroup;
+import games.stendhal.client.sound.SoundHandle;
 import games.stendhal.client.sound.manager.AudibleCircleArea;
 import games.stendhal.client.sound.manager.SoundFile.Type;
-import games.stendhal.client.sound.manager.SoundManagerNG.Sound;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.math.Algebra;
@@ -34,17 +35,17 @@ import marauroa.common.game.RPObject;
 
 public class LoopedSoundSource extends InvisibleEntity {
 
-	private String                  soundName      = null;
-	private Sound                   sound          = null;
-	private SoundSystemFacade.Group group          = null;
-	private Time                    fadingDuration = new Time();
+	private String soundName = null;
+	private SoundHandle sound = null;
+	private SoundGroup group = null;
+	private Time fadingDuration = new Time();
 	private int radius;
 	private float volume;
 
 	@Override
 	public void onChangedAdded(RPObject object, RPObject changes) {
 		// stop the current sound
-		SoundSystemFacade.get().stop(sound, fadingDuration);
+		ClientSingletonRepository.getSound().stop(sound, fadingDuration);
 
 		// udpate
 		super.onChangedAdded(object, changes);
@@ -79,19 +80,19 @@ public class LoopedSoundSource extends InvisibleEntity {
 			switch(layer)
 			{
 			case AMBIENT_SOUND:
-				group = SoundSystemFacade.get().getGroup("ambient");
+				group = ClientSingletonRepository.getSound().getGroup("ambient");
 				break;
 			case BACKGROUND_MUSIC:
-				group = SoundSystemFacade.get().getGroup("music");
+				group = ClientSingletonRepository.getSound().getGroup("music");
 				break;
 			case CREATURE_NOISE:
-				group = SoundSystemFacade.get().getGroup("creature");
+				group = ClientSingletonRepository.getSound().getGroup("creature");
 				break;
 			case FIGHTING_NOISE:
-				group = SoundSystemFacade.get().getGroup("sfx");
+				group = ClientSingletonRepository.getSound().getGroup("sfx");
 				break;
 			case USER_INTERFACE:
-				group = SoundSystemFacade.get().getGroup("gui");
+				group = ClientSingletonRepository.getSound().getGroup("gui");
 				break;
 			}
 
@@ -113,7 +114,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	 */
 	private void play() {
 		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), radius / 2.0f, radius);
-		boolean cloneSound = group != SoundSystemFacade.get().getGroup("music");
+		boolean cloneSound = group != ClientSingletonRepository.getSound().getGroup("music");
 		sound = group.play(soundName, volume, 0, area, fadingDuration, true, cloneSound);
 	}
 
@@ -126,6 +127,6 @@ public class LoopedSoundSource extends InvisibleEntity {
 	@Override
 	public void release() {
 		super.release();
-		SoundSystemFacade.get().stop(sound, fadingDuration);
+		ClientSingletonRepository.getSound().stop(sound, fadingDuration);
 	}
 }

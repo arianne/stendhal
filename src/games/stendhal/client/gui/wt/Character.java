@@ -18,6 +18,7 @@
 
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.IEntity;
@@ -25,7 +26,6 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtPanel;
-import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Constants;
 
@@ -218,6 +218,6 @@ public class Character extends WtPanel {
 
 	@Override
 	protected void playOpenSound() {
-		SoundSystemFacade.get().getGroup("gui").play("click-6", 0, null, null, false, true);
+		ClientSingletonRepository.getSound().getGroup("gui").play("click-6", 0, null, null, false, true);
 	}
 }

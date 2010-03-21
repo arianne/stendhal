@@ -4,12 +4,14 @@
  */
 package games.stendhal.client.entity;
 
-import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.client.sound.manager.AudibleCircleArea;
 import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.Rand;
 import games.stendhal.common.math.Algebra;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,7 +27,7 @@ public abstract class AudibleEntity extends RPEntity {
 
 	protected void addSounds(String groupName, String categoryName, String... soundNames) {
 		ArrayList<String> soundNameList = mCategorys.get(categoryName);
-		SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup(groupName);
+		SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
 
 		if (soundNameList == null) {
 			soundNameList = new ArrayList<String>();
@@ -56,16 +58,16 @@ public abstract class AudibleEntity extends RPEntity {
 	protected void onPosition(double x, double y) {
 		super.onPosition(x, y);
 		mAudibleArea.setPosition(Algebra.vecf((float) x, (float) y));
-		SoundSystemFacade.get().update();
+		ClientSingletonRepository.getSound().update();
 	}
 
 	protected void playSound(String groupName, String soundName) {
-		SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup(groupName);
+		SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
 		group.play(soundName, 0, mAudibleArea, new Time(), false, true);
 	}
 
 	protected void playRandomSoundFromCategory(String groupName, String categoryName) {
-		SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup(groupName);
+		SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
 		group.play(getRandomSoundFromCategory(categoryName), 0, mAudibleArea, new Time(), false, true);
 	}
 

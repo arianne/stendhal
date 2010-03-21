@@ -18,6 +18,7 @@
 
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.wt.core.WtButton;
@@ -179,6 +180,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 
 	@Override
 	protected void playOpenSound() {
-		SoundSystemFacade.get().getGroup("gui").play("click-4", 0, null, null, false, true);
+		ClientSingletonRepository.getSound().getGroup("gui").play("click-4", 0, null, null, false, true);
 	}
 }

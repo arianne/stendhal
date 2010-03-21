@@ -1,7 +1,8 @@
 package games.stendhal.client.events;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.client.sound.manager.AudibleCircleArea;
 import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.common.constants.SoundLayer;
@@ -34,25 +35,29 @@ public class SoundEvent extends Event<Entity> {
 			radius = event.getInt("radius");
 		}
 
-		SoundSystemFacade.Group group = null;
+		SoundGroup group = null;
 
 		switch(layer)
 		{
 		case AMBIENT_SOUND:
-			group = SoundSystemFacade.get().getGroup("ambient");
+			group = ClientSingletonRepository.getSound().getGroup("ambient");
 			break;
 		case BACKGROUND_MUSIC:
-			group = SoundSystemFacade.get().getGroup("music");
+			group = ClientSingletonRepository.getSound().getGroup("music");
 			break;
 		case CREATURE_NOISE:
-			group = SoundSystemFacade.get().getGroup("creature");
+			group = ClientSingletonRepository.getSound().getGroup("creature");
 			break;
 		case FIGHTING_NOISE:
-			group = SoundSystemFacade.get().getGroup("sfx");
+			group = ClientSingletonRepository.getSound().getGroup("sfx");
 			break;
 		case USER_INTERFACE:
-			group = SoundSystemFacade.get().getGroup("gui");
+			group = ClientSingletonRepository.getSound().getGroup("gui");
 			break;
+		}
+		
+		if (group == null) {
+			return;
 		}
 
 		String soundName = event.get("sound");

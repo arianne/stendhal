@@ -1,8 +1,9 @@
 package games.stendhal.client.actions;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
-import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.common.math.Numeric;
 
 /**
@@ -22,11 +23,11 @@ class VolumeAction implements SlashAction {
 	 */
 	public boolean execute(final String[] params, final String remainder) {
 		if (params[0].equals("show")) {
-			float volume = SoundSystemFacade.get().getVolume();
+			float volume = ClientSingletonRepository.getSound().getVolume();
 			j2DClient.get().addEventLine(new StandardEventLine("master -> " + Numeric.floatToInt(volume, 100.0f)));
 
-			for (String name : SoundSystemFacade.get().getGroupNames()) {
-				volume = SoundSystemFacade.get().getGroup(name).getVolume();
+			for (String name : ClientSingletonRepository.getSound().getGroupNames()) {
+				volume = ClientSingletonRepository.getSound().getGroup(name).getVolume();
 				j2DClient.get().addEventLine(new StandardEventLine(name + " -> " + Numeric.floatToInt(volume, 100.0f)));
 			}
 		} else {
@@ -39,7 +40,7 @@ class VolumeAction implements SlashAction {
 		try {
 			boolean groupExists = false;
 
-			for (String name : SoundSystemFacade.get().getGroupNames()) {
+			for (String name : ClientSingletonRepository.getSound().getGroupNames()) {
 				if (name.equals(groupName)) {
 					groupExists = true;
 					break;
@@ -48,12 +49,12 @@ class VolumeAction implements SlashAction {
 
 			if (groupExists) {
 				int volume = Integer.parseInt(volumeString);
-				SoundSystemFacade.Group group = SoundSystemFacade.get().getGroup(groupName);
+				SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
 				group.changeVolume(Numeric.intToFloat(volume, 100.0f));
 			} else {
 				if (groupName.equals("master")) {
 					int volume = Integer.parseInt(volumeString);
-					SoundSystemFacade.get().changeVolume(Numeric.intToFloat(volume, 100.0f));
+					ClientSingletonRepository.getSound().changeVolume(Numeric.intToFloat(volume, 100.0f));
 				} else {
 					j2DClient.get().addEventLine(new StandardEventLine("No sound group \"" + groupName + "\" does exist"));
 					j2DClient.get().addEventLine(new StandardEventLine("Please type \"/volume show\" for a valid list of groups"));

@@ -16,9 +16,9 @@
  */
 package games.stendhal.client.gui.wt.core;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.gui.ManagedWindow;
-import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Debug;
@@ -1238,15 +1238,15 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	private void playCloseSound() {
-		SoundSystemFacade.get().getGroup("gui").play("click-10", 0, null, null, false, true);
+		ClientSingletonRepository.getSound().getGroup("gui").play("click-10", 0, null, null, false, true);
 	}
 
 	protected void playOpenSound() {
 		//TODO: use polymorphism
 		if (name.equals("bag")) {
-			SoundSystemFacade.get().getGroup("gui").play("click-8", 0, null, null, false, true);
+			ClientSingletonRepository.getSound().getGroup("gui").play("click-8", 0, null, null, false, true);
 		}  else if (name.equals("chest")) {
-			SoundSystemFacade.get().getGroup("gui").play("click-5", 0, null, null, false, true);
+			ClientSingletonRepository.getSound().getGroup("gui").play("click-5", 0, null, null, false, true);
 		}
 	}
 
