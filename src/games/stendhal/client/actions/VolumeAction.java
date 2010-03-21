@@ -1,7 +1,6 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.common.math.Numeric;
@@ -24,11 +23,11 @@ class VolumeAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		if (params[0].equals("show")) {
 			float volume = ClientSingletonRepository.getSound().getVolume();
-			j2DClient.get().addEventLine(new StandardEventLine("master -> " + Numeric.floatToInt(volume, 100.0f)));
+			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("master -> " + Numeric.floatToInt(volume, 100.0f)));
 
 			for (String name : ClientSingletonRepository.getSound().getGroupNames()) {
 				volume = ClientSingletonRepository.getSound().getGroup(name).getVolume();
-				j2DClient.get().addEventLine(new StandardEventLine(name + " -> " + Numeric.floatToInt(volume, 100.0f)));
+				ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine(name + " -> " + Numeric.floatToInt(volume, 100.0f)));
 			}
 		} else {
 			changeVolume(params[0], params[1]);
@@ -56,12 +55,12 @@ class VolumeAction implements SlashAction {
 					int volume = Integer.parseInt(volumeString);
 					ClientSingletonRepository.getSound().changeVolume(Numeric.intToFloat(volume, 100.0f));
 				} else {
-					j2DClient.get().addEventLine(new StandardEventLine("No sound group \"" + groupName + "\" does exist"));
-					j2DClient.get().addEventLine(new StandardEventLine("Please type \"/volume show\" for a valid list of groups"));
+					ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("No sound group \"" + groupName + "\" does exist"));
+					ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Please type \"/volume show\" for a valid list of groups"));
 				}
 			}
 		} catch (NumberFormatException exception) {
-			j2DClient.get().addEventLine(new StandardEventLine(volumeString + " is not a valid number"));
+			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine(volumeString + " is not a valid number"));
 		}
 	}
 
