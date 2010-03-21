@@ -11,6 +11,8 @@ import games.stendhal.common.math.Algebra;
 
 import java.util.Collection;
 
+import org.apache.log4j.Logger;
+
 /**
  * this class is the interface between the game logic and the
  * sound system.
@@ -18,13 +20,18 @@ import java.util.Collection;
  * @author hendrik, silvio
  */
 public class SoundSystemFacadeImpl implements SoundSystemFacade, WorldListener {
+	private static Logger logger = Logger.getLogger(SoundSystemFacadeImpl.class);
+	
 	private ExtendedSoundManager manager = new ExtendedSoundManager();
 
-
 	public void playerMoved() {
-		float[] position = Algebra.vecf((float) User.get().getX(), (float) User.get().getY());
-		manager.setHearerPosition(position);
-		manager.update();
+		try {
+			float[] position = Algebra.vecf((float) User.get().getX(), (float) User.get().getY());
+			manager.setHearerPosition(position);
+			manager.update();
+		} catch (RuntimeException e) {
+			logger.error(e, e);
+		}
 	}
 
 	public void zoneEntered(String zoneName) {
@@ -36,7 +43,11 @@ public class SoundSystemFacadeImpl implements SoundSystemFacade, WorldListener {
 	}
 
 	public void exit() {
-		manager.exit();
+		try {
+			manager.exit();
+		} catch (RuntimeException e) {
+			logger.error(e, e);
+		}
 	}
 
 	public SoundGroup getGroup(String groupName) {
@@ -44,11 +55,19 @@ public class SoundSystemFacadeImpl implements SoundSystemFacade, WorldListener {
 	}
 
 	public void update() {
-		manager.update();
+		try {
+			manager.update();
+		} catch (RuntimeException e) {
+			logger.error(e, e);
+		}
 	}
 
 	public void stop(SoundHandle sound, Time fadingDuration) {
-		manager.stop((Sound) sound, fadingDuration);
+		try {
+			manager.stop((Sound) sound, fadingDuration);
+		} catch (RuntimeException e) {
+			logger.error(e, e);
+		}
 	}
 
 	public void mute(boolean turnOffSound, boolean useFading, Time delay) {

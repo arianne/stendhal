@@ -5,7 +5,6 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.client.sound.manager.AudibleArea;
-import games.stendhal.client.sound.manager.AudibleCircleArea;
 import games.stendhal.client.sound.manager.DeviceEvaluator;
 import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.SoundManagerNG;
@@ -17,7 +16,10 @@ import games.stendhal.common.resource.ResourceManager;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.regex.Pattern;
+
 import javax.sound.sampled.AudioFormat;
+
+import org.apache.log4j.Logger;
 
 /**
  * this class is the main interface between the game logic and the low level
@@ -26,6 +28,7 @@ import javax.sound.sampled.AudioFormat;
  * @author hendrik, silvio
  */
 public class ExtendedSoundManager extends SoundManagerNG implements WorldListener {
+	private Logger logger = Logger.getLogger(ExtendedSoundManager.class);
 
 	private static class Multiplicator {
 
@@ -45,19 +48,24 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
 
 		public boolean loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
-			Sound sound = ExtendedSoundManager.this.mSounds.get(name);
-
-			if (sound == null) {
-				sound = openSound(mResourceLocator.getResource(fileURI), fileType, 256, enableStreaming);
-
+			try {
+				Sound sound = ExtendedSoundManager.this.mSounds.get(name);
+	
+				if (sound == null) {
+					sound = openSound(mResourceLocator.getResource(fileURI), fileType, 256, enableStreaming);
+	
+					if (sound != null)
+						ExtendedSoundManager.this.mSounds.put(name, sound);
+				}
+	
 				if (sound != null)
-					ExtendedSoundManager.this.mSounds.put(name, sound);
+					mSounds.put(name, sound);
+	
+				return sound != null;
+			} catch (RuntimeException e) {
+				logger.error(e, e);
 			}
-
-			if (sound != null)
-				mSounds.put(name, sound);
-
-			return sound != null;
+			return false;
 		}
 
 		public float getVolume() {
@@ -81,21 +89,24 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		}
 
 		public Sound play(String soundName, float volume, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
-
-			if (mEnabled) {
-				Sound sound = mSounds.get(soundName);
-
-				if (sound != null) {
-					if (clone)
-						sound = sound.clone();
-
-					sound.setAttachment(new Multiplicator(volume, this));
-					ExtendedSoundManager.this.play(sound, (mMasterVolume * mVolume * volume), layerLevel, area, autoRepeat, fadeInDuration);
+			try {
+				
+				if (mEnabled) {
+					Sound sound = mSounds.get(soundName);
+	
+					if (sound != null) {
+						if (clone)
+							sound = sound.clone();
+	
+						sound.setAttachment(new Multiplicator(volume, this));
+						ExtendedSoundManager.this.play(sound, (mMasterVolume * mVolume * volume), layerLevel, area, autoRepeat, fadeInDuration);
+					}
+	
+					return sound;
 				}
-
-				return sound;
+			} catch (RuntimeException e) {
+				logger.error(e, e);
 			}
-
 			return null;
 		}
 	}
