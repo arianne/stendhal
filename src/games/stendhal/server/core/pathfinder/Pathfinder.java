@@ -63,6 +63,11 @@ class Pathfinder {
 	 * @see #getStatus
 	 */
 	public static final int IN_PROGRESS = 0;
+	
+	/**
+	 * Node weight bonus for nodes that do not change the walking direction.
+	 */
+	private static final double STRAIGHT_PATH_PREFERENCE_FACTOR = 0.2;
 
 	/**
 	 * The current status of the pathfinder.
@@ -442,7 +447,33 @@ class Pathfinder {
 		private void updateChild(final TreeNode child) {
 			child.parent = this;
 			child.g = this.g + 1;
-			child.weight = child.g + child.getHeuristic(nodeGoal);
+						
+			child.weight = calculateChildWeight(child);
+		}
+		
+		/**
+		 * Calculate node weight for a child node.
+		 * 
+		 * @param child the child to be calculated
+		 * @return weight for the child node 
+		 */
+		private double calculateChildWeight(final TreeNode child) {
+			double childweight = child.g + child.getHeuristic(nodeGoal);
+
+			// Prefer nodes that do not result in direction change
+			if (parent != null) {
+				final int incx = parent.x - x;
+				final int incy = parent.y - y;
+
+				final int incx2 = x - child.x;
+				final int incy2 = y - child.y;
+
+				if ((incx == incx2) && (incy == incy2)) {
+					childweight -= STRAIGHT_PATH_PREFERENCE_FACTOR;
+				}
+			}
+			
+			return childweight;
 		}
 
 		/**
