@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -28,6 +29,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+
 
 /**
  * QUEST: The Sad Scientist.
@@ -120,7 +122,12 @@ public class SadScientist extends AbstractQuest {
 											// here, true = bind them to player
 											new EquipItemAction("black legs", 1, true)
 										);
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, condition, ConversationStates.IDLE, "Here are the black legs. Now I beg you to wear them. The symbol is done. Fare thee well.",action);
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES, 
+				condition, 
+				ConversationStates.IDLE, 
+				"Here are the black legs. Now I beg you to wear them. The symbol of my pain is done. Fare thee well.",
+				action);
 		// time has not yet passed
 		final ChatCondition notCondition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT,"decorating"),
@@ -144,7 +151,8 @@ public class SadScientist extends AbstractQuest {
 				new PlayerHasItemWithHimCondition("goblet")
 			);
 		ChatAction action = new MultipleActions(
-										new SetQuestAction(QUEST_SLOT, "decorating;"+System.currentTimeMillis()),
+										new SetQuestAction(QUEST_SLOT, "decorating;"),
+										new SetQuestToTimeStampAction(QUEST_SLOT, 1),
 										new DropItemAction("goblet",1)
 										);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -270,7 +278,7 @@ public class SadScientist extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				condition,
 				ConversationStates.IDLE, 
-				"Hello. Please return when you have everything I need for the jewelled legs.",
+				null,
 				new StateTimeRemainingAction(QUEST_SLOT, "Do you think I can work that fast? Go away. " +
 						"Come back in", REQUIRED_MINUTES, 1));
 	}
@@ -316,7 +324,8 @@ public class SadScientist extends AbstractQuest {
 				"Hello. Did you bring what I need?",
 				null);
 		final ChatAction action = new MultipleActions(
-									new SetQuestAction(QUEST_SLOT,"making;"+System.currentTimeMillis()),
+									new SetQuestAction(QUEST_SLOT,"making;"),
+									new SetQuestToTimeStampAction(QUEST_SLOT, 1),
 									new DropItemAction("emerald"),
 									new DropItemAction("obsidian"),
 									new DropItemAction("sapphire"),
