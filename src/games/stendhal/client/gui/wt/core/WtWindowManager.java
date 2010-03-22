@@ -14,6 +14,7 @@ package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.ManagedWindow;
+import games.stendhal.common.MathHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -151,6 +152,26 @@ public class WtWindowManager {
 	}
 
 	/**
+	 * Returns a property.
+	 * 
+	 * @param key
+	 *            Key to look up
+	 * @param defaultValue
+	 *            default value which is returned if the key is not in the
+	 *            configuration file or not a valid integer
+	 * @return value
+	 */
+	public int getPropertyInt(String key, int defaultValue) {
+		String value = getProperty(key, null);
+		if (value == null) {
+			return defaultValue;
+		}
+		
+		return MathHelper.parseIntDefault(value, defaultValue);
+	}
+
+
+	/**
 	 * Sets a property.
 	 * 
 	 * @param key key
@@ -274,18 +295,6 @@ public class WtWindowManager {
 		@Override
 		public String toString() {
 			return writeToPropertyString();
-		}
-
-		/**
-		 * adds all props to the property.
-		 * 
-		 * @param props
-		 */
-		public void writeToProperties(final Properties props) {
-			props.put("window." + name + ".minimized", minimized);
-			props.put("window." + name + ".visible", visible);
-			props.put("window." + name + ".x", x);
-			props.put("window." + name + ".y", y);
 		}
 
 		/**
