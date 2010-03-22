@@ -68,6 +68,7 @@ import games.stendhal.server.maps.quests.QuestInfo;
 import games.stendhal.server.maps.quests.RainbowBeans;
 import games.stendhal.server.maps.quests.ReverseArrow;
 import games.stendhal.server.maps.quests.RingMaker;
+import games.stendhal.server.maps.quests.SadScientist;
 import games.stendhal.server.maps.quests.SemosMineTownRevivalWeeks;
 import games.stendhal.server.maps.quests.SevenCherubs;
 import games.stendhal.server.maps.quests.Snowballs;
@@ -79,6 +80,7 @@ import games.stendhal.server.maps.quests.SuntanCreamForZara;
 import games.stendhal.server.maps.quests.TakeGoldforGrafindle;
 import games.stendhal.server.maps.quests.ThePiedPiper;
 import games.stendhal.server.maps.quests.ToysCollector;
+// import games.stendhal.server.maps.quests.UltimateCollector;
 import games.stendhal.server.maps.quests.VampireSword;
 import games.stendhal.server.maps.quests.WeaponsCollector;
 import games.stendhal.server.maps.quests.WeaponsCollector2;
@@ -196,7 +198,7 @@ public class StendhalQuestSystem {
 		loadQuest(new RainbowBeans());
 		loadQuest(new ReverseArrow());
 		loadQuest(new RingMaker());
-		//loadQuest(new SadScientist());
+		loadQuest(new SadScientist());
 		// loadQuet(new SatoCataclysm());
 		if (System.getProperty("stendhal.minetown") != null) {
 			loadQuest(new SemosMineTownRevivalWeeks());
@@ -212,6 +214,7 @@ public class StendhalQuestSystem {
 		loadQuest(new TakeGoldforGrafindle());
 		loadQuest(new ThePiedPiper());
 		loadQuest(new ToysCollector());
+		// loadQuest(new UltimateCollector());
 		loadQuest(new VampireSword());
 		loadQuest(new WeaponsCollector());
 		loadQuest(new WeaponsCollector2());
