@@ -373,7 +373,7 @@ public class SadScientist extends AbstractQuest {
 				null,
 				ConversationStates.QUEST_STARTED,
 				"I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars, one mithril bar, and I need " +
-				"a pair of shadow legs as the base to add the gems to. Can you do that for my wife? " ,
+				"a pair of shadow legs as the base to add the gems to. Can you do that for my wife?" ,
 				null);
 		// #legs
 		npc.add(ConversationStates.QUEST_STARTED,
@@ -382,7 +382,7 @@ public class SadScientist extends AbstractQuest {
 				ConversationStates.QUEST_STARTED,
 				"Jewelled legs. I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars, " +
 				"one mithril bar, and I need a pair of shadow legs as the base to add the gems to. Can you " +
-				"do that for my wife? Can you bring what I need? " ,
+				"do that for my wife? Can you bring what I need?" ,
 				null);
 		//yes, no after start of quest
 		npc.add(ConversationStates.QUEST_STARTED,
