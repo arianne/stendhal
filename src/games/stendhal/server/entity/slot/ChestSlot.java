@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 
 /**
  * A slot of a chest which is only accessible, if the chest is open.
- *
+ * 
  * @author hendrik
  */
 public class ChestSlot extends LootableSlot {
@@ -16,20 +16,21 @@ public class ChestSlot extends LootableSlot {
 
 	/**
 	 * Creates a ChestSlot
-	 *
-	 * @param owner Chest owning this slot
+	 * 
+	 * @param owner
+	 *            Chest owning this slot
 	 */
 	public ChestSlot(final Chest owner) {
-	    super(owner);
-	    this.chest = owner;
-    }
+		super(owner);
+		this.chest = owner;
+	}
 
 	@Override
-    public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
 		if (!chest.isOpen()) {
-	    	logger.error(entity + " tried to take stuff out of the closed chest " + chest);
-	    	return false;
-	    }
-	    return super.isReachableForTakingThingsOutOfBy(entity);
-    }
+			logger.debug(entity + " tried to take stuff out of the closed chest " + chest);
+			return false;
+		}
+		return super.isReachableForTakingThingsOutOfBy(entity);
+	}
 }
