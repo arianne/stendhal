@@ -104,8 +104,8 @@ public class NotConditionTest {
 	 */
 	@Test
 	public final void testToString() {
-		assertEquals("not <true>", new NotCondition(trueCondition).toString());
-		assertEquals("not <false>", new NotCondition(falsecondition).toString());
+		assertEquals("NOT <true>", new NotCondition(trueCondition).toString());
+		assertEquals("NOT <false>", new NotCondition(falsecondition).toString());
 	}
 
 	/**
