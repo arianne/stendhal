@@ -115,9 +115,9 @@ public class OrConditionTest {
 		assertEquals("or <[]>", new OrCondition().toString());
 
 		assertEquals("or <[true]>", new OrCondition(trueCondition).toString());
-		assertEquals("or <[true, not <true>]>", new OrCondition(trueCondition,
+		assertEquals("or <[true, NOT <true>]>", new OrCondition(trueCondition,
 				falsecondition).toString());
-		assertEquals("or <[not <true>]>",
+		assertEquals("or <[NOT <true>]>",
 				new OrCondition(falsecondition).toString());
 	}
 

@@ -147,9 +147,9 @@ public class AndConditionTest {
 		assertEquals("[]", new AndCondition().toString());
 
 		assertEquals("[true]", new AndCondition(trueCondition).toString());
-		assertEquals("[true, not <true>]", new AndCondition(trueCondition,
+		assertEquals("[true, NOT <true>]", new AndCondition(trueCondition,
 				falsecondition).toString());
-		assertEquals("[not <true>]",
+		assertEquals("[NOT <true>]",
 				new AndCondition(falsecondition).toString());
 	}
 }
