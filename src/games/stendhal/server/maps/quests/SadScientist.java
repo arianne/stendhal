@@ -8,6 +8,9 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
@@ -84,7 +87,6 @@ public class SadScientist extends AbstractQuest {
 
 	private void prepareQuestSteps() {
 		prepareScientist();
-		prepareMayor();
 	}
 
 	private void prepareScientist() {
@@ -98,6 +100,31 @@ public class SadScientist extends AbstractQuest {
 		playerVisitsMayorSakhs(mayorNpc);
 		playerReturnsWithLetter(scientistNpc);
 		playerReturnsAfterKillingTheImperialScientist(scientistNpc);
+		playerReturnsToFetchReward(scientistNpc);
+	}
+
+	private void playerReturnsToFetchReward(SpeakerNPC npc) {
+		// time has passed
+		final ChatCondition condition = new AndCondition(
+						new QuestStateStartsWithCondition(QUEST_SLOT,"decorating"),
+						new TimePassedCondition(QUEST_SLOT, 5, 1),
+						new QuestNotActiveCondition("mithril_cloak")
+					);
+		final ChatAction action = new MultipleActions(
+											new SetQuestAction(QUEST_SLOT,"done"),
+											new IncreaseKarmaAction(20),
+											new IncreaseXPAction(10000),
+											new EquipItemAction("black legs")
+										);
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, condition, ConversationStates.IDLE, "Here are the black legs. Now I beg you to wear them. The symbol is done. Fare thee well.",action);
+		// time has not yet passed
+		final ChatCondition notCondition = new AndCondition(
+				new QuestStateStartsWithCondition(QUEST_SLOT,"decorating"),
+				new NotCondition( new TimePassedCondition(QUEST_SLOT, 5, 1)),
+				new QuestNotActiveCondition("mithril_cloak")
+			);
+		ChatAction reply = new StateTimeRemainingAction(QUEST_SLOT, "I did not finish decorating the legs. Please check back in", 5, 1);
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, notCondition, ConversationStates.IDLE, null, reply);
 	}
 
 	private void playerReturnsAfterKillingTheImperialScientist(
@@ -273,6 +300,12 @@ public class SadScientist extends AbstractQuest {
 	}
 
 	private void startOfQuest(final SpeakerNPC npc) {
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES, 
+				new AndCondition(new QuestNotStartedCondition(QUEST_SLOT),new QuestNotActiveCondition("mithril_cloak")),
+				ConversationStates.ATTENDING,
+				"Go away!",null);
+
 		//offer the quest
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
@@ -322,9 +355,4 @@ public class SadScientist extends AbstractQuest {
 				null);
 	}
 
-	private void prepareMayor() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }
