@@ -48,7 +48,9 @@ class HelpAction implements SlashAction {
 				"- /name <pet> <name> \tGive a name to your pet",
 				"* Misc: ", 
 				"- /info \t\tFind out what the current server time is",
-				"- /mute\t\tMute or unmute the sounds"
+				"- /mute\t\tMute or unmute the sounds",
+				"- /volume show\t\tShow the current volume of sounds and music",
+				"- /volume <group> <vol>\t\tSets the volume for the specified group"
 		};
 
 		for (final String line : lines) {
