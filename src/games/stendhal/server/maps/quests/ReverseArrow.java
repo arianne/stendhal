@@ -80,6 +80,10 @@ public class ReverseArrow extends AbstractQuest implements
 		 * @return true on success, false on failure
 		 */
 		private boolean checkBoard() {
+			if (tokens == null) {
+				return false;
+			}
+
 			// We check the complete arrow (and not just the three moved
 			// tokens) here for two reasons:
 
