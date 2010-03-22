@@ -62,7 +62,7 @@ import java.util.Arrays;
 public class SadScientist extends AbstractQuest {
 	
 	private static final String LETTER_DESCRIPTION = "You see a letter for Boris Karlova.";
-	public static final String QUEST_SLOT = "sad_scientist";
+	private static final String QUEST_SLOT = "sad_scientist";
 	private static final int REQUIRED_MINUTES = 20;
 
 
@@ -241,18 +241,20 @@ public class SadScientist extends AbstractQuest {
 	}
 
 	private void playerReturnsAfterStartWithoutItems(final SpeakerNPC npc) {
-		final ChatCondition condition = new NotCondition(
-												new AndCondition(
+		final ChatCondition condition = new AndCondition(
 													new QuestInStateCondition(QUEST_SLOT, "start"),
-													new PlayerHasItemWithHimCondition("emerald"), 
-													new PlayerHasItemWithHimCondition("obsidian"),
-													new PlayerHasItemWithHimCondition("sapphire"),
-													new PlayerHasItemWithHimCondition("carbuncle",2),
-													new PlayerHasItemWithHimCondition("gold bar",20),
-													new PlayerHasItemWithHimCondition("mithril bar"),
-													new PlayerHasItemWithHimCondition("shadow legs"),
-													new QuestNotActiveCondition("mithril_cloak")
-												));
+													new QuestNotActiveCondition("mithril_cloak"),
+													new NotCondition(new AndCondition(
+															new PlayerHasItemWithHimCondition("emerald"), 
+															new PlayerHasItemWithHimCondition("obsidian"),
+															new PlayerHasItemWithHimCondition("sapphire"),
+															new PlayerHasItemWithHimCondition("carbuncle",2),
+															new PlayerHasItemWithHimCondition("gold bar",20),
+															new PlayerHasItemWithHimCondition("mithril bar"),
+															new PlayerHasItemWithHimCondition("shadow legs")
+														)
+													)
+												);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				condition,
 				ConversationStates.IDLE, 
