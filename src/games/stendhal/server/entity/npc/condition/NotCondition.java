@@ -31,7 +31,7 @@ public class NotCondition implements ChatCondition {
 
 	@Override
 	public String toString() {
-		return "not <" + condition + ">";
+		return "NOT <" + condition + ">";
 	}
 
 	@Override
