@@ -16,8 +16,8 @@ public class SadScientsBrother implements ZoneConfigurator {
 			Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 		final Creature creature = new ItemGuardCreature(manager.getCreature("imperial scientist"), "goblet", "sad_scientist");
-		creature.setName("Sergej Karlova");
-		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 14, 102, creature, 1);
+		creature.setName("Sergej Elos");
+		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 43, 85, creature, 1);
 		zone.add(point);
 	}
 
