@@ -95,8 +95,8 @@ public class DiceGambling extends AbstractQuest {
 	}
 	private Map <Integer, Pair<String, String>> initPrices() {
 		Map<Integer, Pair<String, String>> map = new HashMap<Integer, Pair<String, String>>();
-		map.put(3, new Pair<String, String>("fire sword",
-				"Dude, you are one unlucky guy! I feel so sorry for you! Here, take this fire sword."));
+		map.put(3, new Pair<String, String>("blue shield",
+				"Dude, you are one unlucky guy! I feel so sorry for you! Here, take this blue shield."));
 		map.put(7, new Pair<String, String>("beer",
 				"That's enough for a consolation prize, a bottle of beer."));
 		map.put(8, new Pair<String, String>("wine",
@@ -109,18 +109,18 @@ public class DiceGambling extends AbstractQuest {
 			   "This antidote will serve you well when you fight against poisonous creatures."));
 		map.put(12, new Pair<String, String>("sandwich",
 				"You have won a tasty sandwich!"));
-		map.put(13, new Pair<String, String>("chain helmet",
-				"Your prize is this robust chain helmet."));
-		map.put(14, new Pair<String, String>("golden hammer",
-				"Take this valuable golden hammer!"));
+		map.put(13, new Pair<String, String>("cheeseydog",
+				"Take this tasty cheesydog!"));
+		map.put(14, new Pair<String, String>("home scroll",
+		"You have won this very useful home scroll!"));
 		map.put(15,	new Pair<String, String>("greater potion",
 				"You have won a greater potion, but with your luck you'll probably never have to use it!"));
-		map.put(16, new Pair<String, String>("pauldroned iron cuirass",
-				"You have won this very rare iron cuirass with pauldrons!"));
-		map.put(17,	new Pair<String, String>("crown shield",
-				"You're so lucky! Here's your prize: an invaluable crown shield!"));
-		map.put(18, new Pair<String, String>("golden legs",
-				"You have hit the JACKPOT! Golden legs!"));
+		map.put(16,	new Pair<String, String>("longbow",
+		"You could be a formidable archer with this prize of a longbow!"));
+		map.put(17,	new Pair<String, String>("red cloak",
+		"You're going to look great in this fashionable red cloak!"));
+		map.put(18, new Pair<String, String>("magic chain helmet",
+				"You have hit the JACKPOT! A magic chain helmet!"));
 		
 		return map;
 	}

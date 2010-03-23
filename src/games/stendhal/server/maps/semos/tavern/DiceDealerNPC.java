@@ -45,8 +45,8 @@ public class DiceDealerNPC implements ZoneConfigurator {
 		};
 
 		ricardo.setEntityClass("naughtyteen2npc");
-		ricardo.setPosition(28, 4);
-		ricardo.setDirection(Direction.LEFT);
+		ricardo.setPosition(26, 2);
+		ricardo.setDirection(Direction.DOWN);
 		ricardo.initHP(100);
 		final Rectangle tableArea = new Rectangle(25, 4, 2, 3);
 		
