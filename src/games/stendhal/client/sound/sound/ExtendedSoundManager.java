@@ -10,6 +10,7 @@ import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.SoundManagerNG;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.math.Algebra;
+import games.stendhal.common.math.Numeric;
 import games.stendhal.common.resource.ResourceLocator;
 import games.stendhal.common.resource.ResourceManager;
 
@@ -131,6 +132,20 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 	ExtendedSoundManager() {
 		super(!Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true")),
 				mDeviceEvaluator.createDeviceList(mAudioFormat), mAudioFormat);
+		initVolumes();
+	}
+
+	private void initVolumes() {
+		WtWindowManager config = WtWindowManager.getInstance();
+
+		int volume = config.getPropertyInt("sound.volume.master", 100);
+		changeVolume(Numeric.intToFloat(volume, 100.0f));
+
+		this.getGroup("gui").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.gui", 100), 100.0f));
+		this.getGroup("sfx").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.sfx", 100), 100.0f));
+		this.getGroup("creature").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.creature", 80), 100.0f));
+		this.getGroup("ambient").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.ambient", 60), 100.0f));
+		this.getGroup("music").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.music", 40), 100.0f));
 	}
 
 	public void playerMoved() {
