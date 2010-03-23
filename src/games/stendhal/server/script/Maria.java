@@ -7,6 +7,7 @@ import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -16,7 +17,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 /**
- * Creates a portable NPC which sell foods&drinks at meetings.
+ * Creates a portable NPC which sell foods&drinks, or optionally items from any other shop, 
+ * at meetings.
  * 
  * As admin use /script Maria.class to summon her right next to you. Please put
  * her back in int_admin_playground after use.
@@ -57,7 +59,16 @@ public class Maria extends ScriptImpl {
 		sandbox.setZone(myZone);
 		int x = 11;
 		int y = 4;
-
+		String shop = "food&drinks";
+		final ShopList shops = SingletonRepository.getShopList();
+		if (args.size() > 0 ) {
+			if (shops.get(args.get(0))!= null) {
+				shop = args.get(0);		
+			} else {
+				admin.sendPrivateText(args.get(0) 
+						+ " not recognised as a shop name. Using default food&drinks");
+			}
+		} 
 		// If this script is executed by an admin, Maria will be placed next to him.
 		if (admin != null) {
 			sandbox.setZone(sandbox.getZone(admin));
@@ -70,7 +81,7 @@ public class Maria extends ScriptImpl {
 		sandbox.add(npc);
 
 		// Create Dialog
-		npc.behave("greet", "Hi, how can i help you?");
+		npc.behave("greet", "Hi, how can I help you?");
 		npc.behave(
 				"job",
 				"I am one of the bar maids at Semos' #tavern and doing outside services. We sell fine beers and food.");
@@ -78,9 +89,10 @@ public class Maria extends ScriptImpl {
 //			"I have a #coupon for a free beer in Semos' tavern. "+
 			"It is on the left side of the temple.");
 		npc.behave("help",
-				"You can get an #offer of drinks and take a break to meet new people!");
+				"You can see what I #offer and take a break to meet new people!");
+		npc.behave("bye", "Bye bye!");
 		try {
-			npc.behave("sell", SingletonRepository.getShopList().get("food&drinks"));
+			npc.behave("sell", SingletonRepository.getShopList().get(shop));
 		} catch (final NoSuchMethodException e) {
 			logger.error(e, e);
 		}
