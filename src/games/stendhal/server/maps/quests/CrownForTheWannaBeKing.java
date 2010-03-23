@@ -8,6 +8,11 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTextAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -172,38 +177,17 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationStates.QUESTION_1, "Fine, what did you bring?",
 				null);
 
+		ChatAction completeAction = new  MultipleActions(
+											new SetQuestAction(QUEST_SLOT, "reward"),
+											new SayTextAction("You have served me well, my crown will be the mightiest of them all!"
+											+ " Go to see "+ REWARD_NPC_NAME+ " in the Wizard City to get your #reward."),
+											new IncreaseXPAction(XP_REWARD)
+											);
 		/* create the ChatAction used for item triggers */
-		final ChatAction itemsChatAction = new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-                final String item = sentence.getTriggerExpression().getNormalized();
-			    ItemCollection missingItems = getMissingItems(player);
-				final Integer missingCount = missingItems.get(item);
-
-				if ((missingCount != null) && (missingCount > 0)) {
-					if (dropItems(player, item, missingCount)) {
-						missingItems = getMissingItems(player);
-
-						if (missingItems.size() > 0) {
-							engine.say("Good, do you have anything else?");
-						} else {
-							engine.say("You have served me well, my crown will be the mightiest of them all!"
-											+ " Go to see "
-											+ REWARD_NPC_NAME
-											+ " in the Wizard City to get your #reward.");
-							player.setQuest(QUEST_SLOT, "reward");
-							player.addXP(XP_REWARD);
-							player.notifyWorldAboutChanges();
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						}
-					} else {
-						engine.say("You don't have " + item + " with you!");
-					}
-				} else {
-					engine.say("You have already brought that!");
-				}
-			}
-		};
-
+		final ChatAction itemsChatAction = new CollectRequestedItemsAction(QUEST_SLOT, "Good, do you have anything else?",
+																		"You have already brought that!", completeAction,
+																		ConversationStates.ATTENDING);
+		
 		/* add triggers for the item names */
 		final ItemCollection items = new ItemCollection();
 		items.addFromQuestStateString(NEEDED_ITEMS);
@@ -291,62 +275,6 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
 
 		return missingItems;
-	}
-
-	/**
-	 * Drop specified amount of given item. If player doesn't have enough items,
-	 * all carried ones will be dropped and number of missing items is updated.
-	 *
-	 * @param player
-	 * @param itemName
-	 * @param itemCount
-	 * @return true if something was dropped
-	 */
-	private boolean dropItems(final Player player, final String itemName, int itemCount) {
-		boolean result = false;
-
-		 // parse the quest state into a list of still missing items
-		final ItemCollection itemsTodo = new ItemCollection();
-
-		itemsTodo.addFromQuestStateString(player.getQuest(QUEST_SLOT));
-
-		if (player.drop(itemName, itemCount)) {
-			if (itemsTodo.removeItem(itemName, itemCount)) {
-				result = true;
-			}
-		} else {
-			/*
-			 * handle the cases the player has part of the items or all divided
-			 * in different slots
-			 */
-			final List<Item> items = player.getAllEquipped(itemName);
-			if (items != null) {
-				for (final Item item : items) {
-					final int quantity = item.getQuantity();
-					final int n = Math.min(itemCount, quantity);
-
-					if (player.drop(itemName, n)) {
-						itemCount -= n;
-
-						if (itemsTodo.removeItem(itemName, n)) {
-							result = true;
-						}
-					}
-
-					if (itemCount == 0) {
-						result = true;
-						break;
-					}
-				}
-			}
-		}
-
-		 // update the quest state if some items are handed over
-		if (result) {
-			player.setQuest(QUEST_SLOT, itemsTodo.toStringForQuestState());
-		}
-
-		return result;
 	}
 
 	/**
