@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -9,6 +10,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -19,7 +21,9 @@ import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -27,8 +31,11 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.ItemCollection;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -64,11 +71,20 @@ import java.util.Arrays;
  */
 public class SadScientist extends AbstractQuest {
 	
+	private final class CheckAndRespondAboutMissingItemsAction implements
+			ChatAction {
+		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			npc.say("Hello. Please return when you have anything I need for the jewelled legs. I need "
+					+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
+					+" as the base to add the gems to.");
+		}
+	}
+
 	private static final String LETTER_DESCRIPTION = "You see a letter for Vasi Elos.";
 	private static final String QUEST_SLOT = "sad_scientist";
 	private static final int REQUIRED_MINUTES = 20;
-
-
+	private static final String NEEDED_ITEMS = "emerald=1;obsidian=1;sapphire=1;carbuncle=2;gold bar=20;mithril bar=1;shadow legs=1";
+	
 	@Override
 	public String getName() {
 		return "TheSadScientist";
@@ -96,8 +112,7 @@ public class SadScientist extends AbstractQuest {
 		final SpeakerNPC scientistNpc = npcs.get("Vasi Elos");
 		final SpeakerNPC mayorNpc = npcs.get("Mayor Sakhs");
 		startOfQuest(scientistNpc);
-		playerReturnsAfterStartWithItems(scientistNpc);
-		playerReturnsAfterStartWithoutItems(scientistNpc);
+		bringItemsPhase(scientistNpc);
 		playerReturnsAfterGivingTooEarly(scientistNpc);
 		playerReturnsAfterGivingWhenFinished(scientistNpc);
 		playerReturnsWithoutLetter(scientistNpc);
@@ -282,69 +297,140 @@ public class SadScientist extends AbstractQuest {
 				new StateTimeRemainingAction(QUEST_SLOT, "Do you think I can work that fast? Go away. " +
 						"Come back in", REQUIRED_MINUTES, 1));
 	}
-
-	private void playerReturnsAfterStartWithoutItems(final SpeakerNPC npc) {
-		final ChatCondition condition = new AndCondition(
-													new QuestInStateCondition(QUEST_SLOT, "start"),
-													new NotCondition(new AndCondition(
-															new PlayerHasItemWithHimCondition("emerald"), 
-															new PlayerHasItemWithHimCondition("obsidian"),
-															new PlayerHasItemWithHimCondition("sapphire"),
-															new PlayerHasItemWithHimCondition("carbuncle",2),
-															new PlayerHasItemWithHimCondition("gold bar",20),
-															new PlayerHasItemWithHimCondition("mithril bar"),
-															new PlayerHasItemWithHimCondition("shadow legs")
-														)
-													)
-												);
+	
+	private void bringItemsPhase(final SpeakerNPC npc) {
+		//condition for quest being active and in item collection phase
+		ChatCondition itemPhaseCondition = getConditionForNotBeingInCollectionPhase();
+		//player returns during item collection phase
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				condition,
-				ConversationStates.IDLE, 
-				"Hello. Please return when you have everything I need for the jewelled legs. I need an emerald, " +
-				"an obsidian, a sapphire, 2 carbuncles, 20 gold bars, one mithril bar, and I need a pair of shadow " +
-				"legs as the base to add the gems to.",
+				itemPhaseCondition,
+				ConversationStates.QUESTION_1, 
+				"Hello. Do you have any #items I need for the jewelled legs?",
 				null);
+		//player asks for items
+		npc.add(ConversationStates.QUESTION_1, Arrays.asList("items","item","Items","Item"),
+				itemPhaseCondition,
+				ConversationStates.QUESTION_1, 
+				null,
+				new CheckAndRespondAboutMissingItemsAction());
+		//player says no
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
+				itemPhaseCondition,
+				ConversationStates.IDLE, 
+				"What a wasteful child",
+				null);
+		//player says yes
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
+				itemPhaseCondition,
+				ConversationStates.QUESTION_1, 
+				"Fine! So what did you bring with you?",
+				null);
+		//add transition for each item
+		final ChatAction itemsChatAction = new CollectRequestedItemsAction(
+														QUEST_SLOT, "Good, do you have anything else?",
+														"You have already brought that!",
+														new MultipleActions(
+																new SetQuestAction(QUEST_SLOT,"making;"),
+																new SetQuestToTimeStampAction(QUEST_SLOT, 1)),
+														ConversationStates.ATTENDING
+														);
+		/* add triggers for the item names */
+		final ItemCollection items = new ItemCollection();
+		items.addFromQuestStateString(NEEDED_ITEMS);
+		for (final Map.Entry<String, Integer> item : items.entrySet()) {
+			npc.add(ConversationStates.QUESTION_1, item.getKey(), null,
+					ConversationStates.QUESTION_1, null, itemsChatAction);
+		}
 	}
 
-	private void playerReturnsAfterStartWithItems(final SpeakerNPC npc) {
-		//player returns after start
-		final AndCondition condition = new AndCondition(
-									new QuestInStateCondition(QUEST_SLOT, "start"),
-									new PlayerHasItemWithHimCondition("emerald"), 
-									new PlayerHasItemWithHimCondition("obsidian"),
-									new PlayerHasItemWithHimCondition("sapphire"),
-									new PlayerHasItemWithHimCondition("carbuncle",2),
-									new PlayerHasItemWithHimCondition("gold bar",20),
-									new PlayerHasItemWithHimCondition("mithril bar"),
-									new PlayerHasItemWithHimCondition("shadow legs")
-									);
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				condition,
-				ConversationStates.ATTENDING, 
-				"Hello. Did you bring what I need?",
-				null);
-		final ChatAction action = new MultipleActions(
-									new SetQuestAction(QUEST_SLOT,"making;"),
-									new SetQuestToTimeStampAction(QUEST_SLOT, 1),
-									new DropItemAction("emerald"),
-									new DropItemAction("obsidian"),
-									new DropItemAction("sapphire"),
-									new DropItemAction("carbuncle",2),
-									new DropItemAction("gold bar",20),
-									new DropItemAction("mithril bar"),
-									new DropItemAction("shadow legs"));
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.YES_MESSAGES,
-				condition,
-				ConversationStates.IDLE, 
-				"Wonderful! I will start my work. I can do this in very little time with the help of technology! " +
-				"Please come back in 20 minutes.",
-				action);
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
-				condition,
-				ConversationStates.IDLE, 
-				"What a wasteful child.",
-				null);
+	/**
+	 * Creates a condition for quest being active and in item collection phase 
+	 * @return the condition
+	 */
+	private AndCondition getConditionForNotBeingInCollectionPhase() {
+		return new AndCondition(
+													new QuestActiveCondition(QUEST_SLOT),
+													new NotCondition(
+															new QuestStateStartsWithCondition(QUEST_SLOT,"making;")
+																	),
+													new NotCondition(
+															new QuestStateStartsWithCondition(QUEST_SLOT,"decorating;")
+																	),
+													new NotCondition(
+															new QuestStateStartsWithCondition(QUEST_SLOT,"find_vera")
+																	),
+													new NotCondition(
+															new QuestStateStartsWithCondition(QUEST_SLOT,"kill_scientist")
+																	)
+															);
 	}
+
+//	private void playerReturnsAfterStartWithoutItems(final SpeakerNPC npc) {
+//		final ChatCondition condition = new AndCondition(
+//													new QuestInStateCondition(QUEST_SLOT, "start"),
+//													new NotCondition(new OrCondition(
+//															new PlayerHasItemWithHimCondition("emerald"), 
+//															new PlayerHasItemWithHimCondition("obsidian"),
+//															new PlayerHasItemWithHimCondition("sapphire"),
+//															new PlayerHasItemWithHimCondition("carbuncle",2),
+//															new PlayerHasItemWithHimCondition("gold bar",20),
+//															new PlayerHasItemWithHimCondition("mithril bar"),
+//															new PlayerHasItemWithHimCondition("shadow legs")
+//														)
+//													)
+//												);
+//		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+//				condition,
+//				ConversationStates.IDLE, 
+//				null,
+//				new ChatAction() {
+//					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+//						npc.say("Hello. Please return when you have anything I need for the jewelled legs. I need "
+//								+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
+//								+" as the base to add the gems to.");
+//					}
+//				});
+//	}
+
+//	private void playerReturnsAfterStartWithItems(final SpeakerNPC npc) {
+//		//player returns after start
+//		final AndCondition condition = new AndCondition(
+//									new QuestInStateCondition(QUEST_SLOT, "start"),
+//									new PlayerHasItemWithHimCondition("emerald"), 
+//									new PlayerHasItemWithHimCondition("obsidian"),
+//									new PlayerHasItemWithHimCondition("sapphire"),
+//									new PlayerHasItemWithHimCondition("carbuncle",2),
+//									new PlayerHasItemWithHimCondition("gold bar",20),
+//									new PlayerHasItemWithHimCondition("mithril bar"),
+//									new PlayerHasItemWithHimCondition("shadow legs")
+//									);
+//		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+//				condition,
+//				ConversationStates.ATTENDING, 
+//				"Hello. Did you bring what I need?",
+//				null);
+//		final ChatAction action = new MultipleActions(
+//									new SetQuestAction(QUEST_SLOT,"making;"),
+//									new SetQuestToTimeStampAction(QUEST_SLOT, 1),
+//									new DropItemAction("emerald"),
+//									new DropItemAction("obsidian"),
+//									new DropItemAction("sapphire"),
+//									new DropItemAction("carbuncle",2),
+//									new DropItemAction("gold bar",20),
+//									new DropItemAction("mithril bar"),
+//									new DropItemAction("shadow legs"));
+//		npc.add(ConversationStates.ATTENDING, ConversationPhrases.YES_MESSAGES,
+//				condition,
+//				ConversationStates.IDLE, 
+//				"Wonderful! I will start my work. I can do this in very little time with the help of technology! " +
+//				"Please come back in 20 minutes.",
+//				action);
+//		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
+//				condition,
+//				ConversationStates.IDLE, 
+//				"What a wasteful child.",
+//				null);
+//	}
 
 	private void startOfQuest(final SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE,
@@ -372,25 +458,34 @@ public class SadScientist extends AbstractQuest {
 				Arrays.asList("gem","gems"),
 				null,
 				ConversationStates.QUEST_STARTED,
-				"I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars, one mithril bar, and I need " +
-				"a pair of shadow legs as the base to add the gems to. Can you do that for my wife?" ,
-				null);
+				null ,
+				new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						engine.say("I need "
+									+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
+									+ ". Can you do that for my wife?");
+					}
+				});
 		// #legs
 		npc.add(ConversationStates.QUEST_STARTED,
 				Arrays.asList("leg","legs"),
 				null,
 				ConversationStates.QUEST_STARTED,
-				"Jewelled legs. I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars, " +
-				"one mithril bar, and I need a pair of shadow legs as the base to add the gems to. Can you " +
-				"do that for my wife? Can you bring what I need?" ,
-				null);
+				null ,
+				new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						engine.say("Jewelled legs. I need "
+									+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
+									+ ". Do you have some of those now with you?");
+					}
+				});
 		//yes, no after start of quest
 		npc.add(ConversationStates.QUEST_STARTED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				"I am waiting, Semos man." ,
-				new SetQuestAction(QUEST_SLOT, "start"));
+				new SetQuestAction(QUEST_SLOT, NEEDED_ITEMS));
 		
 		npc.add(ConversationStates.QUEST_STARTED,
 				ConversationPhrases.NO_MESSAGES,
@@ -416,4 +511,73 @@ public class SadScientist extends AbstractQuest {
 				"Go away!",null);
 	}
 	
+	/**
+	 * Drop specified amount of given item. If player doesn't have enough items,
+	 * all carried ones will be dropped and number of missing items is updated.
+	 *
+	 * @param player
+	 * @param itemName
+	 * @param itemCount
+	 * @return true if something was dropped
+	 */
+	boolean dropItems(final Player player, final String itemName, int itemCount) {
+		boolean result = false;
+
+		 // parse the quest state into a list of still missing items
+		final ItemCollection itemsTodo = new ItemCollection();
+
+		itemsTodo.addFromQuestStateString(player.getQuest(QUEST_SLOT));
+
+		if (player.drop(itemName, itemCount)) {
+			if (itemsTodo.removeItem(itemName, itemCount)) {
+				result = true;
+			}
+		} else {
+			/*
+			 * handle the cases the player has part of the items or all divided
+			 * in different slots
+			 */
+			final List<Item> items = player.getAllEquipped(itemName);
+			if (items != null) {
+				for (final Item item : items) {
+					final int quantity = item.getQuantity();
+					final int n = Math.min(itemCount, quantity);
+
+					if (player.drop(itemName, n)) {
+						itemCount -= n;
+
+						if (itemsTodo.removeItem(itemName, n)) {
+							result = true;
+						}
+					}
+
+					if (itemCount == 0) {
+						result = true;
+						break;
+					}
+				}
+			}
+		}
+
+		 // update the quest state if some items are handed over
+		if (result) {
+			player.setQuest(QUEST_SLOT, itemsTodo.toStringForQuestState());
+		}
+
+		return result;
+	}
+	
+	/**
+	 * Returns all items that the given player still has to bring to complete the quest.
+	 *
+	 * @param player The player doing the quest
+	 * @return A list of item names
+	 */
+	ItemCollection getMissingItems(final Player player) {
+		final ItemCollection missingItems = new ItemCollection();
+
+		missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
+
+		return missingItems;
+	}
 }
