@@ -16,6 +16,7 @@ import games.stendhal.common.resource.ResourceManager;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.regex.Pattern;
 
 import javax.sound.sampled.AudioFormat;
@@ -125,7 +126,7 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 	}
 
 	private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
-	private final HashMap<String, Group> mGroups = new HashMap<String, Group>();
+	private final HashMap<String, Group> mGroups = new LinkedHashMap<String, Group>();
 	private final ResourceLocator mResourceLocator = ResourceManager.get();
 	private float mMasterVolume = 1.0f;
 
