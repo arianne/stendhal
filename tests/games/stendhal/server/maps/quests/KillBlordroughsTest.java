@@ -60,27 +60,6 @@ public class KillBlordroughsTest {
 	}
 	
 
-	private void killRat(KillNotificationCreature rat, int count) {
-		do {
-			MockStendlRPWorld.get().nextTurn();
-			MockStendhalRPRuleProcessor.get().beginTurn();
-
-			// prevent player killing
-			player.setHP(10000);
-			if(player.isPoisoned()) {
-				player.healPoison();
-			};
-			player.teleport(rat.getZone(), rat.getX()+1, rat.getY(), null, player);
-			player.setTarget(rat);
-			//player.attack();
-			MockStendhalRPRuleProcessor.get().endTurn();
-
-		} while (player.isAttacking());
-		MockStendhalRPRuleProcessor.get().beginTurn();
-		MockStendhalRPRuleProcessor.get().endTurn();
-		logger.debug("killed "+rat.getName()+". #"+count);
-	}
-	
 	/**
 	 * function for emulating killing of blordrough soldiers by player.
 	 * @param numb - number of creatures for killing
