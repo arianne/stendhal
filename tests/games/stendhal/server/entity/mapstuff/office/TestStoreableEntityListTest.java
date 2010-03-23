@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class testStoreableEntityListTest {
+public class TestStoreableEntityListTest {
 
 	private final class EntityExtension extends Entity {
 		@Override
