@@ -49,7 +49,7 @@ import org.apache.log4j.Logger;
 	private static final String QUEST_SLOT = "kill_blordroughs";
 	private final long questdelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;	
 	private final int killsnumber = 100;
-	private final SpeakerNPC npc = npcs.get(QUEST_NPC);	
+	private SpeakerNPC npc;	
 	
 	/**
 	 * function checking if quest is active for player or no.
@@ -278,8 +278,9 @@ import org.apache.log4j.Logger;
 	 */
 	@Override
 	public void addToWorld() {
-		step_1();
+		npc = npcs.get(QUEST_NPC);
 		super.addToWorld();
+		step_1();
 	}
 	
 	/**
