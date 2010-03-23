@@ -74,7 +74,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 				addReply("wikipedia",
 						"Wikipedia is an Internet based project to create a #free encyclopedia");
 				addReply("free",
-				        "The Wikipedia content may be used according to the rules specified in the GNU General Documentation License which can be found at http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License");
+				        "The Wikipedia content may be used according to the rules specified in the Creative Commons Attribution-ShareAlike License which can be found at #http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License");
 				addGoodbye();
 			}
 		};
