@@ -55,12 +55,14 @@ public class LibrarianNPC implements ZoneConfigurator {
 				        new ChatAction() {
 					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 						        // extract the title
-					        	final String title = sentence.getExpressionStringAfterVerb();
-
-						        if (title == null) {
+					        	String text = sentence.getOriginalText();
+						        // extract the title
+						        int pos = text.indexOf(" ");
+						        if (pos < 0) {
 							        npc.say("What do you want to be explained?");
 							        return;
 						        }
+						        String title = text.substring(pos + 1).trim();
 
 						        final WikipediaAccess access = new WikipediaAccess(title);
 						        final Thread thread = new Thread(access);
