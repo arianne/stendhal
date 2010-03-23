@@ -15,6 +15,8 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.List;
 
+import marauroa.common.Log4J;
+
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -26,6 +28,7 @@ public class MarketTest {
 
 	@BeforeClass
 	public static void beforeClass() {
+		Log4J.init();
 		MockStendlRPWorld.get();
 	}
 
