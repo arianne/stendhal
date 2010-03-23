@@ -1,8 +1,11 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.gui.UserInterface;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.sound.SoundGroup;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.math.Numeric;
 
 /**
@@ -21,16 +24,24 @@ class VolumeAction implements SlashAction {
 	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(final String[] params, final String remainder) {
-		if (params[0].equals("show")) {
+		if (params[0] == null) {
 			float volume = ClientSingletonRepository.getSound().getVolume();
-			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("master -> " + Numeric.floatToInt(volume, 100.0f)));
+			UserInterface ui = ClientSingletonRepository.getUserInterface();
+			ui.addEventLine(new StandardEventLine("Please use /volume <name> <value> to adjust the volume."));
+			ui.addEventLine(new HeaderLessEventLine("<name> is an item from the following list. \"master\" refers to the global volume setting.", NotificationType.CLIENT));
+			ui.addEventLine(new HeaderLessEventLine("<value> is in the range from 0 to 100 but may be set higher.", NotificationType.CLIENT));
+			ui.addEventLine(new HeaderLessEventLine("master -> " + Numeric.floatToInt(volume, 100.0f), NotificationType.CLIENT));
 
 			for (String name : ClientSingletonRepository.getSound().getGroupNames()) {
 				volume = ClientSingletonRepository.getSound().getGroup(name).getVolume();
-				ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine(name + " -> " + Numeric.floatToInt(volume, 100.0f)));
+				ui.addEventLine(new HeaderLessEventLine(name + " -> " + Numeric.floatToInt(volume, 100.0f), NotificationType.CLIENT));
 			}
-		} else {
+		} else if (params[1] != null) {
 			changeVolume(params[0], params[1]);
+		} else {
+			ClientSingletonRepository.getUserInterface().addEventLine(
+					new HeaderLessEventLine("Please use /volume for help.",
+					NotificationType.ERROR));
 		}
 		return true;
 	}
@@ -79,6 +90,6 @@ class VolumeAction implements SlashAction {
 	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 1;
+		return 0;
 	}
 }
