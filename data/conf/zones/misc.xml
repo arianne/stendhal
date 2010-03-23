@@ -79,7 +79,7 @@ Walk on, and you will be returned to the land of the living...
 				<parameter name="min">5</parameter>
 				<parameter name="max">5</parameter>
 				<parameter name="radius">4</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 
@@ -95,7 +95,7 @@ Walk on, and you will be returned to the land of the living...
 		<entity x="56" y="56">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
 				<parameter name="sound">wind-2</parameter>
-				<parameter name="volume">25</parameter>
+				<parameter name="volume">40</parameter>
 				<parameter name="radius">4</parameter>
 			</implementation>
 		</entity>

@@ -144,9 +144,9 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 
 		this.getGroup("gui").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.gui", 100), 100.0f));
 		this.getGroup("sfx").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.sfx", 100), 100.0f));
-		this.getGroup("creature").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.creature", 80), 100.0f));
-		this.getGroup("ambient").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.ambient", 60), 100.0f));
-		this.getGroup("music").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.music", 40), 100.0f));
+		this.getGroup("creature").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.creature", 95), 100.0f));
+		this.getGroup("ambient").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.ambient", 80), 100.0f));
+		this.getGroup("music").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.music", 60), 100.0f));
 	}
 
 	public void playerMoved() {

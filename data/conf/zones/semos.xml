@@ -362,7 +362,7 @@ The sharper minded amongst you might prefer to double-click directly on the crea
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_old_tavern</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">80</parameter>
 			</implementation>
 		</entity>
 
@@ -514,7 +514,7 @@ Mature sheep wanted: please speak to Sato.
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_old_tavern</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">80</parameter>
 			</implementation>
 		</entity>
 
@@ -553,7 +553,7 @@ Mature sheep wanted: please speak to Sato.
 				<parameter name="min">30</parameter>
 				<parameter name="max">60</parameter>
 				<parameter name="radius">4</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">100</parameter>
 			</implementation>
 		</entity>
 
@@ -563,7 +563,7 @@ Mature sheep wanted: please speak to Sato.
 				<parameter name="min">30</parameter>
 				<parameter name="max">60</parameter>
 				<parameter name="radius">10</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 
@@ -752,7 +752,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_old_tavern</parameter>
-				<parameter name="volume">80</parameter>
+				<parameter name="volume">120</parameter>
 			</implementation>
 		</entity>
 
@@ -761,7 +761,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 				<parameter name="sound">kettle-1, bottle-2, trash-1, trash-21, trash-3, metal-can-1, drain-water-11, dishbreak-1, dishbreak-2, dishes-1, dishes-21, creaky-door-1, creaky-door-2, ice-cubes-1, glass-break-1, window-close-1</parameter>
 				<parameter name="min">30</parameter>
 				<parameter name="max">60</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 
@@ -867,7 +867,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_old_tavern</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">80</parameter>
 			</implementation>
 		</entity>
 
@@ -949,7 +949,6 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 				<parameter name="sound">hammer-1, smith-1</parameter>
 				<parameter name="min">10</parameter>
 				<parameter name="max">60</parameter>
-				<parameter name="volume">20</parameter>
 			</implementation>
 		</entity>
 
@@ -958,7 +957,6 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 				<parameter name="sound">fire-sparkes-1, fire-3, fire-8</parameter>
 				<parameter name="min">5</parameter>
 				<parameter name="max">30</parameter>
-				<parameter name="volume">20</parameter>
 			</implementation>
 		</entity>
 
@@ -966,7 +964,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 		<entity x="11" y="3">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
 				<parameter name="sound">fire-5</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">50</parameter>
 			</implementation>
 		</entity>
 
@@ -1128,7 +1126,7 @@ Holy mackerel! These chips are tasty.
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_old_tavern</parameter>
-				<parameter name="volume">20</parameter>
+				<parameter name="volume">80</parameter>
 			</implementation>
 		</entity>
 
@@ -1980,7 +1978,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -1992,7 +1989,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2003,7 +1999,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2051,7 +2046,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2062,7 +2056,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2076,7 +2069,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2087,7 +2079,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2166,7 +2157,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2378,7 +2368,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 	</zone>
@@ -2394,7 +2383,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 
@@ -2425,7 +2413,6 @@ Mature sheep wanted: please speak to Sato
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
-				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
 
