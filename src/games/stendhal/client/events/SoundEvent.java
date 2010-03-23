@@ -35,31 +35,7 @@ public class SoundEvent extends Event<Entity> {
 			radius = event.getInt("radius");
 		}
 
-		SoundGroup group = null;
-
-		switch(layer)
-		{
-		case AMBIENT_SOUND:
-			group = ClientSingletonRepository.getSound().getGroup("ambient");
-			break;
-		case BACKGROUND_MUSIC:
-			group = ClientSingletonRepository.getSound().getGroup("music");
-			break;
-		case CREATURE_NOISE:
-			group = ClientSingletonRepository.getSound().getGroup("creature");
-			break;
-		case FIGHTING_NOISE:
-			group = ClientSingletonRepository.getSound().getGroup("sfx");
-			break;
-		case USER_INTERFACE:
-			group = ClientSingletonRepository.getSound().getGroup("gui");
-			break;
-		}
-		
-		if (group == null) {
-			return;
-		}
-
+		SoundGroup group = ClientSingletonRepository.getSound().getGroup(layer.groupName);
 		String soundName = event.get("sound");
 		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float)entity.getX(), (float)entity.getY()), radius/4.0f, radius);
 		group.loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
