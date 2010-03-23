@@ -4,6 +4,7 @@ import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.math.Numeric;
@@ -61,17 +62,19 @@ class VolumeAction implements SlashAction {
 				int volume = Integer.parseInt(volumeString);
 				SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
 				group.changeVolume(Numeric.intToFloat(volume, 100.0f));
+				WtWindowManager.getInstance().setProperty("sound.volume." + groupName, Integer.toString(volume));
 			} else {
 				if (groupName.equals("master")) {
 					int volume = Integer.parseInt(volumeString);
 					ClientSingletonRepository.getSound().changeVolume(Numeric.intToFloat(volume, 100.0f));
+					WtWindowManager.getInstance().setProperty("sound.volume." + groupName, Integer.toString(volume));
 				} else {
 					ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("No sound group \"" + groupName + "\" does exist"));
 					ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Please type \"/volume show\" for a valid list of groups"));
 				}
 			}
 		} catch (NumberFormatException exception) {
-			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine(volumeString + " is not a valid number"));
+			ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(volumeString + " is not a valid number", NotificationType.ERROR));
 		}
 	}
 
