@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 /**
@@ -63,7 +64,7 @@ public abstract class Food extends AudibleEntity {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		addSounds("ambient", "food", "pop-2");
+		addSounds(SoundLayer.CREATURE_NOISE.groupName, "food", "pop-2");
 
 		if (object.has("amount")) {
 			amount = object.getInt("amount");
@@ -95,7 +96,7 @@ public abstract class Food extends AudibleEntity {
 			// TODO this causes problems because of unidentified content refresh
 			// events (e.g. synchronizing)
 			if (amount > oldAmount) {
-				playRandomSoundFromCategory("ambient", "food");
+				playRandomSoundFromCategory(SoundLayer.AMBIENT_SOUND.groupName, "food");
 			}
 
 			fireChange(PROP_AMOUNT);

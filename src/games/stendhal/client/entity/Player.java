@@ -13,6 +13,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 /** A Player entity. */
@@ -133,7 +134,7 @@ public class Player extends AudibleEntity {
 	public void initialize(RPObject object) {
 		super.initialize(object);
 		
-		addSounds("sfx", "attack",
+		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "attack",
 			"punch-1"   , "punch-2", "punch-3",
 			"punch-4"   , "punch-5", "punch-6",
 			"swingaxe-1", "slap-1" , "arrow-1");
@@ -142,7 +143,7 @@ public class Player extends AudibleEntity {
 	@Override
 	public void onDamaged(Entity attacker, int damage) {
 		super.onDamaged(attacker, damage);
-		playRandomSoundFromCategory("sfx", "attack");
+		playRandomSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "attack");
 	}
 
 	//

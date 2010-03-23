@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 /**
@@ -38,15 +39,15 @@ public class NPC extends AudibleEntity {
 
 		if (type.startsWith("npc")) {
 			if (name.equals("Diogenes")) {
-				addSounds("npc", "move", "laugh-1", "laugh-2");
+				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "laugh-1", "laugh-2");
 			} else if (name.equals("Carmen")) {
-				addSounds("npc", "move", "giggle-1", "giggle-2");
+				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "giggle-1", "giggle-2");
 			} else if (name.equals("Nishiya")) {
-				addSounds("npc", "move", "cough-11", "cough-2", "cough-3");
+				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "cough-11", "cough-2", "cough-3");
 			} else if (name.equals("Margaret")) {
-				addSounds("npc", "move", "hiccup-1", "hiccup-2", "hiccup-3");
+				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "hiccup-1", "hiccup-2", "hiccup-3");
 			} else if (name.equals("Sato")) {
-				addSounds("npc", "move", "hiccup-1", "sneeze-1");
+				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "hiccup-1", "sneeze-1");
 			}
 		}
 	}
@@ -62,6 +63,6 @@ public class NPC extends AudibleEntity {
 	@Override
 	protected void onPosition(final double x, final double y) {
 		super.onPosition(x, y);
-		playRandomSoundFromGroup("npc", "move", 20000);
+		playRandomSoundFromGroup(SoundLayer.CREATURE_NOISE.groupName, "move", 20000);
 	}
 }

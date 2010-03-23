@@ -22,6 +22,7 @@ import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Debug;
+import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -963,6 +964,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param g
 	 */
 	public void drawDragged(final Graphics g) {
+		// don't drawn an icon
 	}
 
 	/**
@@ -1238,15 +1240,15 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	private void playCloseSound() {
-		ClientSingletonRepository.getSound().getGroup("gui").play("click-10", 0, null, null, false, true);
+		ClientSingletonRepository.getSound().getGroup(SoundLayer.USER_INTERFACE.groupName).play("click-10", 0, null, null, false, true);
 	}
 
 	protected void playOpenSound() {
 		//TODO: use polymorphism
 		if (name.equals("bag")) {
-			ClientSingletonRepository.getSound().getGroup("gui").play("click-8", 0, null, null, false, true);
+			ClientSingletonRepository.getSound().getGroup(SoundLayer.USER_INTERFACE.groupName).play("click-8", 0, null, null, false, true);
 		}  else if (name.equals("chest")) {
-			ClientSingletonRepository.getSound().getGroup("gui").play("click-5", 0, null, null, false, true);
+			ClientSingletonRepository.getSound().getGroup(SoundLayer.USER_INTERFACE.groupName).play("click-5", 0, null, null, false, true);
 		}
 	}
 

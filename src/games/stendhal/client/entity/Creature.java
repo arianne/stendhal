@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.common.constants.SoundLayer;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
@@ -98,42 +100,42 @@ public class Creature extends AudibleEntity {
 		if (object.has("name")) {
 			final String name = object.get("name");
 			
-			addSounds("sfx", "attack",
+			addSounds(SoundLayer.FIGHTING_NOISE.groupName, "attack",
 				"punch-1"   , "punch-2", "punch-3",
 				"punch-4"   , "punch-5", "punch-6",
 				"swingaxe-1", "slap-1" , "arrow-1");
 
 			if (type.startsWith("creature")) {
 				if (name.equals("wolf")) {
-					addSounds("creature", "move", "bark-1", "howl-5", "howl-2", "howl-11");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "bark-1", "howl-5", "howl-2", "howl-11");
 				} else if (name.equals("rat") || name.equals("caverat") || name.equals("venomrat")) {
-					addSounds("creature", "move", "rats-2", "rats-41"/*, "rats-3*/);
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "rats-2", "rats-41"/*, "rats-3*/);
 				} else if (name.equals("razorrat")) {
-					addSounds("creature", "move", "rats-1");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "rats-1");
 				} else if (name.equals("gargoyle")) {
-					addSounds("creature", "move", "hyena-1", "hyena-2", "hyena-3");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "hyena-1", "hyena-2", "hyena-3");
 				} else if (name.equals("boar")) {
-					addSounds("creature", "move", "pig-1", "pig-2");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "pig-1", "pig-2");
 				} else if (name.equals("bear")) {
-					addSounds("creature", "move", "bear-1", "bear-2", "bear-3");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "bear-1", "bear-2", "bear-3");
 				} else if (name.equals("giantrat")) {
-					addSounds("creature", "move", "bobcat-1", "leopard-11");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "bobcat-1", "leopard-11");
 				} else if (name.equals("cobra")) {
-					addSounds("creature", "move", "snake-1");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "snake-1");
 				} else if (name.equals("kobold")) {
-					addSounds("creature", "move", "panda-1", "panda-2", "racoon-1", "lama-1");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "panda-1", "panda-2", "racoon-1", "lama-1");
 				} else if (name.equals("goblin")) {
-					addSounds("creature", "move", "saur-3", "saur-4");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "saur-3", "saur-4");
 				} else if (name.equals("troll")) {
-					addSounds("creature", "move", "gorilla-1", "gorilla-2", "gorilla-3", "gorilla-4", "gorilla-5");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "gorilla-1", "gorilla-2", "gorilla-3", "gorilla-4", "gorilla-5");
 				} else if (name.equals("orc")) {
-					addSounds("creature", "move", "lion-11", "lion-22");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "lion-11", "lion-22");
 				} else if (name.equals("ogre")) {
-					addSounds("creature", "move", "yell-1", "groan-1", "moan-1", "fart-1");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "yell-1", "groan-1", "moan-1", "fart-1");
 				} else if (name.equals("skeleton")) {
-					addSounds("creature", "move", "bones-1", "evillaugh-3", "evillaugh-5", "ghost-1", "ghost-2");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "bones-1", "evillaugh-3", "evillaugh-5", "ghost-1", "ghost-2");
 				} else if (name.equals("cyclops")) {
-					addSounds("creature", "move", "yell-1", "laugh-33", "evillaugh-4", "grunt-1", "grunt-2");
+					addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "yell-1", "laugh-33", "evillaugh-4", "grunt-1", "grunt-2");
 				}
 			}
 		}
@@ -162,7 +164,7 @@ public class Creature extends AudibleEntity {
 	@Override
 	public void onDamaged(Entity attacker, int damage) {
 		super.onDamaged(attacker, damage);
-		playRandomSoundFromCategory("sfx", "attack");
+		playRandomSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "attack");
 	}
 
 

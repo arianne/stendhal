@@ -56,8 +56,9 @@ public class LoopedSoundSource extends InvisibleEntity {
 
 	/**
 	 * updates the attributes based on the RPObject values sent from the server.
-	 *
-	 * @param object object to read from
+	 * 
+	 * @param object
+	 *            object to read from
 	 */
 	private void update(RPObject object) {
 
@@ -77,25 +78,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 				layer = SoundLayer.values()[idx];
 			}
 
-			switch(layer)
-			{
-			case AMBIENT_SOUND:
-				group = ClientSingletonRepository.getSound().getGroup("ambient");
-				break;
-			case BACKGROUND_MUSIC:
-				group = ClientSingletonRepository.getSound().getGroup("music");
-				break;
-			case CREATURE_NOISE:
-				group = ClientSingletonRepository.getSound().getGroup("creature");
-				break;
-			case FIGHTING_NOISE:
-				group = ClientSingletonRepository.getSound().getGroup("sfx");
-				break;
-			case USER_INTERFACE:
-				group = ClientSingletonRepository.getSound().getGroup("gui");
-				break;
-			}
-
+			group = ClientSingletonRepository.getSound().getGroup(layer.groupName);
 			fadingDuration.set(100, Time.Unit.MILLI);
 
 			if (layer == SoundLayer.BACKGROUND_MUSIC) {
@@ -114,7 +97,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	 */
 	private void play() {
 		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), radius / 2.0f, radius);
-		boolean cloneSound = group != ClientSingletonRepository.getSound().getGroup("music");
+		boolean cloneSound = group != ClientSingletonRepository.getSound().getGroup(SoundLayer.BACKGROUND_MUSIC.groupName);
 		sound = group.play(soundName, volume, 0, area, fadingDuration, true, cloneSound);
 	}
 

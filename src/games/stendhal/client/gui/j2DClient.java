@@ -49,6 +49,7 @@ import games.stendhal.client.sound.nosound.NoSoundFacade;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -627,7 +628,7 @@ public class j2DClient implements UserInterface {
 		getSoundSystemFacade().exit();
 	}
 	private SoundGroup initSoundSystem() {
-		SoundGroup group = getSoundSystemFacade().getGroup("gui");
+		SoundGroup group = getSoundSystemFacade().getGroup(SoundLayer.USER_INTERFACE.groupName);
 		group.loadSound("harp-1", "audio:/harp-1.ogg", Type.OGG, false);
 		group.loadSound("click-4", "audio:/click-4.ogg", Type.OGG, false);
 		group.loadSound("click-5", "audio:/click-5.ogg", Type.OGG, false);

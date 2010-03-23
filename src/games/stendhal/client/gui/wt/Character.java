@@ -28,6 +28,7 @@ import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Constants;
+import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.Graphics2D;
 import java.util.HashMap;
@@ -218,6 +219,6 @@ public class Character extends WtPanel {
 
 	@Override
 	protected void playOpenSound() {
-		ClientSingletonRepository.getSound().getGroup("gui").play("click-6", 0, null, null, false, true);
+		ClientSingletonRepository.getSound().getGroup(SoundLayer.USER_INTERFACE.groupName).play("click-6", 0, null, null, false, true);
 	}
 }

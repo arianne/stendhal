@@ -9,6 +9,7 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 /**
@@ -89,7 +90,7 @@ public abstract class DomesticAnimal extends AudibleEntity {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		addSounds("npc", "eat", "eat-1");
+		addSounds(SoundLayer.CREATURE_NOISE.groupName, "eat", "eat-1");
 		
 		/*
 		 * Idea
@@ -145,7 +146,7 @@ public abstract class DomesticAnimal extends AudibleEntity {
 			weight = changes.getInt("weight");
 
 			if (weight > oldWeight) {
-				playRandomSoundFromCategory("npc", "eat");
+				playRandomSoundFromCategory(SoundLayer.CREATURE_NOISE.groupName, "eat");
 			}
 
 			fireChange(PROP_WEIGHT);

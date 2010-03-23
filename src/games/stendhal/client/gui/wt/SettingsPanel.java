@@ -25,6 +25,7 @@ import games.stendhal.client.gui.wt.core.WtButton;
 import games.stendhal.client.gui.wt.core.WtClickListener;
 import games.stendhal.client.gui.wt.core.WtCloseListener;
 import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.Point;
 import java.util.HashMap;
@@ -179,6 +180,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 
 	@Override
 	protected void playOpenSound() {
-		ClientSingletonRepository.getSound().getGroup("gui").play("click-4", 0, null, null, false, true);
+		ClientSingletonRepository.getSound().getGroup(SoundLayer.USER_INTERFACE.groupName).play("click-4", 0, null, null, false, true);
 	}
 }
