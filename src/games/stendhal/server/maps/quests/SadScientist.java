@@ -76,7 +76,7 @@ public class SadScientist extends AbstractQuest {
 		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 			npc.say("Hello. Please return when you have anything I need for the jewelled legs. I need "
 					+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
-					+" as the base to add the gems to.");
+					+".");
 		}
 	}
 
@@ -317,10 +317,10 @@ public class SadScientist extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
 				itemPhaseCondition,
 				ConversationStates.IDLE, 
-				"What a wasteful child",
+				"What a wasteful child.",
 				null);
 		//player says yes
-		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES,
 				itemPhaseCondition,
 				ConversationStates.QUESTION_1, 
 				"Fine! So what did you bring with you?",
@@ -458,27 +458,17 @@ public class SadScientist extends AbstractQuest {
 				Arrays.asList("gem","gems"),
 				null,
 				ConversationStates.QUEST_STARTED,
-				null ,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						engine.say("I need "
-									+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
-									+ ". Can you do that for my wife?");
-					}
-				});
+				"I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars, one mithril bar, and I need a pair of shadow " +
+				"legs as the base to add the gems to. Can you do that for my wife?",
+				null);
 		// #legs
 		npc.add(ConversationStates.QUEST_STARTED,
 				Arrays.asList("leg","legs"),
 				null,
 				ConversationStates.QUEST_STARTED,
-				null ,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						engine.say("Jewelled legs. I need "
-									+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
-									+ ". Do you have some of those now with you?");
-					}
-				});
+				"Jewelled legs. I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars, one mithril bar, " +
+				"and I need a pair of shadow legs as the base to add the gems to. Can you do that for my wife? Can you bring what I need?",
+				null);
 		//yes, no after start of quest
 		npc.add(ConversationStates.QUEST_STARTED,
 				ConversationPhrases.YES_MESSAGES,
