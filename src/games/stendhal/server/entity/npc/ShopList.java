@@ -388,6 +388,16 @@ public class ShopList {
 		// semos trading - swords)
 		shops.add("tradeswords", "dagger", 10);
 		
+		// party time! For maria for example. Bit more expensive than normal
+		shops.add("sellparty", "pina colada", 100);
+		shops.add("sellparty", "chocolate bar", 100);
+		shops.add("sellparty", "beer", 10);
+		shops.add("sellparty", "wine", 15);
+		shops.add("sellparty", "vanilla shake", 150);
+		shops.add("sellparty", "icecream", 50);
+		shops.add("sellparty", "hotdog", 180);
+		shops.add("sellparty", "sandwich", 140);
+		
 	}
 
 	private static ShopList instance;
