@@ -36,7 +36,9 @@ public class MeetBunny extends AbstractQuest {
 	protected SpeakerNPC bunny;
 
 	private StendhalRPZone zone;
-
+	
+	// The default is 90 so make ours half this
+	private static final int TIME_OUT = 45;
 
 	@Override
 	public String getSlotName() {
@@ -53,22 +55,25 @@ public class MeetBunny extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
+				// Greet players who have a basket but go straight back to idle to give others a chance
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new QuestCompletedCondition(QUEST_SLOT),
-						ConversationStates.ATTENDING,
-						"Hi again!", null);
+						ConversationStates.IDLE,
+						"Hi again! Don't eat too much this Easter!", null);
 
 				final List<ChatAction> reward = new LinkedList<ChatAction>();
 				reward.add(new EquipItemAction("basket"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
+				// Give unmet players a basket
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new QuestNotCompletedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING,
 					"Happy Easter! I have an easter basket for you.",
 					new MultipleActions(reward));
+							
 				addQuest("Just be kind and loving this Easter!");
 				addOffer("I give easter baskets to my new friends, every Easter!");
 				addHelp("You can meet me every Easter!");
@@ -79,7 +84,9 @@ public class MeetBunny extends AbstractQuest {
 		npcs.add(bunny);
 		bunny.setEntityClass("easterbunnynpc");
 		bunny.initHP(100);
-
+		// times out twice as fast as normal NPCs
+		bunny.setPlayerChatTimeout(TIME_OUT); 
+		
 		// start in int_admin_playground
 		zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
 		bunny.setPosition(17, 13);
