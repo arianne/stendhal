@@ -16,6 +16,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import java.util.List;
 
 import marauroa.common.Log4J;
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,6 +30,7 @@ public class MarketTest {
 	@BeforeClass
 	public static void beforeClass() {
 		Log4J.init();
+		new DatabaseFactory().initializeDatabase();
 		MockStendlRPWorld.get();
 	}
 
