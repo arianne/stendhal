@@ -24,7 +24,10 @@ package games.stendhal.server.core.pathfinder;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
+import games.stendhal.server.entity.player.Player;
 
+import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -264,6 +267,7 @@ class Pathfinder {
 	 * have stopped
 	 */
 	private void createEntityCollisionMap() {
+		Point targetPoint = new Point(nodeGoal.getX(), nodeGoal.getY());
 		collisionMap = new CollisionDetection();
 		collisionMap.init(zone.getWidth(), zone.getHeight());
 		for (final RPObject obj : zone) {
@@ -275,6 +279,11 @@ class Pathfinder {
 
 				final Rectangle2D area = otherEntity.getArea(otherEntity.getX(),
 						otherEntity.getY());
+
+				// Hack: Allow players to move onto portals as destination
+				if ((entity instanceof Player) && (otherEntity instanceof Portal) && area.contains(targetPoint)) {
+					continue;
+				}
 				collisionMap.setCollide(area, true);
 			}
 		}
