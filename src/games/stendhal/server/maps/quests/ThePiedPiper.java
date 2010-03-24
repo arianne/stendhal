@@ -469,7 +469,7 @@ import org.apache.log4j.Logger;
 	 */
 	private void tellAllAboutNoRatsInCity() {
 		final String text = "Mayor Chalmers shouts: No #rats in Ados survived, "+
-				            "excluded those who always lived in the "+
+				            "only those who always lived in the "+
 				            "haunted house. "+
 				            "Rat hunters are welcome to get their #reward.";
 		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
