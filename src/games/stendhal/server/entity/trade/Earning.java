@@ -1,13 +1,11 @@
 package games.stendhal.server.entity.trade;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.log4j.Logger;
-
 import games.stendhal.server.entity.Entity;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 public class Earning extends Entity implements Dateable {
 	public static final String EARNING_RPCLASS_NAME = "earning";
@@ -68,7 +66,7 @@ public class Earning extends Entity implements Dateable {
 	public boolean shouldReward() {
 		return (getInt(REWARD_ATTRIBUTE) != 0);
 	}
-	
+
 	public long getTimestamp() {
 		long timeStamp = 0;
 		try {
@@ -78,5 +76,5 @@ public class Earning extends Entity implements Dateable {
 		}
 		return timeStamp;
 	}
-	
+
 }
