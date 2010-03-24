@@ -25,6 +25,9 @@ Changelog
 - improved stability of the client in uncommon situations
 - stat changes that occurred during zone change (like losing xp on death) did not update the stats window.
 - click walking is now a lot smother
+- fixed Harold telling players about about expiring earnings every minute
+
+
 
 0.81.3
 - prevent crash on "No line matching interface" (fixes #2970406)
