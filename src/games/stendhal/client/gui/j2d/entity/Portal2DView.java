@@ -73,4 +73,10 @@ class Portal2DView extends InvisibleEntity2DView {
 			break;
 		}
 	}
+
+	@Override
+	public boolean isInteractive() {
+		return false;
+	}
+
 }
