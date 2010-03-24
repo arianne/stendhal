@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -13,8 +14,8 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -48,8 +49,30 @@ import org.apache.log4j.Logger;
 	private static final String QUEST_NPC = "Despot Halb Errvl";
 	private static final String QUEST_SLOT = "kill_blordroughs";
 	private final long questdelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;	
-	private final int killsnumber = 100;
+	protected final int killsnumber = 100;
 	private SpeakerNPC npc;	
+	private static Logger logger = Logger.getLogger(KillBlordroughs.class);
+	
+	protected static List<String> Blordroughs = Arrays.asList(
+			"blordrough quartermaster",
+			"blordrough corporal",
+			"blordrough storm trooper");
+	
+	/**
+	 * function returns list of blordrough creatures.
+	 * @return - list of blordrough creatures
+	 */
+	protected LinkedList<Creature> getBlordroughs() {
+		LinkedList<Creature> blordroughs = new LinkedList<Creature>();
+		final EntityManager manager = SingletonRepository.getEntityManager();
+		for (int i=0; i<Blordroughs.size(); i++) {
+			Creature creature = manager.getCreature(Blordroughs.get(i));
+			if (!creature.isRare()) {
+				blordroughs.add(creature);
+			}
+		}
+		return(blordroughs);
+	}
 	
 	/**
 	 * function checking if quest is active for player or no.
@@ -102,28 +125,13 @@ import org.apache.log4j.Logger;
 			} else {
 				// something wrong.
 				reply = "I dont want to decide about you now.";
-				Logger.getLogger("KillBlordroughs").error("wrong time count	for player "+player.getName()+": "+
+				logger.error("wrong time count	for player "+player.getName()+": "+
 						"current time is "+currenttime+
 						", last quest time is "+questLast, 
 						new Throwable());
 			}
 		}
 		return(reply);
-	}
-	
-	/**
-	 * function returns list of blordrough creatures.
-	 * @return - list of blordrough creatures
-	 */
-	private LinkedList<Creature> getBlordroughs() {
-		LinkedList<Creature> blordroughs = new LinkedList<Creature>();
-		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
-		for (Creature creature : creatures) {
-			if (!creature.isRare() && creature.getName().contains("blordrough")) {
-				blordroughs.add(creature);
-			}
-		}	
-		return(blordroughs);
 	}
 	
 	/**
@@ -260,7 +268,7 @@ import org.apache.log4j.Logger;
 	 */
 	private void step_1() {	
 		npc.add(ConversationStates.ATTENDING, 
-				Arrays.asList("Blordrough","blordrough"),
+				Arrays.asList("Blordrough","blordrough","blordroughs"),
 				null, 
 				ConversationStates.ATTENDING, 
 				"My Mithrilbourgh army have great losses in battles with Blordrough soldiers. They coming from side of Ados tunnels.",
