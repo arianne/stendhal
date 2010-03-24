@@ -64,6 +64,9 @@ public class ThePiedPiperTest {
 		player.setDEFXP(100000000);
 		player.setXP(100000000);
 		player.setHP(10000);	
+		player.addKarma(10000);
+		player.setInvisible(true);
+		player.setGhost(true);
 	}
 
 	/**
@@ -73,9 +76,6 @@ public class ThePiedPiperTest {
 	 */
 	private void killRat(KillNotificationCreature rat, int count) {
 		do {
-			MockStendlRPWorld.get().nextTurn();
-			MockStendhalRPRuleProcessor.get().beginTurn();
-
 			// prevent player killing
 			player.setHP(10000);
 			if(player.isPoisoned()) {
@@ -84,6 +84,9 @@ public class ThePiedPiperTest {
 			player.teleport(rat.getZone(), rat.getX()+1, rat.getY(), null, player);
 			player.setTarget(rat);
 			//player.attack();
+
+			MockStendlRPWorld.get().nextTurn();
+			MockStendhalRPRuleProcessor.get().beginTurn();
 			MockStendhalRPRuleProcessor.get().endTurn();
 
 		} while (player.isAttacking());
