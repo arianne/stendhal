@@ -3,13 +3,13 @@ Changelog
 0.82
 *features
 - single click movement
-- easter bunny
-- pied piper quest
+- Easter Bunny
+- Pied Piper quest
 - open manual on key F1
 - added /volume support for sound
 - asynchronous database access
-- kalavan orb
-- sad scientist quest
+- Kalavan orb
+- Sad Scientist quest
 
 *admins*
 - new /script AdminPortal.class
@@ -24,8 +24,8 @@ Changelog
 - Carmen only asks for her quest if the player is at least level 2.
 - improved stability of the client in uncommon situations
 - stat changes that occurred during zone change (like losing xp on death) did not update the stats window.
-- click walking is now a lot smother
-- fixed Harold telling players about about expiring earnings every minute
+- click walking is now a lot smoother
+- fixed Harold telling players about expiring earnings every minute
 
 
 
