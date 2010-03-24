@@ -26,6 +26,7 @@ import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 
 import java.awt.Cursor;
+import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
@@ -45,6 +46,8 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		Inspector {
 	/** the game client. */
 	private final StendhalClient client;
+
+	private boolean windowWasActiveOnMousePressed = true;
 
 	/**
 	 * The UI.
@@ -94,6 +97,15 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	}
 
 	/**
+	 * remembers whether the client was active on last mouse down
+	 */
+	@Override
+	public synchronized void mousePressed(MouseEvent e) {
+		windowWasActiveOnMousePressed = (KeyboardFocusManager.getCurrentKeyboardFocusManager().getActiveWindow() != null);
+		super.mousePressed(e);
+	}
+
+	/**
 	 * 
 	 * 
 	 * 
@@ -105,6 +117,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			// yes, click already processed
 			return true;
 		}
+		
 
 		// get clicked entity
 		final Point2D point = screen.convertScreenViewToWorld(p);
@@ -127,7 +140,9 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 				return true;
 			}
 		} else if (getWtPanelAt(p) == null) {
-			createAndSendMoveToAction(point);
+			if (windowWasActiveOnMousePressed) {
+				createAndSendMoveToAction(point);
+			}
 			return true;
 		}
 
