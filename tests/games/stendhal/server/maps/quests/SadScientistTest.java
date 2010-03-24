@@ -96,9 +96,9 @@ public class SadScientistTest {
 		en.step(player, "yes");
 		assertEquals("My wife is living in Semos City. She loves gems. Can you bring me some #gems that I need to make a pair of precious #legs?", getReply(npc));
 		en.step(player, "gems");
-		assertEquals("I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars, one mithril bar, and I need a pair of shadow legs as the base to add the gems to. Can you do that for my wife?", getReply(npc));
+		assertEquals("I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars and one mithril bar. Can you do that for my wife?", getReply(npc));
 		en.step(player, "legs");
-		assertEquals("Jewelled legs. I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars, one mithril bar, and I need a pair of shadow legs as the base to add the gems to. Can you do that for my wife? Can you bring what I need?", getReply(npc));
+		assertEquals("Jewelled legs. I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars and one mithril bar. Can you do that for my wife? Can you bring what I need?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("I am waiting, Semos man.", getReply(npc));
 
@@ -108,19 +108,19 @@ public class SadScientistTest {
 		assertEquals("Hello. Do you have any #items I need for the jewelled legs?", getReply(npc));
 
 		// summon all the items needed:
-		
-		PlayerTestHelper.equipWithStackableItem(player, "gold bar", 20);
+		// but not all the gold bar
+		PlayerTestHelper.equipWithStackableItem(player, "gold bar", 10);
 		PlayerTestHelper.equipWithItem(player, "mithril bar");
 		PlayerTestHelper.equipWithItem(player, "emerald");
 		PlayerTestHelper.equipWithItem(player, "obsidian");
 		PlayerTestHelper.equipWithItem(player, "sapphire");
 		PlayerTestHelper.equipWithStackableItem(player, "carbuncle", 2);
-		PlayerTestHelper.equipWithItem(player, "shadow legs");
+
+		assertFalse(player.isEquipped("gold bar", 20));
 		
 		final String[] triggers = { "obsidian", "gold bar", "carbuncle", "sapphire", "emerald", "mithril bar" };
 		
 		for (final String playerSays : triggers) {
-			player.setQuest(QUEST_SLOT, NEEDED_ITEMS);
 
 			assertThat(player.isQuestCompleted(QUEST_SLOT), is(false));
 
@@ -131,13 +131,27 @@ public class SadScientistTest {
 			assertEquals("Good, do you have anything else?", getReply(npc));
 			assertThat(player.getQuest(QUEST_SLOT), not((is(NEEDED_ITEMS))));
 		}
-		
-		
+		// now bring the remaining gold bar
+		PlayerTestHelper.equipWithStackableItem(player, "gold bar", 10);
 
 		// -----------------------------------------------
-		en.step(player, "shadow legs");
-		assertEquals("Wonderful! I will start my work. I can do this in very little time with the help of technology! Please come back in 20 minutes.", getReply(npc));
+		en.step(player, "gold bar");
+		assertEquals("I am a stupid fool too much in love with my wife Vera to remember, of course these legs also need a base to add " +
+		"the jewels to. Please return with a pair of shadow legs. Bye.", getReply(npc));
 		
+		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+		
+		// return with no legs
+		en.step(player, "hi");
+		assertEquals("Hello again. Please return when you have the shadow legs, a base for me to add jewels to make jewelled legs for Vera.", getReply(npc));
+		
+		PlayerTestHelper.equipWithItem(player, "shadow legs");
+		
+		en.step(player, "hi");
+		assertEquals("The shadow legs! Wonderful! I will start my work. I can do this in very little time with the help of technology! " +	
+		"Please come back in 20 minutes.", getReply(npc));
+		
+		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 		en.step(player, "hi");
 		assertTrue(getReply(npc).startsWith("Do you think I can work that fast? Go away. Come back in"));
 
