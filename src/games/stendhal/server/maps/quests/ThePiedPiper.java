@@ -83,7 +83,7 @@ import org.apache.log4j.Logger;
 			QUEST_INACTIVE_TIME_MAX = 60 * 60 * 24 * 14;
 			QUEST_INACTIVE_TIME_MIN = 60 * 60 * 24 * 7;
 			QUEST_INVASION_TIME = 60 * 60 * 2;
-			QUEST_AWAITING_TIME = 60 * 60;
+			QUEST_AWAITING_TIME = 60 * 1;
 			QUEST_SHOUT_TIME = 60 * 10;
 			} 
 		else {	
@@ -238,7 +238,7 @@ import org.apache.log4j.Logger;
 		logger.info("ThePiedPiper quest is over (phase INACTIVE).");
 		phase=TPP_Phase.TPP_INACTIVE;
 		shouterTimer.stop();
-		tellAllAboutRatsIsGone();
+	//	tellAllAboutRatsIsGone();
 		step_1();
 	}
 
@@ -287,7 +287,7 @@ import org.apache.log4j.Logger;
 					};
 					break;
 			default: // pied piper here.
-				    mayor.say("I called a rats exterminator. "+
+				    mayor.say("The rats are gone. "+
 				    		"You can get #reward for your help now, ask about #details "+
 							  "if you want to know more.");
 					break;
@@ -479,24 +479,27 @@ import org.apache.log4j.Logger;
 	 *  Rats now living under all buildings. Need to call Pied Piper :-)
 	 */
 	private void tellAllAboutRatsIsWinners() {
-		final String text = "Mayor Chalmers shouts: Suddenly, #rats have captured city, "+
-							"they are living now under all Ados buildings. "+
-				            "I now need to call the Pied Piper, a rat exterminator. "+
-				            "Thank to all who tried to clean up Ados, "+
+		final String text = // "Mayor Chalmers shouts: Suddenly, #rats have captured city, "+
+							"Mayor Chalmers shouts: The #rats left as suddenly as they arrived. "+
+							"Perhaps they have returned to the sewers. "+
+				   //         "I now need to call the Pied Piper, a rat exterminator. "+
+							"Anyway, " +
+				            "Thanks to all who tried to clean up Ados, "+
 				            " you are welcome to get your #reward.";
 		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
 	}
 
 	/**
 	 *  Pied Piper sent rats away:-)
-	 */
+	 
 	private void tellAllAboutRatsIsGone() {
-		final String text = "Mayor Chalmers shouts: Thankfully, all #rats are gone now, the Pied Piper " +
+		final String text = "Mayor Chalmers shouts: Thankfully, all the #rats are gone now, " +
+							"the Pied Piper " +
 							"hypnotized them and led them away to dungeons. "+
 				            "Those of you, who helped Ados City with the rats problem, "+
 							"can get your #reward now.";
 		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
-	}
+	}*/
 
 	/**
 	 * rats invasion starts :-)

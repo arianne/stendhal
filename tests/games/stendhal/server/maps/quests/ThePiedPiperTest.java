@@ -256,7 +256,8 @@ public class ThePiedPiperTest {
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("I called a rats exterminator. "+
+	//	assertEquals("I called a rats exterminator. "+
+		assertEquals("The rats are gone. "+
 	    		"You can get #reward for your help now, ask about #details "+
 				  "if you want to know more.", getReply(npc));
 		en.step(player, "details");
