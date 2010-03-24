@@ -471,68 +471,12 @@ public class SadScientist extends AbstractQuest {
 	}
 	
 	/**
-	 * Drop specified amount of given item. If player doesn't have enough items,
-	 * all carried ones will be dropped and number of missing items is updated.
-	 *
-	 * @param player
-	 * @param itemName
-	 * @param itemCount
-	 * @return true if something was dropped
-	 */
-	boolean dropItems(final Player player, final String itemName, int itemCount) {
-		boolean result = false;
-
-		 // parse the quest state into a list of still missing items
-		final ItemCollection itemsTodo = new ItemCollection();
-
-		itemsTodo.addFromQuestStateString(player.getQuest(QUEST_SLOT));
-
-		if (player.drop(itemName, itemCount)) {
-			if (itemsTodo.removeItem(itemName, itemCount)) {
-				result = true;
-			}
-		} else {
-			/*
-			 * handle the cases the player has part of the items or all divided
-			 * in different slots
-			 */
-			final List<Item> items = player.getAllEquipped(itemName);
-			if (items != null) {
-				for (final Item item : items) {
-					final int quantity = item.getQuantity();
-					final int n = Math.min(itemCount, quantity);
-
-					if (player.drop(itemName, n)) {
-						itemCount -= n;
-
-						if (itemsTodo.removeItem(itemName, n)) {
-							result = true;
-						}
-					}
-
-					if (itemCount == 0) {
-						result = true;
-						break;
-					}
-				}
-			}
-		}
-
-		 // update the quest state if some items are handed over
-		if (result) {
-			player.setQuest(QUEST_SLOT, itemsTodo.toStringForQuestState());
-		}
-
-		return result;
-	}
-	
-	/**
 	 * Returns all items that the given player still has to bring to complete the quest.
 	 *
 	 * @param player The player doing the quest
 	 * @return A list of item names
 	 */
-	ItemCollection getMissingItems(final Player player) {
+	private ItemCollection getMissingItems(final Player player) {
 		final ItemCollection missingItems = new ItemCollection();
 
 		missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
