@@ -16,7 +16,7 @@ public enum TutorialEventType {
 	VISIT_SEMOS_CITY(
 			"You can get a map of Semos from Monogenes. Start by saying \"hi\". Or you can go down the steps to the dungeons and fight some creatures."),
 	VISIT_SEMOS_DUNGEON(
-			"You can attack creatures by right clicking on them and choosing \"Attack\""),
+			"You can attack creatures by right clicking on them and choosing \"Attack\". Alternatively you can use double click."),
 	VISIT_SEMOS_DUNGEON_2(
 			"Be careful. If you walk deeper and deeper, the creatures will get more powerful."),
 	VISIT_SEMOS_TAVERN(
@@ -34,7 +34,7 @@ public enum TutorialEventType {
 	FIRST_DEATH(
 			"Oh, you have just died. But fortunately death is not permanent in this world."),
 	TIMED_HELP(
-			"There is a manual with many pictures on the first screen before you login."),
+			"Press F1 to read the manual with many pictures."),
 	TIMED_NAKED(
 			"Oh, aren't you feeling cold? Right click on yourself and choose \"Set Outfit\" to get dressed."),
 	TIMED_PASSWORD(
