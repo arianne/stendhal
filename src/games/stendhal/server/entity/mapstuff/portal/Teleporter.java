@@ -20,6 +20,7 @@ public class Teleporter extends Portal {
 	 * @return <code>true</code> if the portal worked, <code>false</code>
 	 *         otherwise.
 	 */
+	@Override
 	protected boolean usePortal(final Player player) {
 		if (!nextTo(player)) {
 			// Too far to use the portal
