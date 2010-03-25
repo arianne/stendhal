@@ -9,6 +9,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
+import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
 import games.stendhal.server.entity.player.Player;
@@ -23,6 +24,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import marauroa.common.game.RPObject;
 import marauroa.server.db.command.DBCommandQueue;
 
 import org.apache.log4j.Logger;
@@ -404,6 +406,13 @@ public class MazeGenerator {
 				entity.put("zoneid", returnZoneName);
 				entity.put("x", returnX);
 				entity.put("y", returnY);
+				// Tell corpses they're going to be removed (from pets or creatures 
+				// from summon scrolls). This is for stopping the rotting timers
+				for (RPObject obj : zone) {
+					if (obj instanceof Corpse) {
+						((Corpse) obj).onRemoved(zone); 
+					}
+				}
 				SingletonRepository.getRPWorld().removeZone(zone);
 			}
 		}
