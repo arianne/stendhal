@@ -23,6 +23,8 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 public class BuyHouseChatActionTest {
+	private HousePortal housePortal;
+	private StoredChest chest;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -40,8 +42,29 @@ public class BuyHouseChatActionTest {
 	public void setUp() throws Exception {
 	}
 
+	/**
+	 * Remove added stored entities.
+	 * <p>
+	 * stored entities can pollute the database
+	 * if a server is ran on the same system as the tests.
+	 */
 	@After
-	public void tearDown() throws Exception {
+	public void clearStored() {
+		if (housePortal != null) {
+			StendhalRPZone zone = housePortal.getZone();
+			if (zone != null) {
+				zone.remove(housePortal);
+				housePortal = null;
+			}
+		}
+		
+		if (chest != null) {
+			StendhalRPZone zone = chest.getZone();
+			if (zone != null) {
+				zone.remove(chest);
+				chest = null;
+			}
+		}
 	}
 
 	/**
@@ -53,10 +76,11 @@ public class BuyHouseChatActionTest {
 		String zoneName = "0_ados_city_n";
 		StendhalRPZone ados = new StendhalRPZone(zoneName);
 		MockStendlRPWorld.get().addRPZone(ados);
-		HousePortal housePortal = new HousePortal("schnick bla 51");
+		housePortal = new HousePortal("schnick bla 51");
 		housePortal.setDestination(zoneName, "schnick bla 51");
 		ados.add(housePortal);
-		ados.add(new StoredChest());
+		chest = new StoredChest();
+		ados.add(chest);
 		HouseUtilities.clearCache();
 		
 		SpeakerNPC engine = new SpeakerNPC("bob");

@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,6 +32,8 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 public class AdosHouseSellerTest {
+	HousePortal housePortal;
+	StoredChest chest;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -45,6 +48,31 @@ public class AdosHouseSellerTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		SingletonRepository.getNPCList().clear();
+	}
+	
+	/**
+	 * Remove added stored entities.
+	 * <p>
+	 * stored entities can pollute the database
+	 * if a server is ran on the same system as the tests.
+	 */
+	@After
+	public void clearStored() {
+		if (housePortal != null) {
+			StendhalRPZone zone = housePortal.getZone();
+			if (zone != null) {
+				zone.remove(housePortal);
+				housePortal = null;
+			}
+		}
+		
+		if (chest != null) {
+			StendhalRPZone zone = chest.getZone();
+			if (zone != null) {
+				zone.remove(chest);
+				chest = null;
+			}
+		}
 	}
 
 	/**
@@ -129,14 +157,14 @@ public class AdosHouseSellerTest {
 	 */
 	@Test
 	public void testAdosHouseSeller() {
-		
 		String zoneName = "0_ados_city_n";
 		StendhalRPZone ados = new StendhalRPZone(zoneName);
 		MockStendlRPWorld.get().addRPZone(ados);
-		HousePortal housePortal = new HousePortal("schnick bla 51");
+		housePortal = new HousePortal("schnick bla 51");
 		housePortal.setDestination(zoneName, "schnick bla 51");
 		ados.add(housePortal);
-		ados.add(new StoredChest());
+		chest = new StoredChest();
+		ados.add(chest);
 		HouseUtilities.clearCache();
 		
 		

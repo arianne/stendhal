@@ -6,7 +6,10 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import java.util.LinkedList;
+
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
@@ -14,6 +17,7 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -35,6 +39,9 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		"0_ados_city_s",
 		"0_ados_wall",
 		"0_athor_island"	};
+	
+	private LinkedList<HousePortal> portals = new LinkedList<HousePortal>();
+	private StoredChest chest;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -59,6 +66,32 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
+	
+	/**
+	 * Remove added stored entities.
+	 * <p>
+	 * stored entities can pollute the database
+	 * if a server is ran on the same system as the tests.
+	 */
+	@After
+	public void clearStored() {
+		for (HousePortal portal : portals) {
+			StendhalRPZone zone = portal.getZone();
+			if (zone != null) {
+				zone.remove(portal);
+			}
+		}
+		portals.clear();
+		
+		if (chest != null) {
+			StendhalRPZone zone = chest.getZone();
+			if (zone != null) {
+				zone.remove(chest);
+				chest = null;
+			}
+		}
+	}
+
 
 	public HouseBuyingAthorTest() {
 		super(ZONE_NAME, "Barrett Holmes", "Reg Denson", "Mr Taxman", "Cyk");
@@ -97,13 +130,13 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		Portal destination = new Portal();
 		destination.setIdentifier("dest"); 
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(destination);
-		StoredChest chest = new StoredChest();
+		chest = new StoredChest();
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(chest);
 		
 		for (String zone : CITY_ZONES) {
 			assertNotNull(zone);
 			HousePortal portal = new HousePortal("athor apartment 101");
-			assertNotNull(portal);
+			portals.add(portal);
 			portal.setDestination(ZONE_NAME, "dest");
 			SingletonRepository.getRPWorld().getRPZone(zone).add(portal);
 		}
