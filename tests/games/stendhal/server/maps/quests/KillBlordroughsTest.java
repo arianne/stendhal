@@ -10,6 +10,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.mithrilbourgh.throne_room.BuyerNPC;
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 
 import java.util.LinkedList;
@@ -149,7 +150,8 @@ public class KillBlordroughsTest {
 		en.step(player, "hi");
 		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("You killed only "+killed+" blordrough soldiers.", getReply(npc));
+		assertEquals("You killed only "+killed+" blordrough "+
+				Grammar.plnoun(killed, "soldier")+".", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		// make it full number.
@@ -190,7 +192,10 @@ public class KillBlordroughsTest {
 		assertEquals("Well state what you want then!", getReply(npc));
 		double tempkarma = player.getKarma();
 		en.step(player, "quest");		
-		assertEquals("Pretty good! You killed "+(killed-quest.killsnumber)+" extra soldiers! Take this moneys, and remember, i may wish you to do this job again in one week!", getReply(npc));
+		assertEquals("Pretty good! You killed "+(killed-quest.killsnumber)+" extra "+
+				Grammar.plnoun(killed-quest.killsnumber, "soldier")+
+				"! Take this moneys, and remember, i may wish you to do this job again in one week!", 
+				getReply(npc));
 		assertEquals(tempkarma, player.getKarma()-30, 0.000001);
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));	

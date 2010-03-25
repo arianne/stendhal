@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
@@ -99,7 +100,7 @@ import org.apache.log4j.Logger;
 			final String questLast = player.getQuest(QUEST_SLOT, 1);
 			final Long time = currenttime - 
 				Long.parseLong(questLast);
-			if (time < questdelay) {
+			if (time > questdelay) {
 				return true;
 			}
 		}
@@ -247,7 +248,7 @@ import org.apache.log4j.Logger;
 				}
 				if(killed < killsnumber) {
 					// player killed less then needed soldiers.
-					npc.say("You killed only "+killed+" blordrough soldiers.");
+					npc.say("You killed only "+killed+" blordrough "+Grammar.plnoun(killed, "soldier")+".");
 					return;
 				}
 				if(killed == killsnumber) {
@@ -255,7 +256,8 @@ import org.apache.log4j.Logger;
 					npc.say("Good work! Take this moneys. And if you will need assassin job again, ask me in one week. I think they will try to fight me again.");
 				} else {
 					// player killed more then needed soldiers
-					npc.say("Pretty good! You killed "+(killed-killsnumber)+" extra soldiers! Take this moneys, and remember, i may wish you to do this job again in one week!");
+					npc.say("Pretty good! You killed "+(killed-killsnumber)+" extra "+
+							Grammar.plnoun(killed-killsnumber, "soldier")+"! Take this moneys, and remember, i may wish you to do this job again in one week!");
 				}				
 				rewardPlayer(player, killed);
 			} else {
