@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
@@ -14,6 +15,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.quests.houses.HouseUtilities;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,10 +24,12 @@ import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
-
 	private static final String ZONE_NAME = "0_kalavan_city";
 	private static final String ZONE_NAME2 = "int_ados_town_hall_3";
 	private static final String ZONE_NAME3 = "int_kirdneh_townhall";
+	
+	private HousePortal housePortal;
+	private StoredChest chest;
 	
 	private static final String[] CITY_ZONES = { 
 		"0_kalavan_city",
@@ -58,6 +62,31 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+	}
+	
+	/**
+	 * Remove added stored entities.
+	 * <p>
+	 * stored entities can pollute the database
+	 * if a server is ran on the same system as the tests.
+	 */
+	@After
+	public void clearStored() {
+		if (housePortal != null) {
+			StendhalRPZone zone = housePortal.getZone();
+			if (zone != null) {
+				zone.remove(housePortal);
+				housePortal = null;
+			}
+		}
+		
+		if (chest != null) {
+			StendhalRPZone zone = chest.getZone();
+			if (zone != null) {
+				zone.remove(chest);
+				chest = null;
+			}
+		}
 	}
 
 	public HouseBuyingTest() {
@@ -135,12 +164,12 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		Portal destination = new Portal();
 		destination.setIdentifier("dest"); 
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(destination);
-		StoredChest chest = new StoredChest();
+		chest = new StoredChest();
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(chest);
 		
-		HousePortal portal = new HousePortal("ados house 50");
-		portal.setDestination(ZONE_NAME, "dest");
-		SingletonRepository.getRPWorld().getRPZone("0_ados_city").add(portal);
+		housePortal = new HousePortal("ados house 50");
+		housePortal.setDestination(ZONE_NAME, "dest");
+		SingletonRepository.getRPWorld().getRPZone("0_ados_city").add(housePortal);
 		HouseUtilities.clearCache();
 
 		assertTrue(en.step(player, "50"));
