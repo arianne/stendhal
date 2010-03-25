@@ -221,7 +221,7 @@ import org.apache.log4j.Logger;
 	 * @param killed - number of killed creatures.
 	 */
 	private void rewardPlayer(final Player player, int killed) {
-		int karmabonus = 5*(killed/(killsnumber)-1);
+		int karmabonus = 5*(2*killed/(killsnumber)-1);
 		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
 			.getItem("money");
 		money.setQuantity(50000);
@@ -239,15 +239,24 @@ import org.apache.log4j.Logger;
 		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 			if(questInProgress(player)) {
 				int killed = getKilledCreaturesNumber(player);
-				// player killed no creatures but asked about quest again.
+
 				if(killed==0) {
-					npc.say("I already explained to you what i need. Are you idiot, as you cant remember this simple thing about #blordroughs?");
+					// player killed no creatures but asked about quest again.
+					npc.say("I already explained to you what i need. Are you an idiot, as you cant remember this simple thing about #blordroughs?");
 					return;
 				}
 				if(killed < killsnumber) {
+					// player killed less then needed soldiers.
 					npc.say("You killed only "+killed+" blordrough soldiers.");
 					return;
 				}
+				if(killed == killsnumber) {
+					// player killed no more no less then needed soldiers
+					npc.say("Good work! Take this moneys. And if you will need assassin job again, ask me in one week. I think they will try to fight me again.");
+				} else {
+					// player killed more then needed soldiers
+					npc.say("Pretty good! You killed "+(killed-killsnumber)+" extra soldiers! Take this moneys, and remember, i may wish you to do this job again in one week!");
+				}				
 				rewardPlayer(player, killed);
 			} else {
 				final Long currtime = System.currentTimeMillis();
