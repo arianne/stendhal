@@ -1817,7 +1817,15 @@ public class Player extends RPEntity {
 	}
 	@Override
 	protected void handleObjectCollision() {
-		clearPath();
+        if (hasPath()) {
+            /*
+             * Stop a player only if he is following a path.
+             * Otherwise running behind archers becomes almost
+             * impossible.
+             */
+             stop();
+             clearPath();
+        }
 	}
 
 
