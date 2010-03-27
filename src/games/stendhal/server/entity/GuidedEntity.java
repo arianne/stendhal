@@ -9,8 +9,12 @@ package games.stendhal.server.entity;
 //
 //
 
+import java.util.List;
+
 import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import marauroa.common.game.RPObject;
 
 /**
@@ -124,6 +128,28 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 */
 	public void setPathPosition(final int pathPos) {
 		guide.pathPosition = pathPos;
+	}
+	
+	/**
+	 * Plan a new path to the old destination.
+	 */
+	public void reroute() {
+		if (hasPath()) {
+			Node node = guide.path.getDestination();
+			final List<Node> path = Path.searchPath(this, node.getX(), node.getY());
+		
+			if (path.size() >= 1) {
+				setPath(new FixedPath(path, false));
+			} else {
+				/*
+				 * It can happen that some other entity goes to occupy the
+				 * target position after the path has been planned. Just 
+				 * stop if that happens and we are next to the goal. 
+				 */
+				clearPath();
+				stop();
+			}
+		}
 	}
 
 	//
