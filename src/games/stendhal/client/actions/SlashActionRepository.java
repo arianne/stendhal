@@ -30,8 +30,9 @@ public class SlashActionRepository {
 		actions.put("ban", new BanAction());
 		
 		actions.put("clear", new ClearChatLogAction());
+		actions.put("clickmode", new ClickModeAction());
 		actions.put("crash", new CrashClientAction());
-		
+
 		actions.put("drop", new DropAction());
 
 		actions.put("faq", new FAQAction());

@@ -24,6 +24,7 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.Cursor;
 import java.awt.KeyboardFocusManager;
@@ -154,9 +155,12 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			}
 		} else if (getWtPanelAt(p) == null) {
 			if (windowWasActiveOnMousePressed) {
-				createAndSendMoveToAction(point);
+				boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
+				if (!doubleClick) {
+					createAndSendMoveToAction(point);
+				}
 			}
-			return true;
+			return false;
 		}
 
 		return false;
