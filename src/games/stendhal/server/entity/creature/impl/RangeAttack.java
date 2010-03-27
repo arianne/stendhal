@@ -42,15 +42,27 @@ public class RangeAttack implements AttackStrategy {
 			creature.faceToward(creature.getAttackTarget());
 			creature.setDirection(creature.getDirection().oppositeDirection());
 			if (creature.getZone().collides(creature, creature.getX() + creature.getDirection().getdx(), creature.getY() + creature.getDirection().getdy(), true)) {
-				creature.faceToward(creature.getAttackTarget());
-				creature.setSpeed(0);
+				if (!canAttackNow(creature)) {
+					creature.setMovement(target, 0, 1, 15.0);
+					creature.faceToward(creature.getAttackTarget());
+				} else {
+					creature.faceToward(creature.getAttackTarget());
+					creature.setSpeed(0);
+				}
 			} else {
 				creature.setSpeed(creature.getBaseSpeed());
 			}
+			
 		} else {
-			creature.clearPath();
-			creature.stop();
-			creature.faceToward(creature.getAttackTarget());
+			if (!canAttackNow(creature)) {
+				creature.setMovement(target, 0, 1, 20.0);
+				creature.faceToward(creature.getAttackTarget());
+			} else {
+				creature.clearPath();
+				creature.stop();
+				creature.faceToward(creature.getAttackTarget());
+			}
+
 		}
 	}
 
