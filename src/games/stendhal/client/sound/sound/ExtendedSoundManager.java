@@ -133,6 +133,7 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 	ExtendedSoundManager() {
 		super(!Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true")),
 				mDeviceEvaluator.createDeviceList(mAudioFormat), mAudioFormat);
+		initMute();
 		initVolumes();
 	}
 
@@ -147,6 +148,12 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		this.getGroup("creature").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.creature", 95), 100.0f));
 		this.getGroup("ambient").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.ambient", 80), 100.0f));
 		this.getGroup("music").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.music", 60), 100.0f));
+	}
+
+	private void initMute() {
+		WtWindowManager config = WtWindowManager.getInstance();
+		boolean play = Boolean.parseBoolean(config.getProperty("sound.play", "true"));
+		mute(!play, false, new Time(0, Time.Unit.SEC));
 	}
 
 	public void playerMoved() {
