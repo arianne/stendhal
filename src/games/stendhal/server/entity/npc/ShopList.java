@@ -374,6 +374,7 @@ public class ShopList {
 		shops.add("buyamazoncloaks", "stone cloak", 350);
 		shops.add("buyamazoncloaks", "blue striped cloak", 280);
 		shops.add("buyamazoncloaks", "red dragon cloak", 4000);
+		shops.add("buyamazoncloaks", "bone dragon cloak", 1500);
 		
 		// kirdneh city fishy market)
 		shops.add("buyfishes", "perch", 22);
