@@ -48,6 +48,8 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	private final StendhalClient client;
 
 	private boolean windowWasActiveOnMousePressed = true;
+	private int xOnMousePressed;
+	private int yOnMousePressed;
 
 	/**
 	 * The UI.
@@ -102,16 +104,27 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	@Override
 	public synchronized void mousePressed(MouseEvent e) {
 		windowWasActiveOnMousePressed = (KeyboardFocusManager.getCurrentKeyboardFocusManager().getActiveWindow() != null);
+		xOnMousePressed = e.getX();
+		yOnMousePressed = e.getY();
 		super.mousePressed(e);
 	}
 
 	/**
+	 * Handles mouse click events
 	 * 
-	 * 
-	 * 
+	 * @param p point of click
 	 */
 	@Override
 	public synchronized boolean onMouseClick(final Point p) {
+
+		// on MS Windows releasing the mouse after a drag&drop action is
+		// counted as mouse click: https://sourceforge.net/support/tracker.php?aid=2976895
+		if ((Math.abs(p.getX() - xOnMousePressed) > 10) 
+			|| (Math.abs(p.getY() - yOnMousePressed) > 10)) {
+			return false;
+		}
+
+		
 		// base class checks if the click is within a child
 		if (super.onMouseClick(p)) {
 			// yes, click already processed
