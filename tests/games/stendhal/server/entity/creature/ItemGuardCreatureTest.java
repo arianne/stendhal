@@ -13,7 +13,9 @@ import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import marauroa.common.Log4J;
 import marauroa.server.game.db.DAORegister;
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.After;
 import org.junit.Before;
@@ -33,7 +35,8 @@ public class ItemGuardCreatureTest {
 		PlayerTestHelper.generateNPCRPClasses();
 		PlayerTestHelper.generatePlayerRPClasses();
 		CreatureTestHelper.generateRPClasses();
-		DAORegister.get().register(StendhalKillLogDAO.class, new StendhalKillLogDAO ());
+		Log4J.init();
+		new DatabaseFactory().initializeDatabase();
 	}
 	
 	@After
