@@ -81,7 +81,6 @@ public class MeetBunny extends AbstractQuest {
 				addGoodbye("Don't eat too much this Easter! Bye!");
 			}
 		};
-		npcs.add(bunny);
 		bunny.setEntityClass("easterbunnynpc");
 		bunny.initHP(100);
 		// times out twice as fast as normal NPCs
