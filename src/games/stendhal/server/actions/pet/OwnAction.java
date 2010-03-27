@@ -55,7 +55,7 @@ public class OwnAction implements ActionListener {
 
 		final Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), player);
 		if (entity != null) {
-			if (checkEntityIsDomesticAnimal(player, entity)) {
+			if (!checkEntityIsDomesticAnimal(player, entity)) {
 				return;
 			}
 
