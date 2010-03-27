@@ -28,7 +28,7 @@ public class VampireLordCreature implements ZoneConfigurator {
 
 	private void buildDrowTunnelArea(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
-		final Creature creature = new ItemGuardCreature(manager.getCreature("vampire lord"), "skull ring", "vs_quest");
+		final Creature creature = new ItemGuardCreature(manager.getCreature("vampire lord"), "skull ring", "vs_quest", "start");
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 30, 11, creature, 1);
 		zone.add(point);
 	}

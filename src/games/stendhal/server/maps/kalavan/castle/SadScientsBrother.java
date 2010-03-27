@@ -15,7 +15,7 @@ public class SadScientsBrother implements ZoneConfigurator {
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
-		final Creature creature = new ItemGuardCreature(manager.getCreature("imperial scientist"), "goblet", "sad_scientist");
+		final Creature creature = new ItemGuardCreature(manager.getCreature("imperial scientist"), "goblet", "sad_scientist", "kill_scientist");
 		creature.setName("Sergej Elos");
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 43, 85, creature, 1);
 		zone.add(point);

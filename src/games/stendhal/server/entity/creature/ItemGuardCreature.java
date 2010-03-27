@@ -36,6 +36,8 @@ public class ItemGuardCreature extends Creature {
 	private final String itemType;
 
 	private final String questSlot;
+	
+	private final String questState;
 
 	/**                             
 	 * Creates an ItemGuardCreature.
@@ -45,9 +47,9 @@ public class ItemGuardCreature extends Creature {
 	 *            the quest item to drop on death   
 	 */
 	public ItemGuardCreature(final Creature copy, final String itemType) {
-		this(copy, itemType, null);
+		this(copy, itemType, null, null);
 	}
-
+	
 	/**
 	 * Creates an ItemGuardCreature.
 	 * 
@@ -57,12 +59,15 @@ public class ItemGuardCreature extends Creature {
 	 *            the quest item to drop on death
 	 * @param questSlot
 	 *            the quest slot for the active quest
+	 * @param questState
+	 * 			  the state of the quest to check on dead for
 	 */
-	public ItemGuardCreature(final Creature copy, final String itemType, final String questSlot) {
+	public ItemGuardCreature(final Creature copy, final String itemType, final String questSlot, final String questState) {
 		super(copy);
 
 		this.itemType = itemType;
 		this.questSlot = questSlot;
+		this.questState = questState;
 
 		noises = new LinkedHashMap<String, LinkedList<String>>(noises);
 		final LinkedList<String> ll = new LinkedList<String>();
@@ -80,7 +85,7 @@ public class ItemGuardCreature extends Creature {
 
 	@Override
 	public Creature getNewInstance() {
-		return new ItemGuardCreature(this, itemType, questSlot);
+		return new ItemGuardCreature(this, itemType, questSlot, questState);
 	}
 
 	@Override
@@ -89,12 +94,21 @@ public class ItemGuardCreature extends Creature {
 		if (killer instanceof Player) {
 			final Player killerPlayer = (Player) killer;
 			if (!killerPlayer.isEquipped(itemType) && !killerPlayer.isQuestCompleted(questSlot)) {
-				final Item item = SingletonRepository.getEntityManager().getItem(
-						itemType);
-				item.setBoundTo(killerPlayer.getName());
-				killerPlayer.equipOrPutOnGround(item);
+				if(questState != null) {
+					if (killerPlayer.isQuestInState(questSlot,questState)) {
+						equipPlayerWithGuardedItem(killerPlayer);
+					}
+				} else {
+					equipPlayerWithGuardedItem(killerPlayer);
+				}
 			}
 		}
 		super.onDead(killer, remove);
+	}
+
+	private void equipPlayerWithGuardedItem(final Player killerPlayer) {
+		final Item item = SingletonRepository.getEntityManager().getItem(
+				itemType);				item.setBoundTo(killerPlayer.getName());
+		killerPlayer.equipOrPutOnGround(item);
 	}
 }

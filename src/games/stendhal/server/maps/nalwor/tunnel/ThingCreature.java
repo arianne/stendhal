@@ -29,7 +29,7 @@ public class ThingCreature implements ZoneConfigurator {
 
 	private void buildDrowTunnelArea(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
-		final Creature creature = new ItemGuardCreature(manager.getCreature("thing"), "amulet", "kill_dark_elves");
+		final Creature creature = new ItemGuardCreature(manager.getCreature("thing"), "amulet", "kill_dark_elves", "start");
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 32, 5, creature, 1);
 		zone.add(point);
 	}
