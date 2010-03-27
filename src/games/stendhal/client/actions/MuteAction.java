@@ -29,7 +29,7 @@ class MuteAction implements SlashAction {
 		if (play) {
 			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Sounds are now on."));
 		} else {
-			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Sounds are now off. (You may need to change the zone to stop the background music)."));
+			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Sounds are now off."));
 		}
 		return true;
 	}
