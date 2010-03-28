@@ -93,7 +93,7 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(final MouseEvent e) {
-				movePlayer(e.getPoint());
+				movePlayer(e.getPoint(), e.getClickCount() > 1);
 			}
 		});
 	}
@@ -351,14 +351,16 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 	 * Tell the player to move to point p
 	 * @param p the point
 	 */
-	private void movePlayer(final Point p) {
+	private void movePlayer(final Point p, boolean doubleClick) {
 		// Ignore clicks to the title area 
 		if (p.y <= height) {
 			final RPAction action = new RPAction();
 			action.put("type", "moveto");
 			action.put("x", (p.x + xOffset) / scale);
 			action.put("y", (p.y + yOffset) / scale);
-
+			if (doubleClick) {
+				action.put("double_click", "");
+			}
 			client.send(action);
 		}
 	}

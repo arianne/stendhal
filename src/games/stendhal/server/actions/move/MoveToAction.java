@@ -55,7 +55,7 @@ public class MoveToAction implements ActionListener {
 				&& action.has(Y)) {
 			final int x = action.getInt(X);
 			final int y = action.getInt(Y);
-			if (player.has(TELECLICKMODE)) {
+			if (player.has(TELECLICKMODE) && action.has("double_click")) {
 				// Teleport
 				final StendhalRPZone zone = player.getZone();
 				player.teleport(zone, x, y, null, null);

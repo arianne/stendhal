@@ -125,7 +125,6 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			return false;
 		}
 
-		
 		// base class checks if the click is within a child
 		if (super.onMouseClick(p)) {
 			// yes, click already processed
@@ -157,7 +156,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			if (windowWasActiveOnMousePressed) {
 				boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
 				if (!doubleClick) {
-					createAndSendMoveToAction(point);
+					createAndSendMoveToAction(point, false);
 				}
 			}
 			return false;
@@ -190,16 +189,19 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 			view.onAction();
 			return true;
 		} else {
-			createAndSendMoveToAction(point);
+			createAndSendMoveToAction(point, true);
 			return true;
 		}
 	}
 
-	private void createAndSendMoveToAction(final Point2D point) {
+	private void createAndSendMoveToAction(final Point2D point, boolean doubleClick) {
 		final RPAction action = new RPAction();
 		action.put("type", "moveto");
 		action.put("x", (int) point.getX());
 		action.put("y", (int) point.getY());
+		if (doubleClick) {
+			action.put("double_click", "");
+		}
 		client.send(action);
 	}
 
