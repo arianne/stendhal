@@ -37,10 +37,10 @@ import org.apache.log4j.Logger;
  * creatures.
  */
 public class CreatureRespawnPoint implements TurnListener {
-	/** longest possible respawn time. half a year - should be longer than the 
+	/** longest possible respawn time in turns. half a year - should be longer than the 
 	 * server is up in one phase */
 	private static final int MAX_RESPAWN_TIME = 200 * 60 * 24 * 30 * 6;
-	/** minimum respawn time in seconds. about 10s */
+	/** minimum respawn time in turns. about 10s */
 	private static final int MIN_RESPAWN_TIME = 33;
 
 	/** the logger instance. */
@@ -74,7 +74,7 @@ public class CreatureRespawnPoint implements TurnListener {
 
 	/**
 	 * How long it takes to respawn a creature. This defaults to the creature's
-	 * default respawn time.
+	 * default respawn time. It is in turns.
 	 */
 	private int respawnTime;
 
@@ -114,7 +114,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	/**
 	 * Sets the time it takes to respawn a creature. Note that this value
 	 * defaults to the creature's default respawn time.
-	 * @param respawnTime the middled delay between spawns 
+	 * @param respawnTime the middled delay between spawns in turns
 	 */
 	public void setRespawnTime(final int respawnTime) {
 		this.respawnTime = respawnTime;
