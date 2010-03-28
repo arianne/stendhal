@@ -76,7 +76,7 @@ public class CreatureTest {
 
 		
 		@Override
-		protected List<RPEntity> getEnemyList() {
+		public List<RPEntity> getEnemyList() {
 			
 			return enemies; 
 		}

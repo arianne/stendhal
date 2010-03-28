@@ -461,7 +461,7 @@ public class Creature extends NPC {
 	 * 
 	 * @return list of enemies
 	 */
-	protected List<RPEntity> getEnemyList() {
+	public List<RPEntity> getEnemyList() {
 		if (getAiProfiles().keySet().contains("offensive")) {
 			return getZone().getPlayerAndFriends();
 		} else {

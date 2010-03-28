@@ -29,7 +29,7 @@ public class ArenaCreature extends Creature {
 	}
 
 	@Override
-	protected List<RPEntity> getEnemyList() {
+	public List<RPEntity> getEnemyList() {
 		// only return those enemies which are in the arena
 		final List<RPEntity> standardEnemyList = super.getEnemyList();
 		final List<RPEntity> resultList = new LinkedList<RPEntity>();

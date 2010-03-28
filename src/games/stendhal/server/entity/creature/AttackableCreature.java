@@ -24,7 +24,7 @@ public class AttackableCreature extends Creature {
 	}
 
 	@Override
-	protected List<RPEntity> getEnemyList() {
+	public List<RPEntity> getEnemyList() {
 		List<RPEntity> res = this.getAttackingRPEntities();
 
 		if (master != null) {
