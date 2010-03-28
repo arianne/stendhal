@@ -21,12 +21,13 @@ import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.styled.cursor.CursorRepository;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
-import java.awt.Cursor;
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.event.InputEvent;
@@ -51,6 +52,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	private boolean windowWasActiveOnMousePressed = true;
 	private int xOnMousePressed;
 	private int yOnMousePressed;
+	private CursorRepository cursorRepository = new CursorRepository();
 
 	/**
 	 * The UI.
@@ -244,19 +246,20 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		
 		if (System.getProperty("stendhal.cursor") != null) {
 
-			Cursor cursor = Cursor.getDefaultCursor();
+			StendhalCursor cursor = StendhalCursor.NORMAL;
 			if (getWtPanelAt(e.getPoint()) == null) {
 				final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
 				final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
 				if ((view != null) && view.isInteractive()) {
 					// TODO: ask EntityView about cursor
-					cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+					cursor = StendhalCursor.ATTACK;
 				} else {
-					// TODO: display a cursor with a walking idea
-					cursor = Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR);
+					// TODO: display a cursor with a walking idea on non collision
+					cursor = StendhalCursor.WALK;
+					// TODO: display a cursor with a stop idea on collision
 				}
 			}
-			ui.setCursor(cursor);
+			ui.setCursor(cursorRepository.get(cursor));
 		}
 	}
 	
