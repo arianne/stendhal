@@ -207,4 +207,13 @@ class Player2DView extends RPEntity2DView {
 			break;
 		}
 	}
+
+	@Override
+	public boolean isInteractive() {
+		if (((RPEntity) entity).isGhostMode() && !isVisibleGhost()) {
+			return false;
+		}
+		return super.isInteractive();
+	}
+
 }
