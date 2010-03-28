@@ -19,6 +19,7 @@ package games.stendhal.client.gui.wt.core;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.gui.ManagedWindow;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Debug;
@@ -34,6 +35,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Transparency;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -1400,5 +1402,16 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	public String toString() {
 		return super.toString() + ": " + name + " at " + x + "x" + y + " size:"
 				+ width + "x" + height;
+	}
+
+
+	/**
+	 * gets the mouse cursor image to display
+	 *
+	 * @param e MouseEvent with coordinates and button state
+	 * @return Stendhal Cursor
+	 */
+	public StendhalCursor getCursor(MouseEvent e) {
+		return StendhalCursor.NORMAL;
 	}
 }

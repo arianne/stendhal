@@ -26,6 +26,7 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
+import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.KeyboardFocusManager;
@@ -250,32 +251,44 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			}
 			
 			if (System.getProperty("stendhal.cursor") != null) {
-	
-				StendhalCursor cursor = StendhalCursor.NORMAL;
-				// TODO: ask the WtPanels about cursor
-				if (getWtPanelAt(e.getPoint()) == null) {
-					final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
-					final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
-					if ((view != null) && view.isInteractive()) {
-						cursor = view.getCursor();
-					} else {
-						// TODO: display a cursor with a walking idea on non collision
-						cursor = StendhalCursor.WALK;
-						// TODO: display a cursor with a stop idea on collision
-					}
-				}
+				StendhalCursor cursor = getCursor(e);
 				ui.setCursor(cursorRepository.get(cursor));
 			}
 		} catch (ConcurrentModificationException ex) {
 			logger.warn(ex, ex);
 		}
 	}
+
 	
+	@Override
+	public StendhalCursor getCursor(MouseEvent e) {
+		StendhalCursor cursor = StendhalCursor.NORMAL;
+
+		// ask WtPanel about desired cursor if the mouse pointer is above an WtPanel
+		WtPanel wtPanel = getWtPanelAt(e.getPoint());
+		if (wtPanel != null) {
+			cursor = wtPanel.getCursor(e);
+		} else {
+
+			// TODO: Handle text boxes
+			final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
+			final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+			if ((view != null) && view.isInteractive()) {
+				cursor = view.getCursor();
+			} else {
+				// TODO: display a cursor with a walking idea on non collision
+				cursor = StendhalCursor.WALK;
+				// TODO: display a cursor with a stop idea on collision
+			}
+		}
+		return cursor;
+	}
+
 	
 	//
 	// WtDropTarget
 	//
-	
+
 	/**
 	 * called when an object is dropped.
 	 * 
