@@ -8,6 +8,7 @@ public class AttackStrategyFactory {
 	private static final AttackStrategy COWARD = new Coward();
 	private static final AttackStrategy STUPID_COWARD = new StupidCoward();
 	private static final AttackStrategy GANDHI = new Gandhi();
+	private static final AttackStrategy ATTACK_WEAKEST = new AttackWeakest();
 
 	
 	public static AttackStrategy get(final Map<String, String> aiProfiles) {
@@ -20,6 +21,8 @@ public class AttackStrategyFactory {
 			return GANDHI;
 		} else if (aiProfiles.containsKey("stupid coward")) {
 			return STUPID_COWARD;
+		} else if (aiProfiles.containsKey("attack weakest")) {
+			return ATTACK_WEAKEST;
 		}
 
 		return HAND_TO_HAND;
