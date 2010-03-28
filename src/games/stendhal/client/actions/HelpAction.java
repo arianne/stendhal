@@ -47,6 +47,7 @@ class HelpAction implements SlashAction {
 				"- /grumpy \t\tRemove status grumpy",
 				"- /name <pet> <name> \tGive a name to your pet",
 				"* Misc: ", 
+				"- /clickmode \t\t switches between single click mode and double click mode",
 				"- /info \t\tFind out what the current server time is",
 				"- /mute\t\tMute or unmute the sounds",
 				"- /volume\t\tLists or sets the volume for sound and music"
