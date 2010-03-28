@@ -320,4 +320,35 @@
     </equipable>
   </item>
 
+  <item name="beeswax">
+    <type class="resource" subclass="beeswax" tileid="-1"/>
+    <description>You see a piece of beeswax.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+  
+  <item name="candle">
+    <type class="resource" subclass="candle" tileid="-1"/>
+    <description>You see a candle in a candle stick.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+       <quantity value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
 </items>
