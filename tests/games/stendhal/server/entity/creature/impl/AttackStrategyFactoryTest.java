@@ -77,4 +77,14 @@ public class AttackStrategyFactoryTest {
 
 	}
 
+	/**
+	 * Tests for getting AttackWeakest profile.
+	 */
+	@Test
+	public void testGetAttackWeakest() {
+		final Map<String, String> profiles = new HashMap<String, String>();
+		assertTrue(AttackStrategyFactory.get(profiles) instanceof HandToHand);
+		profiles.put("attack weakest", null);
+		assertTrue(AttackStrategyFactory.get(profiles) instanceof AttackWeakest);
+	}
 }
