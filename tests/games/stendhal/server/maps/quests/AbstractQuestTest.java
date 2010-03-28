@@ -50,7 +50,18 @@ public class AbstractQuestTest {
 		assertTrue(quest.getHint(pl).isEmpty());
 		assertTrue(quest.getHistory(pl).isEmpty());
 	}
-
+	
+	/**
+	 * Tests for getLevel.
+	 */
+	@Test
+	public final void testGetMinLevel() {
+		final Player pl = PlayerTestHelper.createPlayer("player");
+		pl.setQuest(QUESTSlotSTRING, null);
+		final AbstractQuest quest = new Mockquest();
+		assertTrue(quest.getMinLevel()==0);
+	}
+	
 	/**
 	 * Tests for isCompleted.
 	 */
