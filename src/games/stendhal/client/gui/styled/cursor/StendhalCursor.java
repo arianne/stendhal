@@ -19,8 +19,10 @@ import java.awt.Point;
  * @author hendrik
  */
 public enum StendhalCursor {
-	// TODO: fill me.
-	;
+	ATTACK("attack.png", new Point(1, 1)),
+	NORMAL("normal.png", new Point(1, 1)),
+	STOP("stop.png", new Point(1, 1)),
+	WALK("walk.png", new Point(1, 1));
 
 	private String imageName;
 	private Point hotSpot;
