@@ -497,8 +497,7 @@
 				<parameter name="rejected">The tombstone needs a gem to unlock it.
 				</parameter>
 			</implementation>
-			<attribute name="description">Only a certain gem can unlock the
-				secrets of the headstone.</attribute>
+			<attribute name="description">Only a certain gem can unlock the secrets of the headstone.</attribute>
 		</portal>
 
 		<portal x="97" y="117" ref="3rd_room_in">
