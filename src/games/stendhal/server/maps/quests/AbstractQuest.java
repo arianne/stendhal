@@ -38,6 +38,12 @@ abstract class AbstractQuest implements IQuest {
 		return EMPTY_LIST;
 	}
 
+	// Determines if the player should be given a hint to start the quest. 
+	// Not a hard condition about the quest itself. (use level check ChatConditions for that)
+	public int getMinLevel() {
+		return 0;
+	}
+	
 	public List<String> getHistory(final Player player) {
 		// TODO this method should be abstract after all quests are converted
 		return EMPTY_LIST;

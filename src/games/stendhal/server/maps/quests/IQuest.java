@@ -73,6 +73,11 @@ public interface IQuest {
 	 */
 	String getName();
 
-	
+	/**
+	 * Returns the minimum level of player expected to start the quest. Used for choosing which hints to give.
+	 * To set a hard minimum level requirement for doing the quest, use level related ChatConditions in the quest methods
+	 * @return level
+	 */
+	int getMinLevel();
 
 }
