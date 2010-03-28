@@ -343,11 +343,6 @@ public class Creature extends NPC {
 		return respawnTime;
 	}
 	
-	public void setRespawnTime(final int respawnTime) {
-		this.respawnTime=respawnTime;
-		put("respawnTime", respawnTime);
-	}
-	
 	public void setCorpse(final String name, final int width, final int height) {
 		corpseName = name;
 		if (corpseName == null) {
