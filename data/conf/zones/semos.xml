@@ -170,8 +170,325 @@
 			
 	     <attribute name="class">default</attribute>
 		</entity>
+		
+		<portal x="76" y="36" ref="wizardstower_entrance">
+                <destination zone="int_semos_wizards_tower_basement" ref="wizardstower_exit" />
+                <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+                <parameter name="minimum-level">50</parameter>
+                <parameter name="rejected">You hear a far and mighty voice in your mind: "Stranger, i am Zekiel, the guardian. The floors of this tower are violent places and to dangerous for you."(Level 50)</parameter>
+            </implementation>
+        </portal>
 	</zone>
+	
+    <!-- Interiors of the wizards tower -->
+    <zone name="int_semos_wizards_tower_basement" file="interiors/semos/wizards_tower_basement.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.GuardStatueZekielNPC" />
+        <portal x="15" y="29" ref="wizardstower_exit">
+                <destination zone="0_semos_mountain_n_w2" ref="wizardstower_entrance" />
+            </portal>
 
+        <portal x="15" y="16" ref="basement_teleport">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+    </zone>
+    <!-- Interiors of the wizards tower -->
+    <zone name="int_semos_wizards_tower_1" file="interiors/semos/wizards_tower_1.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.FirstFloorCreatures"/>
+        <entity x="0" y="0">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+                <parameter name="coversZone">true</parameter>
+                <parameter name="enterMessage">Zekiel the guardian: "This is the first step of the test and the domain of Malleus."</parameter>
+            </implementation>
+        </entity>
+
+        <portal x="15" y="15" ref="first_floor_exit">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="26" y="15" ref="choice_floor_1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="4" ref="north_choice_floor_1">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="27" y="15" ref="east_choice_floor_1">
+                <destination zone="int_semos_wizards_tower_1" ref="choice_floor_1" />
+            </portal>
+
+        <portal x="15" y="26" ref="south_choice_floor_1">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="3" y="15" ref="west_choice_floor_1">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="15" y="6" ref="portal_to_second_floor">
+                <destination zone="int_semos_wizards_tower_2" ref="portal_from_first_floor" />
+            <implementation
+                class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
+                <parameter name="class">transparent</parameter>
+                <parameter name="key">candle</parameter>
+                <parameter name="rejected">You need a candle.</parameter>
+            </implementation>
+                <attribute name="hidden"/>
+            </portal>
+    </zone>
+    <!-- Interiors of the wizards tower -->
+    <zone name="int_semos_wizards_tower_2" file="interiors/semos/wizards_tower_2.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.SecondFloorCreatures"/>
+        <entity x="0" y="0">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+                <parameter name="coversZone">true</parameter>
+                <parameter name="enterMessage">Zekiel the guardian: "This is the second step of the test and the domain of Jaer."</parameter>
+            </implementation>
+        </entity>
+
+        <portal x="15" y="6" ref="portal_from_first_floor">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="15" ref="second_floor_exit">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="15" y="25" ref="choice_floor_2">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="4" ref="north_choice_floor_2">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="27" y="15" ref="east_choice_floor_2">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="15" y="26" ref="south_choice_floor_2">
+                <destination zone="int_semos_wizards_tower_2" ref="choice_floor_2" />
+            </portal>
+
+        <portal x="3" y="15" ref="west_choice_floor_2">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="23" y="20" ref="portal_to_third_floor">
+                <destination zone="int_semos_wizards_tower_3" ref="portal_from_second_floor" />
+            <implementation
+                class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
+                <parameter name="class">transparent</parameter>
+                <parameter name="key">candle</parameter>
+                <parameter name="rejected">You need a candle.</parameter>
+            </implementation>
+                <attribute name="hidden"/>
+            </portal>
+    </zone>
+    <!-- Interiors of the wizards tower -->
+    <zone name="int_semos_wizards_tower_3" file="interiors/semos/wizards_tower_3.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.ThirdFloorCreatures"/>
+        <entity x="0" y="0">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+                <parameter name="coversZone">true</parameter>
+                <parameter name="enterMessage">Zekiel the guardian: "This is the third step of the test and the domain of Ravashack."</parameter>
+            </implementation>
+        </entity>
+
+        <portal x="23" y="20" ref="portal_from_second_floor">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="15" ref="third_floor_exit">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="4" y="15" ref="choice_floor_3">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="4" ref="north_choice_floor_3">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="27" y="15" ref="east_choice_floor_3">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="15" y="26" ref="south_choice_floor_3">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="3" y="15" ref="west_choice_floor_3">
+                <destination zone="int_semos_wizards_tower_3" ref="choice_floor_3" />
+            </portal>
+
+        <portal x="7" y="20" ref="portal_to_fourth_floor">
+                <destination zone="int_semos_wizards_tower_4" ref="portal_from_third_floor" />
+            <implementation
+                class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
+                <parameter name="class">transparent</parameter>
+                <parameter name="key">candle</parameter>
+                <parameter name="rejected">You need a candle.</parameter>
+            </implementation>
+                <attribute name="hidden"/>
+            </portal>
+    </zone>
+    <!-- Interiors of the wizards tower -->
+    <zone name="int_semos_wizards_tower_4" file="interiors/semos/wizards_tower_4.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.FourthFloorCreatures"/>
+        <entity x="0" y="0">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+                <parameter name="coversZone">true</parameter>
+                <parameter name="enterMessage">Zekiel the guardian: "This is the fourth step of the test and the domain of Cassandra."</parameter>
+            </implementation>
+        </entity>
+
+        <portal x="7" y="20" ref="portal_from_third_floor">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="15" ref="fourth_floor_exit">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="26" y="15" ref="choice_floor_4">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="4" ref="north_choice_floor_4">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="27" y="15" ref="east_choice_floor_4">
+                <destination zone="int_semos_wizards_tower_4" ref="choice_floor_4" />
+            </portal>
+
+        <portal x="15" y="26" ref="south_choice_floor_4">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="3" y="15" ref="west_choice_floor_4">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="15" y="24" ref="portal_to_fifth_floor">
+                <destination zone="int_semos_wizards_tower_5" ref="portal_from_fourth_floor" />
+            <implementation
+                class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
+                <parameter name="class">transparent</parameter>
+                <parameter name="key">candle</parameter>
+                <parameter name="rejected">You need a candle.</parameter>
+            </implementation>
+                <attribute name="hidden"/>
+            </portal>
+    </zone>
+    <!-- Interiors of the wizards tower -->
+    <zone name="int_semos_wizards_tower_5" file="interiors/semos/wizards_tower_5.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.FifthFloorCreatures"/>
+        <entity x="0" y="0">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+                <parameter name="coversZone">true</parameter>
+                <parameter name="enterMessage">Zekiel the guardian: "This is the fifth step of the test and the domain of Silvanus."</parameter>
+            </implementation>
+        </entity>
+
+        <portal x="15" y="24" ref="portal_from_fourth_floor">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="15" ref="fifth_floor_exit">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="4" y="15" ref="choice_floor_5">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="4" ref="north_choice_floor_5">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="27" y="15" ref="east_choice_floor_5">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="15" y="26" ref="south_choice_floor_5">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="3" y="15" ref="west_choice_floor_5">
+                <destination zone="int_semos_wizards_tower_5" ref="choice_floor_5" />
+            </portal>
+
+        <portal x="7" y="10" ref="portal_to_sixth_floor">
+                <destination zone="int_semos_wizards_tower_6" ref="portal_from_fifth_floor" />
+            <implementation
+                class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
+                <parameter name="class">transparent</parameter>
+                <parameter name="key">candle</parameter>
+                <parameter name="rejected">You need a candle.</parameter>
+            </implementation>
+                <attribute name="hidden"/>
+            </portal>
+    </zone>
+    <!-- Interiors of the wizards tower -->
+    <zone name="int_semos_wizards_tower_6" file="interiors/semos/wizards_tower_6.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.SixthFloorCreatures"/>
+        <entity x="0" y="0">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+                <parameter name="coversZone">true</parameter>
+                <parameter name="enterMessage">Zekiel the guardian: "This is the sixth and last step of the test and the domain of Elana."</parameter>
+            </implementation>
+        </entity>
+
+        <portal x="7" y="10" ref="portal_from_fifth_floor">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="15" ref="sixth_floor_exit">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="15" y="5" ref="choice_floor_6">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+
+        <portal x="15" y="4" ref="north_choice_floor_6">
+                <destination zone="int_semos_wizards_tower_6" ref="choice_floor_6" />
+            </portal>
+
+        <portal x="27" y="15" ref="east_choice_floor_6">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="15" y="26" ref="south_choice_floor_6">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="3" y="15" ref="west_choice_floor_6">
+                <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
+            </portal>
+
+        <portal x="23" y="10" ref="portal_to_seventh_floor">
+                <destination zone="int_semos_wizards_tower_7" ref="portal_from_sixth_floor" />
+            <implementation
+                class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
+                <parameter name="class">transparent</parameter>
+                <parameter name="key">candle</parameter>
+                <parameter name="rejected">You need a candle.</parameter>
+            </implementation>
+                <attribute name="hidden"/>
+            </portal>
+    </zone>
+    <!-- Interiors of the wizards tower -->
+    <zone name="int_semos_wizards_tower_7" file="interiors/semos/wizards_tower_7.tmx">
+
+        <portal x="23" y="10" ref="portal_from_sixth_floor">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+    </zone>
+    
 	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
 		file="Level 0/semos/plains_n.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
