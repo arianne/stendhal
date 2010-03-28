@@ -686,7 +686,7 @@ public class Creature extends NPC {
 				if (strategy.hasValidTarget(this)) {
 					this.setBusy();
 					// this event duration usually is only one turn
-					this.makeNoiseChance(100, "follow");
+					this.makeNoiseChance(50, "target");
 				} else {
 				 	this.setIdle();
 					this.makeNoiseChance(100, "idle");	

@@ -3582,7 +3582,8 @@
       <says>
         <noise state="idle follow fight" value="The end of the world is nigh..."/>
         <noise state="idle follow fight" value="Yield to the Power!"/>
-	<noise state="death" value="Meet you after Cataclysm."/>
+		<noise state="death" value="Meet you after Cataclysm."/>
+		<noise state="target" value="I see you, heretic!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
