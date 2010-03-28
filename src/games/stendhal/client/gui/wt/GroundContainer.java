@@ -33,9 +33,12 @@ import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
+import java.util.ConcurrentModificationException;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * 
@@ -44,8 +47,9 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  * 
  */
-public class GroundContainer extends WtBaseframe implements WtDropTarget,
-		Inspector {
+public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspector {
+	private static final Logger logger = Logger.getLogger(GroundContainer.class);
+
 	/** the game client. */
 	private final StendhalClient client;
 
@@ -240,26 +244,30 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	@Override
 	public synchronized void mouseMoved(MouseEvent e) {
 		super.mouseMoved(e);
-		if ((e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0) {
-			return;
-		}
-		
-		if (System.getProperty("stendhal.cursor") != null) {
-
-			StendhalCursor cursor = StendhalCursor.NORMAL;
-			if (getWtPanelAt(e.getPoint()) == null) {
-				final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
-				final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
-				if ((view != null) && view.isInteractive()) {
-					// TODO: ask EntityView about cursor
-					cursor = StendhalCursor.ATTACK;
-				} else {
-					// TODO: display a cursor with a walking idea on non collision
-					cursor = StendhalCursor.WALK;
-					// TODO: display a cursor with a stop idea on collision
-				}
+		try {
+			if ((e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0) {
+				return;
 			}
-			ui.setCursor(cursorRepository.get(cursor));
+			
+			if (System.getProperty("stendhal.cursor") != null) {
+	
+				StendhalCursor cursor = StendhalCursor.NORMAL;
+				if (getWtPanelAt(e.getPoint()) == null) {
+					final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
+					final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+					if ((view != null) && view.isInteractive()) {
+						// TODO: ask EntityView about cursor
+						cursor = StendhalCursor.ATTACK;
+					} else {
+						// TODO: display a cursor with a walking idea on non collision
+						cursor = StendhalCursor.WALK;
+						// TODO: display a cursor with a stop idea on collision
+					}
+				}
+				ui.setCursor(cursorRepository.get(cursor));
+			}
+		} catch (ConcurrentModificationException ex) {
+			logger.warn(ex, ex);
 		}
 	}
 	
