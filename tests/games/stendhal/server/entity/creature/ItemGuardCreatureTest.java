@@ -1,27 +1,16 @@
 package games.stendhal.server.entity.creature;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.Log4J;
-import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 import utilities.PlayerTestHelper;
 import utilities.RPClass.CreatureTestHelper;
