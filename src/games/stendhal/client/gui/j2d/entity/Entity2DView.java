@@ -17,6 +17,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -738,5 +739,14 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	public void release(final IGameScreen gameScreen) {
 		entity.removeChangeListener(this);
 		entity = null;
+	}
+
+	/**
+	 * gets the mouse cursor image to use for this entity
+	 *
+	 * @return StendhalCursor
+	 */
+	public StendhalCursor getCursor() {
+		return StendhalCursor.ATTACK;
 	}
 }

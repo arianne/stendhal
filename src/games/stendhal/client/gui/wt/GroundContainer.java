@@ -252,12 +252,12 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			if (System.getProperty("stendhal.cursor") != null) {
 	
 				StendhalCursor cursor = StendhalCursor.NORMAL;
+				// TODO: ask the WtPanels about cursor
 				if (getWtPanelAt(e.getPoint()) == null) {
 					final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
 					final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
 					if ((view != null) && view.isInteractive()) {
-						// TODO: ask EntityView about cursor
-						cursor = StendhalCursor.ATTACK;
+						cursor = view.getCursor();
 					} else {
 						// TODO: display a cursor with a walking idea on non collision
 						cursor = StendhalCursor.WALK;
