@@ -505,7 +505,7 @@ public class VampireSwordTest {
 	
 	// *** Forging tests ***
 	@Test
-	public void greetDwarfWithFullGoblet() {
+	public void greetDwarfWithFullGobletNoKill() {
 		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
 			final Player player = PlayerTestHelper.createPlayer("me");	
 			final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
@@ -517,11 +517,29 @@ public class VampireSwordTest {
 			player.equipToInventoryOnly(item);
 			
 			en.step(player, hello);
+			assertEquals("Hm, that goblet is not filled with vampire blood; it can't be, you have not killed the vampire lord. You must slay him.", getReply(npc));
+			assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+		}
+	}
+	
+	@Test
+	public void greetDwarfWithFullGobletWithKill() {
+		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
+			final Player player = PlayerTestHelper.createPlayer("me");	
+			final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
+			final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
+		
+			en.setCurrentState(ConversationStates.IDLE);
+			player.setQuest(questSlot, "start");
+			Item item = SingletonRepository.getEntityManager().getItem("goblet");
+			player.equipToInventoryOnly(item);
+			player.setSharedKill("vampire lord");
+			
+			en.step(player, hello);
 			assertEquals("You have battled hard to bring that goblet. I will use it to #forge the vampire sword", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.QUEST_ITEM_BROUGHT);
 		}
 	}
-	
 	@Test
 	public void askAboutForging() {
 		final Player player = PlayerTestHelper.createPlayer("me");
@@ -562,9 +580,10 @@ public class VampireSwordTest {
 			
 			Item item = SingletonRepository.getEntityManager().getItem("goblet");
 			player.equipToInventoryOnly(item);
-			item = SingletonRepository.getEntityManager().getItem("iron");
-			((Stackable) item).setQuantity(10);
-			player.equipToInventoryOnly(item);
+			
+			PlayerTestHelper.equipWithStackableItem(player, "iron", 10);
+			
+			player.setSharedKill("vampire lord");
 			
 			en.step(player, hello);
 			assertEquals("You've brought everything I need to make the vampire sword. Come back in 10 minutes and it will be ready", getReply(npc));

@@ -1,25 +1,35 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.MathHelper;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
+import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.KilledCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -74,20 +84,18 @@ public class VampireSword extends AbstractQuest {
 	}
 
 	private void prepareQuestOfferingStep() {
+		
 		final SpeakerNPC npc = npcs.get("Hogart");
-
+		
+		// Player asks about quests, and had previously rejected or never asked: offer it
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
-			new ChatCondition() {
-				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					String quest = player.getQuest(QUEST_SLOT); 
-					return ((quest == null) || quest.equals("rejected")); 
-				}
-			},
+			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, 
 			"I can forge a powerful life stealing sword for you. You will need to go to the Catacombs below Semos Graveyard and fight the Vampire Lord. Are you interested?",
 			null);
 		
+		// Player asks about quests, but has finished this quest
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
 			new QuestCompletedCondition(QUEST_SLOT),
@@ -95,6 +103,7 @@ public class VampireSword extends AbstractQuest {
 			"What are you bothering me for now? You've got your sword, go and use it!",
 			null);
 		
+		// Player asks about quests, but has not finished this quest
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestActiveCondition(QUEST_SLOT),
@@ -102,19 +111,17 @@ public class VampireSword extends AbstractQuest {
 				"Why are you bothering me when you haven't completed your quest yet?",
 				null);
 
+		final List<ChatAction> gobletactions = new LinkedList<ChatAction>();
+		gobletactions.add(new EquipItemAction("empty goblet"));
+		gobletactions.add(new IncreaseKarmaAction(5.0));
+		gobletactions.add(new SetQuestAction(QUEST_SLOT, "start"));
+		// Player wants to do the quest
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					npc.say("Then you need this #goblet. Take it to the Semos #Catacombs.");
-					final Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
-					player.equipOrPutOnGround(emptygoblet);
-					player.setQuest(QUEST_SLOT, "start");
-					player.addKarma(5);
-				}
-			});
-
+			ConversationStates.ATTENDING, "Then you need this #goblet. Take it to the Semos #Catacombs.",
+			new MultipleActions(gobletactions));
+		
+		// Player doesn't want to do the quest; remember this, but they can ask again to start it.
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES,
@@ -144,6 +151,10 @@ public class VampireSword extends AbstractQuest {
 			Arrays.asList("empty goblet", "goblet"),
 			"Only a powerful talisman like this cauldron or a special goblet should contain blood.");
 
+		// The sick vampire is only a producer. He doesn't care if your quest slot is active, or anything.
+		// So to ensure that the vampire lord must have been killed, we made the skull ring a required item
+		// Which the vampire lord drops if the quest is active as in games.stendhal.server.maps.semos.catacombs.VampireLordCreature
+		// But, it could have been done other ways using quests slot checks and killed conditions
 		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
 		requiredResources.put("vampirette entrails", 7);
 		requiredResources.put("bat entrails", 7);
@@ -161,66 +172,78 @@ public class VampireSword extends AbstractQuest {
 
 		final SpeakerNPC npc = npcs.get("Hogart");
 
+		final List<ChatAction> startforging = new LinkedList<ChatAction>();
+		startforging.add(new DropItemAction("goblet"));
+		startforging.add(new DropItemAction("iron", 10));
+		startforging.add(new IncreaseKarmaAction(5.0));
+		startforging.add(new SetQuestAction(QUEST_SLOT, "forging;"));
+		startforging.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		
+		// Player returned with goblet and had killed the vampire lord, and has iron, so offer to forge the sword.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new ChatCondition() {
-				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("start")
-							&& player.isEquipped("goblet");
-				}
-			}, ConversationStates.QUEST_ITEM_BROUGHT, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					if (player.isEquipped("iron", REQUIRED_IRON)) {
-						player.drop("goblet");
-						player.drop("iron", REQUIRED_IRON);
-						npc.say("You've brought everything I need to make the vampire sword. Come back in "
-							+ REQUIRED_MINUTES
-							+ " minutes and it will be ready");
-						player.setQuest(QUEST_SLOT, "forging;"
-								+ System.currentTimeMillis());
-						npc.setCurrentState(ConversationStates.IDLE);
-					} else {
-						npc.say("You have battled hard to bring that goblet. I will use it to #forge the vampire sword");
-					}
-				}
-			});
+			new AndCondition( 
+					new QuestInStateCondition(QUEST_SLOT,"start"),
+					new PlayerHasItemWithHimCondition("goblet"),
+					new KilledCondition("vampire lord"),
+					new PlayerHasItemWithHimCondition("iron", REQUIRED_IRON)
+					), 
+			ConversationStates.IDLE, 
+			"You've brought everything I need to make the vampire sword. Come back in "
+			+ REQUIRED_MINUTES
+			+ " minutes and it will be ready", 
+			new MultipleActions(startforging));
 
+		// Player returned with goblet and had killed the vampire lord, so offer to forge the sword if iron is brought
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new ChatCondition() {
-				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("start")
-							&& !player.isEquipped("goblet")
-							&& player.isEquipped("empty goblet");
-				}
-			}, ConversationStates.IDLE, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					npc.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!");
-				}
-			});
-
+				new AndCondition( 
+						new QuestInStateCondition(QUEST_SLOT,"start"),
+						new PlayerHasItemWithHimCondition("goblet"),
+						new KilledCondition("vampire lord"),
+						new NotCondition(new PlayerHasItemWithHimCondition("iron", REQUIRED_IRON))
+						), 
+		ConversationStates.QUEST_ITEM_BROUGHT, 
+		"You have battled hard to bring that goblet. I will use it to #forge the vampire sword",
+		null);
+		
+		// Player has only an empty goblet currently, remind to go to Catacombs
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new ChatCondition() {
-				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("start")
-							&& !player.isEquipped("goblet")
-							&& !player.isEquipped("empty goblet");
-				}
-			}, ConversationStates.QUESTION_1, 
-			"I hope you didn't lose your goblet! Do you need another?", null);
+			new AndCondition(
+					new QuestInStateCondition(QUEST_SLOT,"start"),
+					new PlayerHasItemWithHimCondition("empty goblet"),
+					new NotCondition(new PlayerHasItemWithHimCondition("goblet"))), 
+			ConversationStates.IDLE, 
+			"Did you lose your way? The Catacombs are in North Semos. Don't come back without a " +
+			"full goblet! Bye!",
+			null);
+		
+		// Player has a goblet (somehow) but did not kill a vampire lord
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition( 
+						new QuestInStateCondition(QUEST_SLOT,"start"),
+						new PlayerHasItemWithHimCondition("goblet"),
+						new NotCondition(new KilledCondition("vampire lord"))
+						), 
+		ConversationStates.IDLE, 
+		"Hm, that goblet is not filled with vampire blood; it can't be, you have not killed the vampire lord. You must slay him.",
+		null);
+		
+		// Player lost the empty goblet?
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT,"start"),
+						new NotCondition(new PlayerHasItemWithHimCondition("empty goblet")),
+						new NotCondition(new PlayerHasItemWithHimCondition("goblet"))), 
+			ConversationStates.QUESTION_1, 
+			"I hope you didn't lose your goblet! Do you need another?", 
+			null);
 
+		// Player lost the empty goblet, wants another
 		npc.add(ConversationStates.QUESTION_1,
 			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.IDLE, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					npc.say("You stupid ..... Be more careful next time. Bye!");
-					final Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
-					player.equipOrPutOnGround(emptygoblet);
-				}
-			});
-
+			ConversationStates.IDLE, "You stupid ..... Be more careful next time. Bye!", 
+			new EquipItemAction("empty goblet"));
+		
+		// Player doesn't have the empty goblet but claims they don't need another.
 		npc.add(
 			ConversationStates.QUESTION_1,
 			ConversationPhrases.NO_MESSAGES,
@@ -228,39 +251,37 @@ public class VampireSword extends AbstractQuest {
 			ConversationStates.IDLE,
 			"Then why are you back here? Go slay some vampires! Bye!",
 			null);
+		
+		// Returned too early; still forging
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))),
+				ConversationStates.IDLE, null,
+				new StateTimeRemainingAction(QUEST_SLOT, "I haven't finished forging the sword. Please check back in" +
+						"", REQUIRED_MINUTES, 1));
+		
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new IncreaseXPAction(5000));
+		reward.add(new IncreaseKarmaAction(15.0));
+		// here true means: yes, bound to player, in which case we also have to speciy the amount: 1
+		reward.add(new EquipItemAction("vampire sword", 1, true));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
-			ConversationStates.IDLE, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					// minutes -> milliseconds
-					final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
-					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-							- System.currentTimeMillis();
-					if (timeRemaining > 0L) {
-						npc.say("I haven't finished forging the sword. Please check back in "
-							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
-						return;
-					}
-					npc.say("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!");
-					player.addXP(5000);
-					player.addKarma(15);
-					final Item vampireSword = SingletonRepository.getEntityManager().getItem(
-									"vampire sword");
-					vampireSword.setBoundTo(player.getName());
-					player.equipOrPutOnGround(vampireSword);
-					player.setQuest(QUEST_SLOT, "done");
-					player.notifyWorldAboutChanges();
-				}
-			});
+				new AndCondition(
+						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+						new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)),
+			ConversationStates.IDLE, 
+			"I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!", 
+			new MultipleActions(reward));
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			"forge",
 			null,
 			ConversationStates.QUEST_ITEM_BROUGHT,
-				"Bring me "
+			"Bring me "
 				+ REQUIRED_IRON
 				+ " #iron bars to forge the sword with. Don't forget to bring the goblet too.",
 			null);
