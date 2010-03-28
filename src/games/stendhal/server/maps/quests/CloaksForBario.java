@@ -201,4 +201,9 @@ public class CloaksForBario extends AbstractQuest {
 	public String getName() {
 		return "CloaksForBario";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 20;
+	}
 }

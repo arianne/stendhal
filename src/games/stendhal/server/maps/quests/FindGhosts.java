@@ -267,4 +267,9 @@ public class FindGhosts extends AbstractQuest {
 	public String getName() {
 		return "FindGhosts";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 10;
+	}
 }

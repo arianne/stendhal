@@ -198,5 +198,9 @@ public class BeerForHayunn extends AbstractQuest {
 		return "Beer for Hayunn";
 	}
 	
+	@Override
+	public int getMinLevel() {
+		return 0;
+	}
 
 }

@@ -153,5 +153,10 @@ public class Cataclysm extends AbstractQuest {
 	public String getName() {
 		return "Cataclysm";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 0;
+	}
 
 }

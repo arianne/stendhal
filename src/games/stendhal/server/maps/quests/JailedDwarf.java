@@ -64,4 +64,9 @@ public class JailedDwarf extends AbstractQuest {
 	public String getName() {
 		return "JailedDwarf";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 60;
+	}
 }

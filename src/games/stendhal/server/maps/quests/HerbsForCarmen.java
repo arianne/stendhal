@@ -358,5 +358,8 @@ public class HerbsForCarmen extends AbstractQuest {
 		return "Herbs for Carmen";
 	}
 	
-
+	@Override
+	public int getMinLevel() {
+		return 3;
+	}
 }

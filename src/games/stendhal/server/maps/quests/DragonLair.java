@@ -111,4 +111,10 @@ public class DragonLair extends AbstractQuest {
 	public String getName() {
 		return "DragonLair";
 	}
+	
+	// getting past the assassins to this location needs a higher level; the lair itself is dangerous too
+	@Override
+	public int getMinLevel() {
+		return 100;
+	}
 }

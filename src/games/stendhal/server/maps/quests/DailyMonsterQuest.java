@@ -401,5 +401,10 @@ public class DailyMonsterQuest extends AbstractQuest {
 	public String getName() {
 		return "DailyMonsterQuest";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 0;
+	}
 
 }

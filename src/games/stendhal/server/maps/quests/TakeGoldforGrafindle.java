@@ -236,4 +236,10 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 	public String getName() {
 		return "TakeGoldforGrafindle";
 	}
+	
+	// it is not easy to get to Nalwor
+	@Override
+	public int getMinLevel() {
+		return 50;
+	}
 }

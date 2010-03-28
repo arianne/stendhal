@@ -435,4 +435,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 	public String getName() {
 		return "KanmararnSoldiers";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 40;
+	}
 }

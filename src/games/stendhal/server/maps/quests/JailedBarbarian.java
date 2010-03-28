@@ -308,7 +308,11 @@ import java.util.Arrays;
 	public String getName() {
 		return "JailedBarbarian";
 	}
-
- 
+	
+	// Amazon is dangerous below this level - don't hint to go there
+	@Override
+	public int getMinLevel() {
+		return 70;
+	}
 }
  

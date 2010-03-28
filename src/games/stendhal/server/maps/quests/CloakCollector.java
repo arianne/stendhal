@@ -198,5 +198,11 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	public String getName() {
 		return "CloakCollector";
 	}
+	
+	// You can start collecting just with a simple cloak which you can buy, but maybe not a good idea to send to Fado too early.
+	@Override
+	public int getMinLevel() {
+		return 15;
+	}
 
 }

@@ -335,4 +335,9 @@ public class VampireSword extends AbstractQuest {
 	public String getName() {
 		return "VampireSword";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 50;
+	}
 }

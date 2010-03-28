@@ -279,4 +279,9 @@ public class ImperialPrincess extends AbstractQuest {
 	public String getName() {
 		return "ImperialPrincess";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 50;
+	}
 }

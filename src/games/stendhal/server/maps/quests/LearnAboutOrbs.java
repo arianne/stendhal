@@ -132,4 +132,9 @@ public class LearnAboutOrbs extends AbstractQuest {
 	public String getName() {
 		return "LearnAboutOrbs";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 11;
+	}
 }

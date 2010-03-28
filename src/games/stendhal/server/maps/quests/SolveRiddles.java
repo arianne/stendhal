@@ -271,4 +271,10 @@ public class SolveRiddles extends AbstractQuest {
 	public String getName() {
 		return "SolveRiddles";
 	}
+	
+	// there is a minimum level requirement to get into hell - this quest is in hell
+	@Override
+	public int getMinLevel() {
+		return 200;
+	}
 }

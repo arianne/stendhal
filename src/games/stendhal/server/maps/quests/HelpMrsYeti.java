@@ -330,6 +330,9 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 		return "HelpMrsYeti";
 	}
 
- 
+	@Override
+	public int getMinLevel() {
+		return 60;
+	}
 }
  

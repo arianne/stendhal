@@ -273,4 +273,9 @@ and ask for horse hair.
 	public String getName() {
 		return "BowsForOuchit";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 0;
+	}
 }

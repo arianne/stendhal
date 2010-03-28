@@ -300,4 +300,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	public String getName() {
 		return "CrownForTheWannaBeKing";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 100;
+	}
 }

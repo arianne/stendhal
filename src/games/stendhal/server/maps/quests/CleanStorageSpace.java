@@ -162,4 +162,9 @@ public class CleanStorageSpace extends AbstractQuest {
 	public String getName() {
 		return "CleanStorageSpace";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 0;
+	}
 }

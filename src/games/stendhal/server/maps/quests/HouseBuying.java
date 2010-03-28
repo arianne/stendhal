@@ -22,4 +22,9 @@ public class HouseBuying extends AbstractQuest {
 	public String getName() {
 		return "HouseBuying";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 50;
+	}
 }

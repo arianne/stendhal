@@ -485,5 +485,9 @@ public class ObsidianKnife extends AbstractQuest {
 	public String getName() {
 		return "ObsidianKnife";
 	}
-
+	
+	@Override
+	public int getMinLevel() {
+		return REQUIRED_LEVEL;
+	}
 }

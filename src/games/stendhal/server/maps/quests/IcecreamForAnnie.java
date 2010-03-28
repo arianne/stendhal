@@ -186,4 +186,10 @@ public class IcecreamForAnnie extends AbstractQuest {
 	public String getName() {
 		return "IcecreamForAnnie";
 	}
+	
+	// Getting to Kalavan is not too feasible till this level
+	@Override
+	public int getMinLevel() {
+		return 10;
+	}
 }

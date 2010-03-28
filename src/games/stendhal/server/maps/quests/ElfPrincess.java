@@ -171,5 +171,9 @@ public class ElfPrincess extends AbstractQuest {
 	public String getName() {
 		return "ElfPrincess";
 	}
-
+	
+	@Override
+	public int getMinLevel() {
+		return 60;
+	}
 }

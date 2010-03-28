@@ -289,4 +289,9 @@ public class AdosDeathmatch extends AbstractQuest {
 	public String getName() {
 		return "AdosDeathmatch";
 	}
+	@Override
+	public int getMinLevel() {
+		return 20;
+	}
+	
 }

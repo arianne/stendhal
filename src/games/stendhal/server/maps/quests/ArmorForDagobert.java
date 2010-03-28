@@ -185,4 +185,9 @@ public class ArmorForDagobert extends AbstractQuest {
 	public String getName() {
 		return "ArmorForDagobert";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 0;
+	}
 }

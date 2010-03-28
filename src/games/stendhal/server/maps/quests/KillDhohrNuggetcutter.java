@@ -154,4 +154,10 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 	public String getName() {
 		return "KillDhohrNuggetcutter";
 	}
+	
+	// The kill requirements and surviving in the zone requires at least this level
+	@Override
+	public int getMinLevel() {
+		return 70;
+	}
 }

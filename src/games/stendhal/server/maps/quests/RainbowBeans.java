@@ -233,4 +233,9 @@ public class RainbowBeans extends AbstractQuest {
 	public String getName() {
 		return "RainbowBeans";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return REQUIRED_LEVEL;
+	}
 }

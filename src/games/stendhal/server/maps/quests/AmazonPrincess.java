@@ -187,5 +187,10 @@ npc.add(ConversationStates.ATTENDING,
 	public String getName() {
 		return "AmazonPrincess";
 	}
-
+	
+	// Amazon is dangerous below this level - don't hint to go there
+	@Override
+	public int getMinLevel() {
+		return 70;
+	}
 }

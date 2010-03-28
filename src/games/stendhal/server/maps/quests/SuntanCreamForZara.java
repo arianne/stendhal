@@ -190,4 +190,9 @@ public class SuntanCreamForZara extends AbstractQuest {
 	public String getName() {
 		return "SuntanCreamForZara";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 50;
+	}
 }

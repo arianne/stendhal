@@ -346,4 +346,11 @@ public class CloakCollector2 extends AbstractQuest {
 	public String getName() {
 		return "CloakCollector2";
 	}
+	
+	// The previous quest likely requires at least this level. 
+	// When adding the hint check, remember to check if the CloakCollector quest is completed.
+	@Override
+	public int getMinLevel() {
+		return 100;
+	}
 }

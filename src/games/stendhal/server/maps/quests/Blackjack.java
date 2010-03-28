@@ -399,4 +399,9 @@ public class Blackjack extends AbstractQuest {
 	public String getName() {
 		return "Blackjack";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 0;
+	}
 }

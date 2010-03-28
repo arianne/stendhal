@@ -148,4 +148,10 @@ public class HelpTomi extends AbstractQuest {
 	public String getName() {
 		return "HelpTomi";
 	}
+	
+	// there is a minimum level requirement to get into hell - this quest is in hell
+	@Override
+	public int getMinLevel() {
+		return 200;
+	}
 }

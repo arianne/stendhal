@@ -145,4 +145,9 @@ public class ClubOfThorns extends AbstractQuest {
 	public String getName() {
 		return "ClubOfThorns";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 50;
+	}
 }

@@ -484,4 +484,8 @@ public class StuffForBaldemar extends AbstractQuest {
 		return "StuffForBaldemar";
 	}
 	
+	@Override
+	public int getMinLevel() {
+		return 100;
+	}
 }

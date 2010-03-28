@@ -238,4 +238,11 @@ public class Snowballs extends AbstractQuest {
 	public String getName() {
 		return "Snowballs";
 	}
+	
+	// the djinns, ice golems and ice elementals on the way to yeti caves are quite dangerous
+	@Override
+	public int getMinLevel() {
+		return 60;
+	}
+	
 }

@@ -169,4 +169,10 @@ public class KillDarkElves extends AbstractQuest {
 	public String getName() {
 		return "KillDarkElves";
 	}
+	
+	// Killing the thing probably requires a level even higher than this - but they can get help
+	@Override
+	public int getMinLevel() {
+		return 100;
+	}
 }

@@ -207,4 +207,8 @@ public class ElvishArmor extends AbstractQuest implements
 		return "ElvishArmor";
 	}
 
+	@Override
+	public int getMinLevel() {
+		return 60;
+	}
 }

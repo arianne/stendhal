@@ -482,4 +482,10 @@ public class SadScientist extends AbstractQuest {
 
 		return missingItems;
 	}
+	
+	// The items and surviving in the basement mean we shouldn't direct them till level 100 or so
+	@Override
+	public int getMinLevel() {
+		return 100;
+	}
 }

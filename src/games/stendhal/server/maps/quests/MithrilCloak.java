@@ -92,5 +92,10 @@ public class MithrilCloak extends AbstractQuest {
 	public String getName() {
 		return "MithrilCloak";
 	}
-
+	
+	// it's a long quest so they can always start it before they can necessarily finish all
+	@Override
+	public int getMinLevel() {
+		return 100;
+	}
 }

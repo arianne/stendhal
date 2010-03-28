@@ -151,4 +151,9 @@ public class KillSpiders extends AbstractQuest {
 	public String getName() {
 		return "KillSpiders";
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 70;
+	}
 }

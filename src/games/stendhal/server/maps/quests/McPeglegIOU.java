@@ -98,4 +98,8 @@ public class McPeglegIOU extends AbstractQuest {
 		return "McPeglegIOU";
 	}
 
+	@Override
+	public int getMinLevel() {
+		return 40;
+	}
 }

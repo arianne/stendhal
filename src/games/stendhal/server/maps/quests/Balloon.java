@@ -45,4 +45,9 @@ public class Balloon extends AbstractQuest {
 		
 		return "Balloon";
 	}
+
+	@Override
+	public int getMinLevel() {
+		return 150;
+	}
 }

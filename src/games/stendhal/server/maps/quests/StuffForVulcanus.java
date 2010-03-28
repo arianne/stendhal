@@ -325,5 +325,10 @@ public class StuffForVulcanus extends AbstractQuest {
 	public String getName() {
 		return "StuffForVulcanus";
 	}
-
+	
+	// match to the min level of the immortal sword
+	@Override
+	public int getMinLevel() {
+		return 80;
+	}
 }

@@ -285,5 +285,11 @@ public class WeeklyItemQuest extends AbstractQuest {
 	public String getName() {
 		return "WeeklyItemQuest";
 	}
-
+	
+	// the items requested are pretty hard to get, so it's not worth prompting player to go till they are higher level.
+	@Override
+	public int getMinLevel() {
+		return 60;
+	}
+	
 }

@@ -385,4 +385,10 @@ public class Soup extends AbstractQuest {
 	public String getName() {
 		return "Soup";
 	}
+	
+	// ok, so there is no real min level for this but it is hardly worth suggesting unless you are higher level
+	@Override
+	public int getMinLevel() {
+		return 20;
+	}
 }

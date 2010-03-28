@@ -308,4 +308,8 @@ public class DailyItemQuest extends AbstractQuest {
 		return "DailyItemQuest";
 	}
 
+	@Override
+	public int getMinLevel() {
+		return 0;
+	}
 }
