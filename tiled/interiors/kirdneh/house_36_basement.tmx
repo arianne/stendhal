@@ -55,13 +55,13 @@
  <tileset name="lights candle" firstgid="144" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
- <tileset name="stairs" firstgid="168" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="180" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="arch flowered" firstgid="172" tilewidth="32" tileheight="32">
+ <tileset name="arch flowered" firstgid="184" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/flowered_arch.png"/>
  </tileset>
- <tileset name="chest 2" firstgid="196" tilewidth="32" tileheight="32">
+ <tileset name="chest 2" firstgid="208" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_2.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -71,7 +71,7 @@
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNkYGAQIgOLALEoEIsBMTsSjoRidhxYHIgloHrZgHglA/GAG00vMiiBYlUgViNTL0yeXL2yQCyHBSug6c1C06sOxMI4sAia3lw0vbgAMW7eB8T7gbgWiOuA+BAQHyZSLyn2FuPQ2wjETWS6GQbwufkEEJ/E41Zs9koBMRcJWJoBf9wTwgpADACF1nvghAMAAA==
+   H4sIAAAAAAAAABNkYGAQIgOLALEoEIsBMTsSjoRidhxYHIgloHrZgHgrA/GAG00vMiiBYlUgViNTL0yeXL2yQCyHBSug6c1C06sOxMI4sAia3lw0vbgAMW4+BcSngbgWiOuA+BwQnydSLyn2FuPQ2wjETWS6GQbwufkKEF/F41Zs9koBMRcJWJoBf9wTwgpADACtgVjchAMAAA==
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
@@ -81,12 +81,12 @@
  </layer>
  <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUAmuBeB0QrwfiDTjU9GAR2wTEm4F4CxBvBeJtQLwdi7o+LGI7gHgnEn8PEO8l0r3Egn4gLsAhVw/EDXj0Uurmo0B8jID7hjoAAP8ZOuiEAwAA
+   H4sIAAAAAAAAAGNgGAXUAjuBeBcQ7wbiPTjU9GAR2wfE+4H4ABAfBOJDQHwYi7o+LGJHgPgoEv8EEJ8kzrlEg34gLsAhVw/EDXj0Uurmi0B8iYD7hjoAAKgD91yEAwAA
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjGawF4nVAvB6IN5CodzMQbwHirUC8jcruGkkAAFk4B8mEAwAA
+   H4sIAAAAAAAAAGNgGAUjGewE4l1AvBuI95Codz8QHwDig0B8iLrOGlEAAJTyohyEAwAA
   </data>
  </layer>
  <layer name="objects" width="15" height="15">

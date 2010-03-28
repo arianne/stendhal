@@ -37,34 +37,34 @@
  <tileset name="Untitled" firstgid="104" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="128" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="140" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/torch_top.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="132" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="144" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_chair_grey.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="144" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="156" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_peach.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="150" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="162" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_peach_top_sheet.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="152" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="164" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="180" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="192" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_linen.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="184" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="196" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/torch.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="185" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="197" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/furnace.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="189" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="201" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/flames.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="191" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="203" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/door/door_s.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -74,17 +74,17 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3RSQoCMRAF0AIXojiPrbYQd454HHEl3kVRFMXxLh7P31CFIaZNd7DgQQY+SSolImp5KkMXCjBgF7hq86Kxr6/3ON+nT93grs0D6PB4AUsehzH5BzzJXitYO/JmNaAJQxjBHMYp8iHvT2DKZka+AorPkTMVq2r7yliXvPRX+hTQd79d/c/8eEPcu5K8X2oD2xT5LIvqBTvY8zhJPgf5P97/AEfPfHTnE5zJfn/b/7rI/9eg7akOb1NbfdAABAAA
+   H4sIAAAAAAAAAK3RSQoCMRAF0AIXojiPrbYQd454HHEl3khRFMXxLh7M31CFIaZNd7DgQQY+SSolImp5KkMXCjBgF7hq86Kxr6/3ON+nT93grs0D6PB4AUsehzH5BzzJXitYO/JmNaAJQxjBHMYp8iHvT2DKZka+AorPkTMVq2r7yliXvPRX+hTQd79d/c/8eEPcu5K8X2oD2xT5LIvqBTvY8zhJPgf5P97/AEfPfHTnE5zJfn/b/7rI/9eg7akOb603OnMABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggABGBkyATQwXYCIg5ofE9seilpmAWAAQp0NxIAnuQgbxQJxIpl5CYAcBsXAgjoDiSCxqSQlrbGqxhT8I7AXifUSqxQZ2A/EeNDFscQUCC4B4IRAvIsF8ZLAEiJcC8TIg3gLEW8k0BwS2AfF2CvQPBNgPxAeA+CCZ+g8B8WEgPkKCHgD6mWbkAAQAAA==
+   H4sIAAAAAAAAAGNggABGBkyATQwXYCIg5ofE9seilpmAWAAQp0NxIAnuQgbxQJxIpl5C4AgBsXAgjoDiSCxqSQlrbGqxhT8InATiU0SqxQaOA/EJNDFscQUCa4B4LRCvI8F8ZLABiDcC8SYgPgDEB8k0BwQOAfFhCvQPBDgNxGeA+CyZ+s8B8XkgvkCCHgAOEPYMAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFxgGhBPHwB7G7GINSOxrYDYEYitgdiGDPPZgDgHiHOhbHqBnUC8i472YQMNSOwmHGqWU2jHahrqB6WDLiDuZsCeTkBgPYX2DxQAAMZ4Fl0ABAAA
+   H4sIAAAAAAAAAGNgGFxgERAvHgB7e7GI9SOxrYDYEYitgdiGDPPZgDgHiHOhbHqBo0B8jI72YQM9SOw+HGo2U2jHdhrqB6WDaUA8nQF7OgGB3RTaP1AAANKY0EwABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">

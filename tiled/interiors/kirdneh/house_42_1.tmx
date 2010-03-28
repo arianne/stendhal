@@ -52,16 +52,16 @@
  <tileset name="lights candle" firstgid="138" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
- <tileset name="stairs" firstgid="162" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="174" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="arch flowered" firstgid="166" tilewidth="32" tileheight="32">
+ <tileset name="arch flowered" firstgid="178" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/flowered_arch.png"/>
  </tileset>
- <tileset name="chest purple" firstgid="190" tilewidth="32" tileheight="32">
+ <tileset name="chest purple" firstgid="202" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_purple.png"/>
  </tileset>
- <tileset name="bed large white" firstgid="192" tilewidth="32" tileheight="32">
+ <tileset name="bed large white" firstgid="204" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_white.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -71,7 +71,7 @@
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ3ROwrCQBRG4VsZiJWaqChKmuh2sgXByloUxe1kDwq+AnFfniLCcMmMM7nwVeEwP2QgIsMOEqQYIzIUjchigmnT9lCK//VVa94eB+RYBbZHnIzvXdsFli0y1W5Uu8bIIlHtVrW289l8xQ1vVLjj4dmGvLuztDU+npvPuBibf+fa/MTLsbXt3RniAHNx//t/MnwBnobovIQDAAA=
+   H4sIAAAAAAAAAJ3ROwrCQBRG4VsZiJWaqChKmuh2sgXByloUxU1lDwq+AnFHniLCcMmMM7nwVeEwP2QgIsMOEqQYIzIUjchigmnT9lCK//VVa94eB+RYBbZHnIzvXdsFli0y1W5Uu8bIIlHtVrW289l8xQ1vVLjj4dmGvLuztDU+npvPuBibf+fa/MTLsbXt3RniAHNx//t/MnwB5T3lcYQDAAA=
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
@@ -81,12 +81,12 @@
  </layer>
  <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUAsuBeAUQrwTiVTjUtGERWwPEa4F4HRCvB+INQLwRi7oOLGKbgHgzEn8bEG8n0r3Egk4gTschdwiID+PRO1BuHkoAAKPPclyEAwAA
+   H4sIAAAAAAAAAGNgGAXUApuBeAsQbwXibTjUtGER2wHEO4F4FxDvBuI9QLwXi7oOLGL7gHg/Ev8QEB8m0r3Egk4gTschdw6Iz+PRO1BuHkoAAOFPFiiEAwAA
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjGSwH4hVAvBKIV5Gody0QrwPi9UC8gcruGkkAADRCL3GEAwAA
+   H4sIAAAAAAAAAGNgGAUjGWwG4i1AvBWIt5GodycQ7wLi3UC8h8ruGkkAAC6JblqEAwAA
   </data>
  </layer>
  <layer name="objects" width="15" height="15">

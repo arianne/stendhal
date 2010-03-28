@@ -88,18 +88,18 @@
  <tileset name="lights candle" firstgid="242" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
- <tileset name="tiles" firstgid="266" tilewidth="32" tileheight="32">
+ <tileset name="tiles" firstgid="278" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png"/>
  </tileset>
- <tileset name="pictures" firstgid="278" tilewidth="32" tileheight="32">
+ <tileset name="pictures" firstgid="290" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/small_hills.png"/>
  </tileset>
- <tileset name="picture 2" firstgid="281" tilewidth="32" tileheight="32">
+ <tileset name="picture 2" firstgid="293" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/gnome_sweet_gnome.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNiZGAQGgI4jAEVDzX9IxXz4sCj+gljewrTGTH6ARDAZ6gABAAA
+   H4sIAAAAAAAAAJNjZGCQGwI4jAEVDzX9IxVL4sCj+gljewrTGTH6Ab0itG4ABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
@@ -109,7 +109,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA4kGHFI4ACSQPVSQCwNxDJoeqcC8WHSjAODQCT2MTL0HydDD7lgNYX6z1LFFeSDmTjYINAOxB1AfBeIbwPxKyz65+NgP0diXwbiK0B8igz3OSCxL5KhHwScofQlMvXDQAsZeu5A6XdEqleA0kpk2AUCKlBajYA6AFXBTvoABAAA
+   H4sIAAAAAAAAAGNgwA5UGHFI4ACqQPVqQKwOxBpoeqcC8WHSjAODQCT2MTL0HydDD7lgNYX6z1LFFeSDmTjYINAOxB1AfBeIbwPxKyz65+NgP0diXwbiK0B8igz3OSCxL5KhHwScofQlMvXDQAsZeu5A6XdEqleA0kpk2AUCKlBajYA6AJecLFgABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">

@@ -85,55 +85,55 @@
  <tileset name="lights candle" firstgid="221" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
- <tileset name="sheep food" firstgid="245" tilewidth="32" tileheight="32">
+ <tileset name="sheep food" firstgid="257" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset name="vendors table" firstgid="246" tilewidth="32" tileheight="32">
+ <tileset name="vendors table" firstgid="258" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/vendors_table.png"/>
  </tileset>
- <tileset name="white counter top" firstgid="267" tilewidth="32" tileheight="32">
+ <tileset name="white counter top" firstgid="279" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/white_counter_top.png"/>
  </tileset>
- <tileset name="floors 3" firstgid="277" tilewidth="32" tileheight="32">
+ <tileset name="floors 3" firstgid="289" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png"/>
  </tileset>
- <tileset name="stairs" firstgid="289" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="301" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="pillar" firstgid="293" tilewidth="32" tileheight="32">
+ <tileset name="pillar" firstgid="305" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/column/pillar.png"/>
  </tileset>
- <tileset name="chest 2" firstgid="296" tilewidth="32" tileheight="32">
+ <tileset name="chest 2" firstgid="308" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_2.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJNgZGCQGMWDDv9jGDVvFI/iUTy4MQC1I5qnQAYAAA==
+   H4sIAAAAAAAAAFNhZGBQGcWDDnONmjeKR/EoHuQYAFA9pORABgAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXT3UoCQRjG8RHSoI5CsTIMQ0MKs0gKC/qw027AO4iuom87r8MuxejAhKQb6rT/0jvwMuzsjBH0wI/ZHdnHEd9dMMYU/0gJyyhjdgql3A+9t4gl6SugwedJZljzKMi9zousT3iW6yMcY97ps7nCNW6cri20sa3WHZzgNKXvS567xR3uU/p20VFrVt9FoC/JgXIoez2cpfRdZvStYS5gJfJ85/Ld61gNqEWcz/Y1Tfz8JX35nP/31k14Jt35s3nAAI9muvjmLysb2MS7SK5bnr4hXvGBibrX8c30b8/nm2lfXx+fou/p+6/zjTFSz45kT2cP+45u4Hz2v/PlzWGj+yom/H7Gvr9VE34vY9XwDZOKEtRABgAA
+   H4sIAAAAAAAAAMXT2ysFURTH8SVF8XIGuRzRSBK5nIhQrq/+gfMfyF/hzjuP/hQ6D4cif5XvZO1a7WZfjpRVn/bMnuY3q2btQkRG/8gYpjCOwR6UfT/s3gQmNW8ALZ5X1WAtMKL3tp51fcSTXu/jAMNenqsLXOLKy1rFGtbN2sIhjmry+rWfa9zgtiZvA5tmjeWdSTyvql1jT/eOcVKTdx7Jm8NQwnRmf6f67QXMJpQZ/bm8RcmfvyqviPyPeUnPpD9/ru5wjwfprULzF6slLONNVdcrgbwXvOIDn+beVmimf9tfaKZDeW18qXYg77/6e0fXvNvVPVtb2PbsJPpz/y5UHY8rm9eU9PnMPb8zkj6XuUp8A6MhCPdABgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggICHQPwIyr6DRQwZJEMxPvAciF8A8V8g/gfE/5HEYGAmEMcDMS8jAwMfI4Q9CiAgmwg1K6F0NBAnEFCbSpFrMEEOlc0jBeQDcdEA2k8voM4IoTuAuBNNbDCBHiDupYI52PxGDf/qAM3QHYThNhwAAMyL5p9ABgAA
+   H4sIAAAAAAAAAGNggICHQPwIyr6DRQwZJEMxPvAciF8AMScjAwMXEHMzIsRgYCYQxwOxJFBOihHCHgUQkE2EmpVQOhqIEwioTaXINZggh8rmkQLygbhoAO2nFzBmhNAdQNyJJjaYQA8Q91LBHGx+o4Z/LYBmWA7CcBsOAAC4l0kRQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoD1YC8Rb8MhPheKhDNKobF4Glc3D5T5XMs3D5T5yzRsIoMpInBixQA2qdz8UI4uhg+1AvAOIjwLxMSQ+LUEklO4C4m40MXIANr/h8i8pQBNohhYBcw4QKUYqQI67UUAYAADNKKBDQAYAAA==
+   H4sIAAAAAAAAAGNgoD1YC8Rb8MhPheKhDNKobF4Glc3D5T5XMs3D5T5yzRsIYMhInBixwAiqdz8UI4uhg+1AvAOIjwLxMSQ+LUEklO4C4m40MXIANr/h8i8pwBRohhkBcw4QKUYqQI67UUAYAAD4naTDQAYAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBRQA0TiwIPFPFVGTLNAYqNgFJALAEbBsdJABgAA
+   H4sIAAAAAAAAAGNgGAWjYBRQA0TiwIPFPENGTLNAYqNgFJALANseCNpABgAA
   </data>
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMAtqDrzjYo2DoAgDkrMjQQAYAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMAtoDRkbs7FEwdAEAG73JvEAGAAA=
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.35">

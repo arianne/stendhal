@@ -154,10 +154,10 @@
  <tileset name="lights candle" firstgid="345" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
- <tileset name="bright book shelf" firstgid="369" tilewidth="32" tileheight="32">
+ <tileset name="bright book shelf" firstgid="381" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf.png"/>
  </tileset>
- <tileset name="sheep food" firstgid="378" tilewidth="32" tileheight="32">
+ <tileset name="sheep food" firstgid="390" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="25">
@@ -172,7 +172,7 @@
  </layer>
  <layer name="2_object" width="32" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQIAVaPQ8BtJBJiMDQxYQnwOyzwNxLJAdB8SFQFwExMWM2PXNBuKfQMzLCKHnAPEfHHYEAXEIlF0IxEVEuKsEaG4pEJfhsJ/WoBxobwUQVw6Q/aMAATaRoFZlGMbXRiLVzQDiubR0yCggCpwF4gs0tkMMmM630dgOfECSCvnMFIgDCZgTSsP8bAalDYF2uAFpdzT5IAJ2vwfiDxS6QR9ohymaPWZAfjAQh0DFRYZhmUYKsKKCGdOQMD5ggUVMiArhT6z9IGCNxjehs/3owACH/WpAcVUi3XYAjaYGUGeEYBjIBbLzKAwrcyT92lC2Dg3znybMLtpZQVUAAPxgz76ADAAA
+   H4sIAAAAAAAAAGNgQIAVaPQ8BtJBJiMDQxYQnwOyzwNxLJAdB8S1QFwHxPWM2PXNBuKfQMzLCKHnAPEfHHYEAXEIlF0IxEVEuKsBaG4jEDfhsJ/WoBlobwsQtw6Q/aMAATaRoFZlGMbXRiLVzQDiubR0yCggCpwF4gs0tkMMmM630dgOfECSCvnMFIgDCZgTSsP8bAalDYF2uAFpdzT5IAJ2vwfiDxS6QR9ohymaPWZAfjAQh0DFRYZhmUYKsKKCGdOQMD5ggUVMiArhT6z9IGCNxjehs/3owACH/WpAcVUi3XYAjaYGUGeEYBjIBbLzKAwrcyT92lC2Dg3znybMLtpZQVUAABjC2TSADAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="25">
@@ -187,7 +187,7 @@
  </layer>
  <layer name="objects" width="32" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PMQ0AAAjAMLCNeiyQcHDQKtgiAOYqrwtuff8HgK0GIy9w54AMAAA=
+   H4sIAAAAAAAAAO3PMQ0AAAjAMDCPbiyQcHDQKtgiAOYqrwtuff8HgK0GTY2s+YAMAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="25" opacity="0.35">
