@@ -3,6 +3,7 @@ package games.stendhal.server.entity.creature.impl;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.Entity;
 
 public class RangeAttack implements AttackStrategy {
 
@@ -32,32 +33,41 @@ public class RangeAttack implements AttackStrategy {
 	}
 
 	public void getBetterAttackPosition(final Creature creature) {
-
-		final games.stendhal.server.entity.Entity target = creature.getAttackTarget();
+		final Entity target = creature.getAttackTarget();
 		final double distance = creature.squaredDistance(target);
+		// if too far away from enemy
 		if (distance > 25) {
 			creature.setMovement(target, 0, 1, 20.0);
 			creature.faceToward(creature.getAttackTarget());
+		// if too close to enemy
 		} else if (distance < 16) {
+			// turn creature around
 			creature.faceToward(creature.getAttackTarget());
 			creature.setDirection(creature.getDirection().oppositeDirection());
+			// check if creature cant move away from enemy
 			if (creature.getZone().collides(creature, creature.getX() + creature.getDirection().getdx(), creature.getY() + creature.getDirection().getdy(), true)) {
 				if (!canAttackNow(creature)) {
+					// go back to enemy
 					creature.setMovement(target, 0, 1, 15.0);
 					creature.faceToward(creature.getAttackTarget());
 				} else {
+					// will attack from here
+					creature.clearPath();
+					creature.stop();
 					creature.faceToward(creature.getAttackTarget());
-					creature.setSpeed(0);
 				}
 			} else {
+				// give to creature good kick
 				creature.setSpeed(creature.getBaseSpeed());
 			}
-			
+		// good distance to attack 
 		} else {
+			// cant attack enemy, going to him
 			if (!canAttackNow(creature)) {
 				creature.setMovement(target, 0, 1, 20.0);
 				creature.faceToward(creature.getAttackTarget());
 			} else {
+				// this is good position to attack enemy
 				creature.clearPath();
 				creature.stop();
 				creature.faceToward(creature.getAttackTarget());
