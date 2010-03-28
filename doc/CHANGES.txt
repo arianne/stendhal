@@ -1,5 +1,13 @@
 Changelog
 ---------
+0.82.1
+
+- new command /clickmode to toggle between single click walking and double click walking
+- fixed movement to drop target (only Microsoft Windows was affected)
+- fixed /mute not being stored accross restarts
+- fixed pets not ownable
+
+
 0.82
 *features
 - single click movement
