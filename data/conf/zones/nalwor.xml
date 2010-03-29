@@ -276,6 +276,7 @@ below average.
 	</zone>
 
 	<zone name="int_nalwor_secret_room" file="interiors/nalwor/secret_torture_room.tmx">
+		<configurator class-name="games.stendhal.server.maps.nalwor.secretroom.DarkElvesCreatures"/>
 		<portal x="38" y="7" ref="exit_1">
 			<destination zone="int_nalwor_royal_hall" ref="secret_entrance_1" />
 		</portal>
@@ -939,6 +940,7 @@ below average.
 	<zone name="-1_nalwor_drows_tunnel_n" level="-1" x="500256" y="500256"
 		file="Level -1/nalwor/drows_tunnel_n.tmx">
 		<configurator class-name="games.stendhal.server.maps.nalwor.tunnel.ThingCreature" />
+		<configurator class-name="games.stendhal.server.maps.nalwor.tunnel.DrowCreatures" />
 		<portal x="40" y="68" ref="upstairs">
 			<destination zone="int_nalwor_secret_room" ref="downstairs" />
 		</portal>
