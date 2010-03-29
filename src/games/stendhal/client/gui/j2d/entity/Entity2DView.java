@@ -747,6 +747,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return StendhalCursor
 	 */
 	public StendhalCursor getCursor() {
-		return StendhalCursor.ATTACK;
+		return StendhalCursor.UNKNOWN;
 	}
 }
