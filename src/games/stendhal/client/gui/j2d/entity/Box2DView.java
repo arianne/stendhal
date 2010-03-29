@@ -10,6 +10,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
 
@@ -66,5 +67,10 @@ class Box2DView extends Item2DView {
 			super.onAction(at);
 			break;
 		}
+	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.BAG;
 	}
 }
