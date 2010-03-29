@@ -15,6 +15,7 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -217,5 +218,10 @@ class Corpse2DView extends Entity2DView {
 		}
 
 		super.release(gameScreen);
+	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.BAG;
 	}
 }
