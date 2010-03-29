@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Direction;
@@ -65,5 +66,10 @@ class BossCreature2DView extends Creature2DView {
 	@Override
 	protected int getTilesY() {
 		return 2;
+	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.ATTACK;
 	}
 }

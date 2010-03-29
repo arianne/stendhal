@@ -13,6 +13,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -228,5 +229,10 @@ class Creature2DView extends RPEntity2DView {
 			this.x = x;
 			this.y = y;
 		}
+	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.ATTACK;
 	}
 }
