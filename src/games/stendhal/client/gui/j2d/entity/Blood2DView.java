@@ -12,6 +12,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -102,4 +103,11 @@ class Blood2DView extends StateEntity2DView {
 			proceedChangedState();
 		}
 	}
+
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.WALK;
+	}
+
 }
