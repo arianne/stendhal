@@ -108,6 +108,7 @@ public class Creature extends NPC {
 
 	private CreatureRespawnPoint point;
 
+	/** Respawn time in turns */
 	private int respawnTime;
 
 	private Map<String, String> aiProfiles;
@@ -231,7 +232,7 @@ public class Creature extends NPC {
 	 * @param dropItems
 	 * @param aiProfiles
 	 * @param noises
-	 * @param respawnTime
+	 * @param respawnTime in turns
 	 * @param description
 	 */
 	public Creature(final String clazz, final String subclass, final String name, final int hp,
@@ -339,6 +340,7 @@ public class Creature extends NPC {
 		setRespawned(true);
 	}
 
+	/** Returns the respawn time in turns */
 	public int getRespawnTime() {
 		return respawnTime;
 	}
