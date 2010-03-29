@@ -12,6 +12,7 @@ import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
+import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -56,6 +57,11 @@ public class MazeGenerator {
 		"kalavan city scroll",
 		"empty scroll"
 	};
+	
+	/** The music track to be played in the maze */
+	private static final String MUSIC_TRACK = "medieval_harp";
+	/** Volume of the music */
+	private static final int MUSIC_VOLUME = 80;
 	
 	private String name;
 	private int width, height;
@@ -357,7 +363,19 @@ public class MazeGenerator {
 		zone.setMoveToAllowed(false);
 		zone.disallowIn();
 		
+		// Add some scrolls
 		addPrizes(zone);
+		
+		/*
+		 * Add music to the otherwise quiet zone. The radius is set
+		 * to be a bit more than the max distance, so at start the 
+		 * music will be really quiet.
+		 */
+		BackgroundMusicSource music = new BackgroundMusicSource(MUSIC_TRACK,
+				(int) Math.sqrt(width * width + height * height) + 1, MUSIC_VOLUME);
+		// set it at the the exit portal so that it's louder when the player is near
+		music.setPosition(pos.x, pos.y);
+		zone.add(music);
 		
 		zone.addMovementListener(new MazeMovementListener());
 		return zone;
