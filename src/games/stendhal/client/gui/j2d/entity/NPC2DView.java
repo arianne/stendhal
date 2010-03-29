@@ -14,6 +14,7 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -107,5 +108,14 @@ class NPC2DView extends RPEntity2DView {
 			super.onAction(at);
 			break;
 		}
+	}
+
+	/**
+	 * gets the mouse cursor image to use for this entity
+	 *
+	 * @return StendhalCursor
+	 */
+	public StendhalCursor getCursor() {
+		return StendhalCursor.LOOK;
 	}
 }

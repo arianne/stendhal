@@ -220,7 +220,7 @@ class Player2DView extends RPEntity2DView {
 	@Override
 	public StendhalCursor getCursor() {
 		if (isInteractive()) {
-			return super.getCursor();
+			return StendhalCursor.LOOK;
 		} else {
 			return null;
 		}
