@@ -1251,6 +1251,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   </portal>
 </zone>
 <zone name="int_magic_school_cellar" file="interiors/magic/school_cellar.tmx">
+ <configurator class-name="games.stendhal.server.maps.magic.school.SpidersCreatures" />
  <portal x="16" y="3" ref="upstairs">
    <destination zone="int_magic_school_0" ref="downstairs"/>
   </portal>
