@@ -83,10 +83,9 @@ public class Corpse extends Entity {
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
-
 		if (changes.hasSlot("content")) {
-			content = changes.getSlot("content");
 			fireChange(PROP_CONTENT);
 		}
 	}
+
 }
