@@ -4,6 +4,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
 
@@ -72,5 +73,16 @@ class HousePortal2DView extends InvisibleEntity2DView {
 			super.onAction(at);
 			break;
 		}
+	}
+
+
+	@Override
+	public boolean isInteractive() {
+		return false;
+	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.PORTAL;
 	}
 }
