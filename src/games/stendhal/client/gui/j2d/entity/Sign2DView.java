@@ -8,6 +8,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
@@ -123,5 +124,15 @@ class Sign2DView extends Entity2DView {
 			super.onAction(at);
 			break;
 		}
+	}
+
+
+	/**
+	 * gets the mouse cursor image to use for this entity
+	 *
+	 * @return StendhalCursor
+	 */
+	public StendhalCursor getCursor() {
+		return StendhalCursor.LOOK;
 	}
 }
