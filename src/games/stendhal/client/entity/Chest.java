@@ -114,7 +114,6 @@ public class Chest extends Entity {
 		}
 
 		if (changes.hasSlot("content")) {
-			content = changes.getSlot("content");
 			fireChange(PROP_CONTENT);
 		}
 	}
