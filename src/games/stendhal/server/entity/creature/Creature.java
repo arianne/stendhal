@@ -322,7 +322,7 @@ public class Creature extends NPC {
 		return getID();
 	}
 
-	private void setAiProfiles(final Map<String, String> aiProfiles) {
+	public void setAiProfiles(final Map<String, String> aiProfiles) {
 		this.aiProfiles = aiProfiles;
 		setHealer(aiProfiles.get("heal"));
 		setAttackStrategy(aiProfiles);
