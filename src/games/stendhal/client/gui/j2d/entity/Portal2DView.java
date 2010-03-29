@@ -11,6 +11,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Portal;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
 
@@ -77,6 +78,11 @@ class Portal2DView extends InvisibleEntity2DView {
 	@Override
 	public boolean isInteractive() {
 		return false;
+	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.PORTAL;
 	}
 
 }
