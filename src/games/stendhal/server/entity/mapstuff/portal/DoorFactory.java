@@ -28,4 +28,17 @@ public abstract class DoorFactory implements ConfigurableFactory {
 	protected String getClass(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("class");
 	}
+
+	/**
+	 * Extract the rejected message from a context.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The rejected message, or <code>null</code> if none.
+	 * @throws IllegalArgumentException
+	 *             If the class attribute is missing.
+	 */
+	protected String getRejectedMessage(final ConfigurableFactoryContext ctx) {
+		return ctx.getString("rejected", null);
+	}
 }
