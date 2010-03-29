@@ -55,7 +55,15 @@ public class KillNotificationCreature extends Creature {
     * @param copy
     * 			- creature to create :-)
     */
-   public KillNotificationCreature(final Creature copy) {
+   public KillNotificationCreature(final KillNotificationCreature copy) {
 		super(copy);
+	}
+   
+	public KillNotificationCreature(final Creature copy) {
+		super(copy);
+}
+
+	public KillNotificationCreature getNewInstance() {
+		return new KillNotificationCreature(this);
 	}
 }
