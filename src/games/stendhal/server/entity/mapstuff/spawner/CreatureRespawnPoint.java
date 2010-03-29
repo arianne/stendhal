@@ -61,10 +61,10 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * This is the prototype; it will be copied to create new creatures that
 	 * will be spawned here.
 	 */
-	private final Creature prototypeCreature;
+	protected final Creature prototypeCreature;
 
 	/** All creatures that were spawned here and that are still alive. */
-	private final List<Creature> creatures;
+	protected final List<Creature> creatures;
 
 	/**
 	 * Stores if this respawn point is currently waiting for a creature to

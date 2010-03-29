@@ -13,13 +13,10 @@
 package games.stendhal.server.entity.mapstuff.spawner;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.KillNotificationCreature;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Observer;
 
 import org.apache.log4j.Logger;
@@ -29,15 +26,14 @@ public class KillNotificationCreatureRespawnPoint extends CreatureRespawnPoint {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(CreatureRespawnPoint.class);
 
-	/**
+	/*
 	 * This is the prototype; it will be copied to create new creatures that
 	 * will be spawned here.
 	 */
-	private final KillNotificationCreature prototypeCreature;
+	//private final KillNotificationCreature prototypeCreature;
 
-	/** All creatures that were spawned here and that are still alive. */
-	private final List<KillNotificationCreature> creatures;
-
+	/* All creatures that were spawned here and that are still alive. */
+	//private final List<KillNotificationCreature> creatures;
 	
 	private Observer observer;
 
@@ -56,15 +52,7 @@ public class KillNotificationCreatureRespawnPoint extends CreatureRespawnPoint {
 	public KillNotificationCreatureRespawnPoint(final StendhalRPZone zone, final int x, final int y,
 			final KillNotificationCreature creature, final int maximum, final Observer observer) {
 		super(zone, x, y, creature, maximum);
-		this.prototypeCreature = creature;
 		this.observer = observer;
-		this.creatures = new LinkedList<KillNotificationCreature>();
-
-		//respawning = true;
-		
-		// don't respawn in next turn!
-		//SingletonRepository.getTurnNotifier().notifyInTurns(calculateNextRespawnTurn(), this); 
-	
 	}
 
 
@@ -76,7 +64,7 @@ public class KillNotificationCreatureRespawnPoint extends CreatureRespawnPoint {
 
 		try {
 			// clone the prototype creature
-			final KillNotificationCreature newentity = prototypeCreature.getNewInstance();
+			final KillNotificationCreature newentity = (KillNotificationCreature) prototypeCreature.getNewInstance();
 
 			// A bit of randomization to make Joan and Snaketails a bit happier.
 			// :)
