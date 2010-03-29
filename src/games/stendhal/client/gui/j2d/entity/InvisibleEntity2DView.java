@@ -9,6 +9,8 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
+
 import java.awt.Graphics2D;
 
 /**
@@ -47,5 +49,14 @@ class InvisibleEntity2DView extends Entity2DView {
 	@Override
 	public int getZIndex() {
 		return 5000;
+	}
+
+	/**
+	 * gets the mouse cursor image to use for this entity
+	 *
+	 * @return StendhalCursor
+	 */
+	public StendhalCursor getCursor() {
+		return null;
 	}
 }
