@@ -249,11 +249,10 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			if ((e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0) {
 				return;
 			}
-			
-			if (System.getProperty("stendhal.cursor") != null) {
-				StendhalCursor cursor = getCursor(e);
-				ui.setCursor(cursorRepository.get(cursor));
-			}
+
+			StendhalCursor cursor = getCursor(e);
+			ui.setCursor(cursorRepository.get(cursor));
+
 		} catch (ConcurrentModificationException ex) {
 			logger.warn(ex, ex);
 		}
