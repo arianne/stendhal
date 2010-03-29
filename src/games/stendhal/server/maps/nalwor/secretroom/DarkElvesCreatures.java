@@ -39,7 +39,6 @@ public class DarkElvesCreatures implements ZoneConfigurator {
 	}
 	
 	class DrowObserver implements Observer {
-		@Override
 		public void update(Observable o, Object arg) {
 			updatePlayerQuest((CircumstancesOfDeath) arg);
 		}

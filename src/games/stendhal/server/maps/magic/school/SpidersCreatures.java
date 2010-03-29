@@ -38,7 +38,6 @@ public class SpidersCreatures implements ZoneConfigurator {
 	}
 
 	class SpidersObserver implements Observer {
-		@Override
 		public void update(Observable o, Object arg) {
 			updatePlayerQuest((CircumstancesOfDeath) arg);			
 		}
