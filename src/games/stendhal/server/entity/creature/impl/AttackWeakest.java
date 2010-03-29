@@ -1,14 +1,29 @@
 package games.stendhal.server.entity.creature.impl;
 
-import java.util.List;
-
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
+
+import java.util.List;
 
 /**
  * A profile for creature that always tries to kill the weakest enemy first.
  */
 public class AttackWeakest extends HandToHand {
+	/**
+	 * Check if the target is something worth attacking.
+	 * (basically a Player of Pet, to be maximally annoying)
+	 * 
+	 * @param target the target to be checked
+	 * @return <code>true</code> iff the target is a good candidate to be killed
+	 */
+	private boolean isPreferredTarget(RPEntity target) {
+		/*
+		 * A bit of a hack - ignore scroll creatures so that players can not
+		 * confuse creatures with summon scrolls.
+		 */
+		return !(target instanceof AttackableCreature);
+	}
 	/**
 	 * Attack the weakest enemy next to the creature.
 	 * 
@@ -25,7 +40,8 @@ public class AttackWeakest extends HandToHand {
 		}
 
 		RPEntity target = null;
-		if (creature.isAttacking()) {
+		
+		if (creature.isAttacking() && isPreferredTarget(creature.getAttackTarget())) {
 			target = creature.getAttackTarget();
 		}
 
@@ -38,11 +54,7 @@ public class AttackWeakest extends HandToHand {
 		}
 
 		for (final RPEntity enemy : enemyList) {
-			/*
-			 * A bit of a hack - ignore creatures so that players can not
-			 * confuse creatures with summon scrolls.
-			 */
-			if (enemy instanceof Creature) {
+			if (!isPreferredTarget(enemy)) {
 				continue;
 			}
 
