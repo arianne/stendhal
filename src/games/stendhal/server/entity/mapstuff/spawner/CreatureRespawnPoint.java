@@ -46,11 +46,11 @@ public class CreatureRespawnPoint implements TurnListener {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(CreatureRespawnPoint.class);
 
-	private final StendhalRPZone zone;
+	protected final StendhalRPZone zone;
 
-	private final int x;
+	protected final int x;
 
-	private final int y;
+	protected final int y;
 
 	/**
 	 * The number of creatures spawned here that can exist at the same time.
@@ -160,7 +160,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * Calculates a randomized respawn time.
 	 * @return the amount of turns calculated
 	 */
-	private int calculateNextRespawnTurn() {
+	protected int calculateNextRespawnTurn() {
 		final int time = Rand.randExponential(respawnTime);
 		
 		// limit between MAX_ and MIN_
@@ -179,7 +179,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	/**
 	 * Pops up a new creature.
 	 */
-	private void respawn() {
+	protected void respawn() {
 
 		try {
 			// clone the prototype creature
