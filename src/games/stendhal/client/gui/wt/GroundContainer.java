@@ -262,7 +262,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 	
 	@Override
 	public StendhalCursor getCursor(MouseEvent e) {
-		StendhalCursor cursor = StendhalCursor.NORMAL;
+		StendhalCursor cursor = null;
 
 		// ask WtPanel about desired cursor if the mouse pointer is above an WtPanel
 		WtPanel wtPanel = getWtPanelAt(e.getPoint());
@@ -273,9 +273,10 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			// TODO: Handle text boxes
 			final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
 			final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
-			if ((view != null) && view.isInteractive()) {
+			if (view != null) {
 				cursor = view.getCursor();
-			} else {
+			}
+			if (cursor == null) {
 				// TODO: display a cursor with a walking idea on non collision
 				cursor = StendhalCursor.WALK;
 				// TODO: display a cursor with a stop idea on collision

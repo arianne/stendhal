@@ -15,6 +15,7 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -216,4 +217,12 @@ class Player2DView extends RPEntity2DView {
 		return super.isInteractive();
 	}
 
+	@Override
+	public StendhalCursor getCursor() {
+		if (isInteractive()) {
+			return super.getCursor();
+		} else {
+			return null;
+		}
+	}
 }
