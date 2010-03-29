@@ -5,7 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -110,6 +112,42 @@ public class AttackWeakestTest {
 	}
 	
 	/**
+	 * Tests finding a new target. No enemies next to the creature.
+	 */
+	@Test
+	public void testFindNewTargetFromDistance() {
+		AttackStrategy strat = new AttackWeakest();
+		
+		/*
+		 *  Need to use a real creature, because the
+		 *  creature needs to be offensive to see the
+		 *  targets. 
+		 */
+		final Creature creature = SingletonRepository.getEntityManager().getCreature("rat");
+		
+		Player veteran = PlayerTestHelper.createPlayer("test dummy");
+		Player newbie = PlayerTestHelper.createPlayer("test dummy2");
+		
+		// Give the arena a proper size so that pathfinding can work
+		StendhalRPZone arena = new StendhalRPZone("arena", 10, 10);
+		arena.add(creature);
+		assertFalse("is not attacking", strat.hasValidTarget(creature));
+		arena.add(veteran);
+		arena.add(newbie);
+		
+		creature.setPosition(3, 3);
+		veteran.setPosition(3, 5);
+		newbie.setPosition(2, 5);
+		assertFalse("sanity check; target not next to attacker", veteran.nextTo(creature));
+		assertFalse("sanity check; target not next to attacker", newbie.nextTo(creature));
+		
+		// Should pick the nearest: veteran
+		strat.findNewTarget(creature);
+		assertTrue("has a valid target", strat.hasValidTarget(creature));
+		assertEquals("attack nearest", veteran, creature.getAttackTarget());
+	}
+	
+	/**
 	 * Tests switching to a weaker target
 	 */
 	@Test
@@ -158,5 +196,54 @@ public class AttackWeakestTest {
 		// and neither should putting him back (unlike newbie's arrival)
 		assertTrue("has a valid target", strat.hasValidTarget(creature));
 		assertEquals("attack weakest", newbie, creature.getAttackTarget());
+	}
+	
+	/**
+	 * Tests that switching to a weaker target ignores creatures.
+	 * (from summon scrolls)
+	 */
+	@Test
+	public void testSwitchTargetsIgnoreCreatures() {
+		AttackStrategy strat = new AttackWeakest();
+		
+		/*
+		 *  Need to use a real creature, because the
+		 *  creature needs to be offensive to see the
+		 *  targets. 
+		 */
+		final Creature creature = SingletonRepository.getEntityManager().getCreature("rat");
+		final Creature scrollCreature = new AttackableCreature(SingletonRepository.getEntityManager().getCreature("rat"));
+		
+		Player veteran = PlayerTestHelper.createPlayer("veteran");
+		
+		StendhalRPZone arena = new StendhalRPZone("arena");
+		arena.add(creature);
+		assertFalse("is not attacking", strat.hasValidTarget(creature));
+		arena.add(veteran);
+		arena.add(scrollCreature);
+		veteran.addXP(10000);
+		
+		assertTrue("sanity check for enemy levels", veteran.getLevel() > scrollCreature.getLevel());
+		
+		creature.setPosition(3, 3);
+		scrollCreature.setPosition(2, 4);
+		
+		// Should pick the nearest: scrollCreature
+		strat.findNewTarget(creature);
+		assertTrue("has a valid target", strat.hasValidTarget(creature));
+		assertEquals("attack nearest", scrollCreature, creature.getAttackTarget());
+		
+		// move veteran near. this should result in switching targets because players
+		// are favored over creatures
+		veteran.setPosition(3, 4);
+		assertTrue("has a valid target", strat.hasValidTarget(creature));
+		assertEquals("attack player", veteran, creature.getAttackTarget());
+		
+		// Add a sheep. Pets are nice targets for killing
+		final Sheep sheep = new Sheep(veteran);
+		sheep.setPosition(4, 4);
+		assertTrue("sanity check for enemy levels", veteran.getLevel() > sheep.getLevel());
+		assertTrue("has a valid target", strat.hasValidTarget(creature));
+		assertEquals("attack sheep", sheep, creature.getAttackTarget());
 	}
 }
