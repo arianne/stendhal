@@ -258,6 +258,8 @@ class Chest2DView extends StateEntity2DView {
 
 	@Override
 	public StendhalCursor getCursor() {
+		// TODO: use empty detection like in Corpse2DView, but not for bank chests
+		//because they are always empty when closed
 		return StendhalCursor.BAG;
 	}
 }
