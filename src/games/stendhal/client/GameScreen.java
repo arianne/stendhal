@@ -28,7 +28,6 @@ import games.stendhal.common.NotificationType;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -184,8 +183,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		public void componentMoved(ComponentEvent e) { 	}
 
 		public void componentResized(ComponentEvent e) {
-			Dimension size = canvas.getSize(); 
-
 			sw = Math.min(canvas.getWidth(), stendhal.screenSize.width);
 			sh = Math.min(canvas.getHeight(), stendhal.screenSize.height);
 			// Reset the view so that the player is in the center
