@@ -249,7 +249,6 @@ public class StendhalClient extends ClientFramework {
 			handler.apply(message, world_objects);
 		} catch (final Exception e) {
 			logger.error("error processing message " + message, e);
-			System.exit(1);
 		}
 	}
 
@@ -301,7 +300,6 @@ public class StendhalClient extends ClientFramework {
 				} catch (final Exception e) {
 					e.printStackTrace();
 					logger.error(e, e);
-					System.exit(1);
 				}
 			} else {
 				logger.debug("Content " + item.name
@@ -349,7 +347,6 @@ public class StendhalClient extends ClientFramework {
 				contentHandling(item.name, new ByteArrayInputStream(item.data));
 			} catch (final Exception e) {
 				logger.error("onTransfer", e);
-				System.exit(2);
 			}
 		}
 
