@@ -11,6 +11,8 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import marauroa.server.game.db.DatabaseFactory;
+
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,6 +23,7 @@ import utilities.RPClass.CreatureTestHelper;
 public class AttackWeakestTest {
 	@BeforeClass
 	public static void setUpbeforeClass() throws Exception {
+		new DatabaseFactory().initializeDatabase();
 		MockStendlRPWorld.get();
 		CreatureTestHelper.generateRPClasses();
 	}
