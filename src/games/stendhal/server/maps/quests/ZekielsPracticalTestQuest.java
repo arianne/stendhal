@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * QUEST: Zekiels practical test
  */
-public class ZekielsPracticalTest extends AbstractQuest {
+public class ZekielsPracticalTestQuest extends AbstractQuest {
 
 	private static final int REQUIRED_IRON = 2;
 

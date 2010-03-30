@@ -86,7 +86,7 @@ import games.stendhal.server.maps.quests.WeaponsCollector;
 import games.stendhal.server.maps.quests.WeaponsCollector2;
 import games.stendhal.server.maps.quests.WeeklyItemQuest;
 import games.stendhal.server.maps.quests.WizardBank;
-import games.stendhal.server.maps.quests.ZekielsPracticalTest;
+import games.stendhal.server.maps.quests.ZekielsPracticalTestQuest;
 import games.stendhal.server.maps.quests.ZooFood;
 
 import java.util.LinkedList;
@@ -221,7 +221,7 @@ public class StendhalQuestSystem {
 		loadQuest(new WeaponsCollector2());
         loadQuest(new WeeklyItemQuest());
 		loadQuest(new WizardBank());
-		loadQuest(new ZekielsPracticalTest());
+		loadQuest(new ZekielsPracticalTestQuest());
 		loadQuest(new ZooFood());
 
 		TurnNotifier.get().notifyInTurns(10, new DumpSpeakerNPCtoDB());
