@@ -1,7 +1,12 @@
 Changelog
 ---------
-0.82.1
+0.82.2
+*bugfixes*
+- recover automatically from corrupted cache files
 
+
+0.82.1
+*bugfixes*
 - new command /clickmode to toggle between single click walking and double click walking
 - fixed movement to drop target (only Microsoft Windows was affected)
 - fixed /mute not being stored accross restarts
