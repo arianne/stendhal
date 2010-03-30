@@ -160,7 +160,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 				return true;
 			}
 		} else if (getWtPanelAt(p) == null) {
-			if (windowWasActiveOnMousePressed) {
+			if (windowWasActiveOnMousePressed && !ui.isCtrlDown()) {
 				boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
 				if (!doubleClick) {
 					createAndSendMoveToAction(point, false);
