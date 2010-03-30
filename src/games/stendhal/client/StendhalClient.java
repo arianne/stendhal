@@ -300,6 +300,9 @@ public class StendhalClient extends ClientFramework {
 				} catch (final Exception e) {
 					e.printStackTrace();
 					logger.error(e, e);
+
+					// request retransmission
+					item.ack = true;
 				}
 			} else {
 				logger.debug("Content " + item.name
