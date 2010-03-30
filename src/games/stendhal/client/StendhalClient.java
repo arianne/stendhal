@@ -301,7 +301,6 @@ public class StendhalClient extends ClientFramework {
 				} catch (final Exception e) {
 					e.printStackTrace();
 					logger.error(e, e);
-					System.exit(1);
 				}
 			} else {
 				logger.debug("Content " + item.name
