@@ -38,7 +38,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 	/** 
 	 * The maximum number of sheep Sato keeps in his sheep pen.
 	 */ 
-	private static final int MAX_SHEEP_IN_PEN = 12;
+	private static final int MAX_SHEEP_IN_PEN = 10;
 	/** The area covering the sheep pen in Semos */
 	private Area pen;
 	
