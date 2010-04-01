@@ -1,15 +1,21 @@
-/*
- * @(#) src/games/stendhal/server/entity/ShopSign.java
- *
- * $Id$
- */
-
+/* $Id$ */
+/***************************************************************************
+ *                    (C) Copyright 2003-2010 - Stendhal                   *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.sign;
 
 
+import games.stendhal.common.constants.Actions;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ShopList;
@@ -19,16 +25,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.RPClass;
-import marauroa.common.game.SyntaxException;
-import marauroa.common.game.Definition.Type;
-
-import org.apache.log4j.Logger;
-
 /**
  * A sign for a ShopList.
  */
-public class ShopSign extends Entity implements UseListener {
+public class ShopSign extends Sign implements UseListener {
 
 	/** The shop list. */
 	protected ShopList shops = SingletonRepository.getShopList();
@@ -45,19 +45,6 @@ public class ShopSign extends Entity implements UseListener {
 	/** true, if this sign is for items sold by an NPC */
 	private boolean seller;
 
-	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(Sign.class);
-
-	public static void generateRPClass() {
-		try {
-			final RPClass sign = new RPClass("shop_sign");
-			sign.isA("entity");
-			sign.addAttribute("class", Type.STRING);
-		} catch (final SyntaxException e) {
-			logger.error("cannot generate RPClass", e);
-		}
-	}
-
 	/**
 	 * Create a shop list sign.
 	 * 
@@ -71,13 +58,13 @@ public class ShopSign extends Entity implements UseListener {
 	 *            true, if this sign is for items sold by an NPC 
 	 */
 	public ShopSign(final String name, final String title, final String caption, final boolean seller) {
+		super();
 		this.shopName = name;
 		this.title = title;
 		this.caption = caption;
 		this.seller = seller;
 
-		setRPClass("shop_sign");
-		put("type", "shop_sign");
+		put(Actions.ACTION, Actions.LOOK_CLOSELY);
 		setResistance(100);
 	}
 

@@ -7,6 +7,9 @@ package games.stendhal.common.constants;
  *
  */
 public final class Actions {
+	public static final String ACTION = "action";
+
+
 	//forsake
 	public static final String SPECIES = "species";
 	public static final String FORSAKE = "forsake";
@@ -178,6 +181,10 @@ public final class Actions {
 	public static final String MESSAGE = "message";
 	public static final String TEXT = "text";
 
+
+	public static final String READ = "read";
+	public static final String LOOK_CLOSELY = "look_closely";
+	
 	private Actions() {
 		// hide constructor
 	}

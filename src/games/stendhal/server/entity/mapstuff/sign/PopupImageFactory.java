@@ -12,30 +12,24 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.sign;
 
-//
-//
-
 import games.stendhal.server.core.config.factory.ConfigurableFactory;
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 
 /**
  * A base factory for <code>ShopSign</code> objects.
  */
-public class ShopSignFactory implements ConfigurableFactory {
-	//
-	// ShopSignFactory
-	//
+public class PopupImageFactory implements ConfigurableFactory {
 
 	/**
-	 * Extract the shop name from a context.
+	 * Extract the image name from a context.
 	 * 
 	 * @param ctx
-	 *            The configuration context. Must provide 'shop'.
+	 *            The configuration context. Must provide 'image'.
 	 * 
 	 * @return The shop name.
 	 */
-	protected String getShop(final ConfigurableFactoryContext ctx) {
-		return ctx.getRequiredString("shop");
+	protected String getImage(final ConfigurableFactoryContext ctx) {
+		return ctx.getRequiredString("image");
 	}
 
 	/**
@@ -51,33 +45,17 @@ public class ShopSignFactory implements ConfigurableFactory {
 	}
 
 	/**
-	 * Extract the selling/buying-type from a context.
+	 * Gets the alt text for the image
 	 * 
 	 * @param ctx
-	 *            The configuration context. Must provide 'seller'.
+	 *            The configuration context. May provide 'alt'.
 	 * 
 	 * @return The sign title.
 	 */
-	private boolean getSeller(ConfigurableFactoryContext ctx) {
-		// TODO: make this a required field
-		return ctx.getBoolean("seller", true);
+	private String getAlt(ConfigurableFactoryContext ctx) {
+		return ctx.getString("alt", "");
 	}
 
-	/**
-	 * Extract the caption from a context.
-	 * 
-	 * @param ctx
-	 *            The configuration context. May provide 'caption'.
-	 * 
-	 * @return The sign title.
-	 */
-	private String getCaption(ConfigurableFactoryContext ctx) {
-		return ctx.getString("caption", null);
-	}
-
-	//
-	// ConfigurableFactory
-	//
 
 	/**
 	 * Create a shop sign.
@@ -90,7 +68,7 @@ public class ShopSignFactory implements ConfigurableFactory {
 	 * @see ShopSign
 	 */
 	public Object create(final ConfigurableFactoryContext ctx) {
-		return new ShopSign(getShop(ctx), getTitle(ctx), getCaption(ctx), getSeller(ctx));
+		return new PopupImage(getImage(ctx), getTitle(ctx), getAlt(ctx));
 	}
 
 }

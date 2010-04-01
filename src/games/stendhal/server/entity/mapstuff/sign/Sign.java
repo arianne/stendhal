@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                    (C) Copyright 2003-2010 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.sign;
 
+import games.stendhal.common.constants.Actions;
 import games.stendhal.server.entity.Entity;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
@@ -39,6 +40,7 @@ public class Sign extends Entity {
 			final RPClass sign = new RPClass("sign");
 			sign.isA("entity");
 			sign.addAttribute(ATTR_TEXT, Type.LONG_STRING, Definition.HIDDEN);
+			sign.addAttribute(Actions.ACTION, Type.STRING);
 			sign.addAttribute("class", Type.STRING);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
@@ -50,7 +52,8 @@ public class Sign extends Entity {
 	 */
 	public Sign() {
 		setRPClass("sign");
-		put("type", "sign");
+		put(Actions.TYPE, "sign");
+		put(Actions.ACTION, Actions.READ);
 		setResistance(100);
 	}
 
@@ -61,6 +64,7 @@ public class Sign extends Entity {
 	 */
 	public Sign(final RPObject rpobject) {
 		super(rpobject);
+		put(Actions.ACTION, Actions.READ);
 		setResistance(100);
 	}
 

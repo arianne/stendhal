@@ -17,10 +17,10 @@ import static games.stendhal.common.constants.Actions.NAME;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TYPE;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.constants.Actions;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
@@ -61,7 +61,7 @@ public class LookAction implements ActionListener {
 			new GameEvent(player.getName(), LOOK, name).raise();
 			final String text = entity.describe();
 
-			if (entity instanceof Sign) {
+			if (entity.has(Actions.ACTION) && entity.get(Actions.ACTION).equals(Actions.READ)) {
 				player.sendPrivateText(NotificationType.RESPONSE, text);
 			} else {
 				player.sendPrivateText(text);

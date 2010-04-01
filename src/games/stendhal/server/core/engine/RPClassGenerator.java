@@ -27,7 +27,6 @@ import games.stendhal.server.entity.mapstuff.portal.Door;
 import games.stendhal.server.entity.mapstuff.portal.Gate;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
-import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.mapstuff.sound.LoopedSoundSource;
 import games.stendhal.server.entity.mapstuff.source.FishSource;
@@ -116,9 +115,6 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("sign")) {
 			Sign.generateRPClass();
-		}
-		if (!RPClass.hasRPClass("shop_sign")) {
-			ShopSign.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("spell")) {
 			Spell.generateRPClass();
