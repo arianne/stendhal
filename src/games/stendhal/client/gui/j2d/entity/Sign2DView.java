@@ -8,15 +8,21 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Sign;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
+import java.util.Locale;
+
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of a sign.
  */
 class Sign2DView extends Entity2DView {
+	private static Logger logger = Logger.getLogger(Sign2DView.class);
+
 	//
 	// Entity2DView
 	//
@@ -30,7 +36,8 @@ class Sign2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		list.add(ActionType.READ.getRepresentation());
+		ActionType actionType = getActionType();
+		list.add(actionType.getRepresentation());
 
 		super.buildActions(list);
 		list.remove(ActionType.LOOK.getRepresentation());
@@ -104,7 +111,7 @@ class Sign2DView extends Entity2DView {
 	 */
 	@Override
 	public void onAction() {
-		onAction(ActionType.READ);
+		onAction(getActionType());
 	}
 
 	/**
@@ -116,6 +123,9 @@ class Sign2DView extends Entity2DView {
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
+		case LOOK_CLOSELY:
+			at.send(at.fillTargetInfo(entity.getRPObject()));
+			break;
 		case READ:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
@@ -126,6 +136,24 @@ class Sign2DView extends Entity2DView {
 		}
 	}
 
+	/**
+	 * gets the ActionType for the requested action
+	 *
+	 * @return ActionType
+	 */
+	private ActionType getActionType() {
+		String action = ((Sign) entity).getAction();
+		if (action == null) {
+			return ActionType.LOOK;
+		}
+
+		try {
+			return ActionType.valueOf(action.toUpperCase(Locale.ENGLISH));
+		} catch (IllegalArgumentException  e) {
+			logger.error("Unknown action for sign: " + action);
+			return ActionType.LOOK;
+		}
+	}
 
 	/**
 	 * gets the mouse cursor image to use for this entity

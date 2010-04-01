@@ -15,6 +15,7 @@ package games.stendhal.client.entity;
 import marauroa.common.game.RPObject;
 
 public class Sign extends Entity {
+
 	/**
 	 * Text property.
 	 */
@@ -24,6 +25,9 @@ public class Sign extends Entity {
 	 * The sign text.
 	 */
 	private String text;
+
+	/** the action to display on right click */
+	private String action;
 
 	//
 	// Sign
@@ -38,9 +42,21 @@ public class Sign extends Entity {
 		return text;
 	}
 
+
+	/**
+	 * gets the action
+	 *
+	 * @return action
+	 */
+	public String getAction() {
+		return action;
+	}
+
+
 	//
 	// RPObjectChangeListener
 	//
+
 
 	/**
 	 * The object added/changed attribute(s).
@@ -53,6 +69,11 @@ public class Sign extends Entity {
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
+
+		if (changes.has("action")) {
+			action = changes.get("action");
+			fireChange(PROP_TEXT);
+		}
 
 		if (changes.has("text")) {
 			text = changes.get("text");
