@@ -128,8 +128,8 @@ public class AttackWeakestTest {
 		 */
 		final Creature creature = SingletonRepository.getEntityManager().getCreature("rat");
 		
-		Player veteran = PlayerTestHelper.createPlayer("test dummy");
-		Player newbie = PlayerTestHelper.createPlayer("test dummy2");
+		Player veteran = PlayerTestHelper.createPlayer("veteran");
+		Player newbie = PlayerTestHelper.createPlayer("newbie");
 		
 		// Give the arena a proper size so that pathfinding can work
 		StendhalRPZone arena = new StendhalRPZone("arena", 10, 10);
@@ -140,9 +140,11 @@ public class AttackWeakestTest {
 		
 		creature.setPosition(3, 3);
 		veteran.setPosition(3, 5);
-		newbie.setPosition(2, 5);
+		newbie.setPosition(1, 5);
 		assertFalse("sanity check; target not next to attacker", veteran.nextTo(creature));
 		assertFalse("sanity check; target not next to attacker", newbie.nextTo(creature));
+		assertTrue("sanity check; veteran is closer than newbie", 
+				creature.squaredDistance(veteran) < creature.squaredDistance(newbie));
 		
 		// Should pick the nearest: veteran
 		strat.findNewTarget(creature);
