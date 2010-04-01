@@ -30,6 +30,7 @@ public class ClientGameConfiguration {
 			}
 			return gameConfig;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new DefaultGameProperties();
 		}
 	}
