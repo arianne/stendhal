@@ -906,6 +906,25 @@ South: Nalwor forest and Or'ril castle
 			<attribute name="class">signpost</attribute>
 		</entity> 
 
+
+		<entity x="28" y="43">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+			<attribute name="text">You see a statue of birds.</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="width">2</attribute>
+		</entity> 
+
+		<!-- remove me, this is just for testing
+		<entity x="8" y="49">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.PopupImage">
+				<parameter name="image">arandula.png</parameter>
+				<parameter name="title">Carmen's drawing</parameter>
+				<parameter name="alt">Arandula</parameter>
+			</implementation>
+			<attribute name="class">signpost</attribute>
+		</entity> 
+		-->
+
 		<entity x="46" y="20">
 			<implementation class-name="games.stendhal.server.maps.semos.city.GossipNPC">
 				<parameter name="name">Nomyr Ahba</parameter>
