@@ -31,6 +31,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.extension.StendhalServerExtension;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -163,8 +164,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public boolean checkGameVersion(final String game, final String version) {
-		if (game.equals("stendhal")) {
-			return true;
+		try {
+			if (game.equals(Configuration.getConfiguration().get("server_typeGame", "stendhal"))) {
+				return true;
+			}
+		} catch (IOException e) {
+			logger.error(e, e);
+			return false;
 		}
 		return false;
 	}
