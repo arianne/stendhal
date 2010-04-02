@@ -12,9 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.core.rule.defaultruleset;
 
-import games.stendhal.server.core.config.CreaturesXMLLoader;
+import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.config.ItemGroupsXMLLoader;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
@@ -85,29 +84,25 @@ public class DefaultEntityManager implements EntityManager {
 		classToCreature = new LowerCaseMap<DefaultCreature>();
 		createdCreature = new HashMap<String, Creature>();
 
-		try {
-			final CreaturesXMLLoader loader = SingletonRepository.getCreaturesXMLLoader();
-			final List<DefaultCreature> creatures = loader.load("data/conf/creatures.xml");
+		final CreatureGroupsXMLLoader loader = new CreatureGroupsXMLLoader("/data/conf/creatures.xml");
+		final List<DefaultCreature> creatures = loader.load();
 
-			for (final DefaultCreature creature : creatures) {
-				final String id = creature.getTileId();
-				final String clazz = creature.getCreatureName();
+		for (final DefaultCreature creature : creatures) {
+			final String id = creature.getTileId();
+			final String clazz = creature.getCreatureName();
 
-				if (classToCreature.containsKey(clazz)) {
-					LOGGER.warn("Repeated creature name: " + clazz);
-				}
-
-				if (!creature.verifyItems(this)) {
-					LOGGER.warn("Items dropped by creature name: " + clazz + " doesn't exists");
-				}
-
-				classToCreature.put(clazz, creature);
-				idToClass.put(id, clazz);
-
-				WordList.getInstance().registerName(creature.getCreatureName(), ExpressionType.SUBJECT);
+			if (classToCreature.containsKey(clazz)) {
+				LOGGER.warn("Repeated creature name: " + clazz);
 			}
-		} catch (final org.xml.sax.SAXException e) {
-			e.printStackTrace();
+
+			if (!creature.verifyItems(this)) {
+				LOGGER.warn("Items dropped by creature name: " + clazz + " doesn't exists");
+			}
+
+			classToCreature.put(clazz, creature);
+			idToClass.put(id, clazz);
+
+			WordList.getInstance().registerName(creature.getCreatureName(), ExpressionType.SUBJECT);
 		}
 	}
 

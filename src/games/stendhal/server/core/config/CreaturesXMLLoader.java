@@ -4,10 +4,10 @@ import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -87,32 +87,11 @@ public class CreaturesXMLLoader extends DefaultHandler {
 
 	private boolean attributes;
 
-	public static void main(final String[] argv) {
-		if (argv.length != 1) {
-			System.err.println("Usage: cmd filename");
-			System.exit(1);
-		}
-
-		try {
-			System.out.println(new CreaturesXMLLoader().load(argv[0]).size());
-		} catch (final Throwable e) {
-			e.printStackTrace();
-		}
-		System.exit(0);
+	CreaturesXMLLoader() {
+		// hide constructor, use the CreatureGroupsXMLLoader instead
 	}
 
-	private CreaturesXMLLoader() {
-		// hide constructor, this is a Singleton
-	}
-
-	public static CreaturesXMLLoader get() {
-		if (instance == null) {
-			instance = new CreaturesXMLLoader();
-		}
-		return instance;
-	}
-
-	public List<DefaultCreature> load(final String ref) throws SAXException {
+	public List<DefaultCreature> load(final URI ref) throws SAXException {
 		list = new LinkedList<DefaultCreature>();
 		// Use the default (non-validating) parser
 		final SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -120,12 +99,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			// Parse the input
 			final SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getClassLoader().getResourceAsStream(
-					ref);
-
-			if (is == null) {
-				is = new File(ref).toURI().toURL().openStream();
-			}
+			InputStream is = getClass().getResourceAsStream(ref.getPath());
 
 			if (is == null) {
 				throw new FileNotFoundException("cannot find resource '" + ref

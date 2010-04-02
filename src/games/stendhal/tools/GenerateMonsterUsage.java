@@ -1,5 +1,6 @@
 package games.stendhal.tools;
 
+import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.config.CreaturesXMLLoader;
 import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -28,8 +29,8 @@ public class GenerateMonsterUsage {
 
 		final Map<String, Integer> count = new HashMap<String, Integer>();
 
-		final CreaturesXMLLoader creatureLoader = SingletonRepository.getCreaturesXMLLoader();
-		final List<DefaultCreature> creatures = creatureLoader.load("data/conf/creatures.xml");
+		final CreatureGroupsXMLLoader creatureLoader = new CreatureGroupsXMLLoader("/data/conf/creatures.xml");
+		final List<DefaultCreature> creatures = creatureLoader.load();
 
 		for (final DefaultCreature c : creatures) {
 			count.put(c.getCreatureName(), 0);

@@ -75,10 +75,6 @@ public class SingletonRepository {
 		return StendhalQuestSystem.get();
 	}
 
-	public static CreaturesXMLLoader getCreaturesXMLLoader() {
-		return CreaturesXMLLoader.get();
-	}
-
 	public static TransactionPool getTransactionPool() {
 		return TransactionPool.get();
 	}

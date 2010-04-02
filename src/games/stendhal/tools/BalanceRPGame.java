@@ -1,5 +1,6 @@
 package games.stendhal.tools;
 
+import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
@@ -85,8 +86,8 @@ public class BalanceRPGame {
 
 	public static void main(final String[] args) throws Exception {
 		new RPClassGenerator().createRPClasses();
-		final List<DefaultCreature> creatures = SingletonRepository.getCreaturesXMLLoader().load(
-				"data/conf/creatures.xml");
+		final CreatureGroupsXMLLoader loader = new CreatureGroupsXMLLoader("/data/conf/creatures.xml");
+		final List<DefaultCreature> creatures = loader.load();
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
 
