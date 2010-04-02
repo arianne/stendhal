@@ -1,10 +1,15 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -43,11 +48,11 @@ public class MeetMonogenes extends AbstractQuest {
 							engine.say("Hi again, " + player.getTitle()
 									+ ". How can I #help you this time?");
 						} else {
-							engine
-									.say("Hello there, stranger! Don't be too intimidated if people are quiet and reserved... the fear of Blordrough and his forces has spread all over the country, and we're all a bit concerned. I can offer a few tips on socializing though, would you like to hear them?");
+							engine.say("Hello there, stranger! Don't be too intimidated if people are quiet and reserved... " +
+											"the fear of Blordrough and his forces has spread all over the country, and we're all " +
+											"a bit concerned. I can offer a few tips on socializing though, would you like to hear them?");
 							player.setQuest("Monogenes", "done");
-							engine
-									.setCurrentState(ConversationStates.INFORMATION_1);
+							engine.setCurrentState(ConversationStates.INFORMATION_1);
 						}
 					}
 				});
@@ -65,7 +70,11 @@ public class MeetMonogenes extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"You should introduce yourself by saying \"hi\". After this, try to keep the conversation to the topics they bring up; suitable subjects will be highlighted #'like this'. A few generally safe topics of conversation are the person's #job, asking for #help, asking if they have an #offer to make, and asking for a #quest to go on. Now, if you want a quick run-down of the #buildings in Semos, just say.",
+			"You should introduce yourself by saying \"hi\". After this, try to keep the conversation " +
+			"to the topics they bring up; suitable subjects will be highlighted #'like this'. A few " +
+			"generally safe topics of conversation are the person's #job, asking for #help, asking if " +
+			"they have an #offer to make, and asking for a #quest to go on. Now, if you want a quick " +
+			"run-down of the #buildings in Semos, just say.",
 			null);
 
 		npc.add(
@@ -75,7 +84,24 @@ public class MeetMonogenes extends AbstractQuest {
 			ConversationStates.IDLE,
 			"And how are you supposed to know what's happening? By reading the Semos Tribune? Hah! Bye, then.",
 			null);
+		
+		final List<String> yesnotriggers = new ArrayList<String>();
+		yesnotriggers.addAll(ConversationPhrases.YES_MESSAGES);
+		yesnotriggers.addAll(ConversationPhrases.NO_MESSAGES);
+		
+		npc.add(
+				ConversationStates.INFORMATION_1,
+				"",
+				new NotCondition(new TriggerInListCondition(yesnotriggers)),
+				ConversationStates.INFORMATION_1,
+				"I asked you a 'yes or no' question: I can offer a few tips on socializing, would you like to hear them?",
+				null);
 
+		// he puts 'like this' into blue and so many people try that first
+		npc.addReply(
+				"like this",
+				"That's right, like that! Now, I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.");
+		
 		npc.addReply(
 			"buildings",
 			"I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.");
@@ -118,6 +144,7 @@ public class MeetMonogenes extends AbstractQuest {
 		npc.addReply(
 			"village",
 			"Just keep heading southwest, past the #blacksmith, and you will shortly come to the old Semos village. Nishiya still sells sheep there.");
+
 
 		/** Give the reward to the polite newcomer user */
 		// npc.add(ConversationStates.ATTENDING,
