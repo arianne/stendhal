@@ -113,6 +113,8 @@
 		<delete dir="${lib}" />
 		<delete dir="${build_client}" />
 		<delete dir="${buildroot}/build_client_data" />
+		<delete dir="${build}/build_client_music_data"/>
+		<delete dir="${build}/build_client_sound_data"/>
 		<delete dir="${build_server}" />
 		<delete dir="${build_server_maps}" />
 		<delete dir="${build_server_script}" />
