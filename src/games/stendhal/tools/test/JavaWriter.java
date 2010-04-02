@@ -20,6 +20,8 @@ class JavaWriter {
 		out.println("package games.stendhal.server.maps.quests;");
 		out.println();
 		out.println("import static org.junit.Assert.assertEquals;");
+		out.println("import games.stendhal.server.core.engine.SingletonRepository;");
+		out.println("import games.stendhal.server.core.engine.StendhalRPZone;");
 		out.println("import games.stendhal.server.entity.npc.SpeakerNPC;");
 		out.println("import games.stendhal.server.entity.npc.fsm.Engine;");
 		out.println("import games.stendhal.server.entity.player.Player;");
@@ -28,6 +30,7 @@ class JavaWriter {
 		out.println("import org.junit.BeforeClass;");
 		out.println("import org.junit.Test;");
 		out.println();
+		out.println("import utilities.PlayerTestHelper;");
 		out.println("import utilities.QuestHelper;");
 		out.println("import static utilities.SpeakerNPCTestHelper.getReply;");
 		out.println();
@@ -44,20 +47,22 @@ class JavaWriter {
 		out.println();
 		out.println("\t@Before");
 		out.println("\tpublic void setUp() {");
-		out.println("\t\tnpc = new SpeakerNPC(TODO);");
-		out.println("\t\tNPCList.get().add(npc);");
-		out.println("\t\tSpeakerNPCFactory npcConf = new TODONPC();");
-		out.println("\t\tnpcConf.createDialog(npc);");
+		out.println("\t\tfinal StendhalRPZone zone = new StendhalRPZone(\"admin_test\");");
+		out.println("\t\tnew TODO_NPC().configureZone(zone, null);	");
+		out.println("\t\t");
 		out.println();
-		out.println("\t\tAbstractQuest quest = new TODO();");
+		out.println("\t\tAbstractQuest quest = new TODO_Quest();");
 		out.println("\t\tquest.addToWorld();");
-		out.println("\t\ten = npc.getEngine();");
 		out.println();
-		out.println("\t\tplayer = PlayerTestHelper.createPlayer();");
+		out.println("\t\tplayer = PlayerTestHelper.createPlayer(\"bob\");");
 		out.println("\t}");
 		out.println();
 		out.println("\t@Test");
 		out.println("\tpublic void testQuest() {");
+		out.println("\t\t");
+		out.println("\t\tnpc = SingletonRepository.getNPCList().get(TODO_Name);");
+		out.println("\t\ten = npc.getEngine();");
+		out.println();
 	}
 
 	public void emptyLine() {
