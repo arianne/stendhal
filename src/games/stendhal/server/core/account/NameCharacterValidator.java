@@ -21,7 +21,7 @@ public class NameCharacterValidator implements AccountParameterValidator {
 	}
 
 	public Result validate() {
-		// only letters are allowed (and numbers :-/)
+		// only letters are allowed
 		for (int i = parameterValue.length() - 1; i >= 0; i--) {
 			final char chr = parameterValue.charAt(i);
 			if ((chr < 'a') || (chr > 'z')) {
@@ -29,7 +29,7 @@ public class NameCharacterValidator implements AccountParameterValidator {
 			}
 		}
 
-		// at lest the first character must be a letter
+		// at least the first character must be a letter
 		final char chr = parameterValue.charAt(0);
 		if (((chr < 'a') || (chr > 'z'))) {
 			return Result.FAILED_INVALID_CHARACTER_USED;
