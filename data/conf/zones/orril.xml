@@ -724,7 +724,7 @@
         <portal x="122" y="52" ref="house6_upstairs">
             <destination zone="int_rat_house6" ref="house6_downstairs" />
         </portal>
-                <portal x="21" y="11" ref="hostel_upstairs">
+        <portal x="21" y="11" ref="hostel_upstairs">
             <destination zone="int_rat_hostel" ref="hostel_downstairs" />
         </portal>
         <portal x="43" y="123" ref="library_upstairs">
@@ -736,11 +736,19 @@
         <portal x="7" y="102" ref="smith_shop_upstairs">
             <destination zone="int_rat_smith_shop" ref="smith_shop_downstairs" />
         </portal>
- 
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">sewers</parameter>
+            </implementation>
+        </entity>
     </zone> 
     <!-- Level -5 -->
-    <zone name="-5_orril_dungeon" level="-5" x="499936" y="500224"
-        file="Level -5/orril/dungeon.tmx">
+    <zone name="-5_orril_dungeon" level="-5" x="499936" y="500224" file="Level -5/orril/dungeon.tmx">
+         <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">sewers</parameter>
+            </implementation>
+        </entity>
      </zone> 
  
  
