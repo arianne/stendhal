@@ -608,7 +608,7 @@
         </portal>
     </zone>
     <zone name="int_rat_house1" file="interiors/ratcity/house1.tmx">
-    <configurator class-name="games.stendhal.server.maps.ratcity.OldRatWomanNPC" />
+    <configurator class-name="games.stendhal.server.maps.ratcity.house1.OldRatWomanNPC" />
         <portal x="1" y="17" ref="entrance">
             <destination zone="-3_orril_dungeon" ref="house1_entrance" />
         </portal>

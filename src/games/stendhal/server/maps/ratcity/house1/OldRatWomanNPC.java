@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ratcity;
+package games.stendhal.server.maps.ratcity.house1;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -41,11 +41,11 @@ public class OldRatWomanNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello There");
-				addJob("Leave it to my childern to not check in once in a while.");
+				addGreeting("Hello there.");
+				addJob("Leave it to my children to not check in once in a while.");
 				addHelp("I have no help to offer you.");
 				addGoodbye("Bye");
-				// remaining behaviour defined in games.stendhal.server.maps.quests.FindRatChildern
+				// remaining behaviour defined in games.stendhal.server.maps.quests.FindRatChildren
 			}
 		};
 		woman.setDescription("You see an old ratwoman. She appears somehow worried.");
@@ -56,6 +56,7 @@ public class OldRatWomanNPC implements ZoneConfigurator {
 		woman.setPosition(3, 4);
 		// She has low HP
 		woman.initHP(30);
+		woman.setBaseHP(100);
 		zone.add(woman);
 	}
 }
