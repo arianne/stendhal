@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="18" height="16" tilewidth="32" tileheight="32">
+ <tileset name="portal" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
+ </tileset>
+ <tileset name="collision" firstgid="8" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
+ </tileset>
+ <tileset name="lamp" firstgid="9" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
+ </tileset>
+ <tileset name="stairs" firstgid="10" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/stairs/green_stairs.png"/>
+ </tileset>
+ <tileset name="int blue green" firstgid="14" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_blue_green.png"/>
+ </tileset>
+ <tileset name="int green blue" firstgid="30" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_green_blue.png"/>
+ </tileset>
+ <tileset name="door" firstgid="46" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/blue_green.png"/>
+ </tileset>
+ <tileset name="floor" firstgid="54" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/plain_colours.png"/>
+ </tileset>
+ <tileset name="floor" firstgid="64" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor_tiles.png"/>
+ </tileset>
+ <tileset name="weapons" firstgid="73" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/armor/weapons_for_walls.png"/>
+ </tileset>
+ <tileset name="weapons 2" firstgid="89" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/armor/weapons_rack.png"/>
+ </tileset>
+ <tileset name="table" firstgid="107" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/grey_plain.png"/>
+ </tileset>
+ <layer name="0_floor" width="18" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJzAkQI8WMygBaaWm0DAYRD4BzmsKXHPYI2vkYLtoZhUfQDax4VmgAQAAA==
+  </data>
+ </layer>
+ <layer name="1_terrain" width="18" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAONjYGDgpxALArEYEAsDsQ6ZWASIRaHmqDKQD5QoNIeXSuZQyz2j5oyaQ21zxIFYAYr1gFgfiU8IS0DNkQJiaSQMA9IkYFkgBgCAdagJgAQAAA==
+  </data>
+ </layer>
+ <layer name="2_object" width="18" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAM3TSwuCQBiF4W/rTyvthkaWUmlF5TX1/4OvNBs33o0OPCtnDsMBRb5ZYAkDOjbYqm87rLGCCQsH7GHLPNF+dKdPjjjBgQtvYI+PG+54IJjkdfMkRKTELWerfa644Cz1fRKkyqelp9rnjReeUt+nT09TpurJkCvFiJ6u+cf/YkxKjCOyPoAEAAA=
+  </data>
+ </layer>
+ <layer name="3_roof" width="18" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAXEgkggjgLiaCCOAeLEgXXOoAOg8EkA4nggjmMYDZ+RBAyA2JAMfQBLfvKWgAQAAA==
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="18" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMgoEBADBYXKGABAAA
+  </data>
+ </layer>
+ <layer name="objects" width="18" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAXIgHWgHTAKRgEdASvDwKZ5AEKiPcOABAAA
+  </data>
+ </layer>
+ <layer name="collision" width="18" height="16" opacity="0.52">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAONgYGDgGKSYVEANM3CZRU1zyHHnQPkLl3pamoMvfAbCPfQwh1jzqZUvCLmXXhgAwS8DxoAEAAA=
+  </data>
+ </layer>
+ <layer name="protection" width="18" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMgoEBADBYXKGABAAA
+  </data>
+ </layer>
+</map>

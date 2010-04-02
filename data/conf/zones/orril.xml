@@ -567,16 +567,184 @@
 	<zone name="-3_orril_dungeon" level="-3" x="499936" y="500224"
 		file="Level -3/orril/dungeon.tmx">
 		<configurator class-name="games.stendhal.server.maps.orril.dungeon.GhostNPC" />
+        <portal x="146" y="98" ref="house1_entrance">
+            <destination zone="int_rat_house1" ref="entrance" />
+        </portal>
+        <portal x="162" y="104" ref="house2_entrance">
+            <destination zone="int_rat_house2" ref="entrance" />
+        </portal>
+        <portal x="174" y="104" ref="house3_entrance">
+            <destination zone="int_rat_house3" ref="entrance" />
+        </portal>
+        <portal x="168" y="91" ref="hostel_entrance">
+            <destination zone="int_rat_hostel" ref="entrance" />
+        </portal>
+        <portal x="183" y="86" ref="house4_entrance">
+            <destination zone="int_rat_house4" ref="entrance" />
+        </portal>
+        <portal x="183" y="90" ref="house4_entrance2">
+            <destination zone="int_rat_house4" ref="entrance2" />
+        </portal>
+        <portal x="204" y="104" ref="flower_shop_entrance">
+            <destination zone="int_rat_flower_shop" ref="entrance" />
+        </portal>
+        <portal x="170" y="128" ref="library_entrance">
+            <destination zone="int_rat_library" ref="entrance" />
+        </portal>
+        <portal x="148" y="117" ref="smith_shop_entrance">
+            <destination zone="int_rat_smith_shop" ref="entrance" />
+        </portal>
+        <portal x="217" y="104" ref="house5_entrance">
+            <destination zone="int_rat_house5" ref="entrance" />
+        </portal>
+        <portal x="228" y="104" ref="house6_entrance">
+            <destination zone="int_rat_house6" ref="entrance" />
+        </portal>
+        <portal x="229" y="93" ref="house7_entrance">
+            <destination zone="int_rat_house7" ref="entrance" />
+        </portal>
+        <portal x="200" y="109" ref="bakery_entrance">
+            <destination zone="int_rat_bakery" ref="entrance" />
+        </portal>
+    </zone>
+    <zone name="int_rat_house1" file="interiors/ratcity/house1.tmx">
+ <!--   <configurator class-name="games.stendhal.server.maps.ratcity.house001.OldRatWomanNPC" />-->
+        <portal x="1" y="17" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="house1_entrance" />
+        </portal>
+        <portal x="2" y="2" ref="house1_downstairs">
+            <destination zone="-4_orril_dungeon" ref="house1_upstairs" />
+        </portal>
+    </zone>
+    <zone name="int_rat_hostel" file="interiors/ratcity/hostel.tmx">
+        <portal x="3" y="14" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="hostel_entrance" />
+        </portal>
+        <portal x="2" y="2" ref="hostel_downstairs">
+            <destination zone="-4_orril_dungeon" ref="hostel_upstairs" />
+        </portal>
+    </zone>
+    <zone name="int_rat_house2" file="interiors/ratcity/house2.tmx">
+        <portal x="10" y="10" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="house2_entrance" />
+        </portal>
+        <portal x="15" y="9" ref="house2_downstairs">
+            <destination zone="-4_orril_dungeon" ref="house2_upstairs" />
+        </portal>
+    </zone>
+    <zone name="int_rat_house3" file="interiors/ratcity/house3.tmx">
+        <portal x="13" y="10" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="house3_entrance" />
+        </portal>
+        <portal x="14" y="2" ref="house3_downstairs">
+            <destination zone="-4_orril_dungeon" ref="house3_upstairs" />
+        </portal>
+    </zone>
+    <zone name="int_rat_house4" file="interiors/ratcity/house4.tmx">
+        <portal x="12" y="4" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="house4_entrance" />
+        </portal>
+                <portal x="12" y="17" ref="entrance2">
+            <destination zone="-3_orril_dungeon" ref="house4_entrance2" />
+        </portal>
+        <portal x="6" y="2" ref="house4_downstairs">
+            <destination zone="-4_orril_dungeon" ref="house4_upstairs" />
+        </portal>
+    </zone>
+    <zone name="int_rat_house5" file="interiors/ratcity/house5.tmx">
+        <portal x="4" y="14" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="house5_entrance" />
+        </portal>
+    </zone>
+    <zone name="int_rat_house6" file="interiors/ratcity/house6.tmx">
+        <portal x="15" y="14" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="house6_entrance" />
+        </portal>
+        <portal x="2" y="12" ref="house6_downstairs">
+            <destination zone="-4_orril_dungeon" ref="house6_upstairs" />
+        </portal>
+    </zone>
+    <zone name="int_rat_flower_shop" file="interiors/ratcity/flower_shop.tmx">
+        <portal x="16" y="12" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="flower_shop_entrance" />
+        </portal>
+        <portal x="2" y="2" ref="flower_shop_downstairs">
+            <destination zone="-4_orril_dungeon" ref="flower_shop_upstairs" />
+        </portal>
+    </zone>
+    <zone name="int_rat_library" file="interiors/ratcity/library.tmx">
+        <portal x="9" y="14" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="library_entrance" />
+        </portal>
+        <portal x="2" y="2" ref="library_downstairs">
+            <destination zone="-4_orril_dungeon" ref="library_upstairs" />
+        </portal>
+    </zone>
+    <zone name="int_rat_smith_shop" file="interiors/ratcity/smith_shop.tmx">
+        <portal x="4" y="14" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="smith_shop_entrance" />
+        </portal>
+        <portal x="5" y="14" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="smith_shop_entrance" />
+        </portal>
+        <portal x="14" y="3" ref="smith_shop_downstairs">
+            <destination zone="-4_orril_dungeon" ref="smith_shop_upstairs" />
+        </portal>
+    </zone>
+   <zone name="int_rat_house7" file="interiors/ratcity/house7.tmx">
+        <portal x="16" y="4" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="house7_entrance" />
+        </portal>
+    </zone>
+    <zone name="int_rat_bakery" file="interiors/ratcity/bakery.tmx">
+        <portal x="10" y="1" ref="entrance">
+            <destination zone="-3_orril_dungeon" ref="bakery_entrance" />
+        </portal>		
 	</zone>
 
-
-	<!-- Level -4 -->
-
-
-	<!-- Level -5 -->
-
-
-	<!-- Level -6 -->
+    <!-- Level -4 -->
+    <zone name="-4_orril_dungeon" level="-4" x="499936" y="500224"
+        file="Level -4/orril/dungeon.tmx">
+    <!--    <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChild1NPC" />
+        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChild2NPC" />
+        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChildBoy1NPC" />
+        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChildBoy2NPC" />-->
+        <portal x="7" y="29" ref="house1_upstairs">
+            <destination zone="int_rat_house1" ref="house1_downstairs" />
+        </portal>
+        <portal x="23" y="36" ref="house2_upstairs">
+            <destination zone="int_rat_house2" ref="house2_downstairs" />
+        </portal>
+        <portal x="40" y="36" ref="house3_upstairs">
+            <destination zone="int_rat_house3" ref="house3_downstairs" />
+        </portal>
+        <portal x="36" y="13" ref="house4_upstairs">
+            <destination zone="int_rat_house4" ref="house4_downstairs" />
+        </portal>
+        <portal x="122" y="52" ref="house6_upstairs">
+            <destination zone="int_rat_house6" ref="house6_downstairs" />
+        </portal>
+                <portal x="21" y="11" ref="hostel_upstairs">
+            <destination zone="int_rat_hostel" ref="hostel_downstairs" />
+        </portal>
+        <portal x="43" y="123" ref="library_upstairs">
+            <destination zone="int_rat_library" ref="library_downstairs" />
+        </portal>
+        <portal x="102" y="48" ref="flower_shop_upstairs">
+            <destination zone="int_rat_flower_shop" ref="flower_shop_downstairs" />
+        </portal>
+        <portal x="7" y="102" ref="smith_shop_upstairs">
+            <destination zone="int_rat_smith_shop" ref="smith_shop_downstairs" />
+        </portal>
+ 
+    </zone> 
+    <!-- Level -5 -->
+    <zone name="-5_orril_dungeon" level="-5" x="499936" y="500224"
+        file="Level -5/orril/dungeon.tmx">
+     </zone> 
+ 
+ 
+    <!-- Level -6 -->
 
 
 	<!-- Level -7 -->

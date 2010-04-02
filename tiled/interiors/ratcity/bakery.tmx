@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="20" height="16" tilewidth="32" tileheight="32">
+ <tileset name="floor" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/brown.png"/>
+ </tileset>
+ <tileset name="brick wall" firstgid="6" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_bricks.png"/>
+ </tileset>
+ <tileset name="brick wall" firstgid="18" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_thin_bricks.png"/>
+ </tileset>
+ <tileset name="brick door" firstgid="30" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/bricks_ns.png"/>
+ </tileset>
+ <tileset name="portal" firstgid="42" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
+ </tileset>
+ <tileset name="collision" firstgid="49" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
+ </tileset>
+ <tileset name="lamp" firstgid="50" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
+ </tileset>
+ <tileset name="warmer" firstgid="51" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/kitchen/warmer.png"/>
+ </tileset>
+ <tileset name="cabnets" firstgid="53" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/kitchen/cabinets.png"/>
+ </tileset>
+ <tileset name="stairs" firstgid="81" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/stairs/green_stairs.png"/>
+ </tileset>
+ <tileset name="floor 2" firstgid="85" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor_tan.png"/>
+ </tileset>
+ <tileset name="food prep" firstgid="89" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/household/food_preparation.png"/>
+ </tileset>
+ <tileset name="crates" firstgid="105" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/wooden_crates.png"/>
+ </tileset>
+ <tileset name="wood" firstgid="111" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/firewood.png"/>
+ </tileset>
+ <tileset name="sack" firstgid="117" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/sacks.png"/>
+ </tileset>
+ <layer name="0_floor" width="20" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNmYGBgHgI4DIgjsNDEqAnDYh4x6nCpQbeXFu4jBpPiPkrCmFz3jeJRPNgxABo4LvQABQAA
+  </data>
+ </layer>
+ <layer name="1_terrain" width="20" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAONjYGDgJoBVgFgViNUIqOMHYl4gFgJiWTxYHYg1gFgTjxphIOaBmifNQDmQGjVv1LxR8wbEPBEglqEQi0LNEwBiLiphQSAGAFn6LAMABQAA
+  </data>
+ </layer>
+ <layer name="2_object" width="20" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgoA0wJkKNLRD7QbE9ENtB2f5Y1JpgEYtH4zsCsRMUOyOx3YlzMtHAZgial0OBeQ5UNi+PDuZRAnIHuXnUBuj5CB1kAnEWFGcDcSkQl0HlioG4BE3MiAZupBUAAPOzdcQABQAA
+  </data>
+ </layer>
+ <layer name="3_roof" width="20" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGFgQC8RxQJwG5WcAcQySfAaZ5qZS4qhRMApGwYgAAL/nQ6cABQAA
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="20" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMgpEJAGWdw/wABQAA
+  </data>
+ </layer>
+ <layer name="objects" width="20" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGBigN0D2joJRMApGAQwAAJAkcfEABQAA
+  </data>
+ </layer>
+ <layer name="collision" width="20" height="16" opacity="0.52">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAADNkYGAwHADMQKYeZIAuRolZpIChaB4lZg5F8ygBg908bGZS0yxi8xUudwxEeUIuBgD4H4TEAAUAAA==
+  </data>
+ </layer>
+ <layer name="protection" width="20" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMgpEJAGWdw/wABQAA
+  </data>
+ </layer>
+</map>
