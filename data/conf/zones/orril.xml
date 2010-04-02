@@ -608,7 +608,7 @@
         </portal>
     </zone>
     <zone name="int_rat_house1" file="interiors/ratcity/house1.tmx">
- <!--   <configurator class-name="games.stendhal.server.maps.ratcity.house001.OldRatWomanNPC" />-->
+    <configurator class-name="games.stendhal.server.maps.ratcity.OldRatWomanNPC" />
         <portal x="1" y="17" ref="entrance">
             <destination zone="-3_orril_dungeon" ref="house1_entrance" />
         </portal>
@@ -705,10 +705,10 @@
     <!-- Level -4 -->
     <zone name="-4_orril_dungeon" level="-4" x="499936" y="500224"
         file="Level -4/orril/dungeon.tmx">
-    <!--    <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChild1NPC" />
+        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChild1NPC" />
         <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChild2NPC" />
         <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChildBoy1NPC" />
-        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChildBoy2NPC" />-->
+        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChildBoy2NPC" />
         <portal x="7" y="29" ref="house1_upstairs">
             <destination zone="int_rat_house1" ref="house1_downstairs" />
         </portal>
