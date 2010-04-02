@@ -104,6 +104,7 @@ public class KidGhostNPC implements ZoneConfigurator {
 		ghost.setPosition(34, 121);
 		// He has low HP
 		ghost.initHP(30);
+		ghost.setBaseHP(100);
 		zone.add(ghost);
 	}
 }
