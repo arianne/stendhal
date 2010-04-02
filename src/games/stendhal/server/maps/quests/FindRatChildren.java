@@ -59,9 +59,12 @@ public class FindRatChildren extends AbstractQuest {
 	private static Logger logger = Logger.getLogger(FindRatChildren.class);
 
 	private static final String QUEST_SLOT = "find_rat_kids";
-       
-    private static final int REQUIRED_MINUTES = 1440;
-	private static final List<String> Needed_Kids =
+
+	// twenty four hours
+	private static final int REQUIRED_MINUTES = 24 * 60;
+	
+	// children names must be lower text as this is what we compare against
+	private static final List<String> NEEDED_KIDS =
 		Arrays.asList("avalon", "cody", "mariel", "opal");
 
 
@@ -72,23 +75,24 @@ public class FindRatChildren extends AbstractQuest {
 
 	private List<String> missingNames(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
-			return Needed_Kids;
+			return NEEDED_KIDS;
 		}
 		/*
 		 * the format of the list quest slot is
 		 * "looking;name;name;...:said;name;name;..."
 		 */
+		// put the children name to lower case so we can match it, however the player wrote the name
 		final String npcDoneText = player.getQuest(QUEST_SLOT).toLowerCase();
 		final String[] doneAndFound = npcDoneText.split(":");
 		final List<String> result = new LinkedList<String>();
 		if (doneAndFound.length > 1) {
-		    final String[] done = doneAndFound[1].split(";");
-		    final List<String> doneList = Arrays.asList(done);
-		    for (final String name : Needed_Kids) {
-			if (!doneList.contains(name)) {
-			    result.add(name);
+			final String[] done = doneAndFound[1].split(";");
+			final List<String> doneList = Arrays.asList(done);
+			for (final String name : NEEDED_KIDS) {
+				if (!doneList.contains(name)) {
+					result.add(name);
+				}
 			}
-		    }
 		}
 		return result;
 	}
@@ -97,139 +101,139 @@ public class FindRatChildren extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Agnus");
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, "rejected")),
-			ConversationStates.QUEST_OFFERED,
-			"I feel so worried.  If I olnt knew my #children were safe I would feel better.",
-			null);
+				ConversationPhrases.QUEST_MESSAGES,
+				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, "rejected")),
+				ConversationStates.QUEST_OFFERED,
+				"I feel so worried. If I only knew my #children were safe I would feel better.",
+				null);
 
 		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)),
-			ConversationStates.QUEST_OFFERED,
-			"Do you think you could find my Children again?",
-			null);
-
-                npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestActiveCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING,
-			"Why must my children say out so long? Please find them and tell me who is ok.",
-			null);
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)),
+				ConversationStates.QUEST_OFFERED,
+				"Do you think you could find my children again?",
+				null);
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))),
-			ConversationStates.ATTENDING,
-			"Thank you! I feel better now knowing my kids are safe.",
-			null);
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Why must my children say out so long? Please find them and tell me who is ok.",
+				null);
+
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))),
+				ConversationStates.ATTENDING,
+				"Thank you! I feel better now knowing my kids are safe.",
+				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"That's so nice of you. Good luck searching for them.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "looking:said", 5.0));
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"That's so nice of you. Good luck searching for them.",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "looking:said", 5.0));
 
 		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Oh. Never mind. Im sure someone else would be glad to help me.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
+				ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Oh. Never mind. I'm sure someone else would be glad to help me.",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
 
 		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			Arrays.asList("children"),
-			null,
-			ConversationStates.QUEST_OFFERED,
-			"My children have gone to play in the sewers. They have been gone for a long time. Will you find them and see if they are ok. Come back after you have found them.",
-			null);
+				ConversationStates.QUEST_OFFERED,
+				"children",
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"My children have gone to play in the sewers. They have been gone for a long time. Will you find them and see if they are ok?",
+				null);
 	}
 
 	private void findingStep() {
-
+		// Player goes to look for the children
 	}
 
-	private void retriveingStep() {
+	private void retrievingStep() {
 
 		final SpeakerNPC npc = npcs.get("Agnus");
 
 		// the player returns to Agnus after having started the quest, or found
 		// some kids.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestActiveCondition(QUEST_SLOT),
-			ConversationStates.QUESTION_1,
-			"If you found any of my #children, please tell me their name.", null);
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_1,
+				"If you found any of my #children, please tell me their name.", null);
 
-		npc.add(ConversationStates.QUESTION_1, Needed_Kids, null,
-			ConversationStates.QUESTION_1, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					final Expression item = sentence.getTriggerExpression();
+		npc.add(ConversationStates.QUESTION_1, NEEDED_KIDS, null,
+				ConversationStates.QUESTION_1, null,
+				new ChatAction() {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				final Expression item = sentence.getTriggerExpression();
 
-					
-					final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
-					final String[] npcDoneText = npcQuestText.split(":");
-	    			final String lookingStr;
-	    			final String saidStr;
-					if (npcDoneText.length > 1) {
-						lookingStr = npcDoneText[0];
-						saidStr = npcDoneText[1];
-					} else {
-						// compatibility with broken quests - should never happen
-						logger.warn("Player " + player.getTitle() + " found with find_rat_kids quest slot in state " + player.getQuest(QUEST_SLOT) + " - now setting this to done.");
-						player.setQuest(QUEST_SLOT, "done");
-						npc.say("Sorry, it looks like you have already found them after all. I got confused");
-						player.notifyWorldAboutChanges();
-						npc.setCurrentState(ConversationStates.ATTENDING);
-						return;
-					}
 
-					final TriggerList looking = new TriggerList(Arrays.asList(lookingStr.split(";")));
-					final TriggerList said = new TriggerList(Arrays.asList(saidStr.split(";")));
-					String reply = "";
-					String itemName = "initialized";
-					TriggerList missing = new TriggerList(missingNames(player));
-					final Expression found = missing.find(item);
-					if (found != null) {
-						itemName = found.getOriginal().toLowerCase();
-					}
+				final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
+				final String[] npcDoneText = npcQuestText.split(":");
+				final String lookingStr;
+				final String saidStr;
+				if (npcDoneText.length > 1) {
+					lookingStr = npcDoneText[0];
+					saidStr = npcDoneText[1];
+				} else {
+					// compatibility with broken quests - should never happen
+					logger.warn("Player " + player.getTitle() + " found with find_rat_kids quest slot in state " + player.getQuest(QUEST_SLOT) + " - now setting this to done.");
+					player.setQuest(QUEST_SLOT, "done");
+					npc.say("Sorry, it looks like you have already found them after all. I got confused.");
+					player.notifyWorldAboutChanges();
+					npc.setCurrentState(ConversationStates.ATTENDING);
+					return;
+				}
 
-					if ((found != null) && looking.contains(item) && !said.contains(item)) {
-						// we haven't said the name yet so we add it to the list
-						player.setQuest(QUEST_SLOT, lookingStr
-								+ ":" + saidStr + ";" + itemName);
-						reply = "Thank you.";
-					} else if (!looking.contains(item)) {
-						// we have said it was a valid name but haven't seen them
-						reply = "I dont think you actually checked if they were ok";
-					} else if ((found == null) && said.contains(item)) {
-						// we have said the name so we are stupid!
-						reply = "Yes you told me that they were ok already, thanks.";
-					}
+				final TriggerList looking = new TriggerList(Arrays.asList(lookingStr.split(";")));
+				final TriggerList said = new TriggerList(Arrays.asList(saidStr.split(";")));
+				String reply = "";
+				String itemName = "initialized";
+				TriggerList missing = new TriggerList(missingNames(player));
+				final Expression found = missing.find(item);
+				if (found != null) {
+					itemName = found.getOriginal().toLowerCase();
+				}
 
-					// we may have changed the missing list
-					missing = new TriggerList(missingNames(player));
+				if ((found != null) && looking.contains(item) && !said.contains(item)) {
+					// we haven't said the name yet so we add it to the list
+					player.setQuest(QUEST_SLOT, lookingStr
+							+ ":" + saidStr + ";" + itemName);
+					reply = "Thank you.";
+				} else if (!looking.contains(item)) {
+					// we have said it was a valid name but haven't seen them
+					reply = "I don't think you actually checked if they were ok.";
+				} else if ((found == null) && said.contains(item)) {
+					// we have said the name so we are stupid!
+					reply = "Yes you told me that they were ok already, thanks.";
+				}
 
-					if (missing.size() > 0) {
-						reply += " If you seen any of my other children, please tell me who.";
-						npc.say(reply);
-					} else {
+				// we may have changed the missing list
+				missing = new TriggerList(missingNames(player));
 
-						player.addXP(5000);
-						player.addKarma(15);
-						reply += " Now that I know my kids are safe, I can set my mind at rest.";
-						npc.say(reply);
-						player.setQuest(QUEST_SLOT, "done;" + System.currentTimeMillis());
-						player.notifyWorldAboutChanges();
-						npc.setCurrentState(ConversationStates.ATTENDING);
-					}
+				if (missing.size() > 0) {
+					reply += " If you seen any of my other children, please tell me who.";
+					npc.say(reply);
+				} else {
 
-                                }
-			});
+					player.addXP(5000);
+					player.addKarma(15);
+					reply += " Now that I know my kids are safe, I can set my mind at rest.";
+					npc.say(reply);
+					player.setQuest(QUEST_SLOT, "done;" + System.currentTimeMillis());
+					player.notifyWorldAboutChanges();
+					npc.setCurrentState(ConversationStates.ATTENDING);
+				}
+
+			}
+		});
 
 		final List<String> triggers = new ArrayList<String>();
 		triggers.add(ConversationPhrases.NO_EXPRESSION);
@@ -239,26 +243,19 @@ public class FindRatChildren extends AbstractQuest {
 
 		// player says something which isn't in the needed kids list.
 		npc.add(
-			ConversationStates.QUESTION_1,
-			"",
-			new NotCondition(new TriggerInListCondition(Needed_Kids)),
-			ConversationStates.QUESTION_1,
-			"Sorry, I don't understand you. What name are you trying to say?",
-			null);
+				ConversationStates.QUESTION_1,
+				"",
+				new NotCondition(new TriggerInListCondition(NEEDED_KIDS)),
+				ConversationStates.QUESTION_1,
+				"Sorry, I don't understand you. What name are you trying to say?",
+				null);
 
 		npc.add(
-			ConversationStates.QUESTION_1,
-			Arrays.asList("children"),
-			null,
-			ConversationStates.QUESTION_1,
-			"I wish to know that my children are ok . Please tell me who is ok.",
-			null);
-
-		// the player goes to Agnus and says hi, and has no quest or is completed.
-		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
-				ConversationStates.ATTENDING, "Hello there.",
+				ConversationStates.QUESTION_1,
+				"children",
+				null,
+				ConversationStates.QUESTION_1,
+				"I wish to know that my children are ok. Please tell me who is ok.",
 				null);
 	}
 
@@ -268,7 +265,7 @@ public class FindRatChildren extends AbstractQuest {
 
 		askingStep();
 		findingStep();
-		retriveingStep();
+		retrievingStep();
 	}
 
 	@Override

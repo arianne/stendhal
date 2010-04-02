@@ -39,7 +39,7 @@ public abstract class RatKidsNPCBase extends SpeakerNPC {
 	private static class RatKidGreetingAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 			if (!player.hasQuest(QUEST_SLOT) || player.isQuestInState(QUEST_SLOT, "rejected")) {
-				npc.say("Mother says I musent talk to strangers.");
+				npc.say("Mother says I mustn't talk to strangers.");
 			} else {
 				final String npcQuestText = player.getQuest(QUEST_SLOT);
 				final String[] npcDoneText = npcQuestText.split(":");
@@ -57,10 +57,10 @@ public abstract class RatKidsNPCBase extends SpeakerNPC {
 					} else if ( npcDoneText.length > 1) {
 						player.setQuest(QUEST_SLOT, lookStr + ";" + npcName
 								+ ":" + saidStr);//
-						npc.say("Hello my name is " + npc.getName() + ". Pleas tell mother that I am ok.");
+						npc.say("Hello my name is " + npc.getName() + ". Please tell mother that I am ok.");
 						player.addXP(500);
 					} else {
-						npc.say("Mother says I musent talk to strangers.");
+						npc.say("Mother says I mustn't talk to strangers.");
 					}
 				}
 			}
