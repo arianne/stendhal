@@ -10,7 +10,10 @@
 	<group uri="creatures/giant.xml"/>
     <group uri="creatures/gnome.xml"/>
 	<group uri="creatures/goblin.xml"/>
+	<group uri="creatures/human.xml"/>
 	<group uri="creatures/kobold.xml"/>
+    <group uri="creatures/mummy.xml"/>
+    <group uri="creatures/orc.xml"/>
 	<group uri="creatures/small_animal.xml"/>
 	<group uri="creatures/undead.xml"/>
 </groups>
