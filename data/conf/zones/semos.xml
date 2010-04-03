@@ -914,17 +914,6 @@ South: Nalwor forest and Or'ril castle
 			<attribute name="width">2</attribute>
 		</entity> 
 
-		<!-- remove me, this is just for testing
-		<entity x="8" y="49">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.PopupImage">
-				<parameter name="image">arandula.png</parameter>
-				<parameter name="title">Carmen's drawing</parameter>
-				<parameter name="alt">Arandula</parameter>
-			</implementation>
-			<attribute name="class">signpost</attribute>
-		</entity> 
-		-->
-
 		<entity x="46" y="20">
 			<implementation class-name="games.stendhal.server.maps.semos.city.GossipNPC">
 				<parameter name="name">Nomyr Ahba</parameter>
@@ -1396,13 +1385,20 @@ Holy mackerel! These chips are tasty.
       	</attribute>
 			<attribute name="class">book_red</attribute>
 		</entity>
-
-
-		<entity x="26" y="5">
+     
+       <entity x="28" y="3">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.PopupImage">
+             <parameter name="image">wofolmap.png</parameter>
+             <parameter name="title">Semos Mines and the Kobold city of Wofol</parameter>
+            </implementation>
+            <attribute name="class">wofolmap</attribute>
+        </entity>
+        
+    	<entity x="26" y="5">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
        The island of Athor is famous for its golden beaches. Having long been an untouched piece of nature, it has become a holiday paradise since a ferry service was installed. Little do the tourists know about the dangers that lurk under the surface...
-     </attribute>
+            </attribute>
 			<attribute name="class">book_red</attribute>
 		</entity>
 
