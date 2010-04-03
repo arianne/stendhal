@@ -863,7 +863,7 @@
 		</schemavalidate>
 		<schemavalidate>
 			<schema namespace="stendhal" file="${config_dir}/creatures.xsd" />
-			<fileset dir="${config_dir}">
+			<fileset dir="${config_dir}/creatures">
 				<include name="creatures.xml" />
 			</fileset>
 		</schemavalidate>
@@ -878,6 +878,7 @@
 			<fileset dir="${config_dir}">
 				<filename name="zones.xml"/>
 				<filename name="items.xml"/>
+				<filename name="creatures.xml"/>
 			</fileset>
 		</schemavalidate>
 	</target>
