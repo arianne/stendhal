@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    
+ <creature name="goblin">
+    <type class="goblin" subclass="goblin" tileid="goblin.png:0"/>
+    <description>You see a goblin, it is an evil and mischievous creature.</description>
+    <attributes>
+      <atk value="88"/>
+      <def value="11"/>
+      <hp value="85"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="5"/>
+    <experience value="50"/>
+    <respawn value="1200"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[2,6]" probability="90.0"/>
+      <item value="pie" quantity="[1,1]" probability="1.0"/>
+      <item value="leather armor" quantity="[1,1]" probability="10.0"/>
+      <item value="leather cuirass" quantity="[1,1]" probability="2.5"/>
+      <item value="leather boots" quantity="[1,1]" probability="0.5"/>
+      <item value="staff" quantity="[1,1]" probability="1.0"/>
+      <item value="buckler" quantity="[1,1]" probability="0.5"/>
+      <item value="knife" quantity="[1,1]" probability="0.5"/>
+      <item value="dress" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Umm! Tasty meat."/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="veteran goblin">
+    <type class="goblin" subclass="veteran_goblin" tileid="goblin.png:2"/>
+    <description>You see a veteran goblin, an old warrior...</description>
+    <attributes>
+      <atk value="106"/>
+      <def value="14"/>
+      <hp value="120"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="7"/>
+    <experience value="70"/>
+    <respawn value="1200"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[4,11]" probability="90.0"/>
+      <item value="pauldroned leather cuirass" quantity="[1,1]" probability="10.0"/>
+      <item value="studded legs" quantity="[1,1]" probability="10.0"/>
+      <item value="studded armor" quantity="[1,1]" probability="4.0"/>
+      <item value="leather boots" quantity="[1,1]" probability="0.5"/>
+      <item value="cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="mace" quantity="[1,1]" probability="2.0"/>
+      <item value="wooden shield" quantity="[1,1]" probability="1.0"/>
+      <item value="dress" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Breakfast time!"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="soldier goblin">
+    <type class="goblin" subclass="soldier_goblin" tileid="goblin.png:1"/>
+    <description>You see a soldier goblin, a young warrior.</description>
+    <attributes>
+      <atk value="127"/>
+      <def value="39"/>
+      <hp value="40"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="9"/>
+    <experience value="90"/>
+    <respawn value="1200"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[4,13]" probability="90.0"/>
+      <item value="plate shield" quantity="[1,1]" probability="5.0"/>
+      <item value="sword" quantity="[1,1]" probability="5.0"/>
+      <item value="studded armor" quantity="[1,1]" probability="10.0"/>
+      <item value="chain armor" quantity="[1,1]" probability="0.4"/>
+      <item value="chain legs" quantity="[1,1]" probability="0.8"/>
+      <item value="studded boots" quantity="[1,1]" probability="0.4"/>
+      <item value="cloak" quantity="[1,1]" probability="0.4"/>
+      <item value="flail" quantity="[1,1]" probability="1.0"/>
+      <item value="short sword" quantity="[1,1]" probability="1.0"/>
+      <item value="dress" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature> 
+  
+</creatures>  

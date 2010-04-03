@@ -4,5 +4,10 @@
 	<group uri="creatures/animal.xml"/>
 	<group uri="creatures/creatures.xml"/>
 	<group uri="creatures/farm_animal.xml"/>
+	<group uri="creatures/gargoyle.xml"/>
+    <group uri="creatures/gnome.xml"/>
+	<group uri="creatures/goblin.xml"/>
+	<group uri="creatures/kobold.xml"/>
 	<group uri="creatures/small_animal.xml"/>
+	<group uri="creatures/undead.xml"/>
 </groups>
