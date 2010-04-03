@@ -1,5 +1,6 @@
 package tools.creaturesxml;
 
+import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.config.CreaturesXMLLoader;
 import games.stendhal.server.core.config.ItemsXMLLoader;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
@@ -98,8 +99,8 @@ public class EditorXML {
 
 	private List<DefaultCreature> loadCreaturesList(String ref)
 			throws SAXException {
-		CreaturesXMLLoader creatureLoader = CreaturesXMLLoader.get();
-		List<DefaultCreature> creatures = creatureLoader.load(ref);
+		CreatureGroupsXMLLoader loader = new CreatureGroupsXMLLoader(ref);
+		List<DefaultCreature> creatures = loader.load();
 		sortCreatures(creatures);
 
 		return creatures;
