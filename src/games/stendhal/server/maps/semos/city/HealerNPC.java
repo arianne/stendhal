@@ -14,6 +14,7 @@ public class HealerNPC extends SpeakerNPCFactory {
 
 	@Override
 	public void createDialog(final SpeakerNPC npc) {
+		npc.addGreeting("Hi, if I can #help, just say.");
 		npc.addJob("My special powers help me to heal wounded people. I also sell potions and antidotes.");
 		npc.addHelp("I can #heal you here for free, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.");
 		new SellerAdder().addSeller(npc, new SellerBehaviour(SingletonRepository.getShopList().get("healing")));
