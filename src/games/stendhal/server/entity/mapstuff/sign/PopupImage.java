@@ -30,7 +30,7 @@ public class PopupImage extends Sign implements UseListener {
 	 *
 	 * @param image the image to display
 	 * @param title the title
-	 * @param alt alternative text i ncase the image cannot be displayed
+	 * @param alt alternative text incase the image cannot be displayed
 	 */
 	public PopupImage(final String image, final String title, final String alt) {
 		put(Actions.ACTION, Actions.LOOK_CLOSELY);

@@ -16,7 +16,7 @@ import games.stendhal.server.core.config.factory.ConfigurableFactory;
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 
 /**
- * A base factory for <code>ShopSign</code> objects.
+ * A base factory for <code>PopupImage</code> objects.
  */
 public class PopupImageFactory implements ConfigurableFactory {
 
@@ -26,7 +26,7 @@ public class PopupImageFactory implements ConfigurableFactory {
 	 * @param ctx
 	 *            The configuration context. Must provide 'image'.
 	 * 
-	 * @return The shop name.
+	 * @return The image name.
 	 */
 	protected String getImage(final ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("image");
@@ -63,9 +63,9 @@ public class PopupImageFactory implements ConfigurableFactory {
 	 * @param ctx
 	 *            Configuration context.
 	 * 
-	 * @return A ShopSign.
+	 * @return A PopupImage.
 	 * 
-	 * @see ShopSign
+	 * @see PopupImage
 	 */
 	public Object create(final ConfigurableFactoryContext ctx) {
 		return new PopupImage(getImage(ctx), getTitle(ctx), getAlt(ctx));
