@@ -2027,6 +2027,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -2667,6 +2668,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -2900,6 +2902,7 @@
       <profile name="lifesteal" params="0.5"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -3833,6 +3836,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -4167,6 +4171,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -5791,6 +5796,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -6683,6 +6689,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -6715,6 +6722,7 @@
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -6813,6 +6821,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -7077,6 +7086,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -7264,6 +7274,7 @@
       <profile name="lifesteal" params="1"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -7570,6 +7581,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -7912,6 +7924,7 @@
     <ai>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -7973,6 +7986,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -8065,6 +8079,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -8095,6 +8110,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -8240,6 +8256,7 @@
     <ai>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -8330,6 +8347,7 @@
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -8365,6 +8383,7 @@
       <profile name="human"/>
       <profile name="patrolling"/>
       <profile name="heal" params="5,20"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -8425,6 +8444,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -8635,6 +8655,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -8931,6 +8952,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -8964,6 +8986,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,20"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -9056,6 +9079,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -9092,6 +9116,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -9616,6 +9641,7 @@
       <profile name="human"/>
       <profile name="patrolling"/>
       <profile name="heal" params="5,40"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -9717,6 +9743,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -9823,6 +9850,7 @@
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -9859,6 +9887,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -9892,6 +9921,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -9960,6 +9990,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -9996,6 +10027,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -10337,8 +10369,9 @@
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
-	<profile name="heal" params="5,50"/>
+      <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -10407,6 +10440,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="35,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -10518,6 +10552,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -10630,6 +10665,7 @@
       <profile name="lifesteal" params="0.05"/>
       <profile name="heal" params="35,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -10805,6 +10841,7 @@
       <profile name="human"/>
       <profile name="heal" params="15,50"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -10845,6 +10882,7 @@
       <profile name="heal" params="15,50"/>
       <profile name="lifesteal" params="0.1"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
@@ -10882,6 +10920,7 @@
       <profile name="heal" params="20,50"/>
       <profile name="lifesteal" params="0.1"/>
       <profile name="patrolling"/>
+      <profile name="attack weakest"/>
     </ai>
   </creature>
 
