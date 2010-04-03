@@ -34,7 +34,7 @@ public class PassiveEntityRespawnPointFactory {
 			passiveEntityrespawnPoint = createHerb(type);
 
 		} else if (clazz.contains("corn")) {
-			passiveEntityrespawnPoint = new GrainField();
+			passiveEntityrespawnPoint = createGrain(type);
 
 		} else if (clazz.contains("mushroom")) {
 			passiveEntityrespawnPoint = createMushroom(type);
@@ -253,6 +253,23 @@ public class PassiveEntityRespawnPointFactory {
 		case 2:
 			passiveEntityrespawnPoint = new VegetableGrower("sclaria");
 			break;
+		default:
+			passiveEntityrespawnPoint = null;
+			break;
+		}
+		return passiveEntityrespawnPoint;
+	}
+	
+	private static PassiveEntityRespawnPoint createGrain(final int type) {
+		PassiveEntityRespawnPoint passiveEntityrespawnPoint;
+		switch (type) {
+		case 0:
+			passiveEntityrespawnPoint = new GrainField("grain");
+			break;
+	// add another picture to the existing corn.png image so we can also draw on cane
+	/*	case 1:
+			passiveEntityrespawnPoint = new GrainField("cane");
+			break; */
 		default:
 			passiveEntityrespawnPoint = null;
 			break;

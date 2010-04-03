@@ -29,17 +29,29 @@ import marauroa.common.game.RPObject;
 public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 		UseListener {
 
+	private String grainName;
+
+	protected final void setGrainName(final String grainName) {
+		this.grainName = grainName;
+	}
+
+    protected String getGrainName() {
+		return grainName;
+    }
+
 	/** How many growing steps are needed before one can harvest again. */
 	public static final int RIPE = 5;
 
-	public GrainField(final RPObject object) {
-		super(object, "grain_field", "grain field", "Harvest", RIPE, 1, 2);
+	public GrainField(final RPObject object, final String name) {
+		super(object, name + "_field", name + " field", "Harvest", RIPE, 1, 2);
+		grainName = name;
 		setResistance(80);
 		update();
 	}
 
-	public GrainField() {
-		super("grain_field", "grain field", "Harvest", RIPE, 1, 2);
+	public GrainField(final String name) {
+		super(name + "_field", name + " field", "Harvest", RIPE, 1, 2);
+		grainName = name;
 		setResistance(80);
 	}
 
@@ -48,13 +60,13 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 		String text;
 		switch (getRipeness()) {
 		case 0:
-			text = "You see grain that has just been harvested.";
+			text = "You see " + grainName + " that has just been harvested.";
 			break;
 		case RIPE:
-			text = "You see ripe grain.";
+			text = "You see ripe " + grainName + ".";
 			break;
 		default:
-			text = "You see unripe grain.";
+			text = "You see unripe " + grainName + ".";
 			break;
 		}
 		return text;
@@ -73,19 +85,19 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 					|| entity.isEquipped("black scythe")) {
 					onFruitPicked(null);
 					final Item grain = SingletonRepository.getEntityManager().getItem(
-							"grain");
+							grainName);
 					entity.equipOrPutOnGround(grain);
 					return true;
 				} else if (entity instanceof Player) {
-					entity.sendPrivateText("You need a scythe to harvest grain fields.");
+					entity.sendPrivateText("You need a scythe to harvest " + grainName + " fields.");
 					return false;
 				}
 			} else if (entity instanceof Player) {
-				entity.sendPrivateText("This grain is not yet ripe enough to harvest.");
+				entity.sendPrivateText("This " + grainName + " is not yet ripe enough to harvest.");
 				return false;
 			}
 		} else if (entity instanceof Player) {
-			entity.sendPrivateText("You can't reach that grain from here.");
+			entity.sendPrivateText("You can't reach that " + grainName + " from here.");
 		}
 		return false;
 	}
