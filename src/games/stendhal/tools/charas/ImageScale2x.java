@@ -1,4 +1,4 @@
-package tools.charas;
+package games.stendhal.tools.charas;
 
 import java.awt.image.BufferedImage;
 

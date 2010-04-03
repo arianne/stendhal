@@ -1,4 +1,4 @@
-package tools.creaturesxml;
+package games.stendhal.tools.creaturesxml;
 
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.config.CreaturesXMLLoader;

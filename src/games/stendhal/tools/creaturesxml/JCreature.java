@@ -1,4 +1,4 @@
-package tools.creaturesxml;
+package games.stendhal.tools.creaturesxml;
 
 /*
  * JCreature.java

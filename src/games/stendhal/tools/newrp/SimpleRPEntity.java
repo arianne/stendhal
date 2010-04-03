@@ -1,4 +1,4 @@
-package tools.newrp;
+package games.stendhal.tools.newrp;
 
 /**
  * This is a simpler, human understandable implementation of the RP.

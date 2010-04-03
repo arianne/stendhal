@@ -1,4 +1,4 @@
-package tools.charas;
+package games.stendhal.tools.charas;
 
 /**
  * A simple implementation of the Scale2x algorithm for scaling raw image data.

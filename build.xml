@@ -10,7 +10,6 @@
 
 	<property name="build_tests" value="${buildroot}/build_tests"/>
 	<property name="build_tests_report" value="${buildroot}/build_test_report"/>
-	<property name="build_tools" value="${buildroot}/build_tools"/>
 
 	<property name="build_client" value="${buildroot}/build_client"/>
 	<property name="build_client_data" value="${buildroot}/build_client_data"/>
@@ -121,7 +120,6 @@
 		<delete dir="${buildroot}/build_server_quests" />
 		<delete dir="${buildroot}/build_server_xmlconf" />
 		<delete dir="${build_tests}" />
-		<delete dir="${build_tools}" />
 		<delete dir="${buildroot}/build_stendhaltools" />
 		<delete dir="${buildroot}/buildbot" />
 		<delete dir="${build_tests_report}" />
@@ -627,10 +625,6 @@
 			<fileset dir="tests"/>
 		</copy>
 
-		<copy todir="${buildroot}/stendhal-${version}-src/tools">
-			<fileset dir="tools"/>
-		</copy>
-
 		<copy todir="${buildroot}/stendhal-${version}-src/data">
 			<fileset dir="data">
 				<!-- There is a 4MB OGG there! -->
@@ -690,6 +684,9 @@
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${tiled_jar}"/>
+				<pathelement path="${jorbis_jar}"/>
+				<pathelement path="${pagelayout_jar}"/>
+				<pathelement path="${swinglayout_jar}"/>
 			</classpath>
 		</javac>
 	</target>
@@ -729,7 +726,7 @@
 
 	<target name="tests" description="Compile and run tests" depends="compile_tests,run_tests,report_test"/>
 
-	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_tools, compile_stendhaltools">
+	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools">
 		<mkdir dir="${build_tests}"/>
 
 		<javac srcdir="tests" destdir="${build_tests}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
@@ -754,32 +751,8 @@
 				<pathelement path="${easymock_jar}"/>
 				<pathelement path="${pagelayout_jar}"/>
 				<pathelement path="${easymockclassextension_jar}"/>
-				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_server_script}"/>
 				<pathelement path="${tiled_jar}"/>
-			</classpath>
-		</javac>
-	</target>
-
-	<target name="compile_tools" description="Compile all tools" depends="server_build, client_build">
-		<mkdir dir="${build_tools}"/>
-
-		<javac srcdir="tools" destdir="${build_tools}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
-			<include name="**/*.java"/>
-			<compilerarg value="-encoding"/>
-			<compilerarg value="utf-8"/>
-
-			<compilerarg value="-Xlint:unchecked"/>
-
-			<classpath>
-				<pathelement path="${build_client}"/>
-				<pathelement path="${build_server}"/>
-				<pathelement path="${build_server_maps}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${junit_jar}"/>
-				<pathelement path="${simple_jar}"/>
-				<pathelement path="${swinglayout_jar}"/>
 			</classpath>
 		</javac>
 	</target>
@@ -793,7 +766,6 @@
 				<pathelement path="${build_tests}"/>
 				<pathelement path="${build_client}"/>
 				<pathelement path="${build_server}"/>
-				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${easymock_jar}"/>
@@ -904,9 +876,6 @@
 			<fileset dir="${build_client_data}">
 				<include name="**/*.class" />
 			</fileset>
-			<fileset dir="${build_tools}">
-				<include name="**/*.class" />
-			</fileset>
 			<fileset dir="${build_stendhaltools}">
 				<include name="**/*.class" />
 			</fileset>
@@ -923,7 +892,6 @@
 				<pathelement path="${build_tests}"/>
 				<pathelement path="${build_client}"/>
 				<pathelement path="${build_server}"/>
-				<pathelement path="${build_tools}"/>
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${easymock_jar}"/>

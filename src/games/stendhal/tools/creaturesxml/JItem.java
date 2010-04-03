@@ -1,4 +1,4 @@
-package tools.creaturesxml;
+package games.stendhal.tools.creaturesxml;
 
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;

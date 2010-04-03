@@ -1,4 +1,4 @@
-package tools.newrp;
+package games.stendhal.tools.newrp;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package tools.newrp;
+package games.stendhal.tools.newrp;
 
 /**
  * Interface for effect. Mainly healing and damage.
