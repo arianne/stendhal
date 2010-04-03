@@ -2,9 +2,12 @@
 <groups xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal groups.xsd ">
 	<group uri="creatures/animal.xml"/>
+	<group uri="creatures/beholder.xml"/>
 	<group uri="creatures/creatures.xml"/>
+	<group uri="creatures/fairy.xml"/>
 	<group uri="creatures/farm_animal.xml"/>
 	<group uri="creatures/gargoyle.xml"/>
+	<group uri="creatures/giant.xml"/>
     <group uri="creatures/gnome.xml"/>
 	<group uri="creatures/goblin.xml"/>
 	<group uri="creatures/kobold.xml"/>
