@@ -121,13 +121,13 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Hello, player.", getReply(npc));
 
 		assertTrue(en.step(player, "job"));
-		assertEquals("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.", getReply(npc));
+		assertEquals("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://stendhalgame.org/wiki/index.php/StendhalHouses.", getReply(npc));
 
 		assertTrue(en.step(player, "offer"));
-		assertEquals("I sell houses, please look at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.", getReply(npc));
+		assertEquals("I sell houses, please look at #http://stendhalgame.org/wiki/index.php/StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.", getReply(npc));
 
 		assertTrue(en.step(player, "quest"));
-		assertEquals("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.", getReply(npc));
+		assertEquals("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://stendhalgame.org/wiki/index.php/StendhalHouses.", getReply(npc));
 	}
 
 	/**

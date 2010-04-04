@@ -19,10 +19,10 @@ class ManualAction implements SlashAction {
 	 */
 	public boolean execute(final String[] params, final String remainder) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-				"Trying to open #http://arianne.sourceforge.net/wiki/index.php/StendhalManual in your browser.",
+				"Trying to open #http://stendhalgame.org/wiki/index.php/StendhalManual in your browser.",
 		NotificationType.CLIENT));
 
-		BareBonesBrowserLaunch.openURL("http://stendhal.game-host.org/wiki/index.php/StendhalManual");
+		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/index.php/StendhalManual");
 
 		return true;
 	}

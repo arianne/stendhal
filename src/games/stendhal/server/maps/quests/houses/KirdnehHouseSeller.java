@@ -76,7 +76,7 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 				 new BuyHouseChatAction(getCost(), QUEST_SLOT));
 		
 
-		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
+		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://stendhalgame.org/wiki/index.php/StendhalHouses.");
 		addReply("reputation", "I will ask Hazel about you. Provided you've finished any task she asked you to do for her recently, and haven't left anything unfinished, she will like you.");
 		
 		setDescription("You see a smart looking man.");

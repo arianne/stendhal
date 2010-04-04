@@ -48,7 +48,7 @@ in the stendhal folder:
 
 Alternatively you can run it using Java Webstart technology at:
 
-  http://stendhal.game-host.org/stendhal.jnlp
+  http://stendhalgame.org/stendhal.jnlp
 
 To play Stendhal you have to use a keyboard and a mouse.
 

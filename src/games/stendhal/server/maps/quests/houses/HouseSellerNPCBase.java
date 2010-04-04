@@ -168,12 +168,12 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 
 		addReply(
 				 "buy",
-				 "You should really enquire the #cost before you ask to buy. And check our brochure, #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
+				 "You should really enquire the #cost before you ask to buy. And check our brochure, #http://stendhalgame.org/wiki/index.php/StendhalHouses.");
 		addReply("really",
 				 "That's right, really, really, really. Really.");
-		addOffer("I sell houses, please look at #http://stendhal.game-host.org/wiki/index.php/StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
-		addHelp("You may be eligible to buy a house if there are any #available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://stendhal.game-host.org/wiki/index.php/StendhalHouses for pictures inside the houses and more details.");
-		addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://stendhal.game-host.org/wiki/index.php/StendhalHouses.");
+		addOffer("I sell houses, please look at #http://stendhalgame.org/wiki/index.php/StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
+		addHelp("You may be eligible to buy a house if there are any #available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://stendhalgame.org/wiki/index.php/StendhalHouses for pictures inside the houses and more details.");
+		addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://stendhalgame.org/wiki/index.php/StendhalHouses.");
 		addGoodbye("Goodbye.");
 	}
 

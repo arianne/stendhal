@@ -13,7 +13,7 @@ public class DefaultGameProperties extends Properties {
 
 		this.put("GAME_SPLASH_BACKGROUND", "data/gui/StendhalSplash.jpg");
 
-		this.put("DEFAULT_SERVER", "stendhal.game-host.org");
+		this.put("DEFAULT_SERVER", "stendhalgame.org");
 		this.put("DEFAULT_PORT", "32160");
 
 		this.put("UPDATE_ENABLE_AUTO_UPDATE", "true");
