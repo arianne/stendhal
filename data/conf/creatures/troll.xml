@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    
+  <creature name="troll">
+    <type class="troll" subclass="troll" tileid="troll.png:0"/>
+    <description>You see a troll, be careful in his terrain.</description>
+    <attributes>
+      <atk value="135"/>
+      <def value="34"/>
+      <hp value="60"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="10"/>
+    <experience value="110"/>
+    <respawn value="1210"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,7]" probability="90.0"/>
+      <item value="chain armor" quantity="[1,1]" probability="3.0"/>
+      <item value="chain legs" quantity="[1,1]" probability="2.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="0.05"/>
+      <item value="flail" quantity="[1,1]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="red troll">
+    <type class="troll" subclass="red_troll" tileid="troll.png:2"/>
+    <description>You see a red troll, he's burning with anger.</description>
+    <attributes>
+      <atk value="190"/>
+      <def value="34"/>
+      <hp value="110"/>
+      <speed value="0.7"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="16"/>
+    <experience value="200"/>
+    <respawn value="1230"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,17]" probability="90.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="3.0"/>
+      <item value="chain legs" quantity="[1,1]" probability="4.0"/>
+      <item value="flail" quantity="[1,1]" probability="30.0"/>
+      <item value="ugmash" quantity="[1,1]" probability="0.0001"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+   
+</creatures>  

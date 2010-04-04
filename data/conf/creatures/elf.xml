@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+    
+  <creature name="elf">
+    <type class="elf" subclass="elf" tileid="elf.png:3"/>
+    <description>You see an elf, they love the forest and live in peace.</description>
+    <attributes>
+      <atk value="177"/>
+      <def value="30"/>
+      <hp value="115"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1230"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,19]" probability="100.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="6.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="1.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="0.5"/>
+      <item value="cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="plate shield" quantity="[1,1]" probability="1.0"/>
+      <item value="elvish legs" quantity="[1,1]" probability="0.05"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="militia elf">
+    <type class="elf" subclass="militia_elf" tileid="elf.png:6"/>
+    <description>You see a militia elf, they train hard to beat you!</description>
+    <attributes>
+      <atk value="200"/>
+      <def value="44"/>
+      <hp value="100"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="18"/>
+    <experience value="230"/>
+    <respawn value="1240"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,25]" probability="100.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="7.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="2.5"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.35"/>
+      <item value="elvish boots" quantity="[1,1]" probability="0.25"/>
+      <item value="elvish shield" quantity="[1,1]" probability="0.02"/>
+      <item value="lion shield" quantity="[1,1]" probability="0.5"/>
+      <item value="scimitar" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="archer elf">
+    <type class="elf" subclass="archer_elf" tileid="elf.png:0"/>
+    <description>You see an archer elf, they can do much damage with their wooden arrows.</description> 
+    <attributes>
+      <atk value="198"/>
+      <def value="42"/>
+      <hp value="105"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="19"/>
+    <experience value="250"/>
+    <respawn value="1250"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[15,20]" probability="100.0"/>
+      <item value="elvish legs" quantity="[1,1]" probability="5.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.5"/>
+      <item value="wooden arrow" quantity="[10,20]" probability="5.0"/>
+      <item value="wooden bow" quantity="[1,1]" probability="2.5"/>
+      <item value="scimitar" quantity="[1,1]" probability="5.0"/>
+      <item value="apple" quantity="[1,3]" probability="20.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="wooden arrow" quantity="10000"/>
+      <slot name="rhand" item="wooden bow" quantity="1"/>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="soldier elf">
+    <type class="elf" subclass="soldier_elf" tileid="elf.png:7"/>
+    <description>You see a soldier elf, a good partner of the militia elves.</description>
+    <attributes>
+      <atk value="216"/>
+      <def value="40"/>
+      <hp value="140"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="21"/>
+    <experience value="300"/>
+    <respawn value="1260"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,25]" probability="100.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="8.0"/>
+      <item value="golden chainmail" quantity="[1,1]" probability="2.5"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="1.0"/>
+      <item value="elvish boots" quantity="[1,1]" probability="0.35"/>
+      <item value="elvish cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="katana" quantity="[1,1]" probability="1.0"/>
+      <item value="elvish shield" quantity="[1,1]" probability="0.1"/>
+
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+    <creature name="mage elf">
+    <type class="elf" subclass="mage_elf" tileid="elf.png:5"/>
+    <description>You see a mage elf. She can feel pure magic when she stands outside in the forest and just frees her mind.</description>
+    <attributes>
+      <atk value="242"/>
+      <def value="63"/>
+      <hp value="100"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="25"/>
+    <experience value="400"/>
+    <respawn value="1300"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[4,30]" probability="100.0"/>
+      <item value="elvish sword" quantity="[1,1]" probability="1.0"/>
+      <item value="katana" quantity="[1,1]" probability="5.0"/>
+      <item value="broadsword" quantity="[1,1]" probability="2.0"/>
+      <item value="potion" quantity="[2,4]" probability="20.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  
+  <creature name="commander elf">
+    <type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
+    <description></description>
+    <attributes>
+      <atk value="285"/>
+      <def value="102"/>
+      <hp value="70"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="30"/>
+    <experience value="570"/>
+    <respawn value="1350"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,35]" probability="100.0"/>
+      <item value="plate armor" quantity="[1,1]" probability="2.0"/>
+      <item value="elvish armor" quantity="[1,1]" probability="0.05"/>
+      <item value="golden armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="elvish boots" quantity="[1,1]" probability="1.0"/>
+      <item value="golden boots" quantity="[1,1]" probability="0.25"/>
+      <item value="blue elf cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="golden helmet" quantity="[1,1]" probability="0.35"/>
+      <item value="enhanced lion shield" quantity="[1,1]" probability="2.0"/>
+      <item value="claymore" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+  
+  <creature name="archmage elf">
+    <type class="elf" subclass="archmage_elf" tileid="elf.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="256"/>
+      <def value="87"/>
+      <hp value="125"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="35"/>
+    <experience value="770"/>
+    <respawn value="1420"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[4,45]" probability="100.0"/>
+      <item value="blue elf cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="broadsword" quantity="[1,1]" probability="3.0"/>
+      <item value="scimitar" quantity="[1,1]" probability="6.0"/>
+      <item value="elvish sword" quantity="[1,1]" probability="1.0"/>
+      <item value="elvish shield" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+      <slot name="rhand" item="elvish sword"/>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature> 
+  
+  <creature name="elf sacerdotist">
+    <type class="elf" subclass="elf_sacerdotist" tileid="elf.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="380"/>
+      <def value="108"/>
+      <hp value="155"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="45"/>
+    <experience value="1360"/>
+    <respawn value="1620"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[4,55]" probability="100.0"/>
+      <item value="blue elf cloak" quantity="[1,1]" probability="2.5"/>
+      <item value="ice sword" quantity="[1,1]" probability="0.0050"/>
+      <item value="elvish shield" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+ 
+  <creature name="elf wizard">
+    <type class="elf" subclass="elf_wizard" tileid="elf.png:9"/>
+    <description>You see an elf wizard. He is a very wise elf who knows almost every kind of magic. He likes to use nature spells to make every plant and creature fertile, but he is also able to defend himself when he has to do.</description>
+    <attributes>
+      <atk value="400"/>
+      <def value="70"/>
+      <hp value="300"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="48"/>
+    <experience value="1580"/>
+    <respawn value="1610"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[8,43]" probability="100.0"/>
+      <item value="nalwor city scroll" quantity="[1,1]" probability="5.0"/>
+      <item value="elvish boots" quantity="[1,1]" probability="5.0"/>
+      <item value="elvish legs" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+  
+  <creature name="elf bodyguard">
+    <type class="elf" subclass="elf_bodyguard" tileid="elf.png:8"/>
+    <description></description>
+    <attributes>
+      <atk value="403"/>
+      <def value="102"/>
+      <hp value="200"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="50"/>
+    <experience value="1760"/>
+    <respawn value="1620"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,55]" probability="100.0"/>
+      <item value="golden helmet" quantity="[1,1]" probability="0.5"/>
+      <item value="elvish sword" quantity="[1,1]" probability="1.0"/>
+      <item value="ice sword" quantity="[1,1]" probability="0.0080"/>
+      <item value="broadsword" quantity="[1,1]" probability="5.0"/>
+      <item value="elvish shield" quantity="[1,1]" probability="5.0"/>
+      <item value="greater potion" quantity="[1,1]" probability="10.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>  
+</creatures>  
