@@ -4,9 +4,11 @@
 	<group uri="creatures/animal.xml"/>
 	<group uri="creatures/beholder.xml"/>
 	<group uri="creatures/creatures.xml"/>
+	<group uri="creatures/dwarf.xml"/>
 	<group uri="creatures/elf.xml"/>
 	<group uri="creatures/fairy.xml"/>
 	<group uri="creatures/farm_animal.xml"/>
+	<group uri="creatures/frogman.xml"/>
 	<group uri="creatures/gargoyle.xml"/>
 	<group uri="creatures/giant_animal.xml"/>
 	<group uri="creatures/giant.xml"/>
@@ -17,6 +19,7 @@
 	<group uri="creatures/kobold.xml"/>
     <group uri="creatures/mummy.xml"/>
     <group uri="creatures/orc.xml"/>
+    <group uri="creatures/ratfolk.xml"/>
 	<group uri="creatures/small_animal.xml"/>
 	<group uri="creatures/troll.xml"/>
 	<group uri="creatures/undead.xml"/>
