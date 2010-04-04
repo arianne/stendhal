@@ -115,7 +115,7 @@ public class CharasConverter {
 	 *            X index of the pixel for transparency color
 	 * @param py
 	 *            Y index of the pixel for transparency color
-	 * @return
+	 * @return Copy of the image with one color changed to transparent
 	 */
 	protected BufferedImage getImageWithTransparency(BufferedImage image, int px, int py) {
 		int transparentRgb = image.getRGB(px, py);
@@ -149,9 +149,9 @@ public class CharasConverter {
 	/**
 	 * Loads an image.
 	 * 
-	 * @param filename
-	 * @return
-	 * @throws IOException
+	 * @param filename the name of the file from which the image file
+	 * @return loaded image
+	 * @throws IOException if reading the file fails
 	 */
 	protected BufferedImage loadImage(String filename) throws IOException {
 		File file = new File(filename);
