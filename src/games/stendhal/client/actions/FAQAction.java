@@ -19,10 +19,10 @@ class FAQAction implements SlashAction {
 	 */
 	public boolean execute(final String[] params, final String remainder) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-				"Trying to open #http://stendhalgame.org/wiki/index.php/StendhalFAQ in your browser.",
+				"Trying to open #http://stendhalgame.org/wiki/StendhalFAQ in your browser.",
 		NotificationType.CLIENT));
 
-		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/index.php/StendhalFAQ");
+		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/StendhalFAQ");
 
 		return true;
 	}

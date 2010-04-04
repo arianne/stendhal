@@ -189,7 +189,7 @@ public class MeetHayunn extends AbstractQuest {
 			"Simple, really; just double-click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?",
 			null);
 
-		final String epilog = "You can find many frequently asked questions are answered at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalFAQ \nYou can find out about experience points and levelling up at #http://arianne.sourceforge.net/wiki/index.php?title=LevelTables \nYou can read about some of the currently most powerful and successful warriors at #http://stendhalgame.org\n ";
+		final String epilog = "You can find many frequently asked questions are answered at #http://stendhalgame.org/wiki/StendhalFAQ \nYou can find out about experience points and levelling up at #http://stendhalgame.org/wiki/LevelTables \nYou can read about some of the currently most powerful and successful warriors at #http://stendhalgame.org\n ";
 		
 			//This is used if the player returns, asks for #help and then say #yes
 			npc.add(ConversationStates.ATTENDING,

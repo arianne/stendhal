@@ -19,7 +19,7 @@ To create the labeled world map:
   * Upload the image, e.g. at http://imageshack.us
   * Replace your labeled image files from the tiled/world directory with
     the clean (unlabeled) ones from CVS.
-  * Edit http://arianne.sourceforge.net/wiki/index.php?title=Template:SmallWorldMap
+  * Edit http://stendhalgame.org/wiki/Template:SmallWorldMap
     and add a link to your uploaded image.
 """
 #!/usr/bin/env python

@@ -98,7 +98,7 @@ final class AdosHouseSeller extends HouseSellerNPCBase {
 				 null,
 				 new BuyHouseChatAction(getCost(), QUEST_SLOT));
 		
-		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://stendhalgame.org/wiki/index.php/StendhalHouses.");
+		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://stendhalgame.org/wiki/StendhalHouses.");
 		addReply("citizen", "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opinion.");
 
 		setDescription("You see a smart looking man.");

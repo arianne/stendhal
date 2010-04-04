@@ -21,7 +21,7 @@ class HelpAction implements SlashAction {
 	 */
 	public boolean execute(final String[] params, final String remainder) {
 		final String[] lines = {
-				"For a detailed reference, visit #http://arianne.sourceforge.net/wiki/index.php/StendhalManual",
+				"For a detailed reference, visit #http://stendhalgame.org/wiki/StendhalManual",
 				"Here are the most-used commands:",
 				"* Chatting: ",
 				"- /me <action> \t\tShow a message about what you are doing",

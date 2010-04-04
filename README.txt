@@ -53,7 +53,7 @@ Alternatively you can run it using Java Webstart technology at:
 To play Stendhal you have to use a keyboard and a mouse.
 
 There is a manual at
-http://arianne.sourceforge.net/wiki/index.php/StendhalManual, and there is
+http://stendhalgame.org/wiki/StendhalManual, and there is
 Help from the client main menu too.
 
 
@@ -68,13 +68,13 @@ You need to create the server.ini file by running
   
 It will create server.ini file that will work correctly with Marauroa 3.0 and above  
 
-For more details please see http://arianne.sourceforge.net/wiki/index.php?title=Host_a_Stendhal_Server
+For more details please see http://stendhalgame.org/wiki/Host_a_Stendhal_Server
 
 
 How to compile Stendhal
 -----------------------
 
-http://arianne.sourceforge.net/wiki/index.php/HowToBuildStendhal
+http://stendhalgame.org/wiki/HowToBuildStendhal
 
 
 Stendhal in Eclipse
@@ -82,7 +82,7 @@ Stendhal in Eclipse
 
 For a description on how to setup the Eclipse project for Stendhal please see:
 
-http://arianne.sourceforge.net/wiki/index.php?title=StendhalonEclipse
+http://stendhalgame.org/wiki/StendhalonEclipse
 
 
 Legal

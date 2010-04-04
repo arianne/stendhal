@@ -64,7 +64,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/** list of super admins read from admins.list. */
 	private static List<String> adminNames;
 	/** welcome message unless overwriten by an url */
-	private static String welcomeMessage = "This release is EXPERIMENTAL. Need help? #http://stendhal.game-host.org/wiki/index.php/AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
+	private static String welcomeMessage = "This release is EXPERIMENTAL. Need help? #http://stendhalgame.org/wiki/AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
 
 	/** The Singleton instance. */
 	protected static StendhalRPRuleProcessor instance;

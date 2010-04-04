@@ -78,7 +78,7 @@ add(ConversationStates.QUEST_OFFERED,
 		null,
 		new BuyHouseChatAction(getCost(), QUEST_SLOT));
 
-addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://stendhalgame.org/wiki/index.php/StendhalHouses.");
+addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://stendhalgame.org/wiki/StendhalHouses.");
 addReply("citizenship",
 			 "The royalty in Kalavan Castle decide that.");
 

@@ -19,7 +19,7 @@ public class RetireeNPC  extends SpeakerNPCFactory {
 	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting();
 		npc.addJob("Ha ha! Job? I retired decades ago! Ha ha!");
-		npc.addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit http://arianne.sourceforge.net and see how you can help!");
+		npc.addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit http://stendhalgame.org and see how you can help!");
 		npc.addGoodbye();
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
