@@ -14,6 +14,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -72,4 +73,34 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 				"Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
 	}
 
+	
+	/**
+	 * Check that creating offers for zero price cost.
+	 * (Harold needs his provision; we need to charge for those to
+	 * prevent cheating the trade score)
+	 */
+	@Test
+	public void testCreateOfferForFree() {
+		final SpeakerNPC npc = getNPC("Harold");
+		final Engine en = npc.getEngine();
+		player.addXP(1700);
+
+		PlayerTestHelper.equipWithItem(player, "axe");
+		PlayerTestHelper.equipWithStackableItem(player, "money", 42);
+
+		assertTrue(en.step(player, "hello"));
+		assertEquals("Welcome to Semos trading center. How can I #help you?", getReply(npc));
+
+		assertTrue(en.step(player, "sell axe 0"));
+		assertEquals("Do you want to sell an axe for 0 money? It would cost you 1 money.", getReply(npc));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("I added your offer to the trading center and took the fee of 1.", getReply(npc));
+		
+		assertEquals("Making a free offer should cost", 41, ((StackableItem) player.getFirstEquipped("money")).getQuantity());
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals(
+				"Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
+	}
 }
