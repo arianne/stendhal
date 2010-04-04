@@ -171,11 +171,14 @@ public class Market extends PassiveEntity {
 	 */
 	public boolean acceptOffer(final Offer offer, final Player acceptingPlayer) {
 		if (getOffers().contains(offer)) {
-			if (acceptingPlayer.drop("money", offer.getPrice().intValue())) {
+			int price = offer.getPrice().intValue();
+			// Take the money; free items should always succeed
+			if ((price == 0) || acceptingPlayer.drop("money", price)) {
 				Item item = offer.getItem();
 				offer.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(item.getID());
 				acceptingPlayer.equipOrPutOnGround(item);
-				boolean reward = offer.shouldReward(acceptingPlayer); 
+				// Do not give trading bonus for accepting free items
+				boolean reward = offer.shouldReward(acceptingPlayer) && price > 0; 
 				final Earning earning = new Earning(offer.getPrice(), offer.getOfferer(), reward);
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
 				earnings.add(earning);

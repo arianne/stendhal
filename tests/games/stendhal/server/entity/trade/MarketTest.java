@@ -229,6 +229,24 @@ public class MarketTest {
 				is(Boolean.FALSE));
 	}
 	
+	/**
+	 * Check that accepting a free offer succeeds.
+	 */
+	@Test
+	public void testAcceptFreeOffer() {
+		StendhalRPZone zone = new StendhalRPZone("shop");
+		Market market = Market.createShop();
+		zone.add(market);
+		Player george = PlayerTestHelper.createPlayer("george");
+		Item item = SingletonRepository.getEntityManager().getItem("axe");
+		george.equipToInventoryOnly(item);
+		Offer offer = market.createOffer(george, item, 0, 1);
+		
+		Player ernie = PlayerTestHelper.createPlayer("ernie");
+		market.acceptOffer(offer, ernie);
+		assertThat(ernie.isEquipped("axe"), is(Boolean.TRUE));
+	}
+	
 	@Test
 	public void testMultipleItems() {
 		Player george = PlayerTestHelper.createPlayer("george");
