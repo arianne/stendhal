@@ -1724,6 +1724,39 @@
       <profile name="lifesteal" params="0.1"/>
     </ai>
   </creature>
+
+  <creature name="blordrough quartermaster">
+    <type class="human" subclass="armored_warrior" tileid="human_armored.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="727"/>
+      <def value="94"/>
+      <hp value="1317"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="114"/>
+    <experience value="15900"/>
+    <respawn value="5900"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="greater potion" quantity="[1,2]" probability="10.0"/>
+      <item value="chaos legs" quantity="[1,1]" probability="2.0"/>
+      <item value="chaos cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="black helmet" quantity="[1,1]" probability="0.05"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="We might be in hiding, but we are STILL mighty."/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
   
   <creature name="imperial general giant">
     <type class="giant_human" subclass="imperial_general_giant" tileid="giant_human.png:8"/>
