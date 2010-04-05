@@ -2,6 +2,7 @@ package games.stendhal.client.entity.factory;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import games.stendhal.bot.textclient.TextUI;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.Box;
@@ -29,7 +30,6 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -37,9 +37,6 @@ public class EntityFactoryTest {
 
 	private class MockRPObject extends RPObject {
 
-		MockRPObject() {
-
-		}
 
 		MockRPObject(final String type, final String eclass) {
 			super.put("type", type);
@@ -60,14 +57,12 @@ public class EntityFactoryTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
 		GameObjects.createInstance(null);
 		MockStendlRPWorld.get();
-		Log4J.init();
+		new TextUI();
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Test
 	public final void carrot() {
