@@ -1,7 +1,6 @@
 package games.stendhal.tools;
 
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
-import games.stendhal.server.core.config.CreaturesXMLLoader;
 import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;

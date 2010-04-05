@@ -1,6 +1,5 @@
 package games.stendhal.server.core.engine;
 
-import games.stendhal.server.core.config.CreaturesXMLLoader;
 import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
