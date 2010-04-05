@@ -3,6 +3,9 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import java.util.LinkedList;
+
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -137,7 +140,8 @@ public class ThePiedPiperTest {
 	 * Tests for quest.
 	 */
 	@Test
-	public void testInactivePhase() {		
+	public void testInactivePhase() {	
+		assertTrue(quest.getHistory(player).isEmpty());
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
@@ -152,6 +156,7 @@ public class ThePiedPiperTest {
 		assertEquals("You didn't kill any rats which invaded the city, so you don't deserve a reward.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
+		assertTrue(quest.getHistory(player).isEmpty());
 	}
 
 	@Test
@@ -166,9 +171,12 @@ public class ThePiedPiperTest {
 				" still about "+ quest.getRatsCount() + " rats alive.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-
+		assertTrue(quest.getHistory(player).isEmpty());
 		killRats(quest.getRatsCount());
 		// [17:58] Mayor Chalmers shouts: No rats in Ados now, exclude those who always lived in storage and haunted house. Rats hunters are welcome to get their reward.
+		LinkedList<String> questHistory = new LinkedList<String>();
+		questHistory.add("RATS");
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
@@ -181,9 +189,12 @@ public class ThePiedPiperTest {
 				details()+
 				"so I will give you "+rewardMoneys+
 				" money as a #reward for that job.", getReply(npc));
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "reward");
-		
 		assertEquals("Please take "+ rewardMoneys +" money, thank you very much for your help.", getReply(npc));
+		questHistory.clear();
+		questHistory.add("DONE");
+		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));		
 	}
@@ -191,6 +202,7 @@ public class ThePiedPiperTest {
 	@Test
 	public void testAccumulatingRewards() {
 		int tempReward = 0;
+		LinkedList<String> questHistory = new LinkedList<String>();
 		// [18:09] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
 		quest.phaseInactiveToInvasion();
 		en.step(player, "bye"); // in case if previous test was failed
@@ -211,6 +223,8 @@ public class ThePiedPiperTest {
 		assertEquals("Good day to you.", getReply(npc));
 
 		killRats(quest.getRatsCount());
+		questHistory.add("RATS");
+		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
@@ -225,8 +239,10 @@ public class ThePiedPiperTest {
 		tempReward = rewardMoneys;
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
+		assertEquals(questHistory, quest.getHistory(player));
 		quest.phaseInactiveToInvasion();	
 		killRats(quest.getRatsCount());
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
@@ -239,9 +255,12 @@ public class ThePiedPiperTest {
 				"so I will give you "+rewardMoneys+
 				" money as a #reward for that job.", getReply(npc));
 		assertTrue("", (rewardMoneys > tempReward));
-		en.step(player, "reward");
-		
+		assertEquals(questHistory, quest.getHistory(player));
+		en.step(player, "reward");		
 		assertEquals("Please take "+ rewardMoneys +" money, thank you very much for your help.", getReply(npc));
+		questHistory.clear();
+		questHistory.add("DONE");
+		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 	}	
@@ -251,8 +270,11 @@ public class ThePiedPiperTest {
 	 */
 	@Test
 	public void testAwaitingPhase() {	
+		LinkedList<String> questHistory = new LinkedList<String>();
 		quest.phaseInactiveToInvasion();		
 		killRats(quest.getRatsCount()/2);
+		questHistory.add("RATS");
+		assertEquals(questHistory, quest.getHistory(player));		
 		// [18:19] Mayor Chalmers shouts: Saddanly, rats captured city, they are living now under all Ados buildings. I am now in need of call Piped Piper, rats exterminator. Thank to all who tryed to clean up Ados,  you are welcome to get your reward.
 		quest.phaseInvasionToAwaiting();		
 		en.step(player, "bye"); // in case if previous test was failed
@@ -267,8 +289,12 @@ public class ThePiedPiperTest {
 		assertEquals("Well, from the last reward, you killed "+
 				details()+
 				"so I will give you " + rewardMoneys + " money as a #reward for that job.", getReply(npc));
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "reward");
 		assertEquals("Please take " + rewardMoneys + " money, thank you very much for your help.", getReply(npc));
+		questHistory.clear();
+		questHistory.add("DONE");
+		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 		
@@ -284,8 +310,10 @@ public class ThePiedPiperTest {
 		assertEquals("You killed no rats during the #rats invasion. "+
 				  "To get a #reward you have to kill at least "+
 				  "one rat at that time.", getReply(npc));
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "reward");
 		assertEquals("You didn't kill any rats which invaded the city, so you don't deserve a reward.", getReply(npc));
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 
@@ -293,6 +321,7 @@ public class ThePiedPiperTest {
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "reward");
 		assertEquals("You didn't kill any rats which invaded the city, so you don't deserve a reward.", getReply(npc));
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 	}
