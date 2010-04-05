@@ -327,7 +327,20 @@ State: EXPERIMENTAL to help me think about a quest system
 	    	<entry name="WHERE_IS_QUICKSAND">There is a dangerous patch of quicksand near lots of snakes and stone creatures.</entry>
 		</hints>
 	</quest>
-
+	<quest name="ThePiedPiper">
+		<title> The Pied Piper </title>
+		<repeatable done="true" />
+		<description>
+			Ados city have a rats problem periodically.
+		</description>
+		<history>
+			<entry name="RATS">I have killed some rats in Ados city already, and trying to kill more.</entry>
+			<entry name="DONE">I have killed some rats in Ados city and got reward from Mayor Chalmers!</entry>
+		</history>
+		<hints>
+			<entry name="WHERE_IS_RATS">Rats inviders can be found inside Ados buildings, except storage and hounted house.</entry>
+		</hints>
+	</quest>
 	<quest name="VampireSword">
 		<title>Vampire Sword </title>
 		<repeatable done="false" />

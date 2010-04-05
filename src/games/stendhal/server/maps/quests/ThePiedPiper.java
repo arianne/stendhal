@@ -159,7 +159,7 @@ import org.apache.log4j.Logger;
 			"archrat");
 
 	/**
-	 * List of moneys quantities reward for each type of killed rats.
+	 * List of reward moneys quantities for each type of killed rats.
 	 */
 	protected static final List<Integer> RAT_REWARDS = Arrays.asList(
 			10,
@@ -645,6 +645,24 @@ import org.apache.log4j.Logger;
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+ 	
+ 	@Override
+ 	public List<String> getHistory(final Player player) {
+ 		LinkedList<String> history = new LinkedList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return history;
+		}	
+		final String questState = player.getQuest(QUEST_SLOT, 0);
+		if ("rats".equals(questState)) {
+			history.add("RATS");
+		}
+		if ("done".equals(questState)) {
+			history.add("DONE");
+		}
+		return history; 		
+ 	}
+ 	
+
 
  	@Override
 	public String getName() {
