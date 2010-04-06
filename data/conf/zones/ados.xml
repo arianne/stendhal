@@ -777,7 +777,13 @@ in roaches.
      <attribute name="class">book_blue</attribute>
      <attribute name="resistance">10</attribute>
     </entity>
-
+   
+    <entity x="10" y="5">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This is Ida's sewing machine. It looks quite old but even mithril thread can be sewn with it.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+    </entity> 
 
     <portal x="6" y="18" ref="sewing_entrance_left">
      <destination zone="0_ados_city" ref="sewing_entrance"/>
