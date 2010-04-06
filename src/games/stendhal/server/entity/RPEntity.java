@@ -523,7 +523,9 @@ public abstract class RPEntity extends GuidedEntity {
 			logger.debug("DEF MAX: " + maxDefence + "\t DEF VALUE: " + defence);
 		}
 
-		int damage = (int) ((WEIGHT_ATK * attack - defence) / maxDefence);
+		// Apply defense and damage type effect
+		int damage = (int) (defender.getSusceptibility(getDamageType()) 
+				* (WEIGHT_ATK * attack - defence) / maxDefence);
 
 		if (canDoRangeAttack(defender)) {
 			// The attacker is attacking either using a range weapon with
@@ -816,6 +818,26 @@ public abstract class RPEntity extends GuidedEntity {
 
 	public int getXP() {
 		return xp;
+	}
+	
+	/**
+	 * Get a multiplier for a given damage type when this
+	 * entity is damaged.
+	 * 
+	 * @param type Type of the damage
+	 * @return damage multiplier
+	 */
+	protected double getSusceptibility(DamageType type) {
+		return 1.0;
+	}
+	
+	/**
+	 * Get the type of the damage this entity inflicts
+	 * 
+	 * @return type of damage
+	 */
+	protected DamageType getDamageType() {
+		return DamageType.CUT;
 	}
 
 	/***************************************************************************
