@@ -6,7 +6,7 @@ import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 
 /**
- * Opens the manual
+ * Opens the FAQ
  */
 class FAQAction implements SlashAction {
 
