@@ -6,7 +6,7 @@ import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 
 /**
- * Opens the faq
+ * Opens the Manual
  */
 class ManualAction implements SlashAction {
 
@@ -22,7 +22,7 @@ class ManualAction implements SlashAction {
 				"Trying to open #http://stendhalgame.org/wiki/StendhalManual in your browser.",
 		NotificationType.CLIENT));
 
-		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/StendhalManual");
+		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/StendhalManual");
 
 		return true;
 	}
