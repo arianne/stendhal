@@ -2,10 +2,19 @@ Changelog
 ---------
 0.83
 *features*
+- rat city extended
+- Find the Rat Children quest
+- some creatures have attack strategy choosing weakest opponent
+- signs can show an image instead of 'You read: ' text, or a description
+- Zynn Iwuhos has some maps on display in the library
 
 *bugfixes*
 
+*code*
+- creatures xml split into smaller parts
 
+*website*
+- new domain 
 
 0.82.2
 *bugfixes*
@@ -30,6 +39,7 @@ Changelog
 - asynchronous database access
 - Kalavan orb
 - Sad Scientist quest
+- Dice Gambling prizes upgraded
 
 *admins*
 - new /script AdminPortal.class
