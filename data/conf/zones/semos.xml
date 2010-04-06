@@ -647,9 +647,32 @@ The sharper minded amongst you might prefer to double-click directly on the crea
 			</implementation>
 
 			<attribute name="class">oldheronpc</attribute>
-			<attribute name="level">18</attribute>
-			<attribute name="hp">98</attribute>
+			<attribute name="description">You see Hayunn Naratha. Beneath his grey hair and tatty armor you see glinting clever eyes and wiry muscles.</attribute>
+			<attribute name="hp">85</attribute>
+			<attribute name="base_hp">100</attribute>
 		</entity>
+		
+		<!-- add some interesting descriptions to the armor -->
+		<entity x="4" y="12">
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+          <attribute name="text">You see one of Hayunn's best shields, now only gathering dust on display.</attribute>
+          <attribute name="class">transparent</attribute>
+          <attribute name="width">1</attribute>
+        </entity> 
+        
+        <entity x="3" y="13">
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+          <attribute name="text">This burnished coat of armor looks tempting to borrow, but it's firmly attached to that stand.</attribute>
+          <attribute name="class">transparent</attribute>
+          <attribute name="width">1</attribute>
+        </entity> 
+        
+        <entity x="4" y="14">
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+          <attribute name="text">You see a strange kind of plate armor, made from some rare metal you do not recognise.</attribute>
+          <attribute name="class">transparent</attribute>
+          <attribute name="width">1</attribute>
+        </entity> 
 	</zone>
 
 	<zone name="int_semos_hostel" file="interiors/semos/hostel.tmx">
@@ -913,6 +936,13 @@ South: Nalwor forest and Or'ril castle
 			<attribute name="class">transparent</attribute>
 			<attribute name="width">2</attribute>
 		</entity> 
+		
+		<entity x="15" y="23">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+            <attribute name="text">Outside Semos Bank, you see a huge chest and wonder what treasure is inside.</attribute>
+            <attribute name="class">transparent</attribute>
+            <attribute name="width">2</attribute>
+        </entity> 
 
 		<entity x="46" y="20">
 			<implementation class-name="games.stendhal.server.maps.semos.city.GossipNPC">
@@ -1385,13 +1415,30 @@ Holy mackerel! These chips are tasty.
       	</attribute>
 			<attribute name="class">book_red</attribute>
 		</entity>
-     
+		
+        <entity x="9" y="0">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.PopupImage">
+             <parameter name="image">map-orril-castle.png</parameter>
+             <parameter name="title">Ancient Or'ril castle</parameter>
+            </implementation>
+            <attribute name="class">map-orril-castle</attribute>
+        </entity>  
+              
+        <entity x="20" y="0">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.PopupImage">
+             <parameter name="image">map-semos-ados.png</parameter>
+             <parameter name="title">The route to Ados City</parameter>
+            </implementation>
+            <attribute name="class">map-semos-ados</attribute>
+            <attribute name="width">3</attribute>
+        </entity>
+        
        <entity x="28" y="3">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sign.PopupImage">
-             <parameter name="image">wofolmap.png</parameter>
+             <parameter name="image">map-wofol.png</parameter>
              <parameter name="title">Semos Mines and the Kobold city of Wofol</parameter>
             </implementation>
-            <attribute name="class">wofolmap</attribute>
+            <attribute name="class">map-wofol</attribute>
         </entity>
         
     	<entity x="26" y="5">
