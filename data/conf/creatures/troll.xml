@@ -61,5 +61,40 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+  
+  <creature name="cave troll">
+    <type class="troll" subclass="cave_troll" tileid="troll.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="474"/>
+      <def value="45"/>
+      <hp value="1000"/>
+      <speed value="0.7"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="63"/>
+    <experience value="3100"/>
+    <respawn value="1870"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
+    <drops>
+      <item value="money" quantity="[1,30]" probability="100.0"/>
+      <item value="meat" quantity="[1,5]" probability="10.5"/>
+      <item value="ugmash" quantity="[1,1]" probability="0.0001"/>
+      <item value="barbarian armor" quantity="[1,1]" probability="5.5"/>
+      <item value="stone boots" quantity="[1,1]" probability="2.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Uggga yggga arghhhhh"/>
+        <noise state="idle follow fight" value="Ooggga UGGga arhhh"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
    
 </creatures>  
