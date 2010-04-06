@@ -691,6 +691,28 @@
 		</javac>
 	</target>
 
+	<target name="compile_stendhaltc" description="compiles the Stendhal text client ">
+		<mkdir dir="${build_stendhaltc}"/>
+
+		<javac srcdir="${src}" destdir="${build_stendhaltc}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
+			<include name="games/stendhal/bot/textclient/*.java"/>
+			<compilerarg value="-encoding"/>
+			<compilerarg value="utf-8"/>
+			<compilerarg value="-Xlint:unchecked"/>
+
+			<classpath>
+				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${marauroa_jar}"/>
+				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${groovy_jar}"/>
+				<pathelement path="${tiled_jar}"/>
+				<pathelement path="${jorbis_jar}"/>
+				<pathelement path="${pagelayout_jar}"/>
+				<pathelement path="${swinglayout_jar}"/>
+			</classpath>
+		</javac>
+	</target>
+
 	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16" depends="compile_stendhaltools">
 		<taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
 			<classpath>
@@ -726,7 +748,7 @@
 
 	<target name="tests" description="Compile and run tests" depends="compile_tests,run_tests,report_test"/>
 
-	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools">
+	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltc">
 		<mkdir dir="${build_tests}"/>
 
 		<javac srcdir="tests" destdir="${build_tests}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
@@ -739,6 +761,7 @@
 
 			<classpath>
 				<pathelement path="${build_stendhaltools}"/>
+				<pathelement path="${build_stendhaltc}"/>
 				<pathelement path="${build_client}"/>
 				<pathelement path="${build_server}"/>
 				<pathelement path="${build_server_maps}"/>
@@ -768,6 +791,7 @@
 				<pathelement path="${build_server}"/>
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${build_stendhaltools}"/>
+				<pathelement path="${build_stendhaltc}"/>
 				<pathelement path="${easymock_jar}"/>
 				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${cglib_jar}"/>
@@ -894,6 +918,7 @@
 				<pathelement path="${build_server}"/>
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${build_stendhaltools}"/>
+				<pathelement path="${build_stendhaltc}"/>
 				<pathelement path="${easymock_jar}"/>
 				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${cglib_jar}"/>
