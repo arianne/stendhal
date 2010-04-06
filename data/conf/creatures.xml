@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <groups xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal groups.xsd ">
+	<group uri="creatures/albino_elf.xml"/>
 	<group uri="creatures/animal.xml"/>
 	<group uri="creatures/beholder.xml"/>
 	<group uri="creatures/creatures.xml"/>
+    <group uri="creatures/dark_elf.xml"/>
 	<group uri="creatures/dwarf.xml"/>
+	<group uri="creatures/elemental.xml"/>
 	<group uri="creatures/elf.xml"/>
 	<group uri="creatures/fairy.xml"/>
 	<group uri="creatures/farm_animal.xml"/>
