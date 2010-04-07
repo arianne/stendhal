@@ -31,6 +31,7 @@ public class SupportMessageTemplatesFactory {
 		addTemplate("$notsupport","Hi %s, sorry, but support cannot help with this issue. Please use #http://stendhalgame.org and the wiki #http://stendhalgame.org/wiki/Stendhal as information sources.");
 		addTemplate("$spam","Hi %s, repeatedly saying the same thing over and over again is considered spamming, and this is against the rules of the game. Please do not spam, and please read #http://stendhalgame.org/wiki/StendhalRuleSystem, thank you.");
 		addTemplate("$password","Hi %s, you can change your password by logging in on #http://stendhalgame.org. When you are logged in on that page you will find a link called change password in the upper right area of the page. There you can change your password.");
+		addTemplate("$atlas", "Hi %s, we feel sorry that you got lost in the world of Stendhal. You can open the atlas of Faiumoni with the #/atlas command - thank you");
 	}
 
 	private void addTemplate(String templateName, String templateText) {
