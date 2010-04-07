@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
+import games.stendhal.server.util.TwitterAccess;
 
 
 public class PrepareOfferHandler {
@@ -136,6 +137,13 @@ public class PrepareOfferHandler {
 			if (TradingUtility.canPlayerAffordTradingFee(player, price)) {
 				if (createOffer(player, item, price, quantity)) {
 					TradingUtility.substractTradingFee(player, price);
+					StringBuilder message = new StringBuilder();
+					message.append("New offer for ");
+					message.append(item.getName());
+					message.append(" at ");
+					message.append(price);
+					message.append(" money.");
+					TwitterAccess.tweet("trade", message.toString());
 					npc.say("I added your offer to the trading center and took the fee of "+ fee +".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
 				} else {
