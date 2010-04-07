@@ -582,7 +582,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		// in the chat line without the Thread.yield. The problem does neither occure on OpenJDK
 		// nor on Ubuntu 9.04
 		long now = System.currentTimeMillis();
-		if (now - lastDrawYield > 200) {
+		if (now - lastDrawYield > 100) {
 			lastDrawYield = now;
 			Thread.yield();
 		}
