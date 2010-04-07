@@ -21,6 +21,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.impl.AttackStrategy;
@@ -41,6 +42,7 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -121,7 +123,13 @@ public class Creature extends NPC {
 	
 	private final int attackTurn = Rand.rand(5);
 
-	private boolean isIdle; 
+	private boolean isIdle;
+	
+	/** The type of the damage this creature does */
+	private DamageType damageType;
+	
+	/** Susceptibilities to various damage types this creature has */
+	private Map<DamageType, Double> susceptibilities;
 
 	public Creature(final RPObject object) {
 		super(object);
@@ -136,6 +144,8 @@ public class Creature extends NPC {
 		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
 		setAiProfiles(new HashMap<String, String>());
+		
+		susceptibilities = new EnumMap<DamageType, Double>(DamageType.class);
 	}
 
 	public Creature(final Creature copy) {
@@ -160,6 +170,8 @@ public class Creature extends NPC {
 		this.noises = copy.noises;
 
 		this.respawnTime = copy.respawnTime;
+		susceptibilities = copy.susceptibilities;
+		damageType = copy.damageType;
 
 		setEntityClass(copy.get("class"));
 		setEntitySubClass(copy.get("subclass"));
@@ -199,6 +211,8 @@ public class Creature extends NPC {
 		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
 		setAiProfiles(new HashMap<String, String>());
+		
+		susceptibilities = new EnumMap<DamageType, Double>(DamageType.class);
 	}
 
 	/**
@@ -769,5 +783,36 @@ public class Creature extends NPC {
 		// Give creatures a bit weapon atk to prevent having too high
 		// personal atk values
 		return 5f;
+	}
+	
+	// *** Damage type code ***
+	
+	/**
+	 * Set the susceptibility mapping of a creature. The mapping is <em>not</em>
+	 * copied.
+	 * @param susceptibilities The susceptibilities of the creature
+	 */
+	public void setSusceptibilities(Map<DamageType, Double> susceptibilities) {
+		this.susceptibilities = susceptibilities;
+	}
+	
+	@Override
+	protected double getSusceptibility(DamageType type) {
+		Double d = susceptibilities.get(type);
+		
+		if (d != null) {
+			return d.doubleValue();
+		}
+		
+		return 1.0;
+	}
+	
+	@Override
+	protected DamageType getDamageType() {
+		return damageType;
+	}
+	
+	public void setDamageType(DamageType type) {
+		damageType = type;
 	}
 }

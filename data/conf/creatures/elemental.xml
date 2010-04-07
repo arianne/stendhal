@@ -80,6 +80,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="fire"/>
+      <susceptibility type="ice" value="2.0"/>
+      <susceptibility type="fire" value="0.2"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -168,6 +173,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="ice"/>
+      <susceptibility type="ice" value="0.2"/>
+      <susceptibility type="fire" value="2.0"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>

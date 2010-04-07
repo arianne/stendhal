@@ -13,6 +13,7 @@
 package games.stendhal.server.core.rule.defaultruleset;
 
 import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
@@ -81,6 +82,12 @@ public class DefaultCreature {
 	private LinkedHashMap<String, LinkedList<String>> creatureSays;
 	
 	private Map<String, String> aiProfiles;
+	
+	/** Susceptibilities of the creature */
+	private Map<DamageType, Double> susceptibilities;
+	
+	/** Type of damage caused by the creature */
+	private DamageType damageType;
 
 	/** speed relative to player [0.0 ... 1.0] */
 	private double speed;
@@ -197,6 +204,19 @@ public class DefaultCreature {
 	public void setAIProfiles(final Map<String, String> aiProfiles) {
 		this.aiProfiles = aiProfiles;
 	}
+	
+	/**
+	 * Set the susceptibility mapping.
+	 * 
+	 * @param susceptibilities creature susceptibilities
+	 */
+	public void setSusceptibilities(final Map<DamageType, Double> susceptibilities) {
+		this.susceptibilities = susceptibilities;
+	}
+	
+	public void setDamageType(DamageType type) {
+		damageType = type;
+	}
 
 	/** @return a creature-instance. 
 	 */
@@ -221,6 +241,8 @@ public class DefaultCreature {
 		creature.equip(equipsItems);
 		
 		creature.setCorpse(corpseName, corpseWidth, corpseHeight);
+		creature.setSusceptibilities(susceptibilities);
+		creature.setDamageType(damageType);
 		
 		return creature;
 	}

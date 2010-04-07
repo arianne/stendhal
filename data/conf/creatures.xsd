@@ -31,6 +31,7 @@
 			<xsd:element name="drops" type="Q2:Drops" minOccurs="0" />
 			<xsd:element name="slots" type="Q2:Slots" minOccurs="0" />
 			<xsd:element name="equips" type="Q2:Equips" minOccurs="0" />
+			<xsd:element name="abilities" type="Q2:Abilities" minOccurs="0"/>
 			<xsd:element name="ai" type="Q2:Ai" minOccurs="1" />
 		</xsd:sequence>
 		<xsd:attribute name="name" type="xsd:string" />
@@ -145,6 +146,22 @@
 	<xsd:complexType name="Equips">
 		<xsd:sequence>
 			<xsd:element name="slot" type="Q2:Slot" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Abilities">
+		<xsd:sequence>
+			<xsd:element name="damage" minOccurs="0" maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="type" type="xsd:string" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="susceptibility" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:attribute name="type" type="xsd:string" />
+					<xsd:attribute name="value" type="xsd:decimal" />
+				</xsd:complexType>
+			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
 	

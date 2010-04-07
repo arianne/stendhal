@@ -1,6 +1,7 @@
 package games.stendhal.server.core.config;
 
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
 
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,10 +26,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class CreaturesXMLLoader extends DefaultHandler {
-
-	/** The Singleton instance. */
-	private static CreaturesXMLLoader instance;
-
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(CreaturesXMLLoader.class);
 
@@ -86,6 +84,14 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	private boolean says;
 
 	private boolean attributes;
+	
+	private boolean abilities;
+
+	/** Susceptibilities of a creature */
+	private EnumMap<DamageType, Double> susceptibilities;
+	
+	/** Type of the damage caused by the creature */
+	private DamageType damageType = DamageType.CUT;
 
 	CreaturesXMLLoader() {
 		// hide constructor, use the CreatureGroupsXMLLoader instead
@@ -138,6 +144,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			creatureSays = new LinkedHashMap<String, LinkedList<String>>();
 			aiProfiles = new LinkedHashMap<String, String>();
 			description = null;
+			susceptibilities = new EnumMap<DamageType, Double>(DamageType.class);
 		} else if (qName.equals("type")) {
 			clazz = attrs.getValue("class");
 			subclass = attrs.getValue("subclass");
@@ -260,7 +267,15 @@ public class CreaturesXMLLoader extends DefaultHandler {
 								"): double definition for noise \""+key+"\" ("+value+")");
 				}
 			}
-		} 
+		} else if (qName.equals("abilities")) {
+			abilities = true;
+		} else if (abilities && qName.equals("damage")) {
+			damageType = DamageType.parse(attrs.getValue("type"));
+		} else if (abilities && qName.equals("susceptibility")) {
+			DamageType type = DamageType.parse(attrs.getValue("type"));
+			Double value = Double.valueOf(attrs.getValue("value"));
+			susceptibilities.put(type, value);
+		}
 	}
 
 	@Override
@@ -288,6 +303,8 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			creature.setNoiseLines(creatureSays);
 			creature.setRespawnTime(respawn);
 			creature.setDescription(description);
+			creature.setSusceptibilities(susceptibilities);
+			creature.setDamageType(damageType);
 			list.add(creature);
 		} else if (qName.equals("attributes")) {
 			attributes = false;
@@ -304,6 +321,8 @@ public class CreaturesXMLLoader extends DefaultHandler {
 				description = text.trim();
 			}
 			text = "";
+		} else if (qName.equals("abilities")) {
+			abilities = false;
 		}
 	}
 
