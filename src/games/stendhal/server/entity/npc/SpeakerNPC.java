@@ -3,6 +3,8 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.npc.action.NPCEmoteAction;
+import games.stendhal.server.entity.npc.condition.EmoteCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
@@ -10,6 +12,7 @@ import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -384,6 +387,8 @@ public class SpeakerNPC extends NPC {
 		waitAction = action;
 	}
 
+
+	
 	public void addInitChatMessage(final ChatCondition condition, final ChatAction action) {
 		initChatCondition = condition;
 		initChatAction = action;
@@ -671,7 +676,47 @@ public class SpeakerNPC extends NPC {
 	public void addOffer(final String offerDescription) {
 		addReply(ConversationPhrases.OFFER_MESSAGES, offerDescription);
 	}
+	
+	/**
+	 * make npc's emotion reply on player's emotion
+	 * @param playerAction - what player doing with npc
+	 * @param npcAction - npc's emotion reply on player's emotion
+	 */
+	public void addEmotionReply(final String playerAction, final String npcAction) {
+		add(ConversationStates.ATTENDING, Arrays.asList("!me "), new EmoteCondition(playerAction),
+				ConversationStates.ATTENDING, null, new NPCEmoteAction(npcAction));
+	}
 
+	/**
+	 * make npc's emotion
+	 * @param triggers - player's keywords for npc emotion
+	 * @param npcAction - npc's emotion
+	 */
+	public void addEmotion(final List<String> triggers, final String npcAction) {
+		add(ConversationStates.ATTENDING, triggers,
+				ConversationStates.ATTENDING, null, new NPCEmoteAction(npcAction));
+	}
+
+	/**
+	 * make npc's emotion
+	 * @param triggers - player's keywords for npc emotion
+	 * @param npcAction - npc's emotion
+	 */
+	public void addEmotion(final String trigger, final String npcAction) {
+		add(ConversationStates.ATTENDING, Arrays.asList(trigger),
+				ConversationStates.ATTENDING, null, new NPCEmoteAction(npcAction));
+	}
+	
+	/**
+	 * make npc's reply on player's emotion
+	 * @param playerAction - what player doing with npc
+	 * @param reply - npc's reply on player's emotion
+	 */
+	public void addReplyOnEmotion(final String playerAction, final String reply) {
+		add(ConversationStates.ATTENDING, Arrays.asList("!me "),new EmoteCondition(playerAction),
+				ConversationStates.ATTENDING, reply, null);		
+	}
+		
 	public void addGoodbye() {
 		addGoodbye("Bye.");
 	}
