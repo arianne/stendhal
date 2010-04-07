@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
@@ -55,7 +56,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * picked.
 	 */
 	private PassiveEntityRespawnPoint plantGrower;
-	
+
+	/** The damage type of weapons */
+	private DamageType damageType = DamageType.CUT;
 	
 	/**
 	 * 
@@ -420,6 +423,24 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		} else if (has("infostring")) {
 			remove("infostring");
 		}
+	}
+
+	/**
+	 * Get the type of damage inflicted by this item.
+	 * 
+	 * @return type of damage
+	 */
+	public DamageType getDamageType() {
+		return damageType;
+	}
+	
+	/**
+	 * Set the type of damage inflicted by this item
+	 * 
+	 * @param type type of damage
+	 */
+	public void setDamageType(DamageType type) {
+		damageType = type;
 	}
 
 	@Override

@@ -28,6 +28,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
@@ -1899,5 +1900,15 @@ public class Player extends RPEntity {
 	 */
 	public PlayerChatBucket getChatBucket() {
 		return chatBucket;
+	}
+	
+	@Override
+	protected DamageType getDamageType() {
+		Item weapon = getWeapon();
+		if (weapon != null) {
+			return weapon.getDamageType();
+		}
+		
+		return DamageType.CUT;
 	}
 }
