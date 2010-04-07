@@ -10,6 +10,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.awt.geom.Rectangle2D;
@@ -198,6 +199,21 @@ public class ItemTest {
 		assertEquals(3, mo.getAttack());
 		mo.put("atk", 2);
 		assertEquals(2, mo.getAttack());
+	}
+	
+	/**
+	 * Test getting damage type.
+	 */
+	@Test
+	public void testGetDamageType() {
+		Item mo = new Item("name1", "class", "subclass",
+				new HashMap<String, String>());
+		// Default to cut
+		assertEquals(DamageType.CUT, mo.getDamageType());
+		mo.setDamageType(DamageType.ICE);
+		assertEquals(DamageType.ICE, mo.getDamageType());
+		mo.setDamageType(DamageType.FIRE);
+		assertEquals(DamageType.FIRE, mo.getDamageType());
 	}
 
 	/**
