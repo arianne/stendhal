@@ -19,7 +19,7 @@ public enum DamageType {
 			return ICE;
 		}
 		
-		Logger.getLogger(DamageType.class).equals("Unknown damage type: " + type);
+		Logger.getLogger(DamageType.class).error("Unknown damage type: " + type);
 		return CUT;
 	}
 }
