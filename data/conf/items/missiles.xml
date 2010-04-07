@@ -11,6 +11,7 @@
     </attributes>
     <weight value="0.1"/>
     <value value="80"/>
+    <damage type="ice"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>

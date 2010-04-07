@@ -190,6 +190,7 @@
     </attributes>
     <weight value="8.0"/>
     <value value="455625"/>
+    <damage type="ice"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -241,6 +242,7 @@
     </attributes>
     <weight value="8.0"/>
     <value value="614400"/>
+    <damage type="fire"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
