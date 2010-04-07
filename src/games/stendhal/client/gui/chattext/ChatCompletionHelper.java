@@ -9,20 +9,20 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Vector;
+import java.util.Set;
 
 public final class ChatCompletionHelper extends KeyAdapter {
 	private final ChatTextController chatController;
-	private final Vector<String> playersonline;
+	private final Set<String> playersonline;
 	private int  lastkeypressed;
 	private Collection< ? extends String> resultset = Collections.emptyList();
 	private int currentIndex;
 	private String output;
 
 	public ChatCompletionHelper(final ChatTextController chatTextController,
-			final Vector<String> onlineplayers) {
+			final Set<String> list) {
 		this.chatController = chatTextController;
-		this.playersonline = onlineplayers;
+		this.playersonline = list;
 	}
 
 	public void keyPressed(final KeyEvent e) {

@@ -45,6 +45,8 @@ import games.stendhal.server.events.BuddyLoginEvent;
 import games.stendhal.server.events.BuddyLogoutEvent;
 import games.stendhal.server.events.ExamineEvent;
 import games.stendhal.server.events.HealedEvent;
+import games.stendhal.server.events.PlayerLoggedOnEvent;
+import games.stendhal.server.events.PlayerLoggedOutEvent;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.events.SoundEvent;
@@ -213,6 +215,14 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("text")) {
 			TextEvent.generateRPClass();
+		}
+		
+		if (!RPClass.hasRPClass(Events.PLAYER_LOGGED_ON)) {
+			PlayerLoggedOnEvent.generateRPClass();
+		}
+		
+		if (!RPClass.hasRPClass(Events.PLAYER_LOGGED_OUT)) {
+			PlayerLoggedOutEvent.generateRPClass();
 		}
 
 		// guilds

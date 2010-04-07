@@ -28,6 +28,8 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.PlayerLoggedOnEvent;
+import games.stendhal.server.events.PlayerLoggedOutEvent;
 import games.stendhal.server.extension.StendhalServerExtension;
 
 import java.io.BufferedReader;
@@ -409,7 +411,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			getOnlinePlayers().add(player);
 
 			if (!player.isGhost()) {
-				notifyOnlineStatus(true, player.getName());
+				notifyOnlineStatus(true, player);
 				DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, true);
 
 			}
@@ -477,7 +479,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			if (!player.isGhost()) {
-				notifyOnlineStatus(false, player.getName());
+				notifyOnlineStatus(false, player);
 			}
 
 			Player.destroy(player);
@@ -575,21 +577,24 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * notifies buddies about going online/offline
 	 *
 	 * @param isOnline did the player login?
-	 * @param name name of the player
+	 * @param playerToNotifyAbout name of the player
 	 */
-	public void notifyOnlineStatus(final boolean isOnline, final String name) {
+	public void notifyOnlineStatus(final boolean isOnline, final Player playerToNotifyAbout) {
 		if (instance != null) {
 			if (isOnline) {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(final Player player) {
-						player.notifyOnline(name);
+						player.notifyOnline(playerToNotifyAbout.getName());
+						player.addEvent(new PlayerLoggedOnEvent(playerToNotifyAbout.getName()));
+						playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
 					}
 				});
 
 			} else {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(final Player player) {
-						player.notifyOffline(name);
+						player.notifyOffline(playerToNotifyAbout.getName());
+						player.addEvent(new PlayerLoggedOutEvent(playerToNotifyAbout.getName()));
 					}
 				});
 			}

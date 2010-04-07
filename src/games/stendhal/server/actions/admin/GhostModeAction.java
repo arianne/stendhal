@@ -37,7 +37,7 @@ public class GhostModeAction extends AdministrationAction {
 		DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, !player.isGhost());
 		
 		/* Notify players about admin going into ghost mode. */
-		StendhalRPRuleProcessor.get().notifyOnlineStatus(!player.isGhost(), player.getName());
+		StendhalRPRuleProcessor.get().notifyOnlineStatus(!player.isGhost(), player);
 		
 		player.notifyWorldAboutChanges();
 	}

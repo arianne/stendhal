@@ -12,4 +12,9 @@ public final class Events {
 	/** a sound event */
 	public static final String SOUND = "sound_event";
 
+	public static final String PLAYER_LOGGED_ON = "player_logged_on";
+
+	public static final String PLAYER_LOGGED_OUT = "player_logged_out";
+
+
 }

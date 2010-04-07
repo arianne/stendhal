@@ -241,7 +241,7 @@ public class j2DClient implements UserInterface {
 		positionChangeListener.add(screen);
 
 				
-		final KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.getPlayerList().getNamesList());
+		final KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.get().getPlayerList().getNamesList());
 		chatText.addKeyListener(tabcompletion);
 		
 		/*

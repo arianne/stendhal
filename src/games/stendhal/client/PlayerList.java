@@ -1,38 +1,25 @@
 package games.stendhal.client;
 
-import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PlayerList {
-	private Vector<String> namesList = new Vector<String>();
+	
+	private Set<String> namesList = new HashSet<String>();
 
-	public Vector<String> getNamesList() {
+	public Set<String> getNamesList() {
 		return namesList;
 	}
+	
+	public void removePlayer(String player) {
+		namesList.remove(player);
+	}
+	
+	public void addPlayer(String player) {
+		namesList.add(player);
+	}
 
-	public void generateWhoPlayers(final String text) {
-	
-		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$").matcher(
-				text);
-	
-		if (matcher.find()) {
-			final String[] names = matcher.group(1).split("\\s+");
-	
-			getNamesList().removeAllElements();
-			for (int i = 0; i < names.length; i++) {
-				/*
-				 * NOTE: On the future Players names won't have any non ascii
-				 * character.
-				 */
-				matcher = Pattern.compile(
-						"^([-_a-zA-Z0-9äöüßÄÖÜ]+)\\([0-9]+\\)$").matcher(
-						names[i]);
-				if (matcher.find()) {
-					getNamesList().addElement(matcher.group(1));
-				}
-			}
-		}
-	
+	public boolean contains(String player) {
+		return namesList.contains(player);
 	}
 }

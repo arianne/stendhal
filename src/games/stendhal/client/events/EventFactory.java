@@ -70,6 +70,10 @@ public class EventFactory {
 			event = new SoundEvent();
 		} else if (name.equals("transition_graph")) {
 			event = new TransitionGraphEvent();
+		} else if (name.equals(Events.PLAYER_LOGGED_ON)) {
+			event = new PlayerLoggedOnEvent();
+		} else if (name.equals(Events.PLAYER_LOGGED_OUT)) {
+			event = new PlayerLoggedOutEvent();
 		}
 
 		if (event != null) {
