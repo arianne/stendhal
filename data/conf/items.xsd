@@ -20,6 +20,7 @@
     		<element name="attributes" type="Q1:attributes"></element>
     		<element name="weight" type="Q1:attribute"></element>
     		<element name="value" type="Q1:attribute"></element>
+		<element name="damage" type="Q1:damage" minOccurs="0"></element>
     		<element name="equipable" type="Q1:equipable"></element>
     	</sequence>
     	<attribute name="name" type="string" use="required"></attribute>
@@ -63,9 +64,12 @@
     		<element name="slot" type="Q1:slot" minOccurs="0" maxOccurs="unbounded"></element>
     	</sequence>
     </complexType>
-    <complexType name="slot">
 
+    <complexType name="slot">
     	<attribute name="name" type="string"></attribute>
     </complexType>
 
+    <complexType name="damage">
+	<attribute name="type" type="string"/>
+    </complexType>
 </schema>

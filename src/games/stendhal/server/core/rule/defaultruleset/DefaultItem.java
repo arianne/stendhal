@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.rule.defaultruleset;
 
+import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.entity.item.Item;
 
 import java.lang.reflect.Constructor;
@@ -61,6 +62,8 @@ public class DefaultItem {
 	private Class< ? > implementation;
 
 	private int value;
+	
+	private DamageType damageType;
 
 	public DefaultItem(final String clazz, final String subclazz, final String name, final int tileid) {
 		this.clazz = clazz;
@@ -99,6 +102,10 @@ public class DefaultItem {
 
 	public String getDescription() {
 		return description;
+	}
+	
+	public void setDamageType(String type) {
+		damageType = DamageType.parse(type);
 	}
 
 	public void setImplementation(final Class< ? > implementation) {
@@ -184,6 +191,9 @@ public class DefaultItem {
 		if (item != null) {
 			item.setEquipableSlots(slots);
 			item.setDescription(description);
+			if (damageType != null) {
+				item.setDamageType(damageType);
+			}
 		}
 
 		return item;

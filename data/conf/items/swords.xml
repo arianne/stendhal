@@ -403,6 +403,7 @@
     </attributes>
     <weight value="4.0"/>
     <value value="156800"/>
+    <damage type="fire"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -420,6 +421,7 @@
     </attributes>
     <weight value="4.0"/>
     <value value="174207"/>
+    <damage type="ice"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>

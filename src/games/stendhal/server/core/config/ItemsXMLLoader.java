@@ -50,6 +50,8 @@ public class ItemsXMLLoader extends DefaultHandler {
 	private List<DefaultItem> list;
 
 	private boolean attributesTag;
+	
+	private String damageType;
 
 	
 
@@ -120,6 +122,8 @@ public class ItemsXMLLoader extends DefaultHandler {
 			attributesTag = true;
 		} else if (attributesTag) {
 			attributes.put(qName, attrs.getValue("value"));
+		} else if (qName.equals("damage")) {
+			damageType = attrs.getValue("type");
 		}
 	}
 
@@ -132,6 +136,11 @@ public class ItemsXMLLoader extends DefaultHandler {
 			item.setAttributes(attributes);
 			item.setDescription(description);
 			item.setValue(value);
+			if (damageType != null) {
+				item.setDamageType(damageType);
+				// An optional element - reset it to avoid leaking to next items
+				damageType = null;
+			}
 
 			if (implementation == null) {
 				LOGGER.error("Item without defined implementation: " + name);
