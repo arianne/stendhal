@@ -25,7 +25,7 @@ public class SupportMessageTemplatesFactory {
 	 * registers the available templates. use %s to personalize a template with the name of the asking player in the greeting. but you can only use %s once.
 	 */
 	private void registerTemplates() {
-		addTemplate("$faq", "Hi %s, you will find the answer to your question in the Stendhal FAQ. It's very helpful so please read it thoroughly! Use #/faq or open #http://stendhalgame.org/wiki/StendhalFAQ. Thanks for playing Stendhal!");
+		addTemplate("$faq", "Hi %s, you will find the answer to your question in the Stendhal FAQ. It's very helpful so please read it thoroughly! Use #/faq to open the Stendhal FAQ. Thanks for playing Stendhal!");
 		addTemplate("$faqsocial", "Hi %s, sorry to hear about that. But unfortunately support is not here to help you with social problems unless it gets way out of hand. This issue is discussed further on the stendhal FAQ and how to deal with it is described there. Please open the FAQ via #/faq and read carefully #http://stendhalgame.org/wiki/StendhalFAQ#Player_social_problems - hopefully the rest of your Stendhal experience will be more pleasant.");
 		addTemplate("$ignore","Hi %s, sorry to hear that you have had some problems with another player. Please try to ignore them. You can use #/ignore #playername to prevent chat messages.");
 		addTemplate("$faqpvp","Hi %s, sorry to hear about that. Player attacks are actually within the rules of the game, and it is not something that support gets involved with for that reason. Please read carefully #http://stendhalgame.org/wiki/StendhalFAQ#Player_vs_Player - good luck for the future.");
