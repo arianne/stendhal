@@ -110,6 +110,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		super(item);
 		setRPClass("item");
 		possibleSlots = new ArrayList<String>(item.possibleSlots);
+		damageType = item.damageType;
 	}
 
 	public static void generateRPClass() {

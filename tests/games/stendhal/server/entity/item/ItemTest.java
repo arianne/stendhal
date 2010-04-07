@@ -214,6 +214,10 @@ public class ItemTest {
 		assertEquals(DamageType.ICE, mo.getDamageType());
 		mo.setDamageType(DamageType.FIRE);
 		assertEquals(DamageType.FIRE, mo.getDamageType());
+		
+		// Check that damage type gets copied
+		Item copy = new Item(mo);
+		assertEquals("Damage type should be copied", DamageType.FIRE, copy.getDamageType());
 	}
 
 	/**
