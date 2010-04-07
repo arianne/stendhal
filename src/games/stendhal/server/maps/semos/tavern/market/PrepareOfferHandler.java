@@ -137,13 +137,7 @@ public class PrepareOfferHandler {
 			if (TradingUtility.canPlayerAffordTradingFee(player, price)) {
 				if (createOffer(player, item, price, quantity)) {
 					TradingUtility.substractTradingFee(player, price);
-					StringBuilder message = new StringBuilder();
-					message.append("New offer for ");
-					message.append(item.getName());
-					message.append(" at ");
-					message.append(price);
-					message.append(" money.");
-					TwitterAccess.tweet("trade", message.toString());
+					TwitterAccess.tweet("trade", buildTweetMessage());
 					npc.say("I added your offer to the trading center and took the fee of "+ fee +".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
 				} else {
@@ -152,6 +146,16 @@ public class PrepareOfferHandler {
 				return;
 			}
 			npc.say("You cannot afford the trading fee of " + fee);
+		}
+
+		private String buildTweetMessage() {
+			StringBuilder message = new StringBuilder();
+			message.append("New offer for ");
+			message.append(item.getName());
+			message.append(" at ");
+			message.append(price);
+			message.append(" money.");
+			return message.toString();
 		}
 		
 		/**
