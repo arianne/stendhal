@@ -23,7 +23,7 @@ public class NPCEmoteAction implements ChatAction {
 	/**
 	 * Creates a new EmoteAction.
 	 * 
-	 * @param text text to say
+	 * @param npcAction text to say
 	 */
 	public NPCEmoteAction(String npcAction) {
 		this.npcAction = npcAction.trim();

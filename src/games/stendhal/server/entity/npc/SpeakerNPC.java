@@ -699,7 +699,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * make npc's emotion
-	 * @param triggers - player's keywords for npc emotion
+	 * @param trigger - player's keywords for npc emotion
 	 * @param npcAction - npc's emotion
 	 */
 	public void addEmotion(final String trigger, final String npcAction) {
