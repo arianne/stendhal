@@ -1,17 +1,13 @@
 package games.stendhal.server.util;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import marauroa.common.Configuration;
 
 import org.apache.log4j.Logger;
-
-import twitter4j.AsyncTwitter;
-import twitter4j.AsyncTwitterFactory;
-import twitter4j.Status;
-import twitter4j.TwitterAdapter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterMethod;
 
 
 /**
@@ -41,21 +37,26 @@ public class TwitterAccess {
 		if (!configuration.has("stendhal.twitter." + account + ".password")) {
 			return;
 		}
-		
-        AsyncTwitterFactory factory = new AsyncTwitterFactory(new TwitterAdapter() {
-            @Override
-            public void onException(TwitterException e, TwitterMethod method) {
-            	logger.error("Twitter error", e);
-            }
-        });
 
-        // get username and password from configuratoin
-        String username = configuration.get("stendhal.twitter." + account + ".username", account);
-        String password = configuration.get("stendhal.twitter." + account + ".password");
+		// get username and password from configuratoin
+		String username = configuration.get("stendhal.twitter." + account + ".username", account);
+		String password = configuration.get("stendhal.twitter." + account + ".password");
 
-        // send the tweet
-        AsyncTwitter twitter = factory.getInstance(username, password);
-        twitter.updateStatus(message);
+		//send the tweet
+		send(username, password, message);
+	}
 
+	private static void send(String username, String password, String message) {
+		try {
+			URL url = new URL("https://" + username + ":" + password + "@api.twitter.com/1/statuses/update.format");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true);
+			OutputStream os = connection.getOutputStream();
+			os.write(("status=" + message.substring(0, Math.min(message.length(), 139))).getBytes("UTF-8"));
+			os.close();
+			connection.getInputStream().close();
+		} catch (IOException e) {
+			logger.error(e, e);
+		}
 	}
 }
