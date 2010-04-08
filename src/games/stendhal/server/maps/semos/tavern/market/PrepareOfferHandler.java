@@ -44,6 +44,12 @@ public class PrepareOfferHandler {
 		this.quantity = quantity;
 	}
 	
+	/**
+	 * Builds the message for the tweet to be posted
+	 * @param i the offered item
+	 * @param p the price for the item
+	 * @return the message to be posted in the tweet
+	 */
 	public String buildTweetMessage(Item i, int p) {
 		StringBuilder message = new StringBuilder();
 		message.append("New offer for ");
