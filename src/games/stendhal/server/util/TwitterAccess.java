@@ -15,8 +15,11 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class TwitterAccess {
+public class TwitterAccess extends Thread {
 	private static Logger logger = Logger.getLogger(TwitterAccess.class);
+	private String message;
+	private String account;
+
 
 	/**
 	 * Sends a tweet
@@ -24,7 +27,16 @@ public class TwitterAccess {
 	 * @param account account to use
 	 * @param message message to tweet
 	 */
-	public static void tweet(String account, String message) {
+	public TwitterAccess(String account, String message) {
+		this.account = account;
+		this.message = message;
+	}
+	
+	/**
+	 * Sends a tweet. Use "start()" for asynchronous access.
+	 *
+	 */
+	public void run() {
 		Configuration configuration;
 		try {
 			configuration = Configuration.getConfiguration();
@@ -46,7 +58,7 @@ public class TwitterAccess {
 		send(username, password, message);
 	}
 
-	private static void send(String username, String password, String message) {
+	private void send(String username, String password, String message) {
 		try {
 			URL url = new URL("https://" + username + ":" + password + "@api.twitter.com/1/statuses/update.format");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
