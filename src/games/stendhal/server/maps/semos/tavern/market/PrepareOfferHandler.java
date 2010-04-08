@@ -154,7 +154,14 @@ public class PrepareOfferHandler {
 			message.append(item.getName());
 			message.append(" at ");
 			message.append(price);
-			message.append(" money.");
+			message.append(" money. ");
+			String stats = "";
+			String description = item.describe();
+			int start = description.indexOf("Stats are (");
+			if(start > -1) {
+				stats = description.substring(start);
+			}
+			message.append(stats);
 			return message.toString();
 		}
 		
