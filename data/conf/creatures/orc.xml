@@ -31,6 +31,36 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+  
+  <creature name="orc spearman">
+    <type class="orc" subclass="orc_spearman" tileid="orc.png:4"/>
+    <description>You see an orc spearman. Run away fast before a spear pierces you.</description>
+    <attributes>
+      <atk value="150"/>
+      <def value="35"/>
+      <hp value="80"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="12"/>
+    <experience value="130"/>
+    <respawn value="1210"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[4,20]" probability="100.0"/>
+      <item value="wooden spear" quantity="[5,20]" probability="40.0"/>
+      <item value="minor potion" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="wooden spear" quantity="10000" />
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
       
   <creature name="orc warrior">
     <type class="orc" subclass="orc_warrior" tileid="orc.png:3"/>

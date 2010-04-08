@@ -311,7 +311,7 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[5,39]" probability="100.0"/>
-      <item value="wooden spear" quantity="[1,3]" probability="40.0"/>
+      <item value="wooden spear" quantity="[10,20]" probability="40.0"/>
     </drops>
     <equips>
     </equips>
