@@ -44,6 +44,22 @@ public class PrepareOfferHandler {
 		this.quantity = quantity;
 	}
 	
+	public String buildTweetMessage(Item i, int p) {
+		StringBuilder message = new StringBuilder();
+		message.append("New offer for ");
+		message.append(i.getName());
+		message.append(" at ");
+		message.append(p);
+		message.append(" money. ");
+		String stats = "";
+		String description = i.describe();
+		int start = description.indexOf("Stats are (");
+		if(start > -1) {
+			stats = description.substring(start);
+		}
+		message.append(stats);
+		return message.toString();
+	}
 	
 	private class PrepareOfferChatAction implements ChatAction {
 		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
@@ -137,7 +153,7 @@ public class PrepareOfferHandler {
 			if (TradingUtility.canPlayerAffordTradingFee(player, price)) {
 				if (createOffer(player, item, price, quantity)) {
 					TradingUtility.substractTradingFee(player, price);
-					new TwitterAccess("trade", buildTweetMessage()).start();
+					new TwitterAccess("trade", buildTweetMessage(item, price)).start();
 					npc.say("I added your offer to the trading center and took the fee of "+ fee +".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
 				} else {
@@ -148,23 +164,6 @@ public class PrepareOfferHandler {
 			npc.say("You cannot afford the trading fee of " + fee);
 		}
 
-		private String buildTweetMessage() {
-			StringBuilder message = new StringBuilder();
-			message.append("New offer for ");
-			message.append(item.getName());
-			message.append(" at ");
-			message.append(price);
-			message.append(" money. ");
-			String stats = "";
-			String description = item.describe();
-			int start = description.indexOf("Stats are (");
-			if(start > -1) {
-				stats = description.substring(start);
-			}
-			message.append(stats);
-			return message.toString();
-		}
-		
 		/**
 		 * Try creating an offer.
 		 * 
