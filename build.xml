@@ -210,7 +210,6 @@
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${commons_lang_jar}"/>
-				<pathelement path="${twitter4j_jar}"/>
 			</classpath>
 		</javac>
 
@@ -238,7 +237,6 @@
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${commons_lang_jar}"/>
-				<pathelement path="${twitter4j_jar}"/>
 			</classpath>
 		</javac>
 
@@ -282,7 +280,6 @@
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${commons_lang_jar}"/>
-				<pathelement path="${twitter4j_jar}"/>
 				<pathelement path="${lib}/${server_jarname}"/>
 				<pathelement path="${lib}/${maps_jarname}"/>
 			</classpath>
@@ -335,7 +332,6 @@
 			<fileset file="libs/marauroa.jar"/>
 			<fileset file="libs/groovy.jar"/>
 			<fileset file="libs/commons-lang.jar"/>
-			<fileset file="${twitter4j_jar}"/>
 			<fileset file="libs/log4j.jar"/>
 			<fileset file="libs/${mysqldriver_jarname}"/>
 		</copy>
@@ -508,7 +504,6 @@
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${commons_lang_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${log4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${h2_jar}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${twitter4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
@@ -783,7 +778,6 @@
 				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${build_server_script}"/>
 				<pathelement path="${tiled_jar}"/>
-				<pathelement path="${twitter4j_jar}"/>
 			</classpath>
 		</javac>
 	</target>
@@ -811,7 +805,6 @@
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${commons_lang_jar}"/>
 				<pathelement path="${mysqldriver_jar}"/>
-				<pathelement path="${twitter4j_jar}"/>
 				<pathelement path="."/>
 				<pathelement path="data/conf"/>
 				<pathelement path="data/script"/>
@@ -939,7 +932,6 @@
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${commons_lang_jar}"/>
 				<pathelement path="${mysqldriver_jar}"/>
-				<pathelement path="${twitter4j_jar}"/>
 				<pathelement path="."/>
 				<pathelement path="data/conf"/>
 				<pathelement path="data/script"/>
