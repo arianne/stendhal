@@ -94,6 +94,9 @@
  <tileset name="meals" firstgid="232" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/rustic_meals.png"/>
  </tileset>
+ <tileset name="emptypot" firstgid="234" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONkYGDgpAPmoSFGtkOKSDxqB33soEecj9oxcuwQJBGT6w9amE2uHXxkYmLtoMT8wWQHufYMFjv46BBWXGh4qNrhCMRGQKwNxE40jnNK44MQRreDgQS9IAwA2VWk/MQJAAA=
@@ -101,7 +104,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3U20oCURQG4PUG+74XGPIApdJtagfIUuxCuxE0rXcoqKfopL1AryD4JOKliK/hPzAXuzX7OO2RFnwXDmvNz4D8EREd5qgARShBPQdlqCQZTRjBwOKe/KbBMoYON+M9Z/SgD3ceGRN4ZNbs94PhfapMnsFnA1vDO13GluEyS1h5ZpzBecY8Pj+ajAu4DJRBmozQI2ccwSkjFM9cyHfHSUYVagpC89yG351AROouE/S713R7pjtbJwpK95pLdwrSd+ITPFN6/vLf4LcHCdveFbQk1x4ZL/DqsHcDbUnHI8N1T5UxD5wRT1dyG+A73uAdPuDTsPffM75gCjP4hkXGDFVf8c6x7an6zdZXvHNse7p+i293SHLTOsQJAAA=
+   H4sIAAAAAAAAAMXUTU7CUBQF4LuDN2cDDYKJqHEK+EOCAtEBMCEBVPaAia4CBXUDbIGElRCGxpjoJjxNOnjcvt+Wwk2+Ac29PR2QExBRPkMHUIAiVDJwCMdRxjkMoGcxJL+psoy+w839jjPa0IGuR8YDjJgv9vvR8D5VJs/g8w0/hne6jC3DZVaw9sy4gMuEeXzmmowrqG0pgzQZ2x454wjKjFA8cyHflaKMEzhVEJrnNvzuDAJSd5mgzV7T7ZnubJ0oKN5rLt0pSN+JY3ii+KT5b/DbXMS2V4dryY1HxjO8OOw1oClpeWS47qkyFoq73xQZ4dxK7jR3fx4ZE3iFN5ga9ly/b18ZM3iHD/iEZcIMVV/xzrHtqfrN1le8c2x7un4Lb/8BgRaIQMQJAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -126,7 +129,7 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWTUQrAMAhDc2uvv99StMaIY6wBYWD0EeoMgP2oVnk9C/oIPNEeON69V1GWJWJ68ywDh29GHjPLUGVkXHXXabZyYx32JIPhVPxdjvovT3hvZexSb469DyUDM69w2Cys7w1GRV9iqOq8d2d/tyZ3M/UAu4XTU8QJAAA=
+   H4sIAAAAAAAAAOWTUQrAMAhDc2uvv99StMY497EGhIExbzJnAOxHtcrrWdBH4Ily4Hj3XkXZLhHTm2cZODwz8pjZDlVGxlWzTrOVG+uwJxkMp+LvctR/ecJ7K2OXenPsfSg7MPMKh92F9X3BYDXxLm/PKvmV793J79ZkNlMP54CLWsQJAAA=
   </data>
  </layer>
  <layer name="protection" width="25" height="25">
