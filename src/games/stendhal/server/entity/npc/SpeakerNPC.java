@@ -683,6 +683,8 @@ public class SpeakerNPC extends NPC {
 	 * @param npcAction - npc's emotion reply on player's emotion
 	 */
 	public void addEmotionReply(final String playerAction, final String npcAction) {
+		add(ConversationStates.IDLE, Arrays.asList("!me "), new EmoteCondition(playerAction),
+				ConversationStates.IDLE, null, new NPCEmoteAction(npcAction));
 		add(ConversationStates.ATTENDING, Arrays.asList("!me "), new EmoteCondition(playerAction),
 				ConversationStates.ATTENDING, null, new NPCEmoteAction(npcAction));
 	}
@@ -693,8 +695,11 @@ public class SpeakerNPC extends NPC {
 	 * @param npcAction - npc's emotion
 	 */
 	public void addEmotion(final List<String> triggers, final String npcAction) {
+		add(ConversationStates.IDLE, triggers,
+				ConversationStates.IDLE, null, new NPCEmoteAction(npcAction));
 		add(ConversationStates.ATTENDING, triggers,
 				ConversationStates.ATTENDING, null, new NPCEmoteAction(npcAction));
+
 	}
 
 	/**
@@ -703,6 +708,8 @@ public class SpeakerNPC extends NPC {
 	 * @param npcAction - npc's emotion
 	 */
 	public void addEmotion(final String trigger, final String npcAction) {
+		add(ConversationStates.IDLE, Arrays.asList(trigger),
+				ConversationStates.IDLE, null, new NPCEmoteAction(npcAction));
 		add(ConversationStates.ATTENDING, Arrays.asList(trigger),
 				ConversationStates.ATTENDING, null, new NPCEmoteAction(npcAction));
 	}
@@ -713,8 +720,10 @@ public class SpeakerNPC extends NPC {
 	 * @param reply - npc's reply on player's emotion
 	 */
 	public void addReplyOnEmotion(final String playerAction, final String reply) {
+		add(ConversationStates.IDLE, Arrays.asList("!me "),new EmoteCondition(playerAction),
+				ConversationStates.IDLE, reply, null);	
 		add(ConversationStates.ATTENDING, Arrays.asList("!me "),new EmoteCondition(playerAction),
-				ConversationStates.ATTENDING, reply, null);		
+				ConversationStates.ATTENDING, reply, null);
 	}
 		
 	public void addGoodbye() {
