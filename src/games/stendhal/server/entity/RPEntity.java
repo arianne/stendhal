@@ -14,6 +14,7 @@ package games.stendhal.server.entity;
 
 
 import games.stendhal.common.Constants;
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.GameEvent;
@@ -1159,7 +1160,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public void onDead(final Entity killer, final boolean remove) {
 		StendhalKillLogDAO killLog = DAORegister.get().get(StendhalKillLogDAO.class);
-		final String killerName = killLog.getEntityName(killer);
+		String killerName = killLog.getEntityName(killer);
 
 		if (killer instanceof RPEntity) {
 			new GameEvent(killerName, "killed", killLog.getEntityName(this), killLog.entityToType(killer), killLog.entityToType(this)).raise();
@@ -1167,6 +1168,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 		DBCommandQueue.get().enqueue(new LogKillEventCommand(this, killer));
 
+		// Players are unique, so they should not get an article. 
+		if (!(killer instanceof Player)) {
+			killerName = Grammar.a_noun(killerName);
+		}
 		onDead(killerName, remove);
 	}
 
