@@ -151,6 +151,9 @@
  <tileset name="Untitled" firstgid="676" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_wide_details.png"/>
  </tileset>
+ <tileset name="emptypot" firstgid="692" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAEtjYmBIQ8LCDBCcxkQ6JqRXiBFCszNAMLIYsRhZ70DiGQyomF52cANpDiDmBGI2NHtvM2DHpNpLbTtAcYyMh6o/6IHlB9j+UYwf20PxQLuDVByLBw8nO/Dl+VE76G/HKKY9BgCEyqZVxAkAAA==
@@ -158,7 +161,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ2VyUoDQRCGezoaUQMSdw0mIlFQULwEvHlzX1FRQcWDik/gUUU96N19Xx7Ld3BDPbjFf0g3Vmq6JxMLPmZSXX//0zPdlagQopzQCtpYrhJEWc6ETVsFqsEqKALtoEPdu7kaUEvq7tWYCaq9Z9oweAYvjFdQyurc2ALboBvsgj1hDq5NON6auOOti8jM2DiYsDDp4xGXXo995A7AITgi47PqmkSuWdGixucsHlOYb5oxA46hOwGn4Mzg8Y2aH0Xa8fdwYwksK1ZU7hzzXoBLcGXwEMg5CpljHba4hu4G3II7EJb/f1e24HXaYx4sWFgEA0RbrLQ10G4qfaF6XjfHPQpkZlzXhMnadPSBHuZRD0osxIiHX52ftgEkctAYsC5l0bp9qCIPKn00XZb6OpHpQ6b+o0P/1v3HT1Nkqdf7ah1sCG/syAylTPOKM/cG3g19qFd4691Ikj1u8uGadVbbKbMJej5o5PJIyWxMHiHk1xghMo+tPwqiH8R1SN3/Zx22/khjGIywdWuPB/XdTP1Hh60/0hgFY8zDfbdN4NGwN3jw/sjjA3N8Kr6cbI8W8BTAw7QXg9T7fY9+ch8x7N0y+fcflWbPSM9HPr0uRjyCaGhPjIvc/S7f/kjrfwFLmzgcxAkAAA==
+   H4sIAAAAAAAAAJ2VWy8DQRTHZwdt0ERK3aMVKQkJ8SLx5s39GgQJ4gHxCTwieODd/X75Cnwa38Et5cGt/pvOxOnZmW3rJL/s9sz5z39ndvY0LIQoJTSDFpaLgDDLmbBpy0EFWAFB0Ara1L2bqwRVpO5BjZmg2gemDYAX8MpIgGJW58Ym2AJdYAfsCnNwbczx1kQdb11IpsbGwLiFCR+PqPR67CG3Dw7AIRmfUdc4co2KJjU+a/GYxHxTjGlwBN0xOAGnBo9v1Pwoko6/hxuLYEmxrHJnmPccXIBLg4dAzlHIDOuwxRV01+AG3IKA/P9e2YLXaY85MG9hAfQTbaHSVkK7ofQF6nndHPfIl6lxXRMga9PRC7qZRw0oslBLPPzq/LR1IJaB+izrOixatw+V5UDER9Npqa8WqT5k6j869G/df/w0QUu9PldrYF14Y1umKGaaBL65N/Bu6EM9wlvvRpyccZMP16yx2naZTrbfB41MHh0yHZNHHvKrjDwyj60/CqIfwHVQ3f9nHbb+SGMIDLN1a49H9d5M/UeHrT/SGAGjzMPd2wbwZDgbPHh/5PGBOT4VX066RxN4Vh53lufjz5XN/trexz3x6CP5kOHslsi//6gk2wf6feTS62qJRzYa2hOjInO/y7U/0vpf9CMctMQJAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -183,7 +186,7 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWTUQoAIAhDpct0/xv220fWNpOiAiFw+TJXLWb1ofDWSOftkbOIbqbdxWDyJxjMG2T3wdTJnvnKw1HvZ/+xzPo/Mfq8MjvUj54e9TB7D4SjMFb8G/pAmEodr+6MEelD8R/LUPTsX2F7Qj13SzRsw8tMxAkAAA==
+   H4sIAAAAAAAAAOWTUQoAIAhDpct4/xv220fqZklRQSC0fJpLm4g+tK0101kxchfRedpdDOb8BIN5g+o+mDzVM488vOr96j9Wmf8nxniemR3qR0uPepitA+FkGBH/hj4QZiaPlddjrPSR8R/LQPVezNTI/K3Ic7fsDnBV0L3ECQAA
   </data>
  </layer>
  <layer name="protection" width="25" height="25">
