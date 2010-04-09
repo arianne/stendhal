@@ -124,6 +124,9 @@
  <tileset name="bed" firstgid="321" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_purple.png"/>
  </tileset>
+ <tileset name="emptypot" firstgid="327" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAJNgZGCQwINZGCjH+MwftWPUDlrYQQ3zR+0Y+nbwMOLGuOzgIYBH7RiedsgyQrAcFMszDk07QFiZERXjsoMcPNzsIDZdDVY7ACBaxKDECQAA
@@ -131,7 +134,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL3VOU8CURAH8NnOIxwNSqMkJt42iqCdgtFCjRUhdmplLK35OhqNRwPaeHwvPEj4v+RtGIb33u6yLJP8Chgy/327MOSJKG0xC3lHPww1Iwu7sC3sQMbRD4PP2II9j6gCVdiHTdFXdUfRyjTD1b+PkbEIS/q9Q1z/kWe/hjb8aL9i3iM8WDJWYS3EOVT9wb/WiXAO2716gmd4gdcQ84bJaEIL3uA9oYwP+IQv+E4oI6gfVLdjyJAzylCEClThAEqGjAl8rycdprze/AX2O56BlHYMJ3CqX+dExjSbYaqU6PsZfOfVoQbn1L/Phsm4pv575e+8C7iEKxrcZ3HOEeWZywy1W/hOSSJD7Ra+U3jGzYgyeBW94HPMoT+vFSz/H3GfxzgyZJn6aczIOGRHkBGlGglnNAwz/H3FlQx9vs/k533LsCJm8H0l5Whwn51Rb5+ZrMOGmNEFyxep78QJAAA=
+   H4sIAAAAAAAAAL3VuU7DQBAG4HHHoRxNIA1BQuKmgRBCBwniECAqhOiAClFS53VAIAgNR8PxXpwS/0prMZnsrtexzUhfEU80v9dWJmUiylsMQ9nR96FmFGEZFoU6FBx9H3zGAqwERA1owirMi76qC4pXphmu/mWCjHGY0NfWcf8bgf0e3uFD+xTzruHKkjENMx7nUPUF39pPjHPYntUN3EIb7jzm9ZJxDw/wCE8ZZTzDC7zCm6G/GSTPiOpvRWScp5DhU3zGElShAU1Yg5ohow/33u8wwM42xn7HQ5DTtmEHdvXnksgYjHg+OdEPM/jOO4B9OKTOfdZLxil1Pqtw5x3BMZxQ9z5Lco4471xmqN3Cd0oWGWq38J3CM85SyuBVDaLPMYJ+RRu1/H8kfR//kSHL1M9jRsGhmEJGnGplnNEyzAj3FVcz9Pk+k98PTcKUmMH3lVSi7n22R3/7zGQW5sSMXxIY8C/ECQAA
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -156,7 +159,7 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWUQQ7AIAgEeb+v9t7AMoB6KQlJ4+pOqdBlZuuH+Q2lV89Ge1R4573nbM3z69ahzkT1TL4zjRMeypMwXtRBGNW+VP3QqSObsSmDzHHGoOwpw5x1WgthRH6EQzTiHflQ3XsXpXXnI9pf8SA6Cdqb9M6rDKKTuM3o3HmFk/1LsjzhcSM3AX0MpMQJAAA=
+   H4sIAAAAAAAAAOWU2w6AMAhD+f59te8G6OEyX2xCYtbRWsc8ZnZ+WG9kfLU32pPB6/ee1Zqn182R9UR5Jt+ZYkMj0yQeX+TY5tU8dHKoOzb1IPdYeVDvqYc56zQL8Yj0iA/hiHakQ3nvXTKuO//R/ooG4QnobNIzr3oQnuC2R+fMKz7qX6JqQ+NGPfj401rECQAA
   </data>
  </layer>
  <layer name="protection" width="25" height="25">
