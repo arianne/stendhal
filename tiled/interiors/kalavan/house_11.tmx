@@ -106,6 +106,9 @@
  <tileset name="armchair" firstgid="233" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/armchair.png"/>
  </tileset>
+ <tileset name="emptypot" firstgid="245" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAFNjYGBQGyH4MQ48asfwtWMUE8asVDKHEQ9mJSBPDTwU7XhAJB61Y9SOUTtoYwelmFplAgcaJtYOAJfl0g3ECQAA
@@ -118,7 +121,7 @@
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGBwIIAdgdgJjSakB4ZhAF0/Og0CLkjqnYnQg6wXpt8ZDw0DgUAcRKQedL3EgmAgDiFDHzIIJyAfiUduOpF2zCRSHSG9fUA8jQKziAGzgHgODrn7SOy7RJh1m3LnEAVA9twiUq0Vle0mxrxEKJ1MZbuRQSqUTqeyubZI7EwonU2mWTZEqMmF0vkkmn0UiLcB8U0scvVE6PdHYu8H4gNAbI2m5hgQbwfie3jM2QPE+5D4O4F4FxTvRhI/CMSHsOg/jsfsO3js3AvF+3CoIQV0AXEPhWacIiCPXDZcAOKLJJp/FojPQfF5LPLocXQJiC+TaAcx4D0Qf6CBuTDQAsSfgfgLkep3QOnDWOTmAnEEFvEGBsJ5JACJrQfE+kBsgEUdvvqDXDAYyk8AE6gEisQJAAA=
+   H4sIAAAAAAAAAGNgYGBwIIAdgdgJjSakB4ZhAF0/Og0CLkjqnYnQg6wXpt8ZDw0DgUAcRKQedL3EgmAgDiFDHzIIJyAfiUduOpF2zCRSHSG9fUA8jQKziAGzgHgODrn7SOy7RJh1m3LnEAVA9twiUq0Vle0mxrxEKJ1MZbuRQSqUTqeyubZI7EwonU2mWTZEqMmF0vkkmn0UiLcB8U0scvVE6PdHYu8H4gNAbI2m5hgQbwfie3jM2QPE+5D4O4F4FxTvRhI/CMSHsOg/jsfsO3js3AvF+3CoIQV0AXEPhWacIiCPXDZcAOKLJJp/FojPQfF5LPLocXQJiC+TaAcx4D0Qf6CBuTDQAsSfgfgLmvhXHOp3QOnDWOTmAnEEFvEGBux55BsSOwCJrQfE+kBsgEUPvvqDXDAYyk8Ac2wcTcQJAAA=
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
@@ -138,7 +141,7 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TQQ6AQAgDeSf/f4hXQ4C2LHowNtmYGNsBF9zM/EOnk9+eHt4hH8uIHlYZQ2XGPIaxJXQfGbOqUWVFH5uhMibq/Or8TtnMzryxlz9jduendcUcNletqfou8zDqemR8JwyUhXpW/q1SbyXUB/JNGCyHmZWtWVTr2Nrfp7KZcwGYHjyBxAkAAA==
+   H4sIAAAAAAAAAO2TUQrAMAhDPaf3P0h/i6hJbOnHWKAMxpKnq7qZ+YdOJ9+eHt4hH8uIHlYZQ2XGPIZxS+g+MmZVo8qKPjZDZUzU+dX5nbKZnXmxlz9jduendcUcNletqfou8zDqemR8JwyUhXpW/q1SbyXUB/JNGCyHmRV1FidzdXtvmd17cRbNYzqxxAkAAA==
   </data>
  </layer>
  <layer name="protection" width="25" height="25">
