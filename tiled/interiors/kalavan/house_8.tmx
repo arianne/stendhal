@@ -109,6 +109,9 @@
  <tileset name="meals" firstgid="209" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_2.png"/>
  </tileset>
+ <tileset name="emptypot" firstgid="211" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANvBwMCwY4ThWCCOg+J4IN5OAJNjRwISO2mI25EIxeTasQcLRpZPBuIUKE6lwI5tSBjdDlwYm5m0sIPY8CbXDlLwqB2jdozaMTLswFfujuLhgQGNZVNKxAkAAA==
@@ -116,7 +119,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWVuU4DMRRFzdJAaBO2NIQUQAf8BQ0igQRIDxKICugogAKQQGIpaPIRUOQnWL+Ja8kWD/OuY2aGKx0p8nvOicfOeMwYM/iPlMAwqIKJCNMJPWzekHNUwKHRsw3KrqcnxjfF5wMyt5zo8L0V93kH7IramtK/ShzHiQ6WU3AGzoN50hGLdOyB/T79zNFKcMg96JFenxPF0e/3TIFxhZrrmVFqk390sLNbdz2zSi08u23y/W3z/ay23Jg9g7fgjsx5As8m+57b2DN4Dx6U3mtwI+alOFqKIzV51iHzAl7BW06H3c86qRXliEVzNDI47Nmvkdo7+ACfYsy/+4raDy1HxMH+H9JxAa5yOGKR67Cey4hrvQBHSpiDvXflu8SmQfpk/F2UZR32Odi7dyOoP0bmSUeH9HXMz3U0g3rXObrB+Erg8HfDHJgHC+b3PcDujxj+/hgFA45FsASWxVheRsAXCmOAcMQJAAA=
+   H4sIAAAAAAAAALWVuU4DMRRFzdJAaBO2NIQUQAf8BQ0igQRIDxKICugogAKQQGIpaPIRUOQnWBv4IK4lWzzMu46ZCVc60sjveU5m7IxHjDH9/0gBDIIyGIswmdDD5g04RwnsGz2boOh6OmJ8XVzvkbnFRIfvLbnrLbAtaitK/zJxHCY6WI7BCTgN5klHLNKxA3a79DNHI8Eh16BDen2OFEe33zMBRhUqrmdKqY3/0cH2btX1TCu1cO82yf2b5vtdbbgxuwevwQ2Z8wAeTfY1t7F78BbcKb2X4ErMS3E0FEdq8jyHzBN4Bi85HXY9q6TWK0csmqOWwWH3foXUXsEbeBdj/tvXq/XQckAc7P8hHWfgIocjFvkc1nMeca1GHB+JjpQwxyfpl98Smxrpk/FnUZZ3Zd+DPXvXgvp9ZJ50tEhfy/x8jnpQbztHOxhfChz+bJgBs2DO/D4H2PkRw58fw6DPMQ8WwKIYy8sQ+AL5XfppxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
