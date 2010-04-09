@@ -19,6 +19,7 @@ public class HealerNPC extends SpeakerNPCFactory {
 		npc.addHelp("I can #heal you here for free, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.");
 		new SellerAdder().addSeller(npc, new SellerBehaviour(SingletonRepository.getShopList().get("healing")));
 		new HealerAdder().addHealer(npc, 0);
+		npc.addEmotionReply("hugs", "hugs");
 		npc.addGoodbye();
 	}
 }
