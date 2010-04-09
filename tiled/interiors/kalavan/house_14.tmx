@@ -124,6 +124,9 @@
  <tileset name="oil painting" firstgid="306" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
+ <tileset name="emptypot" firstgid="322" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2UsQoAIAgFjZL6/71/jVYxMdKCcLhNvOH5LABQLtCUhEO3Hwnh8M+jP87cy4FGjiQwHdWA3xynezLDqYN2MhxraF88HBaZc7ccDrnj2q6DML/joH9Z6xjCXtcMxAkAAA==
@@ -131,7 +134,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL2UTU4CQRCFe5agCPEHAWUhGr2AcecF8A+IO0kgHICdCddw6f9CL6Ds3aL3MSwMC99kIOm01V1VE6SSL5npftWvOz3zMsaYJSHLIKPQz3pyYAXUGPJgXaF3e/bM33oBr+ARPINdRk+VtsfVj8An+PpHD7uGhH6YwuPaeh54NFegzezrRuClKcrjVqH/IDQd0GU84m/oySTfkWRPb+Dd6O7jDtyDh5TnCPWsgh2CnvW8JtC7zHo2QNGDcd5LjJ4i7gnljwnMSfOLy6u+Z5zKr2ykzyuuJP9wmoxbtIckW+bp4SvXo4Q7K0fJ3D44UPZLNNtYvzr1OARHnr4iNJvRfO6jDk4sTqfjFay/RXgUogTO49iaPwPnFhfMHr/BWHmOBmhatKy5S6L/B0wCHqGM63nGJRkpyUQqF7UZGWt+AbE8LAHECQAA
+   H4sIAAAAAAAAALWUu04CQRSGZ0pQkXhBVCy8RF/A2Nlgx8ULodNEwwPYkfgalt4LfQGlt0Xfx1AQCv/NsslkOTPnnFVO8iXLzP/vP5td/pwxZkbILMgp9IlnDhTAFsM8WFLo054dMzmv4A08gRewzeip0XrS+j74At9TzHCnR+h7GTK6zvWNR3MOLphz3QqyNENl3Cn0n4TmElwxGdE39Gzi70hypnfwYXTv4x48gMeMzxHyLIBNgo5zvSjQp0k8y6DkwaR+lxk9ReQJ9Y8J7En7i+ura8861V95q+8rbiT/4Swdl0zVTj/jyMq65S8Z0XR5yURGGWdbtfHeLthT+iWaCu6/Mc7YBwceXwmalX96HzVQd2iM19dw/3Uio2hjuIxDZ78Jjh1OmDP+gIHyOU7BmUPL2WsT/iEYBTJCHdfxrEs6UtKJVC9qOzLS/AIU/8LWxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -156,7 +159,7 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO1TSQ7AQAjynf7/Ib02JDqAtpfWxMsMCm4ZEflhZ+wUg+8On6qrw3caFR4Ge6q90jOxaa+cGeIbo0nBO/PYvIE37uzn0ObuxE34qhwsJuEfcRscFQ75Wet6s9Grboem+u55lPky8VUv3DpYjequKrHOTW7f+RN+AX0GxYfECQAA
+   H4sIAAAAAAAAAO1TQQ7AMAjynf7/IbsuZqWArpfNxEuLQqVmROSHk4ldTT13+FRdCI80KjwMdvf2lZ5OdGfleFjPGE0K3vFjcgdO7NnPofnu1HX4Vj1YTJb7ikMaXR2VSw2kZWJW6A919d37KP4y9axnKpfz593+T7NSd3Jyx9/KC+OBGu7ECQAA
   </data>
  </layer>
  <layer name="protection" width="25" height="25">
