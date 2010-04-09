@@ -115,6 +115,9 @@
  <tileset name="cream chair" firstgid="215" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/armchair_cream.png"/>
  </tileset>
+ <tileset name="emptypot" firstgid="227" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNjYGBgG8WjeBSPYgoxCxTT0mx8mJVIdZRgetgxikfxKB44zIpGE1LHQKR6QnZwoGFi7QAAQ+rkBMQJAAA=
@@ -122,7 +125,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOtnYGDooSGeAMR9QDwdiOfRAM8A4l6oHXMYaANmk2HHDiDeCcS7oPw8IM6nsh2kAlrYYQLEpgTs8KCSXfjsQAbHgfgEATNA8bMLiW8BxJYk2HESiE8R6V5cYKjGOSV2FBAphsuOZiJxFRBXQ3ENCfqaof6YzEC47KkF4jooridCPQhPYUANK08g9oJibyT/WuEIB0cc4nZYwgpmRyAQB0FxMA79pAJ0O0KgOIxK5mOzgxKwFIiXQfFyEuzgBGIuIOamoR38QCwAxIJE2LECiFdC8SoS7JAAYkkgliLCDlwAmx2KONRak2g2zBx6l1dTgXguGbgEalYZDvlpUDsmAnE3mbgciCuAuBKPmklADABgD2hUxAkAAA==
+   H4sIAAAAAAAAAOtnYGDooSGeAMR9QDwdiOfRAM8A4l6oHXMYaANmk2HHDiDeCcS7oPw8IM6nsh2kAlrYYQLEpgTs8KCSXfjsQAbHgfgEATNA8bMLiW8BxJYk2HESiE8R6V5cYKjGOSV2FBAphsuOZiJxFRBXQ3ENCfqaof6YzEC47KkF4jooridCPQhPYUANK08g9oJibyT/WuEIB0cc4nZYwgpmRyAQB0FxMA79pAJ0O0KgOIxK5mOzgxKwFIiXQfFyEuzgBGIuIOamoR38QCwAxIJE2LECiFdC8SoS7JAAYkkgliLCDlwAmx2KONRaI7EfE2E2zBxy4/wJCWqR7ZgKxHPJwCVQs8pwyE+D2jERiLvJxOVAXAHElXjUTAJiAOxNlQXECQAA
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -147,7 +150,7 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN2UXQrAMAiDvZP3v1tfi5g0tgpjgnS4Ll9mf9zM/Edp4bkaHsZdr6J78hR1EOOGrXhCXioM1vtYYxr7d7fc7D1jK57Zf0ysh9KvV/0O34o+Wxulpuor7On7Zopx6klWz7wgDTUYb2pvZYxuLXW/qvwvMzoCsdHcqjZidEfn+Zw499VcVsDz4MQJAAA=
+   H4sIAAAAAAAAAN2UXQrAIAyDeyfvf7e9Smli4loYK8ik03yx/qyIWD9qkfpurPTd9Rzdk6esgxg3bMUT8uIwWO1zjmns82651X/GVjyzdUzsh1Kvt/odvhV9tjdKTtVX2NPvzRTjVJMqX3lBGmow3tTZqhjdWup5VflfZnQEYqOxrjZiOPPVsV33c+Leu+0Bo0JZpMQJAAA=
   </data>
  </layer>
  <layer name="protection" width="25" height="25">
