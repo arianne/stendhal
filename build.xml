@@ -253,6 +253,7 @@
 		<copy todir="${build_server_xmlconf}/data/conf">
 			<fileset dir="data/conf">
 				<include name="creatures.xml"/>
+				<include name="creatures/*.xml"/>
 				<include name="items.xml"/>
 				<include name="items/*.xml"/>
 				<include name="quests.xml"/>
