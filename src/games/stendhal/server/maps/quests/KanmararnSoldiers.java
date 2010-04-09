@@ -335,7 +335,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// he died first
 		tom.setStage(4); 
 		tom.setName("Tom");
-		// TODO: Use a_noun() in Corpse?
 		tom.setKiller("a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
 		zone.add(tom);
@@ -350,7 +349,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// he died second
 		charles.setStage(3); 
 		charles.setName("Charles");
-		// TODO: Use a_noun() in Corpse?
 		charles.setKiller("a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
 		zone.add(charles);
@@ -364,7 +362,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// he died recently
 		peter.setStage(2); 
 		peter.setName("Peter");
-		// TODO: Use a_noun() in Corpse?
 		peter.setKiller("a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
 		zone.add(peter);
