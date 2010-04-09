@@ -121,6 +121,9 @@
  <tileset name="household" firstgid="300" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
+ <tileset name="emptypot" firstgid="316" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3TWw6CMBCF4apRg7Bd1OGyOFgAF0XXwzGRhDQt0+GSKOHhe2na/p2HklKKViRz0O0N4cq4WRoFlAaV1rg7vDmyNGp4GDy3xuhGDAkjHdn4yAWCL0mjOzOl0cDL4D1jgyNtkKARDCDtzbY9/cYO9nDorRFzB0dvHOEEZ8c5tsY6G1NbesODC/gLziH9g7/WGPIPjRazOQPSxAkAAA==
@@ -128,7 +131,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWUuU4DMRCGnYJTgtCEI6HhkKDhKADRAM9BIFwpCAWvABJUIT3QEolD3JCK60lAgmegAETFb2ksOdbOerwSI32Ktft7P8fenRGl1MA/Mgr6QDdoF9AVkDX5fnJ0gE1QBOfggrhU9ZWmrLTSjqNI16/ANXEDbhnHFtgOdOi6Y7Kv4E3F/499cAAOPQ6u3sGH49gBu555rmPBkzdzpOexGuG4F3hyoFfoMGuyHbWAuZKaj3BIqgdkAzxJHOY8NmIyDSmlGkFTSu7I029Nyc68Gc9uAa0BDl16j9pABnTS2JB1MjaZAIdeD9enzHuWi7jn9iufQ2c+QRkcgxOwZmW+wQ+NC2A6cK+M4wtUwCk4Y7JHoEr+JI5fTy5qnvsN5iNy0vfJrjLjiCu7hzyAZ/AInmj8YmWXwR7jWAxYp684B9ev9HW7hxQEjiR7Zc5D78M6WPHkK4yjxORLqv7MlzzPd9dmHKY/6P2YAJNgSsX3EAmml4yBQTBEz5kBs2COMsN0Pynj4A+F5BDhxAkAAA==
+   H4sIAAAAAAAAALWUuU4DMRCGvQWnBKEJR0LDIUHDUQCiIPAcBMKVglDwCiBBFdIDLUgc4oZUXE8CEjwDBSAq/pXGwrF21uOVGOlTrN3f+zn27gwppfr+kWHQAzpBq4AOj6zO95KjDayDIjgD58SFqq0UZaWVshxFun4JrohrcMM4NsCmpyOsWyb7Al5V/P/YBXtg3+Hg6g28W44tsO2YZzvmHHk9R3oeyxGOO4EnC7qFDr0m01H1mCup2QiHpLpAxsOTxKHPYy0mUxcoVQ8aArkjT79VJTvzRjy7CTR7OMIK96gFpEE7jTUZK2OSFjqmaD1cn9LvWTbint2vuMoFf3v0AcrgCByDFSP3Bb5pXACTnnulHZ+gAk7AKZM9AIfkT+L4ceSi5tnfYD4iJ32fzCozjrgye8g9eAIP4JHGz0Z2EewwjnmPdbqKc3D9Krxu9pCCwJFkr/R5hPuwCpYc+QrjKDH5kqo98wXH8+21aYfuD+F+jIFxMKHie4gE3UtGQD8YoOfkwDSYocwg3U/KKPgFnVF30MQJAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -153,7 +156,7 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWUUQ6AMAhDOTT3j7/GFGjrnCY22Y8WXpmbGRH5g3UWetap6pcXT8VgeF3eyc++Vxgoe1WHPM4sjJhvcZfRcVbJ7b9jDjfTVIPOiNJX4Ux16j/jKQYzB+qFPBXTmUPxKgxFLMvpP+1rl4fN1nlXSWW8tVcMwz2LrNi7yN7br6wDyA4TV8QJAAA=
+   H4sIAAAAAAAAAOWUSQ7AMAgDeTT/V69VxTIm6SLVUi4NMJDEdTPzH6yzom+Vsnp+ickYhFf128XTfYUR9Z7lRTGTWYjIXawyKs4uTes/Mce0py4neiNKXYXT5an/jLsY1L9ZTufx6RxKrMJQRFmT+t25Vv3Q3qrYXVIZb50VYaz4g4h6kfr2K+sAmI6waMQJAAA=
   </data>
  </layer>
  <layer name="protection" width="25" height="25">
