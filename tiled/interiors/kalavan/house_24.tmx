@@ -157,6 +157,9 @@
  <tileset name="toys" firstgid="651" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/toys.png"/>
  </tileset>
+ <tileset name="sheepy pic" firstgid="653" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/picture/sheep_picture.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAItlYGCIHcUkY34mBoa1QHodEK9ngLBBYqP2k48/YcH47MeGR+0fGfbTAg+0/aN4FI/iUTwccCUWPGr/KB7Fww8PdBofaPuHMgYAHjE8NAAQAAA=
@@ -169,7 +172,7 @@
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TyQ6CMBCGsUcfwosriSYuBwWXE8Gj8g76EurF9QIP7Z8IphpKnMigxvmSL8OEttNpwbLScdQt9mDfMOYVqPP9OLrqjaIaIYwI4+eEseUScTMG7JzWSSPUzjHK6UzzhrP/X0Dvv4o7qsH6h+6qgbpN2PrSb0UQBB48/PMV6KvHZyp7zDnAIzzBM7xoOTcr1FgrcyyKDdzCXXEl73gqO0+w+bdipA07jOsv0PMSBk+9D+K8y1hbEIT/wIEuHDOtP4SjjPcTOIUzwpyEK4hjD8AAEAAA
+   H4sIAAAAAAAAAGNgwA4smSC0IRAb4VBDDCBVvxuUtmLClOvFIoZPHAS6gbiHgBpk4E6cMjDgYiRBMR6gSSVzsIFuJH/3EBkG9Aa09P9QAMj+VwbGkQoQqw5QXKkB7VUHYg0C9hObn0bBKBgFQwO4APO0HBC7MaGySQWNQD1NQNwMxC1A3ArEbUh8WpcdKUDzU5lw0/QCVUBcDcQ19LMSDlyY8PNhQJP2TsEJdIBYl4bm+wP9HADEgWh+N4byDWho9ygYBaNgZABLILYCYmsamW8OxBZ45G2A2BaI7UjQAwMAc9acjwAQAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
