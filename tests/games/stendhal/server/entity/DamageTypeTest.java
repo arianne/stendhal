@@ -13,6 +13,8 @@ public class DamageTypeTest {
 		assertEquals(DamageType.CUT, DamageType.parse("cut"));
 		assertEquals(DamageType.ICE, DamageType.parse("ice"));
 		assertEquals(DamageType.FIRE, DamageType.parse("fire"));
+		assertEquals(DamageType.LIGHT, DamageType.parse("light"));
+		assertEquals(DamageType.DARK, DamageType.parse("dark"));
 		// Default damage; do something even if someone has made a typo
 		assertEquals(DamageType.CUT, DamageType.parse("cuddle"));
 	}

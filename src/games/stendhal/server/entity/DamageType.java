@@ -8,15 +8,21 @@ import org.apache.log4j.Logger;
 public enum DamageType {
 	CUT,
 	FIRE,
-	ICE;
+	ICE,
+	LIGHT,
+	DARK;
 
 	public static DamageType parse(String type) {
-		if (type.equals("cut")) {
+		if ("cut".equals(type)) {
 			return CUT;
-		} else if (type.equals("fire")) {
+		} else if ("fire".equals(type)) {
 			return FIRE;
-		} else if (type.equals("ice")) {
+		} else if ("ice".equals(type)) {
 			return ICE;
+		} else if ("light".equals(type)) {
+			return LIGHT;
+		} else if ("dark".equals(type)) {
+			return DARK;
 		}
 		
 		Logger.getLogger(DamageType.class).error("Unknown damage type: " + type);
