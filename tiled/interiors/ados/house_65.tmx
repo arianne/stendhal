@@ -121,6 +121,9 @@
  <tileset name="kitchen cabinets" firstgid="327" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
+ <tileset name="mtpot" firstgid="355" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="23" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAPvIwMDwEQ9+QwHGZ+6o2aNmE2M2JeaOmj28zJZmxI9HzR41e9TsUbOJxQAfWBnN/AgAAA==
@@ -128,7 +131,7 @@
  </layer>
  <layer name="1_terrain" width="23" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWUyy4EQRSGq4zLDPMC7jYugy0Ww1ywELEbNoK9xyBhTUJIDDYumxGJR8ED+SZTlTlduqunR6vkS6r7zP919enJySuleiIYgryn7qOZ7YVFmHNYgIyn7kNmZ+ACTuBUtda0U0+y4rJpuIdhxNw7g3OPO6O5NvTpoO9Std5dZsdhosNz9+MbMGR1SMiTlasO9/AAj9GartxP8Awv8JqyuwFv8AHvKbvd+g1cwfU/uI/N/bsY76eTnYdZWIJlWIFCyLMPO3B/CfcgaEMJylAx1znhPjBnj3N/C7ecRduwBTsqOG9kv29j3EoFe2JnUQ12YU/9njdJlvutatpf/4s7SX2Dc1RhXQf3abjX8BRhVbf3VeGuO9n9BD2p8NsSlHV7vynydl504w7rSVHkG072KIHb7Yk9uy9rZ39z7qf9P7GzP5ui284TScFTH4WxkIyblfPEJRdRn4QpT85mfwAABP7n/AgAAA==
+   H4sIAAAAAAAAALWUSy8DURiGz1GlpX/A3cal2GJResFCxK5sBBs2fgYJaxJCoti4bCoSPwU/yNP0TPrNMXOm044veZIz8837zJkzyZdTSvWEMAg5R99FI9sLCzBrMQ8pR9+FzE7DJZzCmWrWlNWPU1HZJNxDMGzuncOFw53SXBvS2u+7Us1vl9kxGG9z3334+g0ZHRByZGXV4AEe4Slc05H7GV7gFd4SdtfhHT7hI2G33b+Fa7j5B/eJuX8f4f2ysnMwA4uwBMuQD3j3QRvub+EeAG0oQgnK5jor3Ptm71HuH+GWs2gLNmFb+eeNPO+7CLdS/jPxZlEVdmBX/Z03ccr+V1Xt7nfjjtNfZx8VWNP+dRLuVTwFWNGtdUW4a1Z2L8aZlHm2CCXdWm+IvDcvOnEHnUlB5OtW9jCG2z4Tb++NOtLu2Z8O6bdTxyFZb/ZnunDb3+zNE0ne0R+B0YCMnZXzxCYb0p+ASUfOy/4Cxeq85/wIAAA=
   </data>
  </layer>
  <layer name="2_object" width="23" height="25">
@@ -153,7 +156,7 @@
  </layer>
  <layer name="collision" width="23" height="25" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN2SSQ7AIAwD82H+f+21qmI8SXpoQYqECB6bZUXEOrzUuPeJLus/9yk/pVX+ak3xOrkzjfMhbDomWsqc5KZ3TzOQM+40rlfl0v//N/b0vklupX+bnc2dL+k7rw6beLlzV3PTbFU2ecsu22Wu/umdZ5VNs3e4X6sLlTeFD/wIAAA=
+   H4sIAAAAAAAAAN2SSQ7AIAwD82H+f+21qmI8STi0RYqECB6bZUXE+nmpce8TXdZ/7lN+Sqv81ZridXJnGudD2HRMtJQ5yU3vnmYgZ9xpXK/Kpf//a+zpfZPcSn+anc2dL+k7rw6beLlzV3PTbFU2ecsu22Wu/mn6Tl3+icxvrAup5Wxu/AgAAA==
   </data>
  </layer>
  <layer name="protection" width="23" height="25">

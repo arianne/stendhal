@@ -118,6 +118,9 @@
  <tileset name="Untitled" firstgid="263" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_red_top_sheet.png"/>
  </tileset>
+ <tileset name="mtpot" firstgid="265" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="23" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNhYGBgGWSYlQCmlbmUmE1Ldw+k2bSMy6Fq9mBNg8SYTY2wwYaZoBibHAeSPCWYlmaP4lE8isnD2PIkDBOjnwFKY1OPzWwuNLXcaJhYswEFblH8/AgAAA==
@@ -125,7 +128,7 @@
  </layer>
  <layer name="1_terrain" width="23" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL3UOW4CMRiGYUdwgkARUlIipeIMEOASlGwJghYOQUXDWlAQloGwJE0Cd6CDs4AEnyUXjpmxHePhlx40gl+vBms0NUJI2Qd1qMAcppo+NfbpTpW1Z/BC/k4J3sn1jGDs8j0/jtC2OabtIXz41HZc9hOQZNcxy+1XSAk7ttppyEja9Ll4I+7PhqrNj9uZ5KEARc32Dvacg+S+xefb9L7jQnsBE4kmQ6+XGvtL1h4otKDNdDT2efT/rWDroQs9pi/Z4625s/uFrPyY/zU/QjvnY9vmHOHEtRsW22f68WB2348QgrDH7wF0g4btJ4jAs8fvt5w3bUd9aqvmXu0v2Fj0zdqq944p+r66ALKUSMr8CAAA
+   H4sIAAAAAAAAALXUPU8CMRzH8V5gwREYlJHRhInXgKhvghEEJbDCi2BiEdCBQXk4FEQXH94Dm74WSfD3TzrUcu3V2v6TD7lwzTelXK7DGGt60IUWPMDc0KPBelrT5u0FFNjvacAV258JTCO+FyeU2i7Htn0H957aYcT6Epzw62PH7TKcSmtctc/gXNOm5+KSRT8bcW1xos6kBhdQN2xv4FPwpdm3/Hzb7rsotZcw0+hzdL0yWL/i7XGMaxhwQ4P1Ivp9T/ChMIIb7lazTrQWzu4NKvpj/tO8Su2qx7bL+Yat0O45bO/oI7DbdxoykFXcT6CbtGwfwhHkFPf/c97UzivaqcDff3ngsU0jtp/h3aEX3o5779ii99UPfNejRvwIAAA=
   </data>
  </layer>
  <layer name="2_object" width="23" height="25">
@@ -150,7 +153,7 @@
  </layer>
  <layer name="collision" width="23" height="25" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN2TWwpAIQhE3Vb731j/g9o4WlyuIPTQ4yS5zGz9xC3Y47kX78Xgfcc8diVvmh3FZ/14rTvTl+n22OwbTjFqT5i/O8FX61f0TMzpl9mYf+olW48xfAOuo3oRQ7GOfoWv5HW52X9h2dXZ7Ohme8XMwYTdmN3XvgG8sgiA/AgAAA==
+   H4sIAAAAAAAAAN2TWwpAIQhE3Vb731j/g9o4WlyuEPTQ4yS6zGz9ZFlwxnvP3/PB94557ErcNDvyz+rxWnemL9Ptsdk/nHzUmjC9O8FX81f0TMzpl9kYf6olm48x/APuo3wRQ7GOfoWvxHW5Wb+w7OpsdnSztWJ6csJuzO7rtQG4vjo3/AgAAA==
   </data>
  </layer>
  <layer name="protection" width="23" height="25">
