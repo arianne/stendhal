@@ -61,6 +61,9 @@
  <tileset name="pot plant 1" firstgid="169" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
+ <tileset name="emptypot" firstgid="181" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNiYGBgIgHDAKl6SFE/UjEPFkxP/aN4+ONEIE5C4gMAqJKXDAAEAAA=
@@ -68,7 +71,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL3POQrCUBCA4XeLuDfuRfQCaqeeQkXEWq9gtHHpXVr1nv6BEYbHSwK+YOArMsxPJhdjTPSjMw6ooZSi6tiJZ3vpCyb9CRw7wR/7JloefdJNdt9GR+nKvI6GajcJfYgerrihr76lb3xm3H/Hw7pV77wyete/5tm/PfutZ/+d5dVXULQMMMQIZdmZYY6FzOL+hJ3DGBNM1WyFJdbyfsQHQBrylQAEAAA=
+   H4sIAAAAAAAAAL3PSQ4BURCA4XeLNm/MC1wAO5wCEbHmCoaNYW/Y4gicz9/Jk1ReqgdaSL6FSv3d1QdjzOpLe2xQQCZEXtnxZ2vbp0z4z1N2vD/2ZVQS9EE3uX0VNaFu50WURDsP6Bto4ogTWuJd8sZrxP1nXJxb5c4tote+9Zf9PWG/+KB/KP37mXH6Z4w+h7SjjQ66yNqdIUYY25nf77BU9NDHQMymmGBm/2/xAjhurQgABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -93,7 +96,7 @@
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACtlYGAoHQQYH6DULGzyuPTgEyNkJgMDqvmk+IkYtfj0Y/MbLv2EwoxS/YTcTyv9hOIfmxg1w5+QfkJ+IDadUjPfAQC9tLqUAAQAAA==
+   H4sIAAAAAAAAACtlYGAoHQQYH6DULGzyuPTgEyNkJgMDqvmk+IkYtfj0Y/MbLv2EwoxS/YTcTyv9hOIfmxg1wx+fXmL8QGw6pWa+AwCkwr2pAAQAAA==
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
