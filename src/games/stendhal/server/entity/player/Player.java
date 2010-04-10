@@ -1911,4 +1911,31 @@ public class Player extends RPEntity {
 		
 		return DamageType.CUT;
 	}
+	
+	@Override
+	protected double getSusceptibility(DamageType type) {
+		double sus = 1.0;
+		/*
+		 * check weapon and shield separately, so that holding
+		 * 2 resistant shields does not help  
+		 */
+		Item weapon = getWeapon();
+		if (weapon != null) {
+			sus *= weapon.getSusceptibility(type);
+		}
+		Item shield = getShield();
+		if (shield != null) {
+			sus *= shield.getSusceptibility(type);
+		}
+		
+		String[] armorSlots = { "armor", "head", "legs", "feet", "cloak" };
+		for (String slot : armorSlots) {
+			RPObject object = getSlot(slot).getFirst();
+			if (object instanceof Item) {
+				sus *= ((Item) object).getSusceptibility(type);
+			}
+		}
+		
+		return sus;
+	}
 }
