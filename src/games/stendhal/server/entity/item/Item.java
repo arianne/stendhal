@@ -60,6 +60,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/** The damage type of weapons */
 	private DamageType damageType = DamageType.CUT;
 	
+	private Map<DamageType, Double> susceptibilities;
+	
 	/**
 	 * 
 	 * Creates a new Item.
@@ -111,6 +113,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		setRPClass("item");
 		possibleSlots = new ArrayList<String>(item.possibleSlots);
 		damageType = item.damageType;
+		susceptibilities = item.susceptibilities;
 	}
 
 	public static void generateRPClass() {
@@ -442,6 +445,34 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 */
 	public void setDamageType(DamageType type) {
 		damageType = type;
+	}
+	
+	/**
+	 * Get this item's contribution to susceptibility to a
+	 * type of damage.
+	 *  
+	 * @param type type of damage to be checked
+	 * @return susceptibility to damage of type <code>type</code>
+	 */
+	public double getSusceptibility(DamageType type) {
+		double value = 1.0;
+		if (susceptibilities != null) {
+			Double sus = susceptibilities.get(type);
+			if (sus != null) {
+				value = sus.doubleValue(); 
+			}
+		}
+		
+		return value;
+	}
+	
+	/**
+	 * Set the susceptibility data of this item.
+	 * 
+	 * @param susceptibilities susceptibilities to be used
+	 */
+	public void setSusceptibilities(Map<DamageType, Double> susceptibilities) {
+		this.susceptibilities = susceptibilities;
 	}
 
 	@Override

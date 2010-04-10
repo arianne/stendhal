@@ -3,6 +3,7 @@ package games.stendhal.server.entity.item;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -218,6 +219,31 @@ public class ItemTest {
 		// Check that damage type gets copied
 		Item copy = new Item(mo);
 		assertEquals("Damage type should be copied", DamageType.FIRE, copy.getDamageType());
+	}
+	
+	/**
+	 * Test getting susceptibility
+	 */
+	@Test
+	public void testGetSusceptibility() {
+		Item mo = new Item("name1", "class", "subclass",
+				new HashMap<String, String>());
+		for (DamageType type : DamageType.values()) {
+			assertThat("Default susceptibility", mo.getSusceptibility(type), closeTo(1.0, 0.00001));
+		}
+		HashMap<DamageType, Double> sus = new HashMap<DamageType, Double>();
+		mo.setSusceptibilities(sus);
+		for (DamageType type : DamageType.values()) {
+			sus.put(type, 0.42);
+			for (DamageType type2 : DamageType.values()) {
+				double expected = 1.0;
+				if (type == type2) {
+					expected = 0.42;
+				}
+				assertThat(mo.getSusceptibility(type2), closeTo(expected, 0.00001));
+			}
+			sus.remove(type);
+		}
 	}
 
 	/**
