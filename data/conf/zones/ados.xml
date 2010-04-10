@@ -1536,6 +1536,12 @@ My fee:
 	<parameter name="x">13</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">8</parameter>
+	<parameter name="y">12</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_50"/>
   </portal>
@@ -1558,6 +1564,12 @@ My fee:
 	<parameter name="x">13</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">12</parameter>
+	<parameter name="y">12</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_51"/>
   </portal>
@@ -1580,6 +1592,12 @@ My fee:
 	<parameter name="x">12</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">2</parameter>
+	<parameter name="y">12</parameter>
+	<parameter name="width">2</parameter>
+    <parameter name="height">2</parameter>
+ </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_52"/>
   </portal>
@@ -1602,6 +1620,12 @@ My fee:
 	<parameter name="x">13</parameter>
 	<parameter name="y">8</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">8</parameter>
+	<parameter name="y">12</parameter>
+	<parameter name="width">4</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_53"/>
   </portal>
@@ -1624,6 +1648,12 @@ My fee:
 	<parameter name="x">12</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">12</parameter>
+	<parameter name="y">10</parameter>
+	<parameter name="width">2</parameter>
+    <parameter name="height">2</parameter>
+ </configurator>
   <portal x="9" y="14" ref="in_left">
     <destination zone="0_ados_city_n" ref="house_54"/>
   </portal>
@@ -1649,6 +1679,12 @@ My fee:
 	<parameter name="x">12</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">12</parameter>
+	<parameter name="y">10</parameter>
+	<parameter name="width">2</parameter>
+    <parameter name="height">2</parameter>
+ </configurator>
   <portal x="9" y="14" ref="in_left">
     <destination zone="0_ados_city_n" ref="house_55"/>
   </portal>
@@ -1675,6 +1711,12 @@ My fee:
 	<parameter name="x">13</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">3</parameter>
+	<parameter name="y">11</parameter>
+	<parameter name="width">2</parameter>
+    <parameter name="height">2</parameter>
+ </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_56"/>
   </portal>
@@ -1698,6 +1740,12 @@ My fee:
 	<parameter name="x">12</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">10</parameter>
+	<parameter name="y">3</parameter>
+	<parameter name="width">3</parameter>
+    <parameter name="height">2</parameter>
+ </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_57"/>
   </portal>
@@ -1731,6 +1779,12 @@ My fee:
  <zone name="int_ados_house_58_1" file="interiors/ados/house_58_1.tmx">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">3</parameter>
+	<parameter name="y">11</parameter>
+	<parameter name="width">2</parameter>
+    <parameter name="height">2</parameter>
+ </configurator>
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_58" ref="up"/>
   </portal>
@@ -1744,6 +1798,12 @@ My fee:
 	<parameter name="x">13</parameter>
 	<parameter name="y">8</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">2</parameter>
+	<parameter name="y">4</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_59"/>
   </portal>
@@ -1767,6 +1827,12 @@ My fee:
 	<parameter name="x">7</parameter>
 	<parameter name="y">2</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">4</parameter>
+	<parameter name="y">12</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_60"/>
   </portal>
@@ -1802,6 +1868,12 @@ My fee:
  <zone name="int_ados_house_61_1" file="interiors/ados/house_61_1.tmx">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">2</parameter>
+	<parameter name="y">9</parameter>
+	<parameter name="width">2</parameter>
+    <parameter name="height">2</parameter>
+ </configurator>
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_61" ref="up"/>
   </portal>
@@ -1815,6 +1887,12 @@ My fee:
 	<parameter name="x">13</parameter>
 	<parameter name="y">9</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">10</parameter>
+	<parameter name="y">7</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_62"/>
   </portal>
@@ -1839,6 +1917,12 @@ My fee:
 	<parameter name="x">20</parameter>
 	<parameter name="y">2</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">20</parameter>
+	<parameter name="y">20</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="21" y="17" ref="in">
     <destination zone="0_ados_city" ref="house_63"/>
   </portal>
@@ -1851,6 +1935,12 @@ My fee:
 	<parameter name="x">20</parameter>
 	<parameter name="y">2</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">18</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="21" y="17" ref="in">
     <destination zone="0_ados_city" ref="house_64"/>
   </portal>
@@ -1863,6 +1953,12 @@ My fee:
 	<parameter name="x">10</parameter>
 	<parameter name="y">14</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">20</parameter>
+	<parameter name="y">20</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="21" y="18" ref="in">
     <destination zone="0_ados_city" ref="house_65"/>
   </portal>
@@ -1875,6 +1971,12 @@ My fee:
 	<parameter name="x">19</parameter>
 	<parameter name="y">2</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">3</parameter>
+	<parameter name="y">23</parameter>
+	<parameter name="width">2</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="20" y="19" ref="in">
     <destination zone="0_ados_city" ref="house_66"/>
   </portal>
@@ -1887,6 +1989,12 @@ My fee:
 	<parameter name="x">20</parameter>
 	<parameter name="y">2</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">3</parameter>
+	<parameter name="y">15</parameter>
+	<parameter name="width">2</parameter>
+    <parameter name="height">2</parameter>
+ </configurator>
   <portal x="11" y="21" ref="in">
     <destination zone="0_ados_city" ref="house_67"/>
   </portal>
