@@ -17,5 +17,6 @@ public class DamageTypeTest {
 		assertEquals(DamageType.DARK, DamageType.parse("dark"));
 		// Default damage; do something even if someone has made a typo
 		assertEquals(DamageType.CUT, DamageType.parse("cuddle"));
+		assertEquals(DamageType.CUT, DamageType.parse(null));
 	}
 }
