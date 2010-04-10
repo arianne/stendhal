@@ -310,6 +310,8 @@
     </attributes>
     <weight value="35.0"/>
     <value value="48013"/>
+    <susceptibility type="ice" value="0.6"/>
+    <susceptibility type="fire" value="1.5"/>
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>

@@ -21,6 +21,7 @@
     		<element name="weight" type="Q1:attribute"></element>
     		<element name="value" type="Q1:attribute"></element>
 		<element name="damage" type="Q1:damage" minOccurs="0"></element>
+		<element name="susceptibility" type="Q1:susceptibility" minOccurs="0" maxOccurs="unbounded"></element>
     		<element name="equipable" type="Q1:equipable"></element>
     	</sequence>
     	<attribute name="name" type="string" use="required"></attribute>
@@ -71,5 +72,10 @@
 
     <complexType name="damage">
 	<attribute name="type" type="string"/>
+    </complexType>
+
+    <complexType name="susceptibility">
+	<attribute name="type" type="string"/>
+        <attribute name="value" type="decimal"/>
     </complexType>
 </schema>

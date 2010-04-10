@@ -17,8 +17,10 @@ import games.stendhal.server.entity.item.Item;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
@@ -64,6 +66,8 @@ public class DefaultItem {
 	private int value;
 	
 	private DamageType damageType;
+	
+	private Map<DamageType, Double> susceptibilities;
 
 	public DefaultItem(final String clazz, final String subclazz, final String name, final int tileid) {
 		this.clazz = clazz;
@@ -106,6 +110,22 @@ public class DefaultItem {
 	
 	public void setDamageType(String type) {
 		damageType = DamageType.parse(type);
+	}
+	
+	/**
+	 * Set the susceptibilities. The key of each map entry should be a
+	 * string corresponding to a damage type. The value is the susceptibility
+	 * value of that damage type. The content of the mapping is copied, so
+	 * it can be safely modified afterwards.
+	 *  
+	 * @param sus susceptibility mapping
+	 */
+	public void setSusceptibilities(Map<String, Double> sus) {
+		susceptibilities = new EnumMap<DamageType, Double>(DamageType.class);
+		
+		for (Entry<String, Double> entry : sus.entrySet()) {
+			susceptibilities.put(DamageType.parse(entry.getKey()), entry.getValue());
+		}
 	}
 
 	public void setImplementation(final Class< ? > implementation) {
@@ -194,6 +214,7 @@ public class DefaultItem {
 			if (damageType != null) {
 				item.setDamageType(damageType);
 			}
+			item.setSusceptibilities(susceptibilities);
 		}
 
 		return item;

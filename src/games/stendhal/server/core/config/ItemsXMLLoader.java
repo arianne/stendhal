@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,6 +53,8 @@ public class ItemsXMLLoader extends DefaultHandler {
 	private boolean attributesTag;
 	
 	private String damageType;
+	
+	private Map<String, Double> susceptibilities = new HashMap<String, Double>();
 
 	
 
@@ -124,6 +127,8 @@ public class ItemsXMLLoader extends DefaultHandler {
 			attributes.put(qName, attrs.getValue("value"));
 		} else if (qName.equals("damage")) {
 			damageType = attrs.getValue("type");
+		} else if (qName.equals("susceptibility")) {
+			susceptibilities.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
 		}
 	}
 
@@ -141,6 +146,8 @@ public class ItemsXMLLoader extends DefaultHandler {
 				// An optional element - reset it to avoid leaking to next items
 				damageType = null;
 			}
+			item.setSusceptibilities(susceptibilities);
+			susceptibilities.clear();
 
 			if (implementation == null) {
 				LOGGER.error("Item without defined implementation: " + name);

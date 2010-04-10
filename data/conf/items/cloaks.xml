@@ -107,6 +107,8 @@
     </attributes>
     <weight value="5.0"/>
     <value value="5103"/>
+    <susceptibility type="fire" value="0.8"/>
+    <susceptibility type="ice" value="0.8"/>
     <equipable>
       <slot name="bag"/>
       <slot name="cloak"/>
