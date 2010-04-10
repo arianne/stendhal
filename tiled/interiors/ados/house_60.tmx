@@ -85,6 +85,9 @@
  <tileset name="ru" firstgid="248" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
+ <tileset name="mtpot" firstgid="257" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAPvCwMDwBYhzgTgPiPOJZH9Bw8VAXALEpUSy0fXjwt9w4OGo/w0J5tJCPzacjAOP6qe9fhsK444Y/QBfiYpEAAQAAA==
@@ -92,7 +95,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgZiAdgPSwADErELORoZ8diHmg+mWA2AOHuplYxNyAWBpNPwjYEqmfAYd+bGAuFrFeEvRjAxPx6H+LplYQiCWxYG40/a+BeA0W/aJALIUFo4f/OyB+D8QfiPQDqf6/AcQ3ofg2Fv11BPTfAeJdUPwYi/4qIvTvhWJs+mvR1P8A4p9A/AvKfwLEz6D4ORb9IFCPpP8fEP8HMRgx3eKBpp+LAXscy+EQR45/XiDmw4GV8MiBsAAQAwDX1AG8AAQAAA==
+   H4sIAAAAAAAAAGNkYGBgZiAdgPSwADErELORoZ8diHmg+mWA2AOHuplYxNyAWBpNPwjYEqmfAYd+bGAuFrFeEvRjAxPx6H+LplYQiCWxYG40/a+BeA0W/aJALIUFo4f/OyB+D8QfiPQDqf6/AcQ3ofg2Fv11BPTfAeJdUPwYi/4qIvTvhWJs+muh6hgZIfQPIP4JxL+g4k+A+BkUP8eiHwTqgZgJqv8fEP8HG4jpFg80/VwM2ONYDoc4cvzzAjEfDqyERw6EBYAYAJ4P3mEABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -117,7 +120,7 @@
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNiYGDwGiQYGXgh0aTqxWYONnFy9ZNiP7oeXPrxhQOl4UhJ+BHyD7X0k2rGYNPPwEC8GaTECa3zHAD9Ov6OAAQAAA==
+   H4sIAAAAAAAAAPNiYGDwGiQYGXgh0aTqxWYONnFy9ZNiP7oeXPrxhQOl4UhJ+BHyD7X0k2rGYNPPwEC8OaTECa3zHADzgKRtAAQAAA==
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
