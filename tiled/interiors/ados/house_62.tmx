@@ -82,6 +82,9 @@
  <tileset name="shelf" firstgid="244" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
+ <tileset name="mtpot" firstgid="250" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAJvOwMAwfRDiKVCMzJ6CJk4P/bgwrfWPNDwNCx5J+rFhWzroBwCHnD6CAAQAAA==
@@ -89,7 +92,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3RuwrCMBSA4SDewBuuXnDwPRy0Wq2DU0EUR6+Lgr6G+Lq6+Qc61ENOwOqBb0n7N6HJGWPyGRVQRAntL5VRS/ouYvM5Q4wUATqitzNI9WNMFKHSmz/2U8wUkaOfO77hG9kvfuxd+z/xEmt3PBy9b7bYYe/ZX953kHr3gCNOnl7eVyjOsMQKZ1wy9GtscMXN0cv7jjz/IxZ9BS2HnrJuVZO+joai73lmNfEGnTBy+AAEAAA=
+   H4sIAAAAAAAAAK3RuQrCQBRA0UHcwA1bFyz8DwuNRmNhFRDF0rVR0N8Qf9el8QamiI+ZCQk+OCQkuZmQySml8hkVUEQJ7ZTKqOm+i1D9zhAjCw8d0UcziPVjTCx8S6/+2E8xswgM/dzwDtfIfpHw/DuhN63/xEuff/Txjoehd80WO+wd68v99mLPHnDEydHL/fLFNyyxwhmXDP0aG1xxM/RyvwPH/whFX0HLoGe5Hqnqvo6GRd9xL9LEF/81HGUABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -114,7 +117,7 @@
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAAtnYGAIHyQYG8Clhhi9+ACx+ullP6lm0EM/NnFS4g6bHkLmkGMmLrdjU4/LbkIAXS0hd5OSpgiZQ0sMAG/8uW0ABAAA
+   H4sIAAAAAAAAAAtnYGAIHyQYG8Clhhi9+ACx+ullP6lm0EM/sng4Hn2E7CYm/CgxE5fb8fmF1LBDV0vI3aSkKULm0BIDAL9pDOAABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
