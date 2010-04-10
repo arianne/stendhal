@@ -79,6 +79,9 @@
  <tileset name="pillow" firstgid="236" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/pillow_yellow.png"/>
  </tileset>
+ <tileset name="emptypot" firstgid="237" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNjYGBgIwHDADY5ITx6CJkrRCIebvoJheFIxpeheKD0DzccicQGAOsf02AABAAA
@@ -86,7 +89,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXRuQ3CMBhAYW/BmTQcTSQaQgdsAhSIBtgBQsOxA7AKo3BKSCzBi/QXVmRbDoelT7HlvML2Tim1xABDjGTtY4sVQowRYYKyhwCJ9EVps6aYYS7rk3zTUfDobb7tox/3VZRQRws1WbtUtD6UO23K2Rof3H/ekT3/3vLfGS9xcfQHS//U5o8/9kdLf8NV3B193mF6f10bMTqGPf39N1gYdNFD37KfWuMN1XzgCgAEAAA=
+   H4sIAAAAAAAAALXRSQrCMBSA4d7CuRuHTcGNulNvoi7EjXoHrRuHO6hX8SiOIIiewb/whFDySpwCH01I/0WSled5U3TQRU/WLpaYwUcfAQbIOigglD4tbdwQI4xlvZNvNFIOvebbPvhxn0cGJVRRlHWSnNH7cqcVOVv5g/t/d8TPv1b+2+MmDgn9Rumvxvzyx36r9CccxRl3pXcdD0v/en9TDXU0LHvm+y8wsWiihbayH5njCZ9ngTUABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -111,7 +114,7 @@
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACtmYGAophJmoFAvA5IZ6GYRMptYQKl+fOZQqp/SMKREPz43IvMJuZ0S/6PLk6IXm3p8YtR2P6mA1vmJWAwAlQTeMwAEAAA=
+   H4sIAAAAAAAAACtmYGAophJmoFAvA5IZ6GYRMptYQKl+fOZQqp/SMKREPz43IvMJuZ0S/6PLk6IXm3p8YtR2Pyn6cNlP7bRADAYAq2+sSAAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
