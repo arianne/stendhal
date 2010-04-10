@@ -22,6 +22,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <susceptibility type="fire" value="1.2"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -51,6 +54,10 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <susceptibility type="ice" value="0.9"/>
+      <susceptibility type="fire" value="0.9"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -81,6 +88,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="ice"/>
+      <susceptibility type="ice" value="0.5"/>
+      <susceptibility type="fire" value="1.5"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>

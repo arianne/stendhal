@@ -257,6 +257,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.7"/>
+      <susceptibility type="light" value="1.2"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -390,6 +395,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="fire"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>

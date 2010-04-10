@@ -890,6 +890,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <susceptibility type="fire" value="1.1"/>
+    </abilities> 
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -948,7 +951,10 @@
      <item value="button mushroom" quantity="[3,5]" probability="20.0"/> 	 
     </drops> 	 
     <equips> 	 
-    </equips> 	 
+    </equips> 
+    <abilities>
+      <susceptibility type="fire" value="1.3"/>
+    </abilities> 
 	<ai> 	 
        <profile name="brave"/> 	 
        <profile name="offensive"/> 	 
@@ -1017,6 +1023,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="fire"/>
+      <susceptibility type="ice" value="1.6"/>
+      <susceptibility type="fire" value="0.5"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -1433,6 +1444,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <susceptibility type="fire" value="1.2"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -1742,6 +1756,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="ice"/>
+      <susceptibility type="ice" value="0.4"/>
+      <susceptibility type="light" value="1.7"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -1986,6 +2005,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.6"/>
+      <susceptibility type="light" value="1.33"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="Who dare challenge me?"/>
@@ -2024,6 +2048,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="light"/>
+      <susceptibility type="dark" value="1.2"/>
+      <susceptibility type="light" value="0.7"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="Meet thy maker!"/>
@@ -2063,6 +2092,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.6"/>
+      <susceptibility type="light" value="1.3"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="Your time to die has come!"/>
@@ -2139,6 +2173,11 @@
       <slot name="lhand" item="power arrow" quantity="10000"/>
       <slot name="rhand" item="hunter crossbow" quantity="1"/>
     </equips>
+    <abilities>
+      <damage type="light"/>
+      <susceptibility type="dark" value="1.2"/>
+      <susceptibility type="light" value="0.7"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="Leave now, before it is too late for you."/>
@@ -2209,6 +2248,11 @@
     <equips>
       <slot name="rhand" item="demon fire sword"/>
     </equips>
+    <abilities>
+      <damage type="fire"/>
+      <susceptibility type="ice" value="1.2"/>
+      <susceptibility type="fire" value="0.7"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="Growwwwwwwrrrrrrr!"/>
@@ -2249,6 +2293,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.8"/>
+      <susceptibility type="light" value="1.2"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="My will be done over land and sky!"/>
@@ -2287,6 +2336,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="light"/>
+      <susceptibility type="dark" value="1.1"/>
+      <susceptibility type="light" value="0.8"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="You will dream of me tonight..."/>
@@ -2329,6 +2383,11 @@
       <slot name="lhand" item="power arrow" quantity="10000"/>
       <slot name="rhand" item="hunter crossbow" quantity="1"/>
     </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.8"/>
+      <susceptibility type="light" value="1.1"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="I will strike you down with more power than you can imagine!!"/>

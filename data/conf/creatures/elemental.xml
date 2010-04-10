@@ -23,6 +23,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <susceptibility type="fire" value="1.1"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -115,6 +118,10 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <susceptibility type="ice" value="1.2"/>
+      <susceptibility type="fire" value="0.7"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -206,6 +213,10 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <susceptibility type="ice" value="0.9"/>
+      <susceptibility type="fire" value="0.9"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
