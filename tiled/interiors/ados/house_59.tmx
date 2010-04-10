@@ -88,6 +88,9 @@
  <tileset name="flower baskets" firstgid="254" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>
  </tileset>
+ <tileset name="mtpot" firstgid="257" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAALNiYGCwGgS4HA++B8X3gfgBED8cYfqx4YGOr1FMe2xDB/0AoAKJmAAEAAA=
@@ -95,7 +98,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgJhOzADErELMBsRSJmB2IeaD6ZRhIB9JY9DvhULuYSP2U2o8LgOyfg4apbf81EvFQ0x8JxFFAHE2m/hggjgXiuEHofy4glsSC5XCIgzA3VD8vEPPhwEp45EBYAIgBonk1JAAEAAA=
+   H4sIAAAAAAAAAGNkYGBgJhOzADErELMBsRSJmB2IeaD6ZRhIB9JY9DvhULuYCP2MjJTZz4RHP8j+OWgYm/spsf8aiXio6Y8E4iggjiZTfwwQxwJx3CD0PxcQS2LBcjjEQZgbqp8XiPlwYCU8ciAsAMQAeXRU3wAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -120,7 +123,7 @@
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAItgYGCIGCQYF8AmR6xeaujHZSYp9pPrd2qZSWkcEGM/pe4nVj0h/YT8PxDuJ6QXl3m0znMAmLPeiQAEAAA=
+   H4sIAAAAAAAAAItgYGCIGCQYF8AmR6xeaujHZSYp7ifX79Qyk9I4IMZ+St1PrHpC+gn5fyDcT0gvLvNonecApWL7AgAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
