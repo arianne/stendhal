@@ -560,7 +560,7 @@
   <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
 	<parameter name="x">10</parameter>
 	<parameter name="y">3</parameter>
-	<parameter name="width">4</parameter>
+	<parameter name="width">3</parameter>
     <parameter name="height">2</parameter>
   </configurator>
   <portal x="20" y="23" ref="entrance">
@@ -692,6 +692,12 @@
 	<parameter name="x">22</parameter>
 	<parameter name="y">2</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">4</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="9" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_21_entrance"/>
   </portal>
@@ -703,6 +709,12 @@
 	<parameter name="x">22</parameter>
 	<parameter name="y">2</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">4</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="9" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_22_entrance"/>
   </portal>
@@ -714,6 +726,12 @@
 	<parameter name="x">22</parameter>
 	<parameter name="y">2</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">4</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="9" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_23_entrance"/>
   </portal>
@@ -735,6 +753,12 @@
 	<parameter name="x">29</parameter>
 	<parameter name="y">25</parameter>
   </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">10</parameter>
+	<parameter name="y">10</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="18" y="30" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_25_entrance"/>
   </portal>
