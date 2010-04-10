@@ -25,7 +25,6 @@ public class SlashActionRepository {
 		actions.put("altercreature", new AlterCreatureAction());
 		actions.put("alterquest", new AlterQuestAction());
 		actions.put("answer", new AnswerAction());
-		actions.put("atlas", new AtlasAction());
 		actions.put("away", new AwayAction());
 		
 		actions.put("ban", new BanAction());
@@ -35,8 +34,6 @@ public class SlashActionRepository {
 		actions.put("crash", new CrashClientAction());
 
 		actions.put("drop", new DropAction());
-
-		actions.put("faq", new FAQAction());
 
 		actions.put("gag", new GagAction());
 		actions.put("gmhelp", new GMHelpAction());
@@ -51,7 +48,6 @@ public class SlashActionRepository {
 		actions.put("jail", new JailAction());
 		actions.put("joinguild", new CreateGuildAction());
 
-		actions.put("manual", new ManualAction());
 		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
 		actions.put("mute", new MuteAction());
@@ -79,6 +75,7 @@ public class SlashActionRepository {
 
 		actions.put("where", new WhereAction());
 		actions.put("who", new WhoAction());
+		actions.putAll(BareBonesBrowserLaunchCommadsFactory.createBrowserCommands());
 //		actions.put("wrap", new WrapAction());
 	}
 

@@ -4,14 +4,21 @@ import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.BareBonesBrowserLaunch;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
-
 /**
- * Opens the FAQ
+ * generalized super class to provide a uniform way to open urls in the browser
+ * @author madmetzger
+ *
  */
-class FAQAction implements SlashAction {
+public class BareBonesBrowserLaunchCommand implements SlashAction{
+	
+	protected final String urlToOpen;
+
+	public BareBonesBrowserLaunchCommand(String url) {
+		urlToOpen = url;
+	}
 
 	/**
-	 * Opens the faq
+	 * Opens an URL with the browser
 	 * 
 	 * @param params ignored
 	 * @param remainder ignored
@@ -19,14 +26,13 @@ class FAQAction implements SlashAction {
 	 */
 	public boolean execute(final String[] params, final String remainder) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-				"Trying to open #http://stendhalgame.org/wiki/StendhalFAQ in your browser.",
+				"Trying to open #"+urlToOpen+" in your browser.",
 		NotificationType.CLIENT));
-
-		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/StendhalFAQ");
-
+	
+		BareBonesBrowserLaunch.openURL(urlToOpen);
+	
 		return true;
 	}
-
 
 	/**
 	 * Get the maximum number of formal parameters.
@@ -45,4 +51,5 @@ class FAQAction implements SlashAction {
 	public int getMinimumParameters() {
 		return 0;
 	}
+
 }
