@@ -523,7 +523,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	@Override
 	public String describe() {
 		String text = "You see " + Grammar.a_noun(getTitle()) + ".";
-		String stats = "";
+		StringBuilder stats = new StringBuilder();
 		String levelwarning = "";
 		if (hasDescription()) {
 			text = getDescription();
@@ -540,27 +540,48 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			levelwarning = " It requires level " + get("min_level") + " to be used to the full benefit.";
 		}
 		if (has("atk")) {
-			stats += " ATK: " + get("atk");
+			stats.append("ATK: ");
+			stats.append(get("atk"));
+			// Show only special types
+			if (getDamageType() != DamageType.CUT) {
+				stats.append(" [");
+				stats.append(getDamageType());
+				stats.append("]");
+			}
 		}
 		if (has("def")) {
-			stats += " DEF: " + get("def");
+			stats.append(" DEF: ");
+			stats.append(get("def"));
 		}
 		if (has("rate")) {
-			stats += " RATE: " + get("rate");
+			stats.append(" RATE: ");
+			stats.append(get("rate"));
 		}
 		if (has("amount")) {
-			stats += " HP: " + get("amount");
+			stats.append(" HP: ");
+			stats.append(get("amount"));
 		}
 		if (has("range")) {
-			stats += " RANGE: " + get("range");
+			stats.append(" RANGE: ");
+			stats.append(get("range"));
 		}
 		if (has("lifesteal")) {
-			stats += " LIFESTEAL: " + get("lifesteal");
+			stats.append(" LIFESTEAL: ");
+			stats.append(get("lifesteal"));
+		}
+		if ((susceptibilities != null) && !susceptibilities.isEmpty()) {
+			for (Entry<DamageType, Double> entry : susceptibilities.entrySet()) {
+				stats.append(" ");
+				stats.append(entry.getKey());
+				stats.append(": ");
+				stats.append(entry.getValue());
+			}
 		}
 		if (stats.length() > 0) {
-			stats = " Stats are (" + stats.trim() + ").";
+			stats.insert(0, " Stats are (");
+			stats.append(").");
 		}
-		return (text + levelwarning + stats);
+		return (text + levelwarning + stats.toString());
 	}
 
 	/**
