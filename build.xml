@@ -408,6 +408,7 @@
 		<copy todir="${build_client_data}/data/sprites">
 			<fileset dir="${sprites}">
 				<exclude name="**/*.xcf" />
+				<exclude name="**/*.bz2" />
 			</fileset>
 		</copy>
 
