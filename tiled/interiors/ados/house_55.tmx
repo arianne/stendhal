@@ -94,9 +94,12 @@
  <tileset name="../../tileset/ground/grass_2.png" firstgid="368" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
+ <tileset name="manycolors" firstgid="389" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/plain_colours.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAAtjZGAIGwQ4FAe+wYAdj+ofGMzGAMG00H8TKH4Lim/jsQOX/jtA8btQfI8MN94H6nkAxQ8HMIypjcOhGJscAGYX2aQABAAA
+   H4sIAAAAAAAAAAtjZGAIGwQ4FAe+wYAdj+ofGMzGAMG00H8TKH4Lim/jsQOX/jtA8btQfI8MN94H6nkAxQ8HMIzRcR8U00I/AFF6gHYABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
@@ -126,7 +129,7 @@
  </layer>
  <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNhYGCwGSQYG6BELy5Ain5scqS6nxg3kAIoDRNa6mdgIKwXmxn41BJjNyH7iDGHWL3Y9BNST8huYuKBFnkOAEEZTRIABAAA
+   H4sIAAAAAAAAALNhYGCwGSQYG6BELy5Ain5scqS6nxg3kAIoDRNa6mdgIE8vLrXEmoNPHbHuoNR+YuOR3HxBizwHAD962hwABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
