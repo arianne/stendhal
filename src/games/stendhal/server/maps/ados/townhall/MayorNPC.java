@@ -39,8 +39,8 @@ public class MayorNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(3, 10));
-				nodes.add(new Node(8, 10));	
+				nodes.add(new Node(3, 9));
+				nodes.add(new Node(8, 9));	
 				nodes.add(new Node(8, 16));	
 				nodes.add(new Node(25, 16));
 				nodes.add(new Node(25, 13));
@@ -48,7 +48,7 @@ public class MayorNPC implements ZoneConfigurator {
 				nodes.add(new Node(25, 13));
 				nodes.add(new Node(25, 16));
 				nodes.add(new Node(8, 16));
-				nodes.add(new Node(8, 10));	
+				nodes.add(new Node(8, 9));	
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -65,7 +65,7 @@ public class MayorNPC implements ZoneConfigurator {
 
 		mayor.setDescription("You see the respected mayor of Ados");
 		mayor.setEntityClass("badmayornpc");
-		mayor.setPosition(3, 10);
+		mayor.setPosition(3, 9);
 		mayor.initHP(100);
 		zone.add(mayor);
 	}
