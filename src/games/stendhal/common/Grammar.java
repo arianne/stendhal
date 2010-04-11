@@ -535,7 +535,7 @@ public class Grammar {
 			// first of all handle words which do not change
 		} else if (enoun.endsWith("money") || enoun.endsWith("dice")
 				|| enoun.endsWith("porcini") || enoun.endsWith("sheep")
-				|| enoun.endsWith("legs")
+				|| enoun.endsWith("legs") || enoun.endsWith("boots")
 				|| enoun.equals("deer") || enoun.equals("moose")) {
 			return enoun + postfix;
 
