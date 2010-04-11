@@ -94,6 +94,9 @@
  <tileset name="stairs" firstgid="235" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
+ <tileset name="mtpot" firstgid="239" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAHvOwMDwfJjgF3jwqHlD37xRPIpH8eDCAOHOWhtABgAA
@@ -101,7 +104,7 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXRTwsBQRzG8TlRnFbyN1EUKUc5E8Vp7YF9Izjghjfh4E14Jbjg1XgmvzJNv5lZsVOf2vL17C6eECJjkQXP0ahtEXKQZOSh4Gi4NiH4k47QfNP+a28PO0sz0vqBY+9A9GYMF7jCDYbUHyO+i2ya0FKaOzzgqXQnZq/L7NXF5/9rGO6p3tu1NyF9xxa39+vR93oG6rE1+l4AZ/BhSteBtmdr4n5feRawhBXhjqnh9tawIVvDnqmJ+31D8f59ZzCn61D7jq2J8/lKkLJoOz6XyrRXgapDJ0Ij1eAFmg7Dx0AGAAA=
+   H4sIAAAAAAAAALXRzQoBURjG8bOiWI3kM1EUKUtZE8WKWTA3ggV2uAkLN+FKsMFNcAmeyVtOp/ecMzJz6ldT/p6ZwRFCpAzS4Fgauc1DBuKMLOQsDdfGBH+SAZpf2rD2drA1NAOl71n29kRthnCGC1yhT/0h4Lv4TR0aUnODOzyk7sjstZm9qvj+fzXNPeV72/ZGpGvZ4vb+PepeR0M+pkbdc+EEY5jQtavsmZqo39c/c1jAknBH13B7K1iTjWZP10T9vp74/L5TmNG1p3xH1zxDfr6XsleAhEHT8rmvSHslKFu0AjS+CrwBPYpbAUAGAAA=
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
@@ -126,7 +129,7 @@
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNgYGCwGAIYGVDbPFzm4gPkuI9Ys0hxHzY91PYvsf6hpXmEAClxRwygZrrE5T70OKPEfZQCYt1MrDvo4T5qmkeL+KWH+3DZTy8MAF8PXPlABgAA
+   H4sIAAAAAAAAALNgYGCwGAIYGVDbPFzm4gPkuI9Ys0hxHzY91PYvsf6hpXmEAClxRwygZrrE5T70OKPEfZQCYt1MrDvo4T5qmkeL+KW12/DZTy8MAKAwrgtABgAA
   </data>
  </layer>
  <layer name="protection" width="20" height="20">
