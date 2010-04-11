@@ -23,6 +23,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -43,6 +44,7 @@ import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.events.PrivateTextEvent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -1216,6 +1218,22 @@ public class Player extends RPEntity {
 	 */
 	public int getSharedKill(final String name) {
 		return(killRec.getSharedKill(name));
+	}
+	
+	/**
+	 * return differences between stored in quest slot info about killed creatures
+	 *    and number of killed creatures. 
+	 * @param questSlot  - name of quest
+	 * @param questIndex - index of quest's record 
+	 * @param creature   - name of creature
+	 * @return - difference in killed creatures
+	 */
+	public int getQuestKills(final String questSlot, final int questIndex, final String creature) {
+		final List<String> content = Arrays.asList(getQuest(questSlot, questIndex).split(","));
+		final int index = content.indexOf(creature);
+		final int solo = MathHelper.parseIntDefault(content.get(index+1),0);
+		final int shared = MathHelper.parseIntDefault(content.get(index+2),0);		
+		return(solo+shared);
 	}
 	
 	/**

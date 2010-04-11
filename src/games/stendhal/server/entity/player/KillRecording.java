@@ -1,8 +1,5 @@
 package games.stendhal.server.entity.player;
 
-import java.util.Arrays;
-import java.util.List;
-
 import games.stendhal.common.MathHelper;
 
 /**
@@ -26,7 +23,7 @@ class KillRecording {
 	 * without the help of any other player.
 	 * 
 	 * @param name of the creature to check.
-	 * @return true iff this player has ever killed this creature on his own.
+	 * @return true if this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilledSolo(final String name) {
 		final String count = player.getKeyedSlot(KILL_SLOT_NAME, PREFIX_SOLO + name);
@@ -38,7 +35,7 @@ class KillRecording {
 	 * of any other player.
 	 * 
 	 * @param  name of the creature to check.
-	 * @return true iff this player has ever killed this creature on his own.
+	 * @return true if this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilled(final String name) {
 		final String count = player.getKeyedSlot(KILL_SLOT_NAME, PREFIX_SHARED + name);
@@ -122,19 +119,4 @@ class KillRecording {
 		return(getKill(name, "shared"));
 	}
 	
-	/**
-	 * return differences between stored in quest slot info about killed creatures
-	 *    and number of killed creatures. 
-	 * @param questSlot  - name of quest
-	 * @param questIndex - index of quest's record 
-	 * @param creature   - name of creature
-	 * @return - difference in killed creatures
-	 */
-	public int getQuestKills(final String questSlot, final int questIndex, final String creature) {
-		final List<String> content = Arrays.asList(player.getQuest(questSlot, questIndex).split(","));
-		final int index = content.indexOf(creature);
-		final int solo = MathHelper.parseIntDefault(content.get(index+1),0);
-		final int shared = MathHelper.parseIntDefault(content.get(index+2),0);		
-		return(solo+shared);
-	}
 }
