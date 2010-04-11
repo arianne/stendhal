@@ -58,7 +58,7 @@
         <noise state="idle follow fight" value="squeak ... squeak!"/>
       </says>
       <profile name="animal"/>
-      <profile name="offensive"/>
+      <profile name="non offensive"/>
       <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
