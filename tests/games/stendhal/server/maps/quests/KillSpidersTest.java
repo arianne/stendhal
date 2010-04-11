@@ -17,7 +17,6 @@ import games.stendhal.server.entity.creature.KillNotificationCreature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.magic.school.GroundskeeperNPC;
 import games.stendhal.server.maps.magic.school.SpidersCreatures;
@@ -139,9 +138,9 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertThat(player.getKarma(), lessThan(newKarma));
 		assertEquals("Ok, I have to find someone else to do this 'little' job!", getReply(npc));
 		assertThat(player.getQuest(questSlot), is("rejected"));
-		en.step(player, "bye");
-		
+		en.step(player, "bye");		
 		assertEquals("Bye.", getReply(npc));
+		
 		en.step(player, "hi");
 		assertEquals("Hello my friend. Nice day for walking isn't it?", getReply(npc));
 		en.step(player, "task");
@@ -150,5 +149,39 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertEquals("Fine. Go down to the basement and kill all the creatures there!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
+	}
+	
+	@Test
+	public void testOldQuest() {
+		final int xp = player.getXP();
+		final double karma = player.getKarma();
+		
+		player.setQuest(questSlot, "start");
+		en.step(player, "hi");
+		assertEquals("Go down and kill the creatures, no time left.", getReply(npc));
+		en.step(player, "bye");
+		assertEquals("Bye.", getReply(npc));
+		
+		player.setSharedKill("spider");
+		en.step(player, "hi");
+		assertEquals("Go down and kill the creatures, no time left.", getReply(npc));
+		en.step(player, "bye");
+		assertEquals("Bye.", getReply(npc));
+		
+		player.setSharedKill("poisonous spider");
+		en.step(player, "hi");
+		assertEquals("Go down and kill the creatures, no time left.", getReply(npc));
+		en.step(player, "bye");
+		assertEquals("Bye.", getReply(npc));
+		
+		player.setSharedKill("giant spider");
+		en.step(player, "hi");
+		assertEquals("Oh thank you my friend. Here you have something special, I got it from a Magican. Who he was I do not know. What the egg's good for, I do not know. I only know, it could be useful for you.", getReply(npc));
+		assertTrue(player.isEquipped("mythical egg"));
+		assertThat(player.getXP(), greaterThan(xp));
+		assertThat(player.getKarma(), greaterThan(karma));
+		assertTrue(player.getQuest(questSlot).startsWith("killed"));	
+		en.step(player, "bye");
+		assertEquals("Bye.", getReply(npc));       
 	}
 }
