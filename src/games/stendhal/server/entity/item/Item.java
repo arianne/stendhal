@@ -577,11 +577,11 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 				stats.append(entry.getValue());
 			}
 		}
+		String statString = "";
 		if (stats.length() > 0) {
-			stats.insert(0, " Stats are (");
-			stats.append(").");
+			statString =  " Stats are (" + stats.toString().trim() + ")."; 
 		}
-		return (text + levelwarning + stats.toString());
+		return (text + levelwarning + statString);
 	}
 
 	/**
