@@ -69,7 +69,7 @@ public class TeleportationRules {
 	public void disallowOut() {
 		// Make a rectangle large enough to cover the zone, even if we some
 		// day start allowing changeable sizes
-		Rectangle r = new Rectangle(0, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+		Rectangle r = new Rectangle(0, 0, Integer.MAX_VALUE, Integer.MAX_VALUE);
 		leavingBarriers.add(r);
 	}
 
