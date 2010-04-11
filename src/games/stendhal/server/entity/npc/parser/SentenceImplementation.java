@@ -264,7 +264,7 @@ public final class SentenceImplementation extends Sentence {
             // remove "me"
             expressions.remove(subject2);
             // replace "give" by "buy"
-            getVerb().setNormalized("buy");
+            verb1.setNormalized("buy");
             sentenceType = SentenceType.IMPERATIVE;
         }
 
