@@ -1199,7 +1199,25 @@ public class Player extends RPEntity {
 	public void removeKill(final String name) {
 		killRec.removeKill(name);
 	}
+	
+	/**
+	 * Returns how much the player has killed 'name' solo. 
+	 * @param name of the victim
+	 * @return number of solo kills
+	 */
+	public int getSoloKill(final String name) {
+		return(killRec.getSoloKill(name));
+	}
 
+	/**
+	 * Returns how much the player has killed 'name' with help of others.
+	 * @param name of victim
+	 * @return number of shared kills 
+	 */
+	public int getSharedKill(final String name) {
+		return(killRec.getSharedKill(name));
+	}
+	
 	/**
 	 * Checks whether the player is still suffering from the effect of a
 	 * poisonous item/creature or not.
