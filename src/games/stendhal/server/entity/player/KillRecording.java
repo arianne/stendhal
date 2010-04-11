@@ -94,10 +94,8 @@ class KillRecording {
 	
 	/**
 	 * Return information about how much creatures with the given name player killed.
-	 * 
 	 * @param name of the killed creature.
-	 * @param mode
-	 *            either "solo", "shared", or null.
+	 * @param mode either "solo", "shared", or null.
 	 * @return number of killed creatures
 	 */
 	public int getKill(final String name, final String mode) {
@@ -107,7 +105,7 @@ class KillRecording {
 	}
 	
 	/**
-	 * Return how much the player has killed 'name' solo. Overwrites shared kills of 'name'
+	 * Return how much the player has killed 'name' solo. 
 	 * @param name of the killed entity
 	 * @return number of killed creatures
 	 */	
