@@ -1233,7 +1233,7 @@ public class Player extends RPEntity {
 		final int index = content.indexOf(creature);
 		final int solo = MathHelper.parseIntDefault(content.get(index+1),0);
 		final int shared = MathHelper.parseIntDefault(content.get(index+2),0);		
-		return(solo+shared);
+		return(getSoloKill(creature)+getSharedKill(creature)-solo-shared);
 	}
 	
 	/**
