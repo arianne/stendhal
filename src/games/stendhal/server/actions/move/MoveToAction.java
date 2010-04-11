@@ -62,7 +62,6 @@ public class MoveToAction implements ActionListener {
 			} else {
 				// Walk
 				final List<Node> path = Path.searchPath(player, x, y);
-				path.add(new Node(path.get(path.size() - 1).getX() + 1, path.get(path.size() - 1).getY()));
 				player.setPath(new FixedPath(path, false));
 			}
 		}
