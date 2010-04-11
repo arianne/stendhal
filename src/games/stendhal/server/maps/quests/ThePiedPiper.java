@@ -524,10 +524,13 @@ import org.apache.log4j.Logger;
 				if ((tc>(RAT_TYPES.size()-1)) || (tc<0)) {
 					tc=0;
 				};
-				final KillNotificationCreature rat =
-					new KillNotificationCreature( (Creature) manager.getEntity(
-							RAT_TYPES.get(tc)));
-
+				// checking if EntityManager knows about this creature type.
+				final Creature tempCreature = (Creature) manager.getEntity(RAT_TYPES.get(tc));
+				if (tempCreature == null) {
+					continue;
+				};
+				final KillNotificationCreature rat = new KillNotificationCreature(tempCreature);
+				
 				// chosen place is occupied
 				if (zone.collides(rat,x,y)) {
 					// Could not place the creature here.
