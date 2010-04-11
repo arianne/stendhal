@@ -35,7 +35,7 @@ public class SpidersCreatures implements ZoneConfigurator {
 		buildMagicSchoolCellarArea(zone, attributes);
 	}
 	
-	public void updatePlayerQuest(final CircumstancesOfDeath circ) {
+	protected void updatePlayerQuest(final CircumstancesOfDeath circ) {
 		final Player player = (Player) circ.getKiller();
 		final String victim = circ.getVictim().getName();
 		player.setQuest("kill_all_spiders", 1+creatures.indexOf(victim), victim);
@@ -52,9 +52,11 @@ public class SpidersCreatures implements ZoneConfigurator {
 		}
 	}
 	
+	protected final SpidersObserver observer = new SpidersObserver(); 
+	
 	private void buildMagicSchoolCellarArea(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
-		final SpidersObserver observer = new SpidersObserver();
+		
 		KillNotificationCreature creature;
 		KillNotificationCreatureRespawnPoint point;
 		

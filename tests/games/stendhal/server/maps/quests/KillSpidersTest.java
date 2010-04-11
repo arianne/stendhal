@@ -9,12 +9,18 @@ import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.KillNotificationCreature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.magic.school.GroundskeeperNPC;
+import games.stendhal.server.maps.magic.school.SpidersCreatures;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -23,44 +29,60 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
-public class KillSpidersTest {
-
+public class KillSpidersTest extends SpidersCreatures {
 
 	private static String questSlot = "kill_all_spiders";
 	
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
-
+	private final static StendhalRPZone basement = new StendhalRPZone("spiders_zone",100,100);
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		final StendhalRPWorld world = MockStendlRPWorld.get();
 		QuestHelper.setUpBeforeClass();
-
-		MockStendlRPWorld.get();
 		
-		final StendhalRPZone zone = new StendhalRPZone("admin_test");
-
-		new GroundskeeperNPC().configureZone(zone, null);
-		
-			
-		final AbstractQuest quest = new KillSpiders();
+		final StendhalRPZone zone = new StendhalRPZone("int_semos_guard_house");
+		new GroundskeeperNPC().configureZone(zone, null);			
+		final AbstractQuest quest = new KillSpiders();	
+		world.addRPZone(zone);
+		world.addRPZone(basement);
 		quest.addToWorld();
-
 	}
 	@Before
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");
+		configureZone(basement, null);
+		npc = SingletonRepository.getNPCList().get("Morgrin");
+		en = npc.getEngine();
 	}
 
+	/**
+	 * function for emulating killing of creature by player.
+	 * @param name - creature's name
+	 */
+	private void killSpider(String name) {
+		final Creature creature = new Creature();
+		creature.put("class", "");
+		creature.put("subclass", "");
+		creature.setName(name);
+		creature.setHP(1);
+		creature.setATKXP(1);
+		creature.setDEFXP(1);
+		final KillNotificationCreature spider = new KillNotificationCreature(creature);
+		spider.registerObjectsForNotification(observer);
+		player.teleport(basement, 5, 5, null, player);
+		StendhalRPAction.placeat(basement, spider, 51, 50);
+		spider.onDead(player, true);
+	}	
+	
 	/**
 	 * Tests for quest.
 	 */
 	@Test
 	public void testQuest() {
-		final double oldkarma = player.getKarma();
-		
-		npc = SingletonRepository.getNPCList().get("Morgrin");
-		en = npc.getEngine();
+		final double oldkarma = player.getKarma();		
 		en.step(player, "hi");
 		assertEquals("Hello my friend. Nice day for walking isn't it?", getReply(npc));
 		en.step(player, "yes");
@@ -77,10 +99,13 @@ public class KillSpidersTest {
 		assertEquals("Go down and kill the creatures, no time left.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
-		player.setSharedKill("poisonous spider");
-		player.setSharedKill("spider");
-		player.setSharedKill("giant spider");
+
+		killSpider("spider");
+		assertEquals("spider", player.getQuest(questSlot, 1));
+		killSpider("poisonous spider");
+		assertEquals("poisonous spider",player.getQuest(questSlot, 2));
+		killSpider("giant spider");
+		assertEquals("giant spider",player.getQuest(questSlot, 3));
 		
 		final int xp = player.getXP();
 		final double karma = player.getKarma();
