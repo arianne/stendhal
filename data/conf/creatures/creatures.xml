@@ -1759,7 +1759,7 @@
     <abilities>
       <damage type="ice"/>
       <susceptibility type="ice" value="0.4"/>
-      <susceptibility type="light" value="1.7"/>
+      <susceptibility type="fire" value="1.7"/>
     </abilities>
     <ai>
       <profile name="brave"/>
