@@ -16,6 +16,8 @@ public class EarningTest {
 	public void testEqualsAndHashCode() {
 		Earning e1 = new Earning(Integer.valueOf(1),"bob", true);
 		Earning e2 = new Earning(Integer.valueOf(1),"bob", true);
+		e1.put("timestamp", 0);
+		e2.put("timestamp", 0);
 		assertThat(e1,is(e2));
 		assertThat(e1.hashCode(), is(e2.hashCode()));
 	}
