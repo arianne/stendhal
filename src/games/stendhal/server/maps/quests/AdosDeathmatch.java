@@ -27,6 +27,7 @@ import games.stendhal.server.maps.deathmatch.LeaveAction;
 import games.stendhal.server.maps.deathmatch.StartAction;
 import games.stendhal.server.util.Area;
 
+import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -64,7 +65,8 @@ public class AdosDeathmatch extends AbstractQuest {
 		final Spot entrance = new Spot(zone, 96, 75);
 		deathmatchInfo = new DeathmatchInfo(arena, zone, entrance);
 		// do not let players scroll out of deathmatch
-		zone.disallowOut();
+		Rectangle r = area.getShape().getBounds();
+		zone.disallowOut(r.x, r.y, r.width, r.height);
 	}
 
 	/**
