@@ -119,8 +119,8 @@
     <equips>
     </equips>
     <abilities>
-      <susceptibility type="ice" value="1.2"/>
-      <susceptibility type="fire" value="0.7"/>
+      <susceptibility type="fire" value="1.2"/>
+      <susceptibility type="ice" value="0.7"/>
     </abilities>
     <ai>
       <profile name="brave"/>
