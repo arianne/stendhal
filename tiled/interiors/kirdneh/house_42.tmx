@@ -88,6 +88,9 @@
  <tileset name="table wooden brown" firstgid="166" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
+ <tileset name="mtpot" firstgid="175" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="15" height="15">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAABNkYGAQIgOLALEoEIsBMTsJWByIJaB62YDYigTMPaqXanrNceDhqpfYsJICYi4SsDRUrywQy5GBFYAYAHWU+yqEAwAA
@@ -95,7 +98,7 @@
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFgwF0pHIInFAfESIF4KxK5APAGIu/GYsQyIo4B4BZr4DCieiENfLBCvBOJVQLwaiCOxqMGlFwTWAPFaIF6HQx6fXnQA8qcbFIP820uC3hlYMCFQC8ROQOwMxS5QMWzADImdDsQZWNSkAnEaATuzgTgHyvYCYh8oOxOIs7CoDyZgHj4QQqR+M8JKGBSBWAmIlcl0iyoBeQBtGjNehAMAAA==
+   H4sIAAAAAAAAAGNgGFgwF40fAcRxQLwEiJcCsSsQTwDibjxmLAPiKCBegSY+A4on4tAXC8QrgXgVEK8G4kgsanDpBYE1QLwWiNfhkMenFx2A/OkGxSD/9mJRsx6H3hlYMDrYgMavBWInIHaGYheoGDZghsROB+IMLGpSgTgNh34YyAbiHCjbC4h9oOxMIM7Coj6YgHn4QAiR+s0IK2FQBGIlIFYm0y2qBOQBmKhdYYQDAAA=
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
@@ -120,7 +123,7 @@
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNlYGDwHUAMA+hsUvWiizHgkKemXkKAFL2k+JdUfdj04gsHYuOJGLdgU4NuP7oYtcKaGP2khB+t8gAA1LFw7oQDAAA=
+   H4sIAAAAAAAAAPNlYGDwHUCMDsjRi888XGZSQy8hQIpecsKKWH3Y9OMLB0LhRYofsKlBtx9djFphTYx+UsKOVnkAAPAquHWEAwAA
   </data>
  </layer>
  <layer name="protection" width="15" height="15">
