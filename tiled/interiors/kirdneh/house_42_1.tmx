@@ -71,7 +71,7 @@
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ3ROwrCQBRG4VsZiJWaqChKmuh2sgXByloUxU1lDwq+AnFHniLCcMmMM7nwVeEwP2QgIsMOEqQYIzIUjchigmnT9lCK//VVa94eB+RYBbZHnIzvXdsFli0y1W5Uu8bIIlHtVrW289l8xQ1vVLjj4dmGvLuztDU+npvPuBibf+fa/MTLsbXt3RniAHNx//t/MnwB5T3lcYQDAAA=
+   H4sIAAAAAAAAAKXRSwrCMBCA4VlZ0JW1PrAo3ajX8QqCK9eiKL1U76DgE/RG/kKFMDQxTQe+VfjJhHRFJA6QoI8BIsOyFFkMMSrbFgrxn45qzdliF9juccAM88D2ez7BtEKm2pVqF+hZJKpdq7bJe08444EnLrh6tnXu3VjaF96eOx+RGzv/xrXzDXfHrlX3jtGuIRX33/+T4QMKbVUOhAMAAA==
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
@@ -96,7 +96,7 @@
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANNnYGDQH0CMDPCJEdKLywx666XE36Tqwweo7WZy7aUkvMnRgyxPrNsHMv2DMAANsO2qhAMAAA==
+   H4sIAAAAAAAAANNnYGDQH0CMDPCJEdKLC5CiF12OHL2U+JtUffgAtd1Mrr2UhDc5epDliXX7QKZ/EAYABFTTA4QDAAA=
   </data>
  </layer>
  <layer name="protection" width="15" height="15">
