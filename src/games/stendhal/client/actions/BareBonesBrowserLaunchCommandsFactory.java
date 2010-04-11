@@ -8,7 +8,7 @@ import java.util.Map.Entry;
  *  
  * @author madmetzger
  */
-public class BareBonesBrowserLaunchCommadsFactory {
+public class BareBonesBrowserLaunchCommandsFactory {
 	
 	private static Map<String, String> commandsAndUrls;
 	

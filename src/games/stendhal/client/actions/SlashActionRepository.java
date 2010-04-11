@@ -75,7 +75,7 @@ public class SlashActionRepository {
 
 		actions.put("where", new WhereAction());
 		actions.put("who", new WhoAction());
-		actions.putAll(BareBonesBrowserLaunchCommadsFactory.createBrowserCommands());
+		actions.putAll(BareBonesBrowserLaunchCommandsFactory.createBrowserCommands());
 //		actions.put("wrap", new WrapAction());
 	}
 
