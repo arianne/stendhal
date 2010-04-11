@@ -1276,6 +1276,19 @@ public class StendhalRPZone extends MarauroaRPZone {
 		disallowIn();
 		disallowOut();
 	}
+	
+	/**
+	 * Disallow teleporting to and from a specified area.
+	 * 
+	 * @param x left x coordinate
+	 * @param y top y coordinate
+	 * @param width width of the area
+	 * @param height height of the area
+	 */
+	public void disAllowTeleport(int x, int y, int width, int height) {
+		disallowIn(x, y, width, height);
+		disallowOut(x, y, width, height);
+	}
 
 	/**
 	 * Check if teleporting with a scroll to a location is allowed.
