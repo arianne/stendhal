@@ -17,6 +17,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.quests.AdosDeathmatch;
+import games.stendhal.server.util.Area;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -52,7 +53,8 @@ public class BailActionTest {
 	 */
 	@Test
 	public void testBailNoDM() {
-		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		final AdosDeathmatch adm = new AdosDeathmatch(zone, new Area(zone, 0, 0, 1, 1));
 		adm.createNPC("th", 0, 0);
 		final SpeakerNPC th = NPCList.get().get("th");
 		assertNotNull(th);
@@ -69,7 +71,8 @@ public class BailActionTest {
 	 */
 	@Test
 	public void testBailDoneDM() {
-		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		final AdosDeathmatch adm = new AdosDeathmatch(zone, new Area(zone, 0, 0, 1, 1));
 		adm.createNPC("th", 0, 0);
 		final SpeakerNPC th = NPCList.get().get("th");
 		assertNotNull(th);
@@ -88,7 +91,8 @@ public class BailActionTest {
 	 */
 	@Test
 	public void testBailStartedDMNOhelmet() {
-		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		final AdosDeathmatch adm = new AdosDeathmatch(zone, new Area(zone, 0, 0, 1, 1));
 		adm.createNPC("th", 0, 0);
 		final SpeakerNPC th = NPCList.get().get("th");
 		assertNotNull(th);
@@ -106,7 +110,8 @@ public class BailActionTest {
 	 */
 	@Test
 	public void testFire() {
-		final AdosDeathmatch adm = new AdosDeathmatch(new StendhalRPZone("zone"), null);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		final AdosDeathmatch adm = new AdosDeathmatch(zone, new Area(zone, 0, 0, 1, 1));
 		adm.createNPC("th", 0, 0);
 		final SpeakerNPC th = NPCList.get().get("th");
 		assertNotNull(th);
