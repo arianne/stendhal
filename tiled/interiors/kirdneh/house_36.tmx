@@ -88,6 +88,9 @@
  <tileset name="church tiles" firstgid="174" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/church_tiles.png"/>
  </tileset>
+ <tileset name="mtpot" firstgid="176" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="15" height="15">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAABNkYGAQIgOLALEoEIsBMTsJWByIJaB62RggYD0Qr8NBIwNuNL349CHT2PQSo289Dr20sBcbQNebDMQpROBULHrTgDidCJwxTPRmAnEWETgbTa8UEHORgKWhemWBWI4MrADEAIJfV/CEAwAA
@@ -95,7 +98,7 @@
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFgwF0r7IYmFAPFiIF4CxNZA3A/EXXjMWArEAUC8HE18OhRPwKEvGIhXAPFKIF4FxP5Y1ODSCwKrgXgNEK/FIY9PLzoA+dMGikH+7SFB73QsmBCoAWILILaEYiuoGCEQC8RxWMSjgTiGgN5EIE6Csh2A2AnKjgfiBCzqPYlwDy7gRaR+EyLUKAKxEhArk+kWVQLyAGpyogyEAwAA
+   H4sIAAAAAAAAAGNgGFgwF0r7IYmFAPFiIF4CxNZA3A/EXXjMWArEAUC8HE18OhRPwKEvGIhXAPFKIF4FxP5Y1ODSCwKrgXgNEK/FIY9PLzoA+dMGikH+7SFB73QsGB1sQOPXALEFEFtCsRVUDBvYiMSOBeI4LGqigTiGgDsTgTgJynYAYicoOx6IE7Co9yRgHj7gRaR+EyLUKAKxEhArk+kWVQLyAAqFr+eEAwAA
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
@@ -120,7 +123,7 @@
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNmYGBwHkAMA+hsUvWiizHgkKemXkKAFL2k+JdUfdj04gsHfHpJ9QM2Nej2o4tRK6yJ0U9K+NEqDwAAdvgGF4QDAAA=
+   H4sIAAAAAAAAAHNmYGBwHkAMA+hsUvWiizHgkKemXkKAFL2k+JdUfdj04gsHYuOJGLdgU4NuP7oYtcKaGP2khB+t8gAAfF0xq4QDAAA=
   </data>
  </layer>
  <layer name="protection" width="15" height="15">
