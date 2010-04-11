@@ -172,6 +172,7 @@
     </attributes>
     <weight value="3.0"/>
     <value value="457142"/>
+    <damage type="light"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -205,6 +206,7 @@
     </attributes>
     <weight value="10.0"/>
     <value value="617400"/>
+    <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -241,6 +243,7 @@
     </attributes>
     <weight value="10.0"/>
     <value value="1028850"/>
+    <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>

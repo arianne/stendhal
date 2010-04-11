@@ -265,6 +265,8 @@
     </attributes>
     <weight value="40.0"/>
     <value value="34391"/>
+    <susceptibility type="light" value="1.4"/>
+    <susceptibility type="dark" value="0.8"/> 
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -295,6 +297,8 @@
     </attributes>
     <weight value="35.0"/>
     <value value="40824"/>
+    <susceptibility type="fire" value="0.95"/>
+    <susceptibility type="light" value="0.95"/>
     <equipable>
       <slot name="bag"/>
       <slot name="armor"/>
@@ -310,7 +314,7 @@
     </attributes>
     <weight value="35.0"/>
     <value value="48013"/>
-    <susceptibility type="ice" value="0.6"/>
+    <susceptibility type="ice" value="0.7"/>
     <susceptibility type="fire" value="1.5"/>
     <equipable>
       <slot name="armor"/>
@@ -372,6 +376,10 @@
     </attributes>
     <weight value="45.0"/>
     <value value="96768"/>
+    <susceptibility type="fire" value="0.95"/>
+    <susceptibility type="ice" value="0.95"/>
+    <susceptibility type="dark" value="0.95"/>
+    <susceptibility type="light" value="0.95"/>
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -387,6 +395,8 @@
     </attributes>
     <weight value="45.0"/>
     <value value="123032"/>
+    <susceptibility type="dark" value="0.9"/>
+    <susceptibility type="light" value="1.2"/>  
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -401,6 +411,8 @@
     </attributes>
     <weight value="42.0"/>
     <value value="323032"/>
+    <susceptibility type="dark" value="1.2"/>
+    <susceptibility type="light" value="0.9"/>
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>

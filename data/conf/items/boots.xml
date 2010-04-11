@@ -121,6 +121,8 @@
     </attributes>
     <weight value="17.0"/>
     <value value="5103"/>
+    <susceptibility type="light" value="1.4"/>
+    <susceptibility type="dark" value="0.8"/> 
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
@@ -135,6 +137,8 @@
     </attributes>
     <weight value="17.0"/>
     <value value="7000"/>
+    <susceptibility type="fire" value="0.95"/>
+    <susceptibility type="ice" value="0.95"/>
     <equipable>
       <slot name="bag"/>
       <slot name="feet"/>
@@ -205,6 +209,8 @@
     </attributes>
     <weight value="17.0"/>
     <value value="23625"/>
+    <susceptibility type="light" value="1.2"/>
+    <susceptibility type="dark" value="0.9"/> 
     <equipable>
       <slot name="bag"/>
       <slot name="feet"/>
@@ -219,6 +225,8 @@
     </attributes>
     <weight value="14.0"/>
     <value value="53625"/>
+    <susceptibility type="dark" value="1.2"/>
+    <susceptibility type="light" value="0.9"/>
     <equipable>
       <slot name="bag"/>
       <slot name="feet"/>
