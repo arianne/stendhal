@@ -2,12 +2,18 @@ package games.stendhal.server.maps.kalavan.citygardens;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * Builds an ice cream seller npc.
@@ -47,6 +53,17 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 				addJob("I sell delicious icecreams.");
 				addHelp("I can #offer you a refreshing icecream.");
 				addQuest("Mine's a simple life, I don't need a lot.");
+				
+				add(ConversationStates.ATTENDING, 
+					ConversationPhrases.YES_MESSAGES, 
+					null, 
+					ConversationStates.ATTENDING, 
+					null, 
+					new ChatAction() {
+						public void fire(final Player player,final Sentence sentence, final SpeakerNPC npc) {
+							npc.getEngine().step(player, "buy icecream");
+							};
+						} );
 
 				final Map<String, Integer> offers = new HashMap<String, Integer>();
 				offers.put("icecream", 30);
