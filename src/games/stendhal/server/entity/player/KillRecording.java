@@ -1,5 +1,8 @@
 package games.stendhal.server.entity.player;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 
 /**
@@ -87,5 +90,53 @@ class KillRecording {
 	public void removeKill(final String name) {
 		player.setKeyedSlot(KILL_SLOT_NAME, PREFIX_SHARED + name, null);
 		player.setKeyedSlot(KILL_SLOT_NAME, PREFIX_SOLO + name, null);
+	}
+	
+	/**
+	 * Return information about how much creatures with the given name player killed.
+	 * 
+	 * @param name of the killed creature.
+	 * @param mode
+	 *            either "solo", "shared", or null.
+	 * @return number of killed creatures
+	 */
+	public int getKill(final String name, final String mode) {
+		final String key = mode + "." + name;		
+		final int kills = MathHelper.parseIntDefault(player.getKeyedSlot(KILL_SLOT_NAME, key),0);
+		return(kills);
+	}
+	
+	/**
+	 * Return how much the player has killed 'name' solo. Overwrites shared kills of 'name'
+	 * @param name of the killed entity
+	 * @return number of killed creatures
+	 */	
+	public int getSoloKill(final String name) {
+		return(getKill(name, "solo"));
+	}
+	
+	/**
+	 * Return how much the player has killed 'name' shared. 
+	 * @param name of the killed entity
+	 * @return number of killed creatures
+	 */	
+	public int getSharedKill(final String name) {
+		return(getKill(name, "shared"));
+	}
+	
+	/**
+	 * return differences between stored in quest slot info about killed creatures
+	 *    and number of killed creatures. 
+	 * @param questSlot  - name of quest
+	 * @param questIndex - index of quest's record 
+	 * @param creature   - name of creature
+	 * @return - difference in killed creatures
+	 */
+	public int getQuestKills(final String questSlot, final int questIndex, final String creature) {
+		final List<String> content = Arrays.asList(player.getQuest(questSlot, questIndex).split(","));
+		final int index = content.indexOf(creature);
+		final int solo = new Integer(content.get(index+1));
+		final int shared = new Integer(content.get(index+2));		
+		return(solo+shared);
 	}
 }
