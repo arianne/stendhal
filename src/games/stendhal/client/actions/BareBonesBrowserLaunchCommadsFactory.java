@@ -21,7 +21,7 @@ public class BareBonesBrowserLaunchCommadsFactory {
 	
 	/**
 	 * creates {@link SlashAction}s for all in initialize specified values 
-	 * @return
+	 * @return map of the created actions
 	 */
 	public static Map<String, SlashAction> createBrowserCommands() {
 		initialize();
