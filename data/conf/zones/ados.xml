@@ -2583,7 +2583,18 @@ Southeast: Docks
      </implementation>
      <attribute name="name">dragon lair2</attribute>
     </entity>
-  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn">
+    <parameter name="x">0</parameter>
+    <parameter name="y">0</parameter>
+    <parameter name="width">27</parameter>
+    <parameter name="height">47</parameter>
+  </configurator>
+  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn">
+    <parameter name="x">27</parameter>
+    <parameter name="y">0</parameter>
+    <parameter name="width">29</parameter>
+    <parameter name="height">27</parameter>
+  </configurator>
   <configurator class-name="games.stendhal.server.maps.ados.tunnel.WishmanNPC"/>
  <portal x="25" y="28" ref="dragonlairinside">
    <destination zone="-1_ados_outside_w" ref="dragonlairoutside"/>
