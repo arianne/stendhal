@@ -183,13 +183,15 @@ public class WeddingRing extends Ring {
 		}
 
 		final StendhalRPZone sourceZone = player.getZone();
-		if (!sourceZone.isTeleportOutAllowed()) {
+		if (!sourceZone.isTeleportOutAllowed(player.getX(), player.getY())) {
 			player.sendPrivateText("The strong anti magic aura in this area prevents the wedding ring from working!");
 			return false;
 		}
 
 		final StendhalRPZone destinationZone = spouse.getZone();
-		if (!destinationZone.isTeleportInAllowed()) {
+		final int x = spouse.getX();
+		final int y = spouse.getY();
+		if (!destinationZone.isTeleportInAllowed(x, y)) {
 			player.sendPrivateText("The strong anti magic aura in the destination area prevents the wedding ring from working!");
 			return false;
 		}
@@ -202,8 +204,6 @@ public class WeddingRing extends Ring {
 			return false;
 		}
 
-		final int x = spouse.getX();
-		final int y = spouse.getY();
 		final Direction dir = spouse.getDirection();
 
 		if (player.teleport(destinationZone, x, y, dir, player)) {

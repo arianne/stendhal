@@ -67,7 +67,7 @@ public abstract class TeleportScroll extends Scroll {
 	protected boolean useScroll(final Player player) {
 		final StendhalRPZone zone = player.getZone();
 
-		if (!zone.isTeleportOutAllowed()) {
+		if (!zone.isTeleportOutAllowed(player.getX(), player.getY())) {
 			player.sendPrivateText("The strong anti magic aura in this area prevents the scroll from working!");
 			return false;
 		}

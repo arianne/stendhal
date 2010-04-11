@@ -37,10 +37,10 @@ public class NoTeleportTest {
 		StendhalRPZone zone = new StendhalRPZone("testzone",  20, 20);
 		ZoneConfigurator conf = new NoTeleport();
 		conf.configureZone(zone, null);
-		assertFalse(zone.isTeleportInAllowed());
-		assertFalse(zone.isTeleportOutAllowed());
-		assertFalse(zone.isTeleportAllowed());
-		
+		assertFalse(zone.isTeleportInAllowed(0, 0));
+		assertFalse(zone.isTeleportInAllowed(19, 19));
+		assertFalse(zone.isTeleportOutAllowed(0, 0));
+		assertFalse(zone.isTeleportOutAllowed(19, 19));
 	}
 
 }

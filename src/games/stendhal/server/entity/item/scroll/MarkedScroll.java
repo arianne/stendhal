@@ -94,10 +94,9 @@ public class MarkedScroll extends TeleportScroll {
 						return false;
 					} else {
 					        zone = temp;
-						if (zone.isTeleportInAllowed()) {
-						        x = Integer.parseInt(st.nextToken());
+					        x = Integer.parseInt(st.nextToken());
 							y = Integer.parseInt(st.nextToken());
-						} else {
+						if (!zone.isTeleportInAllowed(x, y)) {
 							player.sendPrivateText("The strong anti magic aura in the destination area prevents the scroll from working!");
 							return false;
 						}

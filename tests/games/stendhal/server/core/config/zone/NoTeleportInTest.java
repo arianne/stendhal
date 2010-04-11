@@ -2,6 +2,10 @@ package games.stendhal.server.core.config.zone;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -39,10 +43,30 @@ public class NoTeleportInTest {
 		StendhalRPZone zone = new StendhalRPZone("testzone",  20, 20);
 		ZoneConfigurator conf = new NoTeleportIn();
 		conf.configureZone(zone, null);
-		assertFalse(zone.isTeleportInAllowed());
-		assertTrue(zone.isTeleportOutAllowed());
-		assertFalse(zone.isTeleportAllowed());	
-		
+		assertFalse(zone.isTeleportInAllowed(0, 0));
+		assertFalse(zone.isTeleportInAllowed(19, 19));
+		assertTrue(zone.isTeleportOutAllowed(0, 0));
+		assertTrue(zone.isTeleportOutAllowed(19, 19));
 	}
 
+	/**
+	 * Tests for configuring only part of the zone
+	 */
+	@Test
+	public void testConfigureSubZone() {
+		StendhalRPZone zone = new StendhalRPZone("testzone",  20, 20);
+		ZoneConfigurator conf = new NoTeleportIn();
+		Map<String, String> attributes = new HashMap<String, String>();
+		attributes.put("x", "1");
+		attributes.put("y", "1");
+		attributes.put("width", "5");
+		attributes.put("height", "5");
+		conf.configureZone(zone, attributes);
+		assertTrue("Outside the blocked area", zone.isTeleportInAllowed(0, 0));
+		assertFalse("Inside the blocked area", zone.isTeleportInAllowed(1, 1));
+		assertFalse("Inside the blocked area", zone.isTeleportInAllowed(5, 5));
+		assertTrue("Outside the blocked area", zone.isTeleportInAllowed(6, 6));
+		assertTrue(zone.isTeleportOutAllowed(0, 0));
+		assertTrue(zone.isTeleportOutAllowed(19, 19));
+	}
 }

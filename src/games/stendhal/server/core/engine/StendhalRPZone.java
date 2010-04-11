@@ -1142,24 +1142,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
-	 * Can magic scrolls for teleportation be used in this zone?
-	 * 
-	 * @return true, if teleportion is possible, false otherwise
-	 */
-	public boolean isTeleportAllowed() {
-		return teleRules.isInAllowed() && teleRules.isOutAllowed();
-	}
-
-	/**
-	 * Sets the flag whether magic scrolls for teleportation may be uses in this
-	 * zone.
-	 */
-	public void disAllowTeleport() {
-		teleRules.disAllowIn();
-		teleRules.disallowOut();
-	}
-
-	/**
 	 * Can moveto (mouse movement using pathfinding) be done on this map?
 	 * 
 	 * @return true, if moveto is possible, false otherwise
@@ -1285,24 +1267,74 @@ public class StendhalRPZone extends MarauroaRPZone {
 		
 		
 	}
-
 	
-	public boolean isTeleportInAllowed() {
-		return teleRules.isInAllowed();
+	/**
+	 * Sets the flag whether magic scrolls for teleportation may be uses in this
+	 * zone.
+	 */
+	public void disAllowTeleport() {
+		disallowIn();
+		disallowOut();
 	}
 
-	public boolean isTeleportOutAllowed() {
-		return teleRules.isOutAllowed();
+	/**
+	 * Check if teleporting with a scroll to a location is allowed.
+	 * 
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 * @return <code>true</code> iff teleporting is allowed
+	 */
+	public boolean isTeleportInAllowed(int x, int y) {
+		return teleRules.isInAllowed(x, y);
 	}
 
+	/**
+	 * Check if teleporting with a scroll from a location is allowed.
+	 * 
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 * @return <code>true</code> iff teleporting is allowed
+	 */
+	public boolean isTeleportOutAllowed(int x, int y) {
+		return teleRules.isOutAllowed(x, y);
+	}
+
+	/**
+	 * Forbid teleporting to the entire zone using a scroll. 
+	 */
 	public void disallowIn() {
-		teleRules.disAllowIn();
-		
+		teleRules.disallowIn();
+	}
+	
+	/**
+	 * Disallow teleporting to specified area.
+	 * 
+	 * @param x left x coordinate
+	 * @param y top y coordinate
+	 * @param width width of the area
+	 * @param height height of the area
+	 */
+	public void disallowIn(int x, int y, int width, int height) {
+		teleRules.disallowIn(x, y, width, height);
 	}
 
+	/**
+	 * Forbid teleporting from the entire zone using a scroll.
+	 */
 	public void disallowOut() {
 		teleRules.disallowOut();
-		
+	}
+	
+	/**
+	 * Disallow teleporting from specified area.
+	 * 
+	 * @param x left x coordinate
+	 * @param y top y coordinate
+	 * @param width width of the area
+	 * @param height height of the area
+	 */
+	public void disallowOut(int x, int y, int width, int height) {
+		teleRules.disallowOut();
 	}
 
 	public void onRemoved() {
