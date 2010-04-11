@@ -127,6 +127,9 @@
  <tileset name="sheep food" firstgid="251" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
+ <tileset name="mtpot" firstgid="252" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/empty_pot.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2UQQoAIAgEfWH423peHT1UYGzogofBk8sgqoqIFhDaY0Xl3HKRWZ6+vhimnvKQjp4+69ZJ5xflxrB/jG63GymKKFB7nfG//HRjcIx2YXJjcMzsxuC4I9qJfX6FnwnKXZZqoA8AAA==
@@ -134,7 +137,7 @@
  </layer>
  <layer name="1_terrain" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2XO0sDQRSFb6VgqvjGKNr6FkEQLIxGQVvFQgvRQgM+G62MKdTCB/6BgBpEJPlHiWgn4s/wDDtDws2dzewmUQ98zM7sncNh2WTuRomozYdBMFSlRtEOog51QT07QCdotjAKxnzuK7pAt4NXWM8mcAGuwAJYBHfkKQ9yeiS9bmrMngjzSujaR/AEslRSAbzp6xWwylgDz4JnLQrrtSGsrYNXH88lsFzFl9dwr1SN+er5/DKC13mN+aiO+SSvtOO+TbDF2LZ45vlmR+UFLz8dgMOy0SbuWf4bzQTIlnPMV7Tkk3LOM88e0BKASTaP+XjxWleMZx/oD8iUsDZg8ZJqXVGe6kxqDch0g2o5LuebxEyDavn51kuld3qWvHPnBJxSSdfgBtxSpY7AMVvbA/tCrVKBzdX5eEneGWkU10RYvv+kOFXmm/vLQIKC5Hu3jEG1A5Lk9UDqepfNk7ouJeTzk+mTDNmQ+Vylzm+eT/2Pn1nqPyyjn17IO1vKR1elA+YLo5weP9ncVY3OZ57XF5u76ree3zebu0rKp/qIe42ZF9k+9W1R/l2RIFmu75/UxzywfLznGAYjZO8tbPelXiWsV0znk3qOcTAhrFe7L/UqYb1M//IDDoW9g6APAAA=
+   H4sIAAAAAAAAAM2XO0sDQRSFb6VgKt9iFG19iyAIFkajoK1ioYVooYLPRitjCrXwgX8goAYRSf5RItqJ+CMUPMPOkHBzZzO7SdQDH7Mze+dwWDaZu41E1OxDH+gvU6NoAY0OdUE9W0EbqLcwBIZ97ivaQYeDV1jPOnAGLsAsmAM35CkLMnokvW5qzJ4I84rr2nvwANJUUA686OtFsMRYBo+CZyUK67UqrK2AZx/PebBQxpfXcK9Ehfmq+fxSgtdphfmoivkkr6TjvjWwztiweGb5ZkdlBS8/7YH9otEm7ln8G00FyJZxzJe35JNyzjDPTtAQgDE2j/p48VpXjGc36AnIuLDWa/GSal1RnupMagrIRI1qOS7nm8RkjWr5+dZFhXd6irxz5wgcU0GX4ApcU6kOwCFb2wG7Qq1Sjs3V+XhO3hlpFNNEWL7/pBiV5pv+y0CCguR7tYxBtQm2yeuB1PUWm2/ruoSQz0+mTzKkQ+ZzlTq/eT71P35iqX+zjH56Iu9sKR5dlQyYL4wyenxnc1fVOp95Xh9s7qrfen6fbF5OX3qU8qk+4lZj5nm2X31bFH9XxEmW6/vH+5hvcMfy8Z5jAAySvbew3Zd6lbBeUZ1P6jlGwKiwXu6+1KuE9TL9yw/0DDEyoA8AAA==
   </data>
  </layer>
  <layer name="2_object" width="40" height="25">
@@ -159,7 +162,7 @@
  </layer>
  <layer name="collision" width="40" height="25" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2USw7AIAhEuf8tvGm3jeEz0EFrIgkLFB7jd4jIuN7iEsTZWlFizSxe1ZgsjVddH8Jj62OwOvaQyeo+404Omhu9u6o2qzZ6/wi3+newcll+9Z2nb+aIMzbPRWPvOS3X6uf13mmnatzRE72vWW6nrTjfL/xV+rwYqb/67Bipz/zdXh3KR/Ky2rLr6GL/1R/uZaHfoA8AAA==
+   H4sIAAAAAAAAAO2URw4AIQhFuf8tvOlsJ4byaZZEEhYoPL51ENF43uJkxN5aYmLOJF7UKlkcL7o+hFetr4LVsYeVrO4z7uSguda7i2qTaq33j3Cjf0dVbpU/fffpmzmkjM1z1th/jsuV+mm9d9qtGnf0RO+rl9tpK843w1+lT4uR+qdPjpF6z9+t1aH8rI6sr+53gn+x0B3LoA8AAA==
   </data>
  </layer>
  <layer name="protection" width="40" height="25">
