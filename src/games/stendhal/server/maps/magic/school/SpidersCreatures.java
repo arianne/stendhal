@@ -7,7 +7,10 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.CircumstancesOfDeath;
 import games.stendhal.server.entity.creature.KillNotificationCreature;
 import games.stendhal.server.entity.mapstuff.spawner.KillNotificationCreatureRespawnPoint;
+import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -18,7 +21,9 @@ import org.apache.log4j.Logger;
  * Configure Magic School Cellar.
  */
 public class SpidersCreatures implements ZoneConfigurator {
-
+	private final List<String> creatures = 
+		Arrays.asList("spider","poisonous spider","giant spider");
+	
 
 	/**
 	 * Configure a zone.
@@ -31,10 +36,14 @@ public class SpidersCreatures implements ZoneConfigurator {
 	}
 	
 	public void updatePlayerQuest(final CircumstancesOfDeath circ) {
+		final Player player = (Player) circ.getKiller();
+		final String victim = circ.getVictim().getName();
+		player.setQuest("kill_all_spiders", 1+creatures.indexOf(victim), victim);
+		
 		Logger.getLogger(SpidersCreatures.class).debug(
 				"in "+circ.getZone().getName()+
-				": "+circ.getVictim().getName()+
-				" killed by "+circ.getKiller().getName());
+				": "+victim+
+				" killed by "+player.getName());		
 	}
 
 	class SpidersObserver implements Observer {

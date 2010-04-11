@@ -11,7 +11,6 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -87,9 +86,10 @@ public class KillSpiders extends AbstractQuest {
 				});
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new StartRecordingKillsAction("spider", "poisonous spider", "giant spider"));
+		actions.add(new SetQuestAction(QUEST_SLOT, "started"));
+		//actions.add(new StartRecordingKillsAction(QUEST_SLOT,1,"spider", "poisonous spider", "giant spider"));
 		actions.add(new IncreaseKarmaAction(5.0));
-		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
+
 		
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
@@ -113,7 +113,7 @@ public class KillSpiders extends AbstractQuest {
 	private void step_3() {
 
 		final SpeakerNPC npc = npcs.get("Morgrin");
-
+		// support for old-style quests
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.ATTENDING, 
@@ -123,6 +123,31 @@ public class KillSpiders extends AbstractQuest {
 						if (player.hasKilled("spider")
 								&& player.hasKilled("poisonous spider")
 								&& player.hasKilled("giant spider")) {
+							engine.say("Oh thank you my friend. Here you have something special, I got it from a Magican. Who he was I do not know. What the egg's good for, I do not know. I only know, it could be useful for you.");
+							final Item mythegg = SingletonRepository.getEntityManager()
+									.getItem("mythical egg");
+							mythegg.setBoundTo(player.getName());
+							player.equipOrPutOnGround(mythegg);
+							player.addKarma(5.0);
+							player.addXP(5000);
+							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());
+						} else {
+							engine.say("Go down and kill the creatures, no time left.");
+						}
+		 			}
+				});
+		
+		// support for new quests.
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, "started"),
+				ConversationStates.ATTENDING, 
+				null,
+				new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						if (player.getQuest(QUEST_SLOT, 1).equals("spider") &&
+							player.getQuest(QUEST_SLOT, 2).equals("poisonous spider") &&
+							player.getQuest(QUEST_SLOT, 3).equals("giant spider")
+							) {
 							engine.say("Oh thank you my friend. Here you have something special, I got it from a Magican. Who he was I do not know. What the egg's good for, I do not know. I only know, it could be useful for you.");
 							final Item mythegg = SingletonRepository.getEntityManager()
 									.getItem("mythical egg");
@@ -155,5 +180,24 @@ public class KillSpiders extends AbstractQuest {
 	@Override
 	public int getMinLevel() {
 		return 70;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+ 		LinkedList<String> history = new LinkedList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return history;
+		}
+		final String questState = player.getQuest(QUEST_SLOT, 0);
+		if ("start".equals(questState)) {
+			history.add("START");
+		};
+		if ("started".equals(questState)) {
+			history.add("STARTED");
+		};		
+		if ("killed".equals(questState)) {
+			history.add("KILLED");
+		};		
+		return history;		
 	}
 }
