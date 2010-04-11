@@ -1334,7 +1334,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param height height of the area
 	 */
 	public void disallowOut(int x, int y, int width, int height) {
-		teleRules.disallowOut();
+		teleRules.disallowOut(x, y, width, height);
 	}
 
 	public void onRemoved() {
