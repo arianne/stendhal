@@ -133,8 +133,8 @@ class KillRecording {
 	public int getQuestKills(final String questSlot, final int questIndex, final String creature) {
 		final List<String> content = Arrays.asList(player.getQuest(questSlot, questIndex).split(","));
 		final int index = content.indexOf(creature);
-		final int solo = new Integer(content.get(index+1));
-		final int shared = new Integer(content.get(index+2));		
+		final int solo = MathHelper.parseIntDefault(content.get(index+1),0);
+		final int shared = MathHelper.parseIntDefault(content.get(index+2),0);		
 		return(solo+shared);
 	}
 }
