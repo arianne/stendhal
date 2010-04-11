@@ -281,6 +281,12 @@ surgeonfish 15
 	<parameter name="x">18</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">5</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="26"/>
   </portal>
@@ -293,6 +299,12 @@ surgeonfish 15
 	<parameter name="x">15</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">37</parameter>
+	<parameter name="y">19</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="27"/>
   </portal>
@@ -305,6 +317,12 @@ surgeonfish 15
 	<parameter name="x">15</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">37</parameter>
+	<parameter name="y">19</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="28"/>
   </portal>
@@ -317,6 +335,12 @@ surgeonfish 15
 	<parameter name="x">18</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">36</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="29"/>
   </portal>
@@ -329,6 +353,12 @@ surgeonfish 15
 	<parameter name="x">17</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">22</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="30"/>
   </portal>
@@ -341,6 +371,12 @@ surgeonfish 15
 	<parameter name="x">17</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">2</parameter>
+	<parameter name="y">19</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="15" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="31"/>
   </portal>
@@ -353,6 +389,12 @@ surgeonfish 15
 	<parameter name="x">20</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">2</parameter>
+	<parameter name="y">19</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="32"/>
   </portal>
@@ -365,6 +407,12 @@ surgeonfish 15
 	<parameter name="x">29</parameter>
 	<parameter name="y">2</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">29</parameter>
+	<parameter name="y">9</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="14" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="33"/>
   </portal>
@@ -377,6 +425,12 @@ surgeonfish 15
 	<parameter name="x">22</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">22</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="34"/>
   </portal>
@@ -389,6 +443,12 @@ surgeonfish 15
 	<parameter name="x">22</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">22</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="35"/>
   </portal>
@@ -401,6 +461,12 @@ surgeonfish 15
 	<parameter name="x">2</parameter>
 	<parameter name="y">10</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">2</parameter>
+	<parameter name="y">8</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="7" y="13" ref="entrance">
    <destination zone="0_kirdneh_city" ref="36"/>
   </portal>
@@ -423,6 +489,12 @@ surgeonfish 15
 	<parameter name="x">2</parameter>
 	<parameter name="y">10</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">2</parameter>
+	<parameter name="y">8</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="7" y="13" ref="entrance">
    <destination zone="0_kirdneh_city" ref="37"/>
   </portal>
@@ -445,6 +517,12 @@ surgeonfish 15
 	<parameter name="x">22</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">17</parameter>
+	<parameter name="y">14</parameter>
+	<parameter name="width">3</parameter>
+    <parameter name="height">2</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="38"/>
   </portal>
@@ -457,6 +535,12 @@ surgeonfish 15
 	<parameter name="x">2</parameter>
 	<parameter name="y">17</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">6</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="11" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="39"/>
   </portal>
@@ -469,6 +553,12 @@ surgeonfish 15
 	<parameter name="x">36</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">34</parameter>
+	<parameter name="y">9</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="40"/>
   </portal>
@@ -481,6 +571,12 @@ surgeonfish 15
 	<parameter name="x">37</parameter>
 	<parameter name="y">14</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">33</parameter>
+	<parameter name="y">7</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="20" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="41"/>
   </portal>
@@ -493,6 +589,12 @@ surgeonfish 15
 	<parameter name="x">2</parameter>
 	<parameter name="y">10</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">2</parameter>
+	<parameter name="y">7</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="7" y="13" ref="entrance">
    <destination zone="0_kirdneh_city" ref="42"/>
   </portal>
@@ -515,6 +617,12 @@ surgeonfish 15
 	<parameter name="x">14</parameter>
 	<parameter name="y">3</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">18</parameter>
+	<parameter name="y">14</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="22" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="43"/>
   </portal>
@@ -527,6 +635,12 @@ surgeonfish 15
 	<parameter name="x">37</parameter>
 	<parameter name="y">3</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">33</parameter>
+	<parameter name="y">7</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="20" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="44"/>
   </portal>
@@ -539,6 +653,12 @@ surgeonfish 15
 	<parameter name="x">15</parameter>
 	<parameter name="y">18</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">21</parameter>
+	<parameter name="y">21</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="45"/>
   </portal>
@@ -551,6 +671,12 @@ surgeonfish 15
 	<parameter name="x">15</parameter>
 	<parameter name="y">18</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">24</parameter>
+	<parameter name="y">5</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="46"/>
   </portal>
@@ -563,6 +689,12 @@ surgeonfish 15
 	<parameter name="x">29</parameter>
 	<parameter name="y">2</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">29</parameter>
+	<parameter name="y">9</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="21" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="47"/>
   </portal>
@@ -575,6 +707,12 @@ surgeonfish 15
 	<parameter name="x">10</parameter>
 	<parameter name="y">8</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">17</parameter>
+	<parameter name="y">16</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="9" y="18" ref="entrance">
    <destination zone="0_kirdneh_city" ref="48"/>
   </portal>
@@ -597,6 +735,12 @@ surgeonfish 15
 	<parameter name="x">10</parameter>
 	<parameter name="y">8</parameter>
   </configurator>
+      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+	<parameter name="x">17</parameter>
+	<parameter name="y">16</parameter>
+	<parameter name="width">1</parameter>
+    <parameter name="height">1</parameter>
+ </configurator>
   <portal x="9" y="18" ref="entrance">
    <destination zone="0_kirdneh_city" ref="49"/>
   </portal>
