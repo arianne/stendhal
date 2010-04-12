@@ -8,6 +8,9 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -36,6 +39,7 @@ public class KillSpidersTest extends SpidersCreatures {
 	private SpeakerNPC npc = null;
 	private Engine en = null;
 	private final static StendhalRPZone basement = new StendhalRPZone("spiders_zone",100,100);
+	private final static AbstractQuest quest = new KillSpiders();
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -44,7 +48,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		
 		final StendhalRPZone zone = new StendhalRPZone("int_semos_guard_house");
 		new GroundskeeperNPC().configureZone(zone, null);			
-		final AbstractQuest quest = new KillSpiders();	
+	
 		world.addRPZone(zone);
 		world.addRPZone(basement);
 		quest.addToWorld();
@@ -81,16 +85,36 @@ public class KillSpidersTest extends SpidersCreatures {
 	 */
 	@Test
 	public void testQuest() {
-		final double oldkarma = player.getKarma();		
+		double oldkarma = player.getKarma();
+		LinkedList<String> questHistory = new LinkedList<String>();
+		
+		assertTrue(quest.getHistory(player).isEmpty());
 		en.step(player, "hi");
 		assertEquals("Hello my friend. Nice day for walking isn't it?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Fine fine, I hope you enjoy your day.", getReply(npc));
+		
 		en.step(player, "task");
 		assertEquals("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?", getReply(npc));
+		en.step(player, "no");
+		assertEquals("Ok, I have to find someone else to do this 'little' job!", getReply(npc));
+		assertThat(player.getKarma(), lessThan(oldkarma));
+		questHistory.add("QUEST_REJECTED");
+		assertEquals(questHistory, quest.getHistory(player));
+		en.step(player, "bye");
+		assertEquals("Bye.", getReply(npc));
+
+		questHistory.clear();
+		oldkarma = player.getKarma();		
+		en.step(player, "hi");
+		assertEquals("Hello my friend. Nice day for walking isn't it?", getReply(npc));
+		en.step(player, "task");
+		assertEquals("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?", getReply(npc));		
 		en.step(player, "yes");
 		assertEquals("Fine. Go down to the basement and kill all the creatures there!", getReply(npc));
 		assertThat(player.getKarma(), greaterThan(oldkarma));
+		questHistory.add("QUEST_ACCEPTED");
+		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		
@@ -101,14 +125,21 @@ public class KillSpidersTest extends SpidersCreatures {
 
 		killSpider("spider");
 		assertEquals("spider", player.getQuest(questSlot, 1));
+		questHistory.add("KILLED_SPIDER_1");
+		assertEquals(questHistory, quest.getHistory(player));
 		killSpider("poisonous spider");
 		assertEquals("poisonous spider",player.getQuest(questSlot, 2));
+		questHistory.add("KILLED_SPIDER_2");
+		assertEquals(questHistory, quest.getHistory(player));		
 		killSpider("giant spider");
 		assertEquals("giant spider",player.getQuest(questSlot, 3));
-		
+		questHistory.add("KILLED_SPIDER_3");
+		questHistory.add("KILLED_ALL");
+		assertEquals(questHistory, quest.getHistory(player));		
 		final int xp = player.getXP();
 		final double karma = player.getKarma();
 		
+		questHistory.clear();
 		en.step(player, "hi");
 		// [15:13] kymara earns 5000 experience points.
 		assertEquals("Oh thank you my friend. Here you have something special, I got it from a Magican. Who he was I do not know. What the egg's good for, I do not know. I only know, it could be useful for you.", getReply(npc));
@@ -116,6 +147,8 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getKarma(), greaterThan(karma));
 		assertTrue(player.getQuest(questSlot).startsWith("killed"));
+		questHistory.add("DONE");
+		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		
@@ -155,32 +188,46 @@ public class KillSpidersTest extends SpidersCreatures {
 	public void testOldQuest() {
 		final int xp = player.getXP();
 		final double karma = player.getKarma();
+		LinkedList<String> questHistory = new LinkedList<String>();
 		
+		assertTrue(quest.getHistory(player).isEmpty());		
 		player.setQuest(questSlot, "start");
+		questHistory.add("QUEST_ACCEPTED");
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("Go down and kill the creatures, no time left.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		
 		player.setSharedKill("spider");
+		questHistory.add("KILLED_SPIDER_1");
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("Go down and kill the creatures, no time left.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		
 		player.setSharedKill("poisonous spider");
+		questHistory.add("KILLED_SPIDER_2");
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("Go down and kill the creatures, no time left.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		
 		player.setSharedKill("giant spider");
+		questHistory.add("KILLED_SPIDER_3");
+		questHistory.add("KILLED_ALL");
+		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("Oh thank you my friend. Here you have something special, I got it from a Magican. Who he was I do not know. What the egg's good for, I do not know. I only know, it could be useful for you.", getReply(npc));
 		assertTrue(player.isEquipped("mythical egg"));
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getKarma(), greaterThan(karma));
-		assertTrue(player.getQuest(questSlot).startsWith("killed"));	
+		assertTrue(player.getQuest(questSlot).startsWith("killed"));
+		questHistory.clear();
+		questHistory.add("DONE");
+		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));       
 	}

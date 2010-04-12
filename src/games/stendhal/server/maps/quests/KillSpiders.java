@@ -189,15 +189,55 @@ public class KillSpiders extends AbstractQuest {
 			return history;
 		}
 		final String questState = player.getQuest(QUEST_SLOT, 0);
-		if ("start".equals(questState)) {
-			history.add("START");
+
+		if ("rejected".equals(questState)) {
+			history.add("QUEST_REJECTED");
+			return history;
 		};
-		if ("started".equals(questState)) {
-			history.add("STARTED");
-		};		
 		if ("killed".equals(questState)) {
-			history.add("KILLED");
-		};		
+			history.add("DONE");
+			return history;
+		};
+
+		// we can be here only if player accepted this quest.
+		history.add("QUEST_ACCEPTED");
+		// checking which spiders player killed.
+		final boolean sp1 = "spider".equals(player.getQuest(QUEST_SLOT, 1));
+		final boolean sp2 = "poisonous spider".equals(player.getQuest(QUEST_SLOT, 2));
+		final boolean sp3 = "giant spider".equals(player.getQuest(QUEST_SLOT, 3));
+		final boolean sp = "start".equals(player.getQuest(QUEST_SLOT, 0));
+		if (sp1) {
+			history.add("KILLED_SPIDER_1");
+		};
+		if (sp2) {
+			history.add("KILLED_SPIDER_2");
+		};					
+		if (sp3) {
+			history.add("KILLED_SPIDER_3");
+		};	
+		if (sp1 && sp2 && sp3) {
+			history.add("KILLED_ALL");
+		};
+		
+		// here is support for old-style quest
+		if (sp) {
+			final boolean osp1 = player.hasKilled("spider");
+			final boolean osp2 = player.hasKilled("poisonous spider");
+			final boolean osp3 = player.hasKilled("giant spider");
+			if (osp1) {
+				history.add("KILLED_SPIDER_1");				
+			};
+			if (osp2) {
+				history.add("KILLED_SPIDER_2");				
+			};
+			if (osp3) {
+				history.add("KILLED_SPIDER_3");				
+			};
+			if (osp1 && osp2 && osp3) {
+				history.add("KILLED_ALL");				
+			};		
+		}
+		
 		return history;		
 	}
 }
