@@ -2,8 +2,10 @@
 <groups xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal groups.xsd ">
 	<group uri="creatures/albino_elf.xml"/>
+	<group uri="creatures/amazoness.xml"/>
 	<group uri="creatures/animal.xml"/>
 	<group uri="creatures/beholder.xml"/>
+	<group uri="creatures/chaos.xml"/>
 	<group uri="creatures/creatures.xml"/>
     <group uri="creatures/dark_elf.xml"/>
 	<group uri="creatures/dwarf.xml"/>
@@ -18,12 +20,15 @@
     <group uri="creatures/gnome.xml"/>
 	<group uri="creatures/goblin.xml"/>
 	<group uri="creatures/golem.xml"/>
+	<group uri="creatures/huge_animal.xml"/>
 	<group uri="creatures/human.xml"/>
 	<group uri="creatures/hybrid.xml"/>
 	<group uri="creatures/kobold.xml"/>
 	<group uri="creatures/madaram.xml"/>
+	<group uri="creatures/minotaur.xml"/>
     <group uri="creatures/mummy.xml"/>
     <group uri="creatures/mutant.xml"/>
+    <group uri="creatures/oni.xml"/>
     <group uri="creatures/orc.xml"/>
     <group uri="creatures/ratfolk.xml"/>
     <group uri="creatures/sheepman.xml"/>
