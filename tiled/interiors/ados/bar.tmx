@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/building/wall/int_wall_dark_red.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
@@ -100,42 +99,48 @@
  <tileset name="trestle" firstgid="180" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_trestle.png"/>
  </tileset>
- <tileset name="base" firstgid="186" tilewidth="32" tileheight="32">
+ <tileset name="base" firstgid="189" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
- <tileset name="beers" firstgid="189" tilewidth="32" tileheight="32">
+ <tileset name="beers" firstgid="192" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/beers_and_flasks.png"/>
  </tileset>
- <tileset name="bottles" firstgid="201" tilewidth="32" tileheight="32">
+ <tileset name="bottles" firstgid="204" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
- <tileset name="bottles" firstgid="202" tilewidth="32" tileheight="32">
+ <tileset name="bottles" firstgid="205" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottles_and_cups.png"/>
  </tileset>
- <tileset name="meals" firstgid="218" tilewidth="32" tileheight="32">
+ <tileset name="meals" firstgid="221" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/rustic_meals.png"/>
  </tileset>
- <tileset name="items" firstgid="220" tilewidth="32" tileheight="32">
+ <tileset name="items" firstgid="223" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/casks.png"/>
+ </tileset>
+ <tileset name="floor_tiles" firstgid="227" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor_tiles.png"/>
+ </tileset>
+ <tileset name="rug" firstgid="236" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3NMQ0AAAgEsbeEf3MEEzDQS25uoqmW5/P5fD6fz+fz+Xz+jf+1Bri26acAEAAA
+   H4sIAAAAAAAAAGNgGAUg8IJIbEglPGr/qP1DzX5q2T1U/U9L+6kZtqP209f+DyTiUftH7R9J9qOrHW7+JweP2o8KXhKBR+0f2fZT0w2jAAIAyi1T7wAQAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2W2UoDQRBF+8HngKigDy4gGrevEARRcRdB3L5C4y8YjXFefVAI5APE3Z/zNlRDU1OVXoyDFw49XTXTlzSXTg8aY4YEBpR66ju9GAZjYB7MVsACeCbs8yj5z5myOjTeg0cipG6gXwfLRD3g7+uJ4Lpgo1Z3o/VcIZz/SIS/pmvQBDdKvcn602CVSPVvg1NWuwUtcKfUW0rfCP5FhP8Zq12yUavzfo5/IfjnqpvhbwT/1Pz54v7tDP/U/P3G3+7POav1M3+bYAvsEtves2OHrdHP/O2B/QAHwjq56sf5Eysphyn+MXnW5GfRz6Hk3wAv4A1cKWtoeZbUEPzdutrvfwefbJ2YPGvyv/W/S9n/mDzHfqv5d0y1+ov8S7nUMqvlz+bFz0mMXG5fTTm7rs572u+3eUnJl5PN7YcpZ9fVea/K80fSf/VfB8dgg0b/+TCwpnYPkOaa/1cPTgL+awnznP0P+Wv/w9I85/4V8k9Rjv9RoG/PAbvH0tnBe9L9y93BHgingnrfRj+nU+u+/yKYqZgl8h8HEx41Np9k1IRayjt+bwr8AH/JK4kAEAAA
+   H4sIAAAAAAAAAL2WWUoDQRCG+8HngKigDy4gGrdTCIKouIsgbqdQcwWjMc6rDwqBHEAk7p7IBZcDWA3V0JTVVdPtkIKPnqnu9JcMP53pNMZ0MXQE+rFrJLqBPmAcGG0DE8A1Yq970T9m/lYDx3PgEtGqqcyXgWmkrPj9ukJoHZAx1Hejdc4gzt+Twx+qY6AKnAT6VTI/DMwisf46sEt6p0ANOAv0a4F5w/izHP490jskY6hP51P8GeNPrWaC3zD+2Pz5Rf31BH9s/v7jt89nn/SKzN8isASsIsvetWOF7FFk/taAdYUNZp/UKuL8sfUKvEXyLvhvgBZxSHn+UL7fLXCH3GPvM+A/wvV2XcXbQ8qz5Hf7+f6K4Lf1ADyRfaQ8a7/f7veIuH0lP1dSnjU/9xnO3zBppfm5iv39ef3cOctlVsqfzZrNl58/ze/njGY3Nn82a9x5KfltuZzR7BaRP6m+gO9Ifgr0p1bIPw9sAws4+tebyp6h9wDuPuR/FthR/HMR9ynPX/OH/oe5+5T3L80fUyn+LWXengP2GXNnB53j3r/cO9gF4irDuRcTPqdj+75/EhhpM1Po7wcGPErkfpBQYnoxa/y5IeAX8NVFaQAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA1qgLgWyjYFYjMoNsejh1h16KAFiFuhuA0qdgdKz4NiBjRxUkEKECdDcSqaXDsQd0BxJ1TsHpqaJUB8F4s4KfbDALr99ADUtv8WEE8G4llo4oeh9Dkq27+UDD3DCewbaAcMMLiCRQyU9qZgET8JpafRzjk0AfeR2DC3n4XSS2hoL6hMrYKycdG0BOSWqUMJ3CZTHyh9g9I5KE3PJEP/GQZIWT0KRgEhcIqBvLRyHY8cqN6aSp5zSALleMSwyY0CwqB6AO0G1Ul3oeyJA2D/SKiTRgF5oACIC4G4aIDsLwbiEiAupdAcAG/Z8qcAEAAA
+   H4sIAAAAAAAAAO2VuQoCMRBA81PqB6m9t+DReZbiAVpYrR9iY6WolSCoq1/iDM6CDNkrbgxKHjwmTHZ2UgyJEP60wDatU2CazATURP2O0wG7ZI9yN4pLUrB8XHJglsyzvT44IIeUu7NvHNCV5OP09+D9v0HS/S/gGFyw/IbiMeH+K4Waf2Jt+gCGOUlyOHsTSX5LcabvOFp4vK29sx8oOhr74p3aoLVf1InqnRqFGoumuCrW4XzjnONMzxXq9+J1V1ssYeyE2qycA/bw3ZqqHScW9YCcbM8STtNgb3yTXFqPDPTX+SZZfpsCWARLhvqXwQpY/fA/T+4lnS4AEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VsREAIAgEQfrvQiu1AQkwUGbcDS8heyL2RtJvmY/vA8AP/HuA3rKdrvZT2U5XOz0sbDFeTwAQAAA=
+   H4sIAAAAAAAAAGNgwA4W4hCnF1g0wPaPglEwCkbBKBjaYAsQb4XibUSqJ0bdcAOj9f3QBrB0jp52SU3/o2AUjILBC3CV06SKkwtwldOkio+CwQEAcptw5gAQAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -148,12 +153,12 @@
    H4sIAAAAAAAAAO3XMQ0AAAgEsfevBZEsCGCGNjkRl/xSEwAAAGxd+MgG12wbBgAQAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="32" opacity="0.31">
+ <layer name="collision" width="32" height="32" visible="0" opacity="0.31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VXQ7AIAiDuf9FvObemZYfO5iJTUg2wX5OyRwiMm5MQ8D4TCin815Pptj81Xy0l1m+xfHwozUWf0edfNTv1jyWGPzu82fzvf8khr70zvCrVcVfcaxx5BFZ72n8Kt3+959/1C/CYfGj+uv+d/O77h9Uo5+Rp/c9813d9+8JfFTj6TOR93p0LsK1emsnWD6d8QDZSLTQABAAAA==
+   H4sIAAAAAAAAAO2VUQ7AIAhDuf9FvOb+nRaqFbbEJiSbYJ9zRJuZtRvDMDA+Esr1+ainUmr+bD7ay1W+x4nw2RqPv6NKPup3b55KCn71/1fzo2eSQie9V/jZyuLPON448mDWy/IjHtn8E7r9H+8/1o/hqPisvrr/1fyq+wfV9M/IM/q+8l3V9+8f+Kgm0mdm7/X0OYbr9dZOqHwq4wFywd+FABAAAA==
   </data>
  </layer>
- <layer name="protection" width="32" height="32" opacity="0.41">
+ <layer name="protection" width="32" height="32" visible="0" opacity="0.41">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3NsQ0AMAjAMP5/hhdZeIABOtSRMjviruxfNfFz+WuPz+fz+Xw+n8/n8/l/V4QD4dQAEAAA
   </data>

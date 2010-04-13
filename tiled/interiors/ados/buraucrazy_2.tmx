@@ -72,59 +72,59 @@
  <tileset name="trestle" firstgid="88" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_trestle.png"/>
  </tileset>
- <tileset name="table" firstgid="94" tilewidth="32" tileheight="32">
+ <tileset name="table" firstgid="97" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_with_candles.png"/>
  </tileset>
- <tileset name="wall" firstgid="106" tilewidth="32" tileheight="32">
+ <tileset name="wall" firstgid="109" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
- <tileset name="floor" firstgid="134" tilewidth="32" tileheight="32">
+ <tileset name="floor" firstgid="137" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png"/>
  </tileset>
- <tileset name="doors" firstgid="146" tilewidth="32" tileheight="32">
+ <tileset name="doors" firstgid="149" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
  </tileset>
- <tileset name="green shelf" firstgid="174" tilewidth="32" tileheight="32">
+ <tileset name="green shelf" firstgid="177" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
- <tileset name="rug" firstgid="180" tilewidth="32" tileheight="32">
+ <tileset name="rug" firstgid="183" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/brown_rug.png"/>
  </tileset>
- <tileset name="runner" firstgid="192" tilewidth="32" tileheight="32">
+ <tileset name="runner" firstgid="195" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/purple2.png"/>
  </tileset>
- <tileset name="carpet blue" firstgid="207" tilewidth="32" tileheight="32">
+ <tileset name="carpet blue" firstgid="210" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_blue.png"/>
  </tileset>
- <tileset name="picture" firstgid="216" tilewidth="32" tileheight="32">
+ <tileset name="picture" firstgid="219" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/city_picture.png"/>
  </tileset>
- <tileset name="wall hanging green" firstgid="220" tilewidth="32" tileheight="32">
+ <tileset name="wall hanging green" firstgid="223" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/wall_hanging_dkgreen.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOtkYGDoHMUjAm8H4h1oeCce9ZfRMC51R0jEuMzZBcS70fCeEeQ+SuN31H2U4b1AvA8N7x9E7qMVppX7WKEYn/yo+0bdN5LyB6l1ETXqrVE8cjEAEIGcRuALAAA=
+   H4sIAAAAAAAAAOthYGDoGcUjAu8C4t1oeA8e9dfQMC51x0nEuMzZC8T70PD+EeQ+SuN31H2U4QNAfBANHxpE7qMVppX7WKEYn/yo+0bdN5LyB6l1ETXqrVE8cjEA2C2Ax+ALAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWV2UpDQQyGc91eCC7VIvgE+j7uu1WLG1Qr7vsT+AC+Sq24XYgLLq/jPzCDQ8zMyRxOA99NEzJf25DUiWhNyTqoF1in6bMBNsFFBltgR1GvrUt574qy45LVv4I3xrtQ1wK3ibSFPia6E/w+hJpPoe5O8d396AH3Ab9YSH7TYMYyW5Af5fAbCvjNgRXLgsLvGTwqeIr49YI+UGGOIb95i8bP/C774FzBNutTsj36wQCoKvwWwZKlpvQz+UOwq2DP61P2+gwyt1LAb9mrWU3wM3ntHtXMX1l49wt8M34S/FL2aIPkGbi28HloePmsuYn5mfwoGGOMe3VNCv//Lvx5aLJ81txIfqfgzOYnwCRjinRz4CKWD+Xc+9zvmP7+wxP6H8NghHRzcGMJzUgs597nftqQ9l+L0m9lFi8F+XVRvluUEnw/H9jP3U1wVAQ/Ew+kuz95cXfL7Ocj7113ExxV5hfaL51A2lOxuth+6RR8T8XqfgFT3PRa4AsAAA==
+   H4sIAAAAAAAAALWV2UpDQQyGc91eCGqrRfAJ9InqvlstblCtuO9P4AP4Ki64XYgLLk/jPzCDQ8zMyRxOA99NEzJf25A0iWhFySpoFlin6bMG1sFZBhtgS1GvrUt574Ky45zVv4I3xrtQdw1uErkV+pjoTvD7EGo+hbo7xXf3owfcB/xiIflNginLdEF+lMNvMOA3A5Yscwq/Z/Co4Cni1wsqoMocQ36zFo2f+V12wamCTdanZHv0gX5QU/jNgwXLotLP5PfBtoIdr0/Z6zPA3EoBv4ZXs5zgZ/LaPaqZv7Lw7hf4Zvwk+KXs0RbJM3Bp4fPQ8vJZcxPzM/k6GGGMenVtCv//Lvx5aLN81txIfsfgxObHwDhjgnRz4CKWD+Xc+9zvkP7+wyP6H0NgmHRzcGUJzUgs597nftqQ9l+eW5nFS0F+XZTvFqUE38979nN3ExxVwc/EA+nuT17c3TL7+cB7190ER435hfZLJ5D2VKwutl86Bd9TsbpfjrMRjeALAAA=
   </data>
  </layer>
  <layer name="2_object" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQABvIPZhIA7cAeK7QHwDiG8i8XEBdLMJ8bEBXyD2I9J994D4PhDfAuLbSHxizSbEJwQ2AfFmJJoYoIhFjJtEGgQ8iLRvuACrgXYAnQG++DUAYkMgNqaTW0bBKMAGJiGxp+CRxyZHCjAHYhMo2xTKtyVC3zQk9gw88tjk6AFmIbHn4JHHJkcPMA+JvQCPPDa5UUBfYAbE1kBsg8QeBSMDAAAquruI4AsAAA==
+   H4sIAAAAAAAAAGNgQABvIPZhIA7cB+IHQHwbiO8g8XEBdLMJ8bEBXyD2I9J9D4H4ERDfBeJ7SHxizSbEJwS2AvE2JJoYoIhFjJtEGgQ8iLRvuACrgXYAnQG++DUAYkMgNqaTW0bB8AYRQByJhqOI0DcViT0djzw2OVKAORCbQNmmUL4tEfpmIrFn45HHJkcPMBeJPR+PPDY5eoCFSOzFeOSxyY0C+gIzILYGYhsk9igYGQAA+MCsr+ALAAA=
   </data>
  </layer>
  <layer name="3_roof" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA7WAfF6JJpcwEkiTSzYAMQbkWhigAIWMS4S6VEwCgYjIDX/DCYwlN0+CoYmKAfi6VBcjkcemxw9QA4Qz4biHDzy2ORGIuAZaAeMglEwCAEAmjpYZ+ALAAA=
+   H4sIAAAAAAAAAGNgwA42AvEmJJpcwEkiTSzYDMRbkGhigAIWMS4S6VEwCgYjIDX/DCYwlN0+CoYmqALiWVBchUcemxw9QD4Qz4PifDzy2ORGIuAZaAeMglEwCAEA9YpA/eALAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYOmIbEnoFHHpscPcAsJPYcPPLY5EbBKBgFowAEAK7YiwbgCwAA
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYOmInEno1HHpscPcBcJPZ8PPLY5EbBKBgFowAEALjcyjzgCwAA
   </data>
  </layer>
  <layer name="objects" width="40" height="19">
@@ -132,12 +132,12 @@
    H4sIAAAAAAAAAO3OAREAAAQEsO+mfycxOLYES/iipgPZcQAAuKwBj3pbp+ALAAA=
   </data>
  </layer>
- <layer name="collision" width="40" height="19" opacity="0.33">
+ <layer name="collision" width="40" height="19" visible="0" opacity="0.33">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2TYQpAIQiDPV33P9L7H81mrpdBA4nA5qdYM7P2Ih29ovneGwucyGcmNj/qq/JB+ej+J5837x18TL3eW8WX/SPV+UbK5Kr4PFXgY3fS2wemj9v4kKrynZ4fK5XPLil7zdRFLKfmt8r3Yi0+u+AaxuALAAA=
   </data>
  </layer>
- <layer name="protection" width="40" height="19" opacity="0.24">
+ <layer name="protection" width="40" height="19" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DAQkAAAwEoWv3/Rutx1Bw1VRV1RcP0rTKQ+ALAAA=
   </data>
