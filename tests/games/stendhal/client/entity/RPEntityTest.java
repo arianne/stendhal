@@ -4,7 +4,10 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import games.stendhal.client.entity.RPEntity.Resolution;
+import games.stendhal.client.events.AttackEvent;
+import games.stendhal.client.events.Event;
 
+import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 
 import org.junit.After;
@@ -46,70 +49,77 @@ public class RPEntityTest {
 	 */
 	@Test
 	public void testEvaluateAttackEmptyObject() {
-		defender.evaluateAttack(object, attacker);
-		assertThat(attacker.getResolution(), is(Resolution.MISSED));
-	}
-
-	/**
-	 * Tests for evaluateAttackrisk0.
-	 */
-	@Test
-	public void testEvaluateAttackrisk0() {
-		object.put("risk", 0);
-		defender.evaluateAttack(object, attacker);
-		assertThat(attacker.getResolution(), is(Resolution.MISSED));
-	}
-
-	/**
-	 * Tests for evaluateAttackriskMinus1.
-	 */
-	@Test
-	public void testEvaluateAttackriskMinus1() {
-		object.put("risk", -1);
-		defender.evaluateAttack(object, attacker);
 		assertNull(attacker.getResolution());
 	}
 
 	/**
-	 * Tests for evaluateAttackNoRiskdamage0.
+	 * Tests for AttackEvents without "hit" being missed.
 	 */
 	@Test
-	public void testEvaluateAttackNoRiskdamage0() {
-		object.put("damage", 0);
-		defender.evaluateAttack(object, attacker);
-		assertThat(attacker.getResolution(), is(Resolution.MISSED));
+	public void testEvaluateAttackNoHit() {
+		RPEvent obj = new RPEvent();
+		obj.put("type", 0);
+		
+		Event<RPEntity> ev = new AttackEvent();
+		ev.init(attacker, obj);
+		
+		attacker.attackTarget = defender;
+		ev.execute();
+		assertThat(defender.getResolution(), is(Resolution.MISSED));
+	}
+	
+	/**
+	 * Tests for AttackEvents without "hit" being missed
+	 */
+	@Test
+	public void testEvaluateAttackNoHitdamage0() {
+		RPEvent obj = new RPEvent();
+		obj.put("type", 0);
+		obj.put("damage", "0");
+		
+		Event<RPEntity> ev = new AttackEvent();
+		ev.init(attacker, obj);
+		
+		attacker.attackTarget = defender;
+		ev.execute();
+		assertThat(defender.getResolution(), is(Resolution.MISSED));
 	}
 
 	/**
-	 * Tests for evaluateAttackRisk0Damage0.
+	 * Tests for a blocked attack.
 	 */
 	@Test
-	public void testEvaluateAttackRisk0Damage0() {
-		object.put("risk", 0);
-		object.put("damage", 0);
-		defender.evaluateAttack(object, attacker);
-		assertThat(attacker.getResolution(), is(Resolution.MISSED));
+	public void testEvaluateAttackHitDamage0() {
+		RPEvent obj = new RPEvent();
+		obj.put("type", 0);
+		obj.put("hit", "");
+		obj.put("damage", "0");
+		
+		Event<RPEntity> ev = new AttackEvent();
+		ev.init(attacker, obj);
+		
+		attacker.attackTarget = defender;
+		ev.execute();
+		
+		assertThat(defender.getResolution(), is(Resolution.BLOCKED));
 	}
 
 	/**
-	 * Tests for evaluateAttackRisk1Damage0.
-	 */
-	@Test
-	public void testEvaluateAttackRisk1Damage0() {
-		object.put("risk", 1);
-		object.put("damage", 0);
-		defender.evaluateAttack(object, attacker);
-		assertThat(attacker.getResolution(), is(Resolution.BLOCKED));
-	}
-
-	/**
-	 * Tests for evaluateAttackRisk1Damage1.
+	 * Tests for a damaging attack
 	 */
 	@Test
 	public void testEvaluateAttackRisk1Damage1() {
-		object.put("risk", 1);
-		object.put("damage", 1);
-		defender.evaluateAttack(object, attacker);
-		assertThat(attacker.getResolution(), is(Resolution.HIT));
+		RPEvent obj = new RPEvent();
+		obj.put("type", 0);
+		obj.put("hit", "");
+		obj.put("damage", "1");
+		
+		Event<RPEntity> ev = new AttackEvent();
+		ev.init(attacker, obj);
+		
+		attacker.attackTarget = defender;
+		ev.execute();
+		
+		assertThat(defender.getResolution(), is(Resolution.HIT));
 	}
 }
