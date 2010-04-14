@@ -35,6 +35,7 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.events.AttackEvent;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -222,6 +223,7 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addRPSlot("bag", 12, Definition.PRIVATE);
 			entity.addRPSlot("keyring", 8, Definition.PRIVATE);
 
+			entity.addRPEvent("attack", Definition.VOLATILE);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}
@@ -2304,11 +2306,13 @@ public abstract class RPEntity extends GuidedEntity {
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
+			addEvent(new AttackEvent(true, damage, getDamageType()));
 		} else {
 			// Missed
 			logger.debug("attack from " + this.getID() + " to "
 					+ defender.getID() + ": Missed");
 			this.put("damage", 0);
+			addEvent(new AttackEvent(false, 0, getDamageType()));
 		}
 
 		this.notifyWorldAboutChanges();

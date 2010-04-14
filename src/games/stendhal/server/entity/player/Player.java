@@ -1939,7 +1939,7 @@ public class Player extends RPEntity {
 	}
 	
 	@Override
-	protected DamageType getDamageType() {
+	public DamageType getDamageType() {
 		Item weapon = getWeapon();
 		if (weapon != null) {
 			return weapon.getDamageType();

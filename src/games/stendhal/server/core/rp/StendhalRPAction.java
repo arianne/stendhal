@@ -30,6 +30,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.AttackEvent;
 
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -262,11 +263,13 @@ public class StendhalRPAction {
 				logger.debug("attack from " + player.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
+			player.addEvent(new AttackEvent(true, damage, player.getDamageType()));
 		} else { 
 			// Missed
 			logger.debug("attack from " + player.getID() + " to "
 					+ defender.getID() + ": Missed");
 			player.setDamage(0);
+			player.addEvent(new AttackEvent(false, 0, player.getDamageType()));
 		}
 
 		player.notifyWorldAboutChanges();
