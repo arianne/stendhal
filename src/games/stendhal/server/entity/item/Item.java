@@ -14,11 +14,11 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.DamageType;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;

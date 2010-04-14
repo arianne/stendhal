@@ -10,8 +10,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.common.constants.DamageType;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.awt.geom.Rectangle2D;

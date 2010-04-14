@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.core.rule.defaultruleset;
 
+import games.stendhal.common.constants.DamageType;
 import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;

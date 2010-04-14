@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.rule.defaultruleset;
 
-import games.stendhal.server.entity.DamageType;
+import games.stendhal.common.constants.DamageType;
 import games.stendhal.server.entity.item.Item;
 
 import java.lang.reflect.Constructor;

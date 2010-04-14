@@ -1,6 +1,7 @@
-package games.stendhal.server.entity;
+package games.stendhal.common.constants;
 
 import static org.junit.Assert.assertEquals;
+import games.stendhal.common.constants.DamageType;
 
 import org.junit.Test;
 

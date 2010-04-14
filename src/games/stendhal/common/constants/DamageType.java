@@ -1,4 +1,4 @@
-package games.stendhal.server.entity;
+package games.stendhal.common.constants;
 
 import org.apache.log4j.Logger;
 

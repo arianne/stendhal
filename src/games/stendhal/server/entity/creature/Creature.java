@@ -14,6 +14,7 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.DamageType;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -21,7 +22,6 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.entity.DamageType;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.impl.AttackStrategy;
