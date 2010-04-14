@@ -11,7 +11,6 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
@@ -21,14 +20,17 @@ import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.sprite.TextSprite;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.DamageType;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import marauroa.common.game.RPAction;
@@ -39,7 +41,12 @@ import marauroa.common.game.RPAction;
 abstract class RPEntity2DView extends ActiveEntity2DView {
 	private static final int ICON_OFFSET = 8;
 
-	private static Map<Object, Sprite[]> bladeStrikeSprites;
+	/**
+	 * The attack sprites. The top level map contains all the
+	 * strike sprites sorted by damage type. Those in turn are
+	 * retrievable by the attack direction.
+	 */
+	private static Map<DamageType, Map<Direction, Sprite[]>> bladeStrikeSprites;
 
 	private static Sprite eatingSprite;
 
@@ -87,29 +94,32 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	static {
 		final SpriteStore st = SpriteStore.get();
-
-		final Sprite tiles = st.getSprite("data/sprites/combat/blade_strike.png");
-
-		bladeStrikeSprites = new HashMap<Object, Sprite[]>();
-
+		
 		final int twidth = 3 * IGameScreen.SIZE_UNIT_PIXELS;
 		final int theight = 4 * IGameScreen.SIZE_UNIT_PIXELS;
 
-		int y = 0;
-		bladeStrikeSprites.put(Direction.UP, st.getTiles(tiles, 0, y, 3,
-				twidth, theight));
+		bladeStrikeSprites = new EnumMap<DamageType, Map<Direction, Sprite[]>>(DamageType.class);
+		
+		// Load all attack sprites
+		for (DamageType damageType : DamageType.values()) {
+			final Sprite tiles = st.getSprite("data/sprites/combat/blade_strike_" 
+					+ damageType.toString().toLowerCase(Locale.ROOT) + ".png");
 
-		y += theight;
-		bladeStrikeSprites.put(Direction.RIGHT, st.getTiles(tiles, 0, y, 3,
-				twidth, theight));
+			Map<Direction, Sprite[]> map = new EnumMap<Direction, Sprite[]>(Direction.class);
+			bladeStrikeSprites.put(damageType, map);
+			
+			int y = 0;
+			map.put(Direction.UP, st.getTiles(tiles, 0, y, 3, twidth, theight));
 
-		y += theight;
-		bladeStrikeSprites.put(Direction.DOWN, st.getTiles(tiles, 0, y, 3,
-				twidth, theight));
+			y += theight;
+			map.put(Direction.RIGHT, st.getTiles(tiles, 0, y, 3, twidth, theight));
 
-		y += theight;
-		bladeStrikeSprites.put(Direction.LEFT, st.getTiles(tiles, 0, y, 3,
-				twidth, theight));
+			y += theight;
+			map.put(Direction.DOWN, st.getTiles(tiles, 0, y, 3, twidth, theight));
+
+			y += theight;
+			map.put(Direction.LEFT, st.getTiles(tiles, 0, y, 3, twidth, theight));
+		}
 
 		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");
@@ -400,7 +410,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 				(int) (wrect.getY() * IGameScreen.SIZE_UNIT_PIXELS), 
 				(int) (wrect.getWidth() * IGameScreen.SIZE_UNIT_PIXELS),
 				(int) (wrect.getHeight() * IGameScreen.SIZE_UNIT_PIXELS));
-		if (((RPEntity) entity).isBeingAttacked()) {
+		
+		RPEntity rpentity = (RPEntity) entity;
+		if (rpentity.isBeingAttacked()) {
 			// Draw red box around 
 
 			g2d.setColor(Color.red);
@@ -408,16 +420,17 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		}
 
-		if (((RPEntity) entity).isAttacking(User.get())) {
+		if (rpentity.isAttacking(User.get())) {
 			// Draw orange box around
 			g2d.setColor(Color.orange);
 			g2d.drawRect(srect.x + 2, srect.y + 2, srect.width - 4,
 					srect.height - 4);
 		}
 
-		if (((RPEntity) entity).isAttacking() && ((RPEntity) entity).isBeingStruck()) {
+		DamageType damageType = rpentity.getShownDamageType();
+		if (rpentity.isAttacking() && (damageType != null)) {
 			if (frameBladeStrike < 3) {
-				final Sprite sprite = bladeStrikeSprites.get(getState())[frameBladeStrike];
+				final Sprite sprite = bladeStrikeSprites.get(damageType).get(getState())[frameBladeStrike];
 
 				final int spriteWidth = sprite.getWidth();
 				final int spriteHeight = sprite.getHeight();
@@ -433,7 +446,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 				 * Adjust positions to match (or fix images to be
 				 * uniform/centered).
 				 */
-				switch (((ActiveEntity) entity).getDirection()) {
+				switch (rpentity.getDirection()) {
 				case UP:
 					sx = x + ((width - spriteWidth) / 2) + 16;
 					sy = y - 16 - 32;
@@ -461,7 +474,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 				sprite.draw(g2d, sx, sy);
 			} else {
-				((RPEntity) entity).doneStriking();
+				rpentity.doneStriking();
 				frameBladeStrike = 0;
 			}
 

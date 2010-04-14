@@ -88,7 +88,8 @@ public abstract class RPEntity extends ActiveEntity {
 			"punch-4", "punch-5", "punch-6", "swingaxe-1",
 			"slap-1", "arrow-1" };
 	*/
-	private boolean showBladeStrike;
+	
+	private DamageType showBladeStrike;
 
 	public enum Resolution {
 		HIT,
@@ -369,12 +370,17 @@ public abstract class RPEntity extends ActiveEntity {
 		return attackers.contains(attacker);
 	}
 
-	public boolean isBeingStruck() {
+	/**
+	 * Get the damage type of the current strike.
+	 * 
+	 * @return type of damage, or <code>null</code> if the entity is not striking
+	 */
+	public DamageType getShownDamageType() {
 		return showBladeStrike;
 	}
 
 	public void doneStriking() {
-		showBladeStrike = false;
+		showBladeStrike = null;
 	}
 
 	public boolean isDefending() {
@@ -416,17 +422,17 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When this entity's attack is blocked by the adversary
 	public void onAttackBlocked(final DamageType type) {
-		showBladeStrike = true;
+		showBladeStrike = type;
 	}
 
 	// When this entity causes damaged to adversary, with damage amount
 	public void onAttackDamage(final DamageType type) {
-		showBladeStrike = true;
+		showBladeStrike = type;
 	}
 
 	// When this entity's attack is missing the adversary
 	public void onAttackMissed(final DamageType type) {
-		showBladeStrike = true;
+		showBladeStrike = type;
 	}
 
 	// When attacker attacks this entity.
