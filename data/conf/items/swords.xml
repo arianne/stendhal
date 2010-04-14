@@ -44,6 +44,7 @@
     </attributes>
     <weight value="0.1"/>
     <value value="6250"/>
+    <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -60,6 +61,7 @@
     </attributes>
     <weight value="0.1"/>
     <value value="6250"/>
+    <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -89,10 +91,11 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="5"/>
       <rate value="1"/>
-      <lifesteal value="0.1"/> 
+      <lifesteal value="0.1"/>
     </attributes>
     <weight value="0.2"/>
     <value value="1000000"/>
+    <damage type="light"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -125,6 +128,7 @@
     </attributes>
     <weight value="0.2"/>
     <value value="12800"/>
+    <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -150,23 +154,23 @@
     </equipable>
   </item>
 
- <item name="chaos dagger"> 
-  <type class="sword" subclass="chaos_dagger" tileid="-1"/> 
-  <description>You see a chaos dagger, it is very lightweight and sharp. It will heal you while hurting them.</description> 
-  <implementation class-name="games.stendhal.server.entity.item.Item"/> 
+ <item name="chaos dagger">
+  <type class="sword" subclass="chaos_dagger" tileid="-1"/>
+  <description>You see a chaos dagger, it is very lightweight and sharp. It will heal you while hurting them.</description>
+  <implementation class-name="games.stendhal.server.entity.item.Item"/>
   <attributes>
-   <atk value="7"/> 
+   <atk value="7"/>
     <rate value="2"/>
-    <lifesteal value="0.1"/> 
+    <lifesteal value="0.1"/>
     <min_level value="150"/>
-  </attributes> 
-  <weight value="1"/>    
+  </attributes>
+  <weight value="1"/>
   <value value="10400"/>
-  <equipable> 
-     <slot name="bag"/> 
-     <slot name="lhand"/> 
-	 <slot name="rhand"/> 
-  </equipable> 
+  <equipable>
+     <slot name="bag"/>
+     <slot name="lhand"/>
+	 <slot name="rhand"/>
+  </equipable>
  </item>
 
   <item name="short sword">
@@ -338,6 +342,7 @@
     </attributes>
     <weight value="4.0"/>
     <value value="88733"/>
+    <damage type="fire"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -418,7 +423,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="29"/>
       <rate value="6"/>
-	  <min_level value="40"/>
+      <min_level value="40"/>
     </attributes>
     <weight value="4.0"/>
     <value value="174207"/>
@@ -505,6 +510,7 @@
     </attributes>
     <weight value="4.0"/>
     <value value="248258"/>
+    <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -554,6 +560,7 @@
     </attributes>
     <weight value="9.0"/>
     <value value="357291"/>
+    <damage type="light"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -588,6 +595,7 @@
     </attributes>
     <weight value="9.0"/>
     <value value="457142"/>
+    <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>

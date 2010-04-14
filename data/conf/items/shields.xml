@@ -84,6 +84,8 @@
     </attributes>
     <weight value="24.0"/>
     <value value="40824"/>
+    <susceptibility type="light" value="0.9"/>
+    <susceptibility type="dark" value="1.3"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -198,34 +200,19 @@
   </item>
 
   <item name="green dragon shield">
-
     <type class="shield" subclass="green_dragon_shield" tileid="-1"/>
-
     <description>You see an green dragon shield, scaly and strong.</description>
-
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-
       <def value="35"/>
-
     </attributes>
-
     <weight value="14.0"/>
-
     <value value="300000"/>
-
     <equipable>
-
       <slot name="lhand"/>
-
       <slot name="rhand"/>
-
       <slot name="bag"/>
-
     </equipable>
-
   </item>
-
-
 
   <item name="shadow shield">
     <type class="shield" subclass="shadow_shield" tileid="-1"/>
@@ -235,6 +222,8 @@
     </attributes>
     <weight value="34.0"/>
     <value value="326592"/>
+    <susceptibility type="light" value="1.3"/>
+    <susceptibility type="dark" value="0.9"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -248,7 +237,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="37"/>
      <min_level value="50"/>
-    </attributes>   
+    </attributes>
     <weight value="34.0"/>
     <value value="365233"/>
     <equipable>
@@ -283,6 +272,10 @@
     </attributes>
     <weight value="24.0"/>
     <value value="448000"/>
+    <susceptibility type="light" value="0.97"/>
+    <susceptibility type="dark" value="0.97"/>
+    <susceptibility type="fire" value="0.97"/>
+    <susceptibility type="ice" value="0.97"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -315,13 +308,15 @@
     </attributes>
     <weight value="34.0"/>
     <value value="518616"/>
+    <susceptibility type="light" value="1.25"/>
+    <susceptibility type="dark" value="0.96"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
   </item>
- 
+
   <item name="mithril shield">
     <type class="shield" subclass="mithril_shield" tileid="-1"/>
     <description>You see a mithril shield. You will most surely be protected.</description>
@@ -331,6 +326,8 @@
     </attributes>
     <weight value="30.0"/>
     <value value="718616"/>
+    <susceptibility type="light" value="0.97"/>
+    <susceptibility type="dark" value="1.25"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
