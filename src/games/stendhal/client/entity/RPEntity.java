@@ -21,6 +21,7 @@ import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.constants.DamageType;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -414,17 +415,17 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// When this entity's attack is blocked by the adversary
-	public void onAttackBlocked(final IEntity target) {
+	public void onAttackBlocked(final DamageType type) {
 		showBladeStrike = true;
 	}
 
 	// When this entity causes damaged to adversary, with damage amount
-	public void onAttackDamage(final IEntity target, final int damage) {
+	public void onAttackDamage(final DamageType type) {
 		showBladeStrike = true;
 	}
 
 	// When this entity's attack is missing the adversary
-	public void onAttackMissed(final IEntity target) {
+	public void onAttackMissed(final DamageType type) {
 		showBladeStrike = true;
 	}
 
@@ -759,31 +760,6 @@ public abstract class RPEntity extends ActiveEntity {
 		} else {
 			titleType = null;
 		}
-	}
-
-	protected void evaluateAttack(final RPObject object, final RPEntity entity) {
-		int risk = 0;
-		int damage = 0;
-
-		if (object.has("risk")) {
-			risk = object.getInt("risk");
-		}
-		if (risk == 0) {
-			onAttackMissed(attackTarget);
-			entity.onMissed(this);
-		} else if (risk > 0) {
-			if (object.has("damage")) {
-				damage = object.getInt("damage");
-			}
-			if (damage == 0) {
-				onAttackBlocked(attackTarget);
-				entity.onBlocked(this);
-			} else if (damage > 0) {
-				onAttackDamage(attackTarget, damage);
-				entity.onDamaged(this, damage);
-			}
-		}
-
 	}
 
 	/**
