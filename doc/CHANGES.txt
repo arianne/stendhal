@@ -13,8 +13,11 @@ Changelog
 - Harold tweets trades
 - magical damage types of weapons (fire, ice ...)
 - resistance/vulnerability of creatures to magical weapons (fire, ice, ...)
+- attack sweeps look different depending on the attack type
 - Haizen's maze has music near the exit
 - Plan a new route when a player following a path hits another entity
+- contextual mouse cursors
+- sub-zone teleport restrictions
 
 *bugfixes*
 - archer behaviour
@@ -25,6 +28,7 @@ Changelog
 *code*
 - creatures xml split into smaller parts
 - sound split into standalone arilib module
+- attacks are now events
 
 *website*
 - new domain stendhalgame.org
