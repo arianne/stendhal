@@ -8,14 +8,17 @@
 	<group uri="creatures/chaos.xml"/>
 	<group uri="creatures/creatures.xml"/>
     <group uri="creatures/dark_elf.xml"/>
+    <group uri="creatures/demon.xml"/>
 	<group uri="creatures/dwarf.xml"/>
 	<group uri="creatures/elemental.xml"/>
 	<group uri="creatures/elf.xml"/>
+	<group uri="creatures/ent.xml"/>
 	<group uri="creatures/fairy.xml"/>
 	<group uri="creatures/farm_animal.xml"/>
 	<group uri="creatures/frogman.xml"/>
 	<group uri="creatures/gargoyle.xml"/>
 	<group uri="creatures/giant_animal.xml"/>
+	<group uri="creatures/giant_human.xml"/>
 	<group uri="creatures/giant.xml"/>
     <group uri="creatures/gnome.xml"/>
 	<group uri="creatures/goblin.xml"/>

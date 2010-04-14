@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+ 
+   <creature name="imp">
+    <type class="demon" subclass="imp" tileid="demon.png:0"/>
+    <description>You see an imp. He may look a little bit cute, but don´t forget he is one of the devil´s servants!</description>
+    <attributes>
+      <atk value="495"/>
+      <def value="73"/>
+      <hp value="530"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="66"/>
+    <experience value="3530"/>
+    <respawn value="2050"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="winged blue imp">
+    <type class="demon" subclass="winged_blue_imp" tileid="demon.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="515"/>
+      <def value="86"/>
+      <hp value="500"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="70"/>
+    <experience value="4130"/>
+    <respawn value="2250"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="poison" quantity="[1,2]" probability="40.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="poisonous" params="15,poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+    <creature name="demon">
+    <type class="demon" subclass="demon" tileid="demon.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="591"/>
+      <def value="80"/>
+      <hp value="800"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="85"/>
+    <experience value="6990"/>
+    <respawn value="3050"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+      <item value="demon fire sword" quantity="[1,1]" probability="0.005"/>
+      <item value="fire sword" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="fire"/>
+      <susceptibility type="ice" value="1.6"/>
+      <susceptibility type="fire" value="0.5"/>
+    </abilities>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial demon servant">
+    <type class="demon" subclass="imperial_demon_servant" tileid="demon.png:3"/>
+    <description></description>
+    <attributes>
+      <atk value="587"/>
+      <def value="74"/>
+      <hp value="830"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="86"/>
+    <experience value="7100"/>
+    <respawn value="3350"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,95]" probability="100.0"/>
+      <item value="shadow armor" quantity="[1,1]" probability="0.6"/>
+      <item value="shadow boots" quantity="[1,1]" probability="0.7"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial demon lord">
+    <type class="demon" subclass="imperial_demon_lord" tileid="demon.png:2"/>
+    <description></description>
+    <attributes>
+      <atk value="676"/>
+      <def value="89"/>
+      <hp value="1100"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="101"/>
+    <experience value="11200"/>
+    <respawn value="5350"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[20,110]" probability="100.0"/>
+      <item value="greater potion" quantity="[1,2]" probability="80.0"/>
+      <item value="magic plate armor" quantity="[1,1]" probability="0.002"/>
+      <item value="chaos boots" quantity="[1,1]" probability="0.5"/>
+      <item value="black halberd" quantity="[1,1]" probability="0.001"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+</creatures>  
