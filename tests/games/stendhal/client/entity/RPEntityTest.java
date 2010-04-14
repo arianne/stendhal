@@ -6,9 +6,7 @@ import static org.junit.Assert.assertThat;
 import games.stendhal.client.entity.RPEntity.Resolution;
 import games.stendhal.client.events.AttackEvent;
 import games.stendhal.client.events.Event;
-
 import marauroa.common.game.RPEvent;
-import marauroa.common.game.RPObject;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,7 +18,6 @@ public class RPEntityTest {
 
 	private RPEntity defender;
 	private RPEntity attacker;
-	private RPObject object;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -36,8 +33,6 @@ public class RPEntityTest {
 		};
 		attacker = new RPEntity() {
 		};
-		object = new RPObject();
-
 	}
 
 	@After
