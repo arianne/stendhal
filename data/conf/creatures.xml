@@ -31,6 +31,8 @@
 	<group uri="creatures/minotaur.xml"/>
     <group uri="creatures/mummy.xml"/>
     <group uri="creatures/mutant.xml"/>
+    <group uri="creatures/mythical_animal.xml"/>
+    <group uri="creatures/mythical_being.xml"/>
     <group uri="creatures/oni.xml"/>
     <group uri="creatures/orc.xml"/>
     <group uri="creatures/ratfolk.xml"/>
