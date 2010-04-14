@@ -41,6 +41,7 @@ import games.stendhal.server.entity.spell.Spell;
 import games.stendhal.server.entity.trade.Earning;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
+import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.BuddyLoginEvent;
 import games.stendhal.server.events.BuddyLogoutEvent;
 import games.stendhal.server.events.ExamineEvent;
@@ -189,6 +190,9 @@ public class RPClassGenerator {
 		}
 
 		// rpevents
+		if (!RPClass.hasRPClass("attack")) {
+			AttackEvent.generateRPClass();
+		}
 		if (!RPClass.hasRPClass("buddy_login")) {
 			BuddyLoginEvent.generateRPClass();
 		}
