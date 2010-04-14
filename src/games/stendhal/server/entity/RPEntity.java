@@ -205,8 +205,8 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("def_item", Type.INT,
 					(byte) (Definition.PRIVATE | Definition.VOLATILE));
 
-			entity.addAttribute("risk", Type.BYTE, Definition.VOLATILE);
-			entity.addAttribute("damage", Type.INT, Definition.VOLATILE);
+			entity.addAttribute("risk", Type.BYTE, Definition.VOLATILE); // obsolete, do not use
+			entity.addAttribute("damage", Type.INT, Definition.VOLATILE); // obsolete, do not use
 			entity.addAttribute("heal", Type.INT, Definition.VOLATILE);
 			// TODO: check that the binary representation of old saved players is compatible when this is changed into a list.
 			entity.addAttribute("target", Type.INT, Definition.VOLATILE);
@@ -870,12 +870,6 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/** Modify the entity to stop attacking. */
 	public void stopAttack() {
-		if (has("risk")) {
-			remove("risk");
-		}
-		if (has("damage")) {
-			remove("damage");
-		}
 		if (has("heal")) {
 			remove("heal");
 		}
@@ -2211,8 +2205,6 @@ public abstract class RPEntity extends GuidedEntity {
 			risk = 1;
 		}
 
-		this.put("risk", risk);
-
 		return (risk != 0);
 	}
 
@@ -2295,14 +2287,12 @@ public abstract class RPEntity extends GuidedEntity {
 				this.handleLifesteal(this, this.getWeapons(), damage);
 
 				defender.onDamaged(this, damage);
-				this.put("damage", damage);
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + damage);
 
 				result = true;
 			} else {
 				// The attack was too weak, it was blocked
-				this.put("damage", 0);
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
@@ -2311,7 +2301,6 @@ public abstract class RPEntity extends GuidedEntity {
 			// Missed
 			logger.debug("attack from " + this.getID() + " to "
 					+ defender.getID() + ": Missed");
-			this.put("damage", 0);
 			addEvent(new AttackEvent(false, 0, getDamageType()));
 		}
 

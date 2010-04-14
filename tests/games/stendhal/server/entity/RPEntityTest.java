@@ -17,12 +17,14 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.slot.PlayerSlot;
+import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Arrays;
 import java.util.List;
 
 import marauroa.common.Log4J;
+import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPSlot;
 
 import org.junit.BeforeClass;
@@ -375,13 +377,24 @@ public class RPEntityTest {
 
 		assertTrue(zone.has(defender.getID()));
 		assertThat(defender.getHP(), greaterThan(0));
-		assertFalse(attacker.has("damage"));
+		for (RPEvent ev : attacker.events()) {
+			assertFalse(ev instanceof AttackEvent);
+		}
 
 		assertFalse(attacker.attack());
 
 		assertNotNull(attacker.getAttackTarget());
-		assertTrue(attacker.has("damage"));
-		assertThat("no damage done ", attacker.get("damage"), is("0"));
+		AttackEvent attack = null;
+		for (RPEvent ev : attacker.events()) {
+			if (ev instanceof AttackEvent) {
+				attack = (AttackEvent) ev;
+				continue;
+			}
+		}
+		assertNotNull(attack);
+		assertTrue(attack.has("hit"));
+		assertTrue(attack.has("damage"));
+		assertThat("no damage done ", attack.get("damage"), is("0"));
 	}
 
 	/**
@@ -443,13 +456,25 @@ public class RPEntityTest {
 
 		assertTrue(zone.has(defender.getID()));
 		assertThat(defender.getHP(), greaterThan(0));
-		assertFalse(attacker.has("damage"));
+		for (RPEvent ev : attacker.events()) {
+			assertFalse(ev instanceof AttackEvent);
+		}
 
 		assertTrue(attacker.attack());
 
 		assertNotNull(attacker.getAttackTarget());
-		assertTrue(attacker.has("damage"));
-		assertThat("no damge done ", attacker.get("damage"), is("30"));
+		
+		AttackEvent attack = null;
+		for (RPEvent ev : attacker.events()) {
+			if (ev instanceof AttackEvent) {
+				attack = (AttackEvent) ev;
+				continue;
+			}
+		}
+		assertNotNull(attack);
+		assertTrue(attack.has("hit"));
+		assertTrue(attack.has("damage"));
+		assertThat("no damage done ", attack.get("damage"), is("30"));
 	}
 
 	/**

@@ -1859,13 +1859,6 @@ public class Player extends RPEntity {
 		}
 	}
 
-
-	public void setDamage(final int damage) {
-		put("damage", damage);
-		
-	}
-
-
 	public boolean isImmune() {
 		return isImmune;
 	}
