@@ -23,7 +23,9 @@ public class EventFactory {
 		}
 
 		if (res == null) {
-			res = new UnknownEvent<Entity>();
+			Event<Entity> unknown = new UnknownEvent<Entity>();
+			unknown.init(entity, rpevent);
+			res = unknown;
 		}
 
 		return res;
