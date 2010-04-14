@@ -126,7 +126,7 @@ public class Creature extends NPC {
 	private boolean isIdle;
 	
 	/** The type of the damage this creature does */
-	private DamageType damageType;
+	private DamageType damageType = DamageType.CUT;
 	
 	/** Susceptibilities to various damage types this creature has */
 	private Map<DamageType, Double> susceptibilities;
