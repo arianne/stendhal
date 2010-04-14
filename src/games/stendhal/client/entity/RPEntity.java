@@ -297,6 +297,15 @@ public abstract class RPEntity extends ActiveEntity {
 	public Resolution getResolution() {
 		return resolution;
 	}
+	
+	/**
+	 * Get the attack target of an entity.
+	 * 
+	 * @return the target, or <code>null</code> if there is none
+	 */
+	public RPEntity getAttackTarget() {
+		return attackTarget;
+	}
 
 	/**
 	 * Get the nicely formatted entity title.
@@ -733,10 +742,6 @@ public abstract class RPEntity extends ActiveEntity {
 			attackTarget = null;
 		}
 
-		if (attackTarget != null) {
-			evaluateAttack(object, attackTarget);
-		}
-
 		/*
 		 * Admin level
 		 */
@@ -957,45 +962,6 @@ public abstract class RPEntity extends ActiveEntity {
 						onAttack(attackTarget);
 						attackTarget.onAttacked(this);
 						// attackTarget.onAttacked(this,risk,damage);
-					}
-				}
-			}
-
-			
-			if (attackTarget != null) {
-				int risk;
-				int damage;
-
-				boolean thereIsEvent = false;
-
-				if (changes.has("risk")) {
-					risk = changes.getInt("risk");
-					thereIsEvent = true;
-				} else if (object.has("risk")) {
-					risk = object.getInt("risk");
-				} else {
-					risk = 0;
-				}
-
-				if (changes.has("damage")) {
-					damage = changes.getInt("damage");
-					thereIsEvent = true;
-				} else if (object.has("damage")) {
-					damage = object.getInt("damage");
-				} else {
-					damage = 0;
-				}
-
-				if (thereIsEvent) {
-					if (risk == 0) {
-						onAttackMissed(attackTarget);
-						attackTarget.onMissed(this);
-					} else if ((risk > 0) && (damage == 0)) {
-						onAttackBlocked(attackTarget);
-						attackTarget.onBlocked(this);
-					} else if ((risk > 0) && (damage > 0)) {
-						onAttackDamage(attackTarget, damage);
-						attackTarget.onDamaged(this, damage);
 					}
 				}
 			}
