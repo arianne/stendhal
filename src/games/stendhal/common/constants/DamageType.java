@@ -12,20 +12,18 @@ public enum DamageType {
 	LIGHT,
 	DARK;
 
+	/**
+	 * Parses the DamageType, defaulting to CUT for unknown types.
+	 *
+	 * @param type type name
+	 * @return DamageType
+	 */
 	public static DamageType parse(String type) {
-		if ("cut".equals(type)) {
+		try {
+			return DamageType.valueOf(type);
+		} catch (RuntimeException e) {
+			Logger.getLogger(DamageType.class).error("Unknown damage type: " + type, e);
 			return CUT;
-		} else if ("fire".equals(type)) {
-			return FIRE;
-		} else if ("ice".equals(type)) {
-			return ICE;
-		} else if ("light".equals(type)) {
-			return LIGHT;
-		} else if ("dark".equals(type)) {
-			return DARK;
 		}
-		
-		Logger.getLogger(DamageType.class).error("Unknown damage type: " + type);
-		return CUT;
 	}
 }
