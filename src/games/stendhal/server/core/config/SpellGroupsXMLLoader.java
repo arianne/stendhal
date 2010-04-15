@@ -1,7 +1,6 @@
 package games.stendhal.server.core.config;
 
 import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
-import games.stendhal.server.entity.spell.Spell;
 
 import java.io.IOException;
 import java.net.URI;

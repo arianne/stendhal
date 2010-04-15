@@ -7,10 +7,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -23,6 +19,8 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.magic.school.GroundskeeperNPC;
 import games.stendhal.server.maps.magic.school.SpidersCreatures;
+
+import java.util.LinkedList;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
