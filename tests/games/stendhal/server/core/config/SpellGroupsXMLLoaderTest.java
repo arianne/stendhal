@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 
 import static org.junit.Assert.assertThat;
 
@@ -23,12 +24,13 @@ public class SpellGroupsXMLLoaderTest {
 		assertThat(Boolean.valueOf(list.isEmpty()), is(Boolean.FALSE));
 		DefaultSpell spell = list.get(0);
 		assertThat(spell.getName(), is("heal"));
-		assertThat(spell.getImplementationClass().getName(), is("games.stendhal.server.entity.spell.HealingSpell"));
+		assertThat(spell.getImplementationClass(), notNullValue());
+		assertThat(spell.getImplementationClass().getName(), is("games.stendhal.server.entity.spell.Spell"));
 		assertThat(spell.getAmount(),is(Integer.valueOf(100)));
 		assertThat(spell.getAtk(),is(Integer.valueOf(0)));
 		assertThat(spell.getCooldown(),is(Integer.valueOf(3)));
 		assertThat(spell.getDef(),is(Integer.valueOf(0)));
-		assertThat(spell.getLifesteal(),is(Integer.valueOf(0)));
+		assertThat(spell.getLifesteal(),is(Double.valueOf(0.5)));
 		assertThat(spell.getMana(),is(Integer.valueOf(5)));
 		assertThat(spell.getMinimumLevel(),is(Integer.valueOf(0)));
 		assertThat(spell.getRange(),is(Integer.valueOf(10)));
