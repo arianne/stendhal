@@ -11,90 +11,108 @@
  ***************************************************************************/
 package games.stendhal.server.entity.spell;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.PassiveEntity;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
 
 /**
- * The Spell class. Based off the item code.
+ * The base spell class
  * 
- * @author timothyb89
+ * @author timothyb89, madmetzger
  */
 public class Spell extends PassiveEntity implements EquipListener {
-	/**
-	 * The spell name attribute name.
-	 */
-	protected static final String ATTR_NAME = "name";
+	
+	private static final String RPCLASS_SPELL = "spell";
+
+	/**The spell name attribute name.*/
+	private static final String ATTR_NAME = "name";
+
+	private static final String ATTR_ATK = "atk";
+
+	private static final String ATTR_COOLDOWN = "cooldown";
+
+	private static final String ATTR_DEF = "def";
+
+	private static final String ATTR_LIFESTEAL = "lifesteal";
+
+	private static final String ATTR_MANA = "mana";
+
+	private static final String ATTR_MINIMUMLEVEL = "minimumlevel";
+
+	private static final String ATTR_RANGE = "range";
+
+	private static final String ATTR_RATE = "rate";
+
+	private static final String ATTR_REGEN = "regen";
+
+	private static final String ATTR_AMOUNT = "amount";
 
 	/** list of possible slots for this item. */
 	private final List<String> possibleSlots = Arrays.asList("spells");
 
 	/**
-	 * The plant grower where this item was grown, until it has been picked.
-	 * null if it wasn't grown by a plant grower, or if it has already been
-	 * picked.
+	 * Generate the RPClass for spells
 	 */
 	public static void generateRPClass() {
-		final RPClass entity = new RPClass("spell");
+		final RPClass entity = new RPClass(RPCLASS_SPELL);
 		entity.isA("entity");
-
-		// the spell class (other purposes, just to code old code for now)
-		entity.addAttribute("class", Type.STRING);
- 
-		// name of spell (such as "heal")
 		entity.addAttribute(ATTR_NAME, Type.STRING);
+		entity.addAttribute(ATTR_AMOUNT, Type.INT);
+		entity.addAttribute(ATTR_ATK, Type.INT);
+		entity.addAttribute(ATTR_COOLDOWN, Type.INT);
+		entity.addAttribute(ATTR_DEF, Type.INT);
+		entity.addAttribute(ATTR_LIFESTEAL, Type.FLOAT);
+		entity.addAttribute(ATTR_MANA, Type.INT);
+		entity.addAttribute(ATTR_MINIMUMLEVEL, Type.INT);
+		entity.addAttribute(ATTR_RANGE, Type.INT);
+		entity.addAttribute(ATTR_RATE, Type.INT);
+		entity.addAttribute(ATTR_REGEN, Type.INT);
 	}
-
+	
 	/**
+	 * Creates a spell from an {@link RPObject}
 	 * 
-	 * Creates a new Item.
-	 * 
-	 * @param name
-	 *            name of item
-	 * @param attributes
-	 *            attributes (like attack). may be empty or <code>null</code>
+	 * @param object the {@link RPObject} to create the spell from
 	 */
-	public Spell(final String name, final Map<String, String> attributes) {
-		this();
-
+	public Spell(final RPObject object) {
+		super(object);
+		setRPClass(RPCLASS_SPELL);
+	}
+	
+	/**
+	 * Creates a new {@link Spell}
+	 * @param name the name of the spell
+	 * @param amount the amount of the effect of this spell
+	 * @param atk the atk value of the spell
+	 * @param cooldown the time the spell needs to cool down before casting it again
+	 * @param def the def value of the spell
+	 * @param lifesteal the percentage of lifesteal for this spell
+	 * @param mana the amount of mana this spell uses when casting it
+	 * @param minimumlevel the required minimum level for this spell
+	 * @param range the max distance for the spell target
+	 * @param rate the frequency of the effect of this spell
+	 * @param regen the amount to regen with each effect turn
+	 */
+	public Spell(	final String name, final int amount, final int atk, final int cooldown,
+					final int def, final double lifesteal, final int mana, final int minimumlevel,
+					final int range, final int rate, final int regen) {
+		setRPClass(RPCLASS_SPELL);
 		put(ATTR_NAME, name);
-
-		if (attributes != null) {
-			// store all attributes
-			for (final String key : attributes.keySet()) {
-				put(key, attributes.get(key));
-			}
-		}
-	}
-
-	/** no public 'default' item. */
-	private Spell() {
-		setRPClass("spell");
-		put("type", "spell");
-		update();
-	}
-
-	@Override
-	public String toString() {
-		return "Spell, " + super.toString();
-	}
-
-	@Override
-	public String describe() {
-		final String name = getName();
-
-		if (name != null) {
-			return "You see " + Grammar.a_noun(name) + ".";
-		} else {
-			return super.describe();
-		}
+		put(ATTR_AMOUNT, amount);
+		put(ATTR_ATK, atk);
+		put(ATTR_COOLDOWN, cooldown);
+		put(ATTR_DEF, def);
+		put(ATTR_LIFESTEAL, lifesteal);
+		put(ATTR_MANA, mana);
+		put(ATTR_MINIMUMLEVEL, minimumlevel);
+		put(ATTR_RANGE, range);
+		put(ATTR_RATE, rate);
 	}
 
 	public boolean canBeEquippedIn(final String slot) {
@@ -102,9 +120,9 @@ public class Spell extends PassiveEntity implements EquipListener {
 	}
 
 	/**
-	 * Get the entity name.
+	 * Get the spell name.
 	 * 
-	 * @return The entity's name, or <code>null</code> if undefined.
+	 * @return The spell's name, or <code>null</code> if undefined.
 	 */
 	public String getName() {
 		if (has(ATTR_NAME)) {
@@ -113,45 +131,135 @@ public class Spell extends PassiveEntity implements EquipListener {
 			return null;
 		}
 	}
-
-	//
-	// Entity
-	//
-
+	
 	/**
-	 * Returns the name or something that can be used to identify the entity for
-	 * the player.
+	 * Get the spell amount.
 	 * 
-	 * @param definite
-	 *            <code>true</code> for "the", and <code>false</code> for
-	 *            "a/an" in case the entity has no name.
-	 * 
-	 * @return The description name.
+	 * @return The spell's amount, or <code>0</code> if undefined.
 	 */
-	@Override
-	public String getDescriptionName(final boolean definite) {
-		final String name = getName();
-
-		if (name != null) {
-			return name;
+	public int getAmount() {
+		if (has(ATTR_AMOUNT)) {
+			return getInt(ATTR_AMOUNT);
 		} else {
-			return super.getDescriptionName(definite);
+			return 0;
+		}
+	}
+	
+	/**
+	 * Get the spell atk.
+	 * 
+	 * @return The spell's atk, or <code>0</code> if undefined.
+	 */
+	public int getAtk() {
+		if (has(ATTR_ATK)) {
+			return getInt(ATTR_ATK);
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * Get the spell cooldown.
+	 * 
+	 * @return The spell's cooldown, or <code>0</code> if undefined.
+	 */
+	public int getCooldown() {
+		if (has(ATTR_COOLDOWN)) {
+			return getInt(ATTR_COOLDOWN);
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * Get the spell def.
+	 * 
+	 * @return The spell's def, or <code>0</code> if undefined.
+	 */
+	public int getDef() {
+		if (has(ATTR_DEF)) {
+			return getInt(ATTR_DEF);
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * Get the spell lifesteal.
+	 * 
+	 * @return The spell's lifesteal, or <code>0</code> if undefined.
+	 */
+	public double getLifesteal() {
+		if (has(ATTR_LIFESTEAL)) {
+			return getDouble(ATTR_LIFESTEAL);
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * Get the spell mana.
+	 * 
+	 * @return The spell's mana, or <code>0</code> if undefined.
+	 */
+	public int getMana() {
+		if (has(ATTR_MANA)) {
+			return getInt(ATTR_MANA);
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * Get the spell minimum level.
+	 * 
+	 * @return The spell's minimum level, or <code>0</code> if undefined.
+	 */
+	public int getMinimumLevel() {
+		if (has(ATTR_MINIMUMLEVEL)) {
+			return getInt(ATTR_MINIMUMLEVEL);
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * Get the spell range.
+	 * 
+	 * @return The spell's range, or <code>0</code> if undefined.
+	 */
+	public int getRange() {
+		if (has(ATTR_RANGE)) {
+			return getInt(ATTR_RANGE);
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * Get the spell rate.
+	 * 
+	 * @return The spell's rate, or <code>0</code> if undefined.
+	 */
+	public int getRate() {
+		if (has(ATTR_RATE)) {
+			return getInt(ATTR_RATE);
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * Get the spell regen.
+	 * 
+	 * @return The spell's regen, or <code>0</code> if undefined.
+	 */
+	public int getRegen() {
+		if (has(ATTR_REGEN)) {
+			return getInt(ATTR_REGEN);
+		} else {
+			return 0;
 		}
 	}
 
-	/**
-	 * Get the nicely formatted entity title/name.
-	 * 
-	 * @return The title, or <code>null</code> if unknown.
-	 */
-	@Override
-	public String getTitle() {
-		final String name = getName();
-
-		if (name != null) {
-			return name;
-		} else {
-			return super.getTitle();
-		}
-	}
 }

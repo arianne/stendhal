@@ -30,7 +30,7 @@ public class DefaultSpell {
 	
 	private int rate;
 	
-	private int lifesteal;
+	private double lifesteal;
 
 	/**
 	 * Creates a new {@link DefaultSpell}
@@ -184,7 +184,7 @@ public class DefaultSpell {
 	/**
 	 * @return the lifesteal
 	 */
-	public int getLifesteal() {
+	public double getLifesteal() {
 		return lifesteal;
 	}
 
@@ -192,7 +192,7 @@ public class DefaultSpell {
 	 * @param lifesteal the lifesteal to set
 	 */
 	public void setLifesteal(String lifesteal) {
-		this.lifesteal = Integer.parseInt(lifesteal);
+		this.lifesteal = Float.parseFloat(lifesteal);
 	}
 
 }

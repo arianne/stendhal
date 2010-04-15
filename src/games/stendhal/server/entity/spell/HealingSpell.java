@@ -22,18 +22,20 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Map;
-
 /**
  * @author timothyb89 A healing spell. It restores the user to full HP (for
  *         now).
  */
 public class HealingSpell extends Spell implements UseListener {
-	private int healAmount;
-
-	HealingSpell(final String name, final Map<String, String> attributes) {
-		super(name, attributes);
+	
+	public HealingSpell(String name, int amount, int atk, int cooldown,
+			int def, double lifesteal, int mana, int minimumlevel, int range,
+			int rate, int regen) {
+		super(name, amount, atk, cooldown, def, lifesteal, mana, minimumlevel, range,
+				rate, regen);
 	}
+
+	private int healAmount;
 
 	@Override
 	public String describe() {
