@@ -679,12 +679,11 @@ public class Creature extends NPC {
 	public void init() {
 		// do nothing
 	}
-
+	
 	@Override
 	public void logic() {
 		healer.heal(this);
 		if (!this.getZone().getPlayerAndFriends().isEmpty()) {
-		
 			if (strategy.hasValidTarget(this)) {
 				strategy.getBetterAttackPosition(this);
 				this.applyMovement();
@@ -707,6 +706,15 @@ public class Creature extends NPC {
 				 	this.setIdle();
 					this.makeNoiseChance(100, "idle");	
 				}
+			}
+		} else {
+			/*
+			 * Run enough logic to stop attacking, if the zone gets empty.
+			 * Otherwise the target attribute does not get changed, and may
+			 * be incorrect if the same player that was the target reappears.
+			 */
+			if (isAttacking()) {
+				stopAttack();
 			}
 		}
 		this.notifyWorldAboutChanges();
