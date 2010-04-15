@@ -20,7 +20,7 @@ public enum DamageType {
 	 */
 	public static DamageType parse(String type) {
 		try {
-			return DamageType.valueOf(type);
+			return DamageType.valueOf(type.toUpperCase());
 		} catch (RuntimeException e) {
 			Logger.getLogger(DamageType.class).error("Unknown damage type: " + type, e);
 			return CUT;
