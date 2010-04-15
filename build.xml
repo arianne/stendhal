@@ -755,6 +755,12 @@
 	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltextclient">
 		<mkdir dir="${build_tests}"/>
 
+		<copy todir="${build_tests}">
+			<fileset dir="tests">
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+
 		<javac srcdir="tests" destdir="${build_tests}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="**/*.java"/>
 
