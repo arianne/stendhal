@@ -103,7 +103,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		// Load all attack sprites
 		for (DamageType damageType : DamageType.values()) {
 			final Sprite tiles = st.getSprite("data/sprites/combat/blade_strike_" 
-					+ damageType.toString().toLowerCase(Locale.ROOT) + ".png");
+					+ damageType.toString().toLowerCase(Locale.US) + ".png");
 
 			Map<Direction, Sprite[]> map = new EnumMap<Direction, Sprite[]>(Direction.class);
 			bladeStrikeSprites.put(damageType, map);
