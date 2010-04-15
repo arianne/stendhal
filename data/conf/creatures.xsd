@@ -10,7 +10,7 @@
 	<xsd:complexType name="CreaturesType">
 		<xsd:sequence>
 			<xsd:element name="creature" type="Q2:CreatureType"
-				maxOccurs="unbounded" />
+				minOccurs="0" maxOccurs="unbounded" />
 		</xsd:sequence>
 	</xsd:complexType>
 
