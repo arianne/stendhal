@@ -473,12 +473,11 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 				}
 
 				sprite.draw(g2d, sx, sy);
+				frameBladeStrike++;
 			} else {
 				rpentity.doneStriking();
 				frameBladeStrike = 0;
 			}
-
-			frameBladeStrike++;
 		}
 
 		if (((RPEntity) entity).isDefending()) {
