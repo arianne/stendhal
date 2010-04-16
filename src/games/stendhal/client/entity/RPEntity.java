@@ -310,6 +310,45 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	/**
+	 * Update the target.
+	 * 
+	 * @param targetString The target id as a string
+	 * @param zoneId zone of the entity
+	 */
+	private void setTarget(String targetString, String zoneId) {
+		final int target = Integer.parseInt(targetString);
+		
+		final RPObject.ID targetEntityID = new RPObject.ID(target, zoneId);
+		final RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(
+				targetEntityID);
+
+		if (targetEntity != attackTarget) {
+			onStopAttack();
+
+			if (attackTarget != null) {
+				attackTarget.onStopAttacked(this);
+			}
+
+			attackTarget = targetEntity;
+
+			if (attackTarget != null) {
+				onAttack(attackTarget);
+				attackTarget.onAttacked(this);
+			}
+		}
+	}
+	
+	/**
+	 * Update the target.
+	 * 
+	 * @param targetString The target id as a string
+	 */
+	private void setTarget(String targetString) {
+		setTarget(targetString, rpObject.get("zoneid"));
+	}
+
+
+	/**
 	 * Get the nicely formatted entity title.
 	 * 
 	 * This searches the follow attribute order: title, name (w/o underscore),
@@ -350,6 +389,16 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	public boolean isAttacking() {
+		if (attacking == null) {
+			/*
+			 * Check for disagreement, and update if needs be.
+			 * Can happen when the target is added to the zone after the attacker.
+			 */
+			String id = rpObject.get("target");
+			if (id != null) {
+				setTarget(id);
+			}
+		}
 		return (attacking != null);
 	}
 
@@ -359,7 +408,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 		
 		final ID defenderID = defender.getID();
-		return ((attacking != null) && attacking.equals(defenderID));
+		return (isAttacking() && attacking.equals(defenderID));
 	}
 
 	public boolean isBeingAttacked() {
@@ -724,30 +773,9 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		/*
-		 * Attack Target
+		 * Attack Target is handled later, as it can not be checked reliably
+		 * now anyway.
 		 */
-
-		if (object.has("target")) {
-			final int target = object.getInt("target");
-
-			final RPObject.ID targetEntityID = new RPObject.ID(target,
-					object.get("zoneid"));
-
-			//
-			// TODO This is probably meaningless, as create order is
-			// unpredictable, and the target entity may not have been added yet XXX
-			//
-			attackTarget = (RPEntity) GameObjects.getInstance().get(
-					targetEntityID);
-		
-			if (attackTarget != null) {
-				onAttack(attackTarget);
-				attackTarget.onAttacked(this);
-				// attackTarget.onAttacked(this,risk,damage);
-			}
-		} else {
-			attackTarget = null;
-		}
 
 		/*
 		 * Admin level
@@ -922,30 +950,9 @@ public abstract class RPEntity extends ActiveEntity {
 			 * Attack Target
 			 */
 
-			if (changes.has("target")) {
-				final int target = changes.getInt("target");
-
-				final RPObject.ID targetEntityID = new RPObject.ID(target,
-						changes.get("zoneid"));
-
-				final RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(
-						targetEntityID);
-
-				if (targetEntity != attackTarget) {
-					onStopAttack();
-
-					if (attackTarget != null) {
-						attackTarget.onStopAttacked(this);
-					}
-
-					attackTarget = targetEntity;
-
-					if (attackTarget != null) {
-						onAttack(attackTarget);
-						attackTarget.onAttacked(this);
-						// attackTarget.onAttacked(this,risk,damage);
-					}
-				}
+			String target = changes.get("target");
+			if (target != null) {
+				setTarget(target, changes.get("zoneid"));
 			}
 
 			/*
