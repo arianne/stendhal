@@ -693,6 +693,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.8"/>
+      <susceptibility type="light" value="1.15"/>
+    </abilities>
     <ai>
       <profile name="offensive"/>
       <profile name="human"/>

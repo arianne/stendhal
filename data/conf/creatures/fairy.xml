@@ -120,6 +120,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="light"/>
+      <susceptibility type="dark" value="1.3"/>
+      <susceptibility type="light" value="0.7"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="I want to grow to be mighty!"/>

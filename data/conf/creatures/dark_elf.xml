@@ -264,6 +264,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.7"/>
+      <susceptibility type="light" value="1.3"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="The Spider Queen will avenge me!"/>
@@ -377,6 +382,11 @@
     <equips>
       <slot name="rhand" item="dagger"/>
     </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.8"/>
+      <susceptibility type="light" value="1.2"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="The Queen of Spiders will take her revenge on you!"/>
@@ -448,6 +458,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.8"/>
+      <susceptibility type="light" value="1.2"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="You will never see the light again!"/>
@@ -486,6 +501,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+    <damage type="dark"/>
+      <susceptibility type="dark" value="0.8"/>
+      <susceptibility type="light" value="1.1"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="You disturbed my rest!"/>

@@ -22,6 +22,11 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage type="fire"/>
+      <susceptibility type="ice" value="1.2"/>
+      <susceptibility type="fire" value="0.75"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
