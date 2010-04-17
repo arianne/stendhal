@@ -14,6 +14,7 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
@@ -219,14 +220,30 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 		client.send(action);
 	}
 
+	/**
+	 * calculates whether the click was close enough to a zone border to trigger
+	 * a zone change
+	 *
+	 * @param point click point in world coordinates
+	 * @return Direction of the zone to change to, <code>null</code> if no zone change should happen
+	 */
 	private Direction calculateZoneChangeDirection(Point2D point) {
+		StaticGameLayers layers = StendhalClient.get().getStaticGameLayers();
 		double x = point.getX();
 		double y = point.getY();
+		double width = layers.getWidth();
+		double height = layers.getHeight();
 		if (x < 0.333) {
 			return Direction.LEFT;
 		}
+		if (x > width - 0.333) {
+			return Direction.RIGHT;
+		}
 		if (y < 0.333) {
 			return Direction.UP;
+		}
+		if (y > height - 0.333) {
+			return Direction.DOWN;
 		}
 		return null;
 	}
