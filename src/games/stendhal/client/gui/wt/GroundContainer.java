@@ -242,7 +242,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 		if (y < 0.333) {
 			return Direction.UP;
 		}
-		if (y > height - 0.333) {
+		if (y > height - 0.4) {
 			return Direction.DOWN;
 		}
 		return null;
