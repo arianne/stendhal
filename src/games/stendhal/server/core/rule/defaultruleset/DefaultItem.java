@@ -13,6 +13,10 @@
 package games.stendhal.server.core.rule.defaultruleset;
 
 import games.stendhal.common.constants.DamageType;
+import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
+import games.stendhal.server.core.rule.defaultruleset.creator.AttributesItemCreator;
+import games.stendhal.server.core.rule.defaultruleset.creator.DefaultItemCreator;
+import games.stendhal.server.core.rule.defaultruleset.creator.FullItemCreator;
 import games.stendhal.server.entity.item.Item;
 
 import java.lang.reflect.Constructor;
@@ -54,7 +58,7 @@ public class DefaultItem {
 	private int tileid;
 
 	/** Attributes of the item.*/
-	Map<String, String> attributes;
+	private Map<String, String> attributes;
 
 	private Class< ? > implementation;
 

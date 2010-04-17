@@ -1,4 +1,6 @@
-package games.stendhal.server.core.rule.defaultruleset;
+package games.stendhal.server.core.rule.defaultruleset.creator;
+
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -8,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
  * subclazz, attributes</em>)
  * constructor.
  */
-class FullItemCreator extends AbstractItemCreator {
+public class FullItemCreator extends AbstractItemCreator {
 
 	public FullItemCreator(DefaultItem defaultItem, final Constructor< ? > construct) {
 		super(defaultItem, construct);
@@ -18,6 +20,6 @@ class FullItemCreator extends AbstractItemCreator {
 	protected Object createObject() throws IllegalAccessException,
 			InstantiationException, InvocationTargetException {
 		return construct.newInstance(new Object[] { this.defaultItem.getItemName(), this.defaultItem.getItemClass(), this.defaultItem.getItemSubClass(),
-				this.defaultItem.attributes });
+				this.defaultItem.getAttributes() });
 	}
 }

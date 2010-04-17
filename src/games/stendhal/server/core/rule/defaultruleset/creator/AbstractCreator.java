@@ -1,4 +1,4 @@
-package games.stendhal.server.core.rule.defaultruleset;
+package games.stendhal.server.core.rule.defaultruleset.creator;
 
 import games.stendhal.server.entity.item.Item;
 

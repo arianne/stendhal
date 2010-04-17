@@ -1,5 +1,6 @@
-package games.stendhal.server.core.rule.defaultruleset;
+package games.stendhal.server.core.rule.defaultruleset.creator;
 
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.item.Item;
 
 import java.lang.reflect.Constructor;
