@@ -91,7 +91,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	private EnumMap<DamageType, Double> susceptibilities;
 	
 	/** Type of the damage caused by the creature */
-	private DamageType damageType = DamageType.CUT;
+	private DamageType damageType;
 
 	CreaturesXMLLoader() {
 		// hide constructor, use the CreatureGroupsXMLLoader instead
@@ -144,6 +144,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			creatureSays = new LinkedHashMap<String, LinkedList<String>>();
 			aiProfiles = new LinkedHashMap<String, String>();
 			description = null;
+			damageType = DamageType.CUT;
 			susceptibilities = new EnumMap<DamageType, Double>(DamageType.class);
 		} else if (qName.equals("type")) {
 			clazz = attrs.getValue("class");
