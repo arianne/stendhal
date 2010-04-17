@@ -1,7 +1,5 @@
 package games.stendhal.server.core.rule.defaultruleset.creator;
 
-import games.stendhal.server.entity.item.Item;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
