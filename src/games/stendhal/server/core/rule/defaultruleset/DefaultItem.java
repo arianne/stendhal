@@ -16,13 +16,10 @@ import games.stendhal.common.constants.DamageType;
 import games.stendhal.server.entity.item.Item;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.apache.log4j.Logger;
 
 /**
  * All default items which can be reduced to stuff that increase the attack
@@ -32,10 +29,8 @@ import org.apache.log4j.Logger;
  */
 public class DefaultItem {
 
-	private static final Logger logger = Logger.getLogger(DefaultItem.class);
-
 	/** Implementation creator. */
-	protected Creator creator;
+	private AbstractCreator<Item> creator;
 	
 	/** items class. */
 	private String clazz;
@@ -59,7 +54,7 @@ public class DefaultItem {
 	private int tileid;
 
 	/** Attributes of the item.*/
-	private Map<String, String> attributes;
+	Map<String, String> attributes;
 
 	private Class< ? > implementation;
 
@@ -153,7 +148,7 @@ public class DefaultItem {
 	 * 
 	 * @return A creator, or <code>null</code> if none found.
 	 */
-	protected Creator buildCreator(final Class< ? > implementation) {
+	protected AbstractCreator<Item> buildCreator(final Class< ? > implementation) {
 		Constructor< ? > construct;
 
 		/*
@@ -163,7 +158,7 @@ public class DefaultItem {
 			construct = implementation.getConstructor(new Class[] {
 					String.class, String.class, String.class, Map.class });
 
-			return new FullCreator(construct);
+			return new FullItemCreator(this, construct);
 		} catch (final NoSuchMethodException ex) {
 			// ignore and continue
 		}
@@ -174,7 +169,7 @@ public class DefaultItem {
 		try {
 			construct = implementation.getConstructor(new Class[] { Map.class });
 
-			return new AttributesCreator(construct);
+			return new AttributesItemCreator(this, construct);
 		} catch (final NoSuchMethodException ex) {
 			// ignore and continue
 		}
@@ -185,7 +180,7 @@ public class DefaultItem {
 		try {
 			construct = implementation.getConstructor(new Class[] {});
 
-			return new DefaultCreator(construct);
+			return new DefaultItemCreator(this, construct);
 		} catch (final NoSuchMethodException ex) {
 			// ignore and continue
 		}
@@ -207,7 +202,7 @@ public class DefaultItem {
 		if (creator == null) {
 			return null;
 		}
-		final Item item = creator.createItem();
+		final Item item = creator.create();
 		if (item != null) {
 			item.setEquipableSlots(slots);
 			item.setDescription(description);
@@ -289,94 +284,5 @@ public class DefaultItem {
 		os.append("    </equipable>\n");
 		os.append("  </item>\n");
 		return os.toString();
-	}
-
-	//
-	//
-
-	/**
-	 * Base item creator (using a constructor).
-	 */
-	protected abstract class Creator {
-
-		protected Constructor< ? > construct;
-
-		public Creator(final Constructor< ? > construct) {
-			this.construct = construct;
-		}
-
-		protected abstract Object create() throws IllegalAccessException,
-				InstantiationException, InvocationTargetException;
-
-		public Item createItem() {
-			try {
-				return (Item) create();
-			} catch (final IllegalAccessException ex) {
-				logger.error("Error creating item: " + name, ex);
-			} catch (final InstantiationException ex) {
-				logger.error("Error creating item: " + name, ex);
-			} catch (final InvocationTargetException ex) {
-				logger.error("Error creating item: " + name, ex);
-			} catch (final ClassCastException ex) {
-				/*
-				 * Wrong type (i.e. not [subclass of] Item)
-				 */
-				logger.error("Implementation for " + name
-						+ " is not an Item class");
-			}
-
-			return null;
-		}
-	}
-
-	/**
-	 * Create an item class via the <em>attributes</em> constructor.
-	 */
-	protected class AttributesCreator extends Creator {
-
-		public AttributesCreator(final Constructor< ? > construct) {
-			super(construct);
-		}
-
-		@Override
-		protected Object create() throws IllegalAccessException,
-				InstantiationException, InvocationTargetException {
-			return construct.newInstance(new Object[] { attributes });
-		}
-	}
-
-	/**
-	 * Create an item class via the default constructor.
-	 */
-	protected class DefaultCreator extends Creator {
-
-		public DefaultCreator(final Constructor< ? > construct) {
-			super(construct);
-		}
-
-		@Override
-		protected Object create() throws IllegalAccessException,
-				InstantiationException, InvocationTargetException {
-			return construct.newInstance(new Object[] {});
-		}
-	}
-
-	/**
-	 * Create an item class via the full arguments (<em>name, clazz,
-	 * subclazz, attributes</em>)
-	 * constructor.
-	 */
-	protected class FullCreator extends Creator {
-
-		public FullCreator(final Constructor< ? > construct) {
-			super(construct);
-		}
-
-		@Override
-		protected Object create() throws IllegalAccessException,
-				InstantiationException, InvocationTargetException {
-			return construct.newInstance(new Object[] { name, clazz, subclazz,
-					attributes });
-		}
 	}
 }
