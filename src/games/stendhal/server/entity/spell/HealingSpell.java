@@ -18,6 +18,10 @@
 
 package games.stendhal.server.entity.spell;
 
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.spell.effect.HealingEffect;
+
 
 /**
  * @author timothyb89, madmetzger A healing spell. It restores the user to full HP (for
@@ -30,6 +34,20 @@ public class HealingSpell extends Spell {
 			final int rate, final int regen) {
 		super(name, amount, atk, cooldown, def, lifesteal, mana, minimumlevel, range,
 				rate, regen);
+	}
+
+	@Override
+	protected void doEffects(Player caster, Entity target) {
+		//implement healing here
+		new HealingEffect(getAmount(), getAtk(), getDef(), getLifesteal(), getRate(), getRegen()).act(caster, target);
+	}
+
+	@Override
+	protected boolean isTargetValid(Entity target) {
+		if (target instanceof Player) {
+			return true;
+		}
+		return false;
 	}
 	
 }

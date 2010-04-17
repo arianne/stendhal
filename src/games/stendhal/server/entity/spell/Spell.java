@@ -12,10 +12,16 @@
 package games.stendhal.server.entity.spell;
 
 import games.stendhal.server.core.events.EquipListener;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.trade.Dateable;
+import games.stendhal.server.entity.trade.Earning;
 
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -26,7 +32,7 @@ import marauroa.common.game.Definition.Type;
  * 
  * @author timothyb89, madmetzger
  */
-public class Spell extends PassiveEntity implements EquipListener {
+public abstract class Spell extends PassiveEntity implements EquipListener, Dateable {
 	
 	private static final String RPCLASS_SPELL = "spell";
 
@@ -53,8 +59,68 @@ public class Spell extends PassiveEntity implements EquipListener {
 
 	private static final String ATTR_AMOUNT = "amount";
 
+	private static final String ATTR_TIMESTAMP = "timestamp";
+
 	/** list of possible slots for this item. */
 	private final List<String> possibleSlots = Arrays.asList("spells");
+
+	/**
+	 * Casts this spell if all preconditions are fulfilled:
+	 *  - caster has enough mana
+	 *  - cooldown time expired
+	 *  - caster has the minimum level
+	 *  - target is valid for the spell
+	 *  
+	 * @param caster the player who tries to cast this spell
+	 * @param target the entity the spell is aimed at
+	 */
+	public void cast(Player caster, Entity target) {
+		//check for sufficient mana
+		int currentMana = caster.getMana();
+		if (currentMana < getMana() ) {
+			caster.sendPrivateText("You have not sufficent mana to cast your spell \""+getName()+"\".");
+			return;
+		}
+		//check minimum level
+		if (caster.getLevel() < getMinimumLevel()) {
+			caster.sendPrivateText("You did not reach the minimum level for your spell \""+getName()+"\" yet.");
+			return;
+		}
+		long earliestPossibleNextCastingTime = getTimestamp() + getCooldown(); 
+		if(System.currentTimeMillis() < earliestPossibleNextCastingTime) {
+			caster.sendPrivateText("Your spell \""+getName()+"\" did not yet cool down.");
+			return;
+		}
+		//check if target is valid for spell?
+		if (!isTargetValid(target)) {
+			caster.sendPrivateText("The target is not valid for your spell \""+getName()+"\".");
+			return;
+		}
+		//deduct mana
+		caster.setMana(currentMana - getMana());
+		doEffects(caster, target);
+		//set last casting time for calculation of cooldown
+		setTimestamp(System.currentTimeMillis());
+	}
+	
+	/**
+	 * Provides the concrete behaviour of each concrete spell, i.e. a healing effect should done here
+	 * 
+	 * @param caster
+	 * @param target
+	 */
+	protected abstract void doEffects(Player caster, Entity target);
+	
+	/**
+	 * Checks if the target Entity is applicable for this spell. Basically each Entity can target of a spell.
+	 * Subclasses have to override this method if they want to be more strict in the choice of the target.
+	 * 
+	 * @param target the target Entity to check the applicability for
+	 * @return true iff target is applicable to this spell
+	 */
+	protected boolean isTargetValid(Entity target) {
+		return true;
+	}
 
 	/**
 	 * Generate the RPClass for spells
@@ -262,4 +328,18 @@ public class Spell extends PassiveEntity implements EquipListener {
 		}
 	}
 
+	public long getTimestamp() {
+		long timeStamp = 0;
+		try {
+			timeStamp = Long.parseLong(get(ATTR_TIMESTAMP));
+		} catch (final NumberFormatException e) {
+			Logger.getLogger(Earning.class).error("Invalid timestamp: " + get(ATTR_TIMESTAMP), e);
+		}
+		return timeStamp;
+	}
+	
+	public void setTimestamp(long time) {
+		put(ATTR_TIMESTAMP, Long.toString(time));
+	}
+	
 }
