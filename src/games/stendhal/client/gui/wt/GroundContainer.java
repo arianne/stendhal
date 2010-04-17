@@ -314,6 +314,9 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			if (cursor == null) {
 				// TODO: display a cursor with a walking idea on non collision
 				cursor = StendhalCursor.WALK;
+				if (calculateZoneChangeDirection(point) != null) {
+					cursor = StendhalCursor.WALK_BORDER;					
+				}
 				// TODO: display a cursor with a stop idea on collision
 			}
 		}

@@ -27,7 +27,8 @@ public enum StendhalCursor {
 	PORTAL("portal.png", new Point(1, 1)),
 	STOP("stop.png", new Point(1, 1)),
 	UNKNOWN("unknown.png", new Point(1, 1)),
-	WALK("walk.png", new Point(1, 1));
+	WALK("walk.png", new Point(1, 1)),
+	WALK_BORDER("walkborder.png", new Point(1, 1));
 
 	private String imageName;
 	private Point hotSpot;
