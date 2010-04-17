@@ -1,5 +1,12 @@
 package games.stendhal.server.core.rule.defaultruleset;
 
+import java.lang.reflect.Constructor;
+import java.util.Map;
+
+import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
+import games.stendhal.server.core.rule.defaultruleset.creator.FullItemCreator;
+import games.stendhal.server.core.rule.defaultruleset.creator.FullSpellCreator;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.spell.Spell;
 
 import org.apache.log4j.Logger;
@@ -7,6 +14,8 @@ import org.apache.log4j.Logger;
 public class DefaultSpell {
 	
 	private static final Logger logger = Logger.getLogger(DefaultSpell.class);
+	
+	private AbstractCreator<Spell> creator;
 	
 	private String name;
 	
@@ -40,11 +49,35 @@ public class DefaultSpell {
 		try {
 			this.name = name;
 			this.implementationClass = (Class<? extends Spell>) Class.forName(clazzName);
+			this.buildCreator(implementationClass);
 		} catch (ClassNotFoundException e) {
 			logger.error("Error while creating DefaultSpell", e);
 		}
 	}
 	
+	private void buildCreator(final Class< ? > implementation) {
+		try {
+			Constructor< ? > construct;
+			construct = implementation.getConstructor(new Class[] {
+					String.class, int.class, int.class, int.class,
+					int.class, double.class, int.class, int.class,
+					int.class, int.class, int.class});
+
+			this.creator = new FullSpellCreator(this, construct);
+		} catch (final NoSuchMethodException ex) {
+			logger.error("No matching full constructor for Spell found.", ex);
+		}
+		
+	}
+	
+	public Spell getSpell() {
+		if (creator == null) {
+			return null;
+		}
+		return creator.create();
+	}
+	
+
 	/**
 	 * @return the name
 	 */
