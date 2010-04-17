@@ -96,6 +96,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 			caster.sendPrivateText("The target is not valid for your spell \""+getName()+"\".");
 			return;
 		}
+		//check other preconditions like having learned that school?
 		//deduct mana
 		caster.setMana(currentMana - getMana());
 		doEffects(caster, target);

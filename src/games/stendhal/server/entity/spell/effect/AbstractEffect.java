@@ -1,5 +1,10 @@
 package games.stendhal.server.entity.spell.effect;
 
+/**
+ * abstract super class for all effects to encapsulate common attributes here
+ * 
+ * @author madmetzger
+ */
 public abstract class AbstractEffect implements Effect {
 
 	private final int amount;

@@ -24,8 +24,9 @@ import games.stendhal.server.entity.spell.effect.HealingEffect;
 
 
 /**
- * @author timothyb89, madmetzger A healing spell. It restores the user to full HP (for
- *         now).
+ * A healing spell. It recovers once the HP of a player by the given amount
+ *  
+ * @author timothyb89, madmetzger 
  */
 public class HealingSpell extends Spell {
 	
