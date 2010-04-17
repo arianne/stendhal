@@ -16,6 +16,7 @@ import static games.stendhal.common.constants.Actions.MOVETO;
 import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
+import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -28,14 +29,27 @@ import java.util.List;
 
 import marauroa.common.game.RPAction;
 
+/**
+ * Handles movement request from players
+ *
+ * @author hendrik
+ */
 public class MoveToAction implements ActionListener {
 
-
+	/**
+	 * registers the move to action
+	 */
 	public static void register() {
 		final MoveToAction moveTo = new MoveToAction();
 		CommandCenter.register(MOVETO, moveTo);
 	}
 
+	/**
+	 * handles the move to action
+	 *
+	 * @param player player requesting the action
+	 * @param action move-to action
+	 */
 	public void onAction(final Player player, final RPAction action) {
 		if (!player.getZone().isMoveToAllowed()) {
 			player.sendPrivateText("Mouse movement is not possible here. Use your keyboard.");
@@ -51,8 +65,21 @@ public class MoveToAction implements ActionListener {
 			player.clearPath();
 		}
 
-		if (action.has(X)
-				&& action.has(Y)) {
+		move(player, action);
+
+		player.applyClientDirection(false);
+		player.notifyWorldAboutChanges();
+	}
+
+
+	/**
+	 * calculates the path and starts to move the player (or teleports him in case of an admin in teleclickmode).
+	 *
+	 * @param player player requesting the action
+	 * @param action move-to action
+	 */
+	private void move(final Player player, final RPAction action) {
+		if (action.has(X) && action.has(Y)) {
 			final int x = action.getInt(X);
 			final int y = action.getInt(Y);
 			if (player.has(TELECLICKMODE) && action.has("double_click")) {
@@ -62,11 +89,30 @@ public class MoveToAction implements ActionListener {
 			} else {
 				// Walk
 				final List<Node> path = Path.searchPath(player, x, y);
+				extendPathForZoneChangeIfRequested(player, action, path);
 				player.setPath(new FixedPath(path, false));
 			}
 		}
+	}
 
-		player.applyClientDirection(false);
-		player.notifyWorldAboutChanges();
+	/**
+	 * On request of the client add a node at the end of the path that goes 
+	 * one step further into the requested direction. This allows the client
+	 * to trigger a zone change with the mouse.
+	 *
+	 * @param player player requesting the action
+	 * @param action move-to action
+	 * @param path the path to extend if requested
+	 */
+	private void extendPathForZoneChangeIfRequested(Player player, RPAction action, List<Node> path) {
+		if ((path == null) || path.isEmpty()) {
+			return;
+		}
+		if (!action.has("extend")) {
+			return;
+		}
+		Direction dir = Direction.build(action.getInt("extend"));
+		Node lastNode = path.get(path.size() - 1);
+		path.add(new Node(lastNode.getX() + dir.getdx(), lastNode.getY() + dir.getdy()));
 	}
 }
