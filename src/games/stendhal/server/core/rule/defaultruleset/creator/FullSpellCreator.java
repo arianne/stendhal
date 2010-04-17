@@ -16,7 +16,8 @@ public class FullSpellCreator extends AbstractSpellCreator {
 			InstantiationException, InvocationTargetException {
 		return construct.newInstance(defaultSpell.getName(), (Object) defaultSpell.getAmount(),
 									(Object) defaultSpell.getAtk(), (Object) defaultSpell.getCooldown(),
-									(Object) defaultSpell.getLifesteal(),
+									(Object) defaultSpell.getDef(), (Object) defaultSpell.getLifesteal(),
+									(Object) defaultSpell.getMana(),
 									(Object) defaultSpell.getMinimumLevel(), (Object) defaultSpell.getRange(),
 									(Object) defaultSpell.getRate(), (Object) defaultSpell.getRegen());
 	}
