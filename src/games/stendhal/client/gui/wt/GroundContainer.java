@@ -28,6 +28,7 @@ import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.Direction;
 
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
@@ -131,6 +132,8 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			|| (Math.abs(p.getY() - yOnMousePressed) > 10)) {
 			return false;
 		}
+		
+
 
 		// base class checks if the click is within a child
 		if (super.onMouseClick(p)) {
@@ -141,7 +144,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 
 		// get clicked entity
 		final Point2D point = screen.convertScreenViewToWorld(p);
-
+		
 		// for the text pop up....
 		final Text text = screen.getTextAt(point.getX(), point.getY());
 		if (text != null) {
@@ -209,7 +212,23 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 		if (doubleClick) {
 			action.put("double_click", "");
 		}
+		Direction dir = calculateZoneChangeDirection(point);
+		if (dir != null) {
+			action.put("extend", dir.ordinal());
+		}
 		client.send(action);
+	}
+
+	private Direction calculateZoneChangeDirection(Point2D point) {
+		double x = point.getX();
+		double y = point.getY();
+		if (x < 0.333) {
+			return Direction.LEFT;
+		}
+		if (y < 0.333) {
+			return Direction.UP;
+		}
+		return null;
 	}
 
 	/** Processes right click. */
