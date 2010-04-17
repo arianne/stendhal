@@ -195,7 +195,7 @@
   
   <creature name="djinn">
     <type class="elemental" subclass="djinn" tileid="elemental.png:0"/>
-    <description>You see a djinn. He isn´t caught in a bottle or lamp so someone must have let him free and gave him the order to kill you.</description>
+    <description>You see a djinn. He isn't caught in a bottle or lamp so someone must have let him free and gave him the order to kill you.</description>
     <attributes>
       <atk value="460"/>
       <def value="74"/>
