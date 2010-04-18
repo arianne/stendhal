@@ -61,9 +61,11 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	private static final String ATTR_TIMESTAMP = "timestamp";
 
+	private static final String ATTR_NATURE = "nature";
+
 	/** list of possible slots for this item. */
 	private final List<String> possibleSlots = Arrays.asList("spells");
-
+	
 	/**
 	 * Casts this spell if all preconditions are fulfilled:
 	 *  - caster has enough mana
@@ -137,6 +139,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		entity.addAttribute(ATTR_LIFESTEAL, Type.FLOAT);
 		entity.addAttribute(ATTR_MANA, Type.INT);
 		entity.addAttribute(ATTR_MINIMUMLEVEL, Type.INT);
+		entity.addAttribute(ATTR_NATURE, Type.STRING);
 		entity.addAttribute(ATTR_RANGE, Type.INT);
 		entity.addAttribute(ATTR_RATE, Type.INT);
 		entity.addAttribute(ATTR_REGEN, Type.INT);
@@ -149,6 +152,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 */
 	public Spell(final RPObject object) {
 		super(object);
+		setNature(Nature.parse(object.get(ATTR_NATURE)));
 		setRPClass(RPCLASS_SPELL);
 	}
 	
@@ -166,7 +170,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * @param rate the frequency of the effect of this spell
 	 * @param regen the amount to regen with each effect turn
 	 */
-	public Spell(	final String name, final int amount, final int atk, final int cooldown,
+	public Spell(	final String name, final Nature nature, final int amount, final int atk, final int cooldown,
 					final int def, final double lifesteal, final int mana, final int minimumlevel,
 					final int range, final int rate, final int regen) {
 		setRPClass(RPCLASS_SPELL);
@@ -180,6 +184,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		put(ATTR_MINIMUMLEVEL, minimumlevel);
 		put(ATTR_RANGE, range);
 		put(ATTR_RATE, rate);
+		put(ATTR_NATURE, nature.name());
 	}
 
 	public boolean canBeEquippedIn(final String slot) {
@@ -341,6 +346,14 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	
 	public void setTimestamp(long time) {
 		put(ATTR_TIMESTAMP, Long.toString(time));
+	}
+
+	public void setNature(Nature nature) {
+		put(ATTR_NATURE, nature.name());
+	}
+
+	public Nature getNature() {
+		return Nature.parse(get(ATTR_NATURE));
 	}
 	
 }

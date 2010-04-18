@@ -2,6 +2,7 @@ package games.stendhal.server.entity.spell.effect;
 
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.spell.Nature;
 /**
  * Effect for healing a player
  * 
@@ -19,9 +20,9 @@ public class HealingEffect extends AbstractEffect {
 	 * @param rate
 	 * @param regen
 	 */
-	public HealingEffect(int amount, int atk, int def, double lifesteal, int rate,
+	public HealingEffect(Nature nature, int amount, int atk, int def, double lifesteal, int rate,
 			int regen) {
-		super(amount, atk, def, lifesteal, rate, regen);
+		super(nature, amount, atk, def, lifesteal, rate, regen);
 	}
 
 	public void act(Player caster, Entity target) {

@@ -1,6 +1,7 @@
 package games.stendhal.server.core.config;
 
 import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
+import games.stendhal.server.entity.spell.Nature;
 
 import java.io.IOException;
 import java.net.URI;
@@ -24,6 +25,7 @@ public class SpellGroupsXMLLoaderTest {
 		assertThat(Boolean.valueOf(list.isEmpty()), is(Boolean.FALSE));
 		DefaultSpell spell = list.get(0);
 		assertThat(spell.getName(), is("heal"));
+		assertThat(spell.getNature(), is(Nature.LIGHT));
 		assertThat(spell.getImplementationClass(), notNullValue());
 		assertThat(spell.getImplementationClass().getName(), is("games.stendhal.server.entity.spell.Spell"));
 		assertThat(spell.getAmount(),is(Integer.valueOf(100)));

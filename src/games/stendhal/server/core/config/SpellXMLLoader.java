@@ -35,6 +35,8 @@ public class SpellXMLLoader extends DefaultHandler {
 
 	private boolean attributeTagFound;
 
+	private String nature;
+
 	public Collection<DefaultSpell> load(URI uri) throws SAXException {
 		loadedSpells = new LinkedList<DefaultSpell>();
 		// Use the default (non-validating) parser
@@ -68,6 +70,9 @@ public class SpellXMLLoader extends DefaultHandler {
 		if(qName.equals("implementation")) {
 			implementation = attributes.getValue("class-name");
 		}
+		if(qName.equals("nature")) {
+			nature = attributes.getValue("value");
+		}
 		if(qName.equals("attributes")) {
 			attributeTagFound = true;
 			attributeValues = new HashMap<String, String>();
@@ -82,6 +87,7 @@ public class SpellXMLLoader extends DefaultHandler {
 			throws SAXException {
 		if(qName.equals("spell")) {
 			DefaultSpell spell = new DefaultSpell(name, implementation);
+			spell.setNature(nature);
 			spell.setAmount(attributeValues.get("amount"));
 			spell.setAtk(attributeValues.get("atk"));
 			spell.setCooldown(attributeValues.get("cooldown"));
@@ -93,7 +99,6 @@ public class SpellXMLLoader extends DefaultHandler {
 			spell.setRate(attributeValues.get("rate"));
 			spell.setRegen(attributeValues.get("regen"));
 			loadedSpells.add(spell);
-			
 		}
 		if(qName.equals("attributes")) {
 			attributeTagFound = false;

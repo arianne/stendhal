@@ -1,13 +1,11 @@
 package games.stendhal.server.core.rule.defaultruleset;
 
-import java.lang.reflect.Constructor;
-import java.util.Map;
-
 import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
-import games.stendhal.server.core.rule.defaultruleset.creator.FullItemCreator;
 import games.stendhal.server.core.rule.defaultruleset.creator.FullSpellCreator;
-import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.spell.Nature;
 import games.stendhal.server.entity.spell.Spell;
+
+import java.lang.reflect.Constructor;
 
 import org.apache.log4j.Logger;
 
@@ -18,6 +16,8 @@ public class DefaultSpell {
 	private AbstractCreator<Spell> creator;
 	
 	private String name;
+	
+	private Nature nature;
 	
 	private Class<? extends Spell> implementationClass;
 	
@@ -59,7 +59,7 @@ public class DefaultSpell {
 		try {
 			Constructor< ? > construct;
 			construct = implementation.getConstructor(new Class[] {
-					String.class, int.class, int.class, int.class,
+					String.class, Nature.class, int.class, int.class, int.class,
 					int.class, double.class, int.class, int.class,
 					int.class, int.class, int.class});
 
@@ -226,6 +226,14 @@ public class DefaultSpell {
 	 */
 	public void setLifesteal(String lifesteal) {
 		this.lifesteal = Float.parseFloat(lifesteal);
+	}
+
+	public void setNature(String nature) {
+		this.nature = Nature.parse(nature);
+	}
+
+	public Nature getNature() {
+		return nature;
 	}
 
 }
