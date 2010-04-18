@@ -1,7 +1,5 @@
 package games.stendhal.server.entity.spell;
 
-import games.stendhal.common.constants.DamageType;
-
 import org.apache.log4j.Logger;
 
 public enum Nature {
