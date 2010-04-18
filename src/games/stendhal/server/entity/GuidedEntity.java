@@ -163,10 +163,18 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public void applyMovement() {
 		if (hasPath()) {
 			followPath();
-			notifyWorldAboutChanges();
+			super.applyMovement();
+			faceNext();
+		} else {
+			super.applyMovement();
 		}
-
-		super.applyMovement();
+	}
+	
+	/**
+	 * Set facing to next <code>Node</code>, if any 
+	 */
+	private void faceNext() {
+		guide.faceNext(this);
 	}
 
 	public boolean followPath() {
@@ -182,5 +190,4 @@ public abstract class GuidedEntity extends ActiveEntity {
 		stop();
 		clearPath();
 	}
-
 }

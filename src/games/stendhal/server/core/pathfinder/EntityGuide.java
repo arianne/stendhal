@@ -1,6 +1,10 @@
 package games.stendhal.server.core.pathfinder;
 
+import java.util.List;
+
+import games.stendhal.common.pathfinder.Node;
 import games.stendhal.server.entity.GuidedEntity;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * the guide dog of an Entity. this class takes the goals where an Entity shall
@@ -36,6 +40,21 @@ public class EntityGuide {
 		pathPosition = 0;
 
 	}
-
-
+	
+	/**
+	 * Turn the entity face the next node on the path.
+	 * 
+	 * @param entity the guided entity
+	 */
+	public void faceNext(GuidedEntity entity) {
+		if (path != null && (entity instanceof Player)) {
+			final List<Node> nodes = path.getNodeList();
+			
+			int nextPos = entity.getPathPosition() + 1;
+			if (nextPos < nodes.size()) {
+				Node next = nodes.get(nextPos);
+				entity.faceto(next.getX(), next.getY());
+			}
+		}
+	}
 }
