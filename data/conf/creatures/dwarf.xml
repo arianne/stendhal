@@ -577,4 +577,106 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
+  
+  <creature name="giant dwarf">
+    <type class="dwarf" subclass="giant_dwarf" tileid="dwarf.png:5"/>
+    <description>You see a giant dwarf. It is very hard for him to be a giant dwarf because the some of the other dwarfs don´t really see him as one of them because of his height... But in his big heart he is a dwarf and in battle he will fight against every enemy!</description>
+    <attributes>
+      <atk value="616"/>
+      <def value="99"/>
+      <hp value="700"/>
+      <speed value="0.4"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="90"/>
+    <experience value="8190"/>
+    <respawn value="3530"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
+    <drops>
+      <item value="money" quantity="[50,200]" probability="100.0"/>
+      <item value="stone armor" quantity="[1,1]" probability="1.0"/>
+      <item value="magic plate armor" quantity="[1,1]" probability="0.0010"/>
+      <item value="magic twoside axe" quantity="[1,1]" probability="0.2"/>
+      <item value="durin axe" quantity="[1,1]" probability="0.01"/>
+      <item value="golden mace" quantity="[1,1]" probability="15.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="Dhohr Nuggetcutter">
+    <type class="dwarf" subclass="giant_dwarf" tileid="dwarf.png:6"/>
+    <description></description>
+    <attributes>
+      <atk value="619"/>
+      <def value="101"/>
+      <hp value="700"/>
+      <speed value="0.4"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="90"/>
+    <experience value="8190"/>
+    <respawn value="3530"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
+    <drops>
+      <item value="money" quantity="[50,200]" probability="100.0"/>
+      <item value="mithril bar" quantity="[1,1]" probability="0.0010"/>
+      <item value="magic plate armor" quantity="[1,1]" probability="0.0010"/>
+      <item value="mithril nugget" quantity="[1,1]" probability="0.2"/>
+      <item value="greater potion" quantity="[1,2]" probability="30.0"/>
+      <item value="snowglobe" quantity="[1,1]" probability="15.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="Lord Durin">
+    <type class="dwarf" subclass="lord_durin" tileid="dwarf.png:7"/>
+    <description>You see the mighty Lord Durin, an ancient dwarf who has led his race through countless battles.</description>
+    <attributes>
+      <atk value="1855"/>
+      <def value="180"/>
+      <hp value="6500"/>
+      <speed value="0.5"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="325"/>
+    <experience value="300000"/>
+    <respawn value="75000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
+    <drops>
+      <item value="mega potion" quantity="[1,4]" probability="20.0"/>
+      <item value="black halberd" quantity="[1,1]" probability="0.25"/>
+      <item value="durin axe" quantity="[1,1]" probability="1.0"/>
+      <item value="pie" quantity="[2,4]" probability="10.0"/>
+      <item value="money" quantity="[3000,8000]" probability="100.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="durin axe" quantity="1"/>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Don't call me Friend."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  
 </creatures>  
