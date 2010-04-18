@@ -33,7 +33,7 @@ public abstract class AbstractCreator<T> {
 		} catch (final InstantiationException ex) {
 			logger.error("Error creating object: Object cannot be instantiated (i.e. class may be abstract)", ex);
 		} catch (final InvocationTargetException ex) {
-			logger.error("Error creating object: Exception thrown during constructor call.", ex);
+			logger.error("Error creating object: Exception thrown during constructor call.", ex.getCause());
 		} catch (final ClassCastException ex) {
 			/*
 			 * Wrong type (i.e. not [subclass of])
