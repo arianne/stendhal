@@ -20,7 +20,7 @@ abstract class AbstractItemCreator extends AbstractCreator<Item>{
 	final DefaultItem defaultItem;
 	
 	public AbstractItemCreator(DefaultItem defaultItem, final Constructor< ? > construct) {
-		super(construct);
+		super(construct, "Item");
 		this.defaultItem = defaultItem;
 	}
 }

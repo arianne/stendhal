@@ -10,7 +10,7 @@ abstract class AbstractSpellCreator extends AbstractCreator<Spell> {
 	protected final DefaultSpell defaultSpell;
 
 	public AbstractSpellCreator(DefaultSpell defaultSpell, Constructor<?> construct) {
-		super(construct);
+		super(construct, "Spell");
 		this.defaultSpell = defaultSpell;
 	}
 

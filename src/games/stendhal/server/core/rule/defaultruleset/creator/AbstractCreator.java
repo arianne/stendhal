@@ -10,13 +10,16 @@ public abstract class AbstractCreator<T> {
 	private static final Logger logger = Logger.getLogger(AbstractCreator.class);
 
 	protected final Constructor< ? > construct;
+	
+	private final String creatorFor;
 
 	/**
 	 * @param construct
 	 */
-	public AbstractCreator(Constructor<?> construct) {
+	public AbstractCreator(Constructor<?> construct, String creatorFor) {
 		super();
 		this.construct = construct;
+		this.creatorFor = creatorFor;
 	}
 
 	protected abstract Object createObject() throws IllegalAccessException,
@@ -26,16 +29,16 @@ public abstract class AbstractCreator<T> {
 		try {
 			return (T) createObject();
 		} catch (final IllegalAccessException ex) {
-			logger.error("Error creating object" , ex);
+			logger.error("Error creating object: Used constructor is not accessible." , ex);
 		} catch (final InstantiationException ex) {
-			logger.error("Error creating object", ex);
+			logger.error("Error creating object: Object cannot be instantiated (i.e. class may be abstract)", ex);
 		} catch (final InvocationTargetException ex) {
-			logger.error("Error creating object", ex);
+			logger.error("Error creating object: Exception thrown during constructor call.", ex);
 		} catch (final ClassCastException ex) {
 			/*
-			 * Wrong type (i.e. not [subclass of] Item)
+			 * Wrong type (i.e. not [subclass of])
 			 */
-			logger.error("Implementation for is not an applicable class");
+			logger.error("Implementation for is no an subclass of "+creatorFor );
 		}
 	
 		return null;
