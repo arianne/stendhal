@@ -158,7 +158,10 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	
 	/**
 	 * Creates a new {@link Spell}
+	 * Sub classes of {@link Spell} *have to* provide a constructor with this order of parameters!
+	 * 
 	 * @param name the name of the spell
+	 * @param nature the nature of the spell
 	 * @param amount the amount of the effect of this spell
 	 * @param atk the atk value of the spell
 	 * @param cooldown the time the spell needs to cool down before casting it again
