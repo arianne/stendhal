@@ -2,7 +2,6 @@ package games.stendhal.server.core.pathfinder;
 
 import java.util.List;
 
-import games.stendhal.common.pathfinder.Node;
 import games.stendhal.server.entity.GuidedEntity;
 import games.stendhal.server.entity.player.Player;
 
