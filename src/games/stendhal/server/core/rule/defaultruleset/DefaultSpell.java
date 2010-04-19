@@ -1,5 +1,6 @@
 package games.stendhal.server.core.rule.defaultruleset;
 
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
 import games.stendhal.server.core.rule.defaultruleset.creator.FullSpellCreator;
 import games.stendhal.server.entity.spell.Nature;
@@ -8,7 +9,13 @@ import games.stendhal.server.entity.spell.Spell;
 import java.lang.reflect.Constructor;
 
 import org.apache.log4j.Logger;
-
+/**
+ * Spell information are loaded from XML into a {@link DefaultSpell}.
+ * The {@link EntityManager} uses this information to instantiate objects of
+ * the right type.
+ * 
+ * @author madmetzger
+ */
 public class DefaultSpell {
 	
 	private static final Logger logger = Logger.getLogger(DefaultSpell.class);
