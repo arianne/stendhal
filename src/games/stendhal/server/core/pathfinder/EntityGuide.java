@@ -1,9 +1,8 @@
 package games.stendhal.server.core.pathfinder;
 
-import java.util.List;
-
 import games.stendhal.server.entity.GuidedEntity;
-import games.stendhal.server.entity.player.Player;
+
+import java.util.List;
 
 /**
  * the guide dog of an Entity. this class takes the goals where an Entity shall
@@ -46,14 +45,43 @@ public class EntityGuide {
 	 * @param entity the guided entity
 	 */
 	public void faceNext(GuidedEntity entity) {
-		if (path != null && (entity instanceof Player)) {
-			final List<Node> nodes = path.getNodeList();
-			
-			int nextPos = entity.getPathPosition() + 1;
-			if (nextPos < nodes.size()) {
-				Node next = nodes.get(nextPos);
+		if (path != null && nodeReached(entity)) {
+			Node next = nextNode();
+			if (next != null) {
 				entity.faceto(next.getX(), next.getY());
 			}
 		}
+	}
+	
+	/**
+	 * Get the next node on the path.
+	 * 
+	 * @return The next <code>Node</code>, or <code>null</code> if there is no next node.
+	 */
+	private Node nextNode() {
+		final List<Node> nodes = path.getNodeList();
+		int nextPos = pathPosition + 1;
+		Node next = null;
+		
+		if (nextPos < nodes.size()) {
+			next = nodes.get(nextPos);
+		} else if (path.isLoop()) {
+			next = nodes.get(0);
+		}
+		
+		return next;
+	}
+
+	/**
+	 * Check if the entity has reached the current goal.
+	 * 
+	 * @param entity the guided entity
+	 * @return true iff the current goal node has been reached
+	 */
+	private boolean nodeReached(GuidedEntity entity) {
+		Node previous = path.getNodeList().get(pathPosition);
+
+		return ((previous.getX() == entity.getX())
+			&& (previous.getY() == entity.getY()));
 	}
 }
