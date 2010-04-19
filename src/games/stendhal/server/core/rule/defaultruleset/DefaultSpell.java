@@ -77,6 +77,11 @@ public class DefaultSpell {
 		
 	}
 	
+	/**
+	 * Creates a new instance using the configured implementation class of that spell
+	 *  
+	 * @return an instance of the specified implementation class
+	 */
 	public Spell getSpell() {
 		if (creator == null) {
 			return null;
@@ -92,6 +97,9 @@ public class DefaultSpell {
 		return name;
 	}
 
+	/**
+	 * @return the class object specified in the xml configuration 
+	 */
 	public Class<?> getImplementationClass() {
 		return implementationClass;
 	}
@@ -235,10 +243,17 @@ public class DefaultSpell {
 		this.lifesteal = Float.parseFloat(lifesteal);
 	}
 
+	/**
+	 * sets the nature for the spell
+	 * @param the spell's nature
+	 */
 	public void setNature(String nature) {
 		this.nature = Nature.parse(nature);
 	}
 
+	/**
+	 * @return the spell's nature
+	 */
 	public Nature getNature() {
 		return nature;
 	}
