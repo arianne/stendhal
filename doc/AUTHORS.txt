@@ -1,4 +1,4 @@
-related wiki page link:
+﻿related wiki page link:
 http://stendhalgame.org/wiki/ArianneAuthors
 
 Authors of Stendhal are:
@@ -122,6 +122,10 @@ Authors of Stendhal are:
   · Bugs fixer  
 - plassy
   · Coder (sound)
+- Marco Engelmann aka Laguz
+  · Maps maker - minotaur labyrinth, wizards tower
+  · Artist - wizards tower, pixel general
+  · Quest/NPC creation
 
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
