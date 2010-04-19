@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="grey green wall" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey_green.png"/>
  </tileset>
@@ -30,22 +31,22 @@
  <tileset name="huge animal" firstgid="392" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="stairs" firstgid="406" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="405" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs_orange.png"/>
  </tileset>
- <tileset name="portal" firstgid="418" tilewidth="32" tileheight="32">
+ <tileset name="portal" firstgid="417" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="detail" firstgid="425" tilewidth="32" tileheight="32">
+ <tileset name="detail" firstgid="424" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_detail.png"/>
  </tileset>
- <tileset name="corners" firstgid="433" tilewidth="32" tileheight="32">
+ <tileset name="corners" firstgid="432" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/grey_corners.png"/>
  </tileset>
- <tileset name="giant human" firstgid="437" tilewidth="32" tileheight="32">
+ <tileset name="giant human" firstgid="436" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_human.png"/>
  </tileset>
- <tileset name="dwarf" firstgid="450" tilewidth="32" tileheight="32">
+ <tileset name="dwarf" firstgid="449" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dwarf.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -55,17 +56,17 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2USQqAMAxFm+M67BwPoq5U9AierlsjtAsVNJXUouTDR7SS14QkSom+oAWU0vjMLv7ZzrTHO1BiC/8//Ah7LkbXEIafIDcFt9ic/BL2777nL4Prc33w3fcnDKoadGvc8YQkK4czP2fKi6qQ+VP5W//aGeaUS/3tDFfMd6DWv/DUF3/sf5fd8DR/2T88+sL+8SWpv9S/R95gPL7MtvzJeA7A59IKeRSdjwAQAAA=
+   H4sIAAAAAAAAAO2USQqAMAxFm+M67BwPom5U9AjerlsjtAsVNJXUouTDR7SS14QkSom+oAWU0vjMLv7ZzrTHO1BiC/8//Ah7LkbXEIafIDcFt9ic/BL2777nL4Prc33w3fcnDKoadGvc8YQkK4czP2fKi6qQ+VP5W//aGeaUS/3tDFfMd6DWv/DUF3/sf5fd8DR/2T88+sL+8SWpv9S/R95gPL7MtvzJeA7A59IKDoZ1IgAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UsRGAMAwDw9owFZABaekiyxIFp699+q88Rvgb16bdO4k9VQPjVjV03N0GhZttULqrDQ432uB0d9nBNvSuygHuonchhPDm/uB3zIXD2bByOxtQt6Oh6lY2sG5FQ9fdaVC5mQa1O/h4AMdeodIAEAAA
+   H4sIAAAAAAAAAO2UsRGAMAwDw9qwFJAFaekiyxIFp699+q88Rvgb16bdO4k9VQPjVjV03N0GhZttULqrDQ432uB0d9nBNvSuygHuonchhPDm/uB3zIXD2bByOxtQt6Oh6lY2sG5FQ9fdaVC5mQa1O/h4AM901/AAEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglGQz4hbrhIo145Hnlh1hUSYMdhBHhY/YBMbBbQBo+E/sIBW4Y+v/KEWoIcdtAaj6X9gwWj4DywYDf+BB+sYUfFQBQA2sogsABAAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglGQz4hbrhIo145Hnlh1hUSYMdhBHhY/YBMbBbQBo+E/sIBW4Y+v/KEWoIcdtAaj6X9gwWj4DywYDf+BB2sZUfFQBQDjlk2/ABAAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -75,7 +76,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgDxwknGgXTAK6A12YYlzbGKjYBSMAtJBHw3zEi3NHgWjYBSMglEwCkYKWMIIwUMZAACVhf+aABAAAA==
+   H4sIAAAAAAAAAGNgGAWjgDxwgnGgXTAK6A12YolzbGKjYBSMAtJBHw3zEi3NHgWjYBSMglEwCkYKWMwIwUMZAACXnyu4ABAAAA==
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.49">

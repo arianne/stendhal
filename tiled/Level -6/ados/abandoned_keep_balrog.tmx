@@ -19,10 +19,10 @@
  <tileset name="blackdeath" firstgid="66" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="necro" firstgid="80" tilewidth="32" tileheight="32">
+ <tileset name="necro" firstgid="79" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="94" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="93" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/grey_corners.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -32,7 +32,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UyQ0AIAwDQTqjE47+m6AEcthBSPY3SLMvWtN+2HC8nQ9tdEPERjVk7GwDwo42IG1vA8O2NjBtS0Mv8CsMTdP+2+v/ZxX4+3JnNtxsZoPVZjR4bWRD1EY0ZO1MA8qONKBtjbcDTRzIFwAQAAA=
+   H4sIAAAAAAAAAO3UyQ0AIAwDQTqjEo7+q6AEcthBSPY3SLMvWtN+2HC8nQ9tdEPERjVk7GwDwo42IG1vA8O2NjBtS0Mv8CsMTdP+2+v/ZxX4+3JnNtxsZoPVZjR4bWRD1EY0ZO1MA8qONKBtjbcDDlAb3QAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -52,7 +52,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OAQkAQAgEQav5JezfxBIHjzATYNkquKl/DwBxE+69cA8A4LIFa+ngnQAQAAA=
+   H4sIAAAAAAAAAO3OAQkAQAgEQav5IewfxRIHjzATYNkquKl/DwBxE+69cA8A4LIFw/V9vQAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.49">

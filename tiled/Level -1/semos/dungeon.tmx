@@ -61,16 +61,16 @@
  <tileset name="eaglehead" firstgid="167" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/eaglehead.png"/>
  </tileset>
- <tileset name="chest" firstgid="171" tilewidth="32" tileheight="32">
+ <tileset name="chest" firstgid="175" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_2.png"/>
  </tileset>
- <tileset name="iron lamp" firstgid="177" tilewidth="32" tileheight="32">
+ <tileset name="iron lamp" firstgid="181" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
- <tileset name="flames" firstgid="180" tilewidth="32" tileheight="32">
+ <tileset name="flames" firstgid="184" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
- <tileset name="wall items" firstgid="186" tilewidth="32" tileheight="32">
+ <tileset name="wall items" firstgid="190" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_for_walls.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
@@ -85,12 +85,12 @@
  </layer>
  <layer name="2_object" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3a3UrDMBQH8L6Nb1cEfZmq6BgyUGEXc7sRvPHG13KFBuLhpOlJ2pPT9P+D0O2cbv1MuiRrGgAAAJm99/r3Wr6GJZev0Wtmfu0Owvx5qR1Rdpu4/kn4uUvzvw49kfiZxP2YRZ/C9fvz5dehFxI/kbgfK62d4Tv688XVMRen55OLLYke453itsGeOe75NUht/zXrJizHXccbYYGwS+kdKMzK75YU38My5xqmtI0fGdtbgvY1PA7Lt2t5V942B8836Fmrl9qO8VVgAjr+sW+29TuBjn9YGt/QQMc/tMc3ACBNaO6n9jkhJzT3U+ucEDcWzYnNGdXgXpjDMw2kLLejY/f/XKy1o9p1eAvt6E4YB6jJThgHANDEjce62I/mjhTCjcdubYx2SqxGU/8HxK3n998eR3I0b63f1wXibSTv99+eR3I0b63fJ+Xqxlj/LTWnic7xuv/gduR97yGjtIF4adwcb0eWPsmxTSnWxOq7U9uzYex420h+7XKefwAAUNYfcItSywBAAAA=
+   H4sIAAAAAAAAAO3a3UrDMBQH8L6Nb1cEfZmq6Bgy0BthF3O7EbzxxpdyhQbi4aTpSdqT0/T/g9DtnG79TLokaxoAAACZvff691q+hiWXr9FrZn7tDsL8eakdUXabuP5J+LlL878OPZH4mcT9mEWfwvX78+XXoRcSP5G4HyutneE7+vPF1TEXp+eTiy2JHuOd4rbBnjnu+TVIbf816yYsx13HG2GBsEvpHSjMyu+WFN/DMucaprSNHxnbW4L2NTwOy7dreVfeNgfPN+hZq5fajvFVYAI6/rFvtvU7gY5/WBrf0EDHP7THNwAgTWjup/Y5ISc091PrnBA3Fs2JzRnV4F6YwzMNpCy3o2P3/1ystaPadXgL7ehOGAeoyU4YBwDQxI3HutiP5o4Uwo3Hbm2MdkqsRlP/B8St5/ffHkdyNG+t39cF4m0k7/ffnkdyNG+t3yfl6sZY/y01p4nO8br/4Hbkfe8ho7SBeGncHG9Hlj7JsU0p1sTqu1Pbs2HseNtIfu1ynn8AAFDWHzfVzi4AQAAA
   </data>
  </layer>
  <layer name="3_roof" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aTQqDMBAGUG9c6nnquq6LvV8LLnSlNaSMGd+DLPxZfOgkYpiuAwDYd/vz/dCie3QATm2KDlBJ6fr/qh0kyDs6QLAs7xFo3/M7xugQAABwIfZEymV7dv3Ba/aTaN16Dm/Vf1bmcH3DwfOQifoHgPP5tQ9I/+ciSw9Yqaz/iY+dY2bqnyx8/wBo1Qerx89sAEAAAA==
+   H4sIAAAAAAAAAO3aTQqDMBAGUG9c6nnqup6g2Nu14EJXWkPKmPE9yMKfxYdOIobpOgCAfbc/3w8tukcH4NSm6ACVlK7/r9pBgryjAwTL8h6B9j2/Y4wOAQAAF2JPpFy2Z9cfvGY/idat5/BW/WdlDtc3HDwPmah/ADifX/uA9H8usvSAlcr6n/jYOWam/snC9w+AVn0Awy6HbgBAAAA=
   </data>
  </layer>
  <layer name="objects" width="64" height="64">
