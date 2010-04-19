@@ -19,7 +19,7 @@ public class DefaultSpell {
 	
 	private Nature nature;
 	
-	private Class<? extends Spell> implementationClass;
+	private Class<?> implementationClass;
 	
 	private int mana;
 	
@@ -48,7 +48,7 @@ public class DefaultSpell {
 	public DefaultSpell(String name, String clazzName) {
 		try {
 			this.name = name;
-			this.implementationClass = (Class<? extends Spell>) Class.forName(clazzName);
+			this.implementationClass = (Class<?>) Class.forName(clazzName);
 			this.buildCreator(implementationClass);
 		} catch (ClassNotFoundException e) {
 			logger.error("Error while creating DefaultSpell", e);
@@ -85,7 +85,7 @@ public class DefaultSpell {
 		return name;
 	}
 
-	public Class<? extends Spell> getImplementationClass() {
+	public Class<?> getImplementationClass() {
 		return implementationClass;
 	}
 	/**
