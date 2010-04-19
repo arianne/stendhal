@@ -116,12 +116,12 @@ public abstract class Path {
 		// long startTimeNano = System.nanoTime();
 		final long startTime = System.currentTimeMillis();
 
-		final Pathfinder pathfinder = new Pathfinder(sourceEntity, zone, x, y,
+		final EntityPathfinder pathfinder = new EntityPathfinder(sourceEntity, zone, x, y,
 				destination, maxDistance, withEntities);
 
 		final List<Node> resultPath = pathfinder.getPath();
 		if (logger.isDebugEnabled()
-				&& (pathfinder.getStatus() == Pathfinder.PATH_NOT_FOUND)) {
+				&& (pathfinder.getStatus() == EntityPathfinder.PATH_NOT_FOUND)) {
 			logger.debug("Pathfinding aborted: " + zone.getID() + " "
 					+ sourceEntity.getTitle() + " (" + x + ", " + y + ") "
 					+ destination + " Pathfinding time: "

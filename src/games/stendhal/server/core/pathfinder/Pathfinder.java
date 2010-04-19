@@ -1,4 +1,6 @@
 /*
+ * Based on:
+ * 
  * AStarPathfinder.java
  * Created on 20 October 2004, 13:33
  *
@@ -21,13 +23,7 @@
 
 package games.stendhal.server.core.pathfinder;
 
-import games.stendhal.common.CollisionDetection;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.mapstuff.portal.Portal;
-import games.stendhal.server.entity.player.Player;
 
-import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -36,8 +32,6 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
-import marauroa.common.game.RPObject;
-
 /**
  * Implements the A* algorithm. Pathing can be done on any class that implements
  * the <code>Navigable</code> interface. See org.generation5.ai.Navigable.
@@ -45,7 +39,7 @@ import marauroa.common.game.RPObject;
  * @author James Matthews
  * 
  */
-class Pathfinder {
+public abstract class Pathfinder {
 	/**
 	 * Returned by <code>getStatus</code> if a path <i>cannot</i> be found.
 	 * 
@@ -70,7 +64,7 @@ class Pathfinder {
 	/**
 	 * Node weight bonus for nodes that do not change the walking direction.
 	 */
-	private static final double STRAIGHT_PATH_PREFERENCE_FACTOR = 0.2;
+	protected static final double STRAIGHT_PATH_PREFERENCE_FACTOR = 0.2;
 
 	/**
 	 * The current status of the pathfinder.
@@ -80,119 +74,88 @@ class Pathfinder {
 	 * @see #IN_PROGRESS
 	 */
 	private int pathStatus = IN_PROGRESS;
-
 	/**
 	 * The open list.
 	 */
-	private final PriorityQueue<TreeNode> listOpen = new PriorityQueue<TreeNode>(16,
+	private final PriorityQueue<TreeNode> openList = new PriorityQueue<TreeNode>(16,
 			new Comparator<TreeNode>() {
-
-				public int compare(final TreeNode o1, final TreeNode o2) {
-					return (int) Math.signum(o1.weight - o2.weight);
-				}
-			});
+		public int compare(final TreeNode o1, final TreeNode o2) {
+			return (int) Math.signum(o1.weight - o2.weight);
+		}
+	});
 
 	private final HashMap<Integer, TreeNode> nodeRegistry = new HashMap<Integer, TreeNode>();
 
 	/**
 	 * The goal node.
 	 */
-	private final TreeNode nodeGoal;
+	protected TreeNode goalNode;
 
 	/**
 	 * The start node.
 	 */
-	private final TreeNode nodeStart;
+	protected TreeNode startNode;
 
 	/**
 	 * The current best node. The best node is taken from the open list after
 	 * every iteration of <code>doStep</code>.
 	 */
-	private TreeNode nodeBest;
-
-	/**
-	 * The entity searching a path.
-	 */
-	private final Entity entity;
-
-	/**
-	 * The zone a path is searched.
-	 */
-	private final StendhalRPZone zone;
-
-	/**
-	 * The goal.
-	 */
-	private final Rectangle2D goalArea;
-
-	private final boolean checkEntities;
-
-	/**
-	 * Contains the collision data for entities.
-	 */
-	private CollisionDetection collisionMap;
-
+	private TreeNode bestNode;
+	
 	/**
 	 * The maximum distance for the path. It is compared with the f value of the
 	 * node. The minimum for working pathfinding is
 	 * heuristicFromStartNode + 1
 	 */
-	private final double maxDistance;
+	private double maxDistance;
+	
+	/**
+	 * The goal.
+	 */
+	private final Rectangle2D goalArea;
+	
+	/** Initialization data */
+	private final int startX, startY;
+	/** Initialization data */
+	private final Rectangle2D destination;
+	/** Initialization data */
+	private final double initMaxDist;
 
-	// private Rectangle maxBoundary;
-	Pathfinder(final Entity entity, final StendhalRPZone zone, final int startX, final int startY,
-			final Rectangle2D destination, final double maxDist, final boolean checkEntities) {
-		this.entity = entity;
-		this.zone = zone;
+	protected Pathfinder(final int startX, final int startY, final Rectangle2D destination, final double maxDist) {
 		this.goalArea = destination;
 
-		this.nodeStart = new TreeNode(startX, startY);
-		this.nodeGoal = new TreeNode((int) (destination.getCenterX()),
-				(int) (destination.getCenterY()));
+		// Setup the initialization data needed for node creation
+		this.startX = startX;
+		this.startY = startY;
+		this.destination = destination;
+		this.initMaxDist = maxDist;
 
-		// calculate shortest distance and allow a variance of X percent
-		final double startF = 1.1 * nodeStart.getHeuristic(nodeGoal) + 1;
-		this.maxDistance = Math.max(maxDist, startF);
-
-		/*
-		 * int minXBoundary = Math.max(0, Math.min(nodeStart.getX() -
-		 * (int)(int)maxDistance, nodeGoal.getX() - (int)maxDistance)); int
-		 * maxXBoundary = Math.min(zone.getWidth(), Math.max(nodeStart.getX() +
-		 * (int)maxDistance, nodeGoal.getX() + (int)maxDistance)); int
-		 * minYBoundary = Math.max(0, Math.min(nodeStart.getY() -
-		 * (int)maxDistance, nodeGoal.getY() - (int)maxDistance)); int
-		 * maxYBoundary = Math.min(zone.getHeight(), Math.max(nodeStart.getY() +
-		 * (int)maxDistance, nodeGoal.getY() + (int)maxDistance));
-		 * 
-		 * this.maxBoundary = new Rectangle(minXBoundary, minYBoundary,
-		 * (maxXBoundary-minXBoundary), (maxYBoundary-minYBoundary));
-		 */
-
-		this.checkEntities = checkEntities;
-
-		init();
-	}
-
-	/**
-	 * Initialize the pathfinder.
-	 */
-	private void init() {
-		
-		// Clear the open list
-		listOpen.clear(); 
+		openList.clear(); 
 		nodeRegistry.clear();
 
-		nodeBest = null;
+		bestNode = null;
 		pathStatus = IN_PROGRESS;
-
-		listOpen.offer(nodeStart);
-		nodeRegistry.put(nodeStart.nodeNumber, nodeStart);
-
-		if (checkEntities) {
-			createEntityCollisionMap();
-		}
 	}
-
+	
+	/**
+	 * Initialization that can not be done safely in the constructor.
+	 */
+	protected void init() {
+		/*
+		 * createNode is defined in child classes, so it may require
+		 * work in the child's constructor. 
+		 */
+		startNode = createNode(startX, startY);
+		goalNode = createNode((int) (destination.getCenterX()),
+				(int) (destination.getCenterY()));
+		openList.offer(startNode);
+		nodeRegistry.put(startNode.nodeNumber, startNode);
+		
+		// calculate shortest distance and allow a variance of X percent
+		final double startF = 1.1 * startNode.getHeuristic(goalNode) + 1;
+		this.maxDistance = Math.max(initMaxDist, startF);
+	}
+	
 	/**
 	 * Return the current status of the pathfinder.
 	 * 
@@ -202,11 +165,12 @@ class Pathfinder {
 	public int getStatus() {
 		return pathStatus;
 	}
-
+	
 	public final List<Node> getPath() {
+		init();
 		final List<Node> list = new LinkedList<Node>();
-		/* */
-		if (unrechableGoal()) {
+		
+		if (unreachableGoal()) {
 			return list;
 		}
 
@@ -215,7 +179,7 @@ class Pathfinder {
 		}
 
 		if (pathStatus == Pathfinder.PATH_FOUND) {
-			TreeNode node = nodeBest;
+			TreeNode node = bestNode;
 			while (node != null) {
 				list.add(0, new Node(node.getX(), node.getY()));
 				node = node.getParent();
@@ -225,70 +189,41 @@ class Pathfinder {
 
 		return list;
 	}
-
+	
 	/**
 	 * Iterate the pathfinder through one step.
 	 */
 	private void doStep() {
-		nodeBest = getBest();
-		if (nodeBest == null) {
+		bestNode = getBest();
+		if (bestNode == null) {
 			pathStatus = PATH_NOT_FOUND;
 			return;
 		}
 
-		if (reachedGoal(nodeBest)) {
+		if (reachedGoal(bestNode)) {
 			pathStatus = PATH_FOUND;
 			return;
 		}
 
-		nodeBest.createChildren();
+		bestNode.createChildren();
 	}
-
+	
 	/**
 	 * Assigns the best node from the open list.
 	 * 
 	 * @return the best node.
 	 */
 	private TreeNode getBest() {
-		if (listOpen.isEmpty()) {
+		if (openList.isEmpty()) {
 			return null;
 		}
 
-		final TreeNode first = listOpen.poll();
+		final TreeNode first = openList.poll();
 		first.setOpen(false);
 
 		return first;
 	}
-
-	/**
-	 * Creates collision data for entities.
-	 * <p>The positions with entities are only
-	 * considered as not valid if they: <li> are next to the start position or <li>
-	 * have stopped
-	 */
-	private void createEntityCollisionMap() {
-		Point targetPoint = new Point(nodeGoal.getX(), nodeGoal.getY());
-		collisionMap = new CollisionDetection();
-		collisionMap.init(zone.getWidth(), zone.getHeight());
-		for (final RPObject obj : zone) {
-			final Entity otherEntity = (Entity) obj;
-			if (!entity.getID().equals(otherEntity.getID())
-					&& otherEntity.isObstacle(entity)
-					&& (otherEntity.stopped() || otherEntity.nextTo(
-							nodeStart.getX(), nodeStart.getY(), 0.25))) {
-
-				final Rectangle2D area = otherEntity.getArea(otherEntity.getX(),
-						otherEntity.getY());
-
-				// Hack: Allow players to move onto portals as destination
-				if ((entity instanceof Player) && (otherEntity instanceof Portal) && area.contains(targetPoint)) {
-					continue;
-				}
-				collisionMap.setCollide(area, true);
-			}
-		}
-	}
-
+	
 	/**
 	 * Checks if the goal is reached.
 	 * 
@@ -299,14 +234,14 @@ class Pathfinder {
 	private boolean reachedGoal(final TreeNode nodeBest) {
 		return goalArea.contains(nodeBest.getX(), nodeBest.getY());
 	}
-
+	
 	/**
 	 * Checks if the goal is unreachable. Only the outer nodes of the goal are
 	 * checked. There could be other reasons, why a goal is unreachable.
 	 * 
 	 * @return true checks if the goal is unreachable
 	 */
-	protected boolean unrechableGoal() {
+	protected boolean unreachableGoal() {
 		final int w = (int) goalArea.getWidth() - 1;
 		final int h = (int) goalArea.getHeight() - 1;
 		final int x = (int) goalArea.getX();
@@ -315,7 +250,7 @@ class Pathfinder {
 		for (int i = 0; i <= w; i++) {
 			for (int j = 0; j <= h; j++) {
 				if ((i == 0) || (j == 0) || (i == w) || (j == h)) {
-					if (new TreeNode(x + i, y + j).isValid()) {
+					if (createNode(x + i, y + j).isValid()) {
 						return false;
 					}
 				}
@@ -324,7 +259,18 @@ class Pathfinder {
 
 		return true;
 	}
-
+	
+	/**
+	 * Create a new TreeNode
+	 * 
+	 * @param x x coordinate of the node
+	 * @param y y coordinate of the node
+	 * @return TreeNode
+	 */
+	// A workaround for java lacking proper generics
+	public abstract TreeNode createNode(final int x, final int y);
+	
+	
 	/**
 	 * Calculates the manhattan distance between to positions.
 	 * 
@@ -359,10 +305,11 @@ class Pathfinder {
 		return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
 	}
 
+	
 	/**
 	 * The pathfinder node.
 	 */
-	private class TreeNode {
+	protected abstract class TreeNode {
 
 		/**
 		 * The f-value.
@@ -406,14 +353,14 @@ class Pathfinder {
 		/**
 		 * The default constructor with positional information.
 		 * 
-		 * @param xx
+		 * @param x
 		 *            the x-position of the node.
-		 * @param yy
+		 * @param y
 		 *            the y-position of the node.
 		 */
-		public TreeNode(final int xx, final int yy) {
-			this.x = xx;
-			this.y = yy;
+		protected TreeNode(final int x, final int y) {
+			this.x = x;
+			this.y = y;
 
 			this.nodeNumber = createNodeID(x, y);
 
@@ -467,7 +414,7 @@ class Pathfinder {
 		 * @return weight for the child node 
 		 */
 		private double calculateChildWeight(final TreeNode child) {
-			double childweight = child.g + child.getHeuristic(nodeGoal);
+			double childweight = child.g + child.getHeuristic(goalNode);
 
 			// Prefer nodes that do not result in direction change
 			if (parent != null) {
@@ -549,15 +496,17 @@ class Pathfinder {
 		 * 
 		 * @return true if the the entity could stand on the position
 		 */
-		public boolean isValid(final int x1, final int y1) {
-			boolean result = !zone.simpleCollides(entity, x1, y1);
-			if (checkEntities && result) {
-				final Rectangle2D entityArea = entity.getArea(x1, y1);
-				result = !collisionMap.collides(entityArea);
-			}
-
-			return result;
-		}
+		public abstract boolean isValid(int x, int y);
+		
+		/**
+		 * Create a new <code>TreeNode</code>.
+		 * 
+		 * @param x x coordinate of the created node
+		 * @param y y coordinate of the created node
+		 * @return a <code>TreeNode</code>
+		 */
+		// A workaround for java lacking proper generics
+		public abstract TreeNode createNode(int x, int y);
 
 		/**
 		 * Creates valid child nodes.
@@ -593,11 +542,11 @@ class Pathfinder {
 			TreeNode child = nodeRegistry.get(createNodeID(x1, y1));
 			if (child == null) {
 				// if not found original child node then create a new one
-				child = new TreeNode(x1, y1);
+				child = createNode(x1, y1);
 
 				addChild(child);
 
-				listOpen.offer(child);
+				openList.offer(child);
 				child.setOpen(true);
 
 				nodeRegistry.put(child.nodeNumber, child);
@@ -653,9 +602,7 @@ class Pathfinder {
 		 * 
 		 * @return the id of the node
 		 */
-		private int createNodeID(final int x, final int y) {
-			return x + y * zone.getWidth();
-		}
+		protected abstract int createNodeID(int x, int y);
 
 		public final boolean isOpen() {
 			return open;
@@ -678,6 +625,5 @@ class Pathfinder {
 		public int hashCode() {
 			return nodeNumber.hashCode();
 		}
-
 	}
 }
