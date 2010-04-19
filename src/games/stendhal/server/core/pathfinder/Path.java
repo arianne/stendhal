@@ -130,6 +130,24 @@ public abstract class Path {
 
 		return resultPath;
 	}
+	
+	/**
+	 * Find an one tile wide path. Entities on the map are ignored.
+	 * 
+	 * @param zone zone to search
+	 * @param startX x coordinate of the starting point 
+	 * @param startY y coordinate of the starting point
+	 * @param destX x coordinate of the destination
+	 * @param destY y coordinate of the destination
+	 * @param maxDistance maximum search distance
+	 * 
+	 * @return found path, or an empty list if no path was found
+	 */
+	public static List<Node> searchPath(final StendhalRPZone zone, final int startX, final int startY, final int destX,
+			final int destY, final double maxDistance) {
+		final Pathfinder pathfinder = new SimplePathfinder(zone, startX, startY, new Rectangle(destX, destY, 1, 1), maxDistance);
+		return pathfinder.getPath();
+	}
 
 	/**
 	 * Finds a path for the Entity <code>entity</code> to the other Entity

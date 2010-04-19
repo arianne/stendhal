@@ -51,4 +51,14 @@ public class PathTest {
 		zone.add(entity);
 		assertArrayEquals(expected.toArray(), Path.searchPath(entity, 6, 6).toArray());
 	}
+	
+	/**
+	 * Test the entity free path finder. 
+	 */
+	@Test
+	public void testSearchPathSimpleIntInt() {
+		final StendhalRPZone zone = new StendhalRPZone("test", 10, 10);
+		
+		assertArrayEquals(expected.toArray(), Path.searchPath(zone, 0, 0, 6, 6, 20).toArray());
+	}
 }
