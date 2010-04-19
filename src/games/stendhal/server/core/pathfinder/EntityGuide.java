@@ -41,6 +41,8 @@ public class EntityGuide {
 	
 	/**
 	 * Turn the entity face the next node on the path.
+	 * If the entity following the path just reached the
+	 * last node, stop the entity.
 	 * 
 	 * @param entity the guided entity
 	 */
@@ -49,6 +51,10 @@ public class EntityGuide {
 			Node next = nextNode();
 			if (next != null) {
 				entity.faceto(next.getX(), next.getY());
+			} else {
+				// There is no next path; Stop the entity so that the
+				// client gets the information in time
+				entity.stop();
 			}
 		}
 	}
