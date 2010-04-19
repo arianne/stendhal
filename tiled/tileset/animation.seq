@@ -590,3 +590,13 @@ tileset/object/zekiel.png	*	14@5000:14:14:14@800:14@3500:14:14:14:14:14:14:14:14
 # floating candle
 tileset/furniture/light/floating_candle.png * 0:1:2:3:8:9:10:11
 tileset/furniture/light/floating_candle.png * 4:5:6:7:12:13:14:15
+
+# view from wizards tower
+tileset/sky/view_wizards_tower.png	*	13:30:47
+tileset/sky/view_wizards_tower.png	*	14:31:48
+tileset/sky/view_wizards_tower.png	*	81:83:115:117@3500
+tileset/sky/view_wizards_tower.png	*	82:84:116:118@3500
+tileset/sky/view_wizards_tower.png	*	98:100:132:134@3500
+tileset/sky/view_wizards_tower.png	*	99:101:133:135@3500
+tileset/sky/view_wizards_tower.png	*@300	119:120:121:122:123:124
+tileset/sky/view_wizards_tower.png	*@300	126:127:128:129:130:131
