@@ -1,11 +1,13 @@
 package games.stendhal.server.maps.semos.wizardstower;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class FirstFloorCreatures implements ZoneConfigurator {
@@ -31,6 +33,13 @@ public class FirstFloorCreatures implements ZoneConfigurator {
 
 		creature1.setName("fire demon");
 
+		creature1.setDescription("You see a fire demon. His body is paled in flames, which will burn your skin.");
+	
+		creature.setAiProfiles(new HashMap<String, String>());
+		creature1.setAiProfiles(new HashMap<String, String>());
+		creature2.setAiProfiles(new HashMap<String, String>());
+		creature3.setAiProfiles(new HashMap<String, String>());		
+		
 		creature.clearDropItemList();
 		creature1.clearDropItemList();
 		creature2.clearDropItemList();
@@ -46,6 +55,10 @@ public class FirstFloorCreatures implements ZoneConfigurator {
 		creature2.setPosition(1,15);
 		creature3.setPosition(14,2);
 
+		creature.setDirection(Direction.UP);
+		creature1.setDirection(Direction.LEFT);
+		creature2.setDirection(Direction.RIGHT);
+		
 		zone.add(creature);
 		zone.add(creature1);
 		zone.add(creature2);

@@ -1,11 +1,13 @@
 package games.stendhal.server.maps.semos.wizardstower;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class SecondFloorCreatures implements ZoneConfigurator {
@@ -33,6 +35,11 @@ public class SecondFloorCreatures implements ZoneConfigurator {
 		creature2.setName("djinn windmaster");
 		creature3.setName("incorporeal man");
 
+		creature.setAiProfiles(new HashMap<String, String>());
+		creature1.setAiProfiles(new HashMap<String, String>());
+		creature2.setAiProfiles(new HashMap<String, String>());
+		creature3.setAiProfiles(new HashMap<String, String>());
+
 		creature.clearDropItemList();
 		creature1.clearDropItemList();
 		creature2.clearDropItemList();
@@ -47,6 +54,10 @@ public class SecondFloorCreatures implements ZoneConfigurator {
 		creature1.setPosition(1,15);
 		creature2.setPosition(15,28);
 		creature3.setPosition(15,2);
+
+		creature.setDirection(Direction.LEFT);
+		creature1.setDirection(Direction.RIGHT);
+		creature2.setDirection(Direction.UP);
 
 		zone.add(creature);
 		zone.add(creature1);
