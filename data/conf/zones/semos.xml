@@ -483,13 +483,39 @@
     </zone>
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_7" file="interiors/semos/wizards_tower_7.tmx">
-
         <portal x="23" y="10" ref="portal_from_sixth_floor">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
         </portal>
+       <portal x="15" y="16" ref="portal_sparkle_from_spire">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+     </zone>
+     <!-- Interiors of the wizards tower -->
+    <zone name="int_semos_wizards_tower_8" file="interiors/semos/wizards_tower_spire_1.tmx">
+       <portal x="21" y="7" ref="portal_from_spire_2">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+        <portal x="21" y="23" ref="portal_sparkle_to_seventh_floor">
+                <destination zone="int_semos_wizards_tower_7" ref="portal_sparkle_from_spire" />
+            </portal>
+        <portal x="21" y="6" ref="portal_to_spire_2">
+                <destination zone="int_semos_wizards_tower_9" ref="portal_from_spire_1" />
+                 <attribute name="hidden"/>
+            </portal>
     </zone>
-    
-	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
+
+     <!-- Interiors of the wizards tower -->
+    <zone name="int_semos_wizards_tower_9" file="interiors/semos/wizards_tower_spire_2.tmx">
+       <portal x="21" y="6" ref="portal_from_spire_1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+        </portal>
+       <portal x="21" y="7" ref="portal_to_spire_1">
+                <destination zone="int_semos_wizards_tower_8" ref="portal_from_spire_2" />
+                <attribute name="hidden"/>
+            </portal>
+    </zone>
+   
+    	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
 		file="Level 0/semos/plains_n.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
 			<parameter name="x">60</parameter>
