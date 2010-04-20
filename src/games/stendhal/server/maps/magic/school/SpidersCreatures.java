@@ -4,6 +4,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.CircumstancesOfDeath;
 import games.stendhal.server.entity.creature.KillNotificationCreature;
 import games.stendhal.server.entity.mapstuff.spawner.KillNotificationCreatureRespawnPoint;
@@ -36,14 +37,19 @@ public class SpidersCreatures implements ZoneConfigurator {
 	}
 	
 	protected void updatePlayerQuest(final CircumstancesOfDeath circ) {
-		final Player player = (Player) circ.getKiller();
 		final String victim = circ.getVictim().getName();
-		player.setQuest("kill_all_spiders", 1+creatures.indexOf(victim), victim);
-		
+		final RPEntity killer = circ.getKiller();
 		Logger.getLogger(SpidersCreatures.class).debug(
 				"in "+circ.getZone().getName()+
 				": "+victim+
-				" killed by "+player.getName());		
+				" killed by "+killer.getName());
+		// check if was killed by other animal/pet
+		if(!circ.getKiller().getClass().getName().equals(Player.class.getName()) ) {
+			return;
+		}
+		
+		final Player player = (Player) killer;
+		player.setQuest("kill_all_spiders", 1+creatures.indexOf(victim), victim);
 	}
 
 	class SpidersObserver implements Observer {
