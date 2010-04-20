@@ -129,10 +129,26 @@ public class SoundSystemNG extends Thread
 			int numRemainingBytesInBuffer = mPCMBufferSize - mNumBytesWritten;
 
 			numBytes  = Math.min(numBytes, numRemainingBytesInBuffer);
+
+			if(numBytes < 0)
+				throw new RuntimeException("1. numBytes=" + numBytes);
+
 			numBytes  = Math.min(numBytes, mNumBytesToWrite         );
+
+			if(numBytes < 0)
+				throw new RuntimeException("2. numBytes=" + numBytes);
+
 			numBytes  = Math.min(numBytes, mLine.available()        );
+
+			if(numBytes < 0)
+				throw new RuntimeException("3. numBytes=" + numBytes);
+			
 			numBytes /= frameSize;
 			numBytes *= frameSize;
+
+			if(numBytes < 0)
+				throw new RuntimeException("4. numBytes=" + numBytes);
+
 			numBytes  = mLine.write(mPCMBuffer, mNumBytesWritten, numBytes);
 
 			mNumBytesWritten          += numBytes;
