@@ -491,8 +491,8 @@ public abstract class Pathfinder {
 
 		/**
 		 * Checks if the entity could stand on the given by the coordinates.
-		 * @param x1 coordinate of the position to be checked
-		 * @param y1 coordinate of the position to be checked
+		 * @param x coordinate of the position to be checked
+		 * @param y coordinate of the position to be checked
 		 * 
 		 * @return true if the the entity could stand on the position
 		 */
