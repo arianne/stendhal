@@ -127,22 +127,19 @@ public class SoundSystemNG extends Thread
         {
 			int frameSize                 = getNumBytesPerSample() * getNumChannels();
 			int numRemainingBytesInBuffer = mPCMBufferSize - mNumBytesWritten;
+			int available                 = mLine.available();
+
+			// ATTENTION: this should never happen but if it happens, it is likely
+			//            that the mLine.available() method returns an "unsigned int"
+			//            from its native C method and thus will be handled as an
+			//            "signed int" in java. for a fix we simply set the value
+			//            to the highest possible signed interger value
+			if(available < 0)
+				available = Integer.MAX_VALUE;
 
 			numBytes  = Math.min(numBytes, numRemainingBytesInBuffer);
-
-			if(numBytes < 0)
-				throw new RuntimeException("1. numBytes=" + numBytes);
-
 			numBytes  = Math.min(numBytes, mNumBytesToWrite         );
-
-			if(numBytes < 0)
-				throw new RuntimeException("2. numBytes=" + numBytes);
-
-			numBytes  = Math.min(numBytes, mLine.available()        );
-
-			if(numBytes < 0)
-				throw new RuntimeException("3. numBytes=" + numBytes);
-			
+			numBytes  = Math.min(numBytes, available                );
 			numBytes /= frameSize;
 			numBytes *= frameSize;
 
