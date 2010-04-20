@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 public class SpidersCreatures implements ZoneConfigurator {
 	private final List<String> creatures = 
 		Arrays.asList("spider","poisonous spider","giant spider");
-	
+	private final String QUEST_SLOT="kill_all_spiders";
 
 	/**
 	 * Configure a zone.
@@ -47,9 +47,12 @@ public class SpidersCreatures implements ZoneConfigurator {
 		if(!circ.getKiller().getClass().getName().equals(Player.class.getName()) ) {
 			return;
 		}
-		
+
 		final Player player = (Player) killer;
-		player.setQuest("kill_all_spiders", 1+creatures.indexOf(victim), victim);
+		// check if player started his quest
+		if(player.getQuest(QUEST_SLOT,0).equals("started")) {
+			player.setQuest(QUEST_SLOT, 1+creatures.indexOf(victim), victim);			
+		}
 	}
 
 	class SpidersObserver implements Observer {
