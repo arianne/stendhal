@@ -1,7 +1,10 @@
 package games.stendhal.server.entity.mapstuff.portal;
 
 import static org.junit.Assert.*;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -32,6 +35,29 @@ public class GateTest {
 		assertTrue(gate.isOpen());
 		gate.close();
 		assertFalse(gate.isOpen());
+	}
+	
+	/**
+	 * Tests that closing fails if there's something on the way.
+	 */
+	@Test
+	public void testCloseGateBlocked() {
+		final Gate gate = new Gate();
+		gate.open();
+		StendhalRPZone zone = new StendhalRPZone("room", 5, 5);
+		gate.setPosition(3, 3);
+		zone.add(gate);
+		assertTrue("Sanity check", gate.isOpen());
+		final Creature creature = SingletonRepository.getEntityManager().getCreature("rat");
+		creature.setPosition(3, 3);
+		zone.add(creature);
+		System.err.println("RESISTANCE: " + creature.getResistance());
+		gate.close();
+		assertTrue("Rat in the way", gate.isOpen());
+		// A "ghostmode" rat
+		creature.setResistance(0);
+		gate.close();
+		assertFalse("Ghost in the way", gate.isOpen());
 	}
 
 	/**

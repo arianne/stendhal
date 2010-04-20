@@ -9,8 +9,6 @@ import marauroa.common.game.Definition.Type;
 import org.apache.log4j.Logger;
 
 public class Gate extends Entity implements UseListener {
-
-	
 	private static final String HORIZONTAL = "h";
 	private static final String VERTICAL = "v";
 	private static final String ORIENTATION = "orientation";
@@ -33,10 +31,18 @@ public class Gate extends Entity implements UseListener {
 		Logger.getLogger(Gate.class).info("gatecreated");
 	}
 	
+	/**
+	 * Create a new vertical gate.
+	 */
 	public Gate() {
 		this(VERTICAL);
 	}
 
+	/**
+	 * Set the orientation of the gate.
+	 * 
+	 * @param orientation "h" for horizontal, "v" for vertical
+	 */
 	private void setOrientation(final String orientation) {
 		if (HORIZONTAL.equals(orientation)) {
 			put(ORIENTATION, HORIZONTAL);
@@ -45,23 +51,30 @@ public class Gate extends Entity implements UseListener {
 		}
 	}
 
-	
+	/**
+	 * Open the gate.
+	 */
 	public void open() {
 		setOpen(true);
 	}
 
+	/**
+	 * Check if the gate is open.
+	 * 
+	 * @return true iff the gate is open
+	 */
 	public boolean isOpen() {
-
 		return isOpen;
 	}
 
+	/**
+	 * Close the gate.
+	 */
 	public void close() {
 		setOpen(false);
-
 	}
 
 	public boolean onUsed(final RPEntity user) {
-		Logger.getLogger(Gate.class).info("use-called");
 		if (this.nextTo(user)) {
 			setOpen(!isOpen());
 			return true;
@@ -69,15 +82,26 @@ public class Gate extends Entity implements UseListener {
 		return false;
 	}
 
-	private void setOpen(final boolean b) {
-		if (b) {
+	/**
+	 * Set the door open or closed.
+	 * 
+	 * @param open true if the door is opened, false otherwise
+	 */
+	private void setOpen(final boolean open) {
+		if (open) {
 			setResistance(0);
 		} else {
+			// Closing the gate - check there's nobody on the way
+			if (getZone() != null)  {
+				for (Entity entity : getZone().getEntitiesAt(getX(), getY())) {
+					if (entity.getResistance() > 0) {
+						return;
+					}
+				}
+			}
 			setResistance(100);
 		}
-		isOpen = b;
+		isOpen = open;
 		notifyWorldAboutChanges();
-
 	}
-
 }
