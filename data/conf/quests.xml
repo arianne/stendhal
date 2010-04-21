@@ -181,12 +181,54 @@ State: EXPERIMENTAL to help me think about a quest system
 			<entry name="BROUGHT_ITEM">I took the food to Joshua and he asked me to tell his brother Xoderos that he is ok, by saying #Joshua.</entry>
 			<entry name="DONE">I passed the message to Xoderos and he has fixed my keyring for me.</entry>
 		</history>
+		
+	</quest>
+		<quest name="KillDarkElves">
+		<title>Kill Dark Elves</title>
+		<repeatable done="false" />
+		<description>
+			Maerion, leader of Elves, want to kill dark elves in secret room and back his amulet.
+		</description>
+		<history>
+			<entry name="QUEST_REJECTED">I do not want to help Maerion.</entry>
+			<entry name="QUEST_ACCEPTED">I agreed to help Maerion.</entry>
+			<entry name="KILLED_DROW_1">I have killed dark elf captain in secret room.</entry>
+			<entry name="KILLED_DROW_2">I have killed dark elf general in secret room.</entry>
+			<entry name="KILLED_DROW_3">I have killed dark elf knight in secret room.</entry>
+			<entry name="KILLED_DROW_4">I have killed dark elf wizard in secret room.</entry>
+		    <entry name="KILLED_DROW_5">I have killed dark elf sacerdotist in secret room.</entry>
+			<entry name="KILLED_DROW_6">I have killed dark elf viceroy in secret room.</entry>
+			<entry name="KILLED_DROW_7">I have killed dark elf matronmother in secret room.</entry>
+			<entry name="KILLED_DROW_8">I have killed dark elf elite archer in secret room.</entry>
+			<entry name="KILLED_DROW_9">I have killed dark elf archer in secret room.</entry>
+
+			<entry name="TO_KILL_DROW_1">I have not yet killed dark elf captain in secret room.</entry>
+			<entry name="TO_KILL_DROW_2">I have not yet killed dark elf general in secret room.</entry>
+			<entry name="TO_KILL_DROW_3">I have not yet killed dark elf knight in secret room.</entry>
+			<entry name="TO_KILL_DROW_4">I have not yet killed dark elf wizard in secret room.</entry>
+		    <entry name="TO_KILL_DROW_5">I have not yet killed dark elf sacerdotist in secret room.</entry>
+			<entry name="TO_KILL_DROW_6">I have not yet killed dark elf viceroy in secret room.</entry>
+			<entry name="TO_KILL_DROW_7">I have not yet killed dark elf matronmother in secret room.</entry>
+			<entry name="TO_KILL_DROW_8">I have not yet killed dark elf elite archer in secret room.</entry>
+			<entry name="TO_KILL_DROW_9">I have not yet killed dark elf archer in secret room.</entry>
+						
+			<entry name="KILLED_THING">I have killed thing.</entry>	
+			<entry name="TO_KILL_THING">I have not yet killed thing.</entry>									
+
+			<entry name="KILLED_ALL">I have killed all required creatures.</entry>
+
+			<entry name="HAVE_ITEM">I have amulet with me.</entry>
+			<entry name="HAVE_NO_ITEM">I have no amulet with me.</entry>
+			
+			<entry name="ALMOST_DONE">Its a time to go back to Maerion for reward.</entry>			
+			<entry name="DONE">I completed Maerion's quest and got emerald ring of life!</entry>
+		</history>
 	</quest>
 	<quest name="KillSpiders">
 		<title>Kill spiders</title>
 		<repeatable done="true" />
 		<description>
-			Morgrin, groundskeeper of magic school, asked me to kill spiders in magic school basement.
+			Morgrin, groundskeeper of magic school, want to clear magic school basement from spiders.
 		</description>
 		<history>
 			<entry name="QUEST_REJECTED">I do not agree to help Morgrin.</entry>
