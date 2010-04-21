@@ -413,7 +413,10 @@
 		</copy>
 
 		<copy todir="${build_client_data}/data/tileset">
-			<fileset dir="${tiled}/tileset"/>
+			<fileset dir="${tiled}/tileset">
+				<exclude name="**/*.xcf" />
+                                <exclude name="**/*.bz2" />
+			</fileset>
 		</copy>
 
 		<copy todir="${build_client_data}/data/gui">
