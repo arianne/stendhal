@@ -15,6 +15,7 @@ package games.stendhal.server.entity.mapstuff.spawner;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.KillNotificationCreature;
 
 import java.util.Observer;
@@ -51,6 +52,24 @@ public class KillNotificationCreatureRespawnPoint extends CreatureRespawnPoint {
 	 */
 	public KillNotificationCreatureRespawnPoint(final StendhalRPZone zone, final int x, final int y,
 			final KillNotificationCreature creature, final int maximum, final Observer observer) {
+		super(zone, x, y, creature, maximum);
+		this.observer = observer;
+	}
+
+	/**
+	 * Creates a new RespawnPoint.
+	 * 
+	 * @param zone
+	 * @param x
+	 * @param y
+	 * @param creature
+	 *            The prototype creature
+	 * @param maximum
+	 *            The number of creatures spawned here that can exist at the
+	 *            same time
+	 */
+	public KillNotificationCreatureRespawnPoint(StendhalRPZone zone, int x,
+			int y, Creature creature, int maximum, final Observer observer) {
 		super(zone, x, y, creature, maximum);
 		this.observer = observer;
 	}
