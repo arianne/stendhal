@@ -12,8 +12,9 @@ public class GateConfigurator implements ZoneConfigurator {
 		final int x = MathHelper.parseInt(attributes.get("x"));
 		final int y = MathHelper.parseInt(attributes.get("y"));
 		final String orientation = attributes.get("orientation");
+		final String image = attributes.get("image");
 
-		buildGate(zone, x, y, orientation);
+		buildGate(zone, x, y, orientation, image);
 	}
 	
 	/**
@@ -24,8 +25,9 @@ public class GateConfigurator implements ZoneConfigurator {
 	 * @param y y coordinate
 	 * @param orientation gate orientation
 	 */
-	private void buildGate(final StendhalRPZone zone, final int x, final int y, final String orientation) {
-		final Gate gate = new Gate(orientation);
+	private void buildGate(final StendhalRPZone zone, final int x, final int y, 
+			final String orientation, final String image) {
+		final Gate gate = new Gate(orientation, image);
 		
 		gate.setPosition(x, y);
 		zone.add(gate);

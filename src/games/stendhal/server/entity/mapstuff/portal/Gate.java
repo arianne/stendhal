@@ -6,36 +6,47 @@ import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 
-import org.apache.log4j.Logger;
-
 public class Gate extends Entity implements UseListener {
 	private static final String HORIZONTAL = "h";
 	private static final String VERTICAL = "v";
 	private static final String ORIENTATION = "orientation";
+	private static final String IMAGE = "image";
+	
+	private static final String DEFAULT_IMAGE = "fence_gate";
 
 	public static void generateGateRPClass() {
 		if (!RPClass.hasRPClass("gate")) {
 			final RPClass gate = new RPClass("gate");
 			gate.isA("entity");
 			gate.addAttribute(ORIENTATION, Type.STRING);
+			gate.addAttribute(IMAGE, Type.STRING);
 		}
 	}
 	
 	private boolean isOpen;
 
-	public Gate(final String orientation) {
+	/**
+	 * Create a new gate.
+	 * 
+	 * @param orientation gate orientation. Either "v" or "h".
+	 */
+	public Gate(final String orientation, String image) {
 		setRPClass("gate");
 		put("type", "gate");
 		setOrientation(orientation);
 		setOpen(false);
-		Logger.getLogger(Gate.class).info("gatecreated");
+		if (image != null) {
+			put(IMAGE, image);
+		} else {
+			put(IMAGE, DEFAULT_IMAGE);
+		}
 	}
 	
 	/**
 	 * Create a new vertical gate.
 	 */
 	public Gate() {
-		this(VERTICAL);
+		this(VERTICAL, null);
 	}
 
 	/**
