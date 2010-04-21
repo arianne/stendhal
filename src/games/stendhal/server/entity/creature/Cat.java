@@ -41,9 +41,6 @@ public class Cat extends Pet {
 	private static final Logger logger = Logger.getLogger(Cat.class);
 
 	private void setUp() {
-
-	
-
 		HP = 200;
 		// each chicken or fish would give +5 HP
 		incHP = 4; 
@@ -111,10 +108,12 @@ public class Cat extends Pet {
 	 *            The player who should own the cat
 	 */
 	public Cat(final RPObject object, final Player owner) {
-		// call set up before parent constructor is called as it needs those
-		// values
 		super(object, owner);
+		int storedHP = getInt("hp");
+		// fetch the speed etc values...
 		setUp();
+		// ...but don't heal the cat
+		setHP(storedHP);
 		setRPClass("cat");
 		put("type", "cat");
 		update();
