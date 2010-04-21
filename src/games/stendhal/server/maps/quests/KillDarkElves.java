@@ -177,9 +177,7 @@ public class KillDarkElves extends AbstractQuest {
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT,0,"started"),
 						new NotCondition(
-								new AndCondition(
-										new QuestInStateCondition(QUEST_SLOT, completedQuestState),
-										new PlayerHasItemWithHimCondition("amulet")))),
+								new QuestInStateCondition(QUEST_SLOT, completedQuestState))),
 				ConversationStates.QUEST_STARTED, 
 				"Don't you remember promising to sort out my dark elf problem?"+
 				" Kill every dark elf in the #secret room below - especially"+
@@ -279,71 +277,75 @@ public class KillDarkElves extends AbstractQuest {
 		final boolean sp8 = "dark elf elite archer".equals(player.getQuest(QUEST_SLOT, 8));
 		final boolean sp9 = "dark elf archer".equals(player.getQuest(QUEST_SLOT, 9));
 		final boolean sp = "start".equals(player.getQuest(QUEST_SLOT, 0));
-		// add killed first
-		if (sp1) {
-			history.add("KILLED_DROW_1");
-		};
-		if (sp2) {
-			history.add("KILLED_DROW_2");
-		};					
-		if (sp3) {
-			history.add("KILLED_DROW_3");
-		};	
-		if (sp4) {
-			history.add("KILLED_DROW_4");
-		};
-		if (sp5) {
-			history.add("KILLED_DROW_5");
-		};					
-		if (sp6) {
-			history.add("KILLED_DROW_6");
-		};
-		if (sp7) {
-			history.add("KILLED_DROW_7");
-		};
-		if (sp8) {
-			history.add("KILLED_DROW_8");
-		};					
-		if (sp9) {
-			history.add("KILLED_DROW_9");
-		};
-		
-		// now add non-killed
-		if (!sp1) {
-			history.add("TO_KILL_DROW_1");
-		};
-		if (!sp2) {
-			history.add("TO_KILL_DROW_2");
-		};					
-		if (!sp3) {
-			history.add("TO_KILL_DROW_3");
-		};	
-		if (!sp4) {
-			history.add("TO_KILL_DROW_4");
-		};
-		if (!sp5) {
-			history.add("TO_KILL_DROW_5");
-		};					
-		if (!sp6) {
-			history.add("TO_KILL_DROW_6");
-		};
-		if (!sp7) {
-			history.add("TO_KILL_DROW_7");
-		};
-		if (!sp8) {
-			history.add("TO_KILL_DROW_8");
-		};					
-		if (!sp9) {
-			history.add("TO_KILL_DROW_9");
-		};		
-		
-		
-		// all killed		
 		boolean ak=false;
-		if (sp1 && sp2 && sp3 && sp4 && sp5 && sp6 && sp7 && sp8 && sp9) {
-			history.add("KILLED_ALL");
-			ak=true;
-		};
+		
+		// support for new-style quest
+		if (!sp) {
+			// add killed first
+			if (sp1) {
+				history.add("KILLED_CREATURE_1");
+			};
+			if (sp2) {
+				history.add("KILLED_CREATURE_2");
+			};					
+			if (sp3) {
+				history.add("KILLED_CREATURE_3");
+			};	
+			if (sp4) {
+				history.add("KILLED_CREATURE_4");
+			};
+			if (sp5) {
+				history.add("KILLED_CREATURE_5");
+			};					
+			if (sp6) {
+				history.add("KILLED_CREATURE_6");
+			};
+			if (sp7) {
+				history.add("KILLED_CREATURE_7");
+			};
+			if (sp8) {
+				history.add("KILLED_CREATURE_8");
+			};					
+			if (sp9) {
+				history.add("KILLED_CREATURE_9");
+			};
+			
+			// now add non-killed
+			if (!sp1) {
+				history.add("TO_KILL_CREATURE_1");
+			};
+			if (!sp2) {
+				history.add("TO_KILL_CREATURE_2");
+			};					
+			if (!sp3) {
+				history.add("TO_KILL_CREATURE_3");
+			};	
+			if (!sp4) {
+				history.add("TO_KILL_CREATURE_4");
+			};
+			if (!sp5) {
+				history.add("TO_KILL_CREATURE_5");
+			};					
+			if (!sp6) {
+				history.add("TO_KILL_CREATURE_6");
+			};
+			if (!sp7) {
+				history.add("TO_KILL_CREATURE_7");
+			};
+			if (!sp8) {
+				history.add("TO_KILL_CREATURE_8");
+			};					
+			if (!sp9) {
+				history.add("TO_KILL_CREATURE_9");
+			};
+			
+			// all killed
+			if (sp1 && sp2 && sp3 && sp4 && sp5 && sp6 && sp7 && sp8 && sp9) {
+				history.add("KILLED_ALL");
+				ak=true;
+			};
+		}
+
 		
 		// here is support for old-style quest
 		if (sp) {
@@ -352,10 +354,10 @@ public class KillDarkElves extends AbstractQuest {
 			final boolean osp3 = player.hasKilled("thing");
 			// first add killed creatures
 			if (osp1) {
-				history.add("KILLED_DROW_1");				
+				history.add("KILLED_CREATURE_1");				
 			};			
 			if (osp2) {
-				history.add("KILLED_DROW_9");				
+				history.add("KILLED_CREATURE_9");				
 			};			
 			if (osp3) {
 				history.add("KILLED_THING");				
@@ -363,16 +365,16 @@ public class KillDarkElves extends AbstractQuest {
 			
 			// now add non-killed
 			if (!osp1) {
-				history.add("TO_KILL_DROW_1");				
+				history.add("TO_KILL_CREATURE_1");				
 			};			
 			if (!osp2) {
-				history.add("TO_KILL_DROW_9");				
+				history.add("TO_KILL_CREATURE_9");				
 			};			
 			if (!osp3) {
 				history.add("TO_KILL_THING");				
 			};
 			
-			ak=false;
+			// all killed
 			if (osp1 && osp2 && osp3) {
 				history.add("KILLED_ALL");
 				ak=true;
