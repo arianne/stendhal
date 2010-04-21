@@ -18,6 +18,7 @@
 
 package games.stendhal.server.entity.spell;
 
+import games.stendhal.common.constants.DamageType;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.effect.HealingEffect;
@@ -30,7 +31,7 @@ import games.stendhal.server.entity.spell.effect.HealingEffect;
  */
 public class HealingSpell extends Spell {
 	
-	public HealingSpell(final String name, final Nature nature, final int amount, final int atk, final int cooldown,
+	public HealingSpell(final String name, final DamageType nature, final int amount, final int atk, final int cooldown,
 			final int def, final double lifesteal, final int mana, final int minimumlevel, final int range,
 			final int rate, final int regen) {
 		super(name, nature, amount, atk, cooldown, def, lifesteal, mana, minimumlevel, range,

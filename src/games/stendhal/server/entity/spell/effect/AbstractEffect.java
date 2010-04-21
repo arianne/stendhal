@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.spell.effect;
 
-import games.stendhal.server.entity.spell.Nature;
+import games.stendhal.common.constants.DamageType;
 
 /**
  * abstract super class for all effects to encapsulate common attributes here
@@ -17,7 +17,7 @@ public abstract class AbstractEffect implements Effect {
 	
 	private final double lifesteal;
 	
-	private final Nature nature;
+	private final DamageType nature;
 	
 	private final int rate;
 	
@@ -31,7 +31,7 @@ public abstract class AbstractEffect implements Effect {
 	 * @param rate
 	 * @param regen
 	 */
-	public AbstractEffect(Nature nature, int amount, int atk, int def, double lifesteal,
+	public AbstractEffect(DamageType nature, int amount, int atk, int def, double lifesteal,
 			int rate, int regen) {
 		super();
 		this.amount = amount;
@@ -82,7 +82,7 @@ public abstract class AbstractEffect implements Effect {
 		return this.amount;
 	}
 
-	public Nature getNature() {
+	public DamageType getNature() {
 		return nature;
 	}
 
