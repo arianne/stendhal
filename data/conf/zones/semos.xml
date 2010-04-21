@@ -171,13 +171,14 @@
 	     <attribute name="class">default</attribute>
 		</entity>
 		
-		<portal x="76" y="36" ref="wizardstower_entrance">
+<!--		<portal x="76" y="36" ref="wizardstower_entrance">
                 <destination zone="int_semos_wizards_tower_basement" ref="wizardstower_exit" />
                 <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
                 <parameter name="minimum-level">50</parameter>
                 <parameter name="rejected">You hear a far and mighty voice in your mind: "Stranger, i am Zekiel, the guardian. The floors of this tower are violent places and to dangerous for you."(Level 50)</parameter>
             </implementation>
         </portal>
+-->
 	</zone>
 	
     <!-- Interiors of the wizards tower -->
@@ -502,6 +503,36 @@
                 <destination zone="int_semos_wizards_tower_9" ref="portal_from_spire_1" />
                  <attribute name="hidden"/>
             </portal>
+	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+	<parameter name="x">9</parameter>
+	<parameter name="y">15</parameter>
+	<parameter name="image">wooden_door</parameter>
+	<parameter name="orientation">h</parameter>
+	</configurator>
+	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+	<parameter name="x">9</parameter>
+	<parameter name="y">31</parameter>
+	<parameter name="image">wooden_door</parameter>
+	<parameter name="orientation">h</parameter>
+	</configurator>
+	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+	<parameter name="x">33</parameter>
+	<parameter name="y">15</parameter>
+	<parameter name="image">wooden_door</parameter>
+	<parameter name="orientation">h</parameter>
+	</configurator>
+	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+	<parameter name="x">33</parameter>
+	<parameter name="y">31</parameter>
+	<parameter name="image">wooden_door</parameter>
+	<parameter name="orientation">h</parameter>
+	</configurator>
+	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+	<parameter name="x">21</parameter>
+	<parameter name="y">31</parameter>
+	<parameter name="image">wooden_door</parameter>
+	<parameter name="orientation">h</parameter>
+	</configurator>
     </zone>
 
      <!-- Interiors of the wizards tower -->
