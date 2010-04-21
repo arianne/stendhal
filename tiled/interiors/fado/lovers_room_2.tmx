@@ -103,10 +103,10 @@
  <tileset name="../../tileset/plant/vine.png" firstgid="529" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/vine.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="530" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="532" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="vegetable.png" firstgid="531" tilewidth="32" tileheight="32">
+ <tileset name="vegetable.png" firstgid="533" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -136,12 +136,12 @@
  </layer>
  <layer name="objects" width="25" height="25" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUDDYSZBtoFlIGh7v5RMApGwSgYBQMDZGlcf8DMp7U9AwUAsqzij8QJAAA=
+   H4sIAAAAAAAAAGNgGAUDDUSZBtoFlIGh7v5RMApGwSgYBQMD5Glcf8DMp7U9AwUApL6SnMQJAAA=
   </data>
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO1VQQ7AIAgze4L/f+xOJISUAg69uCZm6mgrGnQ+Y8wDTSB9PSdjxkNc/bWxFtn1RXxPbwWa6+0V20Or5emznL96MK+uPFguEVZ5mrsTt3h4tZzV7ag3pOl5dIHVA4plY6aJ/u0689+j16NyPyOdrEd13ac9rBeK7fBgb1H0Zlbuo1WtansBHRj6aMQJAAA=
+   H4sIAAAAAAAAAO1VQQ7AIAgze4P/f+tOJISUAg69uCZm6mgrGnQ+Y8wDTSB9PSdjxkNc/bWxFtn1RXxPbwWa6+0V20Or5emznL96MK+uPFguEVZ5mrsTt3h4tZzV7ag3pOl5dIHVA4plY6aJ/u0689+j16NyPyOdrEd13ac9rBeK7fBgb1H0Zlbuo1WtansBtn+5f8QJAAA=
   </data>
  </layer>
  <layer name="protection" width="25" height="25">

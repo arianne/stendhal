@@ -49,16 +49,16 @@
  <tileset name="../../tileset/plant/vine.png" firstgid="467" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/vine.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/furniture/light/flames.png" firstgid="468" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/furniture/light/flames.png" firstgid="470" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="474" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="476" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="481" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="483" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/logic/protection.png" firstgid="482" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/protection.png" firstgid="484" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="24" height="24">
@@ -78,22 +78,22 @@
  </layer>
  <layer name="3_roof" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGC4zMhAVYBuHiHzr2CRxyaGbB613UwOQHfjfkYIxqdmJIH1RPidGDXDFYyGzygYBaNgFAwcAAAP7JPJAAkAAA==
+   H4sIAAAAAAAAAGNgYGC4zMhAVYBuHiHzr2GRxyaGbB613UwOQHfjfkYIxqdmJIH1RPidGDXDFYyGzygYBaNgFAwcAABgeHTGAAkAAA==
   </data>
  </layer>
  <layer name="objects" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBia4B4jKiYWAAAqp7sOAAkAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBia4AEjKiYWAADfEANxAAkAAA==
   </data>
  </layer>
  <layer name="collision" width="24" height="24" opacity="0.47">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvIyMDwcJhgEEDnw8SQ5ZDFsOnBZz41ALHmo4thU4dL32BwP63NJ8ZOaoUPJWoHynx6hg8pYKSZT0v1xJSJo+bTznx6qCcVDFfzSYlHYvUBAOltoA8ACQAA
+   H4sIAAAAAAAAAHvMyMDweJhgEEDnw8SQ5ZDFsOnBZz41ALHmo4thU4dL32BwP63NJ8ZOaoUPJWoHynx6hg8pYKSZT0v1xJSJo+bTznx6qCcVDFfzSYlHYvUBAP2nBiwACQAA
   </data>
  </layer>
  <layer name="protection" width="24" height="24" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvEyMDwaBSP4lE8ikfxKB7Fo3gEYQBREcERAAkAAA==
+   H4sIAAAAAAAAAHvCyMDwZBSP4lE8ikfxKB7Fo3gEYQBq+FCSAAkAAA==
   </data>
  </layer>
 </map>

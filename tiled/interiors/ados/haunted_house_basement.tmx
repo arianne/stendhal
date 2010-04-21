@@ -40,10 +40,10 @@
  <tileset name="huge_animal.png" firstgid="112" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="stairs.png" firstgid="126" tilewidth="32" tileheight="32">
+ <tileset name="stairs.png" firstgid="125" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="blood/floor_stain.png" firstgid="130" tilewidth="32" tileheight="32">
+ <tileset name="blood/floor_stain.png" firstgid="129" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/floor_stain.png"/>
  </tileset>
  <layer name="0_floor" width="18" height="18">
@@ -53,12 +53,12 @@
  </layer>
  <layer name="1_terrain" width="18" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SNw6AMAyFYR+B3hfKSueEOTlvcCQGD8ReGLD0KdsvS85ERI3RCB1csCmd0HJnIf3MAR3H3nQiiAVJ4D4pZA+O39zY8f6OruP/gdTxN7LsU0ApqAI72vly54BVaefOALVRDzdUuzF7EAUAAA==
+   H4sIAAAAAAAAAO3SNw6AMAyFYR+B3hfKSueCuTlvcCQGD8ReGLD0KdsvS85ERI3RCB1csCmd0HJnIf3MAR3H3nQiiAVJ4D4pZA+O39zY8f6OruP/gdTxN7LsU0ApqAI72vly54BVaefOALVRDzcO98EIEAUAAA==
   </data>
  </layer>
  <layer name="2_object" width="18" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC6wBWI7ILan0BwHIHYEYidKHYQHuACxKw3NJwTcgNh9AO0fBQjgTKbcUAX8OMRhfkVOm01AXIfHHFxmDUUAAMN+IuMQBQAA
+   H4sIAAAAAAAAAGNgoC6wBWI7ILan0BwHIHYEYidKHYQHuACxKw3NJwTcgNh9AO0fBQjgTKbcUAX8OMRhfkVOm41AXIvHHFxmDUUAAK6pOlQQBQAA
   </data>
  </layer>
  <layer name="3_roof" width="18" height="18">

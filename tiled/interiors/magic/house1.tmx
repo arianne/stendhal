@@ -91,10 +91,10 @@
  <tileset name="huge animal" firstgid="149" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="163" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="162" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_wide.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="179" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="178" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_wide_details.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -104,7 +104,7 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3US04CQRSF4TvSREcoSlAUEgZEeYWoc6ImzjTuQNwAOlBXIBsBFOSlrpC/Q1cgTd+qruhJvgFw+4SiqkiJyK5DGqmEc3vYx6Yig5zn3IYscoU6GrgO3+uihz4+JD6X2I7pC3IeMvnEAEN8KX3vlr5oRhhjgqky0/Hom+EbP/hVZmzrjcbMZXGALcVhpK8ZPn+j9B0h71BQvt9tpK8k7rO3I8vzZ1tvUfQz5zp/Jk1Jljae8Czr+3GHe1n//ZIm6f7G5QVvK68fLH1nnt0XaCl9JzhF2bNT66ugiprj+VdZrNnkUekLsvpf4JO/7Ierz3YvDXF8bu5vcC+P/0kBc/W6SqxABgAA
+   H4sIAAAAAAAAAK3US04CQRSF4TvSREcoSlAUEgZEeYWoc6ImzjTuQNwAOlBXIAsBFOSl7pC/Q1cgTd+qruhJvgFw+4SiqkiJyK5DGqmEc3vYx6Yig5zn3IYscoU6GrgO3+uihz4+JD6X2I7pC3IeMvnEAEN8KX3vlr5oRhhjgqky0/Hom+EbP/hVZmzrjcbMZXGALcVhpK8ZPn+j9B0h71BQvt9tpK8k7rO3I8vzZ1tvUfQz5zp/Jk1Jljae8Czr+3GHe1n//ZIm6f7G5QVvK68fLH1nnt0XaCl9JzhF2bNT66ugiprj+VdZrNnkUekLsvpf4JO/7Ierz3YvDXF8bu5vcC+P/0kBczS2InJABgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
@@ -114,7 +114,7 @@
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNpgMxBvAeKtQLyNCuZtB+IdQLwTiHdRwTwQ2APEe0nUY0clu2HAHkq7UdlcEPCgsnm08jslwBOIvRhoE36EQBEQlwyAvQMFihkgfh4Fgx8AAMQSi/JABgAA
+   H4sIAAAAAAAAAGNgGNpgExBvBuItQLyVCuZtA+LtQLwDiHdSwTwQ2A3Ee0jUY0clu2HAHkq7UdlcEPCgsnm08jslwBOIvRhoE36EQBEQlwyAvQMFihkgfh4Fgx8AAF2EQWVABgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">

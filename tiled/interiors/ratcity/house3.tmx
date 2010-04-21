@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="17" height="12" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="17" height="12" tilewidth="32" tileheight="32">
  <tileset name="floor" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
@@ -21,39 +22,33 @@
  <tileset name="lamp" firstgid="50" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset name="warmer" firstgid="51" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/kitchen/warmer.png"/>
- </tileset>
- <tileset name="carpet" firstgid="53" tilewidth="32" tileheight="32">
+ <tileset name="carpet" firstgid="51" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
- <tileset name="sofa" firstgid="62" tilewidth="32" tileheight="32">
+ <tileset name="sofa" firstgid="60" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
- <tileset name="desk" firstgid="68" tilewidth="32" tileheight="32">
+ <tileset name="desk" firstgid="66" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/desk.png"/>
  </tileset>
- <tileset name="cabnets" firstgid="72" tilewidth="32" tileheight="32">
+ <tileset name="cabnets" firstgid="70" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="rat" firstgid="100" tilewidth="32" tileheight="32">
+ <tileset name="rat" firstgid="98" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/ratfolk.png"/>
  </tileset>
- <tileset name="stairs" firstgid="103" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="101" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
- <tileset name="plant" firstgid="107" tilewidth="32" tileheight="32">
+ <tileset name="plant" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
- <tileset name="bookshelf" firstgid="119" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/bright_bookshelf.png"/>
- </tileset>
- <tileset name="bed" firstgid="128" tilewidth="32" tileheight="32">
+ <tileset name="bed" firstgid="117" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/purple.png"/>
  </tileset>
  <layer name="0_floor" width="17" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNmYGBgHkHYFIjNkLA5GWZYALElEraisxkwP1hSYAa6/eSYYQ3ENliw7SCIZ1phAA1BQ/kwAwAA
+   H4sIAAAAAAAAAGNmYGBgHkHYGIhNkLApGWaYAbE5EragsxkwP5hTYAa6/eSYYQnEVliw9SCIZ1phANbbsscwAwAA
   </data>
  </layer>
  <layer name="1_terrain" width="17" height="12">
@@ -63,12 +58,12 @@
  </layer>
  <layer name="2_object" width="17" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB5IAOJAIE4E4gAoHUSiGXFAHALEoUg4DI/6LCxi8QTssANieyB2wKPGCI9cGRA7ArETEDtD+bQCDUDsAqXJBc1A7AalyQUtaDQ9AL44GCgAAO2dncYwAwAA
+   H4sIAAAAAAAAAGNgoB6IA2J/II4HYj8oHUCiGTFAHATEwUg4BI/6DCxisQTssAFiWyC2w6PGCI9cCRDbA7EDEDtC+bQCpUDsBKXJBRVA7AKlyQWVaDQ9AL44GCgAAHUnPeswAwAA
   </data>
  </layer>
  <layer name="3_roof" width="17" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFkgnwB/OIJWNHoUkA8AAyJnYzADAAA=
+   H4sIAAAAAAAAAGNgGFkglwB/OIIqNHoUkA8ACOYgUjADAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="17" height="12">
@@ -78,7 +73,7 @@
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJpAD4d4Gl1dMfRA6kA7gAoAV9yPAtIBAHqC8EcABAAA
+   H4sIAAAAAAAAAGNgGJpAD4d4Cl1dMfRA8kA7gAoAV9yPAtIBAG0+s4QABAAA
   </data>
  </layer>
  <layer name="collision" width="17" height="12" opacity="0.24">

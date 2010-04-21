@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="26" height="14" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="26" height="14" tilewidth="32" tileheight="32">
  <tileset name="floor" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
@@ -18,34 +19,31 @@
  <tileset name="collision" firstgid="49" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="lamp" firstgid="50" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/light/small_lamp.png"/>
- </tileset>
- <tileset name="rat" firstgid="51" tilewidth="32" tileheight="32">
+ <tileset name="rat" firstgid="50" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/ratfolk.png"/>
  </tileset>
- <tileset name="flowers on bench" firstgid="54" tilewidth="32" tileheight="32">
+ <tileset name="flowers on bench" firstgid="53" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/flowers_on_bench2.png"/>
  </tileset>
- <tileset name="bench flowers" firstgid="60" tilewidth="32" tileheight="32">
+ <tileset name="bench flowers" firstgid="59" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/flowers_on_benches.png"/>
  </tileset>
- <tileset name="collard pot" firstgid="70" tilewidth="32" tileheight="32">
+ <tileset name="collard pot" firstgid="69" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_sprout.png"/>
  </tileset>
- <tileset name="flower vase 1" firstgid="72" tilewidth="32" tileheight="32">
+ <tileset name="flower vase 1" firstgid="71" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset name="flower vase 2" firstgid="75" tilewidth="32" tileheight="32">
+ <tileset name="flower vase 2" firstgid="74" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png"/>
  </tileset>
- <tileset name="carpet" firstgid="77" tilewidth="32" tileheight="32">
+ <tileset name="carpet" firstgid="76" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/border.png"/>
  </tileset>
- <tileset name="vegtable" firstgid="89" tilewidth="32" tileheight="32">
+ <tileset name="vegtable" firstgid="88" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <tileset name="stairs" firstgid="100" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="99" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
  <layer name="0_floor" width="26" height="14">
@@ -55,12 +53,12 @@
  </layer>
  <layer name="1_terrain" width="26" height="14">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3NWQ6CMBSF4T4LyqC8KKOuR0Ur0BWw/yVwSNqkNIYOSXniJl9oyk3/EyEk8CyCI6RQeHKGkHduMBKzofCGn+H9VemYNsS0/F3hI/2TW7Ydql9ZjGjZdr6WnW7vbNrpLTuDY0dtPYHx8/x9/Wm4dkSLKW+t3cudC+QOSqigXtnJeCeGg6MG7vDQ7CUwAWWoKxSwBQAA
+   H4sIAAAAAAAAAO3NWQ6CMBSF4T4LyqC8KKNuR0Ur0BWw/y1wSNqkNIYOSXniJl9oyk3/EyEk8CyCI6RQeHKGkHduMBKzofCGn+H9VemYNsS0/F3hI/2TW7Ydql9ZjGjZdr6WnW7vbNrpLTuDY0dtPYHx8/x9/Wm4dkSLKW+t3cudC+QOSqigXtnJeCeGg6MG7vDQ7CUwAcqmx6ywBQAA
   </data>
  </layer>
  <layer name="2_object" width="26" height="14">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANWTCQrAIAwEfVVvRErpZf//nq6QQAihF5bShUEQZTwS575JAUpQgY54IzVoQAs8CGAGC1jV2k0gs9L6+aKzJyzHWdilY7k9cdchXTrWmfk+8aHH2heN+eQImT36Lx05fGaPFa63tz3Jkd4uZx2MhOxT/p+cdT0Rsk8H4qhP5agdV/v0j9kBbL5fZ7AFAAA=
+   H4sIAAAAAAAAANWTCQrAIAwE/VRvRErpZf//n66QQAihF5bShUEQZTwS575JAUpQgY54IzVoQAs8CGAGC1jV2k0gs9L6+aKzJyzHWdilY7k9cdchXTrWmfk+8aHH2heN+eQImT36Lx05fGaPFa63tz3Jkd4uZx2MhOxT/p+cdT0Rsk8H4qhP5agdV/v0j9kBf5Jjz7AFAAA=
   </data>
  </layer>
  <layer name="3_roof" width="26" height="14">
@@ -75,7 +73,7 @@
  </layer>
  <layer name="objects" width="26" height="14">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJ5Ab6AdMAqoCowH2gEjDCRD8UgHg60cAQBf+k9bsAUAAA==
+   H4sIAAAAAAAAAGNgGJ5Ab6AdMAqoCowG2gEjDCRB8UgHg60cAQBLpamWsAUAAA==
   </data>
  </layer>
  <layer name="collision" width="26" height="14" visible="0" opacity="0.52">

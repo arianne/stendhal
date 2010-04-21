@@ -40,14 +40,8 @@
  <tileset name="logs" firstgid="69" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>
  </tileset>
- <tileset name="huge animals" firstgid="72" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/huge_animal.png"/>
- </tileset>
- <tileset name="webs" firstgid="86" tilewidth="32" tileheight="32">
+ <tileset name="webs" firstgid="72" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/webs.png"/>
- </tileset>
- <tileset name="animals" firstgid="92" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
@@ -61,12 +55,12 @@
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA2MgNgYiE3wqMEGIoDYAogt0cRNgdgMiM1JNG8kAsdBbt4oGFzAbYSZRwlwHuTmDSUAADkhDKVABgAA
+   H4sIAAAAAAAAAGNgwA2MgNgYiE3wqMEGvIDYAogt0cRNgdgMiM1JNG8kAsdBbt4oGFzAbYSZRwlwHuTmDSUAAFqIbjBABgAA
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoD6IAOJIKpoXBcTRVDSPFsBxoB0wCkbBMAXOA+2AUYATAAD/bDaqQAYAAA==
+   H4sIAAAAAAAAAGNgoD7wAmJvKprnA8S+VDSPFsBxoB0wCkbBMAXOA+2AUYATAAC1xAwEQAYAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">

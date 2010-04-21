@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="18" height="16" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="18" height="16" tilewidth="32" tileheight="32">
  <tileset name="floor" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
@@ -21,22 +22,13 @@
  <tileset name="lamp" firstgid="50" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset name="sofa" firstgid="51" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/chair/sofa.png"/>
- </tileset>
- <tileset name="desk" firstgid="57" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/desk.png"/>
- </tileset>
- <tileset name="rat" firstgid="61" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/ratfolk.png"/>
- </tileset>
- <tileset name="carpet" firstgid="64" tilewidth="32" tileheight="32">
+ <tileset name="carpet" firstgid="51" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/orange.png"/>
  </tileset>
- <tileset name="bookshelf" firstgid="73" tilewidth="32" tileheight="32">
+ <tileset name="bookshelf" firstgid="60" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf.png"/>
  </tileset>
- <tileset name="stairs" firstgid="82" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="69" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
  <layer name="0_floor" width="18" height="16">
@@ -46,17 +38,17 @@
  </layer>
  <layer name="1_terrain" width="18" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3MOQ6AMAxEUdfsa8O+XASBQNz/REyRAqGJJUKLpdfYyY9ExP8ohhAyaB3lEJhOLe5TKZ0FVvKH7bXOBjvpsP3f+TvPzgEn6bC91nkz904BjUUHPQyWe2k6CXiKESaYlTcpXMDLyp+ABAAA
+   H4sIAAAAAAAAAO3MOQ6AMAxEUdfsa8O+HAGBQNz/XkyRAqGJJUKLpdfYyY9ExP8ohhAyaB3lEJhOLe5TKZ0FVvKH7bXOBjvpsP3f+TvPzgEn6bC91nkz904BjUUHPQyWe2k6CXiKESaYlTcpXP65cKmABAAA
   </data>
  </layer>
  <layer name="2_object" width="18" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA08gdgLir2xiHtj04QF+ACxLxT7YRH3w6InBI1vBMT+QBwAxYFQMQYk8UAi3TOQAJtb0f2FT+1gBaP+Ghh/GREpNlgBAEmVHWCABAAA
+   H4sIAAAAAAAAAGNgwA1sgNgWiu2wiNth04QF2AOxAxQ7YhF3xNDBwOCOxjcCYicgdoZiF6gYA5K4C5HuGUiAza3o/sKndrCCUX8NjL+MiBQbrAAAP3ck6oAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="18" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGN7AE4i9gNgbixgucWQxGPABYl8g9sMihkscWYzaYNRfQ8tfowA7AAAoMGC9gAQAAA==
+   H4sIAAAAAAAAAGNgGN7ABohtgdgOixgucWQxGLAHYgcgdsQihkscWYzaYNRfQ8tfowA7AABS97EkgAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="18" height="16">
