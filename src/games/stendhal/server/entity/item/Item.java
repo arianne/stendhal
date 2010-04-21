@@ -14,7 +14,7 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
@@ -58,9 +58,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	private PassiveEntityRespawnPoint plantGrower;
 
 	/** The damage type of weapons */
-	private DamageType damageType = DamageType.CUT;
+	private Nature damageType = Nature.CUT;
 	
-	private Map<DamageType, Double> susceptibilities;
+	private Map<Nature, Double> susceptibilities;
 	
 	/**
 	 * 
@@ -434,7 +434,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * 
 	 * @return type of damage
 	 */
-	public DamageType getDamageType() {
+	public Nature getDamageType() {
 		return damageType;
 	}
 	
@@ -443,7 +443,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * 
 	 * @param type type of damage
 	 */
-	public void setDamageType(DamageType type) {
+	public void setDamageType(Nature type) {
 		damageType = type;
 	}
 	
@@ -454,7 +454,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param type type of damage to be checked
 	 * @return susceptibility to damage of type <code>type</code>
 	 */
-	public double getSusceptibility(DamageType type) {
+	public double getSusceptibility(Nature type) {
 		double value = 1.0;
 		if (susceptibilities != null) {
 			Double sus = susceptibilities.get(type);
@@ -471,7 +471,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * 
 	 * @param susceptibilities susceptibilities to be used
 	 */
-	public void setSusceptibilities(Map<DamageType, Double> susceptibilities) {
+	public void setSusceptibilities(Map<Nature, Double> susceptibilities) {
 		this.susceptibilities = susceptibilities;
 	}
 
@@ -543,7 +543,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			stats.append("ATK: ");
 			stats.append(get("atk"));
 			// Show only special types
-			if (getDamageType() != DamageType.CUT) {
+			if (getDamageType() != Nature.CUT) {
 				stats.append(" [");
 				stats.append(getDamageType());
 				stats.append("]");
@@ -570,7 +570,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			stats.append(get("lifesteal"));
 		}
 		if ((susceptibilities != null) && !susceptibilities.isEmpty()) {
-			for (Entry<DamageType, Double> entry : susceptibilities.entrySet()) {
+			for (Entry<Nature, Double> entry : susceptibilities.entrySet()) {
 				stats.append(" ");
 				stats.append(entry.getKey());
 				stats.append(": ");

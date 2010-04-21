@@ -25,7 +25,7 @@ import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
@@ -1932,17 +1932,17 @@ public class Player extends RPEntity {
 	}
 	
 	@Override
-	public DamageType getDamageType() {
+	public Nature getDamageType() {
 		Item weapon = getWeapon();
 		if (weapon != null) {
 			return weapon.getDamageType();
 		}
 		
-		return DamageType.CUT;
+		return Nature.CUT;
 	}
 	
 	@Override
-	protected double getSusceptibility(DamageType type) {
+	protected double getSusceptibility(Nature type) {
 		double sus = 1.0;
 		/*
 		 * check weapon and shield separately, so that holding

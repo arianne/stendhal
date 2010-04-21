@@ -1,6 +1,6 @@
 package games.stendhal.server.core.config;
 
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
@@ -88,10 +88,10 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	private boolean abilities;
 
 	/** Susceptibilities of a creature */
-	private EnumMap<DamageType, Double> susceptibilities;
+	private EnumMap<Nature, Double> susceptibilities;
 	
 	/** Type of the damage caused by the creature */
-	private DamageType damageType;
+	private Nature damageType;
 
 	CreaturesXMLLoader() {
 		// hide constructor, use the CreatureGroupsXMLLoader instead
@@ -144,8 +144,8 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			creatureSays = new LinkedHashMap<String, LinkedList<String>>();
 			aiProfiles = new LinkedHashMap<String, String>();
 			description = null;
-			damageType = DamageType.CUT;
-			susceptibilities = new EnumMap<DamageType, Double>(DamageType.class);
+			damageType = Nature.CUT;
+			susceptibilities = new EnumMap<Nature, Double>(Nature.class);
 		} else if (qName.equals("type")) {
 			clazz = attrs.getValue("class");
 			subclass = attrs.getValue("subclass");
@@ -271,9 +271,9 @@ public class CreaturesXMLLoader extends DefaultHandler {
 		} else if (qName.equals("abilities")) {
 			abilities = true;
 		} else if (abilities && qName.equals("damage")) {
-			damageType = DamageType.parse(attrs.getValue("type"));
+			damageType = Nature.parse(attrs.getValue("type"));
 		} else if (abilities && qName.equals("susceptibility")) {
-			DamageType type = DamageType.parse(attrs.getValue("type"));
+			Nature type = Nature.parse(attrs.getValue("type"));
 			Double value = Double.valueOf(attrs.getValue("value"));
 			susceptibilities.put(type, value);
 		}

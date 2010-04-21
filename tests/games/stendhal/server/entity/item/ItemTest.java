@@ -10,7 +10,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -120,7 +120,7 @@ public class ItemTest {
 
 		assertThat(item.describe(), equalTo("Description. It is a special quest reward for hero, and cannot be used by others. It requires level 1 to be used to the full benefit. Stats are (ATK: 2 DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7)."));
 		
-		item.setDamageType(DamageType.FIRE);
+		item.setDamageType(Nature.FIRE);
 		assertThat(item.describe(), equalTo("Description. It is a special quest reward for hero, and cannot be used by others. It requires level 1 to be used to the full benefit. Stats are (ATK: 2 [FIRE] DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7)."));
 	}
 	
@@ -213,15 +213,15 @@ public class ItemTest {
 		Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
 		// Default to cut
-		assertEquals(DamageType.CUT, mo.getDamageType());
-		mo.setDamageType(DamageType.ICE);
-		assertEquals(DamageType.ICE, mo.getDamageType());
-		mo.setDamageType(DamageType.FIRE);
-		assertEquals(DamageType.FIRE, mo.getDamageType());
+		assertEquals(Nature.CUT, mo.getDamageType());
+		mo.setDamageType(Nature.ICE);
+		assertEquals(Nature.ICE, mo.getDamageType());
+		mo.setDamageType(Nature.FIRE);
+		assertEquals(Nature.FIRE, mo.getDamageType());
 		
 		// Check that damage type gets copied
 		Item copy = new Item(mo);
-		assertEquals("Damage type should be copied", DamageType.FIRE, copy.getDamageType());
+		assertEquals("Damage type should be copied", Nature.FIRE, copy.getDamageType());
 	}
 	
 	/**
@@ -231,14 +231,14 @@ public class ItemTest {
 	public void testGetSusceptibility() {
 		Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
-		for (DamageType type : DamageType.values()) {
+		for (Nature type : Nature.values()) {
 			assertThat("Default susceptibility", mo.getSusceptibility(type), closeTo(1.0, 0.00001));
 		}
-		HashMap<DamageType, Double> sus = new HashMap<DamageType, Double>();
+		HashMap<Nature, Double> sus = new HashMap<Nature, Double>();
 		mo.setSusceptibilities(sus);
-		for (DamageType type : DamageType.values()) {
+		for (Nature type : Nature.values()) {
 			sus.put(type, 0.42);
-			for (DamageType type2 : DamageType.values()) {
+			for (Nature type2 : Nature.values()) {
 				double expected = 1.0;
 				if (type == type2) {
 					expected = 0.42;

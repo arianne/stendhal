@@ -17,7 +17,7 @@ import games.stendhal.common.Constants;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -831,7 +831,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param type Type of the damage
 	 * @return damage multiplier
 	 */
-	protected double getSusceptibility(DamageType type) {
+	protected double getSusceptibility(Nature type) {
 		return 1.0;
 	}
 	
@@ -840,8 +840,8 @@ public abstract class RPEntity extends GuidedEntity {
 	 * 
 	 * @return type of damage
 	 */
-	protected DamageType getDamageType() {
-		return DamageType.CUT;
+	protected Nature getDamageType() {
+		return Nature.CUT;
 	}
 
 	/***************************************************************************

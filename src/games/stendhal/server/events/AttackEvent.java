@@ -1,6 +1,6 @@
 package games.stendhal.server.events;
 
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.Events;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
@@ -31,7 +31,7 @@ public class AttackEvent extends RPEvent {
 	 * @param damage damage done
 	 * @param type damage type of the attack
 	 */
-	public AttackEvent(boolean canHit, int damage, DamageType type) {
+	public AttackEvent(boolean canHit, int damage, Nature type) {
 		super(Events.ATTACK);
 		if (canHit) {
 			put(HIT_ATTR, "");

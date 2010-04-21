@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.spell;
 
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
@@ -153,7 +153,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 */
 	public Spell(final RPObject object) {
 		super(object);
-		setNature(DamageType.parse(object.get(ATTR_NATURE)));
+		setNature(Nature.parse(object.get(ATTR_NATURE)));
 		setRPClass(RPCLASS_SPELL);
 	}
 	
@@ -174,7 +174,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * @param rate the frequency of the effect of this spell
 	 * @param regen the amount to regen with each effect turn
 	 */
-	public Spell(	final String name, final DamageType nature, final int amount, final int atk, final int cooldown,
+	public Spell(	final String name, final Nature nature, final int amount, final int atk, final int cooldown,
 					final int def, final double lifesteal, final int mana, final int minimumlevel,
 					final int range, final int rate, final int regen) {
 		setRPClass(RPCLASS_SPELL);
@@ -352,12 +352,12 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		put(ATTR_TIMESTAMP, Long.toString(time));
 	}
 
-	public void setNature(DamageType nature) {
+	public void setNature(Nature nature) {
 		put(ATTR_NATURE, nature.name());
 	}
 
-	public DamageType getNature() {
-		return DamageType.parse(get(ATTR_NATURE));
+	public Nature getNature() {
+		return Nature.parse(get(ATTR_NATURE));
 	}
 	
 }

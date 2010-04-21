@@ -21,7 +21,7 @@ import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -89,7 +89,7 @@ public abstract class RPEntity extends ActiveEntity {
 			"slap-1", "arrow-1" };
 	*/
 	
-	private DamageType showBladeStrike;
+	private Nature showBladeStrike;
 
 	public enum Resolution {
 		HIT,
@@ -424,7 +424,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 * 
 	 * @return type of damage, or <code>null</code> if the entity is not striking
 	 */
-	public DamageType getShownDamageType() {
+	public Nature getShownDamageType() {
 		return showBladeStrike;
 	}
 
@@ -470,17 +470,17 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// When this entity's attack is blocked by the adversary
-	public void onAttackBlocked(final DamageType type) {
+	public void onAttackBlocked(final Nature type) {
 		showBladeStrike = type;
 	}
 
 	// When this entity causes damaged to adversary, with damage amount
-	public void onAttackDamage(final DamageType type) {
+	public void onAttackDamage(final Nature type) {
 		showBladeStrike = type;
 	}
 
 	// When this entity's attack is missing the adversary
-	public void onAttackMissed(final DamageType type) {
+	public void onAttackMissed(final Nature type) {
 		showBladeStrike = type;
 	}
 

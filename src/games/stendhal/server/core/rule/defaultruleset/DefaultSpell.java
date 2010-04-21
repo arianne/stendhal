@@ -1,6 +1,6 @@
 package games.stendhal.server.core.rule.defaultruleset;
 
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
 import games.stendhal.server.core.rule.defaultruleset.creator.FullSpellCreator;
@@ -24,7 +24,7 @@ public class DefaultSpell {
 	
 	private String name;
 	
-	private DamageType nature;
+	private Nature nature;
 	
 	private Class<?> implementationClass;
 	
@@ -66,7 +66,7 @@ public class DefaultSpell {
 		try {
 			Constructor< ? > construct;
 			construct = implementation.getConstructor(new Class[] {
-					String.class, DamageType.class, int.class, int.class, int.class,
+					String.class, Nature.class, int.class, int.class, int.class,
 					int.class, double.class, int.class, int.class,
 					int.class, int.class, int.class});
 
@@ -248,13 +248,13 @@ public class DefaultSpell {
 	 * @param the spell's nature
 	 */
 	public void setNature(String nature) {
-		this.nature = DamageType.parse(nature);
+		this.nature = Nature.parse(nature);
 	}
 
 	/**
 	 * @return the spell's nature
 	 */
-	public DamageType getNature() {
+	public Nature getNature() {
 		return nature;
 	}
 

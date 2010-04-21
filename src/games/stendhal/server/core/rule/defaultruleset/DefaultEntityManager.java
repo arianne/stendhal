@@ -14,16 +14,19 @@ package games.stendhal.server.core.rule.defaultruleset;
 
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.config.ItemGroupsXMLLoader;
+import games.stendhal.server.core.config.SpellGroupsXMLLoader;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.WordList;
+import games.stendhal.server.entity.spell.Spell;
 
 import java.net.URI;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 

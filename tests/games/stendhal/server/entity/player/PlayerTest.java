@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import games.stendhal.common.KeyedSlotUtil;
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
@@ -354,17 +354,17 @@ public class PlayerTest {
 	@Test
 	public void testGetDamageType() {
 		Player player = PlayerTestHelper.createPlayer("don Quijote");
-		assertThat("Default damage type", player.getDamageType(), is(DamageType.CUT));
+		assertThat("Default damage type", player.getDamageType(), is(Nature.CUT));
 		Item item = new Item("torch", "junk", "subclass",
 				new HashMap<String, String>());
 		player.equip("rhand", item);
-		for (DamageType type : DamageType.values()) {
+		for (Nature type : Nature.values()) {
 			item.setDamageType(type);
-			assertThat("Non weapon items should not change the damage type", player.getDamageType(), is(DamageType.CUT));
+			assertThat("Non weapon items should not change the damage type", player.getDamageType(), is(Nature.CUT));
 		}
 		// turn the item in to a weapon
 		item.put("class", "club");
-		for (DamageType type : DamageType.values()) {
+		for (Nature type : Nature.values()) {
 			item.setDamageType(type);
 			assertThat("Damage type should be got from the weapon", player.getDamageType(), is(type));
 		}
@@ -376,19 +376,19 @@ public class PlayerTest {
 	@Test
 	public void testGetSusceptibility() {
 		Player player = PlayerTestHelper.createPlayer("test dummy");
-		for (DamageType type : DamageType.values()) {
+		for (Nature type : Nature.values()) {
 			assertThat("Default susceptibility", player.getSusceptibility(type), closeTo(1.0, 0.00001));
 		}
 		
 		Item armor = new Item("rainbow armor", "armor", "subclass",
 				new HashMap<String, String>());
 		player.equip("armor", armor);
-		HashMap<DamageType, Double> armorMap = new HashMap<DamageType, Double>();
+		HashMap<Nature, Double> armorMap = new HashMap<Nature, Double>();
 		armor.setSusceptibilities(armorMap);
 		
-		for (DamageType type : DamageType.values()) {
+		for (Nature type : Nature.values()) {
 			armorMap.put(type, 0.42);
-			for (DamageType type2 : DamageType.values()) { 
+			for (Nature type2 : Nature.values()) { 
 				if (type == type2) {
 					assertThat(player.getSusceptibility(type2), closeTo(0.42, 0.00001));
 				} else {
@@ -401,16 +401,16 @@ public class PlayerTest {
 		Item legs = new Item("rainbow legs", "legs", "subclass",
 				new HashMap<String, String>());
 		player.equip("legs", legs);
-		HashMap<DamageType, Double> legsMap = new HashMap<DamageType, Double>();
+		HashMap<Nature, Double> legsMap = new HashMap<Nature, Double>();
 		legs.setSusceptibilities(legsMap);
-		legsMap.put(DamageType.ICE, 0.5);
+		legsMap.put(Nature.ICE, 0.5);
 		
-		for (DamageType type : DamageType.values()) {
+		for (Nature type : Nature.values()) {
 			armorMap.put(type, 0.42);
-			for (DamageType type2 : DamageType.values()) {
+			for (Nature type2 : Nature.values()) {
 				double expected;
 				double ice = 1.0;
-				if (type2 == DamageType.ICE) {
+				if (type2 == Nature.ICE) {
 					// Ice effect if we are checking ice resistance
 					ice = 0.5;
 				}

@@ -3,7 +3,7 @@ package games.stendhal.client.events;
 import org.apache.log4j.Logger;
 
 import games.stendhal.client.entity.RPEntity;
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 
 /**
  * Client side attack event
@@ -13,13 +13,13 @@ public class AttackEvent extends Event<RPEntity> {
 	
 	@Override
 	public void execute() {
-		DamageType dtype;
+		Nature dtype;
 		int idx = event.getInt("type");
 		try {
-			dtype = DamageType.values()[idx];
+			dtype = Nature.values()[idx];
 		} catch (ArrayIndexOutOfBoundsException exc) {
 			logger.warn("Unknown damage type: " + idx);
-			dtype = DamageType.CUT;
+			dtype = Nature.CUT;
 		}
 		
 		RPEntity target = entity.getAttackTarget();

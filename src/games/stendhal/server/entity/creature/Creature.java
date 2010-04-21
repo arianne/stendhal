@@ -14,7 +14,7 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -126,10 +126,10 @@ public class Creature extends NPC {
 	private boolean isIdle;
 	
 	/** The type of the damage this creature does */
-	private DamageType damageType = DamageType.CUT;
+	private Nature damageType = Nature.CUT;
 	
 	/** Susceptibilities to various damage types this creature has */
-	private Map<DamageType, Double> susceptibilities;
+	private Map<Nature, Double> susceptibilities;
 
 	public Creature(final RPObject object) {
 		super(object);
@@ -145,7 +145,7 @@ public class Creature extends NPC {
 		dropItemInstances = new ArrayList<Item>();
 		setAiProfiles(new HashMap<String, String>());
 		
-		susceptibilities = new EnumMap<DamageType, Double>(DamageType.class);
+		susceptibilities = new EnumMap<Nature, Double>(Nature.class);
 	}
 
 	public Creature(final Creature copy) {
@@ -212,7 +212,7 @@ public class Creature extends NPC {
 		dropItemInstances = new ArrayList<Item>();
 		setAiProfiles(new HashMap<String, String>());
 		
-		susceptibilities = new EnumMap<DamageType, Double>(DamageType.class);
+		susceptibilities = new EnumMap<Nature, Double>(Nature.class);
 	}
 
 	/**
@@ -800,12 +800,12 @@ public class Creature extends NPC {
 	 * copied.
 	 * @param susceptibilities The susceptibilities of the creature
 	 */
-	public void setSusceptibilities(Map<DamageType, Double> susceptibilities) {
+	public void setSusceptibilities(Map<Nature, Double> susceptibilities) {
 		this.susceptibilities = susceptibilities;
 	}
 	
 	@Override
-	protected double getSusceptibility(DamageType type) {
+	protected double getSusceptibility(Nature type) {
 		Double d = susceptibilities.get(type);
 		
 		if (d != null) {
@@ -816,11 +816,11 @@ public class Creature extends NPC {
 	}
 	
 	@Override
-	protected DamageType getDamageType() {
+	protected Nature getDamageType() {
 		return damageType;
 	}
 	
-	public void setDamageType(DamageType type) {
+	public void setDamageType(Nature type) {
 		damageType = type;
 	}
 }

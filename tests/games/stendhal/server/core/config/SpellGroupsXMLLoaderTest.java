@@ -1,7 +1,7 @@
 package games.stendhal.server.core.config;
 
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
-import games.stendhal.server.entity.spell.Nature;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,7 +13,6 @@ import org.xml.sax.SAXException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-
 import static org.junit.Assert.assertThat;
 
 public class SpellGroupsXMLLoaderTest {

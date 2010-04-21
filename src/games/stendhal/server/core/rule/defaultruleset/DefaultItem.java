@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.rule.defaultruleset;
 
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
 import games.stendhal.server.core.rule.defaultruleset.creator.AttributesItemCreator;
 import games.stendhal.server.core.rule.defaultruleset.creator.DefaultItemCreator;
@@ -64,9 +64,9 @@ public class DefaultItem {
 
 	private int value;
 	
-	private DamageType damageType;
+	private Nature damageType;
 	
-	private Map<DamageType, Double> susceptibilities;
+	private Map<Nature, Double> susceptibilities;
 
 	public DefaultItem(final String clazz, final String subclazz, final String name, final int tileid) {
 		this.clazz = clazz;
@@ -108,7 +108,7 @@ public class DefaultItem {
 	}
 	
 	public void setDamageType(String type) {
-		damageType = DamageType.parse(type);
+		damageType = Nature.parse(type);
 	}
 	
 	/**
@@ -120,10 +120,10 @@ public class DefaultItem {
 	 * @param sus susceptibility mapping
 	 */
 	public void setSusceptibilities(Map<String, Double> sus) {
-		susceptibilities = new EnumMap<DamageType, Double>(DamageType.class);
+		susceptibilities = new EnumMap<Nature, Double>(Nature.class);
 		
 		for (Entry<String, Double> entry : sus.entrySet()) {
-			susceptibilities.put(DamageType.parse(entry.getKey()), entry.getValue());
+			susceptibilities.put(Nature.parse(entry.getKey()), entry.getValue());
 		}
 	}
 

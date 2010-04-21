@@ -20,7 +20,7 @@ import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.sprite.TextSprite;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
-import games.stendhal.common.constants.DamageType;
+import games.stendhal.common.constants.Nature;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -46,7 +46,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * strike sprites sorted by damage type. Those in turn are
 	 * retrievable by the attack direction.
 	 */
-	private static Map<DamageType, Map<Direction, Sprite[]>> bladeStrikeSprites;
+	private static Map<Nature, Map<Direction, Sprite[]>> bladeStrikeSprites;
 
 	private static Sprite eatingSprite;
 
@@ -98,10 +98,10 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		final int twidth = 3 * IGameScreen.SIZE_UNIT_PIXELS;
 		final int theight = 4 * IGameScreen.SIZE_UNIT_PIXELS;
 
-		bladeStrikeSprites = new EnumMap<DamageType, Map<Direction, Sprite[]>>(DamageType.class);
+		bladeStrikeSprites = new EnumMap<Nature, Map<Direction, Sprite[]>>(Nature.class);
 		
 		// Load all attack sprites
-		for (DamageType damageType : DamageType.values()) {
+		for (Nature damageType : Nature.values()) {
 			final Sprite tiles = st.getSprite("data/sprites/combat/blade_strike_" 
 					+ damageType.toString().toLowerCase(Locale.US) + ".png");
 
@@ -427,7 +427,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 					srect.height - 4);
 		}
 
-		DamageType damageType = rpentity.getShownDamageType();
+		Nature damageType = rpentity.getShownDamageType();
 		if (rpentity.isAttacking() && (damageType != null)) {
 			if (frameBladeStrike < 3) {
 				final Sprite sprite = bladeStrikeSprites.get(damageType).get(getState())[frameBladeStrike];
