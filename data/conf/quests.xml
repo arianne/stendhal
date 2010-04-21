@@ -192,25 +192,25 @@ State: EXPERIMENTAL to help me think about a quest system
 		<history>
 			<entry name="QUEST_REJECTED">I do not want to help Maerion.</entry>
 			<entry name="QUEST_ACCEPTED">I agreed to help Maerion.</entry>
-			<entry name="KILLED_DROW_1">I have killed dark elf captain in secret room.</entry>
-			<entry name="KILLED_DROW_2">I have killed dark elf general in secret room.</entry>
-			<entry name="KILLED_DROW_3">I have killed dark elf knight in secret room.</entry>
-			<entry name="KILLED_DROW_4">I have killed dark elf wizard in secret room.</entry>
-		    <entry name="KILLED_DROW_5">I have killed dark elf sacerdotist in secret room.</entry>
-			<entry name="KILLED_DROW_6">I have killed dark elf viceroy in secret room.</entry>
-			<entry name="KILLED_DROW_7">I have killed dark elf matronmother in secret room.</entry>
-			<entry name="KILLED_DROW_8">I have killed dark elf elite archer in secret room.</entry>
-			<entry name="KILLED_DROW_9">I have killed dark elf archer in secret room.</entry>
+			<entry name="KILLED_CREATURE_1">I have killed dark elf captain in secret room.</entry>
+			<entry name="KILLED_CREATURE_2">I have killed dark elf general in secret room.</entry>
+			<entry name="KILLED_CREATURE_3">I have killed dark elf knight in secret room.</entry>
+			<entry name="KILLED_CREATURE_4">I have killed dark elf wizard in secret room.</entry>
+		    <entry name="KILLED_CREATURE_5">I have killed dark elf sacerdotist in secret room.</entry>
+			<entry name="KILLED_CREATURE_6">I have killed dark elf viceroy in secret room.</entry>
+			<entry name="KILLED_CREATURE_7">I have killed dark elf matronmother in secret room.</entry>
+			<entry name="KILLED_CREATURE_8">I have killed dark elf elite archer in secret room.</entry>
+			<entry name="KILLED_CREATURE_9">I have killed dark elf archer in secret room.</entry>
 
-			<entry name="TO_KILL_DROW_1">I have not yet killed dark elf captain in secret room.</entry>
-			<entry name="TO_KILL_DROW_2">I have not yet killed dark elf general in secret room.</entry>
-			<entry name="TO_KILL_DROW_3">I have not yet killed dark elf knight in secret room.</entry>
-			<entry name="TO_KILL_DROW_4">I have not yet killed dark elf wizard in secret room.</entry>
-		    <entry name="TO_KILL_DROW_5">I have not yet killed dark elf sacerdotist in secret room.</entry>
-			<entry name="TO_KILL_DROW_6">I have not yet killed dark elf viceroy in secret room.</entry>
-			<entry name="TO_KILL_DROW_7">I have not yet killed dark elf matronmother in secret room.</entry>
-			<entry name="TO_KILL_DROW_8">I have not yet killed dark elf elite archer in secret room.</entry>
-			<entry name="TO_KILL_DROW_9">I have not yet killed dark elf archer in secret room.</entry>
+			<entry name="TO_KILL_CREATURE_1">I have not yet killed dark elf captain in secret room.</entry>
+			<entry name="TO_KILL_CREATURE_2">I have not yet killed dark elf general in secret room.</entry>
+			<entry name="TO_KILL_CREATURE_3">I have not yet killed dark elf knight in secret room.</entry>
+			<entry name="TO_KILL_CREATURE_4">I have not yet killed dark elf wizard in secret room.</entry>
+		    <entry name="TO_KILL_CREATURE_5">I have not yet killed dark elf sacerdotist in secret room.</entry>
+			<entry name="TO_KILL_CREATURE_6">I have not yet killed dark elf viceroy in secret room.</entry>
+			<entry name="TO_KILL_CREATURE_7">I have not yet killed dark elf matronmother in secret room.</entry>
+			<entry name="TO_KILL_CREATURE_8">I have not yet killed dark elf elite archer in secret room.</entry>
+			<entry name="TO_KILL_CREATURE_9">I have not yet killed dark elf archer in secret room.</entry>
 						
 			<entry name="KILLED_THING">I have killed thing.</entry>	
 			<entry name="TO_KILL_THING">I have not yet killed thing.</entry>									
