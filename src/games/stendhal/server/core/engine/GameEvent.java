@@ -17,7 +17,6 @@ public class GameEvent {
 	}
 
 	public void raise() {
-		GameEventQueue.add(this);
 		DBCommand command = new LogGameEventCommand(source, event, params);
 		DBCommandQueue.get().enqueue(command);
 	}
