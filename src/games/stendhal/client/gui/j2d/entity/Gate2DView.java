@@ -35,7 +35,6 @@ public class Gate2DView extends Entity2DView {
 			s = new Sprite[2];
 			s[0] = sprite.createRegion(0, 0, 96, 96, null);
 			s[1] = sprite.createRegion(0, 96, 96, 96, null);
-			System.err.println("Caching " + imageName);
 			sprites.put(imageName, s);
 		}
 		
