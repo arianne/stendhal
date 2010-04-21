@@ -10,6 +10,8 @@ import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -18,6 +20,10 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -29,27 +35,26 @@ import utilities.PlayerTestHelper;
 
 public class KillDarkElvesTest {
 	private static final String THING = "thing";
-
 	private static final String DARK_ELF_CAPTAIN = "dark elf captain";
-
 	private static final String DARK_ELF_ARCHER = "dark elf archer";
-
-	private static final String QUEST_SLOT = "kill_dark_elves";
 
 	private static SpeakerNPC npc;
 	private static Engine npcEngine;
-
+	private static final KillDarkElves quest = new KillDarkElves();
+	private static final String QUEST_SLOT = quest.getSlotName();
+	private final List<String> creatures=quest.creatures;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		PlayerTestHelper.generateNPCRPClasses();
-
+		new DatabaseFactory().initializeDatabase();
 		npc = new SpeakerNPC("maerion");
 		npcEngine = npc.getEngine();
 		SingletonRepository.getNPCList().add(npc);
-		final KillDarkElves quest = new KillDarkElves();
+		final StendhalRPZone zone = new StendhalRPZone("int_semos_guard_house");
+		final StendhalRPWorld world = MockStendlRPWorld.get();
+		world.addRPZone(zone);
 		quest.addToWorld();
-
-		MockStendlRPWorld.get();
 	}
 
 	@AfterClass
@@ -72,7 +77,7 @@ public class KillDarkElvesTest {
 	 */
 	@Test
 	public void testIdleToAttending() throws Exception {
-
+		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -85,6 +90,8 @@ public class KillDarkElvesTest {
 					playerSays,
 					"I have a problem with some dark elves. I used to be in league with them... now they are too strong. There is access to their lair from a #secret #room in this hall.",
 					getReply(npc));
+			questHistory.clear();
+			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
 
@@ -93,7 +100,7 @@ public class KillDarkElvesTest {
 	 */
 	@Test
 	public void testQuestOfferedToQuestOffered() throws Exception {
-
+		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : Arrays.asList("secret", "room", "secret xxxx", "secret room")) {
 
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -106,15 +113,17 @@ public class KillDarkElvesTest {
 					playerSays,
 					"It's that room downstairs with a grey roof and the evil face on the door. Inside you'll find what the dark elves were making, a mutant thing. Will you help?",
 					getReply(npc));
+			questHistory.clear();
+			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
 
 	/**
-	 * Tests for questStartedTOAttending.
+	 * Tests for questStartedToAttending.
 	 */
 	@Test
-	public void testQuestStartedTOAttending() throws Exception {
-
+	public void testQuestStartedToAttending() throws Exception {
+		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : Arrays.asList("secret", "room", "secret xxxx", "secret room")) {
 
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -127,6 +136,8 @@ public class KillDarkElvesTest {
 					playerSays,
 					"The room is below us. It has a grey roof and a evil face for a door. I need you to kill all the dark elves and bring me the amulet from the mutant thing.",
 					getReply(npc));
+			questHistory.clear();
+			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
 	
@@ -135,7 +146,7 @@ public class KillDarkElvesTest {
 	 */
 	@Test
 	public void testAttendingToAttending() throws Exception {
-
+		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 			bob.setQuest(QUEST_SLOT, "done");
@@ -143,7 +154,9 @@ public class KillDarkElvesTest {
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
 			assertEquals(playerSays, "Thanks for your help. I am relieved to have the amulet back.", getReply(npc));
-
+			questHistory.clear();
+			questHistory.add("DONE");
+			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
 	
@@ -152,8 +165,7 @@ public class KillDarkElvesTest {
 	 */
 	@Test
 	public void testQuestOfferedToAttendingNo() throws Exception {
-
-		
+		LinkedList<String> questHistory = new LinkedList<String>();		
 		final String[] triggers = { "no", "nothing" };
 		for (final String playerSays : triggers) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -169,6 +181,9 @@ public class KillDarkElvesTest {
 					getReply(npc));
 			assertThat(bob.getKarma(), lessThan(oldKarma));
 			assertThat(bob.getQuest(QUEST_SLOT), is("rejected"));
+			questHistory.clear();
+			questHistory.add("QUEST_REJECTED");
+			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
 	
@@ -180,8 +195,8 @@ public class KillDarkElvesTest {
 	 * Tests for idleToQuestStarted.
 	 */
 	@Test
-	public void testIdleToOldQuestStarted() throws Exception {
-
+	public void testOldQuestIdleToQuestStarted() throws Exception {
+		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 			bob.setQuest(QUEST_SLOT, "start");
@@ -192,7 +207,13 @@ public class KillDarkElvesTest {
 					playerSays,
 					"Don't you remember promising to sort out my dark elf problem? Kill every dark elf in the #secret room below - especially the snivelling dark elf captain and any evil dark elf archers you find! And bring me the amulet from the mutant thing.",
 					getReply(npc));
-
+			questHistory.clear();
+			questHistory.add("QUEST_ACCEPTED");
+			questHistory.add("TO_KILL_CREATURE_1");
+			questHistory.add("TO_KILL_CREATURE_9");
+			questHistory.add("TO_KILL_THING");
+			questHistory.add("HAVE_NO_ITEM");
+			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
 
@@ -200,8 +221,8 @@ public class KillDarkElvesTest {
 	 * Tests for attendingToQuestOffered.
 	 */
 	@Test
-	public void testAttendingToOldQuestOffered() throws Exception {
-
+	public void testOldQuestAttendingToQuestOffered() throws Exception {
+		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 			bob.setQuest(QUEST_SLOT, "start");
@@ -212,15 +233,22 @@ public class KillDarkElvesTest {
 					playerSays,
 					"I already asked you to kill every dark elf in the tunnel below the secret room. And bring me the amulet from the thing.",
 					getReply(npc));
-
+			questHistory.clear();
+			questHistory.add("QUEST_ACCEPTED");
+			questHistory.add("TO_KILL_CREATURE_1");
+			questHistory.add("TO_KILL_CREATURE_9");
+			questHistory.add("TO_KILL_THING");
+			questHistory.add("HAVE_NO_ITEM");
+			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
 
 	/**
-	 * Tests for attendingToAttendingOldQuestAllKilledNoRing.
+	 * Tests for attendingToAttendingAllKilledNoAmulet.
 	 */
 	@Test
-	public void testAttendingToAttendingOldQuestAllKilledNoRing() throws Exception {
+	public void testOldQuestAttendingToAttendingAllKilledNoAmulet() throws Exception {
+		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 
@@ -235,15 +263,23 @@ public class KillDarkElvesTest {
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUEST_STARTED));
 			assertEquals(playerSays, "What happened to the amulet? Remember I need it back!", getReply(npc));
-
+			questHistory.clear();
+			questHistory.add("QUEST_ACCEPTED");
+			questHistory.add("KILLED_CREATURE_1");
+			questHistory.add("KILLED_CREATURE_9");
+			questHistory.add("KILLED_THING");
+			questHistory.add("KILLED_ALL");			
+			questHistory.add("HAVE_NO_ITEM");			
+			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
 
 	/**
-	 * Tests for attendingToAttendingOldQuestAllKilledRing.
+	 * Tests for attendingToAttendingAllKilledHaveAmulet.
 	 */
 	@Test
-	public void testAttendingToAttendingOldQuestAllKilledRing() throws Exception {
+	public void testOldQuestAttendingToAttendingAllKilledHaveAmulet() throws Exception {
+		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 
@@ -262,7 +298,17 @@ public class KillDarkElvesTest {
 
 			final double karma = bob.getKarma();
 			final int xp = bob.getXP();
-
+			
+			questHistory.clear();
+			questHistory.add("QUEST_ACCEPTED");
+			questHistory.add("KILLED_CREATURE_1");
+			questHistory.add("KILLED_CREATURE_9");
+			questHistory.add("KILLED_THING");
+			questHistory.add("KILLED_ALL");			
+			questHistory.add("HAVE_ITEM");
+			questHistory.add("ALMOST_DONE");
+			assertEquals(questHistory, quest.getHistory(bob));
+			
 			npcEngine.setCurrentState(ConversationStates.IDLE);
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
@@ -275,7 +321,9 @@ public class KillDarkElvesTest {
 			assertThat(bob.getKarma(), greaterThan(karma));
 			assertThat(bob.getXP(), greaterThan(xp));
 			assertTrue(bob.isQuestCompleted(QUEST_SLOT));
-
+			questHistory.clear();
+			questHistory.add("DONE");			
+			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
 	
@@ -287,7 +335,7 @@ public class KillDarkElvesTest {
 	 */
 	@Test
 	public void testQuestOfferedToAttendingYes() throws Exception {
-
+		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 			final double oldKarma = bob.getKarma();
@@ -299,8 +347,145 @@ public class KillDarkElvesTest {
 					getReply(npc));
 			assertThat(bob.getKarma(), greaterThan(oldKarma));
 			assertThat(bob.getQuest(QUEST_SLOT), is("started"));
+			questHistory.clear();
+			questHistory.add("QUEST_ACCEPTED");
+			questHistory.add("TO_KILL_CREATURE_1");			
+			questHistory.add("TO_KILL_CREATURE_2");			
+			questHistory.add("TO_KILL_CREATURE_3");			
+			questHistory.add("TO_KILL_CREATURE_4");			
+			questHistory.add("TO_KILL_CREATURE_5");			
+			questHistory.add("TO_KILL_CREATURE_6");			
+			questHistory.add("TO_KILL_CREATURE_7");			
+			questHistory.add("TO_KILL_CREATURE_8");			
+			questHistory.add("TO_KILL_CREATURE_9");			
+			questHistory.add("HAVE_NO_ITEM");						
+			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
+	
+	/**
+	 * Tests for testAttendingToQuestOffered.
+	 */
+	@Test
+	public void testAttendingToQuestOffered() throws Exception {
+		LinkedList<String> questHistory = new LinkedList<String>();
+		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
+			bob.setQuest(QUEST_SLOT, "started");
+			npcEngine.setCurrentState(ConversationStates.ATTENDING);
+			npcEngine.step(bob, playerSays);
+			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
+			assertEquals(
+					playerSays,
+					"I already asked you to kill every dark elf in the tunnel below the secret room. And bring me the amulet from the thing.",
+					getReply(npc));
+			questHistory.clear();
+			questHistory.add("QUEST_ACCEPTED");
+			questHistory.add("TO_KILL_CREATURE_1");			
+			questHistory.add("TO_KILL_CREATURE_2");			
+			questHistory.add("TO_KILL_CREATURE_3");			
+			questHistory.add("TO_KILL_CREATURE_4");			
+			questHistory.add("TO_KILL_CREATURE_5");			
+			questHistory.add("TO_KILL_CREATURE_6");			
+			questHistory.add("TO_KILL_CREATURE_7");			
+			questHistory.add("TO_KILL_CREATURE_8");			
+			questHistory.add("TO_KILL_CREATURE_9");			
+			questHistory.add("HAVE_NO_ITEM");						
+			assertEquals(questHistory, quest.getHistory(bob));
+		}		
+	}
+	
+	/**
+	 * Tests for attendingToAttendingAllKilledNoAmulet.
+	 */
+	@Test
+	public void testAttendingToAttendingAllKilledNoAmulet() throws Exception {
+		LinkedList<String> questHistory = new LinkedList<String>();
+		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
 
+			StringBuilder sb=new StringBuilder("started");
+			for(int i=0;i<creatures.size();i++) {
+				sb.append(";"+creatures.get(i));
+			}
+			bob.setQuest(QUEST_SLOT, sb.toString());
 
+			npcEngine.setCurrentState(ConversationStates.IDLE);
+			npcEngine.step(bob, playerSays);
+			
+			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUEST_STARTED));
+			assertEquals(playerSays, "What happened to the amulet? Remember I need it back!", getReply(npc));
+			questHistory.clear();
+			questHistory.add("QUEST_ACCEPTED");
+			questHistory.add("KILLED_CREATURE_1");
+			questHistory.add("KILLED_CREATURE_2");
+			questHistory.add("KILLED_CREATURE_3");
+			questHistory.add("KILLED_CREATURE_4");
+			questHistory.add("KILLED_CREATURE_5");
+			questHistory.add("KILLED_CREATURE_6");
+			questHistory.add("KILLED_CREATURE_7");
+			questHistory.add("KILLED_CREATURE_8");
+			questHistory.add("KILLED_CREATURE_9");
+			questHistory.add("KILLED_ALL");			
+			questHistory.add("HAVE_NO_ITEM");			
+			assertEquals(questHistory, quest.getHistory(bob));
+		}
+	}	
+	
+	/**
+	 * Tests for attendingToAttendingAllKilledHaveAmulet.
+	 */
+	@Test
+	public void testAttendingToAttendingAllKilledHaveAmulet() throws Exception {
+		LinkedList<String> questHistory = new LinkedList<String>();
+		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
+
+			StringBuilder sb=new StringBuilder("started");
+			for(int i=0;i<creatures.size();i++) {
+				sb.append(";"+creatures.get(i));
+			}
+			bob.setQuest(QUEST_SLOT, sb.toString());
+
+			PlayerTestHelper.equipWithItem(bob, "amulet");
+
+			assertTrue(bob.isEquipped("amulet"));
+
+			final double karma = bob.getKarma();
+			final int xp = bob.getXP();
+			
+			questHistory.clear();
+			questHistory.add("QUEST_ACCEPTED");
+			questHistory.add("KILLED_CREATURE_1");
+			questHistory.add("KILLED_CREATURE_2");
+			questHistory.add("KILLED_CREATURE_3");
+			questHistory.add("KILLED_CREATURE_4");
+			questHistory.add("KILLED_CREATURE_5");
+			questHistory.add("KILLED_CREATURE_6");
+			questHistory.add("KILLED_CREATURE_7");
+			questHistory.add("KILLED_CREATURE_8");
+			questHistory.add("KILLED_CREATURE_9");
+			questHistory.add("KILLED_ALL");			
+			questHistory.add("HAVE_ITEM");
+			questHistory.add("ALMOST_DONE");			
+			assertEquals(questHistory, quest.getHistory(bob));
+			
+			npcEngine.setCurrentState(ConversationStates.IDLE);
+			npcEngine.step(bob, playerSays);
+			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
+			assertEquals(
+					playerSays,
+					"Many, many thanks. I am relieved to have that back. Here, take this ring. It can revive the powers of the dead.",
+					getReply(npc));
+			assertFalse(bob.isEquipped("amulet"));
+			assertTrue(bob.isEquipped("emerald ring"));
+			assertThat(bob.getKarma(), greaterThan(karma));
+			assertThat(bob.getXP(), greaterThan(xp));
+			assertTrue(bob.isQuestCompleted(QUEST_SLOT));
+			questHistory.clear();
+			questHistory.add("DONE");			
+			assertEquals(questHistory, quest.getHistory(bob));
+		}
+	}
+	
 }
