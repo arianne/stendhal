@@ -129,12 +129,58 @@ public class KillDarkElvesTest {
 					getReply(npc));
 		}
 	}
+	
+	/**
+	 * Tests for attendingToAttending.
+	 */
+	@Test
+	public void testAttendingToAttending() throws Exception {
 
+		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
+			bob.setQuest(QUEST_SLOT, "done");
+			npcEngine.setCurrentState(ConversationStates.ATTENDING);
+			npcEngine.step(bob, playerSays);
+			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
+			assertEquals(playerSays, "Thanks for your help. I am relieved to have the amulet back.", getReply(npc));
+
+		}
+	}
+	
+	/**
+	 * Tests for questOfferedToAttendingNo.
+	 */
+	@Test
+	public void testQuestOfferedToAttendingNo() throws Exception {
+
+		
+		final String[] triggers = { "no", "nothing" };
+		for (final String playerSays : triggers) {
+			final Player bob = PlayerTestHelper.createPlayer("bob");
+			final double oldKarma = bob.getKarma();
+
+			npcEngine.setCurrentState(ConversationStates.QUEST_OFFERED);
+
+			npcEngine.step(bob, playerSays);
+
+			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
+			assertEquals(playerSays,
+					"Then I fear for the safety of the Nalwor elves...",
+					getReply(npc));
+			assertThat(bob.getKarma(), lessThan(oldKarma));
+			assertThat(bob.getQuest(QUEST_SLOT), is("rejected"));
+		}
+	}
+	
+	
+	
+	// support for old-style quest testing
+	
 	/**
 	 * Tests for idleToQuestStarted.
 	 */
 	@Test
-	public void testIdleToQuestStarted() throws Exception {
+	public void testIdleToOldQuestStarted() throws Exception {
 
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -154,7 +200,7 @@ public class KillDarkElvesTest {
 	 * Tests for attendingToQuestOffered.
 	 */
 	@Test
-	public void testAttendingToQuestOffered() throws Exception {
+	public void testAttendingToOldQuestOffered() throws Exception {
 
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -171,27 +217,10 @@ public class KillDarkElvesTest {
 	}
 
 	/**
-	 * Tests for attendingToAttending.
+	 * Tests for attendingToAttendingOldQuestAllKilledNoRing.
 	 */
 	@Test
-	public void testAttendingToAttending() throws Exception {
-
-		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
-			final Player bob = PlayerTestHelper.createPlayer("bob");
-			bob.setQuest(QUEST_SLOT, "done");
-			npcEngine.setCurrentState(ConversationStates.ATTENDING);
-			npcEngine.step(bob, playerSays);
-			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
-			assertEquals(playerSays, "Thanks for your help. I am relieved to have the amulet back.", getReply(npc));
-
-		}
-	}
-
-	/**
-	 * Tests for attendingToAttendingallKilledNoRing.
-	 */
-	@Test
-	public void testAttendingToAttendingallKilledNoRing() throws Exception {
+	public void testAttendingToAttendingOldQuestAllKilledNoRing() throws Exception {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 
@@ -211,10 +240,10 @@ public class KillDarkElvesTest {
 	}
 
 	/**
-	 * Tests for attendingToAttendingallKilledRing.
+	 * Tests for attendingToAttendingOldQuestAllKilledRing.
 	 */
 	@Test
-	public void testAttendingToAttendingallKilledRing() throws Exception {
+	public void testAttendingToAttendingOldQuestAllKilledRing() throws Exception {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 
@@ -249,6 +278,9 @@ public class KillDarkElvesTest {
 
 		}
 	}
+	
+	
+	// support for new-style quest
 
 	/**
 	 * Tests for questOfferedToAttendingYes.
@@ -259,46 +291,16 @@ public class KillDarkElvesTest {
 		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 			final double oldKarma = bob.getKarma();
-
 			npcEngine.setCurrentState(ConversationStates.QUEST_OFFERED);
-
 			npcEngine.step(bob, playerSays);
-
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
 			assertEquals(playerSays,
 					"Good. Please kill every dark elf down there and get the amulet from the mutant thing.",
 					getReply(npc));
-
-			assertFalse(bob.hasKilled(DARK_ELF_ARCHER));
-			assertFalse(bob.hasKilled(DARK_ELF_CAPTAIN));
-			assertFalse(bob.hasKilled(THING));
 			assertThat(bob.getKarma(), greaterThan(oldKarma));
-			assertThat(bob.getQuest(QUEST_SLOT), is("start"));
+			assertThat(bob.getQuest(QUEST_SLOT), is("started"));
 		}
 	}
 
-	/**
-	 * Tests for questOfferedToAttendingNo.
-	 */
-	@Test
-	public void testQuestOfferedToAttendingNo() throws Exception {
 
-		
-		final String[] triggers = { "no", "nothing" };
-		for (final String playerSays : triggers) {
-			final Player bob = PlayerTestHelper.createPlayer("bob");
-			final double oldKarma = bob.getKarma();
-
-			npcEngine.setCurrentState(ConversationStates.QUEST_OFFERED);
-
-			npcEngine.step(bob, playerSays);
-
-			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
-			assertEquals(playerSays,
-					"Then I fear for the safety of the Nalwor elves...",
-					getReply(npc));
-			assertThat(bob.getKarma(), lessThan(oldKarma));
-			assertThat(bob.getQuest(QUEST_SLOT), is("rejected"));
-		}
-	}
 }
