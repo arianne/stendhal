@@ -2,21 +2,20 @@ Changelog
 ---------
 0.83
 *features*
-- rat city extended
+- Rat City extended
 - Find the Rat Children quest
 - some creatures have attack strategy choosing weakest opponent (e.g. dragons, military commanders, bosses)
-- signs can show an image instead of 'You read: ' text, or a description
 - Zynn Iwuhos has some maps on display in the library
 - Tab completion for online nick names works now without /who called before
 - orc spearman creature
 - /atlas /faq and /manual commands to open useful pages in browser
-- Harold tweets trades
+- Harold tweets trades, the official stendhal server uses http://twitter.com/stendhaltrade
 - magical damage types of weapons (fire, ice ...)
 - resistance/vulnerability of creatures to magical weapons (fire, ice, ...)
 - attack sweeps look different depending on the attack type
 - Haizen's maze has music near the exit
 - Plan a new route when a player following a path hits another entity
-- contextual mouse cursors
+- single click for most actions and contextual mouse cursors
 - sub-zone teleport restrictions
 
 *bugfixes*
@@ -24,20 +23,17 @@ Changelog
 - zero value offers supported at market
 - Monogenes easier to use
 - kill spiders and dark elves quests check you killed creatures from those relevant areas
+- recover automatically from corrupted cache files
 
 *code*
 - creatures xml split into smaller parts
-- sound split into standalone arilib module
 - attacks are now events
+- signs can show an image instead of 'You read: ' text, or a description
 
 *website*
 - new domain stendhalgame.org
 - rss feeds
 
-
-0.82.2
-*bugfixes*
-- recover automatically from corrupted cache files
 
 
 0.82.1
