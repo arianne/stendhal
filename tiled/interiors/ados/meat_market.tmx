@@ -23,13 +23,13 @@
   <image source="../../tileset/building/entrance/grey_centred.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="72" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_grey_dark.png"/>
- </tileset>
- <tileset name="Untitled" firstgid="88" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_fancy_horizontal.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="97" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="81" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrels_2.png"/>
+ </tileset>
+ <tileset name="wall/int_grey" firstgid="89" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
@@ -38,12 +38,12 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNgYGDwIhN7A7EPEMsAsSyJWB6Ig6H6VYCYC4oJAZg6dTT9MDkYiAbiGCiORdPPgEM/MogD4ngoTsAiT0g/ITCqH1M/IxH6YGqw6WclQj9MDS30cxKhnx2Lfg0g1sKBDXGIa0P1hwBxKB5sgUcuHIgBge2StQAEAAA=
+   H4sIAAAAAAAAAIthYGCIJxMnAHE6EMsAsSyJWB6ID0P1qwAxFxQTAjB16mj6YXIw4A3EPlDsi6afAYd+ZOAHxP5QHIBFnpB+QmBUP6Z+RiL0wdRg089KhH6YGlro5yRCPzsW/RpArIUDG+IQ14bqPwXEp/FgCzxy54AYAGXKOu8ABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJ4gGYmdOGCuGAWkgCQi1KTS0P4UItSk4ZFjJ0I/J5FuAQEDKG1Egh5kYA6lLfGoAQB+PT0AAAQAAA==
+   H4sIAAAAAAAAAGNgGJ4gGIkdOGCuGAWkgCAi1ITS0P4QItSE4ZFjJ0I/J5FuAQEDKG1Egh5kYA6lLfGoAQAd9eTRAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">

@@ -43,14 +43,11 @@
  <tileset name="sea_horse" firstgid="67" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
- <tileset name="int_grey_dark" firstgid="79" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_grey_dark.png"/>
- </tileset>
- <tileset name="Untitled" firstgid="95" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_grey_green.png"/>
- </tileset>
- <tileset name="grey door" firstgid="144" tilewidth="32" tileheight="32">
+ <tileset name="grey door" firstgid="79" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_centred.png"/>
+ </tileset>
+ <tileset name="wall/int_grey" firstgid="107" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">
@@ -59,12 +56,12 @@
  </layer>
  <layer name="1_terrain" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3OuwrCMBSA4axKaZ/ByzMouNS93uuttjq4ueugszq5+r7+Q4VQkpgILT3wLUl+TqZCiBmODuZYIMYSJwcrrHHGRfyeEEN4uOImtZ5F/51i6zKmtoe+ZFDRXt2MMSlhbxONP1qbxrS3jm0LbU0bYWRoO+iW8GffsvMVbWDZBlK7wRYPhbfmPMEOKTK8Cu75u6fibo8DPrinB0KwBAAA
+   H4sIAAAAAAAAAM3OuQ3CMBSAYbegKJmBYwaQaEIfoGIOIHQcWYaUYQIqVuDquEbhL4JkRbaxkRLlSV9j+9fzTAgxx8JBjCVWWGPjYIsEO6Ti94QYwkOGvdR6Fv13iq3LmNoe+pJBRXt1M8akhL1NNP5obRrT3jq2LbQ1bYSRoe2gW8KffcvOV7SBZRtI7QlnXBSmmvMrbrjjgWfBIX93VNy98MYHMzm7RrAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoBzYArEdHnlrILbBIecIxE5IfFUgVgNidRLMhwENINYEYi085o+CwQO0gVgHinVJ1KsHxPpQbEBldw1FwEpldeSCKVB6Ghl6ZwPxHCCei0cNAEvG7H2wBAAA
+   H4sIAAAAAAAAAGNgoBzYArEdHnlrILbBIecIxE5IfFUgVgNidRLMhwENINYEYi085o+CwQO0gVgHinVJ1KsHxPpQbEBldw1FwEpldeSCYCgdSobeKCCOBuIYPGoAUFRe8rAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="15" height="20">
