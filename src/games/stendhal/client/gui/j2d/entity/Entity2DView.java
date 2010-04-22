@@ -683,6 +683,17 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		onAction(ActionType.LOOK);
 	}
 
+
+	/**
+	 * Perform the default action unless it is not safe.
+	 *
+	 * @return <code>true</code> if the action was performed, <code>false</code> if nothing was done
+	 */
+	public boolean onHarmlessAction() {
+		onAction();
+		return true;
+	}
+
 	/**
 	 * Perform an action.
 	 * 

@@ -155,6 +155,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 
 		// for the clicked entity....
 		final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
 		if ((view != null) && view.isInteractive()) {
 			if (ui.isCtrlDown()) {
 				view.onAction();
@@ -162,10 +163,11 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			} else if (ui.isShiftDown()) {
 				view.onAction(ActionType.LOOK);
 				return true;
+			} else if (!doubleClick) {
+				return view.onHarmlessAction();
 			}
 		} else if (getWtPanelAt(p) == null) {
 			if (windowWasActiveOnMousePressed && !ui.isCtrlDown()) {
-				boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
 				if (!doubleClick) {
 					createAndSendMoveToAction(point, false);
 				}

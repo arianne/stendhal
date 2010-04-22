@@ -15,7 +15,7 @@ Changelog
 - attack sweeps look different depending on the attack type
 - Haizen's maze has music near the exit
 - Plan a new route when a player following a path hits another entity
-- single click for most actions and contextual mouse cursors
+- single click for most actions and contextual mouse cursors (use /clickmode if you prefer doubeclick)
 - sub-zone teleport restrictions
 
 *bugfixes*

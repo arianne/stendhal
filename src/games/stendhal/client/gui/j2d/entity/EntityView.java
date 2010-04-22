@@ -56,6 +56,13 @@ public interface EntityView {
 	public void onAction(ActionType at);
 
 	/**
+	 * Perform the default action unless it is not safe.
+	 *
+	 * @return <code>true</code> if the action was performed, <code>false</code> if nothing was done
+	 */
+	public boolean onHarmlessAction();
+
+	/**
 	 * Release any view resources. This view should not be used after this is
 	 * called.
 	 * @param gameScreen 

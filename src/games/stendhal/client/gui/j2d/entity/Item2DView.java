@@ -129,6 +129,11 @@ class Item2DView extends Entity2DView {
 		onAction(ActionType.USE);
 	}
 
+	@Override
+	public boolean onHarmlessAction() {
+		return false;
+	}
+
 	/**
 	 * Perform an action.
 	 * 

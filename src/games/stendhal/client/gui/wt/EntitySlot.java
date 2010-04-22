@@ -28,6 +28,7 @@ import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -152,8 +153,6 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 	 * 
 	 * @param entity
 	 *            The new entity, or <code>null</code>.
-	 * @param gameScreen 
-	 * 			 The gameScreen to paint on.
 	 */
 	protected void setEntity(final IEntity entity) {
 		if (view != null) {
@@ -254,8 +253,12 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 			return true;
 		}
 
-		final RPObject content = view.getEntity().getRPObject();
+		moveItemToBag();
+		return true;
+	}
 
+	private void moveItemToBag() {
+		final RPObject content = view.getEntity().getRPObject();
 		final RPAction action = new RPAction();
 		action.put("type", "equip");
 		// source object and content from THIS container
@@ -266,7 +269,29 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 		action.put("targetobject", User.get().getID().getObjectID());
 		action.put("targetslot", "bag");
 		StendhalClient.get().send(action);
-
-		return true;
 	}
+
+	@Override
+	public synchronized boolean onMouseClick(Point p) {
+		if (super.onMouseClick(p)) {
+			return true;
+		}
+
+		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
+		if (doubleClick) {
+			return false;
+		}
+
+		if (view == null) {
+			return false;
+		}
+
+		if (parent instanceof Player) {
+			return view.onHarmlessAction();
+		} else {
+			moveItemToBag();
+			return true;
+		}
+	}
+
 }
