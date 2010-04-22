@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="15" height="20" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="15" height="20" tilewidth="32" tileheight="32">
  <tileset name="drink" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
  </tileset>
@@ -51,7 +50,7 @@
  </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNhYGAQGcWjeBBhGKC33lF/Dn4MANuPigCwBAAA
+   H4sIAAAAAAAAABNhYGAQoQA3koFF0Nik2DVU9aKzR/Xi1sswQHoHwr8MA6SXWv4llL9xyZOLAeZW05mwBAAA
   </data>
  </layer>
  <layer name="1_terrain" width="15" height="20">
@@ -74,7 +73,7 @@
    H4sIAAAAAAAAAGNgGAUgwAzELFA8CkbBKBicAACxxW7vsAQAAA==
   </data>
  </layer>
- <layer name="objects" width="15" height="20">
+ <layer name="objects" width="15" height="20" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMAuoBORqaDQAWrBA2sAQAAA==
   </data>
