@@ -184,9 +184,9 @@
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_basement" file="interiors/semos/wizards_tower_basement.tmx">
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.GuardStatueZekielNPC" />
-        <portal x="15" y="29" ref="wizardstower_exit">
+     <!--   <portal x="15" y="29" ref="wizardstower_exit">
                 <destination zone="0_semos_mountain_n_w2" ref="wizardstower_entrance" />
-            </portal>
+            </portal>-->
 
         <portal x="15" y="16" ref="basement_teleport">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
