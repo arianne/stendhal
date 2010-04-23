@@ -28,10 +28,10 @@ public class KilledForQuestCondition implements ChatCondition {
 	
 
 	/**
-	 * creates a new KilledForQuestCondition.
+	 * Creates a new KilledForQuestCondition.
 	 * 
-	 * @param toKill
-	 *            list of creatures which should be killed by the player
+	 * @param quest the quest slot
+	 * @param index
 	 */
 	public KilledForQuestCondition(String quest, int index) {
 		this.QUEST_SLOT=quest;
