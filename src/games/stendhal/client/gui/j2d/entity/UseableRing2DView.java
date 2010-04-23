@@ -1,6 +1,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
 
@@ -18,5 +19,10 @@ public class UseableRing2DView extends Ring2DView {
 		list.add(ActionType.USE.getRepresentation());
 
 		super.buildActions(list);
+	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.ITEM_USE;
 	}
 }

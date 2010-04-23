@@ -4,6 +4,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
 
@@ -28,5 +29,10 @@ class UseableItem2DView extends StackableItem2DView {
 		list.add(ActionType.USE.getRepresentation());
 
 		super.buildActions(list);
+	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.ITEM_USE;
 	}
 }

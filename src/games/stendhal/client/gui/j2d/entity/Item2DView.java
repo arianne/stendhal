@@ -12,6 +12,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -152,4 +153,10 @@ class Item2DView extends Entity2DView {
 			break;
 		}
 	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.LOOK;
+	}
+
 }
