@@ -87,7 +87,7 @@ class SourceObject extends MoveableObject {
 		}
 		final RPObject.ID baseItemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), "");
 		if (!baseSlot.has(baseItemId)) {
-			logger.warn("Base item(" + parent + ") doesn't contain item(" + baseItemId + ") on given slot(" + slotName
+			logger.debug("Base item(" + parent + ") doesn't contain item(" + baseItemId + ") on given slot(" + slotName
 					+ ")");
 			player.sendPrivateText("There is no such item in the " + slotName + " of "
 					+ parent.getDescriptionName(true));
