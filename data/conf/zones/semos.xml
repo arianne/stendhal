@@ -493,6 +493,7 @@
      </zone>
      <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_8" file="interiors/semos/wizards_tower_spire_1.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.RedWizardMalleusNPC" />
        <portal x="21" y="7" ref="portal_from_spire_2">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
         </portal>
