@@ -296,7 +296,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			ui.setCursor(cursorRepository.get(cursor));
 
 		} catch (ConcurrentModificationException ex) {
-			logger.warn(ex, ex);
+			logger.debug(ex, ex);
 		}
 	}
 
@@ -330,7 +330,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 		if (cursor == null) {
 			cursor = StendhalCursor.WALK;
 			StaticGameLayers layers = StendhalClient.get().getStaticGameLayers();
-			if ((layers != null) && layers.getCollisionDetection().collides((int) point2.getX(), (int) point2.getY())) {
+			if ((layers.getCollisionDetection() != null) && layers.getCollisionDetection().collides((int) point2.getX(), (int) point2.getY())) {
 				cursor = StendhalCursor.STOP;
 			} else if (calculateZoneChangeDirection(point2) != null) {
 				cursor = StendhalCursor.WALK_BORDER;					
