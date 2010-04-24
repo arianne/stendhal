@@ -11,9 +11,9 @@ import java.util.Map;
 /**
  * Zekiel, the guardian statue of the Wizards Tower
  *
- * @see games.stendhal.server.maps.quests.ZekielsPracticalTestQuest
+ * @see games.stendhal.server.maps.quests.ThePracticalTestQuest
  */
-public class GuardStatueZekielNPC implements ZoneConfigurator {
+public class WizardsGuardStatueNPC implements ZoneConfigurator {
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildZekiel(zone);
@@ -49,7 +49,7 @@ public class GuardStatueZekielNPC implements ZoneConfigurator {
 				addReply("silvanus", "Silvanus is a sage druid and perhaps the eldest of all elves. He is a friend of all animals, trees, fairy creatures and ents. His domain is the earth and nature.");
 				addReply("malleus", "Malleus is the powerfull archetype of a magician and the master of destructive magics. His domain is the fire and he rambled the plains of demons for ages, to understand their ambitions.");
 
-			} //remaining behaviour defined in maps.quests.ZekielsPracticalTest
+			} //remaining behaviour defined in maps.quests.ThePracticalTestQuest
 		};
 
 		zekiel.setDescription("You see Zekiel, the guardian of this tower.");

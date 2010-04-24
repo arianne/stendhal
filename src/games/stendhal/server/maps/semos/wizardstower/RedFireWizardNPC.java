@@ -13,9 +13,9 @@ import java.util.Map;
 /**
  * Malleus, the fire wizard of the Wizards Tower
  *
- * @see games.stendhal.server.maps.quests.MalleusPlain
+ * @see games.stendhal.server.maps.quests.RedFireWizardsPlainQuest
  */
-public class RedWizardMalleusNPC implements ZoneConfigurator {
+public class RedFireWizardNPC implements ZoneConfigurator {
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildMalleus(zone);
@@ -64,7 +64,7 @@ public class RedWizardMalleusNPC implements ZoneConfigurator {
 				addReply("", "");
 				addGoodbye("So long!");
 
-			} //remaining behaviour defined in maps.quests.MalleusPlain
+			} //remaining behaviour defined in maps.quests.RedFireWizardsPlainQuest
 		};
 
 		malleus.setDescription("You see Malleus, the master of destructive magics.");
