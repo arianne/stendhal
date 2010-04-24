@@ -6,6 +6,8 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
@@ -18,6 +20,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+
+import java.lang.Math;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -92,7 +96,7 @@ import org.apache.log4j.Logger;
 			QUEST_INACTIVE_TIME_MIN = 60 * 10;
 			QUEST_INVASION_TIME = 60 * 20;
 			QUEST_AWAITING_TIME = 60 * 10;
-			QUEST_SHOUT_TIME = 60 * 1;
+			QUEST_SHOUT_TIME = 60 * 2;
 			}
 	}
 
@@ -145,7 +149,10 @@ import org.apache.log4j.Logger;
 			"int_ados_town_hall_1",
 			"int_ados_town_hall_2",
 			"int_ados_town_hall_3",
-			"int_ados_ross_house");
+			"int_ados_ross_house",
+			"0_ados_city_n",
+			"0_ados_city",
+			"0_ados_city_s");
 
 	/**
 	 * List of creatures types to create.
@@ -503,11 +510,11 @@ import org.apache.log4j.Logger;
 
 	/**
 	 * rats invasion starts :-)
+	 * Iterate through each zone and select the min and max rat count based on zone size
+	 * Places rat if possible, if not skip this rat (so if 6 rats chosen perhaps only 3 are placed)
 	 */
 	private void summonRats() {
 
-		final int maxRats = 5;
-		final int minRats = 1;
 		final EntityManager manager = SingletonRepository.getEntityManager();
 		final RatsObserver ratsObserver = new RatsObserver();
 
@@ -515,7 +522,10 @@ import org.apache.log4j.Logger;
 		for(int j=0; j<(RAT_ZONES.size()); j++) {
 			final StendhalRPZone zone = (StendhalRPZone) SingletonRepository.getRPWorld().getRPZone(
 					RAT_ZONES.get(j));
+			final int maxRats = (int) Math.round(Math.sqrt(zone.getWidth()*zone.getHeight())/4);
+			final int minRats = (int) Math.round(Math.sqrt(zone.getWidth()*zone.getHeight())/12);
 			final int ratsCount = Rand.rand(maxRats-minRats)+minRats;
+			logger.debug(ratsCount+ " rats selected at " + zone.getName());
 			for(int i=0 ; i<ratsCount; i++) {
 				final int x=Rand.rand(zone.getWidth());
 				final int y=Rand.rand(zone.getHeight());
@@ -530,19 +540,31 @@ import org.apache.log4j.Logger;
 					continue;
 				};
 				final KillNotificationCreature rat = new KillNotificationCreature(tempCreature);
-				
+
 				// chosen place is occupied
 				if (zone.collides(rat,x,y)) {
 					// Could not place the creature here.
 					// Treat it like it was never exists.
-				} else {
-					// spawn creature
-					rat.registerObjectsForNotification(ratsObserver);
-					// add unique noises to humanoids
-					if (tc==RAT_TYPES.indexOf("archrat")) {
+					logger.debug("RATS " + zone.getName() + " " + x + " " + y + " collided.");
+					continue;
+				} else if (zone.getName().startsWith("0")) {
+					// If we can't make it here, we can't make it anywhere ...
+					// just checking the 0 level zones atm	
+					// the rat is not in the zone yet so we can't call the smaller version of the searchPath method
+					final List<Node> path = Path.searchPath(zone, x, y, zone.getWidth()/2,
+							zone.getHeight()/2, (64+64)*2);
+					if (path == null || path.size() == 0){
+						logger.debug("RATS " + zone.getName() + " " + x + " " + y + " no path to " + zone.getWidth()/2 + " " + zone.getHeight()/2);
+						continue;
+					}
+				} 
+				// spawn creature
+				rat.registerObjectsForNotification(ratsObserver);
+				// add unique noises to humanoids
+				if (tc==RAT_TYPES.indexOf("archrat")) {
 					final LinkedList<String> ll = new LinkedList<String>(
 							Arrays.asList("We will capture Ados!",
-										  "Our revenge will awesome!"));
+							"Our revenge will awesome!"));
 					LinkedHashMap<String, LinkedList<String>> lhm =
 						new LinkedHashMap<String, LinkedList<String>>();
 					// add to all states except death.
@@ -550,10 +572,9 @@ import org.apache.log4j.Logger;
 					lhm.put("fight", ll);
 					lhm.put("follow", ll);
 					rat.setNoises(lhm);
-					};
-					StendhalRPAction.placeat(zone, rat, x, y);
-					rats.add(rat);
 				};
+				StendhalRPAction.placeat(zone, rat, x, y);
+				rats.add(rat);
 			};
 		};
 	}
