@@ -106,7 +106,6 @@ public class StendhalNPCDAO {
 			dumpNPC(stmt, npc);
 		}
 		stmt.executeBatch();
-		TransactionPool.get().commit(transaction);
 		logger.debug("Completed dumping of NPCs in " + (System.currentTimeMillis() - start) + " milliseconds.");
 	}
 
