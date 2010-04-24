@@ -17,6 +17,8 @@ Changelog
 - Plan a new route when a player following a path hits another entity
 - single click for most actions and contextual mouse cursors (use /clickmode if you prefer doubeclick)
 - sub-zone teleport restrictions
+- a family of NPCs holidaying in Ados
+- more rats and zones for the Pied Piper quest
 
 *bugfixes*
 - archer behaviour
