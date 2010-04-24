@@ -314,23 +314,27 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 
 		Point2D point2 = screen.convertScreenViewToWorld(point);
 
-		// Handle text boxes
+		// is the cursor aiming at a text box?
 		final Text text = screen.getTextAt(point2.getX(), point2.getY());
 		if (text != null) {
 			return StendhalCursor.NORMAL;
 		}
-		
+
+		// is the cursor aiming at an entity?
 		final EntityView view = screen.getEntityViewAt(point2.getX(), point2.getY());
 		if (view != null) {
 			cursor = view.getCursor();
 		}
 
+		// is the cursor pointing on the ground?
 		if (cursor == null) {
 			cursor = StendhalCursor.WALK;
-			if (calculateZoneChangeDirection(point2) != null) {
+			StaticGameLayers layers = StendhalClient.get().getStaticGameLayers();
+			if ((layers != null) && layers.getCollisionDetection().collides((int) point2.getX(), (int) point2.getY())) {
+				cursor = StendhalCursor.STOP;
+			} else if (calculateZoneChangeDirection(point2) != null) {
 				cursor = StendhalCursor.WALK_BORDER;					
 			}
-			// TODO: display a cursor with a stop idea on collision
 		}
 		return cursor;
 	}
