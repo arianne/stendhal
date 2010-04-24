@@ -15,9 +15,15 @@ package games.stendhal.server.entity.mapstuff.portal;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.UseListener;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.List;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
@@ -169,9 +175,16 @@ public class Portal extends Entity implements UseListener {
 	 *         otherwise.
 	 */
 	protected boolean usePortal(final Player player) {
-		if (!nextTo(player) || !player.isZoneChangeAllowed()) {
-			// Too far to use the portal
-			player.sendPrivateText("You must come closer before you can go through.");
+		if (!player.isZoneChangeAllowed()) {
+			player.sendPrivateText("For some reason you cannot get through right now.");
+			return false;
+		}
+		
+		if (!nextTo(player)) {
+			// Too far to use the portal from here, but walk to it
+			// The pathfinder will do the rest of the work and make the player pass through the portal
+			final List<Node> path = Path.searchPath(player, this.getX(), this.getY());
+			player.setPath(new FixedPath(path, false));
 			return false;
 		}
 

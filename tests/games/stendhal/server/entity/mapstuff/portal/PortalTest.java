@@ -91,10 +91,33 @@ public class PortalTest {
 	@Test
 	public final void testUsePortalNotNextToPlayer() {
 
+		// there is a bit of pathfinding now in the portal code (if you are a distance from it)
+		// so we need a 'zone' defined
+
 		final Portal port = new Portal();
+		final StendhalRPZone testzone = new StendhalRPZone("admin_test");
+		
 		final Player player = PlayerTestHelper.createPlayer("player");
+		
+		final Object ref = new Object();
+		port.setDestination("zonename", ref);
+		final Portal destPort = new Portal();
+		destPort.setIdentifier(ref);
+		final StendhalRPZone zone = new StendhalRPZone("zonename");
+		zone.add(destPort);
+		testzone.add(port);
+		testzone.add(player);
+		
+		MockStendlRPWorld.get().addRPZone(testzone);
+		MockStendlRPWorld.get().addRPZone(zone);
+
 		player.setPosition(5, 5);
-		assertFalse("port is not nextto player", port.usePortal(player));
+		assertTrue("player is in original zone now", player.getZone().equals(testzone));
+		assertTrue("portal is in original zone now", port.getZone().equals(testzone));
+		assertFalse("player is not next to portal", port.nextTo(player));
+		assertFalse("portal is not next to player, won't walk through but will set a path", port.usePortal(player));
+		assertTrue("player was set on a path", player.hasPath());
+		assertTrue("player is in destination zone now", player.getZone().equals(zone));
 	}
 
 	/**
