@@ -312,14 +312,20 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			cursor = wtPanel.getCursor(e);
 		} else {
 
-			// TODO: Handle text boxes
 			final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
+
+			// Handle text boxes
+			final Text text = screen.getTextAt(point.getX(), point.getY());
+			if (text != null) {
+				return StendhalCursor.NORMAL;
+			}
+			
 			final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
 			if (view != null) {
 				cursor = view.getCursor();
 			}
+
 			if (cursor == null) {
-				// TODO: display a cursor with a walking idea on non collision
 				cursor = StendhalCursor.WALK;
 				if (calculateZoneChangeDirection(point) != null) {
 					cursor = StendhalCursor.WALK_BORDER;					
