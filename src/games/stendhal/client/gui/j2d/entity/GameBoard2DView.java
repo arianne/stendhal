@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -52,6 +53,17 @@ class GameBoard2DView extends Entity2DView {
 	@Override
 	protected String translate(final String name) {
 		return "data/sprites/gameboard/" + name + ".png";
+	}
+
+
+	@Override
+	public boolean isInteractive() {
+		return false;
+	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.WALK;
 	}
 
 }

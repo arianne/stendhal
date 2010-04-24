@@ -156,7 +156,7 @@ class Item2DView extends Entity2DView {
 
 	@Override
 	public StendhalCursor getCursor() {
-		return StendhalCursor.LOOK;
+		return StendhalCursor.NORMAL;
 	}
 
 }

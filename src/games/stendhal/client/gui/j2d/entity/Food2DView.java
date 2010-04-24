@@ -12,6 +12,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Food;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -105,4 +106,11 @@ class Food2DView extends StateEntity2DView {
 		states = 6;
 		
 	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.LOOK;
+	}
+
+	
 }
