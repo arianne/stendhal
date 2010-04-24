@@ -95,7 +95,9 @@ public class PortalTest {
 		// so we need a 'zone' defined
 
 		final Portal port = new Portal();
+		port.setPosition(1, 1);
 		final StendhalRPZone testzone = new StendhalRPZone("admin_test");
+		testzone.collisionMap.init(10, 10);
 		
 		final Player player = PlayerTestHelper.createPlayer("player");
 		
