@@ -27,8 +27,12 @@ public class HealingEffect extends AbstractEffect {
 	}
 
 	public void act(Player caster, Entity target) {
-		int oldHP = caster.getHP();
-		int baseHP = caster.getBaseHP();
+		actInternal(caster, (Player) target);
+	}
+
+	private void actInternal(Player caster, Player target) {
+		int oldHP = target.getHP();
+		int baseHP = target.getBaseHP();
 		caster.setHP(Math.max(oldHP + getAmount(), baseHP));
 	}
 
