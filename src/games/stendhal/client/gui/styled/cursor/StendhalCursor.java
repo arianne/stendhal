@@ -19,6 +19,8 @@ import java.awt.Point;
  * @author hendrik
  */
 public enum StendhalCursor {
+	ACTIVITY("activity.png", new Point(1, 1)),
+// Gate2DView, PlantGrower
 	ATTACK("attack.png", new Point(1, 1)),
 	BAG("bag.png", new Point(1, 1)),
 	EMPTY_BAG("emptybag.png", new Point(1, 1)),

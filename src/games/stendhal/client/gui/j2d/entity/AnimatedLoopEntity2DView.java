@@ -10,6 +10,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -56,5 +57,11 @@ class AnimatedLoopEntity2DView extends Entity2DView {
 	@Override
 	public int getZIndex() {
 		return 3000;
+	}
+
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.ACTIVITY;
 	}
 }
