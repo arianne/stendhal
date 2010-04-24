@@ -86,7 +86,7 @@ public class OggVorbisDecoder extends SignalProcessor
                         mEndOfStream = true;
                         return null;
                     }
-                    
+
                     mOggSyncState.wrote(numBytesRead); // say syncState how many bytes we have read
                 }
                 break;
@@ -99,7 +99,7 @@ public class OggVorbisDecoder extends SignalProcessor
 
                     if(oggPage.eos() != 0)
                         mLastPageWasRead = true;
-                    
+
                     return oggPage;
                 }
             }
@@ -178,7 +178,7 @@ public class OggVorbisDecoder extends SignalProcessor
         int numSamplesReadPerChannel   = 0;
         int sampleIdx                  = 0;
 
-        while(numSamplesReadPerChannel < outputNumSamplesPerChannel)
+        while(!mEndOfStream && numSamplesReadPerChannel < outputNumSamplesPerChannel)
         {
             // if we read all pcm data from "uniformPCMData"
             if(sampleIdx >= receivedNumSamples)
