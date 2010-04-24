@@ -35,7 +35,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Transparency;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -1408,11 +1407,23 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * gets the mouse cursor image to display
 	 *
-	 * @param e MouseEvent with coordinates and button state
-	 * @return Stendhal Cursor
+	 * @param point point at which the cursor is aiming
+	 * @return StendhalCursor
 	 */
-	public StendhalCursor getCursor(MouseEvent e) {
-		return StendhalCursor.NORMAL;
+	public StendhalCursor getCursor(Point point) {
+		WtPanel wtPanel = getWtPanelAt(point);
+		if (wtPanel != null) {
+			point.translate(-getClientX(), -getClientY());
+			final Point childPoint = point;
+			childPoint.translate(-wtPanel.getX(), -wtPanel.getY());
+
+			StendhalCursor cursor = wtPanel.getCursor(childPoint);
+			if (cursor == null) {
+				cursor = StendhalCursor.NORMAL;
+			}
+			return cursor;
+		}
+		return null;
 	}
 
 	/**

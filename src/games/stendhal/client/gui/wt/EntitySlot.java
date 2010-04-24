@@ -25,6 +25,7 @@ import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -294,4 +295,16 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 		}
 	}
 
+	@Override
+	public StendhalCursor getCursor(Point point) {		
+		if (view == null) {
+			return StendhalCursor.NORMAL;
+		}
+
+		if (parent instanceof Player) {
+			return view.getCursor();
+		} else {
+			return StendhalCursor.ITEM_PICK_UP_FROM_SLOT;
+		}
+	}
 }

@@ -27,7 +27,6 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
-import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.Direction;
 
@@ -293,7 +292,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 				return;
 			}
 
-			StendhalCursor cursor = getCursor(e);
+			StendhalCursor cursor = getCursor(e.getPoint());
 			ui.setCursor(cursorRepository.get(cursor));
 
 		} catch (ConcurrentModificationException ex) {
@@ -303,35 +302,35 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 
 	
 	@Override
-	public StendhalCursor getCursor(MouseEvent e) {
+	public StendhalCursor getCursor(Point point) {
 		StendhalCursor cursor = null;
 
 		// ask WtPanel about desired cursor if the mouse pointer is above an WtPanel
-		WtPanel wtPanel = getWtPanelAt(e.getPoint());
-		if (wtPanel != null) {
-			cursor = wtPanel.getCursor(e);
-		} else {
+		cursor = super.getCursor(point);
 
-			final Point2D point = screen.convertScreenViewToWorld(e.getPoint());
+		if (cursor != null) {
+			return cursor;
+		}
 
-			// Handle text boxes
-			final Text text = screen.getTextAt(point.getX(), point.getY());
-			if (text != null) {
-				return StendhalCursor.NORMAL;
-			}
-			
-			final EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
-			if (view != null) {
-				cursor = view.getCursor();
-			}
+		Point2D point2 = screen.convertScreenViewToWorld(point);
 
-			if (cursor == null) {
-				cursor = StendhalCursor.WALK;
-				if (calculateZoneChangeDirection(point) != null) {
-					cursor = StendhalCursor.WALK_BORDER;					
-				}
-				// TODO: display a cursor with a stop idea on collision
+		// Handle text boxes
+		final Text text = screen.getTextAt(point2.getX(), point2.getY());
+		if (text != null) {
+			return StendhalCursor.NORMAL;
+		}
+		
+		final EntityView view = screen.getEntityViewAt(point2.getX(), point2.getY());
+		if (view != null) {
+			cursor = view.getCursor();
+		}
+
+		if (cursor == null) {
+			cursor = StendhalCursor.WALK;
+			if (calculateZoneChangeDirection(point2) != null) {
+				cursor = StendhalCursor.WALK_BORDER;					
 			}
+			// TODO: display a cursor with a stop idea on collision
 		}
 		return cursor;
 	}

@@ -39,8 +39,7 @@ import org.apache.log4j.Logger;
 public class EntityContainer extends WtPanel implements PositionChangeListener {
 
 	/** the logger instance. */
-	private static final Logger logger = Logger
-			.getLogger(EntityContainer.class);
+	private static final Logger logger = Logger.getLogger(EntityContainer.class);
 
 	/**
 	 * when the player is this far away from the container, the panel is closed.
