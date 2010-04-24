@@ -141,7 +141,12 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			// yes, click already processed
 			return true;
 		}
-		
+
+		// even if no child wants to handle the point, 
+		// it can still be within one
+		if (super.pointInChildWindow(p)) {
+			return false;
+		}
 
 		// get clicked entity
 		final Point2D point = screen.convertScreenViewToWorld(p);

@@ -1414,4 +1414,24 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	public StendhalCursor getCursor(MouseEvent e) {
 		return StendhalCursor.NORMAL;
 	}
+
+	/**
+	 * Is the point within a child window?
+	 *
+	 * @param p point
+	 * @return true if the point is within a child panel.
+	 */
+	public boolean pointInChildWindow(Point p) {
+		// translate point to client coordinates
+		final Point p2 = p.getLocation();
+		p2.translate(-getClientX(), -getClientY());
+
+		for (final WtPanel panel : children) {
+			// only if the point is inside the child
+			if (panel.isHit(p2.x, p2.y)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
