@@ -80,7 +80,7 @@ public class MeetIo extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_2,
-			"Type #/where #username to discern where in Stendhal that person is currently roaming; you can use #'/where sheep' to keep track of any sheep you might own. To understand the system used for defining positions in Stendhal, try asking #Zynn; he knows more about it that I do. Ready for the third lesson?",
+			"Type #/where #username to discern where in Stendhal that person is currently roaming; you can use #'/where sheep' to keep track of any sheep you might own. To understand the system used for defining positions in Stendhal, try asking #Zynn; he knows more about it than I do. Ready for the third lesson?",
 			null);
 
 		npc.add(
