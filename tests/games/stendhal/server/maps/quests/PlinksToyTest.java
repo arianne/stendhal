@@ -39,16 +39,12 @@ public class PlinksToyTest {
 	
 	@Before
 	public void setUp() {
-		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("0_semos_plains_n"));
-
-		npc = new SpeakerNPC("Plink");
-		SingletonRepository.getNPCList().add(npc);
-		final LittleBoyNPC npcConf = new LittleBoyNPC();
-		npcConf.createDialog(npc);
+		final StendhalRPZone zone = new StendhalRPZone("0_semos_plains_n");
+		MockStendlRPWorld.get().addRPZone(zone);
+		new LittleBoyNPC().configureZone(zone, null);
 
 		final PlinksToy quest = new PlinksToy();
 		quest.addToWorld();
-		en = npc.getEngine();
 
 		player = PlayerTestHelper.createPlayer("player");
 	}
@@ -58,6 +54,10 @@ public class PlinksToyTest {
 	 */
 	@Test
 	public void testQuest() {
+		
+		npc = SingletonRepository.getNPCList().get("Plink");
+		en = npc.getEngine();
+		
 		en.step(player, "hi");
 		assertEquals("*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?", getReply(npc));
 		en.step(player, "park!");

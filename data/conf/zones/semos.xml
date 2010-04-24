@@ -549,6 +549,7 @@
    
     	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
 		file="Level 0/semos/plains_n.tmx">
+		<configurator class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC"/>
 		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
 			<parameter name="x">60</parameter>
 			<parameter name="y">44</parameter>
@@ -564,30 +565,6 @@
 				<parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
 			</implementation>
 		</portal>
-
-		<entity x="36" y="108">
-			<implementation
-				class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC">
-				<parameter name="name">Plink</parameter>
-				<parameter name="node0">36,109</parameter>
-				<parameter name="node1">37,109</parameter>
-				<parameter name="node2">37,106</parameter>
-				<parameter name="node3">42,106</parameter>
-				<parameter name="node4">42,112</parameter>
-				<parameter name="node5">48,112</parameter>
-				<parameter name="node6">47,104</parameter>
-				<parameter name="node7">47,101</parameter>
-				<parameter name="node8">53,101</parameter>
-				<parameter name="node9">53,91</parameter>
-				<parameter name="node10">49,91</parameter>
-				<parameter name="node11">49,99</parameter>
-				<parameter name="node12">46,99</parameter>
-				<parameter name="node13">46,100</parameter>
-				<parameter name="node14">36,100</parameter>
-			</implementation>
-
-			<attribute name="class">plinknpc</attribute>
-		</entity>
 
 		<entity x="77" y="66">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
