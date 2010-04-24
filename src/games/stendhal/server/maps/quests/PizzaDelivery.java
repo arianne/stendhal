@@ -135,7 +135,6 @@ public class PizzaDelivery extends AbstractQuest {
 		return res;
 	}
 
-	// You can't enter NPC's with spaces in their names, see TODOs below.
 	// Don't add Sally here, as it would conflict with Leander telling
 	// about his daughter.
 	// Don't add NPC's that are only reachable for high-level players.
@@ -151,11 +150,11 @@ public class PizzaDelivery extends AbstractQuest {
 				7,  
 				// tip when delivered on time. Quite
 				// high because you can't do much
-				// sensefull on top of the hill and must
+				// senseful on top of the hill and must
 				// walk down again.
 				200,
 				// experience gain for delivery
-				30, 
+				300, 
 				"Thanks! I wonder how you managed to bring it up here so fast. Take these %d pieces of gold as a tip, I can't spend it up here anyway!",
 				"Brrr. This %s is no longer hot. Well, thanks for the effort anyway."));
 
@@ -172,7 +171,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time
 				300, 
 				// experience gain for delivery
-				50, 
+				500, 
 				"Wow, I never believed you would really deliver this half over the world! Here, take these %s bucks!",
 				"It has become cold, but what do I expect when I order a pizza from a bakery so far away... So thanks anyway."));
 
@@ -187,7 +186,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time.
 				170, 
 				// experience gain for delivery
-				30, 
+				300, 
 				"Incredible! It's still hot! Here, buy something nice from these %d pieces of gold!",
 				"What a pity. It has become cold. Nevertheless, thank you!"));
 
@@ -201,7 +200,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time
 				150, 
 				// experience gain for delivery
-				20, 
+				200, 
 				"Thanks a lot! You're a born pizza deliverer. You can have these %d pieces of gold as a tip!",
 				"Bummer. Cold pizza."));
 
@@ -215,7 +214,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time
 				80, 
 				// experience gain for delivery
-				15, 
+				150, 
 				"Ah, my %s! And it's fresh out of the oven! Take these %d coins as a tip!",
 				"I hope next time I order a pizza it's still hot."));
 
@@ -230,7 +229,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time
 				20, 
 				// experience gain for delivery
-				10, 
+				50, 
 				"Ah, you brought my %s! Very nice of you! Here, take %d coins as a tip!",
 				"It's a shame. Your pizza service can't deliver a hot pizza although the bakery is just around the corner."));
 
@@ -245,7 +244,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time
 				140, 
 				// experience gain for delivery
-				20, 
+				200, 
 				"Oh, I didn't expect you so early. Great! Usually I don't give tips, but for you I'll make an exception. Here are %d pieces of gold.",
 				"Too bad... I will have to use an extra strong spell to get this pizza hot again."));
 
@@ -259,7 +258,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time
 				100, 
 				// experience gain for delivery
-				20, 
+				200, 
 				"Yay! My %s! Here, you can have %d pieces of gold as a tip!",
 				"Eek. I hate cold pizza. I think I'll feed it to the animals."));
 
@@ -273,7 +272,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// to walk out again.
 				25, 
 				// experience gain for delivery
-				10, 
+				100, 
 				"Ah, my %s! Here's your tip: %d pieces of gold.",
 				"Finally! Why did that take so long?"));
 
@@ -287,7 +286,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time
 				10, 
 				// experience gain for delivery
-				5,  
+				25,  
 				"Thank you! That was fast. Here, take %d pieces of gold as a tip!",
 				"Too bad. It has become cold. Thank you anyway."));
 
@@ -301,7 +300,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time
 				10, 
 				// experience gain for delivery
-				5,  
+				25,  
 				"Thank you! It's nice to have a pizza service right around the corner. Here, you can have %d coins!",
 				"I should have rather picked it up myself at the bakery, that would have been faster."));
 
@@ -319,7 +318,7 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time
 				250, 
 				// experience gain for delivery
-				40, 
+				400, 
 				"Thank you so much! Finally I get something better than the terrible food that Laura cooks. Take these %d pieces of gold as a tip!",
 				"Too bad. It is cold. And I had hoped to get something better than that galley food."));
 
@@ -334,9 +333,22 @@ public class PizzaDelivery extends AbstractQuest {
 				// tip when delivered on time
 				170,
 				// experience gain for delivery
-				30, 
+				300, 
 				"Yummy %s! Here, take %d moneys!",
 				"Grrr. Pizza cold. You walking slow like sheep."));
+		
+		customerDB.put("Martin Farmer",
+				new CustomerData(
+					"Martin Farmer is holidaying in Ados City. You'll need to walk east from here.",
+					"Pizza Fiorentina",
+					// minutes to deliver. Time for Fidorea was 7, so 8 should be ok for martin
+					8,  
+					// tip when delivered on time
+					160, 
+					// experience gain for delivery
+					220, 
+					"Ooooh, I loove fresh hot pizza, thanks. take this %d money...!",
+					"Hmpf.. a cold pizza.. ok.. I will take it. But hurry up next time."));
 	}
 
 	private void startDelivery(final Player player, final SpeakerNPC npc) {
@@ -398,10 +410,7 @@ public class PizzaDelivery extends AbstractQuest {
 				if (data.flavor.equals(flavor)) {
 					player.drop(pizza);
 					// Check whether the player was supposed to deliver the
-					// pizza, or if he just picked up a pizza from the ground.
-					// NOTE: This is no perfect protection (two players can
-					// still swap their pizzas), but the abuse potential is
-					// quite low. 
+					// pizza.
 					if (player.hasQuest(QUEST_SLOT)) {
 						if (isDeliveryTooLate(player)) {
 							if (data.messageOnColdPizza.contains("%s")) {
@@ -427,17 +436,15 @@ public class PizzaDelivery extends AbstractQuest {
 						player.removeQuest(QUEST_SLOT);
 						putOffUniform(player);
 					} else {
-						// The player delivered a pizza that another player
-						// gave him, or that he found on the ground. We cannot
-						// allow this because we have no chance to find out
-						// if the pizza is still hot (we can't access the quest
-						// slot).
+						// This should not happen: a player cannot pick up a pizza from the ground 
+						// that did have a flavor, those are bound. If a pizza has flavor the player
+						// should only have got it from the quest.
 						npc.say("Eek! This pizza is all dirty! Did you find it on the ground?");
 					}
 					return;
 				}
 			}
-			// The player has brought the pizza to the wrong NPC.
+			// The player has brought the pizza to the wrong NPC, or it's a plain pizza.
 			npc.say("No, thanks. I like " + data.flavor + " better.");
 		} else {
 			npc.say("A pizza? Where?");
@@ -511,7 +518,6 @@ public class PizzaDelivery extends AbstractQuest {
 
 		for (final String name : customerDB.keySet()) {
 			final CustomerData data = customerDB.get(name);
-			// TODO mf TEST: If there's a space in the NPC name, this won't work.
 			leander.addReply(name, data.npcDescription);
 		}
 	}
