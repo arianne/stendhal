@@ -119,7 +119,9 @@ public class PortalTest {
 		assertFalse("player is not next to portal", port.nextTo(player));
 		assertFalse("portal is not next to player, won't walk through but will set a path", port.usePortal(player));
 		assertTrue("player was set on a path", player.hasPath());
-		assertTrue("player is in destination zone now", player.getZone().equals(zone));
+		// would be nice to test but we would have to iterate the turns manually
+		// and this is rather more part of the pathfinding which makes the player change zone, not the portal
+		// assertTrue("player is in destination zone now", player.getZone().equals(zone));
 	}
 
 	/**
