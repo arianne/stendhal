@@ -270,7 +270,7 @@ public class FindRatChildren extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "find_rat_kids";
+		return "FindRatChildren";
 	}
 
 	@Override
