@@ -17,6 +17,12 @@ import games.stendhal.client.listener.FeatureChangeListener;
  * A key ring.
  */
 public class KeyRing extends EntityContainer implements FeatureChangeListener {
+	/** 
+	 * A hack to store user's preference about the minimization status. The normal
+	 * mechanism does not work properly because the key ring is triggered by feature 
+	 * enabling.
+	 */
+	private boolean userPrefMinimized;
 	/**
 	 * Create a key ring.
 	 * 
@@ -27,6 +33,9 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 		// Remember if you change these numbers change also a number in
 		// src/games/stendhal/server/entity/RPEntity.java
 		super("keyring", 2, 4, gameScreen);
+		
+		// Store the preference
+		userPrefMinimized = isMinimized();
 
 		// Hide by default
 		setMinimizeable(false);
@@ -77,7 +86,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 		if (name.equals("keyring")) {
 			if (!isMinimizeable()) {
 				setMinimizeable(true);
-				setMinimized(false);
+				setMinimized(userPrefMinimized);
 			}
 		}
 	}
