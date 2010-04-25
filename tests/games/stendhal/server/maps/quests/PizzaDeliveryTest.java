@@ -24,6 +24,7 @@ import games.stendhal.server.maps.ados.magician_house.WizardNPC;
 import games.stendhal.server.maps.ados.outside.AnimalKeeperNPC;
 import games.stendhal.server.maps.ados.outside.VeterinarianNPC;
 import games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC;
+import games.stendhal.server.maps.ados.wall.HolidayingManNPC;
 import games.stendhal.server.maps.athor.holiday_area.SunbatherNPC;
 import games.stendhal.server.maps.orril.magician_house.WitchNPC;
 import games.stendhal.server.maps.semos.bakery.ChefNPC;
@@ -71,6 +72,7 @@ public class PizzaDeliveryTest {
 		new SheepSellerNPC().configureZone(zone, null);
 		new BowAndArrowSellerNPC().configureZone(zone, null);
 		new WitchNPC().configureZone(zone, null);
+		new HolidayingManNPC().configureZone(zone, null);
 		
 		SpeakerNPC npc = new SpeakerNPC("Leander");
 		SingletonRepository.getNPCList().add(npc);
