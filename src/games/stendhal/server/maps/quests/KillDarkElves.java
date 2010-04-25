@@ -181,8 +181,8 @@ public class KillDarkElves extends AbstractQuest {
 				ConversationStates.QUEST_STARTED, 
 				"Don't you remember promising to sort out my dark elf problem?"+
 				" Kill every dark elf in the #secret room below - especially"+
-				" the snivelling dark elf matronmother,"+
-				" any evil dark elf warriors, dark elf archers and dark elf mages you find!"+
+				" the ones who command, do magic or are archers." +
+				"  Don't forget the evil matronmother too."+
 				" And bring me the amulet from the mutant thing.",
 				null);
 		
