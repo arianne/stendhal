@@ -560,6 +560,7 @@ import org.apache.log4j.Logger;
 				} 
 				// spawn creature
 				rat.registerObjectsForNotification(ratsObserver);
+				/* -- commented because of these noises reflects on all archrats in game -- 
 				// add unique noises to humanoids
 				if (tc==RAT_TYPES.indexOf("archrat")) {
 					final LinkedList<String> ll = new LinkedList<String>(
@@ -573,6 +574,7 @@ import org.apache.log4j.Logger;
 					lhm.put("follow", ll);
 					rat.setNoises(lhm);
 				};
+				*/
 				StendhalRPAction.placeat(zone, rat, x, y);
 				rats.add(rat);
 			};
