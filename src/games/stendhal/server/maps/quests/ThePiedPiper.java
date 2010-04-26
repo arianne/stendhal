@@ -21,10 +21,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
-import java.lang.Math;
-
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
@@ -560,6 +557,7 @@ import org.apache.log4j.Logger;
 				} 
 				// spawn creature
 				rat.registerObjectsForNotification(ratsObserver);
+				/* -- commented because of these noises reflects on all archrats in game -- 
 				// add unique noises to humanoids
 				if (tc==RAT_TYPES.indexOf("archrat")) {
 					final LinkedList<String> ll = new LinkedList<String>(
@@ -573,6 +571,7 @@ import org.apache.log4j.Logger;
 					lhm.put("follow", ll);
 					rat.setNoises(lhm);
 				};
+				*/
 				StendhalRPAction.placeat(zone, rat, x, y);
 				rats.add(rat);
 			};
