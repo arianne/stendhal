@@ -13,6 +13,8 @@ import java.util.List;
  * 
  * @author Norien
  */
+
+// TODO: replace this base class with the normal way quests actions are written, join RatKidsNPCBase and GhostNPCBase, split XXXGreetingAction to use ChatConditions
 public abstract class RatKidsNPCBase extends SpeakerNPC {
 
 	//	private static Logger logger = Logger.getLogger(RatKidsBase.class);

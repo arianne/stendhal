@@ -11,6 +11,7 @@ import java.util.Map;
 
 import marauroa.common.Pair;
 
+// TODO: replace this subclass with normal ChatConditions/ChatActions
 public abstract class CroupierNPC extends SpeakerNPC {
 
 	/**

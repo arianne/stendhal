@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
  * 
  * @author Martin Fuchs
  */
+//TODO: replace this base class with the normal way quests actions are written, join RatKidsNPCBase and GhostNPCBase, split XXXGreetingAction to use ChatConditions
 public abstract class GhostNPCBase extends SpeakerNPC {
 
 	private static Logger logger = Logger.getLogger(GhostNPCBase.class);
