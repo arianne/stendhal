@@ -4,7 +4,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.TeleporterBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
 
 import java.util.Map;
 

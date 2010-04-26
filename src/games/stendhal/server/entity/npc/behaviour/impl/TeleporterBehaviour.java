@@ -1,5 +1,5 @@
 // $Id$
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
@@ -10,6 +10,8 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.ArrayList;
 import java.util.Iterator;

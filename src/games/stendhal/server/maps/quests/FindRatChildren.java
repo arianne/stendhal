@@ -155,6 +155,7 @@ public class FindRatChildren extends AbstractQuest {
 
 	private void findingStep() {
 		// Player goes to look for the children
+		
 	}
 
 	private void retrievingStep() {
