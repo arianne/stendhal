@@ -25,11 +25,11 @@ public class ImageViewPanel extends ViewPanel {
 	private Image image;
 
 	private final URL url;
-	private final String alt;
+	private final String caption;
 
-	public ImageViewPanel(final URL url, final String alt) {
+	public ImageViewPanel(final URL url, final String caption) {
 		this.url = url;
-		this.alt = alt;
+		this.caption = caption;
 	}
 
 	@Override
@@ -68,17 +68,17 @@ public class ImageViewPanel extends ViewPanel {
 		}
 
 		// only display when not null
-		String caption = "";
-		if (alt != null) {
-			caption = "<b><i><font color=\"" + FONT_COLOR + "\" size=\""
-					+ FONT_SIZE + "\">" + alt + "</big></i></b><br>";
+		String htmlCaption = "";
+		if (caption != null) {
+			htmlCaption = "<b><i><font color=\"" + FONT_COLOR + "\" size=\""
+					+ FONT_SIZE + "\">" + caption + "</big></i></b><br>";
 		}
 
 		
 		final String img = "<img width=" + width + " height=" + height + " src="
 					+ url.toString() + ">";
 		
-		final String text = "<html>" + caption + img;
+		final String text = "<html>" + htmlCaption + img;
 		final JLabel imageLabel = new JLabel(text);
 
 		add(imageLabel);

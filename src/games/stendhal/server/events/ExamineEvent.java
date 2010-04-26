@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 public class ExamineEvent extends RPEvent {
 	private static final String RPCLASS_NAME = "examine";
 	private static final String PATH = "path";
-	private static final String ALT = "alt";
+	private static final String CAPTION = "caption";
 	private static final String TITLE = "title";
 	private static final String IMAGE_PATH = "/data/sprites/";
 
@@ -31,7 +31,7 @@ public class ExamineEvent extends RPEvent {
 		try {
 		final RPClass rpclass = new RPClass(RPCLASS_NAME);
 		rpclass.add(DefinitionClass.ATTRIBUTE, PATH, Type.STRING, Definition.PRIVATE);
-		rpclass.add(DefinitionClass.ATTRIBUTE, ALT, Type.STRING, Definition.PRIVATE);
+		rpclass.add(DefinitionClass.ATTRIBUTE, CAPTION, Type.STRING, Definition.PRIVATE);
 		rpclass.add(DefinitionClass.ATTRIBUTE, TITLE, Type.STRING, Definition.PRIVATE);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
@@ -44,12 +44,12 @@ public class ExamineEvent extends RPEvent {
 	 *
 	 * @param image image file
 	 * @param title title of image viewer
-	 * @param alt alternative text
+	 * @param caption text to display along the image
 	 */
-	public ExamineEvent(final String image, final String title, final String alt) {
+	public ExamineEvent(final String image, final String title, final String caption) {
 		super(RPCLASS_NAME);
 		super.put(PATH, IMAGE_PATH + image);
 		super.put(TITLE, title);
-		super.put(ALT, alt);
+		super.put(CAPTION, caption);
 	}
 }

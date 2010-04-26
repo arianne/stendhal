@@ -17,23 +17,23 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 public class ExamineChatAction implements ChatAction {
 	private final String image;
 	private final String title;
-	private final String alt;
+	private final String caption;
 
 	/**
 	 * Creates a new ExamineChatAction
 	 *
 	 * @param image the image to display
 	 * @param title the title
-	 * @param alt alternative text i ncase the image cannot be displayed
+	 * @param caption text to display along the image
 	 */
-	public ExamineChatAction(final String image, final String title, final String alt) {
+	public ExamineChatAction(final String image, final String title, final String caption) {
 		this.image = image;
 		this.title = title;
-		this.alt = alt;
+		this.caption = caption;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-		player.addEvent(new ExamineEvent("examine/" + image, title, alt));
+		player.addEvent(new ExamineEvent("examine/" + image, title, caption));
 	}
 
 	@Override

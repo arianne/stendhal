@@ -45,15 +45,15 @@ public class PopupImageFactory implements ConfigurableFactory {
 	}
 
 	/**
-	 * Gets the alt text for the image
+	 * Gets the caption for the image
 	 * 
 	 * @param ctx
-	 *            The configuration context. May provide 'alt'.
+	 *            The configuration context. May provide 'caption'.
 	 * 
 	 * @return The sign title.
 	 */
-	private String getAlt(ConfigurableFactoryContext ctx) {
-		return ctx.getString("alt", "");
+	private String getCaption(ConfigurableFactoryContext ctx) {
+		return ctx.getString("caption", "");
 	}
 
 
@@ -68,7 +68,7 @@ public class PopupImageFactory implements ConfigurableFactory {
 	 * @see PopupImage
 	 */
 	public Object create(final ConfigurableFactoryContext ctx) {
-		return new PopupImage(getImage(ctx), getTitle(ctx), getAlt(ctx));
+		return new PopupImage(getImage(ctx), getTitle(ctx), getCaption(ctx));
 	}
 
 }

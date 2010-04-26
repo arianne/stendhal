@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 public class RPEventImageViewer {
 
 	private String path;
-	private String alt;
+	private String caption;
 	private String title;
 	private static final Logger logger = Logger.getLogger(RPEventImageViewer.class);
 
@@ -23,8 +23,8 @@ public class RPEventImageViewer {
 		if (e.has("path")) {
 			path = e.get("path");
 		}
-		if (e.has("alt")) {
-			alt = e.get("alt");
+		if (e.has("caption")) {
+			caption = e.get("caption");
 		}
 		if (e.has("title")) {
 			title = e.get("title");
@@ -52,7 +52,7 @@ public class RPEventImageViewer {
 	}
 
 	public void view() {
-		final ViewPanel vp = new ImageViewPanel(genURL(), alt);
+		final ViewPanel vp = new ImageViewPanel(genURL(), caption);
 		new ImageViewWindow(title, vp);
 	}
 }

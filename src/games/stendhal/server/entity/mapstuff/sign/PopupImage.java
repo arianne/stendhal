@@ -23,24 +23,24 @@ import games.stendhal.server.events.ExamineEvent;
 public class PopupImage extends Sign implements UseListener {
 	private String image;
 	private String title;
-	private String alt;
+	private String caption;
 
 	/**
 	 * Creates a new PopupImage
 	 *
 	 * @param image the image to display
 	 * @param title the title
-	 * @param alt alternative text incase the image cannot be displayed
+	 * @param caption text to display along the image
 	 */
-	public PopupImage(final String image, final String title, final String alt) {
+	public PopupImage(final String image, final String title, final String caption) {
 		put(Actions.ACTION, Actions.LOOK_CLOSELY);
 		this.image = image;
 		this.title = title;
-		this.alt = alt;
+		this.caption = caption;
 	}
 
 	public boolean onUsed(RPEntity user) {
-		user.addEvent(new ExamineEvent("examine/" + image, title, alt));
+		user.addEvent(new ExamineEvent("examine/" + image, title, caption));
 		return true;
 	}
 
