@@ -17,6 +17,9 @@ Changelog
 - Plan a new route when a player following a path hits another entity
 - single click for most actions and contextual mouse cursors (use /clickmode if you prefer doubeclick)
 - sub-zone teleport restrictions
+- NPCs can respond to emote actions
+- fertile ground inside houses
+- zone changing using mouse is possible
 - a family of NPCs holidaying in Ados
 - more rats and zones for the Pied Piper quest
 
@@ -26,6 +29,10 @@ Changelog
 - Monogenes easier to use
 - kill spiders and dark elves quests check you killed creatures from those relevant areas
 - recover automatically from corrupted cache files
+- ghosts have low hp like intended
+- turns walking along a path are now smooth
+- using a portal from distance walks the player to the portal
+- the client can cope better with differing tile sizes
 
 *code*
 - creatures xml split into smaller parts
@@ -35,7 +42,6 @@ Changelog
 *website*
 - new domain stendhalgame.org
 - rss feeds
-
 
 
 0.82.1
