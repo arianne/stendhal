@@ -1,12 +1,13 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="15" height="20" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="15" height="20" tilewidth="32" tileheight="32">
  <tileset name="drink" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
  </tileset>
  <tileset name="lamp" firstgid="5" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset name="kasten" firstgid="6" tilewidth="32" tileheight="32">
+ <tileset name="book shelves 3" firstgid="6" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset name="chest" firstgid="12" tilewidth="32" tileheight="32">
@@ -42,30 +43,33 @@
  <tileset name="sea_horse" firstgid="67" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
- <tileset name="grey door" firstgid="79" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/grey_centred.png"/>
- </tileset>
- <tileset name="wall/int_grey" firstgid="107" tilewidth="32" tileheight="32">
+ <tileset name="wall/int_grey" firstgid="79" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
+ </tileset>
+ <tileset name="entrance/grey" firstgid="200" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/grey.png"/>
+ </tileset>
+ <tileset name="indoor/grey_gradients" firstgid="225" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/grey_gradients.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNhYGAQoQA3koFF0Nik2DVU9aKzR/Xi1sswQHoHwr8MA6SXWv4llL9xyZOLAeZW05mwBAAA
+   H4sIAAAAAAAAABNhYGAQoQCnkoFF0Nik2DVU9aKzR/Xi1sswQHoHwr8MA6SXWv4llL9xyZOLAdGPnP6wBAAA
   </data>
  </layer>
  <layer name="1_terrain" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3OuQ3CMBSAYbegKJmBYwaQaEIfoGIOIHQcWYaUYQIqVuDquEbhL4JkRbaxkRLlSV9j+9fzTAgxx8JBjCVWWGPjYIsEO6Ti94QYwkOGvdR6Fv13iq3LmNoe+pJBRXt1M8akhL1NNP5obRrT3jq2LbQ1bYSRoe2gW8KffcvOV7SBZRtI7QlnXBSmmvMrbrjjgWfBIX93VNy98MYHMzm7RrAEAAA=
+   H4sIAAAAAAAAAM3OuQ3CMBSAYbegKJmBYwaQaEIfoOBIx7VMKJMJqFiBq+MahUH4iyBZkW1spER50tfY/vU8FULMMHewQIwlVlg72GCLBDvxe0IM4SFFJrWeRf+dYusypraHvmRQ0V7djDEpYW8TjT9am8a0t45tC21NG2FkaDvolvBn37LzFW1g2QZSe8QJZ4W35vyCK26441Gwz98dFHdPvPAB8kkMD7AEAAA=
   </data>
  </layer>
  <layer name="2_object" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoBzYArEdHnlrILbBIecIxE5IfFUgVgNidRLMhwENINYEYi085o+CwQO0gVgHinVJ1KsHxPpQbEBldw1FwEpldeSCYCgdSobeKCCOBuIYPGoAUFRe8rAEAAA=
+   H4sIAAAAAAAAAGNgoBzYArEdHnlrILbBIecIxE5IfFUgVgNidRLMhwENINYEYi085o+CwQO0gVgHinVJ1KsHxPpQbEBldw1FwEpldeSCU1D6DBl6zwPxCyC+iEcNALMCyZywBAAA
   </data>
  </layer>
  <layer name="3_roof" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWGQGyEhE2pYKYrELuRqdcTiL2o4AZ0wA7EbGToI0fPQANnIHYhU687EHtQ0S2jgHoAAGX7+HSwBAAA
+   H4sIAAAAAAAAAGNgGAWGQGyEhE2pYKYrELuRqdcTiL2o4AZ0wA7EbGToI0fPQANnIHYhU687EHtQ0S2jgHhwgYA8AGBZD/awBAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="20">

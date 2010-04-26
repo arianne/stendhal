@@ -20,16 +20,19 @@
   <image source="../../tileset/building/wall/glass.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="44" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/grey_centred.png"/>
- </tileset>
- <tileset name="Untitled" firstgid="72" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_fancy_horizontal.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="81" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="53" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrels_2.png"/>
  </tileset>
- <tileset name="wall/int_grey" firstgid="89" tilewidth="32" tileheight="32">
+ <tileset name="wall/int_grey" firstgid="61" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
+ </tileset>
+ <tileset name="entrance/grey" firstgid="182" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/grey.png"/>
+ </tileset>
+ <tileset name="indoor/grey_gradients" firstgid="207" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/grey_gradients.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
@@ -38,17 +41,17 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAIthYGCIJxMnAHE6EMsAsSyJWB6ID0P1qwAxFxQTAjB16mj6YXIw4A3EPlDsi6afAYd+ZOAHxP5QHIBFnpB+QmBUP6Z+RiL0wdRg089KhH6YGlro5yRCPzsW/RpArIUDG+IQ14bqPwXEp/FgCzxy54AYAGXKOu8ABAAA
+   H4sIAAAAAAAAAHNgYGBwBGInErEzELsAsTcQywCxLIlYHoj9gbgEiFWAmAuKCQGYOnUgrkPSD5ODAX0gNoBiQzT9DDj0IwMjIDaGYhMs8oT0EwKj+jH1MxKhD6YGm35WIvTD1NBCPycR+tnR9C8GYg0g1sKBL+EQ1wbi5UC8DojXA/EGHPgaDvGNQLwJiAFdYftKAAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJ4gGIkdOGCuGAWkgCAi1ITS0P4QItSE4ZFjJ0I/J5FuAQEDKG1Egh5kYA6lLfGoAQAd9eTRAAQAAA==
+   H4sIAAAAAAAAAGNgGJ7AHIltOmCuGAWkADMi1FjS0H4LItRY4ZFjJ0I/J5FuAYEdUHoXCXqQwV4ovR+PGgDCcFdgAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQMRmAApY3I1G8OxBZAbIlHDQCkQspmAAQAAA==
+   H4sIAAAAAAAAAGNgGAWjYBQMRrADSu8iU/9eIN4HxPvxqAEAcqOgfAAEAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -61,7 +64,7 @@
    H4sIAAAAAAAAAGNgGAWjYBQMViAw0A4YBaNgFAwIoEfeBwAhsVzvAAgAAA==
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.44">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.44">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAABNmYGAQHkSYEMCnTxiPOgY0NaTaS8gdo/op109s/A9W/aQAUvIDLfMbAMwXY2QABAAA
   </data>

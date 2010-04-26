@@ -70,8 +70,11 @@
  <tileset name="letter" firstgid="189" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/letter.png"/>
  </tileset>
- <tileset name="door" firstgid="190" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/grey_centred.png"/>
+ <tileset name="entrance/grey" firstgid="190" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/grey.png"/>
+ </tileset>
+ <tileset name="indoor/grey_gradients" firstgid="215" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/grey_gradients.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
@@ -85,12 +88,12 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA8wAmJjPPJsONjOUNoEiE3RxEgBZkBsToY+YsEmIN4MxVuQxFmxqMUmRilIBeJYII4D4hggzgBieyR5e2yakEA6EjsRie0BxJ5E2L8aSjMBcQ2SuDcQ+6Cp5cGifw0RdsDAXixi2TjUBgJxEAlmEwOwuZ8a4BAQHwbiI2TqPwnEp4D4NAl6AEtppccABAAA
+   H4sIAAAAAAAAAGNgoA8wAmJjPPJsONjOUNoEiE3RxEgBZkBsToY+YsEmIN4MxVuQxFmxqMUmRilIBeJYII4D4hggzgBieyR5e2yakEA6EjsRie0BxJ5E2L8aSjMBcQ2SuDcQ+6Cp5cGifw0RdsDAXixi2TjUBgJxEAlmEwOwuZ8a4AAQ3wLiQ2TqPwrE94D4OAl6AEjZ/c0ABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC2wJVKMELAAYksy9DETKTYRiOcB8SQgnowkzoJFLTaxFTjYAwnckdhuBNSupqVDyAT2QOwHxP5QNi1BAY3NJwYcgtJHyNR/EohPAfFpEvQAADtd4/cABAAA
+   H4sIAAAAAAAAAGNgoC2wJVKMELAAYksy9DETKTYRiOcB8SQgnowkzoJFLTaxFTjYAwnckdhuBNSupqVDyAT2QOwHxP5QNi1BAY3NJwYcgNKHyNR/FIiPAfFxEvQAAC/0kGoABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -103,7 +106,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.37">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONjYGDgG+QYHRCjBpceYswgxTxquZ8Uc2iln5A7idFPTHzQUj+57icFEGs/qfrRw4AeGADZMZAiAAQAAA==
   </data>

@@ -25,12 +25,12 @@
  <tileset name="wall/int_grey" firstgid="47" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset name="grey entrance" firstgid="168" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/grey_wide.png"/>
+ <tileset name="entrance/grey" firstgid="168" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
  <layer name="0_floor" width="12" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNjYGBgIxEzEYmR1RNjJjnqGaFsRgKYCQd7pKhHxjuhGF0clzl7oRibGgAqQbRAQAIAAA==
+   H4sIAAAAAAAAAGNjYGBgIxEzEYmR1RNjJjnqGaFsRgKYCQd7pKhHxquhGF0clzlboBibGgBx6Bg2QAIAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="12" height="12">
@@ -40,7 +40,7 @@
  </layer>
  <layer name="2_object" width="12" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA/kgFgeizgPEPMjYRGouCIQK2FRLwrEEkhYFiquAsSqBNxACwByjxQSlsWvnCqAHYi5gJgTh3vEgFiaxm7ZgcTeTYT6PUjs/VjkAYkIfQ5AAgAA
+   H4sIAAAAAAAAAGNgwA/kgFgeizgPEPMjYRGouCIQK2FRLwrEEkhYFiquAsSqBNxACwByjxQSlsWvnCqAHYi5gJgTh3vEgFiaxm5ZhcReQ4T69UjsjVjkAUnBKedAAgAA
   </data>
  </layer>
  <layer name="3_roof" width="12" height="12">
