@@ -89,8 +89,9 @@ class SourceObject extends MoveableObject {
 		if (!baseSlot.has(baseItemId)) {
 			logger.debug("Base item(" + parent + ") doesn't contain item(" + baseItemId + ") on given slot(" + slotName
 					+ ")");
-			player.sendPrivateText("There is no such item in the " + slotName + " of "
-					+ parent.getDescriptionName(true));
+			// Remove message as discussed on #arianne 2010-04-25
+			// player.sendPrivateText("There is no such item in the " + slotName + " of "
+				//	+ parent.getDescriptionName(true));
 			return invalidSource;
 		}
 
