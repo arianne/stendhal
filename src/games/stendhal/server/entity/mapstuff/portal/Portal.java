@@ -181,6 +181,11 @@ public class Portal extends Entity implements UseListener {
 			player.sendPrivateText("For some reason you cannot get through right now.");
 			return false;
 		}
+
+		if (!nextTo(player) && has("use")) {
+			player.sendPrivateText("You must come closer before you can go through.");
+			return false;
+		}
 		
 		if (!nextTo(player)) {
 			// Too far to use the portal from here, but walk to it
