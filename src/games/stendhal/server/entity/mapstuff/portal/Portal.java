@@ -183,7 +183,7 @@ public class Portal extends Entity implements UseListener {
 		}
 
 		if (!nextTo(player) && has("use")) {
-			player.sendPrivateText("You must come closer before you can go through.");
+			player.sendPrivateText("You must come closer before you can use this orb.");
 			return false;
 		}
 		
