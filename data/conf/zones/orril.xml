@@ -214,6 +214,7 @@
 				<parameter name="rejected">You must learn to use orb first.
 				</parameter>
 			</implementation>
+			<attribute name="use"/>
 		</portal>
 		<portal x="13" y="8" ref="orb_right">
 			<destination zone="-1_fado_great_cave_e3" ref="jynath_orb" />
@@ -223,6 +224,7 @@
 				<parameter name="rejected">You must learn to use orb first.
 				</parameter>
 			</implementation>
+			<attribute name="use"/>
 		</portal>
 	</zone>
 
@@ -465,6 +467,7 @@
 				<parameter name="rejected">You do not know how to use the orb.
 				</parameter>
 			</implementation>
+			<attribute name="use"/>
 		</portal>
 
 		<portal x="77" y="117" ref="2nd_room_in">

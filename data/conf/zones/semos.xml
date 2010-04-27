@@ -1320,6 +1320,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 				<parameter name="quest">learn_scrying</parameter>
 				<parameter name="rejected">If Ilisa asks, say #yes you have a message from the ball.</parameter>
 			</implementation>
+			<attribute name="use"/>
 		</portal>
 		<portal x="12" y="8" ref="orb_right">
 			<destination zone="0_orril_mountain_w" ref="orb_destination" />
@@ -1329,6 +1330,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 				<parameter name="quest">learn_scrying</parameter>
 				<parameter name="rejected">If Ilisa asks, say #yes you have a message from the ball.</parameter>
 			</implementation>
+			<attribute name="use"/>
 		</portal>
 
 		<portal x="10" y="23" ref="entrance_left">
