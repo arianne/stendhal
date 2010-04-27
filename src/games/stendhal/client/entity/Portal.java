@@ -93,4 +93,14 @@ public class Portal extends InvisibleEntity {
 			hidden = false;
 		}
 	}
+
+
+	/**
+	 * Is this entity useable?
+	 *
+	 * @return true if it is useable, false otherwise
+	 */
+	public boolean isUseable() {
+		return rpObject.has("use");
+	}
 }

@@ -41,6 +41,7 @@ public class Portal extends Entity implements UseListener {
 	 * The hidden flags attribute name.
 	 */
 	protected static final String ATTR_HIDDEN = "hidden";
+	protected static final String ATTR_USE = "use";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Portal.class);
@@ -58,6 +59,7 @@ public class Portal extends Entity implements UseListener {
 				if (!RPClass.hasRPClass(RPCLASS_NAME)){
 					final RPClass portal = new RPClass(RPCLASS_NAME);
 					portal.isA("entity");
+					portal.addAttribute(ATTR_USE, Type.FLAG);
 					portal.addAttribute(ATTR_HIDDEN, Type.FLAG);
 				}
 		} catch (final SyntaxException e) {
@@ -179,7 +181,12 @@ public class Portal extends Entity implements UseListener {
 			player.sendPrivateText("For some reason you cannot get through right now.");
 			return false;
 		}
-		
+
+		if (!nextTo(player) && has("use")) {
+			player.sendPrivateText("You must come closer before you can use this orb.");
+			return false;
+		}
+
 		if (!nextTo(player)) {
 			// Too far to use the portal from here, but walk to it
 			// The pathfinder will do the rest of the work and make the player pass through the portal
