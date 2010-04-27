@@ -231,12 +231,16 @@ class Door2DView extends StateEntity2DView {
 
 	@Override
 	public boolean isInteractive() {
-		return false;
+		return ((Door) entity).isUseable();
 	}
 
 	@Override
 	public StendhalCursor getCursor() {
-		return StendhalCursor.PORTAL;
+		if (isInteractive()) {
+			return StendhalCursor.ACTIVITY;
+		} else {
+			return StendhalCursor.PORTAL;
+		}
 	}
 
 }

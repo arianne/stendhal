@@ -41,6 +41,7 @@ public class Portal extends Entity implements UseListener {
 	 * The hidden flags attribute name.
 	 */
 	protected static final String ATTR_HIDDEN = "hidden";
+	protected static final String ATTR_USE = "use";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Portal.class);
@@ -58,6 +59,7 @@ public class Portal extends Entity implements UseListener {
 				if (!RPClass.hasRPClass(RPCLASS_NAME)){
 					final RPClass portal = new RPClass(RPCLASS_NAME);
 					portal.isA("entity");
+					portal.addAttribute(ATTR_USE, Type.FLAG);
 					portal.addAttribute(ATTR_HIDDEN, Type.FLAG);
 				}
 		} catch (final SyntaxException e) {

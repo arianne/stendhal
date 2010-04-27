@@ -75,14 +75,19 @@ class Portal2DView extends InvisibleEntity2DView {
 		}
 	}
 
+
 	@Override
 	public boolean isInteractive() {
-		return false;
+		return ((Portal) entity).isUseable();
 	}
 
 	@Override
 	public StendhalCursor getCursor() {
-		return StendhalCursor.PORTAL;
+		if (isInteractive()) {
+			return StendhalCursor.ACTIVITY;
+		} else {
+			return StendhalCursor.PORTAL;
+		}
 	}
 
 }

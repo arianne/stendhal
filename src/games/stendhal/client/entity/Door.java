@@ -32,6 +32,7 @@ public class Door extends Entity {
 	 * Create a door entity.
 	 */
 	public Door() {
+		// default constructor
 	}
 
 	//
@@ -113,5 +114,14 @@ public class Door extends Entity {
 			open = false;
 			fireChange(PROP_OPEN);
 		}
+	}
+
+	/**
+	 * Is this entity useable?
+	 *
+	 * @return true if it is useable, false otherwise
+	 */
+	public boolean isUseable() {
+		return rpObject.has("use");
 	}
 }
