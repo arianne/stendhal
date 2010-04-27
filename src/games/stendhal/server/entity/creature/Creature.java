@@ -266,8 +266,8 @@ public class Creature extends NPC {
 		// this.dropItemInstances is ignored;
 
 		this.setAiProfiles(aiProfiles);
-		this.noises = noises;
-
+		this.noises = new LinkedHashMap<String, LinkedList<String>>();
+		this.noises.putAll(noises);
 		this.respawnTime = respawnTime;
 
 		setEntityClass(clazz);

@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
@@ -532,11 +533,11 @@ import org.apache.log4j.Logger;
 					tc=0;
 				};
 				// checking if EntityManager knows about this creature type.
-				final Creature tempCreature = (Creature) manager.getEntity(RAT_TYPES.get(tc));
+				final Creature tempCreature = new Creature((Creature) manager.getEntity(RAT_TYPES.get(tc)));
 				if (tempCreature == null) {
 					continue;
 				};
-				final KillNotificationCreature rat = new KillNotificationCreature(tempCreature);
+				final KillNotificationCreature rat = new KillNotificationCreature(tempCreature.getNewInstance());
 
 				// chosen place is occupied
 				if (zone.collides(rat,x,y)) {
@@ -557,7 +558,7 @@ import org.apache.log4j.Logger;
 				} 
 				// spawn creature
 				rat.registerObjectsForNotification(ratsObserver);
-				/* -- commented because of these noises reflects on all archrats in game -- 
+				/* -- commented because of these noises reflects on all archrats in game -- */
 				// add unique noises to humanoids
 				if (tc==RAT_TYPES.indexOf("archrat")) {
 					final LinkedList<String> ll = new LinkedList<String>(
@@ -571,7 +572,7 @@ import org.apache.log4j.Logger;
 					lhm.put("follow", ll);
 					rat.setNoises(lhm);
 				};
-				*/
+				
 				StendhalRPAction.placeat(zone, rat, x, y);
 				rats.add(rat);
 			};
