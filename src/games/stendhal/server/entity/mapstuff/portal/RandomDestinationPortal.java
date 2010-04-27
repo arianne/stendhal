@@ -107,6 +107,17 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 		super(questslot);
 		initLocations();
 	}
+	
+	@Override
+	public void onAdded(StendhalRPZone zone) {
+		super.onAdded(zone);
+		/*
+		 * A hack to silence StendhalRPWorld's pedantic portal checking. Point
+		 * to the portal itself so that it has a valid destination
+		 */
+		setIdentifier(this);
+		setDestination(zone.getName(), this);
+	}
 
 	/**
 	 * Initialize the locations set
