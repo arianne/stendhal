@@ -494,6 +494,9 @@
      <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_8" file="interiors/semos/wizards_tower_spire_1.tmx">
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.RedFireWizardNPC" />
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.BlueIceSorceressNPC" />
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.OrientalAirWizardNPC" />
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.GreenNatureWizardNPC" />
        <portal x="21" y="7" ref="portal_from_spire_2">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
         </portal>
@@ -538,6 +541,9 @@
 
      <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_9" file="interiors/semos/wizards_tower_spire_2.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.BlackDeathWizardNPC" />
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.WhiteLifeSorceressNPC" />
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.BlueArchmageNPC" />
        <portal x="21" y="6" ref="portal_from_spire_1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
         </portal>
@@ -545,6 +551,24 @@
                 <destination zone="int_semos_wizards_tower_8" ref="portal_from_spire_2" />
                 <attribute name="hidden"/>
             </portal>
+	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+	<parameter name="x">12</parameter>
+	<parameter name="y">17</parameter>
+	<parameter name="image">wooden_door</parameter>
+	<parameter name="orientation">h</parameter>
+	</configurator>
+	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+	<parameter name="x">21</parameter>
+	<parameter name="y">23</parameter>
+	<parameter name="image">wooden_door</parameter>
+	<parameter name="orientation">h</parameter>
+	</configurator>
+	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+	<parameter name="x">30</parameter>
+	<parameter name="y">17</parameter>
+	<parameter name="image">wooden_door</parameter>
+	<parameter name="orientation">h</parameter>
+	</configurator>
     </zone>
    
     	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
