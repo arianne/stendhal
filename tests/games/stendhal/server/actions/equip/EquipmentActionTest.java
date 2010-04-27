@@ -60,23 +60,6 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		return player;
 	}
 
-	/**
-	 * Tests for dropInvalidSourceSlot.
-	 */
-	@Test
-	public void testDropInvalidSourceSlot() {
-		final Player player = createTestPlayer("george");
-
-		final RPAction drop = new RPAction();
-		drop.put("type", "drop");
-		drop.put("baseobject", player.getID().getObjectID());
-		drop.put("baseslot", "nonExistingSlotXXXXXX");
-		drop.put("baseitem", -1);
-
-		final EquipmentAction action = new DropAction();
-		action.onAction(player, drop);
-		Assert.assertEquals("Source nonExistingSlotXXXXXX does not exist", player.events().get(0).get("text"));
-	}
 
 	/**
 	 * Tests for dropNonExistingItem.
