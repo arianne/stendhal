@@ -871,9 +871,9 @@
 			</fileset>
 		</schemavalidate>
 		<schemavalidate>
-			<schema namespace="stendhal" file="${config_dir}/creatures.xsd" />
+		<schema namespace="stendhal" file="${config_dir}/creatures.xsd" />
 			<fileset dir="${config_dir}/creatures">
-				<include name="creatures.xml" />
+				<include name="*.xml" />
 			</fileset>
 		</schemavalidate>
 		<schemavalidate>
