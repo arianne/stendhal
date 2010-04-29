@@ -155,8 +155,8 @@ public class Player extends RPEntity {
 		player.put("atk_xp", 0);
 		player.put("def", 10);
 		player.put("def_xp", 0);
+		player.put("level", 0);
 		player.setXP(0);
-
 
 		final Outfit randomoutfit = Outfit.getRandomOutfit();
 		player.setOutfit(randomoutfit);
