@@ -5,6 +5,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.util.List;
 
@@ -33,6 +34,11 @@ class UseableItem2DView extends StackableItem2DView {
 
 	@Override
 	public StendhalCursor getCursor() {
-		return StendhalCursor.ITEM_USE;
+		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
+		if (doubleClick) {
+			return StendhalCursor.ACTIVITY;
+		} else {
+			return StendhalCursor.ITEM_USE; 
+		}
 	}
 }
