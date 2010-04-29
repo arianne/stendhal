@@ -971,13 +971,13 @@
       <item value="shadow armor" quantity="[1,1]" probability="0.7"/>
       <item value="dark dagger" quantity="[1,1]" probability="0.1"/>
     </drops>
+    <equips>
+    </equips>
     <abilities>
       <damage type="light"/>
       <susceptibility type="dark" value="1.3"/>
       <susceptibility type="light" value="0.6"/>
     </abilities> 
-    <equips>
-    </equips>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -1643,13 +1643,14 @@
       <item value="black cloak" quantity="[1,1]" probability="0.0050"/>
       <item value="dark dagger" quantity="[1,1]" probability="0.1"/>
     </drops>
+    <equips>
+    </equips>
     <abilities>
       <damage type="dark"/>
       <susceptibility type="dark" value="0.7"/>
       <susceptibility type="light" value="1.2"/>
     </abilities>
-    <equips>
-    </equips>
+
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
