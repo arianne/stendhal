@@ -1,23 +1,24 @@
 package games.stendhal.client.gui.stats;
 
+import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.layout.VSBoxLayout;
+import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJPanel;
+import games.stendhal.common.Level;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.HashMap;
 
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import marauroa.common.game.RPObject;
 
-import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
-import games.stendhal.common.Level;
-
 public class StatsPanel extends StyledJPanel {
-	private StatLabel hpLabel, atkLabel, defLabel, xpLabel, levelLabel, moneyLabel;
+	private final StatLabel hpLabel, atkLabel, defLabel, xpLabel, levelLabel, moneyLabel;
+	private final StatusIconPanel statusIcons;
 	private int hp, maxhp, atk, atkxp, weaponAtk, def, defxp, itemDef, xp, level;
 	/**
 	 * The money objects.
@@ -29,7 +30,10 @@ public class StatsPanel extends StyledJPanel {
 	
 	public StatsPanel() {
 		super(WoodStyle.getInstance());
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new VSBoxLayout());
+		
+		statusIcons = new StatusIconPanel(); 
+		add(statusIcons);
 		
 		hpLabel = new StatLabel();
 		add(hpLabel);
@@ -51,14 +55,14 @@ public class StatsPanel extends StyledJPanel {
 	}
 	
 	/**
-	 * An uggly hack to work around java 5 and 6 treating this differently.
+	 * An ugly hack to work around java 5 and 6 treating this differently.
 	 * Should be removed in case this panel gets placed somewhere it determines
 	 * the width.
 	 */
 	@Override
 	public Dimension getPreferredSize() {
 		Dimension d = super.getPreferredSize();
-		d.width = 0;
+		//d.width = 0;
 		return d;
 	}
 	
@@ -66,7 +70,7 @@ public class StatsPanel extends StyledJPanel {
 	 * Initialize from the values of <code>User</code>.
 	 * This is needed because some values are not sent on user creation. 
 	 */
-	public void init() {
+	private void init() {
 		if (!initialized) {
 			User user = User.get();
 			if (user == null) {
@@ -82,59 +86,83 @@ public class StatsPanel extends StyledJPanel {
 		}
 	}
 	
-	public void setHP(int hp) {
+	protected void setHP(int hp) {
 		this.hp = hp;
 		updateHP();
 	}
 	
-	public void setMaxHP(int hp) {
+	protected void setMaxHP(int hp) {
 		this.maxhp = hp;
 		updateHP();
 	}
 	
-	public void setATK(int atk) {
+	protected void setATK(int atk) {
 		this.atk = atk;
 		init();
 		updateATK();
 	}
 	
-	public void setATKXP(int atkxp) {
+	protected void setATKXP(int atkxp) {
 		this.atkxp = atkxp;
 		updateATK();
 	}
 	
-	public void setWeaponAtk(int atk) {
+	protected void setWeaponAtk(int atk) {
 		this.weaponAtk = atk;
 		updateATK();
 	}
 	
-	public void setDEF(int def) {
+	protected void setDEF(int def) {
 		this.def = def;
 		updateDEF();
 	}
 	
-	public void setDEFXP(int defxp) {
+	protected void setDEFXP(int defxp) {
 		this.defxp = defxp;
 		updateDEF();
 	}
 	
-	public void setItemDef(int def) {
+	protected void setItemDef(int def) {
 		itemDef = def;
 		updateDEF();
 	}
 	
-	public void setXP(int xp) {
+	protected void setXP(int xp) {
 		this.xp = xp;
 		xpLabel.setText("XP: " + xp);
 		updateLevel();
 	}
 	
-	public void setLevel(int level) {
+	protected void setLevel(int level) {
 		this.level = level;
 		updateLevel();
 	}
+	
+	protected void setEating(final boolean eating) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				statusIcons.setEating(eating);
+			}
+		});
+	}
+	
+	protected void setChoking(final boolean choking) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				statusIcons.setChoking(choking);
+			}
+		});
+	}
+	
+	protected void setPoisoned(final boolean poisoned) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				statusIcons.setPoisoned(poisoned);
+			}
+		});
+	}
 		
-	public void addMoney(String slot, RPObject object) {
+	protected void addMoney(String slot, RPObject object) {
 		HashMap<String, RPObject> set = money.get(slot);
 		String id = object.get("id"); 
 		
@@ -160,7 +188,7 @@ public class StatsPanel extends StyledJPanel {
 		}
 	}
 	
-	public void removeMoney(String slot, RPObject obj) {
+	protected void removeMoney(String slot, RPObject obj) {
 		HashMap<String, RPObject> set = money.get(slot);
 		if (set != null) {
 			if (set.remove(obj.get("id")) != null) {

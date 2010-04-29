@@ -56,6 +56,13 @@ public class StatsPanelController {
 		for (String slot : MONEY_SLOTS) {
 			pcs.addPropertyChangeListener(slot, listener);
 		}
+		
+		listener = new EatingChangeListener();
+		pcs.addPropertyChangeListener("eating", listener);
+		pcs.addPropertyChangeListener("choking", listener);
+		
+		listener = new PoisonedChangeListener();
+		pcs.addPropertyChangeListener("poisoned", listener);
 	}
 	
 	private class HPChangeListener implements PropertyChangeListener {
@@ -133,6 +140,31 @@ public class StatsPanelController {
 				return;
 			}
 			panel.setItemDef(Integer.parseInt((String) event.getNewValue()));
+		}
+	}
+	
+	private class EatingChangeListener implements PropertyChangeListener {
+		public void propertyChange(final PropertyChangeEvent event) {
+			if (event == null) {
+				return;
+			}
+			
+			boolean newStatus = event.getNewValue() != null;
+			if ("eating".equals(event.getPropertyName())) {
+				panel.setEating(newStatus);
+			} else {
+				panel.setChoking(newStatus);
+			}
+		}
+	}
+	
+	private class PoisonedChangeListener implements PropertyChangeListener {
+		public void propertyChange(final PropertyChangeEvent event) {
+			if (event == null) {
+				return;
+			}
+			
+			panel.setPoisoned(event.getNewValue() != null);
 		}
 	}
 	
