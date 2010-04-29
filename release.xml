@@ -46,7 +46,7 @@
 		<!-- TODO
 		* unless build-archive/stendhal-${version.old}.zip exists
 			download http://arianne.sf.net/jws/stendhal-${version.old}.zip to build-archiv -->
-		<unzip src="${build-archive}/stendhal-${version.old}.zip" 
+		<unzip src="${build-archive}/stendhal-FULL-${version.old}.zip" 
 			dest="${build-archive}" />
 	</target>
 
@@ -66,6 +66,14 @@
 			<arg value="${build}/lib/stendhal-data-diff-${version.old}-${version}.jar" />
 			<arg value="${build-archive}/lib/stendhal-data-${version.old}.jar" />
 			<arg value="${build}/lib/stendhal-data-${version}.jar" />
+		</java>
+		<java jar="libs/jardiff.jar" fork="true">
+			<arg value="-nonminimal" />
+			<arg value="-creatediff" />
+			<arg value="-output" />
+			<arg value="${build}/lib/stendhal-music-data-diff-${version.old}-${version}.jar" />
+			<arg value="${build-archive}/lib/stendhal-music-data-${version.old}.jar" />
+			<arg value="${build}/lib/stendhal-music-data-${version}.jar" />
 		</java>
 		<!-- TODO maraurora.jar-->
 	</target>
