@@ -600,3 +600,14 @@ tileset/sky/view_wizards_tower.png	*	98:100:132:134@3500
 tileset/sky/view_wizards_tower.png	*	99:101:133:135@3500
 tileset/sky/view_wizards_tower.png	*@300	119:120:121:122:123:124
 tileset/sky/view_wizards_tower.png	*@300	126:127:128:129:130:131
+
+# gazingball statue - animation of the balls singly
+tileset/item/statue/gazingball_statue.png	*	21:24
+tileset/item/statue/gazingball_statue.png	*	22:25
+tileset/item/statue/gazingball_statue.png	*	23:26
+tileset/item/statue/gazingball_statue.png	*	27:30
+tileset/item/statue/gazingball_statue.png	*	28:31
+tileset/item/statue/gazingball_statue.png	*	29:32
+
+# gazingball statue - animation in a row(rainbow)
+tileset/item/statue/gazingball_statue.png	*	46:49:52:55:45:48:51:54:35:38:41:44:34:37:40:43:47:50:53:56:33:36:39:42
