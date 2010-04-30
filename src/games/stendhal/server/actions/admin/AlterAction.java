@@ -10,6 +10,7 @@ import static games.stendhal.common.constants.Actions.STAT;
 import static games.stendhal.common.constants.Actions.SUB;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TITLE;
+import static games.stendhal.common.constants.Actions.UNSET;
 import static games.stendhal.common.constants.Actions.VALUE;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
@@ -71,8 +72,8 @@ public class AlterAction extends AdministrationAction {
 				final String mode = action.get(MODE);
 
 				if ((mode.length() > 0) && !mode.equalsIgnoreCase(ADD) 
-						&& !mode.equalsIgnoreCase(SUB) && !mode.equalsIgnoreCase(SET)) {
-					player.sendPrivateText("Please issue one of the modes 'add', 'sub' and 'set'.");
+						&& !mode.equalsIgnoreCase(SUB) && !mode.equalsIgnoreCase(SET) && !mode.equalsIgnoreCase(UNSET)) {
+					player.sendPrivateText("Please issue one of the modes 'add', 'sub', 'set' or 'unset'.");
 					return;
 				}
 
@@ -135,10 +136,18 @@ public class AlterAction extends AdministrationAction {
 					new GameEvent(player.getName(), ALTER, action.get(TARGET), stat, Integer.toString(numberValue)).raise();
 					changed.put(stat, numberValue);
 				} else {
-					// Can be only set if value is not a number
+					// If value is not a number, only SET and UNSET can be used
 					if (mode.equalsIgnoreCase(SET)) {
 						new GameEvent(player.getName(), ALTER, action.get(TARGET), stat, action.get(VALUE)).raise();
 						changed.put(stat, action.get(VALUE));
+
+					} else if (mode.equalsIgnoreCase(UNSET)) {
+						if (type.getType() != Type.FLAG) {
+							player.sendPrivateText("Attribute to be unset is not of type 'flag'.");
+							return;
+						}
+						new GameEvent(player.getName(), ALTER, action.get(TARGET), stat, "unset").raise();
+						changed.remove(stat);
 					}
 				}
 
