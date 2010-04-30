@@ -13,6 +13,7 @@
 package games.stendhal.bot.textclient;
 
 import games.stendhal.bot.core.StandardClientFramework;
+import games.stendhal.server.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,8 +29,9 @@ public class TextClient {
 				String password = null;
 				String character = null;
 				String host = null;
-				String port = null;
+				String port = "32160";
 				boolean showWorld = false;
+				boolean createAccount = false;
 
 				while (i != args.length) {
 					if (args[i].equals("-u")) {
@@ -46,8 +48,17 @@ public class TextClient {
 						if ("1".equals(args[i + 1])) {
 							showWorld = true;
 						}
+					} else if (args[i].equals("-a")) {
+						createAccount = true;
 					}
 					i++;
+				}
+
+				if (createAccount) {
+					username = "testuser" + StringUtils.generateStringOfCharacters(10);
+					password = username;
+					character = username;
+					System.out.println(username);
 				}
 
 				if ((username != null) 
@@ -66,7 +77,7 @@ public class TextClient {
 					thread.setDaemon(true);
 					thread.start();
 
-					TextClientFramework client = new TextClientFramework(host, username, password, character, port, showWorld);
+					TextClientFramework client = new TextClientFramework(host, username, password, character, port, showWorld, createAccount);
 					client.script();
 
 					return;

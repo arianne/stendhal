@@ -11,9 +11,14 @@ import java.util.Map;
 import marauroa.client.ClientFramework;
 import marauroa.client.TimeoutException;
 import marauroa.client.net.PerceptionHandler;
+import marauroa.common.game.AccountResult;
+import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.Result;
 import marauroa.common.net.message.MessageS2CPerception;
 import marauroa.common.net.message.TransferContent;
+
+import org.apache.log4j.Logger;
 
 /**
  * a standard implementation of the client framework
@@ -21,6 +26,7 @@ import marauroa.common.net.message.TransferContent;
  *
  */
 public abstract class StandardClientFramework extends ClientFramework {
+	private final static Logger logger = Logger.getLogger(StandardClientFramework.class); 
 
 	private final String host;
 
@@ -36,6 +42,8 @@ public abstract class StandardClientFramework extends ClientFramework {
 
 	protected Map<RPObject.ID, RPObject> worldObjects;
 
+	private boolean createAccount;
+
 	/**
 	 * Creates a ShouterMain.
 	 * 
@@ -49,10 +57,12 @@ public abstract class StandardClientFramework extends ClientFramework {
 	 *            character name
 	 * @param P
 	 *            port
+	 * @param createAccount
+	 *            createAccount
 	 * @throws SocketException
 	 *             on an network error
 	 */
-	public StandardClientFramework(final String h, final String u, final String p, final String c, final String P) throws SocketException {
+	public StandardClientFramework(final String h, final String u, final String p, final String c, final String P, final boolean createAccount) throws SocketException {
 		super("games/stendhal/log4j.properties");
 		this.host = h;
 		this.username = u;
@@ -61,12 +71,28 @@ public abstract class StandardClientFramework extends ClientFramework {
 		this.port = P;
 		this.handler = new PerceptionHandler(new PerceptionErrorListener());
 		this.worldObjects = new HashMap<RPObject.ID, RPObject>();
+		this.createAccount = createAccount;
 	}
 
 	public void script() {
 		try {
 			this.connect(host, Integer.parseInt(port));
-			this.login(username, password);
+			if (createAccount) {
+				AccountResult account = createAccount(username, password, "email@mailinator.com");
+				if (account.getResult() == Result.OK_CREATED) {
+					login(username, password);
+					CharacterResult character = createCharacter(username, new RPObject());
+					logger.info("Creating character: " + character.getResult());
+				} else {
+					if (account.getResult() == Result.FAILED_PLAYER_EXISTS) {
+						login(username, password);
+					} else {
+						logger.error(account);
+					}
+				}
+			} else {
+				this.login(username, password);
+			}
 			execute();
 			this.logout();
 			System.exit(0);

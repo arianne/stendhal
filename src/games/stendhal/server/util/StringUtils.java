@@ -39,4 +39,14 @@ public class StringUtils {
 		}
 		return count;
 	}
+
+
+	private static final String CHARACTERS = "abcdefghijklmnopqrstuvwxyz";
+	public static String generateStringOfCharacters(int count) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < count; i++) {
+			sb.append(CHARACTERS.charAt((int)(Math.random() * CHARACTERS.length())));
+		}
+		return sb.toString();
+	}
 }

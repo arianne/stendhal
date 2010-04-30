@@ -48,7 +48,7 @@ public class Answer extends StandardClientFramework {
 	 *             on an network error
 	 */
 	public Answer(final String h, final String u, final String p, final String c, final String P, String targetPlayer) throws SocketException {
-		super(h, u, p, c, P);
+		super(h, u, p, c, P, false);
 		this.targetPlayer = targetPlayer;
 	}
 

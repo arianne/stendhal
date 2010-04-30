@@ -36,12 +36,14 @@ public class TextClientFramework extends StandardClientFramework {
 	 *            character name
 	 * @param P
 	 *            port
+	 * @param createAccount
+	 *            createAccount
 	 * @throws SocketException
 	 *             on an network error
 	 */
-	public TextClientFramework(String h, String u, String p, String c, String P, boolean showWorld)
+	public TextClientFramework(String h, String u, String p, String c, String P, boolean showWorld, boolean createAccount)
 			throws SocketException {
-		super(h, u, p, c, P);
+		super(h, u, p, c, P, createAccount);
 		this.showWorld = showWorld;
 		ClientSingletonRepository.setClientFramework(this);
 	}

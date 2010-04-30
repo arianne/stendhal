@@ -45,7 +45,7 @@ public class Ask extends StandardClientFramework {
 	 *             on an network error
 	 */
 	public Ask(final String h, final String u, final String p, final String c, final String P) throws SocketException {
-		super(h, u, p, c, P);
+		super(h, u, p, c, P, false);
 	}
 
 	@Override
