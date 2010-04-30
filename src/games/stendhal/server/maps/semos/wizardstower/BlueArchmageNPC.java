@@ -27,14 +27,40 @@ public class BlueArchmageNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(21, 37));
+				nodes.add(new Node(13, 37));
+				nodes.add(new Node(13, 32));
+				nodes.add(new Node(22, 32));
+				nodes.add(new Node(22, 25));
+				nodes.add(new Node(25, 25));
+				nodes.add(new Node(22, 25));
+				nodes.add(new Node(22, 32));
+				nodes.add(new Node(34, 32));
+				nodes.add(new Node(32, 32));
+				nodes.add(new Node(32, 34));
+				nodes.add(new Node(32, 32));
+				nodes.add(new Node(22, 32));
+				nodes.add(new Node(22, 25));
+				nodes.add(new Node(25, 25));
 				nodes.add(new Node(20, 25));
 				nodes.add(new Node(20, 32));
-				nodes.add(new Node(22, 32));
-				nodes.add(new Node(22, 27));
-				nodes.add(new Node(25, 27));
-				nodes.add(new Node(19, 27));
-				nodes.add(new Node(19, 25));
-				nodes.add(new Node(25, 25));
+				nodes.add(new Node(7, 32));
+				nodes.add(new Node(11, 32));
+				nodes.add(new Node(11, 35));
+				nodes.add(new Node(13, 35));
+				nodes.add(new Node(13, 37));
+				nodes.add(new Node(22, 37));
+				nodes.add(new Node(22, 40));
+				nodes.add(new Node(26, 40));
+				nodes.add(new Node(26, 36));
+				nodes.add(new Node(26, 37));
+				nodes.add(new Node(28, 37));
+				nodes.add(new Node(25, 37));
+				nodes.add(new Node(25, 40));
+				nodes.add(new Node(22, 40));
+				nodes.add(new Node(22, 37));
+				nodes.add(new Node(21, 37));
+				nodes.add(new Node(21, 36));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -50,7 +76,7 @@ public class BlueArchmageNPC implements ZoneConfigurator {
 
 		erastus.setDescription("You see Erastus, the grandmaster of all magics.");
 		erastus.setEntityClass("blueoldwizardnpc");
-		erastus.setPosition(25, 25);
+		erastus.setPosition(21, 36);
 		erastus.initHP(100);
 		zone.add(erastus);
 	}
