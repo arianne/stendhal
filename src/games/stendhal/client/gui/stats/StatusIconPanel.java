@@ -1,7 +1,6 @@
 package games.stendhal.client.gui.stats;
 
-import games.stendhal.client.gui.layout.HSBoxLayout;
-
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -13,7 +12,7 @@ public class StatusIconPanel extends JComponent {
 
 	final JLabel eating, choking, poison;
 	protected StatusIconPanel() {
-		setLayout(new HSBoxLayout());
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setOpaque(false);
 		
 		eating = new JLabel(eatingIcon);

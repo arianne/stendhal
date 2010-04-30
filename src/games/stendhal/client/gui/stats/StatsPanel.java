@@ -1,7 +1,6 @@
 package games.stendhal.client.gui.stats;
 
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.layout.VSBoxLayout;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import games.stendhal.common.Level;
@@ -11,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.util.HashMap;
 
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
@@ -30,7 +30,7 @@ public class StatsPanel extends StyledJPanel {
 	
 	public StatsPanel() {
 		super(WoodStyle.getInstance());
-		setLayout(new VSBoxLayout());
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		statusIcons = new StatusIconPanel(); 
 		add(statusIcons);
