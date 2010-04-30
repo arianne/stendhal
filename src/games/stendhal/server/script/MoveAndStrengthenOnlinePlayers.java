@@ -30,7 +30,10 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 	public MoveAndStrengthenOnlinePlayers() {
 		StendhalRPWorld rpWorld = SingletonRepository.getRPWorld();
 		for (IRPZone irpZone : rpWorld) {
-			zones.add((StendhalRPZone) irpZone);
+			StendhalRPZone irpZone2 = (StendhalRPZone) irpZone;
+			if (!irpZone2.getName().startsWith("int")) {
+				zones.add(irpZone2);				
+			}
 		}
 	}
 
