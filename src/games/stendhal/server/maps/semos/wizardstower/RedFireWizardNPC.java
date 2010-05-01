@@ -29,17 +29,16 @@ public class RedFireWizardNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(5, 43));
 				nodes.add(new Node(5, 42));
-				nodes.add(new Node(7, 42));
 				nodes.add(new Node(11, 42));
 				nodes.add(new Node(9, 42));
 				nodes.add(new Node(9, 33));
-				nodes.add(new Node(11, 33));
+				nodes.add(new Node(10, 33));
 				nodes.add(new Node(9, 33));
 				nodes.add(new Node(9, 37));
 				nodes.add(new Node(11, 37));
 				nodes.add(new Node(9, 37));
 				nodes.add(new Node(9, 33));
-				nodes.add(new Node(11, 33));
+				nodes.add(new Node(10, 33));
 				nodes.add(new Node(9, 33));
 				nodes.add(new Node(9, 42));
 				nodes.add(new Node(3, 42));
@@ -53,7 +52,6 @@ public class RedFireWizardNPC implements ZoneConfigurator {
 				nodes.add(new Node(2, 41));
 				nodes.add(new Node(3, 41));
 				nodes.add(new Node(3, 43));
-				nodes.add(new Node(2, 43));
 				setPath(new FixedPath(nodes, true));
 			}
 

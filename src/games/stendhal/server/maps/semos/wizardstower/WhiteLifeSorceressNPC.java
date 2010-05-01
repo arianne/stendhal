@@ -31,15 +31,13 @@ public class WhiteLifeSorceressNPC implements ZoneConfigurator {
 				nodes.add(new Node(39, 17));
 				nodes.add(new Node(35, 17));
 				nodes.add(new Node(35, 15));
-				nodes.add(new Node(34, 15));
-				nodes.add(new Node(35, 15));
 				nodes.add(new Node(35, 20));
 				nodes.add(new Node(33, 20));
 				nodes.add(new Node(33, 25));
 				nodes.add(new Node(32, 25));
 				nodes.add(new Node(32, 27));
 				nodes.add(new Node(32, 25));
-				nodes.add(new Node(30, 25));
+				nodes.add(new Node(31, 25));
 				nodes.add(new Node(32, 25));
 				nodes.add(new Node(32, 27));
 				nodes.add(new Node(32, 25));
@@ -56,8 +54,6 @@ public class WhiteLifeSorceressNPC implements ZoneConfigurator {
 				nodes.add(new Node(40, 25));
 				nodes.add(new Node(40, 20));
 				nodes.add(new Node(39, 20));
-				nodes.add(new Node(39, 18));
-				nodes.add(new Node(40, 18));
 				setPath(new FixedPath(nodes, true));
 			}
 

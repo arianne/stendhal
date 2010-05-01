@@ -36,7 +36,7 @@ public class OrientalAirWizardNPC implements ZoneConfigurator {
 				nodes.add(new Node(31, 36));
 				nodes.add(new Node(33, 36));
 				nodes.add(new Node(33, 33));
-				nodes.add(new Node(31, 33));
+				nodes.add(new Node(32, 33));
 				nodes.add(new Node(33, 33));
 				nodes.add(new Node(33, 36));
 				nodes.add(new Node(31, 36));
@@ -44,7 +44,7 @@ public class OrientalAirWizardNPC implements ZoneConfigurator {
 				nodes.add(new Node(31, 35));
 				nodes.add(new Node(33, 35));
 				nodes.add(new Node(33, 33));
-				nodes.add(new Node(31, 33));
+				nodes.add(new Node(32, 33));
 				nodes.add(new Node(33, 33));
 				nodes.add(new Node(33, 42));
 				nodes.add(new Node(31, 42));

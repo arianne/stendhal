@@ -32,14 +32,14 @@ public class GreenNatureWizardNPC implements ZoneConfigurator {
 				nodes.add(new Node(1, 3));
 				nodes.add(new Node(9, 3));
 				nodes.add(new Node(9, 9));
-				nodes.add(new Node(11, 9));
+				nodes.add(new Node(10, 9));
 				nodes.add(new Node(9, 9));
 				nodes.add(new Node(9, 12));
 				nodes.add(new Node(11, 12));
 				nodes.add(new Node(11, 11));
 				nodes.add(new Node(9, 11));
 				nodes.add(new Node(9, 9));
-				nodes.add(new Node(11, 9));
+				nodes.add(new Node(10, 9));
 				nodes.add(new Node(9, 9));
 				nodes.add(new Node(9, 5));
 				nodes.add(new Node(2, 5));
@@ -52,8 +52,6 @@ public class GreenNatureWizardNPC implements ZoneConfigurator {
 				nodes.add(new Node(2, 9));
 				nodes.add(new Node(2, 5));
 				nodes.add(new Node(10, 5));
-				nodes.add(new Node(10, 4));
-				nodes.add(new Node(11, 4));
 				setPath(new FixedPath(nodes, true));
 			}
 

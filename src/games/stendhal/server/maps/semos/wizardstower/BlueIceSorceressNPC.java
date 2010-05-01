@@ -31,7 +31,7 @@ public class BlueIceSorceressNPC implements ZoneConfigurator {
 				nodes.add(new Node(41, 3));
 				nodes.add(new Node(33, 3));
 				nodes.add(new Node(33, 9));
-				nodes.add(new Node(31, 9));
+				nodes.add(new Node(32, 9));
 				nodes.add(new Node(33, 9));
 				nodes.add(new Node(33, 12));
 				nodes.add(new Node(31, 12));
@@ -39,7 +39,7 @@ public class BlueIceSorceressNPC implements ZoneConfigurator {
 				nodes.add(new Node(31, 11));
 				nodes.add(new Node(33, 11));
 				nodes.add(new Node(33, 9));
-				nodes.add(new Node(31, 9));
+				nodes.add(new Node(32, 9));
 				nodes.add(new Node(33, 9));
 				nodes.add(new Node(33, 5));
 				nodes.add(new Node(40, 5));
@@ -50,8 +50,6 @@ public class BlueIceSorceressNPC implements ZoneConfigurator {
 				nodes.add(new Node(40, 12));
 				nodes.add(new Node(40, 3));
 				nodes.add(new Node(41, 3));
-				nodes.add(new Node(37, 3));
-				nodes.add(new Node(37, 2));
 				setPath(new FixedPath(nodes, true));
 			}
 

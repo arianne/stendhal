@@ -30,14 +30,12 @@ public class BlackDeathWizardNPC implements ZoneConfigurator {
 				nodes.add(new Node(5, 18));
 				nodes.add(new Node(7, 18));
 				nodes.add(new Node(7, 15));
-				nodes.add(new Node(8, 15));
-				nodes.add(new Node(7, 15));
 				nodes.add(new Node(7, 20));
 				nodes.add(new Node(12, 20));
 				nodes.add(new Node(12, 21));
 				nodes.add(new Node(9, 21));
 				nodes.add(new Node(9, 25));
-				nodes.add(new Node(12, 25));
+				nodes.add(new Node(11, 25));
 				nodes.add(new Node(9, 25));
 				nodes.add(new Node(9, 26));
 				nodes.add(new Node(9, 21));
@@ -53,8 +51,6 @@ public class BlackDeathWizardNPC implements ZoneConfigurator {
 				nodes.add(new Node(7, 18));
 				nodes.add(new Node(7, 15));
 				nodes.add(new Node(7, 18));
-				nodes.add(new Node(5, 18));
-				nodes.add(new Node(5, 17));
 				setPath(new FixedPath(nodes, true));
 			}
 
