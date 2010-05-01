@@ -13,14 +13,15 @@ public class StatusIconPanel extends JComponent {
 	private static final ImageIcon chokingIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/choking.png"));
 	private static final ImageIcon poisonIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/poisoned.png"));
 	
-	private final static Sprite awaySprite;
+	private final static Sprite awaySprite, grumpySprite;
 	static {
 		final SpriteStore store = SpriteStore.get();
 		awaySprite = store.getSprite("data/sprites/ideas/away.png");
+		grumpySprite = store.getSprite("data/sprites/ideas/grumpy.png");
 	}
 
 	final JLabel eating, choking, poison;
-	final AnimatedIcon away;
+	final AnimatedIcon away, grumpy;
 	
 	protected StatusIconPanel() {
 		setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
@@ -41,6 +42,10 @@ public class StatusIconPanel extends JComponent {
 		away = new AnimatedIcon(awaySprite, 13, 19, 4, 2000);
 		add(away);
 		away.setVisible(false);
+		
+		grumpy = new AnimatedIcon(grumpySprite, 12, 20, 4, 2000);
+		add(grumpy);
+		grumpy.setVisible(false);
 	}
 	
 	/**
@@ -89,6 +94,17 @@ public class StatusIconPanel extends JComponent {
 	protected void setAway(boolean isAway) {
 		if (away.isVisible() != isAway) {
 			away.setVisible(isAway);
+		}
+	}
+	
+	/**
+	 * Display or hide the grumpy icon
+	 * 
+	 * @param isGrumpy
+	 */
+	protected void setGrumpy(boolean isGrumpy) {
+		if (grumpy.isVisible() != isGrumpy) {
+			grumpy.setVisible(isGrumpy);
 		}
 	}
 }

@@ -163,7 +163,7 @@ public class StatsPanel extends StyledJPanel {
 	}
 	
 	/**
-	 * Set the player away status.
+	 * Show or hide away indicator.
 	 * 
 	 * @param away
 	 */
@@ -171,6 +171,19 @@ public class StatsPanel extends StyledJPanel {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				statusIcons.setAway(away);
+			}
+		});
+	}
+	
+	/**
+	 * Show or hide grumpy indicator
+	 * 
+	 * @param grumpy
+	 */
+	protected void setGrumpy(final boolean grumpy) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				statusIcons.setGrumpy(grumpy);
 			}
 		});
 	}

@@ -66,6 +66,9 @@ public class StatsPanelController {
 		
 		listener = new AwayChangeListener();
 		pcs.addPropertyChangeListener("away", listener);
+		
+		listener = new GrumpyChangeListener();
+		pcs.addPropertyChangeListener("grumpy", listener);
 	}
 	
 	private class HPChangeListener implements PropertyChangeListener {
@@ -172,7 +175,7 @@ public class StatsPanelController {
 	}
 	
 	/**
-	 * Listener for away status changes
+	 * Listener for away status changes.
 	 */
 	private class AwayChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
@@ -181,6 +184,19 @@ public class StatsPanelController {
 			}
 			
 			panel.setAway(event.getNewValue() != null);
+		}
+	}
+	
+	/**
+	 * Listener for grumpy status changes
+	 */
+	private class GrumpyChangeListener implements PropertyChangeListener {
+		public void propertyChange(final PropertyChangeEvent event) {
+			if (event == null) {
+				return;
+			}
+			
+			panel.setGrumpy(event.getNewValue() != null);
 		}
 	}
 	
