@@ -1,17 +1,27 @@
 package games.stendhal.client.gui.stats;
 
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 public class StatusIconPanel extends JComponent {
-	private static ImageIcon eatingIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/eat.png"));
-	private static ImageIcon chokingIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/choking.png"));
-	private static ImageIcon poisonIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/poisoned.png"));
+	private static final ImageIcon eatingIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/eat.png"));
+	private static final ImageIcon chokingIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/choking.png"));
+	private static final ImageIcon poisonIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/poisoned.png"));
+	
+	private final static Sprite awaySprite;
+	static {
+		final SpriteStore store = SpriteStore.get();
+		awaySprite = store.getSprite("data/sprites/ideas/away.png");
+	}
 
 	final JLabel eating, choking, poison;
+	final AnimatedIcon away;
+	
 	protected StatusIconPanel() {
 		setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
 		setOpaque(false);
@@ -27,14 +37,28 @@ public class StatusIconPanel extends JComponent {
 		poison = new JLabel(poisonIcon);
 		add(poison);
 		poison.setVisible(false);
+		
+		away = new AnimatedIcon(awaySprite, 13, 19, 4, 2000);
+		add(away);
+		away.setVisible(false);
 	}
 	
+	/**
+	 * Display or hide eating icon
+	 * 
+	 * @param isEating
+	 */
 	protected void setEating(boolean isEating) {
 		if (eating.isVisible() != isEating) {
 			eating.setVisible(isEating);
 		}
 	}
 	
+	/**
+	 * Display or hide choking icon
+	 * 
+	 * @param isChoking
+	 */
 	protected void setChoking(boolean isChoking) {
 		if (choking.isVisible() != isChoking) {
 			choking.setVisible(isChoking);
@@ -46,9 +70,25 @@ public class StatusIconPanel extends JComponent {
 		}
 	}
 	
+	/**
+	 * Display or hide poisoned icon
+	 * 
+	 * @param poisoned
+	 */
 	protected void setPoisoned(boolean poisoned) {
 		if (poison.isVisible() != poisoned) {
 			poison.setVisible(poisoned);
+		}
+	}
+	
+	/**
+	 * Display or hide the away icon
+	 * 
+	 * @param isAway
+	 */
+	protected void setAway(boolean isAway) {
+		if (away.isVisible() != isAway) {
+			away.setVisible(isAway);
 		}
 	}
 }

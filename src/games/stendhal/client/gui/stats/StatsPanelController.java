@@ -63,6 +63,9 @@ public class StatsPanelController {
 		
 		listener = new PoisonedChangeListener();
 		pcs.addPropertyChangeListener("poisoned", listener);
+		
+		listener = new AwayChangeListener();
+		pcs.addPropertyChangeListener("away", listener);
 	}
 	
 	private class HPChangeListener implements PropertyChangeListener {
@@ -165,6 +168,19 @@ public class StatsPanelController {
 			}
 			
 			panel.setPoisoned(event.getNewValue() != null);
+		}
+	}
+	
+	/**
+	 * Listener for away status changes
+	 */
+	private class AwayChangeListener implements PropertyChangeListener {
+		public void propertyChange(final PropertyChangeEvent event) {
+			if (event == null) {
+				return;
+			}
+			
+			panel.setAway(event.getNewValue() != null);
 		}
 	}
 	

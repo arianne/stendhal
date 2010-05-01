@@ -161,6 +161,19 @@ public class StatsPanel extends StyledJPanel {
 			}
 		});
 	}
+	
+	/**
+	 * Set the player away status.
+	 * 
+	 * @param away
+	 */
+	protected void setAway(final boolean away) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				statusIcons.setAway(away);
+			}
+		});
+	}
 		
 	protected void addMoney(String slot, RPObject object) {
 		HashMap<String, RPObject> set = money.get(slot);
