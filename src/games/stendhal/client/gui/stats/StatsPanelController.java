@@ -7,15 +7,26 @@ import java.beans.PropertyChangeSupport;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
+/**
+ * Object for listening for various user state changes that should
+ * be show.
+ */
 public class StatsPanelController {
 	private static final String[] MONEY_SLOTS = { "bag", "lhand", "rhand" };
 	private StatsPanel panel;
 	private static	StatsPanelController instance;
 	
+	/**
+	 * Create a new <code>StatsPanelController</code>. There
+	 * should be only one, so the constructor is hidden.
+	 */
 	private StatsPanelController() {
 		panel = new StatsPanel();
 	}
 	
+	/**
+	 * Get the <code>StatsPanelController</code> instance.
+	 */
 	public static synchronized StatsPanelController get() {
 		if (instance == null) {
 			instance = new StatsPanelController();
@@ -23,10 +34,21 @@ public class StatsPanelController {
 		return instance;
 	}
 	
+	/**
+	 * Get the <code>StatsPanel</code> component this controller
+	 * is keeping updated.
+	 * 
+	 * @return StatsPanel
+	 */
 	public StatsPanel getComponent() {
 		return panel;
 	}
 	
+	/**
+	 * Add listeners for all the properties this object follows.
+	 * 
+	 * @param pcs property change support of the user
+	 */
 	public void registerListeners(PropertyChangeSupport pcs) {
 		PropertyChangeListener listener = new HPChangeListener(); 
 		pcs.addPropertyChangeListener("hp", listener);
@@ -71,6 +93,9 @@ public class StatsPanelController {
 		pcs.addPropertyChangeListener("grumpy", listener);
 	}
 	
+	/**
+	 * Listener for HP and base_hp changes.
+	 */
 	private class HPChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
@@ -85,6 +110,9 @@ public class StatsPanelController {
 		}
 	}
 	
+	/**
+	 * Listener for atk and atk_xp changes.
+	 */
 	private class ATKChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
@@ -99,6 +127,9 @@ public class StatsPanelController {
 		}
 	}
 	
+	/**
+	 * Listener for def and def_xp changes.
+	 */
 	private class DEFChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
@@ -113,6 +144,9 @@ public class StatsPanelController {
 		}
 	}
 	
+	/**
+	 * Listener for xp changes.
+	 */
 	private class XPChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
@@ -122,6 +156,9 @@ public class StatsPanelController {
 		}
 	}
 	
+	/**
+	 * Listener for level changes.
+	 */
 	private class LevelChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
@@ -131,6 +168,9 @@ public class StatsPanelController {
 		}
 	}
 	
+	/**
+	 * Listener for weapon atk changes.
+	 */
 	private class WeaponChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
@@ -140,6 +180,9 @@ public class StatsPanelController {
 		}
 	}
 	
+	/**
+	 * Listener for armor def changes.
+	 */
 	private class ArmorChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
@@ -149,6 +192,9 @@ public class StatsPanelController {
 		}
 	}
 	
+	/**
+	 * Listener for eating and choking changes.
+	 */
 	private class EatingChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
@@ -164,6 +210,9 @@ public class StatsPanelController {
 		}
 	}
 	
+	/**
+	 * Listener for poisoned status changes.
+	 */
 	private class PoisonedChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
@@ -188,7 +237,7 @@ public class StatsPanelController {
 	}
 	
 	/**
-	 * Listener for grumpy status changes
+	 * Listener for grumpy status changes.
 	 */
 	private class GrumpyChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
@@ -200,6 +249,11 @@ public class StatsPanelController {
 		}
 	}
 	
+	/**
+	 * Listener for money changes.
+	 * Due to there being no "money" property for the player, this
+	 * need to listen to all the slots where it's possible to store money.
+	 */
 	private class MoneyChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
