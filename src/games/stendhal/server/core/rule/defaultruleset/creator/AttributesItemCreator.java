@@ -1,6 +1,7 @@
 package games.stendhal.server.core.rule.defaultruleset.creator;
 
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
+import games.stendhal.server.entity.item.Item;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -15,8 +16,8 @@ public class AttributesItemCreator extends AbstractItemCreator {
 	}
 
 	@Override
-	protected Object createObject() throws IllegalAccessException,
+	protected Item createObject() throws IllegalAccessException,
 			InstantiationException, InvocationTargetException {
-		return construct.newInstance(new Object[] { this.defaultItem.getAttributes() });
+		return (Item) construct.newInstance(new Object[] { this.defaultItem.getAttributes() });
 	}
 }

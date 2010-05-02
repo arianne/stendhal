@@ -22,12 +22,12 @@ public abstract class AbstractCreator<T> {
 		this.creatorFor = creatorFor;
 	}
 
-	protected abstract Object createObject() throws IllegalAccessException,
+	protected abstract T createObject() throws IllegalAccessException,
 			InstantiationException, InvocationTargetException;
 
 	public T create() {
 		try {
-			return (T) createObject();
+			return createObject();
 		} catch (final IllegalAccessException ex) {
 			logger.error("Error creating object: Used constructor is not accessible." , ex);
 		} catch (final InstantiationException ex) {
