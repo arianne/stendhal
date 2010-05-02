@@ -43,7 +43,7 @@ public class EntityFactory {
 		try {
 			final String type = object.getRPClass().getName();
 			if (type.equals("player") && object.has("name")) {
-				if (StendhalClient.get().getAccountUsername().equalsIgnoreCase(
+				if (StendhalClient.get().getCharacter().equalsIgnoreCase(
 						object.get("name"))) {
 					final User me = new User();
 					me.initialize(object);

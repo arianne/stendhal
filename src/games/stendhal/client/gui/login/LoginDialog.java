@@ -362,6 +362,7 @@ public class LoginDialog extends JDialog {
 
 		try {
 			client.setAccountUsername(profile.getUser());
+			client.setCharacter(profile.getCharacter());
 			client.login(profile.getUser(), profile.getPassword());
 
 			progressBar.step();

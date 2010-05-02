@@ -24,6 +24,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +73,8 @@ public class StendhalClient extends ClientFramework {
 	protected IGameScreen screen;
 
 	private String userName = "";
+
+	private String character = null;
 
 	
 	
@@ -369,17 +372,23 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * Check we have characters and if not offer us to create one.
 		 */
-		if (characters.length > 0) {
+		if ((characters.length > 0) && (character == null) || Arrays.asList(characters).contains(character)) {
 			try {
+				if (character == null) {
+					character = characters[0];
+				}
 				chooseCharacter(characters[0]);
 			} catch (final Exception e) {
 				logger.error("StendhalClient::onAvailableCharacters", e);
 			}
 		} else {
-			logger.warn("No character available, trying to create one with the account name.");
+			logger.warn("The requested character is not available, trying to create character " + character);
 			final RPObject template = new RPObject();
 			try {
-				final CharacterResult result = createCharacter(getAccountUsername(), template);
+				if (character == null) {
+					character = getAccountUsername();
+				}
+				final CharacterResult result = createCharacter(character, template);
 				if (result.getResult().failed()) {
 					logger.error(result.getResult().getText());
 					// TODO: Display error message to user
@@ -546,6 +555,14 @@ public class StendhalClient extends ClientFramework {
 		userName = username;
 	}
 
+	public String getCharacter() {
+		return character;
+	}
+
+	public void setCharacter(String character) {
+		this.character = character;
+	}
+
 	public String getAccountUsername() {
 		return userName;
 	}
@@ -562,7 +579,7 @@ public class StendhalClient extends ClientFramework {
 	 */
 	public boolean isUser(final RPObject object) {
 		if (object.getRPClass().subclassOf("player")) {
-			return getAccountUsername().equalsIgnoreCase(object.get("name"));
+			return getCharacter().equalsIgnoreCase(object.get("name"));
 		} else {
 			return false;
 		}

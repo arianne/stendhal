@@ -23,6 +23,8 @@ class Profile {
 
 	protected String password;
 
+	private String character;
+
 	public Profile() {
 		this("", DEFAULT_SERVER_PORT, "", "");
 	}
@@ -33,6 +35,11 @@ class Profile {
 		this.user = user;
 		this.password = password;
 
+	}
+
+	public Profile(final String host, final int port, final String user, final String password, String character) {
+		this(host, port, user, password);
+		this.character = character;
 	}
 
 	//
@@ -77,6 +84,10 @@ class Profile {
 
 	public String getUser() {
 		return user;
+	}
+
+	public String getCharacter() {
+		return character;
 	}
 
 	/**
@@ -146,7 +157,7 @@ class Profile {
 				try {
 					profile.setPort(Integer.parseInt(s));
 				} catch (final NumberFormatException ex) {
-
+					// use default port if port is not a number number 
 				}
 			}
 		}
@@ -177,9 +188,10 @@ class Profile {
 		this.user = user;
 	}
 
-	//
-	// Object
-	//
+	
+	public void setCharacter(String character) {
+		this.character = character;
+	}
 
 	@Override
 	public boolean equals(final Object obj) {

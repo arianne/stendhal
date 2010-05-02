@@ -319,6 +319,7 @@ public class CreateAccountDialog extends JDialog {
 						progressBar.finish();
 
 						client.setAccountUsername(accountUsername);
+						client.setCharacter(accountUsername);
 
 						/*
 						 * Once the account is created, login into server.
