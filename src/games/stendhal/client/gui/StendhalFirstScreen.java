@@ -189,7 +189,7 @@ public class StendhalFirstScreen extends JFrame {
 
 	private void login() {
 		checkVersion();
-		new LoginDialog(StendhalFirstScreen.this, client);
+		new LoginDialog(StendhalFirstScreen.this, client).setVisible(true);
 	}
 
 	private void showCredits() {

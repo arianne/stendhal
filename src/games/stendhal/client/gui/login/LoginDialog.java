@@ -91,8 +91,6 @@ public class LoginDialog extends JDialog {
 		this.client = client;
 		this.owner = owner;
 		initializeComponent();
-
-		this.setVisible(true);
 	}
 
 	private void initializeComponent() {
@@ -326,7 +324,7 @@ public class LoginDialog extends JDialog {
 	 * Connect to a server using a given profile.
 	 * @param profile 
 	 */
-	protected void connect(final Profile profile) {
+	public void connect(final Profile profile) {
 		final ProgressBar progressBar = new ProgressBar(this);
 
 		// intialize progress bar
@@ -369,38 +367,34 @@ public class LoginDialog extends JDialog {
 			progressBar.finish();
 
 			setVisible(false);
-			owner.setVisible(false);
+			if (owner != null) {
+				owner.setVisible(false);
+			}
 			stendhal.doLogin = true;
 		} catch (final InvalidVersionException e) {
-			progressBar.cancel();
-			setEnabled(true);
-
-			JOptionPane.showMessageDialog(
-					this,
-					"You are running an incompatible version of Stendhal. Please update",
-					"Invalid version", JOptionPane.ERROR_MESSAGE);
+			handleError(progressBar, "You are running an incompatible version of Stendhal. Please update",
+					"Invalid version");
 		} catch (final TimeoutException e) {
-			progressBar.cancel();
-			setEnabled(true);
-
-			JOptionPane.showMessageDialog(
-					this,
-					"Server is not available right now. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
-					"Error Logging In", JOptionPane.ERROR_MESSAGE);
+			handleError(progressBar, "Server is not available right now. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
+					"Error Logging In");
 		} catch (final LoginFailedException e) {
-			progressBar.cancel();
-			setEnabled(true);
-
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Login failed",
-					JOptionPane.INFORMATION_MESSAGE);
+			handleError(progressBar, e.getMessage(), "Login failed");
 		} catch (final BannedAddressException e) {
-			progressBar.cancel();
-			setEnabled(true);
+			handleError(progressBar, "Your IP is banned. If you think this is not right, please send a Support Request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
+					"IP Banned");
+		}
+	}
 
-			JOptionPane.showMessageDialog(
-					this,
-					"Your IP is banned. If you think this is not right, please send a Support Request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
-					"IP Banned", JOptionPane.ERROR_MESSAGE);
+	private void handleError(ProgressBar progressBar, String errorMessage, String errorTitle) {
+		progressBar.cancel();
+		JOptionPane.showMessageDialog(
+				this, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
+
+		if (isVisible()) {
+			setEnabled(true);
+		} else {
+			// Hack for non interactive login
+			System.exit(1);
 		}
 	}
 

@@ -15,6 +15,8 @@ package games.stendhal.client;
 import static java.io.File.separator;
 import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.login.LoginDialog;
+import games.stendhal.client.gui.login.Profile;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.Version;
 
@@ -139,7 +141,13 @@ public class stendhal {
 		UserContext userContext = new UserContext();
 		PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
 		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
-		new StendhalFirstScreen(client);
+
+		Profile profile = Profile.createFromCommandline(args);
+		if (profile.isValid()) {
+			new LoginDialog(null, client).connect(profile);
+		} else {
+			new StendhalFirstScreen(client);
+		}
 		
 		waitForLogin();
 		IDSend.send();
