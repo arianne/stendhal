@@ -14,19 +14,23 @@ package games.stendhal.server.core.rule.defaultruleset;
 
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.config.ItemGroupsXMLLoader;
+import games.stendhal.server.core.config.SpellGroupsXMLLoader;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.WordList;
+import games.stendhal.server.entity.spell.Spell;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.IncompleteArgumentException;
 import org.apache.log4j.Logger;
 
 /**
@@ -50,17 +54,52 @@ public class DefaultEntityManager implements EntityManager {
 
 	/** lists all items that are being used at least once . */
 	private final Map<String, Item> createdItem;
+	
+	/** lists all spell that are being used at least once . */
+	private final Map<String, Spell> createdSpell;
+	
+	/**
+	 * lists all loaded default spells that are usable
+	 */
+	private final Map<String, DefaultSpell> nameToSpell;
 
 	private LowerCaseMap<DefaultCreature> classToCreature;
 
 	/** no public constructor. */
 	public DefaultEntityManager() {
 		idToClass = new HashMap<String, String>();
-
-		// Build the items tables
-		classToItem = new HashMap<String, DefaultItem>();
+		createdCreature = new HashMap<String, Creature>();
 		createdItem = new HashMap<String, Item>();
+		createdSpell = new HashMap<String, Spell>();
+		classToItem = new HashMap<String, DefaultItem>();
+		nameToSpell = new HashMap<String, DefaultSpell>();
+		buildItemTables();
+		buildCreatureTables();
+		buildSpellTables();
+	}
+	
+	/**
+	 * builds the spell tables
+	 */
+	private void buildSpellTables() {
+		try {
+			final SpellGroupsXMLLoader loader = new SpellGroupsXMLLoader(new URI("/data/conf/spells.xml"));
+			List<DefaultSpell> loadedDefaultSpells = loader.load();
+			for (DefaultSpell defaultSpell : loadedDefaultSpells) {
+				if(nameToSpell.containsKey(defaultSpell.getName())) {
+					LOGGER.warn("Repeated spell name: "+ defaultSpell.getName());
+				}
+				nameToSpell.put(defaultSpell.getName(), defaultSpell);
+			}
+		} catch (Exception e) {
+			LOGGER.error("spells.xml could not be loaded", e);
+		}
+	}
 
+	/**
+	 * Build the items tables
+	 */
+	private void buildItemTables() {
 		try {
 			final ItemGroupsXMLLoader loader = new ItemGroupsXMLLoader(new URI("/data/conf/items.xml"));
 			final List<DefaultItem> items = loader.load();
@@ -79,10 +118,13 @@ public class DefaultEntityManager implements EntityManager {
 		} catch (final Exception e) {
 			LOGGER.error("items.xml could not be loaded", e);
 		}
+	}
 
-		// Build the creatures tables
+	/**
+	 * Build the creatures tables
+	 */
+	private void buildCreatureTables() {
 		classToCreature = new LowerCaseMap<DefaultCreature>();
-		createdCreature = new HashMap<String, Creature>();
 
 		final CreatureGroupsXMLLoader loader = new CreatureGroupsXMLLoader("/data/conf/creatures.xml");
 		final List<DefaultCreature> creatures = loader.load();
@@ -162,7 +204,7 @@ public class DefaultEntityManager implements EntityManager {
 	 */
 	public Entity getEntity(final String clazz) {
 		if (clazz == null) {
-			throw new NullPointerException("entity class is null");
+			throw new IllegalArgumentException("entity class is null");
 		}
 
 		Entity entity;
@@ -204,7 +246,7 @@ public class DefaultEntityManager implements EntityManager {
 	 */
 	public Creature getCreature(final String clazz) {
 		if (clazz == null) {
-			throw new NullPointerException("entity class is null");
+			throw new IllegalArgumentException("entity class is null");
 		}
 
 		// Lookup the clazz in the creature table
@@ -229,7 +271,7 @@ public class DefaultEntityManager implements EntityManager {
 	 */
 	public DefaultCreature getDefaultCreature(final String clazz) {
 		if (clazz == null) {
-			throw new NullPointerException("entity class is null");
+			throw new IllegalArgumentException("entity class is null");
 		}
 
 		// Lookup the clazz in the creature table
@@ -252,7 +294,7 @@ public class DefaultEntityManager implements EntityManager {
 	 * @return true if the Entity is a creature . */
 	public boolean isCreature(final String clazz) {
 		if (clazz == null) {
-			throw new NullPointerException("entity class is null");
+			throw new IllegalArgumentException("entity class is null");
 		}
 
 		return classToCreature.containsKey(clazz);
@@ -262,7 +304,7 @@ public class DefaultEntityManager implements EntityManager {
 	 * @return true if the Entity is a creature. */
 	public boolean isItem(final String clazz) {
 		if (clazz == null) {
-			throw new NullPointerException("entity class is null");
+			throw new IllegalArgumentException("entity class is null");
 		}
 
 		return classToItem.containsKey(clazz);
@@ -277,7 +319,7 @@ public class DefaultEntityManager implements EntityManager {
 	 */
 	public Item getItem(final String clazz) {
 		if (clazz == null) {
-			throw new NullPointerException("entity class is null");
+			throw new IllegalArgumentException("entity class is null");
 		}
 
 		// Lookup the clazz in the item table
@@ -290,5 +332,28 @@ public class DefaultEntityManager implements EntityManager {
 		}
 
 		return null;
+	}
+
+	public Spell getSpell(String spell) {
+		if(spell == null) {
+			throw new IllegalArgumentException("spell name is null");
+		}
+		DefaultSpell defaultSpell = nameToSpell.get(spell);
+		if (spell != null) {
+			Spell spellEntity = defaultSpell.getSpell();
+			if(!createdSpell.containsKey(spell)) {
+				createdSpell.put(spell, spellEntity);
+			}
+			return spellEntity;
+		}
+		return null;
+	}
+
+	public boolean isSpell(String spellName) {
+		return nameToSpell.containsKey(spellName);
+	}
+
+	public Collection<Spell> getSpells() {
+		return createdSpell.values();
 	}
 }

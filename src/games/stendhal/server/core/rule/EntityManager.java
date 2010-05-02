@@ -5,6 +5,7 @@ import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.spell.Spell;
 
 import java.util.Collection;
 /**
@@ -111,5 +112,25 @@ public interface EntityManager {
 	 * 
 	 */
 	Item getItem(String clazz);
+	
+	/**
+	 * Retrieves a Spell or null if the spell is unknown.
+	 * 
+	 * @param spell
+	 * @return the spell or null if spell is unknown
+	 */
+	Spell getSpell(String spell);
+	
+	/**
+	 * checks if spellName points to an existing spell
+	 * @param spellName
+	 * @return true iff a spell with that name exists
+	 */
+	boolean isSpell(String spellName);
+
+	/**
+	 * @return a collection of spells that are used at least once
+	 */
+	Collection<Spell> getSpells();
 
 }
