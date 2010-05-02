@@ -31,7 +31,7 @@ public class HealingEffect extends AbstractEffect {
 	}
 
 	private void actInternal(Player caster, Player target) {
-		target.heal(getAmount());
+		target.heal(getAmount(), true);
 	}
 
 }
