@@ -37,12 +37,12 @@ public class LearnAboutOrbsTest {
 		quest.addToWorld();
 
 		player = PlayerTestHelper.createPlayer("bob");
-		player.addXP(100000);
 	}
 
 	@Test
-	public void testQuest() {
-		
+	public void testQuestAppropriateLevel() {
+		int before = player.getXP();
+		player.setLevel(11);
 		npc = SingletonRepository.getNPCList().get("Ilisa");
 		en = npc.getEngine();
 		en.step(player, "hi");
@@ -76,5 +76,22 @@ public class LearnAboutOrbsTest {
 		assertEquals("Just right click on part of the orb, and select Use.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
+		assertEquals(player.getQuest(new LearnAboutOrbs().getSlotName()),"done");
+		int xpAfterQuest = before + 50;
+		assertEquals(player.getXP(), xpAfterQuest);
+	}
+	
+	@Test
+	public void testQuestTooLowLevel() {
+		player.setLevel(1);
+		npc = SingletonRepository.getNPCList().get("Ilisa");
+		en = npc.getEngine();
+		en.step(player, "hi");
+		assertEquals("Greetings! How may I help you?", getReply(npc));
+		en.step(player, "quest");
+		assertEquals("Some orbs have special properties. I can teach you how to #use an orb, like the one on this table.", getReply(npc));
+		en.step(player, "no");
+		en.step(player, "use");
+		assertEquals("Oh oh, I just noticed you are still new here. Perhaps you better come back when you have more experience. Until then if you need any #help just ask!", getReply(npc));
 	}
 }
