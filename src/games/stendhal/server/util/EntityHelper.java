@@ -124,6 +124,16 @@ public class EntityHelper {
 		return entity;
 	}
 
+	/**
+	 * Retrieves a specified item from a slot. Necessary attributes in the RPAction:
+	 * 	- baseslot name of the slot to search in
+	 *  - baseobject the id of the object where to search for the specified slot
+	 *  - baseitem the id of the object to search for
+	 *  
+	 * @param player the player where to search for the item
+	 * @param action the action specifying for what to search
+	 * @return the found Entity or null
+	 */
 	public static Entity entityFromSlot(final Player player, final RPAction action) {
 		// entity in a slot?
 		if (!action.has(ATTR_BASEITEM) 
