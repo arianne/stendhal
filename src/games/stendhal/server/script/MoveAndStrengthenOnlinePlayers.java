@@ -77,26 +77,26 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 				if(!player.isEquipped("black helmet")) {
 					Item first = (Item) player.getSlot("head").getFirst();
 					player.drop(first);
-					Item shield = SingletonRepository.getEntityManager().getItem("black helmet");
-					player.equip("head", shield);
+					Item helmet = SingletonRepository.getEntityManager().getItem("black helmet");
+					player.equip("head", helmet);
 				}
 				if(!player.isEquipped("elvish legs")) {
 					Item first = (Item) player.getSlot("legs").getFirst();
 					player.drop(first);
-					Item shield = SingletonRepository.getEntityManager().getItem("elvish legs");
-					player.equip("legs", shield);
+					Item legs = SingletonRepository.getEntityManager().getItem("elvish legs");
+					player.equip("legs", legs);
 				}
 				if(!player.isEquipped("killer boots")) {
 					Item first = (Item) player.getSlot("feet").getFirst();
 					player.drop(first);
-					Item shield = SingletonRepository.getEntityManager().getItem("killer boot");
-					player.equip("feet", shield);
+					Item boots = SingletonRepository.getEntityManager().getItem("killer boots");
+					player.equip("feet", boots);
 				}
 				if(!player.isEquipped("green dragon cloak")) {
 					Item first = (Item) player.getSlot("cloak").getFirst();
 					player.drop(first);
-					Item shield = SingletonRepository.getEntityManager().getItem("green dragon cloak");
-					player.equip("cloak", shield);
+					Item cloak = SingletonRepository.getEntityManager().getItem("green dragon cloak");
+					player.equip("cloak", cloak);
 				}
 			}
 		});
