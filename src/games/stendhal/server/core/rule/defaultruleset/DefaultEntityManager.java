@@ -24,13 +24,11 @@ import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.spell.Spell;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.IncompleteArgumentException;
 import org.apache.log4j.Logger;
 
 /**
