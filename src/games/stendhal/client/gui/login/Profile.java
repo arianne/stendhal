@@ -208,6 +208,16 @@ class Profile {
 		return profile;
 	}
 
+	/**
+	 * checks whether all required attributes are defined
+	 *
+	 * @return true if all required attributes are defined, false if some are missing.
+	 */
+	public boolean isValid() {
+		return (host != null) && (user != null) && (password != null)
+			&& !host.equals("") && !user.equals("") && !password.equals("");
+	}
+
 	public void setHost(final String host) {
 		this.host = host;
 	}
@@ -268,6 +278,8 @@ class Profile {
 
 		sbuf = new StringBuilder();
 		sbuf.append(getUser());
+		sbuf.append("/");
+		sbuf.append(getCharacter());
 		sbuf.append('@');
 		sbuf.append(getHost());
 
