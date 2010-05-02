@@ -260,6 +260,8 @@
 				<include name="zones.xml"/>
 				<include name="zones/*.xml"/>
 				<include name="riddles-example.xml"/>
+				<include name="spells.xml" />
+				<include name="spells/*.xml" />
 			</fileset>
 		</copy>
 
