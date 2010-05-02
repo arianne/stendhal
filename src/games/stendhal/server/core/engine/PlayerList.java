@@ -3,6 +3,7 @@ package games.stendhal.server.core.engine;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -106,6 +107,10 @@ public class PlayerList {
 		} else {
 			throw new IllegalArgumentException("can't remove player without name:");
 		}
+	}
+	
+	public Collection<Player> getAllPlayers() {
+		return players.values();
 	}
 
 }
