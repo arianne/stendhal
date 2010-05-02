@@ -45,9 +45,11 @@ public class HealingSpell extends Spell {
 	}
 
 	@Override
-	protected boolean isTargetValid(Entity target) {
+	protected boolean isTargetValid(Entity caster, Entity target) {
 		if (target instanceof Player) {
-			return true;
+			if (!caster.equals(target)) {
+				return true;
+			}
 		}
 		return false;
 	}
