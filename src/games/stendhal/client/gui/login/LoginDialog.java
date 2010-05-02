@@ -385,6 +385,15 @@ public class LoginDialog extends JDialog {
 		}
 	}
 
+	/**
+	 * Displays the error message, removes the progress bar and 
+	 * either enabled the login dialog in interactive mode or exits
+	 * the client in non interactive mode.
+	 *
+	 * @param progressBar  ProgressBar to remove
+	 * @param errorMessage error message
+	 * @param errorTitle   title of error dialog box
+	 */
 	private void handleError(ProgressBar progressBar, String errorMessage, String errorTitle) {
 		progressBar.cancel();
 		JOptionPane.showMessageDialog(
