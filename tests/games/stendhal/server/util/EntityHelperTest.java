@@ -1,5 +1,8 @@
 package games.stendhal.server.util;
 
+import static games.stendhal.common.constants.Actions.BASEITEM;
+import static games.stendhal.common.constants.Actions.BASEOBJECT;
+import static games.stendhal.common.constants.Actions.BASESLOT;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -103,9 +106,9 @@ public class EntityHelperTest {
 		assertNull(EntityHelper.entityFromSlot(player, action));
 		zone.add(player);
 		player.getSlot("bag").add(rpo1);
-		action.put("baseslot", "bag");
-		action.put("baseobject", player.getID().getObjectID());
-		action.put("baseitem", 1);
+		action.put(BASESLOT, "bag");
+		action.put(BASEOBJECT, player.getID().getObjectID());
+		action.put(BASEITEM, 1);
 		assertThat(EntityHelper.entityFromSlot(player, action), is(rpo1));
 	}
 
