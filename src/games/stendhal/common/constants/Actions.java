@@ -135,7 +135,7 @@ public final class Actions {
 
 	public static final String SUMMONAT = "summonat";
 
-	
+	public static final String CASTSPELL = "cast_spell";	
 	
 	//buddy
 	public static final String BUDDYONLINE = "1";
@@ -181,7 +181,6 @@ public final class Actions {
 	public static final String MINUTES = "minutes";
 	public static final String MESSAGE = "message";
 	public static final String TEXT = "text";
-
 
 	public static final String READ = "read";
 	public static final String LOOK_CLOSELY = "look_closely";
