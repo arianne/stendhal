@@ -4,7 +4,7 @@ package games.stendhal.client.gui.login;
 /**
  * User login profile.
  */
-class Profile {
+public class Profile {
 
 	/** Default server port. */
 	public static final int DEFAULT_SERVER_PORT = 32160;
@@ -278,8 +278,10 @@ class Profile {
 
 		sbuf = new StringBuilder();
 		sbuf.append(getUser());
-		sbuf.append("/");
-		sbuf.append(getCharacter());
+		if (getCharacter() != null) {
+			sbuf.append("/");
+			sbuf.append(getCharacter());
+		}
 		sbuf.append('@');
 		sbuf.append(getHost());
 
