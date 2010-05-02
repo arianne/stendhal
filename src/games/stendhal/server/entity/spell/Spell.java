@@ -95,11 +95,12 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 			return;
 		}
 		//check if target is valid for spell?
-		if (!isTargetValid(target)) {
+		if (!isTargetValid(caster, target)) {
 			caster.sendPrivateText("The target is not valid for your spell \""+getName()+"\".");
 			return;
 		}
 		//check other preconditions like having learned that school?
+		//check for right equipment
 		//deduct mana
 		caster.setMana(currentMana - getMana());
 		doEffects(caster, target);
@@ -120,9 +121,10 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * Subclasses have to override this method if they want to be more strict in the choice of the target.
 	 * 
 	 * @param target the target Entity to check the applicability for
+	 * @param target2 
 	 * @return true iff target is applicable to this spell
 	 */
-	protected boolean isTargetValid(Entity target) {
+	protected boolean isTargetValid(Entity caster, Entity target) {
 		return true;
 	}
 
