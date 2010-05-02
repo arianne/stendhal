@@ -53,7 +53,7 @@ public class EntityHelperTest {
 	@Test
 	public void testEntityFromTargetName() {
 		Entity player = new Entity() {};
-		Entity entityFromTargetName = EntityHelper.entityFromTargetName("1", player);
+		Entity entityFromTargetName = EntityHelper.entityFromTargetName("#1", player);
 		assertThat(entityFromTargetName, not(notNullValue()));
 		int idRPO1 = 1;
 		int idRPO2 = 2;
