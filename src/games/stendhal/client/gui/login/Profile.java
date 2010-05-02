@@ -172,6 +172,42 @@ class Profile {
 		return profile;
 	}
 
+	/**
+	 * create a profile based on command line arguments
+	 * <ul>
+	 * <li>-u: username</li>
+	 * <li>-p: password</li>
+	 * <li>-c: character name (defaults to username)</li>
+	 * <li>-h: hostname</li>
+	 * <li>-P: port</li>
+	 * </ul>
+	 *
+	 * @param args command line arguments
+	 * @return profile
+	 */
+	public static Profile createFromCommandline(String[] args) {
+		Profile profile = new Profile();
+		int i = 0;
+		while (i != args.length) {
+			if (args[i].equals("-u")) {
+				profile.setUser(args[i + 1]);
+			} else if (args[i].equals("-p")) {
+				profile.setPassword(args[i + 1]);
+			} else if (args[i].equals("-c")) {
+				profile.setCharacter(args[i + 1]);
+			} else if (args[i].equals("-h")) {
+				profile.setHost(args[i + 1]);
+			} else if (args[i].equals("-P")) {
+				profile.setPort(Integer.parseInt(args[i + 1]));
+			}
+			i++;
+		}
+		if (profile.getCharacter() == null) {
+			profile.setCharacter(profile.getUser());
+		}
+		return profile;
+	}
+
 	public void setHost(final String host) {
 		this.host = host;
 	}
