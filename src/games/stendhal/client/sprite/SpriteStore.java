@@ -46,8 +46,6 @@ public class SpriteStore {
 	 */
 	protected GraphicsConfiguration gc;
 
-	private static boolean doOldBootstrapClassloaderWorkaroundFirst = true;
-
 	protected SpriteStore() {
 		try {
 			gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
