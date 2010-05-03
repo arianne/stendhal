@@ -337,7 +337,7 @@ public class DefaultEntityManager implements EntityManager {
 			throw new IllegalArgumentException("spell name is null");
 		}
 		DefaultSpell defaultSpell = nameToSpell.get(spell);
-		if (spell != null) {
+		if (defaultSpell != null) {
 			Spell spellEntity = defaultSpell.getSpell();
 			if(!createdSpell.containsKey(spell)) {
 				createdSpell.put(spell, spellEntity);
