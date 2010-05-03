@@ -1148,6 +1148,21 @@ public class Player extends RPEntity {
 	public boolean isQuestInState(final String name, final String... states) {
 		return quests.isQuestInState(name, states);
 	}
+	
+	/**
+	 * Is the named quest in one of the listed states?
+	 * 
+	 * @param name
+	 *            quest
+	 * @param index           
+	 *            quest index
+	 * @param states
+	 *            valid states
+	 * @return true, if the quest is in one of theses states, false otherwise
+	 */
+	public boolean isQuestInState(final String name, final int index, final String... states) {
+		return quests.isQuestInState(name, index, states);
+	}
 
 	/**
 	 * Checks if the player has ever killed a creature, with or without the help

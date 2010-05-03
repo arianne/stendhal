@@ -184,5 +184,30 @@ class PlayerQuests {
 
 		return false;
 	}
+	
+	/**
+	 * Is the named quest in one of the listed states?
+	 * 
+	 * @param name
+	 *            quest
+	 * @param index         
+	 *            quest index
+	 * @param states
+	 *            valid states
+	 * @return true, if the quest is in one of theses states, false otherwise
+	 */
+	public boolean isQuestInState(final String name, final int index, final String... states) {
+		final String questState = getQuest(name, index);
+
+		if (questState != null) {
+			for (final String state : states) {
+				if (questState.equals(state)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
 
 }
