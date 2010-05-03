@@ -53,27 +53,32 @@ public class KilledForQuestCondition implements ChatCondition {
 		};
 		
 		for(int i=0; i<tokens.size()/5; i++) {
-			final String creatureName=tokens.get(i);
+			final String creatureName=tokens.get(i*5);
 			int toKillSolo;
 			int toKillShared;
 			int killedSolo;
 			int killedShared;
 			try {
-				toKillSolo=Integer.parseInt(tokens.get(i+1));
-				toKillShared=Integer.parseInt(tokens.get(i+2));
-				killedSolo=Integer.parseInt(tokens.get(i+3));
-				killedShared=Integer.parseInt(tokens.get(i+4));				
+				toKillSolo=Integer.parseInt(tokens.get(i*5+1));
+				toKillShared=Integer.parseInt(tokens.get(i*5+2));
+				killedSolo=Integer.parseInt(tokens.get(i*5+3));
+				killedShared=Integer.parseInt(tokens.get(i*5+4));				
 			} catch (NumberFormatException npe) {
 				logger.error("NumberFormatException while parsing numbers in quest slot "+QUEST_SLOT+
 						" of player "+player.getName()
-						+" , creature " + i);
+						+" , creature " + i*5);
 				return false;
 			};
 			final int diffSolo = player.getSoloKill(creatureName) - killedSolo - toKillSolo;
 			final int diffShared = player.getSharedKill(creatureName) - killedShared - toKillShared;
-			if((diffSolo<0)||(diffShared<0)) {
+			// if solo kills less then required, return false
+			if(diffSolo<0) {
 				return false;
-			}
+			};
+			// if player killed solo less then required for shared, return false
+			if((diffSolo+diffShared)<0) {
+				return false;
+			};
 		}
 		return true;
 	}
@@ -86,7 +91,7 @@ public class KilledForQuestCondition implements ChatCondition {
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				KilledCondition.class);
+				KilledForQuestCondition.class);
 	}
 
 	@Override
