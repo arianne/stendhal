@@ -349,12 +349,8 @@ public class LoginDialog extends JDialog {
 			} else {
 				message = message + ", because profile was null";
 			}
-				Logger.getLogger(LoginDialog.class).error(
-					message  , ex);
-
 			Logger.getLogger(LoginDialog.class).error(message, ex);
-			JOptionPane.showMessageDialog(this,
-					"Unable to connect to server. Did you misspell the server name?");
+			handleError(progressBar, "Unable to connect to server. Did you misspell the server name?", "Connection failed");
 			return;
 		}
 
