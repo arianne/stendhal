@@ -38,6 +38,8 @@ public class ItemGuardCreature extends Creature {
 	private final String questSlot;
 	
 	private final String questState;
+	
+	private final int questIndex;
 
 	/**                             
 	 * Creates an ItemGuardCreature.
@@ -47,9 +49,9 @@ public class ItemGuardCreature extends Creature {
 	 *            the quest item to drop on death   
 	 */
 	public ItemGuardCreature(final Creature copy, final String itemType) {
-		this(copy, itemType, null, null);
+		this(copy, itemType, null, null, 0);
 	}
-	
+
 	/**
 	 * Creates an ItemGuardCreature.
 	 * 
@@ -63,11 +65,29 @@ public class ItemGuardCreature extends Creature {
 	 * 			  the state of the quest to check on dead for
 	 */
 	public ItemGuardCreature(final Creature copy, final String itemType, final String questSlot, final String questState) {
+		this(copy, itemType, questSlot, questState, 0);
+	}
+	
+	
+	/**
+	 * Creates an ItemGuardCreature.
+	 * 
+	 * @param copy
+	 *            base creature
+	 * @param itemType
+	 *            the quest item to drop on death
+	 * @param questSlot
+	 *            the quest slot for the active quest
+	 * @param questState
+	 * 			  the state of the quest to check on dead for
+	 */
+	public ItemGuardCreature(final Creature copy, final String itemType, final String questSlot, final String questState, final int questIndex) {
 		super(copy);
 
 		this.itemType = itemType;
 		this.questSlot = questSlot;
 		this.questState = questState;
+		this.questIndex = questIndex;
 
 		noises = new LinkedHashMap<String, LinkedList<String>>(noises);
 		final LinkedList<String> ll = new LinkedList<String>();
@@ -85,7 +105,7 @@ public class ItemGuardCreature extends Creature {
 
 	@Override
 	public Creature getNewInstance() {
-		return new ItemGuardCreature(this, itemType, questSlot, questState);
+		return new ItemGuardCreature(this, itemType, questSlot, questState, questIndex);
 	}
 
 	@Override
@@ -95,7 +115,7 @@ public class ItemGuardCreature extends Creature {
 			final Player killerPlayer = (Player) killer;
 			if (!killerPlayer.isEquipped(itemType) && !killerPlayer.isQuestCompleted(questSlot)) {
 				if(questState != null) {
-					if (killerPlayer.isQuestInState(questSlot,questState)) {
+					if (killerPlayer.isQuestInState(questSlot, questIndex, questState)) {
 						equipPlayerWithGuardedItem(killerPlayer);
 					}
 				} else {
