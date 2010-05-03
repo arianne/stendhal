@@ -1,5 +1,7 @@
 package games.stendhal.client.events;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.common.constants.Events;
@@ -11,6 +13,8 @@ import marauroa.common.game.RPEvent;
  * @author hendrik
  */
 public class EventFactory {
+	
+	private static final Logger logger = Logger.getLogger(EventFactory.class);
 
 	public static Event<? extends Entity> create(Entity entity, RPEvent rpevent) {
 		Event<? extends Entity> res = null;
@@ -27,7 +31,7 @@ public class EventFactory {
 			unknown.init(entity, rpevent);
 			res = unknown;
 		}
-
+		logger.debug("Created event: "+res);
 		return res;
 	}
 
