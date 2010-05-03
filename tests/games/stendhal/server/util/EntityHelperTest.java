@@ -56,20 +56,20 @@ public class EntityHelperTest {
 	@Test
 	public void testEntityFromTargetName() {
 		Entity player = new Entity() {};
-		Entity entityFromTargetName = EntityHelper.entityFromTargetName("#1", player);
+		StendhalRPZone zone = new StendhalRPZone(TEST_ENTITY_HELPER);
+		zone.add(player);
+		Entity entityFromTargetName = EntityHelper.entityFromTargetName("#3", player);
 		assertThat(entityFromTargetName, not(notNullValue()));
 		int idRPO1 = 1;
-		int idRPO2 = 2;
-		StendhalRPZone zone = new StendhalRPZone(TEST_ENTITY_HELPER);
 		Entity rpo1 = new Entity() {};
-		zone.add(rpo1);
 		RPObject rpo2 = new Entity() {};
-		rpo2.setID(new RPObject.ID(idRPO2, zone.getID()));
-		zone.add(rpo2);
+		rpo2.put("test","test");
 		rpo1.setID(new RPObject.ID(idRPO1, zone.getID()));
-		player.addSlot("test");
-		player.getSlot("test").add(rpo2);
-		Entity entityFromTargetName2 = EntityHelper.entityFromTargetName("#2", rpo1);
+		rpo1.addSlot("test");
+		rpo1.getSlot("test").add(rpo2);
+		zone.add(rpo1);
+		zone.add(rpo2);
+		Entity entityFromTargetName2 = EntityHelper.entityFromTargetName("#3", player);
 		assertThat(entityFromTargetName2, is(rpo2));
 	}
 
