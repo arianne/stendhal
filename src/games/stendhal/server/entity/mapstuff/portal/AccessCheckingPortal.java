@@ -55,6 +55,8 @@ abstract class AccessCheckingPortal extends Portal {
 	protected void rejected(final RPEntity user) {
 		if (rejectMessage != null) {
 			sendMessage(user, rejectMessage);
+			user.stop();
+			user.clearPath();
 		}
 	}
 
