@@ -25,6 +25,8 @@ public class Profile {
 
 	private String character;
 
+	private String seed;
+
 	public Profile() {
 		this("", DEFAULT_SERVER_PORT, "", "");
 	}
@@ -88,6 +90,10 @@ public class Profile {
 
 	public String getCharacter() {
 		return character;
+	}
+
+	public String getSeed() {
+		return seed;
 	}
 
 	/**
@@ -199,6 +205,8 @@ public class Profile {
 				profile.setHost(args[i + 1]);
 			} else if (args[i].equals("-P")) {
 				profile.setPort(Integer.parseInt(args[i + 1]));
+			} else if (args[i].equals("-S")) {
+				profile.setSeed(args[i + 1]);
 			}
 			i++;
 		}
@@ -237,6 +245,11 @@ public class Profile {
 	
 	public void setCharacter(String character) {
 		this.character = character;
+	}
+
+	
+	public void setSeed(String seed) {
+		this.seed = seed;
 	}
 
 	@Override
@@ -292,4 +305,5 @@ public class Profile {
 
 		return sbuf.toString();
 	}
+
 }
