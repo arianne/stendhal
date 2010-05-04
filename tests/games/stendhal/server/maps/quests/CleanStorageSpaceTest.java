@@ -10,6 +10,7 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.storage.HousewifeNPC;
 import marauroa.common.Log4J;
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -24,7 +25,7 @@ public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-
+		new DatabaseFactory().initializeDatabase();
 		MockStendhalRPRuleProcessor.get();
 
 		MockStendlRPWorld.get();
