@@ -12,8 +12,10 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.KeyedSlot;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
+import marauroa.common.Pair;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -47,6 +49,45 @@ public abstract class UpdateConverter {
 			"elder duergar", "black duergar", "elder giant",
 			"chaos sorcerer"
 	);
+	/**
+	 * quest name, quest index, creatures to kill.
+	 */
+	private static final HashMap<String, Pair<Integer, List<String>>> KILL_QUEST_NAMES = 
+		new HashMap<String, Pair<Integer, List<String>>>() {
+			private static final long serialVersionUID = 2058147975763806559L;
+		{
+			put("meet_hayunn", 
+				new Pair<Integer, List<String>>(1, Arrays.asList(
+					"rat")));
+			
+			put("clean_storage", 
+				new Pair<Integer, List<String>>(1, Arrays.asList(
+					"rat",
+					"caverat","snake")));
+			
+			put("club_thorns", 
+				new Pair<Integer, List<String>>(1, Arrays.asList(
+					"mountain orc chief")));
+			
+			put("kill_dhohr_nuggetcutter", 
+				new Pair<Integer, List<String>>(1, Arrays.asList(
+					"Dhohr Nuggetcutter", 
+					"mountain dwarf", 
+					"mountain elder dwarf", 
+					"mountain hero dwarf", 
+					"mountain leader dwarf")));
+			
+			put("kill_gnomes", 
+				new Pair<Integer, List<String>>(1, Arrays.asList(
+					"gnome", 
+					"infantry gnome", 
+					"cavalryman gnome")));
+			
+			put("sad_scientist", 
+				new Pair<Integer, List<String>>(1, Arrays.asList(
+					"Sergej Elos")));
+		}
+	};
 
 	/**
 	 * Update old item names to the current naming.
@@ -266,11 +307,15 @@ public abstract class UpdateConverter {
 		// We avoid to lose potion in case there is an entry with the old and the new name at the same
 		// time by combining them by calculating the minimum of the two times and the sum of the two amounts.
 		migrateSumTimedQuestSlot(player, "Valo_concoct_potion", "valo_concoct_potion");
-
+		
+		// fix quest slots for kills quests.		
+		fixKillQuestsSlots(player);
+		
 		// From 0.66 to 0.67
 		// update quest slot content, 
 		// replace "_" with " ", for item/creature names
 		for (final String questSlot : player.getQuests()) {
+
 			if (player.hasQuest(questSlot)) {
 				final String itemString = player.getQuest(questSlot);
 
@@ -307,6 +352,31 @@ public abstract class UpdateConverter {
 		}
     }
 
+	/**
+	 * fix old-style kill quests slots.
+	 * @param player - player which quest slots will fix.
+	 */
+	private static void fixKillQuestsSlots(final Player player) {
+		for(String questSlot: KILL_QUEST_NAMES.keySet()) {
+			// if player have no extra info in quest slot, we will add it :-)
+			if(player.getQuest(questSlot)==null) {
+				continue;
+			}
+			if(player.getQuest(questSlot).equals("start")) {
+				final List<String> creatures = KILL_QUEST_NAMES.get(questSlot).second();
+				StringBuilder sb=new StringBuilder("");
+				for(int i=0; i<creatures.size(); i++) {
+					sb.append(creatures.get(i)+",0,1,0,0,");
+				};
+				final String result = sb.toString();
+				player.setQuest(questSlot, 
+						KILL_QUEST_NAMES.get(questSlot).first(),
+						// will not record last semicolon.
+						result.substring(0, result.length()-1));
+			}
+		}
+	}
+	
 	 // update the name of a quest to the new spelling
 //	private static void renameQuestSlot(Player player, String oldName, String newName) {
 //		String questState = player.getQuest(oldName);
@@ -357,5 +427,7 @@ public abstract class UpdateConverter {
 			player.removeQuest(oldName);
 		}
 	}
+	
+	
 
 }
