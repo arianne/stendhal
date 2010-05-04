@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -23,6 +24,7 @@ public class UpdateConverterTest {
 	@BeforeClass
 	public static void setupClass() {
 		Log4J.init();
+		new DatabaseFactory().initializeDatabase();
 	}
 
 	/**
@@ -118,5 +120,20 @@ public class UpdateConverterTest {
 		assertNull(player.getQuest("Valo_concoct_potion"));
 		assertEquals("11;mega potion;1200000000000", player.getQuest("valo_concoct_potion"));
 	}
-
+	
+	/**
+	 * Tests for renameQuest.
+	 */
+	@Test
+	public void testfixKillQuestsSlots() {
+		final Player player = PlayerTestHelper.createPlayer("player");
+		player.setQuest("kill_gnomes", "start");
+		player.setQuest("clean_storage", "start");
+		player.setQuest("kill_dhohr_nuggetcutter", "start");
+		UpdateConverter.updateQuests(player);
+		assertEquals(player.getQuest("clean_storage"), "start;rat,0,1,0,0,caverat,0,1,0,0,snake,0,1,0,0");
+		assertEquals(player.getQuest("kill_gnomes"), "start;gnome,0,1,0,0,infantry gnome,0,1,0,0,cavalryman gnome,0,1,0,0");
+		assertEquals(player.getQuest("kill_dhohr_nuggetcutter"), "start;Dhohr Nuggetcutter,0,1,0,0,mountain dwarf,0,1,0,0,mountain elder dwarf,0,1,0,0,mountain hero dwarf,0,1,0,0,mountain leader dwarf,0,1,0,0");		
+	}
+	
 }
