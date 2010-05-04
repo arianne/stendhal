@@ -37,7 +37,7 @@ public class ItemGuardCreatureTest {
 	public void testOnDead() {
 		StendhalRPZone zone = new StendhalRPZone("test zone");
 		Creature copy = SingletonRepository.getEntityManager().getCreature("rat");
-		ItemGuardCreature creature = new ItemGuardCreature(copy, "knife", "test_quest", "start");
+		ItemGuardCreature creature = new ItemGuardCreature(copy, "knife", "test_quest", "start", 0);
 		zone.add(creature);
 		Player player = PlayerTestHelper.createPlayer("bob");
 		creature.onDead(player);
