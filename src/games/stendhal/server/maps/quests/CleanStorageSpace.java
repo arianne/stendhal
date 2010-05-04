@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.KilledCondition;
+import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -20,8 +20,11 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
+import marauroa.common.Pair;
 
 /**
  * QUEST: CleanStorageSpace
@@ -88,9 +91,17 @@ public class CleanStorageSpace extends AbstractQuest {
 				"Thanks again! I think it's still clear down there.", null);
 
 		final List<ChatAction> start = new LinkedList<ChatAction>();
-		start.add(new StartRecordingKillsAction("rat", "caverat", "snake"));
+		
+		final HashMap<String, Pair<Integer, Integer>> toKill = 
+			new HashMap<String, Pair<Integer, Integer>>();
+		// first number is required solo kills, second is required shared kills
+		toKill.put("rat", new Pair<Integer, Integer>(0,1));
+		toKill.put("caverat", new Pair<Integer, Integer>(0,1));
+		toKill.put("snake", new Pair<Integer, Integer>(0,1));
+		
 		start.add(new IncreaseKarmaAction(2.0));
-		start.add(new SetQuestAction(QUEST_SLOT, "start"));
+		start.add(new SetQuestAction(QUEST_SLOT, 0, "start"));		
+		start.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
 		
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
@@ -130,12 +141,12 @@ public class CleanStorageSpace extends AbstractQuest {
 		// the player returns to Eonna after having started the quest.
 		// Eonna checks if the player has killed one of each animal race.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new KilledCondition("rat", "caverat", "snake")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new KilledForQuestCondition(QUEST_SLOT,1)),
 				ConversationStates.ATTENDING, "A hero at last! Thank you!",
 				new MultipleActions(reward));
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new KilledCondition("rat", "caverat", "snake"))),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new NotCondition(new KilledForQuestCondition(QUEST_SLOT, 1))),
 				ConversationStates.QUEST_STARTED,
 				"Don't you remember promising to clean out the rats from my #basement?",
 				null);

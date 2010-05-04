@@ -15,8 +15,11 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.maps.quests.BeerForHayunn;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
+import marauroa.common.Pair;
 
 
 /**
@@ -26,7 +29,8 @@ import java.util.List;
  * @see games.stendhal.server.maps.quests.MeetHayunn
  */
 public class RetiredAdventurerNPC extends SpeakerNPCFactory {
-
+	private final String QUEST_SLOT="meet_hayunn";
+	
 	@Override
 	public void createDialog(final SpeakerNPC npc) {
 		// A little trick to make NPC remember if it has met
@@ -35,8 +39,14 @@ public class RetiredAdventurerNPC extends SpeakerNPCFactory {
 		// used for any other purpose
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new StartRecordingKillsAction("rat"));
-		actions.add(new SetQuestAction("meet_hayunn", "start"));
+		final HashMap<String, Pair<Integer,Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>() {
+			private static final long serialVersionUID = 3828605339185735368L;
+			{
+			put("rat", new Pair<Integer, Integer>(0,1));
+			};
+		};
+		actions.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
+		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
 
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,

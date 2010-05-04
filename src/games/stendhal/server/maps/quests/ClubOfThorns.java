@@ -12,15 +12,18 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.KilledCondition;
+import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
+import marauroa.common.Pair;
 
 /**
  * QUEST: Club of Thorns
@@ -82,11 +85,19 @@ public class ClubOfThorns extends AbstractQuest {
 			null);
 
 
+		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>() {
+			private static final long serialVersionUID = 2173118537935918653L;
+			{
+				put("mountain orc chief", new Pair<Integer, Integer>(0,1));
+			}
+		};
+		
 		final List<ChatAction> start = new LinkedList<ChatAction>();
 		start.add(new EquipItemAction("kotoch prison key", 1, true));
-		start.add(new StartRecordingKillsAction("mountain orc chief"));
 		start.add(new IncreaseKarmaAction(6.0));
-		start.add(new SetQuestAction(QUEST_SLOT, "start"));
+		start.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
+		start.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
+
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -120,13 +131,13 @@ public class ClubOfThorns extends AbstractQuest {
 		// the player returns after having started the quest.
 		// Saman checks if kill was made
 		npc.add(ConversationStates.ATTENDING, "kill",
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new KilledCondition("mountain orc chief")),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new KilledForQuestCondition(QUEST_SLOT, 1)),
 			ConversationStates.ATTENDING,
 			"Revenge! Good! Take club of hooman blud.",
 			new MultipleActions(reward));
 
 		npc.add(ConversationStates.ATTENDING, "kill",
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new KilledCondition("mountain orc chief"))),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new NotCondition(new KilledForQuestCondition(QUEST_SLOT, 1))),
 			ConversationStates.ATTENDING,
 			"kill Mountain Orc Chief! Kotoch orcs nid revenge!",
 			null);

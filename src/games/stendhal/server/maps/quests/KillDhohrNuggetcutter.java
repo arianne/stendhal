@@ -12,13 +12,19 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
+import marauroa.common.Pair;
 
 /**
  * QUEST: Kill Dhohr Nuggetcutter
@@ -68,7 +74,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							engine.say("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?");
-						}  else if (player.getQuest(QUEST_SLOT).equals("start")) {
+						}  else if (player.getQuest(QUEST_SLOT, 0).equals("start")) {
 							engine.say("I already asked you to kill Dhohr Nuggetcutter!");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
@@ -88,10 +94,21 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 					}
 				});
 
+		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>() {
+			private static final long serialVersionUID = 5812929166657634696L;
+			{
+				put("Dhohr Nuggetcutter", new Pair<Integer, Integer>(0,1));
+				put("mountain dwarf", new Pair<Integer, Integer>(0,2));
+				put("mountain elder dwarf", new Pair<Integer, Integer>(0,2)); 
+				put("mountain hero dwarf", 	new Pair<Integer, Integer>(0,2));
+				put("mountain leader dwarf", new Pair<Integer, Integer>(0,2));
+			};
+		};
+		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new StartRecordingKillsAction("Dhohr Nuggetcutter", "mountain dwarf", "mountain elder dwarf", "mountain hero dwarf", "mountain leader dwarf"));
 		actions.add(new IncreaseKarmaAction(5.0));
-		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
+		actions.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
+		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
 		
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
@@ -117,26 +134,30 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Zogfang");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "start"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+						new NotCondition(new KilledForQuestCondition(QUEST_SLOT, 1))),
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						if (player.hasKilled("mountain leader dwarf")
-								&& player.hasKilled("Dhohr Nuggetcutter")
-								&& player.hasKilled("mountain elder dwarf")
-								&& player.hasKilled("mountain hero dwarf")
-								&& player.hasKilled("mountain dwarf")) {
-							engine.say("Thank you so much. You are a warrior, indeed! Here, have one of these. We have found them scattered about. We have no idea what they are.");
+						engine.say("Just go kill Dhohr Nuggetcutter and his minions; the mountain leader, hero and elder dwarves. Even the simple mountain dwarves are a danger to us, kill them too.");								
+				}
+		});
+		
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+						new KilledForQuestCondition(QUEST_SLOT, 1)),
+				ConversationStates.ATTENDING, 
+				null,
+				new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						engine.say("Thank you so much. You are a warrior, indeed! Here, have one of these. We have found them scattered about. We have no idea what they are.");
 							final Item mithrilnug = SingletonRepository.getEntityManager()
 									.getItem("mithril nugget");
 							player.equipOrPutOnGround(mithrilnug);
 							player.addKarma(5.0);
 							player.addXP(4000);
 							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());
-						} else {
-							engine.say("Just go kill Dhohr Nuggetcutter and his minions; the mountain leader, hero and elder dwarves. Even the simple mountain dwarves are a danger to us, kill them too.");
-						}
 		 			}
 				});
 	}

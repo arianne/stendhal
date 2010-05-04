@@ -12,15 +12,18 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.KilledCondition;
+import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
+import marauroa.common.Pair;
 
 /**
  * QUEST: Kill Gnomes
@@ -86,9 +89,19 @@ public class KillGnomes extends AbstractQuest {
 				"The gnomes haven't made any trouble since you last taught them a lesson.",
 				null);
 
+		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>() {
+			private static final long serialVersionUID = 2523749135076482763L;
+
+			{
+				put("gnome", new Pair<Integer, Integer>(0,1));
+				put("infantry gnome", new Pair<Integer, Integer>(0,1));
+				put("cavalryman gnome",new Pair<Integer, Integer>(0,1));
+			}
+		};
+		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new StartRecordingKillsAction("gnome", "infantry gnome", "cavalryman gnome"));
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
+		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
 		
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
@@ -121,19 +134,19 @@ public class KillGnomes extends AbstractQuest {
 		actions.add(new SetQuestAction(QUEST_SLOT, "killed;1"));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.FINISH_MESSAGES,
 				new AndCondition(
-						new QuestInStateCondition(QUEST_SLOT, "start"),
-						new KilledCondition("gnome", "infantry gnome", "cavalryman gnome")),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+						new KilledForQuestCondition(QUEST_SLOT, 1)),
 				ConversationStates.ATTENDING, 
 				"I see you have killed the gnomes as I asked. I hope they will stay away from the carrots for a while! "
 				+ "Please take these potions as a reward.",
 				new MultipleActions(actions));
 
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.FINISH_MESSAGES,
 				new AndCondition(
-						new QuestInStateCondition(QUEST_SLOT, "start"),
-						new NotCondition(new KilledCondition("gnome", "infantry gnome", "cavalryman gnome"))),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+						new NotCondition(new KilledForQuestCondition(QUEST_SLOT, 1))),
 				ConversationStates.ATTENDING, 
 				"You need to teach those pesky gnomes a lesson, by killing some as an example! "
 				+ "Make sure you get the leaders, too, at least one infantryman and one cavalryman.",

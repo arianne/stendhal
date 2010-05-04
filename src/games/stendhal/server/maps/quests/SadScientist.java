@@ -20,7 +20,7 @@ import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.KilledCondition;
+import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -34,7 +34,10 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
+
+import marauroa.common.Pair;
 
 
 /**
@@ -69,7 +72,7 @@ import java.util.Map;
  * </ul>
  */
 public class SadScientist extends AbstractQuest {
-	
+
 	private final class CheckAndRespondAboutMissingItemsAction implements
 			ChatAction {
 		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
@@ -162,7 +165,7 @@ public class SadScientist extends AbstractQuest {
 			SpeakerNPC npc) {
 		final ChatCondition condition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT, "kill_scientist"),
-				new KilledCondition("Sergej Elos"),
+				new KilledForQuestCondition(QUEST_SLOT, 1),
 				new PlayerHasItemWithHimCondition("goblet")
 			);
 		ChatAction action = new MultipleActions(
@@ -188,7 +191,7 @@ public class SadScientist extends AbstractQuest {
 				new QuestStateStartsWithCondition(QUEST_SLOT, "kill_scientist"),
 				new NotCondition( 
 						new AndCondition( 
-										new KilledCondition("Sergej Elos"),
+										new KilledForQuestCondition(QUEST_SLOT, 1),
 										new PlayerHasItemWithHimCondition("goblet")))
 			);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -202,9 +205,17 @@ public class SadScientist extends AbstractQuest {
 				new QuestStateStartsWithCondition(QUEST_SLOT, "find_vera"),
 				new PlayerHasItemWithHimCondition("note")
 			);
+		
+		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>() {
+			private static final long serialVersionUID = 8846583616234873936L;
+			{
+				put("Sergej Elos", new Pair<Integer, Integer>(0,1));
+			}
+		};
+		
 		final ChatAction action = new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, "kill_scientist"),
-					new StartRecordingKillsAction("Sergej Elos"),
+					new SetQuestAction(QUEST_SLOT, 0, "kill_scientist"),
+					new StartRecordingKillsAction(QUEST_SLOT, 1, toKill),
 					new DropItemAction("note")
 				);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -220,7 +231,7 @@ public class SadScientist extends AbstractQuest {
 				"the Imperial Scientist Sergej Elos. Give me his blood.",
 				action);
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.GOODBYE_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "kill_scientist"),
+				new QuestInStateCondition(QUEST_SLOT, 0, "kill_scientist"),
 				ConversationStates.INFORMATION_2,
 				"Do it!",
 				null);

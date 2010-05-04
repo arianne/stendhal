@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledCondition;
+import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -72,7 +73,7 @@ public class MeetHayunn extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				ConversationPhrases.YES_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "start"),
+				new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 				ConversationStates.ATTENDING,
 				"Well, back when I was a young adventurer, I right-clicked on my enemies and chose ATTACK. I'm sure that will work for you, too. Good luck, and come back once you are done.",
 				null);
@@ -81,7 +82,7 @@ public class MeetHayunn extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				ConversationPhrases.NO_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "start"),
+				new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 				ConversationStates.ATTENDING,
 				"Fine, you seem like an intelligent type. I'm sure you'll work it out!",
 				null);
@@ -89,7 +90,7 @@ public class MeetHayunn extends AbstractQuest {
 		//player returns to Hayunn not having killed a rat
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new KilledCondition("rat"))),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new NotCondition(new KilledForQuestCondition(QUEST_SLOT,1))),
 				ConversationStates.ATTENDING,
 		        "I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them?",
 				null);
@@ -102,7 +103,7 @@ public class MeetHayunn extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new KilledCondition("rat")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new KilledForQuestCondition(QUEST_SLOT, 1)),
 				ConversationStates.INFORMATION_1,
 		        "You killed the rat! Now, you may ask, what is the point behind risking your life to kill things? #Yes?",
 				new MultipleActions(actions));
