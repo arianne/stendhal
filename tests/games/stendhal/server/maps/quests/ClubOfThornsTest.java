@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -86,8 +89,13 @@ public class ClubOfThornsTest {
 		assertEquals("player", player.getFirstEquipped(KEY_NAME).getBoundTo());
 		assertEquals("Karma bonus for accepting the quest", 
 			karma + 6.0, player.getKarma(), 0.01);
-		assertEquals("start", player.getQuest(QUEST_NAME));
-		assertFalse("Cleaning kill slot", player.hasKilled(VICTIM));
+		assertEquals("start", player.getQuest(QUEST_NAME, 0));
+		//assertFalse("Cleaning kill slot", player.hasKilled(VICTIM));
+		final String[] questTokens = player.getQuest(QUEST_NAME, 1).split(",");
+		assertEquals(questTokens[0],"mountain orc chief");
+		assertEquals(questTokens[1],"0");
+		assertEquals(questTokens[2],"1");
+		assertEquals(Arrays.asList(questTokens).size(), 5);
 		
 		en.stepTest(player, ConversationPhrases.QUEST_MESSAGES.get(0));
 		assertEquals("Make revenge! #Kill Mountain Orc Chief!", getReply(npc));
