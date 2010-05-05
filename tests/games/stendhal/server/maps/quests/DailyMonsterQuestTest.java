@@ -20,6 +20,8 @@ import games.stendhal.server.maps.quests.DailyMonsterQuest.DailyQuestAction;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import marauroa.server.game.db.DatabaseFactory;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,7 +40,7 @@ public class DailyMonsterQuestTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-
+		new DatabaseFactory().initializeDatabase();
 		mayor = SpeakerNPCTestHelper.createSpeakerNPC("Mayor Sakhs");
 		NPCList.get().add(mayor);
 		dmq = new DailyMonsterQuest();
