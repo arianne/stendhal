@@ -43,6 +43,9 @@ public class KilledForQuestCondition implements ChatCondition {
 	 */
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 		final String temp = player.getQuest(QUEST_SLOT, questIndex);
+		if(temp==null) {
+			return false;
+		}
 		final List<String> tokens = Arrays.asList(temp.split(","));
 		// check for size - it should be able to divide by 5 without reminder.
 		if((tokens.size() % 5)!=0) {
@@ -85,7 +88,7 @@ public class KilledForQuestCondition implements ChatCondition {
 
 	@Override
 	public String toString() {
-		return "KilledCondition";
+		return "KilledForQuestCondition";
 	}
 
 	@Override
