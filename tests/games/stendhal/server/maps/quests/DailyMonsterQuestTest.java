@@ -8,6 +8,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -15,6 +17,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.quests.DailyMonsterQuest.DailyQuestAction;
 
 import java.util.Collections;
@@ -47,6 +50,9 @@ public class DailyMonsterQuestTest {
 	
 		dmq.addToWorld();
 		en = mayor.getEngine();
+		final StendhalRPWorld world = MockStendlRPWorld.get();	
+		final StendhalRPZone zone = new StendhalRPZone("int_semos_guard_house");		
+		world.addRPZone(zone);
 	}
 
 	@AfterClass
@@ -107,7 +113,7 @@ public class DailyMonsterQuestTest {
 	 */
 	@Test
 	public void testPickIdealCreature() {
-		final DailyMonsterQuest dmqp = new DailyMonsterQuest();
+		//final DailyMonsterQuest dmqp = new DailyMonsterQuest();
 		final DailyMonsterQuest.DailyQuestAction dmqpick = new DailyQuestAction();
 		CreatureTestHelper.generateRPClasses();
 		assertNull("empty list", dmqpick.pickIdealCreature(-1, false, new LinkedList<Creature>()));
@@ -125,7 +131,7 @@ public class DailyMonsterQuestTest {
 	 */
 	@Test
 	public void testPickIdealCreatureratLONGLIST() {
-		final DailyMonsterQuest dmqp = new DailyMonsterQuest();
+		//final DailyMonsterQuest dmqp = new DailyMonsterQuest();
 		final DailyMonsterQuest.DailyQuestAction dmqpick = new DailyQuestAction();
 		CreatureTestHelper.generateRPClasses();
 		final LinkedList<Creature> creatureList = new LinkedList<Creature>();
