@@ -32,6 +32,8 @@ import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.stats.StatsPanelController;
 import games.stendhal.client.gui.wt.Character;
@@ -68,6 +70,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -78,10 +81,6 @@ import marauroa.client.net.IPerceptionListener;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
-
-import pagelayout.Column;
-import pagelayout.PageLayout;
-import pagelayout.Row;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient implements UserInterface {
@@ -316,54 +315,36 @@ public class j2DClient implements UserInterface {
 		mainFrame.getMainFrame().getContentPane().setBackground(Color.black);
 		
 		// *** Create the layout ***
-		final Column leftColumn = new Column();
-		leftColumn.add(minimap.getComponent());
-		leftColumn.add(stats.getComponent());
-		leftColumn.add(buddyPane);
-		// make the resizes affect the left panel rather than the game area
-		leftColumn.setFixedWidth(false, minimap.getComponent());
-		minimap.getComponent().setMinimumSize(new Dimension(0, 0));
-		buddyPane.setMinimumSize(new Dimension(0, 0));
-		stats.getComponent().setMinimumSize(new Dimension(0, 0));
-		
-		leftColumn.setComponentGaps(0, 0);
+		final JComponent leftColumn = new JPanel();
+		leftColumn.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+		leftColumn.add(minimap.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
+		leftColumn.add(stats.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
+		leftColumn.add(buddyPane, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		
 		// Chat entry and chat log
-		final JPanel chatBox = new JPanel() {
-			/*
-			 * A workaround for the swing flaw that all the existing
-			 * layout managers happily ignore maximum and minimum
-			 * size constraints. A real fix would be writing
-			 * a better layout manager, but this will do for now.
-			 * (2010-01-22)
-			 */
-			@Override
-			public Dimension getPreferredSize() {
-				Dimension tmp = super.getPreferredSize();
-				if (tmp.width > stendhal.screenSize.width) {
-					tmp.width = stendhal.screenSize.width;
-				}
-				return tmp;
-			}
-		};
+		final JPanel chatBox = new JPanel();
 		chatBox.setLayout(new BorderLayout());
 		chatBox.add(chatText.getPlayerChatText(), BorderLayout.NORTH);
 		chatBox.add(gameLog, BorderLayout.CENTER);
 		chatBox.setMinimumSize(chatText.getPlayerChatText().getMinimumSize());
+		chatBox.setMaximumSize(new Dimension(stendhal.screenSize.width, Integer.MAX_VALUE));
 		
 		// Give the user the ability to make the the game area less tall
 		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
 		// Works for showing the resize, but is extremely flickery
 		//splitPane.setContinuousLayout(true);
 		pane.addComponentListener(new SplitPaneResizeListener(screen.getComponent(), splitPane));
+
+		// Finally add the left pane, and the games creen + chat combo
+		final Container windowContent = mainFrame.getMainFrame().getContentPane();
+		windowContent.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
+		// Make the panel take any horizontal resize
+		windowContent.add(leftColumn, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
+		leftColumn.setMinimumSize(new Dimension());
 		
-		final Row windowContent = new Row();
-		windowContent.add(leftColumn);
-		windowContent.add(splitPane);
-		windowContent.setFixedWidth(true, splitPane);
-		windowContent.setComponentGaps(0, 0);
-		final PageLayout layout = windowContent.createLayout(mainFrame.getMainFrame().getContentPane());
-		layout.setContainerGaps(0, 0);
+		windowContent.add(splitPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
+		splitPane.setMinimumSize(stendhal.screenSize);
+		splitPane.setMaximumSize(new Dimension(stendhal.screenSize.width, Integer.MAX_VALUE));
 				
 		/*
 		 * Handle focus assertion and window closing
