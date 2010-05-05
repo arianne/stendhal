@@ -311,6 +311,9 @@ public abstract class UpdateConverter {
 		// fix quest slots for kills quests.		
 		fixKillQuestsSlots(player);
 		
+		// fix DailyMonsterQuest slot
+		fixDailyMonsterQuestSlot(player);
+		
 		// From 0.66 to 0.67
 		// update quest slot content, 
 		// replace "_" with " ", for item/creature names
@@ -352,6 +355,27 @@ public abstract class UpdateConverter {
 		}
     }
 
+	private static void fixDailyMonsterQuestSlot(final Player player) {
+		final String QUEST_SLOT = "daily";
+		
+		// if player didnt started quest, exiting
+		if(!player.hasQuest(QUEST_SLOT)) {
+			return;
+		}
+		
+		final String questInfo = player.getQuest(QUEST_SLOT, 0);
+		
+		// if player completed quest, exiting
+		if(questInfo.equals("done")) return;
+		// if player already updated, exiting
+		if(Arrays.asList(questInfo.split(",")).size()==5) {
+			return;
+		}
+		
+		// now fix player's quest slot
+		player.setQuest(QUEST_SLOT, 0, player.getQuest(QUEST_SLOT, 0)+",0,1,0,0");
+	}
+	
 	/**
 	 * fix old-style kill quests slots.
 	 * @param player - player which quest slots will fix.
