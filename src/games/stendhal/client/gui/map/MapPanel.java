@@ -189,15 +189,8 @@ public class MapPanel extends JPanel implements PositionChangeListener {
 	 * @param dim 
 	 */
 	private void updateSize(final Dimension dim) {
-		/*
-		 * For some reason this:
-		 * 		setMaximumSize(dim);
-		 * causes this component to become unshrinkable
-		 * in java 1.6. In 1.5 it would work as expected.
-		 * Using the following as workaround as it seems
-		 * to work in both.  
-		 */
-		setMaximumSize(new Dimension(0, dim.height));
+		setMaximumSize(dim);
+		setMinimumSize(new Dimension(0, dim.height));
 		setPreferredSize(dim);
 		// the user may have hidden the component partly or entirely
 		setSize(getWidth(), dim.height);

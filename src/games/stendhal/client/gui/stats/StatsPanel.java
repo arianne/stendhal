@@ -55,18 +55,6 @@ public class StatsPanel extends StyledJPanel {
 	}
 	
 	/**
-	 * An ugly hack to work around java 5 and 6 treating this differently.
-	 * Should be removed in case this panel gets placed somewhere it determines
-	 * the width.
-	 */
-	@Override
-	public Dimension getPreferredSize() {
-		Dimension d = super.getPreferredSize();
-		d.width = 0;
-		return d;
-	}
-	
-	/**
 	 * Initialize from the values of <code>User</code>.
 	 * This is needed because some values are not sent on user creation. 
 	 */
