@@ -7,20 +7,31 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import org.apache.log4j.Logger;
 
 /**
  * QUEST: Daily Monster Kill Quest.
@@ -44,74 +55,51 @@ import java.util.Random;
 public class DailyMonsterQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily";
+	private final SpeakerNPC npc = npcs.get("Mayor Sakhs");
+	private static Logger logger = Logger.getLogger("DailyMonsterQuest");
+	// minutes in day
+	private final static int delay = MathHelper.MINUTES_IN_ONE_HOUR * 24;
+	// minutes in week
+	private final static int expireDelay = delay * 7;
 
-	static class DailyQuestAction implements ChatAction {
-
-		/** All creatures, sorted by level. */
-		private List<Creature> sortedcreatures;
-
-		private String debugString;
-
-		public DailyQuestAction() {
-			refreshCreatureList();
-		}
-
-		private void refreshCreatureList() {
-			final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
-			sortedcreatures = new LinkedList<Creature>();
-			for (Creature creature : creatures) {
-				if (!creature.isRare()) {
-					sortedcreatures.add(creature);
-				}
+	
+	/** All creatures, sorted by level. */
+	private static List<Creature> sortedcreatures;	
+	
+	private static void refreshCreaturesList() {
+		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
+		sortedcreatures = new LinkedList<Creature>();
+		for (Creature creature : creatures) {
+			if (!creature.isRare()) {
+				sortedcreatures.add(creature);
 			}
-			Collections.sort(sortedcreatures, new LevelBasedComparator());
 		}
+		Collections.sort(sortedcreatures, new LevelBasedComparator());
+	}	
+	
+	/**
+	 * constructor for quest
+	 */
+	public DailyMonsterQuest() {
+		refreshCreaturesList();
+	}
+	
+	static class DailyQuestAction implements ChatAction {
+		//private String debugString;
 		
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 
-			final String questInfo = player.getQuest("daily");
-			String questKill = null;
+			final String questInfo = player.getQuest(QUEST_SLOT);
 			String questCount = null;
 			String questLast = null;
-			final long delay = MathHelper.MILLISECONDS_IN_ONE_DAY;
-			final long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
 
 			if (questInfo != null) {
 				final String[] tokens = (questInfo + ";0;0;0").split(";");
-				questKill = tokens[0];
 				questLast = tokens[1];
 				questCount = tokens[2];
 			}
-
-			if ((questKill != null) && !"done".equals(questKill)) {
-				final String sayText = "You're already on a quest to slay " + Grammar.a_noun(questKill)
-				+ ". Say #complete if you're done with it!";
-				if (questLast != null) {
-					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
-							- System.currentTimeMillis();
-
-					if (timeRemaining < 0L) {
-						engine.say(sayText
-								+ " If you can't find one, perhaps it won't bother Semos either. You could kill #another creature if you like.");
-						return;
-					}
-				}
-				engine.say(sayText);
-				return;
-			}
-
-			if (questLast != null) {
-				final long timeRemaining = (Long.parseLong(questLast) + delay)
-						- System.currentTimeMillis();
-
-				if (timeRemaining > 0L) {
-					engine.say("I can only give you a new quest once a day. Please check back in "
-							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-							+ ".");
-					return;
-				}
-			}
-			refreshCreatureList();
+			
+			refreshCreaturesList();
 			// Creature selection magic happens here
 			final Creature pickedCreature = pickIdealCreature(player.getLevel(),
 					false, sortedcreatures);
@@ -132,11 +120,15 @@ public class DailyMonsterQuest extends AbstractQuest {
 			
 			engine.say("Semos is in need of help. Go kill " + Grammar.a_noun(creatureName)
 					+ " and say #complete, once you're done.");
-			player.removeKill(creatureName);
-			questLast = "" + (new Date()).getTime();
-			player.setQuest("daily", creatureName + ";" + questLast + ";"
-					+ questCount);
 
+			questLast = "" + (new Date()).getTime();
+			player.setQuest(
+					QUEST_SLOT, 
+					creatureName + ",0,1,"+
+					player.getSoloKill(creatureName)+","+
+					player.getSharedKill(creatureName)+";" + 
+					questLast + ";"+ 
+					questCount);
 		}
 
 		// Returns a random creature near the players level, returns null if
@@ -195,8 +187,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 			if ((current < start) || (start < 0)
 					|| (current >= creatureList.size())) {
 				if (testMode) {
-					debugString += "\r\n" + level + " : ERROR start=" + start
-							+ ", current=" + current;
+					logger.debug("ERROR: <"+level + "> start=" + start + 
+							", current=" + current);
 				}
 				return null;
 			}
@@ -206,21 +198,19 @@ public class DailyMonsterQuest extends AbstractQuest {
 			final Creature cResult = creatureList.get(result);
 
 			if (testMode) {
-				debugString += "\r\n" + level + " : OK start=" + start
+				logger.debug("OK: <" + level + "> start=" + start
 						+ ", current=" + current + ", result=" + result
-						+ ", cResult=" + cResult.getName() + ". OPTIONS: ";
+						+ ", cResult=" + cResult.getName() + ". OPTIONS: ");
 				for (int i = start; i <= current; i++) {
 					final Creature cTemp = creatureList.get(i);
-					debugString += cTemp.getName() + ":" + cTemp.getLevel()
-							+ "; ";
+					logger.debug(cTemp.getName() + ":" + cTemp.getLevel()	+ "; ");
 				}
 			}
-
 			return cResult;
-
 		}
 
-		// Debug Only, Preforms tests
+		/*
+		// Debug Only, Performs tests
 		// Populates debugString with test data.
 		public void testAllLevels() {
 			debugString = "";
@@ -233,90 +223,62 @@ public class DailyMonsterQuest extends AbstractQuest {
 				pickIdealCreature(i, true, sortedcreatures);
 			}
 		}
-	}
+		*/
+	}	
 
 	static class DailyQuestCompleteAction implements ChatAction {
-
+		
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			final String questInfo = player.getQuest("daily");
-			String questKill = null;
+			final String questInfo = player.getQuest(QUEST_SLOT);
 			String questCount = null;
 			String questLast = null;
-
-			if (questInfo == null) {
-				engine.say("I'm afraid I didn't send you on a #quest yet.");
-				return;
-			}
+			
+			logger.info("Inside DailyQuestCompleteAction");
 			final String[] tokens = (questInfo + ";0;0").split(";");
-			questKill = tokens[0];
 			questLast = tokens[1];
 			questCount = tokens[2];
 			if (questCount.equals("null")) {
 				questCount = "0";
 			}
-			if ("done".equals(questKill)) {
-				engine.say("You already completed the last quest I had given to you.");
-				return;
+
+			final int start = Level.getXP(player.getLevel());
+			final int next = Level.getXP(player.getLevel() + 1);
+			int reward = (next - start) / 5;
+			if (player.getLevel() >= Level.maxLevel()) {
+				reward = 0;
+				// no reward so give a lot karma instead, 100 in all
+				player.addKarma(95.0);
 			}
-			if (player.hasKilled(questKill)) {
-				final int start = Level.getXP(player.getLevel());
-				final int next = Level.getXP(player.getLevel() + 1);
-				int reward = (next - start) / 5;
-				if (player.getLevel() >= Level.maxLevel()) {
-					reward = 0;
-					// no reward so give a lot karma instead, 100 in all
-					player.addKarma(95.0);
-				}
-				engine.say("Good work! Let me thank you in the name of the people of Semos!");
-				player.addXP(reward);
-				player.addKarma(5.0);
-				questCount = "" + (Integer.valueOf(questCount) + 1);
-				questLast = "" + (new Date()).getTime();
-				player.setQuest("daily", "done" + ";" + questLast + ";"
-						+ questCount);
-			} else {
-				engine.say("You didn't kill " + Grammar.a_noun(questKill)
-						+ " yet. Go and do it and say #complete only after you're done.");
-			}
+			
+			engine.say("Good work! Let me thank you in the name of the people of Semos!");
+			player.addXP(reward);
+			player.addKarma(5.0);
+			questCount = "" + (Integer.valueOf(questCount) + 1);
+			questLast = "" + (new Date()).getTime();
+			player.setQuest(QUEST_SLOT, "done" + ";" + questLast + ";"	+ questCount);
 		}
 	}
 
 	static class DailyQuestAbortAction implements ChatAction {
 
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			final String questInfo = player.getQuest("daily");
-			String questKill = null;
+			final String questInfo = player.getQuest(QUEST_SLOT);
 			String questCount = null;
 			String questLast = null;
-			final long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
-
+			
+			logger.info("Inside DailyQuestAbortAction");
 			if (questInfo != null) {
 				final String[] tokens = (questInfo + ";0;0;0").split(";");
-				questKill = tokens[0];
 				questLast = tokens[1];
 				questCount = tokens[2];
 			}
 
-			if ((questKill != null) && !"done".equals(questKill)) {
-				if (questLast != null) {
-					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
-							- System.currentTimeMillis();
-
-					if (timeRemaining < 0L) {
-						engine.say("As you wish, ask me for another #quest when you think you have what it takes to help Semos again.");
-						// Don't make the player wait any longer and don't
-						// credit the player with a count increase?
-						// questCount = "" + (Integer.valueOf(questCount) + 1 );
-						// questLast = "" + (new Date()).getTime();
-						player.setQuest("daily", "done" + ";" + questLast + ";"
-								+ questCount);
-						return;
-					}
-				}
-				engine.say("It hasn't been long since you've started your quest, I won't let you give up so soon.");
-				return;
-			}
-			engine.say("I'm afraid I didn't send you on a #quest yet.");
+			engine.say("As you wish, ask me for another #quest when you think you have what it takes to help Semos again.");
+			// Don't make the player wait any longer and don't
+			// credit the player with a count increase?
+			// questCount = "" + (Integer.valueOf(questCount) + 1 );
+			// questLast = "" + (new Date()).getTime();
+			player.setQuest(QUEST_SLOT, "done" + ";" + questLast + ";"	+ questCount);
 		}
 	}
 
@@ -337,9 +299,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 			res.add("QUEST_REJECTED");
 		}
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
-			final String[] tokens = (questState + ";0;0;0").split(";");
-			final String questKill = tokens[0];
-			if (!player.hasKilled(questKill)) {
+			final boolean questDone = new KilledForQuestCondition(QUEST_SLOT,0).fire(player, null, null);
+			if (!questDone) {
 				res.add("QUEST_ACTIVE");
 			} else {
 				res.add("QUEST_UNCLAIMED");
@@ -360,31 +321,172 @@ public class DailyMonsterQuest extends AbstractQuest {
 		return res;
 	}
 	
+	/**
+	 * player said "quest"
+	 */
 	private void step_1() {
-		final SpeakerNPC npc = npcs.get("Mayor Sakhs");
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"),
-				null, ConversationStates.ATTENDING, null,
-				new DailyQuestAction());
+		// player asking for quest when he have active non-expired quest 
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(
+						new NotCondition(
+								new OrCondition(
+										new QuestNotStartedCondition(QUEST_SLOT),
+										new QuestCompletedCondition(QUEST_SLOT))),
+						new NotCondition(
+								new TimePassedCondition(QUEST_SLOT, expireDelay, 1))), 
+				ConversationStates.ATTENDING, 
+				null,
+				new ChatAction() {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						npc.say("You're already on a quest to slay " + 
+								Grammar.a_noun(player.getQuest(QUEST_SLOT,0).split(",")[0]) + 
+								". Say #complete if you're done with it!");
+					}			
+				});
+		
+		// player have expired quest time
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(
+						new NotCondition(
+								new OrCondition(
+										new QuestNotStartedCondition(QUEST_SLOT),
+										new QuestCompletedCondition(QUEST_SLOT))),
+						new TimePassedCondition(QUEST_SLOT, expireDelay, 1)), 
+				ConversationStates.ATTENDING, 
+				null,
+				new ChatAction() {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						if(player.getQuest(QUEST_SLOT, 0)!=null) {
+								npc.say("You're already on a quest to slay " + 
+										Grammar.a_noun(player.getQuest(QUEST_SLOT, 0).split(",")[0]) + 
+										". Say #complete if you're done with it!" +
+										" If you can't find one, perhaps it won't bother Semos either. You could kill #another creature if you like.");
+						}
+					}
+				});
+		
+		// player asking for quest before allowed time interval 
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(
+						new QuestCompletedCondition(QUEST_SLOT),
+						new NotCondition( 
+								new TimePassedCondition(QUEST_SLOT, delay, 1))), 
+				ConversationStates.ATTENDING, 
+				null,
+				new ChatAction() {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						final long timeRemaining = (
+								Long.parseLong(player.getQuest(QUEST_SLOT, 1)) + 
+								delay * MathHelper.MILLISECONDS_IN_ONE_MINUTE) - 
+								System.currentTimeMillis();
+						npc.say("I can only give you a new quest once a day. Please check back in "
+								+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");						
+					}
+		});
+
+		// player asked for quest first time or repeat it after passed proper time
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new OrCondition(
+						new QuestNotStartedCondition(QUEST_SLOT),
+						new AndCondition(
+								new QuestCompletedCondition(QUEST_SLOT),
+								new TimePassedCondition(QUEST_SLOT, delay, 1))), 
+				ConversationStates.ATTENDING, 
+				null,
+				new DailyQuestAction());		
 	}
 
+	/**
+	 * player killing monster
+	 */
 	private void step_2() {
 		// kill the monster
 	}
 
+	/**
+	 * player said "done"
+	 */
 	private void step_3() {
-		final SpeakerNPC npc = npcs.get("Mayor Sakhs");
-
+		// player never asked for this quest
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("complete", "done"), null,
-				ConversationStates.ATTENDING, null,
+				ConversationPhrases.FINISH_MESSAGES,
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"I'm afraid I didn't send you on a #quest yet.",
+				null);
+		
+		// player already completed this quest
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.FINISH_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"You already completed the last quest I had given to you.",
+				null);
+		
+		// player didnt killed creature 
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.FINISH_MESSAGES,
+				new AndCondition(
+						new QuestStartedCondition(QUEST_SLOT),
+						new QuestNotCompletedCondition(QUEST_SLOT),
+						new NotCondition(
+						        new KilledForQuestCondition(QUEST_SLOT, 0))),
+				ConversationStates.ATTENDING, 
+				null,
+				new ChatAction() {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+							final String questKill = player.getQuest(QUEST_SLOT, 0).split(",")[0];
+							npc.say("You didn't kill " + Grammar.a_noun(questKill)
+									+ " yet. Go and do it and say #complete only after you're done.");							
+					}
+				});
+		
+		// player killed creature
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.FINISH_MESSAGES,
+				new AndCondition(
+						new QuestStartedCondition(QUEST_SLOT),
+						new QuestNotCompletedCondition(QUEST_SLOT),
+				        new KilledForQuestCondition(QUEST_SLOT, 0)),
+				ConversationStates.ATTENDING, 
+				null,
 				new DailyQuestCompleteAction());
-	}
+		}
 
+	/**
+	 * player said "another"
+	 */
 	private void step_4() {
-		final SpeakerNPC npc = npcs.get("Mayor Sakhs");
+		// player have no active quest and trying to get another
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("another", "abort"), null,
-				ConversationStates.ATTENDING, null, new DailyQuestAbortAction());
+				ConversationPhrases.ABORT_MESSAGES, 
+				new OrCondition(
+						new QuestNotStartedCondition(QUEST_SLOT),
+						new QuestCompletedCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING, 
+				"I'm afraid I didn't send you on a #quest yet.", 
+				null);
+		
+		// player have no expired quest 
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.ABORT_MESSAGES, 
+				new NotCondition( 
+						new TimePassedCondition(QUEST_SLOT, expireDelay, 1)),
+				ConversationStates.ATTENDING, 
+				"It hasn't been long since you've started your quest, I won't let you give up so soon.", 
+				null);
+		
+		// player have expired quest
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.ABORT_MESSAGES, 
+				new TimePassedCondition(QUEST_SLOT, expireDelay, 1),
+				ConversationStates.ATTENDING, 
+				null, 
+				new DailyQuestAbortAction());
 	}
 
 	@Override
