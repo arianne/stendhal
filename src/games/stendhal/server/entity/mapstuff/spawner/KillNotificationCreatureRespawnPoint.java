@@ -18,6 +18,7 @@ import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.KillNotificationCreature;
 
+import java.util.LinkedList;
 import java.util.Observer;
 
 import org.apache.log4j.Logger;
@@ -36,7 +37,7 @@ public class KillNotificationCreatureRespawnPoint extends CreatureRespawnPoint {
 	/* All creatures that were spawned here and that are still alive. */
 	//private final List<KillNotificationCreature> creatures;
 	
-	private Observer observer;
+	private LinkedList<Observer> observers;
 
 	/**
 	 * Creates a new RespawnPoint.
@@ -53,7 +54,7 @@ public class KillNotificationCreatureRespawnPoint extends CreatureRespawnPoint {
 	public KillNotificationCreatureRespawnPoint(final StendhalRPZone zone, final int x, final int y,
 			final KillNotificationCreature creature, final int maximum, final Observer observer) {
 		super(zone, x, y, creature, maximum);
-		this.observer = observer;
+		this.observers.add(observer);
 	}
 
 	/**
@@ -71,7 +72,7 @@ public class KillNotificationCreatureRespawnPoint extends CreatureRespawnPoint {
 	public KillNotificationCreatureRespawnPoint(StendhalRPZone zone, int x,
 			int y, Creature creature, int maximum, final Observer observer) {
 		super(zone, x, y, creature, maximum);
-		this.observer = observer;
+		this.observers.add(observer);
 	}
 
 
@@ -91,7 +92,7 @@ public class KillNotificationCreatureRespawnPoint extends CreatureRespawnPoint {
 					newentity.getATK() / 10));
 			newentity.setDEF(Rand.randGaussian(newentity.getDEF(),
 					newentity.getDEF() / 10));
-			newentity.registerObjectsForNotification(observer);
+			newentity.registerObjectsForNotification(observers);
 			
 			if (StendhalRPAction.placeat(zone, newentity, x, y)) {
 				newentity.init();
@@ -108,5 +109,22 @@ public class KillNotificationCreatureRespawnPoint extends CreatureRespawnPoint {
 		} catch (final Exception e) {
 			logger.error("error respawning entity " + prototypeCreature, e);
 		}
+	}
+	
+
+	/**
+	 * add observer to observers list
+	 * @param observer - observer to add
+	 */
+	public void addObserver(final Observer observer) {
+		observers.add(observer);
+	}
+	
+	/**
+	 * remove observer from list
+	 * @param observer - observer to remove
+	 */
+	public void removeObserver(final Observer observer) {
+		observers.remove(observer);
 	}
 }

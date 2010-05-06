@@ -5,6 +5,7 @@ import games.stendhal.server.entity.RPEntity;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Observer;
 
 /**
@@ -19,11 +20,48 @@ public class KillNotificationCreature extends Creature {
    /**
     * sets new observer 
     * @param observer
-    * 				- observer, which will give info about creature death.
+    * 				- observer, which will get info about creature death.
     */
    public void registerObjectsForNotification(final Observer observer) {
 	   if(observer!=null) {
 		      registrator.setObserver(observer);		   
+	   } 	   
+   }
+   
+   /**
+    * sets new observer 
+    * @param observers
+    * 				- observers, which will get info about creature death.
+    */
+   public void registerObjectsForNotification(final List<Observer> observers) {
+	   for(Observer observer : observers) {
+		   if(observer!=null) {
+			      registrator.setObserver(observer);		   
+		   }		   
+	   } 	   
+   }
+ 
+   /**
+    * unset observer 
+    * @param observer
+    * 				- observer to remove.
+    */
+   public void unregisterObjectsForNotification(final Observer observer) {
+	   if(observer!=null) {
+		      registrator.removeObserver(observer);		   
+	   } 	   
+   }
+   
+   /**
+    * unset observer 
+    * @param observers
+    * 				- observers to remove.
+    */
+   public void unregisterObjectsForNotification(final List<Observer> observers) {
+	   for(Observer observer : observers) {
+		   if(observer!=null) {
+			      registrator.removeObserver(observer);		   
+		   }		   
 	   } 	   
    }
    
