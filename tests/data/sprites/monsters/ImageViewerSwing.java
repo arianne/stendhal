@@ -26,8 +26,6 @@ public class ImageViewerSwing extends JComponent {
 	 */
 	public ImageViewerSwing() {
 		setImage(Toolkit.getDefaultToolkit().getImage("data/sprites/ideas/admin.png"));
-
-		initialize();
 	}
 
 	/**
@@ -40,15 +38,6 @@ public class ImageViewerSwing extends JComponent {
 	public ImageViewerSwing(final Image image) {
 		this();
 		setImage(image);
-	}
-
-	/**
-	 * This method initializes this.
-	 * 
-	 */
-	private void initialize() {
-		this.setSize(new Dimension(20, 20));
-
 	}
 
 	/**
@@ -85,6 +74,8 @@ public class ImageViewerSwing extends JComponent {
 				//load completed
 			}
 		}
+		setPreferredSize(new Dimension(image.getWidth(this), image.getHeight(this)));
+		revalidate();
 		// image is now ready, let's paint it
 		repaint();
 

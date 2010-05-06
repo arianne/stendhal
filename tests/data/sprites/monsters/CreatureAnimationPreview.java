@@ -1,7 +1,6 @@
 package data.sprites.monsters;
 
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,14 +8,13 @@ import java.io.IOException;
 import java.util.prefs.Preferences;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-
-import pagelayout.Cell;
-import pagelayout.EasyCell;
 
 public class CreatureAnimationPreview {
 	private static final int NUMBER_OF_ROWS = 4;
@@ -31,17 +29,16 @@ public class CreatureAnimationPreview {
 	private JPanel getJPanel() {
 		if (jPanel == null) {
 			jPanel = new JPanel();
-		Cell cell =	EasyCell.grid(getImageViewerSwing(),getImageViewerSwing2(),getImageViewerSwing3(),getImageViewerSwing4(), EasyCell.eol()
-							, getImageViewerSwing1(),EasyCell.span(),EasyCell.span(),EasyCell.span()
-			);
-			cell.createLayout(jPanel);
-		
-//			jPanel.setLayout(null);
-//			jPanel.add(getImageViewerSwing(), null);
-//			jPanel.add(getImageViewerSwing2(), null);
-//			jPanel.add(getImageViewerSwing3(), null);
-//			jPanel.add(getImageViewerSwing4(), null);
-//			jPanel.add(getImageViewerSwing1(), null);
+			JComponent row = new JComponent() {};
+			row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
+			jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
+
+			row.add(getImageViewerSwing());
+			row.add(getImageViewerSwing2());
+			row.add(getImageViewerSwing3());
+			row.add(getImageViewerSwing4());
+			jPanel.add(row);
+			jPanel.add(getImageViewerSwing1());
 		}
 		return jPanel;
 	}
@@ -55,7 +52,6 @@ public class CreatureAnimationPreview {
 		if (imageViewerSwing == null) {
 			imageViewerSwing = new ImageViewerSwing();
 			imageViewerSwing.setName("imageViewerSwing");
-			imageViewerSwing.setBounds(new Rectangle(20, 20, 96, 168));
 		}
 		return imageViewerSwing;
 	}
@@ -69,7 +65,6 @@ public class CreatureAnimationPreview {
 		if (imageViewerSwing1 == null) {
 			imageViewerSwing1 = new ImageViewerSwing();
 			imageViewerSwing1.setName("imageViewerSwing1");
-			imageViewerSwing1.setBounds(new Rectangle(137, 212, 241, 353));
 		}
 		return imageViewerSwing1;
 	}
@@ -83,7 +78,6 @@ public class CreatureAnimationPreview {
 		if (imageViewerSwing2 == null) {
 			imageViewerSwing2 = new ImageViewerSwing();
 			imageViewerSwing2.setName("imageViewerSwing2");
-			imageViewerSwing2.setBounds(new Rectangle(130, 20, 96, 168));
 		}
 		return imageViewerSwing2;
 	}
@@ -97,7 +91,6 @@ public class CreatureAnimationPreview {
 		if (imageViewerSwing3 == null) {
 			imageViewerSwing3 = new ImageViewerSwing();
 			imageViewerSwing3.setName("imageViewerSwing3");
-			imageViewerSwing3.setBounds(new Rectangle(250, 20, 96, 168));
 		}
 		return imageViewerSwing3;
 	}
@@ -111,7 +104,6 @@ public class CreatureAnimationPreview {
 		if (imageViewerSwing4 == null) {
 			imageViewerSwing4 = new ImageViewerSwing();
 			imageViewerSwing4.setName("imageViewerSwing4");
-			imageViewerSwing4.setBounds(new Rectangle(370, 20, 96, 168));
 		}
 		return imageViewerSwing4;
 	}
