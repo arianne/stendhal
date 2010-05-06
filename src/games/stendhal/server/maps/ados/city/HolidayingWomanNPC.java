@@ -31,12 +31,12 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(39, 92));
-				nodes.add(new Node(4, 92));
-				nodes.add(new Node(4, 63));
-				nodes.add(new Node(48, 63));
-				nodes.add(new Node(48, 68));
-				nodes.add(new Node(39, 68));
+				nodes.add(new Node(47, 90));
+				nodes.add(new Node(3, 90));
+				nodes.add(new Node(3, 64));
+				nodes.add(new Node(40, 64));
+				nodes.add(new Node(40, 75));
+				nodes.add(new Node(47, 75));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -53,7 +53,7 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("woman_016_npc");
-		npc.setPosition(39, 92);
+		npc.setPosition(47, 90);
 		npc.initHP(100);
 		zone.add(npc);
 	}
