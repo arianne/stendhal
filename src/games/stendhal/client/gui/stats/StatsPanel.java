@@ -7,7 +7,6 @@ import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import games.stendhal.common.Level;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.util.HashMap;
 
