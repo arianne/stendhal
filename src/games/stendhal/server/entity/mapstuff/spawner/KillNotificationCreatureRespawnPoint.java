@@ -37,7 +37,7 @@ public class KillNotificationCreatureRespawnPoint extends CreatureRespawnPoint {
 	/* All creatures that were spawned here and that are still alive. */
 	//private final List<KillNotificationCreature> creatures;
 	
-	private LinkedList<Observer> observers;
+	private LinkedList<Observer> observers = new LinkedList<Observer>();
 
 	/**
 	 * Creates a new RespawnPoint.
