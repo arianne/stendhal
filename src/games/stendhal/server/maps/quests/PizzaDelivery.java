@@ -15,6 +15,7 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -90,6 +91,11 @@ public class PizzaDelivery extends AbstractQuest {
 		private final String messageOnColdPizza;
 
 		/**
+		 * The min level player who can get to this NPC
+		 */
+		private final int level ;
+
+		/**
 		 * Creates a CustomerData object.
 		 *
 		 * @param npcDescription
@@ -99,10 +105,11 @@ public class PizzaDelivery extends AbstractQuest {
 		 * @param xp
 		 * @param messageHot
 		 * @param messageCold
+		 * @param level
 		 */
 		CustomerData(final String npcDescription, final String flavor,
 				final int expectedTime, final int tip, final int xp, final String messageHot,
-				final String messageCold) {
+				final String messageCold, final int level) {
 			this.npcDescription = npcDescription;
 			this.flavor = flavor;
 			this.expectedMinutes = expectedTime;
@@ -110,6 +117,16 @@ public class PizzaDelivery extends AbstractQuest {
 			this.xp = xp;
 			this.messageOnHotPizza = messageHot;
 			this.messageOnColdPizza = messageCold;
+			this.level = level;
+		}
+		
+		/**
+		 * Get the minimum level needed for the NPC
+		 * 
+		 * @return minimum level
+		 */
+		public int getLevel() {
+			return level;
 		}
 	}
 
@@ -137,7 +154,6 @@ public class PizzaDelivery extends AbstractQuest {
 
 	// Don't add Sally here, as it would conflict with Leander telling
 	// about his daughter.
-	// Don't add NPC's that are only reachable for high-level players.
 	private static void buildCustomerDatabase() {
 		customerDB = new HashMap<String, CustomerData>();
 
@@ -156,7 +172,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				300, 
 				"Thanks! I wonder how you managed to bring it up here so fast. Take these %d pieces of gold as a tip, I can't spend it up here anyway!",
-				"Brrr. This %s is no longer hot. Well, thanks for the effort anyway."));
+				"Brrr. This %s is no longer hot. Well, thanks for the effort anyway.",
+				10));
 
 		customerDB.put("Cyk",
 			new CustomerData(
@@ -173,7 +190,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				500, 
 				"Wow, I never believed you would really deliver this half over the world! Here, take these %s bucks!",
-				"It has become cold, but what do I expect when I order a pizza from a bakery so far away... So thanks anyway."));
+				"It has become cold, but what do I expect when I order a pizza from a bakery so far away... So thanks anyway.",
+				20));
 
 		customerDB.put("Eliza",
 			new CustomerData(
@@ -188,7 +206,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				300, 
 				"Incredible! It's still hot! Here, buy something nice from these %d pieces of gold!",
-				"What a pity. It has become cold. Nevertheless, thank you!"));
+				"What a pity. It has become cold. Nevertheless, thank you!",
+				20));
 
 		customerDB.put("Fidorea",
 			new CustomerData(
@@ -202,7 +221,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				200, 
 				"Thanks a lot! You're a born pizza deliverer. You can have these %d pieces of gold as a tip!",
-				"Bummer. Cold pizza."));
+				"Bummer. Cold pizza.",
+				15));
 
 		customerDB.put("Haizen",
 			new CustomerData(
@@ -216,7 +236,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				150, 
 				"Ah, my %s! And it's fresh out of the oven! Take these %d coins as a tip!",
-				"I hope next time I order a pizza it's still hot."));
+				"I hope next time I order a pizza it's still hot.",
+				10));
 
 		customerDB.put(
 			"Jenny",
@@ -231,7 +252,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				50, 
 				"Ah, you brought my %s! Very nice of you! Here, take %d coins as a tip!",
-				"It's a shame. Your pizza service can't deliver a hot pizza although the bakery is just around the corner."));
+				"It's a shame. Your pizza service can't deliver a hot pizza although the bakery is just around the corner.",
+				2));
 
 		customerDB.put("Jynath",
 			new CustomerData(
@@ -246,7 +268,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				200, 
 				"Oh, I didn't expect you so early. Great! Usually I don't give tips, but for you I'll make an exception. Here are %d pieces of gold.",
-				"Too bad... I will have to use an extra strong spell to get this pizza hot again."));
+				"Too bad... I will have to use an extra strong spell to get this pizza hot again.",
+				5));
 
 		customerDB.put("Katinka",
 			new CustomerData(
@@ -260,7 +283,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				200, 
 				"Yay! My %s! Here, you can have %d pieces of gold as a tip!",
-				"Eek. I hate cold pizza. I think I'll feed it to the animals."));
+				"Eek. I hate cold pizza. I think I'll feed it to the animals.",
+				10));
 
 		customerDB.put("Marcus", 
 			new CustomerData(
@@ -274,7 +298,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				100, 
 				"Ah, my %s! Here's your tip: %d pieces of gold.",
-				"Finally! Why did that take so long?"));
+				"Finally! Why did that take so long?",
+				2));
 
 		customerDB.put("Nishiya",
 			new CustomerData(
@@ -288,7 +313,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				25,  
 				"Thank you! That was fast. Here, take %d pieces of gold as a tip!",
-				"Too bad. It has become cold. Thank you anyway."));
+				"Too bad. It has become cold. Thank you anyway.",
+				0));
 
 		customerDB.put("Ouchit",
 			new CustomerData(
@@ -302,7 +328,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				25,  
 				"Thank you! It's nice to have a pizza service right around the corner. Here, you can have %d coins!",
-				"I should have rather picked it up myself at the bakery, that would have been faster."));
+				"I should have rather picked it up myself at the bakery, that would have been faster.",
+				0));
 
 		customerDB.put("Ramon",
 			new CustomerData(
@@ -320,7 +347,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				400, 
 				"Thank you so much! Finally I get something better than the terrible food that Laura cooks. Take these %d pieces of gold as a tip!",
-				"Too bad. It is cold. And I had hoped to get something better than that galley food."));
+				"Too bad. It is cold. And I had hoped to get something better than that galley food.",
+				20));
 
 		customerDB.put("Tor'Koom",
 			new CustomerData(
@@ -335,7 +363,8 @@ public class PizzaDelivery extends AbstractQuest {
 				// experience gain for delivery
 				300, 
 				"Yummy %s! Here, take %d moneys!",
-				"Grrr. Pizza cold. You walking slow like sheep."));
+				"Grrr. Pizza cold. You walking slow like sheep.",
+				15));
 		
 		customerDB.put("Martin Farmer",
 				new CustomerData(
@@ -348,11 +377,12 @@ public class PizzaDelivery extends AbstractQuest {
 					// experience gain for delivery
 					220, 
 					"Ooooh, I loove fresh hot pizza, thanks. take this %d money...!",
-					"Hmpf.. a cold pizza.. ok.. I will take it. But hurry up next time."));
+					"Hmpf.. a cold pizza.. ok.. I will take it. But hurry up next time.",
+					10));
 	}
 
 	private void startDelivery(final Player player, final SpeakerNPC npc) {
-		final String name = Rand.rand(customerDB.keySet());
+		final String name = Rand.rand(getAllowedCustomers(player));
 		final CustomerData data = customerDB.get(name);
 
 		final Item pizza = SingletonRepository.getEntityManager().getItem("pizza");
@@ -376,9 +406,26 @@ public class PizzaDelivery extends AbstractQuest {
 			npc.say("Come back when you have space to carry the pizza!");
 		}
 	}
+	
+	/**
+	 * Get a list of customers appropriate for a player
+	 * 
+	 * @param player the player doing the quest
+	 * @return list of customer data
+	 */
+	private List<String> getAllowedCustomers(Player player) {
+		List<String> allowed = new LinkedList<String>();
+		int level = player.getLevel();
+		for (Map.Entry<String, CustomerData> entry : customerDB.entrySet()) {
+			if (level >= entry.getValue().getLevel()) {
+				allowed.add(entry.getKey());
+			}
+		}		
+		return allowed;
+	}
 
 	/**
-	 * Checks whether the player has failed to fulfill his current delivery job
+	 * Checks whether the player has failed to fulfil his current delivery job
 	 * in time.
 	 * 
 	 * @param player
