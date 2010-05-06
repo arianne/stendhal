@@ -22,7 +22,9 @@ public class KillNotificationCreature extends Creature {
     * 				- observer, which will give info about creature death.
     */
    public void registerObjectsForNotification(final Observer observer) {
-      registrator.setObserver(observer);    	   
+	   if(observer!=null) {
+		      registrator.setObserver(observer);		   
+	   } 	   
    }
    
    /**
