@@ -95,7 +95,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 			if (questInfo != null) {
 				final String[] tokens = (questInfo + ";0;0;0").split(";");
-				questLast = tokens[1];
+				//questLast = tokens[1];
 				questCount = tokens[2];
 			}
 			
@@ -235,7 +235,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			
 			logger.info("Inside DailyQuestCompleteAction");
 			final String[] tokens = (questInfo + ";0;0").split(";");
-			questLast = tokens[1];
+			//questLast = tokens[1];
 			questCount = tokens[2];
 			if (questCount.equals("null")) {
 				questCount = "0";
