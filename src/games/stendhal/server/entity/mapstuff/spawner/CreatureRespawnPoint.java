@@ -61,7 +61,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * This is the prototype; it will be copied to create new creatures that
 	 * will be spawned here.
 	 */
-	protected final Creature prototypeCreature;
+	protected Creature prototypeCreature;
 
 	/** All creatures that were spawned here and that are still alive. */
 	protected final List<Creature> creatures;
@@ -175,7 +175,14 @@ public class CreatureRespawnPoint implements TurnListener {
 	public int size() {
 		return creatures.size();
 	}
-
+	
+	/**
+	 * 
+	 */
+    public void setPrototypeCreature(final Creature creature) {
+    	this.prototypeCreature = creature;
+    }
+    
 	/**
 	 * Pops up a new creature.
 	 */
