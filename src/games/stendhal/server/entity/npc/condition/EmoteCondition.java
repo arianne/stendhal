@@ -26,7 +26,7 @@ public class EmoteCondition implements ChatCondition {
 		final String text = sentence.getOriginalText();
 		return ((text.startsWith("!me")) && 
 				(text.contains(playerAction)) &&
-				(text.contains(engine.getName())));
+				(text.toLowerCase().contains(engine.getName().toLowerCase())));
 	}
 
 	@Override
