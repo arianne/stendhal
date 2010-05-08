@@ -72,6 +72,6 @@ public class QuestInStateCondition implements ChatCondition {
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				QuestStartedCondition.class);
+				QuestInStateCondition.class);
 	}
 }

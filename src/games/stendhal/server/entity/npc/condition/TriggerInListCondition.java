@@ -55,6 +55,6 @@ public class TriggerInListCondition implements ChatCondition {
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				QuestStartedCondition.class);
+				TriggerInListCondition.class);
 	}
 }

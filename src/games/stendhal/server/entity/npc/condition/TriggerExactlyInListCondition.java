@@ -76,6 +76,6 @@ public class TriggerExactlyInListCondition implements ChatCondition {
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,	QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,	TriggerExactlyInListCondition.class);
 	}
 }

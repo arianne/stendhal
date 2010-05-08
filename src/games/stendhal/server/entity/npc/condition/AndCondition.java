@@ -52,6 +52,6 @@ public class AndCondition implements ChatCondition {
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				QuestStartedCondition.class);
+				AndCondition.class);
 	}
 }
