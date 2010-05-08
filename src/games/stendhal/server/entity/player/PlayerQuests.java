@@ -89,13 +89,17 @@ class PlayerQuests {
 	 * @param name
 	 *            The quest's name
 	 * @param index
-	 *            the index of the sub state to change (separated by ";")
+	 *            the index of the sub state to get (separated by ";")
 	 * @return the player's status in the quest
 	 */
 	public String getQuest(final String name, final int index) {
 		String state = getQuest(name);
 		if (state == null) {
 			return null;
+		}
+		
+		if(index == -1) {
+			return state;
 		}
 		
 		String[] elements = state.split(";");
