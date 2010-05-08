@@ -41,6 +41,10 @@ public class DropRecordedItemAction implements ChatAction {
 
 	
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		if (!player.hasQuest(questname)) {
+			logger.error(player.getName() + " does not have quest " + questname);
+			return;
+		} 
 		final String questSubString = player.getQuest(questname, index);
 		final String[] elements = questSubString.split("=");
 		String itemname = elements[0];
