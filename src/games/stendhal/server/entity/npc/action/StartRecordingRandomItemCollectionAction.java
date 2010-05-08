@@ -66,9 +66,9 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 		final int quantity = items.get(itemname);
 		engine.say(message + " " + Grammar.quantityplnoun(quantity,itemname) + ".");		
 		if (index > -1) {
-			player.setQuest(questname, index, itemname);
+			player.setQuest(questname, index, itemname + "=" + quantity);
 		} else {
-			player.setQuest(questname, itemname);
+			player.setQuest(questname, itemname + "=" + quantity);
 		}
 	}
 
