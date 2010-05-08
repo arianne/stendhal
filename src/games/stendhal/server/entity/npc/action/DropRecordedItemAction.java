@@ -64,4 +64,43 @@ public class DropRecordedItemAction implements ChatAction {
 		return "drop recorded item from questslot <" + questname + ">";
 	}
 
+	
+	@Override
+	public int hashCode() {
+		final int PRIME = 31;
+		int result = 1;
+		result = PRIME * result + index;
+		if (questname == null) {
+			result = PRIME * result;
+
+		} else {
+			result = PRIME * result + questname.hashCode();
+		}
+		return result;
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final DropRecordedItemAction other = (DropRecordedItemAction) obj;
+		if (index != other.index) {
+			return false;
+		}
+		if (questname == null) {
+			if (other.questname != null) {
+				return false;
+			}
+		} else if (!questname.equals(other.questname)) {
+			return false;
+		}
+		return true;
+	}
 }
