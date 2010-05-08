@@ -81,7 +81,7 @@ import games.stendhal.server.maps.quests.SuntanCreamForZara;
 import games.stendhal.server.maps.quests.TakeGoldforGrafindle;
 import games.stendhal.server.maps.quests.ThePiedPiper;
 import games.stendhal.server.maps.quests.ToysCollector;
-// import games.stendhal.server.maps.quests.UltimateCollector;
+import games.stendhal.server.maps.quests.UltimateCollector;
 import games.stendhal.server.maps.quests.VampireSword;
 import games.stendhal.server.maps.quests.WeaponsCollector;
 import games.stendhal.server.maps.quests.WeaponsCollector2;
@@ -217,7 +217,7 @@ public class StendhalQuestSystem {
 		loadQuest(new TakeGoldforGrafindle());
 		loadQuest(new ThePiedPiper());
 		loadQuest(new ToysCollector());
-		// loadQuest(new UltimateCollector());
+		loadQuest(new UltimateCollector());
 		loadQuest(new VampireSword());
 		loadQuest(new WeaponsCollector());
 		loadQuest(new WeaponsCollector2());

@@ -258,7 +258,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 		playerReturnsWhileQuestIsActive(npc);
 
 		// player returns after finishing the quest
-		playerReturnsAfterFinishingQuest(npc);
+	//	playerReturnsAfterFinishingQuest(npc);
 	}
 
 	private void playerReturnsWhileQuestIsActive(final SpeakerNPC npc) {
@@ -270,14 +270,14 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null);
 	}
 
-	private void playerReturnsAfterFinishingQuest(final SpeakerNPC npc) {
+/*	private void playerReturnsAfterFinishingQuest(final SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Welcome! Thanks again for extending my collection.",
 				null);
-	}
+	} */
 
 	@Override
 	public void addToWorld() {

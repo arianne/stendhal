@@ -4,15 +4,21 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * QUEST: Ultimate Collector
@@ -31,18 +37,42 @@ import java.util.List;
  */
 public class UltimateCollector extends AbstractQuest {
 
+	/** Quest slot for this quest, the Ultimate Collector */
 	private static final String QUEST_SLOT = "ultimate_collector";
+	
+	/** Club of Thorns in Kotoch: The Orc Saman is the NPC */
 	private static final String CLUB_THORNS_QUEST_SLOT = "club_thorns"; // kotoch
+	
+	/** Vampire Sword quest: Hogart is the NPC */
 	private static final String VAMPIRE_SWORD_QUEST_SLOT = "vs_quest"; // dwarf blacksmith
+	
+	/** Obsidian Knife quest: Alrak is the NPC */
 	private static final String OBSIDIAN_KNIFE_QUEST_SLOT = "obsidian_knife"; // dwarf blacksmith
+	
+	/** Immortal Sword Quest in Kotoch: Vulcanus is the NPC */
 	private static final String IMMORTAL_SWORD_QUEST_SLOT = "immortalsword_quest"; // kotoch
+	
+	/** Mithril Cloak quest: Ida is the NPC */
 	private static final String MITHRIL_CLOAK_QUEST_SLOT = "mithril_cloak"; // mithril
+	
+	/** Mithril Shield quest: Baldemar is the NPC */
 	private static final String MITHRIL_SHIELD_QUEST_SLOT = "mithrilshield_quest"; // mithril
+	
+	/** Cloak Collector 2nd quest: Josephine is the NPC (Completing 2nd requires 1st) */
 	private static final String CLOAKSCOLLECTOR2_QUEST_SLOT = "cloakscollector2"; // cloaks
+	
+	/** Cloaks For Bario (Freezing Dwarf) quest: Bario is the NPC  */
 	private static final String CLOAKS_FOR_BARIO_QUEST_SLOT = "cloaks_for_bario"; // cloaks
+	
 	// private static final String HELP_TOMI_QUEST_SLOT = "help_tomi"; don't require
+	
+	/** Elvish Armor quest: Lupos is the NPC */
 	private static final String ELVISH_ARMOR_QUEST_SLOT = "elvish_armor"; // specific for this one
+	
+	/** Kanmararn Soldiers quest: Henry is the NPC  */
 	private static final String KANMARARN_QUEST_SLOT = "soldier_henry"; // specific for this one
+	
+	/** Weapons Collector 2nd quest: Balduin is the NPC (Completing 2nd requires 1st) */
 	private static final String WEAPONSCOLLECTOR2_QUEST_SLOT = "weapons_collector2";
 
 
@@ -155,19 +185,60 @@ public class UltimateCollector extends AbstractQuest {
 					new QuestCompletedCondition(CLUB_THORNS_QUEST_SLOT),
 					new QuestCompletedCondition(IMMORTAL_SWORD_QUEST_SLOT)),
 			ConversationStates.ATTENDING, 
-			"Well, you've certainly proved to the residents of Faiumoni that you could be the ultimate collector, but I have one last challenge for you.",
+			"Well, you've certainly proved to the residents of Faiumoni that you could be the ultimate collector, but I have one last #challenge for you.",
 			new SetQuestAction(QUEST_SLOT,"start"));
 		
 	}
+	
+	private void askForItem() {
+		
+		final SpeakerNPC npc = npcs.get("Balduin");
+		final Map<String,Integer> items = new HashMap<String, Integer>();
+		
+		//TODO: add to this list of very rare items, remember the player must only collect one not all these!
+		items.put("nihonto",1);
+		items.put("orc sword",1);
+		items.put("imperator sword",1);
+		items.put("durin axe",1);
+		
+		npc.add(ConversationStates.ATTENDING,
+				"challenge", 
+				new QuestStartedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				null,
+				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, items, "The weapon you must bring me is very rare, but i have faith in you. Please bring me"));
+		
+	}
 
+	private void offerSteps() {
+  		final SpeakerNPC npc = npcs.get("Balduin");
+
+		// player returns after finishing the quest and says offer
+		npc.add(
+				ConversationStates.ATTENDING,
+				ConversationPhrases.OFFER_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"I buy black items.",
+				null);
+
+
+		// player returns when the quest is in progress and says offer
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.OFFER_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"I'll buy black items from you when you have completed each #challenge I set you.", null);
+	}
 
 	
-
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
 
 		checkCollectingQuests();
+		askForItem();
+		offerSteps();
 
 	}
 
