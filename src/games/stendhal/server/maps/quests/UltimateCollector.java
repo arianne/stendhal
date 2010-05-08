@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
+import games.stendhal.server.entity.npc.action.StateRequiredItemAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -231,8 +232,8 @@ public class UltimateCollector extends AbstractQuest {
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 								new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),
 				ConversationStates.ATTENDING, 
-				"Hm, you don't seem to have it with you.",
-				null);
+				null,
+				new StateRequiredItemAction(QUEST_SLOT, "Hm, no, you don't have"));
 		
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.YES_MESSAGES, 
@@ -248,8 +249,8 @@ public class UltimateCollector extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES, 
 				null,
 				ConversationStates.ATTENDING, 
-				"Very well, never mind.",
-				null);
+				null,
+				new StateRequiredItemAction(QUEST_SLOT, "Very well, come back when you have"));
 		
 		
 	}
@@ -291,5 +292,10 @@ public class UltimateCollector extends AbstractQuest {
 	public String getName() {
 		return "UltimateCollector";
 	}
-
+	
+	// This is the max level of the min levels for the other quests
+	@Override
+	public int getMinLevel() {
+		return 100;
+	}
 }
