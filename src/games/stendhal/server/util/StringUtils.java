@@ -1,6 +1,5 @@
 package games.stendhal.server.util;
 
-import java.sql.SQLException;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -58,22 +57,20 @@ public class StringUtils {
 		}
 		return sb.toString();
 	}
-
-
+	
     /**
-     * Replaces variables SQL-Statements and prevents SQL injection attacks
+     * Replaces [variables] in a string
      *
-     * @param sql SQL-String
+     * @param string with [variables]
      * @param params replacement parameters
-     * @return SQL-String with substitued parameters
-     * @throws SQLException in case of an sql injection attack
+     * @return string with substituted parameters
      */
-    public static String subst(String sql, Map<String, ?> params) throws SQLException {
+    public static String subst(String string, Map<String, ?> params)  {
     	if (params == null) {
-    		return sql;
+    		return string;
     	}
         StringBuffer res = new StringBuffer();
-        StringTokenizer st = new StringTokenizer(sql, "([]'", true);
+        StringTokenizer st = new StringTokenizer(string, "([]'", true);
         String lastToken = "";
         while (st.hasMoreTokens()) {
             String token = st.nextToken();
