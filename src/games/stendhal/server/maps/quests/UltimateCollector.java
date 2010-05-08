@@ -4,6 +4,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
@@ -15,7 +16,6 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -35,7 +35,9 @@ import java.util.Map;
  *	   <li> Balduin asks you to bring him one extra rare item from a list
  *</ul>
  * 
- * REWARD: <ul><li> You can sell black items to Balduin <li> XP </ul>
+ * REWARD: <ul>
+ * <li> You can sell black items to Balduin 
+ * <li> 100000 XP </ul>
  * 
  * REPETITIONS: <ul><li> None. </ul>
  */
@@ -175,17 +177,24 @@ public class UltimateCollector extends AbstractQuest {
 		
 	}
 	
-	private void askForItem() {
+	private void requestItem() {
 		
 		final SpeakerNPC npc = npcs.get("Balduin");
 		final Map<String,Integer> items = new HashMap<String, Integer>();
 		
-		//TODO: add to this list of very rare items, remember the player must only collect one not all these!
-		items.put("nihonto",1);
-		items.put("orc sword",1);
-		items.put("imperator sword",1);
-		items.put("durin axe",1);
+		// the numbers are based on depo's metric for rarity (bigger number = more rare) which may be out of date https://sourceforge.net/tracker/?func=detail&aid=2066597&group_id=1111&atid=973767
+		// nothing rarer than a demon fire sword, and not included items which are quest rewards elsewhere
+		items.put("nihonto",1); // 5169
+		items.put("magic twoside axe",1); // 1010
+		items.put("imperator sword",1); // 2393
+		items.put("durin axe",1); // 4331
+		items.put("vulcano hammer",1); // 4474
+		items.put("xeno sword",1); // 1347
+		items.put("black scythe",1); // 3918 (pretty sure this is rarer now but a lot of old ones about to buy)
+		items.put("chaos dagger",1); // 1691
+		items.put("black sword",1); // 6285
 		
+		// If all quests are completed, ask for an item
 		npc.add(ConversationStates.ATTENDING,
 				"challenge", 
 				new AndCondition(
@@ -204,23 +213,44 @@ public class UltimateCollector extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, items, "Well, you've certainly proved to the residents of Faiumoni that you could be the ultimate collector, but I have one more task for you. Please bring me"));
+	}
+	
+	private void collectItem() {
 		
+		final SpeakerNPC npc = npcs.get("Balduin");
 		
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES, 
-				new AndCondition(new QuestStartedCondition(QUEST_SLOT),
-								new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),
-				ConversationStates.ATTENDING, 
-				"I am waiting for you to bring me a rare item.",
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUEST_ITEM_QUESTION, 
+				"Did you bring me that very rare item I asked you for?",
 				null);
 		
-		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES, 
-				new AndCondition(new QuestStartedCondition(QUEST_SLOT),
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+				ConversationPhrases.YES_MESSAGES, 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+								new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),
+				ConversationStates.ATTENDING, 
+				"Hm, you don't seem to have it with you.",
+				null);
+		
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+				ConversationPhrases.YES_MESSAGES, 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 								new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING, 
-				"Yay takes items",
-				new MultipleActions(new DropRecordedItemAction(QUEST_SLOT), new SetQuestAction(QUEST_SLOT, "done")));
+				"Wow, it's incredible to see this close up! Many thanks. Now, perhaps we can #deal together.",
+				new MultipleActions(new DropRecordedItemAction(QUEST_SLOT), 
+									new SetQuestAction(QUEST_SLOT, "done"),
+									new IncreaseXPAction(100000)));
+		
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+				ConversationPhrases.NO_MESSAGES, 
+				null,
+				ConversationStates.ATTENDING, 
+				"Very well, never mind.",
+				null);
+		
 		
 	}
 
@@ -240,7 +270,7 @@ public class UltimateCollector extends AbstractQuest {
 		// player returns when the quest is in progress and says offer
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.OFFER_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
+				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I'll buy black items from you when you have completed each #challenge I set you.", null);
 	}
@@ -251,7 +281,8 @@ public class UltimateCollector extends AbstractQuest {
 		super.addToWorld();
 
 		checkCollectingQuests();
-		askForItem();
+		requestItem();
+		collectItem();
 		offerSteps();
 
 	}
