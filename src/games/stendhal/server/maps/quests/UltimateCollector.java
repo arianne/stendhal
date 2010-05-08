@@ -3,10 +3,14 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
@@ -168,25 +172,6 @@ public class UltimateCollector extends AbstractQuest {
 			ConversationStates.ATTENDING, 
 			"You've collected so many special items, but you have never helped those down in Kanmararn city. You should complete a task there.",
 			null);
-
-		npc.add(ConversationStates.ATTENDING,
-			"challenge", 
-			new AndCondition(
-					new QuestCompletedCondition(WEAPONSCOLLECTOR2_QUEST_SLOT),
-					new QuestNotStartedCondition(QUEST_SLOT),
-					new QuestCompletedCondition(KANMARARN_QUEST_SLOT),
-					new QuestCompletedCondition(ELVISH_ARMOR_QUEST_SLOT),
-					new QuestCompletedCondition(CLOAKSCOLLECTOR2_QUEST_SLOT),
-					new QuestCompletedCondition(CLOAKS_FOR_BARIO_QUEST_SLOT),
-					new QuestCompletedCondition(OBSIDIAN_KNIFE_QUEST_SLOT),
-					new QuestCompletedCondition(VAMPIRE_SWORD_QUEST_SLOT),
-					new QuestCompletedCondition(MITHRIL_CLOAK_QUEST_SLOT),
-					new QuestCompletedCondition(MITHRIL_SHIELD_QUEST_SLOT),
-					new QuestCompletedCondition(CLUB_THORNS_QUEST_SLOT),
-					new QuestCompletedCondition(IMMORTAL_SWORD_QUEST_SLOT)),
-			ConversationStates.ATTENDING, 
-			"Well, you've certainly proved to the residents of Faiumoni that you could be the ultimate collector, but I have one last #challenge for you.",
-			new SetQuestAction(QUEST_SLOT,"start"));
 		
 	}
 	
@@ -203,10 +188,39 @@ public class UltimateCollector extends AbstractQuest {
 		
 		npc.add(ConversationStates.ATTENDING,
 				"challenge", 
-				new QuestStartedCondition(QUEST_SLOT),
+				new AndCondition(
+						new QuestCompletedCondition(WEAPONSCOLLECTOR2_QUEST_SLOT),
+						new QuestNotStartedCondition(QUEST_SLOT),
+						new QuestCompletedCondition(KANMARARN_QUEST_SLOT),
+						new QuestCompletedCondition(ELVISH_ARMOR_QUEST_SLOT),
+						new QuestCompletedCondition(CLOAKSCOLLECTOR2_QUEST_SLOT),
+						new QuestCompletedCondition(CLOAKS_FOR_BARIO_QUEST_SLOT),
+						new QuestCompletedCondition(OBSIDIAN_KNIFE_QUEST_SLOT),
+						new QuestCompletedCondition(VAMPIRE_SWORD_QUEST_SLOT),
+						new QuestCompletedCondition(MITHRIL_CLOAK_QUEST_SLOT),
+						new QuestCompletedCondition(MITHRIL_SHIELD_QUEST_SLOT),
+						new QuestCompletedCondition(CLUB_THORNS_QUEST_SLOT),
+						new QuestCompletedCondition(IMMORTAL_SWORD_QUEST_SLOT)),
 				ConversationStates.ATTENDING, 
 				null,
-				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, items, "The weapon you must bring me is very rare, but i have faith in you. Please bring me"));
+				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, items, "Well, you've certainly proved to the residents of Faiumoni that you could be the ultimate collector, but I have one more task for you. Please bring me"));
+		
+		
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES, 
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT),
+								new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),
+				ConversationStates.ATTENDING, 
+				"I am waiting for you to bring me a rare item.",
+				null);
+		
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES, 
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT),
+								new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING, 
+				"Yay takes items",
+				new MultipleActions(new DropRecordedItemAction(QUEST_SLOT), new SetQuestAction(QUEST_SLOT, "done")));
 		
 	}
 
@@ -219,7 +233,7 @@ public class UltimateCollector extends AbstractQuest {
 				ConversationPhrases.OFFER_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"I buy black items.",
+				"I buy black items, but I can only afford to pay you modest prices.",
 				null);
 
 
