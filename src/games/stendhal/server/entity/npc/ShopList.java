@@ -399,6 +399,19 @@ public class ShopList {
 		shops.add("sellparty", "hotdog", 180);
 		shops.add("sellparty", "sandwich", 140);
 		
+		
+		// black items (balduin, when ultimate collector quest completed)
+		// TODO: check prices as these are only here as a stop gap
+		shops.add("buyblack", "black armor", 60000);
+		shops.add("buyblack", "black boots", 20000);
+		shops.add("buyblack", "black cloak", 25000);
+		shops.add("buyblack", "black helmet", 30000);
+		shops.add("buyblack", "black legs", 40000);
+		shops.add("buyblack", "black shield", 75000);
+		// TODO: decide: do we want him to also buy these weapons?
+		shops.add("buyblack", "black sword", 20000);
+		shops.add("buyblack", "black scythe", 40000);
+		shops.add("buyblack", "black halberd", 30000);
 	}
 
 	private static ShopList instance;

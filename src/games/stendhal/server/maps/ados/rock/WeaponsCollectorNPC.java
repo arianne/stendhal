@@ -2,12 +2,17 @@ package games.stendhal.server.maps.ados.rock;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.QuestCompletedBuyerBehaviour;
 
 import java.util.Map;
 
 public class WeaponsCollectorNPC implements ZoneConfigurator {
+	private final ShopList shops = SingletonRepository.getShopList();
 	/**
 	 * Configure a zone.
 	 *
@@ -29,11 +34,18 @@ public class WeaponsCollectorNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
+				// This greeting is mostly not used as the quests override it
+				addGreeting("Greetings, friend.");
 				addHelp("There is a swamp east of this mountain where you might get some rare weapons.");
 				addJob("I'm much too old for hard work. I'm just living here as a hermit.");
 				addGoodbye("It was nice to meet you.");
+				// will buy black items once the Ultimate Collector quest is completed
+				new BuyerAdder().add(this, new QuestCompletedBuyerBehaviour("ultimate_collector", "I'll buy black items from you when you have completed each #challenge I set you.", shops.get("buyblack")), false);
 			}
-			// remaining behaviour is defined in maps.quests.WeaponsCollector.
+			/* remaining behaviour is defined in:
+			 * maps.quests.WeaponsCollector,
+			 * maps.quests.WeaponsCollector2 and
+			 * maps.quests.UltimateCollector. */
 		};
 
 		npc.setEntityClass("oldwizardnpc");
