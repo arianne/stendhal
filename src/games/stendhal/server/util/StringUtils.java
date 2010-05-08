@@ -6,6 +6,7 @@ package games.stendhal.server.util;
  * @author hendrik
  */
 public class StringUtils {
+	private static final String CHARACTERS = "abcdefghijklmnopqrstuvwxyz";
 
 	/**
 	 * Counts the number of upper case characters.
@@ -40,8 +41,12 @@ public class StringUtils {
 		return count;
 	}
 
-
-	private static final String CHARACTERS = "abcdefghijklmnopqrstuvwxyz";
+	/**
+	 * creates a random string which only consists of letters
+	 *
+	 * @param count length of the string
+	 * @return generated string
+	 */
 	public static String generateStringOfCharacters(int count) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < count; i++) {
