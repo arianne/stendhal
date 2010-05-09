@@ -1,21 +1,36 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
-import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
+import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
+import games.stendhal.server.entity.npc.action.StateRequiredItemAction;
+import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,7 +56,12 @@ import java.util.Map;
 public class DailyItemQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily_item";
-
+	
+	/** How long until the player can give up and start another quest */
+	private final int expireDelay = MathHelper.MINUTES_IN_ONE_HOUR * 7 * 24; 
+	
+	/** How often the quest may be repeated */
+	private final int delay = MathHelper.MINUTES_IN_ONE_HOUR * 24; 
 	
 	/**
 	 * All items which are possible/easy enough to find. If you want to do
@@ -164,136 +184,71 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("collard",5);
 	}
 	
-	static class DailyQuestAction implements ChatAction {
-
-		private final List<String> listeditems = Arrays.asList("knife",
-				"dagger", "short sword", "sword", "scimitar", "katana",
-				"claymore", "broadsword", "biting sword", "old scythe",
-				"small axe", "hand axe", "axe", "battle axe", "bardiche",
-				"scythe", "twoside axe", "halberd", "club", "staff", "mace",
-				"flail", "morning star", "hammer", "war hammer",
-				"wooden bow", "longbow", "wooden arrow", "steel arrow",
-				"buckler", "wooden shield", "studded shield", "plate shield",
-				"lion shield", "unicorn shield", "skull shield",
-				"crown shield", "dress", "leather armor", "leather cuirass",
-				"studded armor", "chain armor", "scale armor", "plate armor",
-				"leather helmet", "studded helmet", "chain helmet",
-				"leather legs", "studded legs", "chain legs", "leather boots",
-				"studded boots", "cloak", "elf cloak", "dwarf cloak",
-				"green dragon cloak", "cheese", "carrot", "salad", "apple",
-				"bread", "meat", "ham", "sandwich", "pie", "button mushroom",
-				"porcini", "toadstool", "beer", "wine", "minor potion",
-				"antidote", "greater antidote", "potion", "greater potion",
-				"poison", "flask", "money", "arandula", "wood", "grain",
-				"flour", "iron ore", "iron", "dice", "teddy", "perch", "roach",
-				"char", "trout", "surgeonfish", "onion", "leek", "clownfish",
-            	"leather scale armor", "pauldroned leather cuirass",
-            	"enhanced chainmail", "iron scale armor", "golden chainmail",
-            	"pauldroned iron cuirass", "blue elf cloak", "enhanced mace",
-            	"golden mace", "golden hammer", "aventail", "composite bow",
-            	"enhanced lion shield", "spinach", "courgette", "collard",
-				"fish pie", "chicken", "elvish armor", "elvish boots",
-				"sclaria", "kekik", "elvish cloak", "elvish legs", "elvish sword",
-				"shuriken", "coconut", "sapphire", "emerald", "carbuncle",			       
-				"cauliflower", "broccoli", "gold nugget", "gold bar",
-				"pineapple", "pina colada", "icecream", "black pearl", "tea",
-				"milk", "canned tuna", "snowglobe", "tomato", "fairy cake", 
-				"pizza", "chocolate bar", "tuna sandwich", "sausage", "cheese sausage",
-				"hotdog", "cheeseydog", "vanilla shake", "chocolate shake", "honey",
-				"licorice", "marbles", "robins hat", "soup", "deadly poison", 
-				"disease poison", "mega poison");
-
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			final String questInfo = player.getQuest("daily_item");
-			String questKill = null;
-			String questCount = null;
-			String questLast = null;
-			
-			final long delay = MathHelper.MILLISECONDS_IN_ONE_DAY; 
-
-			final long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
-
-			if (questInfo != null) {
-				final String[] tokens = (questInfo + ";0;0;0").split(";");
-				questKill = tokens[0];
-				questLast = tokens[1];
-				questCount = tokens[2];
-			}
-			
-			// if the quest state is not empty, but does not start with a ; (?) and not done, and enough time has not passed : state required item
-			if ((questKill != null) && !"done".equals(questKill)) {
-				final String sayText = "You're already on a quest to fetch "
-						+ Grammar.a_noun(questKill)
-						+ ". Say #complete if you brought it!";
-				// if the quest state starts with a ; or a done but time passed :  state required item and then offer new quest
-				if (questLast != null) {
-					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
-							- System.currentTimeMillis();
-
-					if (timeRemaining < 0L) {
-						engine.say(sayText
-								+ " Perhaps there are no supplies of that left at all! You could fetch #another item if you like, or return with what I first asked you.");
-						return;
-					}
-				}
-				engine.say(sayText);
-				return;
-			}
-			// quest starts with done; and time not passed : state time remaining
-			if (questLast != null) {
-				final long timeRemaining = (Long.parseLong(questLast) + delay)
-						- System.currentTimeMillis();
-
-				if (timeRemaining > 0L) {
-					engine.say("I can only give you a new quest once a day. Please check back in "
-							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-							+ ".");
-					return;
-				}
-			}
-			// quest starts with done; and time passed : start recording a new required item thing and timestamp the slot
-			final String itemName = Rand.rand(listeditems);
-			engine.say("Ados is in need of supplies. Go fetch "
-					+ Grammar.a_noun(itemName)
-					+ " and say #complete, once you've brought it.");
-			questLast = "" + (new Date()).getTime();
-			player.setQuest("daily_item", itemName + ";" + questLast + ";"
-					+ questCount);
-		}
+	private void getQuest() {
+		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+								 new NotCondition(new TimePassedCondition(QUEST_SLOT,expireDelay,1))), 
+				ConversationStates.ATTENDING,
+				null,
+				new StateRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to fetch [item]"
+						+ ". Say #complete if you brought it!"));
+		
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+								 new TimePassedCondition(QUEST_SLOT,expireDelay,1)), 
+				ConversationStates.ATTENDING,
+				null,
+				new StateRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to fetch [item]"
+						+ ". Say #complete if you brought it! Perhaps there are no supplies of that left at all! You could fetch #another item if you like, or return with what I first asked you."));
+	
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
+								 new NotCondition(new TimePassedCondition(QUEST_SLOT,delay,1))), 
+				ConversationStates.ATTENDING,
+				null,
+				new StateTimeRemainingAction(QUEST_SLOT,"I can only give you a new quest once a day. Please check back in", delay, 1));
+		
+		
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		actions.add(new StartRecordingRandomItemCollectionAction(QUEST_SLOT,0,items,"Ados is in need of supplies. Go fetch [item]"
+				+ " and say #complete, once you've brought it."));		
+		
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT),
+								new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
+												 new TimePassedCondition(QUEST_SLOT,delay,1))), 
+				ConversationStates.ATTENDING,
+				null,
+				new MultipleActions(actions));
 	}
-
-	static class DailyQuestCompleteAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			final String questInfo = player.getQuest("daily_item");
-			String questKill = null;
-			String questCount = null;
-			String questLast = null;
-			// quest not started: say this text
-			if (questInfo == null) {
-				engine.say("I'm afraid I didn't send you on a #quest yet.");
-				return;
-			}
-			final String[] tokens = (questInfo + ";0;0").split(";");
-			questKill = tokens[0];
-			questLast = tokens[1];
-			questCount = tokens[2];
-			if (questCount.equals("null")) {
-				questCount = "0";
-			}
-			// quest completed: say this text
-			if ("done".equals(questKill)) {
-				engine.say("You already completed the last quest I had given to you.");
-				return;
-			}
-			// quest active, and player has the required item with him
-			// then, increase xp (can't use action here :/ )
-			// add karma (again depends on xp/level)
-			// consider making a increase xp action for this kind as a few quests need it, need the fraction like here 8 and in daily monster 5, to be a parameter
-			// say something
-			// set quest done
-			// timestamp quest
-			// increment quest
-			if (player.drop(questKill)) {
+	
+	private void completeQuest() {
+		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("complete", "done"), 
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"I'm afraid I didn't send you on a #quest yet.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("complete", "done"), 
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"You already completed the last quest I had given to you.",
+				null);
+		
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
+		actions.add(new DropRecordedItemAction(QUEST_SLOT,0));
+		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		actions.add(new IncrementQuestAction(QUEST_SLOT,2,1));
+		// TODO: could write a more general action for these
+		actions.add(new ChatAction() {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				final int start = Level.getXP(player.getLevel());
 				final int next = Level.getXP(player.getLevel() + 1);
 				int reward = (next - start) / 8;
@@ -302,68 +257,57 @@ public class DailyItemQuest extends AbstractQuest {
 					// no reward so give a lot karma instead, 100 in all
 					player.addKarma(90.0);
 				}
-				engine.say("Good work! Let me thank you on behalf of the people of Ados!");
 				player.addXP(reward);
 				player.addKarma(10.0);
-				questCount = "" + (Integer.valueOf(questCount).intValue() + 1);
-				questLast = "" + (new Date()).getTime();
-				player.setQuest("daily_item", "done" + ";" + questLast + ";"
-						+ questCount);
-			} else {			
-				// quest active, and player does not have  required item with him
-				// just need to use the state required item action				
-				engine.say("You didn't fetch "
-						+ Grammar.a_noun(questKill)
-						+ " yet. Go and get it and say #complete only once you're done.");
 			}
-		}
+		});
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("complete", "done"), 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+								 new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0)),
+				ConversationStates.ATTENDING, 
+				"Good work! Let me thank you on behalf of the people of Ados!",
+				new MultipleActions(actions));
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("complete", "done"), 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+								 new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0))),
+				ConversationStates.ATTENDING, 
+				null,
+				new StateRequiredItemAction(QUEST_SLOT,0,"You didn't fetch [item]"
+						+ " yet. Go and get it and say #complete only once you're done."));
+		
 	}
-
-	static class DailyQuestAbortAction implements ChatAction {
-
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			final String questInfo = player.getQuest("daily_item");
-			String questKill = null;
-			String questCount = null;
-			String questLast = null;
-			// Milliseconds in a week
-			final long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
-
-			if (questInfo != null) {
-				final String[] tokens = (questInfo + ";0;0;0").split(";");
-				questKill = tokens[0];
-				questLast = tokens[1];
-				questCount = tokens[2];
-			}
-
-
-			if ((questKill != null) && !"done".equals(questKill)) {
-				if (questLast != null) {
-					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
-							- System.currentTimeMillis();
-					
-					// quest active, the state doesn't start with ; or done, and enough time has passed 
-					// set to done; only and preserve the rest					
-					if (timeRemaining < 0L) {
-						engine.say("I see. Please, ask me for another #quest when you think you can help Ados again.");
-						// Don't make the player wait any longer and don't
-						// credit the player with a count increase?
-						// questCount = "" + (Integer.valueOf(questCount) + 1 );
-						// questLast = "" + (new Date()).getTime();
-						player.setQuest("daily_item", "done" + ";" + questLast
-								+ ";" + questCount);
-						return;
-					}
-				}
-				// quest active, the state doesn't start with ; or done, and enough time has not passed 
-				engine.say("It hasn't been long since you've started your quest, I won't let you give up so soon.");
-				return;
-			}
-			// quest started with ; or is done or is empty
-			engine.say("I'm afraid I didn't send you on a #quest yet.");
-		}
+	
+	private void abortQuest() {
+		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("another", "abort"), 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+						 		 new TimePassedCondition(QUEST_SLOT,expireDelay,1)), 
+				ConversationStates.ATTENDING, 
+				"I see. Please, ask me for another #quest when you think you can help Ados again.", 
+				new SetQuestAction(QUEST_SLOT, 0, "done"));
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("another", "abort"), 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+						 		 new NotCondition(new TimePassedCondition(QUEST_SLOT,expireDelay,1))), 
+				ConversationStates.ATTENDING, 
+				"It hasn't been long since you've started your quest, I won't let you give up so soon.", 
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("another", "abort"), 
+				new QuestNotActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"I'm afraid I didn't send you on a #quest yet.", 
+				null);
+		
 	}
-
 
 	@Override
 	public String getSlotName() {
@@ -383,8 +327,13 @@ public class DailyItemQuest extends AbstractQuest {
 		}
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 			final String[] tokens = (questState + ";0;0;0").split(";");
-			final String questItem = tokens[0];
-			if (!player.isEquipped(questItem)) {
+			final String[] elements = tokens[0].split("=");
+			String questItem = elements[0];
+			int amount = 1;
+			if(elements.length > 1) {
+				amount=MathHelper.parseIntDefault(elements[1], 1);
+			}
+			if (!player.isEquipped(questItem, amount)) {
 				res.add("QUEST_ACTIVE");
 			} else {
 				res.add("QUEST_UNCLAIMED");
@@ -405,32 +354,6 @@ public class DailyItemQuest extends AbstractQuest {
 		return res;
 	}
 	
-	private void step_1() {
-		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"),
-				null, ConversationStates.ATTENDING, null,
-				new DailyQuestAction());
-	}
-
-	private void step_2() {
-		// get the item
-	}
-
-	private void step_3() {
-		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
-
-		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("complete", "done"), null,
-				ConversationStates.ATTENDING, null,
-				new DailyQuestCompleteAction());
-	}
-
-	private void step_4() {
-		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
-		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("another", "abort"), null,
-				ConversationStates.ATTENDING, null, new DailyQuestAbortAction());
-	}
 
 	@Override
 	public void addToWorld() {
@@ -438,10 +361,9 @@ public class DailyItemQuest extends AbstractQuest {
 		
 		buildItemsMap();
 		
-		step_1();
-		step_2();
-		step_3();
-		step_4();
+		getQuest();
+		completeQuest();
+		abortQuest();
 	}
 
 	@Override
