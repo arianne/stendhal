@@ -44,14 +44,12 @@ public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		final String questSubString = player.getQuest(questName, index);
 		final String[] elements = questSubString.split("=");
-		String itemName = "";
+		String itemName=elements[0];
 		int amount = 1;
 		if(elements.length > 1) {
-			itemName=elements[0];
 			amount=MathHelper.parseIntDefault(elements[1], 1);
-			return player.isEquipped(itemName, amount);
 		} 
-		return false;
+		return player.isEquipped(itemName, amount);
 	}
 
 	@Override
