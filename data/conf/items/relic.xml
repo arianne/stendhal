@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
+
+  <item name="angel figurine">
+    <type class="relic" subclass="angel_figurine" tileid="-1"/>
+    <description>You see a sparkling angel figurine.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+       <quantity value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+</items>
