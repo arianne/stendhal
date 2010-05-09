@@ -49,16 +49,16 @@ public class StringUtilsTest {
 		params.put("p", "0, 1");
 		params.put("x", "0, y, 1");
 
-		assertThat(StringUtils.subst("", (Map<String, ?>)null), equalTo(""));
-		assertThat(StringUtils.subst("Hallo", (Map<String, ?>)null), equalTo("Hallo"));
-		assertThat(StringUtils.subst("Hall[o", params), equalTo("Hall0"));
-		assertThat(StringUtils.subst("Hall[o]", params), equalTo("Hall0"));
-		assertThat(StringUtils.subst("[o]Hall[o]", params), equalTo("0Hall0"));
-		assertThat(StringUtils.subst("Hal[l]o", params), equalTo("Halo"));
-		assertThat(StringUtils.subst("id IN ([o])", params), equalTo("id IN (0)"));
-		assertThat(StringUtils.subst("id IN ([p])", params), equalTo("id IN (0, 1)"));
+		assertThat(StringUtils.substitute("", (Map<String, ?>)null), equalTo(""));
+		assertThat(StringUtils.substitute("Hallo", (Map<String, ?>)null), equalTo("Hallo"));
+		assertThat(StringUtils.substitute("Hall[o", params), equalTo("Hall0"));
+		assertThat(StringUtils.substitute("Hall[o]", params), equalTo("Hall0"));
+		assertThat(StringUtils.substitute("[o]Hall[o]", params), equalTo("0Hall0"));
+		assertThat(StringUtils.substitute("Hal[l]o", params), equalTo("Halo"));
+		assertThat(StringUtils.substitute("id IN ([o])", params), equalTo("id IN (0)"));
+		assertThat(StringUtils.substitute("id IN ([p])", params), equalTo("id IN (0, 1)"));
 
-		assertThat(StringUtils.subst("id = '[x]'", params), equalTo("id = '0, y, 1'"));
+		assertThat(StringUtils.substitute("id = '[x]'", params), equalTo("id = '0, y, 1'"));
 	}
 
 	/**
@@ -71,17 +71,17 @@ public class StringUtilsTest {
 		params.put("p", "0, 1");
 		params.put("x", "0, y, 1");
 
-		assertThat(StringUtils.subst(""), equalTo(""));
-		assertThat(StringUtils.subst("Hallo"), equalTo("Hallo"));
-		assertThat(StringUtils.subst("Hallo", "o"), equalTo("Hallo"));
-		assertThat(StringUtils.subst("Hallo", "o", "0"), equalTo("Hallo"));
-		assertThat(StringUtils.subst("Hall[o", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("Hall0"));
-		assertThat(StringUtils.subst("Hall[o]", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("Hall0"));
-		assertThat(StringUtils.subst("[o]Hall[o]", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("0Hall0"));
-		assertThat(StringUtils.subst("Hal[l]o", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("Halo"));
-		assertThat(StringUtils.subst("id IN ([o])", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("id IN (0)"));
-		assertThat(StringUtils.subst("id IN ([p])", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("id IN (0, 1)"));
+		assertThat(StringUtils.substitute(""), equalTo(""));
+		assertThat(StringUtils.substitute("Hallo"), equalTo("Hallo"));
+		assertThat(StringUtils.substitute("Hallo", "o"), equalTo("Hallo"));
+		assertThat(StringUtils.substitute("Hallo", "o", "0"), equalTo("Hallo"));
+		assertThat(StringUtils.substitute("Hall[o", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("Hall0"));
+		assertThat(StringUtils.substitute("Hall[o]", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("Hall0"));
+		assertThat(StringUtils.substitute("[o]Hall[o]", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("0Hall0"));
+		assertThat(StringUtils.substitute("Hal[l]o", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("Halo"));
+		assertThat(StringUtils.substitute("id IN ([o])", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("id IN (0)"));
+		assertThat(StringUtils.substitute("id IN ([p])", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("id IN (0, 1)"));
 
-		assertThat(StringUtils.subst("id = '[x]'", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("id = '0, y, 1'"));
+		assertThat(StringUtils.substitute("id = '[x]'", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("id = '0, y, 1'"));
 	}
 }

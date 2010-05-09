@@ -66,12 +66,12 @@ public class StringUtils {
      * @param params name1, value1, name2, value2, name3, value3
      * @return string with substituted parameters
      */
-    public static String subst(String string, Object... params)  {
+    public static String substitute(String string, Object... params)  {
     	Map<String, Object> map = new HashMap<String, Object>();
     	for (int i = 0; i < params.length / 2; i++) {
     		map.put(params[i*2].toString(), params[i*2+1]);
     	}
-    	return subst(string, map);
+    	return substitute(string, map);
     }
 
 	
@@ -82,7 +82,7 @@ public class StringUtils {
      * @param params replacement parameters
      * @return string with substituted parameters
      */
-    public static String subst(String string, Map<String, ?> params)  {
+    public static String substitute(String string, Map<String, ?> params)  {
     	if (params == null) {
     		return string;
     	}

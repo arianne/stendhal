@@ -73,7 +73,7 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 		substitutes.put("the item", "the " + Grammar.plnoun(quantity,itemname));
 		
 		
-		engine.say(StringUtils.subst(message,substitutes));		
+		engine.say(StringUtils.substitute(message,substitutes));		
 		if (index > -1) {
 			player.setQuest(questname, index, itemname + "=" + quantity);
 		} else {
