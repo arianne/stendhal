@@ -507,6 +507,9 @@
                 <destination zone="int_semos_wizards_tower_9" ref="portal_from_spire_1" />
                  <attribute name="hidden"/>
             </portal>
+        <portal x="7" y="28" ref="portal_to_malleus_plain">
+                <destination zone="int_malleus_plain" ref="portal_to_malleus" />
+            </portal>
 	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 	<parameter name="x">9</parameter>
 	<parameter name="y">15</parameter>
@@ -570,8 +573,14 @@
 	<parameter name="orientation">h</parameter>
 	</configurator>
     </zone>
-   
-    	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
+     <!-- Interiors of the wizards tower -->
+    <zone name="int_malleus_plain" file="interiors/semos/malleus_plain.tmx">
+        <portal x="7" y="28" ref="portal_to_malleus">
+                <destination zone="int_semos_wizards_tower_8" ref="portal_to_malleus_plain" />
+            </portal>
+    </zone>
+
+       	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
 		file="Level 0/semos/plains_n.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC"/>
 		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
