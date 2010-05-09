@@ -218,7 +218,8 @@ public class GenerateINI {
 			out.println("jdbc_pwd=" + databasePassword);
 		} else {
 			out.println("database_adapter=marauroa.server.db.adapter.H2DatabaseAdapter");
-			out.println("jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE");
+			out.println("jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE");
+			out.println("#jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE");
 			out.println("jdbc_class=org.h2.Driver");
 		}
 		out.println();
