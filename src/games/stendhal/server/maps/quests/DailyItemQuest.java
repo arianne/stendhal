@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * QUEST: Daily Item Fetch Quest.
@@ -41,12 +42,130 @@ public class DailyItemQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily_item";
 
+	
+	/**
+	 * All items which are possible/easy enough to find. If you want to do
+	 * it better, go ahead. *
+	 * not to use yet, just getting it ready.
+	 */
+	private static Map<String,Integer> items;
+
+	private static void buildItemsMap() {
+		items = new HashMap<String, Integer>();
+		items.put("knife",1);
+		items.put("dagger",1);
+		items.put("short sword",1);
+		items.put("sword",1);
+		items.put("scimitar",1);
+		items.put("katana",1);
+		items.put("claymore",1);
+		items.put("broadsword",1);
+		items.put("biting sword",1);
+		items.put("old scythe",1);
+		items.put("small axe",1);
+		items.put("hand axe",1);
+		items.put("axe",1);
+		items.put("battle axe",1);
+		items.put("bardiche",1);
+		items.put("scythe",1);
+		items.put("twoside axe",1);
+		items.put("halberd",1);
+		items.put("club",1);
+		items.put("staff",1);
+		items.put("mace",1);
+		items.put("flail",1);
+		items.put("morning star",1);
+		items.put("hammer",1);
+		items.put("war hammer",1);
+		items.put("wooden bow",1);
+		items.put("longbow",1);
+		items.put("wooden arrow",1);
+		items.put("steel arrow",1);
+		items.put("buckler",1);
+		items.put("wooden shield",1);
+		items.put("studded shield",1);
+		items.put("plate shield",1);
+		items.put("lion shield",1);
+		items.put("unicorn shield",1);
+		items.put("skull shield",1);
+		items.put("crown shield",1);
+		items.put("dress",1);
+		items.put("leather armor",1);
+		items.put("leather cuirass",1);
+		items.put("studded armor",1);
+		items.put("chain armor",1);
+		items.put("scale armor",1);
+		items.put("plate armor",1);
+		items.put("leather helmet",1);
+		items.put("studded helmet",1);
+		items.put("chain helmet",1);
+		items.put("leather legs",1);
+		items.put("studded legs",1);
+		items.put("chain legs",1);
+		items.put("leather boots",1);
+		items.put("studded boots",1);
+		items.put("cloak",1);
+		items.put("elf cloak",1);
+		items.put("dwarf cloak",1);
+		items.put("green dragon cloak",1);
+		items.put("cheese",10);
+		items.put("carrot",10);
+		items.put("salad",10);
+		items.put("apple",5);
+		items.put("bread",5);
+		items.put("meat",10);
+		items.put("ham",10);
+		items.put("sandwich",5);
+		items.put("pie",5);
+		items.put("button mushroom",10);
+		items.put("porcini",10);
+		items.put("toadstool",15);
+		items.put("beer",10);
+		items.put("wine",10);
+		items.put("minor potion",5);
+		items.put("antidote",5);
+		items.put("greater antidote",5);
+		items.put("potion",5);
+		items.put("greater potion",5);
+		items.put("poison",5);
+		items.put("flask",5);
+		items.put("money",100);
+		items.put("arandula",5);
+		items.put("wood",10);
+		items.put("grain",20);
+		items.put("flour",5);
+		items.put("iron ore",10);
+		items.put("iron",5);
+		items.put("dice",1);
+		items.put("teddy",1);
+		items.put("perch",5);
+		items.put("roach",5);
+		items.put("char",5);
+		items.put("trout",5);
+		items.put("surgeonfish",5);
+		items.put("onion",5);
+		items.put("leek",5);
+		items.put("clownfish",5);
+		items.put("leather scale armor",1);
+		items.put("pauldroned leather cuirass",1);
+		items.put("enhanced chainmail",1);
+		items.put("iron scale armor",1);
+		items.put("golden chainmail",1);
+		items.put("pauldroned iron cuirass",1);
+		items.put("blue elf cloak",1);
+		items.put("enhanced mace",1);
+		items.put("golden mace",1);
+		items.put("golden hammer",1);
+		items.put("aventail",1);
+		items.put("composite bow",1);
+		items.put("enhanced lion shield",1);
+		items.put("spinach",5);
+		items.put("courgette",5);
+		items.put("collard",5);
+	}
+	
 	static class DailyQuestAction implements ChatAction {
 
-		/**
-		 * All items which are possible/easy enough to find. If you want to do
-		 * it better, go ahead. *
-		 */
 		private final List<String> listeditems = Arrays.asList("knife",
 				"dagger", "short sword", "sword", "scimitar", "katana",
 				"claymore", "broadsword", "biting sword", "old scythe",
@@ -100,10 +219,13 @@ public class DailyItemQuest extends AbstractQuest {
 				questLast = tokens[1];
 				questCount = tokens[2];
 			}
+			
+			// if the quest state is not empty, but does not start with a ; (?) and not done, and enough time has not passed : state required item
 			if ((questKill != null) && !"done".equals(questKill)) {
 				final String sayText = "You're already on a quest to fetch "
 						+ Grammar.a_noun(questKill)
 						+ ". Say #complete if you brought it!";
+				// if the quest state starts with a ; or a done but time passed :  state required item and then offer new quest
 				if (questLast != null) {
 					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
@@ -117,7 +239,7 @@ public class DailyItemQuest extends AbstractQuest {
 				engine.say(sayText);
 				return;
 			}
-
+			// quest starts with done; and time not passed : state time remaining
 			if (questLast != null) {
 				final long timeRemaining = (Long.parseLong(questLast) + delay)
 						- System.currentTimeMillis();
@@ -129,6 +251,7 @@ public class DailyItemQuest extends AbstractQuest {
 					return;
 				}
 			}
+			// quest starts with done; and time passed : start recording a new required item thing and timestamp the slot
 			final String itemName = Rand.rand(listeditems);
 			engine.say("Ados is in need of supplies. Go fetch "
 					+ Grammar.a_noun(itemName)
@@ -145,7 +268,7 @@ public class DailyItemQuest extends AbstractQuest {
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-
+			// quest not started: say this text
 			if (questInfo == null) {
 				engine.say("I'm afraid I didn't send you on a #quest yet.");
 				return;
@@ -157,10 +280,19 @@ public class DailyItemQuest extends AbstractQuest {
 			if (questCount.equals("null")) {
 				questCount = "0";
 			}
+			// quest completed: say this text
 			if ("done".equals(questKill)) {
 				engine.say("You already completed the last quest I had given to you.");
 				return;
 			}
+			// quest active, and player has the required item with him
+			// then, increase xp (can't use action here :/ )
+			// add karma (again depends on xp/level)
+			// consider making a increase xp action for this kind as a few quests need it, need the fraction like here 8 and in daily monster 5, to be a parameter
+			// say something
+			// set quest done
+			// timestamp quest
+			// increment quest
 			if (player.drop(questKill)) {
 				final int start = Level.getXP(player.getLevel());
 				final int next = Level.getXP(player.getLevel() + 1);
@@ -177,7 +309,9 @@ public class DailyItemQuest extends AbstractQuest {
 				questLast = "" + (new Date()).getTime();
 				player.setQuest("daily_item", "done" + ";" + questLast + ";"
 						+ questCount);
-			} else {
+			} else {			
+				// quest active, and player does not have  required item with him
+				// just need to use the state required item action				
 				engine.say("You didn't fetch "
 						+ Grammar.a_noun(questKill)
 						+ " yet. Go and get it and say #complete only once you're done.");
@@ -202,11 +336,14 @@ public class DailyItemQuest extends AbstractQuest {
 				questCount = tokens[2];
 			}
 
+
 			if ((questKill != null) && !"done".equals(questKill)) {
 				if (questLast != null) {
 					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
-
+					
+					// quest active, the state doesn't start with ; or done, and enough time has passed 
+					// set to done; only and preserve the rest					
 					if (timeRemaining < 0L) {
 						engine.say("I see. Please, ask me for another #quest when you think you can help Ados again.");
 						// Don't make the player wait any longer and don't
@@ -218,9 +355,11 @@ public class DailyItemQuest extends AbstractQuest {
 						return;
 					}
 				}
+				// quest active, the state doesn't start with ; or done, and enough time has not passed 
 				engine.say("It hasn't been long since you've started your quest, I won't let you give up so soon.");
 				return;
 			}
+			// quest started with ; or is done or is empty
 			engine.say("I'm afraid I didn't send you on a #quest yet.");
 		}
 	}
@@ -296,7 +435,9 @@ public class DailyItemQuest extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		
+		buildItemsMap();
+		
 		step_1();
 		step_2();
 		step_3();
