@@ -10,10 +10,12 @@ import org.junit.Test;
 
 /**
  * Tests the WikipediaAccess class.
- * 
  */
 public class WikipediaAccessTest {
 
+	/**
+	 * Test
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void test() {

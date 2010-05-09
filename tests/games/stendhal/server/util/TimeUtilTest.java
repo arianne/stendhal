@@ -8,6 +8,9 @@ import org.junit.Test;
  */
 public class TimeUtilTest {
 
+	/**
+	 * tests for timeUtil()
+	 */
 	@Test
 	public void testTimeUtil() {
 		Assert.assertEquals("5 seconds", TimeUtil.timeUntil(5, true));
