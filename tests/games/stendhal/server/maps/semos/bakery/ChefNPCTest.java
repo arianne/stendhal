@@ -85,7 +85,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "make");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I can only make a sandwich if you bring me 1 #'loaf of bread', 1 #'piece of ham', and 2 #'pieces of cheese'.",
+				"I can only make a sandwich if you bring me 2 #'pieces of cheese', a #'loaf of bread', and a #'piece of ham'.",
 				getReply(npc));
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
@@ -120,7 +120,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "make");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I need you to fetch me 1 #'loaf of bread', 1 #'piece of ham', and 2 #'pieces of cheese' for this job. Do you have it?",
+				"I need you to fetch me 2 #'pieces of cheese', a #'loaf of bread', and a #'piece of ham' for this job. Do you have it?",
 				getReply(npc));
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST).split(";");

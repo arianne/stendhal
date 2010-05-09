@@ -172,28 +172,39 @@ public class Grammar {
 			return null;
 		}
 		final String enoun = fullForm(noun);
+		return a_an(enoun) + enoun;
+	}
+	
+	/**
+	 * "a " or "an ", depending on the noun
+	 * 
+	 * @param noun the noun to be examined
+	 * @return either "a " or "an " as appropriate
+	 */
+	private static String a_an(final String noun) {
 		final char initial;
 		if (noun.length() > 0) {
-			initial = Character.toLowerCase(enoun.charAt(0));
+			initial = Character.toLowerCase(noun.charAt(0));
 		} else {
 			initial = ' ';
 		}
 		final char second;
 		if (noun.length() > 1) {
-			second = Character.toLowerCase(enoun.charAt(1));
+			second = Character.toLowerCase(noun.charAt(1));
 		} else {
 			second = ' ';
 		}
 		if ((initial == 'e') && (second == 'u')) {
-			return "a " + enoun;
+			return "a ";
 		}
 		if (vowel_p(initial)) {
-			return "an " + enoun;
+			return "an ";
 		}
 		if ((initial == 'y') && consonant_p(second)) {
-			return "an " + enoun;
+			return "an ";
 		}
-		return "a " + enoun;
+		
+		return "a ";
 	}
 
 	/**
@@ -668,15 +679,20 @@ public class Grammar {
 	 *         appropriate
 	 */
 	public static String quantityplnounWithHash(final int quantity, final String noun) {
-		final StringBuilder sb = new StringBuilder(Integer.toString(quantity));
-
-		String noun1 = plnoun(quantity, noun);
-
-		if (noun1.indexOf(' ') != -1) {
-			sb.append(" #'" + noun1 + "'");
+		String fullNoun = plnoun(quantity, noun);
+		String prefix;
+		if (quantity == 1) {
+			prefix = a_an(fullNoun);
 		} else {
-			sb.append(" #");
-			sb.append(noun1);
+			prefix = Integer.toString(quantity) + " ";
+		}
+		final StringBuilder sb = new StringBuilder(prefix);
+
+		if (fullNoun.indexOf(' ') != -1) {
+			sb.append("#'" + fullNoun + "'");
+		} else {
+			sb.append("#");
+			sb.append(fullNoun);
 		}
 
 		return sb.toString();
