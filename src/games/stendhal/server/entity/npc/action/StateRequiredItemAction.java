@@ -30,14 +30,13 @@ public class StateRequiredItemAction implements ChatAction {
 	 * 
 	 * @param questname
 	 *            name of quest-slot to check
-	 * @param arg
+	 * @param index
 	 *            position of the itemname,amount within the quest slot 'array'
 	 * @param message
 	 *            message to come before statement of item name to collect
 	 *            
 	 */
-	public StateRequiredItemAction(final String questname, final int index, final String message,
-			final int delay, final int arg) {
+	public StateRequiredItemAction(final String questname, final int index, final String message) {
 		this.questname = questname;
 		this.index = index;
 		this.message = message;
