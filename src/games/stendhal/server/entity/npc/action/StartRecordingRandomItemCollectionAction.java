@@ -6,10 +6,12 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.StringUtils;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -64,7 +66,14 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 		final String itemname = Rand.rand(items.keySet());
 		final int quantity = items.get(itemname);
-		engine.say(message + " " + Grammar.quantityplnoun(quantity,itemname) + ".");		
+		
+		Map<String, String> substitutes = new HashMap<String, String>();
+		substitutes.put("item", Grammar.quantityplnoun(quantity,itemname));
+		substitutes.put("#item", Grammar.quantityplnounWithHash(quantity,itemname));
+		substitutes.put("the item", "the " + Grammar.plnoun(quantity,itemname));
+		
+		
+		engine.say(StringUtils.subst(message,substitutes));		
 		if (index > -1) {
 			player.setQuest(questname, index, itemname + "=" + quantity);
 		} else {

@@ -1,11 +1,15 @@
 package games.stendhal.server.entity.npc.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.StringUtils;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -69,8 +73,14 @@ public class StateRequiredItemAction implements ChatAction {
 		    if(elements.length > 1) {
 				amount=MathHelper.parseIntDefault(elements[1], 1);
 		    }
+		    
+		    Map<String, String> substitutes = new HashMap<String, String>();
+			substitutes.put("item", Grammar.quantityplnoun(amount,itemname));
+			substitutes.put("#item", Grammar.quantityplnounWithHash(amount,itemname));
+			substitutes.put("the item", "the " + Grammar.plnoun(amount,itemname));
 			
-			engine.say(message + " " + Grammar.quantityplnoun(amount, itemname) + ".");
+			
+			engine.say(StringUtils.subst(message,substitutes));		
 		}
 	}
 

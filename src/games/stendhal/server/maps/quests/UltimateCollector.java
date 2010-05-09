@@ -213,7 +213,8 @@ public class UltimateCollector extends AbstractQuest {
 						new QuestCompletedCondition(IMMORTAL_SWORD_QUEST_SLOT)),
 				ConversationStates.ATTENDING, 
 				null,
-				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, items, "Well, you've certainly proved to the residents of Faiumoni that you could be the ultimate collector, but I have one more task for you. Please bring me"));
+				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, items, "Well, you've certainly proved to the residents of Faiumoni " +
+						"that you could be the ultimate collector, but I have one more task for you. Please bring me [quplnoun(amount,name)]."));
 	}
 	
 	private void collectItem() {
@@ -233,7 +234,7 @@ public class UltimateCollector extends AbstractQuest {
 								new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),
 				ConversationStates.ATTENDING, 
 				null,
-				new StateRequiredItemAction(QUEST_SLOT, "Hm, no, you don't have"));
+				new StateRequiredItemAction(QUEST_SLOT, "Hm, no, you don't have [item], don't try to fool me!"));
 		
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.YES_MESSAGES, 
@@ -250,7 +251,7 @@ public class UltimateCollector extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING, 
 				null,
-				new StateRequiredItemAction(QUEST_SLOT, "Very well, come back when you have"));
+				new StateRequiredItemAction(QUEST_SLOT, "Very well, come back when you have [the item] with you."));
 		
 		
 	}
