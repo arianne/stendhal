@@ -1,28 +1,30 @@
 package games.stendhal.server.maps.quests.mithrilcloak;
 
-import games.stendhal.common.Grammar;
-import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
+import games.stendhal.server.entity.npc.action.StateRequiredItemAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  * @author kymara
@@ -49,33 +51,19 @@ class InitialSteps {
 				ConversationStates.QUEST_OFFERED, 
 				"My sewing machine is broken, will you help me fix it?",
 				null);
+		
+		final Map<String,Integer> items = new HashMap<String, Integer>();
+		items.put("leather armor",1);
+		items.put("oil",1);
+		items.put("bobbin",1);
 
 		// Player says yes they want to help 
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			null,			
-				new ChatAction() {
-							public void fire(final Player player,
-									final Sentence sentence,
-									final SpeakerNPC npc) {
-								final List<String> PARTS_LIST = Arrays.asList("leather armor", "oil", "bobbin");
-								final String parts = Rand.rand(PARTS_LIST);
-								if ("leather armor".equals(parts)) {
-									npc.say("Thank you! It needs a piece of leather to fix it. Please fetch me " 
-											+ Grammar.a_noun(parts) + " and come back as soon as you can.");
-								} else if ("oil".equals(parts)) {
-									npc.say("Thank you! It isn't running smoothly and needs a can of #oil"
-												+ ", I'm ever so grateful for your help.");
-								} else {
-										npc.say("Thank you! It needs a replacement #bobbin"
-												+ ", I'm ever so grateful for your help.");
-								}
-								new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "machine;" 
-																 + parts, 15.0).fire(player, sentence, npc);
-							}
-				}
-				);
+			new MultipleActions(new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "machine;", 15.0),
+								new StartRecordingRandomItemCollectionAction(mithrilcloak.getQuestSlot(), 1, items, "Thank you! To fix it, it needs [#item]. I'm ever so grateful for your help.")));
 		
 		// player said no they didn't want to help
 		npc.add(
@@ -121,10 +109,10 @@ class InitialSteps {
 				"Congratulations, you completed the quest for the mithril shield! Now, I have another quest for you, do you want to hear it?",
 				null);
 
-		npc.addReply("oil", "The only oil I have ever had is very fishy smelling. I expect a fisherman made it.");
+		npc.addReply(Arrays.asList("oil", "can of oil", "can"), "The only oil I have ever had is very fishy smelling. I expect a fisherman made it.");
 		npc.addReply("bobbin", "Only dwarf smiths make bobbins, no-one else has nimble enough fingers. Try #Alrak.");
 		npc.addReply("Alrak", "I thought you kids all knew Alrak, the only dwarf that kobolds have ever liked. Or maybe he's the only dwarf to ever like kobolds, I've never been sure which ...");
-
+		npc.addReply(Arrays.asList("leather armor", "suit of leather armor", "suit"), "Yes, well, it needs a piece of leather for the mechanism, so I can cut a piece from that.");
 	}
 
 	
@@ -143,32 +131,29 @@ class InitialSteps {
 			// we stored the needed part name as part of the quest slot
 			npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 					ConversationPhrases.YES_MESSAGES,
-					null,
+					new PlayerHasRecordedItemWithHimCondition(mithrilcloak.getQuestSlot(),1),
+					ConversationStates.QUEST_2_OFFERED,
+					"Thank you so much! Listen, I must repay the favour, and I have a wonderful idea. Do you want to hear more?",
+					new MultipleActions(new DropRecordedItemAction(mithrilcloak.getQuestSlot(),1), 
+							new SetQuestAction(mithrilcloak.getQuestSlot(), "fixed_machine"),
+							new IncreaseXPAction(100)));
+			
+			// we stored the needed part name as part of the quest slot
+			npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+					ConversationPhrases.YES_MESSAGES,
+					new NotCondition(new PlayerHasRecordedItemWithHimCondition(mithrilcloak.getQuestSlot(),1)),
 					ConversationStates.ATTENDING,
 					null,
-					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-							final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
-							if (player.isEquipped(questslot[1])) {
-								player.drop(questslot[1]);
-								npc.say("Thank you so much! Listen, I must repay the favour, and I have a wonderful idea. Do you want to hear more?");
-								player.addXP(100);
-								player.setQuest(mithrilcloak.getQuestSlot(), "fixed_machine");
-								player.notifyWorldAboutChanges();
-								npc.setCurrentState(ConversationStates.QUEST_2_OFFERED);
-							} else {
-								npc.say("No, you don't have the " + Grammar.fullForm(questslot[1]) + " I need. What a shame.");
-							}
-						}
-					});
+					new StateRequiredItemAction(mithrilcloak.getQuestSlot(),1,"No, you don't have [the item] I need. What a shame."));
+									
 
 			// player doesn't have the item to fix machine yet				
 		   npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				   ConversationPhrases.NO_MESSAGES,
 				   null,
 				   ConversationStates.ATTENDING,
-				   "Ok, well if there's anything else I can help you with just say. Don't forget about me though!",
-				   null);
+				   null,
+				   new StateRequiredItemAction(mithrilcloak.getQuestSlot(),1,"Ok, well if there's anything else I can help you with just say. Don't forget to bring [the item] next time though!"));
 
 		   //offer cloak
 		   npc.add(ConversationStates.QUEST_2_OFFERED,

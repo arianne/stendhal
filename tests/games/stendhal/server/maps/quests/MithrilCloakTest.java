@@ -109,11 +109,11 @@ public class MithrilCloakTest {
 		assertEquals("My sewing machine is broken, will you help me fix it?", getReply(npc));
 		assertEquals(en.getCurrentState(), ConversationStates.QUEST_OFFERED);
 		en.step(player, "yes");
-		assertThat(getReply(npc) , isOneOf("Thank you! It isn't running smoothly and needs a can of #oil, I'm ever so grateful for your help.",
-				"Thank you! It needs a replacement #bobbin, I'm ever so grateful for your help.",
-				"Thank you! It needs a piece of leather to fix it. Please fetch me a suit of leather armor and come back as soon as you can."));
+		assertThat(getReply(npc) , isOneOf("Thank you! To fix it, it needs a #'can of oil'. I'm ever so grateful for your help.",
+				"Thank you! To fix it, it needs a #'bobbin'. I'm ever so grateful for your help.",
+				"Thank you! To fix it, it needs a #'suit of leather armor'. I'm ever so grateful for your help."));
 
-		player.setQuest(questSlot, "machine;bobbin");
+		player.setQuest(questSlot, "machine;bobbin=1");
 		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		en.step(player, "bobbin");
 		assertEquals("Only dwarf smiths make bobbins, no-one else has nimble enough fingers. Try #Alrak.", getReply(npc));
