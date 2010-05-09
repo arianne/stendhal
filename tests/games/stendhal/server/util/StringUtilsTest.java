@@ -48,6 +48,7 @@ public class StringUtilsTest {
 		params.put("o", "0");
 		params.put("p", "0, 1");
 		params.put("x", "0, y, 1");
+		params.put("quplnounhash(amount,name)", "25 coins");
 
 		assertThat(StringUtils.substitute("", (Map<String, ?>)null), equalTo(""));
 		assertThat(StringUtils.substitute("Hallo", (Map<String, ?>)null), equalTo("Hallo"));
@@ -58,7 +59,7 @@ public class StringUtilsTest {
 		assertThat(StringUtils.substitute("id IN ([o])", params), equalTo("id IN (0)"));
 		assertThat(StringUtils.substitute("id IN ([p])", params), equalTo("id IN (0, 1)"));
 
-		assertThat(StringUtils.substitute("id = '[x]'", params), equalTo("id = '0, y, 1'"));
+		assertThat(StringUtils.substitute("Hallo, i need [quplnounhash(amount,name)].", params), equalTo("Hallo, i need 25 coins."));
 	}
 
 	/**

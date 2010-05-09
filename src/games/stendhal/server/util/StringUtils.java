@@ -87,7 +87,7 @@ public class StringUtils {
     		return string;
     	}
         StringBuffer res = new StringBuffer();
-        StringTokenizer st = new StringTokenizer(string, "([]'", true);
+        StringTokenizer st = new StringTokenizer(string, "[]", true);
         String lastToken = "";
         while (st.hasMoreTokens()) {
             String token = st.nextToken();
