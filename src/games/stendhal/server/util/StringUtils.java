@@ -1,5 +1,6 @@
 package games.stendhal.server.util;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -57,6 +58,22 @@ public class StringUtils {
 		}
 		return sb.toString();
 	}
+
+    /**
+     * Replaces [variables] in a string
+     *
+     * @param string with [variables]
+     * @param params name1, value1, name2, value2, name3, value3
+     * @return string with substituted parameters
+     */
+    public static String subst(String string, Object... params)  {
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	for (int i = 0; i < params.length / 2; i++) {
+    		map.put(params[i*2].toString(), params[i*2+1]);
+    	}
+    	return subst(string, map);
+    }
+
 	
     /**
      * Replaces [variables] in a string

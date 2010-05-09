@@ -3,7 +3,6 @@ package games.stendhal.server.util;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,18 +41,16 @@ public class StringUtilsTest {
 
 	/**
 	 * Tests for subst
-	 *
-	 * @throws SQLException 
 	 */
 	@Test
-	public void testSubst() throws SQLException {
+	public void testSubstMap()  {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("o", "0");
 		params.put("p", "0, 1");
 		params.put("x", "0, y, 1");
 
-		assertThat(StringUtils.subst("", null), equalTo(""));
-		assertThat(StringUtils.subst("Hallo", null), equalTo("Hallo"));
+		assertThat(StringUtils.subst("", (Map<String, ?>)null), equalTo(""));
+		assertThat(StringUtils.subst("Hallo", (Map<String, ?>)null), equalTo("Hallo"));
 		assertThat(StringUtils.subst("Hall[o", params), equalTo("Hall0"));
 		assertThat(StringUtils.subst("Hall[o]", params), equalTo("Hall0"));
 		assertThat(StringUtils.subst("[o]Hall[o]", params), equalTo("0Hall0"));
@@ -62,5 +59,29 @@ public class StringUtilsTest {
 		assertThat(StringUtils.subst("id IN ([p])", params), equalTo("id IN (0, 1)"));
 
 		assertThat(StringUtils.subst("id = '[x]'", params), equalTo("id = '0, y, 1'"));
+	}
+
+	/**
+	 * Tests for subst
+	 */
+	@Test
+	public void testSubstParams() {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("o", "0");
+		params.put("p", "0, 1");
+		params.put("x", "0, y, 1");
+
+		assertThat(StringUtils.subst(""), equalTo(""));
+		assertThat(StringUtils.subst("Hallo"), equalTo("Hallo"));
+		assertThat(StringUtils.subst("Hallo", "o"), equalTo("Hallo"));
+		assertThat(StringUtils.subst("Hallo", "o", "0"), equalTo("Hallo"));
+		assertThat(StringUtils.subst("Hall[o", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("Hall0"));
+		assertThat(StringUtils.subst("Hall[o]", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("Hall0"));
+		assertThat(StringUtils.subst("[o]Hall[o]", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("0Hall0"));
+		assertThat(StringUtils.subst("Hal[l]o", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("Halo"));
+		assertThat(StringUtils.subst("id IN ([o])", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("id IN (0)"));
+		assertThat(StringUtils.subst("id IN ([p])", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("id IN (0, 1)"));
+
+		assertThat(StringUtils.subst("id = '[x]'", "o", "0", "p", "0, 1", "x", "0, y, 1"), equalTo("id = '0, y, 1'"));
 	}
 }
