@@ -24,7 +24,7 @@
 	<group uri="items/money.xml"/>
 	<group uri="items/ranged.xml"/>
 	<group uri="items/resources.xml"/>
-	<group uri="items/relic.xml"/>
+	<group uri="items/relics.xml"/>
 	<group uri="items/rings.xml"/>
 	<group uri="items/scrolls.xml"/>
 	<group uri="items/special.xml"/>
