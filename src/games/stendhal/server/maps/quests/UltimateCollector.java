@@ -214,7 +214,7 @@ public class UltimateCollector extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, items, "Well, you've certainly proved to the residents of Faiumoni " +
-						"that you could be the ultimate collector, but I have one more task for you. Please bring me [quplnoun(amount,name)]."));
+						"that you could be the ultimate collector, but I have one more task for you. Please bring me [item]."));
 	}
 	
 	private void collectItem() {
