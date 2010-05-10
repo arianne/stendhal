@@ -1,22 +1,40 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
+import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
+import games.stendhal.server.entity.npc.action.StateRequiredItemAction;
+import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * QUEST: Weekly Item Fetch Quest.
@@ -44,109 +62,156 @@ import java.util.List;
 public class WeeklyItemQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "weekly_item";
+	
+	/** How long until the player can give up and start another quest */
+	private final int expireDelay = MathHelper.MINUTES_IN_ONE_HOUR * 7 * 24 * 6; 
+	
+	/** How often the quest may be repeated */
+	private final int delay = MathHelper.MINUTES_IN_ONE_HOUR * 24 * 7; 
+	
+	/**
+	 * All items which are hard enough to find but not tooo hard and not in Daily quest. If you want to do
+	 * it better, go ahead. *
+	 */
+	private static Map<String,Integer> items;
 
-	private static final long expireDelay = 6L * MathHelper.MILLISECONDS_IN_ONE_WEEK; 
-
-	static class WeeklyQuestAction implements ChatAction {
-
-		/**
-		 * All items which are hard enough to find but not tooo hard and not in Daily quest. If you want to do
-		 * it better, go ahead. *
-		 */
-		private final List<String> listeditems = Arrays.asList("mega potion", "lucky charm", "ice sword", "fire sword",
-				"great sword", "immortal sword", "dark dagger", "assassin dagger", "night dagger", "hell dagger",
-				"golden cloak", "shadow cloak", "chaos cloak", "mainio cloak", "obsidian", "diamond", "golden legs",
-				"shadow legs", "golden armor", "shadow armor", "golden shield", "shadow shield", "skull staff",
-				"steel boots", "golden boots", "shadow boots", "stone boots", "chaos boots", "golden helmet",
-				"shadow helmet", "horned golden helmet", "chaos helmet", "golden twoside axe", "drow sword",
-				"chaos legs", "chaos sword", "chaos shield", "chaos armor", "green dragon shield", "egg",
-				"golden arrow", "power arrow", "mainio legs", "mainio boots", "mainio shield", "mithril bar",
-				"mithril nugget", "mainio armor", "xeno boots", "xeno legs", "xeno armor", "xeno shield", 
-				"mythical egg", "stone armor", "demon sword", "mainio helmet", "red dragon cloak");
-
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			final String questInfo = player.getQuest("weekly_item");
-			String questKill = null;
-			String questCount = null;
-			String questLast = null;
-			final long delay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
-
-			if (questInfo != null) {
-				final String[] tokens = (questInfo + ";0;0;0").split(";");
-				questKill = tokens[0];
-				questLast = tokens[1];
-				questCount = tokens[2];
-			}
-			if ((questKill != null) && !"done".equals(questKill)) {
-				final String sayText = "You're already on a quest to bring the museum "
-						+ Grammar.a_noun(questKill)
-						+ ". Please say #complete if you have it with you.";
-				if (questLast != null) {
-					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
-							- System.currentTimeMillis();
-
-					if (timeRemaining < 0) {
-						engine.say(sayText
-								+ " But, perhaps that is now too rare an item. I can give you #another task, or you can return with what I first asked you.");
-						return;
-					}
-				}
-				engine.say(sayText);
-				return;
-			}
-
-			if (questLast != null) {
-				final long timeRemaining = (Long.parseLong(questLast) + delay)
-						- System.currentTimeMillis();
-
-				if (timeRemaining > 0) {
-					engine.say("The museum can only afford to send you to fetch an item once a week. Please check back in "
-							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-							+ ".");
-					return;
-				}
-			}
-			final String itemName = Rand.rand(listeditems);
-			engine.say("I want Kirdneh's museum to be the greatest in the land! Please fetch "
-					+ Grammar.a_noun(itemName)
-					+ " and say #complete, once you've brought it.");
-			questLast = "" + (new Date()).getTime();
-			player.setQuest("weekly_item", itemName + ";" + questLast + ";"
-					+ questCount);
-		}
+	private static void buildItemsMap() {
+		items = new HashMap<String, Integer>();
+		items.put("mega potion",5);
+		items.put("lucky charm",1);
+		items.put("ice sword",1);
+		items.put("fire sword",1);
+		items.put("great sword",1);
+		items.put("immortal sword",1);
+		items.put("dark dagger",1);
+		items.put("assassin dagger",1);
+		items.put("night dagger",1);
+		items.put("hell dagger",1);
+		items.put("golden cloak",1);
+		items.put("shadow cloak",1);
+		items.put("chaos cloak",1);
+		items.put("mainio cloak",1);
+		items.put("obsidian",1);
+		items.put("diamond",1);
+		items.put("golden legs",1);
+		items.put("shadow legs",1);
+		items.put("golden armor",1);
+		items.put("shadow armor",1);
+		items.put("golden shield",1);
+		items.put("shadow shield",1);
+		items.put("skull staff",1);
+		items.put("steel boots",1);
+		items.put("golden boots",1);
+		items.put("shadow boots",1);
+		items.put("stone boots",1);
+		items.put("chaos boots",1);
+		items.put("golden helmet",1);
+		items.put("shadow helmet",1);
+		items.put("horned golden helmet",1);
+		items.put("chaos helmet",1);
+		items.put("golden twoside axe",1);
+		items.put("drow sword",1);
+		items.put("chaos legs",1);
+		items.put("chaos sword",1);
+		items.put("chaos shield",1);
+		items.put("chaos armor",1);
+		items.put("green dragon shield",1);
+		items.put("egg",1);
+		items.put("golden arrow",5);
+		items.put("power arrow",5);
+		items.put("mainio legs",1);
+		items.put("mainio boots",1);
+		items.put("mainio shield",1);
+		items.put("mithril bar",1);
+		items.put("mithril nugget",1);
+		items.put("mainio armor",1);
+		items.put("xeno boots",1);
+		items.put("xeno legs",1);
+		items.put("xeno armor",1);
+		items.put("xeno shield",1);
+		items.put("mythical egg",1);
+		items.put("stone armor",1);
+		items.put("demon sword",1);
+		items.put("mainio helmet",1);
+		items.put("red dragon cloak",1);
 	}
-
-	static class WeeklyQuestCompleteAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			final String questInfo = player.getQuest("weekly_item");
-			String questKill = null;
-			String questCount = null;
-			String questLast = null;
-
-			if (questInfo == null) {
-				engine.say("I don't remember giving you any #task yet.");
-				return;
-			}
-			final String[] tokens = (questInfo + ";0;0").split(";");
-			questKill = tokens[0];
-			questLast = tokens[1];
-			questCount = tokens[2];
-			if (questCount.equals("null")) {
-				questCount = "0";
-			}
-			if ("done".equals(questKill)) {
-				engine.say("You already completed the last quest I had given to you.");
-				return;
-			}
-			if (player.drop(questKill)) {
+	
+	private void getQuest() {
+		final SpeakerNPC npc = npcs.get("Hazel");
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+								 new NotCondition(new TimePassedCondition(QUEST_SLOT,expireDelay,1))), 
+				ConversationStates.ATTENDING,
+				null,
+				new StateRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to bring the museum [item]"
+						+ ". Please say #complete if you have it with you."));
+		
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+								 new TimePassedCondition(QUEST_SLOT,expireDelay,1)), 
+				ConversationStates.ATTENDING,
+				null,
+				new StateRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to bring the museum [item]"
+						+ ". Please say #complete if you have it with you. But, perhaps that is now too rare an item. I can give you #another task, or you can return with what I first asked you."));
+	
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
+								 new NotCondition(new TimePassedCondition(QUEST_SLOT,delay,1))), 
+				ConversationStates.ATTENDING,
+				null,
+				new StateTimeRemainingAction(QUEST_SLOT,"The museum can only afford to send you to fetch an item once a week. Please check back in", delay, 1));
+		
+		
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		actions.add(new StartRecordingRandomItemCollectionAction(QUEST_SLOT,0,items,"I want Kirdneh's museum to be the greatest in the land! Please fetch [item]"
+				+ " and say #complete, once you've brought it."));		
+		
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT),
+								new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
+												 new TimePassedCondition(QUEST_SLOT,delay,1))), 
+				ConversationStates.ATTENDING,
+				null,
+				new MultipleActions(actions));
+	}
+	
+	private void completeQuest() {
+		final SpeakerNPC npc = npcs.get("Hazel");
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("complete", "done"), 
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"I don't remember giving you any #task yet.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("complete", "done"), 
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"You already completed the last quest I had given to you.",
+				null);
+		
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
+		actions.add(new DropRecordedItemAction(QUEST_SLOT,0));
+		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		actions.add(new IncrementQuestAction(QUEST_SLOT,2,1));
+		// TODO: could write a more general action for these level dependent xp rewards (with extra karma for max level players)
+		// but would still need the chat action to give the random money amount
+		actions.add(new ChatAction() {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 				final int start = Level.getXP(player.getLevel());
 				final int next = Level.getXP(player.getLevel() + 1);
 				int reward = 3 * (next - start) / 5;
 				if (player.getLevel() >= Level.maxLevel()) {
 					reward = 0;
-					//	no reward so give a lot karma instead, 300 in all
+					// no reward so give a lot karma instead, 100 in all
 					player.addKarma(290.0);
 				}
+				player.addXP(reward);
+				player.addKarma(10.0);
 				int goldamount;
 				final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
 								.getItem("money");
@@ -154,56 +219,56 @@ public class WeeklyItemQuest extends AbstractQuest {
 				money.setQuantity(goldamount);
 				player.equipOrPutOnGround(money);
 				engine.say("Wonderful! Here is " + Integer.toString(goldamount) + " money to cover your expenses.");
-				player.addXP(reward);
-				player.addKarma(10.0);
-				questCount = "" + (Integer.valueOf(questCount) + 1);
-				questLast = "" + (new Date()).getTime();
-				player.setQuest("weekly_item", "done" + ";" + questLast + ";"
-						+ questCount);
-			} else {
-				engine.say("You don't seem to have "
-						+ Grammar.a_noun(questKill)
-						+ " with you. Please get it and say #complete only then.");
 			}
-		}
+		});
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("complete", "done"), 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+								 new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0)),
+				ConversationStates.ATTENDING, 
+				null,
+				new MultipleActions(actions));
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("complete", "done"), 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+								 new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0))),
+				ConversationStates.ATTENDING, 
+				null,
+				new StateRequiredItemAction(QUEST_SLOT,0,"You don't seem to have [item]"
+						+ " with you. Please get it and say #complete only then."));
+		
+	}
+	
+	private void abortQuest() {
+		final SpeakerNPC npc = npcs.get("Hazel");
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("another", "abort"), 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+						 		 new TimePassedCondition(QUEST_SLOT,expireDelay,1)), 
+				ConversationStates.ATTENDING, 
+				"I see. Please, ask me for another #quest when you think you can help Kirdneh museum again.", 
+				new SetQuestAction(QUEST_SLOT, 0, "done"));
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("another", "abort"), 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+						 		 new NotCondition(new TimePassedCondition(QUEST_SLOT,expireDelay,1))), 
+				ConversationStates.ATTENDING, 
+				"It hasn't been long since you've started your quest, you shouldn't give up so soon.", 
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("another", "abort"), 
+				new QuestNotActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"I'm afraid I didn't send you on a #quest yet.", 
+				null);
+		
 	}
 
-	static class WeeklyQuestAbortAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			final String questInfo = player.getQuest("weekly_item");
-			String questKill = null;
-			String questCount = null;
-			String questLast = null;
-
-			if (questInfo != null) {
-				final String[] tokens = (questInfo + ";0;0;0").split(";");
-				questKill = tokens[0];
-				questLast = tokens[1];
-				questCount = tokens[2];
-			}
-
-			if ((questKill != null) && !"done".equals(questKill)) {
-				if (questLast != null) {
-					final long timeRemaining = (Long.parseLong(questLast) + expireDelay)
-							- System.currentTimeMillis();
-
-					if (timeRemaining < 0) {
-						engine.say("I see. Please, ask me for another #quest when you think you can help Kirdneh museum again.");
-						// Don't make the player wait any longer and don't
-						// credit the player with a count increase?
-						// questCount = "" + (Integer.valueOf(questCount) + 1 );
-						// questLast = "" + (new Date()).getTime();
-						player.setQuest("weekly_item", "done" + ";" + questLast
-								+ ";" + questCount);
-						return;
-					}
-				}
-				engine.say("It hasn't been long since you've started your quest, you shouldn't give up so soon.");
-				return;
-			}
-			engine.say("I'm afraid I didn't send you on a #quest yet.");
-		}
-	}
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -222,8 +287,13 @@ public class WeeklyItemQuest extends AbstractQuest {
 		}
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 			final String[] tokens = (questState + ";0;0;0").split(";");
-			final String questItem = tokens[0];
-			if (!player.isEquipped(questItem)) {
+			final String[] elements = tokens[0].split("=");
+			String questItem = elements[0];
+			int amount = 1;
+			if(elements.length > 1) {
+				amount=MathHelper.parseIntDefault(elements[1], 1);
+			}
+			if (!player.isEquipped(questItem, amount)) {
 				res.add("QUEST_ACTIVE");
 			} else {
 				res.add("QUEST_UNCLAIMED");
@@ -244,41 +314,15 @@ public class WeeklyItemQuest extends AbstractQuest {
 		return res;
 	}
 	
-	private void step_1() {
-		final SpeakerNPC npc = npcs.get("Hazel");
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task", "exhibits"),
-				null, ConversationStates.ATTENDING, null,
-				new WeeklyQuestAction());
-	}
-
-	private void step_2() {
-		// get the item
-	}
-
-	private void step_3() {
-		final SpeakerNPC npc = npcs.get("Hazel");
-
-		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("complete", "done"), null,
-				ConversationStates.ATTENDING, null,
-				new WeeklyQuestCompleteAction());
-	}
-
-	private void step_4() {
-		final SpeakerNPC npc = npcs.get("Hazel");
-		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("another", "abort"), null,
-				ConversationStates.ATTENDING, null, new WeeklyQuestAbortAction());
-	}
-
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
-		step_1();
-		step_2();
-		step_3();
-		step_4();
+		
+		buildItemsMap();
+		
+		getQuest();
+		completeQuest();
+		abortQuest();
 	}
 
 	@Override
