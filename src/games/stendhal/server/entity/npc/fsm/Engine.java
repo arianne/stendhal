@@ -315,7 +315,7 @@ public class Engine {
 			it = conditionTransitions.iterator();
 
 			if (conditionTransitions.size() > 1) {
-				logger.warn("Choosing random action because of "
+				logger.info("Choosing random action because of "
 						+ conditionTransitions.size() + " entries in conditionTransitions: "
 						+ conditionTransitions);
 
