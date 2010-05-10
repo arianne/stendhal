@@ -110,7 +110,7 @@ public class MithrilCloakTest {
 		assertEquals(en.getCurrentState(), ConversationStates.QUEST_OFFERED);
 		en.step(player, "yes");
 		assertThat(getReply(npc) , isOneOf("Thank you! To fix it, it needs a #'can of oil'. I'm ever so grateful for your help.",
-				"Thank you! To fix it, it needs a #'bobbin'. I'm ever so grateful for your help.",
+				"Thank you! To fix it, it needs a #bobbin. I'm ever so grateful for your help.",
 				"Thank you! To fix it, it needs a #'suit of leather armor'. I'm ever so grateful for your help."));
 
 		player.setQuest(questSlot, "machine;bobbin=1");
