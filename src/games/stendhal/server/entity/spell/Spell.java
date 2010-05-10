@@ -121,8 +121,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * Checks if the target Entity is applicable for this spell. Basically each Entity can target of a spell.
 	 * Subclasses have to override this method if they want to be more strict in the choice of the target.
 	 * 
-	 * @param target the target Entity to check the applicability for
-	 * @param target2 
+	 * @param caster the user of the spell
+	 * @param target the target Entity to check the applicability for 
 	 * @return true iff target is applicable to this spell
 	 */
 	protected boolean isTargetValid(Entity caster, Entity target) {

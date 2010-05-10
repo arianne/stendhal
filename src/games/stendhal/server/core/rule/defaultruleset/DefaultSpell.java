@@ -245,7 +245,7 @@ public class DefaultSpell {
 
 	/**
 	 * sets the nature for the spell
-	 * @param the spell's nature
+	 * @param nature the spell's nature
 	 */
 	public void setNature(String nature) {
 		this.nature = Nature.parse(nature);

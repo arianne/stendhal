@@ -18,10 +18,10 @@ public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 	private final int index;
 
 	/**
-	 * Creates a new PlayerHasItemWithHim.
+	 * Creates a new PlayerHasRecordedItemWithHimCondition.
 	 * 
-	 * @param itemName
-	 *            name of item
+	 * @param questName
+	 *            name of quest
 	 */
 	public PlayerHasRecordedItemWithHimCondition(final String questName) {
 		this.questName = questName;
@@ -29,12 +29,12 @@ public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 	}
 
 	/**
-	 * Creates a new PlayerHasItemWithHim.
+	 * Creates a new PlayerHasRecordedItemWithHimCondition.
 	 * 
-	 * @param itemName
-	 *            name of item
-	 * @param amount
-	 *            for StackableItems
+	 * @param questName
+	 *            name of quest
+	 * @param index
+	 *            index in the quest slot
 	 */
 	public PlayerHasRecordedItemWithHimCondition(final String questName, final int index) {
 		this.questName = questName;

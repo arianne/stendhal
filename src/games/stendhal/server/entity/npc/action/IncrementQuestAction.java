@@ -19,12 +19,12 @@ public class IncrementQuestAction implements ChatAction {
 	private final int increment;
 
 	/**
-	 * Creates a new SetQuestAction.
+	 * Creates a new IncrementQuestAction.
 	 * 
 	 * @param questname
 	 *            name of quest-slot to change
-	 * @param state
-	 *            new value
+	 * @param increment
+	 *            the increment to the old value
 	 */
 	public IncrementQuestAction(final String questname, final int increment) {
 		this.questname = questname;
@@ -33,14 +33,14 @@ public class IncrementQuestAction implements ChatAction {
 	}
 
 	/**
-	 * Creates a new SetQuestAction.
+	 * Creates a new IncrementQuestAction.
 	 * 
 	 * @param questname
 	 *            name of quest-slot to change
 	 * @param index
 	 *            index of sub state
-	 * @param state
-	 *            new value
+	 * @param increment
+	 *            increment to the old value
 	 */
 	public IncrementQuestAction(final String questname, final int index, final int increment) {
 		this.questname = questname;
