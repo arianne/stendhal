@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.quests;
 
-import java.util.Arrays;
-import java.util.List;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -10,18 +10,14 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
+
 import org.junit.After;
 import org.junit.BeforeClass;
-import org.junit.Before;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class ClubOfThornsTest {
 	private static final String NPC = "Orc Saman";
@@ -33,11 +29,7 @@ public class ClubOfThornsTest {
 	public static void setupBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 	}
-	
-	@Before
-	public void setUp() throws Exception {
-	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		SingletonRepository.getNPCList().remove(NPC);
