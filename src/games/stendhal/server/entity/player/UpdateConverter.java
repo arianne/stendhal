@@ -52,24 +52,23 @@ public abstract class UpdateConverter {
 	/**
 	 * quest name, quest index, creatures to kill.
 	 */
-	private static final HashMap<String, Pair<Integer, List<String>>> KILL_QUEST_NAMES = 
-		new HashMap<String, Pair<Integer, List<String>>>() {
-			private static final long serialVersionUID = 2058147975763806559L;
-		{
-			put("meet_hayunn", 
+	private static final HashMap<String, Pair<Integer, List<String>>> KILL_QUEST_NAMES;
+	static {
+		KILL_QUEST_NAMES = new HashMap<String, Pair<Integer, List<String>>>();
+		KILL_QUEST_NAMES.put("meet_hayunn", 
 				new Pair<Integer, List<String>>(1, Arrays.asList(
 					"rat")));
 			
-			put("clean_storage", 
+		KILL_QUEST_NAMES.put("clean_storage", 
 				new Pair<Integer, List<String>>(1, Arrays.asList(
 					"rat",
 					"caverat","snake")));
 			
-			put("club_thorns", 
+		KILL_QUEST_NAMES.put("club_thorns", 
 				new Pair<Integer, List<String>>(1, Arrays.asList(
 					"mountain orc chief")));
 			
-			put("kill_dhohr_nuggetcutter", 
+		KILL_QUEST_NAMES.put("kill_dhohr_nuggetcutter", 
 				new Pair<Integer, List<String>>(1, Arrays.asList(
 					"Dhohr Nuggetcutter", 
 					"mountain dwarf", 
@@ -77,17 +76,17 @@ public abstract class UpdateConverter {
 					"mountain hero dwarf", 
 					"mountain leader dwarf")));
 			
-			put("kill_gnomes", 
+		KILL_QUEST_NAMES.put("kill_gnomes", 
 				new Pair<Integer, List<String>>(1, Arrays.asList(
 					"gnome", 
 					"infantry gnome", 
 					"cavalryman gnome")));
 			
-			put("sad_scientist", 
+		KILL_QUEST_NAMES.put("sad_scientist", 
 				new Pair<Integer, List<String>>(1, Arrays.asList(
 					"Sergej Elos")));
-		}
-	};
+	}
+
 
 	/**
 	 * Update old item names to the current naming.
