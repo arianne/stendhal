@@ -15,11 +15,8 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.maps.quests.BeerForHayunn;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-
-import marauroa.common.Pair;
 
 
 /**
@@ -39,14 +36,8 @@ public class RetiredAdventurerNPC extends SpeakerNPCFactory {
 		// used for any other purpose
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		final HashMap<String, Pair<Integer,Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>() {
-			private static final long serialVersionUID = 3828605339185735368L;
-			{
-			put("rat", new Pair<Integer, Integer>(0,1));
-			};
-		};
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
-		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
+		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, "rat", 0, 1));
 
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,

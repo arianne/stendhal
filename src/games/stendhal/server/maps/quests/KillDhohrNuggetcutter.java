@@ -94,16 +94,12 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 					}
 				});
 
-		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>() {
-			private static final long serialVersionUID = 5812929166657634696L;
-			{
-				put("Dhohr Nuggetcutter", new Pair<Integer, Integer>(0,1));
-				put("mountain dwarf", new Pair<Integer, Integer>(0,2));
-				put("mountain elder dwarf", new Pair<Integer, Integer>(0,2)); 
-				put("mountain hero dwarf", 	new Pair<Integer, Integer>(0,2));
-				put("mountain leader dwarf", new Pair<Integer, Integer>(0,2));
-			};
-		};
+		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>();
+		toKill.put("Dhohr Nuggetcutter", new Pair<Integer, Integer>(0,1));
+		toKill.put("mountain dwarf", new Pair<Integer, Integer>(0,2));
+		toKill.put("mountain elder dwarf", new Pair<Integer, Integer>(0,2)); 
+		toKill.put("mountain hero dwarf", 	new Pair<Integer, Integer>(0,2));
+		toKill.put("mountain leader dwarf", new Pair<Integer, Integer>(0,2));
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseKarmaAction(5.0));

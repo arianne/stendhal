@@ -89,16 +89,11 @@ public class KillGnomes extends AbstractQuest {
 				"The gnomes haven't made any trouble since you last taught them a lesson.",
 				null);
 
-		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>() {
-			private static final long serialVersionUID = 2523749135076482763L;
+		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>();
+		toKill.put("gnome", new Pair<Integer, Integer>(0,1));
+		toKill.put("infantry gnome", new Pair<Integer, Integer>(0,1));
+		toKill.put("cavalryman gnome",new Pair<Integer, Integer>(0,1));
 
-			{
-				put("gnome", new Pair<Integer, Integer>(0,1));
-				put("infantry gnome", new Pair<Integer, Integer>(0,1));
-				put("cavalryman gnome",new Pair<Integer, Integer>(0,1));
-			}
-		};
-		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
 		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));

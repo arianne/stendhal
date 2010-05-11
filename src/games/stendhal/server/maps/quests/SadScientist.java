@@ -34,10 +34,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
-
-import marauroa.common.Pair;
 
 
 /**
@@ -206,16 +203,10 @@ public class SadScientist extends AbstractQuest {
 				new PlayerHasItemWithHimCondition("note")
 			);
 		
-		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>() {
-			private static final long serialVersionUID = 8846583616234873936L;
-			{
-				put("Sergej Elos", new Pair<Integer, Integer>(0,1));
-			}
-		};
-		
+
 		final ChatAction action = new MultipleActions(
 					new SetQuestAction(QUEST_SLOT, 0, "kill_scientist"),
-					new StartRecordingKillsAction(QUEST_SLOT, 1, toKill),
+					new StartRecordingKillsAction(QUEST_SLOT, 1, "Sergej Elos", 0, 1),
 					new DropItemAction("note")
 				);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,

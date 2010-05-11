@@ -19,11 +19,8 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-
-import marauroa.common.Pair;
 
 /**
  * QUEST: Club of Thorns
@@ -85,18 +82,11 @@ public class ClubOfThorns extends AbstractQuest {
 			null);
 
 
-		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>() {
-			private static final long serialVersionUID = 2173118537935918653L;
-			{
-				put("mountain orc chief", new Pair<Integer, Integer>(0,1));
-			}
-		};
-		
 		final List<ChatAction> start = new LinkedList<ChatAction>();
 		start.add(new EquipItemAction("kotoch prison key", 1, true));
 		start.add(new IncreaseKarmaAction(6.0));
 		start.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
-		start.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
+		start.add(new StartRecordingKillsAction(QUEST_SLOT, 1, "mountain orc chief", 0, 1));
 
 
 		npc.add(
