@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
-import games.stendhal.server.entity.npc.action.StateRequiredItemAction;
+import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -234,7 +234,7 @@ public class UltimateCollector extends AbstractQuest {
 								new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),
 				ConversationStates.ATTENDING, 
 				null,
-				new StateRequiredItemAction(QUEST_SLOT, "Hm, no, you don't have [item], don't try to fool me!"));
+				new SayRequiredItemAction(QUEST_SLOT, "Hm, no, you don't have [item], don't try to fool me!"));
 		
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.YES_MESSAGES, 
@@ -251,7 +251,7 @@ public class UltimateCollector extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING, 
 				null,
-				new StateRequiredItemAction(QUEST_SLOT, "Very well, come back when you have [the item] with you."));
+				new SayRequiredItemAction(QUEST_SLOT, "Very well, come back when you have [the item] with you."));
 		
 		
 	}

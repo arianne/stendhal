@@ -12,7 +12,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -298,7 +298,7 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 							 new NotCondition(new TimePassedCondition(QUEST_SLOT,DELAY_IN_MINUTES,1))),
 			ConversationStates.ATTENDING,
 			null,
-			new StateTimeRemainingAction(QUEST_SLOT,"Hello I am still busy with that baby dragon stew for Mr Yeti. You can get your reward in",DELAY_IN_MINUTES,1));
+			new SayTimeRemainingAction(QUEST_SLOT,"Hello I am still busy with that baby dragon stew for Mr Yeti. You can get your reward in",DELAY_IN_MINUTES,1));
 
 
 		npc.add(

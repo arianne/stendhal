@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Tells the time remaining between the timestamp on quest slot + delay time, and now.
  */
-public class StateTimeRemainingAction implements ChatAction {
+public class SayTimeRemainingAction implements ChatAction {
 
 	private final String questname;
 	private final String message;
@@ -20,7 +20,7 @@ public class StateTimeRemainingAction implements ChatAction {
 	private final int arg;
 
 	/**
-	 * Creates a new StateTimeRemainingAction.
+	 * Creates a new SayTimeRemainingAction.
 	 * 
 	 * @param questname
 	 *            name of quest-slot to check
@@ -32,7 +32,7 @@ public class StateTimeRemainingAction implements ChatAction {
 	 *            position of the timestamp within the quest slot 'array'
 	 *            
 	 */
-	public StateTimeRemainingAction(final String questname, final String message,
+	public SayTimeRemainingAction(final String questname, final String message,
 			final int delay, final int arg) {
 		this.questname = questname;
 		this.message = message;
@@ -40,7 +40,7 @@ public class StateTimeRemainingAction implements ChatAction {
 		this.arg = arg;
 	} 
 	/**
-	 * Creates a new StateTimeRemainingAction.
+	 * Creates a new SayTimeRemainingAction.
 	 * 
 	 * @param questname
 	 *            name of quest-slot to check
@@ -51,7 +51,7 @@ public class StateTimeRemainingAction implements ChatAction {
 	 *            
 	 */
 
-	public StateTimeRemainingAction(final String questname, final String message,
+	public SayTimeRemainingAction(final String questname, final String message,
 			final int delay) {
 		this.questname = questname;
 		this.message = message;
@@ -79,7 +79,7 @@ public class StateTimeRemainingAction implements ChatAction {
 
 	@Override
 	public String toString() {
-		return "StateTimeRemainingAction<" + questname + ",\"" + message + "\","
+		return "SayTimeRemainingAction<" + questname + ",\"" + message + "\","
 				 + "\"," + delay + ">";
 	}
 	
@@ -92,7 +92,7 @@ public class StateTimeRemainingAction implements ChatAction {
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				StateTimeRemainingAction.class);
+				SayTimeRemainingAction.class);
 	}
 
 	

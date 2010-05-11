@@ -12,7 +12,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -331,7 +331,7 @@ public class ObsidianKnife extends AbstractQuest {
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_DAYS * MINUTES_IN_DAYS, 1))),
 				ConversationStates.IDLE, 
 				null, 
-				new StateTimeRemainingAction(QUEST_SLOT, "I haven't finished reading that book. Maybe I'll be done in", REQUIRED_DAYS * MINUTES_IN_DAYS, 1));
+				new SayTimeRemainingAction(QUEST_SLOT, "I haven't finished reading that book. Maybe I'll be done in", REQUIRED_DAYS * MINUTES_IN_DAYS, 1));
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
@@ -434,7 +434,7 @@ public class ObsidianKnife extends AbstractQuest {
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))),
 				ConversationStates.IDLE, 
 				null, 
-				new StateTimeRemainingAction(QUEST_SLOT, "I haven't finished making the knife. Please check back in", REQUIRED_MINUTES, 1));
+				new SayTimeRemainingAction(QUEST_SLOT, "I haven't finished making the knife. Please check back in", REQUIRED_MINUTES, 1));
 		
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new IncreaseXPAction(10000));

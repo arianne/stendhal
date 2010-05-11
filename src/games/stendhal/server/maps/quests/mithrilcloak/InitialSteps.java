@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
-import games.stendhal.server.entity.npc.action.StateRequiredItemAction;
+import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -144,7 +144,7 @@ class InitialSteps {
 					new NotCondition(new PlayerHasRecordedItemWithHimCondition(mithrilcloak.getQuestSlot(),1)),
 					ConversationStates.ATTENDING,
 					null,
-					new StateRequiredItemAction(mithrilcloak.getQuestSlot(),1,"No, you don't have [the item] I need. What a shame."));
+					new SayRequiredItemAction(mithrilcloak.getQuestSlot(),1,"No, you don't have [the item] I need. What a shame."));
 									
 
 			// player doesn't have the item to fix machine yet				
@@ -153,7 +153,7 @@ class InitialSteps {
 				   null,
 				   ConversationStates.ATTENDING,
 				   null,
-				   new StateRequiredItemAction(mithrilcloak.getQuestSlot(),1,"Ok, well if there's anything else I can help you with just say. Don't forget to bring [the item] next time though!"));
+				   new SayRequiredItemAction(mithrilcloak.getQuestSlot(),1,"Ok, well if there's anything else I can help you with just say. Don't forget to bring [the item] next time though!"));
 
 		   //offer cloak
 		   npc.add(ConversationStates.QUEST_2_OFFERED,

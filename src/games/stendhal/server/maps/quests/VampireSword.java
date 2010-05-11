@@ -12,7 +12,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
-import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -258,7 +258,7 @@ public class VampireSword extends AbstractQuest {
 						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 						new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))),
 				ConversationStates.IDLE, null,
-				new StateTimeRemainingAction(QUEST_SLOT, "I haven't finished forging the sword. Please check back in" +
+				new SayTimeRemainingAction(QUEST_SLOT, "I haven't finished forging the sword. Please check back in" +
 						"", REQUIRED_MINUTES, 1));
 		
 		final List<ChatAction> reward = new LinkedList<ChatAction>();

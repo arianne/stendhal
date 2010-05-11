@@ -16,9 +16,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
 
 /**
- * Tells the time remaining between the timestamp on quest slot + delay time, and now.
+ * States the name of the item, with formatting/grammar rules, stored in the quest slot
  */
-public class StateRequiredItemAction implements ChatAction {
+public class SayRequiredItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropRecordedItemAction.class);
 
 	private final String questname;
@@ -26,7 +26,7 @@ public class StateRequiredItemAction implements ChatAction {
 	private final int index;
 
 	/**
-	 * Creates a new StateTimeRemainingAction.
+	 * Creates a new SayRequiredItemAction.
 	 * 
 	 * @param questname
 	 *            name of quest-slot to check
@@ -36,13 +36,13 @@ public class StateRequiredItemAction implements ChatAction {
 	 *            message to come before statement of item name to collect
 	 *            
 	 */
-	public StateRequiredItemAction(final String questname, final int index, final String message) {
+	public SayRequiredItemAction(final String questname, final int index, final String message) {
 		this.questname = questname;
 		this.index = index;
 		this.message = message;
 	} 
 	/**
-	 * Creates a new StateTimeRemainingAction.
+	 * Creates a new SayRequiredItemAction.
 	 * 
 	 * @param questname
 	 *            name of quest-slot to check
@@ -51,7 +51,7 @@ public class StateRequiredItemAction implements ChatAction {
 	 *            
 	 */
 
-	public StateRequiredItemAction(final String questname, final String message) {
+	public SayRequiredItemAction(final String questname, final String message) {
 		this.questname = questname;
 		this.message = message;
 		this.index = -1;
@@ -85,7 +85,7 @@ public class StateRequiredItemAction implements ChatAction {
 
 	@Override
 	public String toString() {
-		return "StateRequiredItemAction <" + questname +  "\"," + index + ",\"" + message + ">";
+		return "SayRequiredItemAction <" + questname +  "\"," + index + ",\"" + message + ">";
 	}
 	
 
@@ -97,7 +97,7 @@ public class StateRequiredItemAction implements ChatAction {
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				StateRequiredItemAction.class);
+				SayRequiredItemAction.class);
 	}
 
 	

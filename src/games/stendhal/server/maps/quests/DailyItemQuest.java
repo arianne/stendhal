@@ -12,8 +12,8 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
-import games.stendhal.server.entity.npc.action.StateRequiredItemAction;
-import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -190,7 +190,7 @@ public class DailyItemQuest extends AbstractQuest {
 								 new NotCondition(new TimePassedCondition(QUEST_SLOT,expireDelay,1))), 
 				ConversationStates.ATTENDING,
 				null,
-				new StateRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to fetch [item]"
+				new SayRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to fetch [item]"
 						+ ". Say #complete if you brought it!"));
 		
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
@@ -198,7 +198,7 @@ public class DailyItemQuest extends AbstractQuest {
 								 new TimePassedCondition(QUEST_SLOT,expireDelay,1)), 
 				ConversationStates.ATTENDING,
 				null,
-				new StateRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to fetch [item]"
+				new SayRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to fetch [item]"
 						+ ". Say #complete if you brought it! Perhaps there are no supplies of that left at all! You could fetch #another item if you like, or return with what I first asked you."));
 	
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
@@ -206,7 +206,7 @@ public class DailyItemQuest extends AbstractQuest {
 								 new NotCondition(new TimePassedCondition(QUEST_SLOT,delay,1))), 
 				ConversationStates.ATTENDING,
 				null,
-				new StateTimeRemainingAction(QUEST_SLOT,"I can only give you a new quest once a day. Please check back in", delay, 1));
+				new SayTimeRemainingAction(QUEST_SLOT,"I can only give you a new quest once a day. Please check back in", delay, 1));
 		
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
@@ -275,7 +275,7 @@ public class DailyItemQuest extends AbstractQuest {
 								 new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0))),
 				ConversationStates.ATTENDING, 
 				null,
-				new StateRequiredItemAction(QUEST_SLOT,0,"You didn't fetch [item]"
+				new SayRequiredItemAction(QUEST_SLOT,0,"You didn't fetch [item]"
 						+ " yet. Go and get it and say #complete only once you're done."));
 		
 	}

@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -70,7 +70,7 @@ public class Maze extends AbstractQuest {
 				new NotCondition(new TimePassedCondition(getSlotName(), COOLING_TIME, 0)),
 				ConversationStates.ATTENDING,
 				null,
-				new StateTimeRemainingAction(getSlotName(), 
+				new SayTimeRemainingAction(getSlotName(), 
 						"I can send you to the maze only once in a day. You can go there again in", COOLING_TIME));
 		
 		

@@ -15,8 +15,8 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
-import games.stendhal.server.entity.npc.action.StateRequiredItemAction;
-import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -142,7 +142,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 								 new NotCondition(new TimePassedCondition(QUEST_SLOT,expireDelay,1))), 
 				ConversationStates.ATTENDING,
 				null,
-				new StateRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to bring the museum [item]"
+				new SayRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to bring the museum [item]"
 						+ ". Please say #complete if you have it with you."));
 		
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
@@ -150,7 +150,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 								 new TimePassedCondition(QUEST_SLOT,expireDelay,1)), 
 				ConversationStates.ATTENDING,
 				null,
-				new StateRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to bring the museum [item]"
+				new SayRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to bring the museum [item]"
 						+ ". Please say #complete if you have it with you. But, perhaps that is now too rare an item. I can give you #another task, or you can return with what I first asked you."));
 	
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
@@ -158,7 +158,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 								 new NotCondition(new TimePassedCondition(QUEST_SLOT,delay,1))), 
 				ConversationStates.ATTENDING,
 				null,
-				new StateTimeRemainingAction(QUEST_SLOT,"The museum can only afford to send you to fetch an item once a week. Please check back in", delay, 1));
+				new SayTimeRemainingAction(QUEST_SLOT,"The museum can only afford to send you to fetch an item once a week. Please check back in", delay, 1));
 		
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
@@ -235,7 +235,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 								 new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0))),
 				ConversationStates.ATTENDING, 
 				null,
-				new StateRequiredItemAction(QUEST_SLOT,0,"You don't seem to have [item]"
+				new SayRequiredItemAction(QUEST_SLOT,0,"You don't seem to have [item]"
 						+ " with you. Please get it and say #complete only then."));
 		
 	}

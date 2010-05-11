@@ -10,7 +10,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -376,7 +376,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 								new TimePassedCondition(QUEST_SLOT, delay, 1))), 
 				ConversationStates.ATTENDING, 
 				null,
-				new StateTimeRemainingAction(QUEST_SLOT,"I can only give you a new quest once a day. Please check back in", delay, 1));
+				new SayTimeRemainingAction(QUEST_SLOT,"I can only give you a new quest once a day. Please check back in", delay, 1));
 
 		// player asked for quest first time or repeat it after passed proper time
 		npc.add(ConversationStates.ATTENDING,

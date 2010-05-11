@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
-import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -136,7 +136,7 @@ public class Soup extends AbstractQuest {
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))), 
 				ConversationStates.ATTENDING, 
 				null,
-				new StateTimeRemainingAction(QUEST_SLOT, "I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in", REQUIRED_MINUTES , 1)
+				new SayTimeRemainingAction(QUEST_SLOT, "I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in", REQUIRED_MINUTES , 1)
 			);
 
 		// player responds to word 'revive'

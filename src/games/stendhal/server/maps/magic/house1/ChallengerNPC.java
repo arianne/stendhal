@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
-import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
@@ -115,7 +115,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 								 ),
 				ConversationStates.ATTENDING, 
 				null, 
-				new StateTimeRemainingAction(QUEST_SLOT, "Your life force will not support the island so soon after you last visited. You will be ready again in", DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS));
+				new SayTimeRemainingAction(QUEST_SLOT, "Your life force will not support the island so soon after you last visited. You will be ready again in", DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS));
 
 	// player returns within DAYS_BEFORE_REPEAT days, if the zone still exists that he was in before, send him straight up. 
 		npc.add(ConversationStates.ANY, 

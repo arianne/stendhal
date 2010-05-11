@@ -18,7 +18,7 @@ import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
-import games.stendhal.server.entity.npc.action.StateTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -151,7 +151,7 @@ public class SadScientist extends AbstractQuest {
 				new QuestStateStartsWithCondition(QUEST_SLOT,"decorating"),
 				new NotCondition( new TimePassedCondition(QUEST_SLOT, 5, 1))
 			);
-		ChatAction reply = new StateTimeRemainingAction(QUEST_SLOT, "I did not finish decorating the legs. " +
+		ChatAction reply = new SayTimeRemainingAction(QUEST_SLOT, "I did not finish decorating the legs. " +
 				"Please check back in", 5, 1);
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
@@ -305,7 +305,7 @@ public class SadScientist extends AbstractQuest {
 				condition,
 				ConversationStates.IDLE, 
 				null,
-				new StateTimeRemainingAction(QUEST_SLOT, "Do you think I can work that fast? Go away. " +
+				new SayTimeRemainingAction(QUEST_SLOT, "Do you think I can work that fast? Go away. " +
 						"Come back in", REQUIRED_MINUTES, 1));
 	}
 	
