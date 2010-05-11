@@ -30,7 +30,6 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -180,14 +179,14 @@ public class WeeklyItemQuest extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hazel");
 		
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("complete", "done"), 
+				ConversationPhrases.FINISH_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, 
 				"I don't remember giving you any #task yet.",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("complete", "done"), 
+				ConversationPhrases.FINISH_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, 
 				"You already completed the last quest I had given to you.",
@@ -223,7 +222,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		});
 		
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("complete", "done"), 
+				ConversationPhrases.FINISH_MESSAGES, 
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 								 new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0)),
 				ConversationStates.ATTENDING, 
@@ -231,7 +230,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				new MultipleActions(actions));
 		
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("complete", "done"), 
+				ConversationPhrases.FINISH_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 								 new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0))),
 				ConversationStates.ATTENDING, 
@@ -245,7 +244,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hazel");
 		
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("another", "abort"), 
+				ConversationPhrases.ABORT_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 						 		 new TimePassedCondition(QUEST_SLOT,expireDelay,1)), 
 				ConversationStates.ATTENDING, 
@@ -253,7 +252,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				new SetQuestAction(QUEST_SLOT, 0, "done"));
 		
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("another", "abort"), 
+				ConversationPhrases.ABORT_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 						 		 new NotCondition(new TimePassedCondition(QUEST_SLOT,expireDelay,1))), 
 				ConversationStates.ATTENDING, 
@@ -261,7 +260,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("another", "abort"), 
+				ConversationPhrases.ABORT_MESSAGES,
 				new QuestNotActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, 
 				"I'm afraid I didn't send you on a #quest yet.", 
