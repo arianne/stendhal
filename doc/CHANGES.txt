@@ -1,5 +1,11 @@
 Changelog
 ---------
+
+0.84
+*features*
+- new quest from Balduin if you have completed all other quests to get or collect rare weapons
+- daily and weekly item quests can ask for more than one of each item at once
+
 0.83
 *features*
 - Rat City extended
