@@ -21,17 +21,34 @@ public class StartRecordingKillsAction implements ChatAction {
     private final HashMap<String, Pair<Integer, Integer>> toKill;
     private final String QUEST_SLOT;
     private final int KILLS_INDEX;
-	
+
 	/**
 	 * Creates a new StartRecodingKillsAction.
 	 * 
-	 * @param toKill
-	 *            list of creatures which should be killed by the player
+	 * @param questSlot name of quest slot
+	 * @param index index within questslot
+	 * @param toKill list of creatures which should be killed by the player
 	 */
-	public StartRecordingKillsAction(final String questSlot, final int startIndex, final HashMap<String, Pair<Integer, Integer>> toKill) {
+	public StartRecordingKillsAction(final String questSlot, final int index, final HashMap<String, Pair<Integer, Integer>> toKill) {
 		this.toKill = toKill;
 		this.QUEST_SLOT=questSlot;
-		this.KILLS_INDEX=startIndex;
+		this.KILLS_INDEX=index;
+	}
+
+	/**
+	 * Creates a new StartRecodingKillsAction.
+	 * 
+	 * @param questSlot name of quest slot
+	 * @param index index within questslot
+	 * @param creature Creature
+	 * @param requiredSolo number of creatures that have to be killed solo
+	 * @param requiredShared number of creatures that may be killed with help by other players
+	 */
+	public StartRecordingKillsAction(final String questSlot, final int index, String creature, int requiredSolo, int requiredShared) {
+		this.toKill = new HashMap<String, Pair<Integer, Integer>>();
+		toKill.put(creature, new Pair<Integer, Integer>(requiredSolo, requiredShared));
+		this.QUEST_SLOT=questSlot;
+		this.KILLS_INDEX=index;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
