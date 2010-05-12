@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests.marriage;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -40,7 +41,7 @@ class Divorce {
 		clerk.add(ConversationStates.ATTENDING, 
 				"divorce",
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return (player.isQuestCompleted(marriage.getQuestSlot()))
 								&& player.isEquipped("wedding ring") && player.isEquipped("money",200*player.getLevel());
 					}
@@ -74,7 +75,7 @@ class Divorce {
 		clerk.add(ConversationStates.ATTENDING, 
 				  "divorce",
 				  new ChatCondition() {
-					  public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					  public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						  return (player.isQuestCompleted(marriage.getQuestSlot()))
 							  && player.isEquipped("wedding ring") && !player.isEquipped("money",200*player.getLevel());
 					  }
@@ -109,7 +110,7 @@ class Divorce {
 					"divorce",
 					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence,
-								final SpeakerNPC npc) {
+								final Entity npc) {
 							return (player.hasQuest(marriage.getQuestSlot()) && player.getQuest(
 									marriage.getQuestSlot()).equals("just_married"))
 									&& player.isEquipped("wedding ring");
@@ -122,7 +123,7 @@ class Divorce {
 		clerk.add(ConversationStates.ATTENDING,
 				"divorce",
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return !(player.isQuestCompleted(marriage.getQuestSlot()) || (player.hasQuest(marriage.getQuestSlot()) && player.getQuest(
 								marriage.getQuestSlot()).equals("just_married")));
 					}

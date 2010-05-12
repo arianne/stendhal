@@ -5,6 +5,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -202,7 +203,7 @@ public class AdosDeathmatch extends AbstractQuest {
 
 
 	static class DeathMatchEmptyCondition implements ChatCondition {
-		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 			final List<Player> dmplayers = arena.getPlayers();
 			return (dmplayers.size() == 0);
 		}

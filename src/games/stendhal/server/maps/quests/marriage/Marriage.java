@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests.marriage;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -46,7 +47,7 @@ class Marriage {
 					"marry",
 					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence,
-								final SpeakerNPC npc) {
+								final Entity npc) {
 							return player.hasQuest(marriage.getQuestSlot())
 									&& player.getQuest(marriage.getQuestSlot()).startsWith(
 											"engaged")
@@ -118,7 +119,7 @@ class Marriage {
 					"marry",
 					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence,
-								final SpeakerNPC npc) {
+								final Entity npc) {
 							return (!player.hasQuest(marriage.getQuestSlot()) 
 									|| (player.hasQuest(marriage.getQuestSlot())	&& player.getQuest(marriage.getQuestSlot()).startsWith("engaged") && !player.isEquipped("wedding ring")));
 						}
@@ -132,7 +133,7 @@ class Marriage {
 				"marry",
 				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final Entity npc) {
 						return (player.isQuestCompleted(marriage.getQuestSlot()));
 					}
 				}, 

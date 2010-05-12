@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -163,13 +164,13 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	static class HenryQuestNotCompletedCondition implements ChatCondition {
-		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
 	static class HenryQuestCompletedCondition implements ChatCondition {
-		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}

@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests.houses;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -183,7 +184,7 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 	protected abstract int getHighestHouseNumber();
 }
 final class PlayerOwnsHouseCondition implements ChatCondition {
-	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 		return HouseUtilities.playerOwnsHouse(player);
 	}
 }

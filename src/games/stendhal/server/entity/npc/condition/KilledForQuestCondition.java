@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -41,7 +41,7 @@ public class KilledForQuestCondition implements ChatCondition {
 	/**
 	 * return true if player have killed proper creature numbers.
 	 */
-	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 		final String temp = player.getQuest(QUEST_SLOT, questIndex);
 		if(temp==null) {
 			return false;

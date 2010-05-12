@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -175,7 +176,7 @@ public class EngineTest {
 		final String triggers = "boo";
 
 		final ChatCondition cc = new ChatCondition() {
-			public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
 				return true;
 			}

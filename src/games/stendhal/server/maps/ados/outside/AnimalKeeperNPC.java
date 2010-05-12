@@ -9,6 +9,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Pet;
@@ -108,7 +109,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 					ConversationPhrases.HELP_MESSAGES,
 					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence,
-											final SpeakerNPC engine) {
+											final Entity engine) {
 							return player.hasPet();
 						}
 					}, 
@@ -151,7 +152,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 					ConversationPhrases.HELP_MESSAGES,
 					new ChatCondition() {
 						public boolean fire(final Player player, final Sentence sentence,
-											final SpeakerNPC engine) {
+											final Entity engine) {
 							return !player.hasPet();
 						}
 					}, 

@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.scroll.RainbowBeansScroll;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -84,7 +85,7 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new ChatCondition() {
-				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 					if (player.hasQuest(QUEST_SLOT)) {
 						final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 						final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
@@ -104,7 +105,7 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new ChatCondition() {
-				public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 					if (player.hasQuest(QUEST_SLOT)) {
 						final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 						final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 

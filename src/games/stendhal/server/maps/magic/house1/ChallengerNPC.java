@@ -3,6 +3,7 @@ package games.stendhal.server.maps.magic.house1;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -187,7 +188,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 
 	// Not made as an entity.npc.condition. file because the zone name depends on player here. 
 	class AdventureZoneExistsCondition implements ChatCondition {
-		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 			final String zoneName = player.getName() + "_adventure_island";
 			final IRPZone.ID zoneid = new IRPZone.ID(zoneName);
 			return SingletonRepository.getRPWorld().hasRPZone(zoneid);

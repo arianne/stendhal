@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
@@ -38,7 +38,7 @@ public class TriggerInListCondition implements ChatCondition {
 		triggers = new TriggerList(trigger);
 	}
 
-	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return triggers.contains(sentence.getTriggerExpression());
 	}
 

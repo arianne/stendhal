@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
 import games.stendhal.server.entity.npc.parser.ConversationContext;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
@@ -51,7 +51,7 @@ public class TriggerExactlyInListCondition implements ChatCondition {
 		}
 	}
 
-	public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 
 		// TODO: lowercase "and" at the beginning of a sentence is ignored, even in full match mode: "and the other gold"
 

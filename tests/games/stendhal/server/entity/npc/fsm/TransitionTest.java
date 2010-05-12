@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -133,7 +134,7 @@ public class TransitionTest {
 		assertNull(t.getAction());
 		final PostTransitionAction postTransitionAction = new PostTransitionAction() {
 
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
 				// do nothing
 			}
 		};
@@ -151,7 +152,7 @@ public class TransitionTest {
 										null, idle_0, null, null);
 		assertNull(t.getCondition());
 		final ChatCondition cond = new ChatCondition() {
-			public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 				return false;
 			}
 		};

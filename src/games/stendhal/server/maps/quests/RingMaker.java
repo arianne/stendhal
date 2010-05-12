@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -240,7 +241,7 @@ public class RingMaker extends AbstractQuest {
 		public TimeExpiredCondition(final long timeInMilliSeconds) {
 			this.millisExpired = timeInMilliSeconds;
 		}
-		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 			final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 			final long timeRemaining = (Long.parseLong(tokens[1]) + millisExpired)
 					- System.currentTimeMillis();

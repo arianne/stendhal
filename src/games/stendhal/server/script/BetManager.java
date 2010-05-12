@@ -5,6 +5,7 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -159,7 +160,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 */
 	protected class BetCondition implements ChatCondition {
 
-		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 			return state == State.ACCEPTING_BETS;
 		}
 	}
@@ -169,7 +170,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 */
 	protected class NoBetCondition implements ChatCondition {
 
-		public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 			return state != State.ACCEPTING_BETS;
 		}
 	}

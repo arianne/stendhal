@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests.marriage;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -24,7 +25,7 @@ class GetOutfits {
 		tam = npcs.get("Tamara");
 		tam.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return marriage.isEngaged(player);
 					}
 				}, 
@@ -33,7 +34,7 @@ class GetOutfits {
 				null);
 		tam.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return !marriage.isEngaged(player);
 					}
 				}, 
@@ -44,7 +45,7 @@ class GetOutfits {
 		tim = npcs.get("Timothy");
 		tim.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return marriage.isEngaged(player);
 					}
 				}, 
@@ -53,7 +54,7 @@ class GetOutfits {
 				null);
 		tim.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return !marriage.isEngaged(player);
 					}
 				}, 

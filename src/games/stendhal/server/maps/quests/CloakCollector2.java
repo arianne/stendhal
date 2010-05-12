@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -92,7 +93,7 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 						return !player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(OLD_QUEST);
 					}
 				},
@@ -107,9 +108,9 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
 						final List<String> needed2 = missingcloaks2(player, true);
-						engine.say("It's missing "
+						entity.say("It's missing "
 								+ Grammar.quantityplnoun(needed2.size(), "cloak")
 								+ ". That's "
 								+ Grammar.enumerateCollection(needed2)
@@ -128,8 +129,8 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.IDLE, 
 				null, 
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						engine.say("Brilliant! I'm all excited again! Bye!");
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+						entity.say("Brilliant! I'm all excited again! Bye!");
 						player.setQuest(QUEST_SLOT, "");
 						player.addKarma(5.0);
 					}
@@ -147,8 +148,8 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null, 
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						engine.say("Oh ... you're not very friendly. Please say yes?");
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+						entity.say("Oh ... you're not very friendly. Please say yes?");
 						player.addKarma(-5.0);
 					}
 
@@ -171,7 +172,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
 						final String itemName = sentence.getTriggerExpression().getNormalized();
 						final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 						StringBuilder stringBuilder = new StringBuilder();
@@ -183,7 +184,7 @@ public class CloakCollector2 extends AbstractQuest {
 						}
 						
 						stringBuilder.append(". Sorry if that's not much help, it's all I know! So, will you find them all?");
-						engine.say(stringBuilder.toString());
+						entity.say(stringBuilder.toString());
 					}
 
 					@Override
@@ -214,9 +215,9 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
 						final List<String> needed2 = missingcloaks2(player, true);
-						engine.say("I want "
+						entity.say("I want "
 								+ Grammar.quantityplnoun(needed2.size(), "cloak")
 								+ ". That's "
 								+ Grammar.enumerateCollection(needed2)
@@ -242,7 +243,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
 						TriggerList missing = new TriggerList(missingcloaks2(player, false));
 						final Expression item = sentence.getTriggerExpression();
 
@@ -261,23 +262,23 @@ public class CloakCollector2 extends AbstractQuest {
 								if (missing.isEmpty()) {
 									rewardPlayer(player);
 									// TODO: Make speech mention scent reward if applicable.
-									engine.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Here, take these killer boots. I think they're gorgeous but they don't fit me!");
+									entity.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Here, take these killer boots. I think they're gorgeous but they don't fit me!");
 									player.setQuest(QUEST_SLOT, "done;rewarded");
 									final Item boots = SingletonRepository.getEntityManager().getItem("killer boots");
 									boots.setBoundTo(player.getName());
 									player.equipOrPutOnGround(boots);
 									player.notifyWorldAboutChanges();
-									engine.setCurrentState(ConversationStates.ATTENDING);
+									entity.setCurrentState(ConversationStates.ATTENDING);
 								} else {
-									engine.say("Wow, thank you! What else did you bring?");
+									entity.say("Wow, thank you! What else did you bring?");
 								}
 							} else {
-								engine.say("Oh, I'm disappointed. You don't really have "
+								entity.say("Oh, I'm disappointed. You don't really have "
 												+ Grammar.a_noun(itemName)
 												+ " with you.");
 							}
 						} else {
-							engine.say("You're terribly forgetful, you already brought that one to me.");
+							entity.say("You're terribly forgetful, you already brought that one to me.");
 						}
 					}
 
@@ -290,7 +291,7 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.NO_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, 
@@ -302,7 +303,7 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_2, 
 				ConversationPhrases.NO_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, ConversationStates.ATTENDING, "Okay then. Come back later.",

@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -197,7 +198,7 @@ class HouseTax implements TurnListener {
 		taxman.add(ConversationStates.ATTENDING,
 				"pay",
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return getUnpaidTaxPeriods(player) > 0;
 					}
 		},
@@ -208,7 +209,7 @@ class HouseTax implements TurnListener {
 		taxman.add(ConversationStates.ATTENDING,
 				   Arrays.asList("pay", "payment"),
 				   new ChatCondition() {
-					   public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					   public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						   return getUnpaidTaxPeriods(player) <= 0;
 					   }
 				   },

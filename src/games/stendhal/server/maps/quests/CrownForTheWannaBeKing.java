@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -121,10 +122,10 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.QUESTION_1, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
 						player.setQuest(QUEST_SLOT, NEEDED_ITEMS);
 						player.addKarma(5.0);
-						engine.say("I want my crown to be beautiful and shiny. I need "
+						entity.say("I want my crown to be beautiful and shiny. I need "
 									+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
 									+ ". Do you have some of those now with you?");
 					}
@@ -148,7 +149,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence,	final SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence,	final Entity entity) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player.getQuest(QUEST_SLOT));
@@ -162,9 +163,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, "items", null,
 				ConversationStates.QUESTION_1, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
 						final List<String> needed = getMissingItems(player).toStringListWithHash();
-						engine.say("I need "
+						entity.say("I need "
 								+ Grammar.enumerateCollection(needed)
 								+ ". Did you bring something?");
 					}
@@ -198,7 +199,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* player says he didn't bring any items (says no) */
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player
@@ -210,7 +211,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* player says he didn't bring any items to different question */
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 						return !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player.getQuest(QUEST_SLOT));
 					}
@@ -232,7 +233,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 						return player.isQuestCompleted(QUEST_SLOT)
 								|| "reward".equals(player.getQuest(QUEST_SLOT));
 					}
@@ -252,8 +253,8 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				new QuestInStateCondition(QUEST_SLOT, "reward"),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						engine.say("Oh yes, "
+					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+						entity.say("Oh yes, "
 									+ NPC_NAME
 									+ " told me to reward you well! I hope you enjoy your increased combat abilities!");
 						rewardPlayer(player);
