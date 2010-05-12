@@ -132,8 +132,8 @@
 		</portal>
 		<portal x="64" y="115" ref="left1">
 			<destination zone="0_semos_mountain_n_w2" ref="right1" />
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-				<parameter name="maximum-level">50</parameter>
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.ConditionCheckingPortal">
+				<parameter name="condition">new LevelLessThanCondition(50)</parameter>
 				<parameter name="rejected">The gnomes don't want you getting in here.</parameter>
 			</implementation>
 		</portal>
@@ -142,8 +142,8 @@
 		</portal>
 		<portal x="64" y="116" ref="left2">
 			<destination zone="0_semos_mountain_n_w2" ref="right2" />
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-				<parameter name="maximum-level">50</parameter>
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.ConditionCheckingPortal">
+				<parameter name="condition">new LevelLessThanCondition(50)</parameter>
 				<parameter name="rejected">The gnomes don't want you getting in here.</parameter>
 			</implementation>
 		</portal>
@@ -152,8 +152,8 @@
 		</portal>
 		<portal x="64" y="117" ref="left3">
 			<destination zone="0_semos_mountain_n_w2" ref="right3" />
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-				<parameter name="maximum-level">50</parameter>
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.ConditionCheckingPortal">
+				<parameter name="condition">new LevelLessThanCondition(50)</parameter>
 				<parameter name="rejected">The gnomes don't want you getting in here.</parameter>
 			</implementation>
 		</portal>
@@ -173,8 +173,8 @@
 		
 <!--		<portal x="76" y="36" ref="wizardstower_entrance">
                 <destination zone="int_semos_wizards_tower_basement" ref="wizardstower_exit" />
-                <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-                <parameter name="minimum-level">50</parameter>
+                <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionCheckingPortal">
+                <parameter name="condition">new LevelGreaterThanCondition(50)</parameter>
                 <parameter name="rejected">You hear a far and mighty voice in your mind: "Stranger, i am Zekiel, the guardian. The floors of this tower are violent places and to dangerous for you."(Level 50)</parameter>
             </implementation>
         </portal>
@@ -593,8 +593,8 @@
 		<portal x="92" y="101" ref="catacombs_entrance">
 			<destination zone="-1_semos_catacombs_se" ref="entrance" />
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
-				<parameter name="quest">vs_quest</parameter>
+				class-name="games.stendhal.server.entity.mapstuff.portal.ConditionCheckingPortal">
+				<parameter name="condition">new QuestStartedCondition("vs_quest")</parameter>
 				<parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
 			</implementation>
 		</portal>
