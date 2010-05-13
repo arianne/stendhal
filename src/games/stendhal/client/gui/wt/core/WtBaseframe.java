@@ -18,7 +18,6 @@
 
 package games.stendhal.client.gui.wt.core;
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 
 import java.awt.Graphics;
@@ -154,7 +153,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		// be sure to stop dragging operations when theleft button is released
 		if (dragInProgress && (draggedObject != null)) {
 			final Point p = e.getPoint();
-			draggedObject.dragFinished(p, gameScreen);
+			draggedObject.dragFinished(p);
 			// now check if there is a drop-target direct unter the mouse cursor
 			checkDropped(p.x, p.y, draggedObject);
 		}
@@ -301,7 +300,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 			// did we get an object
 			if (draggedObject != null) {
 				// do the object want to be dragged
-				if (draggedObject.dragStarted(GameScreen.get())) {
+				if (draggedObject.dragStarted()) {
 					// start drag
 					dragStartPoint = e.getPoint();
 				} else {

@@ -1336,7 +1336,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	public boolean dragStarted(final IGameScreen gameScreen) {
+	public boolean dragStarted() {
 		if (isClosed()) {
 			return false;
 		}
@@ -1351,7 +1351,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param p
 	 * @return false
 	 */
-	public boolean dragFinished(final Point p, final IGameScreen gameScreen) {
+	public boolean dragFinished(final Point p) {
 		return false;
 	}
 

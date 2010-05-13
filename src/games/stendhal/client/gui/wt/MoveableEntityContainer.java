@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.IGameScreen;
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
@@ -103,7 +103,7 @@ class MoveableEntityContainer implements WtDraggable {
 	 * 
 	 * @return true
 	 */
-	public boolean dragStarted(final IGameScreen gameScreen) {
+	public boolean dragStarted() {
 		view = EntityViewFactory.create(entity);
 
 		if (view != null) {
@@ -128,9 +128,9 @@ class MoveableEntityContainer implements WtDraggable {
 	 * @param gameScreen
 	 * @return true
 	 */
-	public boolean dragFinished(final Point p, final IGameScreen gameScreen) {
+	public boolean dragFinished(final Point p) {
 		if (view != null) {
-			view.release(gameScreen);
+			view.release(GameScreen.get());
 			view = null;
 		}
 
