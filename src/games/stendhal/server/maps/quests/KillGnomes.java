@@ -128,8 +128,12 @@ public class KillGnomes extends AbstractQuest {
 		actions.add(new IncreaseXPAction(100));
 		actions.add(new SetQuestAction(QUEST_SLOT, "killed;1"));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
-
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.FINISH_MESSAGES,
+		
+		LinkedList<String> triggers = new LinkedList<String>();
+		triggers.addAll(ConversationPhrases.FINISH_MESSAGES);
+		triggers.addAll(ConversationPhrases.QUEST_MESSAGES);		
+		npc.add(ConversationStates.ATTENDING, 
+				triggers,
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new KilledForQuestCondition(QUEST_SLOT, 1)),
@@ -138,7 +142,8 @@ public class KillGnomes extends AbstractQuest {
 				+ "Please take these potions as a reward.",
 				new MultipleActions(actions));
 
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.FINISH_MESSAGES,
+		npc.add(ConversationStates.ATTENDING, 
+				triggers,
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new NotCondition(new KilledForQuestCondition(QUEST_SLOT, 1))),
