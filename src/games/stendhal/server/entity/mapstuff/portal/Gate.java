@@ -3,6 +3,11 @@ package games.stendhal.server.entity.mapstuff.portal;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 
@@ -24,17 +29,25 @@ public class Gate extends Entity implements UseListener {
 	}
 	
 	private boolean isOpen;
+	private final ChatCondition condition;
 
 	/**
 	 * Create a new gate.
 	 * 
 	 * @param orientation gate orientation. Either "v" or "h".
+	 * @param image image used for the gate
+	 * @param condition conditions required for opening the gate, or <code>null</code>
+	 * 	if no checking is required
 	 */
-	public Gate(final String orientation, String image) {
+	public Gate(final String orientation, String image, ChatCondition condition) {
 		setRPClass("gate");
 		put("type", "gate");
 		setOrientation(orientation);
 		setOpen(false);
+		if (condition == null) {
+			condition = new AlwaysTrueCondition();
+		}
+		this.condition = condition;
 		if (image != null) {
 			put(IMAGE, image);
 		} else {
@@ -46,7 +59,7 @@ public class Gate extends Entity implements UseListener {
 	 * Create a new vertical gate.
 	 */
 	public Gate() {
-		this(VERTICAL, null);
+		this(VERTICAL, null, null);
 	}
 
 	/**
@@ -86,11 +99,16 @@ public class Gate extends Entity implements UseListener {
 	}
 
 	public boolean onUsed(final RPEntity user) {
-		if (this.nextTo(user)) {
+		if (this.nextTo(user) && isAllowed(user)) {
 			setOpen(!isOpen());
 			return true;
 		}
 		return false;
+	}
+	
+	private boolean isAllowed(final RPEntity user) {
+		Sentence sentence = ConversationParser.parse(user.get("text"));
+		return condition.fire((Player) user, sentence, this);
 	}
 
 	/**

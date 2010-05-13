@@ -3,8 +3,13 @@ package games.stendhal.server.entity.mapstuff.portal;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatCondition;
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
 
 import java.util.Map;
+
+import org.codehaus.groovy.control.CompilationFailedException;
 
 public class GateConfigurator implements ZoneConfigurator {
 	public void configureZone(final StendhalRPZone zone,
@@ -13,8 +18,21 @@ public class GateConfigurator implements ZoneConfigurator {
 		final int y = MathHelper.parseInt(attributes.get("y"));
 		final String orientation = attributes.get("orientation");
 		final String image = attributes.get("image");
+		
+		ChatCondition condition = null;
+		final String condString = attributes.get("condition");
+		if (condString != null) {
+			final GroovyShell interp = new GroovyShell(new Binding());
+			String code = "import games.stendhal.server.entity.npc.condition.*;\r\n"
+				+ condString;
+			try {
+				condition = (ChatCondition) interp.evaluate(code);
+			} catch (CompilationFailedException e) {
+				throw new IllegalArgumentException(e);
+			}
+		}
 
-		buildGate(zone, x, y, orientation, image);
+		buildGate(zone, x, y, orientation, image, condition);
 	}
 	
 	/**
@@ -26,8 +44,8 @@ public class GateConfigurator implements ZoneConfigurator {
 	 * @param orientation gate orientation
 	 */
 	private void buildGate(final StendhalRPZone zone, final int x, final int y, 
-			final String orientation, final String image) {
-		final Gate gate = new Gate(orientation, image);
+			final String orientation, final String image, ChatCondition condition) {
+		final Gate gate = new Gate(orientation, image, condition);
 		
 		gate.setPosition(x, y);
 		zone.add(gate);
