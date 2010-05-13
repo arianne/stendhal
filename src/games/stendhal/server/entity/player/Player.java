@@ -1207,18 +1207,6 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * Makes the game think that this player has never killed a creature with
-	 * the given name. Use this for quests where the player should kill a
-	 * creature of a specific type.
-	 * 
-	 * @param name
-	 *            The name of the creature.
-	 */
-	public void removeKill(final String name) {
-		killRec.removeKill(name);
-	}
-	
-	/**
 	 * Returns how much the player has killed 'name' solo. 
 	 * @param name of the victim
 	 * @return number of solo kills

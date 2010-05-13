@@ -77,19 +77,6 @@ class KillRecording {
 	}
 
 	/**
-	 * Makes the game think that this player has never killed a creature with
-	 * the given name. Use this for quests where the player should kill a
-	 * creature of a specific type.
-	 * 
-	 * @param name
-	 *            The name of the creature.
-	 */
-	public void removeKill(final String name) {
-		player.setKeyedSlot(KILL_SLOT_NAME, PREFIX_SHARED + name, null);
-		player.setKeyedSlot(KILL_SLOT_NAME, PREFIX_SOLO + name, null);
-	}
-	
-	/**
 	 * Return information about how much creatures with the given name player killed.
 	 * @param name of the killed creature.
 	 * @param mode either "solo", "shared", or null.
