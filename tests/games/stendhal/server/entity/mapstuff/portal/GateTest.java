@@ -6,9 +6,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -108,7 +110,7 @@ public class GateTest {
 	public void testUseGateNextTo() throws Exception {
 		final Gate gate = new Gate();
 
-		final RPEntity user = new RPEntity() {
+		final Player user = new Player(new RPObject()) {
 
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
