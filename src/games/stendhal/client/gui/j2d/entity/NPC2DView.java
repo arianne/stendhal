@@ -115,6 +115,7 @@ class NPC2DView extends RPEntity2DView {
 	 *
 	 * @return StendhalCursor
 	 */
+	@Override
 	public StendhalCursor getCursor() {
 		return StendhalCursor.LOOK;
 	}

@@ -40,6 +40,7 @@ public class ChatTextController {
 
 	class ChatTextKeyListener extends KeyAdapter {
 		
+			@Override
 			public void keyPressed(final KeyEvent e) {
 				final int keypressed = e.getKeyCode();
 

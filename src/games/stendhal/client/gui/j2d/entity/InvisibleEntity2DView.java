@@ -56,6 +56,7 @@ class InvisibleEntity2DView extends Entity2DView {
 	 *
 	 * @return StendhalCursor
 	 */
+	@Override
 	public StendhalCursor getCursor() {
 		return null;
 	}

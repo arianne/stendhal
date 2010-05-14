@@ -92,6 +92,7 @@ class Pet2DView extends DomesticAnimal2DView {
 	 *
 	 * @return StendhalCursor
 	 */
+	@Override
 	public StendhalCursor getCursor() {
 		return StendhalCursor.LOOK;
 	}

@@ -37,6 +37,7 @@ public class TradeCenterSign2DView extends Sign2DView {
 	 *
 	 * @return StendhalCursor
 	 */
+	@Override
 	public StendhalCursor getCursor() {
 		return StendhalCursor.LOOK;
 	}

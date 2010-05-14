@@ -277,6 +277,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 *
 	 * @return StendhalCursor
 	 */
+	@Override
 	public StendhalCursor getCursor() {
 		return StendhalCursor.LOOK;
 	}

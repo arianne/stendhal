@@ -13,13 +13,15 @@ import javax.swing.JPopupMenu;
 final class BuddyLabelMouseListener extends MouseAdapter {
 	
 	
+	@Override
 	public void mousePressed(final MouseEvent e) {
-        maybeShowPopup(e);
-    }
+		maybeShowPopup(e);
+	}
 
-    public void mouseReleased(final MouseEvent e) {
-        maybeShowPopup(e);
-    }
+	@Override
+	public void mouseReleased(final MouseEvent e) {
+		maybeShowPopup(e);
+	}
 
     private void maybeShowPopup(final MouseEvent e) {
         if (e.isPopupTrigger()) {

@@ -44,6 +44,7 @@ public final class ChatCompletionHelper extends KeyAdapter {
 		this.playersonline = list;
 	}
 
+	@Override
 	public void keyPressed(final KeyEvent e) {
 
 		final int keypressed = e.getKeyCode();

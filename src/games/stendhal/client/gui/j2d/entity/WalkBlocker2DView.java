@@ -35,6 +35,7 @@ class WalkBlocker2DView extends InvisibleEntity2DView {
 	 *
 	 * @return StendhalCursor
 	 */
+	@Override
 	public StendhalCursor getCursor() {
 		return StendhalCursor.NORMAL;
 	}
