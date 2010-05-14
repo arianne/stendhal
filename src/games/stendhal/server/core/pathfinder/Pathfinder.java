@@ -162,7 +162,7 @@ public abstract class Pathfinder {
 	 * @return the pathfinder status.
 	 * @see #pathStatus
 	 */
-	public int getStatus() {
+	protected int getStatus() {
 		return pathStatus;
 	}
 	
