@@ -229,7 +229,7 @@ public class SettingsDialog extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Account", jPanel3);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+/*        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +254,7 @@ public class SettingsDialog extends javax.swing.JDialog {
                     .addComponent(jButton1))
                 .addGap(21, 21, 21))
         );
-
+*/
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
