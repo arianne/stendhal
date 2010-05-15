@@ -1,5 +1,8 @@
 package games.stendhal.server.entity.mapstuff.portal;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -11,7 +14,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 
-public class Gate extends Entity implements UseListener {
+public class Gate extends Entity implements UseListener, TurnListener {
 	private static final String HORIZONTAL = "h";
 	private static final String VERTICAL = "v";
 	private static final String ORIENTATION = "orientation";
@@ -28,8 +31,15 @@ public class Gate extends Entity implements UseListener {
 		}
 	}
 	
+	/** Current state of the gate. */
 	private boolean isOpen;
+	/** Condition for allowing use of the gate. */
 	private final ChatCondition condition;
+	/** 
+	 * Time the door should keep open before closing. 0 if it should
+	 * not close automatically.
+	 */
+	private int autoCloseDelay;
 
 	/**
 	 * Create a new gate.
@@ -78,7 +88,7 @@ public class Gate extends Entity implements UseListener {
 	/**
 	 * Open the gate.
 	 */
-	public void open() {
+	protected void open() {
 		setOpen(true);
 	}
 
@@ -87,14 +97,14 @@ public class Gate extends Entity implements UseListener {
 	 * 
 	 * @return true iff the gate is open
 	 */
-	public boolean isOpen() {
+	protected boolean isOpen() {
 		return isOpen;
 	}
 
 	/**
 	 * Close the gate.
 	 */
-	public void close() {
+	protected void close() {
 		setOpen(false);
 	}
 
@@ -106,6 +116,22 @@ public class Gate extends Entity implements UseListener {
 		return false;
 	}
 	
+	/**
+	 * Make the gate close automatically after specified delay
+	 * once it's been opened.
+	 * 
+	 * @param seconds time to keep the gate open
+	 */
+	protected void setAutoCloseDelay(int seconds) {
+		autoCloseDelay = seconds;
+	}
+	
+	/**
+	 * Check if a player can use the gate.
+	 * 
+	 * @param user player trying to close or open the gate
+	 * @return <code>true</code> iff the player is allowed to use the gate
+	 */
 	private boolean isAllowed(final RPEntity user) {
 		Sentence sentence = ConversationParser.parse(user.get("text"));
 		return condition.fire((Player) user, sentence, this);
@@ -117,8 +143,13 @@ public class Gate extends Entity implements UseListener {
 	 * @param open true if the door is opened, false otherwise
 	 */
 	private void setOpen(final boolean open) {
+		final TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
+		
 		if (open) {
 			setResistance(0);
+			if (autoCloseDelay != 0) {
+				turnNotifier.notifyInSeconds(autoCloseDelay, this);
+			}
 		} else {
 			// Closing the gate - check there's nobody on the way
 			if (getZone() != null)  {
@@ -129,8 +160,23 @@ public class Gate extends Entity implements UseListener {
 				}
 			}
 			setResistance(100);
+			// Stop the notifier, so that the door does not slam in front
+			// of someone who just opened it
+			turnNotifier.dontNotify(this);
 		}
 		isOpen = open;
 		notifyWorldAboutChanges();
+	}
+
+	public void onTurnReached(int currentTurn) {
+		setOpen(false);
+		/*
+		 * If something was on the way, the closing failed.
+		 * Try again after the usual delay. 
+		 */
+		if (isOpen) {
+			final TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
+			turnNotifier.notifyInSeconds(autoCloseDelay, this);
+		}
 	}
 }
