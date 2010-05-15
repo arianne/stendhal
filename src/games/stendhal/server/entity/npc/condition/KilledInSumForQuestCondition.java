@@ -89,7 +89,7 @@ public class KilledInSumForQuestCondition implements ChatCondition {
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				KilledForQuestCondition.class);
+				KilledInSumForQuestCondition.class);
 	}
 
 	@Override
