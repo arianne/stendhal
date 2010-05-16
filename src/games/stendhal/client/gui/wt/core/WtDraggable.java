@@ -29,8 +29,7 @@ public interface WtDraggable {
 
 	/**
 	 * this object has been started to drag around.
-	 * @param gameScreen 
-	 * 			 The gameScreen to paint on.
+	 * 
 	 * @return true when this item can be dragged, false otherwise
 	 */
 	boolean dragStarted();
@@ -41,8 +40,6 @@ public interface WtDraggable {
 	 * @param p
 	 *            the point where the mouse cursor is at the moment (relative to
 	 *            the drag startpoint)
-	 * @param gameScreen 
-	 * 			 The gameScreen to paint on.
 	 * @return true when this item can be dropped on point p, false otherwise
 	 */
 	boolean dragFinished(Point p);
