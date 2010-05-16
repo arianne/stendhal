@@ -20,6 +20,7 @@ import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.account.AccountCreator;
 import games.stendhal.server.core.account.CharacterCreator;
 import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
+import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.scripting.ScriptRunner;
@@ -407,6 +408,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			Player player = (Player) object;
 			
 			playersRmText.add(player);
+
+			// place the player and his pets into the world
+			PlayerTransformer.placePlayerIntoWorldOnLogin(object, player);
+			PlayerTransformer.placeSheepAndPetIntoWorld(player);
+			player.notifyWorldAboutChanges();
+			StendhalRPAction.transferContent(player);
+
 
 			getOnlinePlayers().add(player);
 

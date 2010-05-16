@@ -59,15 +59,7 @@ public class PlayerTransformer implements Transformer {
 		player.stop();
 		player.stopAttack();
 
-		
 
-		
-		placePlayerIntoWorldOnLogin(object, player);
-		placeSheepAndPetIntoWorld(player);
-
-		player.notifyWorldAboutChanges();
-		StendhalRPAction.transferContent(player);
-		
 		loadItemsIntoSlots(player);
 
 		if (player.getSlot("!buddy").size() > 0) {
@@ -173,7 +165,7 @@ public class PlayerTransformer implements Transformer {
 	 * @param player
 	 *            Player-object
 	 */
-	void placePlayerIntoWorldOnLogin(final RPObject object, final Player player) {
+	public static void placePlayerIntoWorldOnLogin(final RPObject object, final Player player) {
 		StendhalRPZone zone = null;
 
 		try {
@@ -226,7 +218,7 @@ public class PlayerTransformer implements Transformer {
 
 	}
 
-	private void placeSheepAndPetIntoWorld(final Player player) {
+	public static void placeSheepAndPetIntoWorld(final Player player) {
 		// load sheep
 		final Sheep sheep = player.getPetOwner().retrieveSheep();
 
@@ -366,7 +358,7 @@ public class PlayerTransformer implements Transformer {
 	 * @param player Player
 	 * @return name of start zone
 	 */
-	private String getDefaultZoneForPlayer(final Player player) {
+	private static String getDefaultZoneForPlayer(final Player player) {
 		if (player.getLevel() < 2) {
 			return DEFAULT_ENTRY_ZONE;
 		} else {
@@ -385,7 +377,7 @@ public class PlayerTransformer implements Transformer {
 	 * 
 	 * @return <code>true</code> if placed.
 	 */
-	protected boolean placeAnimalIntoWorld(final DomesticAnimal animal,
+	protected static boolean placeAnimalIntoWorld(final DomesticAnimal animal,
 			final Player player) {
 		final StendhalRPZone playerZone = player.getZone();
 
