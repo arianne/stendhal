@@ -78,7 +78,7 @@ public class ProgressBar extends JFrame {
 	}
 
 	public void start() {
-		m_run = new Thread() {
+		m_run = new Thread("LoginProgressBar") {
 
 			private int counter;
 
