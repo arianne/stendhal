@@ -187,7 +187,7 @@ public class SoundManagerNG
 				logger.info("available device: " + device.getName() + " - " + device.getDescription() + " (" + device.getRating() + ")");
 		}
 		
-		if(mMute || devices != null && devices.size() == 0)
+		if(mute || devices == null && devices.size() == 0)
 		{
 			mSoundSystem = new SoundSystemNG(mAudioFormat, BUFFER_DURATION);
 			mMute        = true;
