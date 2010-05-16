@@ -45,13 +45,14 @@ public class SoundSystemNG extends Thread
 			mFormat = line.getFormat();
 		}
 
-		boolean isReady             () { return mLine.isOpen() && mLine.isRunning(); }
-		int     getNumSamples       () { return mNumSamples;                         }
-		int     getNumChannels      () { return mFormat.getChannels();               }
-		int     getSampleRate       () { return (int)mFormat.getSampleRate();        }
-		int     getNumBytesPerSample() { return mFormat.getSampleSizeInBits() / 8;   }
-		int     available           () { return mLine.available();                   }
-		int     getNumBytesToWrite  () { return mNumBytesToWrite;                    }
+		boolean isReady             () { return mLine.isOpen() && mLine.isRunning();       }
+		int     getNumSamples       () { return mNumSamples;                               }
+		int     getNumChannels      () { return mFormat.getChannels();                     }
+		int     getSampleRate       () { return (int)mFormat.getSampleRate();              }
+		int     getNumBytesPerSample() { return mFormat.getSampleSizeInBits() / 8;         }
+		int     available           () { return mLine.available();                         }
+		int     getNumBytesToWrite  () { return mNumBytesToWrite;                          }
+		int     getFrameSize        () { return getNumBytesPerSample() * getNumChannels(); }
 
 		void close()
 		{
@@ -144,6 +145,14 @@ public class SoundSystemNG extends Thread
 			numBytes *= frameSize;
 			numBytes  = mLine.write(mPCMBuffer, mNumBytesWritten, numBytes);
 
+			// ATTENTION: if no audio data was written to the output line even though
+			//            the line is not full (mLine.available() is not 0)
+			//            the line blocks for some (unknown) reason
+			//            the simplest workaround here is to simply discard the remaining
+			//            audio data and pretend everything was written (return false)
+			if(available > 0 && numBytes == 0)
+				return false;
+
 			mNumBytesWritten          += numBytes;
 			mNumBytesToWrite          -= numBytes;
 			numRemainingBytesInBuffer -= numBytes;
@@ -153,7 +162,7 @@ public class SoundSystemNG extends Thread
 
 			if(mNumBytesToWrite < frameSize)
 				return false;
-
+			
 			return true;
         }
 	}
@@ -273,7 +282,7 @@ public class SoundSystemNG extends Thread
 	private final static int    STATE_PAUSING   = 2;
 	private final static int    STATE_SUSPENDED = 3;
 	private final static Time   ZERO_DURATION   = new Time();
-	private final static Time   SLEEP_DURATION  = new Time(100);
+	private final static Time   SLEEP_DURATION  = new Time(100, Time.Unit.MILLI);
 	private final static int    PRECISION       = 1000000;
 	private final static Logger logger          = Logger.getLogger(SoundSystemNG.class);
 
@@ -387,6 +396,8 @@ public class SoundSystemNG extends Thread
 				{
 					if(mCurrentSystemState.get() != mTargetSystemState.get())
 					{
+						System.out.println("change state");
+						
 						if(mStateChangeDelay.get().getInNanoSeconds() <= 0)
 						{
 							mCurrentSystemState.set(mTargetSystemState.get());
@@ -514,10 +525,27 @@ public class SoundSystemNG extends Thread
 		systemOutput.setBuffer(mMixBuffer, numSamples);
 		systemOutput.convert();
 
+		boolean lineIsBlocked = false;
+
 		while(systemOutput.write(Integer.MAX_VALUE))
 		{
-			if(!mUseDynamicLoadScaling.get() && systemOutput.available() == 0)
+			if(systemOutput.available() < systemOutput.getFrameSize())
+			{
+				// if the line is full even though we waited a few milliseconds
+				// we will asume that the line is blocked for some (unknown) reason
+				// so we will discard the rest of the non written audio data and return
+				if(lineIsBlocked)
+					return;
+
+				// if the buffer of the output line is full we will wait a few milliseconds
+				// to let the system mixer process the audio data
 				threadSleep(SLEEP_DURATION.getInNanoSeconds());
+				lineIsBlocked = true;
+			}
+			else
+			{
+				lineIsBlocked = false;
+			}
 		}
 	}
 
