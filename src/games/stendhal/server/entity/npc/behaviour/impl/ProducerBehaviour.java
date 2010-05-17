@@ -314,14 +314,19 @@ public class ProducerBehaviour extends TransactionBehaviour {
 				products.setBoundTo(player.getName());
 			}
 
-			player.equipOrPutOnGround(products);
-			npc.say("Welcome back! I'm done with your order. Here you have "
+			if (player.equipToInventoryOnly(products)) {					
+				npc.say("Welcome back! I'm done with your order. Here you have "
 					+ Grammar.quantityplnoun(numberOfProductItems,
 							getProductName()) + ".");
-			player.setQuest(questSlot, "done");
-			// give some XP as a little bonus for industrious workers
-			player.addXP(numberOfProductItems);
-			player.notifyWorldAboutChanges();
+				player.setQuest(questSlot, "done");
+				// give some XP as a little bonus for industrious workers
+				player.addXP(numberOfProductItems);
+				player.notifyWorldAboutChanges();
+			} else {
+				npc.say("Welcome back! I'm done with your order. But right now you cannot take the "
+						+ Grammar.plnoun(numberOfProductItems, getProductName()) 
+						+ ". Come back when you have space.");
+			}
 		}
 	}
 
