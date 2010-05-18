@@ -54,6 +54,7 @@ public class StendhalNPCDAO {
 		stmt.setInt(10, npc.getLevel());
 		stmt.setString(11, npc.getDescription());
 		stmt.setString(12, getJob(npc));
+		stmt.setString(13, npc.getAlternativeImage());
 		stmt.addBatch();
 	}
 
@@ -99,8 +100,8 @@ public class StendhalNPCDAO {
 		long start = System.currentTimeMillis();
 		transaction.execute("DELETE FROM npcs", null);
 		PreparedStatement stmt = transaction.prepareStatement("INSERT INTO npcs " +
-			"(name, title, class, outfit, hp, base_hp, zone, x, y, level, description, job)" +
-			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
+			"(name, title, class, outfit, hp, base_hp, zone, x, y, level, description, job, image)" +
+			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
 
 		for (SpeakerNPC npc : SingletonRepository.getNPCList()) {
 			dumpNPC(stmt, npc);
@@ -115,18 +116,8 @@ public class StendhalNPCDAO {
 	public void dumpNPCs() {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
-			long start = System.currentTimeMillis();
-			transaction.execute("DELETE FROM npcs", null);
-			PreparedStatement stmt = transaction.prepareStatement("INSERT INTO npcs " +
-				"(name, title, class, outfit, hp, base_hp, zone, x, y, level, description, job)" +
-				" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", null);
-
-			for (SpeakerNPC npc : SingletonRepository.getNPCList()) {
-				dumpNPC(stmt, npc);
-			}
-			stmt.executeBatch();
+			dumpNPCs(transaction);
 			TransactionPool.get().commit(transaction);
-			logger.debug("Completed dumping of NPCs in " + (System.currentTimeMillis() - start) + " milliseconds.");
 		} catch (SQLException e) {
 			logger.error(e, e);
 			TransactionPool.get().rollback(transaction);

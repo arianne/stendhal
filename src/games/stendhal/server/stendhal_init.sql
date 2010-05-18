@@ -129,6 +129,7 @@ CREATE TABLE IF NOT EXISTS npcs (
   level      INTEGER,
   hp         INTEGER,
   base_hp    INTEGER,
+  image      VARCHAR(255),
   zone       VARCHAR(64),
   x          INTEGER,
   y          INTEGER,

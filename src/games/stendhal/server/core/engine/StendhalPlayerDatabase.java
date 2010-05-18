@@ -30,6 +30,10 @@ public class StendhalPlayerDatabase {
 				transaction.execute("ALTER TABLE kills ADD COLUMN (day DATE);", null);
 			}
 
+			if (!transaction.doesColumnExist("npcs", "image")) {
+				transaction.execute("ALTER TABLE npcs ADD COLUMN (image VARCHAR(255));", null);
+			}
+
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			logger.error(e, e);

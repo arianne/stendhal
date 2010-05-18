@@ -139,6 +139,11 @@ public class SpeakerNPC extends NPC {
 	private Player attending;
 
 	/**
+	 * alternative image for website
+	 */
+	private String alternativeImage;
+
+	/**
 	 * Creates a new SpeakerNPC.
 	 *
 	 * @param name
@@ -769,4 +774,24 @@ public class SpeakerNPC extends NPC {
 	protected void handleSimpleCollision(final int nx, final int ny) {
 		stop();
 	}
+
+	/**
+	 * gets an alternative image for example for the website
+	 *
+	 * @return name of alternative image or <code>null</code> in case the normal image should be used.
+	 */
+	public String getAlternativeImage() {
+		return alternativeImage;
+	}
+
+	/**
+	 * sets an alternative image for example for the website
+	 *
+	 * @param alternativeImage name of alternative image or <code>null</code> in case the normal image should be used.
+	 */
+	public void setAlternativeImage(String alternativeImage) {
+		this.alternativeImage = alternativeImage;
+	}
+
+	
 }
