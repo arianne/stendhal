@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/ground/ground.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" trans="ffffff"/>
  </tileset>
@@ -79,7 +78,7 @@
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aXU7CQBgFUNiBuhmNis8aX+XJRINr0IQlqItR30yIO/FvK35GSUidQovQlvac5AaYQDPldkpJ2uvRFheR4xJZ1tX/ptlZZfspm5PIOHJWIOMV7pfj4a9U19/9zH7/RXtKjaXGh5XsWTFdOSby1nRqLa67n9Gat79Km3Z8zOs5tV5TXW9SP1Vr0vGw6NxdZE3rurzpd1qFRddRem6WItdKRVJke87d3aZrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKjObeQucl/3RKiF/rtN/wAAAAAAAABsuq1+3TOgCyZ1T4DSLku8d3oPjftoumle/zuJ3xjng3ZJ9T+KbPd1TdrseWFQ3zQ6Kbsml12jL5nXN9HpbmRvJvuRa/8zGmuS83wZD9HzQeQwMvjNUf9nnPZ7zOk5b5x6pNb5Kq7TnnJ6zhunnc6j72HkVO+Nl72GW9ZzxZ+jmfTZHJPMY91eI2+R98hH5LPe6RT2BcYcCVsAAAEA
+   H4sIAAAAAAAAAO3aXU7CQBgFUNiBuhmNis8aX+XJRINr0IQlqItR30yIO/FvK35GSQhOoUVoC3NOcgNMoJlyO6Uk7XTYFBeR4wpZ1NX/ppmtqv1UzUlkGDkrkeES98vx8Feq6+9+Jr//sj2lxlLj/Vr2rJxcjomiNZ1ai6vuZ7Di7S/Tuh0fs3pOrddU1+vUT93adDzMO3eXWdO6rm78ndZh3nWUntulzLVSmZTZnnN33nQNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPW4jdxF7pueCI3Qf970DwAAAAAAAAAAAABMco9x3vSfN/0DAAAAAAAAsO62uk3PgByMmp4AlV1WeO/4Hhr30eRpVv87id8Y54PNkup/ENnu6pq0yfNCr7lpZGl6TS66Rl+mXt9Ep7uRvYnsR679z2itUcHzRTxEzweRw0jvN0fdn3E232NBz0XjNCO1zpdxnfZU0HPROJvpPPruR0713nrT13CLeq75c7STPttjNPXYtNfIW+Q98hH5bHY6pX0B0BR6VwAAAQA=
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
@@ -99,7 +98,7 @@
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="protection" width="128" height="128">
