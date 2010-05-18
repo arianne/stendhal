@@ -484,6 +484,7 @@
     </zone>
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_7" file="interiors/semos/wizards_tower_7.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.WizardsGuardStatueSpireNPC" />
         <portal x="23" y="10" ref="portal_from_sixth_floor">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
         </portal>
@@ -573,37 +574,26 @@
 	<parameter name="orientation">h</parameter>
 	</configurator>
     </zone>
-     <!-- Interiors of the wizards tower -->
+     <!-- Plains of the wizards -->
     <zone name="malleus_plain" file="interiors/abstract/malleus_plain.tmx">
         <portal x="7" y="28" ref="portal_to_malleus">
                 <destination zone="int_semos_wizards_tower_8" ref="portal_to_malleus_plain" />
             </portal>
-
-        <portal x="31" y="60" ref="lava_path_t">
-                <destination zone="malleus_plain" ref="lava_path_b_1" />
-            <implementation
-                class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
-                <parameter name="class">ice_path_t</parameter>
-                <parameter name="key">ice scroll</parameter>
-                <parameter name="rejected">This is the only way to reach the other side of the plain, but the dangerous heat detains you.</parameter>
-            </implementation>
+        <portal x="23" y="28" ref="cliff_way">
+                <destination zone="malleus_plain" ref="cliff_way_back" />
             </portal>
-       <portal x="31" y="62" ref="lava_path_b_1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-        </portal>
+        <portal x="25" y="24" ref="cliff_way_back">
+                <destination zone="malleus_plain" ref="cliff_way" />
+            </portal>
 
-       <portal x="31" y="61" ref="lava_path_b">
-                <destination zone="malleus_plain" ref="lava_path_t_1" />
-            <implementation
-                class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
-                <parameter name="class">ice_path_b</parameter>
-                <parameter name="key">ice scroll</parameter>
-                <parameter name="rejected">You need the ice scroll to pass the path.</parameter>
-            </implementation>
-            </portal> 
-       <portal x="31" y="59" ref="lava_path_t_1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-        </portal>
+	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+	<parameter name="x">32</parameter>
+	<parameter name="y">60</parameter>
+	<parameter name="image">ice_path</parameter>
+	<parameter name="orientation">h</parameter>
+	<parameter name="condition">new PlayerHasItemWithHimCondition("ice scroll")</parameter>
+	<parameter name="autoclose">3</parameter>
+	</configurator>
 
     </zone>
 
