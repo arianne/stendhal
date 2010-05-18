@@ -50,12 +50,12 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 				new SetQuestAction(QUEST_SLOT,"start"));
 		
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, 
-			"You have stand the practical test. Use the teleport stone, or instead I can #teleport you to the spire.",
+			"You have already stand the practical test and you are free to explore this tower. I will #teleport you to the spire, or can I #help you somehow else?",
 			null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestActiveCondition(QUEST_SLOT),
@@ -151,9 +151,57 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 			new AndCondition(
 			new QuestInStateCondition(QUEST_SLOT,"candles_done"),
 			new NotCondition(new PlayerHasItemWithHimCondition("candle"))),
-			ConversationStates.ATTENDING, 
-			"Good luck!",
+			ConversationStates.IDLE, 
+			null,
 			new TeleportAction("int_semos_wizards_tower_1", 15, 16, Direction.DOWN));
+	}
+
+	private void finishQuestStep() {
+		final SpeakerNPC npc = npcs.get("Zekiel");
+
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+			new NotCondition(new QuestCompletedCondition(QUEST_SLOT)),
+			ConversationStates.ATTENDING, 
+			"Very well, adventurer! You have stand the practical test. You can now enter the spire when ever you want.",
+			new MultipleActions(new IncreaseXPAction(5000),
+			new IncreaseKarmaAction(10),
+			new SetQuestAction(QUEST_SLOT, "done")));
+	}
+
+	private void questFinished() {
+		final SpeakerNPC npc = npcs.get("Zekiel the guardian");
+
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING, 
+			"Greetings adventurer, how can I #help you this time?",
+			null);
+
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.HELP_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"I can #teleport you to the spire and I am also the #storekeeper of the #wizards tower.",
+			null);
+
+		npc.add(ConversationStates.ATTENDING,
+			Arrays.asList("storekeeper"),
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"The store is at the floor under the spire. I will be there when you enter it.",
+			null);
+
+		npc.add(ConversationStates.ATTENDING,
+			Arrays.asList("teleport"),
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.IDLE, null,
+			new TeleportAction("int_semos_wizards_tower_8", 21, 22, Direction.UP));
+
+		npc.add(ConversationStates.ATTENDING,
+			Arrays.asList("tower", "test"),
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"You have already stand the practical test and you are free to explore this tower. I will #teleport you to the spire, or can I #help you somehow else?",
+			null);
 	}
 
 	@Override
@@ -163,6 +211,8 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		prepareQuestOfferingStep();
 		bringItemsStep();
 		practicalTestStep();
+		finishQuestStep();
+		questFinished();
 	}
 
 	@Override
