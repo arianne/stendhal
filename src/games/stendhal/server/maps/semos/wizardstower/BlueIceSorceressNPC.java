@@ -4,8 +4,16 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -55,11 +63,34 @@ public class BlueIceSorceressNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Greetings Stranger!");
-				addHelp("");
-				addReply("", "");
-				addGoodbye("So long!");
-
+				addGreeting("Hello dear!");
+				addHelp("I can conjure an #ice #scroll for you. It is able to protect you from dangerous heat, depends on how you use it.");
+				addJob("I am Cassandra, the sorceress of water and ice. I represent #Frostshade at the wizards circle.");
+				addOffer("I can conjure an #ice #scroll for you. It is able to protect you from dangerous heat, depends on how you use it.");
+				addReply("Frostshade", "Frostshade is the school of the magic of water and ice. It lies deep in the northern glaciers.");
+				addReply("scroll", "Zekiel is the storekeeper of the tower, I am sure he can help you.");
+				addGoodbye("Bye!");
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("ice scroll", "ice scrolls"),
+				        ConversationStates.ATTENDING,
+				        "I need a #scroll for that. If you bring me one, I will #enchant it for you.",
+				        null);
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("enchant"),
+					new PlayerHasItemWithHimCondition("scroll"),
+				        ConversationStates.ATTENDING,
+					"I enchanted your scroll to an ice scroll. May it cool off your feets on your travels.",
+					new MultipleActions(new DropItemAction("scroll", 1),
+					new EquipItemAction("ice scroll", 1, true),
+					new IncreaseXPAction(250)));
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("enchant"),
+				    new NotCondition(new PlayerHasItemWithHimCondition("scroll")),
+				        ConversationStates.ATTENDING,
+					"You don't have a #scroll that I could enchant.", null);
 			} //remaining behaviour defined in maps.quests.SorceressCassandraPlainQuest
 		};
 
