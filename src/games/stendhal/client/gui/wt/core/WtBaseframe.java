@@ -108,7 +108,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	}
 
 	/**
-	 * Sets the context menu. It is closed automatically one the user clicks.
+	 * Sets the context menu. It is closed automatically once the user clicks
 	 * outside of it.
 	 */
 	@Override
@@ -150,11 +150,11 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * @param e
 	 */
 	private void stopDrag(final MouseEvent e) {
-		// be sure to stop dragging operations when theleft button is released
+		// be sure to stop dragging operations when the left button is released
 		if (dragInProgress && (draggedObject != null)) {
 			final Point p = e.getPoint();
 			draggedObject.dragFinished(p);
-			// now check if there is a drop-target direct unter the mouse cursor
+			// now check if there is a drop-target direct under the mouse cursor
 			checkDropped(p.x, p.y, draggedObject);
 		}
 		dragInProgress = false;

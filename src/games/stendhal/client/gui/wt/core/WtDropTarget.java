@@ -19,8 +19,8 @@
 package games.stendhal.client.gui.wt.core;
 
 /**
- * Each Panel wanting to reveive events when an object is dropped over them must
- * inplement this interface.
+ * Each Panel wanting to receive events when an object is dropped over them must
+ * implement this interface.
  * 
  * @author mtotz
  */

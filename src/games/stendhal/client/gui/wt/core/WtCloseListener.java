@@ -19,7 +19,7 @@
 package games.stendhal.client.gui.wt.core;
 
 /**
- * Callback for closing on a panel.
+ * Callback for closing a panel.
  * 
  * @author mtotz
  */

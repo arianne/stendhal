@@ -477,7 +477,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/**
-	 * Sets the embossed-state of then frame.
+	 * Sets the embossed-state of the frame.
 	 * 
 	 * @param emboss
 	 */
@@ -515,7 +515,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.resizeable = resizeable;
 	}
 
-	/** @return whether the panel can be minmized. */
+	/** @return whether the panel can be minimized. */
 	public boolean isMinimizeable() {
 		return minimizeable;
 	}

@@ -91,7 +91,7 @@ public class WtTextPanel extends WtPanel {
 
 	/**
 	 * @return the estimated height of the text in pixels. The calculation is
-	 *         based in the text and the current font size
+	 *         based on the text and the current font size
 	 */
 	public int getLastHeight() {
 		return lastHeight;
@@ -190,7 +190,7 @@ public class WtTextPanel extends WtPanel {
 				string = text.substring(oldIndex);
 			}
 
-			// now check if the string fits in te window.
+			// now check if the string fits in the window.
 			if (autoLineBreaks && (metrics.stringWidth(text) > getWidth())) {
 				final StringBuilder buf = new StringBuilder();
 				int currentWidth = 0;

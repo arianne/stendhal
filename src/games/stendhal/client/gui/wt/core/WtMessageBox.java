@@ -199,7 +199,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		private ButtonEnum closeButton;
 
 		/**
-		 * Contructor.
+		 * Constructor.
 		 * 
 		 * @param closeButton
 		 * @param buttons

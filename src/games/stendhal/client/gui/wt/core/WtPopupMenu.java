@@ -20,7 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.event.MenuKeyEvent;
 
 /**
- * A popup-menu that will redirect most key events to it's invoker.
+ * A popup-menu that will redirect most key events to its invoker.
  */
 @SuppressWarnings("serial")
 public abstract class WtPopupMenu extends StyledJPopupMenu {
@@ -34,7 +34,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 	//
 
 	/**
-	 * Create a menu item that will redirect it's key events.
+	 * Create a menu item that will redirect its key events.
 	 * 
 	 * @param label
 	 * @param icon
