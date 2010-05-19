@@ -21,8 +21,7 @@ public enum VersionState {
 	OUTDATED,
 
 	/** the update system does not know about this version. */
-	// TODO: Can we spell this correctly? UNKNOWN
-	UNKOWN,
+	UNKNOWN,
 
 	/** there are updates, which should be installed. */
 	UPDATE_NEEDED,
@@ -41,7 +40,7 @@ public enum VersionState {
 		try {
 			if ((versionStateString == null)
 					|| (versionStateString.trim().equals(""))) {
-				return UNKOWN;
+				return UNKNOWN;
 			}
 			return VersionState.valueOf(versionStateString.toUpperCase());
 		} catch (final IllegalArgumentException e) {

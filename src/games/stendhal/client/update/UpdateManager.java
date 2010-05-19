@@ -128,7 +128,7 @@ public class UpdateManager {
 			}
 			break;
 
-		case UNKOWN:
+		case UNKNOWN:
 			System.out.println("Unknown state of update");
 			break;
 
