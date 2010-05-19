@@ -84,7 +84,7 @@ public class Bootstrap {
 	}
 
 	/**
-	 * saves modifed boot properties to disk.
+	 * saves modified boot properties to disk.
 	 * 
 	 * @throws IOException
 	 *             if an IO-error occurs

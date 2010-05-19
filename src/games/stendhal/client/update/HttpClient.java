@@ -93,7 +93,7 @@ public class HttpClient {
 	 */
 	private void openInputStream() {
 		// try very hard to download updates from sourceforge as they have
-		// sometimes problems with the webservers beeing slow or not responding
+		// sometimes problems with the webservers being slow or not responding
 		// at all.
 		try {
 			final URL url = new URL(urlString);
@@ -242,7 +242,7 @@ public class HttpClient {
 	}
 
 	/**
-	 * Copies data from an inputStream to and outputStream and closes both
+	 * Copies data from an inputStream to an outputStream and closes both
 	 * streams after work.
 	 * 
 	 * @param inputStream

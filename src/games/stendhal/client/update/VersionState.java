@@ -21,6 +21,7 @@ public enum VersionState {
 	OUTDATED,
 
 	/** the update system does not know about this version. */
+	// TODO: Can we spell this correctly? UNKNOWN
 	UNKOWN,
 
 	/** there are updates, which should be installed. */
@@ -33,7 +34,7 @@ public enum VersionState {
 	 * converts a string into VersionState.
 	 * 
 	 * @param versionStateString
-	 *            a string represantation
+	 *            a string representation
 	 * @return VersionState. In case of an error VersionState.ERROR is returned
 	 */
 	public static VersionState getFromString(final String versionStateString) {
