@@ -1,14 +1,20 @@
 package games.stendhal.server.maps.ados.outside;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.creature.DomesticAnimal;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -49,11 +55,10 @@ public class VeterinarianNPC implements ZoneConfigurator {
 				//Behaviours.addHelp(this,
 				//				   "...");
 
-				// For future consider making Dr Feelgood able to heal pets (but still not humans)
-				addReply("heal",
-				        "Sorry, I'm only licensed to heal animals looked after in this Zoo. (But... ssshh! I can make you an #offer.)");
+				add(ConversationStates.ATTENDING, "heal", null, ConversationStates.ATTENDING, null, new HealPetsAction());
 
 				addJob("I'm the veterinarian.");
+				
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing")) {
 
 					@Override
@@ -73,5 +78,45 @@ public class VeterinarianNPC implements ZoneConfigurator {
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);
+	}
+	
+	/**
+	 * Action for healing pets
+	 */
+	private static class HealPetsAction implements ChatAction {
+		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+			List<DomesticAnimal> healed = new LinkedList<DomesticAnimal>();
+			
+			for (DomesticAnimal pet : player.getAnimals()) {
+				if (pet.heal() > 0) {
+					healed.add(pet);
+				}
+			}
+			
+			/*
+			 * Feelgood is only concerned about the animals if there's some that
+			 * needs healing, and won't suggest trading in that case.
+			 */
+			int numHealed = healed.size(); 
+			if (numHealed > 0) {
+				StringBuilder msg = new StringBuilder("Your ");
+				// if we ever get the ability to have more than 2 pets this
+				// needs to be changed.
+				msg.append(healed.get(0).get("type"));
+				if (numHealed > 1) {
+					msg.append(" and ");
+					msg.append(healed.get(1).get("type"));
+				}
+				msg.append(" ");
+				msg.append(Grammar.isare(numHealed));
+				msg.append(" healed. Take better care of ");
+				msg.append(Grammar.itthem(numHealed));
+				msg.append(" in the future.");
+				
+				npc.say(msg.toString());
+			} else {
+				npc.say("Sorry, I'm only licensed to heal animals looked after in this Zoo. (But... ssshh! I can make you an #offer.)");
+			}
+		}
 	}
 }
