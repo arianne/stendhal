@@ -5,12 +5,17 @@ Changelog
 *features*
 - new quest from Balduin if you have completed all other quests to get or collect rare weapons
 - daily and weekly item quests can ask for more than one of each item at once
-- eating, poisoned, grumpy and away statatus are shown in the stats panel
+- eating, poisoned, grumpy and away status are shown in the stats panel
 - Dr. Feelgood can heal pets
+- pizza delivery missions selected by level
+- client can be started with username and password as parameters to bypass login gui (not for use on multi-user systems)
 
 *code*
 - new simple layout manager to replace the abandoned pagelayout
 
+*website*
+- performance optimisation
+- bugfixes including player display on firefox
 
 0.83
 *features*
