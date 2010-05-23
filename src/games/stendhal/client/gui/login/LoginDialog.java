@@ -48,6 +48,7 @@ import marauroa.client.LoginFailedException;
 import marauroa.client.TimeoutException;
 import marauroa.common.io.Persistence;
 import marauroa.common.net.InvalidVersionException;
+import marauroa.common.net.message.MessageS2CLoginNACK;
 
 import org.apache.log4j.Logger;
 
@@ -375,6 +376,9 @@ public class LoginDialog extends JDialog {
 					"Error Logging In");
 		} catch (final LoginFailedException e) {
 			handleError(progressBar, e.getMessage(), "Login failed");
+			if (e.getReason() == MessageS2CLoginNACK.Reasons.SEED_WRONG) {
+				System.exit(1);
+			}
 		} catch (final BannedAddressException e) {
 			handleError(progressBar, "Your IP is banned. If you think this is not right, please send a Support Request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
 					"IP Banned");
