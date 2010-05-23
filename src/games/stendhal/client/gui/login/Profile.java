@@ -186,6 +186,7 @@ public class Profile {
 	 * <li>-c: character name (defaults to username)</li>
 	 * <li>-h: hostname</li>
 	 * <li>-P: port</li>
+	 * <li>-S: pre authentication seed</li>
 	 * </ul>
 	 *
 	 * @param args command line arguments
