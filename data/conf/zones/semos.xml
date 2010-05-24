@@ -488,8 +488,11 @@
         <portal x="23" y="10" ref="portal_from_sixth_floor">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
         </portal>
-       <portal x="15" y="16" ref="portal_sparkle_from_spire">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+       <portal x="15" y="13" ref="portal_sparkle_leave_tower">
+                <destination zone="0_semos_mountain_n_w2" ref="wizardstower_entrance" />
+        </portal>
+       <portal x="15" y="17" ref="portal_sparkle_enter_spire">
+                <destination zone="int_semos_wizards_tower_8" ref="portal_sparkle_to_seventh_floor" />
         </portal>
      </zone>
      <!-- Interiors of the wizards tower -->
@@ -502,7 +505,7 @@
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
         </portal>
         <portal x="21" y="23" ref="portal_sparkle_to_seventh_floor">
-                <destination zone="int_semos_wizards_tower_7" ref="portal_sparkle_from_spire" />
+                <destination zone="int_semos_wizards_tower_7" ref="portal_sparkle_enter_spire" />
             </portal>
         <portal x="21" y="6" ref="portal_to_spire_2">
                 <destination zone="int_semos_wizards_tower_9" ref="portal_from_spire_1" />
