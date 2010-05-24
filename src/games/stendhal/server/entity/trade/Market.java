@@ -28,7 +28,6 @@ public class Market extends PassiveEntity {
 	public static final String OFFERS_SLOT_NAME = "offers";
 	public static final String EXPIRED_OFFERS_SLOT_NAME = "expired_offers";
 	
-	private final Set<Earning> earnings = new HashSet<Earning>();
 	private final List<Offer> offers = new LinkedList<Offer>();
 	private final List<Offer> expiredOffers = new LinkedList<Offer>();
 	
@@ -82,7 +81,6 @@ public class Market extends PassiveEntity {
 		if (object.hasSlot(EARNINGS_SLOT_NAME)) {
 			for(final RPObject rpo : object.getSlot(EARNINGS_SLOT_NAME)) {
 				final Earning earning = new Earning(rpo);
-				this.earnings.add(earning);
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
 			}
 		}
@@ -181,7 +179,6 @@ public class Market extends PassiveEntity {
 				boolean reward = offer.shouldReward(acceptingPlayer) && price > 0; 
 				final Earning earning = new Earning(offer.getPrice(), offer.getOfferer(), reward);
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
-				earnings.add(earning);
 				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				if (reward) {
@@ -243,7 +240,6 @@ public class Market extends PassiveEntity {
 	 */
 	public void removeEarnings(Iterable<Earning> earningsToRemove) {
 		for(Earning earning : earningsToRemove) {
-			earnings.remove(earning);
 			this.getSlot(EARNINGS_SLOT_NAME).remove(earning.getID());
 		}
 		this.getZone().storeToDatabase();
@@ -363,6 +359,11 @@ public class Market extends PassiveEntity {
 	 * @return list of earnings that are older than the specified time
 	 */
 	public List<Earning> getEarningsOlderThan(int seconds) {
+		RPSlot slot = this.getSlot(EARNINGS_SLOT_NAME);
+		HashSet<Earning> earnings = new HashSet<Earning>();
+		for(RPObject o:slot) {
+			earnings.add((Earning) o);
+		}
 		return getOlderThan(earnings, seconds);
 	}
 	
