@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="31" height="30" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="31" height="30" tilewidth="32" tileheight="32">
  <tileset name="..\tileset\building\castle.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/castle.png"/>
  </tileset>
@@ -33,6 +32,9 @@
  </tileset>
  <tileset name="..\tileset\sky\cloud\white_clouds.png" firstgid="1103" tilewidth="32" tileheight="32">
   <image source="../../tileset/sky/cloud/white_clouds.png"/>
+ </tileset>
+ <tileset name="..\tileset\logic\protection.png" firstgid="1215" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="31" height="30">
   <data encoding="base64" compression="gzip">
@@ -69,9 +71,9 @@
    H4sIAAAAAAAAAO2WywkAIAxDdTv3n8irh1rExLSigV4k8NL6wVZLab+WylIUX8Fi+hD2rG8Wm6Fb2CeVka1Upr6j2OO6gm3xFGwrxw4b8WfpO2q/X71j/12LZb/6d/ByzHJ5vhNs1IdmYc4VOQdKPqM6G0RuM4gOAAA=
   </data>
  </layer>
- <layer name="protection" width="31" height="30">
+ <layer name="protection" width="31" height="30" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQsvoAAAAOBnXCKT7IgOAAA=
+   H4sIAAAAAAAAAO3DMQ0AAAwDoB7zb6nW6mIXJPSSqqqq6tMBjSc/E4gOAAA=
   </data>
  </layer>
 </map>
