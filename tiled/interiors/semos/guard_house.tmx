@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="22" height="18" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="22" height="18" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/building/decoration/fireplace_2.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fireplace_2.png"/>
  </tileset>
@@ -104,17 +103,17 @@
  </layer>
  <layer name="1_terrain" width="22" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3Tu04CURAG4KksUC7aieEZuCgFRANBQuQJKHgDeAii8VajaKO0XF7EwlBDYeINBQvfwX/jkMyyw9k9CZN8Cdn5+QN7cvJEdLhmR5CBAqRWKPrsHT3oi3yae2v0Pw/knQNIwiVcKPsGDGAITc5nubfOmUdD75WyW54Nzue4N8nPu4beVfOs5BfvwfQ9v14tv+g9hn3WEZlbKHPvyLLXGXne9yJzpzwL0pvlzzb/0zQ35D23FpyKzBu8G3wYfq88tzM4F/tPmBp8iWwINmFL6V0em94wRCCq9I5hAi/watkbg23YIfd9q5F3vmFmMBfZXYjDHrnPzbnHzlkmlH6baZP3PTwp3dcsaKfsLZH7vml+fPZSmXsrcOLjN0BGqsIfI6hV0DAGAAA=
+   H4sIAAAAAAAAAK3TzUoCURQH8LMyKNNqZ9Iz2JcLIzFSQp/ARW9QDxGFWWvtY6NutV6khbjWRVCmfS18B/+XjnDGOd6ZCx34wTD3P39m5nIPiOjwn2VhF3KwvcBRwLrRho7I73Bvmf6mQf7ZhxRU4VpZP4MneIZzzqe595QzTUvvjbJmZklcRzif4d4U329ZehdNV8nP/oPtuaBeLT/rzcMeuxeZOyhwb8+x14zc70eReVDuhelN87XLd9qmTv59u4BLkXmHocWH5X3lvl1BRayPYGzxKbLLsAJRpXd+XHpXIQZxpbcPA3iFN8feNViHDfKetzL55wu+LX5ENgGbkCTvvplzbPZyS+l3mRr5/8OL0n3LwnbK3mPynjfNb8C6VODeEygGmITISCWYAuyBxqMwBgAA
   </data>
  </layer>
  <layer name="2_object" width="22" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAW6DLjBHiDeC8T7iFALA+Vo/IVAvAiLugNo/HQkdgYSOwyHPUuBeBkR7mFBYrMhsaOI0IsPsAMxBxRzUmjWcARaULoaiCuxyOeQaa4emfqGMvgKpbfTwOyjNDATBrYisUH5OJwGdoDycTQNzKUnSADiRBxyXkDsDcQ+RKgFAXMkdgoQpxLpBmS1yGYAAHdp03MwBgAA
+   H4sIAAAAAAAAAGNgQAW6DLjBHiDeC8T7iFALA+Vo/IVAvAiLugNo/HQkdgYSOwyHPUuBeBkR7mFBYrMhsaOI0IsPnAJiDijmpNCs4Qi0oHQ1EFdikc8h01w9MvUNZfAVSm+ngdlHaWAmDGxFYoPycTgN7ADl42gamEtPkADEiTjkvIDYG4h9iFALAuZI7BQgTiXSDchqkc0AAEn7zXEwBgAA
   </data>
  </layer>
  <layer name="3_roof" width="22" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGLpgzkA7AAmcGmgH4ACD1V2jgDbgHBCfB+LLQHxtgN1CLJChgZnHaGj2cAS+QOwHxP4E1AEA/O7e5DAGAAA=
+   H4sIAAAAAAAAAGNgGLpgzkA7YAiAUwPtgFFAV3AOiM8D8WUgvjbAbiEWyNDAzGM0NHs4Al8g9gNifwLqAA1VU5UwBgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="22" height="18">
