@@ -4,6 +4,13 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -31,8 +38,21 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Greetings again, adventurer!");
-				addHelp("");
+				addHelp("You are located in the #store. You can enter the spire by the teleporter in front of me. The one behind me teleports you back to the tower entrance.");
+				addJob("I am the guardian and #storekeeper of the #wizards tower.");
 				addGoodbye("So long!");
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("store", "storekeeper"),
+				        ConversationStates.ATTENDING,
+				        "I can create #special items with the materials from the store. Just tell me what you want, but for the most items I will need extra ingredients.",
+				        null);
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("special"),
+				        ConversationStates.ATTENDING,
+				        "For example I can create a #riftcloak. I could read in your mind, adventurer. But it is not allowed to me here. So you have to tell me which special item you want and I will tell you, if I can help you.",
+				        null);
 				add(
 				        ConversationStates.ATTENDING,
 				        Arrays.asList("wizard", "wizards"),
@@ -47,7 +67,58 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 				addReply("silvanus", "Silvanus is a sage druid and perhaps the eldest of all elves. He is a friend of all animals, trees, fairy creatures and ents. His domain is the earth and nature.");
 				addReply("malleus", "Malleus is the powerfull archetype of a magician and the master of destructive magics. His domain is the fire and he rambled the plains of demons for ages, to understand their ambitions.");
 
-			} //remaining behaviour defined in maps.quests.ZekielsPracticalTestQuest
+	//behavior on special item SCROLL
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("scroll", "scrolls"),
+				        ConversationStates.ATTENDING,
+				        "I will create a magic scroll for you, but I need eight pieces of wood for that. If you want the scroll and got the wood, then just tell me to #create #a #scroll. The magic scroll is empty and can be enchanted by wizards.",
+				        null);
+		add(ConversationStates.ATTENDING, Arrays.asList("create a scroll"),
+			new NotCondition(new PlayerHasItemWithHimCondition("wood", 8)),
+			ConversationStates.ATTENDING,
+			"You don't have enough wood, I will need eight pieces.", null);
+		add(ConversationStates.ATTENDING, Arrays.asList("create a scroll"),
+			new PlayerHasItemWithHimCondition("wood", 8),
+			ConversationStates.ATTENDING,
+			"There is your magic scroll.",
+			new MultipleActions(new DropItemAction("wood", 8),
+			new EquipItemAction("scroll", 1, true),
+			new IncreaseXPAction(250)));
+
+	//behavior on special item RIFTCLOAK
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("riftcloak"),
+				        ConversationStates.ATTENDING,
+				        "I will create a riftcloak for you, but I have to spine a carbuncle and an emerald in the magic. When you have both gems then just tell me to #create #a #riftcloak. But remember! The cloak will protect you only one time"+
+					" entering a magical rift. The rift disintegrates the cloak instead of you. There is no way to get the cloak back. If you want to enter the rift again, you will need a new riftcloak.",
+				        null);
+		add(ConversationStates.ATTENDING, Arrays.asList("create a riftcloak"),
+			new AndCondition(
+			new NotCondition(new PlayerHasItemWithHimCondition("carbuncle", 1)),
+			new PlayerHasItemWithHimCondition("emerald", 1)),
+			ConversationStates.ATTENDING,
+			"You don't have a carbuncle, I will need an emerald and a carbuncle.", null);
+		add(ConversationStates.ATTENDING, Arrays.asList("create a riftcloak"),
+			new AndCondition(
+			new NotCondition(new PlayerHasItemWithHimCondition("emerald", 1)),
+			new PlayerHasItemWithHimCondition("carbuncle", 1)),
+			ConversationStates.ATTENDING,
+			"You don't have an emerald, I will need a carbuncle and an emerald.", null);
+		add(ConversationStates.ATTENDING, Arrays.asList("create a riftcloak"),
+			new AndCondition(
+			new PlayerHasItemWithHimCondition("emerald", 1),
+			new PlayerHasItemWithHimCondition("carbuncle", 1)),
+			ConversationStates.ATTENDING,
+			"There is your riftcloak. Don't forget that it protects you only one time, befor it will be destroyed. So be sure that you are ready for what awaits you in the rift.",
+			new MultipleActions(new DropItemAction("carbuncle", 1),
+			new DropItemAction("emerald", 1),
+			new EquipItemAction("riftcloak", 1, true),
+			new IncreaseXPAction(5000)));
+
+	//behavior on special item XARUHWAIYZ PHIAL
+			} //remaining behavior defined in maps.quests.ZekielsPracticalTestQuest
 		};
 
 		zekielspire.setDescription("You see Zekiel, the guardian of this tower.");

@@ -32,6 +32,7 @@ public class WizardsGuardStatueNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Greetings Stranger! I am Zekiel the #guardian.");
 				addHelp("I guess you want to explore this #tower. I am not just the #guardian, I am also here to receive visitors and accompany them through the practical #test.");
+				addJob("I am the #guardian of this #tower.");
 				addReply("guardian", "I watch and guard this #tower, the residence of the #wizards circle.");
 				addReply("tower", "If you want to reach the spire, you have to stand the practical #test.");
 				addGoodbye("So long!");
