@@ -71,7 +71,7 @@
 
   <creature name="entwife">
     <type class="ent" subclass="entwife" tileid="ent.png:3"/>
-    <description></description>
+    <description>You see an entwife. They are stronger than ents and live in groups in an ancient forest.</description>
     <attributes>
       <atk value="719"/>
       <def value="93"/>
