@@ -14,6 +14,7 @@ import java.util.TreeMap;
  * The miller (original name: Jenny). She mills flour for players who bring
  * grain. 
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class MillerNPC extends SpeakerNPCFactory {
 
 	@Override

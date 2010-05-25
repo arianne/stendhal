@@ -11,7 +11,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
-
+//TODO: take NPC definition elements which are currently in XML and include here
 public class TradeManagerNPC extends SpeakerNPCFactory {
 	
 	// these are the two players who are trading

@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-
+//TODO: take NPC definition elements which are currently in XML and include here
 public class CustomerAdvisorNPC extends SpeakerNPCFactory {
 
 	private final class VaultChatAction implements ChatAction {

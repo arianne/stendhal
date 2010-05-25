@@ -19,6 +19,7 @@ import java.util.TreeMap;
  * @see games.stendhal.server.maps.orril.river.CampingGirlNPC
  * @see games.stendhal.server.maps.quests.PizzaDelivery
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class ChefNPC extends SpeakerNPCFactory {
 
 	@Override

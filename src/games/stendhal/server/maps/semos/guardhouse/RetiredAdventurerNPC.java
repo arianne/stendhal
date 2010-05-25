@@ -25,6 +25,7 @@ import java.util.List;
  * @see games.stendhal.server.maps.quests.BeerForHayunn
  * @see games.stendhal.server.maps.quests.MeetHayunn
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class RetiredAdventurerNPC extends SpeakerNPCFactory {
 	private final String QUEST_SLOT="meet_hayunn";
 	

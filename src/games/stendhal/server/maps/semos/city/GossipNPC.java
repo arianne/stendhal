@@ -15,6 +15,7 @@ import games.stendhal.server.entity.player.Player;
  * Basically all he does is sending players to the retired adventurer at
  * the dungeon entrance. 
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class GossipNPC extends SpeakerNPCFactory {
 
 	@Override

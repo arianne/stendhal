@@ -21,6 +21,7 @@ import java.util.Map;
  *
  * @author johnnnny
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 
 	/**

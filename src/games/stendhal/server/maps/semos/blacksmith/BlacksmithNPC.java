@@ -21,6 +21,7 @@ import java.util.TreeMap;
  * 
  * @see games.stendhal.server.maps.quests.HungryJoshua
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class BlacksmithNPC extends SpeakerNPCFactory {
 
 	@Override

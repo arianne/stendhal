@@ -31,6 +31,7 @@ import java.awt.Shape;
  *
  * The player has to have at least level 5 to prevent abuse by newly created characters.
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class SignLessorNPC extends SpeakerNPCFactory {
 	protected String text;
 

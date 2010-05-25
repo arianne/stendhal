@@ -25,6 +25,7 @@ import marauroa.common.game.RPObject;
 /**
  * A merchant (original name: Sato) who buys sheep from players.
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class SheepBuyerNPC extends SpeakerNPCFactory {
 	// The sheep pen where Sato moves what he buys
 	/** Left X coordinate of the sheep pen */ 

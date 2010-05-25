@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
  * 
  * @see games.stendhal.server.maps.quests.KanmararnSoldiers
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class SergeantNPC extends SpeakerNPCFactory {
 
 	@Override

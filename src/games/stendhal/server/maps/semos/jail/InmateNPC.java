@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
  * 
  * @author hendrik
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class InmateNPC extends SpeakerNPCFactory {
 
 	@Override

@@ -14,6 +14,7 @@ import games.stendhal.server.entity.player.Player;
  * 
  * @see games.stendhal.server.maps.quests.MeetHackim
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class BlacksmithAssistantNPC extends SpeakerNPCFactory {
 
 	@Override

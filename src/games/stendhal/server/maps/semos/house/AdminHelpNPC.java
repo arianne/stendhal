@@ -12,6 +12,7 @@ import games.stendhal.server.entity.npc.condition.AdminCondition;
 /**
  * A young lady (original name: Skye) who is lovely to admin.
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class AdminHelpNPC extends SpeakerNPCFactory {
 
 	@Override

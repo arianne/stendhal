@@ -13,6 +13,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * A crazy old man (original name: Diogenes) who walks around the city.
  */ 
+//TODO: take NPC definition elements which are currently in XML and include here
 public class RetireeNPC  extends SpeakerNPCFactory {
 
 	@Override

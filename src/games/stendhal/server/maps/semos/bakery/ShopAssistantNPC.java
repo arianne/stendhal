@@ -13,8 +13,8 @@ import java.util.TreeMap;
  * 
  * @author daniel
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class ShopAssistantNPC extends SpeakerNPCFactory {
-
 	@Override
 	public void createDialog(final SpeakerNPC npc) {
 		npc.addJob("I'm the shop assistant at this bakery.");

@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
  * @see games.stendhal.server.maps.quests.MeetMonogenes
  * @see games.stendhal.server.maps.quests.HatForMonogenes
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class GreeterNPC extends SpeakerNPCFactory {
 
 	@Override

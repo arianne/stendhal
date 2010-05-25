@@ -15,6 +15,7 @@ import games.stendhal.server.entity.player.Player;
  * 
  * @author hendrik
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class GuardNPC extends SpeakerNPCFactory {
 
 	@Override
