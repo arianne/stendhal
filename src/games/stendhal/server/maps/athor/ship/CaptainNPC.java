@@ -10,6 +10,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
 /** Factory for the captain of Athor Ferry. */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class CaptainNPC extends SpeakerNPCFactory {
 
 private Status ferrystate;

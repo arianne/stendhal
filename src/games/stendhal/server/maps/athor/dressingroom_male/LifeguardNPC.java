@@ -17,6 +17,7 @@ import java.util.TreeMap;
  *
  * @author daniel
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class LifeguardNPC extends SpeakerNPCFactory {
 
 	@Override

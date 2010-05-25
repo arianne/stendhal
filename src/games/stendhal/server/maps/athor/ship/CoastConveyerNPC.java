@@ -15,6 +15,7 @@ import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 import java.util.Arrays;
 
 /** Factory for cargo worker on Athor Ferry. */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class CoastConveyerNPC extends SpeakerNPCFactory {
 	private static StendhalRPZone islandDocksZone;
 	private static StendhalRPZone mainlandDocksZone;

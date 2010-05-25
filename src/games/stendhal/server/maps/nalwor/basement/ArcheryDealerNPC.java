@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Inside Nalwor Inn basement .
  */
-
+//TODO: take NPC definition elements which are currently in XML and include here
 public class ArcheryDealerNPC extends SpeakerNPCFactory {
 			@Override
 			public void createDialog(final SpeakerNPC magearcher) {
@@ -21,7 +21,7 @@ public class ArcheryDealerNPC extends SpeakerNPCFactory {
 				magearcher.addOffer("Check the blackboard for prices.");
 				magearcher.addQuest("I have no quest for you.");
 				magearcher.addGoodbye("Have a happy. Bye.");
-
+				//TODO: put into shop list?
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("crossbow", 400);
 				offerings.put("wooden arrow", 1);

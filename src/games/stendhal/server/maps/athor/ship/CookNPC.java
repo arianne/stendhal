@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /** Factory for cargo worker on Athor Ferry. */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class CookNPC extends SpeakerNPCFactory {
 
 	@Override

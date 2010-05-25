@@ -12,6 +12,7 @@ import java.util.TreeMap;
 /**
  * The healer (original name: Valo). He makes mega potions. 
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class HealerNPC extends SpeakerNPCFactory {
 
 	@Override

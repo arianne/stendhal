@@ -19,6 +19,7 @@ import java.util.Arrays;
  * Factory for an NPC who brings players from the docks to Athor Ferry
  * in a rowing boat.
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class FerryConveyerNPC extends SpeakerNPCFactory {
 
 	protected Status ferrystate;

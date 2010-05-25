@@ -4,7 +4,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
-
+//TODO: take NPC definition elements which are currently in XML and include here
 public class DiverNPC extends SpeakerNPCFactory {
 
 	@Override

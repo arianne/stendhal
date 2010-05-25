@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Inside Ados Abandoned Keep - level -3 .
  */
-
+//TODO: take NPC definition elements which are currently in XML and include here
 public class DwarfBuyerGuyNPC extends SpeakerNPCFactory {
 			@Override
 			public void createDialog(final SpeakerNPC dwarfguy) {

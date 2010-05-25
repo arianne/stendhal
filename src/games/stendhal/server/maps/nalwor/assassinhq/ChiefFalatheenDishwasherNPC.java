@@ -10,7 +10,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 /**
  * Inside Nalwor Assassin Headquarters - cellar .
  */
-
+//TODO: take NPC definition elements which are currently in XML and include here
 public class ChiefFalatheenDishwasherNPC extends SpeakerNPCFactory {
 	private final ShopList shops = SingletonRepository.getShopList();
 			@Override

@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 /**
  * A lady wizard who sells potions and antidotes. Original name: Sarzina
  */
+//TODO: take NPC definition elements which are currently in XML and include here
 public class SellerNPC extends SpeakerNPCFactory {
 
 	@Override

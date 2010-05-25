@@ -2,7 +2,7 @@ package games.stendhal.server.maps.athor.holiday_area;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
-
+//TODO: take NPC definition elements which are currently in XML and include here
 public class WifeNPC extends SpeakerNPCFactory {
 
 	@Override

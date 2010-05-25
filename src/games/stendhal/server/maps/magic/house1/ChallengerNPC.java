@@ -24,7 +24,7 @@ import java.util.Arrays;
 import marauroa.common.game.IRPZone;
 
 import org.apache.log4j.Logger;
-
+//TODO: take NPC definition elements which are currently in XML and include here
 public class ChallengerNPC extends SpeakerNPCFactory {
  private static final int MINUTES_IN_DAYS = 24 * 60;
 /** how many creatures will be spawned.*/
