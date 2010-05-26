@@ -1,12 +1,13 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -23,7 +24,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -245,21 +245,8 @@ public class DailyItemQuest extends AbstractQuest {
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		actions.add(new IncrementQuestAction(QUEST_SLOT,2,1));
-		// TODO: could write a more general action for these
-		actions.add(new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-				final int start = Level.getXP(player.getLevel());
-				final int next = Level.getXP(player.getLevel() + 1);
-				int reward = (next - start) / 8;
-				if (player.getLevel() >= Level.maxLevel()) {
-					reward = 0;
-					// no reward so give a lot karma instead, 100 in all
-					player.addKarma(90.0);
-				}
-				player.addXP(reward);
-				player.addKarma(10.0);
-			}
-		});
+		actions.add(new IncreaseXPDependentOnLevelAction(8, 90.0));
+		actions.add(new IncreaseKarmaAction(10.0));
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,

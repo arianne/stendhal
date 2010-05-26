@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -10,6 +9,8 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -197,20 +198,10 @@ public class WeeklyItemQuest extends AbstractQuest {
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		actions.add(new IncrementQuestAction(QUEST_SLOT,2,1));
-		// TODO: could write a more general action for these level dependent xp rewards (with extra karma for max level players)
-		// but would still need the chat action to give the random money amount
+		actions.add(new IncreaseXPDependentOnLevelAction(5, 290.0));
+		actions.add(new IncreaseKarmaAction(10.0));
 		actions.add(new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-				final int start = Level.getXP(player.getLevel());
-				final int next = Level.getXP(player.getLevel() + 1);
-				int reward = 3 * (next - start) / 5;
-				if (player.getLevel() >= Level.maxLevel()) {
-					reward = 0;
-					// no reward so give a lot karma instead, 300 in all
-					player.addKarma(290.0);
-				}
-				player.addXP(reward);
-				player.addKarma(10.0);
 				int goldamount;
 				final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
 								.getItem("money");

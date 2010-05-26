@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Creature;
@@ -10,6 +9,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
@@ -232,7 +232,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			String questCount = null;
 			String questLast = null;
 			
-			logger.info("Inside DailyQuestCompleteAction");
+			//logger.info("Inside DailyQuestCompleteAction");
 			final String[] tokens = (questInfo + ";0;0").split(";");
 			//questLast = tokens[1];
 			questCount = tokens[2];
@@ -240,17 +240,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 				questCount = "0";
 			}
 
-			final int start = Level.getXP(player.getLevel());
-			final int next = Level.getXP(player.getLevel() + 1);
-			int reward = (next - start) / 5;
-			if (player.getLevel() >= Level.maxLevel()) {
-				reward = 0;
-				// no reward so give a lot karma instead, 100 in all
-				player.addKarma(95.0);
-			}
-			
+			new IncreaseXPDependentOnLevelAction(5, 95.0).fire(player, sentence, engine);			
 			engine.say("Good work! Let me thank you in the name of the people of Semos!");
-			player.addXP(reward);
 			player.addKarma(5.0);
 			questCount = "" + (Integer.valueOf(questCount) + 1);
 			questLast = "" + (new Date()).getTime();
