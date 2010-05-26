@@ -63,10 +63,10 @@ public class WeeklyItemQuest extends AbstractQuest {
 	private static final String QUEST_SLOT = "weekly_item";
 	
 	/** How long until the player can give up and start another quest */
-	private final int expireDelay = MathHelper.MINUTES_IN_ONE_HOUR * 7 * 24 * 6; 
+	private final int expireDelay = MathHelper.MINUTES_IN_ONE_WEEK * 6; 
 	
 	/** How often the quest may be repeated */
-	private final int delay = MathHelper.MINUTES_IN_ONE_HOUR * 24 * 7; 
+	private final int delay = MathHelper.MINUTES_IN_ONE_WEEK; 
 	
 	/**
 	 * All items which are hard enough to find but not tooo hard and not in Daily quest. If you want to do
@@ -206,7 +206,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				int reward = 3 * (next - start) / 5;
 				if (player.getLevel() >= Level.maxLevel()) {
 					reward = 0;
-					// no reward so give a lot karma instead, 100 in all
+					// no reward so give a lot karma instead, 300 in all
 					player.addKarma(290.0);
 				}
 				player.addXP(reward);

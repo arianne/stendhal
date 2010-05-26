@@ -57,10 +57,10 @@ public class DailyItemQuest extends AbstractQuest {
 	private static final String QUEST_SLOT = "daily_item";
 	
 	/** How long until the player can give up and start another quest */
-	private final int expireDelay = MathHelper.MINUTES_IN_ONE_HOUR * 7 * 24; 
+	private final int expireDelay = MathHelper.MINUTES_IN_ONE_WEEK; 
 	
 	/** How often the quest may be repeated */
-	private final int delay = MathHelper.MINUTES_IN_ONE_HOUR * 24; 
+	private final int delay = MathHelper.MINUTES_IN_ONE_DAY; 
 	
 	/**
 	 * All items which are possible/easy enough to find. If you want to do
