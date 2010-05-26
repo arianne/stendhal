@@ -22,9 +22,11 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.constants.Nature;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -40,6 +42,20 @@ import marauroa.common.game.RPAction;
  */
 abstract class RPEntity2DView extends ActiveEntity2DView {
 	private static final int ICON_OFFSET = 8;
+	
+	/** Number of frames in attack sprites */
+	private static final int NUM_ATTACK_FRAMES = 3;
+	private static final Stroke ARROW_STROKE = new BasicStroke(2);
+	private static final Map<Nature, Color> arrowColor;
+	
+	static {
+		arrowColor = new EnumMap<Nature, Color>(Nature.class);
+		arrowColor.put(Nature.CUT, Color.LIGHT_GRAY);
+		arrowColor.put(Nature.DARK, Color.DARK_GRAY);
+		arrowColor.put(Nature.LIGHT, Color.YELLOW);
+		arrowColor.put(Nature.FIRE, Color.ORANGE);
+		arrowColor.put(Nature.ICE, Color.BLUE);
+	}
 
 	/**
 	 * The attack sprites. The top level map contains all the
@@ -95,7 +111,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	static {
 		final SpriteStore st = SpriteStore.get();
 		
-		final int twidth = 3 * IGameScreen.SIZE_UNIT_PIXELS;
+		final int twidth = NUM_ATTACK_FRAMES * IGameScreen.SIZE_UNIT_PIXELS;
 		final int theight = 4 * IGameScreen.SIZE_UNIT_PIXELS;
 
 		bladeStrikeSprites = new EnumMap<Nature, Map<Direction, Sprite[]>>(Nature.class);
@@ -426,59 +442,8 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			g2d.drawRect(srect.x + 2, srect.y + 2, srect.width - 4,
 					srect.height - 4);
 		}
-
-		Nature damageType = rpentity.getShownDamageType();
-		if (rpentity.isAttacking() && (damageType != null)) {
-			if (frameBladeStrike < 3) {
-				final Sprite sprite = bladeStrikeSprites.get(damageType).get(getState())[frameBladeStrike];
-
-				final int spriteWidth = sprite.getWidth();
-				final int spriteHeight = sprite.getHeight();
-
-				int sx;
-				int sy;
-
-				/*
-				 * Align swipe image to be 16 px past the facing edge, centering
-				 * in other axis.
-				 * 
-				 * Swipe image is 3x4 tiles, but really only uses partial areas.
-				 * Adjust positions to match (or fix images to be
-				 * uniform/centered).
-				 */
-				switch (rpentity.getDirection()) {
-				case UP:
-					sx = x + ((width - spriteWidth) / 2) + 16;
-					sy = y - 16 - 32;
-					break;
-
-				case DOWN:
-					sx = x + ((width - spriteWidth) / 2);
-					sy = y + height - spriteHeight + 16;
-					break;
-
-				case LEFT:
-					sx = x - 16;
-					sy = y + ((height - spriteHeight) / 2) - 16;
-					break;
-
-				case RIGHT:
-					sx = x + width - spriteWidth + 16;
-					sy = y + ((height - spriteHeight) / 2) - ICON_OFFSET;
-					break;
-
-				default:
-					sx = x + ((width - spriteWidth) / 2);
-					sy = y + ((height - spriteHeight) / 2);
-				}
-
-				sprite.draw(g2d, sx, sy);
-				frameBladeStrike++;
-			} else {
-				rpentity.doneStriking();
-				frameBladeStrike = 0;
-			}
-		}
+		
+		drawAttack(g2d, x, y, width, height);
 
 		if (((RPEntity) entity).isDefending()) {
 			// Draw bottom right combat icon
@@ -501,6 +466,140 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 				// cannot happen we are switching on enum
 			}
 		}
+	}
+	
+	/**
+	 * Draw the attacking effect.
+	 * 
+	 * @param g2d The graphics context 
+	 * @param x x coordinate of the attacker
+	 * @param y y coordinate of the attacker
+	 * @param width width of the attacker
+	 * @param height height of the attacker
+	 */
+	private void drawAttack(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+		RPEntity rpentity = (RPEntity) entity;
+		
+		if (rpentity.isAttacking() && rpentity.getShownDamageType() != null) {
+			if (frameBladeStrike < NUM_ATTACK_FRAMES) {
+				RPEntity target = rpentity.getAttackTarget();
+
+				// A hack to check if it's a distance attack for proof
+				// of concept arrow drawing. Should be specified in the
+				// attack event itself
+				final Rectangle2D area = entity.getArea();
+				area.setRect(entity.getX() - 0.25, entity.getY() - 0.25, entity.getWidth()
+						+ 2 * 0.25, entity.getHeight() + 2 * 0.25);
+				
+				if (area.intersects(target.getArea())) {
+					drawStrike(g2d, rpentity, x, y, width, height);
+				} else {
+					drawDistanceAttack(g2d, rpentity, target, x, y, width, height);
+				}
+				frameBladeStrike++;
+			} else {
+				rpentity.doneStriking();
+				frameBladeStrike = 0;
+			}
+		}
+	}
+	
+	/**
+	 * Draw a blade strike.
+	 *  
+	 * @param g2d
+	 * @param entity
+	 * @param target
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
+	private void drawStrike(final Graphics2D g2d, final RPEntity entity, 
+			final int x, final int y, final int width, final int height) {
+		Nature damageType = entity.getShownDamageType();
+		
+		if (damageType != null) {			
+			final Sprite sprite = bladeStrikeSprites.get(damageType).get(getState())[frameBladeStrike];
+
+			final int spriteWidth = sprite.getWidth();
+			final int spriteHeight = sprite.getHeight();
+
+			int sx;
+			int sy;
+
+			/*
+			 * Align swipe image to be 16 px past the facing edge, centering
+			 * in other axis.
+			 * 
+			 * Swipe image is 3x4 tiles, but really only uses partial areas.
+			 * Adjust positions to match (or fix images to be
+			 * uniform/centered).
+			 */
+			switch (entity.getDirection()) {
+			case UP:
+				sx = x + ((width - spriteWidth) / 2) + 16;
+				sy = y - 16 - 32;
+				break;
+
+			case DOWN:
+				sx = x + ((width - spriteWidth) / 2);
+				sy = y + height - spriteHeight + 16;
+				break;
+
+			case LEFT:
+				sx = x - 16;
+				sy = y + ((height - spriteHeight) / 2) - 16;
+				break;
+
+			case RIGHT:
+				sx = x + width - spriteWidth + 16;
+				sy = y + ((height - spriteHeight) / 2) - ICON_OFFSET;
+				break;
+
+			default:
+				sx = x + ((width - spriteWidth) / 2);
+				sy = y + ((height - spriteHeight) / 2);
+			}
+
+			sprite.draw(g2d, sx, sy);
+		}
+	}
+	
+	/**
+	 * Draw a distance attack line.
+	 * 
+	 * @param g2d
+	 * @param entity
+	 * @param target
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
+	private void drawDistanceAttack(final Graphics2D g2d, final RPEntity entity, final RPEntity target,
+			final int x, final int y, final int width, final int height) {
+		Nature nature = entity.getShownDamageType(); 
+
+		int startX = x + width / 2;
+		int startY = y + height / 2;
+		int endX = (int) (32 * (target.getX() + target.getWidth() / 2));
+		int endY = (int) (32 * (target.getY() + target.getHeight() / 2));
+
+		int yLength = (endY - startY) / NUM_ATTACK_FRAMES;
+		int xLength = (endX - startX) / NUM_ATTACK_FRAMES;
+
+		startY += frameBladeStrike * yLength;
+		endY = startY + yLength;
+
+		startX += frameBladeStrike * xLength;
+		endX = startX + xLength;
+
+		g2d.setColor(arrowColor.get(nature));
+		Stroke oldStroke = g2d.getStroke();
+		g2d.setStroke(ARROW_STROKE);
+		g2d.drawLine(startX, startY, endX, endY);
+		g2d.setStroke(oldStroke);
 	}
 
 	/**
