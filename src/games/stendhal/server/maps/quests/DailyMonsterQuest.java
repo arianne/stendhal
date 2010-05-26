@@ -57,10 +57,9 @@ public class DailyMonsterQuest extends AbstractQuest {
 	private static final String QUEST_SLOT = "daily";
 	private final SpeakerNPC npc = npcs.get("Mayor Sakhs");
 	private static Logger logger = Logger.getLogger("DailyMonsterQuest");
-	// minutes in day
-	private final static int delay = MathHelper.MINUTES_IN_ONE_HOUR * 24;
-	// minutes in week
-	private final static int expireDelay = delay * 7;
+
+	private final static int delay = MathHelper.MINUTES_IN_ONE_DAY;
+	private final static int expireDelay = MathHelper.MINUTES_IN_ONE_WEEK;
 
 	
 	/** All creatures, sorted by level. */
