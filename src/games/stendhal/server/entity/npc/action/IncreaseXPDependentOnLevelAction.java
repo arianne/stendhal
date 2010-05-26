@@ -9,19 +9,19 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Increases the xp of the current player.
  */
-public class ProgressiveIncreaseXPAction implements ChatAction {
-    // player will get 1/xpDiff part of his level's full xp amount. 
+public class IncreaseXPDependentOnLevelAction implements ChatAction {
+    // player will get 1/xpDiff part of difference between his and next levels xp amount. 
 	private final double xpDiff;
 	// player will get this bonus instead xp if have max level
 	private final double karmabonus;
 
 	/**
-	 * Creates a new IncreaseKarmaAction.
+	 * Creates a new IncreaseXPDependentOnLevelAction.
 	 * 
-	 * @param xpDiff
-	 *            amount of karma to add
+	 * @param xpDiff - player will get 1/xpDiff of difference between his and next levels xp amount. 
+	 * @param karmabonus - amount of karma to add instead xp if player have max level
 	 */
-	public ProgressiveIncreaseXPAction(final int xpDiff, final double karmabonus) {
+	public IncreaseXPDependentOnLevelAction(final int xpDiff, final double karmabonus) {
 		this.xpDiff = xpDiff;
 		this.karmabonus = karmabonus;
 	}
@@ -41,14 +41,14 @@ public class ProgressiveIncreaseXPAction implements ChatAction {
 
 	@Override
 	public String toString() {
-		return "ProgressiveIncreaseXP <" + xpDiff + ">";
+		return "IncreaseXPDependentOnLevel <" + xpDiff + ","+karmabonus+">";
 	}
 
 	@Override
 	public int hashCode() {
 		final int PRIME = 31;
 		int result = 1;
-		result = PRIME * result + (int)(1/xpDiff);
+		result = PRIME * result + (int)(xpDiff);
 		return result;
 	}
 
@@ -63,7 +63,7 @@ public class ProgressiveIncreaseXPAction implements ChatAction {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		final ProgressiveIncreaseXPAction other = (ProgressiveIncreaseXPAction) obj;
+		final IncreaseXPDependentOnLevelAction other = (IncreaseXPDependentOnLevelAction) obj;
 		if (xpDiff != other.xpDiff) {
 			return false;
 		}
