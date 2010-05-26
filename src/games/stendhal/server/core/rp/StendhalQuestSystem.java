@@ -42,6 +42,7 @@ import games.stendhal.server.maps.quests.JailedDwarf;
 import games.stendhal.server.maps.quests.KanmararnSoldiers;
 import games.stendhal.server.maps.quests.KillDarkElves;
 import games.stendhal.server.maps.quests.KillDhohrNuggetcutter;
+import games.stendhal.server.maps.quests.KillEnemyArmy;
 import games.stendhal.server.maps.quests.KillGnomes;
 import games.stendhal.server.maps.quests.KillSpiders;
 import games.stendhal.server.maps.quests.LearnAboutKarma;
@@ -178,6 +179,7 @@ public class StendhalQuestSystem {
 		//loadQuest(new KillBlordroughs());
 		loadQuest(new KillDarkElves());
 		loadQuest(new KillDhohrNuggetcutter());
+		loadQuest(new KillEnemyArmy());
 		loadQuest(new KillGnomes());
 		loadQuest(new KillSpiders());
 		loadQuest(new Marriage());
