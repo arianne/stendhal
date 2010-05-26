@@ -12,6 +12,7 @@ Changelog
 
 *code*
 - new simple layout manager to replace the abandoned pagelayout
+- reworked DailyMonsterQuest engine
 
 *website*
 - performance optimisation
