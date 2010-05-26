@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -8,6 +10,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.mithrilbourgh.throne_room.BuyerNPC;
 import games.stendhal.common.Grammar;
+import games.stendhal.common.Rand;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -58,11 +61,17 @@ public class KillEnemyArmyTest {
 
 	/**
 	 * function for emulating killing of quest monsters by player.
+	 * @param player - killer
 	 * @param numb - number of creatures for killing
 	 */
-	public void KillRandomMonsters(int numb) {
+	public void KillRandomMonsters(final Player player, int numb) {
+		List<String> monsters = quest.enemys.get(player.getQuest(QUEST_SLOT, 1));
 		for(int i=0; i<numb; i++) {		
-			
+			if(Rand.throwCoin()==0) {
+				player.setSoloKill(monsters.get(Rand.rand((monsters.size()-1))));				
+			} else {
+				player.setSharedKill(monsters.get(Rand.rand((monsters.size()-1))));
+			};
 		}
 		logger.debug("killed "+ numb + " creatures.");
 	}
@@ -74,8 +83,11 @@ public class KillEnemyArmyTest {
 		en.step(player, "yes");
 		assertEquals("Well state what you want then!", getReply(npc));
 		en.step(player, "quest");
+		// we have to write here which enemy type player got.
 		final String monstersType=player.getQuest(QUEST_SLOT, 1);
 		final int killsnumb=quest.enemyForces.get(monstersType).first();
+		final String expectingAnswer = quest.enemyForces.get(monstersType).second();
+		
 		assertEquals("I need help in battles with #enemy "+monstersType+
 				" armies. They really annoying me. Kill at least "+killsnumb+
 				" of any "+monstersType+
@@ -88,35 +100,44 @@ public class KillEnemyArmyTest {
 		en.step(player, "quest");
 		assertEquals("I already explained to you what i need. Are you an idiot, as you cant remember this simple thing about #"+monstersType+"?", getReply(npc));		
 		en.step(player, "enemy");
-		final String expectingAnswer = quest.enemyForces.get(monstersType).second();
 		assertEquals(expectingAnswer, getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));		
 	}
 	
-	@Ignore
+	@Test
 	public void TestKilling() {
 		int killed=0;
 		en.step(player, "hi");
 		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I need help in battles with #Blordrough warriors. "+
-				"They really annoying me. Kill at least 100 of any "+
-				"blordrough soldiers and i will reward you.", getReply(npc));
+		
+		// we have to write here which enemy type player got.
+		final String monstersType=player.getQuest(QUEST_SLOT, 1);
+		final int killsnumb=quest.enemyForces.get(monstersType).first();
+		//final String expectingAnswer = quest.enemyForces.get(monstersType).second();
+		
+		assertEquals("I need help in battles with #enemy "+monstersType+
+				" armies. They really annoying me. Kill at least "+killsnumb+
+				" of any "+monstersType+
+				" soldiers and i will reward you.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-
-//		killed = quest.killsnumber-1;
-		KillRandomMonsters(killed);
+		
+		
+        killed=1;
+		KillRandomMonsters(player, killed);
 		en.step(player, "hi");
 		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("You killed only "+killed+" blordrough "+
-				Grammar.plnoun(killed, "soldier")+".", getReply(npc));
+		
+		assertEquals("You killed only "+killed+" "+Grammar.plnoun(killed, player.getQuest(QUEST_SLOT, 1))+
+		". You have to kill at least "+killsnumb+" "+Grammar.plnoun(killed, player.getQuest(QUEST_SLOT, 1)), getReply(npc));
+		
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		// make it full number.
-		KillRandomMonsters(1);
+		KillRandomMonsters(player, killsnumb-1);
 		en.step(player, "hi");
 		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
 		int tempxp = player.getXP();
@@ -131,7 +152,7 @@ public class KillEnemyArmyTest {
 		assertEquals("Bye.", getReply(npc));
 	}	
 	
-	@Ignore
+	@Test
 	public void TestExtraKilling() {
 		int killed=0;
 		en.step(player, "hi");
@@ -139,25 +160,32 @@ public class KillEnemyArmyTest {
 		en.step(player, "yes");
 		assertEquals("Well state what you want then!", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I need help in battles with #Blordrough warriors. "+
-				"They really annoying me. Kill at least 100 of any "+
-				"blordrough soldiers and i will reward you.", getReply(npc));
+		// we have to write here which enemy type player got.
+		final String monstersType=player.getQuest(QUEST_SLOT, 1);
+		final int killsnumb=quest.enemyForces.get(monstersType).first();
+		
+		assertEquals("I need help in battles with #enemy "+monstersType+
+				" armies. They really annoying me. Kill at least "+killsnumb+
+				" of any "+monstersType+
+				" soldiers and i will reward you.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		// killing 351 creature
-		//killed = quest.killsnumber*3+quest.killsnumber/2+1;
-		KillRandomMonsters(killed);	
+		
+		// will kill 2x monsters for get 15 karma in total
+		killed=killsnumb*2;
+		
+		double tempkarma = player.getKarma();		
+		KillRandomMonsters(player, killed);
+		
 		en.step(player, "hi");
 		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));		
-		en.step(player, "yes");
-		assertEquals("Well state what you want then!", getReply(npc));
-		double tempkarma = player.getKarma();
-		en.step(player, "quest");		
-//		assertEquals("Pretty good! You killed "+(killed-quest.killsnumber)+" extra "+
-//				Grammar.plnoun(killed-quest.killsnumber, "soldier")+
-//				"! Take this moneys, and remember, i may wish you to do this job again in one week!", 
-//				getReply(npc));
-		assertEquals(tempkarma, player.getKarma()-30, 0.000001);
+
+		en.step(player, "quest");	
+		assertEquals("Pretty good! You killed "+(killed-killsnumb)+
+				" extra " +	Grammar.plnoun(killed-killsnumb, "soldier")+
+				"! Take this moneys, and remember, i may wish you to do this job again in one week!", getReply(npc));
+
+		assertEquals(tempkarma, player.getKarma()-15.0, 0.000001);
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));	
 	}
