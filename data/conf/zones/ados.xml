@@ -488,7 +488,97 @@ Please leave my mail at my neighbour's house.
    <portal x="66" y="86" ref="storage_outside_5">
      <destination zone="int_ados_storage" ref="storage_inside_right"/>
    </portal>
-   
+  
+    <entity x="74" y="14">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You glance at the statue. It shows a beautiful mermaid, sitting on a rock.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">2</attribute>
+       <attribute name="height">2</attribute>
+    </entity> 
+
+    <entity x="51" y="7">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This stump is used for docking big ships. It is strong enough to hold big ropes.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity> 
+ 
+    <entity x="56" y="7">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This stump is used for docking big ships. It is strong enough to hold big ropes.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity> 
+
+    <entity x="61" y="7">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This stump is used for docking big ships. It is strong enough to hold big ropes.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="66" y="7">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This stump is used for docking big ships. It is strong enough to hold big ropes.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="71" y="7">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This stump is used for docking big ships. It is strong enough to hold big ropes.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="74" y="65">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This stump is used for docking big ships. It is strong enough to hold big ropes.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="73" y="59">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This stump is used for docking big ships. It is strong enough to hold big ropes.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="72" y="53">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This stump is used for docking big ships. It is strong enough to hold big ropes.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="72" y="47">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This stump is used for docking big ships. It is strong enough to hold big ropes.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="73" y="41">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This stump is used for docking big ships. It is strong enough to hold big ropes.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+
+
  </zone>
  
  <zone name="int_ados_reverse_arrow" file="interiors/ados/reverse_arrow.tmx">
@@ -636,6 +726,14 @@ in roaches.
       	</attribute>
       	<attribute name="class">book_blue</attribute>
     </entity>
+
+    <entity x="4" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You glance at the statue. It shows a beautiful mermaid, sitting on a rock.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">2</attribute>
+       <attribute name="height">2</attribute>
+    </entity> 
 
     <portal x="8" y="30" ref="entrance_left">
      <destination zone="0_ados_city" ref="library_entrance_left"/>
@@ -2133,6 +2231,13 @@ My fee:
    <portal x="22" y="14" ref="down">
     <destination zone="int_ados_farm_house" ref="up"/>
    </portal>
+    <entity x="27" y="1">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">A very nice fireplace, it is great just to sit in front of it and feel the nice warmth.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">2</attribute>
+       <attribute name="height">2</attribute>
+    </entity> 
   </zone>
 
    <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="Level 0/ados/rock_w.tmx">
@@ -2237,7 +2342,64 @@ Southeast: Docks
    </zone>
    
    <zone name="0_ados_city" level="0" x="500896" y="500000" file="Level 0/ados/city.tmx">
-   <!-- castle garden entrance --> 
+ 
+    <entity x="55" y="109">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You glance at the statue. It shows a beautiful mermaid, sitting on a rock.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">2</attribute>
+       <attribute name="height">2</attribute>
+    </entity> 
+
+    <entity x="80" y="38">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">Around these woods there can be laid ropes to dock a ship.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="80" y="41">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">Around these woods there can be laid ropes to dock a ship.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="80" y="44">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">Around these woods there can be laid ropes to dock a ship.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="80" y="47">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">Around these woods there can be laid ropes to dock a ship.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="80" y="50">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">Around these woods there can be laid ropes to dock a ship.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="80" y="53">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">Around these woods there can be laid ropes to dock a ship.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+  <!-- castle garden entrance --> 
    <portal x="17" y="24" ref="ingardenleft">
      <destination zone="int_ados_castle_throne" ref="outgardenleft"/>
    </portal>
@@ -2441,6 +2603,15 @@ Southeast: Docks
        <parameter name="rejected">The door is locked.</parameter>
      </implementation>
     </portal>-->
+
+    <entity x="38" y="23">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">The water in this well is for watering the flowers in the graveyard.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">2</attribute>
+       <attribute name="height">2</attribute>
+    </entity>
+
  </zone>
  
  <zone name="int_ados_church_0" file="interiors/ados/church_0.tmx">
@@ -2456,6 +2627,16 @@ Southeast: Docks
     <portal x="2" y="2" ref="upstairs">
      <destination zone="int_ados_church_1" ref="downstairs"/>
    </portal>
+
+    <entity x="19" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">The priests sits on this precious armchair. It looks very expensive with its golden decorations and the purple upholstery.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">3</attribute>
+       <attribute name="height">2</attribute>
+       <attribute name="resistance">0</attribute>
+    </entity>
+
  </zone>
  
   <zone name="int_ados_church_1" file="interiors/ados/church_1.tmx">
