@@ -1,7 +1,9 @@
 package games.stendhal.server.maps.quests;
 
-import java.util.List;
-
+import static org.junit.Assert.assertEquals;
+import static utilities.SpeakerNPCTestHelper.getReply;
+import games.stendhal.common.Grammar;
+import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -9,19 +11,16 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.mithrilbourgh.throne_room.BuyerNPC;
-import games.stendhal.common.Grammar;
-import games.stendhal.common.Rand;
+
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class KillEnemyArmyTest {
 	
