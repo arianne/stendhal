@@ -195,6 +195,7 @@ public class StendhalRPAction {
 			player.storeLastPVPActionTime();
 		}
 
+		boolean missileUsed = false;
 		if (!player.nextTo(defender)) {
 			// The attacker is not directly standing next to the defender.
 			// Find out if he can attack from the distance.
@@ -205,20 +206,8 @@ public class StendhalRPAction {
 						defender.getX(), defender.getY())) {
 					return false;
 				}
-				// Get the projectile that will be thrown/shot.
-				StackableItem projectilesItem = null;
-				if (player.getRangeWeapon() != null) {
-					projectilesItem = player.getAmmunition();
-				}
-				if (projectilesItem == null) {
-					// no arrows... but maybe a spear?
-					projectilesItem = player.getMissileIfNotHoldingOtherWeapon();
-				}
-				// Creatures can attack without having projectiles, but players
-				// will lose a projectile for each shot.
-				if (projectilesItem != null) {
-					projectilesItem.removeOne();
-				}
+				
+				missileUsed = true;
 			} else {
 				logger.debug("Attack from " + player + " to " + defender
 						+ " failed because target is not near.");
@@ -269,12 +258,40 @@ public class StendhalRPAction {
 			player.addEvent(new AttackEvent(false, 0, player.getDamageType()));
 		}
 
+		if (missileUsed) {
+			/*
+			 *  Removing the missile is deferred here so that the weapon
+			 *  information is available when calculating the damage.
+			 */
+			useMissile(player);
+		}
+		
 		player.notifyWorldAboutChanges();
 
 		return result;
 	}
-
-
+	
+	/**
+	 * Remove an used up missile from an attacking player.
+	 * 
+	 * @param player The player to remove the projectile from
+	 */
+	private static void useMissile(Player player) {
+		// Get the projectile that will be thrown/shot.
+		StackableItem projectilesItem = null;
+		if (player.getRangeWeapon() != null) {
+			projectilesItem = player.getAmmunition();
+		}
+		if (projectilesItem == null) {
+			// no arrows... but maybe a spear?
+			projectilesItem = player.getMissileIfNotHoldingOtherWeapon();
+		}
+		// Creatures can attack without having projectiles, but players
+		// will lose a projectile for each shot.
+		if (projectilesItem != null) {
+			projectilesItem.removeOne();
+		}
+	}
 
 	/**
 	 * send the content of the zone the player is in to the client.
