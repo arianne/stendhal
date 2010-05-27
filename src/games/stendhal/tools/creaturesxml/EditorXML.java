@@ -73,11 +73,6 @@ public class EditorXML {
 			public int compare(DefaultCreature o1, DefaultCreature o2) {
 				return o1.getLevel() - o2.getLevel();
 			}
-
-			@Override
-			public boolean equals(Object obj) {
-				return true;
-			}
 		});
 	}
 
@@ -133,11 +128,6 @@ public class EditorXML {
 				}
 
 				return cmp;
-			}
-
-			@Override
-			public boolean equals(Object obj) {
-				return true;
 			}
 		});
 	}
