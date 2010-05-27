@@ -2053,7 +2053,8 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public boolean canDoRangeAttack(final RPEntity target) {
 		final int maxRange = getMaxRangeForArcher();
-		return (squaredDistance(target) >= 2 * 2)
+		// there's at least one square between, and the target's in range
+		return (squaredDistance(target) >= 1)
 				&& (squaredDistance(target) <= maxRange * maxRange);
 	}
 
