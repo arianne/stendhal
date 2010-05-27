@@ -98,7 +98,7 @@ public class WtButton extends WtPanel {
 
 	/** button has been clicked. */
 	@Override
-	public boolean onMouseClick(final Point point) {
+	public synchronized boolean onMouseClick(final Point point) {
 		setEmboss(!isEmbossed());
 		// tell all registered listeners that we're clicked
 		notifyClickListeners(getName(), point);

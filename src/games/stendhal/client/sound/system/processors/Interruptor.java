@@ -42,7 +42,7 @@ public class Interruptor extends SignalProcessor
     }
 
     @Override
-    public boolean request()
+    public synchronized boolean request()
     {
         if(mDelay.get() <= 0)
         {
