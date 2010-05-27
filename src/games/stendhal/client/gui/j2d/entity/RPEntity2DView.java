@@ -584,7 +584,10 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		int startX = x + width / 2;
 		int startY = y + height / 2;
 		int endX = (int) (32 * (target.getX() + target.getWidth() / 2));
-		int endY = (int) (32 * (target.getY() + target.getHeight() / 2));
+		// Target at the upper edge of the occupied area.
+		// Getting the EntityView from an entity is tedious, and
+		// still does not work reliable for everything (rats)
+		int endY = (int) (32 * target.getY()); 
 
 		int yLength = (endY - startY) / NUM_ATTACK_FRAMES;
 		int xLength = (endX - startX) / NUM_ATTACK_FRAMES;
