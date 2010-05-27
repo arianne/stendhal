@@ -3,7 +3,7 @@
 	xsi:schemaLocation="stendhal ../items.xsd ">
     <item name="snowball">
     <type class="missile" subclass="snowballs" tileid="-1"/>
-    <description>You see snowballs. You can throw them on your friends or put it in your bag to keep your fish fresh. But be carfully, there could be little stones in it.</description>
+    <description>You see snowballs. You can throw them at your friends or put it in your bag to keep your fish fresh. But be careful, there could be little stones in it.</description>
     <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>    <attributes>
       <atk value="-1"/>
       <range value="8"/>
@@ -75,11 +75,30 @@
     <description>You see a shuriken. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="6"/>
-      <range value="2"/>
+      <range value="3"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="fire shuriken">
+    <type class="missile" subclass="fire_shuriken" tileid="-1"/>
+    <description>You see a fire shuriken. Throwing this flaming missile unleashes fiendish power.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <atk value="12"/>
+      <range value="3"/>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="2160"/>
+    <damage type="fire"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
