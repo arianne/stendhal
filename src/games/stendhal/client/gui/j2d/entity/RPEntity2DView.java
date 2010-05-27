@@ -52,9 +52,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		arrowColor = new EnumMap<Nature, Color>(Nature.class);
 		arrowColor.put(Nature.CUT, Color.LIGHT_GRAY);
 		arrowColor.put(Nature.DARK, Color.DARK_GRAY);
-		arrowColor.put(Nature.LIGHT, Color.YELLOW);
-		arrowColor.put(Nature.FIRE, Color.ORANGE);
-		arrowColor.put(Nature.ICE, Color.BLUE);
+		arrowColor.put(Nature.LIGHT, new Color(255, 240, 140)); // light yellow
+		arrowColor.put(Nature.FIRE, new Color(255, 100, 0)); // reddish orange
+		arrowColor.put(Nature.ICE, new Color(140, 140, 255)); // light blue
 	}
 
 	/**
