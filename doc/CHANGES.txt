@@ -9,6 +9,7 @@ Changelog
 - Dr. Feelgood can heal pets
 - pizza delivery missions selected by level
 - client can be started with username and password as parameters to bypass login gui (not for use on multi-user systems)
+- an arrow effect drawn for distance attacks
 
 *code*
 - new simple layout manager to replace the abandoned pagelayout
