@@ -74,23 +74,23 @@ import org.apache.log4j.Logger;
 		super();
 		// fill monster types map  
 		enemyForces.put("blordroughs",      
-				new Pair<Integer, String>(50,"Blordrough warriors comes from Ados tunnels. They are extremely strong in battles, thats why Blordrough captured part of Deniran's territory."));
+				new Pair<Integer, String>(50,"Blordrough warriors now live in the Ados tunnels. They are extremely strong in battle, that is why Blordrough captured part of Deniran's territory."));
 		enemyForces.put("madarams",         
-				new Pair<Integer, String>(100,"Their forces is somewhere under Fado. They are hideous."));
+				new Pair<Integer, String>(100,"Their forces are somewhere under Fado. They are hideous."));
 		enemyForces.put("dark elves",       
-				new Pair<Integer, String>(100,"Drows can be found under Nalwor. They using poison in battles, gathering it from different poisonous creatures."));
+				new Pair<Integer, String>(100,"Drows, or dark elves as they are commonly called, can be found under Nalwor. They use poison in battles, gathering it from different poisonous creatures."));
 		enemyForces.put("chaoses",          
-				new Pair<Integer, String>(150,"They are strong and crazy. I cant hold their expansion by other way then with my elite archers."));
+				new Pair<Integer, String>(150,"They are strong and crazy. Only my elite archers hold them from expanding more."));
 		enemyForces.put("mountain dwarves", 
 				new Pair<Integer, String>(150,"They are my historical neighbors, living in Semos mines."));
 		enemyForces.put("mountain orcs",    
 				new Pair<Integer, String>(150,"Stupid creatures, but very strong. Can be found in Semos mines somewhere."));
 		enemyForces.put("imperials",        
-				new Pair<Integer, String>(200,"They coming from their castle in underground Sedah city, leaded by their emperor Dalmung."));
+				new Pair<Integer, String>(200,"They come from their castle in the underground Sedah city, ruled by their Emperor Dalmung."));
 		enemyForces.put("barbarians", 
-				new Pair<Integer, String>(200,"Different barbarian tribes lives on surface near entrance to Semos mines. Not dangerous but noisy."));
+				new Pair<Integer, String>(200,"Different barbarian tribes live on the surface in the North West area of Ados Mountains. Not dangerous but noisy."));
 		enemyForces.put("oni",        
-				new Pair<Integer, String>(200,"Very strange race, lives in their castle in Fado forest. There is rumors about they have agreed with Magic city wizadrs about alliance."));
+				new Pair<Integer, String>(200,"Very strange race, living in their castle in Fado forest. There are rumors that they have agreed an alliance with the Magic city wizards."));
 
 		
 		/*
@@ -244,7 +244,7 @@ import org.apache.log4j.Logger;
 						+ ".";
 			} else {
 				// something wrong.
-				reply = "I dont want to decide about you now.";
+				reply = "I don't want to decide about you now.";
 				logger.error("wrong time count for player "+player.getName()+": "+
 						"current time is "+currenttime+
 						", last quest time is "+questLast, 
