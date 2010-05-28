@@ -44,7 +44,7 @@ import org.apache.log4j.Logger;
  * <li> Despot asking you to kill some of enemy forces.
  * <li> Kill them and go back to Despot for your reward.
  * </ul>
- * 
+ *
  *
  * REWARD:<ul>
  * <li> 500k XP
@@ -57,11 +57,11 @@ import org.apache.log4j.Logger;
  */
 
  public class KillEnemyArmy extends AbstractQuest {
-	 
+
 	private static final String QUEST_NPC = "Despot Halb Errvl";
 	private static final String QUEST_SLOT = "kill_enemy_army";
-	private final long questdelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;	
-	private SpeakerNPC npc;	
+	private final long questdelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
+	private SpeakerNPC npc;
 	private static Logger logger = Logger.getLogger(KillEnemyArmy.class);
 
 	protected HashMap<String, Pair<Integer, String>> enemyForces = new HashMap<String, Pair<Integer,String>>();
@@ -69,57 +69,57 @@ import org.apache.log4j.Logger;
 
 
 
-	
+
 	public KillEnemyArmy() {
 		super();
-		// fill monster types map  
-		enemyForces.put("blordroughs",      
+		// fill monster types map
+		enemyForces.put("blordroughs",
 				new Pair<Integer, String>(50,"Blordrough warriors now live in the Ados tunnels. They are extremely strong in battle, that is why Blordrough captured part of Deniran's territory."));
-		enemyForces.put("madarams",         
+		enemyForces.put("madarams",
 				new Pair<Integer, String>(100,"Their forces are somewhere under Fado. They are hideous."));
-		enemyForces.put("dark elves",       
+		enemyForces.put("dark elves",
 				new Pair<Integer, String>(100,"Drows, or dark elves as they are commonly called, can be found under Nalwor. They use poison in battles, gathering it from different poisonous creatures."));
-		enemyForces.put("chaoses",          
+		enemyForces.put("chaoses",
 				new Pair<Integer, String>(150,"They are strong and crazy. Only my elite archers hold them from expanding more."));
-		enemyForces.put("mountain dwarves", 
+		enemyForces.put("mountain dwarves",
 				new Pair<Integer, String>(150,"They are my historical neighbors, living in Semos mines."));
-		enemyForces.put("mountain orcs",    
+		enemyForces.put("mountain orcs",
 				new Pair<Integer, String>(150,"Stupid creatures, but very strong. Can be found in Semos mines somewhere."));
-		enemyForces.put("imperials",        
+		enemyForces.put("imperials",
 				new Pair<Integer, String>(200,"They come from their castle in the underground Sedah city, ruled by their Emperor Dalmung."));
-		enemyForces.put("barbarians", 
+		enemyForces.put("barbarians",
 				new Pair<Integer, String>(200,"Different barbarian tribes live on the surface in the North West area of Ados Mountains. Not dangerous but noisy."));
-		enemyForces.put("oni",        
+		enemyForces.put("oni",
 				new Pair<Integer, String>(200,"Very strange race, living in their castle in Fado forest. There are rumors that they have agreed an alliance with the Magic city wizards."));
 
-		
+
 		/*
 		 * those are not interesting
-		enemyForces.put("dwarves",          
+		enemyForces.put("dwarves",
 				new Pair<Integer, String>(275,""));
-		enemyForces.put("elves",            
+		enemyForces.put("elves",
 				new Pair<Integer, String>(300,""));
-		enemyForces.put("skeletons",        
+		enemyForces.put("skeletons",
 				new Pair<Integer, String>(500,""));
 		enemyForces.put("gnomes",
 				new Pair<Integer, String>(1000,""));
 		*/
-		
+
 		/*
 		 *  fill creatures map
 		 */
-		
-		enemys.put("blordroughs", 
+
+		enemys.put("blordroughs",
 				Arrays.asList("blordrough quartermaster",
 							  "blordrough corporal",
-							  "blordrough storm trooper"));	
-		enemys.put("dark elves", 
+							  "blordrough storm trooper"));
+		enemys.put("dark elves",
 				Arrays.asList("child dark elf",
 							  "dark elf archer",
 							  "dark elf",
 							  "dark elf elite archer",
 							  "dark elf captain",
-							  "dark elf knight", 
+							  "dark elf knight",
 							  "dark elf general",
 							  "dark elf wizard",
 							  "dark elf viceroy",
@@ -127,7 +127,7 @@ import org.apache.log4j.Logger;
 							  "dark elf admiral",
 							  "dark elf master",
 						"dark elf matronmother"));
-		enemys.put("chaoses", 
+		enemys.put("chaoses",
 				Arrays.asList("chaos soldier",
 							  "chaos warrior",
 							  "chaos commander",
@@ -137,7 +137,7 @@ import org.apache.log4j.Logger;
 							  "chaos green dragonrider",
 							  "chaos overlord",
 							  "chaos red dragonrider"));
-		enemys.put("mountain dwarves", 
+		enemys.put("mountain dwarves",
 				Arrays.asList("mountain dwarf",
 							  "mountain elder dwarf",
 							  "mountain hero dwarf",
@@ -145,12 +145,12 @@ import org.apache.log4j.Logger;
 							  "Dhohr Nuggetcutter",
 							  "giant dwarf",
 							  "dwarf golem"));
-		enemys.put("mountain orcs", 
+		enemys.put("mountain orcs",
 				Arrays.asList("mountain orc",
 							  "mountain orc warrior",
 							  "mountain orc hunter",
 							  "mountain orc chief"));
-		enemys.put("imperials", 
+		enemys.put("imperials",
 				Arrays.asList("imperial defender",
 							  "imperial veteran",
 							  "imperial archer",
@@ -171,7 +171,7 @@ import org.apache.log4j.Logger;
 							  "imperial demon lord",
 							  "emperor dalmung",
 							  "imperial general giant"));
-		enemys.put("madarams", 
+		enemys.put("madarams",
 				Arrays.asList("madaram peasant",
 							  "madaram trooper",
 							  "madaram soldier",
@@ -185,7 +185,7 @@ import org.apache.log4j.Logger;
 							  "kasarkutominubat"));
 		/*
 		 * exclude amazoness ( because they dont want to leave their island? )
-		enemys.put("amazoness", 
+		enemys.put("amazoness",
 				Arrays.asList("amazoness archer",
 						      "amazoness hunter",
 						      "amazoness coastguard",
@@ -197,23 +197,23 @@ import org.apache.log4j.Logger;
 						      "amazoness vigilance",
 						      "amazoness imperator",
 						      "amazoness giant"));
-		 */	
-		enemys.put("oni", 
+		 */
+		enemys.put("oni",
 				Arrays.asList("oni warrior",
 							  "oni archer",
 							  "oni priest",
 							  "oni king",
 							  "oni queen"));
-		enemys.put("barbarians", 
+		enemys.put("barbarians",
 				Arrays.asList("barbarian",
 						      "barbarian wolf",
 						      "barbarian elite",
 						      "barbarian priest",
 						      "barbarian chaman",
 						      "barbarian leader",
-						      "barbarian king"));		
+						      "barbarian king"));
 	}
-	
+
 	/**
 	 * function for choosing random enemy from map
 	 * @return - enemy forces caption
@@ -221,10 +221,10 @@ import org.apache.log4j.Logger;
 	protected String chooseRandomEnemys() {
 		final List<String> enemyList = new LinkedList<String>(enemyForces.keySet());
 		final int enemySize = enemyList.size();
-		final int position  = Rand.rand(enemySize);		
+		final int position  = Rand.rand(enemySize);
 		return(enemyList.get(position));
 	}
-	
+
 	/**
 	 * function will return NPC answer how much time remains.
 	 * @param player - chatting player.
@@ -235,7 +235,7 @@ import org.apache.log4j.Logger;
 		String reply = "";
 		String questLast = player.getQuest(QUEST_SLOT, 1);
 		if (questLast != null) {
-			final long timeRemaining = (Long.parseLong(questLast) + 
+			final long timeRemaining = (Long.parseLong(questLast) +
 					questdelay - currenttime);
 
 			if (timeRemaining > 0) {
@@ -247,24 +247,24 @@ import org.apache.log4j.Logger;
 				reply = "I don't want to decide about you now.";
 				logger.error("wrong time count for player "+player.getName()+": "+
 						"current time is "+currenttime+
-						", last quest time is "+questLast, 
+						", last quest time is "+questLast,
 						new Throwable());
 			}
 		}
 		return(reply);
 	}
-	
+
 	/**
 	 * function returns difference between recorded number of enemy creatures
 	 *     and currently killed creatures numbers.
-	 * @param player - player for who we counting this 
+	 * @param player - player for who we counting this
 	 * @return - number of killed enemy creatures
 	 */
 	private int getKilledCreaturesNumber(final Player player) {
 		int count = 0;
 		String temp;
-		int solo; 
-		int shared; 
+		int solo;
+		int shared;
 		int recsolo;
 		int recshared;
 		final String enemyType = player.getQuest(QUEST_SLOT,1);
@@ -291,7 +291,7 @@ import org.apache.log4j.Logger;
 			} else {
 				solo = Integer.parseInt(temp);
 			};
-			
+
 			temp = player.getKeyedSlot("!kills", "shared."+tempName);
 			if (temp==null) {
 				shared = 0;
@@ -303,51 +303,51 @@ import org.apache.log4j.Logger;
 		}
 		return(count);
 	}
-	
+
 	/**
 	 * function will update player quest slot.
 	 * @param player - player for which we will record quest.
 	 */
-	
+
 	class GiveQuestAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {
 			final String monstersType = chooseRandomEnemys();
 			player.setQuest(QUEST_SLOT, 1, monstersType);
-			npc.say("I need help in battles with #enemy " + monstersType + 
-					" armies. They really annoying me. Kill at least " + enemyForces.get(monstersType).first()+ 
+			npc.say("I need help to defeat #enemy " + monstersType +
+					" armies. They are a grave concern. Kill at least " + enemyForces.get(monstersType).first()+
 					" of any "+ monstersType +
-					" soldiers and i will reward you.");
+					" soldiers and I will reward you.");
 			final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>();
 			List<String> sortedcreatures = enemys.get(monstersType);
 			player.setQuest(QUEST_SLOT, "start");
 			player.setQuest(QUEST_SLOT, 1, monstersType);
 			for(int i=0; i<sortedcreatures.size(); i++) {
-				toKill.put(sortedcreatures.get(i), new Pair<Integer, Integer>(0,0));			 
+				toKill.put(sortedcreatures.get(i), new Pair<Integer, Integer>(0,0));
 			}
-			new StartRecordingKillsAction(QUEST_SLOT, 2, toKill).fire(player, sentence, speakerNPC);			
+			new StartRecordingKillsAction(QUEST_SLOT, 2, toKill).fire(player, sentence, speakerNPC);
 		}
 	}
-	
+
 	/**
 	 * function will complete quest and reward player.
 	 * @param player - player to be rewarded.
 	 * @param killed - number of killed creatures.
 	 */
 	class RewardPlayerAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {	
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {
 			final String monsters = player.getQuest(QUEST_SLOT, 1);
 			int killed=getKilledCreaturesNumber(player);
 			int killsnumber = enemyForces.get(monsters).first();
 			if(killed == killsnumber) {
 				// player killed no more no less then needed soldiers
-				npc.say("Good work! Take this moneys. And if you will need assassin job again, ask me in one week. I think they will try to fight me again.");
+				npc.say("Good work! Take these coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.");
 			} else {
 				// player killed more then needed soldiers
 				npc.say("Pretty good! You killed "+(killed-killsnumber)+" extra "+
-						Grammar.plnoun(killed-killsnumber, "soldier")+"! Take this moneys, and remember, i may wish you to do this job again in one week!");
+						Grammar.plnoun(killed-killsnumber, "soldier")+"! Take these coins, and remember, I may wish you to do this job again in one week!");
 			}
 			int karmabonus = 5*(2*killed/(killsnumber)-1);
-			final StackableItem money = (StackableItem) 
+			final StackableItem money = (StackableItem)
 					SingletonRepository.getEntityManager().getItem("money");
 			money.setQuantity(50000);
 			player.setQuest(QUEST_SLOT, "done;"+System.currentTimeMillis());
@@ -356,9 +356,9 @@ import org.apache.log4j.Logger;
 			player.addXP(500000);
 		};
 	}
-	 
-	
-	
+
+
+
 	/**
 	 * class for quest talking.
 	 */
@@ -371,7 +371,7 @@ import org.apache.log4j.Logger;
 
 				if(killed==0) {
 					// player killed no creatures but asked about quest again.
-					npc.say("I already explained to you what i need. Are you an idiot, as you cant remember this simple thing about #" + monsters + "?");
+					npc.say("I already explained to you what I need. Are you an idiot, as you can't remember this simple thing about #" + monsters + "?");
 					return;
 				}
 				if(killed < killsnumber) {
@@ -380,17 +380,17 @@ import org.apache.log4j.Logger;
 							". You have to kill at least "+killsnumber+" "+Grammar.plnoun(killed, player.getQuest(QUEST_SLOT, 1)));
 					return;
 				}
-							
+
 		}
 	}
-	
+
 	/**
 	 * add quest state to npc's fsm.
 	 */
 	private void step_1() {
-		
-		// quest can be given		
-		npc.add(ConversationStates.ATTENDING, 
+
+		// quest can be given
+		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new OrCondition(
 					new QuestNotStartedCondition(QUEST_SLOT),
@@ -400,9 +400,9 @@ import org.apache.log4j.Logger;
 				ConversationStates.ATTENDING,
 				null,
 				new GiveQuestAction());
-		
+
 		// time is not over
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, "done"),
@@ -415,11 +415,11 @@ import org.apache.log4j.Logger;
 							npc.say(getNPCTextReply(player, System.currentTimeMillis()));
 					}
 		});
-		
+
 		// explanations
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				"enemy",
-				new QuestInStateCondition(QUEST_SLOT, 0, "start"), 
+				new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
@@ -427,44 +427,44 @@ import org.apache.log4j.Logger;
 							npc.say(enemyForces.get(player.getQuest(QUEST_SLOT, 1)).second());
 						}
 				});
-		
+
 		// explanations
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				"enemy",
-				new QuestNotInStateCondition(QUEST_SLOT, 0, "start"), 
+				new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
 				ConversationStates.ATTENDING,
 				"Yes, my enemies are everywhere, they want to kill me! I guess about you are one of them. Stay away from me!",
 				null);
-		
+
 		// checking for kills
 		final List<String> creatures = new LinkedList<String>(enemyForces.keySet());
 		for(int i=0; i<enemyForces.size(); i++) {
 			final String enemy = creatures.get(i);
-			
-			  // player killed enough enemies.  
-		      npc.add(ConversationStates.ATTENDING, 
+
+			  // player killed enough enemies.
+		      npc.add(ConversationStates.ATTENDING,
 		    		  ConversationPhrases.QUEST_MESSAGES,
 		    		  new AndCondition(
 		    				  new QuestInStateCondition(QUEST_SLOT, 1, enemy),
-		    				  new KilledInSumForQuestCondition(QUEST_SLOT, 2, enemyForces.get(enemy).first())), 
-		    		  ConversationStates.ATTENDING, 
+		    				  new KilledInSumForQuestCondition(QUEST_SLOT, 2, enemyForces.get(enemy).first())),
+		    		  ConversationStates.ATTENDING,
 		    		  null,
 		    		  new RewardPlayerAction());
-		      
+
 		      // player killed not enough enemies.
-		      npc.add(ConversationStates.ATTENDING, 
+		      npc.add(ConversationStates.ATTENDING,
 		    		  ConversationPhrases.QUEST_MESSAGES,
 		    		  new AndCondition(
 		    				  new QuestInStateCondition(QUEST_SLOT, 1, enemy),
 		    				  new NotCondition(
-		    						  new KilledInSumForQuestCondition(QUEST_SLOT, 2, enemyForces.get(enemy).first()))), 
-		    		  ConversationStates.ATTENDING, 
+		    						  new KilledInSumForQuestCondition(QUEST_SLOT, 2, enemyForces.get(enemy).first()))),
+		    		  ConversationStates.ATTENDING,
 		    		  null,
 		    		  new ExplainAction());
-		      
+
 		};
-	}	 
-	 
+	}
+
 	/**
 	 * add quest to the Stendhal world.
 	 */
@@ -474,14 +474,14 @@ import org.apache.log4j.Logger;
 		super.addToWorld();
 		step_1();
 	}
-	
+
 	/**
 	 * return name of quest slot.
 	 */
 	public String getSlotName() {
 		return(QUEST_SLOT);
 	}
-	 
+
 	/**
 	 * return name of quest.
 	 */
@@ -489,4 +489,4 @@ import org.apache.log4j.Logger;
 		return("KillEnemyArmy");
 	}
 }
- 
+
