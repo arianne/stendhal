@@ -66,7 +66,7 @@ public class UltimateCollector extends AbstractQuest {
 	private static final String MITHRIL_SHIELD_QUEST_SLOT = "mithrilshield_quest"; // mithril
 	
 	/** Cloak Collector 2nd quest: Josephine is the NPC (Completing 2nd requires 1st) */
-	private static final String CLOAKSCOLLECTOR2_QUEST_SLOT = "cloakscollector2"; // cloaks
+	private static final String CLOAKSCOLLECTOR2_QUEST_SLOT = "cloaks_collector_2"; // cloaks
 	
 	/** Cloaks For Bario (Freezing Dwarf) quest: Bario is the NPC  */
 	private static final String CLOAKS_FOR_BARIO_QUEST_SLOT = "cloaks_for_bario"; // cloaks
