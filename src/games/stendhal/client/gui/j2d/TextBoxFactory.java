@@ -24,6 +24,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+/**
+ * A helper class for painting speech bubbles and other
+ * messages used on the screen.
+ */
 public class TextBoxFactory {
 	private Graphics2D graphics;
 	
@@ -36,6 +40,12 @@ public class TextBoxFactory {
 	/** the diameter of the arc of the rounded bubble corners. */
 	private static final int ARC_DIAMETER = 2 * MARGIN_WIDTH + 2;
 	
+	/**
+	 * Create a new TextBoxFactory.
+	 * 
+	 * @param graphics The graphics environment where the text boxes are drawn. 
+	 * 	Used for calculating the line metrics
+	 */
 	public TextBoxFactory(final Graphics2D graphics) {
 		this.graphics = graphics;
 	}
@@ -124,6 +134,15 @@ public class TextBoxFactory {
 		g2d.drawLine(0, LINE_HEIGHT, BUBBLE_OFFSET, LINE_HEIGHT / 2 + MARGIN_WIDTH);
 	}
 	
+	/**
+	 * Draw an outlined rectangle.
+	 * 
+	 * @param g2d graphics
+	 * @param fillColor The background color of the rectangle 
+	 * @param outLineColor Color of the outline
+	 * @param width Pixel width of the drawn rectangle
+	 * @param height Pixel height of the drawn rectangle
+	 */
 	private void drawRectangle(final Graphics2D g2d, final Color fillColor, 
 			final Color outLineColor, final int width, final int height) {
 		// Using filled rectangles to work around a rendering 
@@ -134,9 +153,17 @@ public class TextBoxFactory {
 		g2d.fillRect(BUBBLE_OFFSET + 1, 1, width - 2, height -2);
 	}
 
+	/**
+	 * Color a string according to the formatting characters in it.
+	 * 
+	 * @param line string to be formatted
+	 * @param normalFont base font used for the text
+	 * @param normalColor base color used for the text
+	 * @return colored sting
+	 */
 	public AttributedString formatLine(final String line,
-				final Font fontNormal, final Color colorNormal) {
-		final Font specialFont = fontNormal.deriveFont(Font.ITALIC);
+				final Font normalFont, final Color normalColor) {
+		final Font specialFont = normalFont.deriveFont(Font.ITALIC);
 
 		try {
 			// recreate the string without the # characters
@@ -153,9 +180,9 @@ public class TextBoxFactory {
 				@Override
 				public void normalText(final String tok) {
 					if (tok.length() > 0) {
-						aStyledText.addAttribute(TextAttribute.FONT, fontNormal, s, s
+						aStyledText.addAttribute(TextAttribute.FONT, normalFont, s, s
 								+ tok.length());
-						aStyledText.addAttribute(TextAttribute.FOREGROUND, colorNormal, s, s
+						aStyledText.addAttribute(TextAttribute.FOREGROUND, normalColor, s, s
 								+ tok.length());
 						s += tok.length();
 					}
@@ -182,7 +209,7 @@ public class TextBoxFactory {
 	}
 	
 	/**
-	 * splits a text to lines with specified maximum width, preserving the line breaks in the original.
+	 * Splits a text to lines with specified maximum width, preserving the line breaks in the original.
 	 * 
 	 * @param text the text to be split
 	 * @param width maximum line length in pixels
@@ -306,6 +333,12 @@ public class TextBoxFactory {
 		return best;
 	}
 
+	/**
+	 * Get the longest pixel width of a list of lines.
+	 * 
+	 * @param lines lines to be checked
+	 * @return the longest pixel width of the checked lines
+	 */
 	private int getMaxPixelWidth(final List<AttributedCharacterIterator> lines) {
 		int pixelWidth = 0;
 
@@ -319,10 +352,23 @@ public class TextBoxFactory {
 		return pixelWidth;
 	}
 	
+	/**
+	 * Get the pixel width of a text line.
+	 * 
+	 * @param iter iterator representing the text line
+	 * @return pixel width of the line
+	 */
 	private int getPixelWidth(final AttributedCharacterIterator iter) {
 		return (int) graphics.getFontMetrics().getStringBounds(iter, iter.getBeginIndex(), iter.getEndIndex(), graphics).getWidth();
 	}
 
+	/**
+	 * Draw a list of text lines.
+	 * 
+	 * @param g2d graphics where the text should be drawn
+	 * @param lines the text lines to be drawn
+	 * @param textColor the base color of the text
+	 */
 	private void drawTextLines(final Graphics2D g2d, final List<AttributedCharacterIterator> lines, final Color textColor) {
 		int i = 0;
 		for (final AttributedCharacterIterator line : lines) {
@@ -336,8 +382,14 @@ public class TextBoxFactory {
 		}
 	}
 	
+	/**
+	 * Check if a location is at a hard line break.
+	 * 
+	 * @param cit
+	 * @return <code>true</code> if there is a hard line break
+	 */
 	private boolean isHardLineBreak(final CharacterIterator cit) {
-		// save the location while we are checking the preceeding characters
+		// save the location while we are checking the preceding characters
 		final int currentIndex = cit.getIndex();
 		
 		char currentChar = cit.previous();
