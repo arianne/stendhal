@@ -152,7 +152,7 @@ public class UltimateCollectorTest {
 		// [22:26] Admin kymara changed your state of the quest 'cloaks_for_bario' from 'null' to 'done'
 		// [22:26] Changed the state of quest 'cloaks_for_bario' from 'null' to 'done'
 		
-		player.setQuest("cloakscollector2", "done");
+		player.setQuest("cloaks_collector_2", "done");
 		player.setQuest("cloaks_for_bario", "done");
 		
 		en.step(player, "hi");
