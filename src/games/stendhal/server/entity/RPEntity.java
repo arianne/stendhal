@@ -613,20 +613,16 @@ public abstract class RPEntity extends GuidedEntity {
 		return atk;
 	}
 
+	/**
+	 * Set attack XP.
+	 * 
+	 * @param atk the new value
+	 */
 	public void setATKXP(final int atk) {
 		this.atk_xp = atk;
 		put("atk_xp", atk_xp);
-		incATKXP();
-	}
 
-	public int getATKXP() {
-		return atk_xp;
-	}
-
-	public int incATKXP() {
-		this.atk_xp++;
-		put("atk_xp", atk_xp);
-
+		// Handle level changes
 		final int newLevel = Level.getLevel(atk_xp);
 		final int levels = newLevel - (getATK() - 10);
 
@@ -635,8 +631,17 @@ public abstract class RPEntity extends GuidedEntity {
 			setATK(this.atk + (int) Math.signum(levels) * 1);
 			new GameEvent(getName(), "atk", Integer.toString(getATK())).raise();
 		}
+	}
 
+	public int getATKXP() {
 		return atk_xp;
+	}
+
+	/**
+	 * Increase attack XP by 1.
+	 */
+	public void incATKXP() {
+		setATKXP(atk_xp + 1);
 	}
 
 	public void setDEF(final int def) {
@@ -648,20 +653,16 @@ public abstract class RPEntity extends GuidedEntity {
 		return def;
 	}
 
+	/**
+	 * Set defense XP.
+	 * 
+	 * @param def the new value
+	 */
 	public void setDEFXP(final int def) {
 		this.def_xp = def;
 		put("def_xp", def_xp);
-		incDEFXP();
-	}
-
-	public int getDEFXP() {
-		return def_xp;
-	}
-
-	public int incDEFXP() {
-		this.def_xp++;
-		put("def_xp", def_xp);
-
+		
+		// Handle level changes
 		final int newLevel = Level.getLevel(def_xp);
 		final int levels = newLevel - (getDEF() - 10);
 
@@ -670,8 +671,17 @@ public abstract class RPEntity extends GuidedEntity {
 			setDEF(this.def + (int) Math.signum(levels) * 1);
 			new GameEvent(getName(), "def", Integer.toString(getDEF())).raise();
 		}
+	}
 
+	public int getDEFXP() {
 		return def_xp;
+	}
+
+	/**
+	 * Increase defense XP by 1.
+	 */
+	public void incDEFXP() {
+		setDEFXP(def_xp + 1);
 	}
 
 	/**
