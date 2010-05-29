@@ -221,7 +221,7 @@ public class TextBoxFactory {
 					best = splitAggressively(candidate, width);
 					// splitAggressively returns an iterator with its own indexing,
 					// so instead of using it directly we need to adjust the old one
-					previous += best.getEndIndex();
+					previous += best.getEndIndex() - best.getBeginIndex();
 				} else {
 					previous = best.getEndIndex();
 					// Trim the trailing white space

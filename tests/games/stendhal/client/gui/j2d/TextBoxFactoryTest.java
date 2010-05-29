@@ -19,19 +19,19 @@ public class TextBoxFactoryTest {
 	}
 	
 	/**
-	 * Short messages
+	 * Short messages.
 	 */
 	@Test
-	public void basic() {
+	public void testBasic() {
 		factory.createTextBox("short", 240, Color.black, Color.black, false);
 		factory.createTextBox("dumdidum blah", 240, Color.black, Color.black, false);
 	}
 	
 	/**
-	 * Basic long word tests
+	 * Basic long word tests.
 	 */
 	@Test
-	public void longWords() {
+	public void testLongWords() {
 		factory.createTextBox("someridiculouslylongsentencethatisnotproperlysplittowordsbutthetokenizershouldnotchrashanyway", 
 				240, Color.black, Color.black, false);
 		factory.createTextBox("prefix someridiculouslylongsentencethatisnotproperlysplittowordsbutthetokenizershouldnotchrashanyway", 
@@ -43,11 +43,16 @@ public class TextBoxFactoryTest {
 	}
 	
 	/**
-	 * /listquest outputs that have at least at some point of time crashed the tokenizer
+	 * Pathological outputs that have at least at some point of time crashed the tokenizer.
+	 * Add new finds here, unless they can be reasonably categorized otherwise.
 	 */
 	@Test
-	public void listQuestCrashes() {
+	public void testCrashes() {
+		// Old /listquests output 
 		String msg = "[01:30] Open Quests: DailyMonsterQuestMeetHackimSevenCherubsStuffForVulcanusSuntanCreamForZaraToysCollector\nCompleted Quests: ArmorForDagobertCampfireHerbsForCarmenIntroducePlayersLearnAboutKarmaLearnAboutOrbsMeetHayunnMeetIoPlinksToyReverseArrowZooFood";
+		factory.createTextBox(msg, 240, Color.black, Color.black, false);
+		// Long strings in /alterquest
+		msg = "[13:13] Admin kiheru changed your state of the quest 'ultimate_collector' from '29292992929dddddddddddddddddddddddddd' to '29292992929dddddddddddddddddddddddddd'";
 		factory.createTextBox(msg, 240, Color.black, Color.black, false);
 	}
 }
