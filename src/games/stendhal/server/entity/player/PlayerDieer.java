@@ -105,7 +105,11 @@ public class PlayerDieer {
 			// note on karma: players can only hit the maximums of these ranges if they themselves had over 100 Karma, less than -100 karma, respectively.
 			// and even then, some chance will mean they are not guaranteed to hit the maximum 
 			// (just because we call useKarma(-100.0,100.0) doesn't mean that a player with over 100.0 karma will get 100.0 used. He is just more likely to get 100.0 used.)
-			player.setXP((int) Math.round(player.getXP() * penaltyFactor));
+			
+			// Using subXP() instead of using setXP() directly to get the level
+			// checks correctly done. setXP() can not do the magic unlike setATKXP()
+			// & setDEFXP() because it's used by creatures as well
+			player.subXP((int) Math.round(player.getXP() * (1 - penaltyFactor)));
 			player.setATKXP((int) Math.round(player.getATKXP() * penaltyFactor));
 			player.setDEFXP((int) Math.round(player.getDEFXP() * penaltyFactor));
 			if (killer instanceof Player) {
