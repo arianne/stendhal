@@ -29,9 +29,15 @@ public class BanAction extends AdministrationAction {
 			if (action.has("reason")) {
 				reason = action.get("reason");
 			}
-
-			int hours = Integer.parseInt(action.get("hours"));
-
+			int hours = 1;
+			
+			try {
+				hours = Integer.parseInt(action.get("hours"));
+			} catch (final NumberFormatException e) {
+				player.sendPrivateText(NotificationType.ERROR, "Please ban for a whole number of hours, or -1 hours for a permanent ban. Shorter times than 1 hour can use /jail.");
+				return; 
+			}
+			
 			try {
 
 				// look up username
