@@ -7,17 +7,27 @@ Changelog
 - daily and weekly item quests can ask for more than one of each item at once
 - eating, poisoned, grumpy and away status are shown in the stats panel
 - Dr. Feelgood can heal pets
+- Zoo Food quest is repeatable and food item request is randomised
 - pizza delivery missions selected by level
 - client can be started with username and password as parameters to bypass login gui (not for use on multi-user systems)
 - an arrow effect drawn for distance attacks
+- mrotho and diehelm brui sell arrows (and merenwen pays a bit less for arrows)
+- sarzina sells mega potions
+- temporary bans can be made using /ban
+- reason for ban is visible to player
+- new missile, a fire shuriken
 
 *code*
 - new simple layout manager to replace the abandoned pagelayout
 - reworked DailyMonsterQuest engine
+- npc conditions and actions for randomised item collection quests
+- fixed bug with xp display after death
+- ranged attack bug fixes on using up last missile and throwing from 1 tile away
 
 *website*
 - performance optimisation
 - bugfixes including player display on firefox
+- spouse of a married player is displayed 
 
 0.83
 *features*
