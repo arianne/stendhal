@@ -132,6 +132,7 @@ public class ZooFood extends AbstractQuest {
 		items.put("button mushroom",5);
 		items.put("carrot",5);
 		items.put("spinach",5);
+		items.put("apple",5);
 		
         // Player has done quest before and agrees to help again
 		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES,
