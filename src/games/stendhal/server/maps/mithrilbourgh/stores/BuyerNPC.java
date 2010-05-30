@@ -9,7 +9,9 @@ import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -53,13 +55,15 @@ public class BuyerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Welcome to the supply stores for the Mithrilbourgh Army.");
-				addJob("I proud to be the Quartermaster of the Mithrilbourgh Army. However, we are lacking in #boots and #helmets.");
+				addJob("I proud to be the Quartermaster of the Mithrilbourgh Army. We have plenty of #ammunition. However, we are lacking in #boots and #helmets.");
 				addReply("boots", "I seem to hand out stone boots very regularly, but our careless soldiers  always lose them. Thus, I buy any good boots that you can #offer, see the blue book for a price list.");
 				addReply("helmets", "I do not have a good source of helmets. Any you can #trade with me would be appreciated, at the moment we only have enough for the lieutenants, and none for the soldiers. The red book has details.");
+				addReply("ammunition", "I sell arrows, wooden arrows are the cheapest, power arrows the most costly. Check the board for all the prices.");
 				addHelp("As Quartermaster, I take #offers for supplies which we are short of.");
-				addOffer("I buy #boots and #helmets on behalf of the Mithrilbourgh Army.");
+				addOffer("I buy #boots and #helmets on behalf of the Mithrilbourgh Army, and I sell surplus stock of #ammunition.");
 				addQuest("The Mithrilbourgh Army is not in need your services at present.");
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("boots&helm")), false);
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellarrows")), false);
  				addGoodbye("Bye.");
 			}
 		};

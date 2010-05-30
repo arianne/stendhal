@@ -894,17 +894,28 @@ in roaches.
     <configurator class-name="games.stendhal.server.maps.semos.townhall.LeaderNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.townhall.CadetsNPCs" />
 
-    <entity x="35" y="52">
+    <entity x="35" y="44">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buyrare3</parameter>
-      <parameter name="title">Mrotho's needs</parameter>
-      <parameter name="seller">false</parameter>
-	  <parameter name="caption">Mrotho will buy these items of armor.</parameter>
+      <parameter name="shop">sellarrows</parameter>
+      <parameter name="title">Ammunition sale</parameter>
+      <parameter name="seller">true</parameter>
+	  <parameter name="caption">You can buy these arrows here.</parameter>
      </implementation>
 
      <attribute name="class">blackboard</attribute>
     </entity>
 
+    <entity x="35" y="52">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyrare3</parameter>
+      <parameter name="title">Mrotho's needs</parameter>
+      <parameter name="seller">false</parameter>
+      <parameter name="caption">Mrotho will buy these items of armor.</parameter>
+     </implementation>
+
+     <attribute name="class">blackboard</attribute>
+    </entity>
+    
     <portal x="24" y="58" ref="entrance_left">
      <destination zone="0_ados_wall" ref="barracks_entrance_left"/>
     </portal>

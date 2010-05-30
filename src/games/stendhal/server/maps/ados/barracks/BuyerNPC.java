@@ -9,7 +9,9 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -53,11 +55,12 @@ public class BuyerNPC implements ZoneConfigurator {
 				addGreeting("Greetings. Have you come to enlist as a soldier?");
 				addReply(ConversationPhrases.YES_MESSAGES, "Huh! Well I don't let your type enlist! Perhaps you want to #offer some of that armor instead...");
 				addReply(ConversationPhrases.NO_MESSAGES, "Good! You wouldn't have fit in here anyway.");
-				addJob("I'm looking after the weaponry here. We're running low. I see you have some armor you might #offer though.");
-				addHelp("I buy armor for the barracks here, make me an #offer.");
-				addOffer("Please look at the blackboard by the shields rack to see what we are short of, and what we pay.");
+				addJob("I'm looking after the weaponry here. We have plenty of ammunition but running low on armor. I see you have some you might #offer though.");
+				addHelp("I buy armor for the barracks here, make me an #offer. If you'll keep it quiet, I'll even sell you ammunition.");
+				addOffer("Please look at the blackboard by the shields rack to see what we are short of, and what we pay. I also sell a variety of arrows.");
 				addQuest("Oh, thanks but no thanks. I don't need anything.");
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyrare3")), false);
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellarrows")), false);
 				addGoodbye("Goodbye, comrade.");
 			}
 		};
