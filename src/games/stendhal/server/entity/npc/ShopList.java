@@ -41,8 +41,7 @@ public class ShopList {
 		shops.add("superhealing", "greater antidote", 100);
 		shops.add("superhealing", "potion", 250);
 		shops.add("superhealing", "greater potion", 500);
-		// shops.add("superhealing", "mega potion", 1500); don't want giantheart
-		// market starting again
+		shops.add("superhealing", "mega potion", 1500); 
 
 		shops.add("scrolls", "home scroll", 250);
 		shops.add("scrolls", "summon scroll", 200);
@@ -295,14 +294,20 @@ public class ShopList {
 		// archery shop in nalwor)
 		shops.add("buyarcherstuff", "wooden arrow", 1);
 		shops.add("buyarcherstuff", "steel arrow", 5);
-		shops.add("buyarcherstuff", "golden arrow", 20);
-		shops.add("buyarcherstuff", "power arrow", 50);
+		shops.add("buyarcherstuff", "golden arrow", 10);
+		shops.add("buyarcherstuff", "power arrow", 35);
 		shops.add("buyarcherstuff", "wooden bow", 250);
 		shops.add("buyarcherstuff", "crossbow", 400);
 		shops.add("buyarcherstuff", "longbow", 300);
 		shops.add("buyarcherstuff", "composite bow", 350);
 		shops.add("buyarcherstuff", "hunter crossbow", 800);	
 		shops.add("buyarcherstuff", "mithril bow", 2000);	
+		
+		// selling arrows 
+		shops.add("sellarrows", "wooden arrow", 2);
+		shops.add("sellarrows", "steel arrow", 7);
+		shops.add("sellarrows", "golden arrow", 25);
+		shops.add("sellarrows", "power arrow", 45);
 		
 		// assassinhq chief falatheen the dishwasher and veggie buyer)
 		// sign is hard coded so if you change this change the sign
