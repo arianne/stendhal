@@ -1,21 +1,37 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
+import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * QUEST: Zoo Food
@@ -42,6 +58,7 @@ import java.util.List;
 public class ZooFood extends AbstractQuest {
 
 	private static final int REQUIRED_HAM = 10;
+	private static final int DELAY = MathHelper.MINUTES_IN_ONE_WEEK;
 
 	private static final String QUEST_SLOT = "zoo_food";
 
@@ -75,79 +92,116 @@ public class ZooFood extends AbstractQuest {
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Katinka");
 
+        // Player has never done the zoo quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, "rejected")),
+				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, "Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?",
 				null
 		);
 
+        // Player returns within one week of completing quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, "Welcome back to the Ados Wildlife Refuge! Thanks again for rescuing our animals!",
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
+                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, DELAY, 1))),
+				ConversationStates.ATTENDING, "Welcome back to the Ados Wildlife Refuge! Thanks again for rescuing "
+                                                + "our animals!",
 				null
 		);
 
+        // Player returns and longer than a week has passed, ask to help again
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
+                                 new TimePassedCondition(QUEST_SLOT, DELAY, 1)),
+				ConversationStates.QUEST_OFFERED, "Welcome back to the Ados Wildlife "
+                + "Refuge! Our animals are hungry again, can you bring some more food please?",
+                null);
+
+
+        // Player has never done the zoo quest, player asks what the task was
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
-				new QuestNotCompletedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, "Our tigers, lions and bears are hungry. We need "
-						+ Grammar.quantityplnoun(REQUIRED_HAM, "ham") + " to feed them. Can you help us?",
-				null
+				new QuestNotCompletedCondition(QUEST_SLOT), 
+				ConversationStates.QUEST_OFFERED, "Our tigers, lions and bears are hungry. We need " +
+						"more food to feed them. Can you help us?",
+				null);
+
+	    final Map<String,Integer> items = new HashMap<String, Integer>();		
+		items.put("ham",10); 
+		items.put("meat",15);
+		items.put("grain",20);
+		items.put("salad",10);
+		items.put("button mushroom",5);
+		items.put("carrot",5);
+		items.put("spinach",5);
+		
+        // Player has done quest before and agrees to help again
+		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING, null,
+                new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start;", 2.0),
+				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, 1, items, "Oh, thank you! Please help us by" 
+                + " bringing [item] as soon as you can."))
 		);
 
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, "Thank you, but I think we are out of trouble now.",
-				null
-		);
-
-		// player is willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				"Okay, but please don't let the poor animals suffer too long! Bring me the "
-						+ Grammar.plnoun(REQUIRED_HAM, "ham")
-						+ " as soon as you get " + Grammar.itthem(REQUIRED_HAM)
-						+ ".", new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0)
-		);
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
+		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, 
+				null,
 				ConversationStates.ATTENDING, "Oh dear... I guess we're going to have to feed them with the deer...",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0)
 		);
+		
+        // Player returns within one week of completing quest
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
+                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, DELAY, 1))),
+				ConversationStates.ATTENDING, null, 
+				new SayTimeRemainingAction(QUEST_SLOT, "Thanks, we have enough food to feed the animals here for another", DELAY, 1));
+
 	}
 
 	private void step_2() {
-		// Just find the ham somewhere. It isn't a quest
+		// Just find the food somewhere. It isn't a quest
 	}
 
 	private void step_3() {
 		final SpeakerNPC npc = npcs.get("Katinka");
 
-		// player returns while quest is still active
+		// compatibility with old quests:
+		// player returns while initial quest is still active, set it to match the new way
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				"Welcome back! Have you brought the "
 						+ Grammar.quantityplnoun(REQUIRED_HAM, "ham") + "?",
-				null);
-
+			new SetQuestAction(QUEST_SLOT,"start;ham=10"));
+		
+		
+		// player returns while quest is active
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new QuestStateStartsWithCondition(QUEST_SLOT, "start;"),
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				null,
+				new SayRequiredItemAction(QUEST_SLOT, 1, "Welcome back! Have you brought the [item]?"));
+				
+		
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
+		actions.add(new DropRecordedItemAction(QUEST_SLOT,1));
+		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done;1", 15.0));
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		actions.add(new IncreaseXPAction(200));
+	
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						if (player.drop("ham", REQUIRED_HAM)) {
-							player.notifyWorldAboutChanges();
-							player.setQuest(QUEST_SLOT, "done");
-							player.addXP(200);
-							player.addKarma(15);
-							engine.say("Thank you! You have rescued our rare animals.");
-						} else {
-							engine.say("*sigh* I SPECIFICALLY said that we need "
-										+ Grammar.quantityplnoun(REQUIRED_HAM, "ham") + "!");
-						}
-					}
-				});
+			ConversationPhrases.YES_MESSAGES, 
+			new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,1),
+			ConversationStates.ATTENDING, "Thank you! You have rescued our rare animals.",
+			new MultipleActions(actions));
+
+        npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+        		ConversationPhrases.YES_MESSAGES,
+        		new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,1)),
+        		ConversationStates.ATTENDING, null,
+        		new SayRequiredItemAction(QUEST_SLOT, 1, "*sigh* I SPECIFICALLY said that we need [item]!")
+        		);
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Well, hurry up! These rare animals are starving!",
@@ -159,13 +213,16 @@ public class ZooFood extends AbstractQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, "Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?",
+			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
+					 new NotCondition(new TimePassedCondition(QUEST_SLOT, DELAY, 1))),
+			ConversationStates.ATTENDING, "Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?",
 				null
 		);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestNotCompletedCondition(QUEST_SLOT),
+			new OrCondition(new QuestNotCompletedCondition(QUEST_SLOT),
+					new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
+							 new TimePassedCondition(QUEST_SLOT, DELAY, 1))),
 				ConversationStates.IDLE, "Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
 				null
 		);
