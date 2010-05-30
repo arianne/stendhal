@@ -24,37 +24,22 @@
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.GossipNPC"/>
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.FlowerSellerNPC"/>
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehArmorGuyNPC"/>
- <entity x="65" y="94">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">
-I buy various armor items:
-
-ice armor  19000
-blue armor  13000
-xeno armor  21000
-stone armor  18000
-barbarian armor  5000
-
-xeno shield  20000
-green dragon shield  13000
-     </attribute>
+  <entity x="65" y="94">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buykirdneharmor</parameter>
+      <parameter name="title">I buy various armor items:</parameter>
+      <parameter name="seller">false</parameter>
+     </implementation>
      <attribute name="class">blackboard</attribute>
     </entity>
+
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehFishyMarketNPC"/>
  <entity x="65" y="85">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">
-Whut I be buyin:
-
-cod 10
-char 30
-trout 45
-roach 10
-perch 22
-mackerel 20
-clownfish 30
-surgeonfish 15
-     </attribute>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buyfishes</parameter>
+      <parameter name="title">Whut I be buyin:</parameter>
+      <parameter name="seller">false</parameter>
+     </implementation>
      <attribute name="class">blackboard</attribute>
     </entity>
   <portal x="50" y="7" ref="diving_board">
