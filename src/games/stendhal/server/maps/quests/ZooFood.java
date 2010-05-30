@@ -44,14 +44,17 @@ import java.util.Map;
  * 
  * STEPS:
  * <ul>
- * <li> Katinka asks you for foodfor the animals.
+ * <li> Katinka asks you for food for the animals.
  * <li> You get the food, e.g. by killing other animals ;) or harvesting it
  * <li> You give the food to Katinka.
  * <li> Katinka thanks you.
  * <li> You can then buy cheap medicine from Dr. Feelgood.
  * </ul>
  * 
- * REWARD: <ul><li> 200 XP <li> Supply for cheap medicine and free pet healing for one week
+ * REWARD: <ul>
+ * <li> 200 XP 
+ * <li> 7 Karma 
+ * <li> Supply for cheap medicine and free pet healing for one week
  * </ul>
  * REPETITIONS: - Once per week.
  */
@@ -80,11 +83,16 @@ public class ZooFood extends AbstractQuest {
 			return res;
 		}
 		res.add("QUEST_ACCEPTED");
-		if ((player.isEquipped("ham", REQUIRED_HAM)) || isCompleted(player)) {
+		if (questState.startsWith("start;") && 
+				(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,1)).fire(player, null, null)) {
 			res.add("FOUND_ITEM");
 		}
 		if (isCompleted(player)) {
-			res.add("DONE");
+			if(new TimePassedCondition(QUEST_SLOT, DELAY, 1).fire(player, null, null)) {
+				res.add("DONE_REPEATABLE");
+			} else {
+				res.add("DONE_THIS_WEEK");
+			}
 		}
 		return res;
 	}
@@ -133,6 +141,7 @@ public class ZooFood extends AbstractQuest {
 		items.put("carrot",5);
 		items.put("spinach",5);
 		items.put("apple",5);
+		items.put("roach",3);
 		
         // Player has done quest before and agrees to help again
 		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES,
@@ -187,7 +196,7 @@ public class ZooFood extends AbstractQuest {
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new DropRecordedItemAction(QUEST_SLOT,1));
-		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done;1", 15.0));
+		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done;1", 5.0));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		actions.add(new IncreaseXPAction(200));
 	
