@@ -11,6 +11,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Has 'delay' time passed since the quest was last done?
+ * If the quest slot isn't in the expected format, returns true
  */
 public class TimePassedCondition implements ChatCondition {
 
@@ -54,14 +55,22 @@ public class TimePassedCondition implements ChatCondition {
 		} else {
 			final String[] tokens = player.getQuest(questname).split(";"); 
 			final long delayInMilliseconds = delay * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-		
-			// timeRemaining is ''time when quest was done +
+		    if (tokens.length - 1 < arg) {
+                // old quest status, the split did not work, so we assume enough time is passed.
+                return true;		
+            }
+            // timeRemaining is ''time when quest was done +
 			// delay - time now''
 			// if this is > 0, the time has not yet passed
-			final long timeRemaining = (Long.parseLong(tokens[arg]) + delayInMilliseconds)
+            long questtime;            
+            try {
+			    questtime = Long.parseLong(tokens[arg]);
+		    } catch (final NumberFormatException e) {
+                // set to 0 if it was no Long, as if this quest was done at the beginning of time.
+			    questtime = 0;
+		    }
+			final long timeRemaining = (questtime + delayInMilliseconds)
 				- System.currentTimeMillis();
-			// TODO: return an error if tokens.length < arg 
-			// TODO: catch the number format exception in case tokens[arg] is no number? or does parseLong do this?
 		return (timeRemaining <= 0L);
 		}
 	}
