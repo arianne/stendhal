@@ -66,6 +66,9 @@ class DestroyAction extends AdministrationAction {
 			String slotname = inspected.getContainerSlot().getName();
 			int objectID = inspected.getID().getObjectID();
 			if (null != inspected.getContainerSlot().remove(inspected.getID())) {
+				if (slot instanceof Entity) {
+					((Entity) slot).notifyWorldAboutChanges();
+				}
 				player.sendPrivateText("Removed contained " + name + " " + clazz + " with ID " + objectID + " from " + slotname);
 			} else {
 				player.sendPrivateText("could not remove contained " + inspected + " " + clazz + " with ID " + objectID + " from " + slotname);
