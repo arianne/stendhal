@@ -5,28 +5,25 @@ import marauroa.common.game.RPAction;
 
 public class BanAction implements SlashAction {
 
-public boolean execute(final String[] params, final String remainder) {
-			final RPAction action = new RPAction();
+	public boolean execute(final String[] params, final String remainder) {
+		final RPAction action = new RPAction();
 
-			action.put("type", "ban");
-			action.put("target", params[0]);
-			if (params.length > 1) {
-				if (params[1] != null) {
-					action.put("reason", params[1] + " " + remainder);
-				}
-			}
+		action.put("type", "ban");
+		action.put("target", params[0]);
+		action.put("hours", params[1]);
+		action.put("reason", remainder);
 
-			ClientSingletonRepository.getClientFramework().send(action);
+		ClientSingletonRepository.getClientFramework().send(action);
 
-			return true;
-		}
+		return true;
+	}
 
 	public int getMaximumParameters() {
 		return 2;
 	}
 
 	public int getMinimumParameters() {
-		return 1;
+		return 2;
 	}
 
 }

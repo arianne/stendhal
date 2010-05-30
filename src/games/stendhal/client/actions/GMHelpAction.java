@@ -40,7 +40,7 @@ class GMHelpAction implements SlashAction {
 				"- /jail <player> <minutes> <reason>\t\tImprisons the player for a given length of time",
 				"- /jailreport [<player>]\t\tList the jailed players and their sentences",
 				"- /gag <player> <minutes> <reason>\t\tGags the player for a given length of time (player is unable to send messages to anyone)",
-				"- /ban <player> \t\tPermanently bans the player from logging onto the game server or website.",
+				"- /ban <character> <hours> <reason>\t\tBans the account of the character from logging onto the game server or website for the specified anmount of hours (-1 till end of time).",
 				"- /script <scriptname> \t\tLoad (or reload) a script on the server. See /gmhelp script for details",
 				"- /teleport <player> <zone> <x> <y> \tTeleport the specified <player> to the given location",
 				"- /teleportto <player> \t\tTeleport yourself near the specified player",
