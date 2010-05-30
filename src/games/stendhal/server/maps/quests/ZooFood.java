@@ -44,16 +44,16 @@ import java.util.Map;
  * 
  * STEPS:
  * <ul>
- * <li> Katinka asks you for ham for the animals.
- * <li> You get the ham, e.g. by killing other animals ;)
- * <li> You give the ham to Katinka.
+ * <li> Katinka asks you for foodfor the animals.
+ * <li> You get the food, e.g. by killing other animals ;) or harvesting it
+ * <li> You give the food to Katinka.
  * <li> Katinka thanks you.
  * <li> You can then buy cheap medicine from Dr. Feelgood.
  * </ul>
  * 
- * REWARD: <ul><li> 200 XP <li> everlasting supply for cheap medicine
+ * REWARD: <ul><li> 200 XP <li> Supply for cheap medicine and free pet healing for one week
  * </ul>
- * REPETITIONS: - None.
+ * REPETITIONS: - Once per week.
  */
 public class ZooFood extends AbstractQuest {
 
