@@ -382,12 +382,12 @@ public class StendhalClient extends ClientFramework {
 				logger.error("StendhalClient::onAvailableCharacters", e);
 			}
 		} else {
+			if (character == null) {
+				character = getAccountUsername();
+			}
 			logger.warn("The requested character is not available, trying to create character " + character);
 			final RPObject template = new RPObject();
 			try {
-				if (character == null) {
-					character = getAccountUsername();
-				}
 				final CharacterResult result = createCharacter(character, template);
 				if (result.getResult().failed()) {
 					logger.error(result.getResult().getText());
