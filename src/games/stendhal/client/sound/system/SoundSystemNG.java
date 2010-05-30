@@ -396,7 +396,7 @@ public class SoundSystemNG extends Thread
 				{
 					if(mCurrentSystemState.get() != mTargetSystemState.get())
 					{
-						System.out.println("change state");
+						logger.debug("change state");
 						
 						if(mStateChangeDelay.get().getInNanoSeconds() <= 0)
 						{
