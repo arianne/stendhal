@@ -136,7 +136,7 @@ public class SlashActionParserTest {
 		
 		
 		 cmd = SlashActionParser.parse("ban bob");
-		assertFalse(cmd.hasError());
+		assertTrue(cmd.hasError());
 		assertNotNull(cmd.getParams());
 		assertEquals(2, cmd.getParams().length);
 		assertEquals("bob", cmd.getParams()[0]);
