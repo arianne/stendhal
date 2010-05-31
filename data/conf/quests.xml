@@ -440,16 +440,17 @@ State: EXPERIMENTAL to help me think about a quest system
 	
 	<quest name="ZooFood">
 		<title>Zoo Food</title>
-		<repeatable done="false" />
+		<repeatable done="true" />
 		<description>
-			The animals at the zoo are hungry! I need some ham!
+			The animals at the zoo are hungry! They need some food!
 		</description>
 		<history>
 			<entry name="FIRST_CHAT">I have met Katinka at the zoo</entry>
 			<entry name="QUEST_REJECTED">I do not have the time for smelly animals and their food issues</entry>
-			<entry name="QUEST_ACCEPTED">I don't want to see those poor animals die! I'll help get 10 ham!</entry>
-			<entry name="FOUND_ITEM">I have gotten the 10 ham required</entry>
-			<entry name="DONE">The animals are not hungry! Yay, me!</entry>
+			<entry name="QUEST_ACCEPTED">I don't want to see those poor animals die! I'll help get the food!</entry>
+			<entry name="FOUND_ITEM">I have got the food required</entry>
+			<entry name="DONE_THIS_WEEK">The animals are not hungry! Yay, me!</entry>
+			<entry name="DONE_REPEATABLE">The animals are hungry again! I need to ask Katinka what they need.</entry>
 		</history>
 	</quest>
 	
