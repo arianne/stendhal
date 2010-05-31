@@ -48,6 +48,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Observer;
 
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
@@ -130,6 +131,9 @@ public class Creature extends NPC {
 	
 	/** Susceptibilities to various damage types this creature has */
 	private Map<Nature, Double> susceptibilities;
+	
+	private CircumstancesOfDeath circumstances;
+	private Registrator registrator = new Registrator();
 
 	public Creature(final RPObject object) {
 		super(object);
@@ -301,7 +305,72 @@ public class Creature extends NPC {
 	public Creature getNewInstance() {
 		return new Creature(this);
 	}
-
+	
+	/**
+	 * override noises for changes.
+	 * 
+	 */
+	public void setNoises(final LinkedHashMap<String, LinkedList<String>> creatureNoises){
+		noises.clear();
+		noises.putAll(creatureNoises);
+	}	
+	   
+	/**
+	 * sets new observer 
+	 * @param observer
+	 * 				- observer, which will get info about creature death.
+	 */
+	public void registerObjectsForNotification(final Observer observer) {
+		if(observer!=null) {
+			   registrator.setObserver(observer);		   
+		} 	   
+	}
+	   
+	/**
+	 * sets new observer 
+	 * @param observers
+	 * 				- observers, which will get info about creature death.
+	 */
+	public void registerObjectsForNotification(final List<Observer> observers) {
+		for(Observer observer : observers) {
+			if(observer!=null) {
+				   registrator.setObserver(observer);		   
+			}		   
+		} 	   
+	}
+	 
+	/**
+	 * unset observer 
+	 * @param observer
+	 * 				- observer to remove.
+	 */
+	public void unregisterObjectsForNotification(final Observer observer) {
+		if(observer!=null) {
+			   registrator.removeObserver(observer);		   
+		} 	   
+	}
+	   
+	/**
+	 * unset observer 
+	 * @param observers
+	 * 				- observers to remove.
+	 */
+	public void unregisterObjectsForNotification(final List<Observer> observers) {
+		for(Observer observer : observers) {
+			if(observer!=null) {
+				    registrator.removeObserver(observer);		   
+			}		   
+		} 	   
+	}
+	   
+	/**
+	 * Will notify observers when event will occurred (death). 
+	 */
+	public void notifyRegisteredObjects() {
+	     registrator.setChanges();
+	     registrator.notifyObservers(circumstances);
+	}
+	   
 	public boolean isSpawned() {
 		return isRespawned;
 	}
@@ -447,6 +516,8 @@ public class Creature extends NPC {
 
 	@Override
 	public void onDead(final Entity killer, final boolean remove) {
+		circumstances=new CircumstancesOfDeath((RPEntity)killer, this, this.getZone());
+	    notifyRegisteredObjects();
 		if (this.point != null) {
 			this.point.notifyDead(this);
 		}
