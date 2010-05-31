@@ -115,7 +115,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 				
 				npc.say(msg.toString());
 			} else {
-				npc.say("Sorry, I'm only licensed to heal animals looked after in this Zoo. (But... ssshh! I can make you an #offer.)");
+				npc.say("Sorry, I'm only licensed to heal animals. (But... ssshh! I can make you an #offer.)");
 			}
 		}
 	}
