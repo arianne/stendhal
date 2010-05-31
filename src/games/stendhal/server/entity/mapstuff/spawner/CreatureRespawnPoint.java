@@ -235,6 +235,14 @@ public class CreatureRespawnPoint implements TurnListener {
 	public void removeObserver(final Observer observer) {
 		observers.remove(observer);
 	}
+	
+	/**
+	 * return zone where respawn point placed
+	 * @return - zone where respawn point placed
+	 */
+	public StendhalRPZone getZone() {
+		return this.zone;
+	}
     
 	/**
 	 * Pops up a new creature.
