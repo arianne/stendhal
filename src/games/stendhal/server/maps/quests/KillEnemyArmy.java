@@ -314,7 +314,7 @@ import org.apache.log4j.Logger;
 			final String monstersType = chooseRandomEnemys();
 			player.setQuest(QUEST_SLOT, 1, monstersType);
 			npc.say("I need help to defeat #enemy " + monstersType +
-					" armies. They are a grave concern. Kill at least " + enemyForces.get(monstersType).first()+
+					". They are a grave concern. Kill at least " + enemyForces.get(monstersType).first()+
 					" of any "+ monstersType +
 					" soldiers and I will reward you.");
 			final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>();
