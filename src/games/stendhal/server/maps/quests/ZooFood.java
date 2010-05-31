@@ -128,7 +128,7 @@ public class ZooFood extends AbstractQuest {
         // Player has never done the zoo quest, player asks what the task was
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotCompletedCondition(QUEST_SLOT), 
-				ConversationStates.QUEST_OFFERED, "Our tigers, lions and bears are hungry. We need " +
+				ConversationStates.QUEST_OFFERED, "Our animals are hungry. We need " +
 						"more food to feed them. Can you help us?",
 				null);
 
