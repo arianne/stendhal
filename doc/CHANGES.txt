@@ -32,6 +32,8 @@ Changelog
 - npc conditions and actions for randomised item collection quests
 - fixed bug with xp display after death
 - ranged attack bug fixes on using up last missile and throwing from 1 tile away
+- email address field may be left completely empty on account creation 
+- /inspect command output improved for viewing quests, karma, and coordinates
 
 *website*
 - performance optimisation
