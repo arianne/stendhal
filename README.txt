@@ -53,7 +53,7 @@ Alternatively you can run it using Java Webstart technology at:
 To play Stendhal you have to use a keyboard and a mouse.
 
 There is a manual at
-http://stendhalgame.org/wiki/StendhalManual, and there is
+http://stendhalgame.org/wiki/Stendhal_Manual, and there is
 Help from the client main menu too.
 
 
