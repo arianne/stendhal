@@ -100,7 +100,7 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(enKatinka.step(player, "task"));
 		assertEquals(
-				"Our tigers, lions and bears are hungry. We need more food to feed them. Can you help us?",
+				"Our animals are hungry. We need more food to feed them. Can you help us?",
 				getReply(katinkaNpc));
 
 		assertTrue(enKatinka.step(player, "yes"));
