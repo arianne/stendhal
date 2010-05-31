@@ -72,7 +72,7 @@ public class CreateAccountDialog extends JDialog {
 	// End of variables declaration
 	private StendhalClient client;
 	private Frame owner;
-	private String badPasswordReason;
+	private String badEmailTitle, badEmailReason, badPasswordReason;
 
 	public CreateAccountDialog(final Frame owner, final StendhalClient client) {
 		super(owner, true);
@@ -107,7 +107,7 @@ public class CreateAccountDialog extends JDialog {
 		passwordretypeLabel = new JLabel("Retype password");
 		passwordretypeField = new JPasswordField();
 
-		emailLabel = new JLabel("E-mail address");
+		emailLabel = new JLabel("E-mail address (optional)");
 		emailField = new JTextField();
 
 		// createAccountButton
@@ -406,25 +406,34 @@ public class CreateAccountDialog extends JDialog {
 		//
 		// Check the email
 		//
-		final String email = emailField.getText();
-		if (isInvalid(email)) {
-			final String text = "The email you entered appears to be invalid.\n"
-					+ "You must provide a valid email address to recover a lost password. Are you sure this email is correct? ";
-			final int i = JOptionPane.showOptionDialog(owner, text, "Invalid Email",
-					JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
-					null, null, 1);
-
-			if (i != 0) {
-				// no
-				return false;
+		final String email = (emailField.getText()).trim();
+		if  (!validateEmail(email)){
+	        final String warning = badEmailReason + "An email address is the only means for administrators to contact with the legitimate owner of an account.\nIf you don't provide one then you won't be able to get a new password for this account if, for example:\n- You forget your password.\n- Another player somehow gets your password and changes it.\nDo you want to continue anyway?";	
+           	final int i = JOptionPane.showOptionDialog(owner, warning, badEmailTitle,
+				JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+				null, null, 1);
+            if (i != 0) {
+			    // no, let me type a valid email
+                return false;
 			} 
+			// yes, continue anyway		
 		}
-
 		return true;
 	}
 
-	private boolean isInvalid(final String email) {
-		return !email.contains("@") || !email.contains(".") || (email.length() <= 5);
+	private boolean validateEmail(final String email) {
+		if  (email.length() == 0){
+		    badEmailTitle = "Email address is empty";
+			badEmailReason = "You didn't enter an email address.\n";
+		    return false;
+		} else {
+   		    if (!email.contains("@") || !email.contains(".") || (email.length() <= 5)) {
+		        badEmailTitle =  "Misspelled email address?";
+		        badEmailReason = "The email address you entered is probably misspelled.\n";
+		        return false;
+			}
+		}
+		return true;
 	}
 
 	/**

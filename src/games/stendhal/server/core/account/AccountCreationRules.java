@@ -49,8 +49,6 @@ class AccountCreationRules {
 	}
 
 	private void setupValidatorsForEMail() {
-		validators.add(new NotEmptyValidator(email));
-		validators.add(new MinLengthValidator(email, 6));
 		validators.add(new MaxLengthValidator(email, 100));
 	}
 
