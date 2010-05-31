@@ -17,5 +17,45 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
+  <item name="skull ring">
+    <type class="relic" subclass="skull_ring" tileid="-1"/>
+    <description>You see a skull ring.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Ring"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="finger"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+  
+  <item name="amulet">
+    <type class="relic" subclass="amulet" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+  
+  <item name="ankh">
+    <type class="relic" subclass="ankh" tileid="-1"/>
+    <description>You see a mysterious ankh. You don't know what it is for.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+  
 </items>

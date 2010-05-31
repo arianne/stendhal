@@ -70,19 +70,6 @@
     </equipable>
   </item>
 
-  <item name="skull ring">
-    <type class="misc" subclass="skull_ring" tileid="-1"/>
-    <description>You see a skull ring.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Ring"/>    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="bag"/>
-      <slot name="finger"/>
-    </equipable>
-  </item>
-
   <item name="vampirette entrails">
     <type class="misc" subclass="vampirette_entrails" tileid="-1"/>
     <description>You see some vampirette entrails. These guts proves that a vampirette was slain.</description> 
@@ -128,18 +115,6 @@
     </equipable>
   </item>
 
-  <item name="amulet">
-    <type class="misc" subclass="amulet" tileid="-1"/>
-    <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="bag"/>
-    </equipable>
-  </item>
-  
    <item name="marbles">
     <type class="misc" subclass="marbles" tileid="-1"/>
     <description>You see some marbles. Boys will be boys.</description>
@@ -169,6 +144,7 @@
       <slot name="bag"/>
     </equipable>
   </item>
+  
    <item name="snowglobe">
     <type class="misc" subclass="snowglobe" tileid="-1"/>
     <description>You see a snowglobe. You are SUCH a tourist!</description>
