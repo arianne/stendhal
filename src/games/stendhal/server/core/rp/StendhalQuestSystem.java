@@ -309,4 +309,28 @@ public class StendhalQuestSystem {
 		}
 		return sb.toString();
 	}
+	
+	// this is being used for the InspectAction 
+	public String listQuestsStates(final Player player) {
+		final StringBuilder sb = new StringBuilder();
+
+		// Open quests
+		sb.append("\r\nOpen Quests: ");
+
+		for (final IQuest quest : quests) {
+			if (quest.isStarted(player) && !quest.isCompleted(player)) {
+				sb.append("\n" + quest.getName() + " (" + quest.getSlotName() + "): " + player.getQuest(quest.getSlotName()));
+			}
+		}
+
+		// Completed Quests
+		sb.append("\r\nCompleted Quests: ");
+		for (final IQuest quest : quests) {
+			if (quest.isCompleted(player)) {
+				sb.append("\n" + quest.getName() + " (" + quest.getSlotName() + "): " + player.getQuest(quest.getSlotName()));
+			}
+		}
+
+		return sb.toString();
+	}
 }
