@@ -251,7 +251,7 @@ public class CreateAccountDialog extends JDialog {
 					"Account not created (running standalone)!");
 			return;
 		}
-		// port couldnt be accessed from inner class
+		// port couldn't be accessed from inner class
 		final int finalPort; 
 		final ProgressBar progressBar = new ProgressBar(owner);
 
@@ -265,13 +265,13 @@ public class CreateAccountDialog extends JDialog {
 		}
 		finalPort = port;
 
-		/* seprate thread for connection proccess added by TheGeneral */
-		// run the connection procces in separate thread
+		/* separate thread for connection process added by TheGeneral */
+		// run the connection process in separate thread
 		final Thread m_connectionThread = new Thread() {
 
 			@Override
 			public void run() {
-				// intialize progress bar
+				// initialize progress bar
 				progressBar.start(); 
 				// disable this screen when attempting to connect
 				setEnabled(false); 
@@ -282,12 +282,13 @@ public class CreateAccountDialog extends JDialog {
 					// for each major connection milestone call step()
 					progressBar.step(); 
 				} catch (final Exception ex) {
-					// if something goes horribly just cancel the progressbar
+					// if something goes horribly just cancel the progress bar
 					progressBar.cancel(); 
 					setEnabled(true);
 					JOptionPane.showMessageDialog(
 							owner,
-							"Stendhal cannot connect to the Internet. Please check that your connection is set up and active, then try again.");
+							"Unable to connect to server to create your account. The server may be down or, if you are using a custom server, " +
+							"you may have entered its name and port number incorrectly.");
 
 					logger.error(ex, ex);
 
