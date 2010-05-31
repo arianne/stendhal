@@ -2,6 +2,7 @@ package games.stendhal.server.util;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 
 import java.awt.Shape;
@@ -68,6 +69,25 @@ public class Area {
 		// player-objects stay alive some time after logout.
 		return zone.equals(entityZone) && zone.has(entity.getID())
 				&& shape.contains(entity.getX(), entity.getY());
+	}
+	
+	/**
+	 * Checks whether an entity is in this area (e. g. on this zone and inside of
+	 * the shape)
+	 * 
+	 * @param entity
+	 *            An entity to check
+	 * @return true, if and only if the entity is in this area.
+	 */
+	public boolean contains(final CreatureRespawnPoint point) {
+		if (point == null) {
+			return false;
+		}
+		final IRPZone entityZone = point.getZone();
+
+		// We have ask the zone whether it knows about the entity because
+		// player-objects stay alive some time after logout.
+		return zone.equals(entityZone) && shape.contains(point.getX(), point.getY());
 	}
 
 	/**
