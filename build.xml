@@ -314,7 +314,6 @@
 			<fileset file="build/lib/${client_music_data}"/>
 			<fileset file="${marauroa_jar}"/>
 			<fileset file="${log4j_jar}"/>
-			<fileset file="${pagelayout_jar}"/>
 			<fileset file="${jorbis_jar}"/>
 		</copy>
 
@@ -375,7 +374,6 @@
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${pagelayout_jar}"/>
 				<pathelement path="${jorbis_jar}"/>
 			</classpath>
 		</javac>
@@ -406,7 +404,7 @@
 			<fileset dir="${build_client}"/>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value="lib/log4j.jar lib/marauroa.jar lib/pagelayout1.16.jar lib/jorbis.jar lib/${client_data} lib/${client_sound_data} lib/${client_music_data}"/>
+				<attribute name="Class-path" value="lib/log4j.jar lib/marauroa.jar lib/jorbis.jar lib/${client_data} lib/${client_sound_data} lib/${client_music_data}"/>
 			</manifest>
 		</jar>
 
@@ -495,7 +493,6 @@
 			</fileset>
 			<fileset file="${log4j_jar}"/>
 			<fileset file="${marauroa_jar}"/>
-			<fileset file="${pagelayout_jar}"/>
 			<fileset file="${jorbis_jar}"/>
 		</copy>
 	</target>
@@ -560,7 +557,6 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}/${client_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/log4j.jar"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/marauroa.jar"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/pagelayout1.16.jar"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/jorbis.jar"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_sound_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_music_data}"/>
@@ -591,7 +587,6 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}/${client_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/log4j.jar"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/marauroa.jar"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/pagelayout1.16.jar"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/jorbis.jar"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib">
@@ -708,7 +703,6 @@
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${tiled_jar}"/>
 				<pathelement path="${jorbis_jar}"/>
-				<pathelement path="${pagelayout_jar}"/>
 				<pathelement path="${swinglayout_jar}"/>
 			</classpath>
 		</javac>
@@ -730,7 +724,6 @@
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${tiled_jar}"/>
 				<pathelement path="${jorbis_jar}"/>
-				<pathelement path="${pagelayout_jar}"/>
 				<pathelement path="${swinglayout_jar}"/>
 			</classpath>
 		</javac>
@@ -801,7 +794,6 @@
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${easymock_jar}"/>
-				<pathelement path="${pagelayout_jar}"/>
 				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${build_server_script}"/>
 				<pathelement path="${tiled_jar}"/>
