@@ -198,6 +198,22 @@ public class CreatureRespawnPoint implements TurnListener {
 	}
 	
 	/**
+	 * function returns X coord of this respawn point
+	 * @return - x coord
+	 */
+	public int getX() {
+		return this.x;
+	}
+	
+	/**
+	 * function returns Y coord of this respawn point
+	 * @return - y coord
+	 */
+	public int getY() {
+		return this.y;
+	}
+	
+	/**
 	 * 
 	 */
     public void setPrototypeCreature(final Creature creature) {
