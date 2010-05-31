@@ -13,7 +13,6 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.CircumstancesOfDeath;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.creature.KillNotificationCreature;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -65,8 +64,8 @@ import org.apache.log4j.Logger;
 
 	private static final String QUEST_SLOT = "the_pied_piper";
 	private static Logger logger = Logger.getLogger(ThePiedPiper.class);
-	protected LinkedList<KillNotificationCreature> rats =
-		new LinkedList<KillNotificationCreature>();
+	protected LinkedList<Creature> rats =
+		new LinkedList<Creature>();
 
 
     // timings unit is second.
@@ -537,7 +536,7 @@ import org.apache.log4j.Logger;
 				if (tempCreature == null) {
 					continue;
 				};
-				final KillNotificationCreature rat = new KillNotificationCreature(tempCreature.getNewInstance());
+				final Creature rat = new Creature(tempCreature.getNewInstance());
 
 				// chosen place is occupied
 				if (zone.collides(rat,x,y)) {
@@ -601,7 +600,7 @@ import org.apache.log4j.Logger;
 		int i=0;
 		while(rats.size()!=0) {
 			try {
-			final KillNotificationCreature rat = rats.get(0);
+			final Creature rat = rats.get(0);
 			rat.stopAttack();
 			rat.clearDropItemList();
 			rat.getZone().remove(rat);

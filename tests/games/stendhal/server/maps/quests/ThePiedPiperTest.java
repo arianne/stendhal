@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.creature.KillNotificationCreature;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -77,7 +77,7 @@ public class ThePiedPiperTest {
 	 * @param rat - creature for killing
 	 * @param count - number of creature for logger
 	 */
-	private void killRat(KillNotificationCreature rat, int count) {
+	private void killRat(Creature rat, int count) {
 		do {
 			// prevent player killing
 			player.setHP(10000);

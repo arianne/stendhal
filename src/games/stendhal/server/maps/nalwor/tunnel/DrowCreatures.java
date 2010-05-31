@@ -6,8 +6,8 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.CircumstancesOfDeath;
-import games.stendhal.server.entity.creature.KillNotificationCreature;
-import games.stendhal.server.entity.mapstuff.spawner.KillNotificationCreatureRespawnPoint;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.magic.school.SpidersCreatures;
 
@@ -83,55 +83,55 @@ public class DrowCreatures implements ZoneConfigurator {
 	private void buildSecretRoomArea(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 		Observer observer = new DrowObserver();
-		KillNotificationCreature creature;
-		KillNotificationCreatureRespawnPoint point;
+		Creature creature;
+		CreatureRespawnPoint point;
 		// drow captain
-		creature = new KillNotificationCreature(manager.getCreature("dark elf captain"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 39, 67, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf captain"));
+		point = new CreatureRespawnPoint(zone, 39, 67, creature, 1, observer);
 		zone.add(point);
 		// drow captain
-		creature = new KillNotificationCreature(manager.getCreature("dark elf captain"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 35, 52, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf captain"));
+		point = new CreatureRespawnPoint(zone, 35, 52, creature, 1, observer);
 		zone.add(point);
 		// drow archer
-		creature = new KillNotificationCreature(manager.getCreature("dark elf archer"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 38, 59, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf archer"));
+		point = new CreatureRespawnPoint(zone, 38, 59, creature, 1, observer);
 		zone.add(point);	
 		// drow archer
-		creature = new KillNotificationCreature(manager.getCreature("dark elf archer"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 38, 45, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf archer"));
+		point = new CreatureRespawnPoint(zone, 38, 45, creature, 1, observer);
 		zone.add(point);
 		// drow archer
-		creature = new KillNotificationCreature(manager.getCreature("dark elf archer"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 34, 31, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf archer"));
+		point = new CreatureRespawnPoint(zone, 34, 31, creature, 1, observer);
 		zone.add(point);
 		// drow elite archer
-		creature = new KillNotificationCreature(manager.getCreature("dark elf elite archer"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 29, 28, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf elite archer"));
+		point = new CreatureRespawnPoint(zone, 29, 28, creature, 1, observer);
 		zone.add(point);
 		// drow knight
-		creature = new KillNotificationCreature(manager.getCreature("dark elf knight"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 33, 45, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf knight"));
+		point = new CreatureRespawnPoint(zone, 33, 45, creature, 1, observer);
 		zone.add(point);
 		// drow knight
-		creature = new KillNotificationCreature(manager.getCreature("dark elf knight"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 39, 41, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf knight"));
+		point = new CreatureRespawnPoint(zone, 39, 41, creature, 1, observer);
 		zone.add(point);
 		// drow wizard
-		creature = new KillNotificationCreature(manager.getCreature("dark elf wizard"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 30, 38, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf wizard"));
+		point = new CreatureRespawnPoint(zone, 30, 38, creature, 1, observer);
 		zone.add(point);
 		// drow sacerdotist
-		creature = new KillNotificationCreature(manager.getCreature("dark elf sacerdotist"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 24, 28, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf sacerdotist"));
+		point = new CreatureRespawnPoint(zone, 24, 28, creature, 1, observer);
 		zone.add(point);
 		// drow viceroy
-		creature = new KillNotificationCreature(manager.getCreature("dark elf viceroy"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 39, 28, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf viceroy"));
+		point = new CreatureRespawnPoint(zone, 39, 28, creature, 1, observer);
 		zone.add(point);
 		// drow matronmother
-		creature = new KillNotificationCreature(manager.getCreature("dark elf matronmother"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 31, 16, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf matronmother"));
+		point = new CreatureRespawnPoint(zone, 31, 16, creature, 1, observer);
 		zone.add(point);
 	}
 }

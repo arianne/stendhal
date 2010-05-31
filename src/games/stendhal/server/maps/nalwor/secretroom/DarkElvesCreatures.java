@@ -6,8 +6,8 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.CircumstancesOfDeath;
-import games.stendhal.server.entity.creature.KillNotificationCreature;
-import games.stendhal.server.entity.mapstuff.spawner.KillNotificationCreatureRespawnPoint;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.magic.school.SpidersCreatures;
 
@@ -76,15 +76,15 @@ public class DarkElvesCreatures implements ZoneConfigurator {
 	private void buildSecretRoomArea(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 		Observer observer = new DrowObserver();
-		KillNotificationCreature creature;
-		KillNotificationCreatureRespawnPoint point;
+		Creature creature;
+		CreatureRespawnPoint point;
 		// drow captain
-		creature = new KillNotificationCreature(manager.getCreature("dark elf captain"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 8, 7, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf captain"));
+		point = new CreatureRespawnPoint(zone, 8, 7, creature, 1, observer);
 		zone.add(point);
 		// drow general
-		creature = new KillNotificationCreature(manager.getCreature("dark elf general"));
-		point = new KillNotificationCreatureRespawnPoint(zone, 16, 6, creature, 1, observer);
+		creature = new Creature(manager.getCreature("dark elf general"));
+		point = new CreatureRespawnPoint(zone, 16, 6, creature, 1, observer);
 		zone.add(point);	
 	}
 }

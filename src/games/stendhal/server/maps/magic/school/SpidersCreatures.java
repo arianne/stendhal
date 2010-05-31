@@ -6,8 +6,8 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.CircumstancesOfDeath;
-import games.stendhal.server.entity.creature.KillNotificationCreature;
-import games.stendhal.server.entity.mapstuff.spawner.KillNotificationCreatureRespawnPoint;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -66,22 +66,22 @@ public class SpidersCreatures implements ZoneConfigurator {
 	private void buildMagicSchoolCellarArea(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 		
-		KillNotificationCreature creature;
-		KillNotificationCreatureRespawnPoint point;
+		Creature creature;
+		CreatureRespawnPoint point;
 		
 		// spider
-		creature = new KillNotificationCreature(manager.getCreature("spider"));
-		point = new KillNotificationCreatureRespawnPoint(
+		creature = new Creature(manager.getCreature("spider"));
+		point = new CreatureRespawnPoint(
 				zone, 15, 16, creature, 1, observer);
 		zone.add(point);
 		// poisonous spider
-		creature = new KillNotificationCreature(manager.getCreature("poisonous spider"));
-		point = new KillNotificationCreatureRespawnPoint(
+		creature = new Creature(manager.getCreature("poisonous spider"));
+		point = new CreatureRespawnPoint(
 				zone, 13, 4, creature, 1, observer);
 		zone.add(point);
 		// giant spider
-		creature = new KillNotificationCreature(manager.getCreature("giant spider"));
-		point = new KillNotificationCreatureRespawnPoint(
+		creature = new Creature(manager.getCreature("giant spider"));
+		point = new CreatureRespawnPoint(
 				zone, 9, 9, creature, 1, observer);
 		zone.add(point);
 		

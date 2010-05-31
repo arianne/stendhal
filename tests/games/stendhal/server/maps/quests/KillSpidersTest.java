@@ -12,7 +12,6 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.creature.KillNotificationCreature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -51,6 +50,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		world.addRPZone(basement);
 		quest.addToWorld();
 	}
+	
 	@Before
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");
@@ -71,7 +71,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		creature.setHP(1);
 		creature.setATKXP(1);
 		creature.setDEFXP(1);
-		final KillNotificationCreature spider = new KillNotificationCreature(creature);
+		final Creature spider = new Creature(creature);
 		spider.registerObjectsForNotification(observer);
 		player.teleport(basement, 5, 5, null, player);
 		StendhalRPAction.placeat(basement, spider, 51, 50);
