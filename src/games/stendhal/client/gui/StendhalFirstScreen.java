@@ -197,7 +197,7 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	private void showHelp() {
-		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/StendhalManual");
+		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/Stendhal_Manual");
 	}
 
 	private void checkVersion() {
