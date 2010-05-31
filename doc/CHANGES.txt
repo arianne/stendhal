@@ -19,7 +19,15 @@ Changelog
 
 *code*
 - new simple layout manager to replace the abandoned pagelayout
-- reworked DailyMonsterQuest engine
+- reworked Daily Monster quest engine
+- reworked kill quests to not clear player's information about previous killed creatures:
+  - Daily Monster quest
+  - Kill Gnomes quest
+  - Kill Dhohr Nuggetcutter quest
+  - Clean Storage Space quest
+  - Club Of Thorns quest
+  - Meet Hayunn quest
+  - Sad Scientist quest
 - npc conditions and actions for randomised item collection quests
 - fixed bug with xp display after death
 - ranged attack bug fixes on using up last missile and throwing from 1 tile away
