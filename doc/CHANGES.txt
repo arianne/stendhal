@@ -19,7 +19,8 @@ Changelog
 
 *code*
 - new simple layout manager to replace the abandoned pagelayout
-- reworked Daily Monster quest engine
+- reworked zone configurators for Kill Dark Elves quest and for Kill Spiders quest.
+- reworked Daily Monster quest NPC engine
 - reworked kill quests to not clear player's information about previous killed creatures:
   - Daily Monster quest
   - Kill Gnomes quest
