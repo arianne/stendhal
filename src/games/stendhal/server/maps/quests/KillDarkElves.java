@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -94,6 +95,7 @@ public class KillDarkElves extends AbstractQuest {
 		//actions.add(new StartRecordingKillsAction("dark elf archer", "dark elf captain", "thing"));
 		actions.add(new IncreaseKarmaAction(5.0));
 		actions.add(new SetQuestAction(QUEST_SLOT, "started"));
+		actions.add(new ExamineChatAction("dark-elves-wanted.png", "Wanted!", ""));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -184,7 +186,7 @@ public class KillDarkElves extends AbstractQuest {
 				" the ones who command, do magic or are archers." +
 				"  Don't forget the evil matronmother too."+
 				" And bring me the amulet from the mutant thing.",
-				null);
+				new ExamineChatAction("dark-elves-wanted.png", "Wanted!", ""));
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
