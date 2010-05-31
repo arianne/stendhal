@@ -79,5 +79,12 @@ public interface IQuest {
 	 * @return level
 	 */
 	int getMinLevel();
+	
+	/**
+	 * Returns the slot name of the quest.
+	 *
+	 * @return slot name
+	 */
+	String getSlotName();
 
 }

@@ -2,6 +2,7 @@ package games.stendhal.server.actions.admin;
 
 import static games.stendhal.common.constants.Actions.INSPECT;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
@@ -60,8 +61,7 @@ public class InspectAction extends AdministrationAction {
 
 			// st.append(target.toString());
 			// st.append("\n===========================\n");
-
-			st.append("\nID:     " + inspected.getID());
+			st.append("\nID: " + action.get("target") + " in " + inspected.getZone().getName() + " at (" + + inspected.getX() + ", " + + inspected.getY()+")");
 			st.append("\nATK:    " + inspected.getATK() + "("
 					+ inspected.getATKXP() + ")");
 			st.append("\nDEF:    " + inspected.getDEF() + "("
@@ -70,8 +70,9 @@ public class InspectAction extends AdministrationAction {
 					+ inspected.getBaseHP());
 			st.append("\nXP:     " + inspected.getXP());
 			st.append("\nLevel:  " + inspected.getLevel());
-
+			st.append("\nKarma:  " + inspected.getKarma());
 			st.append("\nequips");
+			
 			for (final RPSlot slot : inspected.slots()) {
 				// showing these is either irrelevant, private, or spams too much
 				if (slot.getName().equals("!buddy")
@@ -87,8 +88,12 @@ public class InspectAction extends AdministrationAction {
 				st.append("\n    Slot " + slot.getName() + ": ");
 
 				if (slot.getName().startsWith("!")) {
-					for (final RPObject object : slot) {
-						st.append(object);
+					if("!quests".equals(slot.getName())) {
+						st.append(SingletonRepository.getStendhalQuestSystem().listQuestsStates((Player) inspected));
+					} else {
+						for (final RPObject object : slot) {
+							st.append(object);
+						}
 					}
 				} else {
 					for (final RPObject object : slot) {
