@@ -88,7 +88,7 @@ public class KillEnemyArmyTest {
 		final String expectingAnswer = quest.enemyForces.get(monstersType).second();
 
 		assertEquals("I need help to defeat #enemy "+monstersType+
-				". They are a grave concern. Kill at least "+killsnumb+
+				" armies. They are a grave concern. Kill at least "+killsnumb+
 				" of any "+monstersType+
 				" soldiers and I will reward you.", getReply(npc));
 		en.step(player, "bye");
@@ -97,7 +97,7 @@ public class KillEnemyArmyTest {
 		en.step(player, "hi");
 		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I already explained to you what I need. Are you an idiot, as you can't remember this simple thing about #"+monstersType+"?", getReply(npc));
+		assertEquals("I already explained to you what I need. Are you an idiot, as you can't remember this simple thing about the #enemy "+monstersType+" armies?", getReply(npc));
 		en.step(player, "enemy");
 		assertEquals(expectingAnswer, getReply(npc));
 		en.step(player, "bye");
@@ -117,7 +117,7 @@ public class KillEnemyArmyTest {
 		//final String expectingAnswer = quest.enemyForces.get(monstersType).second();
 
 		assertEquals("I need help to defeat #enemy "+monstersType+
-				". They are a grave concern. Kill at least "+killsnumb+
+				" armies. They are a grave concern. Kill at least "+killsnumb+
 				" of any "+monstersType+
 				" soldiers and I will reward you.", getReply(npc));
 		en.step(player, "bye");
@@ -164,7 +164,7 @@ public class KillEnemyArmyTest {
 		final int killsnumb=quest.enemyForces.get(monstersType).first();
 
 		assertEquals("I need help to defeat #enemy "+monstersType+
-				". They are a grave concern. Kill at least "+killsnumb+
+				" armies. They are a grave concern. Kill at least "+killsnumb+
 				" of any "+monstersType+
 				" soldiers and I will reward you.", getReply(npc));
 		en.step(player, "bye");

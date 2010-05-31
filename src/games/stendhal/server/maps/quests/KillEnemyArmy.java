@@ -73,21 +73,21 @@ import org.apache.log4j.Logger;
 	public KillEnemyArmy() {
 		super();
 		// fill monster types map
-		enemyForces.put("blordroughs",
+		enemyForces.put("blordrough",
 				new Pair<Integer, String>(50,"Blordrough warriors now live in the Ados tunnels. They are extremely strong in battle, that is why Blordrough captured part of Deniran's territory."));
-		enemyForces.put("madarams",
+		enemyForces.put("madaram",
 				new Pair<Integer, String>(100,"Their forces are somewhere under Fado. They are hideous."));
-		enemyForces.put("dark elves",
+		enemyForces.put("dark elf",
 				new Pair<Integer, String>(100,"Drows, or dark elves as they are commonly called, can be found under Nalwor. They use poison in battles, gathering it from different poisonous creatures."));
-		enemyForces.put("chaoses",
+		enemyForces.put("chaos",
 				new Pair<Integer, String>(150,"They are strong and crazy. Only my elite archers hold them from expanding more."));
-		enemyForces.put("mountain dwarves",
+		enemyForces.put("mountain dwarf",
 				new Pair<Integer, String>(150,"They are my historical neighbors, living in Semos mines."));
-		enemyForces.put("mountain orcs",
+		enemyForces.put("mountain orc",
 				new Pair<Integer, String>(150,"Stupid creatures, but very strong. Can be found in Semos mines somewhere."));
-		enemyForces.put("imperials",
+		enemyForces.put("imperial",
 				new Pair<Integer, String>(200,"They come from their castle in the underground Sedah city, ruled by their Emperor Dalmung."));
-		enemyForces.put("barbarians",
+		enemyForces.put("barbarian",
 				new Pair<Integer, String>(200,"Different barbarian tribes live on the surface in the North West area of Ados Mountains. Not dangerous but noisy."));
 		enemyForces.put("oni",
 				new Pair<Integer, String>(200,"Very strange race, living in their castle in Fado forest. There are rumors that they have agreed an alliance with the Magic city wizards."));
@@ -95,13 +95,13 @@ import org.apache.log4j.Logger;
 
 		/*
 		 * those are not interesting
-		enemyForces.put("dwarves",
+		enemyForces.put("dwarf",
 				new Pair<Integer, String>(275,""));
-		enemyForces.put("elves",
+		enemyForces.put("elf",
 				new Pair<Integer, String>(300,""));
-		enemyForces.put("skeletons",
+		enemyForces.put("skeleton",
 				new Pair<Integer, String>(500,""));
-		enemyForces.put("gnomes",
+		enemyForces.put("gnome",
 				new Pair<Integer, String>(1000,""));
 		*/
 
@@ -109,11 +109,11 @@ import org.apache.log4j.Logger;
 		 *  fill creatures map
 		 */
 
-		enemys.put("blordroughs",
+		enemys.put("blordrough",
 				Arrays.asList("blordrough quartermaster",
 							  "blordrough corporal",
 							  "blordrough storm trooper"));
-		enemys.put("dark elves",
+		enemys.put("dark elf",
 				Arrays.asList("child dark elf",
 							  "dark elf archer",
 							  "dark elf",
@@ -127,7 +127,7 @@ import org.apache.log4j.Logger;
 							  "dark elf admiral",
 							  "dark elf master",
 						"dark elf matronmother"));
-		enemys.put("chaoses",
+		enemys.put("chaos",
 				Arrays.asList("chaos soldier",
 							  "chaos warrior",
 							  "chaos commander",
@@ -137,7 +137,7 @@ import org.apache.log4j.Logger;
 							  "chaos green dragonrider",
 							  "chaos overlord",
 							  "chaos red dragonrider"));
-		enemys.put("mountain dwarves",
+		enemys.put("mountain dwarf",
 				Arrays.asList("mountain dwarf",
 							  "mountain elder dwarf",
 							  "mountain hero dwarf",
@@ -145,12 +145,12 @@ import org.apache.log4j.Logger;
 							  "Dhohr Nuggetcutter",
 							  "giant dwarf",
 							  "dwarf golem"));
-		enemys.put("mountain orcs",
+		enemys.put("mountain orc",
 				Arrays.asList("mountain orc",
 							  "mountain orc warrior",
 							  "mountain orc hunter",
 							  "mountain orc chief"));
-		enemys.put("imperials",
+		enemys.put("imperial",
 				Arrays.asList("imperial defender",
 							  "imperial veteran",
 							  "imperial archer",
@@ -171,7 +171,7 @@ import org.apache.log4j.Logger;
 							  "imperial demon lord",
 							  "emperor dalmung",
 							  "imperial general giant"));
-		enemys.put("madarams",
+		enemys.put("madaram",
 				Arrays.asList("madaram peasant",
 							  "madaram trooper",
 							  "madaram soldier",
@@ -204,7 +204,7 @@ import org.apache.log4j.Logger;
 							  "oni priest",
 							  "oni king",
 							  "oni queen"));
-		enemys.put("barbarians",
+		enemys.put("barbarian",
 				Arrays.asList("barbarian",
 						      "barbarian wolf",
 						      "barbarian elite",
@@ -314,7 +314,7 @@ import org.apache.log4j.Logger;
 			final String monstersType = chooseRandomEnemys();
 			player.setQuest(QUEST_SLOT, 1, monstersType);
 			npc.say("I need help to defeat #enemy " + monstersType +
-					". They are a grave concern. Kill at least " + enemyForces.get(monstersType).first()+
+					" armies. They are a grave concern. Kill at least " + enemyForces.get(monstersType).first()+
 					" of any "+ monstersType +
 					" soldiers and I will reward you.");
 			final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>();
@@ -371,7 +371,7 @@ import org.apache.log4j.Logger;
 
 				if(killed==0) {
 					// player killed no creatures but asked about quest again.
-					npc.say("I already explained to you what I need. Are you an idiot, as you can't remember this simple thing about #" + monsters + "?");
+					npc.say("I already explained to you what I need. Are you an idiot, as you can't remember this simple thing about the #enemy " + monsters + " armies?");
 					return;
 				}
 				if(killed < killsnumber) {
