@@ -21,6 +21,7 @@ import games.stendhal.server.entity.creature.Creature;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
@@ -47,7 +48,9 @@ public class CreatureRespawnPoint implements TurnListener {
 	private static final Logger logger = Logger.getLogger(CreatureRespawnPoint.class);
 
 	protected final StendhalRPZone zone;
-
+	
+	private LinkedList<Observer> observers = new LinkedList<Observer>();
+	
 	protected final int x;
 
 	protected final int y;
@@ -105,6 +108,24 @@ public class CreatureRespawnPoint implements TurnListener {
 		
 		// don't respawn in next turn!
 		SingletonRepository.getTurnNotifier().notifyInTurns(calculateNextRespawnTurn(), this); 
+	}
+	
+	/**
+	 * Creates a new RespawnPoint.
+	 * 
+	 * @param zone
+	 * @param x
+	 * @param y
+	 * @param creature
+	 *            The prototype creature
+	 * @param maximum
+	 *            The number of creatures spawned here that can exist at the
+	 *            same time
+	 */
+	public CreatureRespawnPoint(StendhalRPZone zone, int x,
+			int y, Creature creature, int maximum, final Observer observer) {
+		this(zone, x, y, creature, maximum);
+		this.observers.add(observer);
 	}
 
 	public Creature getPrototypeCreature() {
@@ -184,6 +205,22 @@ public class CreatureRespawnPoint implements TurnListener {
     }
     
 	/**
+	 * add observer to observers list
+	 * @param observer - observer to add
+	 */
+	public void addObserver(final Observer observer) {
+		observers.add(observer);
+	}
+	
+	/**
+	 * remove observer from list
+	 * @param observer - observer to remove
+	 */
+	public void removeObserver(final Observer observer) {
+		observers.remove(observer);
+	}
+    
+	/**
 	 * Pops up a new creature.
 	 */
 	protected void respawn() {
@@ -198,7 +235,9 @@ public class CreatureRespawnPoint implements TurnListener {
 					newentity.getATK() / 10));
 			newentity.setDEF(Rand.randGaussian(newentity.getDEF(),
 					newentity.getDEF() / 10));
-
+			
+			newentity.registerObjectsForNotification(observers);
+			
 			if (StendhalRPAction.placeat(zone, newentity, x, y)) {
 				newentity.init();
 				newentity.setRespawnPoint(this);
