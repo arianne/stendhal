@@ -433,7 +433,7 @@ import org.apache.log4j.Logger;
 				"enemy",
 				new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
 				ConversationStates.ATTENDING,
-				"Yes, my enemies are everywhere, they want to kill me! I guess about you are one of them. Stay away from me!",
+				"Yes, my enemies are everywhere, they want to kill me! I guess you are one of them. Stay away from me!",
 				null);
 
 		// checking for kills
