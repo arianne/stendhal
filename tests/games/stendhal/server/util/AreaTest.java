@@ -3,6 +3,7 @@ package games.stendhal.server.util;
 import static org.junit.Assert.*;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 
 import java.awt.Rectangle;
@@ -76,6 +77,7 @@ public class AreaTest {
 	public void testContainsNull() throws Exception {
 		
 		final Area area = new Area(null, null);
-		assertFalse(area.contains(null));
+		final Entity entity = null;
+		assertFalse(area.contains(entity));
 	}
 }
