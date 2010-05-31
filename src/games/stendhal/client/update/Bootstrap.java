@@ -41,7 +41,7 @@ public class Bootstrap {
 	private static class ButtomUpOrderClassLoader extends URLClassLoader {
 
 		/**
-		 * Creates a buttom up order class loader.
+		 * Creates a bottom up order class loader.
 		 * 
 		 * @param urls
 		 *            classpath
@@ -271,7 +271,7 @@ public class Bootstrap {
 
 	/**
 	 * Is this package signed? Note it does not validate the signature, just
-	 * looks for the presents of one.
+	 * looks for the presence of one.
 	 * 
 	 * @return true, if there is some kind of signature; false otherwise
 	 */
