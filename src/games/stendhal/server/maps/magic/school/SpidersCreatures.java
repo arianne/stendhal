@@ -1,12 +1,9 @@
 package games.stendhal.server.maps.magic.school;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.CircumstancesOfDeath;
-import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 
@@ -64,26 +61,13 @@ public class SpidersCreatures implements ZoneConfigurator {
 	protected final SpidersObserver observer = new SpidersObserver(); 
 	
 	private void buildMagicSchoolCellarArea(final StendhalRPZone zone, final Map<String, String> attributes) {
-		final EntityManager manager = SingletonRepository.getEntityManager();
-		
-		Creature creature;
-		CreatureRespawnPoint point;
-		
-		// spider
-		creature = new Creature(manager.getCreature("spider"));
-		point = new CreatureRespawnPoint(
-				zone, 15, 16, creature, 1, observer);
-		zone.add(point);
-		// poisonous spider
-		creature = new Creature(manager.getCreature("poisonous spider"));
-		point = new CreatureRespawnPoint(
-				zone, 13, 4, creature, 1, observer);
-		zone.add(point);
-		// giant spider
-		creature = new Creature(manager.getCreature("giant spider"));
-		point = new CreatureRespawnPoint(
-				zone, 9, 9, creature, 1, observer);
-		zone.add(point);
-		
+		for(CreatureRespawnPoint p:zone.getRespawnPointList()) {
+			if(p!=null) {
+				if(creatures.indexOf(p.getPrototypeCreature().getName())!=-1) {
+					// it is our creature, will add observer now
+					p.addObserver(observer);
+				}
+			}
+		}
 	}
 }

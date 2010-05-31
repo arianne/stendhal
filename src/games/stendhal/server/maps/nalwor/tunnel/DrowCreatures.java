@@ -1,15 +1,13 @@
 package games.stendhal.server.maps.nalwor.tunnel;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.CircumstancesOfDeath;
-import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.magic.school.SpidersCreatures;
+import games.stendhal.server.util.Area;
 
 import java.util.Arrays;
 import java.util.List;
@@ -81,57 +79,21 @@ public class DrowCreatures implements ZoneConfigurator {
 	}
 
 	private void buildSecretRoomArea(final StendhalRPZone zone, final Map<String, String> attributes) {
-		final EntityManager manager = SingletonRepository.getEntityManager();
 		Observer observer = new DrowObserver();
-		Creature creature;
-		CreatureRespawnPoint point;
-		// drow captain
-		creature = new Creature(manager.getCreature("dark elf captain"));
-		point = new CreatureRespawnPoint(zone, 39, 67, creature, 1, observer);
-		zone.add(point);
-		// drow captain
-		creature = new Creature(manager.getCreature("dark elf captain"));
-		point = new CreatureRespawnPoint(zone, 35, 52, creature, 1, observer);
-		zone.add(point);
-		// drow archer
-		creature = new Creature(manager.getCreature("dark elf archer"));
-		point = new CreatureRespawnPoint(zone, 38, 59, creature, 1, observer);
-		zone.add(point);	
-		// drow archer
-		creature = new Creature(manager.getCreature("dark elf archer"));
-		point = new CreatureRespawnPoint(zone, 38, 45, creature, 1, observer);
-		zone.add(point);
-		// drow archer
-		creature = new Creature(manager.getCreature("dark elf archer"));
-		point = new CreatureRespawnPoint(zone, 34, 31, creature, 1, observer);
-		zone.add(point);
-		// drow elite archer
-		creature = new Creature(manager.getCreature("dark elf elite archer"));
-		point = new CreatureRespawnPoint(zone, 29, 28, creature, 1, observer);
-		zone.add(point);
-		// drow knight
-		creature = new Creature(manager.getCreature("dark elf knight"));
-		point = new CreatureRespawnPoint(zone, 33, 45, creature, 1, observer);
-		zone.add(point);
-		// drow knight
-		creature = new Creature(manager.getCreature("dark elf knight"));
-		point = new CreatureRespawnPoint(zone, 39, 41, creature, 1, observer);
-		zone.add(point);
-		// drow wizard
-		creature = new Creature(manager.getCreature("dark elf wizard"));
-		point = new CreatureRespawnPoint(zone, 30, 38, creature, 1, observer);
-		zone.add(point);
-		// drow sacerdotist
-		creature = new Creature(manager.getCreature("dark elf sacerdotist"));
-		point = new CreatureRespawnPoint(zone, 24, 28, creature, 1, observer);
-		zone.add(point);
-		// drow viceroy
-		creature = new Creature(manager.getCreature("dark elf viceroy"));
-		point = new CreatureRespawnPoint(zone, 39, 28, creature, 1, observer);
-		zone.add(point);
-		// drow matronmother
-		creature = new Creature(manager.getCreature("dark elf matronmother"));
-		point = new CreatureRespawnPoint(zone, 31, 16, creature, 1, observer);
-		zone.add(point);
+		
+		// describe secret room tunnel here
+		final Area a1 = new Area(zone, 33, 50, 10, 20);
+		final Area a2 = new Area(zone, 23, 0,  21, 49);
+		
+		for(CreatureRespawnPoint p:zone.getRespawnPointList()) {
+			if(p!=null) {
+				if(a1.contains(p) || a2.contains(p)) {
+					if(creatures.indexOf(p.getPrototypeCreature().getName())!=-1) {
+						// it is our creature, set up observer now
+						p.addObserver(observer);					
+					}
+				}				
+			}
+		}
 	}
 }
