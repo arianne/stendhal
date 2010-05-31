@@ -23,6 +23,10 @@
 
 	<property name="build_stendhaltools" value="${buildroot}/build_stendhaltools"/>
 	<property name="build_stendhaltextclient" value="${buildroot}/build_stendhaltextclient"/>
+
+	<property name="build_sign" value="${buildroot}/build_sign"/>
+
+	<property name="build_client" value="${buildroot}/build_client"/>
 	
 	<property name="client_data" value="stendhal-data-${version}.jar"/>
 	<property name="client_jarname" value="stendhal-${version}.jar"/>
@@ -118,6 +122,7 @@
 		<delete dir="${build_server}" />
 		<delete dir="${build_server_maps}" />
 		<delete dir="${build_server_script}" />
+		<delete dir="${build_sign}" />
 		<delete dir="${buildroot}/build_server_quests" />
 		<delete dir="${buildroot}/build_server_xmlconf" />
 		<delete dir="${build_tests}" />
@@ -482,8 +487,9 @@
 		</not>
 	</condition>
 
-	<target name="sign_jars" depends="server_build, client_build" unless="exclude.signing">
-		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}">
+	<target name="prepare_sign" depends="server_build, client_build">
+		<mkdir dir="${build_sign}" />
+		<copy todir="${build_sign}">
 			<fileset dir="${lib}">
 				<include name="**/*.jar"/>
 			</fileset>
@@ -491,6 +497,14 @@
 			<fileset file="${marauroa_jar}"/>
 			<fileset file="${pagelayout_jar}"/>
 			<fileset file="${jorbis_jar}"/>
+		</copy>
+	</target>
+
+	<target name="sign_jars" depends="prepare_sign" unless="exclude.signing">
+		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}">
+			<fileset dir="${build_sign}">
+				<include name="**/*.jar"/>
+			</fileset>
 		</signjar>
 	</target>
 
@@ -543,14 +557,14 @@
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
 
-		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${pagelayout_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${jorbis_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_sound_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_music_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}/${client_jarname}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/log4j.jar"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/marauroa.jar"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/pagelayout1.16.jar"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/jorbis.jar"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_sound_data}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_music_data}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib">
 			<fileset dir="libs">
 				<include name="*.txt"/>
@@ -574,12 +588,12 @@
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
 
-		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${pagelayout_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${jorbis_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}/${client_jarname}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/log4j.jar"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/marauroa.jar"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/pagelayout1.16.jar"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/jorbis.jar"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib">
 			<fileset dir="libs">
 				<include name="*.txt"/>
@@ -600,7 +614,7 @@
 
 	<target name="dist_client_starter">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_starter_jarname}"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}//${client_starter_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib">
 			<fileset dir="libs">
 				<include name="*.txt"/>
