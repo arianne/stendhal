@@ -7,6 +7,8 @@ import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -126,9 +128,18 @@ public class ItemListImageViewerEvent extends ViewPanel {
 	}
 
 	private URL getItemImageURL(RPObject item) {
-		String itemName = item.get("class") + "/" + item.get("subclass");
+		// remove fish images from signs
+		List<String> fishes = Arrays.asList("arctic_char", "clown-fish", "cod", "mackerel", "perch", "roach", "surgeonfish", "trout");
+		String itemSubClass = item.get("subclass");
+		for(String t:fishes) {
+			if(t.equals(itemSubClass)) {
+				itemSubClass = "unknown_fish";
+			}
+		}
+		String itemName = item.get("class") + "/" + itemSubClass;
 		String imagePath = "/data/sprites/items/" + itemName + ".png";
 		URL url = this.getClass().getResource(imagePath);
 		return url;
 	}
+	
 }
