@@ -25,7 +25,7 @@ public interface Debug {
 
 	/** server version. */
 	// Note: This line is updated by build.xml using a regexp so be sure to adjust it in case you modify this line.
-	String VERSION = "0.83.5";
+	String VERSION = "0.84.5";
 
 	
 	/**
