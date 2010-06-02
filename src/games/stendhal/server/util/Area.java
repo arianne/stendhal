@@ -72,12 +72,11 @@ public class Area {
 	}
 	
 	/**
-	 * Checks whether an entity is in this area (e. g. on this zone and inside of
-	 * the shape)
+	 * Checks whether a respawn point is within this area.
 	 * 
-	 * @param entity
-	 *            An entity to check
-	 * @return true, if and only if the entity is in this area.
+	 * @param point the point to examine
+	 * @return <code>true</code> if the point is within this area, <code>
+	 * false otherwise</code>
 	 */
 	public boolean contains(final CreatureRespawnPoint point) {
 		if (point == null) {
