@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.ados.outside;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.ItemTools;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -102,10 +103,10 @@ public class VeterinarianNPC implements ZoneConfigurator {
 				StringBuilder msg = new StringBuilder("Your ");
 				// if we ever get the ability to have more than 2 pets this
 				// needs to be changed.
-				msg.append(healed.get(0).get("type"));
+				msg.append(getPetName(healed.get(0)));
 				if (numHealed > 1) {
 					msg.append(" and ");
-					msg.append(healed.get(1).get("type"));
+					msg.append(getPetName(healed.get(1)));
 				}
 				msg.append(" ");
 				msg.append(Grammar.isare(numHealed));
@@ -117,6 +118,19 @@ public class VeterinarianNPC implements ZoneConfigurator {
 			} else {
 				npc.say("Sorry, I'm only licensed to heal animals. (But... ssshh! I can make you an #'offer'.)");
 			}
+		}
+		
+		/**
+		 * Get a generic name for a pet that Feelgood can use. He does not
+		 * know what the player calls the pet so he calls cats cats etc.
+		 *  
+		 * @param pet the animal whose name is wanted
+		 * @return printable name of the animal type
+		 */
+		private String getPetName(DomesticAnimal pet) {
+			String type = pet.get("type");
+			
+			return ItemTools.itemNameToDisplayName(type);
 		}
 	}
 }
