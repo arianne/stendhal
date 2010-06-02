@@ -505,7 +505,7 @@
 		</signjar>
 	</target>
 
-	<target name="dist" depends="clean, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
+	<target name="dist" depends="clean, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
 	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_no_sound_binary, dist_client_starter"/>
 
 	<target name="dist_server_binary" depends="server_build">
@@ -549,7 +549,7 @@
 		<delete dir="${buildroot}/stendhal-server-${version}"/>
 	</target>
 
-	<target name="dist_client_binary" depends="client_build">
+	<target name="dist_client_binary" depends="client_build,sign_jars">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
@@ -579,7 +579,7 @@
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
-	<target name="dist_client_no_sound_binary" depends="client_build">
+	<target name="dist_client_no_sound_binary" depends="client_build,sign_jars">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
@@ -607,7 +607,7 @@
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
-	<target name="dist_client_starter">
+	<target name="dist_client_starter" depends="client_build,sign_jars">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}//${client_starter_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib">
