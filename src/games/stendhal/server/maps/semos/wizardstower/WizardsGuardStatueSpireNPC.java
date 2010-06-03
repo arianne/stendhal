@@ -2,6 +2,7 @@ package games.stendhal.server.maps.semos.wizardstower;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
@@ -51,7 +52,7 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 				        ConversationStates.ATTENDING,
 				        Arrays.asList("special"),
 				        ConversationStates.ATTENDING,
-				        "For example I can create a #riftcloak. I could read in your mind, adventurer. But it is not allowed to me here. So you have to tell me which special item you want and I will tell you, if I can help you.",
+				        "For example I can create a #rift #cloak. I could read in your mind, adventurer. But it is not allowed to me here. So you have to tell me which special item you want and I will tell you, if I can help you.",
 				        null);
 				add(
 				        ConversationStates.ATTENDING,
@@ -71,14 +72,14 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 				add(
 				        ConversationStates.ATTENDING,
 				        Arrays.asList("scroll", "scrolls"),
-				        ConversationStates.ATTENDING,
-				        "I will create a magic scroll for you, but I need eight pieces of wood for that. If you want the scroll and got the wood, then just tell me to #create #a #scroll. The magic scroll is empty and can be enchanted by wizards.",
+				        ConversationStates.INFORMATION_1,
+				        "I will create a magic scroll for you, but I need eight pieces of wood for that. The scroll will be empty and can be enchanted by wizards. Do you want a magic scroll?",
 				        null);
-		add(ConversationStates.ATTENDING, Arrays.asList("create a scroll"),
+		add(ConversationStates.INFORMATION_1, ConversationPhrases.YES_MESSAGES,
 			new NotCondition(new PlayerHasItemWithHimCondition("wood", 8)),
 			ConversationStates.ATTENDING,
 			"You don't have enough wood, I will need eight pieces.", null);
-		add(ConversationStates.ATTENDING, Arrays.asList("create a scroll"),
+		add(ConversationStates.INFORMATION_1, ConversationPhrases.YES_MESSAGES,
 			new PlayerHasItemWithHimCondition("wood", 8),
 			ConversationStates.ATTENDING,
 			"There is your magic scroll.",
@@ -86,35 +87,35 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 			new EquipItemAction("scroll", 1, true),
 			new IncreaseXPAction(250)));
 
-	//behavior on special item RIFTCLOAK
+	//behavior on special item RIFT CLOAK
 				add(
 				        ConversationStates.ATTENDING,
-				        Arrays.asList("riftcloak"),
-				        ConversationStates.ATTENDING,
-				        "I will create a riftcloak for you, but I have to spine a carbuncle and an emerald in the magic. When you have both gems then just tell me to #create #a #riftcloak. But remember! The cloak will protect you only one time"+
-					" entering a magical rift. The rift disintegrates the cloak instead of you. There is no way to get the cloak back. If you want to enter the rift again, you will need a new riftcloak.",
+				        Arrays.asList("rift cloak"),
+				        ConversationStates.INFORMATION_2,
+				        "I will create a rift cloak for you, but I have to spine a carbuncle and an sapphire in the magic. The cloak will protect you only one time entering a magical rift."+
+					" The rift disintegrates the cloak instead of you. There is no way to get the cloak back. If you want to enter the rift again, you will need a new rift cloak. Shall I create one for you?",
 				        null);
-		add(ConversationStates.ATTENDING, Arrays.asList("create a riftcloak"),
+		add(ConversationStates.INFORMATION_2, ConversationPhrases.YES_MESSAGES,
 			new AndCondition(
 			new NotCondition(new PlayerHasItemWithHimCondition("carbuncle", 1)),
-			new PlayerHasItemWithHimCondition("emerald", 1)),
+			new PlayerHasItemWithHimCondition("sapphire", 1)),
 			ConversationStates.ATTENDING,
-			"You don't have a carbuncle, I will need an emerald and a carbuncle.", null);
-		add(ConversationStates.ATTENDING, Arrays.asList("create a riftcloak"),
+			"You don't have a carbuncle, I will need an sapphire and a carbuncle.", null);
+		add(ConversationStates.INFORMATION_2, ConversationPhrases.YES_MESSAGES,
 			new AndCondition(
-			new NotCondition(new PlayerHasItemWithHimCondition("emerald", 1)),
+			new NotCondition(new PlayerHasItemWithHimCondition("sapphire", 1)),
 			new PlayerHasItemWithHimCondition("carbuncle", 1)),
 			ConversationStates.ATTENDING,
-			"You don't have an emerald, I will need a carbuncle and an emerald.", null);
-		add(ConversationStates.ATTENDING, Arrays.asList("create a riftcloak"),
+			"You don't have an emerald, I will need a carbuncle and an sapphire.", null);
+		add(ConversationStates.INFORMATION_2, ConversationPhrases.YES_MESSAGES,
 			new AndCondition(
-			new PlayerHasItemWithHimCondition("emerald", 1),
+			new PlayerHasItemWithHimCondition("sapphire", 1),
 			new PlayerHasItemWithHimCondition("carbuncle", 1)),
 			ConversationStates.ATTENDING,
-			"There is your riftcloak. Don't forget that it protects you only one time, befor it will be destroyed. So be sure that you are ready for what awaits you in the rift.",
+			"There is your rift cloak. Don't forget that it protects you only one time, befor it will be destroyed. So be sure that you are ready for what awaits you in the rift.",
 			new MultipleActions(new DropItemAction("carbuncle", 1),
-			new DropItemAction("emerald", 1),
-			new EquipItemAction("riftcloak", 1, true),
+			new DropItemAction("sapphire", 1),
+			new EquipItemAction("rift cloak", 1, true),
 			new IncreaseXPAction(5000)));
 
 	//behavior on special item XARUHWAIYZ PHIAL
