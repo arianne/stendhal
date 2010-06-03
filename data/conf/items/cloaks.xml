@@ -316,4 +316,18 @@
       <slot name="cloak"/>
     </equipable>
   </item>
+
+  <item name="rift cloak">
+    <type class="cloak" subclass="rift_cloak" tileid="-1"/>
+    <description>You see a rift cloak. Almost useless in the battle, but saves your life when you enter a magical rift.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="1"/>
+    </attributes>
+    <weight value="2.0"/>
+    <value value="10000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="cloak"/>
+    </equipable>
+  </item>
 </items>
