@@ -12,8 +12,13 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerOwnsItemIncludingBankCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -212,12 +217,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				player.addKarma(15);
 				player.drop(questLeatherLegs);
 				player.drop(questScaleArmor);
-				final Item map = SingletonRepository.getEntityManager().getItem(
-						"map");
-				map.setInfoString(npc.getName());
-				map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
-				player.equipToInventoryOnly(map);
-				player.setQuest(QUEST_SLOT, "map");
+				new GiveMapAction(false).fire(player, sentence, npc);
 				npc.setCurrentState(ConversationStates.ATTENDING);
 			} else {
 				npc.say("You didn't prove that you have found them all!");
@@ -225,7 +225,27 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	class JamesQuestCompleteAction implements ChatAction {
+	static class GiveMapAction implements ChatAction {
+		private boolean bind = false;
+
+		public GiveMapAction(boolean bind) {
+			this.bind = bind;
+		}
+
+		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			final Item map = SingletonRepository.getEntityManager().getItem("map");
+			map.setInfoString(npc.getName());
+			map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
+			if (bind) {
+				map.setBoundTo(player.getName());
+			}
+			player.equipOrPutOnGround(map);
+			player.setQuest(QUEST_SLOT, "map");
+		}
+	}
+
+
+	static class JamesQuestCompleteAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
 			final List<Item> allMaps = player.getAllEquipped("map");
@@ -314,10 +334,23 @@ public class KanmararnSoldiers extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			null, new HenryQuestCompleteAction());
 
-		henry.add(ConversationStates.ATTENDING, Arrays.asList("map", "group",
-			"help"), new HenryQuestCompletedCondition(),
+		henry.add(ConversationStates.ATTENDING, Arrays.asList("map", "group", "help"), 
+				new OrCondition(
+					new	QuestCompletedCondition(QUEST_SLOT), 
+					new AndCondition(new HenryQuestCompletedCondition(),
+					new PlayerOwnsItemIncludingBankCondition("map"))),
 			ConversationStates.ATTENDING,
 			"I'm so sad that most of my friends are dead.", null);
+
+		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"), 
+			new AndCondition(
+				new	QuestNotCompletedCondition(QUEST_SLOT), 
+				new HenryQuestCompletedCondition(),
+				new NotCondition(new PlayerOwnsItemIncludingBankCondition("map"))),
+			ConversationStates.ATTENDING,
+			"Luckily i draw a copy of the map, but please don't lose this one.", 
+			new GiveMapAction(true));
+
 
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"),
 			new HenryQuestNotCompletedCondition(),
