@@ -356,8 +356,15 @@ public class StaticGameLayers {
 	/**
 	 * @return true if the area has changed since the last
 	 */
-	public boolean changedArea() {
+	public boolean isAreaChanged() {
 		return areaChanged;
+	}
+
+	/**
+	 * marks the area as changed
+	 */
+	public void markAreaChanged() {
+		this.areaChanged = true;
 	}
 
 	/**

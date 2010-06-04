@@ -479,7 +479,7 @@ public class j2DClient implements UserInterface {
 				logger.debug("Move objects");
 				gameObjects.update(delta);
 	
-				if (!client.isInBatchUpdate() && gameLayers.changedArea()) {
+				if (!client.isInBatchUpdate() && gameLayers.isAreaChanged()) {
 					/*
 					 * Update the screen
 					 */

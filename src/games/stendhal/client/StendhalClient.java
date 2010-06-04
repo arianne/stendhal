@@ -347,6 +347,7 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected void onTransfer(final List<TransferContent> items) {
+		batchUpdate = true;
 		for (final TransferContent item : items) {
 			try {
 				cache.store(item, item.data);
@@ -355,6 +356,7 @@ public class StendhalClient extends ClientFramework {
 				logger.error("onTransfer", e);
 			}
 		}
+		staticLayers.markAreaChanged();
 
 		contentToLoad -= items.size();
 
