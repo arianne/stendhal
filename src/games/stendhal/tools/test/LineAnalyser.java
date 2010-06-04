@@ -10,7 +10,8 @@ import java.util.List;
  */
 class LineAnalyser {
 	private final List<String> playerNames = Arrays.asList("hendrikus", "player",
-			"rosie", "gambit", "superkym", "Heman", "jellybean", "jammyjam", "lula", "kymara", "madmetzger"); 
+			"rosie", "gambit", "superkym", "Heman", "jellybean", "jammyjam", "lula", "kymara", "madmetzger",
+			"omerob"); 
 
 	private final String line;
 	private String stripped;
