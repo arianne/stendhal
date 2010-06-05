@@ -130,7 +130,7 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(tad.isTalking());
 		assertEquals(
-				"Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.",
+				"Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #ilisa... she'll know what to do next.",
 				getReply(tad));
 		assertTrue(player.hasQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));
 		assertEquals("ilisa", player.getQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));

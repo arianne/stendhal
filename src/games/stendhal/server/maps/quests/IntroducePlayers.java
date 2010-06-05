@@ -177,14 +177,14 @@ public class IntroducePlayers extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("flask")),
 				ConversationStates.ATTENDING, 
-				"Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.",
+				"Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #ilisa... she'll know what to do next.",
 				new MultipleActions(processStep));
 
 		// player said hi with flask on ground then picked it up and said flask
 		npc.add(ConversationStates.ATTENDING, "flask",
                 new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("flask")),
                 ConversationStates.ATTENDING,
-                "Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.",
+                "Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #ilisa... she'll know what to do next.",
                 new MultipleActions(processStep));
 
 
