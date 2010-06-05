@@ -231,7 +231,7 @@ public class IntroducePlayers extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				Arrays.asList("herb", "arandula", "yes", "ok"),
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"), new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
+//				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"), new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
 				ConversationStates.ATTENDING,
 				"North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for.",
 				new ExamineChatAction("arandula.png", "Ilisa's drawing", "Arandula"));
