@@ -399,7 +399,11 @@ public class StendhalClient extends ClientFramework {
 				logger.error(e, e);
 			}
 		}
+	}
 
+	@Override
+	protected void onAvailableCharacterDetails(Map<String, RPObject> characters) {
+		logger.info(characters);
 	}
 
 	@Override
