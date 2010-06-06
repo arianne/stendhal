@@ -29,13 +29,13 @@ public class PlayerMapObject extends RPEntityMapObject {
 		if (entity instanceof User) {
 			drawColor = COLOR_USER;
 		} else if (entity instanceof Player) {
-			chooseVisibility(entity);
+			choosePlayerColor(entity);
 			
 			// Follow the ghost mode changes of other players
 			entity.addChangeListener(new EntityChangeListener() {
 				public void entityChanged(final IEntity entity, final Object property) {
 					if (property == RPEntity.PROP_GHOSTMODE) {
-						chooseVisibility(entity);
+						choosePlayerColor(entity);
 					}
 				}
 			});
@@ -49,7 +49,13 @@ public class PlayerMapObject extends RPEntityMapObject {
 		}
 	}
 	
-	private void chooseVisibility(final IEntity player) {
+	/**
+	 * Select a color for drawing the player depending on
+	 * ghostmode status.
+	 * 
+	 * @param player
+	 */
+	private void choosePlayerColor(final IEntity player) {
 		if (!((Player) player).isGhostMode()) {
 			drawColor = COLOR_PLAYER;
 		} else {
@@ -64,6 +70,7 @@ public class PlayerMapObject extends RPEntityMapObject {
 	 * @param scale Scaling factor
 	 * @param color The draw color
 	 */
+	@Override
 	protected void draw(final Graphics g, final int scale,  final Color color) {
 		int mapX = worldToCanvas(x, scale);
 		int mapY = worldToCanvas(y, scale);
