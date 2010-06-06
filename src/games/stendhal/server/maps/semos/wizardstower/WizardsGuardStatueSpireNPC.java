@@ -86,13 +86,16 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 			new MultipleActions(new DropItemAction("wood", 8),
 			new EquipItemAction("scroll", 1, true),
 			new IncreaseXPAction(250)));
+		add(ConversationStates.INFORMATION_1, ConversationPhrases.NO_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			"Well, maybe later. Just tell me when you want a magic scroll.", null);
 
 	//behavior on special item RIFT CLOAK
 				add(
 				        ConversationStates.ATTENDING,
 				        Arrays.asList("rift cloak"),
 				        ConversationStates.INFORMATION_2,
-				        "I will create a rift cloak for you, but I have to spine a carbuncle and an sapphire in the magic. The cloak will protect you only one time entering a magical rift."+
+				        "I will create a rift cloak for you, but I have to spine a carbuncle and an sapphire in the magic. The cloak is useless in the battle and will protect you only one time entering a magical rift."+
 					" The rift disintegrates the cloak instead of you. There is no way to get the cloak back. If you want to enter the rift again, you will need a new rift cloak. Shall I create one for you?",
 				        null);
 		add(ConversationStates.INFORMATION_2, ConversationPhrases.YES_MESSAGES,
@@ -117,6 +120,9 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 			new DropItemAction("sapphire", 1),
 			new EquipItemAction("rift cloak", 1, true),
 			new IncreaseXPAction(5000)));
+		add(ConversationStates.INFORMATION_2, ConversationPhrases.NO_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			"Don't forget that you can't enter a magical rift without a rift cloak.", null);
 
 	//behavior on special item XARUHWAIYZ PHIAL
 			} //remaining behavior defined in maps.quests.ZekielsPracticalTestQuest
