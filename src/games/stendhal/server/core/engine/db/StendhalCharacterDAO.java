@@ -11,10 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
+import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.server.entity.player.Player;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Set;
+import java.util.TreeSet;
 
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
@@ -41,6 +44,7 @@ public class StendhalCharacterDAO extends CharacterDAO {
 			if (player instanceof Player) {
 				final Player instance = (Player) player;
 				DAORegister.get().get(StendhalWebsiteDAO.class).insertIntoCharStats(transaction, instance);
+				DAORegister.get().get(StendhalBuddyDAO.class).saveBuddyList(character, getBuddies(instance));
 			}
 		} catch (final SQLException sqle) {
 			logger.warn("error storing character", sqle);
@@ -63,9 +67,30 @@ public class StendhalCharacterDAO extends CharacterDAO {
 				instance = (Player) player;
 				DAORegister.get().get(StendhalWebsiteDAO.class).insertIntoCharStats(transaction, instance);
 			}
+			DAORegister.get().get(StendhalBuddyDAO.class).saveBuddyList(character, getBuddies(instance));
 		} catch (final SQLException sqle) {
 			logger.warn("error storing character", sqle);
 			throw sqle;
 		}
+	}
+
+	/**
+	 * gets a list of buddies
+	 *
+	 * @param player Player to get the buddies for
+	 * @return list of buddies
+	 */
+	private Set<String> getBuddies(Player player) {
+		Set<String> res = new TreeSet<String>();
+		final RPObject object = KeyedSlotUtil.getKeyedSlotObject(player, "!buddy");
+		if (object == null) {
+			return res;
+		}
+		for (String key : object) {
+			if (key.startsWith("_")) {
+				res.add(key.substring(1));
+			}
+		}
+		return res;
 	}
 }
