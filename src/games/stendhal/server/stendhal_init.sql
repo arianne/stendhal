@@ -149,4 +149,4 @@ CREATE TABLE IF NOT EXISTS buddy (
   PRIMARY KEY (id)
 );
 
-CREATE INDEX i_buddy_charname ON buddy (charname);
+/* CREATE INDEX i_buddy_charname ON buddy (charname); */
