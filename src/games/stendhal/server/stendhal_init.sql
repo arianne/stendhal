@@ -142,3 +142,11 @@ CREATE TABLE IF NOT EXISTS npcs (
 /*CREATE INDEX i_npcs_name ON npcs (name);*/
 
 
+CREATE TABLE IF NOT EXISTS buddy (
+  id         INTEGER AUTO_INCREMENT NOT NULL,
+  charname   VARCHAR(64),
+  buddy      VARCHAR(64),
+  PRIMARY KEY (id)
+);
+
+CREATE INDEX i_buddy_charname ON buddy (charname);
