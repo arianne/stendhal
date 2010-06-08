@@ -48,7 +48,7 @@ import java.util.List;
  * <li> None.
  * </ul>
  */
-public class IntroducePlayers extends AbstractQuest {
+public class MedicineForTad extends AbstractQuest {
 	private static final String QUEST_SLOT = "introduce_players";
 
 
@@ -304,7 +304,7 @@ public class IntroducePlayers extends AbstractQuest {
 	}
 	@Override
 	public String getName() {
-		return "IntroducePlayers";
+		return "MedicineForTad";
 	}
 
 }

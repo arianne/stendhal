@@ -22,7 +22,7 @@ import org.junit.Test;
 import utilities.ZonePlayerAndNPCTestImpl;
 import utilities.RPClass.ItemTestHelper;
 
-public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
+public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "testzone";
 
@@ -43,10 +43,10 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Ilisa"));
 
-		new IntroducePlayers().addToWorld();
+		new MedicineForTad().addToWorld();
 	}
 
-	public IntroducePlayersTest() {
+	public MedicineForTadTest() {
 		super(ZONE_NAME, "Tad", "Ilisa");
 	}
 
@@ -59,7 +59,7 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
-		assertEquals(IntroducePlayersTest.SSSHH_COME_HERE, getReply(npc));
+		assertEquals(MedicineForTadTest.SSSHH_COME_HERE, getReply(npc));
 		en.step(player, "task");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -93,11 +93,11 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Oh, please won't you change your mind? *sneeze*", getReply(npc));
 		en.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(npc.isTalking());
-		assertFalse(player.hasQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));
+		assertFalse(player.hasQuest(MedicineForTadTest.INTRODUCE_PLAYERS));
 		assertEquals("Bye.", getReply(npc));
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
-		assertEquals(IntroducePlayersTest.SSSHH_COME_HERE, getReply(npc));
+		assertEquals(MedicineForTadTest.SSSHH_COME_HERE, getReply(npc));
 		en.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 	}
 
@@ -117,7 +117,7 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 				"I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?",
 				getReply(tad));
 		engineTad.step(player, "yes");
-		assertTrue(player.hasQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));
+		assertTrue(player.hasQuest(MedicineForTadTest.INTRODUCE_PLAYERS));
 		engineTad.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(tad.isTalking());
 		assertEquals("Bye.", getReply(tad));
@@ -132,8 +132,8 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(
 				"Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #ilisa... she'll know what to do next.",
 				getReply(tad));
-		assertTrue(player.hasQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));
-		assertEquals("ilisa", player.getQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));
+		assertTrue(player.hasQuest(MedicineForTadTest.INTRODUCE_PLAYERS));
+		assertEquals("ilisa", player.getQuest(MedicineForTadTest.INTRODUCE_PLAYERS));
 		engineTad.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 
 		final SpeakerNPC ilisa = getNPC("Ilisa");
@@ -143,7 +143,7 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?",
 				getReply(ilisa));
 		engineIlisa.step(player, "yes");
-		assertEquals("corpse&herbs", player.getQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));
+		assertEquals("corpse&herbs", player.getQuest(MedicineForTadTest.INTRODUCE_PLAYERS));
 		engineIlisa.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
