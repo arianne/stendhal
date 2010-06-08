@@ -119,7 +119,8 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 	static
 	{
 		mDeviceEvaluator = new DeviceEvaluator();
-		mDeviceEvaluator.setRating(Pattern.compile(".*pulseaudio.*", Pattern.CASE_INSENSITIVE), null, 1);
+		mDeviceEvaluator.setRating(Pattern.compile(".*pulseaudio.*", Pattern.CASE_INSENSITIVE), null, 2);
+		mDeviceEvaluator.setRating(Pattern.compile(".*plughw.0.0.*"), null, 1);
 		mDeviceEvaluator.setRating(Pattern.compile(".*Java Sound Audio Engine.*"), null, -1);
 
 		mAudioFormat = new AudioFormat(44100, 16, 2, true, false);
@@ -133,7 +134,6 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 	ExtendedSoundManager() {
 		super(!Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true")),
 				mDeviceEvaluator.createDeviceList(mAudioFormat), mAudioFormat);
-		initMute();
 		initVolumes();
 	}
 
