@@ -1046,13 +1046,23 @@ public abstract class RPEntity extends GuidedEntity {
 	public void delayedDamage(final int amount, final String attackerName) {
 		final RPEntity me = this;
 		/*
-		 * Use a dummy damager entity, so that we can follow the 
+		 * Use a dummy damager rpentity, so that we can follow the 
 		 * normal code path. Important when dying. 
 		 */
-		final Entity attacker = new Entity() {
+		final Entity attacker = new RPEntity(this) {
 			@Override
 			public String getTitle() {
 				return attackerName;
+			}
+
+			@Override
+			protected void dropItemsOn(Corpse corpse) {
+				
+			}
+
+			@Override
+			public void logic() {
+				
 			}
 		};
 		
