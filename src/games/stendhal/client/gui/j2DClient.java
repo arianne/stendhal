@@ -212,6 +212,11 @@ public class j2DClient implements UserInterface {
 		final StatsPanelController stats = StatsPanelController.get();
 		final BuddyPanelControler buddies = new BuddyPanelControler();
 		final JScrollPane buddyPane = new JScrollPane();
+		/*
+		 * A border looks inconsistent with the stats panel when the scroll bar
+		 * is not visible.
+		 */
+		buddyPane.setBorder(null);
 		buddyPane.setViewportView(buddies.getComponent());
 				
 		/*
