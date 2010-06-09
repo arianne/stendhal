@@ -2,9 +2,7 @@ package games.stendhal.client.gui;
 
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJButton;
+import games.stendhal.client.gui.styled.StyledButtonUI;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 
 import java.awt.Component;
@@ -16,6 +14,7 @@ import java.awt.event.HierarchyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.plaf.ButtonUI;
 
 public class QuitDialog {
 	Component quitDialog;
@@ -36,7 +35,6 @@ public class QuitDialog {
 	 */
 	protected Component buildQuitDialog() {
 		InternalManagedDialog imd;
-		Style style;
 		JPanel panel;
 		JButton b;
 
@@ -45,16 +43,17 @@ public class QuitDialog {
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(150, 75));
 
-		style = WoodStyle.getInstance();
-
-		b = new StyledJButton(style);
+		ButtonUI ui = new StyledButtonUI();
+		b = new JButton();
+		b.setUI(ui);
 		b.setText("Yes");
 		b.setBounds(30, 25, 40, 25);
 		b.addActionListener(new QuitConfirmCB());
 
 		panel.add(b);
 
-		b = new StyledJButton(style);
+		b = new JButton();
+		b.setUI(ui);
 		b.setText("No");
 		b.setBounds(80, 25, 40, 25);
 		b.addActionListener(new QuitCancelCB());
