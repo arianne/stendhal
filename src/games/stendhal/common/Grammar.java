@@ -480,6 +480,8 @@ public class Grammar {
 		} else if ((enoun.length() > 3) && enoun.endsWith("us")
 				&& !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
 			return enoun.substring(0, enoun.length() - 2) + "i" + postfix;
+		} else if (enoun.equals("oni")) {
+			return enoun;
 		} else if (enoun.endsWith("man")
 				&& !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
 			return enoun.substring(0, enoun.length() - 3) + "men" + postfix;
