@@ -38,6 +38,10 @@ public class WoodStyle implements Style {
 	 * The border.
 	 */
 	protected Border border;
+	/**
+	 * Downwards border (for buttons etc)
+	 */
+	protected Border borderDown;
 
 	/**
 	 * The default font.
@@ -52,6 +56,8 @@ public class WoodStyle implements Style {
 		background = st.getSprite("data/gui/panelwood003.jpg");
 
 		border = new SoftBevelBorder(BevelBorder.RAISED, new Color(0.6f, 0.5f,
+				0.2f), new Color(0.3f, 0.25f, 0.1f));
+		borderDown = new SoftBevelBorder(BevelBorder.LOWERED, new Color(0.6f, 0.5f,
 				0.2f), new Color(0.3f, 0.25f, 0.1f));
 
 		font = new Font("Dialog", Font.PLAIN, 12);
@@ -94,6 +100,15 @@ public class WoodStyle implements Style {
 	 */
 	public Border getBorder() {
 		return border;
+	}
+	
+	/**
+	 * Get lowered component border.
+	 * 
+	 * @return A border, or <code>null</code> to use default.
+	 */
+	public Border getBorderDown() {
+		return borderDown;
 	}
 
 	/**

@@ -34,6 +34,13 @@ public interface Style {
 	 * @return A border, or <code>null</code> to use default.
 	 */
 	Border getBorder();
+	
+	/**
+	 * Get component border for lowered borders.
+	 * 
+	 * @return border, or <code>null</code> if none defined.
+	 */
+	Border getBorderDown();
 
 	/**
 	 * Get the normal font.
