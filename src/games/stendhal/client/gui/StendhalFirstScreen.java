@@ -16,6 +16,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.login.CreateAccountDialog;
 import games.stendhal.client.gui.login.LoginDialog;
+import games.stendhal.client.gui.styled.StyledButtonUI;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
@@ -38,14 +39,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.plaf.ButtonUI;
 
 /**
  * Summary description for LoginGUI.
  * 
  */
 public class StendhalFirstScreen extends JFrame {
-
 	private static final long serialVersionUID = -7825572598938892220L;
+	private static final int BUTTON_WIDTH = 160;
+	private static final int BUTTON_HEIGHT = 32;
 
 	private final StendhalClient client;
 
@@ -96,10 +99,12 @@ public class StendhalFirstScreen extends JFrame {
 			}
 		});
 
+		ButtonUI ui = new StyledButtonUI();
 		//
 		// loginButton
 		//
 		final JButton loginButton = new JButton();
+		loginButton.setUI(ui);
 		loginButton.setText("Login to "
 				+ ClientGameConfiguration.get("GAME_NAME"));
 		loginButton.setMnemonic(KeyEvent.VK_L);
@@ -115,6 +120,7 @@ public class StendhalFirstScreen extends JFrame {
 		// createAccountButton
 		//
 		final JButton createAccountButton = new JButton();
+		createAccountButton.setUI(ui);
 		createAccountButton.setText("Create an account");
 		createAccountButton.setMnemonic(KeyEvent.VK_A);
 		createAccountButton.setToolTipText("Press this button to create an account on a "
@@ -130,6 +136,7 @@ public class StendhalFirstScreen extends JFrame {
 		// creaditButton
 		//
 		final JButton helpButton = new JButton();
+		helpButton.setUI(ui);
 		helpButton.setText("Help");
 		helpButton.setMnemonic(KeyEvent.VK_H);
 		helpButton.addActionListener(new ActionListener() {
@@ -142,6 +149,7 @@ public class StendhalFirstScreen extends JFrame {
 		// creaditButton
 		//
 		final JButton creditButton = new JButton();
+		creditButton.setUI(ui);
 		creditButton.setText("Credits");
 		creditButton.setMnemonic(KeyEvent.VK_C);
 		creditButton.addActionListener(new ActionListener() {
@@ -165,10 +173,11 @@ public class StendhalFirstScreen extends JFrame {
 		final Container contentPane = this.getContentPane();
 		contentPane.setLayout(null);
 
-		addComponent(contentPane, loginButton, 220, 300, 200, 32);
-		addComponent(contentPane, createAccountButton, 220, 340, 200, 32);
-		addComponent(contentPane, helpButton, 220, 380, 200, 32);
-		addComponent(contentPane, creditButton, 220, 420, 200, 32);
+		int x = (background.getWidth(null) - BUTTON_WIDTH) / 2; 
+		addComponent(contentPane, loginButton, x, 300, BUTTON_WIDTH, BUTTON_HEIGHT);
+		addComponent(contentPane, createAccountButton, x, 340, BUTTON_WIDTH, BUTTON_HEIGHT);
+		addComponent(contentPane, helpButton, x, 380, BUTTON_WIDTH, BUTTON_HEIGHT);
+		addComponent(contentPane, creditButton, x, 420, BUTTON_WIDTH, BUTTON_HEIGHT);
 
 		getRootPane().setDefaultButton(loginButton);
 
