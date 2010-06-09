@@ -488,5 +488,31 @@ import org.apache.log4j.Logger;
 	public String getName() {
 		return("KillEnemyArmy");
 	}
+	
+ 	@Override
+ 	public List<String> getHistory(final Player player) {
+ 		LinkedList<String> history = new LinkedList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return history;
+		}
+		
+		if(player.getQuest(QUEST_SLOT, 0).equals("start")) {
+	        final String givenEnemies = player.getQuest(QUEST_SLOT, 1);
+	        final int givenNumber = enemyForces.get(givenEnemies).first(); 
+	        final int killedNumber = getKilledCreaturesNumber(player);
+	        
+			history.add("!Despot Halb Errvl asked me to kill "+
+					givenNumber+" "+
+					Grammar.plnoun(givenNumber, givenEnemies));
+			history.add("!Currently i have killed "+
+					killedNumber+" "+
+					Grammar.plnoun(givenNumber, givenEnemies));
+		}
+		
+		if(player.getQuest(QUEST_SLOT, 0).equals("done")) {
+			history.add("!I completed Despot's Halb Errvl task and got my reward!");
+		}		
+		return history; 
+ 	}
 }
 
