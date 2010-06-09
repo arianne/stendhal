@@ -1,16 +1,18 @@
 package games.stendhal.client.gui.imageviewer;
 
+import games.stendhal.client.gui.styled.StyledPanelUI;
 import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
 
 import java.awt.Dimension;
+
+import javax.swing.JPanel;
 
 /**
  * an abstract base class for all ViewPanels
  *
  * @author hendrik
  */
-public abstract class ViewPanel extends StyledJPanel {
+public abstract class ViewPanel extends JPanel {
 
 	private static final long serialVersionUID = 7442185832293104642L;
 
@@ -18,7 +20,7 @@ public abstract class ViewPanel extends StyledJPanel {
 	 * creates a new ViewPanel
 	 */
 	public ViewPanel() {
-		super(WoodStyle.getInstance());
+		setUI(new StyledPanelUI(WoodStyle.getInstance()));
 	}
 
 	/**

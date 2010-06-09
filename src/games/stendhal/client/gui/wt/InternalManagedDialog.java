@@ -11,8 +11,8 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.StyledPanelUI;
 import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import games.stendhal.client.gui.wt.core.WtCloseListener;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
@@ -43,8 +43,10 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.plaf.PanelUI;
 
 /**
  * A base internal dialog in swing that implements ManagedWindow.
@@ -82,7 +84,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * The content pane.
 	 */
-	private StyledJPanel contentPane;
+	private JPanel contentPane;
 
 	/**
 	 * Whether the dialog is minimized.
@@ -109,7 +111,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * The titlebar.
 	 */
-	private JComponent titlebar;
+	private JPanel titlebar;
 
 	/**
 	 * The title label.
@@ -125,13 +127,11 @@ public class InternalManagedDialog implements ManagedWindow {
 	 *            The dialog window title.
 	 */
 	public InternalManagedDialog(final String name, final String title) {
-		Style style;
+		Style style = WoodStyle.getInstance();
 		Font font;
 		Color color;
 
 		this.name = name;
-
-		style = WoodStyle.getInstance();
 
 		minimized = false;
 		movable = true;
@@ -143,7 +143,9 @@ public class InternalManagedDialog implements ManagedWindow {
 		dialog = new Panel();
 		dialog.setLayout(null);
 
-		contentPane = new StyledJPanel(style);
+		PanelUI ui = new StyledPanelUI(style);
+		contentPane = new JPanel();
+		contentPane.setUI(ui);
 		contentPane.setLayout(null);
 
 		dialog.add(contentPane);
@@ -151,7 +153,8 @@ public class InternalManagedDialog implements ManagedWindow {
 		/*
 		 * Titlebar
 		 */
-		titlebar = new StyledJPanel(style);
+		titlebar = new JPanel();
+		titlebar.setUI(ui);
 		titlebar.setMinimumSize(new Dimension(1, TITLEBAR_HEIGHT));
 		titlebar.setLayout(new BoxLayout(titlebar, BoxLayout.X_AXIS));
 		titlebar.addMouseListener(new TBDragClickCB());

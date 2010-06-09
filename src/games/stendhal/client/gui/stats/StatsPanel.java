@@ -2,8 +2,8 @@ package games.stendhal.client.gui.stats;
 
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.styled.StyledPanelUI;
 import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import games.stendhal.common.Level;
 
 import java.awt.Color;
@@ -11,11 +11,12 @@ import java.awt.Font;
 import java.util.HashMap;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import marauroa.common.game.RPObject;
 
-public class StatsPanel extends StyledJPanel {
+public class StatsPanel extends JPanel {
 	private final StatLabel hpLabel, atkLabel, defLabel, xpLabel, levelLabel, moneyLabel;
 	private final StatusIconPanel statusIcons;
 	private int hp, maxhp, atk, atkxp, weaponAtk, def, defxp, itemDef, xp, level;
@@ -28,7 +29,8 @@ public class StatsPanel extends StyledJPanel {
 	private boolean initialized = false;
 	
 	public StatsPanel() {
-		super(WoodStyle.getInstance());
+		super();
+		setUI(new StyledPanelUI(WoodStyle.getInstance()));
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		
 		statusIcons = new StatusIconPanel(); 

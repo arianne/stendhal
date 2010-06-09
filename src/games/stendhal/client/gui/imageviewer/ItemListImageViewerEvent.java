@@ -1,8 +1,8 @@
 package games.stendhal.client.gui.imageviewer;
 
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.styled.StyledPanelUI;
 import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import marauroa.common.game.RPEvent;
@@ -52,7 +53,8 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		// Note: setMaximumSize does not work, so we use setPreferredSize and check
 		//       the number of entries ourself.
 		if (event.getSlot("content").size() > 6) {
-			StyledJPanel panel = new StyledJPanel(WoodStyle.getInstance());
+			JPanel panel = new JPanel();
+			panel.setUI(new StyledPanelUI(WoodStyle.getInstance()));
 			JScrollPane scrollPane = new JScrollPane();
 			panel.add(label);
 			scrollPane.setViewportView(panel);

@@ -1,16 +1,18 @@
 package games.stendhal.client.gui.bag;
 
 import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
+import games.stendhal.client.gui.styled.StyledPanelUI;
+import games.stendhal.client.gui.styled.WoodStyle;
 
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class BagPanel extends StyledJPanel {
+public class BagPanel extends JPanel {
 
 	private static final int FRAMES_PER_SECOND = 10;
 	private static Timer timer;
@@ -26,7 +28,8 @@ public class BagPanel extends StyledJPanel {
 
 	
 	public BagPanel(final Style instance, final Component[] panels) {
-		super(instance);
+		super();
+		setUI(new StyledPanelUI(WoodStyle.getInstance()));
 		timer = new Timer(1000 / FRAMES_PER_SECOND, timerTask);	
 		timer.start();
 
