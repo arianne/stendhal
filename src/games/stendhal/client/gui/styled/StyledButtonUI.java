@@ -77,7 +77,6 @@ public class StyledButtonUI extends BasicButtonUI {
 	@Override
 	public void installUI(JComponent button) {
 		super.installUI(button);
-		button.setOpaque(false);
 		button.setForeground(style.getForeground());
 		button.setBorder(style.getBorder());
 	}
