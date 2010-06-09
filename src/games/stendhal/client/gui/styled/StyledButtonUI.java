@@ -1,7 +1,5 @@
 package games.stendhal.client.gui.styled;
 
-import games.stendhal.client.sprite.Sprite;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -52,12 +50,7 @@ public class StyledButtonUI extends BasicButtonUI {
 	 * @param button
 	 */
 	private void paintBackground(Graphics graphics, JComponent button) {
-		Sprite image = style.getBackground();
-		for (int x = 0; x < button.getWidth(); x += image.getWidth()) {
-			for (int y = 0; y < button.getHeight(); y += image.getHeight()) {
-				image.draw(graphics, x, y);
-			}
-		}	
+		StyleUtil.fillBackground(style, graphics, 0, 0, button.getWidth(), button.getHeight());
 	}
 	
 	/**

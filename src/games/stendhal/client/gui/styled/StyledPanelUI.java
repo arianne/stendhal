@@ -1,7 +1,5 @@
 package games.stendhal.client.gui.styled;
 
-import games.stendhal.client.sprite.Sprite;
-
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
@@ -24,12 +22,7 @@ public class StyledPanelUI extends PanelUI {
 	
 	@Override
 	public void paint(Graphics graphics, JComponent panel) {
-		Sprite image = style.getBackground();
-		for (int x = 0; x < panel.getWidth(); x += image.getWidth()) {
-			for (int y = 0; y < panel.getHeight(); y += image.getHeight()) {
-				image.draw(graphics, x, y);
-			}
-		}
+		StyleUtil.fillBackground(style, graphics, 0, 0, panel.getWidth(), panel.getHeight());
 	}
 	
 	@Override
