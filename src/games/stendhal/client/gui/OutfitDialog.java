@@ -15,11 +15,15 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.StyledButtonUI;
+import games.stendhal.client.gui.styled.StyledPanelUI;
+import games.stendhal.client.gui.styled.StyledSliderUI;
+import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Outfits;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -39,15 +43,17 @@ import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
-import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.ButtonUI;
+import javax.swing.plaf.PanelUI;
 
 import marauroa.common.game.RPAction;
 
@@ -122,8 +128,6 @@ public class OutfitDialog extends JDialog {
 
 	private JLabel jlblHeads;
 
-	private JPanel jpanel;
-
 	private JSlider jsliderDirection;
 
 	public OutfitDialog(final Frame parent, final String title, final int outfit) {
@@ -153,6 +157,7 @@ public class OutfitDialog extends JDialog {
 			final int total_clothes) {
 		super(parent, false);
 		initComponents();
+		applyStyle();
 		setTitle(title);
 
 		client = StendhalClient.get();
@@ -328,25 +333,7 @@ public class OutfitDialog extends JDialog {
 	}
 
 	private void initComponents() {
-		jpanel = new JPanel();
-		jbtOK = new JButton();
-		jbtLeftHairs = new JButton();
-		jbtRightHairs = new JButton();
-		jbtLeftHeads = new JButton();
-		jbtRightHeads = new JButton();
-		jbtLeftBodies = new JButton();
-		jbtRightBodies = new JButton();
-		jbtLeftClothes = new JButton();
-		jbtRightClothes = new JButton();
-		jlblHairs = new JLabel();
-		jlblHeads = new JLabel();
-		jlblBodies = new JLabel();
-		jlblClothes = new JLabel();
-		jlblFinalResult = new JLabel();
-		jsliderDirection = new JSlider();
-
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		setBackground(new Color(200, 200, 200));
 		setResizable(false);
 		addWindowListener(new WindowAdapter() {
 
@@ -356,10 +343,10 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.setLayout(null);
+		JComponent content = (JComponent) getContentPane();
+		content.setLayout(null);
 
-		jpanel.setBorder(new LineBorder(new Color(100, 100, 100), 2, true));
-		jbtOK.setText("OK");
+		jbtOK = new JButton("OK");
 		jbtOK.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent evt) {
@@ -367,11 +354,11 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.add(jbtOK);
+		content.add(jbtOK);
 		jbtOK.setBounds(190, 220, 80, 30);
 
-		jbtLeftHairs.setFont(new Font("Dialog", 1, 14));
-		jbtLeftHairs.setText("<");
+		
+		jbtLeftHairs = new JButton("<");
 		jbtLeftHairs.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent evt) {
@@ -379,11 +366,10 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.add(jbtLeftHairs);
+		content.add(jbtLeftHairs);
 		jbtLeftHairs.setBounds(10, 20, 45, 30);
 
-		jbtRightHairs.setFont(new Font("Dialog", 1, 14));
-		jbtRightHairs.setText(">");
+		jbtRightHairs = new JButton(">");
 		jbtRightHairs.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent evt) {
@@ -391,11 +377,10 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.add(jbtRightHairs);
+		content.add(jbtRightHairs);
 		jbtRightHairs.setBounds(120, 20, 45, 30);
 
-		jbtLeftHeads.setFont(new Font("Dialog", 1, 14));
-		jbtLeftHeads.setText("<");
+		jbtLeftHeads = new JButton("<");
 		jbtLeftHeads.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent evt) {
@@ -403,11 +388,10 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.add(jbtLeftHeads);
+		content.add(jbtLeftHeads);
 		jbtLeftHeads.setBounds(10, 100, 45, 30);
 
-		jbtRightHeads.setFont(new Font("Dialog", 1, 14));
-		jbtRightHeads.setText(">");
+		jbtRightHeads = new JButton(">");
 		jbtRightHeads.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent evt) {
@@ -415,11 +399,10 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.add(jbtRightHeads);
+		content.add(jbtRightHeads);
 		jbtRightHeads.setBounds(120, 100, 45, 30);
 
-		jbtLeftBodies.setFont(new Font("Dialog", 1, 14));
-		jbtLeftBodies.setText("<");
+		jbtLeftBodies = new JButton("<");
 		jbtLeftBodies.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent evt) {
@@ -427,11 +410,10 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.add(jbtLeftBodies);
+		content.add(jbtLeftBodies);
 		jbtLeftBodies.setBounds(10, 180, 45, 30);
 
-		jbtRightBodies.setFont(new Font("Dialog", 1, 14));
-		jbtRightBodies.setText(">");
+		jbtRightBodies = new JButton(">");
 		jbtRightBodies.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent evt) {
@@ -439,11 +421,10 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.add(jbtRightBodies);
+		content.add(jbtRightBodies);
 		jbtRightBodies.setBounds(120, 180, 45, 30);
 
-		jbtLeftClothes.setFont(new Font("Dialog", 1, 14));
-		jbtLeftClothes.setText("<");
+		jbtLeftClothes = new JButton("<");
 		jbtLeftClothes.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent evt) {
@@ -451,11 +432,10 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.add(jbtLeftClothes);
+		content.add(jbtLeftClothes);
 		jbtLeftClothes.setBounds(10, 260, 45, 30);
 
-		jbtRightClothes.setFont(new Font("Dialog", 1, 14));
-		jbtRightClothes.setText(">");
+		jbtRightClothes = new JButton(">");
 		jbtRightClothes.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent evt) {
@@ -463,55 +443,50 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.add(jbtRightClothes);
+		content.add(jbtRightClothes);
 		jbtRightClothes.setBounds(120, 260, 45, 30);
 
-		jlblHairs.setBackground(new Color(255, 255, 255));
+		jlblHairs = new JLabel();
 		jlblHairs.setFont(new Font("Dialog", 0, 10));
 		jlblHairs.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblHairs.setText("loading...");
-		jlblHairs.setBorder(new LineBorder(new Color(100, 100, 100), 1, true));
 		jlblHairs.setOpaque(true);
-		jpanel.add(jlblHairs);
+		content.add(jlblHairs);
 		jlblHairs.setBounds(60, 10, 52, 68);
 
-		jlblHeads.setBackground(new Color(255, 255, 255));
+		jlblHeads = new JLabel();
 		jlblHeads.setFont(new Font("Dialog", 0, 10));
 		jlblHeads.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblHeads.setText("loading...");
-		jlblHeads.setBorder(new LineBorder(new Color(100, 100, 100), 1, true));
 		jlblHeads.setOpaque(true);
-		jpanel.add(jlblHeads);
+		content.add(jlblHeads);
 		jlblHeads.setBounds(60, 90, 52, 68);
 
-		jlblBodies.setBackground(new Color(255, 255, 255));
+		jlblBodies = new JLabel();
 		jlblBodies.setFont(new Font("Dialog", 0, 10));
 		jlblBodies.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblBodies.setText("loading...");
-		jlblBodies.setBorder(new LineBorder(new Color(100, 100, 100), 1, true));
 		jlblBodies.setOpaque(true);
-		jpanel.add(jlblBodies);
+		content.add(jlblBodies);
 		jlblBodies.setBounds(60, 170, 52, 68);
 
-		jlblClothes.setBackground(new Color(255, 255, 255));
+		jlblClothes = new JLabel();
 		jlblClothes.setFont(new Font("Dialog", 0, 10));
 		jlblClothes.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblClothes.setText("loading...");
-		jlblClothes.setBorder(new LineBorder(new Color(100, 100, 100), 1, true));
 		jlblClothes.setOpaque(true);
-		jpanel.add(jlblClothes);
+		content.add(jlblClothes);
 		jlblClothes.setBounds(60, 250, 52, 68);
 
-		jlblFinalResult.setBackground(new Color(255, 255, 255));
+		jlblFinalResult = new JLabel();
 		jlblFinalResult.setFont(new Font("Dialog", 0, 10));
 		jlblFinalResult.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblFinalResult.setText("loading...");
-		jlblFinalResult.setBorder(new LineBorder(new Color(100, 100, 100), 1,
-				true));
 		jlblFinalResult.setOpaque(true);
-		jpanel.add(jlblFinalResult);
+		content.add(jlblFinalResult);
 		jlblFinalResult.setBounds(205, 90, 52, 68);
 
+		jsliderDirection = new JSlider();
 		jsliderDirection.setMaximum(3);
 		jsliderDirection.setSnapToTicks(true);
 		jsliderDirection.setValue(2);
@@ -523,10 +498,8 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 
-		jpanel.add(jsliderDirection);
+		content.add(jsliderDirection);
 		jsliderDirection.setBounds(190, 170, 80, 27);
-
-		getContentPane().add(jpanel, BorderLayout.CENTER);
 
 		final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds((screenSize.width - 288) / 2, (screenSize.height - 361) / 2,
@@ -733,6 +706,44 @@ public class OutfitDialog extends JDialog {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Apply stendhal style to all components.
+	 */
+	private void applyStyle() {
+		Style style = WoodStyle.getInstance();
+		PanelUI panelUI = new StyledPanelUI(style);
+		/*
+		 * The window itself. It should always be a JPanel, but checking it
+		 * for safety.
+		 */
+		if (getContentPane() instanceof JPanel) {
+			((JPanel) getContentPane()).setUI(panelUI);
+		}
+		
+		// Buttons
+		ButtonUI buttonUI = new StyledButtonUI();
+		
+		jbtLeftBodies.setUI(buttonUI);
+		jbtLeftClothes.setUI(buttonUI);
+		jbtLeftHairs.setUI(buttonUI);
+		jbtLeftHeads.setUI(buttonUI);
+		jbtOK.setUI(buttonUI);
+		jbtRightBodies.setUI(buttonUI);
+		jbtRightClothes.setUI(buttonUI);
+		jbtRightHairs.setUI(buttonUI);
+		jbtRightHeads.setUI(buttonUI);
+		
+		// Labels (Images)
+		jlblBodies.setBorder(style.getBorderDown());
+		jlblClothes.setBorder(style.getBorderDown());
+		jlblFinalResult.setBorder(style.getBorderDown());
+		jlblHairs.setBorder(style.getBorderDown());
+		jlblHeads.setBorder(style.getBorderDown());
+		
+		// Slider
+		jsliderDirection.setUI(new StyledSliderUI(style));
 	}
 
 	public static void main(final String[] args) throws InterruptedException {
