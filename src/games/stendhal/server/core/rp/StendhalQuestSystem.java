@@ -254,15 +254,29 @@ public class StendhalQuestSystem {
 		quests.add(quest);
 	}
 
+	/**
+	 * 
+	 * @param sb - string builder of mother function
+	 * @param quest - show this quest to payer
+	 * @param player - player which quest history need to be shown to himself
+	 */
 	private void dumpQuest(final StringBuilder sb, final IQuest quest, final Player player) {
 		final QuestInfo questInfo = questInfos.get(quest.getName());
 		sb.append("\t" + questInfo.getTitle() + "\r\n");
 		final List<String> history = quest.getHistory(player);
+		String text;
 		for (final String entry : history) {
-			String text = questInfo.getHistory().get(entry);
-			if (text == null) {
-				text = entry;
-			}
+			if(entry.startsWith("!")) {
+				text = entry.substring(1);
+				if(text==null) {
+					continue;
+				}
+			} else {
+				text = questInfo.getHistory().get(entry);
+				if (text == null) {
+					text = entry;
+				}
+			};
 			sb.append("\t\t * " + text + "\r\n");
 		}
 		sb.append("\r\n");
