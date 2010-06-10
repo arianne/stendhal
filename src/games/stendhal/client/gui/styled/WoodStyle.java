@@ -15,9 +15,7 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
-import javax.swing.border.SoftBevelBorder;
 
 /**
  * The wood style.
@@ -55,11 +53,10 @@ public class WoodStyle implements Style {
 		 * Load the texture
 		 */
 		final SpriteStore st = SpriteStore.get();
-		background = st.getSprite("data/gui/panelwood003.jpg");
+		background = st.getSprite("data/gui/panelwood119.jpg");
 
-		border = new SoftBevelBorder(BevelBorder.RAISED, highLightColor, shadowColor);
-		borderDown = new SoftBevelBorder(BevelBorder.LOWERED, highLightColor,
-				shadowColor);
+		border = new PixmapBorder(background, true);
+		borderDown = new PixmapBorder(background, false);
 
 		font = new Font("Dialog", Font.PLAIN, 12);
 	}
