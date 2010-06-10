@@ -55,4 +55,18 @@ public interface Style {
 	 * @return A color.
 	 */
 	Color getForeground();
+	
+	/**
+	 * Get a light color used for highlighting.
+	 *  
+	 * @return A color.
+	 */
+	Color getHighLightColor();
+	
+	/**
+	 * Get a dark color used for darkening.
+	 *  
+	 * @return A color.
+	 */
+	Color getShadowColor();
 }

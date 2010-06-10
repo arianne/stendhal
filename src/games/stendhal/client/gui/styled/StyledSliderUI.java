@@ -1,6 +1,5 @@
 package games.stendhal.client.gui.styled;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -64,7 +63,7 @@ public class StyledSliderUI extends MetalSliderUI {
 	
 	@Override
 	public void paintFocus(Graphics g) {
-		g.setColor(Color.GRAY);
+		g.setColor(style.getHighLightColor());
 		Rectangle r = getThumbShape();
 		g.drawRect(r.x - 1, r.y, r.width + 1, r.height - 1);
 	}

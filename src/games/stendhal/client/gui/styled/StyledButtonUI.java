@@ -1,6 +1,5 @@
 package games.stendhal.client.gui.styled;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Rectangle;
@@ -40,7 +39,7 @@ public class StyledButtonUI extends BasicButtonUI {
 	@Override
 	protected void paintFocus(Graphics graphics, AbstractButton button, 
 			Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-		graphics.setColor(Color.GRAY);
+		graphics.setColor(style.getShadowColor());
 		graphics.drawRect(textRect.x, textRect.y, textRect.width, textRect.height);
 	}
 	
@@ -54,13 +53,13 @@ public class StyledButtonUI extends BasicButtonUI {
 	}
 	
 	/**
-	 * Draws the mouse focus hilighting
+	 * Draws the mouse focus highlighting
 	 * 
 	 * @param graphics
 	 * @param button
 	 */
 	private void hilite(Graphics graphics, JComponent button) {
-		graphics.setColor(button.getForeground());
+		graphics.setColor(style.getHighLightColor());
 		Insets insets = button.getInsets();
 		int width = button.getWidth() - insets.right - insets.left;
 		int height = button.getHeight() - insets.top - insets.bottom;

@@ -23,6 +23,8 @@ import javax.swing.border.SoftBevelBorder;
  * The wood style.
  */
 public class WoodStyle implements Style {
+	private static final Color highLightColor = new Color(0.6f, 0.5f, 0.2f);
+	private static final Color shadowColor = new Color(0.3f, 0.25f, 0.1f);
 
 	/**
 	 * A shared instance.
@@ -55,10 +57,9 @@ public class WoodStyle implements Style {
 		final SpriteStore st = SpriteStore.get();
 		background = st.getSprite("data/gui/panelwood003.jpg");
 
-		border = new SoftBevelBorder(BevelBorder.RAISED, new Color(0.6f, 0.5f,
-				0.2f), new Color(0.3f, 0.25f, 0.1f));
-		borderDown = new SoftBevelBorder(BevelBorder.LOWERED, new Color(0.6f, 0.5f,
-				0.2f), new Color(0.3f, 0.25f, 0.1f));
+		border = new SoftBevelBorder(BevelBorder.RAISED, highLightColor, shadowColor);
+		borderDown = new SoftBevelBorder(BevelBorder.LOWERED, highLightColor,
+				shadowColor);
 
 		font = new Font("Dialog", Font.PLAIN, 12);
 	}
@@ -127,5 +128,13 @@ public class WoodStyle implements Style {
 	 */
 	public Color getForeground() {
 		return Color.white;
+	}
+
+	public Color getHighLightColor() {
+		return highLightColor;
+	}
+
+	public Color getShadowColor() {
+		return shadowColor;
 	}
 }
