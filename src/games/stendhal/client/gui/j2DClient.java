@@ -36,6 +36,8 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.stats.StatsPanelController;
+import games.stendhal.client.gui.styled.StyledScrollPaneUI;
+import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
@@ -212,6 +214,7 @@ public class j2DClient implements UserInterface {
 		final StatsPanelController stats = StatsPanelController.get();
 		final BuddyPanelControler buddies = new BuddyPanelControler();
 		final JScrollPane buddyPane = new JScrollPane();
+		buddyPane.setUI(new StyledScrollPaneUI(WoodStyle.getInstance()));
 		/*
 		 * A border looks inconsistent with the stats panel when the scroll bar
 		 * is not visible.
