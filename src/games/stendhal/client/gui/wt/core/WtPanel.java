@@ -19,10 +19,9 @@ package games.stendhal.client.gui.wt.core;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.gui.ManagedWindow;
+import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.Debug;
 import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.AlphaComposite;
@@ -147,15 +146,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** make it transparent. */
 	private float transparency;
 
-	// ///////////////
-	// Debug stuff //
-	// ///////////////
-
 	/** current texture. */
-	private int texture;
-
-	/** list of textures . */
-	private final List<Sprite> textureSprites;
+	private Sprite texture;
 
 	protected IGameScreen gameScreen;
 
@@ -186,8 +178,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.resizeable = false;
 		this.closeable = true;
 		this.closed = false;
-		this.texture = 0;
-		this.textureSprites = new ArrayList<Sprite>();
 		this.closeListeners = new ArrayList<WtCloseListener>();
 		this.clickListeners = new ArrayList<WtClickListener>();
 		this.transparency = 1.0f;
@@ -196,18 +186,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			WtWindowManager.getInstance().formatWindow(this);
 		}
 
-		// get texture sprite
-		final SpriteStore st = SpriteStore.get();
-
-		textureSprites.add(st.getSprite("data/gui/panelwood003.jpg"));
-		if (Debug.CYCLE_PANEL_TEXTURES) {
-			textureSprites.add(st.getSprite("data/gui/panelwood006.jpg"));
-			textureSprites.add(st.getSprite("data/gui/panelwood032.gif"));
-			textureSprites.add(st.getSprite("data/gui/panelwood119.jpg"));
-			textureSprites.add(st.getSprite("data/gui/paneldrock009.jpg"));
-			textureSprites.add(st.getSprite("data/gui/paneldrock048.jpg"));
-			textureSprites.add(st.getSprite("data/gui/panelmetal003.gif"));
-		}
+		texture =  WoodStyle.getInstance().getBackground();
 	}
 
 	/**
@@ -789,15 +768,13 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		// get texture sprite
-		final Sprite woodTexture = textureSprites.get(texture);
-
-		final int repeatx = width / woodTexture.getWidth() + 1;
-		final int repeaty = height / woodTexture.getHeight() + 1;
+		final int repeatx = width / texture.getWidth() + 1;
+		final int repeaty = height / texture.getHeight() + 1;
 
 		for (int xTemp = 0; xTemp < repeatx; xTemp++) {
 			for (int yTemp = 0; yTemp < repeaty; yTemp++) {
-				woodTexture.draw(panelGraphics, xTemp * woodTexture.getWidth(),
-						yTemp * woodTexture.getHeight());
+				texture.draw(panelGraphics, xTemp * texture.getWidth(),
+						yTemp * texture.getHeight());
 			}
 		}
 
@@ -1205,11 +1182,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			// close the window
 			close(gameScreen);
 			return true;
-		}
-
-		if (Debug.CYCLE_PANEL_TEXTURES && hitTitle(p.x, p.y)) {
-			texture = (texture + 1) % textureSprites.size();
-			cachedImage = null;
 		}
 
 		// translate point to client coordinates
