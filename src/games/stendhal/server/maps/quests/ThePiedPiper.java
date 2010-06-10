@@ -677,10 +677,10 @@ import org.apache.log4j.Logger;
 		}	
 		final String questState = player.getQuest(QUEST_SLOT, 0);
 		if ("rats".equals(questState)) {
-			history.add("RATS");
+			history.add("!I have killed some rats in Ados city already, and trying to kill more.");
 		}
 		if ("done".equals(questState)) {
-			history.add("DONE");
+			history.add("!I have killed some rats in Ados city and got reward from Mayor Chalmers!");
 		}
 		return history; 		
  	}
