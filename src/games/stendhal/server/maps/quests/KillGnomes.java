@@ -18,6 +18,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -170,5 +171,15 @@ public class KillGnomes extends AbstractQuest {
 	@Override
 	public int getMinLevel() {
 		return 10;
+	}
+	
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
+				 new TimePassedCondition(QUEST_SLOT, WEEK_IN_MINUTES, 1)).fire(player,null, null);
+	}
+	
+	public boolean isCompleted(final Player player) {
+		return new QuestStateStartsWithCondition(QUEST_SLOT,"killed").fire(player, null, null);
 	}
 }
