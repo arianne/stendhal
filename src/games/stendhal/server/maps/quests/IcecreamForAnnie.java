@@ -10,8 +10,11 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -191,5 +194,16 @@ public class IcecreamForAnnie extends AbstractQuest {
 	@Override
 	public int getMinLevel() {
 		return 10;
+	}
+	
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"eating;"),
+				 new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)).fire(player,null, null);
+	}
+	
+	@Override
+	public boolean isCompleted(final Player player) {
+		return new QuestStateStartsWithCondition(QUEST_SLOT,"eating;").fire(player, null, null);
 	}
 }
