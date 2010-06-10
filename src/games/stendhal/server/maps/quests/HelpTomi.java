@@ -154,4 +154,9 @@ public class HelpTomi extends AbstractQuest {
 	public int getMinLevel() {
 		return 200;
 	}
+	
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return true;
+	}
 }

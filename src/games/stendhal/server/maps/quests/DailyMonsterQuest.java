@@ -490,4 +490,9 @@ public class DailyMonsterQuest extends AbstractQuest {
 		return 0;
 	}
 
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
+						 new TimePassedCondition(QUEST_SLOT,delay,1)).fire(player, null, null);
+	}
 }
