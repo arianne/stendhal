@@ -6,9 +6,9 @@ import java.awt.Rectangle;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicArrowButton;
-import javax.swing.plaf.metal.MetalScrollBarUI;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 
-public class StyledScrollBarUI extends MetalScrollBarUI {
+public class StyledScrollBarUI extends BasicScrollBarUI {
 	private final Style style;
 	
 	public StyledScrollBarUI(Style style) {
