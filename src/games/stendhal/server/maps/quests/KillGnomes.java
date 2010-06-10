@@ -179,6 +179,7 @@ public class KillGnomes extends AbstractQuest {
 				 new TimePassedCondition(QUEST_SLOT, WEEK_IN_MINUTES, 1)).fire(player,null, null);
 	}
 	
+	@Override
 	public boolean isCompleted(final Player player) {
 		return new QuestStateStartsWithCondition(QUEST_SLOT,"killed").fire(player, null, null);
 	}
