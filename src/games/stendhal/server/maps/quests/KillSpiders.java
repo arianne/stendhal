@@ -11,7 +11,10 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -239,5 +242,16 @@ public class KillSpiders extends AbstractQuest {
 		}
 		
 		return history;		
+	}
+	
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed;"),
+				 new TimePassedCondition(QUEST_SLOT, MathHelper.MINUTES_IN_ONE_WEEK, 1)).fire(player,null, null);
+	}
+	
+	@Override
+	public boolean isCompleted(final Player player) {
+		return new QuestStateStartsWithCondition(QUEST_SLOT,"killed;").fire(player, null, null);
 	}
 }

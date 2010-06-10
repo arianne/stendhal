@@ -391,4 +391,10 @@ public class Soup extends AbstractQuest {
 	public int getMinLevel() {
 		return 20;
 	}
+	
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
+						 new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)).fire(player, null, null);
+	}
 }

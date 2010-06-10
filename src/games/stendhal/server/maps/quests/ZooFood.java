@@ -251,4 +251,10 @@ public class ZooFood extends AbstractQuest {
 	public String getName() {
 		return "ZooFood";
 	}
+	
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
+						 new TimePassedCondition(QUEST_SLOT,DELAY,1)).fire(player, null, null);
+	}
 }

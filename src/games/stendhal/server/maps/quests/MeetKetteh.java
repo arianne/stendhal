@@ -101,4 +101,9 @@ public class MeetKetteh extends AbstractQuest {
 	public String getName() {
 		return "MeetKetteh";
 	}
+	
+	@Override
+	public boolean isCompleted(final Player player) {
+		return new QuestInStateCondition(QUEST_SLOT,"seen").fire(player, null, null);
+	}
 }

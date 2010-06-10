@@ -16,6 +16,8 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -176,5 +178,16 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 	@Override
 	public int getMinLevel() {
 		return 70;
+	}
+	
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
+				 new TimePassedCondition(QUEST_SLOT, 2*MathHelper.MINUTES_IN_ONE_WEEK, 1)).fire(player,null, null);
+	}
+	
+	@Override
+	public boolean isCompleted(final Player player) {
+		return new QuestStateStartsWithCondition(QUEST_SLOT,"killed").fire(player, null, null);
 	}
 }

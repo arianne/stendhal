@@ -18,6 +18,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -192,5 +193,16 @@ npc.add(ConversationStates.ATTENDING,
 	@Override
 	public int getMinLevel() {
 		return 70;
+	}
+	
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"drinking;"),
+				 new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)).fire(player,null, null);
+	}
+	
+	@Override
+	public boolean isCompleted(final Player player) {
+		return new QuestStateStartsWithCondition(QUEST_SLOT,"drinking;").fire(player, null, null);
 	}
 }

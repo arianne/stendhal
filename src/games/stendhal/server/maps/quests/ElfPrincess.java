@@ -176,4 +176,14 @@ public class ElfPrincess extends AbstractQuest {
 	public int getMinLevel() {
 		return 60;
 	}
+	
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return new QuestInStateCondition(QUEST_SLOT,"flower_brought").fire(player,null, null);
+	}
+	
+	@Override
+	public boolean isCompleted(final Player player) {
+		return new QuestInStateCondition(QUEST_SLOT,"flower_brought").fire(player,null, null);
+	}
 }
