@@ -19,7 +19,7 @@ class StyleUtil {
 			int y, int width, int height) {
 		// Prepare clipping
 		graphics = graphics.create();
-		graphics.setClip(x, y, width, height);
+		graphics.clipRect(x, y, width, height);
 		
 		Sprite image = style.getBackground();
 		
