@@ -53,6 +53,7 @@ class User2DView extends Player2DView {
 		list.remove(ActionType.PUSH.getRepresentation());
 
 		list.add(ActionType.SET_OUTFIT.getRepresentation());
+		list.add(ActionType.WHERE.getRepresentation());
 		// list.add(ActionType.JOIN_GUILD.getRepresentation());
 
 		if (((User) entity).hasSheep()) {
@@ -101,6 +102,10 @@ class User2DView extends Player2DView {
 		switch (at) {
 		case SET_OUTFIT:
 			j2DClient.get().chooseOutfit();
+			break;
+			
+		case WHERE:
+			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		case LEAVE_SHEEP:
