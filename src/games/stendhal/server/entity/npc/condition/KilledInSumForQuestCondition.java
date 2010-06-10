@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
  * @author yoriy
  */
 public class KilledInSumForQuestCondition implements ChatCondition {
-	private static Logger logger = Logger.getLogger(KilledForQuestCondition.class);
+	private static Logger logger = Logger.getLogger(KilledInSumForQuestCondition.class);
 	private final String QUEST_SLOT;
 	private final int questIndex;
 	private final int killsSum;
@@ -53,7 +53,10 @@ public class KilledInSumForQuestCondition implements ChatCondition {
 		// check for size - it should be able to divide by 5 without reminder.
 		if((tokens.size() % 5)!=0) {
 			logger.error("Wrong record in player's "+player.getName()+
-					" quest slot ("+QUEST_SLOT+") : ["+player.getQuest(QUEST_SLOT)+"]");
+					" quest slot ("+QUEST_SLOT+
+					"), position "+questIndex+
+					" : ["+	player.getQuest(QUEST_SLOT)+
+					"]");
 			//npc.say("something wrong with you, i dont see how much monsters you killed.");
 			return false;
 		};
