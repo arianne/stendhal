@@ -504,9 +504,16 @@ import org.apache.log4j.Logger;
 			history.add("!Despot Halb Errvl asked me to kill "+
 					givenNumber+" "+
 					Grammar.plnoun(givenNumber, givenEnemies));
-			history.add("!Currently i have killed "+
+			history.add("!Currently I have killed "+
 					killedNumber+" "+
 					Grammar.plnoun(givenNumber, givenEnemies));
+			if(new KilledInSumForQuestCondition(QUEST_SLOT, 2, givenNumber).fire(player, null, null)) {
+				history.add("!I have killed enough creatures to get my reward now.");
+			} else {
+				history.add("!"+(givenNumber-killedNumber)+" "+
+						Grammar.plnoun(givenNumber, givenEnemies)+" left to kill.");				
+			};
+
 		}
 		
 		if(player.getQuest(QUEST_SLOT, 0).equals("done")) {
