@@ -3,6 +3,8 @@ package games.stendhal.client.gui.chattext;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.client.gui.styled.StyledTextFieldUI;
+import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.scripting.ChatLineParser;
 
 import java.awt.Component;
@@ -17,7 +19,13 @@ import javax.swing.JTextField;
 public class ChatTextController {
 	private static final String CHAT_LOG_FILE = System.getProperty("user.home")
 	+ "/" + stendhal.STENDHAL_FOLDER + "chat.log";
-	private final JTextField playerChatText = new JTextField("");
+	private final JTextField playerChatText;
+	
+	{
+			playerChatText = new JTextField("");
+			playerChatText.setUI(new StyledTextFieldUI(WoodStyle.getInstance()));
+	}
+	
 	private ChatCache cache;
 	public ChatTextController() {
 		playerChatText.setFocusTraversalKeysEnabled(false);
