@@ -2,6 +2,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.styled.StyledScrollPaneUI;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 import games.stendhal.common.NotificationType;
@@ -103,6 +104,7 @@ public class KTextEdit extends JPanel {
 		setLayout(new BorderLayout());
 		
 		scrollPane = new JScrollPane(textPane);
+		scrollPane.setUI(new StyledScrollPaneUI(WoodStyle.getInstance()));
 		scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 			public void adjustmentValueChanged(final AdjustmentEvent ev) {
 				JScrollBar bar = (JScrollBar) ev.getAdjustable();
