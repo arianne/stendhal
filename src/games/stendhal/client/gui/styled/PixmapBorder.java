@@ -12,6 +12,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Polygon;
+import java.awt.Rectangle;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 
@@ -88,6 +89,7 @@ public class PixmapBorder implements Border {
 
 	public void paintBorder(Component component, Graphics graphics, int x, int y,
 			int width, int height) {
+		Rectangle oldClip = graphics.getClipBounds();
 		Graphics g = graphics.create();
 		g.setColor(Color.CYAN);
 		
@@ -100,6 +102,8 @@ public class PixmapBorder implements Border {
 		p.addPoint(x + WIDTH, y + height - WIDTH);
 		p.addPoint(x, y + height);
 		g.setClip(p);
+		g.clipRect(oldClip.x, oldClip.y, oldClip.width, oldClip.height);
+		
 		// top border
 		for (int i = x; i < width; i += imageWidth) {
 			g.drawImage(topLeftImage, i, y, null);
@@ -120,6 +124,7 @@ public class PixmapBorder implements Border {
 		p.addPoint(x + width - WIDTH, y + height - WIDTH);
 		p.addPoint(x + width - WIDTH, y + WIDTH);
 		g.setClip(p);
+		g.clipRect(oldClip.x, oldClip.y, oldClip.width, oldClip.height);
 		
 		// bottom border
 		int tmpY = y + height - height % imageHeight;
