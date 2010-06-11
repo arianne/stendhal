@@ -703,7 +703,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else if (object instanceof SpeakerNPC) {
 			SingletonRepository.getNPCList().add((SpeakerNPC) object);
 		} else if (object instanceof Portal) {
-			portals.add((Portal) object);
+			Portal portal = (Portal) object;
+			if (portal.getIdentifier() == null) {
+				logger.error("Portal without identifier: " + portal, new Throwable());
+			} else {
+				portals.add(portal);
+			}
 		}
 
 		if (object instanceof NPC) {
