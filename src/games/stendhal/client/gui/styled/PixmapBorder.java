@@ -23,8 +23,8 @@ import javax.swing.border.Border;
  */
 public class PixmapBorder implements Border {
 	/** Drawing width of the borders */
-	private final int WIDTH = 2;
-	private final Insets insets = new Insets(WIDTH, WIDTH, WIDTH, WIDTH);
+	private static final int WIDTH = 2;
+	private static final Insets insets = new Insets(WIDTH, WIDTH, WIDTH, WIDTH);
 	
 	/** Image for painting the top and left borders */
 	private final Image topLeftImage;
