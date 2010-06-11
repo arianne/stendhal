@@ -2,9 +2,9 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.styled.StyledPopupMenuUI;
 import games.stendhal.client.gui.styled.StyledScrollPaneUI;
 import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
@@ -54,22 +54,23 @@ public class KTextEdit extends JPanel {
 	        maybeShowPopup(e);
 	    }
 
-	    private void maybeShowPopup(final MouseEvent e) {
-	    	if (e.isPopupTrigger()) {
-	        	final JPopupMenu popup = new StyledJPopupMenu(new WoodStyle(), "save");
-	        	
-	        	JMenuItem menuItem = new JMenuItem("save");
-	        	menuItem.addActionListener(new ActionListener() {
+		private void maybeShowPopup(final MouseEvent e) {
+			if (e.isPopupTrigger()) {
+				final JPopupMenu popup = new JPopupMenu("save");
+				popup.setUI(new StyledPopupMenuUI(WoodStyle.getInstance()));
+
+				JMenuItem menuItem = new JMenuItem("save");
+				menuItem.addActionListener(new ActionListener() {
 
 					public void actionPerformed(final ActionEvent e) {
 						save();
-						
+
 					}
 				});
 				popup.add(menuItem);
-	        	popup.show(e.getComponent(), e.getX(), e.getY());
-	        }
-	    }
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		}
 	}
 
 	private static final long serialVersionUID = -698232821850852452L;

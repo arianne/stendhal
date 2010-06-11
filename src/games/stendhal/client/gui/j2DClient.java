@@ -75,6 +75,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
@@ -209,6 +210,10 @@ public class j2DClient implements UserInterface {
 		this.client = client;
 		this.userContext = userContext;
 		setDefault(this);
+		/*
+		 * Stop swing from using unsafe popup menus
+		 */
+		JPopupMenu.setDefaultLightWeightPopupEnabled(false);
 		
 		minimap = new MapPanelController(client);
 		final StatsPanelController stats = StatsPanelController.get();

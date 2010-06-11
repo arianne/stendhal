@@ -8,8 +8,8 @@ package games.stendhal.client.gui.wt.core;
 //
 //
 
+import games.stendhal.client.gui.styled.StyledPopupMenuUI;
 import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -17,16 +17,18 @@ import java.awt.event.KeyListener;
 
 import javax.swing.Icon;
 import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.event.MenuKeyEvent;
 
 /**
  * A popup-menu that will redirect most key events to its invoker.
  */
 @SuppressWarnings("serial")
-public abstract class WtPopupMenu extends StyledJPopupMenu {
+public abstract class WtPopupMenu extends JPopupMenu {
 
 	public WtPopupMenu(final String name) {
-		super(WoodStyle.getInstance(), name);
+		super(name);
+		setUI(new StyledPopupMenuUI(WoodStyle.getInstance())); 
 	}
 
 	//
