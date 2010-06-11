@@ -431,7 +431,7 @@
 				<exclude name="panelrock016.jpg"/>
 				<exclude name="panelwood006.jpg"/>
 				<exclude name="panelwood032.gif"/>
-				<exclude name="panelwood119.jpg"/>
+				<exclude name="panelwood003.jpg"/>
 			</fileset>
 		</copy>
 
