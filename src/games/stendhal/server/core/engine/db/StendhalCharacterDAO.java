@@ -82,6 +82,9 @@ public class StendhalCharacterDAO extends CharacterDAO {
 	 */
 	private Set<String> getBuddies(Player player) {
 		Set<String> res = new TreeSet<String>();
+		if (!player.hasSlot("!buddy")) {
+			return res;
+		}
 		final RPObject object = KeyedSlotUtil.getKeyedSlotObject(player, "!buddy");
 		if (object == null) {
 			return res;
