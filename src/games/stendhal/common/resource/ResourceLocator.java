@@ -16,12 +16,6 @@ import java.util.HashMap;
  */
 public class ResourceLocator
 {
-	public static interface Locator
-	{
-		public InputStream locate     (URI uri);
-		public boolean     isLocatable(URI uri);
-	}
-
 	private static class Unlocatable implements Locator
 	{
 		public InputStream locate     (URI uri) { return null;  }

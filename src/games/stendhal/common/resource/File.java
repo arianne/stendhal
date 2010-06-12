@@ -35,8 +35,8 @@ public class File implements Resource
 		{
 			if(mFile != null)
 				return new FileInputStream(mFile);
-
-			return this.getClass().getResourceAsStream("/" + mPath);
+			else
+				return this.getClass().getResourceAsStream("/" + mPath);
 		}
 		catch (FileNotFoundException exception)
 		{

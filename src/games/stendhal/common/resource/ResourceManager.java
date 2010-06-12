@@ -36,7 +36,7 @@ public class ResourceManager extends ResourceLocator
 		//mSingleton.addScheme("scheme", "data/xml");
 	}
 	
-	private static class DefaultLocator implements ResourceLocator.Locator
+	private static class DefaultLocator implements Locator
 	{
 		public InputStream locate(URI uri)
 		{
@@ -62,7 +62,7 @@ public class ResourceManager extends ResourceLocator
 		boolean     isLocatable  (URI uri);
 	}
 
-	private class CPSchemeLocator implements ResourceLocator.Locator, SchemeLocator
+	private class CPSchemeLocator implements Locator, SchemeLocator
 	{
 		final ArrayList<String> mPaths = new ArrayList<String>();
 
@@ -110,7 +110,7 @@ public class ResourceManager extends ResourceLocator
 		}
 	}
 
-	private class FSSchemeLocator implements ResourceLocator.Locator, SchemeLocator
+	private class FSSchemeLocator implements Locator, SchemeLocator
 	{
 		final ArrayList<File> mDirectories = new ArrayList<File>();
 
