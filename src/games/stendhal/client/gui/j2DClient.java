@@ -37,6 +37,7 @@ import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.stats.StatsPanelController;
 import games.stendhal.client.gui.styled.StyledScrollPaneUI;
+import games.stendhal.client.gui.styled.StyledSplitPaneUI;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
@@ -344,6 +345,8 @@ public class j2DClient implements UserInterface {
 		
 		// Give the user the ability to make the the game area less tall
 		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
+		splitPane.setUI(new StyledSplitPaneUI(WoodStyle.getInstance()));
+		splitPane.setBorder(null);
 		// Works for showing the resize, but is extremely flickery
 		//splitPane.setContinuousLayout(true);
 		pane.addComponentListener(new SplitPaneResizeListener(screen.getComponent(), splitPane));
