@@ -153,5 +153,6 @@ Notable contributors:
 - Hades the Emperor
   · Artist (creatures images using charas, e.g. imperial army)
   · Artist (some player outfits)
-
-  
+- storyteller
+  · Descriptions (creatures and objects)
+  · Background music
