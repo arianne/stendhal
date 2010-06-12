@@ -598,6 +598,9 @@
         <portal x="25" y="24" ref="cliff_way_back">
                 <destination zone="malleus_plain" ref="cliff_way" />
             </portal>
+        <portal x="76" y="64" ref="entrance_bone_pillar">
+                <destination zone="bone_pillar" ref="exit_bone_pillar_2" />
+            </portal>
 
 	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 	<parameter name="x">32</parameter>
@@ -607,7 +610,22 @@
 	<parameter name="condition">new PlayerHasItemWithHimCondition("ice scroll")</parameter>
 	<parameter name="autoclose">3</parameter>
 	</configurator>
+    </zone>
 
+    <zone name="bone_pillar" file="interiors/abstract/malleus_plain_bone_pillar.tmx">
+        <configurator class-name="games.stendhal.server.maps.semos.wizardstower.RedDemonLordNPC" />
+        <portal x="14" y="30" ref="exit_bone_pillar_1">
+                <destination zone="malleus_plain" ref="entrance_bone_pillar" />
+                <attribute name="hidden"/>
+            </portal>
+        <portal x="15" y="30" ref="exit_bone_pillar_2">
+                <destination zone="malleus_plain" ref="entrance_bone_pillar" />
+                <attribute name="hidden"/>
+            </portal>
+        <portal x="16" y="30" ref="exit_bone_pillar_3">
+                <destination zone="malleus_plain" ref="entrance_bone_pillar" />
+                <attribute name="hidden"/>
+            </portal>
     </zone>
 
        	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
