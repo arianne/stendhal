@@ -15,6 +15,8 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +26,7 @@ import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 
 import org.apache.log4j.Logger;
+
 
 /**
  * database access for the redundant tables used on the website
@@ -79,7 +82,7 @@ public class StendhalWebsiteDAO {
 			+ " outfit=[outfit], xp=[xp], money='[money]', married='[married]'," 
 			+ " atk='[atk]', def='[def]', hp='[hp]', karma='[karma]',"
 			+ " head='[head]', armor='[armor]', lhand='[lhand]', rhand='[rhand]',"
-			+ " legs='[legs]', feet='[feet]', cloak='[cloak]'"
+			+ " legs='[legs]', feet='[feet]', cloak='[cloak]', lastseen='[lastseen]'"
 			+ " WHERE name='[name]'";
 
 		Map<String, Object> params = getParamsFromPlayer(instance);
@@ -110,6 +113,7 @@ public class StendhalWebsiteDAO {
 		params.put("feet", extractName(instance.getBoots()));
 		params.put("cloak", extractName(instance.getCloak()));
 		params.put("name", instance.getName());
+		params.put("lastseen", new Timestamp(new Date().getTime()));
 		return params;
 	}
 
@@ -122,7 +126,7 @@ public class StendhalWebsiteDAO {
 			+ " VALUES ('[name]', '[admin]', '[sentence]', '[age]', '[level]',"
 			+ " '[outfit]', '[xp]', '[money]', '[married]', '[atk]', '[atk]', '[hp]',"
 			+ " '[karma]', '[head]', '[armor]', '[lhand]', '[rhand]',"
-			+ " '[legs]', '[feet]', '[cloak]')";
+			+ " '[legs]', '[feet]', '[cloak]', '[lastseen]')";
 		Map<String, Object> params = getParamsFromPlayer(instance);
 		logger.debug("storeCharacter is running: " + query);
 		transaction.execute(query, params);

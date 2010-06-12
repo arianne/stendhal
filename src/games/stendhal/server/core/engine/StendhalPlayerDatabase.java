@@ -35,6 +35,10 @@ public class StendhalPlayerDatabase {
 				transaction.execute("ALTER TABLE npcs ADD COLUMN (image VARCHAR(255));", null);
 			}
 
+			if (!transaction.doesColumnExist("character_stats", "lastseen")) {
+				transaction.execute("ALTER TABLE character_stats ADD COLUMN (lastseen TIMESTAMP);", null);
+			}
+
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			logger.error(e, e);

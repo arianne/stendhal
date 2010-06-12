@@ -29,6 +29,7 @@ create table if not exists character_stats
   cloak varchar(32),
 
   timedate timestamp default CURRENT_TIMESTAMP,
+  lastseen timestamp,
   primary key(name)
   )
  ;
