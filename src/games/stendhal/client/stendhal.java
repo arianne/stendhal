@@ -20,6 +20,7 @@ import games.stendhal.client.gui.login.Profile;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.Version;
 
+import games.stendhal.common.resource.ResourceManager;
 import java.awt.Dimension;
 import java.security.AccessControlException;
 
@@ -30,6 +31,7 @@ import org.apache.log4j.Logger;
 public class stendhal {
 
 	private static final Logger logger = Logger.getLogger(stendhal.class);
+	private static final ResourceManager RESOURCE_MANAGER = new ResourceManager();
 
 	public static boolean doLogin;
 
@@ -51,6 +53,11 @@ public class stendhal {
 		/** We set the main game folder to the game name */
 		GAME_NAME = ClientGameConfiguration.get("GAME_NAME");
 		STENDHAL_FOLDER = separator + GAME_NAME.toLowerCase() + separator;
+
+		/** setup the search locations for the resource manager */
+		RESOURCE_MANAGER.addScheme("sound" , "data/sounds");
+		RESOURCE_MANAGER.addScheme("music" , "data/music");
+		RESOURCE_MANAGER.addScheme("audio" , "data/sounds", "data/music");
 	}
 
 	public static final String VERSION = Version.VERSION;
@@ -126,6 +133,13 @@ public class stendhal {
 				// simply ignore it
 			}
 		}
+	}
+
+	/**
+	 * get the singleton instance for the resource manager
+	 */
+	public static ResourceManager getResourceManager() {
+		return RESOURCE_MANAGER;
 	}
 
 	/**

@@ -9,10 +9,10 @@ import games.stendhal.client.sound.manager.DeviceEvaluator;
 import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.SoundManagerNG;
 import games.stendhal.client.sound.system.Time;
+import games.stendhal.client.stendhal;
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Numeric;
 import games.stendhal.common.resource.ResourceLocator;
-import games.stendhal.common.resource.ResourceManager;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -128,7 +128,7 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 
 	private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
 	private final HashMap<String, Group> mGroups = new LinkedHashMap<String, Group>();
-	private final ResourceLocator mResourceLocator = ResourceManager.get();
+	private final ResourceLocator mResourceLocator = stendhal.getResourceManager();
 	private float mMasterVolume = 1.0f;
 
 	ExtendedSoundManager() {
@@ -150,11 +150,14 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		this.getGroup("music").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.music", 60), 100.0f));
 	}
 
+	// the initMute method is not needen anymore but preserved
+	// if something goes wrong with the muting again
+	/*
 	private void initMute() {
 		WtWindowManager config = WtWindowManager.getInstance();
 		boolean play = Boolean.parseBoolean(config.getProperty("sound.play", "true"));
 		mute(!play, false, new Time(0, Time.Unit.SEC));
-	}
+	}*/
 
 	public void playerMoved() {
 		float[] position = Algebra.vecf((float) User.get().getX(), (float) User.get().getY());

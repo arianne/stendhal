@@ -20,23 +20,7 @@ import java.util.HashMap;
  */
 public class ResourceManager extends ResourceLocator
 {
-	private final static ResourceManager mSingleton      = new ResourceManager();
-	private final static DefaultLocator  mDefaultLocator = new DefaultLocator();
-
-	static
-	{
-		//mSingleton.setRootDirectory("../../");
-
-		mSingleton.setDefaultLocator(mDefaultLocator);
-		mSingleton.setLocator("file", mDefaultLocator);
-
-		mSingleton.addScheme("sound" , "data/sounds");
-		mSingleton.addScheme("music" , "data/music");
-		mSingleton.addScheme("audio" , "data/sounds", "data/music");
-		//mSingleton.addScheme("scheme", "data/xml");
-	}
-	
-	private static class DefaultLocator implements Locator
+	/*private static class DefaultLocator implements Locator
 	{
 		public InputStream locate(URI uri)
 		{
@@ -53,7 +37,7 @@ public class ResourceManager extends ResourceLocator
 		{
 			return new File(uri.getPath()).exists();
 		}
-	}
+	}//*/
 
 	private interface SchemeLocator
 	{
@@ -199,6 +183,4 @@ public class ResourceManager extends ResourceLocator
 				mRootDirectory = file;
 		}
 	}
-
-	public static ResourceManager get() { return mSingleton; }
 }
