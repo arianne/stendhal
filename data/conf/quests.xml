@@ -190,38 +190,6 @@ State: EXPERIMENTAL to help me think about a quest system
 			Maerion, leader of Elves, wants to kill dark elves in the secret room and get back his amulet.
 		</description>
 		<history>
-			<entry name="QUEST_REJECTED">I do not want to help Maerion.</entry>
-			<entry name="QUEST_ACCEPTED">I agreed to help Maerion.</entry>
-			<entry name="KILLED_CREATURE_1">I have killed the dark elf captain in the secret room.</entry>
-			<entry name="KILLED_CREATURE_2">I have killed the dark elf general in the secret room.</entry>
-			<entry name="KILLED_CREATURE_3">I have killed the dark elf knight in the secret room.</entry>
-			<entry name="KILLED_CREATURE_4">I have killed the dark elf wizard in the secret room.</entry>
-		    <entry name="KILLED_CREATURE_5">I have killed the dark elf sacerdotist in the secret room.</entry>
-			<entry name="KILLED_CREATURE_6">I have killed the dark elf viceroy in the secret room.</entry>
-			<entry name="KILLED_CREATURE_7">I have killed the dark elf matronmother in the secret room.</entry>
-			<entry name="KILLED_CREATURE_8">I have killed the dark elf elite archer in the secret room.</entry>
-			<entry name="KILLED_CREATURE_9">I have killed the dark elf archer in the secret room.</entry>
-
-			<entry name="TO_KILL_CREATURE_1">I have not yet killed the dark elf captain in the secret room.</entry>
-			<entry name="TO_KILL_CREATURE_2">I have not yet killed the dark elf general in the secret room.</entry>
-			<entry name="TO_KILL_CREATURE_3">I have not yet killed the dark elf knight in the secret room.</entry>
-			<entry name="TO_KILL_CREATURE_4">I have not yet killed the dark elf wizard in the secret room.</entry>
-		    <entry name="TO_KILL_CREATURE_5">I have not yet killed the dark elf sacerdotist in the secret room.</entry>
-			<entry name="TO_KILL_CREATURE_6">I have not yet killed the dark elf viceroy in the secret room.</entry>
-			<entry name="TO_KILL_CREATURE_7">I have not yet killed the dark elf matronmother in the secret room.</entry>
-			<entry name="TO_KILL_CREATURE_8">I have not yet killed the dark elf elite archer in the secret room.</entry>
-			<entry name="TO_KILL_CREATURE_9">I have not yet killed the dark elf archer in the secret room.</entry>
-						
-			<entry name="KILLED_THING">I have killed the thing.</entry>	
-			<entry name="TO_KILL_THING">I have not yet killed the thing.</entry>									
-
-			<entry name="KILLED_ALL">I have killed all required creatures.</entry>
-
-			<entry name="HAVE_ITEM">I have the amulet with me.</entry>
-			<entry name="HAVE_NO_ITEM">I have no amulet with me.</entry>
-			
-			<entry name="ALMOST_DONE">It's time to go back to Maerion for a reward.</entry>			
-			<entry name="DONE">I completed Maerion's quest and got an  emerald ring of life!</entry>
 		</history>
 	</quest>		
 	<quest name="KillEnemyArmy">
