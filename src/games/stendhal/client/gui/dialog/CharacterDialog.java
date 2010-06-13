@@ -1,5 +1,7 @@
 package games.stendhal.client.gui.dialog;
 
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.j2d.entity.EntityView;
@@ -25,12 +27,21 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import marauroa.client.BannedAddressException;
+import marauroa.client.TimeoutException;
 import marauroa.common.game.RPObject;
+import marauroa.common.net.InvalidVersionException;
+
+import org.apache.log4j.Logger;
 
 /**
  * A dialog for selecting from the available characters of a user account.
  */
 public class CharacterDialog extends JDialog {
+	private static final long serialVersionUID = -8827654641088132946L;
+
+	private static Logger logger = Logger.getLogger(CharacterDialog.class);
+
 	/** Maximum dialog width in pixels */
 	private static final int DIALOG_WIDTH = 320;
 	/** Width of a player image in pixels */
@@ -173,6 +184,17 @@ public class CharacterDialog extends JDialog {
 	 * @param character player selected by the user
 	 */
 	private void chooseCharacter(final String character) {
-		System.err.println(character);
+		try {
+			StendhalClient.get().chooseCharacter(character);
+			// TODO: error handling, exceptions and return of false
+		} catch (TimeoutException e) {
+			logger.error(e, e);
+		} catch (InvalidVersionException e) {
+			logger.error(e, e);
+		} catch (BannedAddressException e) {
+			logger.error(e, e);
+		}
+		setVisible(false);
+		stendhal.doLogin = true;
 	}
 }
