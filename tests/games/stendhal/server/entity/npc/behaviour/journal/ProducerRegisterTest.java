@@ -11,6 +11,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.bakery.BakerNPC;
 import games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC;
+import games.stendhal.server.maps.ados.meat_market.BlacksheepBobNPC;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -91,9 +92,29 @@ public class ProducerRegisterTest {
 
 		// call NPC code which will make ProducerAdder add to register
 		new BakerNPC().configureZone(zone, null);
+		new BlacksheepBobNPC().configureZone(zone, null);
+
 		
 		assertFalse(producerRegister.getProducers().isEmpty());
-		player.setQuest("arlindo_make_pie", "5;pie;"+System.currentTimeMillis());
-		assertEquals(producerRegister.listWorkingProducers(player),"\r\nOrders: \nArlindo is making pie.");
+		
+		// no orders yet because the player didn't start any
+		assertEquals(producerRegister.listWorkingProducers(player),"You have no ongoing or uncollected orders.");
+		
+		player.setQuest("arlindo_make_pie", "1;pie;1");
+		player.setQuest("blacksheepbob_make_sausage", "210;sausage;"+System.currentTimeMillis());
+
+		assertEquals(producerRegister.listWorkingProducers(player),"\r\nOrders: " +
+				"\nArlindo has finished making your pie."
+				+"\nBlacksheep Bob is making 210 sausages and will be ready in 7 hours.");
+		
+		//collect orders
+		player.setQuest("arlindo_make_pie", "done");
+		player.setQuest("blacksheepbob_make_sausage", "done");
+		
+		// no orders now because they are all collected
+		assertEquals(producerRegister.listWorkingProducers(player),"You have no ongoing or uncollected orders.");
+		
 	}
+	
+
 }

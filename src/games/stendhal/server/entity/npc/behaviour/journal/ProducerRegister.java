@@ -48,10 +48,10 @@ public class ProducerRegister {
 	
 	
 	public String listWorkingProducers(final Player player) {
-		final StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder("");
 
 		// Open orders - do not state if ready to collect or not, yet
-		sb.append("\r\nOrders: ");
+
 		for (final Pair<String, ProducerBehaviour> producer : producers) {
 			String npcName = producer.first();
 			ProducerBehaviour behaviour = producer.second();
@@ -59,11 +59,26 @@ public class ProducerRegister {
 			String activity =  behaviour.getProductionActivity();
 			String product =  behaviour.getProductName();
 			if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
-				sb.append("\n" + npcName + " is " + Grammar.gerundForm(activity) + " " + product + ".");
+				int amount = behaviour.getNumberOfProductItems(player);
+				if (behaviour.isOrderReady(player)) {
+					// put all completed orders first - player wants to collect these!
+					sb.insert(0,"\n" + npcName + " has finished " + Grammar.gerundForm(activity) 
+							+ " your " + Grammar.plnoun(amount,product) + ".");
+				} else {
+					String timeleft = behaviour.getApproximateRemainingTime(player);
+					// put all ongoing orders last
+					sb.append("\n" + npcName + " is " + Grammar.gerundForm(activity) 
+							+ " " + Grammar.quantityplnoun(amount,product) + " and will be ready in " + timeleft + ".");
+				}
+						
 			}
 		}
 
-
+		if (!"".equals(sb.toString())) {
+			sb.insert(0,"\r\nOrders: ");
+		} else {
+			sb.append("You have no ongoing or uncollected orders.");
+		}
 		return sb.toString();
 	}
 	

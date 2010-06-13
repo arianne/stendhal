@@ -168,7 +168,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		return productionTimePerItem * amount;
 	}
 
-	/*
+	/**
 	 * Determine whether the produced item should be player bound.
 	 * 
 	 * @return <code>true</code> if the product should be bound.
@@ -196,7 +196,14 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		}
 		return Grammar.enumerateCollection(requiredResourcesWithHashes);
 	}
-
+	
+	/**
+	 * Create a text representing a saying of approximate time until
+	 * the order being produced is ready
+	 * 
+	 * @param player
+	 * @return A string describing the remaining time.
+	 */
 	public String getApproximateRemainingTime(final Player player) {
 		final String orderString = player.getQuest(questSlot);
 		final String[] order = orderString.split(";");
@@ -210,7 +217,41 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		final int remainingSeconds = (int) ((finishTime - timeNow) / 1000);
 		return TimeUtil.approxTimeUntil(remainingSeconds);
 	}
-
+	
+	/**
+	 * Is the order ready for this player?
+	 * 
+	 * @param player
+	 * @return true if the order is ready.
+	 */
+	public boolean isOrderReady(final Player player) {
+		final String orderString = player.getQuest(questSlot);
+		final String[] order = orderString.split(";");
+		final int numberOfProductItems = Integer.parseInt(order[0]);
+		// String productName = order[1];
+		final long orderTime = Long.parseLong(order[2]);
+		final long timeNow = new Date().getTime();
+		return timeNow - orderTime >= getProductionTime(numberOfProductItems) * 1000;	
+	}
+	
+	/**
+	 * Checks how many items are being produced on this particular order
+	 * 
+	 * @param player
+	 * @return number of items
+	 */
+	public int getNumberOfProductItems(final Player player) {
+		final String orderString = player.getQuest(questSlot);
+		final String[] order = orderString.split(";");
+		return Integer.parseInt(order[0]);
+	}
+	
+	/**
+	 * Checks how many items the NPC can offer to produce based on what the player is carrying
+	 * 
+	 * @param player
+	 * @return maximum number of items
+	 */
 	protected int getMaximalAmount(final Player player) {
 		int maxAmount = Integer.MAX_VALUE;
 		for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
@@ -293,13 +334,10 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *            The player who wants to fetch the product
 	 */
 	public void giveProduct(final SpeakerNPC npc, final Player player) {
-		final String orderString = player.getQuest(questSlot);
-		final String[] order = orderString.split(";");
-		final int numberOfProductItems = Integer.parseInt(order[0]);
+		final int numberOfProductItems = getNumberOfProductItems(player);
 		// String productName = order[1];
-		final long orderTime = Long.parseLong(order[2]);
-		final long timeNow = new Date().getTime();
-		if (timeNow - orderTime < getProductionTime(numberOfProductItems) * 1000) {
+
+		if (!isOrderReady(player)) {
 			npc.say("Welcome back! I'm still busy with your order to "
 					+ getProductionActivity() + " " + Grammar.quantityplnoun(numberOfProductItems, getProductName())
 					+ " for you. Come back in "
