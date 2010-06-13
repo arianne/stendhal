@@ -122,7 +122,7 @@ public class StendhalWebsiteDAO {
 			+ " (name, admin, sentence, age, level,"
 			+ " outfit, xp, money, married, atk, def, hp,"
 			+ " karma, head, armor, lhand, rhand,"
-			+ " legs, feet, cloak)"
+			+ " legs, feet, cloak, lastseen)"
 			+ " VALUES ('[name]', '[admin]', '[sentence]', '[age]', '[level]',"
 			+ " '[outfit]', '[xp]', '[money]', '[married]', '[atk]', '[atk]', '[hp]',"
 			+ " '[karma]', '[head]', '[armor]', '[lhand]', '[rhand]',"
