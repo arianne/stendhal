@@ -76,6 +76,7 @@ public class CommandCenter {
 		FaceAction.register();
 		ForsakeAction.register();
 		KnockAction.register();
+		ListProducersAction.register();
 		LookAction.register();
 		MoveAction.register();
 		MoveToAction.register();

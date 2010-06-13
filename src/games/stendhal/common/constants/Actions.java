@@ -30,6 +30,9 @@ public final class Actions {
 	//list quests	
 	public static final String LISTQUESTS = "listquests";
 	
+	//list producers
+	public static final String LISTPRODUCERS = "listproducers";
+	
 	//support
 	public static final String SUPPORTANSWER = "supportanswer";
 
