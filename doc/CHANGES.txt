@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.85
+*features*
+- right click and 'Where' yourself
+- experimental /listproducers command for working NPCs
+
 0.84
 *features*
 - new quest from Balduin if you have completed all other quests to get or collect rare weapons
