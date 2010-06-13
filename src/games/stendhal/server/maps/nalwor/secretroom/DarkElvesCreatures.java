@@ -55,7 +55,7 @@ public class DarkElvesCreatures implements ZoneConfigurator {
 		}
 		final Player player = (Player) killer;
 		// check if player started his quest already
-		if(!player.getQuest(QUEST_SLOT, 0).equals("started")) {
+		if(!player.hasQuest(QUEST_SLOT) || !player.getQuest(QUEST_SLOT, 0).equals("started")) {
 			return;
 		}
 		int slot=creatures.indexOf(victim);
