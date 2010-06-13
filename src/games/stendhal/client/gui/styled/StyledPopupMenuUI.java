@@ -41,9 +41,7 @@ public class StyledPopupMenuUI extends BasicPopupMenuUI {
 			Component tmp = elem.getComponent();
 			if (tmp instanceof JComponent) {
 				JComponent item = (JComponent) tmp;
-				//item.setBorder(style.getBorder());
-				// Borders make the menu look heavy
-				item.setBorder(null);
+				item.setBorder(style.getBorder());
 				item.setOpaque(false);
 				item.setFont(style.getFont());
 				item.setForeground(style.getForeground());
