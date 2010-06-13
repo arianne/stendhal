@@ -22,7 +22,7 @@ class WhereAction implements SlashAction {
 		final RPAction where = new RPAction();
 
 		where.put("type", "where");
-		where.put("target", params[0]);
+		where.put("target", remainder);
 
 		ClientSingletonRepository.getClientFramework().send(where);
 
@@ -35,7 +35,7 @@ class WhereAction implements SlashAction {
 	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 1;
+		return 0;
 	}
 
 	/**
@@ -44,6 +44,6 @@ class WhereAction implements SlashAction {
 	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 1;
+		return 0;
 	}
 }

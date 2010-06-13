@@ -14,12 +14,7 @@ class WhereBuddyAction implements ActionListener {
 	}
 
 	public void actionPerformed(final ActionEvent e) {
-		final String [] args = new String [1];
-		args[0] = buddyName;
-		
-		SlashActionRepository.get("where").execute(args, null);
-	
-
+		SlashActionRepository.get("where").execute(null, buddyName);
 	}
 
 }
