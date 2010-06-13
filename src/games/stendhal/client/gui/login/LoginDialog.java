@@ -13,7 +13,6 @@
 package games.stendhal.client.gui.login;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.ProgressBar;
 import games.stendhal.client.update.ClientGameConfiguration;
 
@@ -367,7 +366,6 @@ public class LoginDialog extends JDialog {
 			if (owner != null) {
 				owner.setVisible(false);
 			}
-			stendhal.doLogin = true;
 		} catch (final InvalidVersionException e) {
 			handleError(progressBar, "You are running an incompatible version of Stendhal. Please update",
 					"Invalid version");

@@ -31,12 +31,15 @@ import java.util.Map;
 
 import javax.swing.JOptionPane;
 
+import marauroa.client.BannedAddressException;
 import marauroa.client.ClientFramework;
+import marauroa.client.TimeoutException;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.game.CharacterResult;
 import marauroa.common.game.Perception;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+import marauroa.common.net.InvalidVersionException;
 import marauroa.common.net.message.MessageS2CPerception;
 import marauroa.common.net.message.TransferContent;
 
@@ -403,6 +406,7 @@ public class StendhalClient extends ClientFramework {
 					character = characters.keySet().iterator().next();
 				}
 				chooseCharacter(character);
+				stendhal.doLogin = true;
 			} catch (final Exception e) {
 				logger.error("StendhalClient::onAvailableCharacters", e);
 			}
@@ -625,4 +629,16 @@ public class StendhalClient extends ClientFramework {
 		
 	}
 
+	@Override
+	public synchronized boolean chooseCharacter(String character)
+			throws TimeoutException, InvalidVersionException,
+			BannedAddressException {
+		boolean res = super.chooseCharacter(character);
+		if (res) {
+			this.character = character;
+		}
+		return res;
+	}
+
+	
 }
