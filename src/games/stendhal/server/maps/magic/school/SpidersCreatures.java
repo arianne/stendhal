@@ -47,7 +47,7 @@ public class SpidersCreatures implements ZoneConfigurator {
 
 		final Player player = (Player) killer;
 		// check if player started his quest
-		if(player.getQuest(QUEST_SLOT,0).equals("started")) {
+		if (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT,0).equals("started")) {
 			player.setQuest(QUEST_SLOT, 1+creatures.indexOf(victim), victim);			
 		}
 	}
