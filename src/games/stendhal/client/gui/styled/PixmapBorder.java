@@ -17,6 +17,8 @@ import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 
 import javax.swing.border.Border;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 
 /**
  * A <code>Border</code> that draws raised or lowered borders
@@ -25,7 +27,17 @@ import javax.swing.border.Border;
 public class PixmapBorder implements Border {
 	/** Drawing width of the borders */
 	private static final int WIDTH = 2;
+	private static final int NARROW_WIDTH = 1;
+	
+	/** Insets for most components using these borders */
 	private static final Insets insets = new Insets(WIDTH, WIDTH, WIDTH, WIDTH);
+	/**
+	 * Insets for components that should have narrow borders 
+	 * <em>and</em> no padding.
+	 */
+	private static final Insets smallInsets = new Insets(NARROW_WIDTH,
+		NARROW_WIDTH, NARROW_WIDTH, NARROW_WIDTH);
+
 	
 	/** Image for painting the top and left borders */
 	private final Image topLeftImage;
@@ -80,11 +92,15 @@ public class PixmapBorder implements Border {
 	}
 	
 	public Insets getBorderInsets(Component component) {
-		return insets;
+		if (component instanceof JPopupMenu) {
+			return smallInsets;
+		} else {
+			return insets;
+		}
 	}
 
 	public boolean isBorderOpaque() {
-		return true;
+		return false;
 	}
 
 	public void paintBorder(Component component, Graphics graphics, int x, int y,
@@ -93,13 +109,15 @@ public class PixmapBorder implements Border {
 		Graphics g = graphics.create();
 		g.setColor(Color.CYAN);
 		
+		int borderWidth = getBorderWidth(component);
+		
 		// *** Clipping for  top and left borders ***
 		Polygon p = new Polygon();
 		p.addPoint(x, y);
 		p.addPoint(x + width, y);
-		p.addPoint(x + width - WIDTH, y + WIDTH);
-		p.addPoint(x + WIDTH, y + WIDTH);
-		p.addPoint(x + WIDTH, y + height - WIDTH);
+		p.addPoint(x + width - borderWidth, y + borderWidth);
+		p.addPoint(x + borderWidth, y + borderWidth);
+		p.addPoint(x + borderWidth, y + height - borderWidth);
 		p.addPoint(x, y + height);
 		g.setClip(p);
 		g.clipRect(oldClip.x, oldClip.y, oldClip.width, oldClip.height);
@@ -120,9 +138,9 @@ public class PixmapBorder implements Border {
 		p.addPoint(x + width, y);
 		p.addPoint(x + width, y + height);
 		p.addPoint(x, y + height);
-		p.addPoint(x + WIDTH, y + height - WIDTH);
-		p.addPoint(x + width - WIDTH, y + height - WIDTH);
-		p.addPoint(x + width - WIDTH, y + WIDTH);
+		p.addPoint(x + borderWidth, y + height - borderWidth);
+		p.addPoint(x + width - borderWidth, y + height - borderWidth);
+		p.addPoint(x + width - borderWidth, y + borderWidth);
 		g.setClip(p);
 		g.clipRect(oldClip.x, oldClip.y, oldClip.width, oldClip.height);
 		
@@ -138,5 +156,19 @@ public class PixmapBorder implements Border {
 		}
 		
 		g.dispose();
+	}
+	
+	/**
+	 * Get the appropriate border draw width for a component.
+	 * 
+	 * @param component
+	 */
+	private int getBorderWidth(Component component) {
+		if ((component instanceof JMenuItem) 
+				|| (component instanceof JPopupMenu)) {
+			return NARROW_WIDTH;
+		} else {
+			return WIDTH;
+		}
 	}
 }
