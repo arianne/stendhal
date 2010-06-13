@@ -1,6 +1,7 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.common.StringHelper;
 import marauroa.common.game.RPAction;
 
 /**
@@ -22,7 +23,7 @@ class WhereAction implements SlashAction {
 		final RPAction where = new RPAction();
 
 		where.put("type", "where");
-		where.put("target", remainder);
+		where.put("target", StringHelper.unquote(remainder));
 
 		ClientSingletonRepository.getClientFramework().send(where);
 

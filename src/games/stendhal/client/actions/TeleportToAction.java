@@ -1,6 +1,7 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.common.StringHelper;
 import marauroa.common.game.RPAction;
 
 /**
@@ -22,7 +23,7 @@ class TeleportToAction implements SlashAction {
 		final RPAction teleport = new RPAction();
 
 		teleport.put("type", "teleportto");
-		teleport.put("target", remainder);
+		teleport.put("target", StringHelper.unquote(remainder));
 
 		ClientSingletonRepository.getClientFramework().send(teleport);
 
