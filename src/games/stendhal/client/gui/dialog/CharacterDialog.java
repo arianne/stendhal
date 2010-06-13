@@ -148,7 +148,11 @@ public class CharacterDialog extends JDialog {
 		StringBuilder label = new StringBuilder("<html>");
 		label.append(name);
 		label.append("<br>Level: ");
-		label.append(character.get("level"));
+		String level = "0";
+		if (character.has("level")) {
+			level = character.get("level");
+		}
+		label.append(level);
 		label.append("</html>");
 		
 		JButton playerButton = new JButton(label.toString(), icon);
