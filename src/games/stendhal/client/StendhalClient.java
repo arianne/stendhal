@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.dialog.CharacterDialog;
 import games.stendhal.client.listener.BuddyChangeListener;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.update.HttpClient;
@@ -24,7 +25,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -371,19 +371,15 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected void onAvailableCharacters(final String[] characters) {
-		/*
-		 * Check we have characters and if not offer us to create one.
-		 */
-		if ((characters.length > 0) && (character == null) || Arrays.asList(characters).contains(character)) {
-			try {
-				if (character == null) {
-					character = characters[0];
-				}
-				chooseCharacter(characters[0]);
-			} catch (final Exception e) {
-				logger.error("StendhalClient::onAvailableCharacters", e);
-			}
-		} else {
+		// see onAvailableCharacterDetails
+	}
+
+	@Override
+	protected void onAvailableCharacterDetails(Map<String, RPObject> characters) {
+		logger.info(characters);
+
+		// if there are no characters, create one with the specified name automatically
+		if (characters.size() == 0) {
 			if (character == null) {
 				character = getAccountUsername();
 			}
@@ -393,17 +389,28 @@ public class StendhalClient extends ClientFramework {
 				final CharacterResult result = createCharacter(character, template);
 				if (result.getResult().failed()) {
 					logger.error(result.getResult().getText());
-					// TODO: Display error message to user
 				}
 			} catch (final Exception e) {
 				logger.error(e, e);
 			}
+			return;
 		}
-	}
 
-	@Override
-	protected void onAvailableCharacterDetails(Map<String, RPObject> characters) {
-		logger.info(characters);
+		// autologin if there is exactly one character (compatibility) or a character was specified.
+		if ((characters.size() == 1) && (character == null) || characters.keySet().contains(character)) {
+			try {
+				if (character == null) {
+					character = characters.keySet().iterator().next();
+				}
+				chooseCharacter(character);
+			} catch (final Exception e) {
+				logger.error("StendhalClient::onAvailableCharacters", e);
+			}
+			return;
+		}
+
+		// show character dialog
+		new CharacterDialog(characters);
 	}
 
 	@Override
