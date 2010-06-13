@@ -86,11 +86,12 @@ public class EntityViewFactory {
 		try {
 			final String type = entity.getType();
 
-			if (type.equals("player") && StendhalClient.get().getCharacter().equalsIgnoreCase(
-						entity.getName())) {
-				User2DView user2DView = new User2DView();
-				user2DView.initialize(entity);
-				return user2DView;
+			if (type.equals("player") && StendhalClient.get().getCharacter() != null) {
+				if (StendhalClient.get().getCharacter().equalsIgnoreCase(entity.getName())) {
+					User2DView user2DView = new User2DView();
+					user2DView.initialize(entity);
+					return user2DView;
+				}
 			}
 		
 			String eclass = entity.getEntityClass();
