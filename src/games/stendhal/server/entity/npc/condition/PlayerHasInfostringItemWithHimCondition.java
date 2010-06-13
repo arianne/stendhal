@@ -1,0 +1,60 @@
+package games.stendhal.server.entity.npc.condition;
+
+import java.util.List;
+
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
+/**
+ * Does the player carry the specified item with the specified infostring?
+ */
+public class PlayerHasInfostringItemWithHimCondition implements ChatCondition {
+
+	private final String itemName;
+	private final String infostring;
+
+	/**
+	 * Creates a new PlayerHasInfostringItemWithHimCondition.
+	 * 
+	 * @param itemName
+	 *            name of item
+     * @param infostring
+	 *            infostring to check
+	 */
+	public PlayerHasInfostringItemWithHimCondition(final String itemName, final String infostring) {
+		this.itemName = itemName;
+		this.infostring = infostring;
+	}
+
+	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+		final List<Item> items = player.getAllEquipped(itemName);
+		for (final Item item : items) {
+			if (infostring.equalsIgnoreCase(item.getInfoString())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "player has item <" + itemName + "> with infostring <" + infostring + ">";
+	}
+
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				PlayerHasInfostringItemWithHimCondition.class);
+	}
+}
