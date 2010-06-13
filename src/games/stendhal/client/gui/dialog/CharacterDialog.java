@@ -15,6 +15,7 @@ import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -24,12 +25,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import marauroa.client.BannedAddressException;
 import marauroa.client.TimeoutException;
+import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.InvalidVersionException;
 
@@ -87,10 +90,16 @@ public class CharacterDialog extends JDialog {
 		
 		// Test buttons. Not used for anything for now.
 		JButton newCharButton = new JButton("New Character");
+		newCharButton.addActionListener(new CreateCharacterAction(this));
 		buttonBar.add(newCharButton);
 		
-		JButton logoutButton = new JButton("Logout");
-		buttonBar.add(logoutButton);
+		JButton exitButton = new JButton("Exit");
+		exitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(final ActionEvent evt) {
+				System.exit(0);
+			}
+		});
+		buttonBar.add(exitButton);
 		
 		pack();
 		setSize(Math.min(getWidth(), DIALOG_WIDTH), getHeight());
@@ -203,5 +212,39 @@ public class CharacterDialog extends JDialog {
 		}
 		setVisible(false);
 		stendhal.doLogin = true;
+	}
+	
+	static class CreateCharacterAction implements ActionListener {
+		private JDialog parent;
+		public CreateCharacterAction(JDialog parent) {
+			this.parent = parent;
+		}
+
+		public void actionPerformed(final ActionEvent evt) {
+			String name = JOptionPane.showInputDialog(parent,
+					"Please enter the name of your charactes (only letters allowed):",
+					"Create Character",
+					JOptionPane.QUESTION_MESSAGE);
+
+			if (name == null) {
+				return;
+			}
+
+			try {
+				// TODO: error handling, exceptions and return of false
+				CharacterResult result = StendhalClient.get().createCharacter(name.toLowerCase(Locale.ENGLISH), new RPObject());
+				if (result.getResult().failed()) {
+					JOptionPane.showMessageDialog(parent, result.getResult().getText());
+				} else {
+					parent.setVisible(false);
+				}
+			} catch (TimeoutException e) {
+				logger.error(e, e);
+			} catch (InvalidVersionException e) {
+				logger.error(e, e);
+			} catch (BannedAddressException e) {
+				logger.error(e, e);
+			}
+		}
 	}
 }
