@@ -12,6 +12,7 @@ import games.stendhal.client.gui.layout.SLayout;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -133,6 +134,8 @@ public class CharacterDialog extends JDialog {
 		// itself to some weird place
 		character.put("x", 0);
 		character.put("y", 0);
+		// ignore ghostmode for showing the image
+		character.remove("ghostmode");
 		player.initialize(character);
 		
 		EntityView view = EntityViewFactory.create(player);
@@ -166,7 +169,7 @@ public class CharacterDialog extends JDialog {
 	 * @return A front view image of the player
 	 */
 	private Image createCharacterImage(EntityView view) {
-		Image image = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(IMAGE_WIDTH, IMAGE_HEIGHT);
+		Image image = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(IMAGE_WIDTH, IMAGE_HEIGHT, Transparency.BITMASK);
 		Graphics2D g2d = (Graphics2D) image.getGraphics();
 		
 		// Adjust the coordinates so that the actual player image gets
