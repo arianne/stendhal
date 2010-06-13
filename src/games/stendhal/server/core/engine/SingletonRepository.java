@@ -9,6 +9,7 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.slot.BankAccessorManager;
@@ -72,6 +73,10 @@ public class SingletonRepository {
 
 	public static StendhalQuestSystem getStendhalQuestSystem() {
 		return StendhalQuestSystem.get();
+	}
+	
+	public static ProducerRegister getProducerRegister() {
+		return ProducerRegister.get();
 	}
 
 	public static TransactionPool getTransactionPool() {
