@@ -1,10 +1,12 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -15,7 +17,9 @@ import org.apache.log4j.Logger;
 
 public class ProducerAdder {
 	private static Logger logger = Logger.getLogger(ProducerAdder.class);
-
+	
+    private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
+    
     /** Adds all the dialogue associated with a Producing NPC */
 	public void addProducer(final SpeakerNPC npc, final ProducerBehaviour behaviour,
 			final String welcomeMessage) {
@@ -28,6 +32,12 @@ public class ProducerAdder {
 
         /** How should we greet the player? */
 		final String thisWelcomeMessage = welcomeMessage;
+		
+		/** What is the NPC name? */
+		final String npcName = npc.getName();
+		
+		/* add to producer register */
+		producerRegister.add(npcName, behaviour);		
 
         /* If the NPC is attending another player, say who they are attending */
 		npc.addWaitMessage(null, new ChatAction() {
