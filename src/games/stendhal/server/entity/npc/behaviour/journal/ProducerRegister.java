@@ -40,6 +40,13 @@ public class ProducerRegister {
 		producers.add(pair);
 	}
 	
+	public List<Pair<String, ProducerBehaviour>> getProducers() {
+		return producers;
+	}
+	
+	
+	
+	
 }
 /*"jenny_mill_flour", "mill", "flour", requiredResources, 2 * 60
 "xoderos_cast_iron", "cast", "iron", requiredResources, 5 * 60
