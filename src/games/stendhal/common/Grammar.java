@@ -920,7 +920,7 @@ public class Grammar {
 	 * Check the given verb for gerund form, e.g. "doing".
 	 *
 	 * @param word
-	 * @return true if gerund flase otherwise
+	 * @return true if gerund false otherwise
 	 */
 	public static boolean isGerund(final String word) {
 		if ((word.length() > 4) && word.endsWith("ing")) {
@@ -935,6 +935,21 @@ public class Grammar {
 		return false;
 	}
 
+	
+	/**
+	 * Return gerund form, e.g. "making" or "casting".
+	 *
+	 * @param word
+	 * @return gerund form
+	 */
+	public static String gerundForm(final String word) {
+		if (vowel_p(word.charAt(word.length()-1))) {
+			return word.substring(0, word.length() - 1) + "ing";
+		} else {
+			return word + "ing";
+		}
+	}
+	
 	/**
 	 * Check the given word for derived adjectives like "magical"
 	 * or "nomadic".
