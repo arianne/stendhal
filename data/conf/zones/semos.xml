@@ -3066,36 +3066,9 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-6_kanmararn_city" level="-6" x="500160" y="500064"
 		file="Level -6/kanmararn/city.tmx">
-		<entity x="57" y="113">
-			<!--
-				all dialogs for this NPC are quest-related, so we don't need a
-				special SpeakerNPC factory for him.
-			-->
-			<implementation class-name="games.stendhal.server.entity.npc.SpeakerNPC">
-				<parameter name="name">Henry</parameter>
-				<parameter name="node0">57,113</parameter>
-				<parameter name="node1">59,113</parameter>
-				<parameter name="node2">59,115</parameter>
-			</implementation>
-
-			<attribute name="class">youngsoldiernpc</attribute>
-			<attribute name="level">5</attribute>
-			<attribute name="hp">20</attribute>
-		</entity>
-
-		<entity x="66" y="46">
-			<implementation
-				class-name="games.stendhal.server.maps.semos.dungeon.SergeantNPC">
-				<parameter name="name">Sergeant James</parameter>
-				<parameter name="node0">66,46</parameter>
-				<parameter name="node1">66,48</parameter>
-			</implementation>
-
-			<attribute name="class">royalguardnpc</attribute>
-			<attribute name="level">20</attribute>
-			<attribute name="hp">75</attribute>
-		</entity>
-
+		 <configurator class-name="games.stendhal.server.maps.semos.kanmararn.CowardSoldierNPC"/>
+         <configurator class-name="games.stendhal.server.maps.semos.kanmararn.SergeantNPC"/>
+		
 	</zone>
 
 

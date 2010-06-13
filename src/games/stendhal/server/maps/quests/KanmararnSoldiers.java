@@ -11,18 +11,25 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerOwnsItemIncludingBankCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
@@ -156,17 +163,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	static class HenryQuestAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-			if (!player.isQuestCompleted(QUEST_SLOT)
-					&& !"map".equals(player.getQuest(QUEST_SLOT))) {
-				npc.say("Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?");
-			} else {
-				npc.say("I'm so sad that most of my friends are dead.");
-				npc.setCurrentState(ConversationStates.ATTENDING);
-			}
-		}
-	}
+
 
 	static class HenryQuestNotCompletedCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
@@ -245,61 +242,30 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 
-	static class JamesQuestCompleteAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 
-			final List<Item> allMaps = player.getAllEquipped("map");
-			Item questMap = null;
-			for (final Item map : allMaps) {
-				if ("henry".equalsIgnoreCase(map.getInfoString())) {
-					questMap = map;
-					break;
-				}
-			}
-			if (questMap != null) {
-				npc.say("The map! Wonderful! Thank you. And here is your reward.");
-				player.addXP(5000);
-				player.addKarma(15);
-				player.drop(questMap);
-
-				final Item item = SingletonRepository.getEntityManager().getItem(
-						"steel boots");
-				item.setBoundTo(player.getName());
-				// Is this infostring really needed?
-				item.setInfoString(npc.getName());
-				player.equipToInventoryOnly(item);
-				player.setQuest(QUEST_SLOT, "done");
-				npc.setCurrentState(ConversationStates.ATTENDING);
-			} else {
-				npc.say("Well, where is the map?");
-			}
-		}
-	}
 
 	/**
-	 * We create NPC Henry who will get us on the quest.
+	 * We add text for NPC Henry who will get us on the quest.
 	 */
 	private void prepareCowardSoldier() {
 		final SpeakerNPC henry = npcs.get("Henry");
 
-		henry.addGreeting("Ssshh! Silence or you will attract more #dwarves.");
-		henry.addJob("I'm a soldier in the army.");
-		henry.addGoodbye("Bye and be careful with all those dwarves around!");
-		henry.addHelp("I need help myself. I got separated from my #group. Now I'm all alone.");
-		henry.addReply(Arrays.asList("dwarf", "dwarves"),
-			"They are everywhere! Their #kingdom must be close.");
-		henry.addReply(Arrays.asList("kingdom", "Kanmararn"),
-			"Kanmararn, the legendary city of the #dwarves.");
-		henry.addReply("group",
-			"The General sent five of us to explore this area in search for #treasure.");
-		henry.addReply("treasure",
-			"A big treasure is rumored to be #somewhere in this dungeon.");
-		henry.addReply("somewhere", "If you #help me I might give you a clue.");
-
 		henry.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
-			ConversationStates.QUEST_OFFERED, null, new HenryQuestAction());
-
+			ConversationPhrases.QUEST_MESSAGES, 
+			new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT),
+							 new QuestNotInStateCondition(QUEST_SLOT,"map")),
+			ConversationStates.QUEST_OFFERED, 
+			"Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?", 
+			null);
+		
+		henry.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new OrCondition(new QuestCompletedCondition(QUEST_SLOT),
+								 new QuestInStateCondition(QUEST_SLOT,"map")),
+				ConversationStates.ATTENDING, 
+				"I'm so sad that most of my friends are dead.", 
+				null);
+		
 		henry.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
@@ -348,7 +314,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				new HenryQuestCompletedCondition(),
 				new NotCondition(new PlayerOwnsItemIncludingBankCondition("map"))),
 			ConversationStates.ATTENDING,
-			"Luckily i draw a copy of the map, but please don't lose this one.", 
+			"Luckily I drew a copy of the map, but please don't lose this one.", 
 			new GiveMapAction(true));
 
 
@@ -431,10 +397,27 @@ public class KanmararnSoldiers extends AbstractQuest {
 		james.addReply(Arrays.asList("kingdom", "kanmararn"),
 			"Kanmararn, the legendary kingdom of the #dwarves.");
 
-		james.add(ConversationStates.ATTENDING, Arrays.asList("map", "henry"),
-			new QuestInStateCondition(QUEST_SLOT, "map"),
-			ConversationStates.ATTENDING, null,
-			new JamesQuestCompleteAction());
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
+		actions.add(new IncreaseXPAction(5000));
+		actions.add(new DropInfostringItemAction("map","Henry"));
+		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 15.0));	
+		actions.add(new EquipItemAction("steel boots", 1, true));
+		
+		james.add(ConversationStates.ATTENDING, 
+				Arrays.asList("map", "henry"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "map"),
+								new PlayerHasInfostringItemWithHimCondition("map", "henry")),
+				ConversationStates.ATTENDING, 
+				"The map! Wonderful! Thank you. And here is your reward.",
+				new MultipleActions(actions));
+		
+		james.add(ConversationStates.ATTENDING, 
+				Arrays.asList("map", "henry"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "map"),
+								new NotCondition(new PlayerHasInfostringItemWithHimCondition("map", "henry"))),
+				ConversationStates.ATTENDING, 
+				"Well, where is the map?",
+				null);
 		
 		james.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, 
 				new QuestCompletedCondition(QUEST_SLOT),
