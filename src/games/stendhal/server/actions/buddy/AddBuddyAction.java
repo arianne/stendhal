@@ -21,7 +21,7 @@ class AddBuddyAction implements ActionListener {
 	 * Adds someone to your buddy list.
 	 */
 	public void onAction(final Player player, final RPAction action) {
-		if (countBuddies(player) > 50) {
+		if (countBuddies(player) > 500) {
 			player.sendPrivateText(NotificationType.ERROR, "Sorry, you have already too many buddies");
 			return;
 		}
