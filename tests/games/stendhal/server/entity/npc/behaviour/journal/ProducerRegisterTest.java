@@ -1,18 +1,23 @@
 package games.stendhal.server.entity.npc.behaviour.journal;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.ados.bakery.BakerNPC;
 import games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC;
 
 import java.util.Map;
 import java.util.TreeMap;
 
 import org.junit.Test;
+
+import utilities.PlayerTestHelper;
 
 
 public class ProducerRegisterTest {
@@ -69,5 +74,26 @@ public class ProducerRegisterTest {
 		new GoldsmithNPC().configureZone(zone, null);
 
 		assertFalse(producerRegister.getProducers().isEmpty());
+	}
+	
+	/**
+	 * Tests listing the working producers
+	 */
+	@Test
+	public final void testListWorkingProducers() {
+		final ProducerRegister producerRegister = new ProducerRegister() {
+		};
+		Player player = PlayerTestHelper.createPlayer("player");
+		
+		MockStendlRPWorld.get();
+		
+		final StendhalRPZone zone = new StendhalRPZone("admin_test");
+
+		// call NPC code which will make ProducerAdder add to register
+		new BakerNPC().configureZone(zone, null);
+		
+		assertFalse(producerRegister.getProducers().isEmpty());
+		player.setQuest("arlindo_make_pie", "5;pie;"+System.currentTimeMillis());
+		assertEquals(producerRegister.listWorkingProducers(player),"\r\nOrders: \nArlindo is making pie.");
 	}
 }

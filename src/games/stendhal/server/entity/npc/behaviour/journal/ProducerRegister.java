@@ -1,6 +1,8 @@
 package games.stendhal.server.entity.npc.behaviour.journal;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -45,11 +47,26 @@ public class ProducerRegister {
 	}
 	
 	
-	
+	public String listWorkingProducers(final Player player) {
+		final StringBuilder sb = new StringBuilder();
+
+		// Open orders - do not state if ready to collect or not, yet
+		sb.append("\r\nOrders: ");
+		for (final Pair<String, ProducerBehaviour> producer : producers) {
+			String npcName = producer.first();
+			ProducerBehaviour behaviour = producer.second();
+			String questSlot =  behaviour.getQuestSlot();
+			String activity =  behaviour.getProductionActivity();
+			String product =  behaviour.getProductName();
+			if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
+				sb.append("\n" + npcName + " is " + Grammar.gerundForm(activity) + " " + product + ".");
+			}
+		}
+
+
+		return sb.toString();
+	}
 	
 }
-/*"jenny_mill_flour", "mill", "flour", requiredResources, 2 * 60
-"xoderos_cast_iron", "cast", "iron", requiredResources, 5 * 60
-"erna_bake_bread", "bake", "bread", requiredResources, 10 * 60
-"leander_make_sandwiches", "make", "sandwich", requiredResources, 3 * 60*/
+
 
