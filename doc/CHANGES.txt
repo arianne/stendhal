@@ -5,6 +5,12 @@ Changelog
 *features*
 - right click and 'Where' yourself
 - experimental /listproducers command for working NPCs
+- quest to help Phalk with food and clothes
+
+*code*
+- players can't use npc names or creature names
+- cannot add buddy who doesn't exist
+- refactored Kanmararn Soldiers quest
 
 0.84
 *features*
