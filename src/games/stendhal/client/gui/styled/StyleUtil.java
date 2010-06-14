@@ -2,9 +2,24 @@ package games.stendhal.client.gui.styled;
 
 import java.awt.Graphics;
 
+import javax.swing.UIManager;
+
 import games.stendhal.client.sprite.Sprite;
 
 class StyleUtil {
+	/**
+	 * Get the current <code>Style</code>, or <code>null</code> if it
+	 * has not been set in the UIManager.
+	 */
+	public static Style getStyle() {
+		Object obj = UIManager.get("StendhalStyle");
+		if (obj instanceof Style) {
+			return (Style) obj;
+		}
+		
+		return null;
+	}
+	
 	/**
 	 * Fill an area with the background sprite of a {@link Style}.
 	 * 

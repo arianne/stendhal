@@ -3,13 +3,26 @@ package games.stendhal.client.gui.styled;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
+import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.PanelUI;
 
 /**
  * PanelUI implementation for drawing in pixmap styles.
  */
 public class StyledPanelUI extends PanelUI {
+	private static StyledPanelUI instance;
+	
 	private final Style style;
+	
+	// Required by UIManager
+	public static ComponentUI createUI(JComponent panel) {
+		// Panel UI instances can be shared
+		if (instance == null) {
+			instance = new StyledPanelUI(StyleUtil.getStyle());
+		}
+		
+		return instance;
+	}
 	
 	/**
 	 * Create a new pixmap style.
@@ -26,9 +39,9 @@ public class StyledPanelUI extends PanelUI {
 	}
 	
 	@Override
-	public void installUI(JComponent button) {
-		super.installUI(button);
-		button.setForeground(style.getForeground());
-		button.setBorder(style.getBorder());
+	public void installUI(JComponent panel) {
+		super.installUI(panel);
+		panel.setForeground(style.getForeground());
+		panel.setBorder(style.getBorder());
 	}
 }
