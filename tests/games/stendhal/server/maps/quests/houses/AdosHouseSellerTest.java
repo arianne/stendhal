@@ -162,6 +162,7 @@ public class AdosHouseSellerTest {
 		MockStendlRPWorld.get().addRPZone(ados);
 		housePortal = new HousePortal("schnick bla 51");
 		housePortal.setDestination(zoneName, "schnick bla 51");
+		housePortal.setIdentifier("keep rpzone happy");
 		ados.add(housePortal);
 		chest = new StoredChest();
 		ados.add(chest);

@@ -168,6 +168,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(chest);
 		
 		housePortal = new HousePortal("ados house 50");
+		housePortal.setIdentifier("keep rpzone happy");
 		housePortal.setDestination(ZONE_NAME, "dest");
 		SingletonRepository.getRPWorld().getRPZone("0_ados_city").add(housePortal);
 		HouseUtilities.clearCache();

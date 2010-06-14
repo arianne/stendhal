@@ -138,6 +138,7 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 			HousePortal portal = new HousePortal("athor apartment 101");
 			portals.add(portal);
 			portal.setDestination(ZONE_NAME, "dest");
+			portal.setIdentifier("keep rpzone happy");
 			SingletonRepository.getRPWorld().getRPZone(zone).add(portal);
 		}
 		

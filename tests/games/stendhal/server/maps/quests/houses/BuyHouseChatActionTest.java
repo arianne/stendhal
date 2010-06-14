@@ -77,6 +77,7 @@ public class BuyHouseChatActionTest {
 		StendhalRPZone ados = new StendhalRPZone(zoneName);
 		MockStendlRPWorld.get().addRPZone(ados);
 		housePortal = new HousePortal("schnick bla 51");
+		housePortal.setIdentifier("keep rpzone happy");
 		housePortal.setDestination(zoneName, "schnick bla 51");
 		ados.add(housePortal);
 		chest = new StoredChest();
