@@ -36,6 +36,7 @@ class AccountCreationRules {
 		validators.add(new LowerCaseValidator(username));
 		validators.add(new NameCharacterValidator(username));
 		validators.add(new ReservedSubStringValidator(username));
+		validators.add(new NPCNameValidator(username));
 	}
 
 	private void setupValidatorsForPassword() {
