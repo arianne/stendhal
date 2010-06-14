@@ -14,8 +14,8 @@ public class StyledPanelUI extends PanelUI {
 	
 	private final Style style;
 	
-	// Required by UIManager
-	public static ComponentUI createUI(JComponent panel) {
+	// Required by UIManager, not necessarily called from EDT
+	public static synchronized ComponentUI createUI(JComponent panel) {
 		// Panel UI instances can be shared
 		if (instance == null) {
 			instance = new StyledPanelUI(StyleUtil.getStyle());

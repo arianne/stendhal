@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 
 import javax.swing.AbstractButton;
 import javax.swing.JComponent;
-import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  * ButtonUI implementation for drawing {@link WoodStyle} style buttons. 
@@ -17,8 +17,8 @@ public class StyledButtonUI extends BasicButtonUI {
 	
 	private final Style style;
 	
-	// Required by UIManager
-	public static ComponentUI createUI(JComponent button) {
+	// Required by UIManager, not necessarily called from EDT
+	public static synchronized ComponentUI createUI(JComponent button) {
 		// Button UIs can be shared
 		if (instance == null) {
 			instance = new StyledButtonUI(StyleUtil.getStyle());
