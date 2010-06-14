@@ -1,6 +1,7 @@
 package games.stendhal.client.gui.styled;
 
 import javax.swing.JComponent;
+import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 
 /**
@@ -8,6 +9,12 @@ import javax.swing.plaf.basic.BasicTextFieldUI;
  */
 public class StyledTextFieldUI extends BasicTextFieldUI {
 	private final Style style;
+	
+	// Required by UIManager
+	public static ComponentUI createUI(JComponent field) {
+		// Text field UIs can not be shared
+		return new StyledTextFieldUI(StyleUtil.getStyle());
+	}
 	
 	/**
 	 * Create a new StyledTextFieldUI.
