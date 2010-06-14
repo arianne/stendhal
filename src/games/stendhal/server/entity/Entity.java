@@ -15,7 +15,6 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.constants.Events;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
 import java.awt.Rectangle;
@@ -108,7 +107,7 @@ public abstract class Entity extends RPObject {
 		final RPClass entity = new RPClass("entity");
 
 		// Some things may have a textual description
-		entity.addAttribute("description", Type.LONG_STRING);
+		entity.addAttribute("description", Type.LONG_STRING, Definition.HIDDEN);
 
 		// TODO: Try to remove this attribute later (at DB reset?)
 		entity.addAttribute("type", Type.STRING);
@@ -519,7 +518,7 @@ public abstract class Entity extends RPObject {
 	public void notifyWorldAboutChanges() {
 		// Only possible if in a zone
 		if (getZone() != null) {
-			SingletonRepository.getRPWorld().modify(this);
+			getZone().modify(this);
 		}
 	}
 
