@@ -38,6 +38,8 @@ class AccountCreationRules {
 		validators.add(new ReservedSubStringValidator(username));
 		validators.add(new NPCNameValidator(username));
 		validators.add(new CreatureNameValidator(username));
+		
+		validators.add(new IsNotCharacterNameValidator(username));
 	}
 
 	private void setupValidatorsForPassword() {
