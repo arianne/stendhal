@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -177,51 +178,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	static class HenryQuestCompleteAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-
-			final List<Item> allLeatherLegs = player.getAllEquipped("leather legs");
-			Item questLeatherLegs = null;
-			for (final Item leatherLegs : allLeatherLegs) {
-				if ("tom".equalsIgnoreCase(leatherLegs.getInfoString())) {
-					questLeatherLegs = leatherLegs;
-					break;
-				}
-			}
-
-			final List<Item> allNotes = player.getAllEquipped("note");
-			Item questNote = null;
-			for (final Item note : allNotes) {
-				if ("charles".equalsIgnoreCase(note.getInfoString())) {
-					questNote = note;
-					break;
-				}
-			}
-
-			final List<Item> allScaleArmors = player.getAllEquipped("scale armor");
-			Item questScaleArmor = null;
-			for (final Item scaleArmor : allScaleArmors) {
-				if ("peter".equalsIgnoreCase(scaleArmor.getInfoString())) {
-					questScaleArmor = scaleArmor;
-					break;
-				}
-			}
-
-			if ((questLeatherLegs != null) && (questNote != null)
-					&& (questScaleArmor != null)) {
-				npc.say("Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.");
-				player.addXP(2500);
-				player.addKarma(15);
-				player.drop(questLeatherLegs);
-				player.drop(questScaleArmor);
-				new GiveMapAction(false).fire(player, sentence, npc);
-				npc.setCurrentState(ConversationStates.ATTENDING);
-			} else {
-				npc.say("You didn't prove that you have found them all!");
-			}
-		}
-	}
-
 	static class GiveMapAction implements ChatAction {
 		private boolean bind = false;
 
@@ -240,8 +196,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 			player.setQuest(QUEST_SLOT, "map");
 		}
 	}
-
-
 
 
 	/**
@@ -294,11 +248,34 @@ public class KanmararnSoldiers extends AbstractQuest {
 			"OK. I understand. I'm scared of the #dwarves myself.", 
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 		
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
+		actions.add(new IncreaseXPAction(2500));
+		actions.add(new DropInfostringItemAction("leather legs","tom"));
+		actions.add(new DropInfostringItemAction("scale armor","peter"));
+		actions.add(new IncreaseKarmaAction(15.0));	
+		actions.add(new GiveMapAction(false));
+		
 		henry.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "start"),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
+					new PlayerHasInfostringItemWithHimCondition("leather legs", "tom"),
+					new PlayerHasInfostringItemWithHimCondition("note", "charles"),
+					new PlayerHasInfostringItemWithHimCondition("scale armor", "peter")),
 			ConversationStates.ATTENDING,
-			null, new HenryQuestCompleteAction());
+			"Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.", 
+			new MultipleActions(actions));
+		
+		henry.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
+						new NotCondition(
+								new AndCondition(
+										new PlayerHasInfostringItemWithHimCondition("leather legs", "tom"),
+										new PlayerHasInfostringItemWithHimCondition("note", "charles"),
+										new PlayerHasInfostringItemWithHimCondition("scale armor", "peter")))),
+				ConversationStates.ATTENDING,
+				"You didn't prove that you have found them all!", 
+				null);
 
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map", "group", "help"), 
 				new OrCondition(
@@ -321,7 +298,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"),
 			new HenryQuestNotCompletedCondition(),
 			ConversationStates.ATTENDING,
-			"If you find my friends, I will give you the map", null);
+			"If you find my friends, I will give you the map.", null);
 	}
 
 	/**
