@@ -75,7 +75,6 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -329,14 +328,14 @@ public class j2DClient implements UserInterface {
 		mainFrame.getMainFrame().getContentPane().setBackground(Color.black);
 		
 		// *** Create the layout ***
-		final JComponent leftColumn = new JPanel();
+		final JComponent leftColumn = new JComponent() {};
 		leftColumn.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		leftColumn.add(minimap.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
 		leftColumn.add(stats.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
 		leftColumn.add(buddyPane, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		
 		// Chat entry and chat log
-		final JPanel chatBox = new JPanel();
+		final JComponent chatBox = new JComponent() {};
 		chatBox.setLayout(new BorderLayout());
 		chatBox.add(chatText.getPlayerChatText(), BorderLayout.NORTH);
 		chatBox.add(gameLog, BorderLayout.CENTER);
