@@ -352,6 +352,10 @@ public class j2DClient implements UserInterface {
 
 		// Finally add the left pane, and the games creen + chat combo
 		final Container windowContent = mainFrame.getMainFrame().getContentPane();
+		if (windowContent instanceof JComponent) {
+			// Style may have set borders
+			((JComponent) windowContent).setBorder(null);
+		}
 		windowContent.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
 		// Make the panel take any horizontal resize
 		windowContent.add(leftColumn, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
