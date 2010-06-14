@@ -25,11 +25,11 @@ import java.awt.geom.Rectangle2D;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.swing.JPanel;
+import javax.swing.JComponent;
 
 import marauroa.common.game.RPAction;
 
-public class MapPanel extends JPanel implements PositionChangeListener {
+public class MapPanel extends JComponent implements PositionChangeListener {
 	/**
 	 * The color of the background (palest grey).
 	 */
