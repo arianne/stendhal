@@ -1120,7 +1120,8 @@ public class j2DClient implements UserInterface {
 				 *  so return the divider to the maximum allowed height
 				 *  by force.
 				 */
-				splitPane.setDividerLocation(stendhal.screenSize.height + 1);
+				splitPane.setDividerLocation(stendhal.screenSize.height
+						+ splitPane.getInsets().top);
 			} else {
 				child.setSize(newSize);
 			}
