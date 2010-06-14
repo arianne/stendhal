@@ -21,7 +21,7 @@ public class IncreaseXPDependentOnLevelAction implements ChatAction {
 	 * @param xpDiff - player will get 1/xpDiff of difference between his and next levels xp amount. 
 	 * @param karmabonus - amount of karma to add instead xp if player have max level
 	 */
-	public IncreaseXPDependentOnLevelAction(final int xpDiff, final double karmabonus) {
+	public IncreaseXPDependentOnLevelAction(final double xpDiff, final double karmabonus) {
 		this.xpDiff = xpDiff;
 		this.karmabonus = karmabonus;
 	}
