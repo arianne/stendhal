@@ -33,13 +33,12 @@ public class IsNotOtherAccountNameValidator implements AccountParameterValidator
 	}
 
 	public Result validate() {
-		 try {
+		if (charname.equals(username)) {
+			return null;
+		}
+		try {
 			if(DAORegister.get().get(AccountDAO.class).hasPlayer(charname)) {
-				 if (charname.equals(username)) {
-					 return null;
-				 } else {
-					 return Result.FAILED_PLAYER_EXISTS;
-				 }
+				return Result.FAILED_PLAYER_EXISTS;
 			 }
 		} catch (SQLException e) {
 			logger.error("Error while trying to validate character name", e);
