@@ -7,12 +7,34 @@ import java.awt.Rectangle;
 import javax.swing.AbstractButton;
 import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.plaf.ComponentUI;
 
 /**
  * ButtonUI implementation for drawing {@link WoodStyle} style buttons. 
  */
 public class StyledButtonUI extends BasicButtonUI {
-	Style style = WoodStyle.getInstance();
+	private static StyledButtonUI instance;
+	
+	private final Style style;
+	
+	// Required by UIManager
+	public static ComponentUI createUI(JComponent button) {
+		// Button UIs can be shared
+		if (instance == null) {
+			instance = new StyledButtonUI(StyleUtil.getStyle());
+		}
+		
+		return instance;
+	}
+	
+	/**
+	 * Create a new StyledButtonUI
+	 * 
+	 * @param style used pixmap style
+	 */
+	public StyledButtonUI(Style style) {
+		this.style = style;
+	}
 	
 	@Override
 	public void paint(Graphics graphics, JComponent button) {

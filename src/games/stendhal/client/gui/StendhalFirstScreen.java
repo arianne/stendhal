@@ -17,6 +17,7 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.login.CreateAccountDialog;
 import games.stendhal.client.gui.login.LoginDialog;
 import games.stendhal.client.gui.styled.StyledButtonUI;
+import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
@@ -99,7 +100,7 @@ public class StendhalFirstScreen extends JFrame {
 			}
 		});
 
-		ButtonUI ui = new StyledButtonUI();
+		ButtonUI ui = new StyledButtonUI(WoodStyle.getInstance());
 		//
 		// loginButton
 		//

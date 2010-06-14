@@ -75,7 +75,7 @@ public class StyledScrollBarUI extends BasicScrollBarUI {
 			 */
 			super(orientation, style.getForeground(), style.getForeground(),
 					style.getForeground(), style.getForeground());
-			setUI(new StyledButtonUI());
+			setUI(StyledButtonUI.createUI(this));
 		}
 
 		@Override

@@ -3,6 +3,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.styled.StyledButtonUI;
+import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 
 import java.awt.Component;
@@ -43,7 +44,7 @@ public class QuitDialog {
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(150, 75));
 
-		ButtonUI ui = new StyledButtonUI();
+		ButtonUI ui = new StyledButtonUI(WoodStyle.getInstance());
 		b = new JButton();
 		b.setUI(ui);
 		b.setText("Yes");

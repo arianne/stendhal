@@ -723,7 +723,7 @@ public class OutfitDialog extends JDialog {
 		}
 		
 		// Buttons
-		ButtonUI buttonUI = new StyledButtonUI();
+		ButtonUI buttonUI = new StyledButtonUI(WoodStyle.getInstance());
 		
 		jbtLeftBodies.setUI(buttonUI);
 		jbtLeftClothes.setUI(buttonUI);
