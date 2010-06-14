@@ -51,6 +51,8 @@ public class CharacterCreator {
 		validators.add(new LowerCaseValidator(character));
 		validators.add(new NameCharacterValidator(character));
 		validators.add(new ReservedSubStringValidator(character));
+		
+		validators.add(new IsNotOtherAccountNameValidator(character, username));
 	}
 
 	/**
