@@ -107,7 +107,7 @@ public abstract class Entity extends RPObject {
 		final RPClass entity = new RPClass("entity");
 
 		// Some things may have a textual description
-		entity.addAttribute("description", Type.LONG_STRING, Definition.HIDDEN);
+		entity.addAttribute("description", Type.LONG_STRING);
 
 		// TODO: Try to remove this attribute later (at DB reset?)
 		entity.addAttribute("type", Type.STRING);
@@ -450,6 +450,7 @@ public abstract class Entity extends RPObject {
 		getArea(tempRect, ex, ey);
 		return tempRect;
 	}
+
 	/**
 	 * returns the area used by this entity. Note for performance reasons the
 	 * Rectangle is not returned as new object but the one supplied as first
