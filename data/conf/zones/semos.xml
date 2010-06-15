@@ -916,6 +916,7 @@ Mature sheep wanted: please speak to Sato.
 			<parameter name="x">44</parameter>
 			<parameter name="y">60</parameter>
 		</configurator>
+		<configurator class-name="games.stendhal.server.maps.semos.city.GossipNPC" />
 
 		<portal x="42" y="37" ref="tavern_entrance">
 			<destination zone="int_semos_tavern_0" ref="entrance" />
@@ -1059,20 +1060,6 @@ South: Nalwor forest and Or'ril castle
             <attribute name="class">transparent</attribute>
             <attribute name="width">2</attribute>
         </entity> 
-
-		<entity x="46" y="20">
-			<implementation class-name="games.stendhal.server.maps.semos.city.GossipNPC">
-				<parameter name="name">Nomyr Ahba</parameter>
-				<parameter name="node0">46,20</parameter>
-				<parameter name="node1">46,21</parameter>
-				<parameter name="node2">50,21</parameter>
-				<parameter name="node3">50,20</parameter>
-				<parameter name="node4">50,21</parameter>
-				<parameter name="node5">46,21</parameter>
-			</implementation>
-
-			<attribute name="class">thiefnpc</attribute>
-		</entity>
 
 		<entity x="26" y="22">
 			<implementation class-name="games.stendhal.server.maps.semos.city.GreeterNPC">
