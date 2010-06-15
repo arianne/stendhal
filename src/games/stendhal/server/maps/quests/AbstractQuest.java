@@ -19,7 +19,6 @@ abstract class AbstractQuest implements IQuest {
 	
 	private QuestInfo questInfo;
 	
-	@Override
 	public QuestInfo getQuestInfo(Player player) {
 		return questInfo;
 	}	
