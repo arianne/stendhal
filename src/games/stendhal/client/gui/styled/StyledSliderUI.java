@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import javax.swing.JComponent;
+import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalSliderUI;
 
 /**
@@ -17,6 +18,12 @@ public class StyledSliderUI extends MetalSliderUI {
 	private static final int TRACK_HEIGHT = 6;
 	private static final int SLIDER_WIDTH = 8;
 	private final Style style;
+	
+	// Required by UIManager
+	public static ComponentUI createUI(JComponent slider) {
+		// SliderUI can not be shared
+		return new StyledSliderUI(StyleUtil.getStyle());
+	}
 
 	public StyledSliderUI(Style style) {
 		this.style = style;
