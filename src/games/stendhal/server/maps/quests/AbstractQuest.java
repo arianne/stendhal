@@ -17,7 +17,12 @@ abstract class AbstractQuest implements IQuest {
 	
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
 	
+	private QuestInfo questInfo;
 	
+	@Override
+	public QuestInfo getQuestInfo(Player player) {
+		return questInfo;
+	}	
 	
 	
 	/** NPCList. */
