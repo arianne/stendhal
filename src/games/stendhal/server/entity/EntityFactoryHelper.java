@@ -68,7 +68,7 @@ public class EntityFactoryHelper {
 				} catch (final Exception ex) {
 					throw new IllegalArgumentException(
 							"Unable to set attribute '" + entry.getKey() + "' on "
-									+ entity.getClass().getName());
+									+ entity.getClass().getName(), ex);
 				}
 			}
 
