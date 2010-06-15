@@ -350,12 +350,11 @@ public class j2DClient implements UserInterface {
 		//splitPane.setContinuousLayout(true);
 		pane.addComponentListener(new SplitPaneResizeListener(screen.getComponent(), splitPane));
 
+		// Avoid panel drawing overhead
+		final Container windowContent = new JComponent() {};
+		mainFrame.getMainFrame().setContentPane(windowContent);
+		
 		// Finally add the left pane, and the games creen + chat combo
-		final Container windowContent = mainFrame.getMainFrame().getContentPane();
-		if (windowContent instanceof JComponent) {
-			// Style may have set borders
-			((JComponent) windowContent).setBorder(null);
-		}
 		windowContent.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
 		// Make the panel take any horizontal resize
 		windowContent.add(leftColumn, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
