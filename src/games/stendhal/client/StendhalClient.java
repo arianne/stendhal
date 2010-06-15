@@ -399,12 +399,9 @@ public class StendhalClient extends ClientFramework {
 			return;
 		}
 
-		// autologin if there is exactly one character (compatibility) or a character was specified.
-		if ((characters.size() == 1) && (character == null) || characters.keySet().contains(character)) {
+		// autologin if a valid character was specified.
+		if ((character != null) && (characters.keySet().contains(character))) {
 			try {
-				if (character == null) {
-					character = characters.keySet().iterator().next();
-				}
 				chooseCharacter(character);
 				stendhal.doLogin = true;
 			} catch (final Exception e) {
