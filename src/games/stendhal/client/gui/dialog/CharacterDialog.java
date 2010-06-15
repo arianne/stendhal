@@ -148,20 +148,28 @@ public class CharacterDialog extends JDialog {
 		player.initialize(character);
 		
 		EntityView view = EntityViewFactory.create(player);
-		Image image = createCharacterImage(view);
-		Icon icon = new ImageIcon(image);
+		// this if-block is there to be compatible with Stendhal 0.84 that is missing information
+		Icon icon = null;
+		if (view != null) {
+			Image image = createCharacterImage(view);
+			icon = new ImageIcon(image);
+		}
 		
 		// Construct a label for the player button with the information we
 		// want to show. Needs to be html as that's the only way JButton
 		// can handle multi line labels.
 		StringBuilder label = new StringBuilder("<html>");
 		label.append(name);
-		label.append("<br>Level: ");
-		String level = "0";
-		if (character.has("level")) {
-			level = character.get("level");
+		
+		// this if-block is here for compatibility with stendhal server 0.84
+		if (character.has("name")) {
+			label.append("<br>Level: ");
+			String level = "0";
+			if (character.has("level")) {
+				level = character.get("level");
+			}
+			label.append(level);
 		}
-		label.append(level);
 		label.append("</html>");
 		
 		JButton playerButton = new JButton(label.toString(), icon);
