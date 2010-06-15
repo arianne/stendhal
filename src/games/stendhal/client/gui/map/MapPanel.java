@@ -88,6 +88,7 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 		// black area outside the map
 		setBackground(Color.black);
 		updateSize(new Dimension(WIDTH, HEIGHT + TITLE_HEIGHT));
+		setOpaque(true);
 		
 		// handle clicks for moving.
 		this.addMouseListener(new MouseAdapter() {
@@ -160,10 +161,11 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	public void paintComponent(final Graphics g) {
 		needsRefresh = false;
 		
-		super.paintComponent(g);
+		g.setColor(getBackground());
+		g.fillRect(0, 0, getWidth(), getHeight());
 		drawTitle(g);
 		// The rest of the things should be drawn inside the actual map area
-		g.setClip(0, 0, width, height);
+		g.clipRect(0, 0, width, height);
 		// also choose the origin so that we can simply draw to the 
 		// normal coordinates
 		g.translate(-xOffset, -yOffset);
