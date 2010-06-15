@@ -1,10 +1,13 @@
 package games.stendhal.client.gui.styled;
 
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
+import javax.swing.JPopupMenu;
 import javax.swing.MenuElement;
+import javax.swing.Popup;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
 
@@ -39,6 +42,21 @@ public class StyledPopupMenuUI extends BasicPopupMenuUI {
 	public void paint(Graphics g, JComponent menu) {
 		StyleUtil.fillBackground(style, g, 0, 0, menu.getWidth(), menu.getHeight());
 	}
+	
+	@Override
+	public Popup getPopup(JPopupMenu menu, int x, int y) {
+		Popup popup = super.getPopup(menu, x, y);
+		/*
+		 * The menu should now have a parent, which is probably a JPanel, In
+		 * which case its borders need to be deleted.
+		 */
+		Container parent = menu.getParent();
+		if (parent instanceof JComponent) {
+			((JComponent) parent).setBorder(null);
+		}
+		
+		return popup;
+	};
 	
 	@Override
 	public void installUI(JComponent component) {
