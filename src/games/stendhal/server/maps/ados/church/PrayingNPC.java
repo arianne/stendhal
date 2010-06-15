@@ -28,7 +28,7 @@ public class PrayingNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("*whispering* Hello");
 				addGoodbye("*whispering* Amen");
-				addOffer("For some peoble it is helpful to pray...");
+				addOffer("For some people it is helpful to pray...");
 				addHelp("shhhhh!");
 				addJob("Be quiet!");
 				addQuest("Pray or go away!");
