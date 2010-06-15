@@ -11,6 +11,13 @@ import java.util.List;
 public interface IQuest {
 
 	/**
+	 * function will return information about this quest
+	 * @param player - player for whom required quest info
+	 * @return - QuestInfo object with info about this quest
+	 */
+	QuestInfo getQuestInfo(Player player);
+
+	/**
 	 * adds the quest to the game world (e.g. by placing SpeakerNPCs there)
 	 */
 	void addToWorld();
