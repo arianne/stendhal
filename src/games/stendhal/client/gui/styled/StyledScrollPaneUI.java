@@ -2,6 +2,7 @@ package games.stendhal.client.gui.styled;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
+import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicScrollPaneUI;
 
 /**
@@ -9,6 +10,12 @@ import javax.swing.plaf.basic.BasicScrollPaneUI;
  */
 public class StyledScrollPaneUI extends BasicScrollPaneUI {
 	private final Style style;
+	
+	// Required by UIManager
+	public static ComponentUI createUI(JComponent pane) {
+		// BasicScrollPaneUI instances can not be shared
+		return new StyledScrollPaneUI(StyleUtil.getStyle());
+	}
 	
 	/**
 	 * Create a new pixmap style.
@@ -24,8 +31,5 @@ public class StyledScrollPaneUI extends BasicScrollPaneUI {
 		JScrollPane scrollPane = (JScrollPane) pane;
 		super.installUI(scrollPane);
 		scrollPane.setBorder(style.getBorderDown());
-		// ScrollBarUI instances can not be shared
-		scrollPane.getVerticalScrollBar().setUI(new StyledScrollBarUI(style));
-		scrollPane.getHorizontalScrollBar().setUI(new StyledScrollBarUI(style));
 	}
 }
