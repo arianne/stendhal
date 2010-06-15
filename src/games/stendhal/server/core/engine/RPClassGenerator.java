@@ -247,6 +247,9 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass("tell")) {
 			createTellActionRPClass();
 		}
+
+
+		RPClass.bakeAll();
 	}
 
 	private void createTellActionRPClass() {
