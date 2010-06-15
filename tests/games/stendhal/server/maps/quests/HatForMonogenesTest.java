@@ -48,10 +48,11 @@ public class HatForMonogenesTest {
 
 	@Before
 	public void setUp() {
-		npc = new SpeakerNPC("Monogenes");
-		SingletonRepository.getNPCList().add(npc);
-		final SpeakerNPCFactory npcConf = new GreeterNPC();
-		npcConf.createDialog(npc);
+		
+		final StendhalRPZone zone = new StendhalRPZone("admin_test");
+		
+		new GreeterNPC().configureZone(zone, null);
+		npc = SingletonRepository.getNPCList().get("Monogenes");
 		en = npc.getEngine();
 
 		final ZoneConfigurator zoneConf = new TraderNPC();
