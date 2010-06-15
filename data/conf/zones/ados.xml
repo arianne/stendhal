@@ -2626,6 +2626,7 @@ Southeast: Docks
  </zone>
  
  <zone name="int_ados_church_0" file="interiors/ados/church_0.tmx">
+  <configurator class-name="games.stendhal.server.maps.ados.church.PrayingNPC" />
   <portal x="19" y="19" ref="entrance_left">
      <destination zone="0_ados_city_s" ref="church_entrance"/>
    </portal>
