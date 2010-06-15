@@ -20,12 +20,12 @@ public class DropInfostringItemAction implements ChatAction {
 	private final String infostring;
 
 	/**
-	 * Creates a new DropItemAction.
+	 * Creates a new DropInfostringItemAction.
 	 * 
 	 * @param itemName
 	 *            name of item
-	 * @param amount
-	 *            for StackableItems
+	 * @param infostring
+	 *            infostring of the dropped item
 	 */
 	public DropInfostringItemAction(final String itemName, final String infostring) {
 		this.itemName = itemName;
