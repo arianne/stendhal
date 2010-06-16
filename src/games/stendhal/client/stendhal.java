@@ -17,12 +17,17 @@ import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.login.LoginDialog;
 import games.stendhal.client.gui.login.Profile;
+import games.stendhal.client.gui.styled.StyledLookAndFeel;
+import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.Version;
 
 import games.stendhal.common.resource.ResourceManager;
 import java.awt.Dimension;
 import java.security.AccessControlException;
+
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import marauroa.common.Log4J;
 
@@ -166,6 +171,16 @@ public class stendhal {
 		waitForLogin();
 		IDSend.send();
 		GameScreen gameScreen = GameScreen.get();
+		
+		try {
+			UIManager.setLookAndFeel(new StyledLookAndFeel(WoodStyle.getInstance()));
+		} catch (UnsupportedLookAndFeelException e) {
+			/*
+			 * Should not happen as StyledLookAndFeel always returns true for
+			 * isSupportedLookAndFeel()
+			 */
+			logger.error("Failed to set Look and Feel", e);
+		}
 		
 		final j2DClient locclient = new j2DClient(client, gameScreen, userContext);
 		perceptionDispatch.register(locclient.getPerceptionListener());
