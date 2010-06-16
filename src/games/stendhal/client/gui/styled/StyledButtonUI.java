@@ -83,8 +83,9 @@ public class StyledButtonUI extends BasicButtonUI {
 	private void hilite(Graphics graphics, JComponent button) {
 		graphics.setColor(style.getHighLightColor());
 		Insets insets = button.getInsets();
-		int width = button.getWidth() - insets.right - insets.left;
-		int height = button.getHeight() - insets.top - insets.bottom;
+		// -1 to avoid right and bottom lines ending under the border
+		int width = button.getWidth() - insets.right - insets.left - 1;
+		int height = button.getHeight() - insets.top - insets.bottom - 1;
 		graphics.drawRect(insets.left, insets.top, width, height);
 	}
 	
