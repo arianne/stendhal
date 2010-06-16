@@ -1,12 +1,10 @@
 package games.stendhal.client.gui.styled;
 
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
-import javax.swing.MenuElement;
 import javax.swing.Popup;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
@@ -62,21 +60,5 @@ public class StyledPopupMenuUI extends BasicPopupMenuUI {
 	public void installUI(JComponent component) {
 		super.installUI(component);
 		component.setBorder(style.getBorder());
-		
-		/*
-		 * A hack to apply an approximation of the style to all the menu items.
-		 * There's no really good way to do that until the theme is complete
-		 * enough for the menu items to get their UI definitions from there.
-		 */
-		for (MenuElement elem : popupMenu.getSubElements()) {
-			Component tmp = elem.getComponent();
-			if (tmp instanceof JComponent) {
-				JComponent item = (JComponent) tmp;
-				item.setBorder(style.getBorder());
-				item.setOpaque(false);
-				item.setFont(style.getFont());
-				item.setForeground(style.getForeground());
-			}
-		}
 	}
 }
