@@ -5,6 +5,7 @@ package games.stendhal.server.maps.ados.church;
 
 import java.util.Map;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -14,7 +15,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * 
  * @author madmetzger
  */
-public class PrayingNPC implements ZoneConfigurator {
+public class VergerNPC implements ZoneConfigurator {
 
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
@@ -35,8 +36,9 @@ public class PrayingNPC implements ZoneConfigurator {
 			}
 			
 		};
-		npc.setEntityClass("prayernpc");
+		npc.setEntityClass("vergernpc");
 		npc.setPosition(29, 14);
+		npc.setDirection(Direction.UP);
 		npc.initHP(100);
 		zone.add(npc);
 	}
