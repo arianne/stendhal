@@ -55,7 +55,7 @@ public class StyleUtil {
 	 * @param x left x coordinate
 	 * @param y baseline y coordinate
 	 */
-	void paintDisabledText(Style style, Graphics g, String text, int x, int y) {
+	static void paintDisabledText(Style style, Graphics g, String text, int x, int y) {
 		g.setColor(style.getHighLightColor());
 		g.drawString(text, x + 1, y + 1);
 		g.setColor(style.getShadowColor());

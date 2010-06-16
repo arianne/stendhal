@@ -39,11 +39,8 @@ public class StyledLabelUI extends BasicLabelUI {
 	}
 	
 	@Override
-	protected void paintDisabledText(JLabel label, Graphics g, String s, int x, int y) {
-		g.setColor(style.getHighLightColor());
-		g.drawString(s, x + 1, y + 1);
-		g.setColor(style.getShadowColor());
-		g.drawString(s, x, y);
+	protected void paintDisabledText(JLabel label, Graphics graphics, String text, int x, int y) {
+		StyleUtil.paintDisabledText(style, graphics, text, x, y);
 	}
 	
 	@Override

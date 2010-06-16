@@ -59,6 +59,18 @@ public class StyledButtonUI extends BasicButtonUI {
 	}
 	
 	@Override
+	protected void paintText(Graphics graphics, AbstractButton button, 
+			Rectangle textRect, String text) {
+		if (button.isEnabled()) {
+			super.paintText(graphics, button, textRect, text);
+		} else {
+			int shift = graphics.getFontMetrics().getAscent();
+			
+			StyleUtil.paintDisabledText(style, graphics, text, textRect.x, textRect.y + shift);
+		}
+	}
+	
+	@Override
 	protected void paintFocus(Graphics graphics, AbstractButton button, 
 			Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
 		graphics.setColor(style.getShadowColor());
