@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JScrollBar;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
@@ -33,8 +34,18 @@ public class StyledScrollBarUI extends BasicScrollBarUI {
 	protected void paintTrack(Graphics g, JComponent bar, Rectangle trackBounds) {
 		g.setColor(style.getHighLightColor());
 		g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+		
 		g.setColor(style.getShadowColor());
-		g.drawRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+		// Don't draw shadow against the light side of an arrow button, it 
+		// looks ugly.
+		int width = trackBounds.width;
+		int height = trackBounds.height;
+		if (scrollbar.getOrientation() == JScrollBar.HORIZONTAL) {
+			height--;
+		} else {
+			width--;
+		}
+		g.drawRect(trackBounds.x, trackBounds.y, width, height);
 	}
 	
 	/**
