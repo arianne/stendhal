@@ -1,7 +1,6 @@
 package games.stendhal.client.gui.styled;
 
 import javax.swing.JComponent;
-import javax.swing.JScrollPane;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicScrollPaneUI;
 
