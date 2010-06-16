@@ -1,9 +1,13 @@
 package games.stendhal.server.maps.semos.city;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static utilities.SpeakerNPCTestHelper.getReply;
-import utilities.PlayerTestHelper;
+import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -14,20 +18,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.ShopList;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.semos.city.HealerNPC;
+import utilities.PlayerTestHelper;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 
 public class HealerNPCTest {
-	private final HealerNPC healer = new HealerNPC();
-    private static SpeakerNPC npc;
+	
+    private SpeakerNPC npc;
 	private Player player;
 	private Engine en;
 	private ShopList sl;
@@ -36,14 +35,15 @@ public class HealerNPCTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
-		npc = new SpeakerNPC("Carmen");
+		StendhalRPZone zone = new StendhalRPZone("admin_test");
+		new HealerNPC().configureZone(zone, null);
 		new DatabaseFactory().initializeDatabase();
 	}
 	
 	@Before
 	public void setUp() {
+		npc = SingletonRepository.getNPCList().get("Carmen");
 		en = npc.getEngine();
-		healer.createDialog(npc);
 		StendhalRPZone srpz = new StendhalRPZone("int_semos_guard_house",100,100);
 		SingletonRepository.getRPWorld().addRPZone(srpz);
 		player = PlayerTestHelper.createPlayer("bob");

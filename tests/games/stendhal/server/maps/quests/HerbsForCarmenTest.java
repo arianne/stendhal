@@ -1,15 +1,9 @@
 package games.stendhal.server.maps.quests;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -22,6 +16,11 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class HerbsForCarmenTest {
@@ -38,13 +37,9 @@ public class HerbsForCarmenTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-	
+		StendhalRPZone zone = new StendhalRPZone("admin_test");
+		new HealerNPC().configureZone(zone, null);
 		
-		SpeakerNPC npc = new SpeakerNPC("Carmen");
-		SingletonRepository.getNPCList().add(npc);
-		final SpeakerNPCFactory npcConf = new HealerNPC();
-		npcConf.createDialog(npc);
-				
 		final AbstractQuest quest = new HerbsForCarmen();
 		quest.addToWorld();
 
