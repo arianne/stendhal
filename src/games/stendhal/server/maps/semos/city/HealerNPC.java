@@ -17,7 +17,6 @@ import java.util.Map;
 /**
  * A young lady (original name: Carmen) who heals players without charge. 
  */
-//TODO: take NPC definition elements which are currently in XML and include here
 public class HealerNPC implements ZoneConfigurator {
 	
 	public void configureZone(final StendhalRPZone zone,
