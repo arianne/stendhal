@@ -1,12 +1,11 @@
 package games.stendhal.server.maps.semos.city;
 
-import java.util.Map;
-
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+
+import java.util.Map;
 
 /**
  * An old man (original name: Monogenes) who stands around and gives directions
