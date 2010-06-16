@@ -21,8 +21,8 @@ import javax.swing.border.Border;
  * The wood style.
  */
 public class WoodStyle implements Style {
-	private static final Color highLightColor = new Color(0.6f, 0.5f, 0.2f);
-	private static final Color shadowColor = new Color(0.3f, 0.25f, 0.1f);
+	private static final Color highLightColor = new Color(163, 120, 97);
+	private static final Color shadowColor = new Color(50, 25, 12);
 
 	/**
 	 * A shared instance.
