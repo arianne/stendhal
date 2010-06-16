@@ -22,6 +22,7 @@ public class StyledLookAndFeel extends MetalLookAndFeel {
 			"StendhalStyle", style,
 			// The component UIs
 			"ButtonUI", pkg + "StyledButtonUI",
+			"ComboBoxUI", pkg + "StyledComboBoxUI",
 			"MenuItemUI", pkg + "StyledMenuItemUI",
 			"PanelUI", pkg + "StyledPanelUI",
 			"PasswordFieldUI", pkg + "StyledPasswordFieldUI",
