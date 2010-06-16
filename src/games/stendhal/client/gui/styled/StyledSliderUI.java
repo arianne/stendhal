@@ -5,8 +5,9 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import javax.swing.JComponent;
+import javax.swing.JSlider;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.metal.MetalSliderUI;
+import javax.swing.plaf.basic.BasicSliderUI;
 
 /**
  * A SliderUI implementation using {@link Style} settings.
@@ -14,7 +15,7 @@ import javax.swing.plaf.metal.MetalSliderUI;
  * <b>IMPORTANT:</b> Only drawing horizontal sliders is implemented, and
  * trying to use this for vertical sliders will most likely fail spectacularly. 
  */
-public class StyledSliderUI extends MetalSliderUI {
+public class StyledSliderUI extends BasicSliderUI {
 	private static final int TRACK_HEIGHT = 6;
 	private static final int SLIDER_WIDTH = 8;
 	private final Style style;
@@ -22,10 +23,11 @@ public class StyledSliderUI extends MetalSliderUI {
 	// Required by UIManager
 	public static ComponentUI createUI(JComponent slider) {
 		// SliderUI can not be shared
-		return new StyledSliderUI(StyleUtil.getStyle());
+		return new StyledSliderUI(StyleUtil.getStyle(), (JSlider) slider);
 	}
 
-	public StyledSliderUI(Style style) {
+	public StyledSliderUI(Style style, JSlider slider) {
+		super(slider);
 		this.style = style;
 	}
 	
