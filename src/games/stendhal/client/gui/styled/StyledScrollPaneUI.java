@@ -28,8 +28,7 @@ public class StyledScrollPaneUI extends BasicScrollPaneUI {
 	
 	@Override
 	public void installUI(JComponent pane) {
-		JScrollPane scrollPane = (JScrollPane) pane;
-		super.installUI(scrollPane);
-		scrollPane.setBorder(style.getBorderDown());
+		super.installUI(pane);
+		pane.setBorder(style.getBorderDown());
 	}
 }
