@@ -38,7 +38,7 @@ public class ZoneStatistics extends ScriptImpl {
 		for (Map.Entry<Integer, Integer> entry : counter.getMap().entrySet()) {
 			sum = sum + entry.getValue() * entry.getKey();
 		}
-		int area = zone.getWidth() * zone.getHeight();
+		int area = getNonCollisionArea(zone); // zone.getWidth() * zone.getHeight();
 		
 		System.out.print(zone.getName() + "\t");
 		System.out.print((sum * FACTOR / area) + "\t\t");
@@ -49,5 +49,17 @@ public class ZoneStatistics extends ScriptImpl {
 			System.out.print("\t\t" + entry.getValue() + "\t" + entry.getKey());
 		}
 		System.out.println();
+	}
+
+	private int getNonCollisionArea(StendhalRPZone zone) {
+		int res = 1;
+		for (int y = 0; y < zone.getHeight(); y++) {
+			for (int x = 0; x < zone.getWidth(); x++) {
+				if (zone.collides(x, y)) {
+					res++;
+				}
+			}
+		}
+		return res;
 	}
 }
