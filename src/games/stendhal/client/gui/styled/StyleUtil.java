@@ -6,7 +6,7 @@ import javax.swing.UIManager;
 
 import games.stendhal.client.sprite.Sprite;
 
-class StyleUtil {
+public class StyleUtil {
 	/**
 	 * Get the current <code>Style</code>, or <code>null</code> if it
 	 * has not been set in the UIManager.

@@ -16,10 +16,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.StyledButtonUI;
-import games.stendhal.client.gui.styled.StyledPanelUI;
-import games.stendhal.client.gui.styled.StyledSliderUI;
-import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Outfits;
@@ -46,14 +43,11 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.plaf.ButtonUI;
-import javax.swing.plaf.PanelUI;
 
 import marauroa.common.game.RPAction;
 
@@ -709,41 +703,18 @@ public class OutfitDialog extends JDialog {
 	}
 	
 	/**
-	 * Apply stendhal style to all components.
+	 * Apply Stendhal style to all components.
 	 */
 	private void applyStyle() {
-		Style style = WoodStyle.getInstance();
-		PanelUI panelUI = new StyledPanelUI(style);
-		/*
-		 * The window itself. It should always be a JPanel, but checking it
-		 * for safety.
-		 */
-		if (getContentPane() instanceof JPanel) {
-			((JPanel) getContentPane()).setUI(panelUI);
+		Style style = StyleUtil.getStyle();
+		if (style != null) {
+			// Labels (Images). Making all JLabels bordered would be undesired
+			jlblBodies.setBorder(style.getBorderDown());
+			jlblClothes.setBorder(style.getBorderDown());
+			jlblFinalResult.setBorder(style.getBorderDown());
+			jlblHairs.setBorder(style.getBorderDown());
+			jlblHeads.setBorder(style.getBorderDown());
 		}
-		
-		// Buttons
-		ButtonUI buttonUI = new StyledButtonUI(WoodStyle.getInstance());
-		
-		jbtLeftBodies.setUI(buttonUI);
-		jbtLeftClothes.setUI(buttonUI);
-		jbtLeftHairs.setUI(buttonUI);
-		jbtLeftHeads.setUI(buttonUI);
-		jbtOK.setUI(buttonUI);
-		jbtRightBodies.setUI(buttonUI);
-		jbtRightClothes.setUI(buttonUI);
-		jbtRightHairs.setUI(buttonUI);
-		jbtRightHeads.setUI(buttonUI);
-		
-		// Labels (Images)
-		jlblBodies.setBorder(style.getBorderDown());
-		jlblClothes.setBorder(style.getBorderDown());
-		jlblFinalResult.setBorder(style.getBorderDown());
-		jlblHairs.setBorder(style.getBorderDown());
-		jlblHeads.setBorder(style.getBorderDown());
-		
-		// Slider
-		jsliderDirection.setUI(new StyledSliderUI(style));
 	}
 
 	public static void main(final String[] args) throws InterruptedException {
