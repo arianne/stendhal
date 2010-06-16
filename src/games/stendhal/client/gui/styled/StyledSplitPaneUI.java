@@ -1,12 +1,13 @@
 package games.stendhal.client.gui.styled;
 
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.Graphics;
 
-import javax.swing.border.Border;
 import javax.swing.JComponent;
 import javax.swing.JSplitPane;
+import javax.swing.border.Border;
+import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicSplitPaneDivider;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
 
@@ -15,6 +16,12 @@ import javax.swing.plaf.basic.BasicSplitPaneUI;
  */
 public class StyledSplitPaneUI extends BasicSplitPaneUI {
 	private final Style style;
+	
+	// Required by UIManager
+	public static ComponentUI createUI(JComponent pane) {
+		// BasicScrollPaneUI instances can not be shared
+		return new StyledSplitPaneUI(StyleUtil.getStyle());
+	}
 	
 	/**
 	 * Create a new StyledSplitPaneUI.
