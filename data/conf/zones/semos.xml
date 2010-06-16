@@ -919,6 +919,7 @@ Mature sheep wanted: please speak to Sato.
 		<configurator class-name="games.stendhal.server.maps.semos.city.GossipNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.GreeterNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.HealerNPC" />
+		<configurator class-name="games.stendhal.server.maps.semos.city.RetireeNPC" />
 
 		<portal x="42" y="37" ref="tavern_entrance">
 			<destination zone="int_semos_tavern_0" ref="entrance" />
@@ -1062,22 +1063,6 @@ South: Nalwor forest and Or'ril castle
             <attribute name="class">transparent</attribute>
             <attribute name="width">2</attribute>
         </entity> 
-
-		<entity x="24" y="43">
-			<implementation class-name="games.stendhal.server.maps.semos.city.RetireeNPC">
-				<parameter name="name">Diogenes</parameter>
-				<parameter name="node0">22,43</parameter>
-				<parameter name="node1">26,43</parameter>
-				<parameter name="node2">26,45</parameter>
-				<parameter name="node3">31,45</parameter>
-				<parameter name="node4">31,43</parameter>
-				<parameter name="node5">35,43</parameter>
-				<parameter name="node6">35,29</parameter>
-				<parameter name="node7">22,29</parameter>
-			</implementation>
-
-			<attribute name="class">beggarnpc</attribute>
-		</entity>
 
 		<entity x="40" y="45">
 			<implementation class-name="games.stendhal.server.maps.semos.city.SheepBuyerNPC">
