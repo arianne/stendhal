@@ -1,10 +1,10 @@
 package games.stendhal.client.gui.styled;
 
+import games.stendhal.client.sprite.Sprite;
+
 import java.awt.Graphics;
 
 import javax.swing.UIManager;
-
-import games.stendhal.client.sprite.Sprite;
 
 public class StyleUtil {
 	/**
@@ -44,5 +44,21 @@ public class StyleUtil {
 			}
 		}
 		graphics.dispose();
+	}
+	
+	/**
+	 * Paint disabled text using a style's highlight and shadow colors.
+	 *  
+	 * @param style style to be used
+	 * @param g graphics
+	 * @param text painted string
+	 * @param x left x coordinate
+	 * @param y baseline y coordinate
+	 */
+	void paintDisabledText(Style style, Graphics g, String text, int x, int y) {
+		g.setColor(style.getHighLightColor());
+		g.drawString(text, x + 1, y + 1);
+		g.setColor(style.getShadowColor());
+		g.drawString(text, x, y);
 	}
 }

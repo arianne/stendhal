@@ -23,6 +23,7 @@ public class StyledLookAndFeel extends MetalLookAndFeel {
 			// The component UIs
 			"ButtonUI", pkg + "StyledButtonUI",
 			"ComboBoxUI", pkg + "StyledComboBoxUI",
+			"LabelUI", pkg + "StyledLabelUI",
 			"MenuItemUI", pkg + "StyledMenuItemUI",
 			"PanelUI", pkg + "StyledPanelUI",
 			"PasswordFieldUI", pkg + "StyledPasswordFieldUI",
