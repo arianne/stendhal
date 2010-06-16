@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JScrollBar;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
 public class StyledScrollBarUI extends BasicScrollBarUI {
@@ -75,43 +74,5 @@ public class StyledScrollBarUI extends BasicScrollBarUI {
 	public void installUI(JComponent scrollBar) {
 		super.installUI(scrollBar);
 		scrollBar.setForeground(style.getForeground());
-	}
-	
-	/**
-	 * An arrow button drawing according to the style.
-	 * <p>
-	 * BasicArrowButton fails to use ButtonUI even remotely properly.
-	 */
-	private static class StyledArrowButton extends BasicArrowButton {
-		private static final int ARROW_SIZE = 5;
-		
-		public StyledArrowButton(int orientation, Style style) {
-			/*
-			 *  Only the darkShadow color is actually used, but calling the 
-			 *  more complicated constructor is the only way to set the color
-			 *  of the arrow.
-			 */
-			super(orientation, style.getForeground(), style.getForeground(),
-					style.getForeground(), style.getForeground());
-		}
-
-		@Override
-		public void paint(Graphics g) {
-			paintComponent(g);
-		}
-		
-		@Override
-		public void paintComponent(Graphics g) {
-			getUI().paint(g, this);
-			getBorder().paintBorder(this, g, 0, 0, getWidth(), getHeight());
-			
-			/*
-			 * The coordinates are found by trial and error. The method is not 
-			 * properly documented anywhere.
-			 */
-			paintTriangle(g, (getWidth() - ARROW_SIZE) / 2 + 1, 
-					(getHeight() - ARROW_SIZE) / 2 + 1, ARROW_SIZE, 
-					getDirection(), true);
-		}
 	}
 }
