@@ -2,9 +2,6 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.gui.styled.StyledPopupMenuUI;
-import games.stendhal.client.gui.styled.StyledScrollPaneUI;
-import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
@@ -18,8 +15,8 @@ import java.awt.event.MouseEvent;
 import java.io.FileWriter;
 import java.util.Date;
 
+import javax.swing.JComponent;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -34,7 +31,7 @@ import javax.swing.text.StyleContext;
 import org.apache.log4j.Logger;
 
 
-public class KTextEdit extends JPanel {
+public class KTextEdit extends JComponent {
 	protected static final int TEXT_SIZE = 11;
 
 	protected static final Color HEADER_COLOR = Color.gray;
@@ -57,7 +54,6 @@ public class KTextEdit extends JPanel {
 		private void maybeShowPopup(final MouseEvent e) {
 			if (e.isPopupTrigger()) {
 				final JPopupMenu popup = new JPopupMenu("save");
-				popup.setUI(new StyledPopupMenuUI(WoodStyle.getInstance()));
 
 				JMenuItem menuItem = new JMenuItem("save");
 				menuItem.addActionListener(new ActionListener() {
@@ -105,7 +101,6 @@ public class KTextEdit extends JPanel {
 		setLayout(new BorderLayout());
 		
 		scrollPane = new JScrollPane(textPane);
-		scrollPane.setUI(new StyledScrollPaneUI(WoodStyle.getInstance()));
 		scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 			public void adjustmentValueChanged(final AdjustmentEvent ev) {
 				JScrollBar bar = (JScrollBar) ev.getAdjustable();
