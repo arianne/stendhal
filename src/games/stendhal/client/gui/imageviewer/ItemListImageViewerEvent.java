@@ -1,8 +1,6 @@
 package games.stendhal.client.gui.imageviewer;
 
 import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.styled.StyledPanelUI;
-import games.stendhal.client.gui.styled.WoodStyle;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -54,7 +52,6 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		//       the number of entries ourself.
 		if (event.getSlot("content").size() > 6) {
 			JPanel panel = new JPanel();
-			panel.setUI(new StyledPanelUI(WoodStyle.getInstance()));
 			JScrollPane scrollPane = new JScrollPane();
 			panel.add(label);
 			scrollPane.setViewportView(panel);
@@ -63,7 +60,6 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		} else {
 			add(label);
 		}
-		
 		
 		setVisible(true);
 	}

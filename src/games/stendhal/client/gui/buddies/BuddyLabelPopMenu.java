@@ -3,8 +3,6 @@ package games.stendhal.client.gui.buddies;
 
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.StyledPopupMenuUI;
-import games.stendhal.client.gui.styled.WoodStyle;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -14,7 +12,6 @@ class BuddyLabelPopMenu extends JPopupMenu {
 
 	protected BuddyLabelPopMenu(final Style style, final String buddyName, final boolean online) {
 		super(buddyName);
-		setUI(new StyledPopupMenuUI(WoodStyle.getInstance()));
 		if (online) {
 			createOnlineMenu(buddyName);
 		} else {

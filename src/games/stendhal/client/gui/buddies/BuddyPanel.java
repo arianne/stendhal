@@ -1,7 +1,6 @@
 package games.stendhal.client.gui.buddies;
 
 import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.StyledPanelUI;
 
 import java.awt.Component;
 import java.text.Collator;
@@ -16,7 +15,6 @@ class BuddyPanel extends JPanel {
 	private final Map<String, BuddyLabel> labelMap = new ConcurrentHashMap<String, BuddyLabel>();
 	protected BuddyPanel(final Style style) {
 		super();
-		setUI(new StyledPanelUI(style));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setVisible(true);
 	}

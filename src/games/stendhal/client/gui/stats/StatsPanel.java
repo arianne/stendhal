@@ -2,8 +2,6 @@ package games.stendhal.client.gui.stats;
 
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.styled.StyledPanelUI;
-import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.common.Level;
 
 import java.awt.Color;
@@ -30,7 +28,6 @@ public class StatsPanel extends JPanel {
 	
 	public StatsPanel() {
 		super();
-		setUI(new StyledPanelUI(WoodStyle.getInstance()));
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		
 		statusIcons = new StatusIconPanel(); 
