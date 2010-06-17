@@ -63,15 +63,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Mayor Chalmers needs supplies for Ados City.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Mayor Chalmers in Ados Townhall</entry>
-			<entry name="QUEST_REJECTED">I do not want to help Ados.</entry>
-			<entry name="QUEST_ACCEPTED">I want to help Ados.</entry>
-			<entry name="QUEST_ACTIVE">I have been asked to fetch an item to help Ados. I haven't got it yet.</entry>
-			<entry name="QUEST_UNCLAIMED">I have found the item to help Ados and need to take it.</entry>
-			<entry name="DONE_TODAY">I fetched the last item the mayor asked me to find and claimed my reward within the last 24 hours.</entry>
-		    <entry name="DONE_REPEATABLE">I fetched the last item the mayor asked me to find and now Ados needs supplies again.</entry>
-		</history>
 		<hints>
 			<entry name="WHERE_IS_THE_ITEM">If you want to learn which creatures drop an item look it up on http://stendhalgame.org</entry>
 		</hints>

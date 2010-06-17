@@ -306,11 +306,13 @@ public class DailyItemQuest extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("!I have met Mayor Chalmers in Ados Townhall");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
-			res.add("QUEST_REJECTED");
-		}
+			res.add("!I do not want to help Ados.");
+			return res;
+		}		
+		//res.add("!I want to help Ados.");
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 			final String[] tokens = (questState + ";0;0;0").split(";");
 			final String[] elements = tokens[0].split("=");
@@ -320,9 +322,9 @@ public class DailyItemQuest extends AbstractQuest {
 				amount=MathHelper.parseIntDefault(elements[1], 1);
 			}
 			if (!player.isEquipped(questItem, amount)) {
-				res.add("QUEST_ACTIVE");
+				res.add("!I have been asked to fetch an item to help Ados. I haven't got it yet.");
 			} else {
-				res.add("QUEST_UNCLAIMED");
+				res.add("!I have found the item to help Ados and need to take it.");
 			}
 		}
 		if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -332,9 +334,9 @@ public class DailyItemQuest extends AbstractQuest {
 			- System.currentTimeMillis();
 
 			if (timeRemaining > 0L) {
-				res.add("DONE_TODAY");
+				res.add("!I fetched the last item the mayor asked me to find and claimed my reward within the last 24 hours.");
 			} else {
-				res.add("DONE_REPEATABLE");
+				res.add("!I fetched the last item the mayor asked me to find and now Ados needs supplies again.");
 			}
 		}
 		return res;
@@ -344,6 +346,10 @@ public class DailyItemQuest extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Daily Item Quest",
+				"Mayor Chalmers needs supplies for Ados City.",
+				true);
 		
 		buildItemsMap();
 		
