@@ -26,7 +26,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
@@ -55,7 +54,7 @@ public class CharacterDialog extends JDialog {
 	
 	
 	/** Area containing buttons for each character */
-	private final JPanel characterPanel;
+	private final JComponent characterPanel;
 	
 	/**
 	 * Create a new <code>CharacterDialog</code>.
@@ -68,7 +67,7 @@ public class CharacterDialog extends JDialog {
 		this.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		
 		// Create the character area
-		characterPanel = new JPanel();
+		characterPanel = new JComponent() {};
 		characterPanel.setLayout(new BoxLayout(characterPanel, BoxLayout.X_AXIS));
 		JScrollPane scroll = new JScrollPane(characterPanel);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -77,18 +76,17 @@ public class CharacterDialog extends JDialog {
 		addCharacters(characters);
 		
 		// Create area for additional buttons
-		JPanel buttonBar = new JPanel();
+		JComponent buttonBar = new JComponent() {};
 		buttonBar.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
 		add(buttonBar, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
 		// A way to get right alignment (really "end alignment") with
 		// SBoxLayout. Used only here for now, so there's little point of
 		// adding a convenience class to the layout package yet.
-		JComponent spring = new JComponent() {
-		};
+		JComponent spring = new JComponent() {};
 		buttonBar.add(spring, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
-		// Test buttons. Not used for anything for now.
+		// Action buttons. Should these be of uniform size?
 		JButton newCharButton = new JButton("New Character");
 		newCharButton.addActionListener(new CreateCharacterAction(this));
 		buttonBar.add(newCharButton);
@@ -145,6 +143,8 @@ public class CharacterDialog extends JDialog {
 		character.put("y", 0);
 		// ignore ghostmode for showing the image
 		character.remove("ghostmode");
+		// ignore player killer skull
+		character.remove("last_player_kill_time");
 		player.initialize(character);
 		
 		EntityView view = EntityViewFactory.create(player);
