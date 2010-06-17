@@ -14,6 +14,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.townhall.BoyNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
+import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,13 +26,13 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "testzone";
 
-	private static final String INTRODUCE_PLAYERS = "introduce_players";
+	private static final String QUEST_SLOT = "introduce_players";
 	private static final String SSSHH_COME_HERE = "Ssshh! Come here, player! I have a #task for you.";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-
+		new DatabaseFactory().initializeDatabase();
 		generatePlayerRPClasses();
 		ItemTestHelper.generateRPClasses();
 
@@ -58,7 +59,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
-		assertEquals(MedicineForTadTest.SSSHH_COME_HERE, getReply(npc));
+		assertEquals(SSSHH_COME_HERE, getReply(npc));
 		en.step(player, "task");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -92,7 +93,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Oh, please won't you change your mind? *sneeze*", getReply(npc));
 		en.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(npc.isTalking());
-		assertFalse(player.hasQuest(MedicineForTadTest.INTRODUCE_PLAYERS));
+		assertFalse(player.hasQuest(QUEST_SLOT));
 		assertEquals("Bye.", getReply(npc));
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
@@ -109,14 +110,14 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		final Engine engineTad = tad.getEngine();
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(tad.isTalking());
-		assertEquals("Ssshh! Come here, player! I have a #task for you.", getReply(tad));
+		assertEquals(SSSHH_COME_HERE, getReply(tad));
 		engineTad.step(player, "task");
 		assertTrue(tad.isTalking());
 		assertEquals(
 				"I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?",
 				getReply(tad));
 		engineTad.step(player, "yes");
-		assertTrue(player.hasQuest(MedicineForTadTest.INTRODUCE_PLAYERS));
+		assertTrue(player.hasQuest(QUEST_SLOT));
 		engineTad.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(tad.isTalking());
 		assertEquals("Bye.", getReply(tad));
@@ -131,8 +132,8 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(
 				"Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #ilisa... she'll know what to do next.",
 				getReply(tad));
-		assertTrue(player.hasQuest(MedicineForTadTest.INTRODUCE_PLAYERS));
-		assertEquals("ilisa", player.getQuest(MedicineForTadTest.INTRODUCE_PLAYERS));
+		assertTrue(player.hasQuest(QUEST_SLOT));
+		assertEquals("ilisa", player.getQuest(QUEST_SLOT));
 		engineTad.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 
 		final SpeakerNPC ilisa = getNPC("Ilisa");
@@ -142,7 +143,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?",
 				getReply(ilisa));
 		engineIlisa.step(player, "yes");
-		assertEquals("corpse&herbs", player.getQuest(MedicineForTadTest.INTRODUCE_PLAYERS));
+		assertEquals("corpse&herbs", player.getQuest(QUEST_SLOT));
 		engineIlisa.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
