@@ -80,18 +80,18 @@ public class Campfire extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("!I have met Sally");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
-			res.add("QUEST_REJECTED");
+			res.add("!I do not want to help Sally");
 			return res;
 		}
-		res.add("QUEST_ACCEPTED");
+		res.add("!I do want to help Sally");
 		if ((player.isEquipped("wood", REQUIRED_WOOD)) || isCompleted(player)) {
-			res.add("FOUND_ITEM");
+			res.add("!I have found the 10 wood needed to start the fire");
 		}
 		if (isCompleted(player)) {
-			res.add("DONE");
+			res.add("!I have given Sally the wood. She gave me some food in return. I also gained 50 xp");
 		}
 		return res;
 	}
@@ -251,7 +251,10 @@ public class Campfire extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Campfire", 
+				"Sally wants to build a campfire, but she doesn't have any wood.", 
+				false);
 		prepareRequestingStep();
 		prepareBringingStep();
 	}

@@ -38,13 +38,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Sally wants to build a campfire, but she doesn't have any wood.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Sally</entry>
-			<entry name="QUEST_REJECTED">I do not want to help Sally</entry>
-			<entry name="QUEST_ACCEPTED">I do want to help Sally</entry>
-			<entry name="FOUND_ITEM">I have found the 10 wood needed to start the fire</entry>
-			<entry name="DONE">I have given Sally the wood. She gave me some food in return. I also gained 50 xp</entry>
-		</history>
 	</quest>
 	
 	
