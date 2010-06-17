@@ -10,20 +10,20 @@ import java.util.Map;
  */
 public class QuestInfo {
 
-	private String name;
+	private String name = "";
 
-	private String title;
+	private String title = "";
 
 	private boolean[] repeatable = new boolean[3];
 
-	private String description;
+	private String description = "";
 
-	private String descriptionGM;
+	private String descriptionGM = "";
 
 	private Map<String, String> history = new HashMap<String, String>();
 
 	private Map<String, String> hints = new HashMap<String, String>();
-
+	
 	public String getDescription() {
 		return description;
 	}
