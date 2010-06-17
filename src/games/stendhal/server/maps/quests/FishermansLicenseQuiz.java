@@ -76,9 +76,9 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I met Santiago in a hut in Ados city. If I pass his quiz I get a fishing license.");
 		if (player.isQuestCompleted(QUEST_SLOT)) {
-			res.add("DONE");
+			res.add("I got all the names of the fish right and now I'm a better fisherman!");
 		}
 		return res;
 	}
@@ -218,6 +218,10 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Fishermans License Quiz",
+				"Santiago the fisherman wants to test my knowledge of fish species.",
+				false);
 		createQuizStep();
 	}
 	@Override

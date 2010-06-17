@@ -85,10 +85,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Santiago the fisherman wants to test my knowledge of fish species.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I met Santiago in a hut in Ados city. If I pass his quiz I get a fishing license.</entry>
-			<entry name="DONE">I got all the names of the fish right and now I'm a better fisherman!</entry>
-		</history>
 		<hints>
 			<entry name="WHERE_IS_QUOTE">Libraries have books you can read, and books are a likely place to find famous quotes..</entry>
 		</hints>
