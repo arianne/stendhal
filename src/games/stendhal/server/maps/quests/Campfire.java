@@ -80,18 +80,18 @@ public class Campfire extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("!I have met Sally");
+		res.add("I have met Sally");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
-			res.add("!I do not want to help Sally");
+			res.add("I do not want to help Sally");
 			return res;
 		}
-		res.add("!I do want to help Sally");
+		res.add("I do want to help Sally");
 		if ((player.isEquipped("wood", REQUIRED_WOOD)) || isCompleted(player)) {
-			res.add("!I have found the 10 wood needed to start the fire");
+			res.add("I have found the 10 wood needed to start the fire");
 		}
 		if (isCompleted(player)) {
-			res.add("!I have given Sally the wood. She gave me some food in return. I also gained 50 xp");
+			res.add("I have given Sally the wood. She gave me some food in return. I also gained 50 xp");
 		}
 		return res;
 	}

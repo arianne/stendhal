@@ -62,20 +62,20 @@ public class BeerForHayunn extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("!I have talked to Hayunn.");
+		res.add("I have talked to Hayunn.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
-			res.add("!I do not want to make Hayunn drunk.");
+			res.add("I do not want to make Hayunn drunk.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("!I will give Hayunn one drink.");
+			res.add("I will give Hayunn one drink.");
 		}
 		if (("start".equals(questState) && player.isEquipped("beer"))
 				|| "done".equals(questState)) {
-			res.add("!I have a beer.");
+			res.add("I have a beer.");
 		}
 		if ("done".equals(questState)) {
-			res.add("!I gave the beer to Hayunn. He paid me 20 gold coins and 10 xp.");
+			res.add("I gave the beer to Hayunn. He paid me 20 gold coins and 10 xp.");
 		}
 		return res;
 	}
