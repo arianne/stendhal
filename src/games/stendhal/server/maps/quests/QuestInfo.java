@@ -12,9 +12,7 @@ public class QuestInfo {
 
 	private String name = "";
 
-	private String title = "";
-
-	private boolean[] repeatable = new boolean[3];
+	private boolean repeatable = false;
 
 	private String description = "";
 
@@ -64,19 +62,12 @@ public class QuestInfo {
 		this.name = name;
 	}
 
-	public boolean[] getRepeatable() {
+	public boolean getRepeatable() {
 		return repeatable;
 	}
 
-	public void setRepeatable(final boolean[] repeatable) {
+	public void setRepeatable(final boolean repeatable) {
 		this.repeatable = repeatable;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(final String title) {
-		this.title = title;
-	}
 }

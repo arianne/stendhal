@@ -23,8 +23,16 @@ abstract class AbstractQuest implements IQuest {
 		return questInfo;
 	}	
 	
-	public String getTitle() {
-		return questInfo.getTitle();
+	/**
+	 * fill fields of questInfo object with info about this quest 
+	 * @param name - name of the quest
+	 * @param description - short description of this quest
+	 * @param repeatable - is quest repeatable or not
+	 */
+	public void fillQuestInfo(final String name, final String description, boolean repeatable) {
+		questInfo.setName(name);
+		questInfo.setDescription(description);
+		questInfo.setRepeatable(repeatable);
 	}
 
 	/** NPCList. */
