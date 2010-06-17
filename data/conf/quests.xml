@@ -55,13 +55,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Eonna has a underground storage space filled with rats and snakes. She wants me, a true hero, to clean it out.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Eonna at her house</entry>
-			<entry name="QUEST_REJECTED">I do not want to clear her storage space of creatures.</entry>
-			<entry name="QUEST_ACCEPTED">I do want to help Eonna kill the rats and snakes.</entry>
-			<entry name="CLEANED_SPACE">I have cleaned out Eonna's storage space.</entry>
-			<entry name="DONE">Eonna thanked me and called me her hero.</entry>
-		</history>
 	</quest>
 	
 	<quest name="DailyItemQuest">
