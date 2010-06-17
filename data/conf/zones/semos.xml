@@ -921,6 +921,7 @@ Mature sheep wanted: please speak to Sato.
 		<configurator class-name="games.stendhal.server.maps.semos.city.HealerNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.RetireeNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.SheepBuyerNPC" />
+		<configurator class-name="games.stendhal.server.maps.semos.city.SignLessorNPC" />
 
 		<portal x="42" y="37" ref="tavern_entrance">
 			<destination zone="int_semos_tavern_0" ref="entrance" />
@@ -1064,18 +1065,6 @@ South: Nalwor forest and Or'ril castle
             <attribute name="class">transparent</attribute>
             <attribute name="width">2</attribute>
         </entity> 
-
-		<entity x="20" y="50">
-			<implementation class-name="games.stendhal.server.maps.semos.city.SignLessorNPC">
-				<parameter name="name">Gordon</parameter>
-				<parameter name="node0">20,50</parameter>
-				<parameter name="node1">38,50</parameter>
-				<parameter name="node2">38,51</parameter>
-				<parameter name="node3">20,51</parameter>
-			</implementation>
-
-			<attribute name="class">signguynpc</attribute>
-		</entity>
 
 		<!-- wishing well outside Bank-->
 		<entity x="15" y="29">
