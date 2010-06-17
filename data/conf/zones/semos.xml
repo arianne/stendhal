@@ -804,9 +804,9 @@ The sharper minded amongst you might prefer to double-click directly on the crea
 	<zone name="0_semos_village_w" level="0" x="500000" y="500000"
 		file="Level 0/semos/village_w.tmx">
 		<configurator
-			class-name="games.stendhal.server.maps.semos.village.DecencyAndMannersWardenNPC" />
-		<configurator
 			class-name="games.stendhal.server.maps.semos.village.SheepSellerNPC" />
+
+		<configurator class-name="games.stendhal.server.maps.semos.village.BoyNPC" />
 
 		<portal x="16" y="34" ref="guard_house_entrance">
 			<destination zone="int_semos_guard_house" ref="entrance" />
@@ -1922,8 +1922,8 @@ Holy mackerel! These chips are tasty.
 	</zone>
 
 	<zone name="int_semos_townhall" file="interiors/semos/townhall.tmx">
-		<configurator class-name="games.stendhal.server.maps.semos.townhall.BoyNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.townhall.MayorNPC" />
+		<configurator class-name="games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC" />
 
 		<portal x="14" y="46" ref="entrance_left">
 			<destination zone="0_semos_city" ref="townhall_entrance_left" />

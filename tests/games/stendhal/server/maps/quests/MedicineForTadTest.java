@@ -12,7 +12,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.semos.townhall.BoyNPC;
+import games.stendhal.server.maps.semos.village.BoyNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
 
