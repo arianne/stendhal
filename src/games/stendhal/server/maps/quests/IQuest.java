@@ -93,5 +93,12 @@ public interface IQuest {
 	 * @return slot name
 	 */
 	String getSlotName();
+	
+	/**
+	 * Returns title of the quest.
+	 *
+	 * @return title
+	 */
+	String getTitle();
 
 }
