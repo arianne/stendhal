@@ -107,7 +107,6 @@ public class PixmapBorder implements Border {
 			int width, int height) {
 		Rectangle oldClip = graphics.getClipBounds();
 		Graphics g = graphics.create();
-		g.setColor(Color.CYAN);
 		
 		int borderWidth = getBorderWidth(component);
 		
@@ -123,11 +122,11 @@ public class PixmapBorder implements Border {
 		g.clipRect(oldClip.x, oldClip.y, oldClip.width, oldClip.height);
 		
 		// top border
-		for (int i = x; i < width; i += imageWidth) {
+		for (int i = x; i < x + width; i += imageWidth) {
 			g.drawImage(topLeftImage, i, y, null);
 		}
 		// left border
-		for (int i = y; i < height; i += imageHeight) {
+		for (int i = y; i < y + height; i += imageHeight) {
 			g.drawImage(topLeftImage, x, i, null);
 		}
 		
@@ -144,15 +143,23 @@ public class PixmapBorder implements Border {
 		g.setClip(p);
 		g.clipRect(oldClip.x, oldClip.y, oldClip.width, oldClip.height);
 		
-		// bottom border
-		int tmpY = y + height - height % imageHeight;
-		for (int i = x; i < width; i += imageWidth) {
-			g.drawImage(bottomRightImage, i, tmpY, null);
+		// Bottom border. More than one y coordinate may be needed in case the
+		// tile border coincides to be inside the bottom border.
+		int startY = y + height - borderWidth - (height - borderWidth) % imageHeight;
+		int endY = y + height - height % imageHeight;
+		for (int borderY = startY; borderY <= endY; borderY += imageHeight) {
+			for (int i = x; i < x + width; i += imageWidth) {
+				g.drawImage(bottomRightImage, i, borderY, null);
+			}
 		}
-		int tmpX = x + width - width % imageWidth;
-		// right border
-		for (int i = y; i < height; i += imageHeight) {
-			g.drawImage(bottomRightImage, tmpX, i, null);
+		// Right border. More than one x coordinate may be needed in case the
+		// tile border coincides to be inside the right border.
+		int startX = x + width - borderWidth - (width - borderWidth) % imageWidth;
+		int endX = x + width - width % imageWidth;
+		for (int borderX = startX; borderX <= endX; borderX += imageWidth) {
+			for (int i = y; i < y + height; i += imageHeight) {
+				g.drawImage(bottomRightImage, borderX, i, null);
+			}
 		}
 		
 		g.dispose();
