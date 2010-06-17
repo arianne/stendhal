@@ -472,6 +472,10 @@ import org.apache.log4j.Logger;
 	public void addToWorld() {
 		npc = npcs.get(QUEST_NPC);
 		super.addToWorld();
+		fillQuestInfo(
+				"Kill Enemy Army",
+				"Despot Halb Errvl asked me to kill several of his enemies.",
+				true);
 		step_1();
 	}
 
@@ -501,27 +505,27 @@ import org.apache.log4j.Logger;
 	        final int givenNumber = enemyForces.get(givenEnemies).first(); 
 	        final int killedNumber = getKilledCreaturesNumber(player);
 	        
-			history.add("!Despot Halb Errvl asked me to kill "+
+			history.add("Despot Halb Errvl asked me to kill "+
 					givenNumber+" "+
 					Grammar.plnoun(givenNumber, givenEnemies));
 			String kn= new Integer(killedNumber).toString();
 			if(kn.equals("0")) {
 				kn="no";
 			};
-			history.add("!Currently I have killed "+
+			history.add("Currently I have killed "+
 					kn+" "+
 					Grammar.plnoun(killedNumber, givenEnemies));
 			if(new KilledInSumForQuestCondition(QUEST_SLOT, 2, givenNumber).fire(player, null, null)) {
-				history.add("!I have killed enough creatures to get my reward now.");
+				history.add("I have killed enough creatures to get my reward now.");
 			} else {
-				history.add("!"+(givenNumber-killedNumber)+" "+
+				history.add((givenNumber-killedNumber)+" "+
 						Grammar.plnoun(givenNumber-killedNumber, givenEnemies)+" left to kill.");				
 			};
 
 		}
 		
 		if(player.getQuest(QUEST_SLOT, 0).equals("done")) {
-			history.add("!I completed Despot's Halb Errvl task and got my reward!");
+			history.add("I completed Despot's Halb Errvl task and got my reward!");
 		}		
 		return history; 
  	}

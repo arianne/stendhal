@@ -223,7 +223,10 @@ public class KillDarkElves extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Kill Dark Elves",
+				"Maerion, leader of Elves, wants to kill dark elves in the secret room and get back his amulet.",
+				false);
 		step_1();
 		step_2();
 		step_3();
@@ -257,16 +260,16 @@ public class KillDarkElves extends AbstractQuest {
 		final String questState = player.getQuest(QUEST_SLOT, 0);
 
 		if ("rejected".equals(questState)) {
-			history.add("!I do not want to help Maerion.");
+			history.add("I do not want to help Maerion.");
 			return history;
 		};
 		if ("done".equals(questState)) {
-			history.add("!I completed Maerion's quest and got an  emerald ring of life!");
+			history.add("I completed Maerion's quest and got an  emerald ring of life!");
 			return history;
 		};	
 
 		// we can be here only if player accepted this quest.
-		history.add("!I agreed to help Maerion.");
+		history.add("I agreed to help Maerion.");
 		
 		boolean ak=true;	
 		
@@ -277,19 +280,19 @@ public class KillDarkElves extends AbstractQuest {
 				final boolean sp = creatures.get(i).equals(player.getQuest(QUEST_SLOT, i+1));
 				ak = ak & sp;
 				if(!sp) {
-					history.add("!I have not yet killed the "+creatures.get(i)+" in the secret room.");
+					history.add("I have not yet killed the "+creatures.get(i)+" in the secret room.");
 				};
 			}		
 			for(int i = 0; i<creatures.size();i++) {
 				final boolean sp = creatures.get(i).equals(player.getQuest(QUEST_SLOT, i+1));
 				if(sp) {
-					history.add("!I have killed the "+creatures.get(i)+" in the secret room.");
+					history.add("I have killed the "+creatures.get(i)+" in the secret room.");
 				};		
 			}
 
 		// all killed
 		if (ak) {
-			history.add("!I have killed all required creatures.");
+			history.add("I have killed all required creatures.");
 		};
 		
 		}
@@ -302,29 +305,29 @@ public class KillDarkElves extends AbstractQuest {
 			final boolean osp3 = player.hasKilled("thing");
 			// first add killed creatures
 			if (osp1) {
-				history.add("!I have killed the dark elf captain in the secret room.");				
+				history.add("I have killed the dark elf captain in the secret room.");				
 			};			
 			if (osp2) {
-				history.add("!I have killed the dark elf archer in the secret room.");				
+				history.add("I have killed the dark elf archer in the secret room.");				
 			};			
 			if (osp3) {
-				history.add("!I have killed the thing.");				
+				history.add("I have killed the thing.");				
 			};
 			
 			// now add non-killed
 			if (!osp1) {
-				history.add("!I have not yet killed the dark elf captain in the secret room.");				
+				history.add("I have not yet killed the dark elf captain in the secret room.");				
 			};			
 			if (!osp2) {
-				history.add("!I have not yet killed the dark elf archer in the secret room.");				
+				history.add("I have not yet killed the dark elf archer in the secret room.");				
 			};			
 			if (!osp3) {
-				history.add("!I have not yet killed the thing.");				
+				history.add("I have not yet killed the thing.");				
 			};
 			
 			// all killed
 			if (osp1 && osp2 && osp3) {
-				history.add("!I have killed all required creatures.");
+				history.add("I have killed all required creatures.");
 				ak=true;
 			};		
 		}
@@ -332,13 +335,13 @@ public class KillDarkElves extends AbstractQuest {
 		// for both old- and new-style quests
 		final boolean am=player.isEquipped("amulet");
 		if (am) {
-			history.add("!I have the amulet with me.");
+			history.add("I have the amulet with me.");
 		} else {
-			history.add("!I have no amulet with me.");
+			history.add("I have no amulet with me.");
 		}
 		
 		if (am & ak) {
-			history.add("!It's time to go back to Maerion for a reward.");
+			history.add("It's time to go back to Maerion for a reward.");
 		}
 		
 		return history;		

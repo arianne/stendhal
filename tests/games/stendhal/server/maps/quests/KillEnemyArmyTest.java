@@ -88,11 +88,11 @@ public class KillEnemyArmyTest {
 		final String monstersType=player.getQuest(QUEST_SLOT, 1);
 		final int killsnumb=quest.enemyForces.get(monstersType).first();
 		final String expectingAnswer = quest.enemyForces.get(monstersType).second();
-		questHistory.add("!Despot Halb Errvl asked me to kill "+
+		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("!Currently I have killed no "+ Grammar.plnoun(0, monstersType));
-        questHistory.add("!"+killsnumb+" "+
+        questHistory.add("Currently I have killed no "+ Grammar.plnoun(0, monstersType));
+        questHistory.add(killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType)+" left to kill.");
 		assertEquals(questHistory, quest.getHistory(player));
 		assertEquals("I need help to defeat #enemy "+monstersType+
@@ -125,14 +125,13 @@ public class KillEnemyArmyTest {
 		final String monstersType=player.getQuest(QUEST_SLOT, 1);
 		final int killsnumb=quest.enemyForces.get(monstersType).first();
 		//final String expectingAnswer = quest.enemyForces.get(monstersType).second();
-		questHistory.add("!Despot Halb Errvl asked me to kill "+
+		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("!Currently I have killed no "+ Grammar.plnoun(0, monstersType));
-        questHistory.add("!"+killsnumb+" "+
+        questHistory.add("Currently I have killed no "+ Grammar.plnoun(0, monstersType));
+        questHistory.add(killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType)+" left to kill.");
 		assertEquals(questHistory, quest.getHistory(player));		
-		assertEquals(questHistory, quest.getHistory(player));
 		assertEquals("I need help to defeat #enemy "+monstersType+
 				" armies. They are a grave concern. Kill at least "+killsnumb+
 				" of any "+monstersType+
@@ -149,13 +148,13 @@ public class KillEnemyArmyTest {
 		assertEquals("You killed only "+killed+" "+Grammar.plnoun(killed, player.getQuest(QUEST_SLOT, 1))+
 		". You have to kill at least "+killsnumb+" "+Grammar.plnoun(killed, player.getQuest(QUEST_SLOT, 1)), getReply(npc));
 		questHistory.clear();
-		questHistory.add("!Despot Halb Errvl asked me to kill "+
+		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("!Currently I have killed "+
+        questHistory.add("Currently I have killed "+
 				killed+" "+
 				Grammar.plnoun(killed, monstersType));
-        questHistory.add("!"+(killsnumb-killed)+" "+
+        questHistory.add((killsnumb-killed)+" "+
 				Grammar.plnoun(killsnumb-killed, monstersType)+" left to kill.");
 		assertEquals(questHistory, quest.getHistory(player)); 
 		en.step(player, "bye");
@@ -164,13 +163,13 @@ public class KillEnemyArmyTest {
 		// kill creatures to have full number of killed ones.
 		KillRandomMonsters(player, killsnumb-killed);
 		questHistory.clear();
-		questHistory.add("!Despot Halb Errvl asked me to kill "+
+		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("!Currently I have killed "+
+        questHistory.add("Currently I have killed "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("!I have killed enough creatures to get my reward now.");
+        questHistory.add("I have killed enough creatures to get my reward now.");
 		assertEquals(questHistory, quest.getHistory(player));
 		
 		en.step(player, "hi");
@@ -184,7 +183,7 @@ public class KillEnemyArmyTest {
         assertEquals(tempmoneys, player.getEquippedItemClass("bag", "money").getQuantity()-50000);
         assertEquals(tempkarma, player.getKarma()-5, 0.000001);
         questHistory.clear();
-        questHistory.add("!I completed Despot's Halb Errvl task and got my reward!");
+        questHistory.add("I completed Despot's Halb Errvl task and got my reward!");
 		assertEquals(questHistory, quest.getHistory(player));
 		
         en.step(player, "bye");
@@ -209,13 +208,12 @@ public class KillEnemyArmyTest {
 				" armies. They are a grave concern. Kill at least "+killsnumb+
 				" of any "+monstersType+
 				" soldiers and I will reward you.", getReply(npc));
-		questHistory.add("!Despot Halb Errvl asked me to kill "+
+		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("!Currently I have killed no " + Grammar.plnoun(0, monstersType));
-        questHistory.add("!"+killsnumb+" "+
+        questHistory.add("Currently I have killed no " + Grammar.plnoun(0, monstersType));
+        questHistory.add(killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType)+" left to kill.");
-		assertEquals(questHistory, quest.getHistory(player));
 		assertEquals(questHistory, quest.getHistory(player));
 		
 		en.step(player, "bye");
@@ -227,13 +225,13 @@ public class KillEnemyArmyTest {
 		double tempkarma = player.getKarma();
 		KillRandomMonsters(player, killed);
 		questHistory.clear();
-		questHistory.add("!Despot Halb Errvl asked me to kill "+
+		questHistory.add("Despot Halb Errvl asked me to kill "+
 				killsnumb+" "+
 				Grammar.plnoun(killsnumb, monstersType));
-        questHistory.add("!Currently I have killed "+
+        questHistory.add("Currently I have killed "+
 				killed+" "+
 				Grammar.plnoun(killed, monstersType));		
-        questHistory.add("!I have killed enough creatures to get my reward now.");
+        questHistory.add("I have killed enough creatures to get my reward now.");
 		assertEquals(questHistory, quest.getHistory(player));
 		
 		en.step(player, "hi");
@@ -245,7 +243,7 @@ public class KillEnemyArmyTest {
 				"! Take these coins, and remember, I may wish you to do this job again in one week!", getReply(npc));
 		assertEquals(tempkarma, player.getKarma()-15.0, 0.000001);
 		questHistory.clear();
-        questHistory.add("!I completed Despot's Halb Errvl task and got my reward!");
+        questHistory.add("I completed Despot's Halb Errvl task and got my reward!");
 		assertEquals(questHistory, quest.getHistory(player));
 
 		en.step(player, "bye");
