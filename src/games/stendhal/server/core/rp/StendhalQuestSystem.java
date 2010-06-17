@@ -1,6 +1,6 @@
 package games.stendhal.server.core.rp;
 
-import games.stendhal.server.core.config.QuestsXMLLoader;
+
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AdosDeathmatch;
@@ -96,7 +96,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.xml.sax.SAXException;
+
 
 /**
  * Loads and manages all quests.
@@ -111,7 +111,6 @@ public class StendhalQuestSystem {
 
 	private final List<IQuest> quests = new LinkedList<IQuest>();
 
-	private QuestsXMLLoader questInfos;
 
 	private StendhalQuestSystem() {
 		// hide constructor, this is a Singleton
@@ -127,13 +126,7 @@ public class StendhalQuestSystem {
 	 * Initializes the QuestSystem.
 	 */
 	public void init() {
-		
-		questInfos = new QuestsXMLLoader();
-		try {
-			questInfos.load();
-		} catch (SAXException e) {
-			logger.error(e, e);
-		}
+
 		loadQuest(new AdosDeathmatch());
 		loadQuest(new AmazonPrincess());
 		loadQuest(new ArmorForDagobert());
@@ -263,7 +256,7 @@ public class StendhalQuestSystem {
 	 * @param player - player which quest history need to be shown to himself
 	 */
 	private void dumpQuest(final StringBuilder sb, final IQuest quest, final Player player) {
-		final QuestInfo questInfo = questInfos.get(quest.getName());
+		final QuestInfo questInfo = quest.getQuestInfo(player);
 		sb.append("\t" + questInfo.getTitle() + "\r\n");
 		final List<String> history = quest.getHistory(player);
 		String text;
