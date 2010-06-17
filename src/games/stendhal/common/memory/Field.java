@@ -114,7 +114,7 @@ public class Field
 
 		if(field.length < newSize)
 		{
-			Class componentType = field.getClass().getComponentType();
+			Class<?> componentType = field.getClass().getComponentType();
 
 			@SuppressWarnings("unchecked")
 			T[] newArray = (T[])Array.newInstance(componentType, newSize);

@@ -43,8 +43,8 @@ public class VampireSwordTest {
 			
 			Item item = SingletonRepository.getEntityManager().getItem(name);
 			if (needed != 1) {
-				assertTrue(item instanceof Stackable);
-				((Stackable) item).setQuantity(needed);
+				assertTrue(item instanceof Stackable<?>);
+				((Stackable<?>) item).setQuantity(needed);
 			}
 			
 			player.equipToInventoryOnly(item);

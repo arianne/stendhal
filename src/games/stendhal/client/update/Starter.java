@@ -49,7 +49,7 @@ public class Starter {
 			// a class-load-time dependency.
 
 			// get class and create an object of it
-			final Class clazz = Class.forName("games.stendhal.client.update.Bootstrap");
+			final Class<?> clazz = Class.forName("games.stendhal.client.update.Bootstrap");
 			final Object object = clazz.newInstance();
 
 			// get param values of boot method
@@ -58,7 +58,7 @@ public class Starter {
 			params[1] = args;
 
 			// get types of params
-			final Class[] paramTypes = new Class[2];
+			final Class<?>[] paramTypes = new Class[2];
 			for (int i = 0; i < params.length; i++) {
 				paramTypes[i] = params[i].getClass();
 			}
