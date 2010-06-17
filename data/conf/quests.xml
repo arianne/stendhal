@@ -30,16 +30,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Tad, a boy in Semos Townhall, needs help to get his medicine.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Tad in Semos Townhall</entry>
-			<entry name="GET_FLASK">He asked me to buy a flask from Margaret in Semos Tavern.</entry>
-			<entry name="GOT_FLASK">I got a flask and will bring it to Tad soon.</entry>
-			<entry name="FLASK_TO_ILISA">Tad asked me to take the flask to ilisa at Semos Temple.</entry>
-			<entry name="GET_HERB">Ilisa asked me to get a herb called Arandula which I can find north of Semos, near the tree grove.</entry>
-			<entry name="GOT_HERB">I found some Arandula herbs and will bring them to ilisa.</entry>
-			<entry name="TALK_TO_TAD">Ilisa created a powerful potion to help Tad. She asked me to tell him that it is ready.</entry>
-			<entry name="DONE">Tad thanked me.</entry>
-		</history>
 	</quest>
 
 	<quest name="Campfire">

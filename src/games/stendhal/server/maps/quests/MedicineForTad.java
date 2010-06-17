@@ -60,7 +60,7 @@ public class MedicineForTad extends AbstractQuest {
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest("TadFirstChat")) {
-			res.add("FIRST_CHAT");
+			res.add("!I have met Tad in Semos Townhall");
 		}
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
@@ -68,29 +68,29 @@ public class MedicineForTad extends AbstractQuest {
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (player.isQuestInState(QUEST_SLOT, "start", "ilisa", "corpse&herbs",
 				"potion", "done")) {
-			res.add("GET_FLASK");
+			res.add("!He asked me to buy a flask from Margaret in Semos Tavern.");
 		}
 		if ((questState.equals("start") && player.isEquipped("flask"))
 				|| player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs",
 						"potion", "done")) {
-			res.add("GOT_FLASK");
+			res.add("!I got a flask and will bring it to Tad soon.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs",
 				"potion", "done")) {
-			res.add("FLASK_TO_ILISA");
+			res.add("!Tad asked me to take the flask to Ilisa at Semos Temple.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "corpse&herbs", "potion", "done")) {
-			res.add("GET_HERB");
+			res.add("!Ilisa asked me to get a herb called Arandula which I can find north of Semos, near the tree grove.");
 		}
 		if ((questState.equals("corpse&herbs") && player.isEquipped("arandula"))
 				|| player.isQuestInState(QUEST_SLOT, "potion", "done")) {
-			res.add("GET_HERB");
+			res.add("!I found some Arandula herbs and will bring them to ilisa.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "potion", "done")) {
-			res.add("TALK_TO_TAD");
+			res.add("!Ilisa created a powerful potion to help Tad. She asked me to tell him that it is ready.");
 		}
 		if (questState.equals("done")) {
-			res.add("DONE");
+			res.add("!Tad thanked me.");
 		}
 		return res;
 	}
@@ -294,7 +294,10 @@ public class MedicineForTad extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Helping Tad",
+				"Tad, a boy in Semos Townhall, needs help to get his medicine.",
+				false);
 		step_1();
 		step_2();
 		step_3();
