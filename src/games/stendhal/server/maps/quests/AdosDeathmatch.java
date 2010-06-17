@@ -285,7 +285,10 @@ public class AdosDeathmatch extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Ados Deathmatch",
+				"Thanatos searching for heroes to fight in Deathmatch arena.",
+				true);
 		recruiterInformation();
 	}
 	@Override
