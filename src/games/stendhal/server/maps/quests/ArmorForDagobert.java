@@ -64,19 +64,19 @@ public class ArmorForDagobert extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("!I have met Dagobert. He is the consultant at the bank in Semos.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
-			res.add("QUEST_REJECTED");
+			res.add("!He asked me to find a leather cuirass but I rejected his request.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("QUEST_ACCEPTED");
+			res.add("!I promised to find a leather cuirass for him because he has been robbed.");
 		}
 		if (("start".equals(questState) && player.isEquipped("leather cuirass")) || "done".equals(questState)) {
-			res.add("FOUND_ITEM");
+			res.add("!I found a leather cuirass and will take it to Dagobert.");
 		}
 		if ("done".equals(questState)) {
-			res.add("DONE");
+			res.add("!I took the leather cuirass to Dagobert. He thanked me and gave a small reward.");
 		}
 		return res;
 	}
@@ -171,7 +171,10 @@ public class ArmorForDagobert extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Armor For Dagobert",
+				"Dagobert, the consultant at the bank of Semos, asked me to find a leather cuirass for him.",
+				false);
 		prepareRequestingStep();
 		prepareBringingStep();
 	}
