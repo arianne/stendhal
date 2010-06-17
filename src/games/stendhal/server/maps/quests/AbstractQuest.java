@@ -17,13 +17,16 @@ abstract class AbstractQuest implements IQuest {
 	
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
 	
-	private QuestInfo questInfo;
+	protected QuestInfo questInfo = new QuestInfo();
 	
 	public QuestInfo getQuestInfo(Player player) {
 		return questInfo;
 	}	
 	
-	
+	public String getTitle() {
+		return questInfo.getTitle();
+	}
+
 	/** NPCList. */
 	protected NPCList npcs = SingletonRepository.getNPCList();
 
