@@ -1653,7 +1653,7 @@ Holy mackerel! These chips are tasty.
 	<zone name="int_semos_bank" file="interiors/semos/bank.tmx">
          <!-- to disallow making or using marked scrolls for getting to trading table area-->
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-
+		<configurator class-name="games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC" />
 
 		<portal x="9" y="30" ref="entrance">
 			<destination zone="0_semos_city" ref="bank_entrance" />
@@ -1673,17 +1673,6 @@ Holy mackerel! These chips are tasty.
 				<parameter name="sound">the_old_tavern</parameter>
 				<parameter name="volume">80</parameter>
 			</implementation>
-		</entity>
-
-		<entity x="9" y="23">
-			<implementation
-				class-name="games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC">
-				<parameter name="name">Dagobert</parameter>
-				<parameter name="direction">down</parameter>
-			</implementation>
-
-			<attribute name="class">youngnpc</attribute>
-			<attribute name="hp">95</attribute>
 		</entity>
 
 		<entity x="2" y="2">
