@@ -43,7 +43,9 @@ public class StyledButtonUI extends BasicButtonUI {
 		paintBackground(graphics, button);
 		// Restore normal look after pressing ends, if needed
 		if (!btn.getModel().isPressed()) {
-			if (!button.getBorder().equals(style.getBorder())) {
+			// Try to avoid switching borders if the buttom has none or custom 
+			// borders
+			if (button.getBorder().equals(style.getBorderDown())) {
 				button.setBorder(style.getBorder());
 			}
 		}
@@ -56,7 +58,11 @@ public class StyledButtonUI extends BasicButtonUI {
 	
 	@Override
 	protected void paintButtonPressed(Graphics graphics, AbstractButton button) {
-		button.setBorder(style.getBorderDown());
+		// Try to avoid switching borders if the button has none, or custom
+		// borders
+		if (style.getBorder().equals(button.getBorder())) {
+			button.setBorder(style.getBorderDown());
+		}
 	}
 	
 	@Override
