@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos.townhall;
+package games.stendhal.server.maps.semos.village;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -35,7 +35,7 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("elegantladynpc");
-		npc.setPosition(6, 32);
+		npc.setPosition(13, 35);
 		npc.initHP(100);
 		zone.add(npc);
 	}

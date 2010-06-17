@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos.village;
+package games.stendhal.server.maps.semos.townhall;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -61,7 +61,7 @@ public class BoyNPC implements ZoneConfigurator {
 		});
 
 		npc.setEntityClass("childnpc");
-		npc.setPosition(10, 45);
+		npc.setPosition(13, 38);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
 		zone.add(npc);
