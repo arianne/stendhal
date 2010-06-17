@@ -1,5 +1,6 @@
 package games.stendhal.client.gui.styled;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Rectangle;
@@ -75,6 +76,23 @@ public class StyledButtonUI extends BasicButtonUI {
 			Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
 		graphics.setColor(style.getShadowColor());
 		graphics.drawRect(textRect.x, textRect.y, textRect.width, textRect.height);
+	}
+	
+	@Override
+	public Dimension getPreferredSize(JComponent button) {
+		/*
+		 * The default styles do some weird trick with their borders that
+		 * affects only the preferred size, but not the minimum size. Making
+		 * a special border type that takes the size of the margin does not 
+		 * work, because that increases the minimum size as well. Anyway, the
+		 * effect can be simulated like this.
+		 */
+		Dimension dim = super.getPreferredSize(button);
+		Insets margin = ((AbstractButton) button).getMargin();
+		dim.width += margin.left + margin.right;
+		dim.height += margin.top + margin.bottom;
+		
+		return dim;
 	}
 	
 	/**
