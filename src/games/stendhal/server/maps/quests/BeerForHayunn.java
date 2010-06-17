@@ -62,20 +62,20 @@ public class BeerForHayunn extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("!I have talked to Hayunn.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
-			res.add("QUEST_REJECTED");
+			res.add("!I do not want to make Hayunn drunk.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("QUEST_ACCEPTED");
+			res.add("!I will give Hayunn one drink.");
 		}
 		if (("start".equals(questState) && player.isEquipped("beer"))
 				|| "done".equals(questState)) {
-			res.add("FOUND_ITEM");
+			res.add("!I have a beer.");
 		}
 		if ("done".equals(questState)) {
-			res.add("DONE");
+			res.add("!I gave the beer to Hayunn. He paid me 20 gold coins and 10 xp.");
 		}
 		return res;
 	}
@@ -178,7 +178,10 @@ public class BeerForHayunn extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Beer for Hayunn",
+				"Hayunn Naratha, the great warrior in Semos Guard House, wants a beer.",
+				false);
 		prepareRequestingStep();
 		prepareBringingStep();
 	}

@@ -123,23 +123,23 @@ public class BeerForHayunnTest {
 		assertTrue(bfh.getHistory(player).isEmpty());
 		player.setQuest("beer_hayunn", "");
 		final List<String> history = new LinkedList<String>();
-		history.add("FIRST_CHAT");
+		history.add("!I have talked to Hayunn.");
 		assertEquals(history, bfh.getHistory(player));
 		
 		player.setQuest("beer_hayunn", "rejected");
-		history.add("QUEST_REJECTED");
+		history.add("!I do not want to make Hayunn drunk.");
 		assertEquals(history, bfh.getHistory(player));
 	
 		player.setQuest("beer_hayunn", "start");
-		history.remove("QUEST_REJECTED");
-		history.add("QUEST_ACCEPTED");
+		history.remove("!I do not want to make Hayunn drunk.");
+		history.add("!I will give Hayunn one drink.");
 		assertEquals(history, bfh.getHistory(player));
 
 		player.equipToInventoryOnly(SingletonRepository.getEntityManager().getItem("beer"));
-		history.add("FOUND_ITEM");
+		history.add("!I have a beer.");
 		assertEquals(history, bfh.getHistory(player));
 		player.setQuest("beer_hayunn", "done");
-		history.add("DONE");
+		history.add("!I gave the beer to Hayunn. He paid me 20 gold coins and 10 xp.");
 		assertEquals(history, bfh.getHistory(player));
 
 	}
