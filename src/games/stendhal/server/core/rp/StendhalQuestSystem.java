@@ -261,20 +261,8 @@ public class StendhalQuestSystem {
 		
 		// XXX TODO: add information here about is quest repeatable or no
 		final List<String> history = quest.getHistory(player);
-		String text;
 		for (final String entry : history) {
-			if(entry.startsWith("!")) {
-				text = entry.substring(1);
-				if(text==null) {
-					continue;
-				}
-			} else {
-				text = questInfo.getHistory().get(entry);
-				if (text == null) {
-					text = entry;
-				}
-			};
-			sb.append("\t\t * " + text + "\r\n");
+			sb.append("\t\t * " + entry + "\r\n");
 		}
 		sb.append("\r\n");
 	}
