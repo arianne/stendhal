@@ -74,15 +74,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Mayor Sakhs needs warriors to keep Semos city safe.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Mayor Sakhs in Semos Townhall</entry>
-			<entry name="QUEST_REJECTED">I do not want to help Semos.</entry>
-			<entry name="QUEST_ACCEPTED">I want to help Semos.</entry>
-			<entry name="QUEST_ACTIVE">I have been asked to kill a creature to help Semos. I haven't killed it yet.</entry>
-			<entry name="QUEST_UNCLAIMED">I have killed the creature to help Semos.</entry>
-			<entry name="DONE_TODAY">I killed the last creature the mayor asked me to kill and claimed my reward within the last 24 hours.</entry>
-		    <entry name="DONE_REPEATABLE">I killed the last creature the mayor asked me to kill and now Semos needs my help again.</entry>
-		</history>
 		<hints>
 			<entry name="WHERE_IS_THE_CREATURE">Starkad knows all about creatures, you can ask him where to find anything you need.</entry>
 		</hints>

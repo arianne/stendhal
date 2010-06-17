@@ -283,17 +283,20 @@ public class DailyMonsterQuest extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have met Mayor Sakhs in Semos Townhall");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
-			res.add("QUEST_REJECTED");
+			res.add("I do not want to help Semos.");
+			return res;
 		}
+		
+		res.add("I want to help Semos.");
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 			final boolean questDone = new KilledForQuestCondition(QUEST_SLOT,0).fire(player, null, null);
 			if (!questDone) {
-				res.add("QUEST_ACTIVE");
+				res.add("I have been asked to kill a creature to help Semos. I haven't killed it yet.");
 			} else {
-				res.add("QUEST_UNCLAIMED");
+				res.add("I have killed the creature to help Semos.");
 			}
 		}
 		if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -303,9 +306,9 @@ public class DailyMonsterQuest extends AbstractQuest {
 			- System.currentTimeMillis();
 
 			if (timeRemaining > 0L) {
-				res.add("DONE_TODAY");
+				res.add("I killed the last creature the mayor asked me to kill and claimed my reward within the last 24 hours.");
 			} else {
-				res.add("DONE_REPEATABLE");
+				res.add("I killed the last creature the mayor asked me to kill and now Semos needs my help again.");
 			}
 		}
 		return res;
@@ -473,7 +476,10 @@ public class DailyMonsterQuest extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Daily Monster Quest",
+				"Mayor Sakhs needs warriors to keep Semos city safe.",
+				true);
 		step_1();
 		step_2();
 		step_3();
