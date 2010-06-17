@@ -257,7 +257,9 @@ public class StendhalQuestSystem {
 	 */
 	private void dumpQuest(final StringBuilder sb, final IQuest quest, final Player player) {
 		final QuestInfo questInfo = quest.getQuestInfo(player);
-		sb.append("\t" + questInfo.getTitle() + "\r\n");
+		sb.append("\t" + questInfo.getDescription() + "\r\n");
+		
+		// XXX TODO: add information here about is quest repeatable or no
 		final List<String> history = quest.getHistory(player);
 		String text;
 		for (final String entry : history) {
