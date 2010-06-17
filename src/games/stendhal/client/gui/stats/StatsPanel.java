@@ -4,7 +4,6 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.common.Level;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.util.HashMap;
 
@@ -277,7 +276,6 @@ public class StatsPanel extends JPanel {
 	
 	private static class StatLabel extends JLabel {
 		public StatLabel() {
-			setForeground(Color.WHITE);
 			// unbold
 			Font f = getFont();
 			if ((f.getStyle() & Font.BOLD) != 0) {
