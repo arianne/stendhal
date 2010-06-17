@@ -6,11 +6,14 @@ Changelog
 - right click and 'Where' yourself
 - experimental /listproducers command for working NPCs
 - quest to help Phalk with food and clothes
+- a script for calculating item drop rarities
 
 *code*
 - players can't use npc names or creature names
 - cannot add buddy who doesn't exist
 - refactored Kanmararn Soldiers quest
+- style code completely rewritten as a swing look & feel, and extended to 
+  all components used by stendhal
 
 0.84
 *features*
