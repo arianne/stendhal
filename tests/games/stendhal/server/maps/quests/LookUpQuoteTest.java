@@ -191,12 +191,14 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 
 		player.setQuest(QUEST_SLOT, "fisherman Bully");
 		assertEquals(1, quest.getHistory(player).size());
-		assertEquals(Arrays.asList("FIRST_CHAT"),
+		assertEquals(Arrays.asList("I met Pequod in a hut in Ados city and he asked me to look up a quote by a famous fisherman."),
 				quest.getHistory(player));
 
 		player.setQuest(QUEST_SLOT, "done");
 		assertEquals(2, quest.getHistory(player).size());
-		assertEquals(Arrays.asList("FIRST_CHAT", "DONE"),
+		assertEquals(Arrays.asList(
+					"I met Pequod in a hut in Ados city and he asked me to look up a quote by a famous fisherman.", 
+					"I got the quote for Pequod and he gave me a fishing rod."),
 				quest.getHistory(player));
 	}
 

@@ -71,9 +71,9 @@ public class LookUpQuote extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I met Pequod in a hut in Ados city and he asked me to look up a quote by a famous fisherman.");
 		if (player.isQuestCompleted(QUEST_SLOT)) {
-			res.add("DONE");
+			res.add("I got the quote for Pequod and he gave me a fishing rod.");
 		}
 		return res;
 	}
@@ -174,6 +174,10 @@ public class LookUpQuote extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Look Up Quote",
+				"Pequod has forgotten a quote by a famous fisherman.",
+				false);
 		createFishingRod();
 	}
 	@Override

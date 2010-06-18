@@ -167,10 +167,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Pequod has forgotten a quote by a famous fisherman.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I met Pequod in a hut in Ados city and he asked me to look up a quote by a famous fisherman.</entry>
-			<entry name="DONE">I got the quote for Pequod and he gave me a fishing rod.</entry>
-		</history>
 		<hints>
 			<entry name="WHERE_IS_QUOTE">Libraries have books you can read, and books are a likely place to find famous quotes..</entry>
 		</hints>
