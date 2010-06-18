@@ -216,6 +216,7 @@ State: EXPERIMENTAL to help me think about a quest system
 	    	<entry name="WHERE_IS_QUICKSAND">There is a dangerous patch of quicksand near lots of snakes and stone creatures.</entry>
 		</hints>
 	</quest>
+	
 	<quest name="ThePiedPiper">
 		<title> The Pied Piper </title>
 		<repeatable done="true" />
@@ -223,20 +224,13 @@ State: EXPERIMENTAL to help me think about a quest system
 			Ados city have a rats problem periodically.
 		</description>
 	</quest>
+	
 	<quest name="VampireSword">
 		<title>Vampire Sword </title>
 		<repeatable done="false" />
 		<description>
 			 Hogart can forge a life stealing sword.
 		</description>
-		<history>
-		<entry name="FIRST_CHAT">I have met Hogart at the dwarf blacksmith.</entry>
-			<entry name="QUEST_REJECTED">I do not want to earn the vampire sword</entry>
-			<entry name="QUEST_ACCEPTED">I want the life stealing sword. I need to return to Hogart with a goblet of blood</entry>
-			<entry name="FOUND_ITEM">I took the full goblet to Hogart and now I need to collect 10 iron bars</entry>
-			<entry name="FORGING">I took 10 iron and the goblet to Hogart. Now he's forging my sword.</entry>
-		<entry name="DONE">Finally I earned the vampire sword.</entry>
-		</history>
 		<hints>
 			<entry name="WHERE_ARE_CATACOMBS">There is an entrance to Semos catacombs in the graveyard in semos plains north.</entry>
 			<entry name="HOW_TO_PASS_CATACOMBS">The invisible wall is a puzzle, look around and walk on every thing special looking (mind the spikes, though!)</entry>

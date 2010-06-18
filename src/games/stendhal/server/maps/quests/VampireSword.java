@@ -298,7 +298,10 @@ public class VampireSword extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Vampire Sword",
+				"Hogart can forge a life stealing sword.",
+				false);
 		prepareQuestOfferingStep();
 		prepareGobletFillingStep();
 		prepareForgingStep();
@@ -310,23 +313,23 @@ public class VampireSword extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have met Hogart at the dwarf blacksmith.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
+			res.add("I do not want to earn the vampire sword");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("QUEST_ACCEPTED");
+			res.add("I want the life stealing sword. I need to return to Hogart with a goblet of blood");
 		}
 		if ((questState.equals("start") && player.isEquipped("goblet"))
 				|| questState.equals("done")) {
-			res.add("FOUND_ITEM");
+			res.add("I took the full goblet to Hogart and now I need to collect 10 iron bars");
 		}
 		if (player.getQuest(QUEST_SLOT).startsWith("forging;")) {
-			res.add("FORGING");
+			res.add("I took 10 iron and the goblet to Hogart. Now he's forging my sword.");
 		}
 		if (questState.equals("done")) {
-			res.add("DONE");
+			res.add("Finally I earned the vampire sword.");
 		}
 		return res;
 	}
