@@ -186,21 +186,7 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			 Alrak needs help but maybe he can help me too.
 		</description>
-		<history>
-		<entry name="FIRST_CHAT">I have met Alrak the blacksmith in Wofol.</entry>
-			<entry name="QUEST_REJECTED">I do not want to help Alrak.</entry>
-			<entry name="QUEST_ACCEPTED">Alrak asked me to bring him some food. I must say the food name when I return.</entry>
-			<entry name="SEEKING_BOOK">I need to ask in a library about a gem_book for Alrak.</entry>
-			<entry name="FOUND_BOOK">I got the gem book Alrak wanted.</entry>
-			<entry name="READING">Alrak is reading the gem book I brought him.</entry>
-			<entry name="ITEM_OFFERED">Alrak says if I kill a black dragon and find a cod and an obsidian he will make me a knife.</entry>
-			<entry name="DRAGON_KILLED">I have killed a black dragon.</entry>
-			<entry name="FOUND_ITEMS">I have got the cod and obsidian.</entry>
-			<entry name="FORGING">I took the cod and obsidian to Alrak. Now he's forging my knife.</entry>
-			<entry name="DONE">I have my obsidian knife! It is awesome!</entry>
-		</history>
 	</quest>
-
 	
 	<quest name="PlinksToy">
 		<title>Plinks toy</title>

@@ -97,42 +97,42 @@ public class ObsidianKnife extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have met Alrak the blacksmith in Wofol.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
+			res.add("I do not want to help Alrak.");
 		} else {
-			res.add("QUEST_ACCEPTED");
+			res.add("Alrak asked me to bring him some food. I must say the food name when I return.");
 		}
 		if ((questState.equals("seeking_book"))
 				|| questState.equals("done")) {
-			res.add("SEEKING_BOOK");
+			res.add("I need to ask in a library about a gem_book for Alrak.");
 		}
 		if ((questState.equals("got_book"))
 				|| questState.equals("done")) {
-			res.add("FOUND_BOOK");
+			res.add("I got the gem book Alrak wanted.");
 		}
 		if (questState.startsWith("reading")) {
-			res.add("READING");
+			res.add("Alrak is reading the gem book I brought him.");
 		}
 		if ((questState.equals("knife_offered")
 		&& !player.hasKilled("black dragon")) || questState.equals("done")) {
-			res.add("ITEM_OFFERED");
+			res.add("Alrak says if I kill a black dragon and find a cod and an obsidian he will make me a knife.");
 		}
 		if ((questState.equals("knife_offered")
 				&& player.hasKilled("black dragon")) || questState.equals("done")) {
-			res.add("DRAGON_KILLED");
+			res.add("I have killed a black dragon.");
 		}
 		if ((questState.equals("knife_offered")
 				&& player.isEquipped("obsidian")
 				&& player.isEquipped(FISH)) || questState.equals("done")) {
-			res.add("FOUND_ITEMS");
+			res.add("I have got the cod and obsidian.");
 		}
 		if (questState.startsWith("forging")) {
-			res.add("FORGING");
+			res.add("I took the cod and obsidian to Alrak. Now he's forging my knife.");
 		}
 		if (questState.equals("done")) {
-			res.add("DONE");
+			res.add("I have my obsidian knife! It is awesome!");
 		}
 		return res;
 	}
@@ -473,7 +473,10 @@ public class ObsidianKnife extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Obsidian Knife",
+				"Alrak needs help but maybe he can help me too.",
+				false);
 		prepareQuestOfferingStep();
 		bringFoodStep();
 		requestBookStep();
