@@ -128,9 +128,7 @@ public class CreateAccountDialog extends JDialog {
 		//
 		contentPane = (JPanel) this.getContentPane();
 		contentPane.setLayout(new GridBagLayout());
-		contentPane.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createEtchedBorder(),
-				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		final GridBagConstraints c = new GridBagConstraints();
 
 		// row 0
