@@ -202,17 +202,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			I have to find the seven cherubs about the world.
 		</description>
-		<history>
-			<entry name="QUEST_ACCEPTED">I have started finding the seven cherubs</entry>
-			<entry name="CHERUBIEL">I met Cherubiel in Semos Village.</entry>
-			<entry name="GABRIEL">I met Cherubiel in Nalwor City.</entry>
-			<entry name="OPHANIEL">I met Ophaniel by Orril River.</entry>
-			<entry name="RAPHAEL">I met Raphael between Orril River and the	bridge to Fado.</entry>
-			<entry name="URIEL">I met Uriel on Orril Mountain.</entry>
-			<entry name="ZOPHIEL">I met Zophiel on Semos Mountain.</entry>
-			<entry name="AZAZEL">I met Azazel by Ados Rock.</entry>
-			<entry name="DONE">Done! I have found every one!</entry>
-		</history>
 	</quest>
 
 	<quest name="SuntanCreamForZara">

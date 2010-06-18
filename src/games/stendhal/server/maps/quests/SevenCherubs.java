@@ -16,6 +16,7 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,6 +31,18 @@ import java.util.List;
  */
 public class SevenCherubs extends AbstractQuest {
 	private static final String QUEST_SLOT = "seven_cherubs";
+	
+	private final HashMap<String, String> cherubsHistory = new HashMap<String,String>();
+	
+	private void fillHistoryMap() {
+		cherubsHistory.put("Cherubiel", "I met Cherubiel in Semos Village.");
+		cherubsHistory.put("Ophaniel",  "I met Ophaniel by Orril River.");
+		cherubsHistory.put("Gabriel",   "I met Gabriel in Nalwor City.");
+		cherubsHistory.put("Raphael",   "I met Raphael between Orril River and the bridge to Fado.");
+		cherubsHistory.put("Zophiel",   "I met Zophiel on Semos Mountain.");
+		cherubsHistory.put("Azazel",    "I met Azazel by Ados Rock.");
+		cherubsHistory.put("Uriel",     "I met Uriel on Orril Mountain.");		
+	}
 
 	@Override
 	public String getSlotName() {
@@ -56,15 +69,15 @@ public class SevenCherubs extends AbstractQuest {
 			boolean first = true;
 			for (final String cherub : done) {
 				if (!cherub.trim().equals("")) {
-					res.add(cherub.toUpperCase());
 					if (first) {
 						first = false;
-						res.add("QUEST_ACCEPTED");
+						res.add("I have started finding the seven cherubs");
 					}
+					res.add(cherubsHistory.get(cherub));
 				}
 			}
 			if (isCompleted(player)) {
-				res.add("DONE");
+				res.add("Done! I have found every one!");
 			}
 		}
 		return res;
@@ -179,7 +192,11 @@ public class SevenCherubs extends AbstractQuest {
 	public void addToWorld() {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		super.addToWorld();
-
+		fillHistoryMap();
+		fillQuestInfo(
+				"Seven Cherubs",
+				"I have to find the seven cherubs about the world.",
+				false);
 		StendhalRPZone zone;
 		SpeakerNPC npc;
 
