@@ -131,7 +131,7 @@ public class BeerForHayunnTest {
 		assertEquals(history, bfh.getHistory(player));
 	
 		player.setQuest("beer_hayunn", "start");
-		history.remove("!I do not want to make Hayunn drunk.");
+		history.remove("I do not want to make Hayunn drunk.");
 		history.add("I will give Hayunn one drink.");
 		assertEquals(history, bfh.getHistory(player));
 
