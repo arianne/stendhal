@@ -1,9 +1,14 @@
 package games.stendhal.client.gui.styled;
 
+import java.awt.Component;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
 public class StyledComboBoxUI extends BasicComboBoxUI {
@@ -30,10 +35,39 @@ public class StyledComboBoxUI extends BasicComboBoxUI {
 	}
 	
 	@Override
+	protected ListCellRenderer createRenderer() {
+		/*
+		 * In java 6 the transparency setting of the entries gets
+		 * overridden by StyledLabelUI. (It works ok in java 1.5).
+		 */
+		return new StyledComboBoxRenderer();
+	}
+
+
+	@Override
 	public void installUI(JComponent component) {
 		super.installUI(component);
 		component.setBorder(style.getBorderDown());
 		listBox.setSelectionBackground(style.getShadowColor());
 		listBox.setSelectionForeground(style.getForeground());
+	}
+	
+	/**
+	 * A ListCellRenderer that returns opaque labels.
+	 */
+	private static class StyledComboBoxRenderer extends BasicComboBoxRenderer {
+		@Override
+		public Component getListCellRendererComponent(JList list, Object value, 
+				int index, boolean isSelected, boolean cellHasFocus) {
+			Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+			
+			// I doubt it can be anything but a JLabel, but better to be safe
+			if (c instanceof JComponent) {
+				JComponent label = (JComponent) c;
+				label.setOpaque(true);
+			}
+			
+			return c;
+		}
 	}
 }
