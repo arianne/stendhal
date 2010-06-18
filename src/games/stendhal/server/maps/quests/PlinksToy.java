@@ -49,22 +49,22 @@ public class PlinksToy extends AbstractQuest {
 		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			if (player.isEquipped("teddy")) {
-				res.add("FOUND_ITEM_WITHOUT_QUEST");
+				res.add("Plink commented about the bear I have with me");
 			}
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have met Plink");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
+			res.add("I do not want to find Plink's toy bear");
 			return res;
 		}
-		res.add("QUEST_ACCEPTED");
+		res.add("I do want to help Plink find his bear");
 		if ((player.isEquipped("teddy")) || isCompleted(player)) {
-			res.add("FOUND_ITEM");
+			res.add("I have found Plink's toy bear");
 		}
 		if (isCompleted(player)) {
-			res.add("DONE");
+			res.add("I gave Plink his bear.");
 		}
 		return res;
 	}
@@ -155,7 +155,10 @@ public class PlinksToy extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Plinks toy",
+				"Plink wants me to find his teddy.",
+				false);
 		step_1();
 		step_2();
 		step_3();

@@ -194,15 +194,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Plink wants me to find his teddy.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Plink</entry>
-			<entry name="QUEST_REJECTED">I do not want to find Plink's toy bear</entry>
-			<entry name="QUEST_ACCEPTED">I do want to help Plink find his bear</entry>
-			<entry name="FOUND_ITEM">I have found Plink's toy bear</entry>
-			<entry name="DONE">I gave Plink his bear.</entry>
-			
-			<entry name="FOUND_ITEM_WITHOUT_QUEST">Plink commented about the bear I have with me</entry>
-		</history>
 	</quest>
 	
 	<quest name="SevenCherubs">
