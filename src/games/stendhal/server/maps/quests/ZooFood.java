@@ -76,22 +76,22 @@ public class ZooFood extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have met Katinka at the zoo");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
+			res.add("I do not have the time for smelly animals and their food issues");
 			return res;
 		}
-		res.add("QUEST_ACCEPTED");
+		res.add("I don't want to see those poor animals die! I'll help get the food!");
 		if (questState.startsWith("start;") && 
 				(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,1)).fire(player, null, null)) {
-			res.add("FOUND_ITEM");
+			res.add("I have got the food required");
 		}
 		if (isCompleted(player)) {
 			if(new TimePassedCondition(QUEST_SLOT, DELAY, 1).fire(player, null, null)) {
-				res.add("DONE_REPEATABLE");
+				res.add("The animals are hungry again! I need to ask Katinka what they need.");
 			} else {
-				res.add("DONE_THIS_WEEK");
+				res.add("The animals are not hungry! Yay, me!");
 			}
 		}
 		return res;
@@ -241,6 +241,10 @@ public class ZooFood extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Zoo Food",
+				"The animals at the zoo are hungry! They need some food!",
+				true);
 		step_1();
 		step_2();
 		step_3();

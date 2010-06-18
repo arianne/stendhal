@@ -254,14 +254,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			The animals at the zoo are hungry! They need some food!
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Katinka at the zoo</entry>
-			<entry name="QUEST_REJECTED">I do not have the time for smelly animals and their food issues</entry>
-			<entry name="QUEST_ACCEPTED">I don't want to see those poor animals die! I'll help get the food!</entry>
-			<entry name="FOUND_ITEM">I have got the food required</entry>
-			<entry name="DONE_THIS_WEEK">The animals are not hungry! Yay, me!</entry>
-			<entry name="DONE_REPEATABLE">The animals are hungry again! I need to ask Katinka what they need.</entry>
-		</history>
 	</quest>
 	
 	
@@ -274,13 +266,6 @@ A fill-in-the-blank template - add new quests in alphabetical order
 		<description>
 			...
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met ... at ...</entry>
-			<entry name="QUEST_REJECTED">I do not ...</entry>
-			<entry name="QUEST_ACCEPTED">I do ...</entry>
-			<entry name="FOUND_ITEM">...</entry>
-			<entry name="DONE">...</entry>
-		</history>
 	</quest>
 -->
 </quests>
