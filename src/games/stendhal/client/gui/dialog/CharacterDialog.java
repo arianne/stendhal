@@ -15,6 +15,8 @@ import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -64,6 +66,16 @@ public class CharacterDialog extends JDialog {
 	 */
 	public CharacterDialog(final Map<String, RPObject> characters) {
 		setTitle("Choose character");
+		
+		// Exit on close, otherwise the VM keeps running and the user has no
+		// easy way to close it
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				onExit();
+			}
+		});
+		
 		this.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		
 		// Create the character area
@@ -94,7 +106,7 @@ public class CharacterDialog extends JDialog {
 		JButton exitButton = new JButton("Exit");
 		exitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent evt) {
-				System.exit(0);
+				onExit();
 			}
 		});
 		buttonBar.add(exitButton);
@@ -200,6 +212,13 @@ public class CharacterDialog extends JDialog {
 		g2d.dispose();
 		
 		return image;
+	}
+	
+	/**
+	 * Called when the window is closed or the exit button is pressed.
+	 */
+	private void onExit() {
+		System.exit(0);
 	}
 	
 	/**
