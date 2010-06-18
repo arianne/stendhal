@@ -143,10 +143,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Sarzina will teach about Karma.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Sarzina in a hut in Fado and asked about a quest.</entry>
-			<entry name="DONE">Sarzina told me about karma and that I can come back to be reminded of how it works any time.</entry>
-		</history>
 	</quest>
 	
 	<quest name="LearnAboutOrbs">

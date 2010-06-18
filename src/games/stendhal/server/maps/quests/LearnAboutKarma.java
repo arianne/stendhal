@@ -57,10 +57,10 @@ public class LearnAboutKarma extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have met Sarzina in a hut in Fado and asked about a quest.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("done")) {
-			res.add("DONE");
+			res.add("Sarzina told me about karma and that I can come back to be reminded of how it works any time.");
 		}
 		return res;
 	}
@@ -148,9 +148,11 @@ public class LearnAboutKarma extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Learn About Karma", 
+				"Sarzina will teach about Karma.", 
+				false);
 		step1();
-
 	}
 	@Override
 	public String getName() {
