@@ -243,15 +243,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Hazel wants Kirdneh museum to have the best rarest items.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Hazel, the curator of Kirdneh museum.</entry>
-			<entry name="QUEST_REJECTED">I do not want to help Kirdneh museum become the greatest in the land.</entry>
-			<entry name="QUEST_ACCEPTED">I want to help Kirdneh museum become the greatest in the land.</entry>
-			<entry name="QUEST_ACTIVE">I have been asked to find a rare item for Kirdneh museum.</entry>
-			<entry name="QUEST_UNCLAIMED">I have the rare item for Kirdneh museum and need to take it.</entry>
-			<entry name="DONE_THIS_WEEK">I took the valuable item to Hazel within the last 7 days.</entry>
-		    <entry name="DONE_REPEATABLE">I took the valuable item to Hazel and the museum can now afford to send me to find another.</entry>
-		</history>
 		<hints>
 			<entry name="WHERE_IS_THE_ITEM">If you want to learn which creatures drop an item look it up on http://stendhalgame.org</entry>
 		</hints>

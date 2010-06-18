@@ -270,11 +270,13 @@ public class WeeklyItemQuest extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have met Hazel, the curator of Kirdneh museum.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
-			res.add("QUEST_REJECTED");
+			res.add("I do not want to help Kirdneh museum become the greatest in the land.");
+			return res;
 		}
+		res.add("I want to help Kirdneh museum become the greatest in the land.");
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 			final String[] tokens = (questState + ";0;0;0").split(";");
 			final String[] elements = tokens[0].split("=");
@@ -284,9 +286,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 				amount=MathHelper.parseIntDefault(elements[1], 1);
 			}
 			if (!player.isEquipped(questItem, amount)) {
-				res.add("QUEST_ACTIVE");
+				res.add("I have been asked to find a rare item for Kirdneh museum.");
 			} else {
-				res.add("QUEST_UNCLAIMED");
+				res.add("I have the rare item for Kirdneh museum and need to take it.");
 			}
 		}
 		if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -296,9 +298,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 			- System.currentTimeMillis();
 
 			if (timeRemaining > 0L) {
-				res.add("DONE_THIS_WEEK");
+				res.add("I took the valuable item to Hazel within the last 7 days.");
 			} else {
-				res.add("DONE_REPEATABLE");
+				res.add("I took the valuable item to Hazel and the museum can now afford to send me to find another.");
 			}
 		}
 		return res;
@@ -307,7 +309,10 @@ public class WeeklyItemQuest extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		
+		fillQuestInfo(
+				"",
+				"",
+				true);
 		buildItemsMap();
 		
 		getQuest();
