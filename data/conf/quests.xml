@@ -159,14 +159,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Ceryl wants a old book that was checked out.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Ceryl at the library, he's the librarian there</entry>
-			<entry name="QUEST_REJECTED">I do not want to find the book</entry>
-			<entry name="QUEST_ACCEPTED">I do want the find the black book</entry>
-			<entry name="FOUND_ITEM">I have talked to Jynath, and have the book</entry>
-			<entry name="LOST_ITEM">I do not have the black book Jynath has</entry>
-			<entry name="DONE">I have returned the book to Ceryl and got 50 gold and 100 xp</entry>
-		</history>
 	</quest>
 
 	<quest name="LookUpQuote">

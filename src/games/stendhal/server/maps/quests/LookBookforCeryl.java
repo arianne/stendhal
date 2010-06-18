@@ -190,23 +190,23 @@ public class LookBookforCeryl extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have met Ceryl at the library, he's the librarian there");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
+			res.add("I do not want to find the book");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "jynath", "done")) {
-			res.add("QUEST_ACCEPTED");
+			res.add("I do want the find the black book");
 		}
 		if ((questState.equals("jynath") && player.isEquipped("black book"))
 				|| questState.equals("done")) {
-			res.add("FOUND_ITEM");
+			res.add("I have talked to Jynath, and have the book");
 		}
 		if (questState.equals("jynath") && !player.isEquipped("black book")) {
-			res.add("LOST_ITEM");
+			res.add("I do not have the black book Jynath has");
 		}
 		if (questState.equals("done")) {
-			res.add("DONE");
+			res.add("I have returned the book to Ceryl and got 50 gold and 100 xp");
 		}
 		return res;
 	}
@@ -214,7 +214,10 @@ public class LookBookforCeryl extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Look for a book for Ceryl",
+				"Ceryl wants a old book that was checked out.",
+				false);
 		step1LearnAboutQuest();
 		step2getBook();
 		step3returnBook();

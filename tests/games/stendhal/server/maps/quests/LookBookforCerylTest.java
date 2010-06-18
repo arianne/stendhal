@@ -191,18 +191,24 @@ public class LookBookforCerylTest {
 
 		pl.setQuest(CERYL_BOOK, "rejected");
 		assertEquals(2, quest.getHistory(pl).size());
-		assertEquals(Arrays.asList("FIRST_CHAT", "QUEST_REJECTED"),
+		assertEquals(Arrays.asList(
+						"I have met Ceryl at the library, he's the librarian there", 
+						"I do not want to find the book"),
 				quest.getHistory(pl));
 
 		pl.setQuest(CERYL_BOOK, "start");
 		assertEquals(2, quest.getHistory(pl).size());
-		assertEquals(Arrays.asList("FIRST_CHAT", "QUEST_ACCEPTED"),
+		assertEquals(Arrays.asList(
+					"I have met Ceryl at the library, he's the librarian there", 
+					"I do want the find the black book"),
 				quest.getHistory(pl));
 
 		pl.setQuest(CERYL_BOOK, "jynath");
 		assertEquals(3, quest.getHistory(pl).size());
-		assertEquals(
-				Arrays.asList("FIRST_CHAT", "QUEST_ACCEPTED", "LOST_ITEM"),
+		assertEquals(Arrays.asList(
+					"I have met Ceryl at the library, he's the librarian there", 
+					"I do want the find the black book", 
+					"I do not have the black book Jynath has"),
 				quest.getHistory(pl));
 
 		final Item item = SingletonRepository.getEntityManager().getItem(
@@ -211,14 +217,20 @@ public class LookBookforCerylTest {
 		item.setBoundTo(pl.getName());
 		pl.equipOrPutOnGround(item);
 		assertEquals(3, quest.getHistory(pl).size());
-		assertEquals(
-				Arrays.asList("FIRST_CHAT", "QUEST_ACCEPTED", "FOUND_ITEM"),
+		assertEquals(Arrays.asList(
+					"I have met Ceryl at the library, he's the librarian there", 
+					"I do want the find the black book", 
+					"I have talked to Jynath, and have the book"),
 				quest.getHistory(pl));
 
 		pl.setQuest(CERYL_BOOK, "done");
 		assertEquals(4, quest.getHistory(pl).size());
-		assertEquals(Arrays.asList("FIRST_CHAT", "QUEST_ACCEPTED",
-				"FOUND_ITEM", "DONE"), quest.getHistory(pl));
+		assertEquals(Arrays.asList(
+					"I have met Ceryl at the library, he's the librarian there", 
+					"I do want the find the black book",
+					"I have talked to Jynath, and have the book", 
+					"I have returned the book to Ceryl and got 50 gold and 100 xp"), 
+				quest.getHistory(pl));
 	}
 
 	/**
