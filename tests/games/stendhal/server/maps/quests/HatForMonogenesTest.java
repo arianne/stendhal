@@ -184,17 +184,17 @@ public class HatForMonogenesTest {
 		assertEquals(history, quest.getHistory(player));
 
 		player.setQuest("hat_monogenes", "");
-		history.add("FIRST_CHAT");
-		history.add("GET_HAT");
+		history.add("I have met Monogenes at the spring in Semos village");
+		history.add("I have to find a hat, something leather to keep his head warm.");
 		assertEquals(history, quest.getHistory(player));
 		
 		player.setQuest("hat_monogenes", "start");
 		player.equip("bag", ItemTestHelper.createItem("leather helmet"));
-		history.add("GOT_HAT");
+		history.add("I have found a hat.");
 
 		assertEquals(history, quest.getHistory(player));
 		player.setQuest("hat_monogenes", "done");
-		history.add("DONE");
+		history.add("I have given the hat to Monogenes, and he rewarded me 10 xp.");
 
 		assertEquals(history, quest.getHistory(player));
 

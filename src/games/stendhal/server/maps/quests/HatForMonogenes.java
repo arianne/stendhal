@@ -57,19 +57,19 @@ public class HatForMonogenes extends AbstractQuest {
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest(QUEST_SLOT)) {
-			res.add("FIRST_CHAT");
+			res.add("I have met Monogenes at the spring in Semos village");
 		}
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("GET_HAT");
+		res.add("I have to find a hat, something leather to keep his head warm.");
 		if ((player.isQuestInState(QUEST_SLOT, "start") 
 				&& player.isEquipped("leather helmet"))
 				|| player.isQuestCompleted(QUEST_SLOT)) {
-			res.add("GOT_HAT");
+			res.add("I have found a hat.");
 		}
 		if (player.isQuestCompleted(QUEST_SLOT)) {
-			res.add("DONE");
+			res.add("I have given the hat to Monogenes, and he rewarded me 10 xp.");
 		}
 		return res;
 	}
@@ -160,7 +160,10 @@ public class HatForMonogenes extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Hat for Monogenes",
+				"Monogenes wants a hat to help him keep warm during the winter.",
+				false);
 		createRequestingStep();
 		createBringingStep();
 	}

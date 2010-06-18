@@ -96,12 +96,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Monogenes wants a hat to help him keep warm during the winter.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Monogenes at the spring in Semos village</entry>
-			<entry name="GET_HAT">I have to find a hat, something leather to keep his head warm.</entry>
-			<entry name="GOT_HAT">I have found a hat.</entry>
-			<entry name="DONE">I have given the hat to Monogenes, and he rewarded me 10 xp.</entry>
-		</history>
 		<hints>
 			<entry name="WHERE_IS_THE_HAT">I have heard that Xin Blanca sells helmets, maybe one would make a good hat.</entry>
 		</hints>
