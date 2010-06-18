@@ -36,6 +36,7 @@ public class StyledLookAndFeel extends MetalLookAndFeel {
 			"SliderUI", pkg + "StyledSliderUI",
 			"SplitPaneUI", pkg + "StyledSplitPaneUI",
 			"TextFieldUI", pkg + "StyledTextFieldUI",
+			"ToolTipUI", pkg + "StyledToolTipUI",
 		};
 		
 		table.putDefaults(uiDefaults);
