@@ -117,7 +117,8 @@ State: EXPERIMENTAL to help me think about a quest system
 		</description>
 		<history>
 		</history>
-	</quest>		
+	</quest>
+			
 	<quest name="KillEnemyArmy">
 		<title>Kill Enemy Army</title>
 		<repeatable done="true" />
@@ -127,22 +128,15 @@ State: EXPERIMENTAL to help me think about a quest system
 		<history>
 		</history>
 	</quest>
+	
 	<quest name="KillSpiders">
 		<title>Kill spiders</title>
 		<repeatable done="true" />
 		<description>
 			Morgrin, groundskeeper of magic school, want to clear magic school basement from spiders.
 		</description>
-		<history>
-			<entry name="QUEST_REJECTED">I do not agree to help Morgrin.</entry>
-			<entry name="QUEST_ACCEPTED">I do agree to help Morgrin.</entry>
-			<entry name="KILLED_SPIDER_1">i have killed spider in basement.</entry>
-			<entry name="KILLED_SPIDER_2">i have killed poisonous spider in basement.</entry>
-			<entry name="KILLED_SPIDER_3">i have killed giant spider in basement.</entry>
-			<entry name="KILLED_ALL">i have killed all 3 spiders in basement, and going to Morgrin for my reward.</entry>
-			<entry name="DONE">i have killed all spiders in magic shool basement and get mythical egg.</entry>
-		</history>
 	</quest>	
+	
 	<quest name="LearnAboutKarma">
 		<title>Learn About Karma</title>
 		<repeatable done="false" />

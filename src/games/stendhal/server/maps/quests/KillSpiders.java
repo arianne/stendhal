@@ -169,7 +169,10 @@ public class KillSpiders extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Kill spiders",
+				"Morgrin, groundskeeper of magic school, want to clear magic school basement from spiders.",
+				true);
 		step_1();
 		step_2();
 		step_3();
@@ -194,32 +197,32 @@ public class KillSpiders extends AbstractQuest {
 		final String questState = player.getQuest(QUEST_SLOT, 0);
 
 		if ("rejected".equals(questState)) {
-			history.add("QUEST_REJECTED");
+			history.add("I do not agree to help Morgrin.");
 			return history;
 		};
 		if ("killed".equals(questState)) {
-			history.add("DONE");
+			history.add("i have killed all spiders in magic shool basement and get mythical egg.");
 			return history;
 		};
 
 		// we can be here only if player accepted this quest.
-		history.add("QUEST_ACCEPTED");
+		history.add("I do agree to help Morgrin.");
 		// checking which spiders player killed.
 		final boolean sp1 = "spider".equals(player.getQuest(QUEST_SLOT, 1));
 		final boolean sp2 = "poisonous spider".equals(player.getQuest(QUEST_SLOT, 2));
 		final boolean sp3 = "giant spider".equals(player.getQuest(QUEST_SLOT, 3));
 		final boolean sp = "start".equals(player.getQuest(QUEST_SLOT, 0));
 		if (sp1) {
-			history.add("KILLED_SPIDER_1");
+			history.add("i have killed spider in basement.");
 		};
 		if (sp2) {
-			history.add("KILLED_SPIDER_2");
+			history.add("i have killed poisonous spider in basement.");
 		};					
 		if (sp3) {
-			history.add("KILLED_SPIDER_3");
+			history.add("i have killed giant spider in basement.");
 		};	
 		if (sp1 && sp2 && sp3) {
-			history.add("KILLED_ALL");
+			history.add("i have killed all 3 spiders in basement, and going to Morgrin for my reward.");
 		};
 		
 		// here is support for old-style quest
@@ -228,16 +231,16 @@ public class KillSpiders extends AbstractQuest {
 			final boolean osp2 = player.hasKilled("poisonous spider");
 			final boolean osp3 = player.hasKilled("giant spider");
 			if (osp1) {
-				history.add("KILLED_SPIDER_1");				
+				history.add("i have killed spider in basement.");				
 			};
 			if (osp2) {
-				history.add("KILLED_SPIDER_2");				
+				history.add("i have killed poisonous spider in basement.");				
 			};
 			if (osp3) {
-				history.add("KILLED_SPIDER_3");				
+				history.add("i have killed giant spider in basement.");				
 			};
 			if (osp1 && osp2 && osp3) {
-				history.add("KILLED_ALL");				
+				history.add("i have killed all 3 spiders in basement, and going to Morgrin for my reward.");				
 			};		
 		}
 		
