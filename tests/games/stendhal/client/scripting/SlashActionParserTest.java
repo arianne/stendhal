@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.common.StringHelper;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -94,7 +95,7 @@ public class SlashActionParserTest {
 		assertEquals("where", cmd.getName());
 		assertNotNull(cmd.getParams());
 		assertEquals(0, cmd.getParams().length);
-		assertEquals("player 2", cmd.getRemainder());
+		assertEquals("player 2", StringHelper.unquote(cmd.getRemainder()));
 
 		cmd = SlashActionParser.parse("say \"i don't speak german\"");
 		assertFalse(cmd.hasError());
