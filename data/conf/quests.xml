@@ -107,14 +107,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Xoderos is worried about his brother Joshua who lives in Ados because they are short of supples.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have asked Xoderos at Semos blacksmith if he has a quest for me.</entry>
-			<entry name="QUEST_REJECTED">I do not want to help Xoderos and Joshua.</entry>
-			<entry name="QUEST_ACCEPTED">I agreed to take 5 sandwiches to Joshua and tell him that I have his #food.</entry>
-			<entry name="FOUND_ITEM">I got five sandwiches to take Joshua.</entry>
-			<entry name="BROUGHT_ITEM">I took the food to Joshua and he asked me to tell his brother Xoderos that he is ok, by saying #Joshua.</entry>
-			<entry name="DONE">I passed the message to Xoderos and he has fixed my keyring for me.</entry>
-		</history>
 		
 	</quest>
 		<quest name="KillDarkElves">

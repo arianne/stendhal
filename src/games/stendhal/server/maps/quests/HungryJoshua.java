@@ -63,30 +63,31 @@ public class HungryJoshua extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+	
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have asked Xoderos at Semos blacksmith if he has a quest for me.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
+			res.add("I do not want to help Xoderos and Joshua.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "joshua", "done")) {
-			res.add("QUEST_ACCEPTED");
+			res.add("I agreed to take 5 sandwiches to Joshua and tell him that I have his #food.");
 		}
 		if ((questState.equals("start") && player.isEquipped("sandwich",
 				FOOD_AMOUNT))
 				|| questState.equals("done")) {
-			res.add("FOUND_ITEM");
+			res.add("I got five sandwiches to take Joshua.");
 		}
 		if (questState.equals("joshua") || questState.equals("done")) {
-			res.add("BROUGHT_ITEM");
+			res.add("I took the food to Joshua and he asked me to tell his brother Xoderos that he is ok, by saying #Joshua.");
 		}
 		if (questState.equals("done")) {
-			res.add("DONE");
+			res.add("I passed the message to Xoderos and he has fixed my keyring for me.");
 		}
 		return res;
 	}
@@ -243,7 +244,10 @@ public class HungryJoshua extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Hungry Joshua",
+				"Xoderos is worried about his brother Joshua who lives in Ados because they are short of supples.",
+				false);
 		step_1();
 		step_2();
 		step_3();
