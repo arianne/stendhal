@@ -50,20 +50,20 @@ public class SuntanCreamForZara extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have met Zara on Athor Island.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
+			res.add("I do not want to help Zara. She can burn.");
 		}
 		if (questState.equals("start") ||  questState.equals("done")) {
-			res.add("QUEST_ACCEPTED");
+			res.add("I want to help Zara soothe her skin. I need to get suntan cream from the lifeguards.");
 		}
 		if ((player.isEquipped("suntan cream") && questState.equals("start"))
 				|| questState.equals("done")) {
-			res.add("FOUND_ITEM");
+			res.add("I got the suntan cream.");
 		}
 		if (questState.equals("done")) {
-			res.add("DONE");
+			res.add("I took the suntan cream to Zara and she let me have a key to her house in Ados City North. She says it is the one at the far end of the lower row.");
 		}
 		return res;
 	}
@@ -181,7 +181,10 @@ public class SuntanCreamForZara extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Suntan Cream For Zara",
+				"Zara is burning under the hot Athor sun.",
+				false);
 		createRequestingStep();
 		createBringingStep();
 	}

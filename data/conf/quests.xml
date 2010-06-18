@@ -210,13 +210,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Zara is burning under the hot Athor sun.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I have met Zara on Athor Island.</entry>
-			<entry name="QUEST_REJECTED">I do not want to help Zara. She can burn.</entry>
-			<entry name="QUEST_ACCEPTED">I want to help Zara soothe her skin. I need to get suntan cream from the lifeguards.</entry>
-			<entry name="FOUND_ITEM">I got the suntan cream.</entry>
-			<entry name="DONE">I took the suntan cream to Zara and she let me have a key to her house in Ados City North. She says it is the one at the far end of the lower row.</entry>
-		</history>
 		<hints>
 			<entry name="WHERE_IS_KOKUDA">There are legends of minotaurs living in a labyrinth below Athor Island. They guard the kokuda.</entry>
 			<entry name="WHERE_IS_LABYRINTH">There are rumours of a labyrinth under the east side of Athor Island. Perhaps you can get to it from the underground caves.</entry>
