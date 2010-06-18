@@ -59,10 +59,10 @@ public class LearnAboutOrbs extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I have met Ilisa in Semos Temple.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("done")) {
-			res.add("DONE");
+			res.add("Ilisa taught me how to use orbs. I must be careful as they could send me	somewhere dangerous.");
 		}
 		return res;
 	}
@@ -123,7 +123,10 @@ public class LearnAboutOrbs extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Learn About Orbs",
+				"Ilisa will teach about using Orbs.",
+				false);
 		step1();
 
 	}
