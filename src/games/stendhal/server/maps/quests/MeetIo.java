@@ -42,9 +42,9 @@ public class MeetIo extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I met the telepath Io Flotto in Semos Temple.");
 		if (isCompleted(player)) {
-			res.add("DONE");
+			res.add("Io taught me the six basic elements of telepathy and promised to remind me if I need to refresh my knowledge.");
 		}
 		return res;
 	}
@@ -156,7 +156,10 @@ public class MeetIo extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Meet Io",
+				"Io Flotto can teach about how to communicate.",
+				false);
 		prepareIO();
 	}
 

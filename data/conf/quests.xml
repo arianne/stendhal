@@ -178,10 +178,6 @@ State: EXPERIMENTAL to help me think about a quest system
 		<description>
 			Io Flotto can teach about how to communicate.
 		</description>
-		<history>
-			<entry name="FIRST_CHAT">I met the telepath Io Flotto in Semos Temple.</entry>
-			<entry name="DONE">Io taught me the six basic elements of telepathy and promised to remind me if I need to refresh my knowledge.</entry>
-		</history>
 	</quest>
 	
 	<quest name="ObsidianKnife">
