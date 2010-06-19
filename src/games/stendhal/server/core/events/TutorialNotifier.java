@@ -138,6 +138,8 @@ public class TutorialNotifier {
 	public static void aged(final Player player, final int age) {
 		if (age >= 60) {
 			process(player, TutorialEventType.TIMED_RULES);
+		} else if (age >= 45) {
+			process(player, TutorialEventType.TIMED_PASSWORD);
 		} else if (age >= 30) {
 			// this is a new tutorial event, so we check isNew, 
 			// as our older players don't need to know how to change outfit
@@ -150,8 +152,6 @@ public class TutorialNotifier {
 			if (player.getOutfit().isNaked()) {
 				process(player, TutorialEventType.TIMED_NAKED);
 			} 
-		} else if (age >= 10) {
-			process(player, TutorialEventType.TIMED_PASSWORD);
 		} else if (age >= 5) {
 			process(player, TutorialEventType.TIMED_HELP);
 		}
