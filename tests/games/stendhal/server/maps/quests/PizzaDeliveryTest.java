@@ -73,6 +73,7 @@ public class PizzaDeliveryTest {
 		new BowAndArrowSellerNPC().configureZone(zone, null);
 		new WitchNPC().configureZone(zone, null);
 		new HolidayingManNPC().configureZone(zone, null);
+		new SheepBuyerNPC().configureZone(zone, null);
 		
 		SpeakerNPC npc = new SpeakerNPC("Leander");
 		SingletonRepository.getNPCList().add(npc);
@@ -95,9 +96,6 @@ public class PizzaDeliveryTest {
 		npcConf = new GuardNPC();
 		npcConf.createDialog(npc);
 		npc = new SpeakerNPC("Tor'Koom");
-		SingletonRepository.getNPCList().add(npc);
-		npcConf = new SheepBuyerNPC();
-		npcConf.createDialog(npc);
 		
 		//	ramon is added in this quest - so we have to load this before we load pizza one.
 		final AbstractQuest blackjackquest = new Blackjack();

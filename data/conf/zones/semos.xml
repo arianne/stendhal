@@ -2952,24 +2952,11 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-4_semos_dungeon" level="-4" x="500096" y="500064"
 		file="Level -4/semos/dungeon.tmx">
-
+		<configurator class-name="games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC" />
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
 			</implementation>
-		</entity>
-
-		<entity x="67" y="13">
-			<implementation
-				class-name="games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC">
-				<parameter name="name">Tor'Koom</parameter>
-				<parameter name="node0">67,13</parameter>
-				<parameter name="node1">59,13</parameter>
-				<parameter name="node2">59,17</parameter>
-				<parameter name="node3">67,17</parameter>
-			</implementation>
-
-			<attribute name="class">orcbuyernpc</attribute>
 		</entity>
 	</zone>
 
