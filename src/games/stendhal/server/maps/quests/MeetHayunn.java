@@ -74,7 +74,7 @@ public class MeetHayunn extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 				ConversationStates.ATTENDING,
-				"Well, back when I was a young adventurer, I right-clicked on my enemies and chose ATTACK. I'm sure that will work for you, too. Good luck, and come back once you are done.",
+				"Well, back when I was a young adventurer, I clicked on my enemies to attack them. I'm sure that will work for you, too. Good luck, and come back once you are done.",
 				null);
 
 		//player doesn't want to learn how to attack
@@ -91,7 +91,7 @@ public class MeetHayunn extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new NotCondition(new KilledForQuestCondition(QUEST_SLOT,1))),
 				ConversationStates.ATTENDING,
-		        "I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them?",
+				"I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them?",
 				null);
 
 		//player returns to Hayunn having killed a rat
@@ -103,19 +103,11 @@ public class MeetHayunn extends AbstractQuest {
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new KilledForQuestCondition(QUEST_SLOT, 1)),
-				ConversationStates.INFORMATION_1,
-		        "You killed the rat! Now, you may ask, what is the point behind risking your life to kill things? #Yes?",
+				ConversationStates.INFORMATION_2,
+				"You killed the rat! Now, you may ask, what is the point behind risking your life to kill things? #Yes?",
 				new MultipleActions(actions));
 
 		// player wants to learn more from Hayunn
-		// TODO: convert those to tutorial events, to make it less boring for new players yes, yes, yes, yes, yes, yes
-		npc.add(
-			ConversationStates.INFORMATION_1,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.INFORMATION_2,
-			"Ah-ha! Well, you can loot items from corpses. You should right-click on a corpse and choose INSPECT. Once you're close enough to the corpse to reach it, you can drag the items into your bag. Do you want to hear how to identify items? #Yes?",
-			null);
 
 		npc.add(
 			ConversationStates.INFORMATION_2,

@@ -44,10 +44,10 @@ public class RetiredAdventurerNPC extends SpeakerNPCFactory {
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestNotStartedCondition("meet_hayunn"),
 				ConversationStates.ATTENDING,
-		        "Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go?",
+				"Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go?",
 				new MultipleActions(actions));
 
-	   	npc.add(ConversationStates.IDLE,
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestCompletedCondition("meet_hayunn"), new NotCondition(new QuestActiveCondition(BeerForHayunn.QUEST_SLOT))),
 				ConversationStates.ATTENDING,
