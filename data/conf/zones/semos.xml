@@ -805,7 +805,7 @@ The sharper minded amongst you might prefer to double-click directly on the crea
 		file="Level 0/semos/village_w.tmx">
 		
 		<configurator class-name="games.stendhal.server.maps.semos.village.DecencyAndMannersWardenNPC" />
-
+        <configurator class-name="games.stendhal.server.maps.semos.village.RatsCreatures" />
 		<configurator
 			class-name="games.stendhal.server.maps.semos.village.SheepSellerNPC" />
 
