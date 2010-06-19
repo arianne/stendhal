@@ -48,7 +48,7 @@ public class CharacterDialog extends JDialog {
 	private static Logger logger = Logger.getLogger(CharacterDialog.class);
 
 	/** Maximum dialog width in pixels */
-	private static final int DIALOG_WIDTH = 320;
+	private static final int DIALOG_WIDTH = 640;
 	/** Width of a player image in pixels */
 	private static final int IMAGE_WIDTH = 32;
 	/** Height of a player image in pixels */
