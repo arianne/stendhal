@@ -16,8 +16,6 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.login.CreateAccountDialog;
 import games.stendhal.client.gui.login.LoginDialog;
-import games.stendhal.client.gui.styled.StyledButtonUI;
-import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
@@ -40,7 +38,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.ButtonUI;
 
 /**
  * Summary description for LoginGUI.
@@ -91,12 +88,10 @@ public class StendhalFirstScreen extends JFrame {
 			}
 		});
 
-		ButtonUI ui = new StyledButtonUI(WoodStyle.getInstance());
 		//
 		// loginButton
 		//
 		final JButton loginButton = new JButton();
-		loginButton.setUI(ui);
 		loginButton.setText("Login to "
 				+ ClientGameConfiguration.get("GAME_NAME"));
 		loginButton.setMnemonic(KeyEvent.VK_L);
@@ -112,7 +107,6 @@ public class StendhalFirstScreen extends JFrame {
 		// createAccountButton
 		//
 		final JButton createAccountButton = new JButton();
-		createAccountButton.setUI(ui);
 		createAccountButton.setText("Create an account");
 		createAccountButton.setMnemonic(KeyEvent.VK_A);
 		createAccountButton.setToolTipText("Press this button to create an account on a "
@@ -128,7 +122,6 @@ public class StendhalFirstScreen extends JFrame {
 		// creaditButton
 		//
 		final JButton helpButton = new JButton();
-		helpButton.setUI(ui);
 		helpButton.setText("Help");
 		helpButton.setMnemonic(KeyEvent.VK_H);
 		helpButton.addActionListener(new ActionListener() {
@@ -141,7 +134,6 @@ public class StendhalFirstScreen extends JFrame {
 		// creaditButton
 		//
 		final JButton creditButton = new JButton();
-		creditButton.setUI(ui);
 		creditButton.setText("Credits");
 		creditButton.setMnemonic(KeyEvent.VK_C);
 		creditButton.addActionListener(new ActionListener() {
