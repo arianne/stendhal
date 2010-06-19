@@ -414,7 +414,7 @@ public class Creature extends NPC {
 		
 	}
 
-	private Map<String, String> getAiProfiles() {
+	public Map<String, String> getAiProfiles() {
 		return aiProfiles;
 	}
 
