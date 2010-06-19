@@ -103,11 +103,19 @@ public class MeetHayunn extends AbstractQuest {
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new KilledForQuestCondition(QUEST_SLOT, 1)),
-				ConversationStates.INFORMATION_2,
+				ConversationStates.INFORMATION_1,
 				"You killed the rat! Now, you may ask, what is the point behind risking your life to kill things? #Yes?",
 				new MultipleActions(actions));
 
 		// player wants to learn more from Hayunn
+		// TODO: convert those to tutorial events, to make it less boring for new players yes, yes, yes, yes, yes, yes
+		npc.add(
+			ConversationStates.INFORMATION_1,
+			ConversationPhrases.YES_MESSAGES,
+			null,
+			ConversationStates.INFORMATION_2,
+			"Ah-ha! Well, you can loot items from corpses. Once you're close enough to the corpse to reach it, you can drag the items into your bag. Do you want to hear how to identify items? #Yes?",
+			null);
 
 		npc.add(
 			ConversationStates.INFORMATION_2,
