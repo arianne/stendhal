@@ -17,6 +17,7 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
+import java.awt.Rectangle;
 import java.util.List;
 import java.util.Map;
 
@@ -60,14 +61,8 @@ class GrainField2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map) {
-		int height;
-		int width;
-		String clazz;
-
-		height = getHeight();
-		width = getWidth();
-
-		clazz = entity.getEntityClass();
+		int width = getWidth();
+		String clazz = entity.getEntityClass();
 
 		if (clazz == null) {
 			LOGGER.warn("No entity class set");
@@ -79,24 +74,30 @@ class GrainField2DView extends StateEntity2DView {
 
 		states = ((GrainField) entity).getMaximumRipeness() + 1;
 
-		final int theight = tiles.getHeight();
-		final int imageStates = theight / height;
-
-		if (imageStates != states) {
-			LOGGER.warn("State count mismatch: " + imageStates + " != "
-					+ states);
-
-			if (imageStates < states) {
-				states = imageStates;
-			}
+		final int tileSetHeight = tiles.getHeight();
+		final int imageHeight = tileSetHeight / states;
+		if (tileSetHeight % states != 0) {
+			LOGGER.warn("Inconsistent image height in "
+					+ translate(clazz.replace(" ", "_")) + ": image height " 
+					+ tileSetHeight + " with " + states + " states.");
 		}
 
 		int i = 0;
-
-		for (int y = 0; y < theight; y += height) {
+		for (int y = 0; y < tileSetHeight; y += imageHeight) {
 			map.put(Integer.valueOf(i++), store.getTile(tiles, 0, y, width,
-					height));
+					imageHeight));
 		}
+		
+		calculateOffset(width, imageHeight);
+	}
+	
+	
+	@Override
+	protected void calculateOffset(final int swidth, final int sheight,
+			final int ewidth, final int eheight) {
+		xoffset = 0;
+		// Start drawing from the top of the sprite
+		yoffset = eheight - sheight;
 	}
 
 	/**
@@ -145,6 +146,23 @@ class GrainField2DView extends StateEntity2DView {
 	@Override
 	public int getWidth() {
 		return (int) (entity.getWidth() * IGameScreen.SIZE_UNIT_PIXELS);
+	}
+	
+	@Override
+	public Rectangle getArea() {
+		return new Rectangle(getX() + getXOffset(), getY(),
+				getWidth(), getHeight());
+	}
+	
+	@Override
+	protected Rectangle getDrawingArea() {
+		/*
+		 * The area of the entire sprite can be larger than the entity area 
+		 * returned by getArea, so we need to provide the info for Entity2DView
+		 * here.
+		 */
+		return new Rectangle(getX() + getXOffset(), getY() + getYOffset(), 
+				getWidth(), getHeight() - getYOffset());
 	}
 
 	/**

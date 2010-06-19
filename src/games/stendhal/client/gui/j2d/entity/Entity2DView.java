@@ -210,7 +210,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	public void draw(final Graphics2D g2d) {
 		applyChanges();
 
-		final Rectangle r = getArea();
+		final Rectangle r = getDrawingArea();
 
 		if (isContained()) {
 			r.setLocation(0, 0);
@@ -358,6 +358,17 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	public Rectangle getArea() {
 		return new Rectangle(getX() + getXOffset(), getY() + getYOffset(),
 				getWidth(), getHeight());
+	}
+	
+	/**
+	 * Get the drawn area used by the entity. Used for checking if the entity
+	 * should be drawn. By default the same as getArea(), but extending classes
+	 * can override it to return a different area if they need it.
+	 *  
+	 * @return The area this draws in.
+	 */
+	protected Rectangle getDrawingArea() {
+		return getArea();
 	}
 
 	/**
