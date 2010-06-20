@@ -42,7 +42,7 @@ public enum TutorialEventType {
 	TIMED_OUTFIT(
 			"Do you like your outfit? If not, you can change it. Right click on yourself and choose \"Set Outfit\" to experiment with new hair, face, clothes and body."),
 	TIMED_RULES(
-			"Thank you for continuing to play Stendhal. Now that you have played for some time, it's important that you read the rules at #http://stendhalgame.org/wiki/StendhalRuleSystem");
+			"Thank you for continuing to play Stendhal. Now that you have played for some time, it's important that you read the rules, please type #/rules and they will open in a browser.");
 	private String message;
 
 	/**
