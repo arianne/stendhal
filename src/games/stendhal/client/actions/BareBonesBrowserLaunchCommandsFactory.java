@@ -17,8 +17,9 @@ public class BareBonesBrowserLaunchCommandsFactory {
 		commandsAndUrls.put("atlas", "http://stendhalgame.org/wiki/StendhalAtlas");
 		commandsAndUrls.put("faq", "http://stendhalgame.org/wiki/StendhalFAQ");
 		commandsAndUrls.put("manual", "http://stendhalgame.org/wiki/Stendhal_Manual");
+		commandsAndUrls.put("rules", "http://stendhalgame.org/wiki/Stendhal_Rules");
 	}
-	
+
 	/**
 	 * creates {@link SlashAction}s for all in initialize specified values 
 	 * @return map of the created actions
