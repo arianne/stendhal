@@ -1,5 +1,8 @@
 package games.stendhal.server.entity.creature;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.RaidCreatureCorpse;
 
@@ -19,6 +22,13 @@ public class RaidCreature extends Creature {
 	 */
 	public RaidCreature(final Creature copy) {
 		super(copy);
+		
+		// Pity newbies taking part in raids
+		if (getAiProfiles().containsKey("attack weakest")) {
+			Map<String, String> profiles = new HashMap<String, String>(getAiProfiles());
+			profiles.remove("attack weakest");
+			setAiProfiles(profiles);
+		}
 	}
 
 	@Override
