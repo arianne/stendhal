@@ -402,7 +402,7 @@ public abstract class Pathfinder {
 		 */
 		private void updateChild(final TreeNode child) {
 			child.parent = this;
-			child.g = this.g + 1;
+			child.g = this.g + child.getCost();
 						
 			child.weight = calculateChildWeight(child);
 		}
@@ -457,6 +457,15 @@ public abstract class Pathfinder {
 		 */
 		public TreeNode getParent() {
 			return parent;
+		}
+		
+		/**
+		 * The cost of moving to this node.
+		 * 
+		 * @return movement cost
+		 */
+		protected double getCost() {
+			return 1.0;
 		}
 
 		/**
@@ -555,7 +564,7 @@ public abstract class Pathfinder {
 				// - working on closed nodes is stopped but they may own a better
 				// parent
 				// so they will also be added to this node (parent)
-				if (child.g > (this.g + 1)) {
+				if (child.g > (this.g + child.getCost())) {
 					updateChild(child);
 				}
 
@@ -586,7 +595,7 @@ public abstract class Pathfinder {
 				for (int i = 0; i < c; i++) {
 					child = parentTemp.children[i];
 
-					if (parentTemp.g + 1 < child.g) {
+					if (parentTemp.g + child.getCost() < child.g) {
 						parentTemp.updateChild(child);
 
 						nodeStack.push(child);
