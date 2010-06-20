@@ -46,9 +46,9 @@ public class GuardNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.HELP_MESSAGES,
 				new NotInJailCondition(),
-		        ConversationStates.ATTENDING,
-		        "Be careful with the criminals in the cells.",
-		        null);
+				ConversationStates.ATTENDING,
+				"Did you know that you can learn about the laws by typing /rules? Those criminals in the cells obviously did not.",
+				null);
 		
 		npc.addGoodbye();
 	}
