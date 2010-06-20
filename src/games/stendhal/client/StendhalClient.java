@@ -399,6 +399,12 @@ public class StendhalClient extends ClientFramework {
 			return;
 		}
 
+		// TODO: remove compatibility code
+		if ((character == null) && (characters.size() == 1) && characters.entrySet().iterator().next().getValue().isEmpty()) {
+			character = getAccountUsername();
+		}
+
+
 		// autologin if a valid character was specified.
 		if ((character != null) && (characters.keySet().contains(character))) {
 			try {
