@@ -57,8 +57,6 @@ public class MeetHayunnTest {
 		en.step(player, "hi");
 		assertEquals("I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Ah-ha! Well, you can loot items from corpses. Once you're close enough to the corpse to reach it, you can drag the items into your bag. Do you want to hear how to identify items? #Yes?", getReply(npc));
-		en.step(player, "yes");
 		assertEquals("Well, back when I was a young adventurer, I clicked on my enemies to attack them. I'm sure that will work for you, too. Good luck, and come back once you are done.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
@@ -69,6 +67,8 @@ public class MeetHayunnTest {
 		en.step(player, "hi");
 		// [15:14] omerob earns 10 experience points.
 		assertEquals("You killed the rat! Now, you may ask, what is the point behind risking your life to kill things? #Yes?", getReply(npc));
+		en.step(player, "yes");
+		assertEquals("Ah-ha! Well, you can loot items from corpses. Once you're close enough to the corpse to reach it, you can drag the items into your bag. Do you want to hear how to identify items? #Yes?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("You can right-click on the items and select LOOK to get a description. Now, I know what you're thinking; how are you going to survive without getting killed? Do you want to know?", getReply(npc));
 		en.step(player, "yes");
