@@ -48,9 +48,20 @@ public class StendhalFirstScreen extends JFrame {
 	private static final int BUTTON_WIDTH = 160;
 	private static final int BUTTON_HEIGHT = 32;
 
+	private static StendhalFirstScreen instance;
+
 	private final StendhalClient client;
 
 	private final Image background;
+
+	/**
+	 * gets the instance of the first screen
+	 *
+	 * @return StendhalFirstScreen
+	 */
+	public static StendhalFirstScreen get() {
+		return instance;
+	}
 
 	/**
 	 * Creates the first screen.
@@ -61,6 +72,7 @@ public class StendhalFirstScreen extends JFrame {
 	public StendhalFirstScreen(final StendhalClient client) {
 		super();
 		this.client = client;
+		StendhalFirstScreen.instance = this;
 
 		final URL url = this.getClass().getClassLoader().getResource(
 				ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));

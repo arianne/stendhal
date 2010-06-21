@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.dialog.CharacterDialog;
 import games.stendhal.client.listener.BuddyChangeListener;
 import games.stendhal.client.listener.FeatureChangeListener;
@@ -417,7 +418,7 @@ public class StendhalClient extends ClientFramework {
 		}
 
 		// show character dialog
-		new CharacterDialog(characters);
+		new CharacterDialog(characters, StendhalFirstScreen.get());
 	}
 
 	@Override
