@@ -72,8 +72,6 @@ public class CharacterDialog extends JDialog {
 		this.owner = owner;
 		setTitle("Choose character");
 		
-		// Exit on close, otherwise the VM keeps running and the user has no
-		// easy way to close it
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
