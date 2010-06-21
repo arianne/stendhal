@@ -77,6 +77,8 @@ public class LoginDialog extends JDialog {
 
 	private JButton loginButton;
 
+	private JButton removeButton;
+
 	private JPanel contentPane;
 
 	// End of variables declaration
@@ -243,6 +245,28 @@ public class LoginDialog extends JDialog {
 		contentPane.add(loginButton, c);
 
 		/*
+		 * Remove currently shown user profile from the local list of accounts
+		 */
+		removeButton = new JButton();
+		removeButton.setText("Remove Profile");
+		removeButton.setMnemonic(KeyEvent.VK_R);
+
+		removeButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(final ActionEvent e) {
+				removeButton.setEnabled(false);
+				removeButton_actionPerformed(e);
+			}
+		});
+
+		c.gridx = 1;
+		c.gridy = 6;
+		c.gridheight = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(15, 4, 4, 4);
+		contentPane.add(removeButton, c);
+
+		/*
 		 * Load saved profiles
 		 */
 		profiles = loadProfiles();
@@ -313,6 +337,34 @@ public class LoginDialog extends JDialog {
 		 */
 		final Thread t = new Thread(new ConnectRunnable(profile));
 		t.start();
+	}
+
+	private void removeButton_actionPerformed(final ActionEvent e) {
+		Profile profile;
+
+		profile = (Profile) profilesComboBox.getSelectedItem();
+		Object[] options = { "Remove", "Cancel" };
+
+		Integer confirmRemoveProfile = (Integer)JOptionPane.showOptionDialog(this,
+			"This will permanently remove a user profile from your local list of accounts.\n"
+			+ "It will not delete an account on any servers.\n"
+			+ "Are you sure you want to remove \'" + profile.getUser() + "@" + profile.getHost() + "\' profile?",
+			"Remove user profile from local list of accounts",
+			JOptionPane.OK_CANCEL_OPTION,
+			JOptionPane.QUESTION_MESSAGE,
+			null,
+			options,
+			options[1]);
+
+		if ( confirmRemoveProfile == 0 ) {
+			profiles.remove(profile);
+			saveProfiles(profiles);
+			profiles = loadProfiles();
+			populateProfiles(profiles);
+		}
+
+		removeButton.setEnabled(true);
+
 	}
 
 	@Override
