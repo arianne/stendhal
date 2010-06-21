@@ -9,12 +9,14 @@ package games.stendhal.server.entity;
 //
 //
 
-import java.util.List;
-
 import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
+
+import java.awt.geom.Rectangle2D;
+import java.util.List;
+
 import marauroa.common.game.RPObject;
 
 /**
@@ -183,6 +185,63 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	public EntityGuide getGuide() {
 		return guide;
+	}
+	
+	@Override
+	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
+		super.onMoved(oldX, oldY, newX, newY);
+		
+		/*
+		 * Adjust speed based on the resisting entities at the same coordinate.
+		 */
+		if (getSpeed() > 0) {
+			int resistance = getLocalResistance();
+			
+			if ((getSpeed() < baseSpeed) || (resistance != 0)) {
+				setSpeed(baseSpeed * (100 - resistance) / 100.0);
+			}
+		}
+	}
+	
+	/**
+	 * Get resistance caused by other entities occupying the same, or part
+	 * of the same space.
+	 * 
+	 * @return resistance
+	 */
+	private int getLocalResistance() {
+		int resistance = 0;
+		double size = getWidth() * getHeight();
+		
+		for (final RPObject obj : getZone()) {
+			final Entity entity = (Entity) obj;
+			if (!getID().equals(entity.getID())) {
+				final Rectangle2D otherArea = entity.getArea(entity.getX(),
+						entity.getY());
+				Rectangle2D intersect = getArea().createIntersection(otherArea);
+				// skip entities far away
+				if (!intersect.isEmpty()) {
+					int r = getResistance(entity);
+					if (r != 0) {
+						/*
+						 * Only count resistance by the proportion the resisting
+						 * entity covers the area of this entity. Allows large
+						 * monsters trample over small obstacles faster than a
+						 * small one trying to run right through it.
+						 */
+						double part = intersect.getWidth() * intersect.getHeight() / size;
+						r *= part;
+						/*
+						 * Add up like probabilities to avoid small resistance
+						 * quickly resulting in a massive slow down.
+						 */
+						resistance = 100 - ((100 - resistance)) * (100 - r) / 100;
+					}
+				}
+			}
+		}
+		
+		return resistance;
 	}
 
 	@Override
