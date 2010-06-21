@@ -7,6 +7,9 @@ Changelog
 - experimental /listproducers command for working NPCs
 - quest to help Phalk with food and clothes
 - a script for calculating item drop rarities
+- actually slow down when walking over resisting entities
+- raid creatures no longer have attack weakest profile even if the
+  creature normally would
 
 *code*
 - players can't use npc names or creature names
