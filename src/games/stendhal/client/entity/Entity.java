@@ -435,8 +435,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * @see games.stendhal.client.entity.IEntity#isObstacle(games.stendhal.client.entity.IEntity)
 	 */
 	public boolean isObstacle(final IEntity entity) {
-		// >= 30% resistance = stall on client (simulates resistance)
-		return ((entity != this) && (getResistance(entity) >= 30));
+		return ((entity != this) && (getResistance(entity) > 95));
 	}
 
 	/* (non-Javadoc)
