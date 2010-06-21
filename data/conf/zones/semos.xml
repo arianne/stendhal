@@ -740,6 +740,7 @@ Southeast: Farmhouse
 	</zone>
 
 	<zone name="int_semos_guard_house" file="interiors/semos/guard_house.tmx">
+		<configurator class-name="games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC" />
 		<portal x="13" y="16" ref="entrance">
 			<destination zone="0_semos_village_w" ref="guard_house_entrance" />
 		</portal>
@@ -750,22 +751,6 @@ My personal favourite has always been to right-click and choose to ATTACK a crea
 The sharper minded amongst you might prefer to double-click directly on the creature. It works too!
 </attribute>
 			<attribute name="class">book_red</attribute>
-		</entity>
-		<entity x="4" y="9">
-			<implementation
-				class-name="games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC">
-				<parameter name="name">Hayunn Naratha</parameter>
-				<parameter name="node0">4,9</parameter>
-				<parameter name="node1">6,9</parameter>
-				<parameter name="node2">6,14</parameter>
-				<parameter name="node3">6,9</parameter>
-				<parameter name="node4">11,9</parameter>
-			</implementation>
-
-			<attribute name="class">oldheronpc</attribute>
-			<attribute name="description">You see Hayunn Naratha. Beneath his grey hair and tatty armor you see glinting clever eyes and wiry muscles.</attribute>
-			<attribute name="hp">85</attribute>
-			<attribute name="base_hp">100</attribute>
 		</entity>
 		
 		<!-- add some interesting descriptions to the armor -->

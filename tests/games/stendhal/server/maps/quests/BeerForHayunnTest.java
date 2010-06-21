@@ -1,10 +1,7 @@
 package games.stendhal.server.maps.quests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -24,20 +21,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class BeerForHayunnTest {
-	private class MockRetiredAdventurer extends RetiredAdventurerNPC {
 
-		@Override
-		public void createDialog(final SpeakerNPC npc) {
-			super.createDialog(npc);
-		}
+	private SpeakerNPC hayunn;
 
-	}
-
-	private static SpeakerNPC hayunn;
-
-	private static BeerForHayunn bfh;
+	private BeerForHayunn bfh;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -47,17 +40,18 @@ public class BeerForHayunnTest {
 
 		MockStendlRPWorld.reset();
 		MockStendlRPWorld.get();
-		hayunn = new SpeakerNPC("Hayunn Naratha");
-		SingletonRepository.getNPCList().add(hayunn);
-
-		bfh = new BeerForHayunn();
-
-		bfh.addToWorld();
 	}
 
 	@Before
 	public void setup() {
 		PlayerTestHelper.removeAllPlayers();
+		StendhalRPZone zone = new StendhalRPZone("admin_test");
+		new RetiredAdventurerNPC().configureZone(zone, null);
+		hayunn = SingletonRepository.getNPCList().get("Hayunn Naratha") ;
+
+		bfh = new BeerForHayunn();
+
+		bfh.addToWorld();
 	}
 
 	@Test
@@ -65,7 +59,6 @@ public class BeerForHayunnTest {
 	
 		final Player player = PlayerTestHelper.createPlayer("player");
 
-		(new MockRetiredAdventurer()).createDialog(hayunn);
 		final Engine en = hayunn.getEngine();
 		en.step(player, "hi");
 		// we assume the player has already completed the meet hayunn quest
