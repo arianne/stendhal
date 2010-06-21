@@ -27,6 +27,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -58,13 +59,17 @@ public class CharacterDialog extends JDialog {
 	/** Area containing buttons for each character */
 	private final JComponent characterPanel;
 	
+	private JFrame owner;
+	
 	/**
 	 * Create a new <code>CharacterDialog</code>.
 	 * 
 	 * @param characters map of available characters, and <code>RPObjects</code>
 	 * 	representing them
 	 */
-	public CharacterDialog(final Map<String, RPObject> characters) {
+	public CharacterDialog(final Map<String, RPObject> characters, JFrame owner) {
+		super(owner);
+		this.owner = owner;
 		setTitle("Choose character");
 		
 		// Exit on close, otherwise the VM keeps running and the user has no
@@ -72,7 +77,7 @@ public class CharacterDialog extends JDialog {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				onExit();
+				onClose();
 			}
 		});
 		
@@ -103,16 +108,20 @@ public class CharacterDialog extends JDialog {
 		newCharButton.addActionListener(new CreateCharacterAction(this));
 		buttonBar.add(newCharButton);
 		
-		JButton exitButton = new JButton("Exit");
+		JButton exitButton = new JButton("Cancel");
 		exitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent evt) {
-				onExit();
+				onClose();
 			}
 		});
 		buttonBar.add(exitButton);
 		
 		pack();
 		setSize(Math.min(getWidth(), DIALOG_WIDTH), getHeight());
+		if (owner != null) {
+			owner.setEnabled(false);
+			this.setLocationRelativeTo(owner);
+		}
 		setResizable(false);
 		setVisible(true);
 	}
@@ -217,8 +226,13 @@ public class CharacterDialog extends JDialog {
 	/**
 	 * Called when the window is closed or the exit button is pressed.
 	 */
-	private void onExit() {
-		System.exit(0);
+	private void onClose() {
+		if (owner == null) {
+			System.exit(0);
+		}
+		owner.setEnabled(true);
+		this.setVisible(false);
+		dispose();
 	}
 	
 	/**
@@ -229,21 +243,50 @@ public class CharacterDialog extends JDialog {
 	private void chooseCharacter(final String character) {
 		try {
 			StendhalClient.get().chooseCharacter(character);
-			// TODO: error handling, exceptions and return of false
+			setVisible(false);
+			if (owner != null) {
+				owner.dispose();
+			}
+			stendhal.doLogin = true;
+			dispose();
 		} catch (TimeoutException e) {
 			logger.error(e, e);
+			handleError("Your connection timed out, please login again.", "Choose Character");
 		} catch (InvalidVersionException e) {
 			logger.error(e, e);
+			handleError("Your version of Stendhal is incompatible with the server.", "Choose Character");
 		} catch (BannedAddressException e) {
 			logger.error(e, e);
+			handleError("Please login again.", "Choose Character");
 		}
-		setVisible(false);
-		stendhal.doLogin = true;
 	}
-	
+
+	/**
+	 * Displays the error message, removes the progress bar and 
+	 * either enabled the login dialog in interactive mode or exits
+	 * the client in non interactive mode.
+	 *
+	 * @param progressBar  ProgressBar to remove
+	 * @param errorMessage error message
+	 * @param errorTitle   title of error dialog box
+	 */
+	private void handleError(String errorMessage, String errorTitle) {
+		JOptionPane.showMessageDialog(
+				this, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
+
+		if (owner != null) {
+			setVisible(false);
+			owner.setEnabled(true);
+			dispose();
+		} else {
+			// Hack for non interactive login
+			System.exit(1);
+		}
+	}
+
 	static class CreateCharacterAction implements ActionListener {
-		private JDialog parent;
-		public CreateCharacterAction(JDialog parent) {
+		private CharacterDialog parent;
+		public CreateCharacterAction(CharacterDialog parent) {
 			this.parent = parent;
 		}
 
@@ -267,10 +310,13 @@ public class CharacterDialog extends JDialog {
 				}
 			} catch (TimeoutException e) {
 				logger.error(e, e);
+				parent.handleError("Your connection timed out, please login again.", "Choose Character");
 			} catch (InvalidVersionException e) {
 				logger.error(e, e);
+				parent.handleError("Your version of Stendhal is incompatible with the server.", "Choose Character");
 			} catch (BannedAddressException e) {
 				logger.error(e, e);
+				parent.handleError("Please login again.", "Choose Character");
 			}
 		}
 	}
