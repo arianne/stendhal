@@ -232,7 +232,6 @@ public class LoginDialog extends JDialog {
 		loginButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent e) {
-				loginButton.setEnabled(false);
 				loginButton_actionPerformed(e);
 			}
 		});
@@ -254,7 +253,6 @@ public class LoginDialog extends JDialog {
 		removeButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(final ActionEvent e) {
-				removeButton.setEnabled(false);
 				removeButton_actionPerformed(e);
 			}
 		});
@@ -287,13 +285,14 @@ public class LoginDialog extends JDialog {
 	}
 
 	private void loginButton_actionPerformed(final ActionEvent e) {
-		Profile profile;
 
 		// If this window isn't enabled, we shouldn't act.
 		if (!isEnabled()) {
 			return;
 		}
+		setEnabled(false);
 
+		Profile profile;
 		profile = new Profile();
 
 		profile.setHost((serverField.getText()).trim());
@@ -340,6 +339,12 @@ public class LoginDialog extends JDialog {
 	}
 
 	private void removeButton_actionPerformed(final ActionEvent e) {
+		// If this window isn't enabled, we shouldn't act.
+		if (!isEnabled()) {
+			return;
+		}
+		setEnabled(false);
+
 		Profile profile;
 
 		profile = (Profile) profilesComboBox.getSelectedItem();
@@ -363,14 +368,14 @@ public class LoginDialog extends JDialog {
 			populateProfiles(profiles);
 		}
 
-		removeButton.setEnabled(true);
-
+		setEnabled(true);
 	}
 
 	@Override
 	public void setEnabled(final boolean b) {
 		super.setEnabled(b);
 		loginButton.setEnabled(b);
+		removeButton.setEnabled(b);
 	}
 	/**
 	 * Connect to a server using a given profile.
@@ -415,9 +420,6 @@ public class LoginDialog extends JDialog {
 			progressBar.finish();
 
 			setVisible(false);
-			if (owner != null) {
-				owner.setVisible(false);
-			}
 		} catch (final InvalidVersionException e) {
 			handleError(progressBar, "You are running an incompatible version of Stendhal. Please update",
 					"Invalid version");
