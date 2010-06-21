@@ -54,6 +54,11 @@ public class StendhalFirstScreen extends JFrame {
 
 	private final Image background;
 
+	private JButton loginButton;
+	private JButton createAccountButton;
+	private JButton helpButton;
+	private JButton creditButton;
+
 	/**
 	 * gets the instance of the first screen
 	 *
@@ -103,7 +108,7 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		// loginButton
 		//
-		final JButton loginButton = new JButton();
+		loginButton = new JButton();
 		loginButton.setText("Login to "
 				+ ClientGameConfiguration.get("GAME_NAME"));
 		loginButton.setMnemonic(KeyEvent.VK_L);
@@ -118,7 +123,7 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		// createAccountButton
 		//
-		final JButton createAccountButton = new JButton();
+		createAccountButton = new JButton();
 		createAccountButton.setText("Create an account");
 		createAccountButton.setMnemonic(KeyEvent.VK_A);
 		createAccountButton.setToolTipText("Press this button to create an account on a "
@@ -133,7 +138,7 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		// creaditButton
 		//
-		final JButton helpButton = new JButton();
+		helpButton = new JButton();
 		helpButton.setText("Help");
 		helpButton.setMnemonic(KeyEvent.VK_H);
 		helpButton.addActionListener(new ActionListener() {
@@ -145,7 +150,7 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		// creaditButton
 		//
-		final JButton creditButton = new JButton();
+		creditButton = new JButton();
 		creditButton.setText("Credits");
 		creditButton.setMnemonic(KeyEvent.VK_C);
 		creditButton.addActionListener(new ActionListener() {
@@ -190,6 +195,15 @@ public class StendhalFirstScreen extends JFrame {
 				ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 		pack();
+	}
+
+	@Override
+	public void setEnabled(boolean b) {
+		super.setEnabled(b);
+		loginButton.setEnabled(b);
+		createAccountButton.setEnabled(b);
+		helpButton.setEnabled(b);
+		creditButton.setEnabled(b);
 	}
 
 	private void login() {
