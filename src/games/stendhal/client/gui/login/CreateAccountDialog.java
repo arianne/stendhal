@@ -25,6 +25,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -89,6 +91,17 @@ public class CreateAccountDialog extends JDialog {
 	}
 
 	private void initializeComponent() {
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				if (owner == null) {
+					System.exit(0);
+				}
+				owner.setEnabled(true);
+				dispose();
+			}
+		});
+
 		serverLabel = new JLabel("Server name");
 		serverField = new JTextField(
 				ClientGameConfiguration.get("DEFAULT_SERVER"));
@@ -220,7 +233,10 @@ public class CreateAccountDialog extends JDialog {
 		this.pack(); 
 		this.setLocationRelativeTo(owner);
 		usernameField.requestFocusInWindow();
-
+		if (owner != null) {
+			owner.setEnabled(false);
+			this.setLocationRelativeTo(owner);
+		}
 	}
 
 	private void createAccountButton_actionPerformed(final ActionEvent e,
@@ -328,7 +344,10 @@ public class CreateAccountDialog extends JDialog {
 						progressBar.finish();
 
 						setEnabled(false);
-						owner.setVisible(false);
+						if (owner != null) {
+							owner.setVisible(false);
+							owner.dispose();
+						}
 
 						stendhal.doLogin = true;
 					}

@@ -23,6 +23,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -96,6 +98,17 @@ public class LoginDialog extends JDialog {
 	}
 
 	private void initializeComponent() {
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				if (owner == null) {
+					System.exit(0);
+				}
+				owner.setEnabled(true);
+				dispose();
+			}
+		});
+
 		JLabel l;
 
 		this.setTitle("Login to Server");
@@ -281,7 +294,10 @@ public class LoginDialog extends JDialog {
 
 		this.pack();
 		usernameField.requestFocusInWindow();
-		this.setLocationRelativeTo(owner);
+		if (owner != null) {
+			owner.setEnabled(false);
+			this.setLocationRelativeTo(owner);
+		}
 	}
 
 	private void loginButton_actionPerformed(final ActionEvent e) {
