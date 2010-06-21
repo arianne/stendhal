@@ -94,7 +94,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		}
 	}
 
-	protected final void setRipeness(final int ripeness) {
+	protected void setRipeness(final int ripeness) {
 		this.ripeness = ripeness;
 		put("ripeness", ripeness);
 	}

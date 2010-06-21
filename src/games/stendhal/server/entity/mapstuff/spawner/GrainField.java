@@ -28,6 +28,11 @@ import marauroa.common.game.RPObject;
  */
 public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 		UseListener {
+	/** How many growing steps are needed before one can harvest again. */
+	public static final int RIPE = 5;
+	
+	/** Resistance of fully grown grain */
+	private static final int MAX_RESISTANCE = 80;
 
 	private String grainName;
 
@@ -39,20 +44,33 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 		return grainName;
     }
 
-	/** How many growing steps are needed before one can harvest again. */
-	public static final int RIPE = 5;
-
 	public GrainField(final RPObject object, final String name) {
 		super(object, name + "_field", name + " field", "Harvest", RIPE, 1, 1);
 		grainName = name;
-		setResistance(80);
+		updateResistance();
 		update();
 	}
 
 	public GrainField(final String name) {
 		super(name + "_field", name + " field", "Harvest", RIPE, 1, 1);
 		grainName = name;
-		setResistance(80);
+	}
+	
+	@Override
+	protected void setRipeness(final int ripeness) {
+		super.setRipeness(ripeness);
+		updateResistance();
+	}
+	
+	/**
+	 * Set resistance according the current ripeness.
+	 */
+	private void updateResistance() {
+		/*
+		 * Ripeness starts from 0. Give it a tiny bit of resistance for
+		 * walking over newly ploughed ground.
+		 */
+		setResistance((getRipeness() + 1) * MAX_RESISTANCE / (RIPE + 1));
 	}
 
 	@Override
