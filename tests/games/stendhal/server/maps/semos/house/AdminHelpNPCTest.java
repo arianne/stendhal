@@ -1,20 +1,21 @@
 package games.stendhal.server.maps.semos.house;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static utilities.SpeakerNPCTestHelper.getReply;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class AdminHelpNPCTest extends PlayerTestHelper {
 
@@ -29,18 +30,12 @@ public class AdminHelpNPCTest extends PlayerTestHelper {
 		MockStendlRPWorld.get();
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
-		npc = new SpeakerNPC("chef");
-		final AdminHelpNPC adminHelper = new AdminHelpNPC();
-
+		StendhalRPZone zone = new StendhalRPZone("admin_test");
+		new AdminHelpNPC().configureZone(zone, null);
+		npc = SingletonRepository.getNPCList().get("Skye");
 		en = npc.getEngine();
-		adminHelper.createDialog(npc);
-
 		player = createPlayer("bob");
 	}
 

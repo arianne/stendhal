@@ -1991,6 +1991,7 @@ Holy mackerel! These chips are tasty.
 	<!--for the admin house -->
 	<zone name="int_semos_house" file="interiors/semos/house.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.house.FlowerSellerNPC" />
+		<configurator class-name="games.stendhal.server.maps.semos.house.AdminHelpNPC" />
 
 		<portal x="1" y="11" ref="exit_1">
 			<destination zone="0_semos_city" ref="house_exit_1" />
@@ -2007,17 +2008,6 @@ Holy mackerel! These chips are tasty.
 		<portal x="17" y="11" ref="exit_4">
 			<destination zone="-1_semos_jail" ref="house_exit_4" />
 		</portal>
-
-		<entity x="6" y="11">
-			<implementation class-name="games.stendhal.server.maps.semos.house.AdminHelpNPC">
-				<parameter name="name">Skye</parameter>
-				<parameter name="node0">6,11</parameter>
-				<parameter name="node1">12,11</parameter>
-			</implementation>
-
-			<attribute name="class">beautifulgirlnpc</attribute>
-		</entity>
-
 
 		<entity x="2" y="6">
 			<implementation
