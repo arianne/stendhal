@@ -53,14 +53,14 @@ public class PerceptionToObject implements IPerceptionListener {
 
 	public boolean onDeleted(final RPObject object) {
 		if (object != null) {
-		Set<ObjectChangeListener> set = map.get(object.getID());
-		if (set != null) {
-			for (ObjectChangeListener objectChangeListener : set) {
-				
-				objectChangeListener.deleted();
-				map.remove(object.getID());
+			Set<ObjectChangeListener> set = map.get(object.getID());
+			if (set != null) {
+				for (ObjectChangeListener objectChangeListener : set) {
+					
+					objectChangeListener.deleted();
+					map.remove(object.getID());
+				}
 			}
-		}
 		}
 		return false;
 	}
@@ -73,13 +73,13 @@ public class PerceptionToObject implements IPerceptionListener {
 
 	public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
 		if (object != null) {
-		Set<ObjectChangeListener> set = map.get(object.getID());
-		if (set != null) {
-			for (ObjectChangeListener objectChangeListener : set) {
-				
-				objectChangeListener.modifiedAdded(changes);
+			Set<ObjectChangeListener> set = map.get(object.getID());
+			if (set != null) {
+				for (ObjectChangeListener objectChangeListener : set) {
+					
+					objectChangeListener.modifiedAdded(changes);
+				}
 			}
-		}
 		}
 		return false;
 	}
@@ -87,12 +87,12 @@ public class PerceptionToObject implements IPerceptionListener {
 	public boolean onModifiedDeleted(final RPObject object,
 			final RPObject changes) {
 		if (object != null) {
-		Set<ObjectChangeListener> set = map.get(object.getID());
-		if (set != null) {
-			for (ObjectChangeListener objectChangeListener : set) {
-				objectChangeListener.modifiedDeleted(changes);
+			Set<ObjectChangeListener> set = map.get(object.getID());
+			if (set != null) {
+				for (ObjectChangeListener objectChangeListener : set) {
+					objectChangeListener.modifiedDeleted(changes);
+				}
 			}
-		}
 		}
 		return false;
 	}
