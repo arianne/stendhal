@@ -80,7 +80,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 		if ((buddy != null) && !buddy.isGhost()) {
 			online = BUDDYONLINE;
 		}
-		player.setKeyedSlot("!buddy", "_" + who, online);
+		player.addBuddy(who, (buddy != null) && !buddy.isGhost());
 
 		player.sendPrivateText(who + " was added to your buddy list.");
 		new GameEvent(player.getName(), "buddy", "add", who).raise();

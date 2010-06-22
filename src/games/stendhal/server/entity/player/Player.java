@@ -1971,4 +1971,26 @@ public class Player extends RPEntity {
 		
 		return sus;
 	}
+	
+	/**
+	 * adds a buddy to the player's buddy list
+	 * 
+	 * @param name the name of the buddy
+	 */
+	public void addBuddy(String name, boolean online) {
+		String onlineString = "0";
+		if(online) {
+			onlineString = "1";
+		}
+		setKeyedSlot("!buddy", "_" + name, onlineString);
+	}
+	
+	/**
+	 * removes a buddy to the player's buddy list
+	 * 
+	 * @param name the name of the buddy
+	 */
+	public void removeBuddy(String name) {
+		setKeyedSlot("!buddy", "_" + name, null);
+	}
 }
