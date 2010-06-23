@@ -230,6 +230,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 		// register native event handler
 		canvas.addMouseListener(ground);
+		canvas.addMouseWheelListener(ground);
 		canvas.addMouseMotionListener(ground);
 	}
 	

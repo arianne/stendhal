@@ -19,6 +19,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
@@ -34,6 +35,8 @@ import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.geom.Point2D;
 import java.util.ConcurrentModificationException;
 
@@ -49,7 +52,7 @@ import org.apache.log4j.Logger;
  * @author mtotz
  * 
  */
-public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspector {
+public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspector, MouseWheelListener {
 	private static final Logger logger = Logger.getLogger(GroundContainer.class);
 
 	/** the game client. */
@@ -408,6 +411,25 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			return newContainer;
 		}
 	}
-	
-	
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.MouseWheelListener#mouseWheelMoved(java.awt.event.MouseWheelEvent)
+	 */
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		/*
+		 * Turning with mouse wheel. Ignore all but the first to avoid flooding
+		 * the server with turn commands.
+		 */
+		if (e.getClickCount() == 1) {
+			Direction current = User.get().getDirection();
+			if (e.getUnitsToScroll() > 0) {
+				// Turn right
+				client.addDirection(current.nextDirection(), true);
+			} else {
+				// Turn left
+				client.addDirection(current.nextDirection().oppositeDirection(), true);
+			}
+		}
+	}	
 }
