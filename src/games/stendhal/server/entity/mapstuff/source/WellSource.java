@@ -118,8 +118,19 @@ public class WellSource extends PlayerActivityEntity {
 		final int random = Rand.roll1D100();
         /*
         * Use some karma to help decide if the outcome is successful
+        * We want to use up quite a bit karma at once, so scale it after
 		*/
-		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
+		double karma = player.useKarma(FINDING_PROBABILITY*10);
+
+		// if player karma is > 0 it will always return at least 20% of FINDING_PROBABILITY*10, or karma, whichever is smaller
+		// so we can safely say if the karma returned is <= 0, the player had <= 0 karma.
+		// so we'll penalise these stronger
+		if (karma <= 0) {
+			karma = karma - FINDING_PROBABILITY*5;
+		}
+		karma = karma / 10;
+		// right hand side could be negative, if karma was negative but thats ok.
+		return random <= (FINDING_PROBABILITY + karma) * 100;
 	}
 
 	/**
@@ -135,7 +146,7 @@ public class WellSource extends PlayerActivityEntity {
 		if (successful) {
 			final String itemName = items[Rand.rand(items.length)];
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
-
+			int amount = 1;
 			if (itemName.equals("dark dagger")
 					|| itemName.equals("horned golden helmet")) {
 				/*
@@ -146,12 +157,13 @@ public class WellSource extends PlayerActivityEntity {
 				/*
 				 * Assign a random amount of money from 1 to 100.
 				 */
-				((StackableItem) item).setQuantity(Rand.roll1D100());
+				amount = Rand.roll1D100();
+				((StackableItem) item).setQuantity(amount);
 			}
 
 			player.equipOrPutOnGround(item);
 			player.sendPrivateText("You were lucky and found "
-					+ Grammar.a_noun(itemName));
+					+ Grammar.quantityplnoun(amount,itemName));
 		} else {
 			player.sendPrivateText("Your wish didn't come true.");
 		}
