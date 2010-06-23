@@ -400,7 +400,7 @@ public class StendhalClient extends ClientFramework {
 			return;
 		}
 
-		// TODO: remove compatibility code
+		// TODO: remove compatibility code after Stendhal 0.85
 		if ((character == null) && (characters.size() == 1) && characters.entrySet().iterator().next().getValue().isEmpty()) {
 			character = getAccountUsername();
 		}
@@ -411,6 +411,9 @@ public class StendhalClient extends ClientFramework {
 			try {
 				chooseCharacter(character);
 				stendhal.doLogin = true;
+				if (StendhalFirstScreen.get() != null) {
+					StendhalFirstScreen.get().dispose();
+				}
 			} catch (final Exception e) {
 				logger.error("StendhalClient::onAvailableCharacters", e);
 			}
