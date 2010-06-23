@@ -74,6 +74,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		new BuyerAdder().add(npc, new SheepBuyerBehaviour(buyitems), true);
 		npc.setPosition(40, 45);
 		npc.setEntityClass("buyernpc");
+		zone.add(npc);
 	}
 
 	class SheepBuyerBehaviour extends BuyerBehaviour {
