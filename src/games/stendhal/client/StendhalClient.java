@@ -14,7 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.StendhalFirstScreen;
-import games.stendhal.client.gui.dialog.CharacterDialog;
+import games.stendhal.client.gui.login.CharacterDialog;
 import games.stendhal.client.listener.BuddyChangeListener;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.update.HttpClient;

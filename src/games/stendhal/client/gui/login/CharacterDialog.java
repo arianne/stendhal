@@ -1,4 +1,4 @@
-package games.stendhal.client.gui.dialog;
+package games.stendhal.client.gui.login;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
