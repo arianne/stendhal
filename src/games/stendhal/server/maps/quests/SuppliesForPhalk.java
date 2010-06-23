@@ -99,7 +99,7 @@ import java.util.List;
 		
 		npc.addReply("beer", "In an INN of course!");
 		npc.addReply("wine", "In an INN of course!");
-		npc.addReply("sandwiches", "Come on, ask in an bakery!");
+		npc.addReply("sandwiches", "Come on, ask in a bakery!");
 	}
 	
 	private void receiveFood() {
@@ -156,8 +156,17 @@ import java.util.List;
 				"I already asked you to bring me some #food!",
 				null);
 		
-		npc.addReply("cloak", "I know Wrvil (he lives in Wofol) has a new cloak for me. Just tell him my name.");
-		npc.addReply("armor", "Mrotho (he lives in Ados) told me he will look for an golden armor for me. Just tell him my name.");
+		npc.add(ConversationStates.ATTENDING, "cloak",
+				new QuestInStateCondition(QUEST_SLOT, 0, "clothes") ,
+				ConversationStates.ATTENDING, 
+				"I know Wrvil (he lives in Wofol) has a new cloak for me. Just tell him my name.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING, "armor",
+				new QuestInStateCondition(QUEST_SLOT, 0, "clothes") ,
+				ConversationStates.ATTENDING, 
+				"Mrotho (he lives in Ados) told me he will look for a golden armor for me. Just tell him my name.",
+				null);
 		
 	}
 	
@@ -309,7 +318,7 @@ import java.util.List;
 								new PlayerHasInfostringItemWithHimCondition("golden armor","Phalk"),
 								new PlayerHasInfostringItemWithHimCondition("dwarf cloak","Phalk")))),
 				ConversationStates.ATTENDING, 
-				"Hm, I want the special golden armor from Mrotho and the dwarf cloak from Wrvil. Tell them my name and they will give you what they made me.",
+				"Hm, I want the special golden #armor from Mrotho and the dwarf #cloak from Wrvil. Tell them my name and they will give you what they made me.",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
