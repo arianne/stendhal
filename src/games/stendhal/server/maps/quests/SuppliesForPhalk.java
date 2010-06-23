@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ import java.util.List;
  * <ul>
  * <li>Phalk, the dwarf guarding Semos mines</li>
  * <li>Wrvil, a kobold weapon trader in Wo'fol</li>
- * <li>rotho, in Ados barracks</li>
+ * <li>Mrotho, in Ados barracks</li>
  * </ul>
  *
  * STEPS:
@@ -99,7 +100,7 @@ import java.util.List;
 		
 		npc.addReply("beer", "In an INN of course!");
 		npc.addReply("wine", "In an INN of course!");
-		npc.addReply("sandwiches", "Come on, ask in a bakery!");
+		npc.addReply(Arrays.asList("sandwiches", "sandwich"), "Come on, ask in a bakery!");
 	}
 	
 	private void receiveFood() {
