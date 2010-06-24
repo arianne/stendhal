@@ -165,4 +165,24 @@ public class TutorialNotifier {
 	public static void newrelease(final Player player) {
 		// process(player, TutorialEventType.NEW_RELEASE77);
 	}
+	
+	/**
+	 * player got private messaged
+	 * 
+	 * @param player
+	 *            Player
+	 */
+	public static void messaged(final Player player) {
+		process(player, TutorialEventType.FIRST_PRIVATE_MESSAGE);
+	}
+	
+	/**
+	 * player got something given from an equip item action of an npc
+	 * 
+	 * @param player
+	 *            Player
+	 */
+	public static void equipped(final Player player) {
+		process(player, TutorialEventType.FIRST_EQUIPPED);
+	}
 }

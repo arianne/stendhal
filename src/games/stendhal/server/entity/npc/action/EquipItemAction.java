@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -69,6 +70,7 @@ public class EquipItemAction implements ChatAction {
     			item.setBoundTo(player.getName());
     		}
     		player.equipOrPutOnGround(item);
+    		TutorialNotifier.equipped(player);
     		player.notifyWorldAboutChanges();
 		} else {
 			logger.error("Cannot find item '" + itemName + "' to equip", new Throwable());

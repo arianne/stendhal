@@ -829,6 +829,7 @@ public class Player extends RPEntity {
 	 * @param lastPrivateChatterName 
 	 */
 	public void setLastPrivateChatter(final String lastPrivateChatterName) {
+		TutorialNotifier.messaged(this);
 		this.lastPrivateChatterName = lastPrivateChatterName;
 	}
 

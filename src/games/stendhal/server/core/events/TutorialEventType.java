@@ -33,6 +33,10 @@ public enum TutorialEventType {
 			"Have you noticed that this name is printed in white? It is another real human player."),
 	FIRST_DEATH(
 			"Oh, you have just died. But fortunately death is not permanent in this world."),
+	FIRST_PRIVATE_MESSAGE(
+			"You received a private message. To reply, Use #/msg #name #message."),		
+	FIRST_EQUIPPED(
+			"You just got given something! Check your bag and hands."),			
 	TIMED_HELP(
 			"Press F1 to read the manual with many pictures."),
 	TIMED_NAKED(
