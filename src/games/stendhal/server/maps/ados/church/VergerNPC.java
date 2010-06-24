@@ -9,6 +9,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * A praying NPC in ados church
@@ -34,6 +35,13 @@ public class VergerNPC implements ZoneConfigurator {
 				addJob("Be quiet!");
 				addQuest("Pray or go away!");
 			}
+
+			@Override
+			protected void onGoodbye(Player player) {
+				setDirection(Direction.UP);
+			}
+			
+			
 			
 		};
 		npc.setEntityClass("vergernpc");
