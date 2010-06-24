@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -27,12 +28,6 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 	private void buildGoldSourceArea(final StendhalRPZone zone) {
 
 		final SpeakerNPC bill = new SpeakerNPC("Bill") {
-
-			@Override
-			protected void createPath() {
-				// NPC does not move
-				setPath(null);
-			}
 
 			@Override
 			protected void createDialog() {
@@ -63,8 +58,13 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 				        "I don't have a gold pan, but maybe you could ask a blacksmith to sell you one.", null);
 
 				addGoodbye("Seeya, get yer spurs on!");
-
 			}
+
+			@Override
+			protected void onGoodbye(Player player) {
+				setDirection(Direction.DOWN);
+			}
+			
 		};
 
 		bill.setEntityClass("oldcowboynpc");
