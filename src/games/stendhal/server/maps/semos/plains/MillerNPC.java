@@ -56,7 +56,8 @@ public class MillerNPC implements ZoneConfigurator {
 		new ProducerAdder().addProducer(npc, behaviour,"Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.");
 		npc.setPosition(19, 39);
 		npc.setDirection(Direction.DOWN);
-		npc.setEntityClass("woman_003_npc");		
+		npc.setEntityClass("woman_003_npc");	
+		zone.add(npc);
 	}
 
 }
