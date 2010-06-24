@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -54,6 +55,15 @@ public class FatherNPC implements ZoneConfigurator {
 					"During the Revival Weeks at the end of October we celebrate the old and now mostly dead Semos Mine Town.",
 					null);
 			}
+
+			/* (non-Javadoc)
+			 * @see games.stendhal.server.entity.npc.SpeakerNPC#onGoodbye(games.stendhal.server.entity.player.Player)
+			 */
+			@Override
+			protected void onGoodbye(Player player) {
+				setDirection(Direction.DOWN);
+			}
+			
 		};
 
 		npc.setOutfit(new Outfit(27, 07, 34, 01));

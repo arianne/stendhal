@@ -57,6 +57,11 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 				
 				// remaining behaviour defined in games.stendhal.server.maps.quests.ArmorForDagobert	
 			}
+
+			@Override
+			protected void onGoodbye(Player player) {
+				setDirection(Direction.DOWN);
+			}
 			
 		};
 		npc.setPosition(9, 23);

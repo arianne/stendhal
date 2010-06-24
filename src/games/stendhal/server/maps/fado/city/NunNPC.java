@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
@@ -46,6 +47,15 @@ public class NunNPC implements ZoneConfigurator {
 				addJob("I am a nun. But this is my life, not my work.");
 				addGoodbye("Goodbye, may peace be with you.");
 			}
+
+			/* (non-Javadoc)
+			 * @see games.stendhal.server.entity.npc.SpeakerNPC#onGoodbye(games.stendhal.server.entity.player.Player)
+			 */
+			@Override
+			protected void onGoodbye(Player player) {
+				setDirection(Direction.RIGHT);
+			}
+			
 		};
 
 		nunnpc.setDescription("You see Sister Benedicta, a holy nun.");

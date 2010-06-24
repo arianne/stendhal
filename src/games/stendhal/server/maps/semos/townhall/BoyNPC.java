@@ -49,6 +49,17 @@ public class BoyNPC implements ZoneConfigurator {
 				});
 				addGoodbye();
 			}
+
+			/* (non-Javadoc)
+			 * @see games.stendhal.server.entity.npc.SpeakerNPC#onGoodbye(games.stendhal.server.entity.player.Player)
+			 */
+			@Override
+			protected void onGoodbye(Player player) {
+				setDirection(Direction.RIGHT);
+			}
+			
+			
+			
 		};
 
 		npc.addInitChatMessage(null, new ChatAction() {
