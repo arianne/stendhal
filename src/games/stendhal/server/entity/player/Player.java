@@ -57,6 +57,8 @@ import marauroa.common.game.SyntaxException;
 
 import org.apache.log4j.Logger;
 
+import static org.hamcrest.Matchers.typeCompatibleWith;
+
 public class Player extends RPEntity {
 	
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
@@ -1005,6 +1007,10 @@ public class Player extends RPEntity {
 				}
 			}
 		}
+		if (containsKey("buddies", who)) {
+			put("buddies", who, true);
+			found = true;
+		}
 		if (found) {
 			if (has("online")) {
 				put("online", get("online") + "," + who);
@@ -1035,6 +1041,10 @@ public class Player extends RPEntity {
 					break;
 				}
 			}
+		}
+		if (containsKey("buddies", who)) {
+			put("buddies", who, false);
+			found = true;
 		}
 		if (found) {
 			if (has("offline")) {
@@ -1983,6 +1993,7 @@ public class Player extends RPEntity {
 			onlineString = "1";
 		}
 		setKeyedSlot("!buddy", "_" + name, onlineString);
+		put("buddies", name, online);
 	}
 	
 	/**
@@ -1992,5 +2003,6 @@ public class Player extends RPEntity {
 	 */
 	public void removeBuddy(String name) {
 		setKeyedSlot("!buddy", "_" + name, null);
+		remove("buddies", name);
 	}
 }

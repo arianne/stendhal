@@ -261,6 +261,22 @@ public abstract class UpdateConverter {
     		logger.warn("Setting hp to 1 for player " + object);
     		object.put("hp", 1);
     	}
+    	
+    	// port to 0.85 added buddy list as map - copy buddies to map
+    	if (object.hasSlot("!buddy")) {
+    		for (RPObject buddy : object.getSlot("!buddy")) {
+    			for (final String buddyname : buddy) {
+    				if (!"id".equals(buddyname)) {
+    					boolean online = false;
+    					if (buddy.get(buddyname).equals("1")) {
+    						online = true;
+    					}
+    					//strip out the _ in the beginning
+    					object.put("buddies", buddyname.substring(1), online);
+    				}
+    			}
+    		}
+    	}
     }
 
 	/**

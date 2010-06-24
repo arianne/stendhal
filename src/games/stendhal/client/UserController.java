@@ -6,6 +6,8 @@ import games.stendhal.client.gui.stats.StatsPanelController;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
@@ -19,6 +21,7 @@ public class UserController implements ObjectChangeListener {
 	
 	public UserController() {
 		pcs.addPropertyChangeListener("!buddy", BuddyPanelControler.get());
+		pcs.addPropertyChangeListener("buddies", BuddyPanelControler.getMapBasedBuddyPropertyChangeListener());
 		pcs.addPropertyChangeListener("bag", BagPanelControler.get());
 		
 		StatsPanelController stats = StatsPanelController.get();
@@ -41,6 +44,9 @@ public class UserController implements ObjectChangeListener {
 		for (final RPSlot slot : changes.slots()) {
 			pcs.firePropertyChange(slot.getName(), null, slot);
 		}
+		for (Entry<String, Map<String, String>> entry : changes.maps().entrySet()) {
+			pcs.firePropertyChange(entry.getKey(), null, entry.getValue());
+		}
 	}
 
 	public void modifiedDeleted(final RPObject changes) {
@@ -53,7 +59,9 @@ public class UserController implements ObjectChangeListener {
 		for (final RPSlot slot : changes.slots()) {
 			pcs.firePropertyChange(slot.getName(), slot, null);
 		}
-
+		for (Entry<String, Map<String, String>> entry : changes.maps().entrySet()) {
+			pcs.firePropertyChange(entry.getKey(), entry.getValue(), null);
+		}
 	}
 
 }

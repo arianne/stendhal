@@ -86,6 +86,9 @@ public class PlayerRPClass {
 
 		// We use this for the buddy system
 		player.addRPSlot("!buddy", 1, Definition.PRIVATE);
+		// using additionally a proof of concept for buddies here
+		player.addAttribute("buddies", Type.MAP, Definition.PRIVATE);
+		
 		player.addRPSlot("!ignore", 1, Definition.PRIVATE);
 		player.addAttribute("online", Type.LONG_STRING,
 				(byte) (Definition.PRIVATE | Definition.VOLATILE));
