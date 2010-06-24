@@ -2,6 +2,7 @@ package games.stendhal.server.maps.semos.guardhouse;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -79,6 +80,7 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 				nodes.add(new Node(6, 14));
 				nodes.add(new Node(6, 9));
 				nodes.add(new Node(11, 9));
+				setPath(new FixedPath(nodes, true));
 			}
 		
 		};
