@@ -94,6 +94,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("sellernpc");
+		npc.setDescription("Nishiya patrols the paths, watching his sheep. You can buy one from him.");
 		npc.setPosition(33, 45);
 		npc.initHP(100);
 		zone.add(npc);

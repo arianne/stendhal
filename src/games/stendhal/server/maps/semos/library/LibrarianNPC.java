@@ -42,6 +42,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("investigatornpc");
+		npc.setDescription("You see Ceryl, a slightly crazed looking librarian.");
 		npc.setPosition(28, 12);
 		npc.initHP(100);
 		zone.add(npc);

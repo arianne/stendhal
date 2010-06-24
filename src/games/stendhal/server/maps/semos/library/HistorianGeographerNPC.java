@@ -86,6 +86,7 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("wisemannpc");
+		npc.setDescription("You see Zynn Iwuhos. He looks even older than some of his tattered maps lying around.");
 		npc.setPosition(15, 3);
 		npc.initHP(100);
 		zone.add(npc);

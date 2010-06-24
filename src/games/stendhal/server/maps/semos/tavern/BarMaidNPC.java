@@ -56,6 +56,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 		};
 
 		margaret.setEntityClass("tavernbarmaidnpc");
+		margaret.setDescription("Margaret looks so warm and welcoming that you can't help but want to buy something from her.");
 		margaret.setPosition(11, 4);
 		margaret.initHP(100);
 		zone.add(margaret);
