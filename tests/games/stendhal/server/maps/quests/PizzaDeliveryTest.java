@@ -74,14 +74,11 @@ public class PizzaDeliveryTest {
 		new WitchNPC().configureZone(zone, null);
 		new HolidayingManNPC().configureZone(zone, null);
 		new SheepBuyerNPC().configureZone(zone, null);
+		new MillerNPC().configureZone(zone, null);
 		
 		SpeakerNPC npc = new SpeakerNPC("Leander");
 		SingletonRepository.getNPCList().add(npc);
 		SpeakerNPCFactory npcConf = new ChefNPC();
-		npcConf.createDialog(npc);
-		npc = new SpeakerNPC("Jenny");
-		SingletonRepository.getNPCList().add(npc);
-		npcConf = new MillerNPC();
 		npcConf.createDialog(npc);
 		npc = new SpeakerNPC("Cyk");
 		SingletonRepository.getNPCList().add(npc);

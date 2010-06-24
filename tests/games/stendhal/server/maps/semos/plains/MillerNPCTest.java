@@ -1,9 +1,6 @@
 package games.stendhal.server.maps.semos.plains;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 
@@ -13,6 +10,9 @@ import org.junit.Test;
 
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 /**
  * Test for MillerNPC: mill grain.
@@ -26,12 +26,8 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-
-		final SpeakerNPC npc = new SpeakerNPC("Jenny");
-		SingletonRepository.getNPCList().add(npc);
-
-		final MillerNPC npcConf = new MillerNPC();
-		npcConf.createDialog(npc);
+		StendhalRPZone zone = new StendhalRPZone("admin_test");
+		new MillerNPC().configureZone(zone, null);
 
 		setupZone(ZONE_NAME);
 	}

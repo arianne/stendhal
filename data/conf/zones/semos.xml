@@ -688,14 +688,7 @@ South: Semos city
 
 	<zone name="0_semos_plains_ne" level="0" x="500128" y="499872"
 		file="Level 0/semos/plains_ne.tmx">
-		<entity x="19" y="39">
-			<implementation class-name="games.stendhal.server.maps.semos.plains.MillerNPC">
-				<parameter name="name">Jenny</parameter>
-				<parameter name="direction">down</parameter>
-			</implementation>
-
-			<attribute name="class">woman_003_npc</attribute>
-		</entity>
+		<configurator class-name="games.stendhal.server.maps.semos.plains.MillerNPC" />
 
 		<entity x="25" y="46">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
