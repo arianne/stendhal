@@ -1,10 +1,8 @@
 package games.stendhal.server.maps.quests;
 
-import static org.junit.Assert.assertEquals;
-import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.fado.hut.SellerNPC;
@@ -15,6 +13,8 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
+import static org.junit.Assert.assertEquals;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class LearnAboutKarmaTest {
 
@@ -30,10 +30,9 @@ public class LearnAboutKarmaTest {
 
 	@Before
 	public void setUp() {
-		npc = new SpeakerNPC("Sarzina");
-		SingletonRepository.getNPCList().add(npc);
-		final SpeakerNPCFactory npcConf = new SellerNPC();
-		npcConf.createDialog(npc);
+		StendhalRPZone zone = new StendhalRPZone("admin_test");
+		new SellerNPC().configureZone(zone, null);
+		npc = SingletonRepository.getNPCList().get("Sarzina");
 
 		final AbstractQuest quest = new LearnAboutKarma();
 		quest.addToWorld();
