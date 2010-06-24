@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
@@ -29,6 +30,14 @@ public class GreeterNPC implements ZoneConfigurator {
 				addOffer("I give directions to #buildings in Semos, to newcomers settle in. When I'm in a bad mood I sometimes give misleading directions to amuse myself... hee hee hee! Of course, sometimes I get my wrong directions wrong and they end up being right after all! Ha ha!");
 				// All further behaviour is defined in quest classes.
 			}
+
+			@Override
+			protected void onGoodbye(Player player) {
+				setDirection(Direction.LEFT);
+			}
+			
+			
+			
 		};
 		npc.setPosition(26, 22);
 		npc.setEntityClass("oldmannpc");

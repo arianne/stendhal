@@ -45,6 +45,7 @@ public class VergerNPC implements ZoneConfigurator {
 			
 		};
 		npc.setEntityClass("vergernpc");
+		npc.setDescription("You see Simon. He has closed his eyes and is praying silently, but sometimes you can hear him mumble a prayer...");
 		npc.setPosition(29, 14);
 		npc.setDirection(Direction.UP);
 		npc.initHP(100);
