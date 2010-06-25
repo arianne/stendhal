@@ -3,20 +3,38 @@ Changelog
 
 0.85
 *features*
+- all gui components use a new wood panel theme (even ones which did not have wood before)
+- character selection dialog after account login
+- login profiles can be cleaned up
 - right click and 'Where' yourself
-- experimental /listproducers command for working NPCs
+- /listproducers command for working NPCs
 - quest to help Phalk with food and clothes
-- a script for calculating item drop rarities
-- actually slow down when walking over resisting entities
-- raid creatures no longer have attack weakest profile even if the
-  creature normally would
+- slow down when walking over resisting entities
+- take resistance into consideration when choosing path
+- use more karma at the well and count activities
+- added descriptions to some npcs
+- new npc in ados church
+- new tutorial messages for receiving items and private messages
+- can turn around on spot using mouse wheel
+- rats in semos village are not cowards
 
 *code*
 - players can't use npc names or creature names
 - cannot add buddy who doesn't exist
 - refactored Kanmararn Soldiers quest
-- style code completely rewritten as a swing look & feel, and extended to 
-  all components used by stendhal
+- style code completely rewritten as a swing look & feel, and extended to all components used by stendhal
+- a script for calculating item drop rarities
+- quests history refactored to not use xml
+- many semos npcs reverted to not use xml for configuration
+  
+*bugfixes*
+- upper part of grain is not counted as grain (can move between grain fields)
+- raid creatures no longer have attack weakest profile even if the creature normally would
+- weekly item quest xp reward
+- quest completed check where completed state is set to other than 'done'
+- initial Hayunn dialog/tutorial cleaned up
+
+
 
 0.84
 *features*
