@@ -57,8 +57,6 @@ import marauroa.common.game.SyntaxException;
 
 import org.apache.log4j.Logger;
 
-import static org.hamcrest.Matchers.typeCompatibleWith;
-
 public class Player extends RPEntity {
 	
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
