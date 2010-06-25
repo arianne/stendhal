@@ -96,30 +96,34 @@ public class BuddyPanelControler implements PropertyChangeListener {
 			//remove
 			Map<String, String> oldBuddies = (Map<String, String>) evt.getOldValue();
 			if (oldBuddies != null) {
-				for (final Entry<String, String> entry : oldBuddies.entrySet()) {
-					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
-							buddyPanel.remove(entry.getKey());		
+					for (final Entry<String, String> entry : oldBuddies.entrySet()) {
+						if (!entry.getKey().equals("id") && !entry.getKey().equals("zoneid")) {
+							SwingUtilities.invokeLater(new Runnable() {
+								public void run() {
+									buddyPanel.remove(entry.getKey());		
+								}
+							});
 						}
-					});
-				}
+					}
 			}
 			//change online status
 			Map<String, String> newBuddies = (Map<String, String>) evt.getNewValue();
 			if (newBuddies != null) {
 				for (final Entry<String, String> entry : newBuddies.entrySet()) {
-					if (!Boolean.parseBoolean(entry.getValue())) {
-						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
-								buddyPanel.setOffline(entry.getKey());
-							}
-						});
-					} else {
-						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
-								buddyPanel.setOnline(entry.getKey());
-							}
-						});
+					if (!entry.getKey().equals("id") && !entry.getKey().equals("zoneid")) {
+						if (!Boolean.parseBoolean(entry.getValue())) {
+							SwingUtilities.invokeLater(new Runnable() {
+								public void run() {
+									buddyPanel.setOffline(entry.getKey());
+								}
+							});
+						} else {
+							SwingUtilities.invokeLater(new Runnable() {
+								public void run() {
+									buddyPanel.setOnline(entry.getKey());
+								}
+							});
+						}						
 					}
 				}
 			}
