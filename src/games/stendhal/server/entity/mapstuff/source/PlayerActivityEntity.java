@@ -9,6 +9,7 @@ package games.stendhal.server.entity.mapstuff.source;
 //
 //
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.UseListener;
@@ -24,8 +25,11 @@ import java.lang.ref.WeakReference;
  * the entity when it finished to succeed. The activity must finish before being
  * initiated again.
  */
-public abstract class PlayerActivityEntity extends Entity implements
-		UseListener {
+public abstract class PlayerActivityEntity extends Entity implements UseListener {
+
+	private static final long PENALTY_TIMEOUT = 30 * 60 * 1000;
+	private static final long PENALTY_COUNT = 3000;
+
 	/**
 	 * Create a player activity entity.
 	 */
@@ -54,7 +58,11 @@ public abstract class PlayerActivityEntity extends Entity implements
 		 * activity fails.
 		 */
 		if (nextTo(player)) {
-			onFinished(player, isSuccessful(player));
+			if (isPenalized(player)) {
+				onFinished(player, false);
+			} else {
+				onFinished(player, isSuccessful(player));
+			}
 		} else {
 			player.sendPrivateText("You are too far away from the "+this.getName()+
 								   ", try to come closer.");
@@ -103,6 +111,19 @@ public abstract class PlayerActivityEntity extends Entity implements
 	 *            The player starting the activity.
 	 */
 	protected abstract void onStarted(final Player player);
+
+	protected boolean isPenalized(final Player player) {
+		String timestamp = player.get("source_usage", this.getName() + ".lastused");
+		int usageCount = 0;
+		if (MathHelper.parseLong(timestamp) > System.currentTimeMillis() - PENALTY_TIMEOUT) {
+			usageCount = player.getInt("source_usage", this.getName() + ".count");
+		}
+		usageCount++;
+		player.put("source_usage", this.getName() + ".lastused",  Long.toString(System.currentTimeMillis()));
+		player.put("source_usage", this.getName() + ".count", usageCount);
+
+		return usageCount > PENALTY_COUNT;
+	}
 
 	//
 	// UseListener

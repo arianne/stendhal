@@ -123,10 +123,12 @@ public class PlayerRPClass {
 		// Last time this player attacked another player
 		player.addAttribute("last_pvp_action_time", Type.FLOAT, Definition.HIDDEN);
 		player.addAttribute("last_player_kill_time", Type.FLOAT, Definition.STANDARD);
-		
+
 		player.addRPEvent("transition_graph", Definition.PRIVATE);
 		player.addRPEvent("examine", Definition.PRIVATE);
 		player.addRPEvent("show_item_list", Definition.PRIVATE);
+
+		player.addAttribute("source_usage", Type.MAP, Definition.HIDDEN);
 	}
 
 }
