@@ -153,20 +153,27 @@ public class TellAction implements ActionListener {
 
 	private boolean checkGrumpy() {
 		final String grumpy = receiver.getGrumpyMessage();
-		if ((grumpy != null) && (receiver.getSlot("!buddy").size() > 0)) {
+		if (grumpy != null) {
 			final RPObject buddies = receiver.getSlot("!buddy").iterator().next();
 			boolean senderFound = false;
-			for (String buddyName : buddies) {
-				// TODO: as in Player.java, remove '_' prefix if ID is made
-				// completely virtual
-				if (!"id".equals(buddyName)) {
-					
-				buddyName = buddyName.substring(1);
-					if (buddyName.equalsIgnoreCase(senderName)) {
-						senderFound = true;
-						break;
+			// old way: check in buddy slot
+			if (receiver.getSlot("!buddy").size() > 0) {
+				for (String buddyName : buddies) {
+					// TODO: as in Player.java, remove '_' prefix if ID is made
+					// completely virtual
+					if (!"id".equals(buddyName)) {
+						
+					buddyName = buddyName.substring(1);
+						if (buddyName.equalsIgnoreCase(senderName)) {
+							senderFound = true;
+							break;
+						}
 					}
 				}
+			}
+			// new way: check in buddies map if sender is buddy
+			if(receiver.containsKey("buddies", senderName)) {
+				senderFound = true;
 			}
 			if (!senderFound) {
 				// sender is not a buddy
