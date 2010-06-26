@@ -129,7 +129,7 @@ public class GardenerNPC implements ZoneConfigurator {
 							player.setQuest(QUEST_SLOT, amount + ";" + getProductName() + ";"
 											+ timeNow);
 							npc.say("Thanks! Come back in "
-									+ getApproximateRemainingTime(player) + ", and I'll have got your " 
+									+ getApproximateRemainingTime(player) + ", and I'll have got " 
 									+ Grammar.quantityplnoun(amount, getProductName()) + " for you.");
 							return true;
 						}
