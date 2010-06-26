@@ -421,7 +421,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 		 * Turning with mouse wheel. Ignore all but the first to avoid flooding
 		 * the server with turn commands.
 		 */
-		if (e.getClickCount() == 1) {
+		if (e.getClickCount() <= 1) {
 			Direction current = User.get().getDirection();
 			if (e.getUnitsToScroll() > 0) {
 				// Turn right
