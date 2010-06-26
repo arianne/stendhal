@@ -171,6 +171,8 @@ public class stendhal {
 			logger.error("Failed to set Look and Feel", e);
 		}
 
+		UIManager.getLookAndFeelDefaults().put("ClassLoader", stendhal.class.getClassLoader());
+		
 		Profile profile = Profile.createFromCommandline(args);
 		if (profile.isValid()) {
 			new LoginDialog(null, client).connect(profile);
