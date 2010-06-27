@@ -29,11 +29,11 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 				// TODO: The code is similar to Sato's SheepBuyerBehaviour.
 				// Only the phrasing is different, and Sato doesn't buy
 				// skinny sheep. Get rid of the code duplication.
-				addGreeting();
+				addGreeting(getName() + " see hooman!");
 				addJob(getName() + " is buy real cheep from hoomans.");
 				addHelp(getName() + " buy sheep! Sell me sheep! "
 						+ getName()	+ " is hungry!");
-				addGoodbye();
+				addGoodbye("*grunt*");
 			}
 
 			/* (non-Javadoc)
