@@ -1,6 +1,7 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
@@ -196,16 +197,18 @@ public class Herald extends ScriptImpl {
 			/**
 			 * npc says his job list
 			 */
-			class ReadNewsAction implements ChatAction {
+			class ReadJobsAction implements ChatAction {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc){
-					if(heraldNews.size()==0){
+					int newssize = heraldNews.size();
+					if(newssize==0){
 						npc.say("My announcements list is empty.");
 						return;
 					}
 					StringBuilder sb=new StringBuilder();
-					sb.append("Here is list of my current announcements.");
+					sb.append("Here " + Grammar.isare(newssize) + " my current " + Grammar.plnoun(newssize,"announcement") + ": ");
+
 					
-					for(int i=0; i<(heraldNews.size());i++){
+					for(int i=0; i<newssize;i++){
 						// will add 1 to position numbers to show position 0 as 1.
 						logger.info("info: index "+Integer.toString(i));
 						try {
@@ -218,9 +221,9 @@ public class Herald extends ScriptImpl {
 								" #seconds: \""+heraldNews.get(i).getNews()+"\"");
 						} catch (IndexOutOfBoundsException ioobe) {
 							logger.error("ReadNewsAction: size of heraldNews = "+
-									Integer.toString(heraldNews.size()), ioobe);
+									Integer.toString(newssize), ioobe);
 						}
-						if(i!=(heraldNews.size()-1)){
+						if(i!=(newssize-1)){
 							sb.append("; ");
 						}
 					}
@@ -228,6 +231,37 @@ public class Herald extends ScriptImpl {
 				}
 			}
 			
+			
+			/**
+			 * npc says his job list
+			 */
+			class ReadNewsAction implements ChatAction {
+				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc){
+					int newssize = heraldNews.size();
+					if(newssize==0){
+						npc.say("My announcements list is empty.");
+						return;
+					}
+
+					StringBuilder sb=new StringBuilder();
+					sb.append("Here " + Grammar.isare(newssize) + " my current " + Grammar.plnoun(newssize,"announcement") + ": ");
+					
+					for(int i=0; i<newssize;i++){
+						// will add 1 to position numbers to show position 0 as 1.
+						logger.info("info: index "+Integer.toString(i));
+						try {
+						sb.append("\""+heraldNews.get(i).getNews()+"\"");
+						} catch (IndexOutOfBoundsException ioobe) {
+							logger.error("ReadNewsAction: size of heraldNews = "+
+									Integer.toString(newssize), ioobe);
+						}
+						if(i!=(newssize-1)){
+							sb.append("; ");
+						}
+					}
+					npc.say(sb.toString());
+				}
+			}
 			/**
 			 * npc adds new job to his job list
 			 */
@@ -257,7 +291,7 @@ public class Herald extends ScriptImpl {
 								          substring(starr[2].length()).trim();
 							final String out="Interval: "+Integer.toString(interval)+", limit: "+
 							Integer.toString(limit)+", text: \""+text+"\"";
-							npc.say("Ok, i recorded it. "+out);
+							npc.say("Ok, I have recorded it. "+out);
 							logger.info("Admin "+player.getName()+
 										" added announcement: " +out);
 							final HeraldListener tnl = new HeraldListener(heraldNews.size());
@@ -347,7 +381,7 @@ public class Herald extends ScriptImpl {
 					Arrays.asList("hi", "hola", "hello", "heya"),
 					new NotCondition(new AdminCondition(REQUIRED_ADMINLEVEL_INFO)),
 					ConversationStates.IDLE, 
-					HaveNoTime,	null);
+					null,	new ReadNewsAction());
 				add(ConversationStates.IDLE, 
 					Arrays.asList("hi", "hola", "hello", "heya"),
 					new AdminCondition(REQUIRED_ADMINLEVEL_INFO), 
@@ -367,12 +401,12 @@ public class Herald extends ScriptImpl {
 					Arrays.asList("help"),
 					new NotCondition(new AdminCondition(REQUIRED_ADMINLEVEL_SET)), 
 					ConversationStates.ATTENDING, 
-					InfoOnly, new ReadNewsAction());
+					InfoOnly, new ReadJobsAction());
 				add(ConversationStates.ATTENDING, 
 					Arrays.asList("info", "list", "tasks", "news"),
 					new AdminCondition(REQUIRED_ADMINLEVEL_INFO), 
 					ConversationStates.ATTENDING, 
-					null, new ReadNewsAction());		
+					null, new ReadJobsAction());		
 				add(ConversationStates.ATTENDING, 
 					Arrays.asList("speech"),
 					new AdminCondition(REQUIRED_ADMINLEVEL_SET), 
