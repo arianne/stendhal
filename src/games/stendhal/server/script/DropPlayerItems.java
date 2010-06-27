@@ -30,6 +30,12 @@ public class DropPlayerItems extends ScriptImpl {
 		}
 
 		final Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
+		
+		if (player == null) {
+			admin.sendPrivateText("Player " + args.get(0) + " is not online.");
+			return;
+		}
+		
 		String itemName = null;
 		int amount = 1;
 
