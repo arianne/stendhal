@@ -290,7 +290,7 @@ public class CharacterDialog extends JDialog {
 
 		public void actionPerformed(final ActionEvent evt) {
 			String name = JOptionPane.showInputDialog(parent,
-					"Please enter the name of your character (only letters allowed):",
+					"Please enter the name of your charactes (only letters allowed):",
 					"Create Character",
 					JOptionPane.QUESTION_MESSAGE);
 
