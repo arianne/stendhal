@@ -196,8 +196,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	public Portal getPortal(final Object reference) {
+		if (reference == null) {
+			return null;
+		}
 		for (final Portal portal : portals) {
-			if (portal.getIdentifier().equals(reference)) {
+			if (reference.equals(portal.getIdentifier())) {
 				return portal;
 			}
 		}
@@ -703,12 +706,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else if (object instanceof SpeakerNPC) {
 			SingletonRepository.getNPCList().add((SpeakerNPC) object);
 		} else if (object instanceof Portal) {
-			Portal portal = (Portal) object;
-			if (portal.getIdentifier() == null) {
-				logger.error("Portal without identifier: " + portal, new Throwable());
-			} else {
-				portals.add(portal);
-			}
+			portals.add((Portal) object);
 		}
 
 		if (object instanceof NPC) {
