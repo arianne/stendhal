@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ import java.util.List;
 public class MeetHackim extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "meet_hackim";
-
+	List<String> yesTrigger;
 
 
 	@Override
@@ -70,10 +71,10 @@ public class MeetHackim extends AbstractQuest {
 			ConversationStates.INFORMATION_2,
 			"*whisper* Go to the tavern and talk to a man called #Xin #Blanca... he buys and sells equipment that might interest you. Do you want to hear more?",
 			null);
-
+		
 		npc.add(
 			ConversationStates.INFORMATION_2,
-			ConversationPhrases.YES_MESSAGES,
+			yesTrigger,
 			null,
 			ConversationStates.INFORMATION_3,
 			"Ask him what he has to #offer, and look at what he will let you #buy and #sell. For instance, if you had a studded shield which you didn't want, you could #'sell studded shield'.",
@@ -87,14 +88,14 @@ public class MeetHackim extends AbstractQuest {
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		
 		npc.add(ConversationStates.INFORMATION_3,
-				ConversationPhrases.YES_MESSAGES,
+				yesTrigger,
 				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.IDLE, 
 				answer + "If anybody asks, you don't know me!",
 				new MultipleActions(reward));
 
 		npc.add(ConversationStates.INFORMATION_3,
-				ConversationPhrases.YES_MESSAGES, 
+				yesTrigger, 
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.IDLE, 
 				answer + "Where did you get those weapons? A toy shop?",
@@ -116,7 +117,10 @@ public class MeetHackim extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		yesTrigger = new LinkedList<String>(ConversationPhrases.YES_MESSAGES);
+		yesTrigger.add("Xin Blanca");
+		yesTrigger.add("Blanca");
+		yesTrigger.add("Xin");
 		prepareHackim();
 	}
 

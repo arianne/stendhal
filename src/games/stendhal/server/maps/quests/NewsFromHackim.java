@@ -14,6 +14,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -90,11 +91,13 @@ public class NewsFromHackim extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
-			"Xin",
+			Arrays.asList("Xin", "Xin Blanca", "Blanca"),
 			null,
 			ConversationStates.QUEST_OFFERED,
 			"You don't know who Xin is? Everybody at the tavern knows Xin. He's the guy who owes beer money to most of the people in Semos! So, will you do it?",
 			null);
+		
+		npc.addReply(Arrays.asList("Xin", "Xin Blanca", "Blanca"), "Xin's so cool. I want to work in the tavern too like him but my dad says I have to learn a trade.");
 	}
 
 	private void step_2() {
@@ -108,9 +111,9 @@ public class NewsFromHackim extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
 					String answer;
 					if (player.isEquipped("leather legs")) {
-						answer = "Take this set of brand new... oh, you already have leather leg armour. Well, maybe you can sell them off or something.";
+						answer = "Take this set of brand new... oh, you already have leather leg armor. Well, maybe you can sell them off or something.";
 					} else {
-						answer = "Take this set of brand new leather leg armour! Let me know if you want anything else.";
+						answer = "Take this set of brand new leather leg armor! Let me know if you want anything else.";
 					}
 					// player.say("Well, to make a long story short; I know
 					// your business with Hackim and I'm here to tell you
