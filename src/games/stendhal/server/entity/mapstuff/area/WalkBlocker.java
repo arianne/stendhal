@@ -28,7 +28,8 @@ public class WalkBlocker extends AreaEntity {
 
 		setRPClass("walkblocker");
 		put("type", "walkblocker");
-		setResistance(40);
+		// Count as collision for the client and pathfinder
+		setResistance(100);
 	}
 
 
