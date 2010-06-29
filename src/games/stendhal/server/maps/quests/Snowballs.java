@@ -92,22 +92,19 @@ public class Snowballs extends AbstractQuest {
 			return false;
 		} else {
 			final long timeRemaining = calculateRemainingTime(player);
-		   
-		   if (timeRemaining < 0) {
-		   player.setQuest(QUEST_SLOT, "0");
-		   return true;
-		   } else {
-		   return false;
-		   }
+			if (timeRemaining < 0) {
+				player.setQuest(QUEST_SLOT, "0");
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 
 	private long calculateRemainingTime(final Player player) {
 		final String lasttime = player.getQuest(QUEST_SLOT);
-	   
-	   final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
-	   
-	   final long timeRemaining = (Long.parseLong(lasttime) + delay) - System.currentTimeMillis();
+		final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+		final long timeRemaining = (MathHelper.parseLongDefault(lasttime, 0) + delay) - System.currentTimeMillis();
 		return timeRemaining;
 	}
 
