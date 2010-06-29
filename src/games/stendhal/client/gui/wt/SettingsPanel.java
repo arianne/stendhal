@@ -25,6 +25,8 @@ import games.stendhal.client.gui.wt.core.WtButton;
 import games.stendhal.client.gui.wt.core.WtClickListener;
 import games.stendhal.client.gui.wt.core.WtCloseListener;
 import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.Point;
@@ -46,12 +48,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	/**
 	 * The button width.
 	 */
-	private static final int BUTTON_WIDTH = 150;
+	private static final int BUTTON_WIDTH = 25;
 
 	/**
 	 * The button spacing.
 	 */
-	private static final int SPACING = 5;
+	private static final int SPACING = 3;
 
 	/** width of this panel. */
 	private static final int WIDTH = BUTTON_WIDTH + SPACING + SPACING;
@@ -66,15 +68,15 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 * @param gameScreen
 	 */
 	public SettingsPanel(final int frameWidth, final IGameScreen gameScreen) {
-		super("settings", (frameWidth - WIDTH) / 2, 0, WIDTH, SPACING * 2,
+		super("settings", 0, 0, WIDTH, SPACING * 2,
 				gameScreen);
 
 		setTitletext("Settings");
 
 		setFrame(true);
-		setTitleBar(true);
-		setMinimizeable(true);
-		setMinimized(true);
+		//setTitleBar(true);
+		//setMinimizeable(true);
+		setMinimized(false);
 		setCloseable(false);
 
 		entries = new HashMap<String, Entry>();
@@ -96,9 +98,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		final String mnemonic = window.getName();
 
 		final int y = SPACING + (entries.size() * (BUTTON_HEIGHT + SPACING));
-
+		Sprite icon = SpriteStore.get().getSprite("data/gui/"+label+".png");
 		final WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT,
-				label, gameScreen);
+				 icon, gameScreen);
 
 		button.moveTo(SPACING, y);
 		button.setPressed(window.isVisible());
