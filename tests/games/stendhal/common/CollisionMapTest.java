@@ -285,7 +285,7 @@ public class CollisionMapTest {
 		StendhalRPRuleProcessor.get();
 		MockStendlRPWorld.get();
 		games.stendhal.server.entity.player.Player serverbob = games.stendhal.server.entity.player.Player
-				.createZeroLevelPlayer("bob");
+				.createZeroLevelPlayer("bob", null);
 		serverbob.setPosition(0, 0);
 		bob.initialize(serverbob);
 

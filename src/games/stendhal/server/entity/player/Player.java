@@ -140,7 +140,7 @@ public class Player extends RPEntity {
 		}
 	}
 
-	public static Player createZeroLevelPlayer(final String characterName) {
+	public static Player createZeroLevelPlayer(final String characterName, RPObject template) {
 		/*
 		 * TODO: Update to use Player and RPEntity methods.
 		 */
@@ -155,12 +155,18 @@ public class Player extends RPEntity {
 		player.put("atk_xp", 0);
 		player.put("def", 10);
 		player.put("def_xp", 0);
-        player.put("level", 0);
+		player.put("level", 0);
 		player.setXP(0);
 
-
-		final Outfit randomoutfit = Outfit.getRandomOutfit();
-		player.setOutfit(randomoutfit);
+		// define outfit
+		Outfit outfit = null;
+		if ((template != null) && template.has("outfit")) {
+			outfit = new Outfit(template.getInt("outfit"));
+		}
+		if ((outfit == null) || !outfit.isChoosableByPlayers()) {
+			outfit = Outfit.getRandomOutfit();
+		}
+		player.setOutfit(outfit);
 
 		for (final String slot : Constants.CARRYING_SLOTS) {
 			player.addSlot(slot);
@@ -168,16 +174,15 @@ public class Player extends RPEntity {
 
 		player.update();
 
-        Entity entity = SingletonRepository.getEntityManager().getItem("leather armor");
-        RPSlot slot = player.getSlot("armor");
-        slot.add(entity);
-        
-        entity = SingletonRepository.getEntityManager().getItem("club");
-        slot = player.getSlot("rhand");
-        slot.add(entity);
-        
-   	
-        return player;
+		Entity entity = SingletonRepository.getEntityManager().getItem("leather armor");
+		RPSlot slot = player.getSlot("armor");
+		slot.add(entity);
+
+		entity = SingletonRepository.getEntityManager().getItem("club");
+		slot = player.getSlot("rhand");
+		slot.add(entity);
+
+		return player;
 	}
 
 

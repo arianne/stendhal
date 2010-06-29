@@ -78,7 +78,7 @@ public class CharacterCreator {
 						character, template);
 			}
 
-			final Player object = Player.createZeroLevelPlayer(character);
+			final Player object = Player.createZeroLevelPlayer(character, template);
 		       // monitor new account names
 	        final String text = "Support: A new character has just been created called " + character + ".";
 	 
