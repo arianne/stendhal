@@ -352,7 +352,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		customerDB.put("Tor'Koom",
 			new CustomerData(
-				"Tor'Koom is an orc who lives in the dungeon below this town, Semos. Sheep are his favourite food. He lives at the 3rd level below ground. Be careful!",
+				"Tor'Koom is an orc who lives in the dungeon below this town, Semos. Sheep are his favourite food. He lives at the 4th level below the ground. Be careful!",
 				// "Pizza sheep" in Italian ;)
 				"Pizza Pecora", 
 				// minutes to deliver. Tested by kymara:
