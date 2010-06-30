@@ -16,13 +16,15 @@ public enum TutorialEventType {
 	VISIT_SEMOS_CITY(
 			"You can get a map of Semos from Monogenes. Start by saying \"hi\". Or you can go down the steps to the dungeons and fight some creatures."),
 	VISIT_SEMOS_DUNGEON(
-			"You can attack creatures by clicking on them."),
+			"Remember to eat regularly while you fight creatures. Double click on any cheese, meat or other food you have."),
 	VISIT_SEMOS_DUNGEON_2(
-			"Be careful. If you walk deeper and deeper, the creatures will get more powerful."),
+			"Be careful. If you walk deeper and deeper, the creatures will get more powerful. You can run back to Semos to get healed by Carmen."),
 	VISIT_SEMOS_TAVERN(
 			"You can trade with an NPC by saying \"hi\" then asking for their \"offer\". If you want to buy a flask, say \"buy flask\"."),
+	VISIT_SEMOS_PLAINS(
+			"Eating regularly is essential to restore your health. If you are short of food, visit the farm east and then north of here."),		
 	FIRST_ATTACKED(
-			"Did you notice that creature walking towards you with the yellow square? It is attacking you."),
+			"That creature with the yellow circle is attacking you! Click on it to fight back."),
 	FIRST_KILL(
 			"Click on the Corpse and drag the items with the mouse over your bag and drop them there."),
     FIRST_PLAYER_KILL(
