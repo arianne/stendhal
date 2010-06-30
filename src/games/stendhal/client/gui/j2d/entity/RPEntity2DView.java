@@ -427,22 +427,27 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 				(int) (wrect.getWidth() * IGameScreen.SIZE_UNIT_PIXELS),
 				(int) (wrect.getHeight() * IGameScreen.SIZE_UNIT_PIXELS));
 		
+		final double DIVISOR = 1.41421356;
+		
 		RPEntity rpentity = (RPEntity) entity;
 		if (rpentity.isBeingAttacked()) {
 			// Draw red box around 
-
+			g2d.setColor(Color.white);
+			//g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2, srect.height - 2);
 			g2d.setColor(Color.red);
-			g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2, srect.height - 2);
-
+			g2d.drawArc(srect.x, (int) (srect.y + 1 + (wrect.getHeight() * IGameScreen.SIZE_UNIT_PIXELS) / DIVISOR), 
+					srect.width + 0, (int) (srect.height - 2 - (wrect.getHeight()*IGameScreen.SIZE_UNIT_PIXELS) / DIVISOR), 0, 360);
 		}
 
 		if (rpentity.isAttacking(User.get())) {
 			// Draw orange box around
+			g2d.setColor(Color.white);
+			//g2d.drawRect(srect.x + 2, srect.y + 2, srect.width - 4, srect.height - 4);
 			g2d.setColor(Color.orange);
-			g2d.drawRect(srect.x + 2, srect.y + 2, srect.width - 4,
-					srect.height - 4);
+			g2d.drawArc(srect.x + 1, (int) (srect.y + 2 + wrect.getHeight()*IGameScreen.SIZE_UNIT_PIXELS / DIVISOR), 
+					srect.width - 2, (int) (srect.height - 4 - wrect.getHeight()*IGameScreen.SIZE_UNIT_PIXELS / DIVISOR), 0, 360);
 		}
-		
+
 		drawAttack(g2d, x, y, width, height);
 
 		if (((RPEntity) entity).isDefending()) {
