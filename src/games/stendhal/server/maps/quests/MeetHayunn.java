@@ -104,42 +104,9 @@ public class MeetHayunn extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new KilledForQuestCondition(QUEST_SLOT, 1)),
 				ConversationStates.INFORMATION_1,
-				"You killed the rat! Now, you may ask, what is the point behind risking your life to kill things? #Yes?",
+				"You killed the rat! Now, I guess you want to explore. Do you want to know the way to Semos?",
 				new MultipleActions(actions));
 
-		// player wants to learn more from Hayunn
-		// TODO: convert those to tutorial events, to make it less boring for new players yes, yes, yes, yes, yes, yes
-		npc.add(
-			ConversationStates.INFORMATION_1,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.INFORMATION_2,
-			"Ah-ha! Well, you can loot items from corpses. Once you're close enough to the corpse to reach it, you can drag the items into your bag. Do you want to hear how to identify items? #Yes?",
-			null);
-
-		npc.add(
-			ConversationStates.INFORMATION_2,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.INFORMATION_3,
-			"You can right-click on the items and select LOOK to get a description. Now, I know what you're thinking; how are you going to survive without getting killed? Do you want to know?",
-			null);
-
-		npc.add(
-			ConversationStates.INFORMATION_3,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.INFORMATION_4,
-			"You need to eat regularly! By right-clicking a food item - either your bag or on the ground - you can slowly regain your health with each bite. That takes time of course, and there are ways to regain your health instantly... want to hear?",
-			null);
-
-		npc.add(
-			ConversationStates.INFORMATION_4,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.INFORMATION_5,
-			"Once you've earned enough money, you should visit one of the healers in Semos - Carmen or Ilisa - and buy a potion. Potions are very handy when you're alone in Semos dungeons. Do you want to know where Semos is?",
-			null);
 
 	   	// The player has had enough info for now. Send them to semos. When they come back they can learn some more tips.
 
@@ -150,7 +117,7 @@ public class MeetHayunn extends AbstractQuest {
 		reward.add(new ExamineChatAction("monogenes.png", "Monogenes", "North part of Semos city."));
 
 		npc.add(
-			ConversationStates.INFORMATION_5,
+			ConversationStates.INFORMATION_1,
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.IDLE,
@@ -158,38 +125,39 @@ public class MeetHayunn extends AbstractQuest {
 			new MultipleActions(reward));
 
 	   	// incase player didn't finish learning everything when he came after killing the rat, he must have another chance. Here it is.
+		// 'little tip' is a pun as he gives some money, that is a tip, too.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "killed"),
 				ConversationStates.INFORMATION_1,
-		        "You ran off pretty fast after coming to tell me you killed that rat! I was about to give you some more hints and tips. Do you want to hear them?",
+		        "You ran off pretty fast after coming to tell me you killed that rat! I was about to give you a little tip. Do you want it?",
 				null);
 		
 		// Player has returned to say hi again.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "taught"),
-				ConversationStates.INFORMATION_6,
+				ConversationStates.INFORMATION_2,
 		        "Hello again. Have you come to learn more from me?",
 				null);
 
 		npc.add(
-			ConversationStates.INFORMATION_6,
+			ConversationStates.INFORMATION_2,
 			ConversationPhrases.YES_MESSAGES,
 			null,
-			ConversationStates.INFORMATION_7,
+			ConversationStates.INFORMATION_3,
 			"Perhaps you have found Semos dungeons by now. The corridors are pretty narrow down there, so there's a trick to moving quickly and accurately, if you'd like to hear it. #Yes?",
 			null);
 
 		npc.add(
-			ConversationStates.INFORMATION_7,
+			ConversationStates.INFORMATION_3,
 			ConversationPhrases.YES_MESSAGES,
 			null,
-			ConversationStates.INFORMATION_8,
-			"Simple, really; just double-click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?",
+			ConversationStates.INFORMATION_4,
+			"Simple, really; just click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?",
 			null);
 
-		final String epilog = "You can find many frequently asked questions are answered at #http://stendhalgame.org/wiki/StendhalFAQ \nYou can find out about experience points and levelling up at #http://stendhalgame.org/wiki/LevelTables \nYou can read about some of the currently most powerful and successful warriors at #http://stendhalgame.org\n ";
+		final String epilog = "You can find answers to frequently asked questions by typing #/faq \nYou can read about some of the currently most powerful and successful warriors at #http://stendhalgame.org\n ";
 		
 			//This is used if the player returns, asks for #help and then say #yes
 			npc.add(ConversationStates.ATTENDING,
@@ -203,7 +171,7 @@ public class MeetHayunn extends AbstractQuest {
 		reward2.add(new IncreaseXPAction(20));
 		reward2.add(new SetQuestAction(QUEST_SLOT, "done"));
 
-		npc.add(ConversationStates.INFORMATION_8,
+		npc.add(ConversationStates.INFORMATION_4,
 				ConversationPhrases.YES_MESSAGES, new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.IDLE, 
 				epilog + "Well, good luck in the dungeons! This shield should help you. Here's hoping you find fame and glory, and keep watch for monsters!",
@@ -213,11 +181,7 @@ public class MeetHayunn extends AbstractQuest {
 					ConversationStates.INFORMATION_1,
 					ConversationStates.INFORMATION_2,
 					ConversationStates.INFORMATION_3,
-					ConversationStates.INFORMATION_4,
-				   	ConversationStates.INFORMATION_5,
-				   	ConversationStates.INFORMATION_6,
-				   	ConversationStates.INFORMATION_7,
-				   	ConversationStates.INFORMATION_8},
+					ConversationStates.INFORMATION_4},
 				ConversationPhrases.NO_MESSAGES, new NotCondition(new QuestInStateCondition(QUEST_SLOT, "start")), ConversationStates.IDLE,
 				"Oh well, I'm sure someone else will stop by for a chat soon. Bye...",
 				null);

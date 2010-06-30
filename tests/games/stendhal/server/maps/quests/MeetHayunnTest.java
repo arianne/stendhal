@@ -66,15 +66,7 @@ public class MeetHayunnTest {
 
 		en.step(player, "hi");
 		// [15:14] omerob earns 10 experience points.
-		assertEquals("You killed the rat! Now, you may ask, what is the point behind risking your life to kill things? #Yes?", getReply(npc));
-		en.step(player, "yes");
-		assertEquals("Ah-ha! Well, you can loot items from corpses. Once you're close enough to the corpse to reach it, you can drag the items into your bag. Do you want to hear how to identify items? #Yes?", getReply(npc));
-		en.step(player, "yes");
-		assertEquals("You can right-click on the items and select LOOK to get a description. Now, I know what you're thinking; how are you going to survive without getting killed? Do you want to know?", getReply(npc));
-		en.step(player, "yes");
-		assertEquals("You need to eat regularly! By right-clicking a food item - either your bag or on the ground - you can slowly regain your health with each bite. That takes time of course, and there are ways to regain your health instantly... want to hear?", getReply(npc));
-		en.step(player, "yes");
-		assertEquals("Once you've earned enough money, you should visit one of the healers in Semos - Carmen or Ilisa - and buy a potion. Potions are very handy when you're alone in Semos dungeons. Do you want to know where Semos is?", getReply(npc));
+		assertEquals("You killed the rat! Now, I guess you want to explore. Do you want to know the way to Semos?", getReply(npc));
 		en.step(player, "yes");
 		// [15:14] omerob earns 10 experience points.
 		assertEquals("Follow the path through this village to the east, and you can't miss Semos. If you go and speak to Monogenes, the old man in this picture, he will give you a map. Here's 5 money to get you started. Bye bye!", getReply(npc));
@@ -84,12 +76,11 @@ public class MeetHayunnTest {
 		en.step(player, "yes");
 		assertEquals("Perhaps you have found Semos dungeons by now. The corridors are pretty narrow down there, so there's a trick to moving quickly and accurately, if you'd like to hear it. #Yes?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Simple, really; just double-click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?", getReply(npc));
+		assertEquals("Simple, really; just click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?", getReply(npc));
 		en.step(player, "yes");
 		// [15:14] omerob earns 20 experience points.
-		assertEquals("You can find many frequently asked questions are answered at #http://stendhalgame.org/wiki/StendhalFAQ \n"
-			+ "You can find out about experience points and levelling up at #http://stendhalgame.org/wiki/LevelTables \n" 
-			+ "You can read about some of the currently most powerful and successful warriors at #http://stendhalgame.org\n"
+		assertEquals("You can find answers to frequently asked questions by typing #/faq \n" +
+				"You can read about some of the currently most powerful and successful warriors at #http://stendhalgame.org\n"
 			+ " Well, good luck in the dungeons! This shield should help you. Here's hoping you find fame and glory, and keep watch for monsters!", getReply(npc));
 
 		// -----------------------------------------------
