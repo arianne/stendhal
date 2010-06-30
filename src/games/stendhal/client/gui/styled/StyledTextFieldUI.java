@@ -1,5 +1,6 @@
 package games.stendhal.client.gui.styled;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
@@ -8,6 +9,9 @@ import javax.swing.plaf.basic.BasicTextFieldUI;
  * TextUI using pixmap styles for JTextFields.
  */
 public class StyledTextFieldUI extends BasicTextFieldUI {
+	/** Pixels before the first letter and after the last */
+	private static final int PADDING = 2;
+	
 	private final Style style;
 	
 	// Required by UIManager
@@ -28,6 +32,7 @@ public class StyledTextFieldUI extends BasicTextFieldUI {
 	@Override
 	public void installUI(JComponent button) {
 		super.installUI(button);
-		button.setBorder(style.getBorderDown());
+		button.setBorder(BorderFactory.createCompoundBorder(style.getBorderDown(),
+				BorderFactory.createEmptyBorder(0, PADDING, 0, PADDING)));
 	}
 }
