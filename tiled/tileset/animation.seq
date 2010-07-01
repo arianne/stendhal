@@ -368,6 +368,11 @@ tileset/ground/rock/hell.png                    *        292:291:293:295:294:291
 tileset/ground/rock/hell.png                    *        293:291:292:294:293:295
 tileset/ground/rock/hell.png                    *        294:291:295:293:292:291
 tileset/ground/rock/hell.png                    *        295:293:291:294:292:293
+# animation of the skull flames
+tileset/ground/rock/hell.png			*	 315:331
+tileset/ground/rock/hell.png			*	 316:332
+tileset/ground/rock/hell.png			*	 347:348
+
 
 # water from ground.png
 # the waves travel north, if the map uses the first tile,
