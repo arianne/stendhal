@@ -1,10 +1,13 @@
 package games.stendhal.bot.postman;
 
+import games.stendhal.common.messages.SupportMessageTemplatesFactory;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 import org.jibble.pircbot.IrcException;
@@ -30,6 +33,8 @@ public class PostmanIRC extends PircBot {
 	private final Properties prop = new Properties();
 
 	private final String gameServer;
+	
+	private final SupportMessageTemplatesFactory messageFactory = new SupportMessageTemplatesFactory();
 
 	/**
 	 * Creates a new PostmanIRC.
@@ -111,6 +116,41 @@ public class PostmanIRC extends PircBot {
 		for (final String channelName : channels) {
 			sendMessage(channelName, text);
 		}
+	}
+
+	
+
+	@Override
+	protected void onMessage(String channel, String sender, String login,
+			String hostname, String message) {
+		super.onMessage(channel, sender, login, hostname, message);
+		if ((message != null) && message.startsWith("$")) {
+			handleCanedResponse(channel, message);
+		}
+	}
+
+	private long lastCommand;
+
+	
+	private void handleCanedResponse(String channel, String message) {
+		if (lastCommand + 10000 > System.currentTimeMillis()) {
+			return;
+		}
+
+		StringTokenizer st = new StringTokenizer(message);
+		String command = st.nextToken();
+		String user = "";
+		if (st.hasMoreElements()) {
+			user = st.nextToken();
+		}
+		String canedMessage = messageFactory.getTemplates().get(command);
+		if (canedMessage == null) {
+			return;
+		}
+		canedMessage = String.format(canedMessage, user);
+		sendMessage(channel, canedMessage);
+
+		lastCommand = System.currentTimeMillis();
 	}
 
 	/**
