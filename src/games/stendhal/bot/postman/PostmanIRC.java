@@ -1,7 +1,5 @@
 package games.stendhal.bot.postman;
 
-import games.stendhal.common.messages.SupportMessageTemplatesFactory;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -23,6 +21,7 @@ public class PostmanIRC extends PircBot {
 	public static List<String> channels = new LinkedList<String>();
 	
 	private static final String STENDHAL_POSTMAN_CONF = ".stendhal-postman-conf.xml";
+	private static final String STENDHAL_POSTMAN_ANSWERS = ".stendhal-postman-answers.xml";
 	
 	private static final Logger LOGGER = Logger.getLogger(PostmanIRC.class);
 	
@@ -33,8 +32,6 @@ public class PostmanIRC extends PircBot {
 	private final Properties prop = new Properties();
 
 	private final String gameServer;
-	
-	private final SupportMessageTemplatesFactory messageFactory = new SupportMessageTemplatesFactory();
 
 	/**
 	 * Creates a new PostmanIRC.
@@ -133,22 +130,41 @@ public class PostmanIRC extends PircBot {
 
 	
 	private void handleCanedResponse(String channel, String message) {
-		if (lastCommand + 10000 > System.currentTimeMillis()) {
+
+		// prevent flooding
+		if (lastCommand + 5000 > System.currentTimeMillis()) {
 			return;
 		}
 
+		// extract commands
 		StringTokenizer st = new StringTokenizer(message);
 		String command = st.nextToken();
 		String user = "";
 		if (st.hasMoreElements()) {
-			user = st.nextToken();
+			user = " " + st.nextToken();
 		}
-		String canedMessage = messageFactory.getTemplates().get(command);
+
+		// load answer file (reload it every time so that it can be edited)
+		try {
+			this.prop.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_ANSWERS));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+
+		// get the entry, do nothing if not defined
+		String canedMessage = prop.getProperty(command);
 		if (canedMessage == null) {
 			return;
 		}
+
+		// send it as message or action to the channel
 		canedMessage = String.format(canedMessage, user);
-		sendMessage(channel, canedMessage);
+		if (canedMessage.startsWith("/me")) {
+			sendAction(channel, canedMessage.replaceAll("^/me ", ""));
+		} else {
+			sendMessage(channel, canedMessage);
+		}
 
 		lastCommand = System.currentTimeMillis();
 	}
