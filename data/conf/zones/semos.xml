@@ -665,6 +665,21 @@
 			<attribute name="class">signpost</attribute>
 		</entity>
 
+		<entity x="70" y="50">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">
+As you read this sign I want you to know that I realized the meaning of these flowers... 
+
+If you plant a flower, you don't plant it for yourself. You plant it as a present for someone else. People who say "Oh, that's my flower and nobody else should get it!" will get disappointed... It is very difficult to pick your own flowers. You have to make a present to another player with planting a flower and then one day you will get the reward by finding a flower, which someone else has planted as a present for others. :)
+
+It would be so beautiful if everyone plants as much flowers as he picked. Don't take more than you give and you will get as much as you need! :)
+
+If everybody would think so, we were on the way to a better world...
+
+ - signed by S.</attribute>
+			<attribute name="class">signpost</attribute>
+		</entity>
+
 		<entity x="82" y="63">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
