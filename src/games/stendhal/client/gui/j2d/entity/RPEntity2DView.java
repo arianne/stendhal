@@ -427,7 +427,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 				(int) (wrect.getWidth() * IGameScreen.SIZE_UNIT_PIXELS),
 				(int) (wrect.getHeight() * IGameScreen.SIZE_UNIT_PIXELS));
 		
-		final double DIVISOR = 1.41421356;
+		final double DIVISOR = 2;
 		
 		RPEntity rpentity = (RPEntity) entity;
 		if (rpentity.isBeingAttacked()) {
