@@ -26,9 +26,9 @@ public class PostmanIRC extends PircBot {
 	
 	private static final Logger LOGGER = Logger.getLogger(PostmanIRC.class);
 	
-	private static String SUPPORT_CHANNEL;
+	private static String supportChannel;
 
-	private static String MAIN_CHANNEL;
+	private static String mainChannel;
 
 	private final Properties prop = new Properties();
 
@@ -45,11 +45,11 @@ public class PostmanIRC extends PircBot {
 		this.gameServer = gameServer;
 		try {
 			this.prop.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_CONF));
-			SUPPORT_CHANNEL = prop.getProperty("support");
-			MAIN_CHANNEL = prop.getProperty("main");
+			supportChannel = prop.getProperty("support");
+			mainChannel = prop.getProperty("main");
 
-			channels.add(SUPPORT_CHANNEL);
-			channels.add(MAIN_CHANNEL);
+			channels.add(supportChannel);
+			channels.add(mainChannel);
 			channels.remove(null);
 		} catch (final Exception e) {
 			LOGGER.error(e, e);
@@ -71,7 +71,7 @@ public class PostmanIRC extends PircBot {
 
 			setName(nick);
 			setLogin(prop.getProperty("login"));
-			setVersion("0.2.1");
+			setVersion("0.3");
 			setVerbose(true);
 			setAutoNickChange(true);
 			setFinger("postman on " + gameServer);
@@ -82,10 +82,10 @@ public class PostmanIRC extends PircBot {
 				Thread.sleep(5000);
 				super.changeNick(nick);
 			}
-			for (final String channelName : PostmanIRC.channels) {
-						joinChannel(channelName);
-			}
 			sendMessage("NickServ", "identify " + pass);
+			for (final String channelName : PostmanIRC.channels) {
+				joinChannel(channelName);
+			}
 		}
 	}
 
@@ -109,7 +109,7 @@ public class PostmanIRC extends PircBot {
 	}
 
 	void sendSupportMessage(final String text) {
-		sendMessage(SUPPORT_CHANNEL, text);
+		sendMessage(supportChannel, text);
 	}
 
 	void sendMessageToAllChannels(final String text) {
