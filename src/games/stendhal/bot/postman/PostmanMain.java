@@ -22,6 +22,7 @@ import java.util.Map;
 
 import marauroa.client.TimeoutException;
 import marauroa.client.net.PerceptionHandler;
+import marauroa.common.Log4J;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.message.MessageS2CPerception;
@@ -168,6 +169,7 @@ public class PostmanMain extends Thread {
 			postman.startThread();
 		} catch (final SocketException e) {
 			System.err.println("Socket Exception");
+			e.printStackTrace();
 			Runtime.getRuntime().halt(1);
 			return;
 		} catch (final TimeoutException e) {
@@ -206,6 +208,8 @@ public class PostmanMain extends Thread {
 	 *            see help
 	 */
 	public static void main(final String[] args) {
+		Log4J.init("marauroa/server/log4j.properties");
+
 		try {
 			if (args.length > 0) {
 				int i = 0;
