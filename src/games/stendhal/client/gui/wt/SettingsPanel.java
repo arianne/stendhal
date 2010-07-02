@@ -43,12 +43,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	/**
 	 * The button height.
 	 */
-	private static final int BUTTON_HEIGHT = 25;
+	private static final int BUTTON_HEIGHT = 22;
 
 	/**
 	 * The button width.
 	 */
-	private static final int BUTTON_WIDTH = 25;
+	private static final int BUTTON_WIDTH = 22;
 
 	/**
 	 * The button spacing.
@@ -93,19 +93,28 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 */
 	public void add(final ManagedWindow window, final String label,
 			final IGameScreen gameScreen) {
-		window.registerCloseListener(this);
-
-		final String mnemonic = window.getName();
-
+		final String mnemonic;
+		if (window != null) {
+			window.registerCloseListener(this);
+			mnemonic = window.getName();
+		} else {
+			mnemonic = label;
+		}
+		
 		final int y = SPACING + (entries.size() * (BUTTON_HEIGHT + SPACING));
 		Sprite icon = SpriteStore.get().getSprite("data/gui/"+label+".png");
 		final WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT,
 				 icon, gameScreen);
 
 		button.moveTo(SPACING, y);
-		button.setPressed(window.isVisible());
-		button.registerClickListener(this);
 
+		if (window == null) {
+			button.setPressed(false);
+			button.registerClickListener(new PopUpMenuOpener(this, button));
+		} else {
+			button.setPressed(window.isVisible());
+			button.registerClickListener(this);
+		}
 		resizeToFitClientArea(SPACING + BUTTON_WIDTH + SPACING, y
 				+ BUTTON_HEIGHT + SPACING);
 

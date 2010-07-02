@@ -302,7 +302,7 @@ public class j2DClient implements UserInterface {
 		character = new Character(this, gameScreen);
 		addWindow(character);
 		settings.add(character, "buddy", gameScreen);
-
+		
 		createAndAddOldBag(gameScreen);
 		//createAndAddNewBag(mainFrameContentPane);
 		
@@ -310,6 +310,8 @@ public class j2DClient implements UserInterface {
 		client.addFeatureChangeListener(keyring);
 		addWindow(keyring);
 		settings.add(keyring, "keyring", gameScreen);
+		
+		settings.add(null, "help", gameScreen);
 		
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
