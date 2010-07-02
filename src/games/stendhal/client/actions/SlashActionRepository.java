@@ -86,7 +86,8 @@ public class SlashActionRepository {
 	 *            name of Action
 	 * @return Action object
 	 */
-	public static SlashAction get(final String name) {
+	public static SlashAction get(String name) {
+		name = name.toLowerCase();
 		return actions.get(name);
 	}
 }
