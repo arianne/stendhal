@@ -52,7 +52,7 @@ public class PopUpMenuOpener implements WtClickListener{
 	 */
 	
 	public void onClick(String name, Point point, IGameScreen gameScreen) {
-		final ButtonCommandList list = new ButtonCommandList("yay", new String[] {"faq", "faq"});
+		final ButtonCommandList list = new ButtonCommandList("help", new String[] {"Help", "Manual", "FAQ", "Rules", "Atlas"});
 		panel.setContextMenu(list);
 		list.setVisible(true);
 		button.setPressed(false);

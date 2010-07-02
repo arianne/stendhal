@@ -1,6 +1,6 @@
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.gui.BareBonesBrowserLaunch;
+import games.stendhal.client.actions.SlashActionRepository;
 
 /**
  * This is a 'button' command list
@@ -10,7 +10,7 @@ import games.stendhal.client.gui.BareBonesBrowserLaunch;
 class ButtonCommandList extends CommandList {
 	
 	private static final long serialVersionUID = -1607102841664745919L;
-	
+		
 	/**
 	 * Create an entity view command list.
 	 * 
@@ -28,8 +28,7 @@ class ButtonCommandList extends CommandList {
 	/** an action has been chosen. 
 	 * @param command */
 	protected void doAction(final String command) {
-		// for now, just open a url
-		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/StendhalFAQ");
+		SlashActionRepository.get(command).execute(null, null);
 	}
 
 }
