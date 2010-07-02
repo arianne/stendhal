@@ -277,7 +277,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 			if (actions.length > 0) {
 				final IEntity entity = view.getEntity();
 
-				setContextMenu(new CommandList(entity.getType(), actions, view));
+				setContextMenu(new EntityViewCommandList(entity.getType(), actions, view));
 			}
 			return true;
 		}

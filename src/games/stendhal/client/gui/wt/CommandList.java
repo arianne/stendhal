@@ -1,7 +1,5 @@
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.core.WtPopupMenu;
 
 import java.awt.Color;
@@ -14,32 +12,24 @@ import javax.swing.Icon;
 import javax.swing.JMenuItem;
 
 /**
- * This is the command list of any entities.
+ * This is a command list .
  * 
  * @author mtotz
  */
-class CommandList extends WtPopupMenu {
+abstract class CommandList extends WtPopupMenu {
 	private static final long serialVersionUID = -1607102841664745919L;
 
-	/** the entity associated with the command list. */
-	private final EntityView view;
 
 	/**
-	 * Create an entity view command list.
+	 * Create a command list.
 	 * 
 	 * @param name
 	 *            The menu name (needed?).
 	 * @param items
 	 *            The action names.
-	 * @param view
-	 *            The entity view.
 	 */
-	protected CommandList(final String name, final String[] items,
-			final EntityView view) {
+	protected CommandList(final String name, final String[] items) {
 		super(name);
-
-		this.view = view;
-
 		populate(items);
 	}
 
@@ -70,10 +60,7 @@ class CommandList extends WtPopupMenu {
 
 	/** an action has been chosen. 
 	 * @param command */
-	private void doAction(final String command) {
-		// tell the entity what happened
-		view.onAction(ActionType.getbyRep(command));
-	}
+	protected abstract void doAction(final String command);
 
 	//
 	//

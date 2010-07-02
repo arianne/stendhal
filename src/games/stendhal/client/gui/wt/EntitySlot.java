@@ -228,7 +228,7 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 	public synchronized boolean onMouseRightClick(final Point p) {
 		if (view != null) {
 			// create the context menu
-			final CommandList list = new CommandList(getName(), view.getActions(),
+			final EntityViewCommandList list = new EntityViewCommandList(getName(), view.getActions(),
 					view);
 			setContextMenu(list);
 		}
