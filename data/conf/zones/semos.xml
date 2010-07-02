@@ -756,7 +756,7 @@ Southeast: Farmhouse
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">KNOW HOW TO KILL CREATURES by Hayunn Naratha
 My personal favourite has always been to right-click and choose to ATTACK a creature. You can't go wrong with that!
-The sharper minded amongst you might prefer to double-click directly on the creature. It works too!
+The sharper minded amongst you might prefer to click directly on the creature. It works too!
 </attribute>
 			<attribute name="class">book_red</attribute>
 		</entity>
