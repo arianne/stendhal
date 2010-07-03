@@ -6,7 +6,13 @@ Changelog
 - settings panel uses icons and is always visible
 - new help menus for settings panel
 - blackjack max stake raised to 400
-- right click and ignore a player, or right click and unignroe an alredy ignored player
+- right click and ignore a player, or right click and unignore an already ignored player
+- marked path from semos to ados city and to the athor ferry pier on ados coast
+- initial Hayunn dialog/tutorial streamlined and improved
+
+*bugfixes*
+- walkblocker tables have proper resistance
+- Mac OSX cmd key mapping
 
 0.85
 *features*
