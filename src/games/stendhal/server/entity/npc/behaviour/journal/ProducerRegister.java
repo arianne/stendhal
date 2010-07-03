@@ -32,8 +32,10 @@ public class ProducerRegister {
 	 * already exists. This makes sure that each NPC can be uniquely identified
 	 * by his/her name.
 	 * 
-	 * @param npc
+	 * @param npcName
 	 *            The NPC that should be added
+	 * @param behaviour   
+	 *            The ProducerBehaviour of that NPC
 	 */
 	public void add(final String npcName, final ProducerBehaviour behaviour) {
 		// insert lower case names ?
