@@ -296,7 +296,7 @@ public class j2DClient implements UserInterface {
 		/*
 		 * In-screen dialogs
 		 */
-		settings = new SettingsPanel(getWidth(), gameScreen);
+		settings = new SettingsPanel(gameScreen);
 		screen.addDialog(settings);
 
 		character = new Character(this, gameScreen);

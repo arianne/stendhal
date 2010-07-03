@@ -55,8 +55,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 */
 	private static final int SPACING = 3;
 
-	/** width of this panel. */
-	private static final int WIDTH = BUTTON_WIDTH + SPACING + SPACING;
+	/** height of this panel. */
+	private static final int HEIGHT = BUTTON_HEIGHT + SPACING + SPACING;
 
 	/** map of the buttons (for faster access) ). */
 	private final Map<String, Entry> entries;
@@ -67,8 +67,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 * @param frameWidth
 	 * @param gameScreen
 	 */
-	public SettingsPanel(final int frameWidth, final IGameScreen gameScreen) {
-		super("settings", 0, 0, WIDTH, SPACING * 2,
+	public SettingsPanel(final IGameScreen gameScreen) {
+		super("settings", 0, 0, SPACING * 2, HEIGHT,
 				gameScreen);
 
 		setTitletext("Settings");
@@ -101,12 +101,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 			mnemonic = label;
 		}
 		
-		final int y = SPACING + (entries.size() * (BUTTON_HEIGHT + SPACING));
+		final int x = SPACING + (entries.size() * (BUTTON_WIDTH + SPACING));
 		Sprite icon = SpriteStore.get().getSprite("data/gui/"+label+".png");
 		final WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT,
 				 icon, gameScreen);
 
-		button.moveTo(SPACING, y);
+		button.moveTo(x, SPACING);
 
 		if (window == null) {
 			button.setPressed(false);
@@ -115,17 +115,10 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 			button.setPressed(window.isVisible());
 			button.registerClickListener(this);
 		}
-		resizeToFitClientArea(SPACING + BUTTON_WIDTH + SPACING, y
-				+ BUTTON_HEIGHT + SPACING);
+		resizeToFitClientArea(x + SPACING + BUTTON_WIDTH, BUTTON_HEIGHT + SPACING + SPACING);
 
 		addChild(button);
 		entries.put(mnemonic, new Entry(button, window));
-	}
-
-	/** we're using the window manager. */
-	@Override
-	protected boolean useWindowManager() {
-		return true;
 	}
 
 	/**
