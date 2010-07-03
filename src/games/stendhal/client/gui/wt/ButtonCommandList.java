@@ -12,7 +12,7 @@ class ButtonCommandList extends CommandList {
 	private static final long serialVersionUID = -1607102841664745919L;
 		
 	/**
-	 * Create an entity view command list.
+	 * Create an button command list.
 	 * 
 	 * @param name
 	 *            The menu name (needed?).
