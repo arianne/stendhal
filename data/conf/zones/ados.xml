@@ -2652,20 +2652,7 @@ Southeast: Docks
  </zone>
  
   <zone name="int_ados_church_1" file="interiors/ados/church_1.tmx">
-  <entity x="26" y="5">
-    <implementation class-name="games.stendhal.server.maps.ados.church.HealerNPC">
-      <parameter name="name">Valo</parameter>
-      <parameter name="node0">26,5</parameter>
-      <parameter name="node1">33,5</parameter>
-      <parameter name="node2">33,16</parameter>
-      <parameter name="node3">26,16</parameter>
-      <parameter name="node4">26,13</parameter>
-      <parameter name="node5">7,13</parameter>
-      <parameter name="node6">7,5</parameter>
-    </implementation>
-
-    <attribute name="class">grandadnpc</attribute>
-  </entity>
+    <configurator class-name="games.stendhal.server.maps.ados.church.HealerNPC" />
 
     <portal x="4" y="4" ref="downstairs">
      <destination zone="int_ados_church_0" ref="upstairs"/>
