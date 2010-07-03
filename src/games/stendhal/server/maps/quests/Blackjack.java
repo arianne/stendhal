@@ -41,7 +41,7 @@ public class Blackjack extends AbstractQuest {
 
 	private static final int MIN_STAKE = 10;
 
-	private static final int MAX_STAKE = 200;
+	private static final int MAX_STAKE = 400;
 
 	private int stake;
 
