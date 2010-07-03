@@ -18,6 +18,10 @@ public class BareBonesBrowserLaunchCommandsFactory {
 		commandsAndUrls.put("faq", "http://stendhalgame.org/wiki/StendhalFAQ");
 		commandsAndUrls.put("manual", "http://stendhalgame.org/wiki/Stendhal_Manual");
 		commandsAndUrls.put("rules", "http://stendhalgame.org/wiki/Stendhal_Rules");
+		commandsAndUrls.put("changepassword", "https://stendhalgame.org/account/change-password.html");
+		commandsAndUrls.put("loginhistory", "https://stendhalgame.org/account/history.html");
+		commandsAndUrls.put("merge", "https://stendhalgame.org/account/merge.html");
+		commandsAndUrls.put("halloffame", "https://stendhalgame.org/world/hall-of-fame/active_overview.html");
 	}
 
 	/**
