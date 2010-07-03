@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+0.86
+- attack targets drawn as circles
+- settings panel uses icons and is always visible
+- new help menus for settings panel
+- blackjack max stake raised to 400
+- right click and ignore a player, or right click and unignroe an alredy ignored player
+
 0.85
 *features*
 - all gui components use a new wood panel theme (even ones which did not have wood before)
