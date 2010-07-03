@@ -110,7 +110,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 
 		if (window == null) {
 			button.setPressed(false);
-			button.registerClickListener(new PopUpMenuOpener(this, button));
+			button.registerClickListener(new PopUpMenuOpener(this, button, label));
 		} else {
 			button.setPressed(window.isVisible());
 			button.registerClickListener(this);
