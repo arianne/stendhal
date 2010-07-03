@@ -10,12 +10,6 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-/*
- * ClickListener.java
- *
- * Created on 24. Oktober 2005, 19:49
- */
-
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.IGameScreen;
@@ -27,7 +21,8 @@ import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 /**
- *
+ * A pop up menu for WtButtons on WtPanels which shows a list of commands, 
+ * which when clicked execute the matching slash action
  * 
  * @author kymara
  */
@@ -37,8 +32,14 @@ public class PopUpMenuOpener implements WtClickListener{
 	WtButton button;
 	String group;
 	
+	/**
+	 * Stores the commands available for each group label 
+	 */
 	private static Map<String, String[]> groupsAndCommands;
 	
+	/**
+	 * Set the commands available for each group label 
+	 */
 	private static void initialize() {
 		// TODO: Map pretty command with spaces to display into one words command which work as a slash action?
 		groupsAndCommands = new HashMap<String, String[]>();
@@ -50,6 +51,16 @@ public class PopUpMenuOpener implements WtClickListener{
 	//	groupsAndCommands.put("contribute", new String[] {"ReportBug", "RequestFeature", "Chat"});
 	}
 	
+	/**
+	 * Create a pop up menu opener.
+	 * 
+	 * @param panel
+	 *            The WtPanel, so we can set the context.
+	 * @param button
+	 *            The WtButton, so we can tell it to not be pressed.
+	 * @param group
+	 *            The group of commands to display in the list. Same as panel name in ButtonCommandList and label in SettingsPanel.
+	 */
 	public PopUpMenuOpener(WtPanel panel, WtButton button, String group){
 		this.panel = panel;
 		this.button = button;

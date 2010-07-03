@@ -88,7 +88,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 * @param window
 	 *            The window.
 	 * @param label
-	 *            The menu label.
+	 *            The menu label, which also defines the image to look up, and the group of commands if relevant.
 	 * @param gameScreen
 	 */
 	public void add(final ManagedWindow window, final String label,
