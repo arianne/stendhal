@@ -48,6 +48,8 @@ public class SlashActionRepository {
 		actions.put("jail", new JailAction());
 		actions.put("joinguild", new CreateGuildAction());
 
+		actions.put("listproducers", new ListProducersAction());
+		
 		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
 		actions.put("mute", new MuteAction());
