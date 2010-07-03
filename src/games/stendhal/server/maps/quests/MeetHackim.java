@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -87,14 +88,14 @@ public class MeetHackim extends AbstractQuest {
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		
 		npc.add(ConversationStates.INFORMATION_3,
-				yesTrigger,
+				Arrays.asList("buy", "sell", "offer", "sell studded shield"),
 				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.IDLE, 
 				answer + "If anybody asks, you don't know me!",
 				new MultipleActions(reward));
 
 		npc.add(ConversationStates.INFORMATION_3,
-				yesTrigger, 
+				Arrays.asList("buy", "sell", "offer", "sell studded shield"), 
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.IDLE, 
 				answer + "Where did you get those weapons? A toy shop?",

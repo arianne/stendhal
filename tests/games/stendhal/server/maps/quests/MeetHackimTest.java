@@ -1,9 +1,9 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -68,14 +68,10 @@ public class MeetHackimTest {
 		assertEquals("*whisper* Go to the tavern and talk to a man called #Xin #Blanca... he buys and sells equipment that might interest you. Do you want to hear more?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Ask him what he has to #offer, and look at what he will let you #buy and #sell. For instance, if you had a studded shield which you didn't want, you could #'sell studded shield'.", getReply(npc));
-		npc.remove("text");
 		en.step(player, "sell");
-		assertFalse(npc.has("text"));
-		en.step(player, "offer");
-		assertFalse(npc.has("text"));
-		en.step(player, "Xin");
-		assertFalse(npc.has("text"));
-		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));
+		assertEquals("Guessed who supplies Xin Blanca with the weapons he sells? Well, it's me! I have to avoid raising suspicion, though, " +
+				"so I can only smuggle him small weapons. If you want something more powerful, you'll have to venture into the dungeons and kill some of the creatures there for items.\n" +
+				"If anybody asks, you don't know me!", getReply(npc));
+		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 	}
 }
