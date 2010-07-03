@@ -46,8 +46,7 @@ public class PopUpMenuOpener implements WtClickListener{
 		groupsAndCommands.put("help", new String[] {"Help", "Manual", "FAQ", "Rules", "Atlas"});
 		groupsAndCommands.put("accountcontrol", new String[] {"ChangePassword", "Merge", "LoginHistory"});
 		groupsAndCommands.put("settings", new String[] {"Mute", "Clickmode"});
-	// TODO: before adding rp section, put listproducers in the slash action repository...
-	//	groupsAndCommands.put("rp", new String[] {"HallOfFame", "ListProducers"});
+		groupsAndCommands.put("rp", new String[] {"HallOfFame", "ListProducers"});
 	//	groupsAndCommands.put("contribute", new String[] {"ReportBug", "RequestFeature", "Chat"});
 	}
 	

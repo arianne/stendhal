@@ -314,6 +314,7 @@ public class j2DClient implements UserInterface {
 		settings.add(null, "help", gameScreen);
 		settings.add(null, "accountcontrol", gameScreen);
 		settings.add(null, "settings", gameScreen);
+		settings.add(null, "rp", gameScreen);
 		
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
