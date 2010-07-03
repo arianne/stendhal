@@ -151,9 +151,15 @@ class Player2DView extends RPEntity2DView {
 	protected void buildActions(final List<String> list) {
 		if (!((RPEntity) entity).isGhostMode()) {
 			super.buildActions(list);
-
+			
+			
 			list.add(ActionType.ADD_BUDDY.getRepresentation());
-			list.add(ActionType.IGNORE.getRepresentation());
+			
+			if (User.isIgnoring(entity.getName())) {
+				list.add(ActionType.UNIGNORE.getRepresentation());
+			} else {
+				list.add(ActionType.IGNORE.getRepresentation());
+			}
 		}
 
 	}
@@ -208,6 +214,10 @@ class Player2DView extends RPEntity2DView {
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
+		case UNIGNORE:
+			at.send(at.fillTargetInfo(entity.getRPObject()));
+			break;
+			
 		default:
 			super.onAction(at);
 			break;

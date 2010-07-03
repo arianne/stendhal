@@ -51,6 +51,7 @@ class User2DView extends Player2DView {
 		list.remove(ActionType.ATTACK.getRepresentation());
 		list.remove(ActionType.ADD_BUDDY.getRepresentation());
 		list.remove(ActionType.IGNORE.getRepresentation());
+		list.remove(ActionType.UNIGNORE.getRepresentation());
 		list.remove(ActionType.PUSH.getRepresentation());
 
 		list.add(ActionType.SET_OUTFIT.getRepresentation());
