@@ -153,6 +153,7 @@ class Player2DView extends RPEntity2DView {
 			super.buildActions(list);
 
 			list.add(ActionType.ADD_BUDDY.getRepresentation());
+			list.add(ActionType.IGNORE.getRepresentation());
 		}
 
 	}
@@ -200,6 +201,10 @@ class Player2DView extends RPEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case ADD_BUDDY:
+			at.send(at.fillTargetInfo(entity.getRPObject()));
+			break;
+			
+		case IGNORE:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 

@@ -52,6 +52,14 @@ public enum ActionType {
 			return rpaction;
 		}
 	},
+	IGNORE("ignore", "Ignore") {
+		@Override
+		public RPAction fillTargetInfo(final RPObject object) {
+			RPAction rpaction = super.fillTargetInfo(object);
+			rpaction.put("target", object.get("name"));
+			return rpaction;
+		}
+	},
 	ADMIN_INSPECT("inspect", "(*)Inspect"),
 	ADMIN_DESTROY("destroy", "(*)Destroy"),
 	ADMIN_ALTER("alter", "(*)Alter"),
