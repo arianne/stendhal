@@ -77,7 +77,7 @@ public class NewsFromHackimTest {
 		// -----------------------------------------------
 
 		enXin.step(player, "hi");
-		assertEquals("Ah, it's ready at last! That is very good news indeed! Here, let me give you a little something for your help... Take this set of brand new leather leg armour! Let me know if you want anything else.", getReply(npcXin));
+		assertEquals("Ah, it's ready at last! That is very good news indeed! Here, let me give you a little something for your help... Take this set of brand new leather leg armor! Let me know if you want anything else.", getReply(npcXin));
 		// [22:38] rosie earns 10 experience points.
 		enXin.step(player, "task");
 		assertEquals("Talk to Hackim Easso in the smithy, he might want you.", getReply(npcXin));
