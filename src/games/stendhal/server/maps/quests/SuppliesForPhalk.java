@@ -75,7 +75,7 @@ import java.util.List;
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, 
-				"I've been here a long time, and I can not leave this place. Could you bring me some food? ",
+				"I've been here a long time, and I can not leave this place. Could you bring me some food?",
 				null);
 							
 		npc.add(ConversationStates.ATTENDING,
@@ -89,7 +89,7 @@ import java.util.List;
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
-				"Oh, great! I am really hungry and thirsty. 3 #sandwiches , 3 bottles of #beer and 3 glasses of #wine should be enough. Please bring it to me and say #food!",
+				"Oh, great! I am really hungry and thirsty. 3 #sandwiches, 3 bottles of #beer and 3 glasses of #wine should be enough. Please bring it to me and say #food!",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		// Player says no, they've lost karma.
