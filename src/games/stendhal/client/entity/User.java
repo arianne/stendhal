@@ -6,6 +6,7 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Grammar;
+import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.NotificationType;
 
 import java.awt.geom.Rectangle2D;
@@ -375,6 +376,16 @@ public class User extends Player {
 		}
 		
 		return User.get().ignore.contains(name);
+	}
+
+	public static boolean hasBuddy(String name) {
+		if (User.isNull()) {
+			return false;
+		}
+
+		RPObject rpobject = User.get().rpObject;
+		return rpobject.has("buddies", name) 
+			|| KeyedSlotUtil.getKeyedSlot(rpobject, "!buddy", "_" + name) != null;
 	}
 
 	/**
