@@ -28,7 +28,7 @@ public class WalkBlocker extends AreaEntity {
 
 		setRPClass("walkblocker");
 		put("type", "walkblocker");
-		setResistance(40);
+		setResistance(100);
 	}
 
 
