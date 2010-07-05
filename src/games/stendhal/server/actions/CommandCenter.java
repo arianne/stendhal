@@ -89,6 +89,7 @@ public class CommandCenter {
 		SentenceAction.register();
 		StopAction.register();
 		UseAction.register();
+		WhereAction.register();
 		register("info", new InfoAction());
 	}
 
