@@ -73,7 +73,7 @@ public class SadScientist extends AbstractQuest {
 	private final class CheckAndRespondAboutMissingItemsAction implements
 			ChatAction {
 		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-			npc.say("Hello. Please return when you have anything I need for the jewelled legs. I need "
+			npc.say("Please return when you have anything I need for the jewelled legs. I need "
 					+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
 					+".");
 		}
