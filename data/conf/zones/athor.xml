@@ -776,6 +776,99 @@ You get your stake back when there is a draw. If you win, you get the double of 
        <parameter name="npc">Klaas</parameter>
      </implementation>
    </entity>
+   
+
+  	   	<entity x="22" y="47">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">water-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="radius">4</parameter>
+		</implementation>
+		</entity>
+
+  	   	<entity x="19" y="45">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">water-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="radius">4</parameter>
+		</implementation>
+		</entity>
+
+  	   	<entity x="26" y="45">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">water-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="radius">4</parameter>
+		</implementation>
+		</entity>
+
+  	   	<entity x="16" y="42">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">water-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="radius">3</parameter>
+		</implementation>
+		</entity>
+
+  	   	<entity x="29" y="42">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">water-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="radius">3</parameter>
+		</implementation>
+		</entity>
+
+  	   	<entity x="7" y="37">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">water-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="radius">15</parameter>
+		</implementation>
+		</entity>
+
+  	   	<entity x="38" y="37">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">water-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="radius">15</parameter>
+		</implementation>
+		</entity>
+
+  	   	<entity x="13" y="29">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">water-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="radius">5</parameter>
+		</implementation>
+		</entity>
+
+  	   	<entity x="32" y="29">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">water-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="radius">5</parameter>
+		</implementation>
+		</entity>
+
+  	   	<entity x="22" y="23">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">water-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="radius">10</parameter>
+		</implementation>
+		</entity>
+
+  
  </zone>
 
 
