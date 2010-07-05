@@ -485,7 +485,7 @@
 
   <creature name="bandit">
     <type class="human" subclass="bandit" tileid="human_evil.png:1"/>
-    <description></description>
+    <description>You see a lean and mean bandit. He's out to get your life and purse!</description>
     <attributes>
       <atk value="329"/>
       <def value="56"/>
