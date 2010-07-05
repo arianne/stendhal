@@ -110,14 +110,19 @@ public class PlayersQuery implements ActionListener {
 			final DomesticAnimal animal = player.searchAnimal(whoName, false);
 
 			if (who != null) {
-				if (who.isGhost()) {
+				if (who.isGhost() && !who.equals(player)) {
 					player.sendPrivateText("No player or pet named \"" + whoName + "\" is currently logged in.");
 				} else {
 					final StendhalRPZone zone = who.getZone();
 
 					if (zone != null) {
-						player.sendPrivateText(who.getTitle() + " is in " + zone.getName()
-								+ " at (" + who.getX() + "," + who.getY() + ")");
+						if (who.equals(player)) {
+							player.sendPrivateText("You are in " + zone.getName()
+									+ " at (" + who.getX() + "," + who.getY() + ")");
+						} else {
+							player.sendPrivateText(who.getTitle() + " is in " + zone.getName()
+									+ " at (" + who.getX() + "," + who.getY() + ")");
+						}
 					}
 				}
 			}

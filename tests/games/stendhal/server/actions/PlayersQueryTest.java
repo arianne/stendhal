@@ -152,10 +152,16 @@ public class PlayersQueryTest {
 		zone.add(player);
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 		pq.onWhere(player, action);
-		assertThat(player.events().get(0).get("text"), equalTo("bob is in zone at (0,0)"));
+		assertThat(player.events().get(0).get("text"), equalTo("You are in zone at (0,0)"));
 		player.clearEvents();
 		
+		// test that you can still /where yourself as a ghost
+		player.setGhost(true);
+		pq.onWhere(player, action);
+		assertThat(player.events().get(0).get("text"), equalTo("You are in zone at (0,0)"));
+		player.clearEvents();
 		
+		// test the player before he becomes ghostmode
 		final Player ghosted = PlayerTestHelper.createPlayer("ghosted");
 		zone.add(ghosted);
 		MockStendhalRPRuleProcessor.get().addPlayer(ghosted);
@@ -164,10 +170,12 @@ public class PlayersQueryTest {
 		assertThat(player.events().get(0).get("text"), equalTo("ghosted is in zone at (0,0)"));
 		player.clearEvents();
 		
+		// test the player after he becomes ghostmode
 		ghosted.setGhost(true);
 		pq.onWhere(player, action);
 		
 		assertThat(player.events().get(0).get("text"), equalTo("No player or pet named \"ghosted\" is currently logged in."));
+		
 	}
 
 	/**
