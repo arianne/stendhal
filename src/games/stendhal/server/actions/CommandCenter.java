@@ -83,13 +83,13 @@ public class CommandCenter {
 		NameAction.register();
 		OutfitAction.register();
 		OwnAction.register();
-		PlayersQuery.register();
 		PushAction.register();
 		QuestListAction.register();
 		SentenceAction.register();
 		StopAction.register();
 		UseAction.register();
 		WhereAction.register();
+		WhoAction.register();
 		register("info", new InfoAction());
 	}
 

@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
-public class PlayersQueryTest {
+public class WhoActionTest {
 
 
 	@BeforeClass
@@ -34,7 +34,7 @@ public class PlayersQueryTest {
 	 */
 	@Test
 	public void testOnAction() {
-		final PlayersQuery pq = new PlayersQuery();
+		final WhoAction pq = new WhoAction();
 		final RPAction action = new RPAction();
 		action.put(Actions.TYPE, "who");
 		final Player player = PlayerTestHelper.createPlayer("player");

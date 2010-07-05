@@ -24,12 +24,12 @@ import java.util.TreeSet;
 
 import marauroa.common.game.RPAction;
 
-public class PlayersQuery implements ActionListener {
+public class WhoAction implements ActionListener {
 
 	
 
 	public static void register() {
-		final PlayersQuery query = new PlayersQuery();
+		final WhoAction query = new WhoAction();
 		CommandCenter.register(WHO, query);
 	}
 
