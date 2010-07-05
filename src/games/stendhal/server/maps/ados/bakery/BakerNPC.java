@@ -71,8 +71,10 @@ public class BakerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				// addGreeting("Hi, most of the people are out of town at the moment.");
 				addJob("I'm the local baker. Although we get most of our supplies from Semos City, there is still a lot of work to do.");
-				addReply(Arrays.asList("flour", "meat", "carrot", "mushroom", "button mushroom"),
+				addReply(Arrays.asList("flour", "meat", "carrot"),
 				        "Ados is short on supplies. We get most of our food from Semos City which is west of here.");
+				addReply(Arrays.asList("mushroom", "button mushroom"),
+					    "We got complaints that our pies are not filling enough, so we put more mushrooms in now. You can find them in woods.");
 				addHelp("If you have plenty of meat or cheese you can sell it to Siandra in Ados bar.");
 				addGoodbye();
 
@@ -82,7 +84,7 @@ public class BakerNPC implements ZoneConfigurator {
 				requiredResources.put("flour", Integer.valueOf(2));
 				requiredResources.put("meat", Integer.valueOf(2));
 				requiredResources.put("carrot", Integer.valueOf(1));
-				requiredResources.put("button mushroom", Integer.valueOf(1));
+				requiredResources.put("button mushroom", Integer.valueOf(2));
 
 				final ProducerBehaviour behaviour = new ProducerBehaviour("arlindo_make_pie", "make", "pie",
 				        requiredResources, 7 * 60);
