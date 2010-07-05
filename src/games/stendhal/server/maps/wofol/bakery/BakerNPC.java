@@ -68,7 +68,7 @@ public class BakerNPC implements ZoneConfigurator {
 				// This isn't bad grammar. It's his tyle of speech! Do't correct pls.
 				addJob("I #make #pizza. I have learn from the great baker #Leander.");
 				addReply(Arrays.asList("button mushroom", "porcini"),
-				        "#Leander taught me mushroom grow in wood area.");
+				        "#Leander taught me mushroom grow in wood area. People like mushroom, I add more.");
 				addReply("flour", "Mill near Semos produce from grain.");
 				addReply("cheese", "Cheese? I know not.");
 				addReply("tomato", "This grow in glass houses.");
@@ -84,7 +84,7 @@ public class BakerNPC implements ZoneConfigurator {
 				requiredResources.put("flour", 2);
 				requiredResources.put("cheese", 1);
 				requiredResources.put("tomato", 1);
-				requiredResources.put("button mushroom", 1);
+				requiredResources.put("button mushroom", 2);
 				requiredResources.put("porcini", 1);
 				requiredResources.put("ham", 1);
 
