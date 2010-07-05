@@ -967,10 +967,11 @@ Mature sheep wanted: please speak to Sato.
 			<destination zone="int_semos_bakery" ref="entrance" />
 		</portal>
 
-		<entity x="1" y="1">
+		<entity x="42" y="37">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_old_tavern</parameter>
 				<parameter name="volume">80</parameter>
+				<parameter name="radius">15</parameter>
 			</implementation>
 		</entity>
 
