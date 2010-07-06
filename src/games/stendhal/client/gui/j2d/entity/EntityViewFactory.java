@@ -192,6 +192,7 @@ public class EntityViewFactory {
 		
 		register("sheep", null, null,  Sheep2DView.class);
 		register("food", null, null, SheepFood2DView.class);
+		register("spell", null, null, Spell2DView.class);
 		
 		register("sign", null, null, Sign2DView.class);
 		register("blackboard", null, null, Sign2DView.class);

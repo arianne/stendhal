@@ -42,6 +42,7 @@ import games.stendhal.client.entity.Ring;
 import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
+import games.stendhal.client.entity.Spell;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.UseableItem;
 import games.stendhal.client.entity.UseableRing;
@@ -147,6 +148,8 @@ public final class EntityMap {
 		register("house_portal", null, null, HousePortal.class);
 		register("door", null, null, Door.class);
 		register("fire", null, null, Fire.class);
+		
+		register("spell", null, null, Spell.class);
 
 		register("gate", null, null, Gate.class);
 		register("game_board", null, null, GameBoard.class);

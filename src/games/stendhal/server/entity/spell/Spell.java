@@ -147,6 +147,9 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		entity.addAttribute(ATTR_RANGE, Type.INT);
 		entity.addAttribute(ATTR_RATE, Type.INT);
 		entity.addAttribute(ATTR_REGEN, Type.INT);
+		// class = nature
+		entity.addAttribute("class", Type.STRING);
+		entity.addAttribute("subclass", Type.STRING);
 	}
 	
 	/**
@@ -182,6 +185,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 					final int range, final int rate, final int regen) {
 		setRPClass(RPCLASS_SPELL);
 		put(ATTR_NAME, name);
+		put("subclass", name);
+		put("class", nature.toString().toLowerCase());
 		put(ATTR_AMOUNT, amount);
 		put(ATTR_ATK, atk);
 		put(ATTR_COOLDOWN, cooldown);
@@ -192,6 +197,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		put(ATTR_RANGE, range);
 		put(ATTR_RATE, rate);
 		put(ATTR_NATURE, nature.name());
+		put("type", "spell");
 	}
 
 	public boolean canBeEquippedIn(final String slot) {

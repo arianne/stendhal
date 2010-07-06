@@ -15,10 +15,14 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * The 2D view of a spell.
  */
 class Spell2DView extends Entity2DView {
+	
+	private static final Logger logger = Logger.getLogger(Spell2DView.class);
 
 	//
 	// Entity2DView
@@ -33,8 +37,6 @@ class Spell2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		list.add(ActionType.USE.getRepresentation());
-
 		super.buildActions(list);
 	}
 
@@ -43,8 +45,10 @@ class Spell2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation() {
+		String translate = translate(getClassResourcePath());
+		logger.debug("Sprite path: " + translate);
 		setSprite(SpriteStore.get()
-				.getSprite(translate(getClassResourcePath())));
+				.getSprite(translate));
 	}
 
 
@@ -99,16 +103,6 @@ class Spell2DView extends Entity2DView {
 	//
 	// EntityView
 	//
-
-	/**
-	 * Determine if this entity can be moved (e.g. via dragging).
-	 * 
-	 * @return <code>true</code> if the entity is movable.
-	 */
-	@Override
-	public boolean isMovable() {
-		return true;
-	}
 
 	/**
 	 * Perform the default action.
