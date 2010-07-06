@@ -16,6 +16,12 @@ public class EventFactory {
 	
 	private static final Logger logger = Logger.getLogger(EventFactory.class);
 
+	/**
+	 * creates events for Entities and RPEntities
+	 * @param entity
+	 * @param rpevent
+	 * @return event
+	 */
 	public static Event<? extends Entity> create(Entity entity, RPEvent rpevent) {
 		Event<? extends Entity> res = null;
 		if (entity instanceof RPEntity) {
@@ -29,6 +35,7 @@ public class EventFactory {
 		if (res == null) {
 			Event<Entity> unknown = new UnknownEvent<Entity>();
 			unknown.init(entity, rpevent);
+			logger.warn("Unknown Event type: " + rpevent);
 			res = unknown;
 		}
 		logger.debug("Created event: "+res);
