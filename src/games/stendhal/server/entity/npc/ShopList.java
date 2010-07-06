@@ -415,6 +415,10 @@ public class ShopList {
 		shops.add("buyblack", "black sword", 20000);
 		shops.add("buyblack", "black scythe", 40000);
 		shops.add("buyblack", "black halberd", 30000);
+		
+		// ados market 
+		shops.add("buyadosarmors", "blue shield", 900);
+		
 	}
 
 	private static ShopList instance;
