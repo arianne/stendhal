@@ -79,6 +79,7 @@ public class WeaponryTraderNPC implements ZoneConfigurator {
 		npc.setPosition(52, 34);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
+		npc.setSpeed(0.1);
 		zone.add(npc);
 	}
 }
