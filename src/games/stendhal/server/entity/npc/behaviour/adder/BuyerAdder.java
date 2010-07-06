@@ -34,7 +34,6 @@ public class BuyerAdder {
 					ConversationStates.ATTENDING,
 					null, 
 					new ChatAction() {
-						@Override
 						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
 							StringBuilder text = new StringBuilder("i buy ");
 							if(behaviour.dealtItems().size()==1) {
