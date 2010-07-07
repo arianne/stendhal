@@ -35,3 +35,4 @@ marauroa-strato.ini
 *.umlproject
 cobertura.ser
 statserver_stats.xml
+.stendhal-postman*.xml
