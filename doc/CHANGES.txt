@@ -2,6 +2,7 @@ Changelog
 ---------
 
 0.86
+- new npc added to ados market, which buy blue shield 
 - attack targets drawn as circles
 - settings panel uses icons and is always visible
 - new help menus for settings panel
