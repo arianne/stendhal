@@ -1363,6 +1363,14 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 		<configurator class-name="games.stendhal.server.maps.semos.temple.HealerNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.temple.TelepathNPC" />
 
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">sacred_moments</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
+
 		<portal x="11" y="8" ref="orb_left">
 			<destination zone="0_orril_mountain_w" ref="orb_destination" />
 
