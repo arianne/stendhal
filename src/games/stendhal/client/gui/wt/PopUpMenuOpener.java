@@ -41,13 +41,12 @@ public class PopUpMenuOpener implements WtClickListener{
 	 * Set the commands available for each group label 
 	 */
 	private static void initialize() {
-		// TODO: Map pretty command with spaces to display into one words command which work as a slash action?
 		groupsAndCommands = new HashMap<String, String[]>();
 		groupsAndCommands.put("help", new String[] {"Help", "Manual", "FAQ", "Rules", "Atlas"});
-		groupsAndCommands.put("accountcontrol", new String[] {"ChangePassword", "Merge", "LoginHistory"});
+		groupsAndCommands.put("accountcontrol", new String[] {"Change Password", "Merge", "Login History"});
 		groupsAndCommands.put("settings", new String[] {"Mute", "Clickmode"});
-		groupsAndCommands.put("rp", new String[] {"HallOfFame", "ListProducers"});
-	//	groupsAndCommands.put("contribute", new String[] {"ReportBug", "RequestFeature", "Chat"});
+		groupsAndCommands.put("rp", new String[] {"Who", "Hall Of Fame", "List Producers"});
+	//	groupsAndCommands.put("contribute", new String[] {"Report Bug", "Request Feature", "Chat"});
 	}
 	
 	/**

@@ -27,7 +27,9 @@ class ButtonCommandList extends CommandList {
 
 	/** an action has been chosen. 
 	 * @param command */
-	protected void doAction(final String command) {
+	protected void doAction(String command) {
+		// the commands from PopUpMenuOpener may have had spaces, strip these out
+		command = command.replace(" ","");
 		SlashActionRepository.get(command).execute(null, null);
 	}
 
