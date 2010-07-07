@@ -16,6 +16,8 @@ public class SlashActionRepository {
 	public static void register() {
 		final SlashAction msg = new MessageAction();
 		final SlashAction supporta = new SupportAnswerAction();
+		final SlashAction who = new WhoAction();
+		final SlashAction help = new HelpAction();
 
 		actions.put("/", new RemessageAction());
 		actions.put("add", new AddBuddyAction());
@@ -31,6 +33,7 @@ public class SlashActionRepository {
 		
 		actions.put("clear", new ClearChatLogAction());
 		actions.put("clickmode", new ClickModeAction());
+		actions.put("commands", help);
 		actions.put("crash", new CrashClientAction());
 
 		actions.put("drop", new DropAction());
@@ -39,7 +42,7 @@ public class SlashActionRepository {
 		actions.put("gmhelp", new GMHelpAction());
 		actions.put("grumpy", new GrumpyAction());
 
-		actions.put("help", new HelpAction());
+		actions.put("help", help);
 
 		actions.put("ignore", new IgnoreAction());
 		actions.put("inspect", new InspectAction());
@@ -53,7 +56,9 @@ public class SlashActionRepository {
 		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
 		actions.put("mute", new MuteAction());
-
+		
+		actions.put("names", who);
+		
 		actions.put("quit", new QuitAction());
 
 		actions.put("remove", new RemoveBuddyAction());
@@ -76,7 +81,7 @@ public class SlashActionRepository {
 		actions.put("tell", msg);
 
 		actions.put("where", new WhereAction());
-		actions.put("who", new WhoAction());
+		actions.put("who", who);
 		actions.putAll(BareBonesBrowserLaunchCommandsFactory.createBrowserCommands());
 //		actions.put("wrap", new WrapAction());
 	}
