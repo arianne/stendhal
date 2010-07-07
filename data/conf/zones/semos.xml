@@ -809,12 +809,7 @@ The sharper minded amongst you might prefer to click directly on the creature. I
 			<destination zone="int_semos_hostel" ref="entrance_right" />
 		</portal>
 
-		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">the_old_tavern</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+
 
 	<!-- 
 		<entity x="1" y="1">
@@ -829,6 +824,15 @@ The sharper minded amongst you might prefer to click directly on the creature. I
 				<parameter name="sound">treecreak-1</parameter>
 				<parameter name="min">25</parameter>
 				<parameter name="max">60</parameter>
+				<parameter name="radius">10</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="27" y="15">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">frog-1</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">10</parameter>
 				<parameter name="radius">10</parameter>
 			</implementation>
 		</entity>
@@ -1918,6 +1922,24 @@ Holy mackerel! These chips are tasty.
 	<zone name="int_semos_townhall" file="interiors/semos/townhall.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.townhall.MayorNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.townhall.BoyNPC" />
+
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">medieval_harp</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+		
+		
+  	   	<entity x="13" y="38">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">cough-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">40</parameter>
+			<parameter name="radius">7</parameter>
+		</implementation>
+		</entity>
+
 
 		<portal x="14" y="46" ref="entrance_left">
 			<destination zone="0_semos_city" ref="townhall_entrance_left" />
