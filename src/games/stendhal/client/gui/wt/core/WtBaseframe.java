@@ -54,7 +54,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	private boolean dragInProgress;
 
 	/** The context menu, if there is one. */
-	private JPopupMenu jcontextMenu;
+	protected JPopupMenu jcontextMenu;
 
 	/** A flag for tracking ContextMenu changes. */
 	private boolean recreatedContextMenu;

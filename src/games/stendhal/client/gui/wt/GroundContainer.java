@@ -174,7 +174,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 				return view.onHarmlessAction();
 			}
 		} else if (getWtPanelAt(p) == null) {
-			if (windowWasActiveOnMousePressed && !ui.isCtrlDown()) {
+			if (windowWasActiveOnMousePressed && !ui.isCtrlDown() && jcontextMenu == null) {
 				if (!doubleClick) {
 					createAndSendMoveToAction(point, false);
 				}
