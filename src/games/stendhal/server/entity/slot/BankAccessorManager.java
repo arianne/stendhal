@@ -16,7 +16,7 @@ public class BankAccessorManager {
 	private final HashMap<Banks, List<Entity>> accessors;
 
 	private BankAccessorManager() {
-		// hide constructor; Singleton patern
+		// hide constructor; Singleton pattern
 		accessors = new HashMap<Banks, List<Entity>>();
 	}
 
@@ -41,7 +41,7 @@ public class BankAccessorManager {
 	 *            Accessor
 	 */
 	public void add(final Banks bank, final Entity entity) {
-		final List<Entity> bankAccess = getListAddingUnkownBanks(bank);
+		final List<Entity> bankAccess = getListAddingUnknownBanks(bank);
 		if (!bankAccess.contains(entity)) {
 			bankAccess.add(entity);
 		}
@@ -49,13 +49,13 @@ public class BankAccessorManager {
 
 	/**
 	 * Gets the list of accessors for the specified bank. 
-	 * <p> In case the bank is unkown, an empty list is automatically created
+	 * <p> In case the bank is unknown, an empty list is automatically created
 	 * 
 	 * @param bank
 	 *            Banks
 	 * @return list of accessors
 	 */
-	private List<Entity> getListAddingUnkownBanks(final Banks bank) {
+	private List<Entity> getListAddingUnknownBanks(final Banks bank) {
 		List<Entity> bankAccess = accessors.get(bank);
 		if (bankAccess == null) {
 			bankAccess = new LinkedList<Entity>();
@@ -69,12 +69,12 @@ public class BankAccessorManager {
 	 * 
 	 * @param bank
 	 *            Banks
-	 * @return list of accessors or an empty list if this bank is unkown
+	 * @return list of accessors or an empty list if this bank is unknown
 	 */
 	protected List<Entity> get(final Banks bank) {
 
-		// If the visibilty of this method should be raised,
+		// If the visibility of this method should be raised,
 		// please return only a copy of this list
-		return getListAddingUnkownBanks(bank);
+		return getListAddingUnknownBanks(bank);
 	}
 }
