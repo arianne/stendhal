@@ -35,7 +35,6 @@ public class EventFactory {
 		if (res == null) {
 			Event<Entity> unknown = new UnknownEvent<Entity>();
 			unknown.init(entity, rpevent);
-			logger.warn("Unknown Event type: " + rpevent);
 			res = unknown;
 		}
 		logger.debug("Created event: "+res);
