@@ -2810,19 +2810,50 @@ Southeast: Docks
   </portal>
  </zone>
  <zone name="-1_ados_wall_n" level="-1" x="500768" y="499872" file="Level -1/ados/wall_n.tmx">
+ 
+  		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">sewers</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+ 
  </zone>
  <zone name="-1_ados_city_n" level="-1" x="500896" y="499872" file="Level -1/ados/city_n.tmx">
+ 
+  		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">sewers</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+ 
  </zone>
  <zone name="-1_ados_wall" level="-1" x="500768" y="500000" file="Level -1/ados/wall.tmx">
   <portal x="100" y="54" ref="up">
    <destination zone="int_ados_barracks_0" ref="down"/>
   </portal>
+
+  		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">sewers</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+
  </zone> 
  <zone name="-1_ados_city" level="-1" x="500896" y="500000" file="Level -1/ados/city.tmx">  
  <portal x="20" y="25" ref="crawlyspaceup">
    <destination zone="int_ados_castle_dungeons" ref="crawlyspacedown"/>
   </portal>
 
+  		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">sewers</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+		 
  </zone>
  <!-- commented out till ready <zone name="-1_ados_vaults" level="-1" x="500768" y="500128" file="Level -1/ados/vaults.tmx">
   <portal x="49" y="28" ref="up_left">
@@ -2834,7 +2865,16 @@ Southeast: Docks
  </zone> -->
 
  <zone name="-1_ados_city_s" level="-1" x="500896" y="500128" file="Level -1/ados/city_s.tmx">
+ 
+ 		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">sewers</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+ 
  </zone>
+ 
  <zone name="-1_ados_outside_w" level="-1" x="500640" y="500000" file="Level -1/ados/outside_w.tmx">
       <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea">
