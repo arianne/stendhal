@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledInSumForQuestCondition;
@@ -47,8 +48,8 @@ import org.apache.log4j.Logger;
  *
  *
  * REWARD:<ul>
- * <li> 500k XP
- * <li> 50k moneys
+ * <li> 3/4 of XP difference between current player level and next level, or 300 karma.
+ * <li> random moneys - from 10k to 60k, step 10k.
  * <li> 5 karma for killing 100% creatures
  * <li> 5 karma for killing every 50% next creatures
  * </ul>
@@ -349,11 +350,12 @@ import org.apache.log4j.Logger;
 			int karmabonus = 5*(2*killed/(killsnumber)-1);
 			final StackableItem money = (StackableItem)
 					SingletonRepository.getEntityManager().getItem("money");
-			money.setQuantity(50000);
+			money.setQuantity(10000*Rand.roll1D6());
 			player.setQuest(QUEST_SLOT, "done;"+System.currentTimeMillis());
 			player.equipOrPutOnGround(money);
 			player.addKarma(karmabonus);
-			player.addXP(500000);
+			//player.addXP(500000);
+			new IncreaseXPDependentOnLevelAction(4.0/3.0, 300).fire(player, sentence, speakerNPC);
 		};
 	}
 
