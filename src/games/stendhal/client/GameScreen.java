@@ -617,14 +617,27 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	private void drawText(final Graphics2D g2d) {
 		texts.removeAll(textsToRemove);
 		textsToRemove.clear();
-
+		
+		/*
+		 * Text objects know their original placement relative to the screen,
+		 * not to the map. Pass them a shifted coordinate system. 
+		 */
+		g2d.translate(-getScreenViewX(), -getScreenViewY());
+		
 		try {
 			for (final Text text : texts) {
-				text.draw(this);
+				if (!text.shouldBeRemoved()) {
+					text.draw(g2d);
+				} else {
+					removeText(text);
+				}
 			}
 		} catch (final ConcurrentModificationException e) {
 			LOGGER.error("cannot draw text", e);
 		}
+		
+		// Restore the coordinates
+		g2d.translate(getScreenViewX(), getScreenViewY());
 	}
 
 	/**
@@ -937,36 +950,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 				convertWorldYToScreenView(wy));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#draw(games.stendhal.client.sprite.Sprite,
-	 *      int, int)
-	 */
-	public void draw(final Sprite sprite, final double wx, final double wy) {
-		final Point p = convertWorldToScreenView(wx, wy);
-
-		if (sprite != null) {
-			final int spritew = sprite.getWidth() + 2;
-			final int spriteh = sprite.getHeight() + 2;
-
-			if (((p.x >= -spritew) && (p.x < sw))
-					&& ((p.y >= -spriteh) && (p.y < sh))) {
-				sprite.draw(getGraphics(), p.x, p.y);
-			}
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#drawInScreen(games.stendhal.client.sprite.Sprite,
-	 *      int, int)
-	 */
-	public void drawInScreen(final Sprite sprite, final int sx, final int sy) {
-		sprite.draw(getGraphics(), sx, sy);
-	}
-
 	/**
 	 * Convert a world unit value to a screen unit value.
 	 *
@@ -1030,21 +1013,21 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		return convertWorldToScreen(ww);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Get the view X screen coordinate.
 	 *
-	 * @see games.stendhal.client.IGameScreen#getScreenViewX()
+	 * @return The X coordinate of the left side.
 	 */
-	public int getScreenViewX() {
+	private int getScreenViewX() {
 		return svx;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Get the view Y screen coordinate.
 	 *
-	 * @see games.stendhal.client.IGameScreen#getScreenViewY()
+	 * @return The Y coordinate of the left side.
 	 */
-	public int getScreenViewY() {
+	private int getScreenViewY() {
 		return svy;
 	}
 

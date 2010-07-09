@@ -4,7 +4,6 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.wt.core.WtPanel;
-import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Graphics;
@@ -162,21 +161,6 @@ public interface IGameScreen {
 	Point convertWorldToScreenView(double wx, double wy);
 
 	/**
-	 * Draws a sprite in screen given its world coordinates.
-	 * 
-	 * @param sprite
-	 *            to be drawn
-	 * @param wx
-	 *            x in world coordinates
-	 * @param wy
-	 *            y in world coordinates
-	 * 
-	 */
-	void draw(Sprite sprite, double wx, double wy);
-
-	void drawInScreen(Sprite sprite, int sx, int sy);
-
-	/**
 	 * Convert screen view coordinates to world coordinates.
 	 *
 	 * @param p
@@ -197,20 +181,6 @@ public interface IGameScreen {
 	 * @return World coordinates.
 	 */
 	Point2D convertScreenViewToWorld(final int x, final int y);
-
-	/**
-	 * Get the view X screen coordinate.
-	 *
-	 * @return The X coordinate of the left side.
-	 */
-	int getScreenViewX();
-
-	/**
-	 * Get the view Y screen coordinate.
-	 *
-	 * @return The Y coordinate of the left side.
-	 */
-	int getScreenViewY();
 
 	/**
 	 * The user position changed. This sets the target coordinates that the

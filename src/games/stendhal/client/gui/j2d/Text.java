@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d;
 
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.sprite.Sprite;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Text {
@@ -28,6 +28,15 @@ public class Text {
 
 	private long removeTime;
 
+	/**
+	 * Create a new text object.
+	 * 
+	 * @param sprite
+	 * @param x x coordinate relative to the game screen
+	 * @param y y coordinate relative to the game screen
+	 * @param persistTime life time of the text object in milliseconds, or
+	 * 	0 for <code>STANDARD_PERSISTENCE_TIME</code>
+	 */
 	public Text(final Sprite sprite, final int x, final int y,
 			final long persistTime) {
 		this.sprite = sprite;
@@ -41,13 +50,17 @@ public class Text {
 		}
 	}
 
-	public void draw(final IGameScreen screen) {
-		screen.drawInScreen(sprite, x - screen.getScreenViewX(), y
-				- screen.getScreenViewY());
-
-		if (System.currentTimeMillis() >= removeTime) {
-			screen.removeText(this);
-		}
+	public void draw(final Graphics g) {
+		sprite.draw(g, x, y);
+	}
+	
+	/**
+	 * Check if the <code>Text</code> is old enough to be removed.
+	 * 
+	 * @return <code>true</code> if the text should be removed
+	 */
+	public boolean shouldBeRemoved() {
+		return (System.currentTimeMillis() >= removeTime);
 	}
 
 	public Rectangle getArea() {
