@@ -1,6 +1,7 @@
 package games.stendhal.server.core.engine;
 
 import games.stendhal.server.core.engine.db.CidDAO;
+import games.stendhal.server.core.engine.db.PostmanDAO;
 import games.stendhal.server.core.engine.db.StendhalBuddyDAO;
 import games.stendhal.server.core.engine.db.StendhalCharacterDAO;
 import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
@@ -47,6 +48,7 @@ public class StendhalPlayerDatabase {
 
 		DAORegister.get().register(CharacterDAO.class, new StendhalCharacterDAO());
 		DAORegister.get().register(CidDAO.class, new CidDAO());
+		DAORegister.get().register(PostmanDAO.class, new PostmanDAO());
 		DAORegister.get().register(StendhalBuddyDAO.class, new StendhalBuddyDAO());
 		DAORegister.get().register(StendhalHallOfFameDAO.class, new StendhalHallOfFameDAO());
 		DAORegister.get().register(StendhalKillLogDAO.class, new StendhalKillLogDAO ());
