@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
@@ -174,13 +175,17 @@ public class KillEnemyArmyTest {
 		
 		en.step(player, "hi");
 		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
-		int tempxp = player.getXP();
+		int tempxp = 1000000;
+		player.setXP(tempxp);
 		int tempmoneys = player.getEquippedItemClass("bag", "money").getQuantity();
 		double tempkarma = player.getKarma();
 		en.step(player, "quest");
         assertEquals("Good work! Take these coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.", getReply(npc));
-        assertEquals(tempxp, player.getXP()-500000);
-        assertEquals(tempmoneys, player.getEquippedItemClass("bag", "money").getQuantity()-50000);
+        assertEquals(1000037, player.getXP());
+        int moneys = player.getEquippedItemClass("bag", "money").getQuantity();
+        int moneysdiff = moneys - tempmoneys;
+        assertTrue((moneysdiff>9999)&&(moneysdiff<60001));
+        assertTrue((moneysdiff-(moneysdiff/10000)*10000)==0);
         assertEquals(tempkarma, player.getKarma()-5, 0.000001);
         questHistory.clear();
         questHistory.add("I completed Despot's Halb Errvl task and got my reward!");
