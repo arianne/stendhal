@@ -127,6 +127,14 @@
 
 	<zone name="0_orril_forest_e" level="0" x="500000" y="500256"
 		file="Level 0/orril/forest_e.tmx">
+		
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">deep_forest</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+		
 		<entity x="43" y="103">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
@@ -230,6 +238,16 @@
 
 	<zone name="0_orril_river_se" level="0" x="500000" y="500384"
 		file="Level 0/orril/river_se.tmx">
+		
+		<entity x="68" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">deep_forest</parameter>
+				<parameter name="volume">120</parameter>
+				<parameter name="radius">30</parameter>
+			</implementation>
+		</entity>
+		
+		
 		<entity x="0" y="8">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
