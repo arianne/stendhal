@@ -36,9 +36,9 @@ public class BuyerAdder {
 					null, 
 					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-							StringBuilder text = new StringBuilder("i buy ");
+							StringBuilder text = new StringBuilder("I buy ");
 							if(behaviour.dealtItems().size()==1) {
-								text.append("only this kind of items: ");
+								text.append("only this kind of item: ");
 							} else {
 								text.append("items of these kinds: ");
 							}
