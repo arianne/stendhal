@@ -40,6 +40,10 @@ public class StendhalPlayerDatabase {
 				transaction.execute("ALTER TABLE character_stats ADD COLUMN (lastseen TIMESTAMP);", null);
 			}
 
+			if (!transaction.doesColumnExist("postman", "messagetype")) {
+				transaction.execute("ALTER TABLE postman ADD COLUMN (messagetype CHAR(1));", null);
+			}
+			
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			logger.error(e, e);

@@ -31,15 +31,17 @@ public class PostmanDAO {
 	 * @param source  name of source 
 	 * @param target  name of player that the message is for
 	 * @param message 	message to be sent
+	 * @param messagetype	N for NPCs, S for support, P for player
 	 * @throws SQLException in case of an database error
 	 */
-	public void storeMessage(DBTransaction transaction, String source, String target, String message) throws SQLException {
-		String query = "INSERT INTO postman(source, target, message) values ('[source]', '[target]', '[message]')";
+	public void storeMessage(DBTransaction transaction, String source, String target, String message, String messagetype) throws SQLException {
+		String query = "INSERT INTO postman(source, target, message, messagetype) values ('[source]', '[target]', '[message]', '[messagetype]')";
 		logger.debug("postman is storing a message " + query);
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("source", source);
 		params.put("target", target);
 		params.put("message", message);
+		params.put("messagetype", messagetype);
 		transaction.execute(query, params);
 	}
 
@@ -50,10 +52,10 @@ public class PostmanDAO {
 	 * @param target  name of player that the message is for
 	 * @param message 	message to be sent
 	 */
-	public void storeMessage(String source, String target, String message) {
+	public void storeMessage(String source, String target, String message, String messagetype) {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
-			storeMessage(transaction, source, target, message);
+			storeMessage(transaction, source, target, message, messagetype);
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			TransactionPool.get().rollback(transaction);
