@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -72,7 +73,7 @@ public class ArmorForDagobert extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("I promised to find a leather cuirass for him because he has been robbed.");
 		}
-		if (("start".equals(questState) && player.isEquipped("leather cuirass")) || "done".equals(questState)) {
+		if (("start".equals(questState) && (player.isEquipped("leather cuirass") || player.isEquipped("pauldroned leather cuirass"))) || "done".equals(questState)) {
 			res.add("I found a leather cuirass and will take it to Dagobert.");
 		}
 		if ("done".equals(questState)) {
@@ -132,23 +133,31 @@ public class ArmorForDagobert extends AbstractQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("leather cuirass")),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), 
+				new OrCondition(
+					new PlayerHasItemWithHimCondition("leather cuirass"),
+					new PlayerHasItemWithHimCondition("pauldroned leather cuirass"))),
 			ConversationStates.QUEST_ITEM_BROUGHT, 
 			"Excuse me, please! I have noticed the leather cuirass you're carrying. Is it for me?",
 			null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("leather cuirass"))),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), 
+				new NotCondition(new OrCondition(
+					new PlayerHasItemWithHimCondition("leather cuirass"),
+					new PlayerHasItemWithHimCondition("pauldroned leather cuirass")))),
 			ConversationStates.ATTENDING, 
 			"Luckily I haven't been robbed while you were away. I would be glad to receive a leather cuirass. Anyway, how can I #help you?",
 			null);
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new DropItemAction("leather cuirass"));
 		reward.add(new EquipItemAction("money", 80));
 		reward.add(new IncreaseXPAction(50));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(10));
+
+		final List<ChatAction> reward1 = new LinkedList<ChatAction>(reward);
+		reward1.add(new DropItemAction("leather cuirass"));
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
@@ -157,7 +166,20 @@ public class ArmorForDagobert extends AbstractQuest {
 			// away and then saying "yes"
 			new PlayerHasItemWithHimCondition("leather cuirass"), 
 			ConversationStates.ATTENDING, "Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere. Now that you have proven yourself a trusted customer, you may have access to your own private banking #vault any time you like.",
-			new MultipleActions(reward));
+			new MultipleActions(reward1));
+
+		final List<ChatAction> reward2 = new LinkedList<ChatAction>(reward);
+		reward2.add(new DropItemAction("pauldroned leather cuirass"));
+		npc.add(
+			ConversationStates.QUEST_ITEM_BROUGHT,
+			ConversationPhrases.YES_MESSAGES,
+			// make sure the player isn't cheating by putting the armor
+			// away and then saying "yes"
+			new AndCondition(
+				new NotCondition(new PlayerHasItemWithHimCondition("leather cuirass")),
+				new PlayerHasItemWithHimCondition("pauldroned leather cuirass")), 
+			ConversationStates.ATTENDING, "Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere. Now that you have proven yourself a trusted customer, you may have access to your own private banking #vault any time you like.",
+			new MultipleActions(reward2));
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
