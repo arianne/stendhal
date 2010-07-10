@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -82,11 +83,11 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					if (player.isQuestCompleted(QUEST_SLOT)) {
-						engine.say("I ask only that you are honest.");
+						raiser.say("I ask only that you are honest.");
 					} else {
-						engine.say("I need someone who can be trusted with #gold.");
+						raiser.say("I need someone who can be trusted with #gold.");
 					}
 				}
 			});
@@ -113,7 +114,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			ConversationStates.IDLE,
 			"Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.",
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					player.setQuest(QUEST_SLOT, "start");
 					player.addKarma(5.0);
 				}
@@ -161,7 +162,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"I'm so glad you're here! I'll be much happier when this gold is safely in the bank.",
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					player.setQuest(QUEST_SLOT, "lorithien");
 
 					final StackableItem goldbars = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
@@ -203,9 +204,9 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			new QuestInStateCondition(QUEST_SLOT, "lorithien"),
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					if (player.drop("gold bar", GOLD_AMOUNT)) {
-						engine.say("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.");
+						raiser.say("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.");
 						final Item nalworkey = SingletonRepository.getEntityManager()
 								.getItem("nalwor bank key");
 						nalworkey.setBoundTo(player.getName());
@@ -217,7 +218,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 
 						player.setQuest(QUEST_SLOT, "done");
 					} else {
-						engine.say("Haven't you got the gold bars from #Lorithien yet? Please go get them, quickly!");
+						raiser.say("Haven't you got the gold bars from #Lorithien yet? Please go get them, quickly!");
 					}
 				}
 			});

@@ -8,6 +8,7 @@ import games.stendhal.server.entity.creature.LevelBasedComparator;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
@@ -86,7 +87,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	static class DailyQuestAction implements ChatAction {
 		//private String debugString;
 		
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 			final String questInfo = player.getQuest(QUEST_SLOT);
 			String questCount = null;
@@ -105,7 +106,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 			// shouldn't happen
 			if (pickedCreature == null) {
-				engine.say("Thanks for asking, but there's nothing you can do for me now.");
+				raiser.say("Thanks for asking, but there's nothing you can do for me now.");
 				return;
 			}
 
@@ -117,7 +118,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				creatureName = "rat";
 			}
 			
-			engine.say("Semos is in need of help. Go kill " + Grammar.a_noun(creatureName)
+			raiser.say("Semos is in need of help. Go kill " + Grammar.a_noun(creatureName)
 					+ " and say #complete, once you're done.");
 
 			questLast = "" + (new Date()).getTime();
@@ -227,7 +228,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	static class DailyQuestCompleteAction implements ChatAction {
 		
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			final String questInfo = player.getQuest(QUEST_SLOT);
 			String questCount = null;
 			String questLast = null;
@@ -240,8 +241,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 				questCount = "0";
 			}
 
-			new IncreaseXPDependentOnLevelAction(5, 95.0).fire(player, sentence, engine);			
-			engine.say("Good work! Let me thank you in the name of the people of Semos!");
+			new IncreaseXPDependentOnLevelAction(5, 95.0).fire(player, sentence, raiser);			
+			raiser.say("Good work! Let me thank you in the name of the people of Semos!");
 			player.addKarma(5.0);
 			questCount = "" + (Integer.valueOf(questCount) + 1);
 			questLast = "" + (new Date()).getTime();
@@ -251,7 +252,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	static class DailyQuestAbortAction implements ChatAction {
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			final String questInfo = player.getQuest(QUEST_SLOT);
 			String questCount = null;
 			String questLast = null;
@@ -263,7 +264,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				questCount = tokens[2];
 			}
 
-			engine.say("As you wish, ask me for another #quest when you think you have what it takes to help Semos again.");
+			raiser.say("As you wish, ask me for another #quest when you think you have what it takes to help Semos again.");
 			// Don't make the player wait any longer and don't
 			// credit the player with a count increase?
 			// questCount = "" + (Integer.valueOf(questCount) + 1 );
@@ -331,7 +332,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						npc.say("You're already on a quest to slay " + 
 								Grammar.a_noun(player.getQuest(QUEST_SLOT,0).split(",")[0]) + 
 								". Say #complete if you're done with it!");
@@ -350,7 +351,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						if(player.getQuest(QUEST_SLOT, 0)!=null) {
 								npc.say("You're already on a quest to slay " + 
 										Grammar.a_noun(player.getQuest(QUEST_SLOT, 0).split(",")[0]) + 
@@ -422,7 +423,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							final String questKill = player.getQuest(QUEST_SLOT, 0).split(",")[0];
 							npc.say("You didn't kill " + Grammar.a_noun(questKill)
 									+ " yet. Go and do it and say #complete only after you're done.");							

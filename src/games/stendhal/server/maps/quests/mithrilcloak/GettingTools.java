@@ -7,6 +7,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
@@ -66,9 +67,9 @@ class GettingTools {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final int neededEggshells = Rand.randUniform(2, 4);
-					engine.say("Ah yes, Ida sent me a message about some magical scissors. I need one each of an iron bar and a mithril bar, and also " + Integer.toString(neededEggshells) + " magical #eggshells. Ask me about #scissors again when you return with those items.");
+					raiser.say("Ah yes, Ida sent me a message about some magical scissors. I need one each of an iron bar and a mithril bar, and also " + Integer.toString(neededEggshells) + " magical #eggshells. Ask me about #scissors again when you return with those items.");
 					// store the number of needed eggshells in the quest slot so he remembers how many he asked for
 					player.setQuest(mithrilcloak.getQuestSlot(), "need_eggshells;" + Integer.toString(neededEggshells));
 				}
@@ -99,7 +100,7 @@ class GettingTools {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					final int neededEggshells = Integer.valueOf(questslot[1]);
 					if (player.isEquipped("iron")
@@ -134,7 +135,7 @@ class GettingTools {
 			Arrays.asList("scissors", "magical", "magical scissors", "ida", "mithril", "cloak", "mithril cloak"),
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingscissors;"),
 			ConversationStates.ATTENDING, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					// minutes -> milliseconds
 					final long delay = REQUIRED_MINUTES_SCISSORS * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
@@ -180,7 +181,7 @@ class GettingTools {
 				new TextHasNumberCondition(1, 5000),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 
                         final int required = (sentence.getNumeral().getAmount());
 						if (player.drop("disease poison", required * REQUIRED_POISONS)) {
@@ -276,7 +277,7 @@ class GettingTools {
 		npc.add(ConversationStates.QUESTION_1, "", null,
 				ConversationStates.QUEST_ITEM_QUESTION, null,
 					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							for (int i = 1; i < 9; i++) {
 								String joke = jokes.get(i);
 
@@ -380,7 +381,7 @@ class GettingTools {
 				null,
 				new MultipleActions(
 					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");		
 							int needles = 1;
 							int saidjoke = 1;
@@ -431,7 +432,7 @@ class GettingTools {
 				Arrays.asList("magical", "mithril", "cloak", "mithril cloak", "task", "quest"),
 				new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "sewing;"),
 				ConversationStates.ATTENDING, null, new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 							// hours -> milliseconds
 							final long delay = REQUIRED_HOURS_SEWING * MathHelper.MILLISECONDS_IN_ONE_HOUR;

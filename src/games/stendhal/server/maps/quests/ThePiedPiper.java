@@ -16,6 +16,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -275,7 +276,7 @@ import org.apache.log4j.Logger;
 	 * NPC's actions when player asks for rats problem.
 	 */
 	class AnswerOrOfferRewardAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC mayor) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser mayor) {
 			switch (phase) {
 			case TPP_INACTIVE: // quest is not active
 					mayor.say("Ados isn't being invaded by rats right now. You can still "+
@@ -303,7 +304,7 @@ import org.apache.log4j.Logger;
 	 *  NPC's actions when player asks for his reward.
 	 */
 	class RewardPlayerAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC mayor) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser mayor) {
 			switch (phase) {
 			case TPP_INVASION: // invasion time
 					mayor.say("Ados is being invaded by rats! "+
@@ -333,7 +334,7 @@ import org.apache.log4j.Logger;
 	 * NPC's answers when player ask for details.
 	 */
 	class DetailsKillingsAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC mayor) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser mayor) {
 			if (calculateReward(player)==0) {
 				mayor.say("You killed no rats during the #rats invasion. "+
 						  "To get a #reward you have to kill at least "+

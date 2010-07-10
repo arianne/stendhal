@@ -8,6 +8,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -53,7 +54,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 				addHelp("Just ask me to #explain something");
 				add(ConversationStates.ATTENDING, "explain", null, ConversationStates.ATTENDING, null,
 				        new ChatAction() {
-					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						        // extract the title
 					        	String text = sentence.getOriginalText();
 						        // extract the title
@@ -69,7 +70,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 						        thread.setPriority(Thread.MIN_PRIORITY);
 						        thread.setDaemon(true);
 						        thread.start();
-						        SingletonRepository.getTurnNotifier().notifyInTurns(10, new WikipediaWaiter(npc, access));
+						        SingletonRepository.getTurnNotifier().notifyInTurns(10, new WikipediaWaiter((SpeakerNPC) npc.getEntity(), access));
 						        npc.say("Please wait, while I am looking it up in the book called #Wikipedia!");
 					        }
 				        });

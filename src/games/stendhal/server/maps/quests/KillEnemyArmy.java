@@ -8,6 +8,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
@@ -311,7 +312,7 @@ import org.apache.log4j.Logger;
 	 */
 
 	class GiveQuestAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 			final String monstersType = chooseRandomEnemys();
 			player.setQuest(QUEST_SLOT, 1, monstersType);
 			npc.say("I need help to defeat #enemy " + monstersType +
@@ -335,7 +336,7 @@ import org.apache.log4j.Logger;
 	 * @param killed - number of killed creatures.
 	 */
 	class RewardPlayerAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 			final String monsters = player.getQuest(QUEST_SLOT, 1);
 			int killed=getKilledCreaturesNumber(player);
 			int killsnumber = enemyForces.get(monsters).first();
@@ -366,7 +367,7 @@ import org.apache.log4j.Logger;
 	 */
 	class ExplainAction implements ChatAction {
 
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 				final String monsters = player.getQuest(QUEST_SLOT, 1);
 				int killed=getKilledCreaturesNumber(player);
 				int killsnumber = enemyForces.get(monsters).first();
@@ -413,7 +414,7 @@ import org.apache.log4j.Logger;
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							npc.say(getNPCTextReply(player, System.currentTimeMillis()));
 					}
 		});
@@ -425,7 +426,7 @@ import org.apache.log4j.Logger;
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
-						public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							npc.say(enemyForces.get(player.getQuest(QUEST_SLOT, 1)).second());
 						}
 				});

@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -36,14 +37,14 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						String reply = "There is something huge there! Everyone is very nervous. ";
 						if (player.getLevel() < 60) {
 							reply += "You are too weak to enter there.";
 						} else {
 							reply += "Be careful.";
 						}
-						engine.say(reply);
+						raiser.say(reply);
 					}
 				});
 				addGoodbye();
@@ -51,11 +52,11 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 		};
 
 		npc.addInitChatMessage(null, new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				if (!player.hasQuest("PhalkFirstChat")) {
 					player.setQuest("PhalkFirstChat", "done");
 					player.addXP(500);
-					engine.listenTo(player, "hi");
+					((SpeakerNPC) raiser.getEntity()).listenTo(player, "hi");
 				}
 			}
 		});

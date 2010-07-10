@@ -11,6 +11,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -33,17 +34,17 @@ public class AcceptOfferHandler extends OfferHandler {
 	}
 	
 	class AcceptOfferChatAction extends KnownOffersChatAction {
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			if (sentence.hasError()) {
 				npc.say("Sorry, I did not understand you. "
 						+ sentence.getErrorString());
 			} else {
-				handleSentence(player,sentence,npc);
+				handleSentence(player, sentence, npc);
 			}
 		}
 
-		private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
-			MarketManagerNPC manager = (MarketManagerNPC) npc;
+		private void handleSentence(Player player, Sentence sentence, EventRaiser npc) {
+			MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
 			try {
 				String offerNumber = getOfferNumberFromSentence(sentence).toString();
 				Map<String,Offer> offerMap = manager.getOfferMap().get(player.getName());
@@ -67,7 +68,7 @@ public class AcceptOfferHandler extends OfferHandler {
 	}
 
 	class ConfirmAcceptOfferChatAction implements ChatAction {
-		public void fire (Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire (Player player, Sentence sentence, EventRaiser npc) {
 			Offer offer = getOffer();
 			Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 			if (m.acceptOffer(offer,player)) {
@@ -89,7 +90,7 @@ public class AcceptOfferHandler extends OfferHandler {
 
 				npc.say("Thanks.");
 				// Obsolete the offers, since the list has changed
-				((MarketManagerNPC) npc).getOfferMap().put(player.getName(), null);
+				((MarketManagerNPC) npc.getEntity()).getOfferMap().put(player.getName(), null);
 			} else {
 				// Trade failed for some reason. Check why, and inform the player
 				if (!m.getOffers().contains(offer)) {

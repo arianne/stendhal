@@ -10,6 +10,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
@@ -85,7 +86,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 	 * Action for healing pets
 	 */
 	private static class HealPetsAction implements ChatAction {
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			List<DomesticAnimal> healed = new LinkedList<DomesticAnimal>();
 			
 			for (DomesticAnimal pet : player.getAnimals()) {

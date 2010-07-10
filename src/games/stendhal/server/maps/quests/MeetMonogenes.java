@@ -6,6 +6,7 @@ import java.util.List;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -39,20 +40,20 @@ public class MeetMonogenes extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				null, ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						// A little trick to make NPC remember if it has met the
 						// player before and react accordingly.
 						// NPC_name quest doesn't exist anywhere else neither is
 						// used for any other purpose.
 						if (player.isQuestCompleted("Monogenes")) {
-							engine.say("Hi again, " + player.getTitle()
+							raiser.say("Hi again, " + player.getTitle()
 									+ ". How can I #help you this time?");
 						} else {
-							engine.say("Hello there, stranger! Don't be too intimidated if people are quiet and reserved... " +
+							raiser.say("Hello there, stranger! Don't be too intimidated if people are quiet and reserved... " +
 											"the fear of Blordrough and his forces has spread all over the country, and we're all " +
 											"a bit concerned. I can offer a few tips on socializing though, would you like to hear them?");
 							player.setQuest("Monogenes", "done");
-							engine.setCurrentState(ConversationStates.INFORMATION_1);
+							raiser.setCurrentState(ConversationStates.INFORMATION_1);
 						}
 					}
 				});

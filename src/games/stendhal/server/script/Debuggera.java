@@ -10,6 +10,7 @@ import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AdminCondition;
@@ -43,12 +44,12 @@ public class Debuggera extends ScriptImpl {
 			this.enabled = enable;
 		}
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			// TODO debuggeraEnabled = enabled;
 			if (enabled) {
-				engine.say("Thanks.");
+				raiser.say("Thanks.");
 			} else {
-				engine.say("OK, I will not talk to strangers");
+				raiser.say("OK, I will not talk to strangers");
 			}
 		}
 	}
@@ -60,7 +61,7 @@ public class Debuggera extends ScriptImpl {
 			this.sandbox = sandbox;
 		}
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			// list quest
 			final StringBuilder sb = new StringBuilder("Your quest states are:");
 			final List<String> quests = player.getQuests();
@@ -84,7 +85,7 @@ public class Debuggera extends ScriptImpl {
 						Arrays.asList(player.getName(), quest, value));
 				player.setQuest(quest.trim(), value.trim());
 			}
-			engine.say(sb.toString());
+			raiser.say(sb.toString());
 		}
 	}
 
@@ -95,9 +96,9 @@ public class Debuggera extends ScriptImpl {
 			this.sandbox = sandbox;
 		}
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			SingletonRepository.getTurnNotifier().notifyInTurns(0,
-					new TeleportScriptAction(player, engine, sentence, sandbox));
+					new TeleportScriptAction(player, (SpeakerNPC) raiser.getEntity(), sentence, sandbox));
 		}
 	}
 
@@ -223,7 +224,7 @@ public class Debuggera extends ScriptImpl {
 			}
 		}
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			this.player = player;
 			counter = 0;
 			player.sendPrivateText("Let's start");

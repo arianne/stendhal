@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
@@ -146,7 +147,7 @@ public class Soup extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, 
 				null,
 				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(QUEST_SLOT)) { 
 						// to be honest i don't understand when this
 								// would be implemented. i put the text i
@@ -164,7 +165,7 @@ public class Soup extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED, "ingredients", null,
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final List<String> needed = missingFood(player, true);
 					npc.say("I need "
 							+ Grammar.quantityplnoun(needed.size(),
@@ -234,7 +235,7 @@ public class Soup extends AbstractQuest {
 			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
 			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final List<String> needed = missingFood(player, true);
 					npc.say("I still need "
 							+ Grammar.quantityplnoun(needed.size(),
@@ -252,7 +253,7 @@ public class Soup extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, NEEDED_FOOD, null,
 			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final Expression item = sentence.getTriggerExpression();
 
 					TriggerList missing = new TriggerList(missingFood(player, false));
@@ -309,7 +310,7 @@ public class Soup extends AbstractQuest {
 				null,
 				new ChatAction() {
 			    public void fire(final Player player, final Sentence sentence,
-					   final SpeakerNPC npc) {
+					   final EventRaiser npc) {
 			    	checkForAllIngredients(player, npc);
 			}
 		});
@@ -338,7 +339,7 @@ public class Soup extends AbstractQuest {
 
 	// if we're checking all at once it's a bit different method
 	// also player gets no karma (don't get karma for being lazy)
-	private void checkForAllIngredients(final Player player, final SpeakerNPC npc) {
+	private void checkForAllIngredients(final Player player, final EventRaiser npc) {
 		List<String> missing = missingFood(player, false);
 		for (final String food : missing) {
 		if (player.drop(food)) {							

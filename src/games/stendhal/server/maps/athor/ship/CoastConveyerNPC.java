@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -45,7 +46,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						npc.say(ferryState.toString());
 					}
 				});
@@ -56,7 +57,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						switch (ferryState) {
 						case ANCHORED_AT_MAINLAND:
 							npc.say("Do ye really want me to take ye to the mainland with me skiff?");
@@ -81,7 +82,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 				null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						switch (ferryState) {
 						case ANCHORED_AT_MAINLAND:
 							player.teleport(getMainlandDocksZone(), 100, 100, Direction.LEFT, null);

@@ -9,6 +9,7 @@ import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
@@ -87,7 +88,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		}
 
 		@Override
-		public int getCharge(final SpeakerNPC seller, final Player player) {
+		public int getCharge(final Player player) {
 			if (player.hasSheep()) {
 				final Sheep sheep = player.getSheep();
 				return getValue(sheep);
@@ -188,20 +189,20 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		}
 
 		@Override
-		public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
+		public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
 			// amount is currently ignored.
 
 			final Sheep sheep = player.getSheep();
 
 			if (sheep != null) {
-				if (seller.squaredDistance(sheep) > 5 * 5) {
+				if (seller.getEntity().squaredDistance(sheep) > 5 * 5) {
 					seller.say("I can't see that sheep from here! Bring it over so I can assess it properly.");
 				} else if (getValue(sheep) < SheepSellerNPC.BUYING_PRICE) {
 					// prevent newbies from selling their sheep too early
 					seller.say("Nah, that sheep looks too skinny. Feed it with red berries, and come back when it has become fatter.");
 				} else {
 					seller.say("Thanks! Here is your money.");
-					payPlayer(seller, player);
+					payPlayer(player);
 					player.removeSheep(sheep);
 
 					player.notifyWorldAboutChanges();

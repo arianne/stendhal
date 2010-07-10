@@ -6,6 +6,7 @@ import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -128,7 +129,7 @@ public class PlinksToy extends AbstractQuest {
 			new AndCondition(new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(QUEST_SLOT)), new PlayerHasItemWithHimCondition("teddy")),
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					player.drop("teddy");
 					npc.say("You found him! *hugs teddy* Thank you, thank you! *smile*");
 					player.addXP(20);

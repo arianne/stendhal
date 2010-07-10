@@ -10,6 +10,7 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.condition.AdminCondition;
@@ -198,7 +199,7 @@ public class Herald extends ScriptImpl {
 			 * npc says his job list
 			 */
 			class ReadJobsAction implements ChatAction {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc){
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc){
 					int newssize = heraldNews.size();
 					if(newssize==0){
 						npc.say("My announcements list is empty.");
@@ -236,7 +237,7 @@ public class Herald extends ScriptImpl {
 			 * npc says his job list
 			 */
 			class ReadNewsAction implements ChatAction {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc){
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc){
 					int newssize = heraldNews.size();
 					if(newssize==0){
 						npc.say("My announcements list is empty.");
@@ -266,7 +267,7 @@ public class Herald extends ScriptImpl {
 			 * npc adds new job to his job list
 			 */
 			class WriteNewsAction implements ChatAction {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc){
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc){
 					final StringBuilder sb = new StringBuilder(sentence.getOriginalText());
 					logger.info("Original sentence: "+sb.toString());
 					final String args = sb.toString();
@@ -313,7 +314,7 @@ public class Herald extends ScriptImpl {
 			 * npc removes one job from his job list
 			 */
 			class RemoveNewsAction implements ChatAction {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc){
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc){
 					String s= new String(sentence.getOriginalText());					
 					final String args = s.trim();
 					final String[] starr = args.split(" ");	
@@ -357,7 +358,7 @@ public class Herald extends ScriptImpl {
 			 * npc removes all jobs from his job list
 			 */
 			class ClearNewsAction implements ChatAction {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc){
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc){
 						logger.info("ClearAllAction: Admin "+player.getName()+
 									" cleared announcement list.");
 						for (int i=0; i<heraldNews.size(); i++) {

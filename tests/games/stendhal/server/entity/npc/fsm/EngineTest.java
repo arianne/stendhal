@@ -11,6 +11,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -52,7 +53,7 @@ public class EngineTest {
 		final ConversationStates nextState = ConversationStates.ATTENDING;
 		final String reply = "huch";
 		final ChatAction action = new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				assertEquals("boo", sentence.getTriggerExpression().getNormalized());
 			}
 		};
@@ -86,7 +87,7 @@ public class EngineTest {
 		assertThat(en.getTransitions().size(), is(1));
 		en.add(IDLE, null, null, null, IDLE, null, new ChatAction() {
 
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
 		});
@@ -104,7 +105,7 @@ public class EngineTest {
 		
 		en.add(IDLE, null, null, null, IDLE, null, new ChatAction() {
 
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
 		});
@@ -123,7 +124,7 @@ public class EngineTest {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		ChatAction chatAction = new ChatAction() {
 
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
 		};
@@ -143,13 +144,13 @@ public class EngineTest {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		ChatAction chatAction1 = new ChatAction() {
 
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
 		};
 		ChatAction chatAction2 = new ChatAction() {
 
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
 		};
@@ -185,7 +186,7 @@ public class EngineTest {
 		
 		final String reply = "huch";
 		final ChatAction action = new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
 			}
 		};

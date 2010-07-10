@@ -18,6 +18,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -121,7 +122,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 					ConversationStates.ATTENDING, null,
 					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence,
-										 final SpeakerNPC npc) {
+										 final EventRaiser npc) {
 							Pet pet = player.getPet();
 							String petName = pet.getTitle();
 							// these numbers are hardcoded, they're the area in the pet sanctuary which is for pets. It has food spawners.

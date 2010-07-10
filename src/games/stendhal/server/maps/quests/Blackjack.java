@@ -9,6 +9,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -337,7 +338,7 @@ public class Blackjack extends AbstractQuest {
 
 		ramon.add(ConversationStates.ATTENDING, "stake", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				        if (sentence.hasError()) {
 				        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #'stake 50'.");
 				        } else {
@@ -366,7 +367,7 @@ public class Blackjack extends AbstractQuest {
 		ramon.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						dealCards(player, 1);
 					}
 				});
@@ -376,7 +377,7 @@ public class Blackjack extends AbstractQuest {
 		ramon.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						playerStands = true;
 						if (bankStands) {
 							// Both stand. Let the dealer tell the final resul

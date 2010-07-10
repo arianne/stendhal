@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
@@ -83,7 +84,7 @@ public class RingMaker extends AbstractQuest {
 			ConversationStates.QUEST_ITEM_BROUGHT, 
 			null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final RingOfLife emeraldRing = (RingOfLife) player.getFirstEquipped("emerald ring");
 					
 						if (emeraldRing.isBroken()) {
@@ -138,7 +139,7 @@ public class RingMaker extends AbstractQuest {
 				ConversationStates.IDLE, null,
 				new ChatAction() {
 					public void fire(final Player player,
-							final Sentence sentence, final SpeakerNPC npc) {
+							final Sentence sentence, final EventRaiser npc) {
 						final String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");
 						final long delayInMilliseconds = REQUIRED_MINUTES	* MathHelper.MILLISECONDS_IN_ONE_MINUTE;
@@ -181,7 +182,7 @@ public class RingMaker extends AbstractQuest {
 						new ChatAction() {
 							public void fire(final Player player,
 									final Sentence sentence,
-									final SpeakerNPC npc) {
+									final EventRaiser npc) {
 								final RingOfLife emeraldRing = (RingOfLife) player.getFirstEquipped("emerald ring");
 								if (player.isBoundTo(emeraldRing)) {
 									player.setQuest(QUEST_SLOT, "forging;"

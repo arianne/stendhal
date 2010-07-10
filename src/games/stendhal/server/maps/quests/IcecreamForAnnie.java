@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -46,7 +47,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Annie Jones");
 
 		npc.addGreeting(null, new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				if (!player.hasQuest(QUEST_SLOT)) {
 					npc.say("Hello, my name is Annie. I am five years old.");
 				} else if (player.getQuest(QUEST_SLOT).equals("start")) {
@@ -76,7 +77,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 					npc.say("I'm hungry! I'd like an icecream, please. Vanilla, with a chocolate flake. Will you get me one?");
 					npc.setCurrentState(ConversationStates.QUEST_OFFERED);
@@ -136,7 +137,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				if (player.drop("icecream")) {
 					npc.say("Thank you EVER so much! You are very kind. Here, take this present.");
 					player.setQuest(QUEST_SLOT, "eating;"

@@ -5,6 +5,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
@@ -68,16 +69,16 @@ public class PrepareOfferHandler {
 	}
 	
 	private class PrepareOfferChatAction implements ChatAction {
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			if (sentence.hasError()) {
 				npc.say("Sorry, I did not understand that strange offer.");
 				npc.setCurrentState(ConversationStates.ATTENDING);
 			} else if (sentence.getExpressions().iterator().next().toString().equals("sell")){
-				handleSentence(player,sentence,npc);
+				handleSentence(player, sentence, npc);
 			}
 		}
 
-		private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
+		private void handleSentence(Player player, Sentence sentence, EventRaiser npc) {
 			if(TradingUtility.isPlayerWithinOfferLimit(player)) {
 				if (sentence.getExpressions().size() < 3 || sentence.getNumeralCount() != 1) {
 					npc.say("I did not understand you. Please say \"sell item price\".");
@@ -154,7 +155,7 @@ public class PrepareOfferHandler {
 	}
 	
 	private class ConfirmPrepareOfferChatAction implements ChatAction {
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			int fee = TradingUtility.calculateFee(player, price).intValue();
 			if (TradingUtility.canPlayerAffordTradingFee(player, price)) {
 				if (createOffer(player, item, price, quantity)) {

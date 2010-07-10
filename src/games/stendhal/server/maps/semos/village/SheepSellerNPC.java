@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
@@ -49,12 +50,12 @@ public class SheepSellerNPC implements ZoneConfigurator {
 					}
 
 					@Override
-					public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
+					public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
 						if (getAmount() > 1) {
 							seller.say("Hmm... I just don't think you're cut out for taking care of a whole flock of sheep at once.");
 							return false;
 						} else if (!player.hasSheep()) {
-							if (!player.drop("money", getCharge(seller, player))) {
+							if (!player.drop("money", getCharge(player))) {
 								seller.say("You don't seem to have enough money.");
 								return false;
 							}

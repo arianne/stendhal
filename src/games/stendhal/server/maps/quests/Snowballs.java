@@ -7,6 +7,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -85,7 +86,7 @@ public class Snowballs extends AbstractQuest {
 		return res;
 	}
 
-	private boolean canStartQuestNow(final SpeakerNPC npc, final Player player) {
+	private boolean canStartQuestNow(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return true;
 		} else if (player.getQuest(QUEST_SLOT).equals("start")) {
@@ -130,8 +131,8 @@ public class Snowballs extends AbstractQuest {
 			new QuestNotInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					if (canStartQuestNow(npc, player)) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					if (canStartQuestNow(player)) {
 						npc.say("Greetings stranger! Have you seen my snow sculptures? Could you do me a #favor?");
 					} else {
 						int seconds = (int) (calculateRemainingTime(player) / 1000);
@@ -153,8 +154,8 @@ public class Snowballs extends AbstractQuest {
 			new QuestNotInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
-					if (canStartQuestNow(npc, player)) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					if (canStartQuestNow(player)) {
 						npc.say("I like to make snow sculptures, but the snow in this cavern is not good enough. Would you help me and get some snowballs? I need twenty five of them.");
 					} else {
 						npc.say("I have enough snow to finish my sculpture, but thanks for asking.");
@@ -187,7 +188,7 @@ public class Snowballs extends AbstractQuest {
 			new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS),
 			ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						player.drop("snowball", REQUIRED_SNOWBALLS);
 						player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());
 						player.addXP(500);

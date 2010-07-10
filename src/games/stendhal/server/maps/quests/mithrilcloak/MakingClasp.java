@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
@@ -65,7 +66,7 @@ class MakingClasp {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isEquipped("mithril bar")) {
 						player.drop("mithril bar");
 							npc.say("What a lovely piece of mithril that is, even if I do say so myself ... Good, please come back in " 
@@ -91,7 +92,7 @@ class MakingClasp {
 			Arrays.asList("clasp", "mithril clasp", "ida", "cloak", "mithril cloak"),
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "forgingclasp;"),
 			ConversationStates.ATTENDING, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					// minutes -> milliseconds
 					final long delay = REQUIRED_MINUTES_CLASP * MathHelper.MILLISECONDS_IN_ONE_MINUTE;

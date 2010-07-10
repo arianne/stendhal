@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -46,10 +47,10 @@ public class MeetKetteh extends AbstractQuest {
 				new AndCondition(new NotCondition(new NakedCondition()), new QuestInStateCondition(QUEST_SLOT, "seen_naked")),
 				ConversationStates.ATTENDING, null,
 					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+						public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 							// OK, player is NOT naked this time, but was last
 							// time.
-							engine.say("Hi again, " + player.getTitle()	+ ". I'm so glad you have some clothes on now.");
+							raiser.say("Hi again, " + player.getTitle()	+ ". I'm so glad you have some clothes on now.");
 							// don't be unforgiving
 							player.setQuest(QUEST_SLOT, "seen"); 
 						}
@@ -59,14 +60,14 @@ public class MeetKetteh extends AbstractQuest {
 				new AndCondition(new NotCondition(new NakedCondition()), new QuestNotInStateCondition(QUEST_SLOT, "seen_naked")),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.hasQuest(QUEST_SLOT)) {
 							// We have met the player before and he was NOT
 							// naked last time nor is he now
-							engine.say("Hi again, " + player.getTitle() + ".");
+							raiser.say("Hi again, " + player.getTitle() + ".");
 						} else {
 							// We haver never seen the player before.
-							engine.say("Hi " + player.getTitle() + ", nice to meet you. You know, we have something in common - good #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners.");
+							raiser.say("Hi " + player.getTitle() + ", nice to meet you. You know, we have something in common - good #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners.");
 							player.setQuest(QUEST_SLOT, "seen");
 						}
 					}

@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -49,7 +50,7 @@ class Divorce {
 				ConversationStates.QUESTION_3,
 				null,
 			   	new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						Player husband;
 						Player wife;
 						String partnerName;
@@ -83,7 +84,7 @@ class Divorce {
 				  ConversationStates.QUESTION_3,
 				  null,
 				  new ChatAction() {
-					  public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					  public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						  Player husband;
 						  Player wife;
 						  String partnerName;
@@ -153,7 +154,7 @@ class Divorce {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						Player husband;
 						Player wife;
 						String partnerName;

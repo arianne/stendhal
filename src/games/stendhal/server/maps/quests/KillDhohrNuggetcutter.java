@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -73,25 +74,25 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
-							engine.say("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?");
+							raiser.say("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?");
 						}  else if (player.getQuest(QUEST_SLOT, 0).equals("start")) {
-							engine.say("I already asked you to kill Dhohr Nuggetcutter!");
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							raiser.say("I already asked you to kill Dhohr Nuggetcutter!");
+							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							final long delay = 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
 							final long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 							if (timeRemaining > 0) {
-								engine.say("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
-								engine.setCurrentState(ConversationStates.ATTENDING);
+								raiser.say("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+								raiser.setCurrentState(ConversationStates.ATTENDING);
 								return;
 							}
-							engine.say("Would you like to help us again?");
+							raiser.say("Would you like to help us again?");
 						} else {
-							engine.say("Thank you for your help in our time of need. Now we feel much safer.");
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							raiser.say("Thank you for your help in our time of need. Now we feel much safer.");
+							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -137,8 +138,8 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						engine.say("Just go kill Dhohr Nuggetcutter and his minions; the mountain leader, hero and elder dwarves. Even the simple mountain dwarves are a danger to us, kill them too.");								
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						raiser.say("Just go kill Dhohr Nuggetcutter and his minions; the mountain leader, hero and elder dwarves. Even the simple mountain dwarves are a danger to us, kill them too.");								
 				}
 		});
 		
@@ -148,8 +149,8 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						engine.say("Thank you so much. You are a warrior, indeed! Here, have one of these. We have found them scattered about. We have no idea what they are.");
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						raiser.say("Thank you so much. You are a warrior, indeed! Here, have one of these. We have found them scattered about. We have no idea what they are.");
 							final Item mithrilnug = SingletonRepository.getEntityManager()
 									.getItem("mithril nugget");
 							player.equipOrPutOnGround(mithrilnug);

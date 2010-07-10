@@ -7,6 +7,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -92,16 +93,16 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.QUEST_OFFERED, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							// player has already finished the quest
-							engine.say("I don't have anything else for you to do, really. Thanks for the offer.");
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							raiser.say("I don't have anything else for you to do, really. Thanks for the offer.");
+							raiser.setCurrentState(ConversationStates.ATTENDING);
 						} else {
 							if (player.hasQuest(QUEST_SLOT) && !"rejected".equals(player.getQuest(QUEST_SLOT))) {
-								engine.say("You promised me to bring me ten blue elven cloaks. Remember?");
+								raiser.say("You promised me to bring me ten blue elven cloaks. Remember?");
 							} else {
-								engine.say("I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?");
+								raiser.say("I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?");
 							}
 						}
 					}
@@ -134,8 +135,8 @@ public class CloaksForBario extends AbstractQuest {
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						engine.say("Hi again! I still need "
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						raiser.say("Hi again! I still need "
 							+ player.getQuest(QUEST_SLOT)
 							+ " blue elven "
 							+ Grammar.plnoun(
@@ -159,7 +160,7 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.drop("blue elf cloak")) {
 							// find out how many cloaks the player still has to
 							// bring
@@ -167,10 +168,10 @@ public class CloaksForBario extends AbstractQuest {
 							if (toBring > 0) {
 								player.setQuest(QUEST_SLOT,
 										Integer.toString(toBring));
-								engine.say("Thank you very much! Do you have another one? I still need "
+								raiser.say("Thank you very much! Do you have another one? I still need "
 										+ Grammar.quantityplnoun(toBring,
 												"cloak") + ".");
-								engine.setCurrentState(ConversationStates.QUESTION_1);
+								raiser.setCurrentState(ConversationStates.QUESTION_1);
 							} else {
 								final Item goldenShield = SingletonRepository.getEntityManager().getItem(
 										"golden shield");
@@ -180,10 +181,10 @@ public class CloaksForBario extends AbstractQuest {
 								player.addKarma(25);
 								player.notifyWorldAboutChanges();
 								player.setQuest(QUEST_SLOT, "done");
-								engine.say("Thank you very much! Now I have enough cloaks to survive the winter. Here, take this golden shield as a reward.");
+								raiser.say("Thank you very much! Now I have enough cloaks to survive the winter. Here, take this golden shield as a reward.");
 							}
 						} else {
-							engine.say("Really? I don't see any...");
+							raiser.say("Really? I don't see any...");
 						}
 					}
 				});

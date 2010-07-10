@@ -5,6 +5,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
@@ -197,7 +198,7 @@ import java.util.List;
 		actions.add(new IncreaseXPAction(200));
 		actions.add(new DropItemAction("steel arrow",20));
 		actions.add(new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item cloak = SingletonRepository.getEntityManager().getItem("dwarf cloak");
 				cloak.setInfoString("Phalk");
 				cloak.setDescription("You see a brand new dwarf cloak, with the name 'Phalk' sewn into the label by Wrvil.");
@@ -262,7 +263,7 @@ import java.util.List;
 		actions.add(new IncreaseXPAction(200));
 		actions.add(new DropItemAction("gold bar",20));
 		actions.add(new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item armor = SingletonRepository.getEntityManager().getItem("golden armor");
 				armor.setInfoString("Phalk");
 				armor.setDescription("You see a shining golden armor, with the name 'Phalk' inscribed inside.");

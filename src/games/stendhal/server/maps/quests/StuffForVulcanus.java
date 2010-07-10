@@ -7,6 +7,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
@@ -72,15 +73,15 @@ public class StuffForVulcanus extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					if (!player.hasQuest(QUEST_SLOT) || "rejected".equals(player.getQuest(QUEST_SLOT))) {
-						engine.say("I once forged the most powerful of swords. I can do it again for you. Are you interested?");
+						raiser.say("I once forged the most powerful of swords. I can do it again for you. Are you interested?");
 					} else if (player.isQuestCompleted(QUEST_SLOT)) {
-						engine.say("Oh! I am so tired. Look for me later. I need a few years of relaxing.");
-						engine.setCurrentState(ConversationStates.ATTENDING);
+						raiser.say("Oh! I am so tired. Look for me later. I need a few years of relaxing.");
+						raiser.setCurrentState(ConversationStates.ATTENDING);
 					} else {
-						engine.say("Why are you bothering me when you haven't completed your quest yet?");
-						engine.setCurrentState(ConversationStates.ATTENDING);
+						raiser.say("Why are you bothering me when you haven't completed your quest yet?");
+						raiser.setCurrentState(ConversationStates.ATTENDING);
 					}
 				}
 			});
@@ -89,8 +90,8 @@ public class StuffForVulcanus extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-					engine.say("I will need several things: "
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+					raiser.say("I will need several things: "
 						+ REQUIRED_IRON
 						+ " iron, "
 						+ REQUIRED_WOOD
@@ -129,7 +130,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			new QuestStateStartsWithCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
 					int neededIron = REQUIRED_IRON
@@ -153,7 +154,7 @@ public class StuffForVulcanus extends AbstractQuest {
 								neededIron -= amount;
 							}
 
-							engine.say("I cannot #forge it without the missing "
+							raiser.say("I cannot #forge it without the missing "
 								+ Grammar.quantityplnoun(
 										neededIron, "iron")
 								+ ".");
@@ -172,7 +173,7 @@ public class StuffForVulcanus extends AbstractQuest {
 								neededWoodLogs -= amount;
 							}
 
-							engine.say("How do you expect me to #forge it without missing "
+							raiser.say("How do you expect me to #forge it without missing "
 								+ Grammar.quantityplnoun(neededWoodLogs, "wood log")
 								+ " for the fire?");
 							missingSomething = true;
@@ -189,7 +190,7 @@ public class StuffForVulcanus extends AbstractQuest {
 								player.drop("gold bar", amount);
 								neededGoldBars -= amount;
 							}
-							engine.say("I must pay a bill to spirits in order to cast the enchantment over the sword. I need "
+							raiser.say("I must pay a bill to spirits in order to cast the enchantment over the sword. I need "
 									+ Grammar.quantityplnoun(neededGoldBars, "gold bar") + " more.");
 							missingSomething = true;
 						}
@@ -205,20 +206,20 @@ public class StuffForVulcanus extends AbstractQuest {
 								player.drop("giant heart", amount);
 								neededGiantHearts -= amount;
 							}
-							engine.say("It is the base element of the enchantment. I need "
+							raiser.say("It is the base element of the enchantment. I need "
 								+ Grammar.quantityplnoun(neededGiantHearts, "giant heart") + " still.");
 							missingSomething = true;
 						}
 					}
 
 					if (player.hasKilled("giant") && !missingSomething) {
-						engine.say("You've brought everything I need to make the immortal sword, and what is more, you are strong enough to handle it. Come back in "
+						raiser.say("You've brought everything I need to make the immortal sword, and what is more, you are strong enough to handle it. Come back in "
 							+ REQUIRED_MINUTES
 							+ " minutes and it will be ready.");
 						player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 					} else {
 						if (!player.hasKilled("giant") && !missingSomething) {
-							engine.say("Did you really get those giant hearts yourself? I don't think so! This powerful sword can only be given to those that are strong enough to kill a #giant.");
+							raiser.say("Did you really get those giant hearts yourself? I don't think so! This powerful sword can only be given to those that are strong enough to kill a #giant.");
 						}
 
 						player.setQuest(QUEST_SLOT,
@@ -237,7 +238,7 @@ public class StuffForVulcanus extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 			ConversationStates.IDLE, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					
@@ -246,13 +247,13 @@ public class StuffForVulcanus extends AbstractQuest {
 							- System.currentTimeMillis();
 
 					if (timeRemaining > 0L) {
-						engine.say("I haven't finished forging the sword. Please check back in "
+						raiser.say("I haven't finished forging the sword. Please check back in "
 							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
 							+ ".");
 						return;
 					}
 
-					engine.say("I have finished forging the mighty immortal sword. You deserve this. Now I'm going to have a long rest, so, goodbye!");
+					raiser.say("I have finished forging the mighty immortal sword. You deserve this. Now I'm going to have a long rest, so, goodbye!");
 					player.addXP(15000);
 					player.addKarma(25);
 					final Item magicSword = SingletonRepository.getEntityManager().getItem("immortal sword");
@@ -269,7 +270,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
 					final int neededIron = REQUIRED_IRON
@@ -281,7 +282,7 @@ public class StuffForVulcanus extends AbstractQuest {
 					final int neededGiantHearts = REQUIRED_GIANT_HEART
 							- Integer.parseInt(tokens[4]);
 
-					engine.say("I will need " + neededIron + " #iron, "
+					raiser.say("I will need " + neededIron + " #iron, "
 							+ neededWoodLogs + " #wood logs, "
 							+ neededGoldBars + " #gold bars and "
 							+ neededGiantHearts + " #giant hearts.");

@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -133,7 +134,7 @@ public class ElfPrincess extends AbstractQuest {
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_flower"), new PlayerHasItemWithHimCondition("rhosyd")),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						player.drop("rhosyd");
 						player.addXP(5000);
 						player.addKarma(15);

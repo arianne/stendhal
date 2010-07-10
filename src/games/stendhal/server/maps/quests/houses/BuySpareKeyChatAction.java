@@ -6,7 +6,7 @@ import games.stendhal.server.entity.item.HouseKey;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -19,7 +19,7 @@ final class BuySpareKeyChatAction extends HouseChatAction implements ChatAction 
 		super(questslot);
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		if (player.isEquipped("money", HouseChatAction.COST_OF_SPARE_KEY)) {
 
 			final String housenumber = player.getQuest(questslot);
@@ -30,7 +30,7 @@ final class BuySpareKeyChatAction extends HouseChatAction implements ChatAction 
 
 			if (houseportal == null) {
 				// something bad happened
-				engine.say("Sorry something bad happened. I'm terribly embarassed.");
+				raiser.say("Sorry something bad happened. I'm terribly embarassed.");
 				return;
 			}
 			
@@ -40,12 +40,12 @@ final class BuySpareKeyChatAction extends HouseChatAction implements ChatAction 
 
 			if (player.equipToInventoryOnly(key)) {
 				player.drop("money", HouseChatAction.COST_OF_SPARE_KEY);
-				engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust! Anyone with a spare key can access your chest, and tell anyone that you give a key to, to let you know if they lose it. If that happens, you should #change your locks.");
+				raiser.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust! Anyone with a spare key can access your chest, and tell anyone that you give a key to, to let you know if they lose it. If that happens, you should #change your locks.");
 			} else {
-				engine.say("Sorry, you can't carry more keys!");
+				raiser.say("Sorry, you can't carry more keys!");
 			}
 		} else {
-			engine.say("You do not have enough money for another key!");
+			raiser.say("You do not have enough money for another key!");
 		}
 	}
 }

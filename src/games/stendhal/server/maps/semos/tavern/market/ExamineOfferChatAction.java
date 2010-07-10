@@ -1,16 +1,16 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
-import java.util.Map;
-
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Offer;
 import games.stendhal.server.events.ExamineEvent;
 
+import java.util.Map;
+
 public class ExamineOfferChatAction extends KnownOffersChatAction {
-	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if (sentence.hasError()) {
 			npc.say("Sorry, I did not understand you. "
 					+ sentence.getErrorString());
@@ -19,8 +19,8 @@ public class ExamineOfferChatAction extends KnownOffersChatAction {
 		}
 	}
 	
-	private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
-		MarketManagerNPC manager = (MarketManagerNPC) npc;
+	private void handleSentence(Player player, Sentence sentence, EventRaiser npc) {
+		MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
 		try {
 			String offerNumber = getOfferNumberFromSentence(sentence).toString();
 			Map<String,Offer> offerMap = manager.getOfferMap().get(player.getName());

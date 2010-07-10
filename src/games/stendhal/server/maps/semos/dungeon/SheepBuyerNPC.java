@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
@@ -64,7 +65,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		}
 
 		@Override
-		public int getCharge(final SpeakerNPC npc, final Player player) {
+		public int getCharge(final Player player) {
 			if (player.hasSheep()) {
 				final Sheep sheep = player.getSheep();
 				return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
@@ -74,16 +75,16 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		}
 
 		@Override
-		public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
+		public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
 			// amount is currently ignored.
 			final Sheep sheep = player.getSheep();
 
 			if (sheep != null) {
-				if (seller.squaredDistance(sheep) > 5 * 5) {
+				if (seller.getEntity().squaredDistance(sheep) > 5 * 5) {
 					seller.say("*drool* Sheep flesh! Bring da sheep here!");
 				} else {
 					seller.say("Mmm... Is look yummy! Here, you take dis gold!");
-					payPlayer(seller, player);
+					payPlayer(player);
 
 					player.removeSheep(sheep);
 					player.notifyWorldAboutChanges();

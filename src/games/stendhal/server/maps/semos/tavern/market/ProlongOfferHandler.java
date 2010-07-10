@@ -6,6 +6,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -26,7 +27,7 @@ public class ProlongOfferHandler extends OfferHandler {
 	
 	protected class ProlongOfferChatAction extends KnownOffersChatAction {
 
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			if (sentence.hasError()) {
 				npc.say("Sorry, I did not understand you. "
 						+ sentence.getErrorString());
@@ -35,8 +36,8 @@ public class ProlongOfferHandler extends OfferHandler {
 			}
 		}
 
-		private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
-			MarketManagerNPC manager = (MarketManagerNPC) npc;
+		private void handleSentence(Player player, Sentence sentence, EventRaiser npc) {
+			MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
 			try {
 				String offerNumber = getOfferNumberFromSentence(sentence).toString();
 				
@@ -85,7 +86,7 @@ public class ProlongOfferHandler extends OfferHandler {
 	}
 	
 	protected class ConfirmProlongOfferChatAction implements ChatAction {
-		public void fire (Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire (Player player, Sentence sentence, EventRaiser npc) {
 			Offer offer = getOffer();
 			if (!wouldOverflowMaxOffers(player, offer)) {
 				Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, offer.getPrice()).intValue());
@@ -97,7 +98,7 @@ public class ProlongOfferHandler extends OfferHandler {
 						npc.say("Sorry, that offer has already been removed from the market.");
 					}
 					// Changed the status, or it has been changed by expiration. Obsolete the offers
-					((MarketManagerNPC) npc).getOfferMap().put(player.getName(), null);
+					((MarketManagerNPC) npc.getEntity()).getOfferMap().put(player.getName(), null);
 				} else {
 					npc.say("You cannot afford the trading fee of "+fee.toString());
 				}

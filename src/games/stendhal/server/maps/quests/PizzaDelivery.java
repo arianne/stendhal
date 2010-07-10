@@ -9,6 +9,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -381,7 +382,7 @@ public class PizzaDelivery extends AbstractQuest {
 					10));
 	}
 
-	private void startDelivery(final Player player, final SpeakerNPC npc) {
+	private void startDelivery(final Player player, final EventRaiser npc) {
 		final String name = Rand.rand(getAllowedCustomers(player));
 		final CustomerData data = customerDB.get(name);
 
@@ -449,7 +450,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 	}
 
-	private void handOverPizza(final Player player, final SpeakerNPC npc) {
+	private void handOverPizza(final Player player, final EventRaiser npc) {
 		if (player.isEquipped("pizza")) {
 			final CustomerData data = customerDB.get(npc.getName());
 			for (final Item pizza : player.getAllEquipped("pizza")) {
@@ -513,7 +514,7 @@ public class PizzaDelivery extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.hasQuest(QUEST_SLOT)) {
 						final String[] questData = player.getQuest(QUEST_SLOT)
 								.split(";");
@@ -546,7 +547,7 @@ public class PizzaDelivery extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					startDelivery(player, npc);
 				}
 			});
@@ -558,7 +559,7 @@ public class PizzaDelivery extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.",
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					putOffUniform(player);
 				}
 			});
@@ -576,7 +577,7 @@ public class PizzaDelivery extends AbstractQuest {
 			npc.add(ConversationStates.ATTENDING, "pizza", null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						handOverPizza(player, npc);
 					}
 				});

@@ -5,6 +5,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
@@ -83,7 +84,7 @@ npc.add(ConversationStates.ATTENDING,
 		ConversationStates.ATTENDING,
 		null,
 		new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 						// tokens[0]=="drinking" see condition
 						long timeWhenQuestWasDone = Long.parseLong(tokens[1]);
@@ -144,7 +145,7 @@ npc.add(ConversationStates.ATTENDING,
 						new ChatAction() {
 							public void fire(final Player player,
 									final Sentence sentence,
-									final SpeakerNPC npc) {
+									final EventRaiser npc) {
 								int pieAmount = Rand.roll1D6() + 1;
 								new EquipItemAction("fish pie", pieAmount, true).fire(player, sentence, npc);
 								npc.say("Thank you!! Take these "

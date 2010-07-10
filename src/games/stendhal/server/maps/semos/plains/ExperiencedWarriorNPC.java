@@ -5,6 +5,7 @@ import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -189,7 +190,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 						final String creatureName = sentence.getTriggerExpression().getNormalized();
 						final DefaultCreature creature = SingletonRepository.getEntityManager().getDefaultCreature(creatureName);
 						if (creature == null) {
@@ -223,7 +224,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC speakerNPC) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 						if (stateInfo.getCreatureName() != null) {
 							if (player.drop("money",
 									stateInfo.getInformationCost())) {

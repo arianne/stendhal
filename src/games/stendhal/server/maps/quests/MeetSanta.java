@@ -7,6 +7,7 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -66,7 +67,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 					ConversationStates.IDLE,
 					"Hi again! Good bye, and remember to behave if you want a present next year!",
 				    new ChatAction() {
-					    public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) { 
+					    public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) { 
 						addHat(player);	    
 					    }
 					}
@@ -76,7 +77,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				reward.add(new EquipItemAction("stocking"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 				reward.add(new ChatAction() {
-				        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					    addHat(player);
 					}
 				    }

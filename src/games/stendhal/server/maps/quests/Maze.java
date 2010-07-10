@@ -7,6 +7,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -90,7 +91,7 @@ public class Maze extends AbstractQuest {
 	}
 	
 	private class SendToMazeChatAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			MazeGenerator maze = new MazeGenerator(player.getName() + "_maze", 128, 128);
 			maze.setReturnLocation(player.getZone().getName(), player.getX(), player.getY());
 			maze.setSign(sign);

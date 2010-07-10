@@ -5,6 +5,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
@@ -53,7 +54,7 @@ public class McPeglegIOU extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
 
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					// from all notes that the player is carrying, try to
 					// find the IOU note
 					final List<Item> notes = player.getAllEquipped("note");
@@ -65,16 +66,16 @@ public class McPeglegIOU extends AbstractQuest {
 						}
 					}
 					if (iouNote != null) {
-						engine.say("Where did you get that from? Anyways, here is the money *sighs*");
+						raiser.say("Where did you get that from? Anyways, here is the money *sighs*");
 						player.drop(iouNote);
 						final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 								"money");
 						money.setQuantity(250);
 						player.equipToInventoryOnly(money);
 						player.setQuest(QUEST_SLOT, "done");
-						engine.setCurrentState(ConversationStates.ATTENDING);
+						raiser.setCurrentState(ConversationStates.ATTENDING);
 					} else {
-						engine.say("I can't see that you got a valid IOU with my signature!");
+						raiser.say("I can't see that you got a valid IOU with my signature!");
 					}
 				}
 			});

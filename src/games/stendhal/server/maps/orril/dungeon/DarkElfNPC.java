@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -36,14 +37,14 @@ public class DarkElfNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						String reply = "If you're going to the filthy rat city, don't come past me. ";
 						if (player.getLevel() < 60) {
 							reply += " In fact, just don't come this way at all, you wouldn't survive the mighty dark elves... ";
 						} else {
 							reply += " This passage east leads to the drow tunnels.";
 						}
-						engine.say(reply);
+						raiser.say(reply);
 					}
 				});
 				addJob("I'm keeping an eye on these rats. Us dark elves don't want the rat men interfering in our business.");
@@ -54,11 +55,11 @@ public class DarkElfNPC implements ZoneConfigurator {
 		};
 
 		npc.addInitChatMessage(null, new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				if (!player.hasQuest("WaerrynaFirstChat")) {
 					player.setQuest("WaerrynaFirstChat", "done");
 					player.addXP(300);
-					engine.listenTo(player, "hi");
+					((SpeakerNPC) raiser.getEntity()).listenTo(player, "hi");
 				}
 			}
 		});

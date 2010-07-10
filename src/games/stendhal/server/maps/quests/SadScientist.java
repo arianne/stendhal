@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
@@ -72,7 +73,7 @@ public class SadScientist extends AbstractQuest {
 
 	private final class CheckAndRespondAboutMissingItemsAction implements
 			ChatAction {
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			npc.say("Please return when you have anything I need for the jewelled legs. I need "
 					+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
 					+".");
@@ -242,7 +243,7 @@ public class SadScientist extends AbstractQuest {
 
 	private void playerVisitsMayorSakhs(final SpeakerNPC npc) {
 		final ChatAction action = new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item item = SingletonRepository.getEntityManager().getItem("note");
 				item.setInfoString(player.getName());
 				item.setDescription(LETTER_DESCRIPTION);

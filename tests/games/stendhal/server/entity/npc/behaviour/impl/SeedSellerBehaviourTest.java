@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Seed;
 import games.stendhal.server.entity.item.Stackable;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -44,7 +45,7 @@ public class SeedSellerBehaviourTest {
 		sb.setChosenItemName("lilia seed");
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		PlayerTestHelper.equipWithMoney(bob, 100);
-		sb.transactAgreedDeal(speakerNPC, bob);
+		sb.transactAgreedDeal(new EventRaiser(speakerNPC), bob);
 		final Item seed = bob.getFirstEquipped("seed");
 		assertNotNull(seed);
 		assertEquals("lilia", seed.getInfoString());

@@ -7,6 +7,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -53,15 +54,15 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.ATTENDING,
 				        null, new ChatAction() {
 
-					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						        // A little trick to make NPC remember if it has met
 						        // player before anc react accordingly
 						        // NPC_name quest doesn't exist anywhere else neither is
 						        // used for any other purpose
 						        if (player.isQuestCompleted("Zynn")) {
-							        engine.say("Hi again, " + player.getTitle() + ". How can I #help you this time?");
+							        raiser.say("Hi again, " + player.getTitle() + ". How can I #help you this time?");
 						        } else {
-							        engine.say("Hi, potential reader! Here you can find records of the history of Semos, and lots of interesting facts about this island of Faiumoni. If you like, I can give you a quick introduction to its #geography and #history! I also keep up with the #news, so feel free to ask me about that.");
+							        raiser.say("Hi, potential reader! Here you can find records of the history of Semos, and lots of interesting facts about this island of Faiumoni. If you like, I can give you a quick introduction to its #geography and #history! I also keep up with the #news, so feel free to ask me about that.");
 							        player.setQuest("Zynn", "done");
 						        }
 					        }

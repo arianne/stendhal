@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -108,7 +109,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						final List<String> needed2 = missingcloaks2(player, true);
 						entity.say("It's missing "
 								+ Grammar.quantityplnoun(needed2.size(), "cloak")
@@ -129,7 +130,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.IDLE, 
 				null, 
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						entity.say("Brilliant! I'm all excited again! Bye!");
 						player.setQuest(QUEST_SLOT, "");
 						player.addKarma(5.0);
@@ -148,7 +149,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null, 
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						entity.say("Oh ... you're not very friendly. Please say yes?");
 						player.addKarma(-5.0);
 					}
@@ -172,7 +173,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						final String itemName = sentence.getTriggerExpression().getNormalized();
 						final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 						StringBuilder stringBuilder = new StringBuilder();
@@ -215,7 +216,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						final List<String> needed2 = missingcloaks2(player, true);
 						entity.say("I want "
 								+ Grammar.quantityplnoun(needed2.size(), "cloak")
@@ -243,7 +244,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						TriggerList missing = new TriggerList(missingcloaks2(player, false));
 						final Expression item = sentence.getTriggerExpression();
 

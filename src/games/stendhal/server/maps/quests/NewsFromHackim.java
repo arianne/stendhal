@@ -5,6 +5,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -108,7 +109,7 @@ public class NewsFromHackim extends AbstractQuest {
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					String answer;
 					if (player.isEquipped("leather legs")) {
 						answer = "Take this set of brand new... oh, you already have leather leg armor. Well, maybe you can sell them off or something.";
@@ -118,7 +119,7 @@ public class NewsFromHackim extends AbstractQuest {
 					// player.say("Well, to make a long story short; I know
 					// your business with Hackim and I'm here to tell you
 					// that the next shipment is ready.");
-					engine.say("Ah, it's ready at last! That is very good news indeed! Here, let me give you a little something for your help... "
+					raiser.say("Ah, it's ready at last! That is very good news indeed! Here, let me give you a little something for your help... "
 									+ answer);
 					player.setQuest(QUEST_SLOT, "done");
 

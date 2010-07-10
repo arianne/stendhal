@@ -5,7 +5,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -30,7 +30,7 @@ public class ShowOffersChatAction implements ChatAction {
 	/** Maximum list length that is shown to the players */
 	private static final int MAX_SHOWN_OFFERS = 20;
 	
-	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if (sentence.hasError()) {
 			npc.say("Sorry, I did not understand you. "
 					+ sentence.getErrorString());
@@ -40,7 +40,7 @@ public class ShowOffersChatAction implements ChatAction {
 		}
 	}
 
-	private void handleSentence(Player player, Sentence sentence, SpeakerNPC npc) {
+	private void handleSentence(Player player, Sentence sentence, EventRaiser npc) {
 		
 		boolean onlyMyOffers = checkForMineFilter(sentence);
 		boolean onlyMyExpiredOffers = checkForMyExpiredFilter(sentence);
@@ -72,7 +72,7 @@ public class ShowOffersChatAction implements ChatAction {
 		}
 		
 		StringBuilder offersMessage = new StringBuilder();
-		MarketManagerNPC marketNPC = (MarketManagerNPC) npc;
+		MarketManagerNPC marketNPC = (MarketManagerNPC) npc.getEntity();
 		marketNPC.getOfferMap().put(player.getName(),new HashMap<String, Offer>());
 		
 		boolean usingFilter = filterForMine || (wordFilter != null);

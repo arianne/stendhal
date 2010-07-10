@@ -3,7 +3,7 @@ package games.stendhal.server.maps.quests.logic;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -124,9 +124,9 @@ public class BringListOfItemsQuestLogic {
 				concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
 				null, ConversationStates.QUEST_OFFERED, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final List<String> missingItems = getListOfStillMissingItems(player, false);
-						engine.say(concreteQuest.firstAskForMissingItems(missingItems));
+						raiser.say(concreteQuest.firstAskForMissingItems(missingItems));
 					}
 
 					@Override
@@ -157,9 +157,9 @@ public class BringListOfItemsQuestLogic {
 			new QuestActiveCondition(concreteQuest.getSlotName()),
 			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final List<String> missingItems = getListOfStillMissingItems(player, true);
-					engine.say(concreteQuest.askForMissingItems(missingItems));
+					raiser.say(concreteQuest.askForMissingItems(missingItems));
 				}
 
 				@Override
@@ -176,9 +176,9 @@ public class BringListOfItemsQuestLogic {
 	    final ConversationStates[] states = new ConversationStates[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
 		concreteQuest.getNPC().add(states, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final List<String> missingItems = getListOfStillMissingItems(player, false);
-					engine.say(concreteQuest.respondToPlayerSayingHeHasNoItems(missingItems));
+					raiser.say(concreteQuest.respondToPlayerSayingHeHasNoItems(missingItems));
 				}
 
 				@Override
@@ -209,7 +209,7 @@ public class BringListOfItemsQuestLogic {
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, concreteQuest.getNeededItems(), null,
 			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					// We can't use Sentence.getObjectName() here because of the case where "one" is used as trigger word.
 					final Expression item = sentence.getTriggerExpression();
 					// strange check to do since we only took needed items an input.
@@ -221,7 +221,7 @@ public class BringListOfItemsQuestLogic {
 
 						if (missing.contains(item)) {
 						    if (!player.drop(itemName)) {
-        						engine.say(concreteQuest.respondToOfferOfNotExistingItem(itemName));
+        						raiser.say(concreteQuest.respondToOfferOfNotExistingItem(itemName));
         						return;
 						    }
 
@@ -233,16 +233,16 @@ public class BringListOfItemsQuestLogic {
 						    missing = new TriggerList(getListOfStillMissingItems(player, false));
 
 						    if (missing.size() > 0) {
-        						engine.say(concreteQuest.respondToItemBrought());
+        						raiser.say(concreteQuest.respondToItemBrought());
 						    } else {
         						concreteQuest.rewardPlayer(player);
         						player.notifyWorldAboutChanges();
-        						engine.say(concreteQuest.respondToLastItemBrought());
+        						raiser.say(concreteQuest.respondToLastItemBrought());
         						player.setQuest(concreteQuest.getSlotName(), "done");
-        						engine.setCurrentState(ConversationStates.ATTENDING);
+        						raiser.setCurrentState(ConversationStates.ATTENDING);
 						    }
 						} else {
-						    engine.say(concreteQuest.respondToOfferOfNotMissingItem());
+						    raiser.say(concreteQuest.respondToOfferOfNotMissingItem());
 						}
 					}
 				}

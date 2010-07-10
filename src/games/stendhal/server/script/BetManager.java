@@ -12,7 +12,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -180,7 +180,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 */
 	protected class BetAction implements ChatAction {
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			final BetInfo betInfo = new BetInfo();
 			betInfo.playerName = player.getName();
 
@@ -211,7 +211,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 			// wrong syntax
 			if (errorMsg != null) {
-				engine.say("Sorry " + player.getTitle()
+				raiser.say("Sorry " + player.getTitle()
 						+ ", I did not understand you. " + errorMsg);
 				return;
 			}
@@ -220,28 +220,28 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			final Item item = SingletonRepository.getEntityManager().getItem(
 					betInfo.itemName);
 			if (!(item instanceof ConsumableItem)) {
-				engine.say("Sorry " + player.getTitle()
+				raiser.say("Sorry " + player.getTitle()
 						+ ", I only accept food and drinks.");
 				return;
 			}
 
 			// check target
 			if (!targets.contains(betInfo.target)) {
-				engine.say("Sorry " + player.getTitle()
+				raiser.say("Sorry " + player.getTitle()
 						+ ", I only accept bets on " + targets);
 				return;
 			}
 
 			// drop item
 			if (!player.drop(betInfo.itemName, betInfo.amount)) {
-				engine.say("Sorry " + player.getTitle() + ", you don't have "
+				raiser.say("Sorry " + player.getTitle() + ", you don't have "
 						+ betInfo.amount + " " + betInfo.itemName);
 				return;
 			}
 
 			// store bet in list and confirm it
 			betInfos.add(betInfo);
-			engine.say(player.getTitle() + ", your bet "
+			raiser.say(player.getTitle() + ", your bet "
 					+ betInfo.betToString() + " was accepted");
 
 			// TODO: put items on ground and mark items on ground with: playername "betted" amount

@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -120,12 +121,12 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null, 
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 							if (player.isQuestCompleted(QUEST_SLOT)) {
-								engine.say("My collection is now complete! Thanks again.");
-								engine.setCurrentState(ConversationStates.ATTENDING);
+								raiser.say("My collection is now complete! Thanks again.");
+								raiser.setCurrentState(ConversationStates.ATTENDING);
 							} else {
-								engine.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. "
+								raiser.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. "
 										+ "Would you fight these creatures and bring their weapons to me?");
 							}
 						}
@@ -138,8 +139,8 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null, 
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						engine.say("Wonderful. Now, the #list is small but the risk may be great. "
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						raiser.say("Wonderful. Now, the #list is small but the risk may be great. "
 								+ "If you return safely, I have another reward for you.");
 						player.setQuest(QUEST_SLOT, "");
 					}
@@ -160,9 +161,9 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final List<String> needed = missingWeapons(player, true);
-						engine.say("There "
+						raiser.say("There "
 								+ Grammar.isare(needed.size())
 								+ " "
 								+ Grammar.quantityplnoun(needed.size(), "weapon")
@@ -179,9 +180,9 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.IDLE, 
 				null, 
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final List<String> missing = missingWeapons(player, false);
-						engine.say("Let me know as soon as you find "
+						raiser.say("Let me know as soon as you find "
 								+ Grammar.itthem(missing.size())
 								+ ". Farewell.");
 					}
@@ -201,7 +202,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null, 
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final Expression item = sentence.getTriggerExpression();
 
 						TriggerList missing = new TriggerList(missingWeapons(player, false));
@@ -219,7 +220,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 								missing = new TriggerList(missingWeapons(player, true));
 
 								if (missing.size() > 0) {
-									engine.say("Thank you very much! Do you have anything more for me?");
+									raiser.say("Thank you very much! Do you have anything more for me?");
 								} else {
 									final Item lhandsword = SingletonRepository.getEntityManager().getItem(
 											"l hand sword");
@@ -230,18 +231,18 @@ public class WeaponsCollector2 extends AbstractQuest {
 									rhandsword.setBoundTo(player.getName());
 									player.equipOrPutOnGround(rhandsword);
 									player.addXP(3000);
-									engine.say("At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!");
+									raiser.say("At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!");
 									player.setQuest(QUEST_SLOT, "done");
 									player.notifyWorldAboutChanges();
-									engine.setCurrentState(ConversationStates.ATTENDING);
+									raiser.setCurrentState(ConversationStates.ATTENDING);
 								}
 							} else {
-								engine.say("I may be old, but I'm not senile, and you clearly don't have "
+								raiser.say("I may be old, but I'm not senile, and you clearly don't have "
 										+ Grammar.a_noun(itemName)
 										+ ". What do you really have for me?");
 							}
 						} else {
-							engine.say("I already have that one. Do you have any other weapon for me?");
+							raiser.say("I already have that one. Do you have any other weapon for me?");
 						}
 					}
 				});

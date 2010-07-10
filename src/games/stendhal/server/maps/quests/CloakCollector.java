@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -64,7 +65,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		npc.add(ConversationStates.QUEST_OFFERED, NEEDED_CLOAKS, null,
 				ConversationStates.QUEST_OFFERED, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final String itemName = sentence.getTriggerExpression().getNormalized();
 						final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 						StringBuilder stringBuilder = new StringBuilder();
@@ -77,7 +78,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 						}
 						
 						stringBuilder.append(". So, will you find them all?");
-						engine.say(stringBuilder.toString());
+						raiser.say(stringBuilder.toString());
 					}
 
 					@Override

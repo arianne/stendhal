@@ -5,7 +5,7 @@ package games.stendhal.server.maps.quests.houses;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -24,12 +24,12 @@ final class ListUnboughtHousesAction implements ChatAction {
 		this.location = location;
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final List<String> unbought = HouseUtilities.getUnboughtHousesInLocation(location);
 		if (unbought.size() > 0) {
-			engine.say("According to my records, " + Grammar.enumerateCollection(unbought) + " are all available for #purchase.");
+			raiser.say("According to my records, " + Grammar.enumerateCollection(unbought) + " are all available for #purchase.");
 		} else {
-			engine.say("Sorry, there are no houses available for sale in " + Grammar.makeUpperCaseWord(location) + ".");
+			raiser.say("Sorry, there are no houses available for sale in " + Grammar.makeUpperCaseWord(location) + ".");
 		}
 	}
 }

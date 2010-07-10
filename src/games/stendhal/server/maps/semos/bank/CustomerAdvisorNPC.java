@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
@@ -20,7 +21,7 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 
 	private final class VaultChatAction implements ChatAction {
 		
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			final StendhalRPZone vaultzone = (StendhalRPZone) SingletonRepository
 					.getRPWorld().getRPZone("int_vault");
 			String zoneName = player.getName() + "_vault";

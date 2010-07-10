@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -172,7 +173,7 @@ public class FindRatChildren extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, NEEDED_KIDS, null,
 				ConversationStates.QUESTION_1, null,
 				new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Expression item = sentence.getTriggerExpression();
 
 

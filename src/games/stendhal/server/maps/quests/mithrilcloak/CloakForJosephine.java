@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests.mithrilcloak;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
@@ -47,7 +48,7 @@ class CloakForJosephine {
 		npc.add(ConversationStates.QUESTION_1, "blue striped cloak", new QuestInStateCondition(mithrilcloak.getQuestSlot(), "taking_striped_cloak"),
 			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.drop("blue striped cloak")) {
 							npc.say("Oh, wait, that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!");
 							player.setQuest(mithrilcloak.getQuestSlot(), "gave_striped_cloak");
@@ -62,7 +63,7 @@ class CloakForJosephine {
 		npc.add(ConversationStates.QUESTION_2, "blue striped cloak", new QuestInStateCondition(mithrilcloak.getQuestSlot(), "taking_striped_cloak"),
 				ConversationStates.QUESTION_2, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.drop("blue striped cloak")) {
 							npc.say("Oh, wait, that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!");
 							npc.setCurrentState(ConversationStates.ATTENDING);

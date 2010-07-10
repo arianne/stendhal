@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -61,14 +62,14 @@ class Marriage {
 					new ChatAction() {
 
 						public void fire(final Player player, final Sentence sentence,
-								final SpeakerNPC npc) {
+								final EventRaiser npc) {
 							// find out whom the player wants to marry.
 							final String brideName = sentence.getSubjectName();
 	
 							if (brideName == null) {
 								npc.say("You have to tell me who you want to marry.");
 							} else {
-								startMarriage(npc, player, brideName);
+								startMarriage((SpeakerNPC) npc.getEntity(), player, brideName);
 							}
 						}
 					});
@@ -81,7 +82,7 @@ class Marriage {
 					new ChatAction() {
 
 						public void fire(final Player player, final Sentence sentence,
-								final SpeakerNPC npc) {
+								final EventRaiser npc) {
 							askBride();
 						}
 					});
@@ -101,7 +102,7 @@ class Marriage {
 					new ChatAction() {
 
 						public void fire(final Player player, final Sentence sentence,
-								final SpeakerNPC npc) {
+								final EventRaiser npc) {
 							finishMarriage();
 						}
 					});

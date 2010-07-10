@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -50,7 +51,7 @@ public class LeaderNPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING, "weapon", null, ConversationStates.ATTENDING,
 				        null, new ChatAction() {
 
-					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					        	final Item weapon = player.getWeapon();
 					        	if (weapon != null) {
 					        		String comment;
@@ -81,10 +82,10 @@ public class LeaderNPC implements ZoneConfigurator {
 					        				comment += " The negative lifesteal of " + lifesteal + " will drain your health as you use it.";
 					        			}
 					        		}
-					        		engine.say(comment);
+					        		raiser.say(comment);
 					        	} else {
 					        		// player didn't have a weapon, as getWeapon returned null.
-					        		engine.say("Oh, I can't comment on your weapon, as you have none equipped. That's not very wise in these dangerous times!");
+					        		raiser.say("Oh, I can't comment on your weapon, as you have none equipped. That's not very wise in these dangerous times!");
 					        	}
 							} 
 					    }

@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -121,9 +122,9 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			new QuestActiveCondition(QUEST_SLOT),
 			ConversationStates.QUESTION_2, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final List<String> needed = missingFish(player, true);
-					engine.say("There " + Grammar.isare(needed.size())
+					raiser.say("There " + Grammar.isare(needed.size())
 							+ " "
 							+ Grammar.quantityplnoun(needed.size(), "fish")
 							+ " still missing: "
@@ -135,9 +136,9 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		// player says he doesn't have required fish with him
 		npc.add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final List<String> missing = missingFish(player, false);
-					engine.say("Let me know as soon as you find "
+					raiser.say("Let me know as soon as you find "
 							+ Grammar.itthem(missing.size()) + ". Goodbye.");
 				}
 			});
@@ -151,7 +152,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_2, neededFish, null,
 			ConversationStates.QUESTION_2, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final Expression item = sentence.getTriggerExpression();
 
 					TriggerList missing = new TriggerList(missingFish(player, false));
@@ -169,10 +170,10 @@ public class FishermansLicenseCollector extends AbstractQuest {
 							missing = new TriggerList(missingFish(player, true));
 
 							if (missing.size() > 0) {
-								engine.say("This fish is looking very good! Do you have another one for me?");
+								raiser.say("This fish is looking very good! Do you have another one for me?");
 							} else {
 								player.addXP(2000);
-								engine.say("You did a great job! Now you are a real fisherman and you will be much more successful when you catch fish!");
+								raiser.say("You did a great job! Now you are a real fisherman and you will be much more successful when you catch fish!");
 								player.setQuest(QUEST_SLOT, "done");
 								// once there are other ways to increase your
 								// fishing skills, increase the old skills
@@ -181,12 +182,12 @@ public class FishermansLicenseCollector extends AbstractQuest {
 								player.notifyWorldAboutChanges();
 							}
 						} else {
-							engine.say("Don't try to cheat! I know that you don't have "
+							raiser.say("Don't try to cheat! I know that you don't have "
 									+ Grammar.a_noun(itemName)
 									+ ". What do you really have for me?");
 						}
 					} else {
-						engine.say("You cannot cheat in this exam! I know that you already gave this fish to me. Do you have other fish for me?");
+						raiser.say("You cannot cheat in this exam! I know that you already gave this fish to me. Do you have other fish for me?");
 					}
 				}
 			});

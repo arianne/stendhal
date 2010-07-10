@@ -10,6 +10,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -100,7 +101,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 						 *            the involved player
 						 */
 					@Override
-						public boolean transactAgreedDeal(final SpeakerNPC npc, final Player player) {
+						public boolean transactAgreedDeal(final EventRaiser npc, final Player player) {
 						if (getMaximalAmount(player) < amount) {
 							// The player tried to cheat us by placing the resource
 							// onto the ground after saying "yes"
@@ -139,7 +140,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 					 *            The player who wants to fetch the product
 					 */
 					@Override
-						public void giveProduct(final SpeakerNPC npc, final Player player) {
+						public void giveProduct(final EventRaiser npc, final Player player) {
 						final String orderString = player.getQuest(QUEST_SLOT);
 						final String[] order = orderString.split(";");
 						final int numberOfProductItems = Integer.parseInt(order[0]);
@@ -186,7 +187,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				new QuestNotActiveCondition(behaviour.getQuestSlot()),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (sentence.hasError()) {
 							npc.say("Sorry, I did not understand you. "
 									+ sentence.getErrorString());
@@ -229,7 +230,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 					behaviour.transactAgreedDeal(npc, player);
 					}
 				});
@@ -244,7 +245,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 						npc.say("I still haven't finished your last order. Come back in "
 								+ behaviour.getApproximateRemainingTime(player)
 								+ "!");
@@ -257,7 +258,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 						behaviour.giveProduct(npc, player);
 					}
 				});

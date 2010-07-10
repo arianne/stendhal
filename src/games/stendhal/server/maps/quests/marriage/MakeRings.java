@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -44,7 +45,7 @@ class MakeRings {
 				ConversationStates.QUEST_ITEM_QUESTION, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.isQuestInState(marriage.getQuestSlot(), "engaged_with_ring")) {
 							// player has wedding ring already. just remind to
 							// get spouse to get one and hint to get dressed.
@@ -104,7 +105,7 @@ class MakeRings {
 				ConversationStates.IDLE, 
 		 		null, 
 				new ChatAction() {
-	 				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+	 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 	 					final String[] tokens = player.getQuest(marriage.getQuestSlot()).split(";");
 						final long delayInMIlliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
 						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMIlliSeconds)
@@ -149,7 +150,7 @@ class MakeRings {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if ((player.isEquipped("gold bar", REQUIRED_GOLD))
 								&& (player.isEquipped("money", REQUIRED_MONEY))) {
 							player.drop("gold bar", REQUIRED_GOLD);

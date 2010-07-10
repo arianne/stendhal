@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -79,13 +80,13 @@ public class HealerNPC implements ZoneConfigurator {
 				ConversationStates.HEAL_OFFERED, 
 				null,
 		        new ChatAction() {
-			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
                         healerBehaviour.setChosenItemName("heal");
                         healerBehaviour.setAmount(1);
-                        final int cost = healerBehaviour.getCharge(npc, player);
+                        final int cost = healerBehaviour.getCharge(player);
 
                         if (cost != 0) {
-                        	engine.say("For " + cost + " cash, ok?");
+                        	raiser.say("For " + cost + " cash, ok?");
                         }
 			        }
 		        });
@@ -96,12 +97,12 @@ public class HealerNPC implements ZoneConfigurator {
 		        ConversationStates.ATTENDING, 
 		        null,
 		        new ChatAction() {
-			        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-				        if (player.drop("money", healerBehaviour.getCharge(npc, player))) {
+			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+				        if (player.drop("money", healerBehaviour.getCharge(player))) {
 					        healerBehaviour.heal(player);
-					        engine.say("All better now, everyone better. I love you, I do.");
+					        raiser.say("All better now, everyone better. I love you, I do.");
 				        } else {
-					        engine.say("Pff, no money, no heal.");
+					        raiser.say("Pff, no money, no heal.");
 				        }
 			        }
 		        });

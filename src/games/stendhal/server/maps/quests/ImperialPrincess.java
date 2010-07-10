@@ -4,6 +4,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -117,8 +118,8 @@ public class ImperialPrincess extends AbstractQuest {
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-						engine.say("I need "
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						raiser.say("I need "
 								+ Integer.toString(1 + player.getLevel()
 										/ ARANDULA_DIVISOR)
 								+ " arandula, 1 kokuda, 1 sclaria, 1 kekik, "
@@ -139,7 +140,7 @@ public class ImperialPrincess extends AbstractQuest {
 				"Thank you! We must be subtle about this, I do not want the scientists suspecting I interfere. " +
 				"When you return with the items, please say codeword #herbs.",
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						// store the current level in case it increases before
 						// she see them next.
 						player.setQuest(QUEST_SLOT, Integer.toString(player.getLevel()));
@@ -180,7 +181,7 @@ public class ImperialPrincess extends AbstractQuest {
 						new NotCondition(new QuestInStateCondition(QUEST_SLOT,"recommended"))),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						try {
 							final int level = Integer.parseInt(player.getQuest(QUEST_SLOT));
 							final int required_arandula = 1
@@ -204,7 +205,7 @@ public class ImperialPrincess extends AbstractQuest {
 								player.drop("antidote", required_antidote);
 								player.drop("potion", required_potion);
 								player.drop("arandula", required_arandula);
-								engine.say("Perfect! I will recommend you to my father, as a fine, " +
+								raiser.say("Perfect! I will recommend you to my father, as a fine, " +
 										"helpful person. He will certainly agree you are eligible for " +
 										"citizenship of Kalavan.");
 								player.addXP(level * 400);
@@ -212,7 +213,7 @@ public class ImperialPrincess extends AbstractQuest {
 								player.notifyWorldAboutChanges();
 							} else { 
 								//reminder of the items to bring
-								engine.say("Shh! Don't say it till you have the "
+								raiser.say("Shh! Don't say it till you have the "
 									+ required_arandula
 									+ " arandula, 1 #kokuda, 1 #sclaria, 1 #kekik, "
 									+ required_potion
@@ -222,7 +223,7 @@ public class ImperialPrincess extends AbstractQuest {
 							}
 						} catch (final NumberFormatException e) {
 							// Should not happen but catch the exception
-							engine.say("That's strange. I don't understand what has happened just now. " +
+							raiser.say("That's strange. I don't understand what has happened just now. " +
 									"Sorry but I'm all confused, try asking someone else for help.");
 						}
 					}

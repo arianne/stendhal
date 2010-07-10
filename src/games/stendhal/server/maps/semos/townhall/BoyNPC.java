@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -32,17 +33,17 @@ public class BoyNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 						if (player.hasQuest("introduce_players")) {
 							if (player.isQuestCompleted("introduce_players")) {
-							engine.say("Hi again " + player.getTitle() + "! Thanks again, I'm feeling much better now.");
+							raiser.say("Hi again " + player.getTitle() + "! Thanks again, I'm feeling much better now.");
 							} else {
-							engine.say("*sniff* *sniff* I still feel ill, please hurry with that #favour for me.");
+							raiser.say("*sniff* *sniff* I still feel ill, please hurry with that #favour for me.");
 							}
 						} else {
 							if (!player.isGhost()) {
-								engine.say("Ssshh! Come here, " + player.getTitle() + "! I have a #task for you.");
+								raiser.say("Ssshh! Come here, " + player.getTitle() + "! I have a #task for you.");
 							}
 						}
 					}
@@ -63,10 +64,10 @@ public class BoyNPC implements ZoneConfigurator {
 		};
 
 		npc.addInitChatMessage(null, new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				if (!player.hasQuest("TadFirstChat")) {
 					player.setQuest("TadFirstChat", "done");
-					engine.listenTo(player, "hi");
+					((SpeakerNPC) raiser.getEntity()).listenTo(player, "hi");
 				}
 			}
 		});

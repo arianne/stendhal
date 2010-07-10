@@ -1,13 +1,16 @@
 package games.stendhal.server.maps.quests.houses;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -85,20 +88,21 @@ public class BuyHouseChatActionTest {
 		HouseUtilities.clearCache();
 		
 		SpeakerNPC engine = new SpeakerNPC("bob");
+		EventRaiser raiser = new EventRaiser(engine);
 		Player player = PlayerTestHelper.createPlayer("george");
 		Sentence sentence = ConversationParser.parse("51");
-		action.fire(player , sentence , engine);
+		action.fire(player , sentence , raiser);
 		assertThat(getReply(engine), is("You do not have enough money to buy a house!"));
 		housePortal.setOwner("jim");
 		
-		action.fire(player , sentence , engine);
+		action.fire(player , sentence , raiser);
 		assertThat(getReply(engine), containsString("Sorry, house 51 is sold"));
 		
 		PlayerTestHelper.equipWithMoney(player, 1);
 	
 		housePortal.setOwner("");
 		
-		action.fire(player , sentence , engine);
+		action.fire(player , sentence , raiser);
 		assertThat(getReply(engine), containsString("Congratulation"));
 		assertFalse(player.isEquipped("money"));
 		

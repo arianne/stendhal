@@ -7,6 +7,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.creature.BabyDragon;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -53,13 +54,13 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					    if (player.hasQuest(QUEST_SLOT)) {
 						final long delay = REQUIRED_DAYS * MathHelper.MILLISECONDS_IN_ONE_DAY;
 						final long timeRemaining = (Long.parseLong(player.getQuest(QUEST_SLOT))
 								      + delay) - System.currentTimeMillis();
 						if (timeRemaining > 0L) {
-						    engine.say("The egg is still hatching, and will be for at least another "
+						    raiser.say("The egg is still hatching, and will be for at least another "
 										+ TimeUtil.timeUntil((int) (timeRemaining / 1000L))
 										+ ".");
 								return;
@@ -67,14 +68,14 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 
     						if (player.hasPet()) {
     						    // we don't want him to give a dragon if player already has a pet
-    						    engine.say("I cannot give your newly hatched dragon to you if I don't think you'll give it your full attention! Come back when you don't have another pet with you.");
+    						    raiser.say("I cannot give your newly hatched dragon to you if I don't think you'll give it your full attention! Come back when you don't have another pet with you.");
     						    return;
     						}
 
-							engine.say("Your egg has hatched! So, here you go, a nippy little baby dragon of your own. Don't forget it'll want some #food soon. And remember to #protect it.");
+							raiser.say("Your egg has hatched! So, here you go, a nippy little baby dragon of your own. Don't forget it'll want some #food soon. And remember to #protect it.");
 					       	final BabyDragon babydragon = new BabyDragon(player);
 
-					       	babydragon.setPosition(engine.getX(), engine.getY() + 1);
+					       	babydragon.setPosition(raiser.getX(), raiser.getY() + 1);
 
 					       	player.setPet(babydragon);
     						// clear the quest slot completely when it's not
@@ -82,26 +83,26 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 					       	player.removeQuest(QUEST_SLOT);
 					       	player.notifyWorldAboutChanges();
 					    } else if (player.isEquipped("mythical egg")) {
-					    	engine.say("Where did you get that egg from?! Never mind. Tell me if you need me to #hatch it for you. It is my hobby, after all.");
+					    	raiser.say("Where did you get that egg from?! Never mind. Tell me if you need me to #hatch it for you. It is my hobby, after all.");
 					    } else {
-							engine.say("Hi. I don't get so many visitors, down here.");
+							raiser.say("Hi. I don't get so many visitors, down here.");
 					    }
 					}
 				});
 		        addReply("hatch", null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					    if (player.hasPet()) {
 						// there's actually also a check for this when the egg is hatched,
 						// but we might as well warn player here that they wouldn't be allowed two.
-							engine.say("You've already got a pet. If you get another they might fight ... or worse ...");
+							raiser.say("You've already got a pet. If you get another they might fight ... or worse ...");
 					   } else {
 						if (player.isEquipped("mythical egg")) {
 						    player.drop("mythical egg");
-						    engine.say("Ok, I'll take your egg and hatch it in one of these nesting boxes. Come back in " + 7 + " days and you should be the proud owner of a new born baby dragon.");
+						    raiser.say("Ok, I'll take your egg and hatch it in one of these nesting boxes. Come back in " + 7 + " days and you should be the proud owner of a new born baby dragon.");
 						    player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
 						    player.notifyWorldAboutChanges();
 						} else {
-						    engine.say("You don't have any dragon eggs with you. I can't hatch a dragon without an egg.");
+						    raiser.say("You don't have any dragon eggs with you. I can't hatch a dragon without an egg.");
 						}
 					    }
 					}

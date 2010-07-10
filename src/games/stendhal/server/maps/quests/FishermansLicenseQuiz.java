@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
@@ -139,7 +140,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("I don't have a task for you, and you already have a fisherman's license.");
 						} else {
@@ -151,7 +152,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		fisherman.add(ConversationStates.ATTENDING, "exam", null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("You have already got your fisherman's license.");
 						} else if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -181,7 +182,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				"Fine. The first question is: What kind of fish is this?",
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						startQuiz();
 						player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());
 					}
@@ -191,7 +192,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (sentence.getTriggerExpression().matches(ConversationParser.createTriggerExpression(getCurrentSpecies()))) {
 							if (currentSpeciesNo == speciesList.size() - 1) {
 								npc.say("Correct! Congratulations, you have passed the first part of the #exam.");

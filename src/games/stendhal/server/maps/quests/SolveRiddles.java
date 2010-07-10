@@ -7,6 +7,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
@@ -212,7 +213,7 @@ public class SolveRiddles extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						// randomly choose from available riddles
 						final String riddle = riddles.getRiddle(); 
 						npc.say("Try this riddle: " + riddle);
@@ -227,7 +228,7 @@ public class SolveRiddles extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				null,
 				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String riddle = player.getQuest(QUEST_SLOT);
 					npc.say("You must solve the riddle which I previously set you: " + riddle);
 				}
@@ -236,7 +237,7 @@ public class SolveRiddles extends AbstractQuest {
 		reaper.add(ConversationStates.QUESTION_1, "", null,
 			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String riddle = player.getQuest(QUEST_SLOT);
 
 					if (riddles.matches(riddle, sentence)) {

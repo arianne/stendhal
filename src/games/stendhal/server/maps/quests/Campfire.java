@@ -7,6 +7,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -96,7 +97,7 @@ public class Campfire extends AbstractQuest {
 		return res;
 	}
 
-	private void respondToQuestMessage(final SpeakerNPC npc, final Player player) {
+	private void respondToQuestMessage(final EventRaiser npc, final Player player) {
 		// first time player asks 
 		if (!player.hasQuest(QUEST_SLOT)) {
 			npc.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
@@ -180,7 +181,7 @@ public class Campfire extends AbstractQuest {
 			new QuestNotInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
-			   	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			   	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					respondToQuestMessage(npc, player);
 				}
 			});
@@ -210,7 +211,7 @@ public class Campfire extends AbstractQuest {
 			new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD),
 			ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						player.drop("wood", REQUIRED_WOOD);
 						player.setQuest(QUEST_SLOT,  "" + System.currentTimeMillis());
 						player.addXP(50);

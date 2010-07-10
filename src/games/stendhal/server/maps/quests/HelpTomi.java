@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -109,7 +110,7 @@ public class HelpTomi extends AbstractQuest {
 				// we are storing the number of times the player has done the quest in the quest slot like
 				// done;N. We reward based on this number. If the quest slot isn't split like this and only 'done' 
 				// we assume it was just done once (sorry, guys)
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					int N;
 					// compatibility with old version
 					final String questState = player.getQuest(QUEST_SLOT);

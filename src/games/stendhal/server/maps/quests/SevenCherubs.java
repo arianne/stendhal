@@ -10,6 +10,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -109,7 +110,7 @@ public class SevenCherubs extends AbstractQuest {
 			add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				null, ConversationStates.IDLE, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (!player.hasQuest(QUEST_SLOT)) {
 							player.setQuest(QUEST_SLOT, "");
 						}
@@ -123,30 +124,30 @@ public class SevenCherubs extends AbstractQuest {
 						final List<String> list = Arrays.asList(done);
 						final int left = 7 - list.size();
 
-						if (list.contains(engine.getName())) {
+						if (list.contains(raiser.getName())) {
 							if (left > -1) {
-								engine.say("Seek out the other cherubim to get thy reward!");
+								raiser.say("Seek out the other cherubim to get thy reward!");
 							} else {
-								engine.say("Thou hast sought and found each of the seven cherubim! Now, mighty art thou with the rewards so earn'd.");
+								raiser.say("Thou hast sought and found each of the seven cherubim! Now, mighty art thou with the rewards so earn'd.");
 							}
 						} else {
 							player.setQuest(QUEST_SLOT, npcDoneText + ";"
-									+ engine.getName());
+									+ raiser.getName());
 
 							player.heal();
 							player.healPoison();
 
 							if (left > 0) {
-								engine.say("Well done! You only need to find "
+								raiser.say("Well done! You only need to find "
 												+ (7 - list.size())
 												+ " more. Fare thee well!");
-								if (engine.getZone().getName().equals("0_semos_village_w")) {
+								if (raiser.getZone().getName().equals("0_semos_village_w")) {
 									player.addXP(20);
 								} else {
 									player.addXP((7 - left + 1) * 200);
 								}
 							} else {
-								engine.say("Thou hast proven thyself brave enough to bear this mighty relic!");
+								raiser.say("Thou hast proven thyself brave enough to bear this mighty relic!");
 
 								/*
 								 * Proposal by Daniel Herding (mort): once

@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
 import games.stendhal.server.entity.npc.parser.ConversationContext;
@@ -85,7 +86,7 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (!player.hasQuest(QUEST_SLOT)) {
 						npc.say("Hello newcomer! I can #help you on your way to become a real fisherman!");
 					} else if (!player.isQuestCompleted(QUEST_SLOT)) {
@@ -102,7 +103,7 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isQuestCompleted(QUEST_SLOT)) {
 						npc.say("No, thanks. I have all I need.");
 						npc.setCurrentState(ConversationStates.ATTENDING);
@@ -125,7 +126,7 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String name = Rand.rand(quotes.keySet());
 					npc.say("Please look up the famous quote by " + name + ".");
 					player.setQuest(QUEST_SLOT, name);
@@ -144,7 +145,7 @@ public class LookUpQuote extends AbstractQuest {
 		fisherman.add(ConversationStates.QUESTION_2, "", null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String name = player.getQuest(QUEST_SLOT);
 					final String quote = quotes.get(name);
 

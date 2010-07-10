@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.CroupierNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -69,11 +69,11 @@ public class DiceGambling extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"OK, here are the dice. Just throw them when you're ready. Good luck!",
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					player.drop("money", STAKE);
 					final Dice dice = (Dice) SingletonRepository.getEntityManager()
 							.getItem("dice");
-					dice.setCroupierNPC((CroupierNPC) npc);
+					dice.setCroupierNPC((CroupierNPC) npc.getEntity());
 					player.equipOrPutOnGround(dice);
 				}
 			});

@@ -10,7 +10,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -109,8 +109,8 @@ public class AdminMaker extends ScriptImpl {
 			}
 		}
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-			engine.say("I will give you some items, and adjust your level and skills. Also, your keyring is enabled.");
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+			raiser.say("I will give you some items, and adjust your level and skills. Also, your keyring is enabled.");
 			xpGain(player);
 			equip(player);
 			admin(player);
@@ -187,7 +187,7 @@ public class AdminMaker extends ScriptImpl {
 		}
 
 	
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 			// before we send the player off into the unknown give a marked
 			// scroll
@@ -203,10 +203,10 @@ public class AdminMaker extends ScriptImpl {
 					player.sendPrivateText(player.getTitle()
 							+ " use the scroll to come back here. Use /teleport <playername> <zonename> <x> <y> to beam to a different place.");
 				} else {
-					engine.say("oops, looks like you found a bug.");
+					raiser.say("oops, looks like you found a bug.");
 				}
 			} else {
-				engine.say("Ask me again when you have room for a scroll.");
+				raiser.say("Ask me again when you have room for a scroll.");
 			}
 
 		}

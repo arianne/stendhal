@@ -1,10 +1,12 @@
 package games.stendhal.server.maps.ados.felinashouse;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.creature.Cat;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
@@ -56,7 +58,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 					}
 
 					@Override
-					public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
+					public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
 						if (getAmount() > 1) {
 							seller.say("Hmm... I just don't think you're cut out for taking care of more than one cat at once.");
 							return false;
@@ -64,15 +66,16 @@ public class CatSellerNPC implements ZoneConfigurator {
 							say("Well, why don't you make sure you can look after that pet you already have first?");
 							return false;
 						} else {
-							if (!player.drop("money", getCharge(seller, player))) {
+							if (!player.drop("money", getCharge(player))) {
 								seller.say("You don't seem to have enough money.");
 								return false;
 							}
 							seller.say("Here you go, a cute little kitten! Your kitten will eat any piece of chicken or fish you place on the ground. Enjoy her!");
 
 							final Cat cat = new Cat(player);
-
-							cat.setPosition(seller.getX(), seller.getY() + 1);
+							
+							Entity sellerEntity = seller.getEntity();
+							cat.setPosition(sellerEntity.getX(), sellerEntity.getY() + 1);
 
 							player.setPet(cat);
 							player.notifyWorldAboutChanges();

@@ -5,6 +5,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -99,7 +100,7 @@ import java.util.Arrays;
 				new PlayerHasItemWithHimCondition("scythe")),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					player.drop("scythe");
 					player.addKarma(10);
 					player.addXP(1000);
@@ -130,7 +131,7 @@ import java.util.Arrays;
 				new QuestInStateCondition(QUEST_SLOT, "capture"),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					npc.say("You want to know why he is in there? He and his ugly friends dug the #tunnel to our sweet Island! That's why he got jailed!");
 					player.setQuest(QUEST_SLOT, "princess");
 				};
@@ -149,7 +150,7 @@ import java.util.Arrays;
 				new QuestInStateCondition(QUEST_SLOT, "princess"),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					npc.say("What she drives me nuts, like all the flowers! This makes me hungry, go and get an #egg for me! Just let me know, you got one.");
 					player.setQuest(QUEST_SLOT, "egg");
 				};
@@ -178,7 +179,7 @@ import java.util.Arrays;
 				new PlayerHasItemWithHimCondition("egg")),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					player.drop("egg");
 					player.addKarma(10);
 					player.addXP(1000);
@@ -221,7 +222,7 @@ import java.util.Arrays;
 				new QuestInStateCondition(QUEST_SLOT, "jailed"),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					npc.say("Oh my dear. My father should not know it. Hope he is fine! Thanks for this message! Send him #greetings! You better return to him, he could need more help.");
 					player.setQuest(QUEST_SLOT, "spoken");
 				};
@@ -241,7 +242,7 @@ import java.util.Arrays;
 				new QuestInStateCondition(QUEST_SLOT, "spoken"),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					npc.say("Thanks my friend. Now a final task for you! Bring me a barbarian armor. Without this I cannot escape from here! Go! Go! And let me know when you have the #armor !");
 					player.setQuest(QUEST_SLOT, "armor");
 				};
@@ -263,7 +264,7 @@ import java.util.Arrays;
 				new PlayerHasItemWithHimCondition("barbarian armor")),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					player.drop("barbarian armor");
 					 final StackableItem gold = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
 					final int goldamount = 20;

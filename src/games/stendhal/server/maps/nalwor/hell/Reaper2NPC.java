@@ -7,6 +7,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -58,7 +59,7 @@ public class Reaper2NPC implements ZoneConfigurator {
 				processStep.add(new TeleportAction("int_afterlife", 31, 23, Direction.UP));
 				processStep.add(new DecreaseKarmaAction(100.0));
 				processStep.add(new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						player.subXP(10000);
 						// wipe riddle slot if player decided they couldnt answer it and would take the karma hit
 						if (player.hasQuest("solve_riddles")) {

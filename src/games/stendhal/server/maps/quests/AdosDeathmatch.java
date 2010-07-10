@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -216,7 +217,7 @@ public class AdosDeathmatch extends AbstractQuest {
 				 new NotCondition(new DeathMatchEmptyCondition()), ConversationStates.ATTENDING,
 				 null,
 				 new ChatAction() {
-					 public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					 public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						 final List<Player> dmplayers = arena.getPlayers();
 						 final List<String> dmplayernames = new LinkedList<String>();
 						 for (Player dmplayer : dmplayers) {
@@ -246,7 +247,7 @@ public class AdosDeathmatch extends AbstractQuest {
 					  new NotCondition(new PlayerHasPetOrSheepCondition())), 
 				 ConversationStates.QUESTION_1, null,				 
 				 new ChatAction() {
-					 public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					 public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						 final List<Player> dmplayers = arena.getPlayers();
 						 final List<String> dmplayernames = new LinkedList<String>();
 						 for (Player dmplayer : dmplayers) {

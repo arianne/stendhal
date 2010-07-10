@@ -1,14 +1,14 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
-import java.util.Set;
-
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Earning;
 import games.stendhal.server.entity.trade.Market;
+
+import java.util.Set;
 /**
  * chat action to let a player fetch his earnings from the market
  * 
@@ -17,7 +17,7 @@ import games.stendhal.server.entity.trade.Market;
  */
 public class FetchEarningsChatAction implements ChatAction {
 
-	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if (sentence.hasError()) {
 			npc.say("Sorry, I did not understand you. "
 					+ sentence.getErrorString());
@@ -27,7 +27,7 @@ public class FetchEarningsChatAction implements ChatAction {
 		}
 	}
 
-	private void handleSentence(Player player, SpeakerNPC npc) {
+	private void handleSentence(Player player, EventRaiser npc) {
 		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		Set<Earning> earnings = market.fetchEarnings(player);
 		int collectedSum = 0;

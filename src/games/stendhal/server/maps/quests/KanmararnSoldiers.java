@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
@@ -185,7 +186,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			this.bind = bind;
 		}
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			final Item map = SingletonRepository.getEntityManager().getItem("map");
 			map.setInfoString(npc.getName());
 			map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");

@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -47,18 +48,18 @@ public class GateKeeperNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isEquipped("sedah gate key")) {
 							// toss a coin to see if he notices player still has
 							// the gate key
 							if (Rand.throwCoin() == 1) {
 								player.drop("sedah gate key");
-								engine.say("You shouldn't still have that key! I'll take that right back.");
+								raiser.say("You shouldn't still have that key! I'll take that right back.");
 							} else {
-								engine.say("Hi, again.");
+								raiser.say("Hi, again.");
 							}
 						} else {
-							engine.say("What do you want?");
+							raiser.say("What do you want?");
 						}
 					}
 				});
@@ -70,9 +71,9 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				addOffer("Only a #bribe could persuade me to hand over the key to that gate.");
 
 				addReply("bribe", null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				        if (sentence.hasError()) {
-				        	engine.say(sentence.getErrorString() + " Are you trying to trick me? Bribe me some number of coins!");
+				        	raiser.say(sentence.getErrorString() + " Are you trying to trick me? Bribe me some number of coins!");
 				        } else {
 				        	final Behaviour behaviour = new Behaviour("money");
 
@@ -81,29 +82,29 @@ public class GateKeeperNPC implements ZoneConfigurator {
 
 					        	if (sentence.getExpressions().size() == 1) {
             						// player only said 'bribe'
-            						engine.say("A bribe of no money is no bribe! Bribe me with some amount!");
+            						raiser.say("A bribe of no money is no bribe! Bribe me with some amount!");
 					        	} else {
 					        		if (amount < 300) {
     									// Less than 300 is not money for him
-    									engine.say("You think that amount will persuade me?! That's more than my job is worth!");
+    									raiser.say("You think that amount will persuade me?! That's more than my job is worth!");
     								} else {
     									if (player.isEquipped("money", amount)) {
     										player.drop("money", amount);
-    										engine.say("Ok, I got your money, here's the key.");
+    										raiser.say("Ok, I got your money, here's the key.");
     										final Item key = SingletonRepository.getEntityManager().getItem(
     												"sedah gate key");
     										player.equipOrPutOnGround(key);
     									} else {
     										// player bribed enough but doesn't have
     										// the cash
-    										engine.say("Criminal! You don't have "
+    										raiser.say("Criminal! You don't have "
     												+ amount + " money!");
     									}
     								}
 								}
         			        } else {
         						// This bit is just in case the player says 'bribe X potatoes', not money
-        						engine.say("You can't bribe me with anything but money!");
+        						raiser.say("You can't bribe me with anything but money!");
         					}
 			        	}
 					}

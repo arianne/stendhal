@@ -7,6 +7,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
@@ -272,15 +273,15 @@ public class StuffForBaldemar extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					if (!player.hasQuest(QUEST_SLOT) || "rejected".equals(player.getQuest(QUEST_SLOT))) {
-						engine.say("I can forge a shield made from mithril along with several other items. Would you like me to do that?");
+						raiser.say("I can forge a shield made from mithril along with several other items. Would you like me to do that?");
 					} else if (player.isQuestCompleted(QUEST_SLOT)) {
-						engine.say("I would prefer you left me to my entertainment.");
-						engine.setCurrentState(ConversationStates.ATTENDING);
+						raiser.say("I would prefer you left me to my entertainment.");
+						raiser.setCurrentState(ConversationStates.ATTENDING);
 					} else {
-						engine.say("Why are you bothering me when you haven't completed your quest yet?");
-						engine.setCurrentState(ConversationStates.ATTENDING);
+						raiser.say("Why are you bothering me when you haven't completed your quest yet?");
+						raiser.setCurrentState(ConversationStates.ATTENDING);
 					}
 				}
 			});
@@ -289,8 +290,8 @@ public class StuffForBaldemar extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-					engine.say(I_WILL_NEED_MANY_THINGS);
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+					raiser.say(I_WILL_NEED_MANY_THINGS);
 					player.setQuest(QUEST_SLOT, "start;0;0;0;0;0;0;0;0;0;0;0;0;0;0");
 					player.addKarma(10);
 
@@ -321,7 +322,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			new QuestStateStartsWithCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					
 					int idx1 = 1;
@@ -336,18 +337,18 @@ public class StuffForBaldemar extends AbstractQuest {
 					int size = neededItems.size();
 					for (int idx = 1; !missingSomething && idx <= size; idx++) {
 						ItemData itemData = neededItems.get(idx);
-						missingSomething = proceedItem(player, engine,
+						missingSomething = proceedItem(player, raiser,
 								itemData);
 					}
 					
 					if (player.hasKilledSolo("black giant") && !missingSomething) {
-						engine.say("You've brought everything I need to forge the shield. Come back in "
+						raiser.say("You've brought everything I need to forge the shield. Come back in "
 							+ REQUIRED_MINUTES
 							+ " minutes and it will be ready.");
 						player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 					} else {
 						if (!player.hasKilledSolo("black giant") && !missingSomething) {
-							engine.say("This shield can only be given to those who have killed a black giant, and without the help of others.");
+							raiser.say("This shield can only be given to those who have killed a black giant, and without the help of others.");
 						}
 
 						StringBuilder sb = new StringBuilder(30);
@@ -363,7 +364,7 @@ public class StuffForBaldemar extends AbstractQuest {
 
 	
 				private boolean proceedItem(final Player player,
-						final SpeakerNPC engine, final ItemData itemData) {
+						final EventRaiser engine, final ItemData itemData) {
 					if (itemData.getStillNeeded() > 0) {
 						
 						if (player.isEquipped(itemData.getName(), itemData.getStillNeeded())) {
@@ -387,7 +388,7 @@ public class StuffForBaldemar extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 				ConversationStates.IDLE, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					
@@ -396,13 +397,13 @@ public class StuffForBaldemar extends AbstractQuest {
 							- System.currentTimeMillis();
 
 					if (timeRemaining > 0L) {
-						engine.say("I haven't finished forging your shield. Please check back in "
+						raiser.say("I haven't finished forging your shield. Please check back in "
 							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
 							+ ".");
 						return;
 					}
 
-					engine.say("I have finished forging your new mithril shield. Enjoy. Now I will see what Trillium has stored behind the counter for me. ;)");
+					raiser.say("I have finished forging your new mithril shield. Enjoy. Now I will see what Trillium has stored behind the counter for me. ;)");
 					player.addXP(95000);
 					player.addKarma(25);
 					final Item mithrilshield = SingletonRepository.getEntityManager().getItem("mithril shield");
@@ -419,7 +420,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
 					final int neededMithrilBar = REQUIRED_MITHRIL_BAR
@@ -451,7 +452,7 @@ public class StuffForBaldemar extends AbstractQuest {
 					final int neededSnowglobe = REQUIRED_SNOWGLOBE
 							- Integer.parseInt(tokens[14]);
 					
-					engine.say("I will need " + neededMithrilBar + " mithril bars, "
+					raiser.say("I will need " + neededMithrilBar + " mithril bars, "
 							+ neededObsidian + " obsidian, "
 							+ neededDiamond + " diamond, "
 							+ neededEmerald + " emeralds, "

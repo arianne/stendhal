@@ -7,8 +7,8 @@ import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.ShopList;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -35,14 +35,14 @@ public class Maria extends ScriptImpl {
 			this.sandbox = sandbox;
 		}
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			if (player.drop("coupon")) {
 				final Item beer = sandbox.getItem("beer");
 				player.equipOrPutOnGround(beer);
-				engine.say("Here is your free beer.");
+				raiser.say("Here is your free beer.");
 				player.setQuest("MariaCoupon", "done");
 			} else {
-				engine.say("Sorry, you don't have a coupon. You can get one from Maria.");
+				raiser.say("Sorry, you don't have a coupon. You can get one from Maria.");
 			}
 		}
 	}

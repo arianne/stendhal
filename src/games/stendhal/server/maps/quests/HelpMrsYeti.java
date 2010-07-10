@@ -4,6 +4,7 @@ import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
@@ -259,7 +260,7 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 			null,
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence,
-								 final SpeakerNPC npc) {
+								 final EventRaiser npc) {
 					if(!player.hasPet()){
 						npc.say("That's a cute sheep you have there, but I need a baby dragon for Mr Yeti. Try Morgrin at the magic school.");
 						return;

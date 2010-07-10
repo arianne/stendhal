@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -127,7 +128,7 @@ public class FoundGirl {
 				anyFriends, ConversationStates.ATTENDING,
 				null, new ChatAction(){
 
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						npc.say("Hello " + player.getName() + ", nice to meet you again. "
 						+ "Guess what, we are having another #Semos #Mine #Town #Revival #Weeks.");
 					}

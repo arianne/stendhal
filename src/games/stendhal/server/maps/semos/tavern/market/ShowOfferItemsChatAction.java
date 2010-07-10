@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.semos.tavern.market;
 
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Market;
@@ -23,7 +23,7 @@ public class ShowOfferItemsChatAction implements ChatAction {
 	/**
 	 * show a list of all items for which offers exist.
 	 */
-	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		RPSlot offersSlot = market.getSlot(Market.OFFERS_SLOT_NAME);
 		List<Offer> offers = getOffers(offersSlot);

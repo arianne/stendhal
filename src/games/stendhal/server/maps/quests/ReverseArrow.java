@@ -13,6 +13,7 @@ import games.stendhal.server.entity.mapstuff.portal.OnePlayerRoomDoor;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -321,13 +322,13 @@ public class ReverseArrow extends AbstractQuest implements
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("Hi again "
+							raiser.say("Hi again "
 								+ player.getTitle()
 								+ ". I rembemer that you solved this problem already. You can do it again, of course.");
 						} else {
-							engine.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
+							raiser.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
 						}
 					}
 				});

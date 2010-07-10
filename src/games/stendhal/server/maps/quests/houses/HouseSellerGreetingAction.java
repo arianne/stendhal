@@ -2,7 +2,7 @@ package games.stendhal.server.maps.quests.houses;
 
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -12,20 +12,20 @@ final class HouseSellerGreetingAction extends HouseChatAction implements ChatAct
 		super(questslot);
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String reply = "";
 		
 		if (HouseUtilities.playerOwnsHouse(player)) {
 			reply = " At the cost of "
 				+ HouseChatAction.COST_OF_SPARE_KEY
 				+ " money you can purchase a spare key for your house. Do you want to buy one now?";
-			engine.setCurrentState(ConversationStates.QUESTION_1);
+			raiser.setCurrentState(ConversationStates.QUESTION_1);
 		} else if (player.hasQuest(questslot)) {
 			// the player has lost the house. clear the slot so that he can buy a new one if he wants
 			player.removeQuest(questslot);
 		}
 		
-		engine.say("Hello, " + player.getTitle() + "." + reply);
+		raiser.say("Hello, " + player.getTitle() + "." + reply);
 	}
 	
 }

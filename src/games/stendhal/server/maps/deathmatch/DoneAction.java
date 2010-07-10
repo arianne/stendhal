@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -43,10 +44,10 @@ public class DoneAction implements ChatAction {
 		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), "D", deathmatchState.getPoints(), true));
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 		if (deathmatchState.getLifecycleState() != DeathmatchLifecycle.VICTORY) {
-			engine.say("C'm on, don't lie to me! All you can do now is #bail or win.");
+			raiser.say("C'm on, don't lie to me! All you can do now is #bail or win.");
 			return;
 		}
 
@@ -56,7 +57,7 @@ public class DoneAction implements ChatAction {
 		final Item helmet = player.getFirstEquipped("trophy helmet");
 		if (helmet == null) {
 			createTrophyHelmet(player);
-			engine.say("Here is your special trophy helmet. Keep it, as the defense will increase by 1 "
+			raiser.say("Here is your special trophy helmet. Keep it, as the defense will increase by 1 "
 				+ " for every deathmatch you complete. Now, tell me if you want to #leave.");
 		} else {
 			int defense = 1;
@@ -67,7 +68,7 @@ public class DoneAction implements ChatAction {
 			final int maxdefense = 5 + (player.getLevel() / 5);
 			if (defense > maxdefense) {
 				helmet.put("def", maxdefense);
-				engine.say("I'm sorry to inform you, the maximum defense for your helmet at your current level is "
+				raiser.say("I'm sorry to inform you, the maximum defense for your helmet at your current level is "
 				                + maxdefense);
 			} else {
 				helmet.put("def", defense);
@@ -77,11 +78,11 @@ public class DoneAction implements ChatAction {
 				} else {
 					message = "Your helmet has been magically strengthened to a defense of " + defense;
 				}
-				engine.say(message + ". Now, tell me if you want to #leave.");
+				raiser.say(message + ". Now, tell me if you want to #leave.");
 			}
 		}
 		player.updateItemAtkDef();
-		TurnNotifier.get().notifyInTurns(0, new NotifyPlayerAboutHallOfFamePoints(engine, player.getName(), "D"));
+		TurnNotifier.get().notifyInTurns(0, new NotifyPlayerAboutHallOfFamePoints((SpeakerNPC) raiser.getEntity(), player.getName(), "D"));
 		
 		// without the additional information
 		player.setQuest("deathmatch", "done"); 

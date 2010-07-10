@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
@@ -33,7 +34,7 @@ class Honeymoon {
 				null,
 				ConversationStates.QUESTION_1, null,
 				new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
                         final StendhalRPZone fadoHotel = npc.getZone();
                         final Area hotelReception = new Area(fadoHotel, new Rectangle(11, 46, 19, 10));
 
@@ -73,7 +74,7 @@ class Honeymoon {
 				new TextHasNumberCondition(1, 15),
 				ConversationStates.IDLE, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 
                         final String room = Integer.toString(sentence.getNumeral().getAmount());
                         final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(

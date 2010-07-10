@@ -9,6 +9,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -42,7 +43,7 @@ public class RetireeNPC implements ZoneConfigurator {
 				        ConversationStates.ATTENDING,
 				        null,
 				        new ChatAction() {
-					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						        if (Rand.throwCoin() == 1) {
 							        npc.say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
 						        } else {
@@ -54,14 +55,14 @@ public class RetireeNPC implements ZoneConfigurator {
 				// A convenience function to make it easier for admins to test quests.
 				add(ConversationStates.ATTENDING, "cleanme!", null, ConversationStates.ATTENDING, "What?",
 				        new ChatAction() {
-					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						        if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
 							        for (final String quest : player.getQuests()) {
 								        player.removeQuest(quest);
 							        }
 						        } else {
 							        npc.say("What? No; you clean me! Begin with my back, thanks.");
-							        player.damage(5, npc);
+							        player.damage(5, npc.getEntity());
 							        player.notifyWorldAboutChanges();
 						        }
 					        }

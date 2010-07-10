@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -118,7 +119,7 @@ public class RainbowBeans extends AbstractQuest {
 				}
 			}, ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
 					final long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
@@ -136,7 +137,7 @@ public class RainbowBeans extends AbstractQuest {
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.getLevel() >= REQUIRED_LEVEL) {
 						npc.say("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you "
 								+ REQUIRED_MONEY
@@ -153,7 +154,7 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isEquipped("money", REQUIRED_MONEY)) {
 						player.drop("money", REQUIRED_MONEY);
 						npc.say("Alright, here's the beans. Once you take them, you come down in about 30 minutes. And if you get nervous up there, hit one of the green panic squares to take you back here.");
@@ -204,7 +205,7 @@ public class RainbowBeans extends AbstractQuest {
 			new AlwaysTrueCondition(),
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.getLevel() >= 30) {
 						npc.say("We already talked about this, conversation's moved on now mate, keep up! Try another time.");
 					} else {

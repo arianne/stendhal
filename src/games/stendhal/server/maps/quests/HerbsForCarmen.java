@@ -7,6 +7,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -128,8 +129,8 @@ public class HerbsForCarmen extends AbstractQuest {
 			null,
 			new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
 								new ChatAction() {
-									public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-										engine.say("Oh how nice. Please bring me those ingredients: " 
+									public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+										raiser.say("Oh how nice. Please bring me those ingredients: " 
 												   + Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash()) + ".");
 									}}));
 
@@ -188,9 +189,9 @@ public class HerbsForCarmen extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_2, "ingredients", null,
 				ConversationStates.QUESTION_2, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final List<String> needed = getMissingItems(player).toStringListWithHash();
-						engine.say("I need "
+						raiser.say("I need "
 								+ Grammar.enumerateCollection(needed)
 								+ ". Did you bring something?");
 					}
@@ -204,7 +205,7 @@ public class HerbsForCarmen extends AbstractQuest {
 
 		/* create the ChatAction used for item triggers */
 		final ChatAction itemsChatAction = new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
                 final String item = sentence.getTriggerExpression().getNormalized();
 			    ItemCollection missingItems = getMissingItems(player);
 				final Integer missingCount = missingItems.get(item);
@@ -214,9 +215,9 @@ public class HerbsForCarmen extends AbstractQuest {
 						missingItems = getMissingItems(player);
 
 						if (missingItems.size() > 0) {
-							engine.say("Good, do you have anything else?");
+							raiser.say("Good, do you have anything else?");
 						} else {
-							engine.say("Great! Now I can heal many people for free. Thanks a lot. Take this for your work.");
+							raiser.say("Great! Now I can heal many people for free. Thanks a lot. Take this for your work.");
 							player.setQuest(QUEST_SLOT, "done");
 							final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem("antidote");
 							reward.setQuantity(2);
@@ -224,13 +225,13 @@ public class HerbsForCarmen extends AbstractQuest {
 							player.addXP(50);
 							player.notifyWorldAboutChanges();
 							player.addKarma(5.0);
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					} else {
-						engine.say("Oh, you don't have " + item + " with you!");
+						raiser.say("Oh, you don't have " + item + " with you!");
 					}
 				} else {
-					engine.say("You have already brought that for me but thank you anyway.");
+					raiser.say("You have already brought that for me but thank you anyway.");
 				}
 			}
 		};

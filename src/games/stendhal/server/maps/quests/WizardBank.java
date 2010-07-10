@@ -8,6 +8,7 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -159,7 +160,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC engine) {
+							final EventRaiser raiser) {
 						if (player.isQuestCompleted(GRAFINDLE_QUEST_SLOT)
 								&& player.isQuestCompleted(ZARA_QUEST_SLOT)) {
 							String reply;
@@ -170,34 +171,34 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 							} else {
 								reply = " You may #leave sooner, if required.";
 							}
-							engine.say("Welcome to the Wizard's Bank, "
+							raiser.say("Welcome to the Wizard's Bank, "
 									+ player.getTitle() + "." + reply);
 						} else {
-							engine.say("You may not use this bank if you have not gained the right to use the chests at Nalwor, nor if you have not earned the trust of a certain young woman. Goodbye!");
-							engine.setCurrentState(ConversationStates.IDLE);
+							raiser.say("You may not use this bank if you have not gained the right to use the chests at Nalwor, nor if you have not earned the trust of a certain young woman. Goodbye!");
+							raiser.setCurrentState(ConversationStates.IDLE);
 						}
 					}
 				});
 
 				addReply(Arrays.asList("fee", "enter"), null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {
-							engine.say("The fee is " + COST
+							raiser.say("The fee is " + COST
 									+ " money. Do you want to pay?");
 						} else {
-							engine.say("As you already know, the fee is "
+							raiser.say("As you already know, the fee is "
 									+ COST + " money.");
 						}
 					}
 				});
 
 				addReply(ConversationPhrases.YES_MESSAGES, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {
 							if (player.drop("money", COST)) {
-								engine.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
+								raiser.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
 
 								player.teleport(zone, 10, 10, Direction.DOWN, player);
 
@@ -205,34 +206,34 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 								player.setQuest(QUEST_SLOT, "start");
 							} else {
-								engine.say("You do not have enough money!");
+								raiser.say("You do not have enough money!");
 							}
 						} else {
-							engine.say("Hm, I do not understand you. If you wish to #leave, just say");
+							raiser.say("Hm, I do not understand you. If you wish to #leave, just say");
 						}
 					}
 				});
 
 				addReply(ConversationPhrases.NO_MESSAGES, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isQuestCompleted(QUEST_SLOT)
 								|| !player.hasQuest(QUEST_SLOT)) {
-							engine.say("Very well.");
+							raiser.say("Very well.");
 						} else {
-							engine.say("Hm, I do not understand you. If you wish to #leave, just say");
+							raiser.say("Hm, I do not understand you. If you wish to #leave, just say");
 						}
 					}
 				});
 
 				addReply("leave", null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("Leave where?");
+							raiser.say("Leave where?");
 						} else {
 							teleportAway(player);
 							// remove the players Timer
 							SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
-							engine.say("Thank you for using the Wizard's Bank");
+							raiser.say("Thank you for using the Wizard's Bank");
 						}
 					}
 				});

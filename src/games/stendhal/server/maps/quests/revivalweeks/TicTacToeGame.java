@@ -7,6 +7,7 @@ import games.stendhal.server.entity.mapstuff.game.TicTacToeBoard;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -92,7 +93,7 @@ public class TicTacToeGame {
 			this.board = board;
 		}
 
-		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			if (board.isGameActive()) {
 				npc.say("Sorry, " + player.getName() + " there is already a game in progress. Please wait a little.");
 				return;

@@ -5,6 +5,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -59,22 +60,22 @@ public class DragonLair extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, 
 				null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
-							engine.say("Would you like to visit our dragon lair?");
+							raiser.say("Would you like to visit our dragon lair?");
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("done;")) {
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							final long delay = 1 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
 							final long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 							if (timeRemaining > 0) {
-								engine.say("I think they've had enough excitement for a while.  Come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
-								engine.setCurrentState(ConversationStates.ATTENDING);
+								raiser.say("I think they've had enough excitement for a while.  Come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+								raiser.setCurrentState(ConversationStates.ATTENDING);
 								return;
 							}
-							engine.say("Would you like to visit our dragons again?");
+							raiser.say("Would you like to visit our dragons again?");
 						} else {
-							engine.say("Thanks for stopping by. Come again.");
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							raiser.say("Thanks for stopping by. Come again.");
+							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -89,7 +90,7 @@ public class DragonLair extends AbstractQuest {
 				"Great! Enjoy your visit. I know THEY will. Oh, watch out, we have a couple chaos dragonriders exercising our dragons. Don't get in their way!",
 				new MultipleActions(new TeleportAction("-1_ados_outside_w", 25, 28, Direction.DOWN),
 						new ChatAction() {
-							public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 								player.setQuest(QUEST_SLOT, "done" + ";" + System.currentTimeMillis());
 							}
 				}

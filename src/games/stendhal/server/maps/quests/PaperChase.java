@@ -6,6 +6,7 @@ import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -97,14 +98,14 @@ public class PaperChase extends AbstractQuest {
 			this.idx = idx;
 		}
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			final String state = points.get(idx);
 			final String next = points.get(idx + 1);
 			final String questState = player.getQuest(QUEST_SLOT, 0);
 
 			// player does not have this quest or finished it
 			if (questState == null) {
-				engine.say("Please talk to Saskia in the Semos Mine Town to start the paper chase.");
+				raiser.say("Please talk to Saskia in the Semos Mine Town to start the paper chase.");
 				return;
 			}
 
@@ -112,12 +113,12 @@ public class PaperChase extends AbstractQuest {
 
 			// is the player supposed to speak to another NPC?
 			if (!nextNPC.equals(state)) {
-				engine.say("What do you say? \"" + texts.get(nextNPC) + "\" That's obviously not me.");
+				raiser.say("What do you say? \"" + texts.get(nextNPC) + "\" That's obviously not me.");
 				return;
 			}
 
 			// send player to the next NPC and record it in quest state
-			engine.say(greetings.get(next) + texts.get(next) + " Good luck!");
+			raiser.say(greetings.get(next) + texts.get(next) + " Good luck!");
 			player.setQuest(QUEST_SLOT, 0, next);
 			player.addXP((idx + 1) * 10);
 		}

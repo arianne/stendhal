@@ -9,6 +9,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
@@ -81,7 +82,7 @@ public class GardenerNPC implements ZoneConfigurator {
 					}
 
 					@Override
-						public boolean askForResources(final SpeakerNPC npc, final Player player, final int amount) {
+						public boolean askForResources(final EventRaiser npc, final Player player, final int amount) {
 						if (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).startsWith("done;")) {
 							// she is eating. number of lunches is in tokens[1]
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
@@ -114,7 +115,7 @@ public class GardenerNPC implements ZoneConfigurator {
 						}
 					}
 					@Override
-						public boolean transactAgreedDeal(final SpeakerNPC npc, final Player player) {
+						public boolean transactAgreedDeal(final EventRaiser npc, final Player player) {
 						if (getMaximalAmount(player) < amount) {
 							// The player tried to cheat us by placing the resource
 							// onto the ground after saying "yes"
@@ -135,7 +136,7 @@ public class GardenerNPC implements ZoneConfigurator {
 						}
 					}
 					@Override
-						public void giveProduct(final SpeakerNPC npc, final Player player) {
+						public void giveProduct(final EventRaiser npc, final Player player) {
 						final String orderString = player.getQuest(QUEST_SLOT);
 						final String[] order = orderString.split(";");
 						final int numberOfProductItems = Integer.parseInt(order[0]);

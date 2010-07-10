@@ -11,6 +11,7 @@ import games.stendhal.server.entity.mapstuff.office.RentedSignList;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.RemoveStoreableEntityAction;
 import games.stendhal.server.entity.npc.condition.AdminCondition;
@@ -78,7 +79,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 					ConversationStates.BUY_PRICE_OFFERED, 
 					null,
 					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							text = sentence.getOriginalText().trim().substring(5).trim();
 
 							String reply = "A sign costs " + MONEY + " money for 24 hours. Do you want to rent one?";
@@ -107,7 +108,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 					new PlayerHasItemWithHimCondition("money", MONEY),
 					ConversationStates.IDLE, null,
 					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							if (text.length() > 1000) {
 								text = text.substring(1000);
 							}
@@ -165,7 +166,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 					new AdminCondition(100),
 					ConversationStates.ATTENDING, null,
 					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							if (sentence.getExpressions().size() < 2) {
 								npc.say("Syntax: delete <nameofplayer>");
 								return;

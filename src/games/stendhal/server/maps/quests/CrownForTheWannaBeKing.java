@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -122,7 +123,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.QUESTION_1, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						player.setQuest(QUEST_SLOT, NEEDED_ITEMS);
 						player.addKarma(5.0);
 						entity.say("I want my crown to be beautiful and shiny. I need "
@@ -163,7 +164,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, "items", null,
 				ConversationStates.QUESTION_1, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						final List<String> needed = getMissingItems(player).toStringListWithHash();
 						entity.say("I need "
 								+ Grammar.enumerateCollection(needed)
@@ -253,7 +254,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				new QuestInStateCondition(QUEST_SLOT, "reward"),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC entity) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						entity.say("Oh yes, "
 									+ NPC_NAME
 									+ " told me to reward you well! I hope you enjoy your increased combat abilities!");

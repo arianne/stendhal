@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -48,14 +49,14 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 						"The ferry sails regularly between this island and the mainland, Faiumoni. You can #board it when it's here. Ask me for the #status to find out where it is currently.");
 		npc.add(ConversationStates.ATTENDING, "status", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						npc.say(ferrystate.toString());
 					}
 				});
 
 		npc.add(ConversationStates.ATTENDING, "board", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 
 						if (ferrystate == Status.ANCHORED_AT_ISLAND) {
 							npc.say("In order to board the ferry, you have to pay "
@@ -72,7 +73,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.SERVICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.drop("money", AthorFerry.PRICE)) {
 							player.teleport(getShipZone(), 27, 33, Direction.LEFT, null);
 

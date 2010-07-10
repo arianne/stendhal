@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -23,8 +23,8 @@ public class StartAction implements ChatAction {
 		this.deathmatchInfo = deathmatchInfo;
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-		engine.say("Have fun!");
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+		raiser.say("Have fun!");
 		deathmatchInfo.startSession(player);
 	}
 }

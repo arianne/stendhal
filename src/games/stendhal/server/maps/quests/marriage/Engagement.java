@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -36,13 +37,13 @@ class Engagement {
 				null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC engine) {
+							final EventRaiser raiser) {
 						if (!player.hasQuest(marriage.getQuestSlot())) {
-							engine.say("The great quest of all life is to be #married.");
+							raiser.say("The great quest of all life is to be #married.");
 						} else if (player.isQuestCompleted(marriage.getQuestSlot())) {
-							engine.say("I hope you are enjoying married life.");
+							raiser.say("I hope you are enjoying married life.");
 						} else {
-							engine.say("Haven't you organised your wedding yet?");
+							raiser.say("Haven't you organised your wedding yet?");
 						}
 					}
 				});
@@ -79,14 +80,14 @@ class Engagement {
 				null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 						// find out whom the player wants to marry.
 						final String brideName = sentence.getSubjectName();
 
 						if (brideName == null) {
 							npc.say("You have to tell me who you want to marry.");
 						} else {
-							startEngagement(npc, player, brideName);
+							startEngagement((SpeakerNPC) npc.getEntity(), player, brideName);
 						}
 					}
 				});
@@ -98,7 +99,7 @@ class Engagement {
 				null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 						askBrideE();
 					}
 				});
@@ -117,7 +118,7 @@ class Engagement {
 				null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 						finishEngagement();
 					}
 				});

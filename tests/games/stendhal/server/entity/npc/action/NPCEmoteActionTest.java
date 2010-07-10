@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.action;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -55,21 +56,22 @@ public class NPCEmoteActionTest {
 	public void testFire() throws Throwable {
 		final SpeakerNPC npc = SpeakerNPCTestHelper.createSpeakerNPC();
 		npc.setName("TestNPC");
+		EventRaiser raiser = new EventRaiser(npc);
 		new NPCEmoteAction("hugs").fire(PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("!me hugs TestNPC"),
-				npc);
+				raiser);
 		new NPCEmoteAction("hugs").fire(PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("!me killing TestNPC"),
-				npc);
+				raiser);
 		new NPCEmoteAction("hugs").fire(PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("I killing TestNPC"),
-				npc);
+				raiser);
 		new NPCEmoteAction("hugs").fire(PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("!me hugs Monogenes"),
-				npc);
+				raiser);
 		new NPCEmoteAction("hugs").fire(PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("!me hugs "),
-				npc);
+				raiser);
 	}
 
 	/**

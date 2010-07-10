@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
@@ -41,7 +42,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
  private static final Logger logger = Logger.getLogger(ChallengerNPC.class);
 	private final class ChallengeChatAction implements ChatAction {
 
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			int cost = COST_FACTOR * player.getLevel();
 			if (!player.isEquipped("money", cost)) {
 				npc.say("You don't have enough money with you, the fee at your level is " + cost + " money.");
@@ -92,7 +93,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 				ConversationStates.QUEST_OFFERED, 
 				null,
 				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						npc.say("The fee is your current level, multiplied by " + COST_FACTOR + " and payable in cash. At your level of " 
 								+ player.getLevel() + " the fee is " + COST_FACTOR * player.getLevel() + " money. Do you want to fight?");			
 				}
@@ -159,7 +160,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 				ConversationStates.IDLE, 
 				null, 
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String zoneName = player.getName() + "_adventure_island";
 						final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
 						player.teleport(zone, 4, 4, Direction.DOWN, null);

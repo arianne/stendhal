@@ -8,6 +8,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
@@ -80,7 +81,7 @@ class MakingFabric {
 			 *            the involved player
 			 */
 			@Override
-				public boolean transactAgreedDeal(final SpeakerNPC npc, final Player player) {
+				public boolean transactAgreedDeal(final EventRaiser npc, final Player player) {
 				if (getMaximalAmount(player) < amount) {
 					// The player tried to cheat us by placing the resource
 					// onto the ground after saying "yes"
@@ -118,7 +119,7 @@ class MakingFabric {
 			 *            The player who wants to fetch the product
 			 */
 			@Override
-				public void giveProduct(final SpeakerNPC npc, final Player player) {
+				public void giveProduct(final EventRaiser npc, final Player player) {
 				final String orderString = player.getQuest(mithrilcloak.getQuestSlot());
 				final String[] order = orderString.split(";");
 				final int numberOfProductItems = Integer.parseInt(order[1]);
@@ -147,7 +148,7 @@ class MakingFabric {
 				"make",
 				new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"), ConversationStates.ATTENDING, null,
 				new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (sentence.hasError()) {
 							npc.say("Sorry, I did not understand you. "
 									+ sentence.getErrorString());
@@ -195,7 +196,7 @@ class MakingFabric {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 					behaviour.transactAgreedDeal(npc, player);
 					}
 				});
@@ -210,7 +211,7 @@ class MakingFabric {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 						npc.say("I still haven't finished your last order!");
 					}
 				});
@@ -221,7 +222,7 @@ class MakingFabric {
 			ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 						behaviour.giveProduct(npc, player);
 					}
 				});
@@ -257,7 +258,7 @@ class MakingFabric {
 			ConversationStates.IDLE, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-									 final SpeakerNPC npc) {
+									 final EventRaiser npc) {
 						final String orderString = player.getQuest(mithrilcloak.getQuestSlot());
 						final String[] order = orderString.split(";");
 						final int numberOfProductItems = Integer.parseInt(order[1]);
@@ -313,7 +314,7 @@ class MakingFabric {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isEquipped("silk thread", 40)
 						&& player.isEquipped("mithril nugget", 7)
 						&& player.isEquipped("balloon")) {
@@ -338,7 +339,7 @@ class MakingFabric {
 				ConversationPhrases.GREETING_MESSAGES,
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "fusingthread;"),
 			ConversationStates.ATTENDING, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String orderString = player.getQuest(mithrilcloak.getQuestSlot());
 					final String[] order = orderString.split(";");
 					final long delay = REQUIRED_HOURS_MITHRIL_THREAD * MathHelper.MILLISECONDS_IN_ONE_HOUR;
@@ -465,7 +466,7 @@ class MakingFabric {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isEquipped("mithril thread", 40)) {
 						
 							player.drop("mithril thread", 40);
@@ -493,7 +494,7 @@ class MakingFabric {
 			Arrays.asList("weave", "fabric", "magical", "mithril fabric", "ida", "mithril", "cloak", "mithril cloak", "task", "quest"),
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "weavingfabric;"),
 			ConversationStates.ATTENDING, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					final long delay = REQUIRED_HOURS_FABRIC * MathHelper.MILLISECONDS_IN_ONE_HOUR;
 					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)

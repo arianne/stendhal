@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
@@ -60,8 +61,8 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 					ConversationStates.ATTENDING, 
 					null, 
 					new ChatAction() {
-						public void fire(final Player player,final Sentence sentence, final SpeakerNPC npc) {
-							npc.getEngine().step(player, "buy icecream");
+						public void fire(final Player player,final Sentence sentence, final EventRaiser npc) {
+							((SpeakerNPC) npc.getEntity()).getEngine().step(player, "buy icecream");
 							};
 						} );
 

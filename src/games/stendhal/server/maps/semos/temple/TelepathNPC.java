@@ -8,6 +8,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -55,18 +56,18 @@ public class TelepathNPC implements ZoneConfigurator {
 				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.ATTENDING,
 				        null, new ChatAction() {
 
-					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						        if (player.hasQuest("meet_io")) {
 									if (player.isBadBoy()) {
 										// notice pk icon 
-										engine.say("Hi again, " + player.getTitle() + ". I sense you have been branded with the mark of a killer. Do you wish to have it removed?");
-										engine.setCurrentState(ConversationStates.QUESTION_1);
+										raiser.say("Hi again, " + player.getTitle() + ". I sense you have been branded with the mark of a killer. Do you wish to have it removed?");
+										raiser.setCurrentState(ConversationStates.QUESTION_1);
 									} else {
-										engine.say("Hi again, " + player.getTitle()
+										raiser.say("Hi again, " + player.getTitle()
 							                + ". How can I #help you this time? Not that I don't already know...");
 									}
 						        } else {
-							        engine
+							        raiser
 							                .say("I awaited you, "
 							                        + player.getTitle()
 							                        + ". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
@@ -77,20 +78,20 @@ public class TelepathNPC implements ZoneConfigurator {
 				add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,
 				        null, new ChatAction() {
 
-					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						       	if ((player.getLastPVPActionTime() > System.currentTimeMillis()
 											- 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK)) {
 									// player attacked another within the last two weeks
 									long timeRemaining = player.getLastPVPActionTime() - System.currentTimeMillis() 
 										+ 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
-									engine.say("You will have to abstain from even attacking other people for two full weeks. So come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ". And remember, I will know if you even think bad thoughts!");
+									raiser.say("You will have to abstain from even attacking other people for two full weeks. So come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ". And remember, I will know if you even think bad thoughts!");
 								} else if (player.getKarma() < 5) {
 									// player does not have much good karma
-									engine.say("They say what goes around, comes around. A good thing will happen for you when you have good karma again. Which means you, in turn, must do a good deed for someone else. Come back when your karma is better.");
+									raiser.say("They say what goes around, comes around. A good thing will happen for you when you have good karma again. Which means you, in turn, must do a good deed for someone else. Come back when your karma is better.");
 								} else {
 									// player has fulfilled all requirements to be rehabilitated
-									engine.say("Are you really sorry for what you did?");
-									engine.setCurrentState(ConversationStates.QUESTION_2);
+									raiser.say("Are you really sorry for what you did?");
+									raiser.setCurrentState(ConversationStates.QUESTION_2);
 								}
 							} 
 					    }
@@ -101,7 +102,7 @@ public class TelepathNPC implements ZoneConfigurator {
 				add(ConversationStates.QUESTION_2, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,
 				        "Good, I knew you were.", new ChatAction() {
 
-					        public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 								player.rehabilitate(); 	
 							} });
 				// player said no they are not really sorry
