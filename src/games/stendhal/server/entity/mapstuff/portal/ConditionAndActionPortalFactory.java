@@ -12,12 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
-import org.codehaus.groovy.control.CompilationFailedException;
-
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
+
+import org.codehaus.groovy.control.CompilationFailedException;
 
 /**
  * A factory for <code>ConditionCheckingPortal</code> objects.
@@ -34,13 +35,42 @@ public class ConditionAndActionPortalFactory extends AccessCheckingPortalFactory
 	 *             If the quest attribute is missing.
 	 */
 	protected ChatCondition getCondition(final ConfigurableFactoryContext ctx) {
-		String conditionString = ctx.getRequiredString("condition");
+		String value = ctx.getString("condition", null);
+		if (value == null) {
+			return null;
+		}
 		Binding groovyBinding = new Binding();
 		final GroovyShell interp = new GroovyShell(groovyBinding);
 		try {
 			String code = "import games.stendhal.server.entity.npc.condition.*;\r\n"
-				+ conditionString;
+				+ value;
 			return (ChatCondition) interp.evaluate(code);
+		} catch (CompilationFailedException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+
+	/**
+	 * Extract the quest name from a context.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The quest name.
+	 * @throws IllegalArgumentException
+	 *             If the quest attribute is missing.
+	 */
+	protected ChatAction getAction(final ConfigurableFactoryContext ctx) {
+		String value = ctx.getString("action", null);
+		if (value == null) {
+			return null;
+		}
+		Binding groovyBinding = new Binding();
+		final GroovyShell interp = new GroovyShell(groovyBinding);
+		try {
+			String code = "import games.stendhal.server.entity.npc.action.*;\r\n"
+				+ value;
+			return (ChatAction) interp.evaluate(code);
 		} catch (CompilationFailedException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -61,10 +91,11 @@ public class ConditionAndActionPortalFactory extends AccessCheckingPortalFactory
 	protected AccessCheckingPortal createPortal(final ConfigurableFactoryContext ctx) {
 		String rejectMessage = getRejectedMessage(ctx);
 		ChatCondition condition = getCondition(ctx);
+		ChatAction action = getAction(ctx);
 		if (rejectMessage != null) {
-			return new ConditionAndActionPortal(condition, rejectMessage);
+			return new ConditionAndActionPortal(condition, rejectMessage, action);
 		} else {
-			return new ConditionAndActionPortal(condition);
+			return new ConditionAndActionPortal(condition, action);
 		}
 	}
 }

@@ -13,33 +13,38 @@
 package games.stendhal.server.entity.mapstuff.portal;
 
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 public class ConditionAndActionPortal extends AccessCheckingPortal {
 	private final ChatCondition condition;
+	private final ChatAction action;
 
 	/**
 	 * Creates a ConditionCheckingPortal
 	 *
-	 * @param condition condition to check
+	 * @param condition optional condition to check
+	 * @param action optional action to execute
 	 */
-	public ConditionAndActionPortal(ChatCondition condition) {
-		this(condition, "Why should i go down there?. It looks very dangerous.");
+	public ConditionAndActionPortal(ChatCondition condition, ChatAction action) {
+		this(condition, "Why should i go down there?. It looks very dangerous.", action);
 	}
 
 	/**
 	 * Creates a ConditionCheckingPortal
 	 *
-	 * @param condition condition to check
+	 * @param condition optional condition to check
 	 * @param rejectMessage message to tell the player in case the condition is not met
+	 * @param action optional action to execute
 	 */
-	public ConditionAndActionPortal(ChatCondition condition, String rejectMessage) {
+	public ConditionAndActionPortal(ChatCondition condition, String rejectMessage, ChatAction action) {
 		super(rejectMessage);
-
 		this.condition = condition;
+		this.action = action;
 	}
 
 	/**
@@ -53,6 +58,21 @@ public class ConditionAndActionPortal extends AccessCheckingPortal {
 	@Override
 	protected boolean isAllowed(final RPEntity user) {
 		Sentence sentence = ConversationParser.parse(user.get("text"));
-		return condition.fire((Player) user, sentence, this);
+		if (condition != null) {
+			return condition.fire((Player) user, sentence, this);
+		}
+		return true;
 	}
+
+	@Override
+	public boolean onUsed(RPEntity user) {
+		Sentence sentence = ConversationParser.parse(user.get("text"));
+		boolean res = super.onUsed(user);
+		if (res && (action != null)) {
+			action.fire((Player) user, sentence, new EventRaiser(this));
+		}
+		return res;
+	}
+
+	
 }
