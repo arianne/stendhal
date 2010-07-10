@@ -2173,10 +2173,28 @@ East: Ados city
 
 	<zone name="0_semos_road_se" level="0" x="500128" y="500064"
 		file="Level 0/semos/road_se.tmx">
+	
+		<entity x="72" y="25">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">deep_forest</parameter>
+				<parameter name="volume">120</parameter>
+				<parameter name="radius">60</parameter>
+			</implementation>
+		</entity>
+	
 	</zone>
 
 	<zone name="0_semos_plains_s" level="0" x="500000" y="500064"
 		file="Level 0/semos/plains_s.tmx">
+		
+		<entity x="28" y="63">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">deep_forest</parameter>
+				<parameter name="volume">120</parameter>
+				<parameter name="radius">30</parameter>
+			</implementation>
+		</entity>
+		
 		<portal x="74" y="28" ref="dream_exit1">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
@@ -2236,6 +2254,14 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="0_semos_forest_s" level="0" x="500000" y="500128"
 		file="Level 0/semos/forest_s.tmx">
+		
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">deep_forest</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+				
 		<!-- wishing well-->
 		<entity x="44" y="70">
 			<implementation
