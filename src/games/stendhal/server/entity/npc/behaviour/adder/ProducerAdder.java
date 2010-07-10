@@ -4,6 +4,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
@@ -41,9 +42,9 @@ public class ProducerAdder {
 
         /* If the NPC is attending another player, say who they are attending */
 		npc.addWaitMessage(null, new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
-				engine.say("Please wait! I am attending "
-						+ engine.getAttending().getName() + ".");
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+				raiser.say("Please wait! I am attending "
+						+ raiser.getAttending().getName() + ".");
 			}
 		});
 
@@ -64,7 +65,7 @@ public class ProducerAdder {
                 ConversationStates.ATTENDING, 
                 null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
                         // TODO: this can be a part of a separate condition-action block
 						if (sentence.hasError()) {
 							npc.say("Sorry, I did not understand you. "
@@ -109,7 +110,7 @@ public class ProducerAdder {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 						behaviour.transactAgreedDeal(npc, player);
 					}
 				});
@@ -127,7 +128,7 @@ public class ProducerAdder {
                 ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
                         // TODO: check - can the StateRemainingTimeAction be used here? 
 						npc.say("I still haven't finished your last order. Come back in "
 								+ behaviour.getApproximateRemainingTime(player)
@@ -145,7 +146,7 @@ public class ProducerAdder {
                 ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 						behaviour.giveProduct(npc, player);
 					}
 				});

@@ -2,7 +2,7 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -59,7 +59,7 @@ public class SayTimeRemainingAction implements ChatAction {
 		this.arg = 0;
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		if (!player.hasQuest(questname)) {
 			return;
 		} else {
@@ -73,7 +73,7 @@ public class SayTimeRemainingAction implements ChatAction {
 				- System.currentTimeMillis();
 			// TODO: return an error if tokens.length < arg 
 			// TODO: catch the number format exception in case tokens[arg] is no number? or does parseLong do this?
-			engine.say(message + " " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+			raiser.say(message + " " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
 		}
 	}
 

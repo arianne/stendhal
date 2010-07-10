@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
@@ -34,7 +35,7 @@ public class BuyerAdder {
 					ConversationStates.ATTENDING,
 					null, 
 					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							StringBuilder text = new StringBuilder("i buy ");
 							if(behaviour.dealtItems().size()==1) {
 								text.append("only this kind of items: ");
@@ -65,11 +66,11 @@ public class BuyerAdder {
 				ConversationStates.SELL_PRICE_OFFERED, null,
 				new ChatAction() {
 
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isBadBoy()) {
 							// don't buy from player killers at all
-							engine.say("Sorry, but I just can't trust you. You look too dangerous to deal with. Please go away.");
-							engine.setCurrentState(ConversationStates.IDLE);
+							raiser.say("Sorry, but I just can't trust you. You look too dangerous to deal with. Please go away.");
+							raiser.setCurrentState(ConversationStates.IDLE);
 							return;
 						}
 						if (behaviour.parseRequest(sentence)) {
@@ -79,52 +80,52 @@ public class BuyerAdder {
 										+ " " + behaviour.getChosenItemName()
 										+ " from player "
 										+ player.getName() + " talking to "
-										+ engine.getName() + " saying "
+										+ raiser.getName() + " saying "
 										+ sentence);
-								engine.say("Sorry, the maximum number of " 
+								raiser.say("Sorry, the maximum number of " 
 										+ behaviour.getChosenItemName() 
 										+ " which I can buy at once is 1000.");
-								engine.setCurrentState(ConversationStates.ATTENDING);
+								raiser.setCurrentState(ConversationStates.ATTENDING);
 							} else if (behaviour.getAmount() > 0) {
 								final String itemName=behaviour.getChosenItemName();
 								// will check if player have claimed amount of items
 								if(itemName.equals("sheep")) {
 									// player have no sheep...
 									if (!player.hasSheep()) {
-										engine.say("You don't have any sheep, " + player.getTitle() + "! What are you trying to pull?");
+										raiser.say("You don't have any sheep, " + player.getTitle() + "! What are you trying to pull?");
 										return;
 									}
 								} else {
 									
 								}
-								final int price = behaviour.getCharge(engine, player);
+								final int price = behaviour.getCharge(player);
 
 								if (price != 0) {
-	    							engine.say(Grammar.makeUpperCaseWord(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName()))
+	    							raiser.say(Grammar.makeUpperCaseWord(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName()))
 	    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth "
 	    									+ price + ". Do you want to sell "
 	    									+ Grammar.itthem(behaviour.getAmount()) + "?");
 								} else {
-									engine.say("Sorry, " 
+									raiser.say("Sorry, " 
 											+ Grammar.thatthose(behaviour.getAmount()) + " " 
 											+ Grammar.plnoun(behaviour.getAmount(), behaviour.getChosenItemName())
 	    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth nothing.");
-									engine.setCurrentState(ConversationStates.ATTENDING);
+									raiser.setCurrentState(ConversationStates.ATTENDING);
 								}
 							} else {
-								engine.say("Sorry, how many " + Grammar.plural(behaviour.getChosenItemName()) + " do you want to sell?!");
+								raiser.say("Sorry, how many " + Grammar.plural(behaviour.getChosenItemName()) + " do you want to sell?!");
 
-    							engine.setCurrentState(ConversationStates.ATTENDING);
+    							raiser.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
 							if (behaviour.getChosenItemName() == null) {
-								engine.say("Please tell me what you want to sell.");
+								raiser.say("Please tell me what you want to sell.");
 							} else {
-								engine.say("Sorry, I don't buy any "
+								raiser.say("Sorry, I don't buy any "
 										+ Grammar.plural(behaviour.getChosenItemName()) + ".");
 							}
 
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -133,12 +134,12 @@ public class BuyerAdder {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						logger.debug("Buying something from player " + player.getName());
 
-						boolean success = behaviour.transactAgreedDeal(engine, player);
+						boolean success = behaviour.transactAgreedDeal(raiser, player);
 						if (success) {
-							engine.addEvent(new SoundEvent("coins-1", SoundLayer.CREATURE_NOISE));
+							raiser.addEvent(new SoundEvent("coins-1", SoundLayer.CREATURE_NOISE));
 						}
 					}
 				});

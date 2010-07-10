@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
@@ -62,7 +63,7 @@ public class SellerAdder {
 				new ChatAction() {
 
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC engine) {
+							final EventRaiser raiser) {
 						// find out what the player wants to buy, and how much of it
 						if (behaviour.parseRequest(sentence)) {
 							// find out if the NPC sells this item, and if so,
@@ -73,12 +74,12 @@ public class SellerAdder {
 										+ " " + behaviour.getChosenItemName()
 										+ " to player "
 										+ player.getName() + " talking to "
-										+ engine.getName() + " saying "
+										+ raiser.getName() + " saying "
 										+ sentence);
-								engine.say("Sorry, the maximum number of " 
+								raiser.say("Sorry, the maximum number of " 
 										+ behaviour.getChosenItemName() 
 										+ " which I can sell at once is 1000.");
-								engine.setCurrentState(ConversationStates.ATTENDING);
+								raiser.setCurrentState(ConversationStates.ATTENDING);
 							} else if (behaviour.getAmount() > 0) {
 								int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
 									* behaviour.getAmount();
@@ -97,21 +98,21 @@ public class SellerAdder {
 								builder.append(". Do you want to buy ");
 								builder.append(Grammar.itthem(behaviour.getAmount()));
 								builder.append("?");
-								engine.say(builder.toString());
+								raiser.say(builder.toString());
 							} else {
-								engine.say("Sorry, how many " + Grammar.plural(behaviour.getChosenItemName()) + " do you want to buy?!");
+								raiser.say("Sorry, how many " + Grammar.plural(behaviour.getChosenItemName()) + " do you want to buy?!");
 
-								engine.setCurrentState(ConversationStates.ATTENDING);
+								raiser.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
 							if (behaviour.getChosenItemName() == null) {
-								engine.say("Please tell me what you want to buy.");
+								raiser.say("Please tell me what you want to buy.");
 							} else {
-								engine.say("Sorry, I don't sell "
+								raiser.say("Sorry, I don't sell "
 										+ Grammar.plural(behaviour.getChosenItemName()) + ".");
 							}
 
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -120,13 +121,13 @@ public class SellerAdder {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final String itemName = behaviour.getChosenItemName();
 						logger.debug("Selling a " + itemName + " to player " + player.getName());
 
-						boolean success = behaviour.transactAgreedDeal(engine, player);
+						boolean success = behaviour.transactAgreedDeal(raiser, player);
 						if (success) {
-							engine.addEvent(new SoundEvent("coins-1", SoundLayer.CREATURE_NOISE));
+							raiser.addEvent(new SoundEvent("coins-1", SoundLayer.CREATURE_NOISE));
 						}
 					}
 				});

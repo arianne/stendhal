@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -38,7 +38,7 @@ public class MultipleActions implements ChatAction {
 		this.actions = new LinkedList<ChatAction>(actions);
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		for (final ChatAction action : actions) {
 			action.fire(player, sentence, npc);
 		}

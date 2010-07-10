@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -51,7 +51,7 @@ public class StartRecordingKillsAction implements ChatAction {
 		this.KILLS_INDEX=index;
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		final StringBuilder sb= new StringBuilder("");
 		for (final String creature : toKill.keySet()) {
 			final int requiredSolo=toKill.get(creature).first();

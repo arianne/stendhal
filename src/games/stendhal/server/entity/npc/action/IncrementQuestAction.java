@@ -2,7 +2,7 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -48,7 +48,7 @@ public class IncrementQuestAction implements ChatAction {
 		this.increment = increment;
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String substate = player.getQuest(questname,index);
 		int questcount;
 		if (substate.equals("null")) {

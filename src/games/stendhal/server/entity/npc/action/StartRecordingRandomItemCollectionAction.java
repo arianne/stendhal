@@ -3,7 +3,7 @@ package games.stendhal.server.entity.npc.action;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
@@ -63,7 +63,7 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 		this.message = message;
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final String itemname = Rand.rand(items.keySet());
 		final int quantity = items.get(itemname);
 		
@@ -73,7 +73,7 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 		substitutes.put("the item", "the " + Grammar.plnoun(quantity,itemname));
 		
 		
-		engine.say(StringUtils.substitute(message,substitutes));		
+		raiser.say(StringUtils.substitute(message,substitutes));		
 		if (index > -1) {
 			player.setQuest(questname, index, itemname + "=" + quantity);
 		} else {

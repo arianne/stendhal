@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
@@ -105,7 +104,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 * 
 	 * @return The price; 0 if no item was chosen or if the amount is 0.
 	 */
-	public int getCharge(final SpeakerNPC npc, final Player player) {
+	public int getCharge(final Player player) {
 		if (chosenItemName == null) {
 			return 0;
 		} else {

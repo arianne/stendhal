@@ -6,7 +6,7 @@ import java.util.Map;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
@@ -57,7 +57,7 @@ public class SayRequiredItemAction implements ChatAction {
 		this.index = -1;
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		if (!player.hasQuest(questname)) {
 			logger.error(player.getName() + " does not have quest " + questname);
 			return;
@@ -79,7 +79,7 @@ public class SayRequiredItemAction implements ChatAction {
 			substitutes.put("the item", "the " + Grammar.plnoun(amount,itemname));
 			
 			
-			engine.say(StringUtils.substitute(message,substitutes));		
+			raiser.say(StringUtils.substitute(message,substitutes));		
 		}
 	}
 

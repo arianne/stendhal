@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.npc.fsm;
 
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -18,8 +18,8 @@ public interface PostTransitionAction {
 	 *            player who caused the transition
 	 * @param sentence
 	 *            text he/she said
-	 * @param engine
+	 * @param raiser
 	 *            the NPC doing the transition
 	 */
-	void fire(Player player, Sentence sentence, SpeakerNPC engine);
+	void fire(Player player, Sentence sentence, EventRaiser raiser);
 }

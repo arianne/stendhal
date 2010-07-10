@@ -5,6 +5,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Expression;
@@ -370,7 +371,7 @@ public class Engine {
 		currentState = nextState;
 
 		if (trans.getAction() != null) {
-			trans.getAction().fire(player, sentence, speakerNPC);
+			trans.getAction().fire(player, sentence, new EventRaiser(speakerNPC));
 		}
 	}
 

@@ -4,7 +4,7 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.mapstuff.sign.SignFromHallOfFameLoader;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -40,7 +40,7 @@ public class LoadSignFromHallOfFameAction implements ChatAction {
 	}
 
 
-	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		SignFromHallOfFameLoader loader = new SignFromHallOfFameLoader(sign, introduction, fametype, max, ascending, false);
 		TurnNotifier.get().notifyInTurns(0, loader);
 	}

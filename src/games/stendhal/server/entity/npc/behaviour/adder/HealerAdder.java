@@ -4,6 +4,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -41,29 +42,29 @@ public class HealerAdder {
 				ConversationStates.HEAL_OFFERED, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC engine) {
+							final EventRaiser raiser) {
 						healerBehaviour.setChosenItemName("heal");
 						healerBehaviour.setAmount(1);
-						int cost = healerBehaviour.getCharge(engine, player);
+						int cost = healerBehaviour.getCharge(player);
 						if (player.isBadBoy()) {
 							// don't heal player killers at all
-							engine.say("You killed another soul recently, giving you an aura of evil. I cannot, and will not, heal you.");
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							raiser.say("You killed another soul recently, giving you an aura of evil. I cannot, and will not, heal you.");
+							raiser.setCurrentState(ConversationStates.ATTENDING);
 						} else {
 							if (cost > 0) {
-								engine.say("Healing costs " + cost
+								raiser.say("Healing costs " + cost
 										+ ". Do you have that much?");
 							} else if (cost < 0) {
 								// price depends on level if cost was set at -1
 								// where the factor is |cost| and we have a +1
 								// to avoid 0 charge.
 								cost = player.getLevel() * Math.abs(cost) + 1;
-								engine.say("Healing someone of your abilities costs "
+								raiser.say("Healing someone of your abilities costs "
 												+ cost
 												+ " money. Do you have that much?");
 							} else {
 								if ((player.getATK() > 35) || (player.getDEF() > 35)) {
-									engine.say("Sorry, I cannot heal you because you are way too strong for my limited powers");
+									raiser.say("Sorry, I cannot heal you because you are way too strong for my limited powers");
 								} else if (!player.isNew()
 										&& (player.getLastPVPActionTime() > System
 												.currentTimeMillis()
@@ -72,12 +73,12 @@ public class HealerAdder {
 									// ignore the PVP flag for very young
 									// characters
 									// (low atk, low def AND low level)
-									engine.say("Sorry, but you have a bad aura, so that I am unable to heal you right now.");
+									raiser.say("Sorry, but you have a bad aura, so that I am unable to heal you right now.");
 								} else {
-									engine.say("There, you are healed. How else may I help you?");
+									raiser.say("There, you are healed. How else may I help you?");
 									healerBehaviour.heal(player);
 								}
-								engine.setCurrentState(ConversationStates.ATTENDING);
+								raiser.setCurrentState(ConversationStates.ATTENDING);
 							}
 						}
 					}
@@ -88,17 +89,17 @@ public class HealerAdder {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC engine) {
-						int cost = healerBehaviour.getCharge(engine, player);
+							final EventRaiser raiser) {
+						int cost = healerBehaviour.getCharge(player);
 						if (cost < 0) {
 							cost = player.getLevel() * Math.abs(cost) + 1;
 						}
 						if (player.drop("money",
 								cost)) {
 							healerBehaviour.heal(player);
-							engine.say("There, you are healed. How else may I help you?");
+							raiser.say("There, you are healed. How else may I help you?");
 						} else {
-							engine.say("I'm sorry, but it looks like you can't afford it.");
+							raiser.say("I'm sorry, but it looks like you can't afford it.");
 						}
 					}
 				});

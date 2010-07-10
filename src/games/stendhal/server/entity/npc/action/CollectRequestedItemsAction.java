@@ -5,7 +5,7 @@ import java.util.List;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
@@ -38,7 +38,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 		this.stateAfterCompletion = stateAfterCompletion;
 	}
 	
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 	    final String item = sentence.getTriggerExpression().getNormalized();
 	    ItemCollection missingItems = getMissingItems(player);
 		final Integer missingCount = missingItems.get(item);
@@ -48,16 +48,16 @@ public final class CollectRequestedItemsAction implements ChatAction {
 				missingItems = getMissingItems(player);
 
 				if (missingItems.size() > 0) {
-					engine.say(questionForMore);
+					raiser.say(questionForMore);
 				} else {
-					toExecuteOnCompletion.fire(player, sentence, engine);
-					engine.setCurrentState(this.stateAfterCompletion);
+					toExecuteOnCompletion.fire(player, sentence, raiser);
+					raiser.setCurrentState(this.stateAfterCompletion);
 				}
 			} else {
-				engine.say("You don't have " + item + " with you!");
+				raiser.say("You don't have " + item + " with you!");
 			}
 		} else {
-			engine.say(alreadyBrought);
+			raiser.say(alreadyBrought);
 		}
 	}
 	

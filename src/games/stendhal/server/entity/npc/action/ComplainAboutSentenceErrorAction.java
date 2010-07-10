@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -14,9 +14,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class ComplainAboutSentenceErrorAction implements ChatAction {
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		if (sentence.hasError()) {
-			engine.say("Sorry, I did not understand you. "
+			raiser.say("Sorry, I did not understand you. "
 				+ sentence.getErrorString());
 		}
 	}

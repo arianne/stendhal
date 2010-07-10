@@ -3,7 +3,7 @@ package games.stendhal.server.entity.npc.behaviour.impl;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
@@ -272,7 +272,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 * @param amount
 	 * @return true if all resources can be taken
 	 */
-	public boolean askForResources(final SpeakerNPC npc, final Player player, final int amount) {
+	public boolean askForResources(final EventRaiser npc, final Player player, final int amount) {
 		if (getMaximalAmount(player) < amount) {
 			npc.say("I can only " + getProductionActivity() + " "
 					+ Grammar.quantityplnoun(amount, getProductName())
@@ -298,7 +298,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *            the involved player
 	 */
 	@Override
-	public boolean transactAgreedDeal(final SpeakerNPC npc, final Player player) {
+	public boolean transactAgreedDeal(final EventRaiser npc, final Player player) {
 		if (getMaximalAmount(player) < amount) {
 			// The player tried to cheat us by placing the resource
 			// onto the ground after saying "yes"
@@ -333,7 +333,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 * @param player
 	 *            The player who wants to fetch the product
 	 */
-	public void giveProduct(final SpeakerNPC npc, final Player player) {
+	public void giveProduct(final EventRaiser npc, final Player player) {
 		final int numberOfProductItems = getNumberOfProductItems(player);
 		// String productName = order[1];
 

@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -71,9 +72,9 @@ public class OutfitChangerAdder {
 				new ChatAction() {
 
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC engine) {
+							final EventRaiser raiser) {
 						if (sentence.hasError()) {
-							engine.say("Sorry, I did not understand you. "
+							raiser.say("Sorry, I did not understand you. "
 									+ sentence.getErrorString());
 						}
 
@@ -96,17 +97,17 @@ public class OutfitChangerAdder {
 							final int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
 									* behaviour.getAmount();
 
-							engine.say("To " + command + " a "  + behaviour.getChosenItemName() + " will cost " + price
+							raiser.say("To " + command + " a "  + behaviour.getChosenItemName() + " will cost " + price
 									+ ". Do you want to " + command + " it?");
 						} else {
 							if (behaviour.getChosenItemName() == null) {
-								engine.say("Please tell me what you want to "
+								raiser.say("Please tell me what you want to "
 										+ command + ".");
 							} else {
-								engine.say("Sorry, I don't offer "
+								raiser.say("Sorry, I don't offer "
 										+ Grammar.plural(behaviour.getChosenItemName()) + ".");
 							}
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -116,7 +117,7 @@ public class OutfitChangerAdder {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
+							final EventRaiser npc) {
 						final String itemName = behaviour.getChosenItemName();
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
@@ -145,7 +146,7 @@ public class OutfitChangerAdder {
 					ConversationStates.ATTENDING, null,
 					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence,
-								final SpeakerNPC npc) {
+								final EventRaiser npc) {
 							if (behaviour.returnToOriginalOutfit(player)) {
 								npc.say("Thank you!");
 							} else {

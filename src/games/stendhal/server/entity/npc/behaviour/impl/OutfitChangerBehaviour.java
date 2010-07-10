@@ -17,7 +17,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.Outfit;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
 import java.lang.ref.WeakReference;
@@ -120,7 +120,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 *         was able to equip the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
+	public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
 		final String outfitType = chosenItemName;
 		if (player.getOutfit().getBase() > 80 && player.getOutfit().getBase() < 99) {
 			// if the player is wearing a non standard player base  
@@ -128,8 +128,8 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 			seller.say("You already have a magic outfit on which just wouldn't look good with another - could you please put yourself in something more conventional and ask again? Thanks!");
 			return false;
 		}
-		if (player.isEquipped("money", getCharge(seller, player))) {
-			player.drop("money", getCharge(seller, player));
+		if (player.isEquipped("money", getCharge(player))) {
+			player.drop("money", getCharge(player));
 			putOnOutfit(player, outfitType);
 			return true;
 		} else {

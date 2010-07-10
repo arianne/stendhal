@@ -2,7 +2,7 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.command.DBCommandQueue;
@@ -48,7 +48,7 @@ public class SetHallOfFameToAgeDiffAction implements ChatAction {
 		this.fametype = fametype;
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String orgAge = null;
 		if (index > -1) {
 			orgAge = player.getQuest(questname, index);

@@ -2,7 +2,7 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.Level;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -26,7 +26,7 @@ public class IncreaseXPDependentOnLevelAction implements ChatAction {
 		this.karmabonus = karmabonus;
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC engine) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final int start = Level.getXP(player.getLevel());
 		final int next = Level.getXP(player.getLevel() + 1);
 		int reward = (int) ((next - start) / xpDiff);

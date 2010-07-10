@@ -5,7 +5,7 @@ import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -59,7 +59,7 @@ public class EquipItemAction implements ChatAction {
 		this.bind = bind;
 	}
 
-	public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 		if (item != null) {
     		if (item instanceof StackableItem) {

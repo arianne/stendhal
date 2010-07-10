@@ -15,7 +15,7 @@ package games.stendhal.server.entity.npc.behaviour.impl;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
@@ -32,14 +32,14 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	/**
 	 * Gives the money for the deal to the player. If the player can't carry the
 	 * money, puts it on the ground.
-	 * @param buyerNPC 
+	 *
 	 * @param player
 	 *            The player who sells
 	 */
-	protected void payPlayer(final SpeakerNPC buyerNPC, final Player player) {
+	protected void payPlayer(final Player player) {
 		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"money");
-		money.setQuantity(getCharge(buyerNPC, player));
+		money.setQuantity(getCharge(player));
 		player.equipOrPutOnGround(money);
 	}
 
@@ -55,9 +55,9 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 *         has the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
+	public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
 		if (player.drop(chosenItemName, getAmount())) {
-			payPlayer(seller, player);
+			payPlayer(player);
 			seller.say("Thanks! Here is your money.");
 			return true;
 		} else {

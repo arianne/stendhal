@@ -16,7 +16,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
@@ -64,7 +64,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 *         was able to equip the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(final SpeakerNPC seller, final Player player) {
+	public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
 		final Item item = getAskedItem(chosenItemName);
 		if (item == null) {
 			logger.error("Trying to sell an nonexistent item: " + getChosenItemName());
@@ -88,7 +88,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 			return false;
 		}
 		
-		int price = getCharge(seller, player);
+		int price = getCharge(player);
 		if (player.isBadBoy()) {
 			price = (int) (BAD_BOY_BUYING_PENALTY * price);
 		}
