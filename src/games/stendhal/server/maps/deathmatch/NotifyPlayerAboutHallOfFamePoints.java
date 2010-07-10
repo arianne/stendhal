@@ -16,9 +16,6 @@ import games.stendhal.server.core.engine.dbcommand.ReadHallOfFamePointsCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.List;
-
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.db.command.ResultHandle;
@@ -53,16 +50,14 @@ class NotifyPlayerAboutHallOfFamePoints implements TurnListener {
 
 	public void onTurnReached(int currentTurn) {
 		// if there is no result, wait some more
-		List<ReadHallOfFamePointsCommand> list = DBCommandQueue.get().getResults(ReadHallOfFamePointsCommand.class, handle);
-		if (list.isEmpty()) {
+		ReadHallOfFamePointsCommand command = DBCommandQueue.get().getOneResult(ReadHallOfFamePointsCommand.class, handle);
+		if (command == null) {
 			TurnNotifier.get().notifyInTurns(0, this);
 			return;
 		}
 
 		// tell the player his score
-		ReadHallOfFamePointsCommand command = list.get(0);
-   		int points = command.getPoints();
+		int points = command.getPoints();
 		npc.say("Congratulations " + playerName + ", your score is now " + points);
 	}
-	                
 }

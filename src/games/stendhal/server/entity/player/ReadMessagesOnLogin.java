@@ -32,19 +32,18 @@ public class ReadMessagesOnLogin implements LoginListener, TurnListener {
 	/**
 	 * Completes handling the get messages action.
 	 * 
-	 * @param currentTurn.
+	 * @param currentTurn ignored
 	 */
 	public void onTurnReached(int currentTurn) {
-		List<GetPostmanMessagesCommand> list = DBCommandQueue.get().getResults(GetPostmanMessagesCommand.class, handle);
+		GetPostmanMessagesCommand command = DBCommandQueue.get().getOneResult(GetPostmanMessagesCommand.class, handle);
 		
-		if (list.isEmpty()) {
+		if (command == null) {
 			TurnNotifier.get().notifyInTurns(0, this);
 			return;
 		}
 
-		GetPostmanMessagesCommand checkcommand = list.get(0);
-	    List<ChatMessage> messages = checkcommand.getMessages();
-		Player player = checkcommand.getPlayer();
+		List<ChatMessage> messages = command.getMessages();
+		Player player = command.getPlayer();
 		LOGGER.debug(messages.size()+ " messages left for " + player.getName());
 		for (ChatMessage chatmessage : messages) {
 			LOGGER.debug(player.getName() + " got message: " + chatmessage.toString());

@@ -57,14 +57,13 @@ public class SignFromHallOfFameLoader implements TurnListener {
 
 	public void onTurnReached(int currentTurn) {
 		// if there is no result, wait some more
-		List<ReadCharactersFromHallOfFameCommand> list = DBCommandQueue.get().getResults(ReadCharactersFromHallOfFameCommand.class, handle);
-		if (list.isEmpty()) {
+		ReadCharactersFromHallOfFameCommand command = DBCommandQueue.get().getOneResult(ReadCharactersFromHallOfFameCommand.class, handle);
+		if (command == null) {
 			TurnNotifier.get().notifyInTurns(0, this);
 			return;
 		}
 
 		// update the sign
-		ReadCharactersFromHallOfFameCommand command = list.get(0);
 		List<String> players = command.getNames();
 
 		if (lineBreaks) {

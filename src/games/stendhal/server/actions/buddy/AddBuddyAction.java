@@ -3,9 +3,6 @@ package games.stendhal.server.actions.buddy;
 import static games.stendhal.common.constants.Actions.BUDDYONLINE;
 import static games.stendhal.common.constants.Actions.BUDDY_OFFLINE;
 import static games.stendhal.common.constants.Actions.TARGET;
-
-import java.util.List;
-
 import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.ActionListener;
@@ -54,18 +51,16 @@ class AddBuddyAction implements ActionListener, TurnListener {
 	/**
 	 * Completes handling the buddy action.
 	 * 
-	 * @param currentTurn.
+	 * @param currentTurn ignored
 	 */
 	public void onTurnReached(int currentTurn) {
-		List<CheckCharacterExistsCommand> list = DBCommandQueue.get().getResults(CheckCharacterExistsCommand.class, handle);
+		CheckCharacterExistsCommand checkcommand = DBCommandQueue.get().getOneResult(CheckCharacterExistsCommand.class, handle);
 		
-		if (list.isEmpty()) {
+		if (checkcommand == null) {
 			TurnNotifier.get().notifyInTurns(0, this);
 			return;
 		}
 
-		// update the sign
-		CheckCharacterExistsCommand checkcommand = list.get(0);
 		boolean characterExists = checkcommand.exists();
 		Player player = checkcommand.getPlayer();
 		String who = checkcommand.getWho();
