@@ -2,7 +2,6 @@ Changelog
 ---------
 
 0.86
-- new npc added to ados market, which buy blue shield 
 - attack targets drawn as circles
 - settings panel uses icons and is always visible
 - new help menus for settings panel
@@ -13,6 +12,10 @@ Changelog
 - bakers want more button mushrooms
 - new music by semos dungeon and on the athor ship
 - Simon in Ados church offers helpful guidance
+- new npc added to ados market, which buy blue shield 
+- Messages from NPCs to offline players for postman can be stored in a table (without postman online)
+- Diogenes tells you about postman, he recently remembered that used to be his job
+- portals can do actions 
 
 *bugfixes*
 - walkblocker tables have proper resistance
