@@ -181,7 +181,7 @@ public class KillEnemyArmyTest {
 		double tempkarma = player.getKarma();
 		en.step(player, "quest");
         assertEquals("Good work! Take these coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.", getReply(npc));
-        assertEquals(1000037, player.getXP());
+        assertEquals(tempxp, player.getXP()-100000);
         int moneys = player.getEquippedItemClass("bag", "money").getQuantity();
         int moneysdiff = moneys - tempmoneys;
         assertTrue((moneysdiff>9999)&&(moneysdiff<60001));

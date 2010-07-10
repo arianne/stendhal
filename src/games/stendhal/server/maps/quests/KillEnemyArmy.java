@@ -355,8 +355,7 @@ import org.apache.log4j.Logger;
 			player.setQuest(QUEST_SLOT, "done;"+System.currentTimeMillis());
 			player.equipOrPutOnGround(money);
 			player.addKarma(karmabonus);
-			//player.addXP(500000);
-			new IncreaseXPDependentOnLevelAction(4.0/3.0, 300).fire(player, sentence, speakerNPC);
+			player.addXP(100000);			
 		};
 	}
 
@@ -495,6 +494,11 @@ import org.apache.log4j.Logger;
 	public String getName() {
 		return("KillEnemyArmy");
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 80;
+	}	
 	
  	@Override
  	public List<String> getHistory(final Player player) {
