@@ -158,6 +158,78 @@
        <attribute name="width">3</attribute>
        <attribute name="height">2</attribute>
     </entity> 
+    
+
+		<entity x="85" y="14">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2, wave-11</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+    
+		<entity x="84" y="30">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2, wave-11</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+		
+		<entity x="85" y="47">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2, wave-11</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+		
+		<entity x="78" y="76">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2, wave-11</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="78" y="90">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2, wave-11</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="78" y="106">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2, wave-11</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="77" y="121">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2, wave-11</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
  </zone>
 
  <zone name="0_ados_mountain_n_w2" level="0" x="500384" y="499872" file="Level 0/ados/mountain_n_w2.tmx">
