@@ -18,7 +18,7 @@ import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
-public class ConditionCheckingPortal extends AccessCheckingPortal {
+public class ConditionAndActionPortal extends AccessCheckingPortal {
 	private final ChatCondition condition;
 
 	/**
@@ -26,7 +26,7 @@ public class ConditionCheckingPortal extends AccessCheckingPortal {
 	 *
 	 * @param condition condition to check
 	 */
-	public ConditionCheckingPortal(ChatCondition condition) {
+	public ConditionAndActionPortal(ChatCondition condition) {
 		this(condition, "Why should i go down there?. It looks very dangerous.");
 	}
 
@@ -36,7 +36,7 @@ public class ConditionCheckingPortal extends AccessCheckingPortal {
 	 * @param condition condition to check
 	 * @param rejectMessage message to tell the player in case the condition is not met
 	 */
-	public ConditionCheckingPortal(ChatCondition condition, String rejectMessage) {
+	public ConditionAndActionPortal(ChatCondition condition, String rejectMessage) {
 		super(rejectMessage);
 
 		this.condition = condition;

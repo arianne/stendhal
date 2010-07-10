@@ -22,7 +22,7 @@ import groovy.lang.GroovyShell;
 /**
  * A factory for <code>ConditionCheckingPortal</code> objects.
  */
-public class ConditionCheckingPortalFactory extends AccessCheckingPortalFactory {
+public class ConditionAndActionPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Extract the quest name from a context.
@@ -62,9 +62,9 @@ public class ConditionCheckingPortalFactory extends AccessCheckingPortalFactory 
 		String rejectMessage = getRejectedMessage(ctx);
 		ChatCondition condition = getCondition(ctx);
 		if (rejectMessage != null) {
-			return new ConditionCheckingPortal(condition, rejectMessage);
+			return new ConditionAndActionPortal(condition, rejectMessage);
 		} else {
-			return new ConditionCheckingPortal(condition);
+			return new ConditionAndActionPortal(condition);
 		}
 	}
 }
