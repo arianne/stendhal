@@ -19,24 +19,31 @@ public class ChatMessage {
 	}
 	
 	/**
-	 * @return the source
+	 * @return source
 	 */
 	public String getSource() {
 		return source;
 	}
 	
 	/**
-	 * @return the message
+	 * @return message
 	 */
 	public String getMessage() {
 		return message;
 	}
 
 	/**
-	 * @return the timestamp
+	 * @return timestamp
 	 */
 	public String getTimestamp() {
 		return timestamp;
+	}
+	
+	/**
+	 * @return string of full ChatMessage details
+	 */
+	public String toString() {
+		return source + " left message: " + message + " on " + timestamp;
 	}
 	
 }
