@@ -1,0 +1,36 @@
+package games.stendhal.server.entity.npc.action;
+
+import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
+import marauroa.server.db.command.DBCommandQueue;
+
+/**
+ * Stores a message for delivery with postman
+ *
+ * @author kymara
+ */
+public class StoreMessageAction implements ChatAction {
+
+	private String npcName;
+	private String message;
+
+	/**
+	 * creates a new StoreMessageAction
+	 *
+	 * @param npcName who left the message
+	 * @param message what the message is
+	 */
+	public StoreMessageAction(String npcName, String message) {
+		this.npcName = npcName;
+		this.message = message;		
+	}
+
+
+	public void fire(Player player, Sentence sentence, EventRaiser npc) {
+		DBCommandQueue.get().enqueue(new StoreMessageCommand(npcName, player.getName(), message, "N"));
+	}
+
+}

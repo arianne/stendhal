@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.StoreMessageAction;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -34,9 +35,10 @@ public class RetireeNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting();
-				addJob("Ha ha! Job? I retired decades ago! Ha ha!");
+				addJob("Ha ha! Job? I retired from my job as the #postman decades ago! Ha ha!");
 				addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit http://stendhalgame.org and see how you can help!");
 				addGoodbye();
+				addReply("postman", "I used to deliver messages. But now there's a new kid doing it. Tell you what, I'll send him a message now, to give you.", new StoreMessageAction("Diogenes", "Hello it was nice chatting to you earlier in Semos. If you want to use postman to send messages to others who aren't here right now, just /msg postman"));
 				add(ConversationStates.ATTENDING,
 						ConversationPhrases.QUEST_MESSAGES,
 						null,
