@@ -348,7 +348,7 @@ public class SpeakerNPC extends NPC {
 						|| initChatCondition.fire(nearest, null, this)) {
 					// Note: The sentence parameter is left as null, so be
 					// carefull not to use it in the fire() handler.
-					initChatAction.fire(nearest, null, this);
+					initChatAction.fire(nearest, null, new EventRaiser(this));
 				}
 			}
 		}
@@ -544,7 +544,7 @@ public class SpeakerNPC extends NPC {
 					final Sentence sentence = ConversationParser.parse(text);
 					// Note: sentence is currently not yet used in
 					// the called handler functions.
-					waitAction.fire(player, sentence, this); 
+					waitAction.fire(player, sentence, new EventRaiser(this)); 
 				}
 			}
 
@@ -594,7 +594,7 @@ public class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
 						+ npc.getAttending().getTitle() + ".");
@@ -637,7 +637,7 @@ public class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
 						+ npc.getAttending().getTitle() + ".");
@@ -657,7 +657,7 @@ public class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
 						+ npc.getAttending().getTitle() + ".");
@@ -741,8 +741,8 @@ public class SpeakerNPC extends NPC {
 				ConversationStates.IDLE, text, new ChatAction() {
 
 					public void fire(final Player player, final Sentence sentence,
-							final SpeakerNPC npc) {
-						npc.onGoodbye(player);
+							final EventRaiser npc) {
+						((SpeakerNPC) npc.getEntity()).onGoodbye(player);
 					}
 
 					@Override

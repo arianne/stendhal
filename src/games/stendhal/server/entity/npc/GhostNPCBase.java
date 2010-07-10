@@ -38,7 +38,7 @@ public abstract class GhostNPCBase extends SpeakerNPC {
 	 * @author Martin Fuchs
 	 */
 	private static class GhostGreetingAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final SpeakerNPC npc) {
+		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			if (!player.hasQuest(QUEST_SLOT) || player.isQuestInState(QUEST_SLOT, "rejected")) {
 				player.setQuest(QUEST_SLOT, "looking:said");
 			}
