@@ -26,7 +26,7 @@ public class ReadMessagesOnLogin implements LoginListener, TurnListener {
 	public void onLoggedIn(final Player player) {
 		DBCommand command = new GetPostmanMessagesCommand(player);
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
-		TurnNotifier.get().notifyInTurns(0, this);
+		TurnNotifier.get().notifyInTurns(1, this);
 	}
 	
 	/**
@@ -48,8 +48,7 @@ public class ReadMessagesOnLogin implements LoginListener, TurnListener {
 		LOGGER.debug(messages.size()+ " messages left for " + player.getName());
 		for (ChatMessage chatmessage : messages) {
 			LOGGER.debug(player.getName() + " got message: " + chatmessage.toString());
-			player.sendPrivateText("postman tells you: " + chatmessage.getSource() + " asked me to deliver this message: \n" + chatmessage.getMessage()
-					+ "\non " + chatmessage.getTimestamp());
+			player.sendPrivateText("postman tells you: " + chatmessage.getSource() + " asked me to deliver this message on " + chatmessage.getTimestamp().substring(0,16) + ": \n" + chatmessage.getMessage());
 			// we faked that postman sent a message, better set the last private chatter incase the player now uses /answer
 			player.setLastPrivateChatter("postman");
 		}
