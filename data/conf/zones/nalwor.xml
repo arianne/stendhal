@@ -36,6 +36,16 @@
 
 	<zone name="0_nalwor_forest_ne" level="0" x="500384" y="500128"
 		file="Level 0/nalwor/forest_ne.tmx">
+		
+		<entity x="93" y="116">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">deep_forest</parameter>
+				<parameter name="volume">120</parameter>
+				<parameter name="radius">65</parameter>
+			</implementation>
+		</entity>
+		
+		
 		<portal x="51" y="83" ref="hqleftdoorin">
 			<destination zone="int_nalwor_assassinhq_0" ref="hqleftdoor" />
 			<implementation
@@ -58,10 +68,27 @@
 
 	<zone name="0_nalwor_forest_n_e2" level="0" x="500512" y="500128"
 		file="Level 0/nalwor/forest_n_e2.tmx">
+	
+			<entity x="0" y="85">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">deep_forest</parameter>
+				<parameter name="volume">120</parameter>
+				<parameter name="radius">25</parameter>
+			</implementation>
+		</entity>
+	
 	</zone>
 
 	<zone name="0_nalwor_forest_w" level="0" x="500128" y="500256"
 		file="Level 0/nalwor/forest_w.tmx">
+					
+			<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">deep_forest</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+		
 		
 		<portal x="84" y="92" ref="outside_entrance">
 			<destination zone="0_nalwor_forest_w" ref="inside_exit" />
@@ -625,6 +652,16 @@ below average.
 
 	<zone name="0_nalwor_city" level="0" x="500256" y="500256"
 		file="Level 0/nalwor/city.tmx">
+		
+			<entity x="0" y="46">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">deep_forest</parameter>
+				<parameter name="volume">120</parameter>
+				<parameter name="radius">22</parameter>
+			</implementation>
+		</entity>
+		
+		
 		<portal x="73" y="82" ref="house_70_entrance">
 			<destination zone="int_0_nalwor_city_house_70" ref="entrance" />
 		</portal>
