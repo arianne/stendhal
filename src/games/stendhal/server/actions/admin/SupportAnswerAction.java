@@ -1,26 +1,25 @@
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.common.constants.Actions.SUPPORTANSWER;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
-import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.common.messages.SupportMessageTemplatesFactory;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
+import marauroa.common.game.RPAction;
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.db.command.ResultHandle;
-
-import marauroa.common.game.RPAction;
-import static games.stendhal.common.constants.Actions.SUPPORTANSWER;
-import static games.stendhal.common.constants.Actions.TARGET;
-import static games.stendhal.common.constants.Actions.TEXT;
 
 public class SupportAnswerAction extends AdministrationAction implements TurnListener  {
 	
