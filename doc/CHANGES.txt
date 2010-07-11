@@ -10,7 +10,7 @@ Changelog
 - marked path from semos to ados city and to the athor ferry pier on ados coast
 - initial Hayunn dialog/tutorial streamlined and improved
 - bakers want more button mushrooms
-- new music by semos dungeon, in semos and ados townhall, semos temple and in the forest
+- new music by semos dungeon, in semos and ados townhall, semos temple, ados church and in the forest
 - new sounds on the athor ship, in the ados sewers, at the ados city haven and some minor adds
 - Simon in Ados church offers helpful guidance
 - new npc added to ados market, which buy blue shield 
