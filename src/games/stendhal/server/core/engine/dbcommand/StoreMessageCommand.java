@@ -17,10 +17,12 @@ import java.sql.SQLException;
 
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
+import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
 
 /**
- * Store postman messages for a player
+ * Store postman messages for a player, if a character for them exists
+ * Can find out from this function if the character existed
  *
  * @author kymara
  */
@@ -30,6 +32,7 @@ public class StoreMessageCommand extends AbstractDBCommand {
 	private String charName;
 	private String message;
 	private String messagetype;
+	private String accountName;
 	
 	/**
 	 * creates a new StoreMessageCommand
@@ -48,8 +51,21 @@ public class StoreMessageCommand extends AbstractDBCommand {
 
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException {
-		PostmanDAO dao = DAORegister.get().get(PostmanDAO.class);
-		dao.storeMessage(npcName, charName, message, messagetype);
+		CharacterDAO characterdao = DAORegister.get().get(CharacterDAO.class);
+		accountName = characterdao.getAccountName(charName);
+		if (accountName != null) {
+			PostmanDAO postmandao = DAORegister.get().get(PostmanDAO.class);
+			postmandao.storeMessage(npcName, charName, message, messagetype);
+		}
+	}
+	
+	/**
+	 * checks if account name could be found - which tells if the character whom the message was for, existed
+	 *
+	 * @return true if an account was found for that character name
+	 */
+	public boolean targetCharacterExists() {
+		return accountName != null; 
 	}
 
 }
