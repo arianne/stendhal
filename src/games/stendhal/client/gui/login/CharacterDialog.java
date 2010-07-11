@@ -43,7 +43,7 @@ import org.apache.log4j.Logger;
 /**
  * A dialog for selecting from the available characters of a user account.
  */
-public class CharacterDialog extends JDialog {
+public class CharacterDialog extends JDialog implements Runnable {
 	private static final long serialVersionUID = -8827654641088132946L;
 
 	private static Logger logger = Logger.getLogger(CharacterDialog.class);
@@ -120,6 +120,11 @@ public class CharacterDialog extends JDialog {
 			owner.setEnabled(false);
 			this.setLocationRelativeTo(owner);
 		}
+		
+		Thread thread = new Thread(this, "KeepAlive on character dialog");
+		thread.setDaemon(true);
+		thread.start();
+
 		setResizable(false);
 		setVisible(true);
 	}
@@ -315,6 +320,17 @@ public class CharacterDialog extends JDialog {
 			} catch (BannedAddressException e) {
 				logger.error(e, e);
 				parent.handleError("Please login again.", "Choose Character");
+			}
+		}
+	}
+
+	public void run() {
+		while (isVisible()) {
+			StendhalClient.get().sendKeepAlive();
+			try {
+				Thread.sleep(5*60*1000);
+			} catch (InterruptedException e) {
+				break;
 			}
 		}
 	}
