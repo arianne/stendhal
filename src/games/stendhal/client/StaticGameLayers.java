@@ -248,19 +248,12 @@ public class StaticGameLayers {
 		 * Set collision map
 		 */
 		collision = collisions.get(area);
-
-		if (collision != null) {
-			collisions.put(area, collision);
-		}
 		
 		/*
 		 * Set protection map
 		 */
 		protection = protections.get(area);
-
-		if (protection != null) {
-			protections.put(area, protection);
-		}
+		
 		/*
 		 * Get maximum layer size. Assign tileset to layers.
 		 */
