@@ -18,6 +18,7 @@ Changelog
 - Diogenes tells you about postman, he recently remembered that used to be his job
 - portals can do actions 
 - a sign at the flowers field which shows the meaning of these flowers
+- support messages will get sent using postman if the player was offline
 
 *bugfixes*
 - walkblocker tables have proper resistance
