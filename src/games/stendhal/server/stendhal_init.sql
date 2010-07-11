@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS buddy (
 );
 
 /* CREATE INDEX i_buddy_charname ON buddy (charname); */
-/*
+
 CREATE TABLE achievement IF NOT EXISTS (
 	id 			INTEGER AUTO_INCREMENT NOT NULL,
     charname 	STRING,
@@ -171,5 +171,5 @@ CREATE TABLE achievement IF NOT EXISTS (
     timedate 	TIMESTAMP default CURRENT_TIMESTAMP
     PRIMARY KEY(id)
 );
-*/
+
 /* CREATE INDEX i_achievement_charname ON achievement(charname);*/
