@@ -28,8 +28,8 @@ import marauroa.server.game.db.DAORegister;
  */
 public class StoreMessageCommand extends AbstractDBCommand {
 	
-	private String npcName;
-	private String charName;
+	private String source;
+	private String target;
 	private String message;
 	private String messagetype;
 	private String accountName;
@@ -37,14 +37,14 @@ public class StoreMessageCommand extends AbstractDBCommand {
 	/**
 	 * creates a new StoreMessageCommand
 	 *
-	 * @param npcName who left the message
-	 * @param charName the player name the message is for
+	 * @param source who left the message
+	 * @param target the player name the message is for
 	 * @param message what the message is
 	 * @param messagetype N for NPCs, S for support, P for player
 	 */
-	public StoreMessageCommand(String npcName, String charName, String message, String messagetype) {
-		this.npcName = npcName;
-		this.charName = charName;		
+	public StoreMessageCommand(String source, String target, String message, String messagetype) {
+		this.source = source;
+		this.target = target;		
 		this.message = message;	
 		this.messagetype = messagetype;	
 	}
@@ -52,10 +52,10 @@ public class StoreMessageCommand extends AbstractDBCommand {
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException {
 		CharacterDAO characterdao = DAORegister.get().get(CharacterDAO.class);
-		accountName = characterdao.getAccountName(charName);
+		accountName = characterdao.getAccountName(target);
 		if (accountName != null) {
 			PostmanDAO postmandao = DAORegister.get().get(PostmanDAO.class);
-			postmandao.storeMessage(npcName, charName, message, messagetype);
+			postmandao.storeMessage(source, target, message, messagetype);
 		}
 	}
 	
@@ -66,6 +66,33 @@ public class StoreMessageCommand extends AbstractDBCommand {
 	 */
 	public boolean targetCharacterExists() {
 		return accountName != null; 
+	}
+	
+	/**
+	 * To access the character name we queried
+	 *
+	 * @return target the character who we checked for
+	 */
+	public String getTarget() {
+		return target;
+	}
+	
+	/**
+	 * To access the source message sender
+	 *
+	 * @return source who sent the message
+	 */
+	public String getSource() {
+		return source;
+	}
+	
+	/**
+	 * To access the message 
+	 *
+	 * @return message
+	 */
+	public String getMessage() {
+		return message;
 	}
 
 }
