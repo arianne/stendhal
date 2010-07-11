@@ -1206,6 +1206,14 @@ in roaches.
       <parameter name="npc">Mr Taxman</parameter>
      </implementation>
     </entity>
+   
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">medieval_harp</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+   
     <portal x="22" y="17" ref="entrance">
      <destination zone="0_ados_city" ref="town_hall_entrance"/>
     </portal>
@@ -1451,6 +1459,25 @@ disease poison 2000
  
    <zone name="int_ados_town_hall_1" file="interiors/ados/buraucrazy_1.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.townhall.ClerkNPC" />
+    
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">medieval_harp</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+  	   	<entity x="33" y="2">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">fire-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="volume">40</parameter>
+			<parameter name="radius">7</parameter>
+		</implementation>
+		</entity>
+
+    
     <entity x="25" y="6">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">The rules and statutes of Marriage and Divorce throughout the island of Faiumoni are complex and require much ... </attribute>
@@ -1467,6 +1494,14 @@ disease poison 2000
    
    <zone name="int_ados_town_hall_2" file="interiors/ados/buraucrazy_2.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.townhall.MayorNPC" />
+    
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">medieval_harp</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+    
     <portal x="36" y="3" ref="downstairs">
      <destination zone="int_ados_town_hall_1" ref="upstairs"/>
     </portal>
@@ -1487,6 +1522,35 @@ disease poison 2000
    </zone> 
    
    <zone name="int_ados_town_hall_3" file="interiors/ados/buraucrazy_3.tmx">
+    
+		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">medieval_harp</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+  	   	<entity x="24" y="2">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">fire-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="volume">40</parameter>
+			<parameter name="radius">7</parameter>
+		</implementation>
+		</entity>
+
+  	   	<entity x="34" y="2">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+			<parameter name="sound">fire-2</parameter>
+			<parameter name="min">1</parameter>
+			<parameter name="max">1</parameter>
+			<parameter name="volume">40</parameter>
+			<parameter name="radius">7</parameter>
+		</implementation>
+		</entity>
+
+    
     <portal x="3" y="3" ref="downstairs">
      <destination zone="int_ados_town_hall_2" ref="upstairs"/>
     </portal>
