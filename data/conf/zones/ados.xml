@@ -233,9 +233,31 @@
  </zone>
 
  <zone name="0_ados_mountain_n_w2" level="0" x="500384" y="499872" file="Level 0/ados/mountain_n_w2.tmx">
+ 
+ 		<entity x="124" y="122">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">wind-2</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">70</parameter>
+				<parameter name="volume">60</parameter>
+			</implementation>
+		</entity>
+ 
  </zone>
 
  <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="Level 0/ados/mountain_nw.tmx">
+  
+  		<entity x="5" y="124">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">wind-2</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">80</parameter>
+				<parameter name="volume">60</parameter>
+			</implementation>
+		</entity>
+  
   <entity x="126" y="107">
    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
@@ -2405,6 +2427,17 @@ My fee:
   </zone>
 
    <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="Level 0/ados/rock_w.tmx">
+    
+ 		<entity x="123" y="43">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">wind-2</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">120</parameter>
+				<parameter name="volume">60</parameter>
+			</implementation>
+		</entity>
+    
     <entity x="14" y="50">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
@@ -2425,6 +2458,17 @@ Southeast: Docks
    
    <zone name="0_ados_rock" level="0" x="500512" y="500000" file="Level 0/ados/rock.tmx">
      <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC"/>
+     
+ 		<entity x="3" y="35">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">wind-2</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">90</parameter>
+				<parameter name="volume">60</parameter>
+			</implementation>
+		</entity>
+     
      <entity x="61" y="36">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      	<parameter name="species">char</parameter>
