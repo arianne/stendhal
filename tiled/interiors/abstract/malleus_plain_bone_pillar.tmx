@@ -76,22 +76,22 @@
  </layer>
  <layer name="1_terrain" width="31" height="31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2WuU7DQBCGd/0EKAmEBiTuApKOW/CM8ABAAjWXIKTiKoCKq4Ac1EDDG9Dwr+yRx5tZexMixEi/7Exm59tdz3jdUErldai/MGK94L7RBXsQMS2oqDv9TcHfT/YUYqahGe3n92Gf6VBZNo+YBWjRXANcoaUg6c8yYhH7y1PclsFcgVaDpN83F7F9rOkZ1/aM+w/sNw91w3blUOye2C2mNHPVlG+tcQ6xvwX106T8rufdVJ17kbW2tP+lGshi98t6Yds10OvzTmP7vg9c75lexht2GXO9VaGUiu9Ju7rTZ/dbm/23J8RL+UuIe1Wh+JnCdQ7/BXQJXUHX8raKcVK+d/g/oDUP9j38D9Aj9AQ9O9hSnJQvx86xNPYAtAX/NrQDVaCqgy3FDXiw13H/qeLzjXQC7cN/AB1CR9Cxgy3FmfGnVk6bbdZcwO+K53eTVGtkueiZfka/N6KcVVxvcK2x85vWXIhipoMw5k5gzgZ+bCOTbzJIrsfMaVTHdU5rLkTzMv4RHc+7m3WXgiTbtpxQYyauzuqf74OxQeQcYt8naeuuZbB5jxGb/svreB+6XTfn163xE2xP+Ldivc/sIjjD1ncczclmk3E2zWdcyJHFTjPONu9zqula1I/2fpFRv/yGzXuM6o3bmKPPyik9tqnD/swymj+x+dqpz6j/JJPYVR2PN7nmHPOoRL1sn2N8Pvacsthk9nMkozXZ5ydx0vy+5zeNt8fZeY1+AGgvFDIEDwAA
+   H4sIAAAAAAAAAM2WzVITQRDHZ/YJqCSIF6gCBA9KbnxJ6TPiA4CJnv0qDTnxdQBPKhw0Ac/CAd7Ai/+p3a7t7fTMdlIpy6761246Pf2bmZ3e3oFzrulz/Qsj1g/cD8ZgzyLmCprzo/6h4p8mewUxq9Bjb/Nb2Ac+V52tI2YD2gzXDFdoK6v664xYxL43its2mM+gnazqt+YitsWGxrhrY9z/wP5l0DjsWA7H7ol9xZSy2JmynjXOIfYfRdM0LX/seQ/d6F7UrS31v3YG6tjTsknY8gxM+rxTbOv7IPaemWR8YLcx13OXy7nynvTaj/pkvV2z/94o8Vr+NcT9dLl4T+E6hP8IOoZOoFN9W9U4Ld9v+G+g5wb2V/i/Qd+hC+gywtbitHwN1sdS7BloD/596BXUgboRthY3Y2C/wP2tK/sb6RP0Fv530HvoA/QxwtbiwvjPIqdkhzW38Ltj/G7SzhpZo3imt8Xv3SJnF9czXHusf9OaW0XMapbHfFGYTzIbOyjke5RV1xPmtODLc05rbhXzCv55X857nHWvZVW2tIZyxkJcn51/vg/BZpHzAfs+Sa27V8PmNUZs+q/py32QFuvlvGcTvy/GL7M94d+KfSP7jinlnwPnofiOozlJNt8TYtN8llgO6r0a29r3OTu8z+lM94p6lPslLfW864zXGJ03bouROmsnauylz+uzzqjeic3XTnVG9aeZxu76cnzI9TQyj05Ry7KP8fnIOdWxyeRzJKM1yf5JnJTf2r9pvBwn8wb9BX+bErMEDwAA
   </data>
  </layer>
  <layer name="2_object" width="31" height="31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WXw6CMAzGGd7DF1/Vs/rvAApcBT2Ezx5D44iSzM/RrlsXQsIvachY1xHWr11RzEyFbfl5bkr92AdDz6+/e648e++YtSeY38O4MsO+HGfwP8K4gfGFiI++UurE9XcFv9AYY4Bnow2Vh6lnw4F52MHpIhVKs77v0aSKiM/VGCQmX17WrtYW5td873xQ/u7cU/5pMwyttVvEOg2dPawtzf/+2KvGIPSfSPUl7bUUfT3oYoboNrXXDsXMXee1kJ4VkpKXMbXbhbpDSQit7znuDaF54vNzdZO7zyI5dDNVsC62kXHehsMYuwQPAAA=
+   H4sIAAAAAAAAAO2WWQrCMBCGG72H4Iprz+p2AK1epXoInz2FKCZoIf5OM1kRxQ+GMs10MjSzJMv+fAt54/GcNeL7Xgrz+vS5Z5fYe858u4b1BeiFqLfl2ID9CvQ96FuDf7R1ZRf4/SmCna2PT4BnExtTHoaeDQfmoYKri1BMNUvFE5PCwz/XYxCffLlJOUhpileh3lGY7PW1q0UsVK8MZcj45NZd6CSI30Qp5QjvxhYxVHU2CYj3LKUl3vfHWZWCHhM3xlSHa33pszYPPOuqHyifNnWrZm2Me0xb86F8uvb5PhHDyCKuAWODcxh1n9rS+0nIefn0bkVVi6Y71IXRdag8of5rinuDbZ5QdnrdpJ6zSOgd9ZfAvlh6+rkDWxal4QQPAAA=
   </data>
  </layer>
  <layer name="3_roof" width="31" height="31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYGSDREYIhgFRIPsGEIszoqoDid9EE0fXSynYATRrJxCro5l5Asg/iUWcWgCb39DlsYUJNQAhv+EKE2oBUuKb2mCg4ns4A2YsYYZN7BgWjE89MXLEgr1AvA+I9wPxASA+SLmRRIOzQHwOiM8D8QUgvkhHu3OBYZcHxPVAnA/EBXRM37VodjWM5q1RMApGwSgY0QAA+LM2KQQPAAA=
+   H4sIAAAAAAAAAGNgGAWjYGSDREYIhgFRIPsGEIszoqoDid9EE0fXSynYATRrJxCro5l5Asg/iUWcWgCb39DlsYUJNQAhv+EKE2oBUuKb2mCg4ns4A2YsYYZN7BgWjE89MXLEgr1AvA+I9wPxASA+SLmRRIOzQHwOiM8D8QUgvkhHu3OBYZcHxPVAnA/EBXRM37VodjWM5i2aAVxlJy3rERjAVXbSuh4BAVOg2WZAbM6IX3wShW6YiEf/YPb3KBgFgw0AAM/R72EEDwAA
   </data>
  </layer>
  <layer name="4_roof_add" width="31" height="31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYOBBJCMDQxQj/fWCQCZQbxaZ+inROwpGwSigHahjpD4eDiAW6I84qF/igXQCnf2VB7SvHojzh0l4joJRMApGwSgYmgAAL899BgQPAAA=
+   H4sIAAAAAAAAAGNgGAWjYOBBJCMDQxQj/fWCQCZQbxaZ+inROwpGwSigHahjpD4eDiAW6I84qF/igXQCnf2VB7SvHojzh0l4joJRAAOiwDR9A4jFGTHFb2IRpybYATR7JxbzTwDFTo7mtVEwCrACADO3klQEDwAA
   </data>
  </layer>
  <layer name="objects" width="31" height="31">
@@ -101,7 +101,7 @@
  </layer>
  <layer name="collision" width="31" height="31" visible="0" opacity="0.54">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TMQoAMAgDHf3/i7uKtCg2bhcIBUFP1LqZOcYXR3l6Y3yb/RJsXc1ctxOf9qjU7yyqvrq5yj10pGBP971581v/CjZs2LBhw4YNO/oAE9xXyQQPAAA=
+   H4sIAAAAAAAAAO2TSwoAIAgFXXr/E7cVKRI/G5kHj0DQsTQVEcX4Yit1p41Ps1+C3VfT143Esz12qvoWv76iuZ1ziKiDnZ335M5P/SvYsGHD3syOaOO9YcOusA9s7YZ/BA8AAA==
   </data>
  </layer>
  <layer name="protection" width="31" height="31" visible="0">
