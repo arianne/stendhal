@@ -11,16 +11,17 @@ import marauroa.server.game.db.DAORegister;
 
 public class WriteReachedAchievementCommand extends AbstractDBCommand {
 
+	private final String identifier;
 	private final String title;
 	private final String category;
 	private final String playerName;
 	
 	/**
-	 * @param title
-	 * @param category
+	 * @param identifier
 	 * @param playerName
 	 */
-	public WriteReachedAchievementCommand(String title, String category, String playerName) {
+	public WriteReachedAchievementCommand(String identifier, String title, String category, String playerName) {
+		this.identifier = identifier;
 		this.title = title;
 		this.category = category;
 		this.playerName = playerName;
@@ -30,7 +31,7 @@ public class WriteReachedAchievementCommand extends AbstractDBCommand {
 	public void execute(DBTransaction transaction) throws SQLException,
 			IOException {
 		AchievementDAO dao = DAORegister.get().get(AchievementDAO.class);
-		dao.saveReachedAchievement(title, category, playerName, transaction);
+		dao.saveReachedAchievement(identifier, title, category, playerName, transaction);
 	}
 
 }
