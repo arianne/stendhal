@@ -59,10 +59,13 @@ public class WhiteLifeSorceressNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Greetings Stranger!");
-				addHelp("");
-				addReply("", "");
-				addGoodbye("So long!");
+				addGreeting("Hello!");
+				addHelp("Please excuse me, I am very busy to establish the white mages part at the wizards circle.");
+				addJob("I am Elana. I represent the white mages of #Lavitae at the wizards circle.");
+				addOffer("Please excuse me, I am very busy to establish the white mages part at the wizards circle.");
+				addQuest("The magic in this world has just begun and I am very busy to establish the white mages of #Lavitae at the wizards circle. I will tell you in time, when I have a quest for you.");
+				addReply("Lavitae", "Lavitae is the school of white magic. To be amongst its protegee, it lies amidst Ados.");
+				addGoodbye("Goodbye!");
 
 			} //remaining behaviour defined in maps.quests.WizardElanaPlainQuest
 		};

@@ -66,10 +66,13 @@ public class BlueArchmageNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Greetings Stranger!");
-				addHelp("");
-				addReply("", "");
-				addGoodbye("So long!");
+				addGreeting("Be greeted, adventurer!");
+				addHelp("All magics have a #opposite magic to preserve the balance. Remember that when you follow your adventures.");
+				addJob("I am Erastus. My assignment is to unite and lead the wizards of the circle.");
+				addOffer("I do not offer anything. But Zekiel and the wizards can help you for sure.");
+				addReply("opposite", "If you want to combat fire then use water. But the opposite is not just a clear contrast. The archmages are able to combine them to the most powerfull magics which the world has ever seen.");
+				addQuest("Yes, I have a quest for you. But first you have to learn more about magic from the wizards of the circle. I will give it to you, when you are done with their quests.");
+				addGoodbye("See you soon!");
 
 			} //remaining behaviour defined in maps.quests.ArchmageErastusQuest
 		};

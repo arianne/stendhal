@@ -64,10 +64,13 @@ public class OrientalAirWizardNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Greetings Stranger!");
-				addHelp("");
-				addReply("", "");
-				addGoodbye("So long!");
+				addGreeting("I greet you!");
+				addHelp("Please excuse me, I am very busy to establish the illusionists part at the wizards circle.");
+				addJob("I am Jaer. I represent the illusionists of #Cloudburst at the wizards circle.");
+				addOffer("Please excuse me, I am very busy to establish the illusionists part at the wizards circle.");
+				addQuest("The magic in this world has just begun and I am very busy to establish the illusionists of #Cloudburst at the wizards circle. I will tell you in time, when I have a quest for you.");
+				addReply("Cloudburst", "Cloudburst, the school of illusions, levitates between the clouds in the sky.");
+				addGoodbye("Goodbye!");
 
 			} //remaining behaviour defined in maps.quests.WizardJaerPlainQuest
 		};

@@ -69,6 +69,7 @@ public class BlueIceSorceressNPC implements ZoneConfigurator {
 				addOffer("I can conjure an #ice #scroll for you. It is able to protect you from dangerous heat, depends on how you use it.");
 				addReply("Frostshade", "Frostshade is the school of the magic of water and ice. It lies deep in the northern glaciers.");
 				addReply("scroll", "Zekiel is the storekeeper of the tower, I am sure he can help you.");
+				addQuest("The magic in this world has just begun and I am very busy to establish the sorceresses of #Frostshade at the wizards circle. I will tell you in time, when I have a quest for you.");
 				addGoodbye("Bye!");
 				add(
 				        ConversationStates.ATTENDING,
