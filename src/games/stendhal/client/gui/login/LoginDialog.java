@@ -14,8 +14,10 @@ package games.stendhal.client.gui.login;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.ProgressBar;
+import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.update.ClientGameConfiguration;
 
+import java.awt.Component;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -35,6 +37,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -140,10 +143,31 @@ public class LoginDialog extends JDialog {
 
 		profilesComboBox = new JComboBox();
 		profilesComboBox.addActionListener(new ProfilesCB());
+		
+		/*
+		 * Remove profile button
+		 */
+		removeButton = new JButton();
+		removeButton.setText("Remove");
+		removeButton.setMnemonic(KeyEvent.VK_R);
+
+		removeButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(final ActionEvent e) {
+				removeButton_actionPerformed(e);
+			}
+		});
+		
+		// Container for the profiles list and the remove button
+		JComponent box = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
+		profilesComboBox.setAlignmentY(Component.CENTER_ALIGNMENT);
+		box.add(profilesComboBox);
+		box.add(removeButton);
+
 		c.gridx = 1;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.BOTH;
-		contentPane.add(profilesComboBox, c);
+		contentPane.add(box, c);
 
 		/*
 		 * Server Host
@@ -255,27 +279,6 @@ public class LoginDialog extends JDialog {
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(15, 4, 4, 4);
 		contentPane.add(loginButton, c);
-
-		/*
-		 * Remove currently shown user profile from the local list of accounts
-		 */
-		removeButton = new JButton();
-		removeButton.setText("Remove Profile");
-		removeButton.setMnemonic(KeyEvent.VK_R);
-
-		removeButton.addActionListener(new ActionListener() {
-
-			public void actionPerformed(final ActionEvent e) {
-				removeButton_actionPerformed(e);
-			}
-		});
-
-		c.gridx = 1;
-		c.gridy = 6;
-		c.gridheight = 2;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(15, 4, 4, 4);
-		contentPane.add(removeButton, c);
 
 		/*
 		 * Load saved profiles
