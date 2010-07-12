@@ -19,6 +19,8 @@ Changelog
 - portals can do actions 
 - a sign at the flowers field which shows the meaning of these flowers
 - support messages will get sent using postman if the player was offline
+- SBoxLayout supports alignment and padding
+- Remove account button moved next to the account list
 
 *bugfixes*
 - walkblocker tables have proper resistance
