@@ -83,10 +83,13 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	
 	/** Amount of axially expandable components */
 	private int expandable;
+	/** Amount of padding between components */
+	private int padding = 0;
 	
 	/**
-	 * Create a new SBoxLayout
-	 * @param direction
+	 * Create a new SBoxLayout.
+	 * 
+	 * @param direction layout direction
 	 */
 	public SBoxLayout(boolean direction) {
 		constraints = new HashMap<Component, EnumSet<SLayout>>();
@@ -95,6 +98,28 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		} else {
 			d = horizontalDirection;
 		}
+	}
+	
+	/**
+	 * Create a new SBoxLayout with padding between components.
+	 * 
+	 * @param direction layout direction
+	 * @param padding component padding in pixels
+	 */
+	public SBoxLayout(boolean direction, int padding) {
+		this(direction);
+		setPadding(padding);
+	}
+	
+	/**
+	 * Set the padding between the components. Typically you should use either
+	 * 0 (the default), or COMMON_PADDING for consistent look. For the padding
+	 * around everything use appropriate empty border instead.
+	 * 
+	 * @param padding pixel width of the padding
+	 */
+	public void setPadding(int padding) {
+		this.padding = padding;
 	}
 
 	public void addLayoutComponent(Component component, Object flags) {
@@ -242,7 +267,11 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 					remainingExpandable--;
 				}
 				c.setBounds(startPosition.width, startPosition.height, cPref.width, cPref.height);
+				
+				// Move the coordinates of the next component by the size of the
+				// previous + padding
 				shiftByPrimary(startPosition, cPref);
+				addToPrimary(startPosition, padding);
 			}
 		}
 	}
@@ -273,7 +302,11 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 					addToPrimary(compSize, shrink);
 				}
 				c.setBounds(startPosition.width, startPosition.height, compSize.width, compSize.height);
+				
+				// Move the coordinates of the next component by the size of the
+				// previous + padding
 				shiftByPrimary(startPosition, compSize);
+				addToPrimary(startPosition, padding);
 			}
 		}
 	}
@@ -355,7 +388,11 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 				d.setPrimary(cPref, dim[i]);
 				sum += dim[i];
 				c.setBounds(startPosition.width, startPosition.height, cPref.width, cPref.height);
+				
+				// Move the coordinates of the next component by the size of the
+				// previous + padding
 				shiftByPrimary(startPosition, cPref);
+				addToPrimary(startPosition, padding);
 			}
 		}
 	}
@@ -373,11 +410,18 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		
 		Dimension result = new Dimension();
 
+		int numVisible = 0;
 		for (Component c : parent.getComponents()) {
 			// Skip hidden components
 			if (c.isVisible()) {
+				numVisible++;
 				d.addComponentDimensions(result, c.getMaximumSize());
 			}
+		}
+		
+		// Take padding in account
+		if (numVisible > 1) {
+			d.setPrimary(result, safeAdd(d.getPrimary(result), (numVisible - 1) * padding));
 		}
 		
 		// Expand by the insets
@@ -395,11 +439,18 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		}
 		Dimension result = new Dimension();
 
+		int numVisible = 0;
 		for (Component c : parent.getComponents()) {
 			// Skip hidden components
 			if (c.isVisible()) {
+				numVisible++;
 				d.addComponentDimensions(result, c.getMinimumSize());
 			}
+		}
+		
+		// Take padding in account
+		if (numVisible > 1) {
+			d.setPrimary(result, safeAdd(d.getPrimary(result), (numVisible - 1) * padding));
 		}
 		
 		// Expand by the insets
@@ -417,11 +468,18 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		}
 		Dimension result = new Dimension();
 
+		int numVisible = 0;
 		for (Component c : parent.getComponents()) {
 			// Skip hidden components
 			if (c.isVisible()) {
+				numVisible++;
 				d.addComponentDimensions(result, getPreferred(c));
 			}
+		}
+		
+		// Take padding in account
+		if (numVisible > 1) {
+			d.setPrimary(result, safeAdd(d.getPrimary(result), (numVisible - 1) * padding));
 		}
 		
 		// Expand by the insets
@@ -642,12 +700,29 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	}
 	
 	/**
-	 * A convenience method for creating a container using SBoxLayout 
-	 * @return
+	 * A convenience method for creating a container using SBoxLayout.
+	 * 
+	 * @param direction layout direction
+	 * @return A component using SBoxLayout
 	 */
 	public static JComponent createContainer(boolean direction) {
 		JComponent container = new Spring();
 		container.setLayout(new SBoxLayout(direction));
+		
+		return container;
+	}
+	
+	/**
+	 * A convenience method for creating a container using SBoxLayout with
+	 * padding between the components.
+	 * 
+	 * @param direction layout direction
+	 * @param padding padding in pixels between the components
+	 * @return A component using SBoxLayout
+	 */
+	public static JComponent createContainer(boolean direction, int padding) {
+		JComponent container = new Spring();
+		container.setLayout(new SBoxLayout(direction, padding));
 		
 		return container;
 	}
