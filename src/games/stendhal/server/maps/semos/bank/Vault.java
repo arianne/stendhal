@@ -3,9 +3,9 @@ package games.stendhal.server.maps.semos.bank;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.ActiveEntity;
@@ -20,6 +20,8 @@ import games.stendhal.server.entity.player.Player;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Set;
+
+import marauroa.server.db.command.DBCommandQueue;
 
 public class Vault extends StendhalRPZone {
 
@@ -77,65 +79,43 @@ public class Vault extends StendhalRPZone {
 				return;
 			}
 			if (zone.getPlayers().size() == 1) {
-				final Player postman = SingletonRepository.getRuleProcessor()
-						.getPlayer("postman");
 				Set<Item> itemsOnGround = zone.getItemsOnGround();
 				for (Item item : itemsOnGround) {
 					// ignore items which are in the wastebin
 					if (!(item.getX() == 2 && item.getY() == 5)) {
+						String message;
 						boolean equippedToBag = ((RPEntity) entity).equip(
 								"bag", item);
 						if (equippedToBag) {
-							// player may not have been online so use postman to
-							// send info message
-							if (postman != null) {
-								postman
-										.sendPrivateText("Dagobert tells you: tell "
-												+ ((RPEntity) entity).getName()
-												+ " The "
-												+ Grammar.quantityplnoun(item
-														.getQuantity(), item
-														.getName())
+
+							message = "The "+ Grammar.quantityplnoun(item.getQuantity(), item.getName())
 												+ " which you left on the floor in the vault have been automatically "
-												+ "returned to your bag.");
-							}
+												+ "returned to your bag.";
+							
 							new GameEvent(((RPEntity) entity).getName(), "equip", item.getName(), "vault", "bag", Integer.toString(item.getQuantity())).raise();
 						} else {
 							boolean equippedToBank = ((RPEntity) entity).equip(
 									"bank", item);
 							if (equippedToBank) {
-								if (postman != null) {
-									postman
-											.sendPrivateText("Dagobert tells you: tell "
-													+ ((RPEntity) entity)
-															.getName()
-													+ " The "
-													+ Grammar.quantityplnoun(
-															item.getQuantity(),
-															item.getName())
-													+ " which you left on the floor in the vault have been automatically "
-													+ "returned to your bank chest.");
-								}
+								message = "The "+ Grammar.quantityplnoun(item.getQuantity(), item.getName())
+								+ " which you left on the floor in the vault have been automatically "
+								+ "returned to your bank chest.";
+								
 								new GameEvent(((RPEntity) entity).getName(), "equip", item.getName(), "vault", "bank", Integer.toString(item.getQuantity())).raise();
 							} else {
 								// the player lost their items
-								if (postman != null) {
-									postman
-											.sendPrivateText("Dagobert tells you: tell "
-													+ ((RPEntity) entity)
-															.getName()
-													+ " The "
-													+ Grammar.quantityplnoun(
-															item.getQuantity(),
-															item.getName())
+								message = "The "+ Grammar.quantityplnoun(item.getQuantity(), item.getName())
 													+ " which you left on the floor in the vault have been thrown into "
 													+ "the void, because there was no space to fit them into either your "
-													+ "bank chest or your bag.");
-								}
+													+ "bank chest or your bag.";
+								
 								// the timeout method enters the zone and coords of item, this is useful we will know it was in vault
 								new ItemLogger().timeout(item);
 							}
 						}
+						
+						// tell the player the message 
+						notifyPlayer(((RPEntity) entity).getName(), message);
 					} else {
 						// the timeout method enters the zone and coords of item, this is useful, this is useful we will know it was in wastebin
 						new ItemLogger().timeout(item);
@@ -163,6 +143,19 @@ public class Vault extends StendhalRPZone {
 		}
 	}
 
+	/**
+	 * Notifies the user of the vault in the name of Dagobert.
+	 * 
+	 * @param target the player to be notified
+	 * @param message the delivered message
+	 */
+	private static void notifyPlayer(final String target, final String message) {
+		// TODO: only use postman if they logged out. Otherwise, just send the private message.
+		
+		// there is an npc action to send the message but this is all we want to do here.
+		DBCommandQueue.get().enqueue(new StoreMessageCommand("Dagobert", target, message, "N"));
+	}
+	
 	@Override
 	public void onFinish() throws Exception {
 		this.remove(chest);
