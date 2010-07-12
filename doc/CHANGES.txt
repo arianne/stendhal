@@ -21,6 +21,7 @@ Changelog
 - support messages will get sent using postman if the player was offline
 - SBoxLayout supports alignment and padding
 - Remove account button moved next to the account list
+- Ados and Fado churches ring their bells at full and half hours
 
 *bugfixes*
 - walkblocker tables have proper resistance
