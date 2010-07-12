@@ -122,9 +122,8 @@ public class LoginDialog extends JDialog {
 		//
 		contentPane = (JPanel) this.getContentPane();
 		contentPane.setLayout(new GridBagLayout());
-		contentPane.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createEtchedBorder(),
-				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		final int pad = SBoxLayout.COMMON_PADDING;
+		contentPane.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 
 		final GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.LINE_START;
@@ -159,7 +158,7 @@ public class LoginDialog extends JDialog {
 		});
 		
 		// Container for the profiles list and the remove button
-		JComponent box = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
+		JComponent box = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		profilesComboBox.setAlignmentY(Component.CENTER_ALIGNMENT);
 		box.add(profilesComboBox);
 		box.add(removeButton);
