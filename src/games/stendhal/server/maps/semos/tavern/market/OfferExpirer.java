@@ -2,14 +2,15 @@ package games.stendhal.server.maps.semos.tavern.market;
 
 import java.util.List;
 
+import marauroa.server.db.command.DBCommandQueue;
+
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Earning;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
@@ -84,18 +85,11 @@ public class OfferExpirer implements TurnListener{
 	}
 	
 	private void sendMessage(String player, StringBuilder message) {
-		// A bit backward way to prepend to the message
-		message.insert(0, " ");
-		message.insert(0, player);
-		message.insert(0, "Harold tells you: tell ");
 		
-		Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
-		if (postman != null) { 
-			postman.sendPrivateText(message.toString());
-		} else {
-			message.insert(0, "Could not use postman for the following message: ");
-			logger.warn(message.toString());
-		}
+		logger.debug("sending a notice to '" + player + "': " + message.toString());
+		
+		// there is an npc action to send the message but this is all we want to do here.
+		DBCommandQueue.get().enqueue(new StoreMessageCommand("Harold", player, message.toString(), "N"));	
 	}
 	
 	/**

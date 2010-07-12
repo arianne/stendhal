@@ -4,10 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import marauroa.server.db.command.DBCommandQueue;
+
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -72,21 +74,14 @@ public class AcceptOfferHandler extends OfferHandler {
 			Offer offer = getOffer();
 			Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 			if (m.acceptOffer(offer,player)) {
-				// Succesful trade. Tell the offerer
+				// Successful trade. Tell the offerer
 				StringBuilder earningToFetchMessage = new StringBuilder();
-				earningToFetchMessage.append("Harold tells you: tell ");
-				earningToFetchMessage.append(offer.getOfferer());
-				earningToFetchMessage.append(" Your ");
+				earningToFetchMessage.append("Your ");
 				earningToFetchMessage.append(offer.getItem().getName());
 				earningToFetchMessage.append(" was sold. You can now fetch your earnings from me.");
 
-				Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
-				if (postman != null) {
-					postman.sendPrivateText(earningToFetchMessage.toString());
-				} else {
-					earningToFetchMessage.insert(0, "Could not use postman for the following message: ");
-					logger.warn(earningToFetchMessage.toString());
-				}
+				logger.debug("sending a notice to '" + offer.getOfferer() + "': " + earningToFetchMessage.toString());
+				DBCommandQueue.get().enqueue(new StoreMessageCommand("Harold", offer.getOfferer(), earningToFetchMessage.toString(), "N"));
 
 				npc.say("Thanks.");
 				// Obsolete the offers, since the list has changed
