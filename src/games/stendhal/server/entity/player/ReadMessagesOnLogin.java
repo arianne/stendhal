@@ -14,6 +14,11 @@ import marauroa.server.db.command.ResultHandle;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Retrieves postman messages for the logging in player from the database
+ *
+ * @author kymara
+ */
 public class ReadMessagesOnLogin implements LoginListener, TurnListener {
 	
 	private static final Logger LOGGER = Logger.getLogger(ReadMessagesOnLogin.class);
@@ -21,11 +26,14 @@ public class ReadMessagesOnLogin implements LoginListener, TurnListener {
 	private ResultHandle handle = new ResultHandle();
 	
 	/** 
-	 * Get any messages stored for the player when they log in
+	 * Execute command to get messages for the player when they log in
+	 * 
+	 * @param player the player who logged in
 	 */
 	public void onLoggedIn(final Player player) {
 		DBCommand command = new GetPostmanMessagesCommand(player);
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
+		// wait one turn so that the messages come after any login messages
 		TurnNotifier.get().notifyInTurns(1, this);
 	}
 	
