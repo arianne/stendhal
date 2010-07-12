@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests.houses;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
@@ -16,6 +17,8 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+
+import marauroa.server.db.command.DBCommandQueue;
 
 import org.apache.log4j.Logger;
 
@@ -182,13 +185,9 @@ class HouseTax implements TurnListener {
 	 */
 	private void notifyIfNeeded(final String owner, final String message) {
 		logger.info("sending a notice to '" + owner + "': " + message);
-		final Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
-
-		if (postman != null) {
-			postman.sendPrivateText("MrTaxman tells you: tell " + owner + " " + message);
-		} else {
-			logger.warn("could not use postman to deliver the message");
-		}
+		
+		// there is an npc action to send the message but this is all we want to do here.
+		DBCommandQueue.get().enqueue(new StoreMessageCommand("Mr Taxman", owner, message, "N"));
 	}
 	
 	private void setupTaxman() {
