@@ -18,13 +18,12 @@ public class BellSoundSource extends PassiveEntity implements TurnListener {
 	/** The played sound */
 	private static final String SOUND_FILE = "bell-1";
 	/** Radius of the sound */
-	private static final int RADIUS = 60;
+	private static final int RADIUS = 70;
 	/** Volume of the sound */
-	private static final int VOLUME = 100;
+	private static final int VOLUME = 120;
 	
 	/** Time between bell playings in minutes. */
-	//private static final int TIME_SLICE = MathHelper.MINUTES_IN_ONE_HOUR / 2;
-	private static final int TIME_SLICE = 3;
+	private static final int TIME_SLICE = MathHelper.MINUTES_IN_ONE_HOUR / 2;
 	
 	/** Time between individual bell sounds when playing */
 	private static final int TIME_BETWEEN_SOUNDS = 3;
@@ -51,10 +50,13 @@ public class BellSoundSource extends PassiveEntity implements TurnListener {
 		// Check if the time is closer to even or half hour
 		if (Math.abs(30 - minute) % 60 < 15) {
 			// half hour, play just once
-			new BellPlay(5);
+			new BellPlay(1);
 		} else {
 			// Full hour. Play up to 12 times
-			int bongs = now.get(Calendar.HOUR) + 1;
+			int bongs = now.get(Calendar.HOUR);
+			if (bongs == 0) {
+				bongs = 12;
+			}
 			new BellPlay(bongs);
 		}
 	}
