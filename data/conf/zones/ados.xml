@@ -2954,7 +2954,11 @@ Southeast: Docks
 				<parameter name="volume">80</parameter>
 			</implementation>
 		</entity>
-		
+
+		<entity x="53" y="24">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource">
+			</implementation>
+		</entity>
   
   <portal x="53" y="25" ref="church_entrance">
      <destination zone="int_ados_church_0" ref="entrance_right"/>

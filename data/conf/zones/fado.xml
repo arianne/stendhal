@@ -83,6 +83,11 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
       	<attribute name="class">blackboard</attribute>
     </entity>
 
+	<entity x="55" y="49">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource">
+		</implementation>
+	</entity>
+
    	</zone>
  
          <zone name="int_fado_bank" file="interiors/fado/bank.tmx">
