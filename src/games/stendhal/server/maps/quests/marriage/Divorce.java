@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests.marriage;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -13,6 +14,8 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+
+import marauroa.server.db.command.DBCommandQueue;
 
 class Divorce {
 	private final NPCList npcs = SingletonRepository.getNPCList();
@@ -183,15 +186,8 @@ class Divorce {
 									+ " has divorced from you.");
 							npc.say("What a pity...what a pity...and you two were married so happily, too...");
 						} else {
-							final Player postman = SingletonRepository.getRuleProcessor().getPlayer(
-									"postman");
-							if (postman != null) {
-								postman.sendPrivateText("Wilfred tells you: msg "
-										+ partnerName
-										+ " "
-										+ husband.getName()
-										+ " has divorced from you!");
-							}
+							
+							DBCommandQueue.get().enqueue(new StoreMessageCommand("Wilfred", partnerName, husband.getName() + " has divorced from you!" , "N"));
 						}
 						if (husband.isEquipped("money", 200*husband.getLevel())) {
 							husband.drop("money", 200*husband.getLevel());
