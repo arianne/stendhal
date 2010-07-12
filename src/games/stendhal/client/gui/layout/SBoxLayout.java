@@ -9,6 +9,8 @@ import java.awt.LayoutManager2;
 import java.util.EnumSet;
 import java.util.HashMap;
 
+import javax.swing.JComponent;
+
 /**
  * A simple layout manager that does what BoxLayout fails to do,
  * and provides a predictable layout with few hidden interactions.
@@ -44,6 +46,9 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	
 	public static final boolean VERTICAL = false;
 	public static final boolean HORIZONTAL = true;
+	
+	/** Common padding width where padding or border is wanted. */
+	public static int COMMON_PADDING = 5;
 	
 	/**
 	 * Create a constraints object.
@@ -164,7 +169,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		
 		expand(dim, comp.getMinimumSize());
 		shrink(dim, comp.getMaximumSize());
-		
+
 		return dim;
 	}
 	
@@ -377,8 +382,8 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		
 		// Expand by the insets
 		Insets insets = parent.getInsets();
-		result.width += insets.left + insets.right;
-		result.height += insets.top + insets.bottom;
+		result.width = safeAdd(result.width, insets.left + insets.right);
+		result.height = safeAdd(result.height, insets.top + insets.bottom);
 		
 		cachedMaximum = result;
 		return result;
@@ -421,8 +426,8 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		
 		// Expand by the insets
 		Insets insets = parent.getInsets();
-		result.width += insets.left + insets.right;
-		result.height += insets.top + insets.bottom;
+		result.width = safeAdd(result.width, insets.left + insets.right);
+		result.height = safeAdd(result.height, insets.top + insets.bottom);
 
 		/*
 		 * Check the constraints of the parent. Unlike the standard layout
@@ -473,6 +478,24 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	private void shrink(Dimension result, Dimension dim) {
 		result.width = Math.min(result.width, dim.width);
 		result.height = Math.min(result.height, dim.height);
+	}
+	
+	/**
+	 * A safe addition for dimensions. Returns Integer.MAX_VALUE if the
+	 * addition would overflow. Some components do set that to their maximum
+	 * size so they'd overflow if there are other components or insets.
+	 *  
+	 * @param a
+	 * @param b
+	 * @return sum of a and b, or Integer.MAX_VALUE
+	 */
+	private static int safeAdd(int a, int b) {
+		int tmp = a + b;
+		if (tmp >= 0) {
+			return tmp;
+		} else {
+			return Integer.MAX_VALUE;
+		}
 	}
 	
 	private interface Direction {
@@ -538,7 +561,8 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		}
 		
 		public void addComponentDimensions(Dimension result, Dimension dim) {
-			result.width += dim.width;
+			// Avoid integer overflows
+			result.width = safeAdd(result.width, dim.width);
 			result.height = Math.max(result.height, dim.height);
 		}
 
@@ -575,7 +599,8 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		
 		public void addComponentDimensions(Dimension result, Dimension dim) {
 			result.width = Math.max(result.width, dim.width);
-			result.height += dim.height;
+			// Avoid integer overflows
+			result.height = safeAdd(result.height, dim.height);
 		}
 
 		public int getPrimary(Dimension dim) {
@@ -593,5 +618,37 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		public void setSecondary(Dimension result, int length) {
 			result.width = length;
 		}
+	}
+	
+	/**
+	 * An utility component for layout.
+	 */
+	private static class Spring extends JComponent {
+	}
+	
+	/**
+	 * Add a utility component that expands by default, to a container using
+	 * SBoxLayout. Adding it rather than just creating the component is a
+	 * workaround for components not passing information about new subcomponents
+	 * if the user explicitly specifies the constraints. 
+	 * 
+	 * @return A spring with preferred dimensions 0, 0.
+	 */
+	public static JComponent addSpring(Container target) {
+		JComponent spring = new Spring();
+		target.add(spring, constraint(SLayout.EXPAND_AXIAL));
+		
+		return spring;
+	}
+	
+	/**
+	 * A convenience method for creating a container using SBoxLayout 
+	 * @return
+	 */
+	public static JComponent createContainer(boolean direction) {
+		JComponent container = new Spring();
+		container.setLayout(new SBoxLayout(direction));
+		
+		return container;
 	}
 }
