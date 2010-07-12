@@ -280,11 +280,9 @@ public class Postman implements Runnable {
 			msg = st.nextToken("\0").trim(); 
 		}
 		final String old = messages.getProperty(param + "!" + from);
-		// temporary measure: No point in postman sending confirmation message to an NPC
-		// will use a proper message sender from them and remove this hack eventually
-		if (!("MrTaxman".equals(from) || "Dagobert".equals(from) ||  "Wilfred".equals(from))) {
-			tell(from, "Message accepted for delivery.");
-		}
+
+		tell(from, "Message accepted for delivery.");
+
 		if (old != null) {
 			msg = old + "\n" + msg;
 		}
