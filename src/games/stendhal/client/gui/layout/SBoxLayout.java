@@ -16,10 +16,13 @@ import javax.swing.JComponent;
  * and provides a predictable layout with few hidden interactions.
  * <p>
  * Minimum size is properly supported within reasonable limits.
- * 
+ * <p>
  * Maximum size has only a soft support, i.e. maximum size works
  * as a limiting preferred size, even if the child component itself
  * would suggest a larger size.
+ * <p>
+ * Component alignment is supported in the direction perpendicular to the
+ * layout direction.
  */
 public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	/*
@@ -29,9 +32,6 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * 	- Expanding and contracting the components is done by same amount for all 
 	 * 	the components that are resized (unless forbidden by minimum/maximum size 
 	 * 	constraints). Should it be relative to the component size instead?
-	 * 
-	 *  - alignment is not supported, but is easy to add if needed (at least the
-	 *  useful ones (left, right, center))
 	 * 
 	 * Further refinement:
 	 * 	Layout management in swing is dumb (and not just buggy for the fundamental
@@ -255,10 +255,17 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 			if (c.isVisible()) {
 				Dimension cPref = getPreferred(c);
 				shrink(cPref, realDim);
+				int xAlign = 0;
+				int yAlign = 0;
+				
 				EnumSet<SLayout> flags = constraints.get(c);
 				if (flags.contains(SLayout.EXPAND_PERPENDICULAR)) {
 					d.setSecondary(cPref, d.getSecondary(realDim));
+				} else {
+					xAlign = getXAlignment(c, realDim);
+					yAlign = getYAlignment(c, realDim);
 				}
+				
 				if ((remainingStretch > 0) && flags.contains(SLayout.EXPAND_AXIAL)) {
 					// Stretch the components that allow it, if needed
 					int add = Math.max(1, remainingStretch / remainingExpandable);
@@ -266,7 +273,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 					remainingStretch -= add;
 					remainingExpandable--;
 				}
-				c.setBounds(startPosition.width, startPosition.height, cPref.width, cPref.height);
+				c.setBounds(startPosition.width + xAlign, startPosition.height + yAlign, cPref.width, cPref.height);
 				
 				// Move the coordinates of the next component by the size of the
 				// previous + padding
@@ -290,9 +297,15 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 			if (c.isVisible()) {
 				Dimension compSize = c.getMinimumSize();
 				shrink(compSize, realDim);
+				int xAlign = 0;
+				int yAlign = 0;
+				
 				EnumSet<SLayout> flags = constraints.get(c);
 				if (flags.contains(SLayout.EXPAND_PERPENDICULAR)) {
 					d.setSecondary(compSize, d.getSecondary(realDim));
+				} else {
+					xAlign = getXAlignment(c, realDim);
+					yAlign = getYAlignment(c, realDim);
 				}
 				
 				int shrink = d.getPrimary(realDim) - d.getPrimary(compSize) - d.getPrimary(startPosition);
@@ -301,7 +314,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 					shrink = Math.max(-d.getPrimary(compSize), shrink);
 					addToPrimary(compSize, shrink);
 				}
-				c.setBounds(startPosition.width, startPosition.height, compSize.width, compSize.height);
+				c.setBounds(startPosition.width + xAlign, startPosition.height + yAlign, compSize.width, compSize.height);
 				
 				// Move the coordinates of the next component by the size of the
 				// previous + padding
@@ -381,13 +394,19 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 			if (c.isVisible()) {
 				Dimension cPref = getPreferred(c);
 				shrink(cPref, realDim);
+				int xAlign = 0;
+				int yAlign = 0;
+				
 				EnumSet<?> flags = constraints.get(c);
 				if (flags.contains(SLayout.EXPAND_PERPENDICULAR)) {
 					d.setSecondary(cPref, d.getSecondary(realDim));
+				} else {
+					xAlign = getXAlignment(c, realDim);
+					yAlign = getYAlignment(c, realDim);
 				}
 				d.setPrimary(cPref, dim[i]);
 				sum += dim[i];
-				c.setBounds(startPosition.width, startPosition.height, cPref.width, cPref.height);
+				c.setBounds(startPosition.width + xAlign, startPosition.height + yAlign, cPref.width, cPref.height);
 				
 				// Move the coordinates of the next component by the size of the
 				// previous + padding
@@ -395,6 +414,53 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 				addToPrimary(startPosition, padding);
 			}
 		}
+	}
+	
+	/**
+	 * Get the x alignment of a child component.
+	 * 
+	 * @param c component
+	 * @param available available space
+	 * @return x alignment in pixels
+	 */
+	private int getXAlignment(Component c, Dimension available) {
+		if (d == horizontalDirection) {
+			return 0;
+		} else {
+			return getPerpendicularAlignment(c, available);
+		}
+	}
+	
+	/**
+	 * Get the y alignment of a child component.
+	 * 
+	 * @param c component
+	 * @param available available space
+	 * @return y alignment in pixels
+	 */
+	private int getYAlignment(Component c, Dimension available) {
+		if (d == horizontalDirection) {
+			return getPerpendicularAlignment(c, available);
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * Get the pixel alignment of a component in the perpendicular direction.
+	 *  
+	 * @param c component
+	 * @param available size of the container of the component
+	 * @return pixel alignment
+	 */
+	private int getPerpendicularAlignment(Component c, Dimension available) {
+		int align = 0;
+		int extra = d.getSecondary(available) - d.getSecondary(c.getPreferredSize()); 
+		if (extra > 0) {
+			align = (int) (extra * d.getComponentAlignment(c));
+		}
+		
+		return align;
 	}
 	
 	public Dimension maximumLayoutSize(Container parent) {
@@ -563,6 +629,15 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		 * @return
 		 */
 		SLayout translate(SLayout dir);
+		
+		/**
+		 * Get the alignment of the component perpendicular to the layout axis.
+		 * 
+		 * @param component component to examine
+		 * @return component alignment
+		 */
+		float getComponentAlignment(Component component);
+		
 		/**
 		 * Expand a dimension by a component's dimensions.
 		 * 
@@ -639,6 +714,10 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		public void setSecondary(Dimension result, int length) {
 			result.height = length;
 		}
+
+		public float getComponentAlignment(Component component) {
+			return component.getAlignmentY();
+		}
 	}
 	
 	/**
@@ -675,6 +754,10 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 
 		public void setSecondary(Dimension result, int length) {
 			result.width = length;
+		}
+
+		public float getComponentAlignment(Component component) {
+			return component.getAlignmentX();
 		}
 	}
 	
