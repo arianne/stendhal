@@ -9,6 +9,7 @@ import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 
+import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
@@ -21,6 +22,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -78,7 +80,12 @@ public class CharacterDialog extends JDialog implements Runnable {
 			}
 		});
 		
-		this.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+		int pad = SBoxLayout.COMMON_PADDING;
+		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, pad));
+		Container content = getContentPane();
+		if (content instanceof JComponent) {
+			((JComponent) content).setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
+		}
 		
 		// Create the character area
 		characterPanel = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
@@ -89,7 +96,7 @@ public class CharacterDialog extends JDialog implements Runnable {
 		addCharacters(characters);
 		
 		// Create area for additional buttons
-		JComponent buttonBar = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
+		JComponent buttonBar = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
 		add(buttonBar, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
 		// Align the buttons right
