@@ -21,7 +21,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -82,8 +81,7 @@ public class CharacterDialog extends JDialog implements Runnable {
 		this.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		
 		// Create the character area
-		characterPanel = new JComponent() {};
-		characterPanel.setLayout(new BoxLayout(characterPanel, BoxLayout.X_AXIS));
+		characterPanel = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
 		JScrollPane scroll = new JScrollPane(characterPanel);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		add(scroll, SBoxLayout.constraint(SLayout.EXPAND_X));
@@ -91,15 +89,11 @@ public class CharacterDialog extends JDialog implements Runnable {
 		addCharacters(characters);
 		
 		// Create area for additional buttons
-		JComponent buttonBar = new JComponent() {};
-		buttonBar.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
+		JComponent buttonBar = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
 		add(buttonBar, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
-		// A way to get right alignment (really "end alignment") with
-		// SBoxLayout. Used only here for now, so there's little point of
-		// adding a convenience class to the layout package yet.
-		JComponent spring = new JComponent() {};
-		buttonBar.add(spring, SBoxLayout.constraint(SLayout.EXPAND_X));
+		// Align the buttons right
+		SBoxLayout.addSpring(buttonBar);
 		
 		// Action buttons. Should these be of uniform size?
 		JButton newCharButton = new JButton("New Character");
@@ -137,7 +131,7 @@ public class CharacterDialog extends JDialog implements Runnable {
 	private void addCharacters(final Map<String, RPObject> characters) {
 		for (Entry<String, RPObject> character : characters.entrySet()) {
 			JButton button = createCharacterButton(character.getKey(), character.getValue());
-			characterPanel.add(button);
+			characterPanel.add(button, SBoxLayout.constraint(SLayout.EXPAND_X));
 		}
 	}
 	

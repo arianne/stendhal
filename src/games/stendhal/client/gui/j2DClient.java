@@ -329,8 +329,7 @@ public class j2DClient implements UserInterface {
 		mainFrame.getMainFrame().getContentPane().setBackground(Color.black);
 		
 		// *** Create the layout ***
-		final JComponent leftColumn = new JComponent() {};
-		leftColumn.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+		final JComponent leftColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		leftColumn.add(minimap.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
 		leftColumn.add(stats.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
 		leftColumn.add(buddyPane, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
@@ -351,11 +350,10 @@ public class j2DClient implements UserInterface {
 		pane.addComponentListener(new SplitPaneResizeListener(screen.getComponent(), splitPane));
 
 		// Avoid panel drawing overhead
-		final Container windowContent = new JComponent() {};
+		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
 		mainFrame.getMainFrame().setContentPane(windowContent);
 		
 		// Finally add the left pane, and the games creen + chat combo
-		windowContent.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
 		// Make the panel take any horizontal resize
 		windowContent.add(leftColumn, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		leftColumn.setMinimumSize(new Dimension());
