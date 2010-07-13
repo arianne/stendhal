@@ -5,7 +5,9 @@ import games.stendhal.server.core.events.achievements.Category;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
@@ -76,6 +78,23 @@ public class AchievementDAO {
 				map.put(identifier, id);
 			};
 		return map;
+	}
+	
+	/**
+	 * @param playerName
+	 * @return set identifiers of achievements reached by playerName
+	 * @throws SQLException 
+	 */
+	public Set<String> loadAllReachedAchievementsOfPlayer(String playerName, DBTransaction transaction) throws SQLException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("playername", playerName);
+		String query = "SELECT identifier FROM achievement a JOIN reached_achievement ra ON ra.achievement_id = a.id WHERE ra.charname = '[playername]';";
+		ResultSet resultSet = transaction.query(query, params);
+		Set<String> identifiers = new HashSet<String>();
+		while(resultSet.next()) {
+			identifiers.add(resultSet.getString(0));
+		}
+		return identifiers;
 	}
 
 }
