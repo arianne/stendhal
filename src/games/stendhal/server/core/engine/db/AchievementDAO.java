@@ -1,5 +1,8 @@
 package games.stendhal.server.core.engine.db;
 
+import games.stendhal.server.core.events.achievements.Category;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,20 +26,18 @@ public class AchievementDAO {
 	 * @param transaction
 	 * @throws SQLException
 	 */
-	public void saveReachedAchievement(String identifier, String title, String category, String playerName, DBTransaction transaction) throws SQLException {
+	public void saveReachedAchievement(Integer achievementId, String title, Category category, String playerName, DBTransaction transaction) throws SQLException {
 		String query  = "INSERT INTO reached_achievement " +
 						"(charname, achievement_id) VALUES" +
 						"('[charname]','[achievement_id]');";
-		Integer achievementId = Integer.valueOf(createAchievementIfNotExists(identifier, title, category, transaction));
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("charname", playerName);
 		parameters.put("achievement_id", achievementId);
 		transaction.execute(query, parameters);
-		TransactionPool.get().commit(transaction);
 	}
 
 	/**
-	 * creates a new achievement if not yet created
+	 * creates a new achievement
 	 * 
 	 * @param identifier
 	 * @param title
@@ -45,35 +46,36 @@ public class AchievementDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	private int createAchievementIfNotExists(String identifier, String title, String category, DBTransaction transaction) throws SQLException {
-		int achievementId = readAchievementIdForIdentifier(identifier, transaction);
-		if (achievementId == 0) {
-			String query = 	"INSERT INTO achievement " +
-								"(identifier, title, category) VALUES " +
-								"('[identifier]','[title]','[category]')";
-			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("identifier", identifier);
-			parameters.put("title", title);
-			parameters.put("category", category);
-			transaction.execute(query, parameters);
-			achievementId = transaction.getLastInsertId("achievement", "id");
-		}
+	public int saveAchievement(String identifier, String title, Category category, DBTransaction transaction) throws SQLException {
+		int achievementId = 0;
+		String query = 	"INSERT INTO achievement " +
+						"(identifier, title, category) VALUES " +
+						"('[identifier]','[title]','[category]')";
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("identifier", identifier);
+		parameters.put("title", title);
+		parameters.put("category", category.toString());
+		transaction.execute(query, parameters);
+		achievementId = transaction.getLastInsertId("achievement", "id");
 		return achievementId;
 	}
 
 	/**
-	 * reads the id of the achievement with the given identifier
-	 * @param identifier
+	 * loads a map from achievement identifier to database serial
 	 * @param transaction
-	 * @return the id of the found achievement, id is 0 if no id was found
+	 * @return map with key identifier string and value database id
 	 * @throws SQLException
 	 */
-	private int readAchievementIdForIdentifier(String identifier, DBTransaction transaction) throws SQLException {
-		String query = "SELECT id FROM achievement WHERE identifier = '[identifier]';";
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("identifier",identifier);
-		int id = transaction.querySingleCellInt(query, parameters);
-		return id;
+	public Map<String, Integer> loadIdentifierIdPairs(DBTransaction transaction) throws SQLException {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String query = "SELECT identifier, id FROM achievement;";
+		ResultSet set = transaction.query(query, new HashMap<String, Object>());
+			while (set.next()) {
+				String identifier = set.getString("identifier");
+				Integer id = set.getInt("id");
+				map.put(identifier, id);
+			};
+		return map;
 	}
 
 }

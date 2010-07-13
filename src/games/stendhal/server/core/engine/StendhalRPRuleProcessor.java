@@ -22,6 +22,7 @@ import games.stendhal.server.core.account.CharacterCreator;
 import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.core.events.TutorialNotifier;
+import games.stendhal.server.core.events.achievements.AchievementNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.Entity;
@@ -133,6 +134,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			
 			this.rpman = rpman;
 			StendhalRPAction.initialize(rpman);
+			AchievementNotifier.initialize();
 			/* Initialize quests */
 			SingletonRepository.getStendhalQuestSystem().init();
 
