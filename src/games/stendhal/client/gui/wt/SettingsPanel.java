@@ -62,9 +62,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	private final Map<String, Entry> entries;
 
 	/**
-	 * Creates a new instance of OptionsPanel.
+	 * Creates a new instance of SettingsPanel.
 	 * 
-	 * @param frameWidth
 	 * @param gameScreen
 	 */
 	public SettingsPanel(final IGameScreen gameScreen) {
@@ -122,10 +121,11 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	}
 
 	/**
-	 * a button was clicked.
+	 * A button was clicked.
 	 * 
 	 * @param name
 	 * @param point
+	 * @param gameScreen
 	 */
 	public void onClick(final String name, final Point point, final IGameScreen gameScreen) {
 		/*

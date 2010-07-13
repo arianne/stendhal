@@ -37,7 +37,6 @@ public class GetPostmanMessagesCommand extends AbstractDBCommand {
 	 * creates a new GetPostmanMessagesCommand
 	 *
 	 * @param player the player the check originated from
-	 * @param who the character name to check
 	 */
 	public GetPostmanMessagesCommand(Player player) {
 		this.player = player;
