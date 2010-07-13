@@ -3,9 +3,10 @@ package games.stendhal.server.maps.semos.bank;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
+import games.stendhal.server.core.events.GuaranteedDelayedPlayerTextSender;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.ActiveEntity;
@@ -20,8 +21,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Set;
-
-import marauroa.server.db.command.DBCommandQueue;
 
 public class Vault extends StendhalRPZone {
 
@@ -88,7 +87,7 @@ public class Vault extends StendhalRPZone {
 								"bag", item);
 						if (equippedToBag) {
 
-							message = "The "+ Grammar.quantityplnoun(item.getQuantity(), item.getName())
+							message = Grammar.quantityplnoun(item.getQuantity(), item.getName())
 												+ " which you left on the floor in the vault have been automatically "
 												+ "returned to your bag.";
 							
@@ -97,14 +96,14 @@ public class Vault extends StendhalRPZone {
 							boolean equippedToBank = ((RPEntity) entity).equip(
 									"bank", item);
 							if (equippedToBank) {
-								message = "The "+ Grammar.quantityplnoun(item.getQuantity(), item.getName())
+								message =  Grammar.quantityplnoun(item.getQuantity(), item.getName())
 								+ " which you left on the floor in the vault have been automatically "
 								+ "returned to your bank chest.";
 								
 								new GameEvent(((RPEntity) entity).getName(), "equip", item.getName(), "vault", "bank", Integer.toString(item.getQuantity())).raise();
 							} else {
 								// the player lost their items
-								message = "The "+ Grammar.quantityplnoun(item.getQuantity(), item.getName())
+								message = Grammar.quantityplnoun(item.getQuantity(), item.getName())
 													+ " which you left on the floor in the vault have been thrown into "
 													+ "the void, because there was no space to fit them into either your "
 													+ "bank chest or your bag.";
@@ -149,11 +148,13 @@ public class Vault extends StendhalRPZone {
 	 * @param target the player to be notified
 	 * @param message the delivered message
 	 */
-	private static void notifyPlayer(final String target, final String message) {
-		// TODO: only use postman if they logged out. Otherwise, just send the private message.
+	private static void notifyPlayer(final String target, final String message)  {
+		// only uses postman if they logged out. Otherwise, just send the private message.
 		
-		// there is an npc action to send the message but this is all we want to do here.
-		DBCommandQueue.get().enqueue(new StoreMessageCommand("Dagobert", target, message, "N"));
+		final Player player = SingletonRepository.getRuleProcessor().getPlayer(target);
+
+		new GuaranteedDelayedPlayerTextSender("Dagobert", player, message, 2);
+		
 	}
 	
 	@Override
