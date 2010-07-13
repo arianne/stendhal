@@ -500,6 +500,46 @@ West: Semos
 			</implementation>
 		</entity>
 
+		<entity x="27" y="117">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">bird-2b, bird-1b</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">10</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="42" y="41">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">bird-2b, bird-1b, bird-3b</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">10</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="13" y="46">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">blackbird-6b, blackbird-8b</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">15</parameter>
+				<parameter name="radius">20</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="33" y="10">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">bird-2b, bird-1b</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">10</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
 
    <portal x="60" y="16" ref="tavern_entrance_left">
      <destination zone="int_ados_tavern_0" ref="entrance_left"/>
@@ -2955,6 +2995,27 @@ Southeast: Docks
 			</implementation>
 		</entity>
 
+		<entity x="44" y="12">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">blackbird-6b, blackbird-7b</parameter>
+				<parameter name="min">2</parameter>
+				<parameter name="max">15</parameter>
+				<parameter name="radius">20</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="67" y="23">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">bird-2b, bird-1b</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">10</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+		
+		
 		<entity x="53" y="24">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource">
 			</implementation>
