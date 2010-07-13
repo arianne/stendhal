@@ -9,9 +9,9 @@ import games.stendhal.server.entity.player.Player;
  * around problems like zone changes).
  */
 public class DelayedPlayerTextSender implements TurnListener {
-	private final Player player;
-	private final String message;
-	private final NotificationType type;
+	protected final Player player;
+	protected final String message;
+	protected final NotificationType type;
 	
 	/**
 	 * Creates a new private message type DelayedPlayerTextSender. 
