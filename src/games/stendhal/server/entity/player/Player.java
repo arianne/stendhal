@@ -12,12 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import static games.stendhal.common.constants.Actions.ADMINLEVEL;
-import static games.stendhal.common.constants.Actions.AWAY;
-import static games.stendhal.common.constants.Actions.GHOSTMODE;
-import static games.stendhal.common.constants.Actions.GRUMPY;
-import static games.stendhal.common.constants.Actions.INVISIBLE;
-import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 import games.stendhal.common.Constants;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
@@ -48,15 +42,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 
 import org.apache.log4j.Logger;
+
+import static games.stendhal.common.constants.Actions.ADMINLEVEL;
+import static games.stendhal.common.constants.Actions.AWAY;
+import static games.stendhal.common.constants.Actions.GHOSTMODE;
+import static games.stendhal.common.constants.Actions.GRUMPY;
+import static games.stendhal.common.constants.Actions.INVISIBLE;
+import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 
 public class Player extends RPEntity {
 	
@@ -132,6 +135,11 @@ public class Player extends RPEntity {
 	private String lastPrivateChatterName;
 
 	private final PlayerChatBucket chatBucket;
+	
+	/**
+	 * all identifiers of reached achievements, filled on login of player
+	 */
+	private Set<String> reachedAchievements = new HashSet<String>();
 
 	public static void generateRPClass() {
 		try {
@@ -2016,4 +2024,17 @@ public class Player extends RPEntity {
 		super.setLevel(level);
 		AchievementNotifier.onXPGain(this);
 	}
+	
+	public void addReachedAchievement(String identifier) {
+		getAchievements().add(identifier);
+	}
+
+	private Set<String> getAchievements() {
+		return reachedAchievements;
+	}
+	
+	public boolean hasReachedAchievement(String identifier) {
+		return getAchievements().contains(identifier);
+	}
+	
 }

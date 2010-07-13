@@ -1,5 +1,6 @@
 package games.stendhal.server.core.events.achievements;
 
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.dbcommand.ReadAchievementIdentifierToIdMap;
 import games.stendhal.server.core.engine.dbcommand.WriteAchievementCommand;
 import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementCommand;
@@ -70,9 +71,8 @@ public class AchievementNotifier {
 	private static void checkAchievements(Player player,
 			List<Achievement> toCheck) {
 		for (Achievement achievement : toCheck) {
-			if(achievement.isFulfilled(player)) {
-				//TODO remove comment when decided how fulfilled achievements are stored in player object
-				//logAndNotifyReachingOfAnAchievement(player, achievement);
+			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
+				logAndNotifyReachingOfAnAchievement(player, achievement);
 			}
 		}
 	}
@@ -85,6 +85,8 @@ public class AchievementNotifier {
 		Category category = achievement.getCategory();
 		String playerName = player.getName();
 		DBCommandQueue.get().enqueue(new WriteReachedAchievementCommand(identifiersToIds.get(identifier), title, category, playerName));
+		player.addReachedAchievement(achievement.getIdentifier());
+		new GameEvent(playerName, "reach-achievement", category.toString(), title, identifier).raise();
 	}
 
 	private static Map<String, Achievement> createAchievements() {
