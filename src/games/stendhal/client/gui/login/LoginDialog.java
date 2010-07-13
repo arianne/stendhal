@@ -31,9 +31,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.Iterator;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -146,16 +148,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Remove profile button
 		 */
-		removeButton = new JButton();
-		removeButton.setText("Remove");
-		removeButton.setMnemonic(KeyEvent.VK_R);
-
-		removeButton.addActionListener(new ActionListener() {
-
-			public void actionPerformed(final ActionEvent e) {
-				removeButton_actionPerformed(e);
-			}
-		});
+		removeButton = createRemoveButton();
 		
 		// Container for the profiles list and the remove button
 		JComponent box = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
@@ -300,6 +293,29 @@ public class LoginDialog extends JDialog {
 			owner.setEnabled(false);
 			this.setLocationRelativeTo(owner);
 		}
+	}
+	
+	/**
+	 * Create the remove character button.
+	 * 
+	 * @return
+	 */
+	private JButton createRemoveButton() {
+		final URL url = getClass().getClassLoader().getResource("data/gui/trash.png");
+		ImageIcon icon = new ImageIcon(url);
+		JButton button = new JButton(icon);
+		// Clear the margins that buttons normally add
+		button.setMargin(new Insets(0, 0, 0, 0));
+		button.setToolTipText("Remove the selected account from the list");
+
+		button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(final ActionEvent e) {
+				removeButton_actionPerformed(e);
+			}
+		});
+		
+		return button;
 	}
 
 	private void loginButton_actionPerformed(final ActionEvent e) {
