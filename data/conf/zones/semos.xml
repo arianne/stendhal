@@ -224,12 +224,12 @@
          </portal>
 
         <portal x="27" y="15" ref="east_choice_floor_1">
+            <destination zone="int_semos_wizards_tower_1" ref="choice_floor_1" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
                 <parameter name="rejected">Now use the candle as you were instructed.</parameter>
                 <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
             </implementation>
-                <destination zone="int_semos_wizards_tower_1" ref="choice_floor_1" />
             </portal>
 
         <portal x="15" y="26" ref="south_choice_floor_1">
@@ -282,12 +282,12 @@
             </portal>
 
         <portal x="15" y="26" ref="south_choice_floor_2">
+        	<destination zone="int_semos_wizards_tower_2" ref="choice_floor_2" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
                 <parameter name="rejected">Now use the candle as you were instructed.</parameter>
                 <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
             </implementation>
-                <destination zone="int_semos_wizards_tower_2" ref="choice_floor_2" />
             </portal>
 
         <portal x="3" y="15" ref="west_choice_floor_2">
@@ -340,12 +340,12 @@
             </portal>
 
         <portal x="3" y="15" ref="west_choice_floor_3">
+            <destination zone="int_semos_wizards_tower_3" ref="choice_floor_3" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
                 <parameter name="rejected">Now use the candle as you were instructed.</parameter>
                 <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
             </implementation>
-            <destination zone="int_semos_wizards_tower_3" ref="choice_floor_3" />
          </portal>
 
         <portal x="7" y="20" ref="portal_to_fourth_floor">
@@ -386,12 +386,12 @@
             </portal>
 
         <portal x="27" y="15" ref="east_choice_floor_4">
+            <destination zone="int_semos_wizards_tower_4" ref="choice_floor_4" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
                 <parameter name="rejected">Now use the candle as you were instructed.</parameter>
                 <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
             </implementation>
-            <destination zone="int_semos_wizards_tower_4" ref="choice_floor_4" />
         </portal>
 
         <portal x="15" y="26" ref="south_choice_floor_4">
@@ -403,7 +403,7 @@
             </portal>
 
         <portal x="15" y="24" ref="portal_to_fifth_floor">
-                <destination zone="int_semos_wizards_tower_5" ref="portal_from_fourth_floor" />
+            <destination zone="int_semos_wizards_tower_5" ref="portal_from_fourth_floor" />
             <implementation
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
@@ -448,12 +448,12 @@
             </portal>
 
         <portal x="3" y="15" ref="west_choice_floor_5">
+            <destination zone="int_semos_wizards_tower_5" ref="choice_floor_5" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
                 <parameter name="rejected">Now use the candle as you were instructed.</parameter>
                 <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
             </implementation>
-            <destination zone="int_semos_wizards_tower_5" ref="choice_floor_5" />
         </portal>
 
         <portal x="7" y="10" ref="portal_to_sixth_floor">
@@ -490,12 +490,12 @@
         </portal>
 
         <portal x="15" y="4" ref="north_choice_floor_6">
+            <destination zone="int_semos_wizards_tower_6" ref="choice_floor_6" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
                 <parameter name="rejected">Now use the candle as you were instructed.</parameter>
                 <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
             </implementation>
-            <destination zone="int_semos_wizards_tower_6" ref="choice_floor_6" />
         </portal>
 
         <portal x="27" y="15" ref="east_choice_floor_6">
