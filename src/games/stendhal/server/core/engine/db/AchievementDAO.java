@@ -92,7 +92,7 @@ public class AchievementDAO {
 		ResultSet resultSet = transaction.query(query, params);
 		Set<String> identifiers = new HashSet<String>();
 		while(resultSet.next()) {
-			identifiers.add(resultSet.getString(0));
+			identifiers.add(resultSet.getString(1));
 		}
 		return identifiers;
 	}
