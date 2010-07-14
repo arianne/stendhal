@@ -4,6 +4,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -91,6 +93,9 @@ public class StatsPanelController {
 		
 		listener = new GrumpyChangeListener();
 		pcs.addPropertyChangeListener("grumpy", listener);
+		
+		listener = new KarmaChangeListener();
+		pcs.addPropertyChangeListener("karma", listener);
 	}
 	
 	/**
@@ -233,6 +238,24 @@ public class StatsPanelController {
 			}
 			
 			panel.setAway(event.getNewValue() != null);
+		}
+	}
+	
+	/**
+	 * Listener for karma changes.
+	 */
+	private class KarmaChangeListener implements PropertyChangeListener {
+		public void propertyChange(final PropertyChangeEvent event) {
+			if (event == null) {
+				return;
+			}
+		
+			try {
+				String newKarma = (String) event.getNewValue();
+				panel.setKarma(Double.parseDouble(newKarma));
+			} catch (NumberFormatException e) {
+				Logger.getLogger(StatsPanelController.class).error("Invalid karma value", e);
+			}
 		}
 	}
 	

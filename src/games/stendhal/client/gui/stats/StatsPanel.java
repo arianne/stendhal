@@ -7,6 +7,7 @@ import games.stendhal.common.Level;
 import java.awt.Font;
 import java.util.HashMap;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -16,6 +17,7 @@ import marauroa.common.game.RPObject;
 public class StatsPanel extends JPanel {
 	private final StatLabel hpLabel, atkLabel, defLabel, xpLabel, levelLabel, moneyLabel;
 	private final StatusIconPanel statusIcons;
+	private final KarmaIndicator karmaIndicator;
 	private int hp, maxhp, atk, atkxp, weaponAtk, def, defxp, itemDef, xp, level;
 	/**
 	 * The money objects.
@@ -31,6 +33,11 @@ public class StatsPanel extends JPanel {
 		
 		statusIcons = new StatusIconPanel(); 
 		add(statusIcons);
+		
+		karmaIndicator = new KarmaIndicator();
+		karmaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+		karmaIndicator.setToolTipText("Karma");
+		add(karmaIndicator);
 		
 		hpLabel = new StatLabel();
 		add(hpLabel);
@@ -116,6 +123,15 @@ public class StatsPanel extends JPanel {
 		this.xp = xp;
 		xpLabel.setText("XP: " + xp);
 		updateLevel();
+	}
+	
+	/**
+	 * Set player karma.
+	 * 
+	 * @param karma
+	 */
+	protected void setKarma(double karma) {
+		karmaIndicator.setValue(karma);
 	}
 	
 	protected void setLevel(int level) {
