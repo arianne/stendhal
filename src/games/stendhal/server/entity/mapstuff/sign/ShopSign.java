@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.ItemInformation;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.events.ShowItemListEvent;
 
@@ -100,12 +101,15 @@ public class ShopSign extends Sign implements UseListener {
 	 * @return Item
 	 */
 	private Item prepareItem(String name, int price) {
-		Item item = SingletonRepository.getEntityManager().getItem(name);
+		Item prototype = SingletonRepository.getEntityManager().getItem(name);
+		Item item = new ItemInformation(prototype);
 		if (seller) {
 			item.put("price", -price);
 		} else {
 			item.put("price", price);
 		}
+		item.put("description_info", item.describe());
+		// compatibility with 0.85 clients
 		item.put("description", item.describe());
 		return item;
 	}

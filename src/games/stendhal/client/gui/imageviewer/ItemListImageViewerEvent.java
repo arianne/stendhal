@@ -100,7 +100,12 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		html.append("</td><td>");
 		html.append(price);
 		html.append("</td><td>");
-		html.append(item.get("description"));
+		String text = item.get("description_info");
+		if (text == null) {
+			// compatibility with 0.85 server
+			text = item.get("description");
+		}
+		html.append(text);
 		html.append("</td></tr>");
 	}
 

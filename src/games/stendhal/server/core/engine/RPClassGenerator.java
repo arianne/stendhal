@@ -16,6 +16,7 @@ import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.ItemInformation;
 import games.stendhal.server.entity.mapstuff.Fire;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
@@ -53,9 +54,9 @@ import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.events.TextEvent;
 import games.stendhal.server.events.TransitionGraphEvent;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
 public class RPClassGenerator {
 	private static boolean inited = false;
@@ -109,6 +110,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("item")) {
 			Item.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("item_information")) {
+			ItemInformation.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("plant_grower")) {
 			PassiveEntityRespawnPoint.generateRPClass();

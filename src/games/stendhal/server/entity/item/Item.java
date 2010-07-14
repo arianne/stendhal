@@ -140,7 +140,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Some items(food) have amount of something
 		// (a bottle, a piece of meat).
-		entity.addAttribute("amount", Type.INT);
+		entity.addAttribute("amount", Type.INT, Definition.HIDDEN);
 
 		// Some items (range weapons, ammunition, missiles)
 		// have a range.
@@ -180,9 +180,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Unique database ID for logging
 		entity.addAttribute("logid", Type.INT, Definition.HIDDEN);
-
-		// used for show_item_list events used as shop signs.
-		entity.addAttribute("price", Type.INT, Definition.VOLATILE);
 	}
 
 	
