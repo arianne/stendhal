@@ -19,13 +19,27 @@ import marauroa.server.db.command.ResultHandle;
 
 public class AchievementNotifier {
 	
-	private static Map<Category, List<Achievement>> achievements = new HashMap<Category, List<Achievement>>();
+	private static AchievementNotifier instance;
 	
-	private static Map<String, Integer> identifiersToIds = new HashMap<String, Integer>();
+	private Map<Category, List<Achievement>> achievements;
 	
-	private static ResultHandle handle = new ResultHandle();
+	private Map<String, Integer> identifiersToIds;
 	
-	public static void initialize() {
+	private ResultHandle handle = new ResultHandle();
+	
+	private AchievementNotifier() {
+		achievements = new HashMap<Category, List<Achievement>>();
+		identifiersToIds = new HashMap<String, Integer>();
+	}
+	
+	public static AchievementNotifier get() {
+		if(instance == null) {
+			instance = new AchievementNotifier();
+		}
+		return instance;
+	}
+	
+	public void initialize() {
 		Map<String, Achievement> allAchievements = createAchievements();
 		for(Achievement a : allAchievements.values()) {
 			if(!achievements.containsKey(a.getCategory())) {
@@ -45,7 +59,7 @@ public class AchievementNotifier {
 		}
 	}
 
-	private static Set<String> collectAllIdentifiersFromDatabase() {
+	private Set<String> collectAllIdentifiersFromDatabase() {
 		DBCommandQueue.get().enqueueAndAwaitResult(new ReadAchievementIdentifierToIdMap(), handle);
 		ReadAchievementIdentifierToIdMap command = waitForResult();
 		Map<String, Integer> mapFromDB = command.getIdentifierToIdMap();
@@ -53,7 +67,7 @@ public class AchievementNotifier {
 		return mapFromDB.keySet();
 	}
 
-	private static ReadAchievementIdentifierToIdMap waitForResult() {
+	private ReadAchievementIdentifierToIdMap waitForResult() {
 		ReadAchievementIdentifierToIdMap command = DBCommandQueue.get().getOneResult(ReadAchievementIdentifierToIdMap.class, handle);
 		while(command == null) {
 			command = DBCommandQueue.get().getOneResult(ReadAchievementIdentifierToIdMap.class, handle);
@@ -61,14 +75,14 @@ public class AchievementNotifier {
 		return command;
 	}
 
-	public static void onXPGain(Player player) {
+	public void onXPGain(Player player) {
 		if(achievements.containsKey(Category.EXPERIENCE)) {
 			List<Achievement> toCheck = achievements.get(Category.EXPERIENCE);
 			checkAchievements(player, toCheck);
 		}
 	}
 
-	private static void checkAchievements(Player player,
+	private void checkAchievements(Player player,
 			List<Achievement> toCheck) {
 		for (Achievement achievement : toCheck) {
 			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
@@ -77,7 +91,7 @@ public class AchievementNotifier {
 		}
 	}
 	
-	private static void logAndNotifyReachingOfAnAchievement(Player player,
+	private void logAndNotifyReachingOfAnAchievement(Player player,
 			Achievement achievement) {
 		player.sendPrivateText("Congratulations! You have reached the "+achievement.getTitle()+" achievement!");
 		String identifier = achievement.getIdentifier();

@@ -134,7 +134,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			
 			this.rpman = rpman;
 			StendhalRPAction.initialize(rpman);
-			AchievementNotifier.initialize();
+			
 			/* Initialize quests */
 			SingletonRepository.getStendhalQuestSystem().init();
 
