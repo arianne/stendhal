@@ -322,6 +322,26 @@ areas.
   <configurator class-name="games.stendhal.server.maps.ados.outside.AnimalKeeperNPC" />
   <configurator class-name="games.stendhal.server.maps.ados.outside.VeterinarianNPC" />
 
+		<entity x="56" y="30">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">5</parameter>
+				<parameter name="radius">10</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="40" y="36">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">5</parameter>
+				<parameter name="radius">10</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
   <portal x="67" y="24" ref="0">
    <destination zone="-1_ados_outside_nw" ref="0"/>
   </portal>
@@ -370,6 +390,27 @@ West: Semos
  <zone name="0_ados_wall_n" level="0" x="500768" y="499872" file="Level 0/ados/wall_n.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch"/>
    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
+
+		<entity x="100" y="26">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">bird-2b, blackbird-6b, blackbird-7b, blackbird-8b</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">20</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="95" y="49">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">20</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
    <entity x="88" y="78">
      <implementation class-name="games.stendhal.server.entity.mapstuff.area.LifeDrainArea">
       <parameter name="width">25</parameter>
@@ -991,6 +1032,17 @@ in roaches.
    <zone name="int_ados_goldsmith" file="interiors/ados/goldsmith.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.MithrilForgerNPC" />
+    
+		<entity x="2" y="4">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">fire-3, fire-8</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">25</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+    
     <portal x="4" y="14" ref="entrance_goldsmith">
      <destination zone="0_ados_city_n" ref="goldsmith_entrance"/>
     </portal>
@@ -3205,6 +3257,17 @@ Southeast: Docks
  </zone> -->
 
  <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="Level 0/ados/coast_s_w2.tmx">
+
+		<entity x="96" y="105">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-2, wave-11</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">22</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
    <entity x="101" y="103">
      <implementation class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC">
        <parameter name="name">Eliza</parameter>
