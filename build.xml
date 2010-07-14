@@ -503,6 +503,11 @@
 				<include name="**/*.jar"/>
 			</fileset>
 		</signjar>
+		<signjar alias="stendhal" keystore="keystore.ks" storepass="${keystore.password}">
+			<fileset dir="${build_sign}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</signjar>
 	</target>
 
 	<target name="dist" depends="clean, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>

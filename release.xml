@@ -79,13 +79,18 @@
 	</target>
 
 	<!-- * Sign the -diff-*.jar files for webstart -->
-    <condition property="exclude.signing" value="true">
-      <not>
-       <available file="keystore.ks"/>
-      </not>
-    </condition>
+	<condition property="exclude.signing" value="true">
+		<not>
+			<available file="keystore.ks"/>
+		</not>
+		</condition>
 	<target name="sign_diff-jars" depends="jardiff" unless="exclude.signing">
 		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}">
+			<fileset dir="${lib}">
+				<include name="*-diff*.jar"/>
+			</fileset>
+		</signjar>
+		<signjar alias="stendhal" keystore="keystore.ks" storepass="${keystore.password}">
 			<fileset dir="${lib}">
 				<include name="*-diff*.jar"/>
 			</fileset>
