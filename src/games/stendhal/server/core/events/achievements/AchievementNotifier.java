@@ -19,15 +19,13 @@ import marauroa.server.db.command.ResultHandle;
 
 public class AchievementNotifier {
 	
-	private static Map<Category, List<Achievement>> achievements;
+	private static Map<Category, List<Achievement>> achievements = new HashMap<Category, List<Achievement>>();
 	
-	private static Map<String, Integer> identifiersToIds;
+	private static Map<String, Integer> identifiersToIds = new HashMap<String, Integer>();
 	
 	private static ResultHandle handle = new ResultHandle();
 	
 	public static void initialize() {
-		achievements = new HashMap<Category, List<Achievement>>();
-		identifiersToIds = new HashMap<String, Integer>();
 		Map<String, Achievement> allAchievements = createAchievements();
 		for(Achievement a : allAchievements.values()) {
 			if(!achievements.containsKey(a.getCategory())) {
@@ -64,8 +62,10 @@ public class AchievementNotifier {
 	}
 
 	public static void onXPGain(Player player) {
-		List<Achievement> toCheck = achievements.get(Category.EXPERIENCE);
-		checkAchievements(player, toCheck);
+		if(achievements.containsKey(Category.EXPERIENCE)) {
+			List<Achievement> toCheck = achievements.get(Category.EXPERIENCE);
+			checkAchievements(player, toCheck);
+		}
 	}
 
 	private static void checkAchievements(Player player,
