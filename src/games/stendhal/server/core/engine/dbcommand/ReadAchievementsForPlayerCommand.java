@@ -18,7 +18,7 @@ public class ReadAchievementsForPlayerCommand extends AbstractDBCommand {
 	private final Player player;
 
 	/**
-	 * @param identifiers
+	 * @param player the player whose achievements should be read
 	 */
 	public ReadAchievementsForPlayerCommand(Player player) {
 		this.player = player;

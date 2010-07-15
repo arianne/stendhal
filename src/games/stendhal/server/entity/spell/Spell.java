@@ -153,9 +153,9 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	}
 	
 	/**
-	 * Creates a spell from an {@link RPObject}
+	 * Creates a spell from an RPObject
 	 * 
-	 * @param object the {@link RPObject} to create the spell from
+	 * @param object the RPObject to create the spell from
 	 */
 	public Spell(final RPObject object) {
 		super(object);
