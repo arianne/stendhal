@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 
 import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
 /**
  * DAO to handle achievements for the stendhal website
  * @author madmetzger
@@ -21,14 +20,12 @@ public class AchievementDAO {
 	/**
 	 * logs a reached achievement into the database
 	 * 
-	 * @param identifier
-	 * @param title
-	 * @param category
+	 * @param achievementId
 	 * @param playerName
 	 * @param transaction
 	 * @throws SQLException
 	 */
-	public void saveReachedAchievement(Integer achievementId, String title, Category category, String playerName, DBTransaction transaction) throws SQLException {
+	public void saveReachedAchievement(Integer achievementId, String playerName, DBTransaction transaction) throws SQLException {
 		String query  = "INSERT INTO reached_achievement " +
 						"(charname, achievement_id) VALUES" +
 						"('[charname]','[achievement_id]');";

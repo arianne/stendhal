@@ -9,22 +9,23 @@ import java.sql.SQLException;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
-
+/**
+ * command to log a reached achievement to the database
+ * 
+ * @author madmetzger
+ */
 public class WriteReachedAchievementCommand extends AbstractDBCommand {
 
 	private final Integer id;
-	private final String title;
-	private final Category category;
 	private final String playerName;
 	
 	/**
-	 * @param identifier
-	 * @param playerName
+	 * create a new command
+	 * @param id database id of the achievement
+	 * @param playerName name of player who has reached it
 	 */
 	public WriteReachedAchievementCommand(Integer id, String title, Category category, String playerName) {
 		this.id = id;
-		this.title = title;
-		this.category = category;
 		this.playerName = playerName;
 	}
 
@@ -32,7 +33,7 @@ public class WriteReachedAchievementCommand extends AbstractDBCommand {
 	public void execute(DBTransaction transaction) throws SQLException,
 			IOException {
 		AchievementDAO dao = DAORegister.get().get(AchievementDAO.class);
-		dao.saveReachedAchievement(id, title, category, playerName, transaction);
+		dao.saveReachedAchievement(id, playerName, transaction);
 	}
 
 }
