@@ -26,6 +26,7 @@ import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
 import games.stendhal.server.core.engine.dbcommand.LogKillEventCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TutorialNotifier;
+import games.stendhal.server.core.events.achievements.AchievementNotifier;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -1134,7 +1135,7 @@ public abstract class RPEntity extends GuidedEntity {
 			}
 
 			killer.addXP(reward);
-
+			SingletonRepository.getAchievementNotifier().onKill(killer);
 			// For some quests etc., it is required that the player kills a
 			// certain creature without the help of others.
 			// Find out if the player killed this RPEntity on his own, but

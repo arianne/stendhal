@@ -48,7 +48,13 @@ public class Achievement {
 	}
 
 	public boolean isFulfilled(Player p) {
-		return condition.fire(p, null, null);
+		boolean fullfilled = condition.fire(p, null, null);
+		return fullfilled;
+	}
+
+	@Override
+	public String toString() {
+		return "Achievement<id: "+identifier+", title: "+title+">";
 	}
 
 }
