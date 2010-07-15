@@ -64,11 +64,11 @@ public class KarmaIndicator extends JComponent {
 	 * @return length of the drawn bar in pixels
 	 */
 	private int scale(double karma) {
-		// Scale to ]-1, 1[
-		double normalized = Math.atan(SCALING * karma) / Math.PI * 2;
+		// Scale to ]0, 1[
+		double normalized = 0.5 + Math.atan(SCALING * karma) / Math.PI;
 	
 		// ...and then to ]0, image.getWidth()[
-		return (int) (image.getWidth() / 2 + normalized * image.getWidth() / 2);
+		return (int) (image.getWidth() * normalized);
 	}
 	
 	@Override
