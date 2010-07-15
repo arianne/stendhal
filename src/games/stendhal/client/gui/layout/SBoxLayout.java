@@ -48,7 +48,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	public static final boolean HORIZONTAL = true;
 	
 	/** Common padding width where padding or border is wanted. */
-	public static int COMMON_PADDING = 5;
+	public static final int COMMON_PADDING = 5;
 	
 	/**
 	 * Create a constraints object.
@@ -122,6 +122,10 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		this.padding = padding;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.LayoutManager2#addLayoutComponent(java.awt.Component, java.lang.Object)
+	 */
 	public void addLayoutComponent(Component component, Object flags) {
 		EnumSet<SLayout> constraintFlags = EnumSet.noneOf(SLayout.class);
 		if (flags == null) {
@@ -146,8 +150,11 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		constraints.put(component, constraintFlags);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String, java.awt.Component)
+	 */
 	public void addLayoutComponent(String id, Component component) {
-		// Required by LayoutManager
 	}
 	
 	/**
@@ -172,11 +179,19 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		result.height = Math.max(result.height, dim.height);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.LayoutManager2#getLayoutAlignmentX(java.awt.Container)
+	 */
 	public float getLayoutAlignmentX(Container target) {
 		// The specs don't tell what this actually should do
 		return 0;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.LayoutManager2#getLayoutAlignmentY(java.awt.Container)
+	 */
 	public float getLayoutAlignmentY(Container target) {
 		// The specs don't tell what this actually should do
 		return 0;
@@ -198,12 +213,20 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		return dim;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.LayoutManager2#invalidateLayout(java.awt.Container)
+	 */
 	public void invalidateLayout(Container target) {
 		cachedMinimum = null;
 		cachedMaximum = null;
 		cachedPreferred = null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
+	 */
 	public void layoutContainer(Container parent) {
 		// Maximum dimensions available for use
 		Dimension realDim = parent.getSize();
@@ -463,6 +486,10 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		return align;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.LayoutManager2#maximumLayoutSize(java.awt.Container)
+	 */
 	public Dimension maximumLayoutSize(Container parent) {
 		/*
 		 * The specs are *very* vague about what this should do (and 
@@ -499,6 +526,10 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		return result;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
+	 */
 	public Dimension minimumLayoutSize(Container parent) {
 		if (cachedMinimum != null) {
 			return new Dimension(cachedMinimum);
@@ -528,6 +559,10 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
+	 */
 	public Dimension preferredLayoutSize(Container parent) {
 		if (cachedPreferred != null) {
 			return new Dimension(cachedPreferred);
@@ -573,6 +608,10 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		return result;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
+	 */
 	public void removeLayoutComponent(Component component) {
 		EnumSet<?> constr = constraints.get(component);
 		if (constr.contains(SLayout.EXPAND_AXIAL)) {
@@ -622,6 +661,9 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		}
 	}
 	
+	/**
+	 * An abstraction for various direction dependent operations.
+	 */
 	private interface Direction {
 		/**
 		 * Translate X and Y to axial and perpendicular
