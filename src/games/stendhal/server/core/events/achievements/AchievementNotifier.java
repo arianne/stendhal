@@ -76,20 +76,30 @@ public class AchievementNotifier {
 		return command;
 	}
 
+	/**
+	 * checks all for level change relevant achievements for a player
+	 * 
+	 * @param player
+	 */
 	public void onXPGain(Player player) {
-		if(achievements.containsKey(Category.EXPERIENCE)) {
-			List<Achievement> toCheck = achievements.get(Category.EXPERIENCE);
-			checkAchievements(player, toCheck);
-		}
+		getAndCheckAchievementsInCategory(player, Category.EXPERIENCE);
 	}
 	
 
+	/**
+	 * checks all achievements for a player that should be checked when a player kills sth
+	 * 
+	 * @param player
+	 */
 	public void onKill(Player player) {
-		if(achievements.containsKey(Category.FIGHTING)) {
-			List<Achievement> toCheck = achievements.get(Category.FIGHTING);
+		getAndCheckAchievementsInCategory(player, Category.FIGHTING);
+	}
+
+	private void getAndCheckAchievementsInCategory(Player player, Category category) {
+		if(achievements.containsKey(category)) {
+			List<Achievement> toCheck = achievements.get(category);
 			checkAchievements(player, toCheck);
 		}
-		
 	}
 
 	private void checkAchievements(Player player,
