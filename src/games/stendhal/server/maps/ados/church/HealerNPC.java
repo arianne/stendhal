@@ -47,7 +47,7 @@ public class HealerNPC implements ZoneConfigurator {
 				addReply("ideas",
 				"I have read many texts and learnt of strange ways. My healing powers became so strong I can now #concoct a special #'mega potion' for warriors like you.");
 				addReply("giant heart",
-				"Giants dwell in caves east of here. Good luck slaying those beasts ...");
+				"Giants dwell in caves west of here. Good luck slaying those beasts ...");
 				addOffer("I can #concoct a #'mega potion' for you. I will need a #'giant heart' for this.");
 				addReply("mega potion", "It is a powerful elixir. If you want one, ask me to #'concoct 1 mega potion'.");
 				addReply("money", "That is your own concern. We of the cloth need not scurry around to make cash.");    
