@@ -180,22 +180,18 @@
 	     <attribute name="class">default</attribute>
 		</entity>
 		
-<!--		<portal x="76" y="36" ref="wizardstower_entrance">
+		<portal x="76" y="36" ref="wizardstower_entrance">
                 <destination zone="int_semos_wizards_tower_basement" ref="wizardstower_exit" />
-                <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-                <parameter name="condition">new LevelGreaterThanCondition(50)</parameter>
-                <parameter name="rejected">You hear a far and mighty voice in your mind: "Stranger, i am Zekiel, the guardian. The floors of this tower are violent places and to dangerous for you."(Level 50)</parameter>
-            </implementation>
-        </portal>
--->
+	    </portal>
+
 	</zone>
 	
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_basement" file="interiors/semos/wizards_tower_basement.tmx">
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.WizardsGuardStatueNPC" />
-     <!--   <portal x="15" y="29" ref="wizardstower_exit">
+        <portal x="15" y="29" ref="wizardstower_exit">
                 <destination zone="0_semos_mountain_n_w2" ref="wizardstower_entrance" />
-            </portal>-->
+        </portal>
 
         <portal x="15" y="16" ref="basement_teleport">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
@@ -203,6 +199,7 @@
     </zone>
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_1" file="interiors/semos/wizards_tower_1.tmx">
+	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.FirstFloorCreatures"/>
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -226,9 +223,9 @@
         <portal x="27" y="15" ref="east_choice_floor_1">
             <destination zone="int_semos_wizards_tower_1" ref="choice_floor_1" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-                <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
-                <parameter name="rejected">Now use the candle as you were instructed.</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
+                <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","first_step")</parameter>
+                <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Malleus. Now use the candle at the shimmering spot of the hexagram."</parameter>
+                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "second_step")])</parameter>
             </implementation>
             </portal>
 
@@ -246,13 +243,14 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">You need a candle.</parameter>
+                <parameter name="rejected">This is the spot where you have to put in the candle.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
     </zone>
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_2" file="interiors/semos/wizards_tower_2.tmx">
+	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.SecondFloorCreatures"/>
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -284,9 +282,9 @@
         <portal x="15" y="26" ref="south_choice_floor_2">
         	<destination zone="int_semos_wizards_tower_2" ref="choice_floor_2" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-                <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
-                <parameter name="rejected">Now use the candle as you were instructed.</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
+                <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","second_step")</parameter>
+                <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Jaer. Now use the candle at the next shimmering spot of the hexagram."</parameter>
+                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "third_step")])</parameter>
             </implementation>
             </portal>
 
@@ -300,13 +298,14 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">You need a candle.</parameter>
+                <parameter name="rejected">This is the spot where you have to put in the candle.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
     </zone>
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_3" file="interiors/semos/wizards_tower_3.tmx">
+	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.ThirdFloorCreatures"/>
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -342,9 +341,9 @@
         <portal x="3" y="15" ref="west_choice_floor_3">
             <destination zone="int_semos_wizards_tower_3" ref="choice_floor_3" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-                <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
-                <parameter name="rejected">Now use the candle as you were instructed.</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
+                <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","third_step")</parameter>
+                <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Ravashack. You have almost done the half of the test. Search the next shimmering spot of the hexagram."</parameter>
+                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "fourth_step")])</parameter>
             </implementation>
          </portal>
 
@@ -354,13 +353,14 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">You need a candle.</parameter>
+                <parameter name="rejected">This is the spot where you have to put in the candle.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
     </zone>
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_4" file="interiors/semos/wizards_tower_4.tmx">
+	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.FourthFloorCreatures"/>
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -388,9 +388,9 @@
         <portal x="27" y="15" ref="east_choice_floor_4">
             <destination zone="int_semos_wizards_tower_4" ref="choice_floor_4" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-                <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
-                <parameter name="rejected">Now use the candle as you were instructed.</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
+                <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","fourth_step")</parameter>
+                <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Cassandra. One triangle is ready. Use the candle at shimmering spot of the other triangle."</parameter>
+                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "fifth_step")])</parameter>
             </implementation>
         </portal>
 
@@ -408,13 +408,14 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">You need a candle.</parameter>
+                <parameter name="rejected">This is the spot where you have to put in the candle.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
     </zone>
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_5" file="interiors/semos/wizards_tower_5.tmx">
+	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.FifthFloorCreatures"/>
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -450,9 +451,9 @@
         <portal x="3" y="15" ref="west_choice_floor_5">
             <destination zone="int_semos_wizards_tower_5" ref="choice_floor_5" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-                <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
-                <parameter name="rejected">Now use the candle as you were instructed.</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
+                <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","fifth_step")</parameter>
+                <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Silvanus. The next shimmering spot awaits you and the last step of the test too."</parameter>
+                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "sixth_step")])</parameter>
             </implementation>
         </portal>
 
@@ -462,13 +463,14 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">You need a candle.</parameter>
+                <parameter name="rejected">This is the spot where you have to put in the candle.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
     </zone>
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_6" file="interiors/semos/wizards_tower_6.tmx">
+	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.SixthFloorCreatures"/>
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -492,9 +494,9 @@
         <portal x="15" y="4" ref="north_choice_floor_6">
             <destination zone="int_semos_wizards_tower_6" ref="choice_floor_6" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-                <parameter name="condition">new NotCondition(new PlayerHasItemWithHimCondition("candle"))</parameter>
-                <parameter name="rejected">Now use the candle as you were instructed.</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle")])</parameter>
+                <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","sixth_step")</parameter>
+                <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Elana. Complete the hexagram and I will wait for you at the next stage. Please talk to me there to finish the quest."</parameter>
+                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "last_step")])</parameter>
             </implementation>
         </portal>
 
@@ -516,7 +518,7 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">You need a candle.</parameter>
+                <parameter name="rejected">This is the spot where you have to put in the candle.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
@@ -527,10 +529,9 @@
         <portal x="23" y="10" ref="portal_from_sixth_floor">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
         </portal>
-      <!-- reactivate when tower is open -->
-      <!-- <portal x="15" y="13" ref="portal_sparkle_leave_tower">
+        <portal x="15" y="13" ref="portal_sparkle_leave_tower">
                 <destination zone="0_semos_mountain_n_w2" ref="wizardstower_entrance" />
-        </portal> -->
+        </portal>
        <portal x="15" y="17" ref="portal_sparkle_enter_spire">
                 <destination zone="int_semos_wizards_tower_8" ref="portal_sparkle_to_seventh_floor" />
         </portal>
@@ -551,9 +552,9 @@
                 <destination zone="int_semos_wizards_tower_9" ref="portal_from_spire_1" />
                  <attribute name="hidden"/>
             </portal>
-        <portal x="7" y="28" ref="portal_to_malleus_plain">
+<!--        <portal x="7" y="28" ref="portal_to_malleus_plain">
                 <destination zone="malleus_plain" ref="portal_to_malleus" />
-            </portal>
+            </portal> -->
 	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 	<parameter name="x">9</parameter>
 	<parameter name="y">15</parameter>
@@ -619,9 +620,9 @@
     </zone>
      <!-- Plains of the wizards -->
     <zone name="malleus_plain" file="interiors/abstract/malleus_plain.tmx">
-        <portal x="7" y="28" ref="portal_to_malleus">
+<!--        <portal x="7" y="28" ref="portal_to_malleus">
                 <destination zone="int_semos_wizards_tower_8" ref="portal_to_malleus_plain" />
-            </portal>
+            </portal> -->
         <portal x="23" y="28" ref="cliff_way">
                 <destination zone="malleus_plain" ref="cliff_way_back" />
             </portal>
