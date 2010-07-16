@@ -5,6 +5,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -12,6 +13,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -32,7 +34,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 
 	private static final int REQUIRED_BEESWAX = 6;
 
-	private static final String QUEST_SLOT = "candle_quest";
+	private static final String QUEST_SLOT = "zekiels_practical_test";
 
 	@Override
 	public String getSlotName() {
@@ -106,6 +108,18 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 			new DropItemAction("iron", 2),
 			new IncreaseXPAction(4000),
 			new IncreaseKarmaAction(10)));
+
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+			new OrCondition(
+			new QuestInStateCondition(QUEST_SLOT,"first_step"),
+			new QuestInStateCondition(QUEST_SLOT,"second_step"),
+			new QuestInStateCondition(QUEST_SLOT,"third_step"),
+			new QuestInStateCondition(QUEST_SLOT,"fourth_step"),
+			new QuestInStateCondition(QUEST_SLOT,"fifth_step"),
+			new QuestInStateCondition(QUEST_SLOT,"sixth_step"),
+			new QuestInStateCondition(QUEST_SLOT,"last_step")),
+			ConversationStates.ATTENDING, "Greetings! You haven't finished the practical test. Tell me, if you want to #start with it again.",
+			new SetQuestAction(QUEST_SLOT, "candles_done"));
 	}
 
 	private void practicalTestStep() {
@@ -121,8 +135,9 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 			Arrays.asList("start"),
 			new QuestInStateCondition(QUEST_SLOT,"candles_done"),
 			ConversationStates.ATTENDING, 
-			"Great, I will #send you to the first step, if you want it now. But first you should #know some important things about the test.",
-			null);
+			"Great, but first you should #know some important things about the test. And take this parchment with some hints about the wizards. I will #send you to the first step, if you want it now.",
+	        new ExamineChatAction("wizards-parchment.png", "Parchment", "The wizards circle"));
+
 
 		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("know"),
@@ -153,14 +168,15 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 			new NotCondition(new PlayerHasItemWithHimCondition("candle"))),
 			ConversationStates.IDLE, 
 			null,
-			new TeleportAction("int_semos_wizards_tower_1", 15, 16, Direction.DOWN));
+			new MultipleActions(new SetQuestAction(QUEST_SLOT, "first_step"),
+			new TeleportAction("int_semos_wizards_tower_1", 15, 16, Direction.DOWN)));
 	}
 
 	private void finishQuestStep() {
 		final SpeakerNPC npc = npcs.get("Zekiel");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new NotCondition(new QuestCompletedCondition(QUEST_SLOT)),
+			new QuestInStateCondition(QUEST_SLOT,"last_step"),
 			ConversationStates.ATTENDING, 
 			"Very well, adventurer! You have stand the practical test. You can now enter the spire when ever you want.",
 			new MultipleActions(new IncreaseXPAction(5000),
