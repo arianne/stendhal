@@ -2022,7 +2022,7 @@ public class Player extends RPEntity {
 	@Override
 	public void setLevel(int level) {
 		super.setLevel(level);
-		AchievementNotifier.get().onXPGain(this);
+		AchievementNotifier.get().onLevelChange(this);
 	}
 	
 	public void addReachedAchievement(String identifier) {

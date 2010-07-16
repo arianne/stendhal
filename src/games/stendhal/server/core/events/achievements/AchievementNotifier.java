@@ -81,7 +81,7 @@ public class AchievementNotifier {
 	 * 
 	 * @param player
 	 */
-	public void onXPGain(Player player) {
+	public void onLevelChange(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.EXPERIENCE);
 	}
 	
