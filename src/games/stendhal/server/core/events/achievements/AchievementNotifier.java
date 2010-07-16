@@ -94,6 +94,15 @@ public class AchievementNotifier {
 	public void onKill(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.FIGHTING);
 	}
+	
+	/**
+	 * check all achievements for a player that are relevant on finishing a quest
+	 * 
+	 * @param player
+	 */
+	public void onFinishQuest(Player player) {
+		// TODO Auto-generated method stub
+	}
 
 	private void getAndCheckAchievementsInCategory(Player player, Category category) {
 		if(achievements.containsKey(category)) {
@@ -149,5 +158,5 @@ public class AchievementNotifier {
 		xpAchievements.add(newbie25);
 		return xpAchievements;
 	}
-	
+
 }
