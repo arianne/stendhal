@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.dbcommand.ReadAchievementIdentifierToId
 import games.stendhal.server.core.engine.dbcommand.WriteAchievementCommand;
 import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementCommand;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreaturesCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Collection;
@@ -81,6 +82,15 @@ public class AchievementNotifier {
 			checkAchievements(player, toCheck);
 		}
 	}
+	
+
+	public void onKill(Player player) {
+		if(achievements.containsKey(Category.FIGHTING)) {
+			List<Achievement> toCheck = achievements.get(Category.FIGHTING);
+			checkAchievements(player, toCheck);
+		}
+		
+	}
 
 	private void checkAchievements(Player player,
 			List<Achievement> toCheck) {
@@ -103,21 +113,31 @@ public class AchievementNotifier {
 		new GameEvent(playerName, "reach-achievement", category.toString(), title, identifier).raise();
 	}
 
-	private static Map<String, Achievement> createAchievements() {
+	private Map<String, Achievement> createAchievements() {
 		Map<String, Achievement> achievementMap = new HashMap<String, Achievement>();
 		for(Achievement a : createExperienceAchievements()) {
+			achievementMap.put(a.getIdentifier(), a);
+		}
+		for(Achievement a : createFightingAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		return achievementMap;
 	}
 
-	private static Collection<? extends Achievement> createExperienceAchievements() {
+	private Collection<Achievement> createFightingAchievements() {
+		List<Achievement> fightingAchievements = new LinkedList<Achievement>();
+		Achievement killRats = new Achievement("fight.general.rats", "Rat hunter", Category.FIGHTING, "kill 15 rats", new PlayerHasKilledNumberOfCreaturesCondition("rat", 15));
+		fightingAchievements.add(killRats);
+		return fightingAchievements;
+	}
+
+	private Collection<Achievement> createExperienceAchievements() {
 		List<Achievement> xpAchievements = new LinkedList<Achievement>();
-		Achievement newbie = new Achievement("xp.lvl.10", "newbie", Category.EXPERIENCE, "newbie description", new LevelGreaterThanCondition(9));
-		Achievement newbie25 = new Achievement("xp.lvl.25", "newbie25", Category.EXPERIENCE, "newbie25 description", new LevelGreaterThanCondition(24));
+		Achievement newbie = new Achievement("xp.lvl.10", "newbie", Category.EXPERIENCE, "reach level 10", new LevelGreaterThanCondition(9));
+		Achievement newbie25 = new Achievement("xp.lvl.25", "newbie25", Category.EXPERIENCE, "reach level 25", new LevelGreaterThanCondition(24));
 		xpAchievements.add(newbie);
 		xpAchievements.add(newbie25);
 		return xpAchievements;
 	}
-
+	
 }
