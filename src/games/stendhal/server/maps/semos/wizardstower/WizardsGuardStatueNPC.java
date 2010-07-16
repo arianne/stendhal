@@ -46,7 +46,7 @@ public class WizardsGuardStatueNPC implements ZoneConfigurator {
 				addReply("erastus", "Erastus is the archmage of the wizards circle. He is the grandmaster of all magics and the wisest person that is known. He is the only one without a part in the practical test.");
 				addReply("elana", "Elana is the warmest and friendliest enchantress. She is the protectress of all living creatures and uses divinely magic to save and heal them.");
 				addReply("ravashack", "Ravashack is a very mighty necromancer. He studies the dark magic since ages. Ravashack is a mystery, using dark magic to gain the upper hand on his opponents, but fighting the evil liches, his archenemies.");
-				addReply("jaer", "Jaer is the master of illusion. Charming and flighty like a breeze on a hot summerday. His domain is the air and he has many allies in the plains of mythical ghosts");
+				addReply("jaer", "Jaer is the master of illusion. Charming and flighty like a breeze on a hot summerday. His domain is the air and he has many allies in the plains of mythical ghosts.");
 				addReply("cassandra", "Cassandra is a beautifull woman, but first of all a powerfull sorceress. Cassandras domain is the water and she can be cold like ice to achieve her aim.");
 				addReply("silvanus", "Silvanus is a sage druid and perhaps the eldest of all elves. He is a friend of all animals, trees, fairy creatures and ents. His domain is the earth and nature.");
 				addReply("malleus", "Malleus is the powerfull archetype of a magician and the master of destructive magics. His domain is the fire and he rambled the plains of demons for ages, to understand their ambitions.");

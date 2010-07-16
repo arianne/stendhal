@@ -62,7 +62,7 @@ public class GreenNatureWizardNPC implements ZoneConfigurator {
 				addJob("I am Silvanus. I represent the druids of #Lyreade at the wizards circle.");
 				addOffer("Excuse me young friend, I am very busy to establish the druids part at the wizards circle.");
 				addQuest("The magic in this world has just begun and I am very busy to establish the druids of #Lyreade at the wizards circle. I will tell you in time, when I have a quest for you.");
-				addReply("Lyreade", "Lyreade, the school of nature magic, lies hidden in the wideness of the elven forests");
+				addReply("Lyreade", "Lyreade, the school of nature magic, lies hidden in the wideness of the elven forests.");
 				addGoodbye("See you, young friend!");
 
 			} //remaining behaviour defined in maps.quests.WizardSilvanusPlainQuest

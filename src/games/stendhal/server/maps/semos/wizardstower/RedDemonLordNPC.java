@@ -27,9 +27,7 @@ public class RedDemonLordNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("HUMAN! Who dare to break in my throne room?!");
-				addHelp("");
-				addReply("", "");
+				addGreeting("HUMAN! Who dares to enter my throne room?!");
 				addGoodbye("Flee, human!");
 
 			} //remaining behaviour defined in maps.quests.WizardMalleusPlainQuest
