@@ -2636,6 +2636,14 @@ Southeast: Docks
    </zone>
    
    <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="Level 0/ados/outside_w.tmx">
+   
+   		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">lost_in_the_fog</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+   		</entity>
+   
    </zone>
 
    <zone name="0_ados_wall" level="0" x="500768" y="500000" file="Level 0/ados/wall.tmx">
@@ -2966,6 +2974,14 @@ Southeast: Docks
   
    <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="Level 0/ados/swamp.tmx">
      <configurator class-name="games.stendhal.server.maps.ados.swamp.DeathmatchRecruiterNPC"/>
+   
+      		<entity x="1" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">lost_in_the_fog</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+   		</entity>
+   
    </zone>
    
  <zone name="0_ados_wall_s" level="0" x="500768" y="500128" file="Level 0/ados/wall_s.tmx">
