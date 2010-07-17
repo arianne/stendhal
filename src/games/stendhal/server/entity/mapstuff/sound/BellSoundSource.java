@@ -31,11 +31,9 @@ public class BellSoundSource extends PassiveEntity implements TurnListener {
 	public BellSoundSource() {
 		/*
 		 * The client won't add anything but entities to the GameObjects. 
-		 * It also requires that there's something in the type (it does not 
-		 * need to recognize it). 
 		 */
 		setRPClass("entity");
-		put("type", "bell sound source");
+		put("type", "entity");
 	}
 	
 	@Override
