@@ -116,7 +116,7 @@ public class AchievementNotifier {
 	 * @param player
 	 */
 	public void onFinishQuest(Player player) {
-		// TODO Auto-generated method stub
+		getAndCheckAchievementsInCategory(player, Category.QUEST);
 	}
 
 	private void getAndCheckAchievementsInCategory(Player player, Category category) {
