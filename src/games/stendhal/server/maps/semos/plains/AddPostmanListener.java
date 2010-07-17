@@ -21,7 +21,6 @@ public class AddPostmanListener implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		SingletonRepository.getLoginNotifier().addListener(new ReadMessagesOnLogin());
-		SingletonRepository.getLoginNotifier().addListener(new ReadAchievementsOnLogin());
 	}
 
 

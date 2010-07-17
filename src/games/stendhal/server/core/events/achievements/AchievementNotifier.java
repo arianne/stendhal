@@ -1,12 +1,14 @@
 package games.stendhal.server.core.events.achievements;
 
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.ReadAchievementIdentifierToIdMap;
 import games.stendhal.server.core.engine.dbcommand.WriteAchievementCommand;
 import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementCommand;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreaturesCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -58,6 +60,7 @@ public class AchievementNotifier {
 			Integer id = command.getSavedId();
 			identifiersToIds.put(a.getIdentifier(), id);
 		}
+		SingletonRepository.getLoginNotifier().addListener(new ReadAchievementsOnLogin());
 	}
 
 	private Set<String> collectAllIdentifiersFromDatabase() {
