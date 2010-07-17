@@ -119,6 +119,12 @@ public class AchievementNotifier {
 		getAndCheckAchievementsInCategory(player, Category.QUEST);
 	}
 
+	/**
+	 * retrieve all achievements for a category and check if player has reached each of the found achievements
+	 * 
+	 * @param player
+	 * @param category
+	 */
 	private void getAndCheckAchievementsInCategory(Player player, Category category) {
 		if(achievements.containsKey(category)) {
 			List<Achievement> toCheck = achievements.get(category);
@@ -126,6 +132,13 @@ public class AchievementNotifier {
 		}
 	}
 
+	/**
+	 * checks for each achievement if the player has reached it. in case of reaching
+	 * an achievement it starts logging and notifying about reaching
+	 * 
+	 * @param player
+	 * @param toCheck
+	 */
 	private void checkAchievements(Player player,
 			List<Achievement> toCheck) {
 		for (Achievement achievement : toCheck) {
@@ -135,6 +148,12 @@ public class AchievementNotifier {
 		}
 	}
 	
+	/**
+	 * notifies the player about reaching an achievement and logs that to gameEvents table and reached_achievment table
+	 * 
+	 * @param player
+	 * @param achievement
+	 */
 	private void logAndNotifyReachingOfAnAchievement(Player player,
 			Achievement achievement) {
 		player.sendPrivateText("Congratulations! You have reached the "+achievement.getTitle()+" achievement!");
@@ -147,6 +166,11 @@ public class AchievementNotifier {
 		new GameEvent(playerName, "reach-achievement", category.toString(), title, identifier).raise();
 	}
 
+	/**
+	 * creates all available achievements
+	 * 
+	 * @return map with key identifier and value the identified achievement
+	 */
 	private Map<String, Achievement> createAchievements() {
 		Map<String, Achievement> achievementMap = new HashMap<String, Achievement>();
 		for(Achievement a : createExperienceAchievements()) {
@@ -158,6 +182,11 @@ public class AchievementNotifier {
 		return achievementMap;
 	}
 
+	/**
+	 * creates a collection of all available fighting achievements
+	 * 
+	 * @return
+	 */
 	private Collection<Achievement> createFightingAchievements() {
 		List<Achievement> fightingAchievements = new LinkedList<Achievement>();
 		Achievement killRats = new Achievement("fight.general.rats", "Rat hunter", Category.FIGHTING, "kill 15 rats", new PlayerHasKilledNumberOfCreaturesCondition("rat", 15));
@@ -165,6 +194,11 @@ public class AchievementNotifier {
 		return fightingAchievements;
 	}
 
+	/**
+	 * creates a collection of all experience related achievements
+	 * 
+	 * @return
+	 */
 	private Collection<Achievement> createExperienceAchievements() {
 		List<Achievement> xpAchievements = new LinkedList<Achievement>();
 		Achievement newbie = new Achievement("xp.lvl.10", "newbie", Category.EXPERIENCE, "reach level 10", new LevelGreaterThanCondition(9));
