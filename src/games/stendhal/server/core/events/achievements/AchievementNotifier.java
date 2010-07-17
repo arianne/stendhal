@@ -52,7 +52,8 @@ public class AchievementNotifier {
 	}
 	
 	/**
-	 * initialize the achievements that are available and register the login listener
+	 * initializes the achievements that are available and registers the login listener
+	 * new added achievements are added to the achievements table
 	 */
 	public void initialize() {
 		Map<String, Achievement> allAchievements = createAchievements();
@@ -75,6 +76,11 @@ public class AchievementNotifier {
 		SingletonRepository.getLoginNotifier().addListener(new ReadAchievementsOnLogin());
 	}
 
+	/**
+	 * collects all identifiers from the database
+	 * 
+	 * @return a set of all identifier strings
+	 */
 	private Set<String> collectAllIdentifiersFromDatabase() {
 		DBCommandQueue.get().enqueueAndAwaitResult(new ReadAchievementIdentifierToIdMap(), handle);
 		ReadAchievementIdentifierToIdMap command = waitForResult();
@@ -83,6 +89,11 @@ public class AchievementNotifier {
 		return mapFromDB.keySet();
 	}
 
+	/**
+	 * waits for the result of an issued ReadAchievementIdentifierToIdMap command
+	 * 
+	 * @return the completed command
+	 */
 	private ReadAchievementIdentifierToIdMap waitForResult() {
 		ReadAchievementIdentifierToIdMap command = DBCommandQueue.get().getOneResult(ReadAchievementIdentifierToIdMap.class, handle);
 		while(command == null) {
@@ -179,6 +190,9 @@ public class AchievementNotifier {
 		for(Achievement a : createFightingAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
+		for(Achievement a : createQuestAchievements()) {
+			achievementMap.put(a.getIdentifier(), a);
+		}
 		return achievementMap;
 	}
 
@@ -206,6 +220,16 @@ public class AchievementNotifier {
 		xpAchievements.add(newbie);
 		xpAchievements.add(newbie25);
 		return xpAchievements;
+	}
+	
+	/**
+	 * creates a collection of all available quest achievements
+	 * 
+	 * @return
+	 */
+	private Collection<Achievement> createQuestAchievements() {
+		List<Achievement> questAchievements = new LinkedList<Achievement>();
+		return questAchievements;
 	}
 
 }
