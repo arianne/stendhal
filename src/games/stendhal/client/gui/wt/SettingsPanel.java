@@ -54,12 +54,20 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 * The button spacing.
 	 */
 	private static final int SPACING = 3;
+	
+	/**
+	 * The separator width.
+	 */
+	private static final int SEPARATOR_WIDTH = 3;
 
 	/** height of this panel. */
 	private static final int HEIGHT = BUTTON_HEIGHT + SPACING + SPACING;
 
 	/** map of the buttons (for faster access) ). */
 	private final Map<String, Entry> entries;
+	
+	/** count number of separators. */
+	private int separators;
 
 	/**
 	 * Creates a new instance of SettingsPanel.
@@ -79,6 +87,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		setCloseable(false);
 
 		entries = new HashMap<String, Entry>();
+		separators = 0;
 	}
 
 	/**
@@ -100,7 +109,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 			mnemonic = label;
 		}
 		
-		final int x = SPACING + (entries.size() * (BUTTON_WIDTH + SPACING));
+		final int x = SPACING + (entries.size() * (BUTTON_WIDTH + SPACING)) 
+						+ (separators * (SEPARATOR_WIDTH + SPACING));
 		Sprite icon = SpriteStore.get().getSprite("data/gui/"+label+".png");
 		final WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT,
 				 icon, gameScreen);
@@ -120,6 +130,16 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		entries.put(mnemonic, new Entry(button, window));
 	}
 
+	
+	/**
+	 * Add a separator
+	 * 
+	 */
+	public void addSeparator() {
+		
+		separators = separators+1;
+	}
+	
 	/**
 	 * A button was clicked.
 	 * 

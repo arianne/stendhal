@@ -311,6 +311,8 @@ public class j2DClient implements UserInterface {
 		addWindow(keyring);
 		settings.add(keyring, "keyring", gameScreen);
 		
+		settings.addSeparator();
+		
 		settings.add(null, "help", gameScreen);
 		settings.add(null, "accountcontrol", gameScreen);
 		settings.add(null, "settings", gameScreen);
