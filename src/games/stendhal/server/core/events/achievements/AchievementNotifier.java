@@ -19,7 +19,11 @@ import java.util.Set;
 
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.db.command.ResultHandle;
-
+/**
+ * Checks for reached achievements and marks them as reached for a player if he has fullfilled them
+ *  
+ * @author madmetzger
+ */
 public class AchievementNotifier {
 	
 	private static AchievementNotifier instance;
@@ -35,6 +39,11 @@ public class AchievementNotifier {
 		identifiersToIds = new HashMap<String, Integer>();
 	}
 	
+	/**
+	 * singleton accessor method
+	 * 
+	 * @return the AchievementNotifier
+	 */
 	public static AchievementNotifier get() {
 		if(instance == null) {
 			instance = new AchievementNotifier();
@@ -42,6 +51,9 @@ public class AchievementNotifier {
 		return instance;
 	}
 	
+	/**
+	 * initialize the achievements that are available and register the login listener
+	 */
 	public void initialize() {
 		Map<String, Achievement> allAchievements = createAchievements();
 		for(Achievement a : allAchievements.values()) {
