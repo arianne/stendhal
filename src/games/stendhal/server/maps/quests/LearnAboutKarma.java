@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.EnableFeatureAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -88,7 +89,10 @@ public class LearnAboutKarma extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Wonderful! You must have good #karma.",
-			new MultipleActions(new IncreaseKarmaAction(5.0), new SetQuestAction(QUEST_SLOT, "done")));
+			new MultipleActions(
+					new IncreaseKarmaAction(5.0), 
+					new SetQuestAction(QUEST_SLOT, "done"),
+					new EnableFeatureAction("karma_indicator")));
 
 		// player is not willing to help other people
 		// player gets a little karma removed
@@ -96,7 +100,10 @@ public class LearnAboutKarma extends AbstractQuest {
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"I knew it ... you probably have bad #karma.",
-			new MultipleActions(new DecreaseKarmaAction(10.0), new SetQuestAction(QUEST_SLOT, "done")));
+			new MultipleActions(
+					new DecreaseKarmaAction(10.0), 
+					new SetQuestAction(QUEST_SLOT, "done"),
+					new EnableFeatureAction("karma_indicator")));
 
 		// player wants to know what karma is
 		npc.add(
@@ -117,21 +124,22 @@ public class LearnAboutKarma extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final long roundedkarma = Math.round(player.getKarma());
 					final String Yk = "Your karma ";
+					final String canseekarma = "Now you can always see your karma,";
 					final String rk = Long.toString(roundedkarma);
-                    if (roundedkarma > 4999 ) {
-                        npc.say(Yk+"is unbelievably high, "+rk+"! You are very, very lucky!" );
-                    } else if (roundedkarma > 999) {
-                        npc.say(Yk+"is great, "+rk+".");
+                    if (roundedkarma > 499 ) {
+                        npc.say(Yk+"is unbelievably high, "+rk+"! You must have done many good things! " + canseekarma + " it's 'in the blue'." );
                     } else if (roundedkarma > 99) {
-                        npc.say(Yk+"of "+rk+" is good.");
-                    } else if (roundedkarma > -100) {
-                        npc.say(Yk+"is roughly "+rk+".");
-                    } else if (roundedkarma > -1000) {
-                        npc.say(Yk+"of "+rk+" is bad.");
-                    } else if (roundedkarma > -5000) {
-                        npc.say(Yk+"is terrible, "+rk+"!");
+                        npc.say(Yk+"is great, "+rk+". " + canseekarma + " it's 'in the blue' right now.");
+                    } else if (roundedkarma > 5) {
+                    	npc.say(Yk+"of "+rk+" is good. " + canseekarma + " and you should try to keep yours out of the 'red'.");
+                    } else if (roundedkarma > -5) {
+                        npc.say(Yk+"is "+rk+". " + canseekarma + " and yours is roughly in the middle of the scale.");
+                    } else if (roundedkarma > -99) {
+                        npc.say(Yk+"of "+rk+" is not very good. " + canseekarma + " if you had good karma it would show as blue.");
+                    } else if (roundedkarma > -499) {
+                        npc.say(Yk+"is terrible, "+rk+"! " + canseekarma + " and yours is well 'in the red'.");
                     } else {
-                        npc.say(Yk+"is disastrous, "+rk+"!!! You are so unlucky...");
+                    	npc.say(Yk+"is disastrous, "+rk+"!!! " + canseekarma + " and yours hardly even registers on the scale. You must have done some bad things... ");
                     }
 				}
 			});
