@@ -1,19 +1,23 @@
 package games.stendhal.client.gui.stats;
 
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.listener.FeatureChangeListener;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
-
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
 
 import javax.swing.JComponent;
 
 /**
  * A bar indicator component for karma.
  */
-public class KarmaIndicator extends JComponent {
+public class KarmaIndicator extends JComponent implements FeatureChangeListener {
+	private static final long serialVersionUID = 3462088641737184898L;
+
 	/** 
 	 * Scaling factor for interpreting karma to bar length. Smaller means
 	 * smaller change in karma bar for a karma change. 
@@ -24,6 +28,7 @@ public class KarmaIndicator extends JComponent {
 	/** Karma scaled to pixels */
 	private int karma;
 	private final Sprite image;
+	private boolean featureEnabled = false;
 	
 	/**
 	 * Create a new karma indicator.
@@ -34,6 +39,7 @@ public class KarmaIndicator extends JComponent {
 		
 		// We don't draw the background
 		setOpaque(false);
+		StendhalClient.get().addFeatureChangeListener(this);
 	}
 	
 	/**
@@ -76,11 +82,31 @@ public class KarmaIndicator extends JComponent {
 		super.paintComponent(g);
 		Insets insets = getInsets();
 		
-		// Paint black what is not covered by the colored bar
-		g.setColor(Color.BLACK);
-		g.fillRect(insets.left, insets.top, image.getWidth(), image.getHeight());
-		// Draw appropriate length of the image
-		g.clipRect(insets.left, insets.top, karma, getHeight());
-		image.draw(g, insets.left, insets.top);
+		if (featureEnabled) {
+			// Paint black what is not covered by the colored bar
+			g.setColor(Color.BLACK);
+			g.fillRect(insets.left, insets.top, image.getWidth(), image.getHeight());
+			// Draw appropriate length of the image
+			g.clipRect(insets.left, insets.top, karma, getHeight());
+			image.draw(g, insets.left, insets.top);
+		}
+	}
+
+	/**
+	 * disables the karma indicator.
+	 */
+	public void featureDisabled(String name) {
+		if (name.equals("karma_indicator")) {
+			featureEnabled = false;
+		}
+	}
+
+	/**
+	 * enables the karma indicator.
+	 */
+	public void featureEnabled(String name, String value) {
+		if (name.equals("karma_indicator")) {
+			featureEnabled = true;
+		}
 	}
 }

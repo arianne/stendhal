@@ -277,7 +277,13 @@ public abstract class UpdateConverter {
     			}
     		}
     	}
-    }
+
+		//port to 0.86: karama_indicator as feature
+		if (KeyedSlotUtil.getKeyedSlot(object, "!quests", "learn_karma") != null) {
+			KeyedSlotUtil.setKeyedSlot(object, "!features", "karma_indicator", "");
+		}
+
+	}
 
 	/**
 	 * Transform kill slot content to the new kill recording system.
