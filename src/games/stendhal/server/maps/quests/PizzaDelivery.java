@@ -397,7 +397,7 @@ public class PizzaDelivery extends AbstractQuest {
     			+ " to "
     			+ Grammar.quoteHash("#" + name)
     			+ " within "
-    			+ Grammar.quantityplnoun(data.expectedMinutes, "minute")
+    			+ Grammar.quantityplnoun(data.expectedMinutes, "minute", "one")
     			+ ". Say \"pizza\" so that "
     			+ name
     			+ " knows that I sent you. Oh, and please wear this uniform on your way.");

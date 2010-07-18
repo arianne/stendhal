@@ -176,7 +176,7 @@ public class StuffForBaldemar extends AbstractQuest {
 		String getAnswer() {
 			return itemPrefix
 				+ Grammar.quantityplnoun(
-						neededAmount, itemName)
+						neededAmount, itemName, "a")
 				+ itemSuffix;
 		}
 

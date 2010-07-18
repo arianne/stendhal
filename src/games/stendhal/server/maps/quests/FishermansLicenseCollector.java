@@ -126,7 +126,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 					final List<String> needed = missingFish(player, true);
 					raiser.say("There " + Grammar.isare(needed.size())
 							+ " "
-							+ Grammar.quantityplnoun(needed.size(), "fish")
+							+ Grammar.quantityplnoun(needed.size(), "fish", "one")
 							+ " still missing: "
 							+ Grammar.enumerateCollection(needed)
 							+ ". Do you have such fish with you?");

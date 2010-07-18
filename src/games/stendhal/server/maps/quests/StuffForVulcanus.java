@@ -156,7 +156,7 @@ public class StuffForVulcanus extends AbstractQuest {
 
 							raiser.say("I cannot #forge it without the missing "
 								+ Grammar.quantityplnoun(
-										neededIron, "iron")
+										neededIron, "iron", "a")
 								+ ".");
 							missingSomething = true;
 						}
@@ -174,7 +174,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							}
 
 							raiser.say("How do you expect me to #forge it without missing "
-								+ Grammar.quantityplnoun(neededWoodLogs, "wood log")
+								+ Grammar.quantityplnoun(neededWoodLogs, "wood log", "a")
 								+ " for the fire?");
 							missingSomething = true;
 						}
@@ -191,7 +191,7 @@ public class StuffForVulcanus extends AbstractQuest {
 								neededGoldBars -= amount;
 							}
 							raiser.say("I must pay a bill to spirits in order to cast the enchantment over the sword. I need "
-									+ Grammar.quantityplnoun(neededGoldBars, "gold bar") + " more.");
+									+ Grammar.quantityplnoun(neededGoldBars, "gold bar", "one") + " more.");
 							missingSomething = true;
 						}
 					}
@@ -207,7 +207,7 @@ public class StuffForVulcanus extends AbstractQuest {
 								neededGiantHearts -= amount;
 							}
 							raiser.say("It is the base element of the enchantment. I need "
-								+ Grammar.quantityplnoun(neededGiantHearts, "giant heart") + " still.");
+								+ Grammar.quantityplnoun(neededGiantHearts, "giant heart", "one") + " still.");
 							missingSomething = true;
 						}
 					}

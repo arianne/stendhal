@@ -170,7 +170,7 @@ public class CloaksForBario extends AbstractQuest {
 										Integer.toString(toBring));
 								raiser.say("Thank you very much! Do you have another one? I still need "
 										+ Grammar.quantityplnoun(toBring,
-												"cloak") + ".");
+												"cloak", "one") + ".");
 								raiser.setCurrentState(ConversationStates.QUESTION_1);
 							} else {
 								final Item goldenShield = SingletonRepository.getEntityManager().getItem(

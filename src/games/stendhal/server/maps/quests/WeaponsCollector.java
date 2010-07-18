@@ -127,14 +127,14 @@ public class WeaponsCollector extends AbstractQuest implements
 
 	public String askForMissingItems(final List<String> missingItems) {
 		return "There " + Grammar.isare(missingItems.size()) + " "
-				+ Grammar.quantityplnoun(missingItems.size(), "weapon")
+				+ Grammar.quantityplnoun(missingItems.size(), "weapon", "a")
 				+ " still missing from my collection: "
 				+ Grammar.enumerateCollection(missingItems)
 				+ ". Do you have anything of that nature with you?";
 	}
 	public String firstAskForMissingItems(final List<String> missingItems) {
 		return "There " + Grammar.isare(missingItems.size()) + " "
-				+ Grammar.quantityplnoun(missingItems.size(), "weapon")
+				+ Grammar.quantityplnoun(missingItems.size(), "weapon", "a")
 				+ " missing from my collection: "
 				+ Grammar.enumerateCollection(missingItems)
 				+ ". Will you bring them to me?";

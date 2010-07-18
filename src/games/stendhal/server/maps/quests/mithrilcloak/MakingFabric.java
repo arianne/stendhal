@@ -134,7 +134,7 @@ class MakingFabric {
 				} else {
 					npc.say("Oh, I gave your "
 							+ Grammar.quantityplnoun(numberOfProductItems,
-													 getProductName()) + " to my research student Boris Karlova. Go collect them from him.");
+													 getProductName(), "") + " to my research student Boris Karlova. Go collect them from him.");
 					player.notifyWorldAboutChanges();
 				}
 			}
@@ -268,7 +268,7 @@ class MakingFabric {
 							npc.say("Haaaa heee woooo hoo!");
 						} else {
 							npc.say("The boss gave me these "  
-									+ Grammar.quantityplnoun(numberOfProductItems, "silk thread") 
+									+ Grammar.quantityplnoun(numberOfProductItems, "silk thread", "") 
 									+ ". Price gets his students to do his dirty work for him.");
 							final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
 																														  "silk thread");

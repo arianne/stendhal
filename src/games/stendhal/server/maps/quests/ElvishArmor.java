@@ -117,7 +117,7 @@ public class ElvishArmor extends AbstractQuest implements
 	// this one not actually used here
 	public String firstAskForMissingItems(final List<String> missingItems) {
 		return "I have heard descriptions of "
-								+ Grammar.quantityplnoun(missingItems.size(), "item")
+								+ Grammar.quantityplnoun(missingItems.size(), "item", "a")
 								+ " in all. They are: "
 								+ Grammar.enumerateCollection(missingItems)
 								+ ". Will you collect them?";
@@ -125,7 +125,7 @@ public class ElvishArmor extends AbstractQuest implements
 
 	public String askForMissingItems(final List<String> missingItems) {
 		return "I have heard descriptions of "
-								+ Grammar.quantityplnoun(missingItems.size(), "item")
+								+ Grammar.quantityplnoun(missingItems.size(), "item", "a")
 								+ " in all. They are: "
 								+ Grammar.enumerateCollection(missingItems)
 								+ ". Have you looted any?";

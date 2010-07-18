@@ -182,7 +182,7 @@ public class ZooFood extends AbstractQuest {
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				"Welcome back! Have you brought the "
-						+ Grammar.quantityplnoun(REQUIRED_HAM, "ham") + "?",
+						+ Grammar.quantityplnoun(REQUIRED_HAM, "ham", "") + "?",
 			new SetQuestAction(QUEST_SLOT,"start;ham=10"));
 		
 		

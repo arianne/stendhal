@@ -157,7 +157,7 @@ class HouseTax implements TurnListener {
 							+ Integer.toString(MAX_UNPAID_TAXES + 1) + " months, your house will be repossessed."; 
 					}
 					notifyIfNeeded(owner, "You owe " +  Integer.toString(getTaxDebt(payments)) + " money in house tax for " 
-							+ Grammar.quantityplnoun(payments, "month") 
+							+ Grammar.quantityplnoun(payments, "month", "one") 
 							+ ". You may come to Ados Townhall to pay your debt." + remainder);
 				}
 			}

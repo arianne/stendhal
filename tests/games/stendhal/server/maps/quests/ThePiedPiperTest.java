@@ -130,7 +130,7 @@ public class ThePiedPiperTest {
 				sb.append("and ");
 			};
 
-			sb.append(Grammar.quantityplnoun(kills, ThePiedPiper.RAT_TYPES.get(i)));
+			sb.append(Grammar.quantityplnoun(kills, ThePiedPiper.RAT_TYPES.get(i), "a"));
 			sb.append(", ");
 		}
 		return(sb.toString());

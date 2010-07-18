@@ -102,7 +102,7 @@ public class CloaksForBarioTest {
 		en.step(player, "yes");
 		assertEquals("Thank you very much! Do you have another one? I still need 2 cloaks.", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Thank you very much! Do you have another one? I still need a cloak.", getReply(npc));
+		assertEquals("Thank you very much! Do you have another one? I still need one cloak.", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Thank you very much! Now I have enough cloaks to survive the winter. Here, take this golden shield as a reward.", getReply(npc));
 		// [23:48] superkym earns 1500 experience points. 

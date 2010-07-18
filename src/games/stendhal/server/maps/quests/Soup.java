@@ -169,7 +169,7 @@ public class Soup extends AbstractQuest {
 					final List<String> needed = missingFood(player, true);
 					npc.say("I need "
 							+ Grammar.quantityplnoun(needed.size(),
-									"ingredient")
+									"ingredient", "one")
 							+ " before I make the soup: "
 							+ Grammar.enumerateCollection(needed)
 							+ ". Will you collect them?");
@@ -239,7 +239,7 @@ public class Soup extends AbstractQuest {
 					final List<String> needed = missingFood(player, true);
 					npc.say("I still need "
 							+ Grammar.quantityplnoun(needed.size(),
-									"ingredient") + ": "
+									"ingredient", "one") + ": "
 							+ Grammar.enumerateCollection(needed)
 							+ ". Did you bring anything I need?");
 				}
@@ -354,7 +354,7 @@ public class Soup extends AbstractQuest {
 		if (missing.size() > 0) {
 			npc.say("You didn't have all the ingredients I need. I still need "
 							+ Grammar.quantityplnoun(missing.size(),
-									"ingredient") + ": "
+									"ingredient", "one") + ": "
 							+ Grammar.enumerateCollection(missing)
 							+ ". You'll get bad karma if you keep making mistakes like that!");
 			// to fix bug [ 2517439 ] 

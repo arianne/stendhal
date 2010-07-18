@@ -357,7 +357,7 @@ import org.apache.log4j.Logger;
 					sb.append("and ");
 				};
 
-				sb.append(Grammar.quantityplnoun(kills, RAT_TYPES.get(i)));
+				sb.append(Grammar.quantityplnoun(kills, RAT_TYPES.get(i), "a"));
 				sb.append(", ");
 				moneys = moneys + kills*RAT_REWARDS.get(i);
 			}

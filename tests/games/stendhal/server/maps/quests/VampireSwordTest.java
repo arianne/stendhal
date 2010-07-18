@@ -265,7 +265,7 @@ public class VampireSwordTest {
 	@Test
 	public void sayHelloToVampire() {
 		for (String hello : ConversationPhrases.GREETING_MESSAGES) {
-			final Player player = PlayerTestHelper.createPlayer("me");			
+			final Player player = PlayerTestHelper.createPlayer("me");
 			final SpeakerNPC npc = vs.npcs.get(VAMPIRE_NPC);
 			final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
 			
@@ -490,7 +490,7 @@ public class VampireSwordTest {
 			player.setQuest(sickySlotName, questState);
 			
 			en.step(player, hello);
-			assertEquals("''" + hello + "' in past", "Welcome back! I'm done with your order. Here you have a goblet.", getReply(npc));
+			assertEquals("''" + hello + "' in past", "Welcome back! I'm done with your order. Here you have the goblet.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			
 			assertEquals("done", player.getQuest(sickySlotName));

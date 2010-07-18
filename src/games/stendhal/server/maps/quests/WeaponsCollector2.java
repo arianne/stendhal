@@ -166,7 +166,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 						raiser.say("There "
 								+ Grammar.isare(needed.size())
 								+ " "
-								+ Grammar.quantityplnoun(needed.size(), "weapon")
+								+ Grammar.quantityplnoun(needed.size(), "weapon", "a")
 								+ " still missing from my newest collection: "
 								+ Grammar.enumerateCollection(needed)
 								+ ". Do you have anything like that with you?");

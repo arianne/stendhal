@@ -152,13 +152,13 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	}
 
 	public String firstAskForMissingItems(final List<String> missingItems) {
-		return "I want " + Grammar.quantityplnoun(missingItems.size(), "cloak")
+		return "I want " + Grammar.quantityplnoun(missingItems.size(), "cloak", "a")
 				+ ". That's " + Grammar.enumerateCollection(missingItems)
 				+ ". Will you find them?";
 	}
 
 	public String askForMissingItems(final List<String> missingItems) {
-		return "I want " + Grammar.quantityplnoun(missingItems.size(), "cloak")
+		return "I want " + Grammar.quantityplnoun(missingItems.size(), "cloak", "a")
 				+ ". That's " + Grammar.enumerateCollection(missingItems)
 				+ ". Did you bring any?";
 	}
