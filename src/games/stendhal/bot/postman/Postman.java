@@ -22,7 +22,6 @@ public class Postman implements Runnable {
 	private static final String Y_COORD = "85";
 	private static final String X_COORD = "112";
 	private static final String POSTMAN_ZONE = "0_semos_plains_n";
-	private static final String STENDHAL_POSTMAN_XML = ".stendhal-postman.xml";
 	private static Logger logger = Logger.getLogger(Postman.class);
 	private final ClientFramework clientManager;
 	private final PostmanIRC postmanIRC;
@@ -174,8 +173,6 @@ public class Postman implements Runnable {
 								|| cmd.equalsIgnoreCase("offer")
 								|| cmd.equalsIgnoreCase("parcel")) {
 							tell(from, INTRO + HELP_MESSAGE);
-						} else if (cmd.equalsIgnoreCase("where")) {
-							onWhere();
 						} else {
 							tell(from,
 									"Sorry, I did not understand you. (Did you forget the \"tell\"?)\n"
@@ -225,13 +222,6 @@ public class Postman implements Runnable {
 		action.put("target", param);
 		action.put("text", msg);
 		send(action);
-
-	}
-
-	private void onWhere() {
-		final RPAction who = new RPAction();
-		who.put("type", "who");
-		send(who);
 	}
 
 	private void tell(final String to, final String message) {
@@ -249,14 +239,6 @@ public class Postman implements Runnable {
 	private void chat(final String message) {
 		final RPAction chat = new RPAction();
 		chat.put("type", "chat");
-		chat.put("text", message);
-		send(chat);
-	}
-
-	@SuppressWarnings("unused")
-	private void shout(final String message) {
-		final RPAction chat = new RPAction();
-		chat.put("type", "tellall");
 		chat.put("text", message);
 		send(chat);
 	}
