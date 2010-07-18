@@ -2,30 +2,36 @@ Changelog
 ---------
 
 0.86
-- attack targets drawn as circles
-- settings panel uses icons and is always visible
-- new help menus for settings panel
+
+*world*
+- new npc added to ados market, which buy blue shield 
+- Simon in Ados church offers helpful guidance
 - blackjack max stake raised to 400
-- right click and ignore a player, or right click and unignore an already ignored player
-- marked path from semos to ados city and to the athor ferry pier on ados coast
-- initial Hayunn dialog/tutorial streamlined and improved
 - bakers want more button mushrooms
 - new music by semos dungeon, in semos and ados townhall, semos temple, ados church and in the forest
 - new sounds on the athor ship, in the ados sewers, at the ados city haven and some minor adds
-- Simon in Ados church offers helpful guidance
-- new npc added to ados market, which buy blue shield 
-- Messages from NPCs to offline players for postman can be stored in a table (without postman online)
-- Diogenes tells you about postman, he recently remembered that used to be his job
-- portals can do actions 
-- a sign at the flowers field which shows the meaning of these flowers
-- support messages will get sent using postman if the player was offline
-- SBoxLayout supports alignment and padding
-- Remove account button moved next to the account list
 - Ados and Fado churches ring their bells at full and half hours
+- initial Hayunn dialog/tutorial streamlined and improved
+- Diogenes tells you about postman, he recently remembered that used to be his job
+- a sign at the flowers field which shows the meaning of these flowers
+- marked path from semos to ados city and to the athor ferry pier on ados coast
+
+* client
+- attack targets drawn as circles
+- settings panel uses icons and is always visible
+- new help menus for settings panel
+- "Remove account" button moved next to the account list
+- right click and ignore a player, or right click and unignore an already ignored player
 
 *bugfixes*
 - walkblocker tables have proper resistance
 - Mac OSX cmd key mapping
+
+*code*
+- portals can do actions 
+- Messages from NPCs to offline players for postman can be stored in a table (without postman online)
+- SBoxLayout supports alignment and padding
+- support messages will get sent using postman if the player was offline
 
 
 0.85
