@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.trade;
 
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.LogSimpleItemEventCommand;
@@ -19,7 +20,14 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
-
+/**
+ * A Market handles sales offers of players. Players can place offers or accept offers to buy a desired item.
+ * Offers last only for a certain amount of time before they expire and can be prolonged. Expired Offers get
+ * removed permanently from the market after another period of time. When an offer has been accepted, the offering
+ * Player can come and fetch his earnings for that sale.
+ * 
+ * @author madmetzger, kiheru
+ */
 public class Market extends PassiveEntity {
 	private static Logger logger = Logger.getLogger(Market.class);
 	
@@ -31,6 +39,9 @@ public class Market extends PassiveEntity {
 	private final List<Offer> offers = new LinkedList<Offer>();
 	private final List<Offer> expiredOffers = new LinkedList<Offer>();
 	
+	/**
+	 * Generate the RPClass for the Market
+	 */
 	public static void generateRPClass() {
 		final RPClass shop = new RPClass(MARKET_RPCLASS_NAME);
 		shop.isA("entity");
@@ -39,6 +50,10 @@ public class Market extends PassiveEntity {
 		shop.addRPSlot(EXPIRED_OFFERS_SLOT_NAME, -1, Definition.HIDDEN);
 	}
 
+	/**
+	 * Creates a new Market from an RPObject
+	 * @param object
+	 */
 	public Market(final RPObject object) {
 		super(object);
 		this.setRPClass(MARKET_RPCLASS_NAME);
@@ -103,6 +118,11 @@ public class Market extends PassiveEntity {
 		store();
 	}
 
+	/**
+	 * Factory method for the market
+	 * 
+	 * @return a new Market
+	 */
 	public static Market createShop() {
 		Market shop = new Market();
 		return shop;
@@ -202,6 +222,11 @@ public class Market extends PassiveEntity {
 		return false;
 	}
 
+	/**
+	 * rewards player for a successfull trade
+	 * 
+	 * @param player the player to reward
+	 */
 	private void applyTradingBonus(Player player) {
 		player.incrementTradescore();
 	}
@@ -289,22 +314,39 @@ public class Market extends PassiveEntity {
 		new ItemLogger().addLogItemEventCommand(new LogSimpleItemEventCommand(item, p, "market-to-" + target, item.get("name"), Integer.toString(getQuantity(item)), "remove offer", slotName));
 	}
 	
+	/**
+	 * expires an offer and removes it from the available offers
+	 * 
+	 * @param o the offer to expire
+	 */
 	public void expireOffer(Offer o) {
 		this.getOffers().remove(o);
 		this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
 		this.expiredOffers.add(o);
 		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(o);
 		this.getZone().storeToDatabase();
+		new GameEvent("market", "expire-offer", o.getOfferer(), o.getItem().getName(), o.getPrice().toString()).raise();
 	}
 
+	/**
+	 * @return all available offers in the market
+	 */
 	public List<Offer> getOffers() {
 		return offers;
 	}
 	
+	/**
+	 * @return all currently expired offers in the market
+	 */
 	public List<Offer> getExpiredOffers() {
 		return expiredOffers;
 	}
 
+	/**
+	 * removes an expired offer permanently from the market
+	 * 
+	 * @param offerToRemove
+	 */
 	public void removeExpiredOffer(Offer offerToRemove) {
 		this.expiredOffers.remove(offerToRemove);
 		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(offerToRemove.getID());
@@ -315,6 +357,13 @@ public class Market extends PassiveEntity {
 		this.getZone().storeToDatabase();
 	}
 
+	/**
+	 * prolongs an offer in the market to make it available again
+	 * 
+	 * @param player the prolonging player
+	 * @param offer the offer to prolong
+	 * @return the prolonged offer
+	 */
 	public Offer prolongOffer(Player player, Offer offer) {
 		offer.updateTimestamp();
 		if (this.expiredOffers.remove(offer)) {
@@ -367,6 +416,13 @@ public class Market extends PassiveEntity {
 		return getOlderThan(earnings, seconds);
 	}
 	
+	/**
+	 * retrieves Dateable objects older than seconds from a given Iterable
+	 * @param <T>
+	 * @param set the set to search in
+	 * @param seconds the maximum age
+	 * @return the filtered list
+	 */
 	private <T extends Dateable> List<T> getOlderThan(Iterable<T> set, int seconds) {
 		List<T> old = new LinkedList<T>();
 		for (T obj : set) {
@@ -378,6 +434,11 @@ public class Market extends PassiveEntity {
 		return old;
 	}
 	
+	/**
+	 * gets the quantity of an item
+	 * @param item
+	 * @return the quantity
+	 */
 	private int getQuantity(Item item) {
 		int quantity = 1;
 		if (item instanceof StackableItem) {
