@@ -58,7 +58,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	/**
 	 * The separator width.
 	 */
-	private static final int SEPARATOR_WIDTH = 3;
+	private static final int SEPARATOR_WIDTH = 6;
 
 	/** height of this panel. */
 	private static final int HEIGHT = BUTTON_HEIGHT + SPACING + SPACING;
@@ -138,6 +138,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	public void addSeparator() {
 		
 		separators = separators+1;
+		
 	}
 	
 	/**
