@@ -27,18 +27,24 @@ import org.apache.log4j.Logger;
  * the player who killed it.
  *
  * If a quest is specified then the player only gets the item if the quest isn't completed.
+ * If a queststate (and optionally, index) is also specified then the player only gets the item
+ * if the quest is in that state
  */
 public class ItemGuardCreature extends Creature {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(ItemGuardCreature.class);
 
+	/** which Item to drop */
 	private final String itemType;
 
+	/** which quest slot to check */
 	private final String questSlot;
 	
+	/** which quest state to compare to check */
 	private final String questState;
 	
+	/** which index of the quest state to check */
 	private final int questIndex;
 
 	/**                             
@@ -80,6 +86,8 @@ public class ItemGuardCreature extends Creature {
 	 *            the quest slot for the active quest
 	 * @param questState
 	 * 			  the state of the quest to check on dead for
+	 * @param questIndex
+	 * 			  the index of the quest slot to look in
 	 */
 	public ItemGuardCreature(final Creature copy, final String itemType, final String questSlot, final String questState, final int questIndex) {
 		super(copy);
