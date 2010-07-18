@@ -6,8 +6,16 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
-
+/**
+ * Represents the earned sum of money for a sold {@link Offer} in the {@link Market}
+ *  
+ * @author madmetzger
+ */
 public class Earning extends Entity implements Dateable {
+	
+	/**
+	 * RPClass name for an Earning
+	 */
 	public static final String EARNING_RPCLASS_NAME = "earning";
 	
 	private static final String VALUE_ATTRIBUTE = "value";
@@ -45,6 +53,11 @@ public class Earning extends Entity implements Dateable {
 		put(TIMESTAMP_ATTRIBUTE, Long.toString(System.currentTimeMillis()));
 	}
 	
+	/**
+	 * Create an Earning from a RPObject
+	 * 
+	 * @param object
+	 */
 	public Earning(final RPObject object) {
 		super(object);
 		setRPClass(EARNING_RPCLASS_NAME);
@@ -59,10 +72,16 @@ public class Earning extends Entity implements Dateable {
 		return this.value;
 	}
 
+	/**
+	 * @return the name of the selling player
+	 */
 	public String getSeller() {
 		return this.sellerName;
 	}
 
+	/**
+	 * @return true iff the earning player should get the trading bonus for this earning
+	 */
 	public boolean shouldReward() {
 		return (getInt(REWARD_ATTRIBUTE) != 0);
 	}

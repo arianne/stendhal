@@ -14,7 +14,11 @@ import marauroa.common.game.Definition.Type;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
-
+/**
+ * Represents an {@link Offer} for sale in the {@link Market}
+ *  
+ * @author madmetzger
+ */
 public class Offer extends Entity implements Dateable {
 	private static final Logger logger = Logger.getLogger(Offer.class);
 
@@ -22,8 +26,14 @@ public class Offer extends Entity implements Dateable {
 	private static final String OFFERER_CID_ATTRIBUTE = "offerer_cid";
 	private static final String PRICE_ATTRIBUTE = "price";
 	
+	/**
+	 * The name of the slot where the item for sale is stored
+	 */
 	public static final String OFFER_ITEM_SLOT_NAME = "item";
 
+	/**
+	 * The RPClass name of an Offer
+	 */
 	public static final String OFFER_RPCLASS_NAME = "offer";
 	private static final String TIMESTAMP = "timestamp";
 
@@ -63,6 +73,10 @@ public class Offer extends Entity implements Dateable {
 		updateTimestamp();
 	}
 
+	/**
+	 * Creates an Offer from a RPObject
+	 * @param object
+	 */
 	public Offer(final RPObject object) {
 		super(object);
 		setRPClass("offer");
@@ -93,14 +107,23 @@ public class Offer extends Entity implements Dateable {
 		getSlot(OFFER_ITEM_SLOT_NAME).addPreservingId(item);
 	}
 
+	/**
+	 * @return the Item for sale
+	 */
 	public final Item getItem() {
 		return item;
 	}
 
+	/**
+	 * @return the price to pay for this offer when accepting it
+	 */
 	public final Integer getPrice() {
 		return price;
 	}
 
+	/**
+	 * @return the name of the offering player
+	 */
 	public final String getOfferer() {
 		return offerer;
 	}
