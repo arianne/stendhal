@@ -15,6 +15,10 @@ import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.db.command.ResultHandle;
 
+/**
+ * Stores a message to another player on behalf of any player
+ * for admins >= level 2000 (e.g. postman)
+ */
 public class StoreMessageOnBehalfOfPlayerAction extends AdministrationAction implements TurnListener  {
 
 	private ResultHandle handle = new ResultHandle();
@@ -25,10 +29,6 @@ public class StoreMessageOnBehalfOfPlayerAction extends AdministrationAction imp
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
-		// TODO: do we want to check this? the player might be postman.
-		if (!player.getChatBucket().checkAndAdd()) {
-			return;
-		}
 
 		if (action.has("source") && action.has(TARGET) && action.has(TEXT)) {
 			
@@ -54,15 +54,16 @@ public class StoreMessageOnBehalfOfPlayerAction extends AdministrationAction imp
 		}
 
 		boolean characterExists = checkcommand.targetCharacterExists();
-		String adminName = checkcommand.getSource();
+		String source = checkcommand.getSource();
 		String target = checkcommand.getTarget();
 		
-		final Player admin = SingletonRepository.getRuleProcessor().getPlayer(adminName);
+		final Player sourceplayer = SingletonRepository.getRuleProcessor().getPlayer(source);
 		
-		if(!"postman".equals(adminName) && !characterExists) {
-			if (admin != null) {
-				// incase admin logged out while waiting we want to avoid NPE
-				admin.sendPrivateText(NotificationType.ERROR, "Sorry, " + target + " could not be found, so the message cannot be stored.");
+		if(!characterExists) {
+			if (sourceplayer != null) {
+				// incase source player logged out while waiting we want to avoid NPE
+				sourceplayer.sendPrivateText(NotificationType.ERROR, "postman tells you: Sorry, " + target + " could not be found, so your message cannot be stored.");
+				sourceplayer.setLastPrivateChatter("postman");
 			}
 			return;
 		} 
