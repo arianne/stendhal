@@ -3,11 +3,7 @@
  */
 package games.stendhal.bot.postman;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.Properties;
 import java.util.StringTokenizer;
 
 import marauroa.client.ClientFramework;
@@ -28,7 +24,6 @@ public class Postman implements Runnable {
 	private static final String POSTMAN_ZONE = "0_semos_plains_n";
 	private static final String STENDHAL_POSTMAN_XML = ".stendhal-postman.xml";
 	private static Logger logger = Logger.getLogger(Postman.class);
-	private final Properties messages = new Properties();
 	private final ClientFramework clientManager;
 	private final PostmanIRC postmanIRC;
 	private static final String GREETING = "Hi, I am the postman. How can I #help you?";
@@ -47,14 +42,6 @@ public class Postman implements Runnable {
 		this.clientManager = clientManager;
 		this.postmanIRC = postmanIRC;
 
-		// shout("Please restart your client every hour or so to save your
-		// progress. We have some trouble with server crashes.");
-
-		try {
-			this.messages.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_XML));
-		} catch (final Exception e) {
-			logger.info("no message file found will be created on first write");
-		}
 	}
 
 	/**
@@ -194,8 +181,6 @@ public class Postman implements Runnable {
 									"Sorry, I did not understand you. (Did you forget the \"tell\"?)\n"
 											+ HELP_MESSAGE);
 						}
-					} else if (arianneCmd.equals("Players")) {
-						onWhoResponse(st);
 					} else if (arianneCmd.equalsIgnoreCase("shouts:") || arianneCmd.equalsIgnoreCase("rented")) {
 						postmanIRC.sendMessageToAllChannels(text);
 					} else if (arianneCmd.equalsIgnoreCase("asks")
@@ -220,52 +205,6 @@ public class Postman implements Runnable {
 		}
 	}
 
-	/**
-	 * response to "who".
-	 * @param st 
-	 */
-	private void onWhoResponse(final StringTokenizer st) {
-		String lastUserPart = "";
-		while (st.hasMoreTokens()) {
-			final String token = st.nextToken();
-			// System.err.println("Player: " + token);
-			final int pos = token.indexOf("(");
-			if (pos < 0) {
-				lastUserPart = lastUserPart + " " + token;
-				continue;
-			}
-			final String user = lastUserPart + token.substring(0, pos);
-			lastUserPart = "";
-
-			// Are there messages for this player?
-			final Iterator< ? > itr = messages.keySet().iterator();
-			while (itr.hasNext()) {
-				final String key = itr.next().toString();
-				if (key.startsWith(user + "!")) {
-					String from = key.substring(key.indexOf("!") + 1);
-					final String message = messages.getProperty(key);
-					if (from.equals(user)) {
-						from = "You";
-					}
-					tell(user, from + " asked me to deliver this message: \n"
-							+ message.trim());
-					itr.remove();
-					// workaround: Only the last message processed in one turn is delivered
-					break; 
-				}
-			}
-		}
-
-		// Save to disk
-		try {
-			messages.storeToXML(
-					new FileOutputStream(STENDHAL_POSTMAN_XML),
-					"These are the messages postman should deliver.");
-		} catch (final Exception e) {
-			logger.error(e, e);
-		}
-	}
-
 	private void onTell(final String from, final StringTokenizer st) {
 		String param = null;
 		String msg = "";
@@ -279,23 +218,14 @@ public class Postman implements Runnable {
 			// the rest of the message
 			msg = st.nextToken("\0").trim(); 
 		}
-		final String old = messages.getProperty(param + "!" + from);
+		
+		final RPAction action = new RPAction();
+		action.put("type", "storemessageonbehalfofplayer");
+		action.put("source", from);
+		action.put("target", param);
+		action.put("text", msg);
+		send(action);
 
-		tell(from, "Message accepted for delivery.");
-
-		if (old != null) {
-			msg = old + "\n" + msg;
-		}
-		messages.put(param + "!" + from, msg);
-
-		// Save to disk
-		try {
-			messages.storeToXML(
-					new FileOutputStream(STENDHAL_POSTMAN_XML),
-					"These are the messages postman should deliver.");
-		} catch (final Exception e) {
-			logger.error(e, e);
-		}
 	}
 
 	private void onWhere() {
@@ -356,10 +286,6 @@ public class Postman implements Runnable {
 			logger.error(e, e);
 		}
 		while (true) {
-			final RPAction who = new RPAction();
-			who.put("type", "who");
-			send(who);
-
 			try {
 				Thread.sleep(60 * 1000);
 			} catch (final InterruptedException e) {

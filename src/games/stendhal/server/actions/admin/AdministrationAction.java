@@ -59,6 +59,7 @@ public abstract class AdministrationAction implements ActionListener {
 		TeleportToAction.register();
 		TellAllAction.register();
 		WrapAction.register();
+		StoreMessageOnBehalfOfPlayerAction.register();
 		REQUIRED_ADMIN_LEVELS.put("super", 5000);
 	}
 
