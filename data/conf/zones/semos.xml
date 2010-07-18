@@ -27,6 +27,43 @@
 
 	<zone name="0_semos_mountain_n2_w" level="0" x="499872" y="499744"
 		file="Level 0/semos/mountain_n2_w.tmx">
+
+		<entity x="77" y="127">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">come_to_rest</parameter>
+				<parameter name="radius">16</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="77" y="123">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">water-3</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">1</parameter>
+				<parameter name="radius">11</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="77" y="119">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">blackbird-6b, bird-2b, lark-1</parameter>
+				<parameter name="min">1</parameter>
+				<parameter name="max">15</parameter>
+				<parameter name="radius">10</parameter>
+				<parameter name="volume">65</parameter>
+			</implementation>
+		</entity>
+		<entity x="62" y="127">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">woodpecker-1</parameter>
+				<parameter name="min">3</parameter>
+				<parameter name="max">15</parameter>
+				<parameter name="radius">14</parameter>
+				<parameter name="volume">65</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
@@ -182,8 +219,33 @@
 		
 		<portal x="76" y="36" ref="wizardstower_entrance">
                 <destination zone="int_semos_wizards_tower_basement" ref="wizardstower_exit" />
-	    </portal>
+	   	</portal>
 
+		<entity x="78" y="28">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">mystical_aura</parameter>
+				<parameter name="radius">16</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="77" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">come_to_rest</parameter>
+				<parameter name="radius">13</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="65" y="6">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+				<parameter name="sound">woodpecker-1</parameter>
+				<parameter name="min">3</parameter>
+				<parameter name="max">15</parameter>
+				<parameter name="radius">24</parameter>
+				<parameter name="volume">80</parameter>
+			</implementation>
+		</entity>
 	</zone>
 	
     <!-- Interiors of the wizards tower -->
