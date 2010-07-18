@@ -166,7 +166,7 @@ public class PostmanMain extends Thread {
 			final PostmanIRC postmanIRC = new PostmanIRC(host);
 			postmanIRC.connect();
 			postman = new Postman(clientManager, postmanIRC);
-			postman.startThread();
+			postman.teleportPostman();
 		} catch (final SocketException e) {
 			System.err.println("Socket Exception");
 			e.printStackTrace();

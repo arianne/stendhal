@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class Postman implements Runnable {
+public class Postman {
 
 	private static final String Y_COORD = "85";
 	private static final String X_COORD = "112";
@@ -40,18 +40,8 @@ public class Postman implements Runnable {
 	public Postman(final ClientFramework clientManager, final PostmanIRC postmanIRC) {
 		this.clientManager = clientManager;
 		this.postmanIRC = postmanIRC;
-
 	}
 
-	/**
-	 * Starts the /who thread.
-	 */
-	public void startThread() {
-		final Thread t = new Thread(this, "Postman");
-		t.setPriority(Thread.MIN_PRIORITY);
-		t.setDaemon(true);
-		t.start();
-	}
 
 	/**
 	 * Processes a talk event.
@@ -243,7 +233,7 @@ public class Postman implements Runnable {
 		send(chat);
 	}
 
-	private void teleportPostman() {
+	void teleportPostman() {
 		final RPAction teleport = new RPAction();
 		teleport.put("type", "teleport");
 		teleport.put("target", "postman");
@@ -258,22 +248,6 @@ public class Postman implements Runnable {
 		chat.put("type", "script");
 		chat.put("target", "PlayerPositionMonitoring.class");
 		send(chat);
-	}
-
-	public void run() {
-		teleportPostman();
-		try {
-			Thread.sleep(400);
-		} catch (final InterruptedException e) {
-			logger.error(e, e);
-		}
-		while (true) {
-			try {
-				Thread.sleep(60 * 1000);
-			} catch (final InterruptedException e) {
-				logger.error(e, e);
-			}
-		}
 	}
 
 	private void send(final RPAction action) {
