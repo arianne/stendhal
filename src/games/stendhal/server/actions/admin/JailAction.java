@@ -45,7 +45,7 @@ public class JailAction extends AdministrationAction {
 		final String target = action.get(TARGET);
 		if (StendhalRPRuleProcessor.get().getPlayer(target) == null) {
 			try {
-				if (!DAORegister.get().get(CharacterDAO.class).hasCharacter(null, target)) {
+				if (!DAORegister.get().get(CharacterDAO.class).hasCharacter(target)) {
 					player.sendPrivateText("No character with that name: " + target);
 					return;
 				}
