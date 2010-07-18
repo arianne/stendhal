@@ -84,6 +84,12 @@ public class OfferExpirer implements TurnListener{
 		TurnNotifier.get().notifyInSeconds(CHECKING_INTERVAL, this);
 	}
 	
+	/**
+	 * sends a message to player via postman
+	 * 
+	 * @param player the recipient of the message
+	 * @param message the message itself
+	 */
 	private void sendMessage(String player, StringBuilder message) {
 		
 		logger.debug("sending a notice to '" + player + "': " + message.toString());
@@ -127,6 +133,9 @@ public class OfferExpirer implements TurnListener{
 		}
 	}
 	
+	/**
+	 * checks for offers that need a warning before expiring
+	 */
 	private void checkWarnings() {
 		List<Offer> list = market.getOffersOlderThan(TIME_TO_WARNING);
 		
@@ -155,6 +164,9 @@ public class OfferExpirer implements TurnListener{
 		timeStamp = time;
 	}
 	
+	/**
+	 * checks for earnings to remove and removes them if too old
+	 */
 	private void checkRemovedEarnings() {
 		List<Earning> list = market.getEarningsOlderThan(TIME_TO_REMOVING_EARNINGS);
 		for (Earning earning : list) {
