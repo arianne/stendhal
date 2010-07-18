@@ -71,21 +71,18 @@ public class BlueIceSorceressNPC implements ZoneConfigurator {
 				addReply("scroll", "Zekiel is the storekeeper of the tower, I am sure he can help you.");
 				addQuest("The magic in this world has just begun and I am very busy to establish the sorceresses of #Frostshade at the wizards circle. I will tell you in time, when I have a quest for you.");
 				addGoodbye("Bye!");
-				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("ice scroll", "ice scrolls"),
-				        ConversationStates.ATTENDING,
-				        "I need a #scroll for that. If you bring me one, I will #enchant it for you.",
-				        null);
+				addReply(Arrays.asList("ice scroll", "ice scrolls"),
+				        "I need a #scroll for that. If you bring me one, I will #enchant it for you.");
 				add(
 				        ConversationStates.ATTENDING,
 				        Arrays.asList("enchant"),
-					new PlayerHasItemWithHimCondition("scroll"),
+				        new PlayerHasItemWithHimCondition("scroll"),
 				        ConversationStates.ATTENDING,
-					"I enchanted your scroll to an ice scroll. May it cool off your feets on your travels.",
-					new MultipleActions(new DropItemAction("scroll", 1),
-					new EquipItemAction("ice scroll", 1, true),
-					new IncreaseXPAction(250)));
+				        "I enchanted your scroll to an ice scroll. May it cool off your feets on your travels.",
+				        new MultipleActions(
+				        		new DropItemAction("scroll", 1),
+				        		new EquipItemAction("ice scroll", 1, true),
+				        		new IncreaseXPAction(250)));
 				add(
 				        ConversationStates.ATTENDING,
 				        Arrays.asList("enchant"),
@@ -95,7 +92,7 @@ public class BlueIceSorceressNPC implements ZoneConfigurator {
 			} //remaining behaviour defined in maps.quests.SorceressCassandraPlainQuest
 		};
 
-		cassandra.setDescription("You see Cassandra, a beautifull woman and powerfull sorceress.");
+		cassandra.setDescription("You see Cassandra, a beautiful woman and powerful sorceress.");
 		cassandra.setEntityClass("bluesorceressnpc");
 		cassandra.setPosition(37, 2);
 		cassandra.initHP(100);

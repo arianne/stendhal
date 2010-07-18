@@ -58,10 +58,10 @@ public class RedFireWizardNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Greetings!");
-				addHelp("Excuse me, I am very busy to establish the warlocks part at the wizards circle.");
+				addHelp("Excuse me, I am very busy establishing the warlocks part at the wizards circle.");
 				addJob("I am Malleus. I represent the warlocks of #Yrafear at the wizards circle.");
-				addOffer("Excuse me, I am very busy to establish the warlocks part at the wizards circle.");
-				addQuest("The magic in this world has just begun and I am very busy to establish the warlocks of #Yrafear at the wizards circle. I will tell you in time, when I have a quest for you.");
+				addOffer("Excuse me, I am very busy establishing the warlocks part at the wizards circle.");
+				addQuest("The magic in this world has just begun and I am very busy establishing the warlocks of #Yrafear at the wizards circle. I will tell you in time, when I have a quest for you.");
 				addReply("Yrafear", "Yrafear, the school of fire magic, lies in the deep undergrounds of Faiumoni.");
 				addGoodbye("So long!");
 

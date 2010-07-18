@@ -57,9 +57,9 @@ public class BlackDeathWizardNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Greetings mortal! What is it this time?");
-				addHelp("Excuse me mortal, I am very busy to establish the necromancers part at the wizards circle.");
+				addHelp("Excuse me mortal, I am very busy, working to establish the necromancers part at the wizards circle.");
 				addJob("I am Ravashack. I represent the necromancers of #Wraithforge at the wizards circle.");
-				addOffer("Excuse me mortal, I am very busy to establish the necromancers part at the wizards circle.");
+				addOffer("Excuse me mortal, I am very busy, working to establish the necromancers part at the wizards circle.");
 				addQuest("The magic in this world has just begun and I am very busy to establish the necromancers of #Wraithforge at the wizards circle. I will tell you in time, when I have a quest for you.");
 				addReply("Wraithforge", "In the centre of the fields of glory lies Wraithforge, the school of dark magic.");
 				addGoodbye("So long, mortal!");

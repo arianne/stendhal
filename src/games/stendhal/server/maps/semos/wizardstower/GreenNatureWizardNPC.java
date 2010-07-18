@@ -58,10 +58,10 @@ public class GreenNatureWizardNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello, young friend!");
-				addHelp("Excuse me young friend, I am very busy to establish the druids part at the wizards circle.");
+				addHelp("Excuse me young friend, I am very busy, establishing the druids part at the wizards circle.");
 				addJob("I am Silvanus. I represent the druids of #Lyreade at the wizards circle.");
-				addOffer("Excuse me young friend, I am very busy to establish the druids part at the wizards circle.");
-				addQuest("The magic in this world has just begun and I am very busy to establish the druids of #Lyreade at the wizards circle. I will tell you in time, when I have a quest for you.");
+				addOffer("Excuse me young friend, I am very busy, establishing the druids part at the wizards circle.");
+				addQuest("The magic in this world has just begun and I am very busy establishing the druids of #Lyreade at the wizards circle. I will tell you in time, when I have a quest for you.");
 				addReply("Lyreade", "Lyreade, the school of nature magic, lies hidden in the wideness of the elven forests.");
 				addGoodbye("See you, young friend!");
 
