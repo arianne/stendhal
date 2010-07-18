@@ -663,6 +663,26 @@ public class Grammar {
 	public static String quantityplnoun(final int quantity, final String noun) {
 		String end = plnoun(quantity, noun);
 		if (quantity == 1) {
+			return end;
+		} else {
+			return Integer.toString(quantity) + " " + plural(noun);	
+		}
+	}
+
+	/**
+	 * Returns either the plural or singular form of the given noun, depending
+	 * on the quantity; also prefixes the quantity.
+	 * 
+	 * @param quantity
+	 *            The quantity to examine
+	 * @param noun
+	 *            The noun to examine
+	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
+	 *         appropriate
+	 */
+	public static String quantityplnounWithAForOne(final int quantity, final String noun) {
+		String end = plnoun(quantity, noun);
+		if (quantity == 1) {
 			return a_noun(end);
 		} else {
 			return Integer.toString(quantity) + " " + plural(noun);	
