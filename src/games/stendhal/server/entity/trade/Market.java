@@ -31,9 +31,21 @@ import org.apache.log4j.Logger;
 public class Market extends PassiveEntity {
 	private static Logger logger = Logger.getLogger(Market.class);
 	
+	/**
+	 * the RPClass name for the market 
+	 */
 	public static final String MARKET_RPCLASS_NAME = "market";
+	/**
+	 * the name of the slot where the earnings are stored
+	 */
 	public static final String EARNINGS_SLOT_NAME = "earnings";
+	/**
+	 * the name of the slot where the offers are stored
+	 */
 	public static final String OFFERS_SLOT_NAME = "offers";
+	/**
+	 * the name of the slot where the expired offers are stored
+	 */
 	public static final String EXPIRED_OFFERS_SLOT_NAME = "expired_offers";
 	
 	private final List<Offer> offers = new LinkedList<Offer>();
