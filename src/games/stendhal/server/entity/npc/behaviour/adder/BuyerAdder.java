@@ -101,7 +101,7 @@ public class BuyerAdder {
 								final int price = behaviour.getCharge(player);
 
 								if (price != 0) {
-	    							raiser.say(Grammar.makeUpperCaseWord(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName()))
+	    							raiser.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName(), "A")
 	    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth "
 	    									+ price + ". Do you want to sell "
 	    									+ Grammar.itthem(behaviour.getAmount()) + "?");

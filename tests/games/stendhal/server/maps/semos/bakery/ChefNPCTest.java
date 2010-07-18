@@ -141,7 +141,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "hi");
 		assertEquals(
-				"Welcome back! I'm done with your order. Here you have a sandwich.",
+				"Welcome back! I'm done with your order. Here you have the sandwich.",
 				getReply(npc));
 		assertEquals(1, player.getNumberOfEquipped("sandwich"));
 	}

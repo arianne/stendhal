@@ -83,7 +83,7 @@ public class HealerNPCTest {
         
         assertTrue(en.step(player, "buy "+key));      
         final StringBuilder builder = new StringBuilder("");
-		builder.append(Grammar.makeUpperCaseWord(Grammar.quantityplnoun(1, key)));	
+		builder.append(Grammar.quantityplnoun(1, key, "A"));	
 	    builder.append(" will cost ");
 	    builder.append(price);
 	    builder.append(". Do you want to buy it?");	    

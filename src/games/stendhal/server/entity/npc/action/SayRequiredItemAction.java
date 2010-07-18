@@ -69,14 +69,14 @@ public class SayRequiredItemAction implements ChatAction {
 			
 			// some older quests may have stored an item name but not the amount
 			// so we use the initial value of 1 if the string can't be split
-		    if(elements.length > 1) {
+			if(elements.length > 1) {
 				amount=MathHelper.parseIntDefault(elements[1], 1);
-		    }
-		    
-		    Map<String, String> substitutes = new HashMap<String, String>();
-			substitutes.put("item", Grammar.quantityplnoun(amount,itemname));
-			substitutes.put("#item", Grammar.quantityplnounWithHash(amount,itemname));
-			substitutes.put("the item", "the " + Grammar.plnoun(amount,itemname));
+			}
+
+			Map<String, String> substitutes = new HashMap<String, String>();
+			substitutes.put("item", Grammar.quantityplnoun(amount, itemname, "a"));
+			substitutes.put("#item", Grammar.quantityplnounWithHash(amount, itemname));
+			substitutes.put("the item", "the " + Grammar.plnoun(amount, itemname));
 			
 			
 			raiser.say(StringUtils.substitute(message,substitutes));		

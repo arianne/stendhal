@@ -88,9 +88,9 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 	@Override
 	public String describe() {
 		final String text = "You see an aeryberry bush, with "
-				+ Grammar.quantityplnoun(getAmount(), "berry")
+				+ Grammar.quantityplnoun(getAmount(), "berry", "one")
 				+ " on it. Only sheep can eat aeryberries.";
-		return (text);
+		return text;
 	}
 
 	@Override

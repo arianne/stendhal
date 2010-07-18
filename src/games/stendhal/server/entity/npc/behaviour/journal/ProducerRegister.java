@@ -70,7 +70,7 @@ public class ProducerRegister {
 					String timeleft = behaviour.getApproximateRemainingTime(player);
 					// put all ongoing orders last
 					sb.append("\n" + npcName + " is " + Grammar.gerundForm(activity) 
-							+ " " + Grammar.quantityplnoun(amount,product) + " and will be ready in " + timeleft + ".");
+							+ " " + Grammar.quantityplnoun(amount, product, "a") + " and will be ready in " + timeleft + ".");
 				}
 						
 			}

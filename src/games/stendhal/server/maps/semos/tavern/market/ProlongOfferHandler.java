@@ -55,7 +55,7 @@ public class ProlongOfferHandler extends OfferHandler {
 						
 						if (TradeCenterZoneConfigurator.getShopFromZone(player.getZone()).getOffers().contains(o)) {
 							message.append("Your offer of ");
-							message.append(Grammar.quantityplnoun(quantity, o.getItem().getName()));
+							message.append(Grammar.quantityplnoun(quantity, o.getItem().getName(), "one"));
 							message.append(" would expire in ");
 							message.append(TimeUtil.approxTimeUntil((int) ((o.getTimestamp() - System.currentTimeMillis() + 1000 * OfferExpirer.TIME_TO_EXPIRING) / 1000)));
 							message.append(". Do you want to prolong it to last for ");
@@ -65,7 +65,7 @@ public class ProlongOfferHandler extends OfferHandler {
 							message.append(" money?");
 						} else {
 							message.append("Do you want to prolong your offer of ");
-							message.append(Grammar.quantityplnoun(quantity, o.getItem().getName()));
+							message.append(Grammar.quantityplnoun(quantity, o.getItem().getName(), "one"));
 							message.append(" for ");
 							message.append(TradingUtility.calculateFee(player, o.getPrice()).intValue());
 							message.append(" money?");

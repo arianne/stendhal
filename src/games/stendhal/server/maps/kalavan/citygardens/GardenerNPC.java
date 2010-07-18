@@ -102,7 +102,7 @@ public class GardenerNPC implements ZoneConfigurator {
 							return false;
 						} else if (getMaximalAmount(player) < amount) {
 							npc.say("I would only " + getProductionActivity() + " you "
-									+ Grammar.quantityplnoun(amount, getProductName())
+									+ Grammar.quantityplnoun(amount, getProductName(), "a")
 									+ " if you bring me "
 									+ getRequiredResourceNamesWithHashes(amount) + ".");
 							return false;
@@ -131,7 +131,7 @@ public class GardenerNPC implements ZoneConfigurator {
 											+ timeNow);
 							npc.say("Thanks! Come back in "
 									+ getApproximateRemainingTime(player) + ", and I'll have got " 
-									+ Grammar.quantityplnoun(amount, getProductName()) + " for you.");
+									+ Grammar.quantityplnoun(amount, getProductName(), "a") + " for you.");
 							return true;
 						}
 					}
@@ -159,7 +159,7 @@ public class GardenerNPC implements ZoneConfigurator {
                         player.equipOrPutOnGround(products);
                         npc.say("Welcome back! I've put my lunch inside ready to eat later. In exchange here you have "
 								+ Grammar.quantityplnoun(numberOfProductItems,
-                                                        getProductName()) + ".");
+                                                        getProductName(), "a") + ".");
                         // store the number of lunches given and the time so we know how long she eats for
 						player.setQuest(QUEST_SLOT, "done" + ";" + numberOfProductItems + ";"
 										+ System.currentTimeMillis());

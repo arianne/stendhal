@@ -119,7 +119,7 @@ public class PrepareOfferHandler {
 					setData(item, price, number);
 					StringBuilder msg = new StringBuilder();
 					msg.append("Do you want to sell ");
-					msg.append(Grammar.quantityplnoun(number, itemName));
+					msg.append(Grammar.quantityplnoun(number, itemName, "a"));
 					msg.append(" for ");
 					if (number != 1) {
 						msg.append("total ");
@@ -164,7 +164,7 @@ public class PrepareOfferHandler {
 					npc.say("I added your offer to the trading center and took the fee of "+ fee +".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
 				} else {
-					npc.say("You don't have " + Grammar.quantityplnoun(quantity, item.getName()) + ".");
+					npc.say("You don't have " + Grammar.quantityplnoun(quantity, item.getName(), "a") + ".");
 				}
 				return;
 			}
@@ -194,7 +194,7 @@ public class PrepareOfferHandler {
 				message.append(price);
 				message.append(" created. ");
 				String messageNumberOfOffers = "You have now made "
-					+ Grammar.quantityplnoun(Integer.valueOf(shop.countOffersOfPlayer(player)),"offer") + ".";
+					+ Grammar.quantityplnoun(Integer.valueOf(shop.countOffersOfPlayer(player)), "offer", "one") + ".";
 				player.sendPrivateText(message.toString() + messageNumberOfOffers);
 				return true;
 			}

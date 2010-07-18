@@ -165,7 +165,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 							player.equipOrPutOnGround(products);
 							npc.say("I'm done! Here you have "
 									+ Grammar.quantityplnoun(numberOfProductItems,
-															 getProductName()) + ".");
+															 getProductName(), "the") + ".");
 							player.setQuest(QUEST_SLOT, "done");
 							// give some XP as a little bonus for industrious workers
 							player.addXP(numberOfProductItems);

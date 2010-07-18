@@ -275,7 +275,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	public boolean askForResources(final EventRaiser npc, final Player player, final int amount) {
 		if (getMaximalAmount(player) < amount) {
 			npc.say("I can only " + getProductionActivity() + " "
-					+ Grammar.quantityplnoun(amount, getProductName())
+					+ Grammar.quantityplnoun(amount, getProductName(), "a")
 					+ " if you bring me "
 					+ getRequiredResourceNamesWithHashes(amount) + ".");
 			return false;
@@ -315,7 +315,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 			npc.say("OK, I will "
 					+ getProductionActivity()
 					+ " "
-					+ Grammar.quantityplnoun(amount, getProductName())
+					+ Grammar.quantityplnoun(amount, getProductName(), "a")
 					+ " for you, but that will take some time. Please come back in "
 					+ getApproximateRemainingTime(player) + ".");
 			return true;
@@ -339,7 +339,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 
 		if (!isOrderReady(player)) {
 			npc.say("Welcome back! I'm still busy with your order to "
-					+ getProductionActivity() + " " + Grammar.quantityplnoun(numberOfProductItems, getProductName())
+					+ getProductionActivity() + " " + Grammar.quantityplnoun(numberOfProductItems, getProductName(), "a")
 					+ " for you. Come back in "
 					+ getApproximateRemainingTime(player) + " to get it.");
 		} else {
@@ -355,7 +355,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 			if (player.equipToInventoryOnly(products)) {					
 				npc.say("Welcome back! I'm done with your order. Here you have "
 					+ Grammar.quantityplnoun(numberOfProductItems,
-							getProductName()) + ".");
+							getProductName(), "the") + ".");
 				player.setQuest(questSlot, "done");
 				// give some XP as a little bonus for industrious workers
 				player.addXP(numberOfProductItems);

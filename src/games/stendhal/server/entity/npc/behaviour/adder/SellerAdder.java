@@ -89,9 +89,9 @@ public class SellerAdder {
 									price = (int) (SellerBehaviour.BAD_BOY_BUYING_PENALTY * price);
 
 									builder.append("To friends I charge less, but you seem like you have played unfairly here. So,  ");
-									builder.append(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName()));
+									builder.append(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName(), "a"));
 								} else {
-									builder.append(Grammar.makeUpperCaseWord(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())));
+									builder.append(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName(), "A"));
 								}
 								builder.append(" will cost ");
 								builder.append(price);
