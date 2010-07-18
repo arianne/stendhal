@@ -46,7 +46,7 @@ public abstract class AbstractOfflineAction extends ScriptImpl {
 		try {
 
 			// check that the player exists
-			if (!characterDAO.hasCharacter(playerName, playerName)) {
+			if (!characterDAO.hasCharacter(playerName)) {
 				admin.sendPrivateText("No player with that name.");
 				TransactionPool.get().commit(transaction);
 				return;

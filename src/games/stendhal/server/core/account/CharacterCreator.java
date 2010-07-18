@@ -71,7 +71,7 @@ public class CharacterCreator {
 		final CharacterDAO characterDAO = DAORegister.get().get(CharacterDAO.class);
 
 		try {
-			if (characterDAO.hasCharacter(trans, username, character)) {
+			if (characterDAO.hasCharacter(trans, character)) {
 				logger.warn("Character already exist: " + character);
 				transactionPool.commit(trans);
 				return new CharacterResult(Result.FAILED_PLAYER_EXISTS,
