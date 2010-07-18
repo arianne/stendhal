@@ -58,15 +58,19 @@ public class StoreMessageOnBehalfOfPlayerAction extends AdministrationAction imp
 		String target = checkcommand.getTarget();
 		
 		final Player sourceplayer = SingletonRepository.getRuleProcessor().getPlayer(source);
-		
-		if(!characterExists) {
-			if (sourceplayer != null) {
-				// incase source player logged out while waiting we want to avoid NPE
+
+
+		if (sourceplayer != null) {
+			// incase source player logged out while waiting we want to avoid NPE
+			if(characterExists) {
+				sourceplayer.sendPrivateText("postman tells you: Message accepted for delivery");
+			} else {
 				sourceplayer.sendPrivateText(NotificationType.ERROR, "postman tells you: Sorry, " + target + " could not be found, so your message cannot be stored.");
-				sourceplayer.setLastPrivateChatter("postman");
 			}
-			return;
-		} 
+			sourceplayer.setLastPrivateChatter("postman");
+		}
 		
-	}
+		return;
+	} 
+		
 }
