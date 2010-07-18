@@ -303,7 +303,6 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 
 	@Override
 	public List<String> getHistory(final Player player) {
-		// TODO: this is incomplete
 		LinkedList<String> history = new LinkedList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return history;
