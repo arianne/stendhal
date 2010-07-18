@@ -60,7 +60,7 @@ public class LearnAboutKarmaTest {
 		en.step(player, "karma");
 		assertEquals(KARMA_ANSWER, getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Your karma is roughly -10.", getReply(npc));
+		assertEquals("Your karma of -10 is not very good. Now you can always see your karma, if you had good karma it would show as blue.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 
@@ -73,7 +73,7 @@ public class LearnAboutKarmaTest {
 		en.step(player, "karma");
 		assertEquals(KARMA_ANSWER, getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Your karma is roughly -10.", getReply(npc));
+		assertEquals("Your karma of -10 is not very good. Now you can always see your karma, if you had good karma it would show as blue.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 
@@ -92,11 +92,19 @@ public class LearnAboutKarmaTest {
 		en.step(player, "karma");
 		assertEquals(KARMA_ANSWER, getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Your karma is roughly -5.", getReply(npc));
+		assertEquals("Your karma of -5 is not very good. Now you can always see your karma, if you had good karma it would show as blue.", getReply(npc));
+		// add a bit of karma to test different values
+		player.addKarma(10.0);
 		en.step(player, "karma");
 		assertEquals(KARMA_ANSWER, getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Your karma is roughly -5.", getReply(npc));
+		assertEquals("Your karma is 5. Now you can always see your karma, and yours is roughly in the middle of the scale.", getReply(npc));
+		// add a bit more karma to test more values
+		player.addKarma(10.0);
+		en.step(player, "karma");
+		assertEquals(KARMA_ANSWER, getReply(npc));
+		en.step(player, "yes");
+		assertEquals("Your karma of 15 is good. Now you can always see your karma, and you should try to keep yours out of the 'red'.",  getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 	}
