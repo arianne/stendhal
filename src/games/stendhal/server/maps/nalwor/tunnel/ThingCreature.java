@@ -12,7 +12,8 @@ import java.util.Map;
 
 /**
  * Configure Drow Tunnel -1 to include a Thing Creature who carries an amulet. 
- * Then it should give an amulet that is bound to the player.
+ * Then it should give an amulet that is bound to the player,
+ * provided that the quest KillDarkElves is not completed.
  */
 public class ThingCreature implements ZoneConfigurator {
 
@@ -29,7 +30,7 @@ public class ThingCreature implements ZoneConfigurator {
 
 	private void buildDrowTunnelArea(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
-		final Creature creature = new ItemGuardCreature(manager.getCreature("thing"), "amulet", "kill_dark_elves", "start");
+		final Creature creature = new ItemGuardCreature(manager.getCreature("thing"), "amulet", "kill_dark_elves", null);
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 32, 5, creature, 1);
 		zone.add(point);
 	}
