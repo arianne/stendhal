@@ -575,7 +575,7 @@ public class AdministrationActionTest {
 		CommandCenter.execute(player, action);
 		assertEquals("Usage: /jail <name> <minutes> <reason>", player.events().get(0).get("text"));
 
-		if (!DAORegister.get().get(CharacterDAO.class).hasCharacter("offlineplayer", "offlineplayer")) {
+		if (!DAORegister.get().get(CharacterDAO.class).hasCharacter("offlineplayer")) {
 			RPObject rpobject = new RPObject();
 			rpobject.setRPClass("player");
 			rpobject.put("name", "offlineplayer");
