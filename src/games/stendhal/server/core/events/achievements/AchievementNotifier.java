@@ -154,20 +154,19 @@ public class AchievementNotifier {
 			List<Achievement> toCheck) {
 		for (Achievement achievement : toCheck) {
 			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
-				logAndNotifyReachingOfAnAchievement(player, achievement);
+				notifyPlayerAboutReachedAchievement(player, achievement);
+				logReachingOfAnAchievement(player, achievement);
 			}
 		}
 	}
 	
 	/**
-	 * notifies the player about reaching an achievement and logs that to gameEvents table and reached_achievment table
+	 * logs reached achievement to gameEvents table and reached_achievment table
 	 * 
 	 * @param player
 	 * @param achievement
 	 */
-	private void logAndNotifyReachingOfAnAchievement(Player player,
-			Achievement achievement) {
-		player.sendPrivateText("Congratulations! You have reached the "+achievement.getTitle()+" achievement!");
+	private void logReachingOfAnAchievement(Player player, Achievement achievement) {
 		String identifier = achievement.getIdentifier();
 		String title = achievement.getTitle();
 		Category category = achievement.getCategory();
@@ -175,6 +174,17 @@ public class AchievementNotifier {
 		DBCommandQueue.get().enqueue(new WriteReachedAchievementCommand(identifiersToIds.get(identifier), title, category, playerName));
 		player.addReachedAchievement(achievement.getIdentifier());
 		new GameEvent(playerName, "reach-achievement", category.toString(), title, identifier).raise();
+	}
+
+	/**
+	 * notifies the player about reaching an achievement
+	 * 
+	 * @param player
+	 * @param achievement
+	 */
+	private void notifyPlayerAboutReachedAchievement(Player player,
+			Achievement achievement) {
+		player.sendPrivateText("Congratulations! You have reached the "+achievement.getTitle()+" achievement!");
 	}
 
 	/**
