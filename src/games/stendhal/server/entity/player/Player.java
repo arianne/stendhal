@@ -1067,6 +1067,42 @@ public class Player extends RPEntity {
 			}
 		}
 	}
+	
+	/**
+	 * Sets the online status for a buddy in the players' buddy list
+	 * @param buddyName
+	 * @param isOnline buddy is online?
+	 */
+	public void setBuddyOnlineStatus(String buddyName, boolean isOnline) {
+		//keyed slot handling:
+		final RPSlot slot = getSlot("!buddy");
+		if (slot.size() > 0) {
+			final RPObject buddies = slot.iterator().next();
+			if(isOnline) {
+				buddies.put("_"+buddyName, 1);
+			} else {
+				buddies.put("_"+buddyName, 0);
+			}
+		}
+		//maps handling:
+		if(containsKey("buddies", buddyName)) {
+			put("buddies", buddyName, isOnline);
+		}
+	}
+	
+	/**
+	 * @return true iff this player has buddies (considers only map attribute!)
+	 */
+	public boolean hasBuddies() {
+		return !getMap("buddies").isEmpty();
+	}
+	
+	/**
+	 * @return all buddy names for this player
+	 */
+	public Set<String> getBuddies() {
+		return this.getMap("buddies").keySet();
+	}
 
 	/**
 	 * Checks whether the player has completed the given quest or not.
