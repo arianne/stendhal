@@ -39,8 +39,8 @@ public class DumpPostmanTable extends ScriptImpl {
 			message = message.replace("\n", " ");
 			// replace any double quotes in there with two single quotes so we don't confuse mysql on import
 			message =  message.replace("\"", "''");
-			// replace any escape characters with something else (would normally replace with \\ but java doesn't like \\
-			message =  message.replace("\\", "/");
+			// replace any escape characters 
+			message =  message.replace("\\", "\\\\");
 			// well, why not clean it now.
 			message = message.trim();
 			System.out.println("\"" + source + "\",\"" + target  + "\",\"" + message + "\"");
