@@ -305,7 +305,7 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">Your must hold your candle over this spot, walk here with a candle and it will float.</parameter>
+                <parameter name="rejected">You must hold your candle over this spot, walk here with a candle and it will float.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
@@ -360,7 +360,7 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">Your must hold your candle over this spot, walk here with a candle and it will float.</parameter>
+                <parameter name="rejected">You must hold your candle over this spot, walk here with a candle and it will float.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
@@ -415,7 +415,7 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">Your must hold your candle over this spot, walk here with a candle and it will float.</parameter>
+                <parameter name="rejected">You must hold your candle over this spot, walk here with a candle and it will float.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
@@ -470,7 +470,7 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">Your must hold your candle over this spot, walk here with a candle and it will float.</parameter>
+                <parameter name="rejected">You must hold your candle over this spot, walk here with a candle and it will float.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
@@ -525,7 +525,7 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">Your must hold your candle over this spot, walk here with a candle and it will float.</parameter>
+                <parameter name="rejected">You must hold your candle over this spot, walk here with a candle and it will float.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
@@ -580,7 +580,7 @@
                 class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
                 <parameter name="class">transparent</parameter>
                 <parameter name="key">candle</parameter>
-                <parameter name="rejected">Your must hold your candle over this spot, walk here with a candle and it will float.</parameter>
+                <parameter name="rejected">You must hold your candle over this spot, walk here with a candle and it will float.</parameter>
             </implementation>
                 <attribute name="hidden"/>
             </portal>
