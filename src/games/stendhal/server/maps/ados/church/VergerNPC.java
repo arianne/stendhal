@@ -31,7 +31,7 @@ public class VergerNPC implements ZoneConfigurator {
 				addGreeting("*whispering* Hello");
 				addGoodbye("Bye... And remember: Life always goes on somehow... *whispering* Amen...");
 				addOffer("For some people it is helpful to pray... But some others may need #help from another human... So just feel free to ask for it.");
-				addHelp("Oh, you need help? Hmm... I can give you some suggestions what can help you if you feel sad or have bad thoughts. Well, you can #talk to someone about it or #write down you thoughts. Another thing to feel happier is to be #friendly to others.");
+				addHelp("Oh, you need help? Hmm... I can give you some suggestions what can help you if you feel sad or have bad thoughts. Well, you can #talk to someone about it or #write down your thoughts. Another thing to feel happier is to be #friendly to others.");
 				addJob("Well, at the moment I have no job... That's why I worry about... Here in the church I am able to get my thoughts in line so I like to come here quite often. I hope that a great idea will come to my mind how to get a new job and I am praying for it...");
 				addQuest("I have no quest for you but if you like, you can take a seat and pray together with me, that would be very nice.");
 				addReply("talk","If you cannot solve your problems alone or if you just are not able to cope with your situation anymore it is very important that you talk to someone you trust! Tell him or her why you feel so bad or what your problem is. This person may have an idea what you can do to feel better. You know that you are not alone in this world when you have someone to talk to. Often it is just the need for someone who is by your side and you are feeling much better when you have somebody who is there for you.");
