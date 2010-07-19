@@ -18,7 +18,7 @@ class LeaveBuddyMessageAction implements ActionListener {
 	public void actionPerformed(final ActionEvent e) {
 		
 
-		j2DClient.get().setChatLine("/msg postman tell " + buddyName + " ");
+		j2DClient.get().setChatLine("/storemessage " + buddyName + " ");
 
 	}
 
