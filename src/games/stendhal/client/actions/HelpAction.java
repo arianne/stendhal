@@ -28,6 +28,7 @@ class HelpAction implements SlashAction {
 				"- /tell <player> <message> Sends a private message to <player>",
 				"- /answer <message> \tSends a private message to the last player who sent a message to you",
 				"- // <message> \tSends a private message to the last player you sent a message to",
+				"- /storemessage <player> <message> Stores a private message to deliver for an offline <player>",
 				"- /support <message> \tAsk an administrator for help.",
 				"- /who \t\tList all players currently online",
 				"- /where <player> \tShow the current location of <player>",
