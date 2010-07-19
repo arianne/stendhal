@@ -118,6 +118,32 @@ public class Grammar {
 	}
 	
 	/**
+	 * "has" or "have", depending on the quantity.
+	 * 
+	 * @param quantity
+	 *            The quantity to examine
+	 * @return Either "has" or "have" as appropriate
+	 */
+	public static String hashave(final int quantity) {
+		if (quantity == 1) {
+			return "has";
+		} else {
+			return "have";
+		}
+	}
+	
+	/**
+	 * "Has" or "Have", depending on the quantity.
+	 * 
+	 * @param quantity
+	 *            The quantity to examine
+	 * @return Either "Has" or "Have" as appropriate
+	 */
+	public static String HasHave(final int quantity) {
+		return makeUpperCaseWord(hashave(quantity));
+	}
+	
+	/**
 	 * "that" or "those", depending on the quantity.
 	 * 
 	 * @param quantity

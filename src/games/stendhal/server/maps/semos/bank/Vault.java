@@ -88,7 +88,7 @@ public class Vault extends StendhalRPZone {
 						if (equippedToBag) {
 
 							message = Grammar.quantityplnoun(item.getQuantity(), item.getName(), "A")
-												+ " which you left on the floor in the vault have been automatically "
+												+ " which you left on the floor in the vault "+ Grammar.hashave(item.getQuantity())+" been automatically "
 												+ "returned to your bag.";
 							
 							new GameEvent(((RPEntity) entity).getName(), "equip", item.getName(), "vault", "bag", Integer.toString(item.getQuantity())).raise();
@@ -97,14 +97,14 @@ public class Vault extends StendhalRPZone {
 									"bank", item);
 							if (equippedToBank) {
 								message =  Grammar.quantityplnoun(item.getQuantity(), item.getName(), "A")
-								+ " which you left on the floor in the vault have been automatically "
+								+ " which you left on the floor in the vault "+ Grammar.hashave(item.getQuantity())+" been automatically "
 								+ "returned to your bank chest.";
 								
 								new GameEvent(((RPEntity) entity).getName(), "equip", item.getName(), "vault", "bank", Integer.toString(item.getQuantity())).raise();
 							} else {
 								// the player lost their items
 								message = Grammar.quantityplnoun(item.getQuantity(), item.getName(), "A")
-													+ " which you left on the floor in the vault have been thrown into "
+													+ " which you left on the floor in the vault "+ Grammar.hashave(item.getQuantity())+" been thrown into "
 													+ "the void, because there was no space to fit them into either your "
 													+ "bank chest or your bag.";
 								

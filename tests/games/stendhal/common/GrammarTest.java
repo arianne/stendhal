@@ -100,6 +100,13 @@ public class GrammarTest {
 		assertEquals("Are", Grammar.IsAre(2));
 		assertEquals("Are", Grammar.IsAre(0));
 	}
+	
+	@Test
+	public void testHasHave() {
+		assertEquals("Has", Grammar.IsAre(1));
+		assertEquals("Have", Grammar.IsAre(2));
+		assertEquals("Have", Grammar.IsAre(0));
+	}
 
 	/**
 	 * Tests for a_noun.
