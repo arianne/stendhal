@@ -68,7 +68,9 @@ public class SlashActionRepository {
 		actions.put("sound", new SoundAction());
 		actions.put("volume", new VolumeAction());
 		actions.put("vol", new VolumeAction());
-
+		
+		actions.put("storemessage", new StoreMessageAction());
+		
 		actions.put("summonat", new SummonAtAction());
 		actions.put("summon", new SummonAction());
 		actions.put("supportanswer", supporta);

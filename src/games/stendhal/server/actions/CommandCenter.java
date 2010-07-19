@@ -9,6 +9,7 @@ import games.stendhal.server.actions.attack.StopAction;
 import games.stendhal.server.actions.buddy.BuddyAction;
 import games.stendhal.server.actions.chat.AwayAction;
 import games.stendhal.server.actions.chat.ChatAction;
+import games.stendhal.server.actions.chat.StoreMessageAction;
 import games.stendhal.server.actions.equip.DisplaceAction;
 import games.stendhal.server.actions.equip.DropAction;
 import games.stendhal.server.actions.equip.EquipAction;
@@ -20,6 +21,7 @@ import games.stendhal.server.actions.move.PushAction;
 import games.stendhal.server.actions.pet.ForsakeAction;
 import games.stendhal.server.actions.pet.NameAction;
 import games.stendhal.server.actions.pet.OwnAction;
+
 import games.stendhal.server.entity.player.Player;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -86,6 +88,7 @@ public class CommandCenter {
 		PushAction.register();
 		QuestListAction.register();
 		SentenceAction.register();
+		StoreMessageAction.register();
 		StopAction.register();
 		UseAction.register();
 		WhereAction.register();
