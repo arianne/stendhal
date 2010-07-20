@@ -1094,7 +1094,10 @@ public class Player extends RPEntity {
 	 * @return true iff this player has buddies (considers only map attribute!)
 	 */
 	public boolean hasBuddies() {
-		return !getMap("buddies").isEmpty();
+		if(hasMap("buddies")) {
+			return !getMap("buddies").isEmpty();
+		}
+		return false;
 	}
 	
 	/**
