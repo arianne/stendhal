@@ -28,12 +28,12 @@ public class KarmaIndicator extends JComponent implements FeatureChangeListener 
 	/** Karma scaled to pixels */
 	private int karma;
 	private final Sprite image;
-	private boolean featureEnabled = false;
 	
 	/**
 	 * Create a new karma indicator.
 	 */
 	public KarmaIndicator() {
+		setVisible(false);
 		final SpriteStore store = SpriteStore.get();
 		image = store.getSprite(IMAGE_FILE_NAME);
 		
@@ -81,15 +81,12 @@ public class KarmaIndicator extends JComponent implements FeatureChangeListener 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Insets insets = getInsets();
-		
-		if (featureEnabled) {
-			// Paint black what is not covered by the colored bar
-			g.setColor(Color.BLACK);
-			g.fillRect(insets.left, insets.top, image.getWidth(), image.getHeight());
-			// Draw appropriate length of the image
-			g.clipRect(insets.left, insets.top, karma, getHeight());
-			image.draw(g, insets.left, insets.top);
-		}
+		// Paint black what is not covered by the colored bar
+		g.setColor(Color.BLACK);
+		g.fillRect(insets.left, insets.top, image.getWidth(), image.getHeight());
+		// Draw appropriate length of the image
+		g.clipRect(insets.left, insets.top, karma, getHeight());
+		image.draw(g, insets.left, insets.top);
 	}
 
 	/**
@@ -97,7 +94,7 @@ public class KarmaIndicator extends JComponent implements FeatureChangeListener 
 	 */
 	public void featureDisabled(String name) {
 		if (name.equals("karma_indicator")) {
-			featureEnabled = false;
+			setVisible(false);
 		}
 	}
 
@@ -106,7 +103,7 @@ public class KarmaIndicator extends JComponent implements FeatureChangeListener 
 	 */
 	public void featureEnabled(String name, String value) {
 		if (name.equals("karma_indicator")) {
-			featureEnabled = true;
+			setVisible(true);
 		}
 	}
 }
