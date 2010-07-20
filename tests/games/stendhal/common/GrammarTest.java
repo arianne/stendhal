@@ -103,9 +103,9 @@ public class GrammarTest {
 	
 	@Test
 	public void testHasHave() {
-		assertEquals("Has", Grammar.IsAre(1));
-		assertEquals("Have", Grammar.IsAre(2));
-		assertEquals("Have", Grammar.IsAre(0));
+		assertEquals("Has", Grammar.HasHave(1));
+		assertEquals("Have", Grammar.HasHave(2));
+		assertEquals("Have", Grammar.HasHave(0));
 	}
 
 	/**
