@@ -15,7 +15,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.login.CharacterDialog;
-import games.stendhal.client.listener.BuddyChangeListener;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
@@ -550,15 +549,6 @@ public class StendhalClient extends ClientFramework {
 	public void removeFeatureChangeListener(final FeatureChangeListener l) {
 		userContext.removeFeatureChangeListener(l);
 	}
-
-	public void addBuddyChangeListener(final BuddyChangeListener l) {
-		userContext.addBuddyChangeListener(l);
-	}
-
-	public void removeBuddyChangeListener(final BuddyChangeListener l) {
-		userContext.removeBuddyChangeListener(l);
-	}
-
 
 
 	//

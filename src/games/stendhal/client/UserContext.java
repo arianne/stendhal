@@ -9,7 +9,6 @@ package games.stendhal.client;
 //
 //
 
-import games.stendhal.client.listener.BuddyChangeListener;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.listener.RPObjectChangeListener;
 
@@ -44,11 +43,6 @@ public class UserContext implements RPObjectChangeListener {
 	protected HashMap<String, String> features;
 
 	/**
-	 * The buddy change listeners.
-	 */
-	protected BuddyChangeListener[] buddyListeners;
-
-	/**
 	 * The feature change listeners.
 	 */
 	protected FeatureChangeListener[] featureListeners;
@@ -81,31 +75,12 @@ public class UserContext implements RPObjectChangeListener {
 		sheepID = 0;
 		buddies = new HashMap<String, Boolean>();
 		features = new HashMap<String, String>();
-		buddyListeners = new BuddyChangeListener[0];
 		featureListeners = new FeatureChangeListener[0];
 	}
 
 	//
 	// UserContext
 	//
-
-	/**
-	 * Add a buddy change listener.
-	 * 
-	 * @param l
-	 *            The listener.
-	 */
-	public void addBuddyChangeListener(final BuddyChangeListener l) {
-		BuddyChangeListener[] newListeners;
-
-		final int len = buddyListeners.length;
-
-		newListeners = new BuddyChangeListener[len + 1];
-		System.arraycopy(buddyListeners, 0, newListeners, 0, len);
-		newListeners[len] = l;
-
-		buddyListeners = newListeners;
-	}
 
 	/**
 	 * Add a feature change listener.
@@ -125,69 +100,7 @@ public class UserContext implements RPObjectChangeListener {
 		featureListeners = newListeners;
 	}
 
-	/**
-	 * Fire buddy added to all registered listeners.
-	 * 
-	 * @param buddyName
-	 *            The name of the buddy.
-	 */
-	protected void fireBuddyAdded(final String buddyName) {
-		final BuddyChangeListener[] listeners = buddyListeners;
 
-		logger.debug("Buddy added = " + buddyName);
-
-		for (final BuddyChangeListener l : listeners) {
-			l.buddyAdded(buddyName);
-		}
-	}
-
-	/**
-	 * Fire buddy offline to all registered listeners.
-	 * 
-	 * @param buddyName
-	 *            The name of the buddy.
-	 */
-	protected void fireBuddyOffline(final String buddyName) {
-		final BuddyChangeListener[] listeners = buddyListeners;
-
-		logger.debug("Buddy offline = " + buddyName);
-
-		for (final BuddyChangeListener l : listeners) {
-			l.buddyOffline(buddyName);
-		}
-	}
-
-	/**
-	 * Fire buddy online to all registered listeners.
-	 * 
-	 * @param buddyName
-	 *            The name of the buddy.
-	 */
-	protected void fireBuddyOnline(final String buddyName) {
-		final BuddyChangeListener[] listeners = buddyListeners;
-
-		logger.debug("Buddy online = " + buddyName);
-
-		for (final BuddyChangeListener l : listeners) {
-			l.buddyOnline(buddyName);
-		}
-	}
-
-	/**
-	 * Fire buddy removed to all registered listeners.
-	 * 
-	 * @param buddyName
-	 *            The name of the buddy.
-	 */
-	protected void fireBuddyRemoved(final String buddyName) {
-		final BuddyChangeListener[] listeners = buddyListeners;
-
-		logger.debug("Buddy removed = " + buddyName);
-
-		for (final BuddyChangeListener l : listeners) {
-			l.buddyRemoved(buddyName);
-		}
-	}
 
 	/**
 	 * Fire feature enabled to all registered listeners.
@@ -260,36 +173,6 @@ public class UserContext implements RPObjectChangeListener {
 		return (getAdminLevel() != 0);
 	}
 
-	/**
-	 * Remove a buddy change listener.
-	 * 
-	 * @param listener
-	 *            The listener.
-	 */
-	public void removeBuddyChangeListener(final BuddyChangeListener listener) {
-		BuddyChangeListener[] newListeners;
-		int idx;
-
-		idx = buddyListeners.length;
-
-		while (idx-- != 0) {
-			if (buddyListeners[idx] == listener) {
-				newListeners = new BuddyChangeListener[buddyListeners.length - 1];
-
-				if (idx != 0) {
-					System.arraycopy(buddyListeners, 0, newListeners, 0, idx);
-				}
-
-				if (++idx != buddyListeners.length) {
-					System.arraycopy(buddyListeners, idx, newListeners,
-							idx - 1, buddyListeners.length - idx);
-				}
-
-				buddyListeners = newListeners;
-				break;
-			}
-		}
-	}
 
 	/**
 	 * Remove a feature change listener.
@@ -322,68 +205,6 @@ public class UserContext implements RPObjectChangeListener {
 		}
 	}
 
-	/**
-	 * A buddy list object added/changed attribute(s).
-	 * 
-	 * @param changes
-	 *            The object changes.
-	 */
-	protected void processBuddiesAdded(final RPObject changes) {
-		for (final String key : changes) {
-			/*
-			 * TODO: Drop underscore prefix when 'id' is not forced into the
-			 * RPObject attributes
-			 */
-			logger.debug(key);
-
-			if ("id".equals(key)) {
-				continue;
-			}
-
-			final String buddyName = key.substring(1);
-
-			final boolean online = (changes.getInt(key) != 0);
-
-			if (!buddies.containsKey(buddyName)) {
-				buddies.put(buddyName, Boolean.valueOf(online));
-				fireBuddyAdded(buddyName);
-
-				if (online) {
-					fireBuddyOnline(buddyName);
-				}
-			} else if (buddies.get(buddyName).booleanValue() != online) {
-				if (online) {
-					fireBuddyOnline(buddyName);
-				} else {
-					fireBuddyOffline(buddyName);
-				}
-			}
-		}
-	}
-
-	/**
-	 * A buddy list object removed attribute(s).
-	 * 
-	 * @param changes
-	 *            The object changes.
-	 */
-	protected void processBuddiesRemoved(final RPObject changes) {
-		for (final String key : changes) {
-			/*
-			 * TODO: Drop underscore prefix when 'id' is not forced into the
-			 * RPObject attributes
-			 */
-			if ("id".equals(key)) {
-				continue;
-			}
-
-			final String buddyName = key.substring(1);
-
-			if (buddies.remove(buddyName) != null) {
-				fireBuddyRemoved(buddyName);
-			}
-		}
-	}
 
 	/**
 	 * A feature object added/changed attribute(s).
@@ -552,12 +373,9 @@ public class UserContext implements RPObjectChangeListener {
 	public void onSlotAdded(final RPObject object, final String slotName,
 			final RPObject sobject) {
 		if (isUser(object)) {
-			if (slotName.equals("!buddy")) {
-				processBuddiesAdded(sobject);
+			if (slotName.equals("!features")) {
+				processFeaturesAdded(sobject);
 			}
-		}
-		if (slotName.equals("!features")) {
-			processFeaturesAdded(sobject);
 		}
 	}
 
@@ -577,12 +395,9 @@ public class UserContext implements RPObjectChangeListener {
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
 		if (isUser(object)) {
-			if ("!buddy".equals(slotName)) {
-				processBuddiesAdded(schanges);
+			if ("!features".equals(slotName)) {
+				processFeaturesAdded(schanges);
 			}
-		}
-		if ("!features".equals(slotName)) {
-			processFeaturesAdded(schanges);
 		}
 	}
 
@@ -602,9 +417,7 @@ public class UserContext implements RPObjectChangeListener {
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
 		if (isUser(object)) {
-			if ("!buddy".equals(slotName)) {
-				processBuddiesRemoved(schanges);
-			} else if ("!features".equals(slotName)) {
+			if ("!features".equals(slotName)) {
 				processFeaturesRemoved(schanges);
 			}
 		}
@@ -623,9 +436,7 @@ public class UserContext implements RPObjectChangeListener {
 	public void onSlotRemoved(final RPObject object, final String slotName,
 			final RPObject sobject) {
 		if (isUser(object)) {
-			if ("!buddy".equals(slotName)) {
-				processBuddiesRemoved(sobject);
-			} else if ("!features".equals(slotName)) {
+			if ("!features".equals(slotName)) {
 				processFeaturesRemoved(sobject);
 			}
 		}
