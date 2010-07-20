@@ -13,12 +13,21 @@ import java.util.List;
  * For dumping postman's table straight to the server log in 'csv' format
  *  
  */
-
 public class DumpPostmanTable extends ScriptImpl {
 	
+	/** Where is the postman file and what is it called?*/
 	private static final String STENDHAL_POSTMAN_XML = ".stendhal-postman.xml";
+	
 	private final Properties messages = new Properties();
 	
+	/**
+	 * Executes the script to dump the table if it can find the file
+	 * 
+	 * @param admin
+	 *            The player (admin) executing script.
+	 * @param args
+	 *            The arguments (should be none for this).
+	 */
 	@Override
 	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);

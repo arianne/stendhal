@@ -21,6 +21,7 @@ import marauroa.server.db.command.ResultHandle;
  */
 public class StoreMessageAction implements ActionListener, TurnListener {
 	
+	/** For identifying the results of this command */
 	private ResultHandle handle = new ResultHandle();
 	
 	/**
@@ -30,6 +31,14 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 		CommandCenter.register("storemessage", new StoreMessageAction());
 	}
 	
+	/**
+	 * Sends the command to store the message and starts waiting for the results.
+	 * 
+	 * @param player
+	 *            The player.
+	 * @param action
+	 *            The action.
+	 */
 	public void onAction(final Player player, final RPAction action) {
 		if (!player.getChatBucket().checkAndAdd()) {
 			return;
@@ -43,7 +52,8 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 	}
 	
 	/**
-	 * Completes handling the store message action
+	 * Completes handling the store message action, and
+	 * Notifies the player who sent the message of the outcome
 	 * 
 	 * @param currentTurn ignored
 	 */
