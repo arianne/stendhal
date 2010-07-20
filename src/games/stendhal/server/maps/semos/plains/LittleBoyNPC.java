@@ -42,8 +42,8 @@ public class LittleBoyNPC implements ZoneConfigurator {
 				nodes.add(new Node(47, 103));
 				nodes.add(new Node(47, 100));
 				nodes.add(new Node(53, 100));
-				nodes.add(new Node(53, 90));
-				nodes.add(new Node(49, 90));
+				nodes.add(new Node(53, 91));
+				nodes.add(new Node(49, 91));
 				nodes.add(new Node(49, 98));
 				nodes.add(new Node(46, 98));
 				nodes.add(new Node(46, 99));
