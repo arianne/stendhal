@@ -2,7 +2,12 @@ package games.stendhal.server.core.events.achievements;
 
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
+/**
+ * An Achievement a player can reach while playing the game.
+ * Achievements are given for example for doing a certain number of quests or killing a number of special creatures
+ *  
+ * @author madmetzger
+ */
 public class Achievement {
 	
 	private final String identifier;
@@ -22,6 +27,7 @@ public class Achievement {
 	 * @param identifier
 	 * @param title
 	 * @param category
+	 * @param condition
 	 */
 	public Achievement(String identifier, String title, Category category, String description, ChatCondition condition) {
 		this.identifier = identifier;
@@ -31,22 +37,39 @@ public class Achievement {
 		this.description = description;
 	}
 
+	/**
+	 * @return the category of this achievement
+	 */
 	public Category getCategory() {
 		return category;
 	}
 
+	/**
+	 * @return the identifying string
+	 */
 	public String getIdentifier() {
 		return identifier;
 	}
 
+	/**
+	 * @return the title a player gets awarded for this achievement
+	 */
 	public String getTitle() {
 		return title;
 	}
-	
+
+	/**
+	 * @return the description of what to do to get this achievement
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * Check if a player has fullfilled this achievement
+	 * @param p the player to check
+	 * @return true iff this achievement's condtion evalutates to true
+	 */
 	public boolean isFulfilled(Player p) {
 		boolean fullfilled = condition.fire(p, null, null);
 		return fullfilled;
