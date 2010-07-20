@@ -741,7 +741,7 @@ public class Player extends RPEntity {
 	 * @return The feature value, or <code>null</code> is not-enabled.
 	 */
 	public String getFeature(final String name) {
-		return getKeyedSlot("!features", name);
+		return get("features", name);
 	}
 
 	/**
@@ -753,7 +753,7 @@ public class Player extends RPEntity {
 	 * @return <code>true</code> if the feature is enabled.
 	 */
 	public boolean hasFeature(final String name) {
-		return (getKeyedSlot("!features", name) != null);
+		return (get("features", name) != null);
 	}
 
 	/**
@@ -783,6 +783,8 @@ public class Player extends RPEntity {
 	 *            The feature value, or <code>null</code> to disable.
 	 */
 	public void setFeature(final String name, final String value) {
+		put("features", name, value);
+		// compatibility with Stendhal 0.84 and lower
 		setKeyedSlot("!features", name, value);
 	}
 

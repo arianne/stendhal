@@ -170,7 +170,7 @@ public abstract class UpdateConverter {
     			"keyring" };
     
     	final String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
-    			"!visited", "skills", "!tutorial", "!features" };
+    			"!visited", "skills", "!tutorial"};
     
     	// Port from 0.03 to 0.10
     	if (!object.has("base_hp")) {
@@ -278,9 +278,12 @@ public abstract class UpdateConverter {
     		}
     	}
 
-		//port to 0.86: karama_indicator as feature
+		//port to 0.86: port keymap to feature map, karama_indicator as feature
+		if (KeyedSlotUtil.getKeyedSlot(object, "!features", "keyring") != null) {
+			object.put("features", "keyring", "");
+		}
 		if (KeyedSlotUtil.getKeyedSlot(object, "!quests", "learn_karma") != null) {
-			KeyedSlotUtil.setKeyedSlot(object, "!features", "karma_indicator", "");
+			object.put("features", "karma_indicator", "");
 		}
 
 	}

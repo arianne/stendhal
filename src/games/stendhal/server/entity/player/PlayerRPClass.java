@@ -118,6 +118,8 @@ public class PlayerRPClass {
 		player.addAttribute("guild", Type.STRING);
 
 		// Player features
+		player.addAttribute("features", Type.MAP, Definition.PRIVATE);
+		// deprecated
 		player.addRPSlot("!features", 1, Definition.PRIVATE);
 
 		// Last time this player attacked another player
