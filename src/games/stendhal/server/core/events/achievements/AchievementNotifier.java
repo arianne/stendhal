@@ -213,8 +213,14 @@ public class AchievementNotifier {
 	 */
 	private Collection<Achievement> createFightingAchievements() {
 		List<Achievement> fightingAchievements = new LinkedList<Achievement>();
-		Achievement killRats = new Achievement("fight.general.rats", "Rat hunter", Category.FIGHTING, "kill 15 rats", new PlayerHasKilledNumberOfCreaturesCondition("rat", 15));
+		Achievement killRats = new Achievement("fight.general.rats", "Rat hunter", 
+													Category.FIGHTING, "Kill 15 rats",
+													new PlayerHasKilledNumberOfCreaturesCondition("rat", 15));
+		Achievement exterminator = new Achievement("fight.general.exterminator", "Exterminator", 
+													Category.FIGHTING, "Kill 10 rats of each kind", 
+													new PlayerHasKilledNumberOfCreaturesCondition(10, "rat", "caverat", "venomrat", "zombie rat", "venom rat", "giantrat", "ratman", "ratwoman", "archrat"));
 		fightingAchievements.add(killRats);
+		fightingAchievements.add(exterminator);
 		return fightingAchievements;
 	}
 
@@ -225,10 +231,18 @@ public class AchievementNotifier {
 	 */
 	private Collection<Achievement> createExperienceAchievements() {
 		List<Achievement> xpAchievements = new LinkedList<Achievement>();
-		Achievement newbie = new Achievement("xp.lvl.10", "newbie", Category.EXPERIENCE, "reach level 10", new LevelGreaterThanCondition(9));
-		Achievement newbie25 = new Achievement("xp.lvl.25", "newbie25", Category.EXPERIENCE, "reach level 25", new LevelGreaterThanCondition(24));
+		Achievement newbie = new Achievement("xp.lvl.10", "Greenhorn", 
+												Category.EXPERIENCE, "Reach level 10", 
+												new LevelGreaterThanCondition(9));
+		Achievement newbie50 = new Achievement("xp.lvl.50", "Apprentice", 
+												Category.EXPERIENCE, "Reach level 50", 
+												new LevelGreaterThanCondition(49));
+		Achievement newbie100 = new Achievement("xp.lvl.100", "Apprentice", 
+												Category.EXPERIENCE, "Reach level 100", 
+												new LevelGreaterThanCondition(99));
 		xpAchievements.add(newbie);
-		xpAchievements.add(newbie25);
+		xpAchievements.add(newbie50);
+		xpAchievements.add(newbie100);
 		return xpAchievements;
 	}
 	
