@@ -86,24 +86,6 @@ public class ImageSprite implements Sprite {
 	// ImageSprite
 	//
 
-	/**
-	 * Create a sprite with the image flipped horizontally.
-	 * @param sprite 
-	 * 
-	 * @return A horizontally flipped sprite.
-	 */
-	public static ImageSprite flipped(final Sprite sprite) {
-		final Image image = getGC().createCompatibleImage(sprite.getWidth(),
-				sprite.getHeight(), Transparency.BITMASK);
-
-		final int width = sprite.getWidth();
-
-		sprite.draw(image.getGraphics(), width, 0, width, 0, -width,
-				sprite.getHeight());
-
-		return new ImageSprite(image);
-	}
-
 	protected static GraphicsConfiguration getGC() {
 		return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 	}
@@ -163,7 +145,7 @@ public class ImageSprite implements Sprite {
 		/*
 		 * Full copy method (the memory hog)
 		 */
-		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		final GraphicsConfiguration gc = getGC();
 
 		final Image imageTemp = gc.createCompatibleImage(width, height,
 				Transparency.BITMASK);
