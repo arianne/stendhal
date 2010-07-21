@@ -427,7 +427,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 				(int) (wrect.getWidth() * IGameScreen.SIZE_UNIT_PIXELS),
 				(int) (wrect.getHeight() * IGameScreen.SIZE_UNIT_PIXELS));
 		
-		final double DIVISOR = 1.414213562;
+		final double DIVISOR = 1.414213562; // sqrt(2)
 		
 		RPEntity rpentity = (RPEntity) entity;
 		if (rpentity.isBeingAttacked()) {
@@ -436,7 +436,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			//g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2, srect.height - 2);
 			g2d.setColor(Color.red);
 			int circleHeight = (int) ((srect.height - 2) / DIVISOR);
-			g2d.drawArc(srect.x, (int) (srect.y + circleHeight / 2), 
+			// Avoid showing much smaller area than the creature covers
+			circleHeight = Math.max(circleHeight, srect.height - IGameScreen.SIZE_UNIT_PIXELS / 2);
+			g2d.drawArc(srect.x, (int) (srect.y + srect.height - circleHeight), 
 					srect.width + 0, circleHeight, 0, 360);
 		}
 
@@ -446,7 +448,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			//g2d.drawRect(srect.x + 2, srect.y + 2, srect.width - 4, srect.height - 4);
 			g2d.setColor(Color.orange);
 			int circleHeight = (int) ((srect.height - 4) / DIVISOR);
-			g2d.drawArc(srect.x + 1, (int) (srect.y + 2 + circleHeight / 2), 
+			// Avoid showing much smaller area than the creature covers
+			circleHeight = Math.max(circleHeight, srect.height - IGameScreen.SIZE_UNIT_PIXELS / 2 - 2);
+			g2d.drawArc(srect.x + 1, (int) (srect.y + srect.height - circleHeight - 1), 
 					srect.width - 2, circleHeight, 0, 360);
 		}
 
