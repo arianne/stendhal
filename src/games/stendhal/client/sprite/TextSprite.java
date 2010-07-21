@@ -3,7 +3,6 @@ package games.stendhal.client.sprite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
@@ -28,7 +27,7 @@ public class TextSprite extends ImageSprite {
 	 * @return TextSprite with the wanted text
 	 */
 	public static TextSprite createTextSprite(String text, final Color textColor) {
-		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		final GraphicsConfiguration gc = getGC();
 		final Image image = gc.createCompatibleImage(graphics.getFontMetrics().stringWidth(
 				text) + 2, 16, Transparency.BITMASK);
 		final Graphics g2d = image.getGraphics();
