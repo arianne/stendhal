@@ -24,12 +24,6 @@ import java.awt.Transparency;
  * @author Kevin Glass
  */
 public class ImageSprite implements Sprite {
-	/** a brighter version of the sprite. */
-	protected ImageSprite brighterSprite;
-
-	/** a darker version of the sprite. */
-	protected ImageSprite darkerSprite;
-
 	/** The image to be drawn for this sprite. */
 	protected Image image;
 
