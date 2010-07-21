@@ -38,11 +38,11 @@
 
 		<entity x="77" y="123">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-3</parameter>
+				<parameter name="sound">wave-12</parameter>
 				<parameter name="min">1</parameter>
 				<parameter name="max">1</parameter>
 				<parameter name="radius">11</parameter>
-				<parameter name="volume">80</parameter>
+				<parameter name="volume">70</parameter>
 			</implementation>
 		</entity>
 
@@ -221,19 +221,19 @@
                 <destination zone="int_semos_wizards_tower_basement" ref="wizardstower_exit" />
 	   	</portal>
 
+		<entity x="77" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">come_to_rest</parameter>
+				<parameter name="radius">3</parameter>
+				<parameter name="volume">100</parameter>
+			</implementation>
+		</entity>
+
 		<entity x="78" y="28">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">mystical_aura</parameter>
 				<parameter name="radius">16</parameter>
 				<parameter name="volume">120</parameter>
-			</implementation>
-		</entity>
-
-		<entity x="77" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">come_to_rest</parameter>
-				<parameter name="radius">13</parameter>
-				<parameter name="volume">100</parameter>
 			</implementation>
 		</entity>
 
@@ -251,6 +251,14 @@
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_basement" file="interiors/semos/wizards_tower_basement.tmx">
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.WizardsGuardStatueNPC" />
+
+		<entity x="77" y="127">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_magical_tower</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
         <portal x="15" y="29" ref="wizardstower_exit">
                 <destination zone="0_semos_mountain_n_w2" ref="wizardstower_entrance" />
         </portal>
@@ -263,12 +271,36 @@
     <zone name="int_semos_wizards_tower_1" file="interiors/semos/wizards_tower_1.tmx">
 	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.FirstFloorCreatures"/>
+
+		<entity x="77" y="127">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_magical_tower</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
                 <parameter name="coversZone">true</parameter>
                 <parameter name="enterMessage">Zekiel the guardian: "This is the first step of the test and the domain of Malleus."</parameter>
             </implementation>
         </entity>
+
+    <entity x="14" y="6">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+		<parameter name="width">3</parameter>
+		<parameter name="height">2</parameter>
+		<parameter name="enterMessage">You step onto a sparkling corner of the hexagram, this must be what Zekiel the guardian was talking about.</parameter>
+	</implementation>
+    </entity>
+
+    <entity x="25" y="14">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+		<parameter name="width">2</parameter>
+		<parameter name="height">3</parameter>
+		<parameter name="enterMessage">This looks like a creature matching the theme of Malleus ... perhaps this is the one to select.</parameter>
+	</implementation>
+    </entity>
 
         <portal x="15" y="15" ref="first_floor_exit">
                 <destination zone="int_semos_wizards_tower_basement" ref="basement_teleport" />
@@ -287,7 +319,7 @@
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","first_step")</parameter>
                 <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Malleus. Now use the candle at the shimmering spot of the hexagram."</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "second_step")])</parameter>
+                <parameter name="action">new MultipleActions([new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "second_step")])</parameter>
             </implementation>
             </portal>
 
@@ -314,6 +346,14 @@
     <zone name="int_semos_wizards_tower_2" file="interiors/semos/wizards_tower_2.tmx">
 	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.SecondFloorCreatures"/>
+
+		<entity x="77" y="127">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_magical_tower</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
                 <parameter name="coversZone">true</parameter>
@@ -346,7 +386,7 @@
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","second_step")</parameter>
                 <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Jaer. Now use the candle at the next shimmering spot of the hexagram."</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "third_step")])</parameter>
+                <parameter name="action">new MultipleActions([new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "third_step")])</parameter>
             </implementation>
             </portal>
 
@@ -369,6 +409,14 @@
     <zone name="int_semos_wizards_tower_3" file="interiors/semos/wizards_tower_3.tmx">
 	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.ThirdFloorCreatures"/>
+
+		<entity x="77" y="127">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_magical_tower</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
                 <parameter name="coversZone">true</parameter>
@@ -405,7 +453,7 @@
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","third_step")</parameter>
                 <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Ravashack. You have almost done the half of the test. Search the next shimmering spot of the hexagram."</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "fourth_step")])</parameter>
+                <parameter name="action">new MultipleActions([new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "fourth_step")])</parameter>
             </implementation>
          </portal>
 
@@ -424,6 +472,14 @@
     <zone name="int_semos_wizards_tower_4" file="interiors/semos/wizards_tower_4.tmx">
 	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.FourthFloorCreatures"/>
+
+		<entity x="77" y="127">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_magical_tower</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
                 <parameter name="coversZone">true</parameter>
@@ -451,8 +507,8 @@
             <destination zone="int_semos_wizards_tower_4" ref="choice_floor_4" />
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","fourth_step")</parameter>
-                <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Cassandra. One triangle is ready. Use the candle at shimmering spot of the other triangle."</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "fifth_step")])</parameter>
+                <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Cassandra. One triangle is ready. Use the candle at the shimmering spot of the other triangle."</parameter>
+                <parameter name="action">new MultipleActions([new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "fifth_step")])</parameter>
             </implementation>
         </portal>
 
@@ -479,6 +535,14 @@
     <zone name="int_semos_wizards_tower_5" file="interiors/semos/wizards_tower_5.tmx">
 	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.FifthFloorCreatures"/>
+
+		<entity x="77" y="127">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_magical_tower</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
                 <parameter name="coversZone">true</parameter>
@@ -515,7 +579,7 @@
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","fifth_step")</parameter>
                 <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Silvanus. The next shimmering spot awaits you and the last step of the test too."</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "sixth_step")])</parameter>
+                <parameter name="action">new MultipleActions([new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "sixth_step")])</parameter>
             </implementation>
         </portal>
 
@@ -534,6 +598,14 @@
     <zone name="int_semos_wizards_tower_6" file="interiors/semos/wizards_tower_6.tmx">
 	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.SixthFloorCreatures"/>
+
+		<entity x="77" y="127">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_magical_tower</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
         <entity x="0" y="0">
             <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
                 <parameter name="coversZone">true</parameter>
@@ -558,7 +630,7 @@
             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
                 <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","sixth_step")</parameter>
                 <parameter name="rejected">Zekiel the guardian: "You have chosen the correct one of Elana. Complete the hexagram and I will wait for you at the next stage. Please talk to me there to finish the quest."</parameter>
-                <parameter name="action">new MultipleActions([new IncreaseXPAction(100), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "last_step")])</parameter>
+                <parameter name="action">new MultipleActions([new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "last_step")])</parameter>
             </implementation>
         </portal>
 
@@ -588,6 +660,14 @@
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_7" file="interiors/semos/wizards_tower_7.tmx">
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.WizardsGuardStatueSpireNPC" />
+
+		<entity x="77" y="127">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">the_magical_tower</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
         <portal x="23" y="10" ref="portal_from_sixth_floor">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
         </portal>
