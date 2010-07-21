@@ -36,9 +36,12 @@
  <tileset name="..\tileset\logic\protection.png" firstgid="1215" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
+ <tileset name="..\tileset\building\decoration\arrows.png" firstgid="1216" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/arrows.png"/>
+ </tileset>
  <layer name="0_floor" width="31" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMWXa26EMAyEQeI29CRlQ0Kq5Qp7/xs0kTLtJ2/2KTb5YUXY4JkxAYY4DsOaYkvhyuqRizgOKc4plhR7iu8UP2Xdy/Urzte1G/ox70rPCKwVNa4ROEvBJY+AHls5Vq+AVTw8VstF59VwqLdWdwaTsxUOtYbxWmcwOJehziPnyUP9XAnNWXoi6sLSPbmlRzy+pmE4pZinx/NQT8uBeOTxzFyfres+ctbck/4gnEd1u5el/2icWp37fGuk19a131rotXXNvqVePv+t9bLeWi/rPfTuBj/n87vqkzzmSv+/fT+9hnOaXuPhTH+el3V/cu6z6d9rny0NcWr1tYPefKzvWo+553eq6zR3+oi1kV55Q35LQyO98mbypvJSzB/JQ/OlLwvjv2eRV1b+Vh/rR1WXf63xoEf24CEs/jtYX1njYX2qrUsf/0V0TM/uUaN3Fs935s77F8br/5RoML2pK8+53OPBmdJ3W4304pyDuPAZYO6eXrun2G+rYP4CRzOql4gOAAA=
+   H4sIAAAAAAAAAMWXa26EMAyEQeI29CSl5FUtV+g1+7hYEymjfvJmXxUbflgRNnhmTIAhjcPgcsQca109cgnHIccpx5Jjy/Ga472uW73e4XxdG9GP+bX2TMByqHFNwFkqLnkE9Ij1WL0CVvHwWC0XndfCod5WfTWYnK1wqDWM5zqDwfkY2jxKnjzUb62hOUtPQl1YuieX9IjHyzQMnznm6fY81NNyIB553DPXe+u6j5w196TfCedW3e5l6d8bp1XnPo+d9Nq69lsPvbau2ffUy+e/t17We+tl/Qi9m8Ev+fKueiaPudFf6/f0GM7b9BiPH9Of5xXdz5z7bPoftc+WjjitujtAbznWd+2IuZd36nrQ3OkjXCe98ob8loZOeuXN5E3lpZjfk4fmS18Wxj/PIq+s/KU+1o+qLv/a4kGP7MFDWPx3sL6yxaO8A7/gU21d+vgvomN6do8avbN4/mfuvH9hPP9PSQbTm7rynMs1HpwpfbfVSC/OOYgLnwHmrum1e4r9YgPzF2lpAriIDgAA
   </data>
  </layer>
  <layer name="1_terrain" width="31" height="30">
@@ -68,7 +71,7 @@
  </layer>
  <layer name="collision" width="31" height="30" opacity="0.54">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WywkAIAxDdTv3n8irh1rExLSigV4k8NL6wVZLab+WylIUX8Fi+hD2rG8Wm6Fb2CeVka1Upr6j2OO6gm3xFGwrxw4b8WfpO2q/X71j/12LZb/6d/ByzHJ5vhNs1IdmYc4VOQdKPqM6G0RuM4gOAAA=
+   H4sIAAAAAAAAAPNgZGDwGMVEYWxgoOynh13UVEeJ3bj8TS27qQGGit20BIPRbnqCweTvgbIbWZwedmOzjx52Y3PHSLV7oOJ7pOax0XJtYO0eqW0HfO7A5S586mhhN6XqKHULNcOVknRAT/upgQHUoVofiA4AAA==
   </data>
  </layer>
  <layer name="protection" width="31" height="30" visible="0" opacity="0.24">
