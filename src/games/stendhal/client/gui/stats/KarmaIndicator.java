@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Insets;
 
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 
 /**
  * A bar indicator component for karma.
@@ -94,7 +95,12 @@ public class KarmaIndicator extends JComponent implements FeatureChangeListener 
 	 */
 	public void featureDisabled(String name) {
 		if (name.equals("karma_indicator")) {
-			setVisible(false);
+			// Feature changes are triggered from outside the EDT.
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					setVisible(false);
+				}
+			});
 		}
 	}
 
@@ -103,7 +109,12 @@ public class KarmaIndicator extends JComponent implements FeatureChangeListener 
 	 */
 	public void featureEnabled(String name, String value) {
 		if (name.equals("karma_indicator")) {
-			setVisible(true);
+			// Feature changes are triggered from outside the EDT.
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					setVisible(true);
+				}
+			});
 		}
 	}
 }
