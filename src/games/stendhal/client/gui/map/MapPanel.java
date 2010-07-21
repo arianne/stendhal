@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 
 import marauroa.common.game.RPAction;
 
@@ -83,6 +84,11 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	/** Name of the map */
 	private String title = "";
 	
+	/**
+	 * Create a new MapPanel.
+	 * 
+	 * @param client
+	 */
 	public MapPanel(final StendhalClient client) {
 		this.client = client;
 		// black area outside the map
@@ -99,6 +105,12 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 		});
 	}
 	
+	/**
+	 * Add an entity to the map, if it should be displayed to the user. This
+	 * method is thread safe.
+	 * 
+	 * @param entity the added entity
+	 */
 	protected void addEntity(final IEntity entity) {
 		MapObject object = null;
 		
@@ -150,6 +162,11 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 		}
 	}
 	
+	/**
+	 * Remove an entity from the map. This method is thread safe.
+	 * 
+	 * @param entity the entity to be removed
+	 */
 	protected void removeEntity(final IEntity entity) {
 		if (mapObjects.containsKey(entity)) {
 			mapObjects.remove(entity);
@@ -177,7 +194,8 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	}
 	
 	/**
-	 * Draw the entities on the map 
+	 * Draw the entities on the map.
+	 *  
 	 * @param g The graphics context
 	 */
 	private void drawEntities(final Graphics g) {
@@ -187,8 +205,9 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	}
 	
 	/**
-	 * Set the dimensions of the component 
-	 * @param dim 
+	 * Set the dimensions of the component.
+	 *  
+	 * @param dim the new dimensions
 	 */
 	private void updateSize(final Dimension dim) {
 		setMaximumSize(dim);
@@ -201,7 +220,7 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	}
 	
 	/**
-	 * Draw the map backgound
+	 * Draw the map background.
 	 * 
 	 * @param g The graphics context
 	 */
@@ -210,7 +229,8 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	}
 	
 	/**
-	 * Draw the map title 
+	 * Draw the map title.
+	 * 
 	 * @param g The graphics context
 	 */
 	private void drawTitle(final Graphics g) {
@@ -336,7 +356,12 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 		}
 		g.dispose();
 		
-		updateSize(new Dimension(WIDTH, height + TITLE_HEIGHT));
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				updateSize(new Dimension(WIDTH, height + TITLE_HEIGHT));
+			}
+		});
+		
 		updateView();
 		
 		repaint();
