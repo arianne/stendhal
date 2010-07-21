@@ -22,7 +22,7 @@ Some of these people are NPC, they will give you tasks to accomplish and hints t
   </security>
   <resources>
     <j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+" /> <!--  max-heap-size="120" -->
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-starter-0.85.5.jar" download="eager" main="true" />
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-starter-0.86.5.jar" download="eager" main="true" />
   </resources>
   <application-desc/>
 </jnlp>
