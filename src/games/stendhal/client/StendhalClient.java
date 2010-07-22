@@ -468,19 +468,29 @@ public class StendhalClient extends ClientFramework {
 		idx = directions.indexOf(dir);
 		if (idx != -1) {
 			/*
+			 * Already highest priority? Don't send to server.
+			 */
+
+			if (idx == (directions.size() - 1)) {
+				logger.debug("Ignoring same direction: " + dir);
+				return;
+			}
+
+			/*
 			 * Move to end
 			 */
 			directions.remove(idx);
 		}
 
 		directions.add(dir);
-		if (face) {
-			action = new FaceRPAction(dir);
-		} else {
-			action = new MoveRPAction(dir);
-		}
 
-		send(action);
+	if (face) {
+		action = new FaceRPAction(dir);
+	} else {
+		action = new MoveRPAction(dir);
+	}
+		
+	send(action);
 	}
 
 
