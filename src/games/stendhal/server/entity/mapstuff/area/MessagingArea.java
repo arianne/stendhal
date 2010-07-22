@@ -39,7 +39,9 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 	
 	public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX, final int newY) {
 		if ((enterMessage != null) && (entity instanceof Player)) {
-			((Player) entity).sendPrivateText(NotificationType.SCENE_SETTING, enterMessage);
+			// needs to be delayed to avoid the message appearing before server
+			// welcome on login
+			new DelayedPlayerTextSender((Player) entity, enterMessage, NotificationType.SCENE_SETTING, 1);
 		}
 	}
 	
