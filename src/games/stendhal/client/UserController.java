@@ -2,6 +2,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.gui.bag.BagPanelControler;
 import games.stendhal.client.gui.buddies.BuddyPanelControler;
+import games.stendhal.client.gui.stats.KarmaIndicator;
 import games.stendhal.client.gui.stats.StatsPanelController;
 
 import java.beans.PropertyChangeListener;
@@ -23,7 +24,8 @@ public class UserController implements ObjectChangeListener {
 		pcs.addPropertyChangeListener("!buddy", BuddyPanelControler.get());
 		pcs.addPropertyChangeListener("buddies", BuddyPanelControler.getMapBasedBuddyPropertyChangeListener());
 		pcs.addPropertyChangeListener("bag", BagPanelControler.get());
-		
+		pcs.addPropertyChangeListener("features", KarmaIndicator.get());
+
 		StatsPanelController stats = StatsPanelController.get();
 		stats.registerListeners(pcs);
 	}

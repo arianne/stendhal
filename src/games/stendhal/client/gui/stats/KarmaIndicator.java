@@ -1,7 +1,5 @@
 package games.stendhal.client.gui.stats;
 
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -9,6 +7,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
@@ -16,8 +17,10 @@ import javax.swing.SwingUtilities;
 /**
  * A bar indicator component for karma.
  */
-public class KarmaIndicator extends JComponent implements FeatureChangeListener {
+public class KarmaIndicator extends JComponent implements PropertyChangeListener {
 	private static final long serialVersionUID = 3462088641737184898L;
+
+	private static KarmaIndicator instance;
 
 	/** 
 	 * Scaling factor for interpreting karma to bar length. Smaller means
@@ -34,15 +37,24 @@ public class KarmaIndicator extends JComponent implements FeatureChangeListener 
 	 * Create a new karma indicator.
 	 */
 	public KarmaIndicator() {
+		instance = this;
 		setVisible(false);
 		final SpriteStore store = SpriteStore.get();
 		image = store.getSprite(IMAGE_FILE_NAME);
 		
 		// We don't draw the background
 		setOpaque(false);
-		StendhalClient.get().addFeatureChangeListener(this);
 	}
-	
+
+	/**
+	 * gets the instance
+	 *
+	 * @return KarmaIndicator
+	 */
+	public static KarmaIndicator get() {
+		return instance;
+	}
+
 	/**
 	 * Set the karma value.
 	 * 
@@ -90,11 +102,15 @@ public class KarmaIndicator extends JComponent implements FeatureChangeListener 
 		image.draw(g, insets.left, insets.top);
 	}
 
-	/**
-	 * disables the karma indicator.
-	 */
-	public void featureDisabled(String name) {
-		if (name.equals("karma_indicator")) {
+
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (evt == null) {
+			return;
+		}
+
+		// disable
+		Map<?, ?> oldMap = (Map<?, ?>) evt.getOldValue();
+		if ((oldMap != null) && oldMap.containsKey("karma_indicator")) {
 			// Feature changes are triggered from outside the EDT.
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
@@ -102,13 +118,10 @@ public class KarmaIndicator extends JComponent implements FeatureChangeListener 
 				}
 			});
 		}
-	}
 
-	/**
-	 * enables the karma indicator.
-	 */
-	public void featureEnabled(String name, String value) {
-		if (name.equals("karma_indicator")) {
+		// enable
+		Map<?, ?> newMap = (Map<?, ?>) evt.getNewValue();
+		if ((newMap != null) && newMap.containsKey("karma_indicator")) {
 			// Feature changes are triggered from outside the EDT.
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
