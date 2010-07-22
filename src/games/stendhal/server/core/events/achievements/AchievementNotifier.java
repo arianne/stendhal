@@ -152,12 +152,13 @@ public class AchievementNotifier {
 	 */
 	private void checkAchievements(Player player,
 			List<Achievement> toCheck) {
-		for (Achievement achievement : toCheck) {
-			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
-				notifyPlayerAboutReachedAchievement(player, achievement);
-				logReachingOfAnAchievement(player, achievement);
-			}
-		}
+		//TODO remove comments when achievements should be used
+//		for (Achievement achievement : toCheck) {
+//			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
+//				notifyPlayerAboutReachedAchievement(player, achievement);
+//				logReachingOfAnAchievement(player, achievement);
+//			}
+//		}
 	}
 	
 	/**
@@ -184,8 +185,7 @@ public class AchievementNotifier {
 	 */
 	private void notifyPlayerAboutReachedAchievement(Player player,
 			Achievement achievement) {
-		//TODO: use postman here?
-		//player.sendPrivateText("Congratulations! You have reached the "+achievement.getTitle()+" achievement!");
+		player.sendPrivateText("Congratulations! You have reached the "+achievement.getTitle()+" achievement!");
 	}
 
 	/**
