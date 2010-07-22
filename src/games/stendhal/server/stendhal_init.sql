@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS buddy (
 );
 
 /* CREATE INDEX i_buddy_charname ON buddy (charname); */
-
+/*
 CREATE TABLE IF NOT EXISTS achievement (
     id INTEGER AUTO_INCREMENT NOT NULL,
     identifier VARCHAR(64),
@@ -170,16 +170,16 @@ CREATE TABLE IF NOT EXISTS achievement (
     category VARCHAR(64),
     description VARCHAR(64),
     PRIMARY KEY(id)
-);
+);*/
 /* CREATE UNIQUE INDEX i_achievement_identifier ON achievement(identifier);*/
-
+/*
 CREATE TABLE IF NOT EXISTS reached_achievement (
     id INTEGER AUTO_INCREMENT NOT NULL,
     charname VARCHAR(32),
     timedate TIMESTAMP default CURRENT_TIMESTAMP,
     achievement_id INTEGER,
     PRIMARY KEY(id)
-);
+);*/
 
 
 /* CREATE INDEX i_reached_achievement_charname ON reached_achievement(charname);*/
