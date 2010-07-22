@@ -2,7 +2,6 @@ package games.stendhal.server.core.engine;
 
 import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.events.achievements.AchievementNotifier;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.guilds.GuildList;
 import games.stendhal.server.core.rp.guilds.GuildPermissionList;
@@ -145,13 +144,6 @@ public class SingletonRepository {
 	 */
 	public static AthorFerry getAthorFerry() {
 		return AthorFerry.get();
-	}
-
-	/**
-	 * @return the AchievementNotifier instance
-	 */
-	public static AchievementNotifier getAchievementNotifier() {
-		return AchievementNotifier.get();
 	}
 
 	/**

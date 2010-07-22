@@ -141,7 +141,6 @@ public class StendhalRPWorld extends RPWorld {
 			loader.load();
 
 			validatePortals();
-			SingletonRepository.getAchievementNotifier().initialize();
 			SingletonRepository.getGagManager();
 			SingletonRepository.getJail();
 		} catch (final Exception e) {
