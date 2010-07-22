@@ -42,14 +42,14 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 				addHelp("You are stood in the #store. You can enter the spire by the teleporter in front of me. The one behind me teleports you back to the tower entrance.");
 				addJob("I am the guardian and #storekeeper of the #wizards tower.");
 				addGoodbye("So long!");
-				addOffer("I can create #special items with the materials from the store. Just tell me what you want, but for the most items I will need extra ingredients.");
+				addOffer("I can create #special items with the materials from the store. Just tell me what you want, but for most items I will need extra ingredients.");
 				addReply(Arrays.asList("store", "storekeeper"),
-				        "I can create #special items with the materials from the store. Just tell me what you want, but for the most items I will need extra ingredients.");
+				        "I can create #special items with the materials from the store. Just tell me what you want, but for most items I will need extra ingredients.");
 
 //				addReply("special",
 //				        "For example I can create a #rift #cloak. I could read in your mind, adventurer. But it is not allowed to me here. So you have to tell me which special item you want and I will tell you, if I can help you.");
 				addReply("special",
-				        "I could read in your mind, adventurer. But it is not allowed to me here. So you have to tell me which special item you want and I will tell you, if I can help you.");
+				        "I am sorry, now is not the time. Try again in some weeks, and I may be ready to help you.");
 
 				addReply(Arrays.asList("wizard", "wizards"),
 				        "Seven wizards form the wizards circle. These are #Erastus, #Elana, #Ravashack, #Jaer, #Cassandra, #Silvanus and #Malleus");
