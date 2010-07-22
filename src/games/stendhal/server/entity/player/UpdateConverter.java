@@ -279,8 +279,10 @@ public abstract class UpdateConverter {
     	}
 
 		//port to 0.86: port keymap to feature map, karama_indicator as feature
-		if (KeyedSlotUtil.getKeyedSlot(object, "!features", "keyring") != null) {
-			object.put("features", "keyring", "");
+		if (object.hasSlot("!features")) {
+			if (KeyedSlotUtil.getKeyedSlot(object, "!features", "keyring") != null) {
+				object.put("features", "keyring", "");
+			}
 		}
 		if (KeyedSlotUtil.getKeyedSlot(object, "!quests", "learn_karma") != null) {
 			object.put("features", "karma_indicator", "");
