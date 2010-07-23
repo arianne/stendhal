@@ -224,7 +224,7 @@
 		<entity x="77" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">come_to_rest</parameter>
-				<parameter name="radius">3</parameter>
+				<parameter name="radius">13</parameter>
 				<parameter name="volume">100</parameter>
 			</implementation>
 		</entity>
