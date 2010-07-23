@@ -1,6 +1,10 @@
 package games.stendhal.server.script;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -36,27 +40,34 @@ public class DumpPostmanTable extends ScriptImpl {
 		} catch (final Exception e) {
 			admin.sendPrivateText("Could not find postman file");
 		}
-		
-		final Iterator< ? > itr = messages.keySet().iterator();
-		while (itr.hasNext()) {
-			final String key = itr.next().toString();
-			String target = key.substring(0,key.indexOf("!"));
-			String source = key.substring(key.indexOf("!") + 1);
-			String message = messages.getProperty(key);
-			
-			// messages got grouped together, but the line breaks will confuse the csv file: replace new lines with spaces.
-			message = message.replace("\n", " ");
-			// replace any double quotes in there with two single quotes so we don't confuse mysql on import
-			message =  message.replace("\"", "''");
-			// replace any escape characters 
-			message =  message.replace("\\", "\\\\");
-			// well, why not clean it now.
-			message = message.trim();
-			System.out.println("\"" + source + "\",\"" + target  + "\",\"" + message + "\"");
 
-			itr.remove();
+		PrintStream out;
+		try {
+			out = new PrintStream(new FileOutputStream("postmantable.csv"));
+			final Iterator< ? > itr = messages.keySet().iterator();
+			while (itr.hasNext()) {
+				final String key = itr.next().toString();
+				String target = key.substring(0,key.indexOf("!"));
+				String source = key.substring(key.indexOf("!") + 1);
+				String message = messages.getProperty(key);
+				
+				// messages got grouped together, but the line breaks will confuse the csv file: replace new lines with spaces.
+				message = message.replace("\n", " ");
+				// replace any double quotes in there with two single quotes so we don't confuse mysql on import
+				message =  message.replace("\"", "''");
+				// replace any escape characters 
+				message =  message.replace("\\", "\\\\");
+				// well, why not clean it now.
+				message = message.trim();
 
+				out.println("\"" + source + "\",\"" + target  + "\",\"" + message + "\"");
+				itr.remove();
+			}
+			out.close();
+		} catch (FileNotFoundException e) {
+			admin.sendPrivateText("Could not find postmantable.csv to print to");
 		}
+
 	}
 
 }
