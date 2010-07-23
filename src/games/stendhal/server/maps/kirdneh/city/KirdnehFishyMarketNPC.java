@@ -54,7 +54,7 @@ public class KirdnehFishyMarketNPC implements ZoneConfigurator {
 				addReply("aye", "Well, shiver me timbers! Check out that blackboard o'er thar fer me prices an' what i be buyin");
 				addReply("no", "You lily-livered scallywag! Why ye be wastin me time?");
 				addHelp("An' just what do ya think a buccanneer such as meself could possibly help ye with?");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyfishes")), true);
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyfishes")), false);
 				addOffer("Check out that thar blackboard fer how many dubloons I be givin.");
 				addQuest("Ye don't ha'e the guts ta do whut I need done.");
 				addGoodbye("Arrgh, avast an' be gone with ye!");
