@@ -2,16 +2,7 @@ package games.stendhal.server.maps.semos.wizardstower;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.DropItemAction;
-import games.stendhal.server.entity.npc.action.EquipItemAction;
-import games.stendhal.server.entity.npc.action.IncreaseXPAction;
-import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -42,10 +33,15 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 				addHelp("You are stood in the #store. You can enter the spire by the teleporter in front of me. The one behind me teleports you back to the tower entrance.");
 				addJob("I am the guardian and #storekeeper of the #wizards tower.");
 				addGoodbye("So long!");
+				addOffer("I can create #special items with the materials from the store. Just tell me what you want, but for most items I will need extra ingredients.");
 				addReply(Arrays.asList("store", "storekeeper"),
-				        "I can create #special items with the materials from the store. Just tell me what you want, but for the most items I will need extra ingredients.");
+				        "I can create #special items with the materials from the store. Just tell me what you want, but for most items I will need extra ingredients.");
+
+//				addReply("special",
+//				        "For example I can create a #rift #cloak. I could read in your mind, adventurer. But it is not allowed to me here. So you have to tell me which special item you want and I will tell you, if I can help you.");
 				addReply("special",
-				        "For example I can create a #rift #cloak. I could read in your mind, adventurer. But it is not allowed to me here. So you have to tell me which special item you want and I will tell you, if I can help you.");
+				        "I am sorry, now is not the time. Try again in some weeks, and I may be ready to help you.");
+
 				addReply(Arrays.asList("wizard", "wizards"),
 				        "Seven wizards form the wizards circle. These are #Erastus, #Elana, #Ravashack, #Jaer, #Cassandra, #Silvanus and #Malleus");
 				addReply("erastus", "Erastus is the archmage of the wizards circle. He is the grandmaster of all magics and the wisest person that is known. He is the only one without a part in the practical test.");
@@ -56,11 +52,11 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 				addReply("silvanus", "Silvanus is a sage druid and perhaps the eldest of all elves. He is a friend of all animals, trees, fairy creatures and ents. His domain is Earth and Nature.");
 				addReply("malleus", "Malleus is the powerful archetype of a magician and the master of destructive magics. His domain is Fire and he rambled the plains of demons for ages, to understand their ambitions.");
 
-				// behavior on special item SCROLL
+/**				// behavior on special item BLANK SCROLL
 				add(ConversationStates.ATTENDING,
-				    Arrays.asList("scroll", "scrolls"),
+				    Arrays.asList("blank scroll", "scrolls"),
 				    ConversationStates.INFORMATION_1,
-				    "I will create a magic scroll for you, but I need eight pieces of wood for that. The scroll will be empty and can be enchanted by wizards. Do you want a magic scroll?",
+				    "I will create a blank scroll for you, but I need eight pieces of wood for that. The blank scroll can be enchanted by wizards. Do you want a blank scroll?",
 				    null);
 				add(ConversationStates.INFORMATION_1, 
 					ConversationPhrases.YES_MESSAGES,
@@ -72,16 +68,16 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 					ConversationPhrases.YES_MESSAGES,
 					new PlayerHasItemWithHimCondition("wood", 8),
 					ConversationStates.ATTENDING,
-					"There is your magic scroll.",
+					"There is your blank scroll.",
 					new MultipleActions(
 						new DropItemAction("wood", 8),
-						new EquipItemAction("scroll", 1, true),
+						new EquipItemAction("blank scroll", 1, true),
 						new IncreaseXPAction(250)));
 				add(ConversationStates.INFORMATION_1, 
 					ConversationPhrases.NO_MESSAGES, 
 					null,
 					ConversationStates.ATTENDING,
-					"Well, maybe later. Just tell me when you want a magic scroll.", 
+					"Well, maybe later. Just tell me when you want a blank scroll.", 
 					null);
 
 				//behavior on special item RIFT CLOAK
@@ -124,6 +120,7 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 					ConversationStates.ATTENDING,
 					"Don't forget that you can't enter a magical rift without a rift cloak.",
 					null);
+*/
 
 				//behavior on special item XARUHWAIYZ PHIAL
 			} //remaining behavior defined in maps.quests.ZekielsPracticalTestQuest
