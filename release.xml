@@ -75,7 +75,15 @@
 			<arg value="${build-archive}/lib/stendhal-music-data-${version.old}.jar" />
 			<arg value="${build}/lib/stendhal-music-data-${version}.jar" />
 		</java>
-		<!-- TODO maraurora.jar-->
+		<java jar="libs/jardiff.jar" fork="true">
+			<arg value="-nonminimal" />
+			<arg value="-creatediff" />
+			<arg value="-output" />
+			<arg value="${build}/lib/stendhal-sound-data-diff-${version.old}-${version}.jar" />
+			<arg value="${build-archive}/lib/stendhal-sound-data-${version.old}.jar" />
+			<arg value="${build}/lib/stendhal-sound-data-${version}.jar" />
+		</java>
+	<!-- TODO maraurora.jar-->
 	</target>
 
 	<!-- * Sign the -diff-*.jar files for webstart -->
