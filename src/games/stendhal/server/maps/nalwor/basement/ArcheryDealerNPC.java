@@ -33,7 +33,7 @@ public class ArcheryDealerNPC extends SpeakerNPCFactory {
 				offerings.put("composite bow", 350);
 				offerings.put("hunter crossbow", 800);
 				offerings.put("mithril bow", 2000);
-				new BuyerAdder().add(magearcher, new BuyerBehaviour(offerings), true);			    
+				new BuyerAdder().add(magearcher, new BuyerBehaviour(offerings), false);			    
 			    
 			   	}
 }

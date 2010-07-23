@@ -22,7 +22,7 @@ public class ChiefFalatheenDishwasherNPC extends SpeakerNPCFactory {
 				dishwasher.addQuest("You could try to help me #escape from these hoodlums. Well... maybe not.");
 				dishwasher.addGoodbye("Don't forget where I am now. Come back and see me some time. I do get lonely.");
 				dishwasher.addReply("escape", "Yes! I want to pursue my dream. Mother Helena offered me a most wonderful job.  She needs a dishwasher. Lots of complaining customers!!!");
-				new BuyerAdder().add(dishwasher, new BuyerBehaviour(shops.get("buyveggiesandherbs")), true);			    
+				new BuyerAdder().add(dishwasher, new BuyerBehaviour(shops.get("buyveggiesandherbs")), false);			    
 			    
 			   	}
 }
