@@ -10,7 +10,9 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.CheckForReachedQuestAchievements;
 import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
@@ -439,7 +441,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				        new KilledForQuestCondition(QUEST_SLOT, 0)),
 				ConversationStates.ATTENDING, 
 				null,
-				new DailyQuestCompleteAction());
+				new MultipleActions(new DailyQuestCompleteAction(), new CheckForReachedQuestAchievements()));
 		}
 
 	/**
