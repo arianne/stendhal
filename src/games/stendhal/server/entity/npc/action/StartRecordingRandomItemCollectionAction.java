@@ -68,7 +68,7 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 		final int quantity = items.get(itemname);
 		
 		Map<String, String> substitutes = new HashMap<String, String>();
-		substitutes.put("item", Grammar.quantityplnoun(quantity, itemname));
+		substitutes.put("item", Grammar.quantityplnoun(quantity, itemname, "a"));
 		substitutes.put("#item", Grammar.quantityplnounWithHash(quantity, itemname));
 		substitutes.put("the item", "the " + Grammar.plnoun(quantity, itemname));
 		
