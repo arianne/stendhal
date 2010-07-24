@@ -58,7 +58,7 @@ public class DoneAction implements ChatAction {
 		if (helmet == null) {
 			createTrophyHelmet(player);
 			raiser.say("Here is your special trophy helmet. Keep it, as the defense will increase by 1 "
-				+ " for every deathmatch you complete. Now, tell me if you want to #leave.");
+				+ "for every deathmatch you complete. Now, tell me if you want to #leave.");
 		} else {
 			int defense = 1;
 			if (helmet.has("def")) {
