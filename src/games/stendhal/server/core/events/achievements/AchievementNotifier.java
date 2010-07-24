@@ -152,13 +152,12 @@ public class AchievementNotifier {
 	 */
 	private void checkAchievements(Player player,
 			List<Achievement> toCheck) {
-		//TODO remove comments when achievements should be used
-//		for (Achievement achievement : toCheck) {
-//			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
-//				notifyPlayerAboutReachedAchievement(player, achievement);
-//				logReachingOfAnAchievement(player, achievement);
-//			}
-//		}
+		for (Achievement achievement : toCheck) {
+			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
+				notifyPlayerAboutReachedAchievement(player, achievement);
+				logReachingOfAnAchievement(player, achievement);
+			}
+		}
 	}
 	
 	/**
