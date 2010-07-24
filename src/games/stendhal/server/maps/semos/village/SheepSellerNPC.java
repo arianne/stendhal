@@ -4,6 +4,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -62,8 +63,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 							seller.say("Here you go, a nice fluffy little sheep! Take good care of it, now...");
 
 							final Sheep sheep = new Sheep(player);
-
-							sheep.setPosition(seller.getX(), seller.getY() + 1);
+							StendhalRPAction.placeat(seller.getZone(), sheep, seller.getX(), seller.getY() + 1);
 
 							player.notifyWorldAboutChanges();
 
