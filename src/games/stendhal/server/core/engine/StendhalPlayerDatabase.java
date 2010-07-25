@@ -45,6 +45,10 @@ public class StendhalPlayerDatabase {
 				transaction.execute("ALTER TABLE postman ADD COLUMN (messagetype CHAR(1));", null);
 			}
 			
+			if (!transaction.doesColumnExist("achievement", "base_score")) {
+				transaction.execute("ALTER TABLE achievement ADD COLUMN (base_score INTEGER);", null);
+			}
+			
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			logger.error(e, e);
