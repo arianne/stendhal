@@ -42,7 +42,7 @@ public class AchievementDAO {
 	 * @param title
 	 * @param category
 	 * @param transaction
-	 * @return
+	 * @return the id of the stored achievement
 	 * @throws SQLException
 	 */
 	public int saveAchievement(String identifier, String title, Category category, DBTransaction transaction) throws SQLException {
