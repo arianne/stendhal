@@ -257,6 +257,18 @@ public class AchievementNotifier {
 		questAchievements.add(new Achievement("quest.special.dmq.10", "Semos' Protector",
 												Category.QUEST,  "Finish daily monster quest 10 times",
 												new QuestStateGreaterThanCondition("daily", 2, 9)));
+		questAchievements.add(new Achievement("quest.special.dmq.50", "Semos' Guardian",
+												Category.QUEST,  "Finish daily monster quest 50 times",
+												new QuestStateGreaterThanCondition("daily", 2, 49)));
+		questAchievements.add(new Achievement("quest.special.dmq.100", "Semos' Hero",
+												Category.QUEST,  "Finish daily monster quest 100 times",
+												new QuestStateGreaterThanCondition("daily", 2, 99)));
+		questAchievements.add(new Achievement("quest.special.dmq.250", "Semos' Champion",
+												Category.QUEST,  "Finish daily monster quest 250 times",
+												new QuestStateGreaterThanCondition("daily", 2, 249)));
+		questAchievements.add(new Achievement("quest.special.dmq.500", "Semos' Vanquisher",
+												Category.QUEST,  "Finish daily monster quest 500 times",
+												new QuestStateGreaterThanCondition("daily", 2, 499)));
 		return questAchievements;
 	}
 
