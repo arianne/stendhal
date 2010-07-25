@@ -18,6 +18,8 @@ public class Achievement {
 	
 	private final String description;
 	
+	private final int baseScore;
+	
 	private final ChatCondition condition;
 
 	
@@ -29,12 +31,13 @@ public class Achievement {
 	 * @param category
 	 * @param condition
 	 */
-	public Achievement(String identifier, String title, Category category, String description, ChatCondition condition) {
+	public Achievement(String identifier, String title, Category category, String description, int baseScore, ChatCondition condition) {
 		this.identifier = identifier;
 		this.title = title;
 		this.category = category;
 		this.condition = condition;
 		this.description = description;
+		this.baseScore = baseScore;
 	}
 
 	/**
@@ -63,6 +66,13 @@ public class Achievement {
 	 */
 	public String getDescription() {
 		return description;
+	}
+	
+	/**
+	 * @return the base score for this achievement
+	 */
+	public int getBaseScore() {
+		return this.baseScore;
 	}
 
 	/**
