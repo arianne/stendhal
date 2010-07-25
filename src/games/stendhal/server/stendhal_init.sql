@@ -169,6 +169,7 @@ CREATE TABLE IF NOT EXISTS achievement (
     title VARCHAR(64),
     category VARCHAR(64),
     description VARCHAR(64),
+    base_score INTEGER,
     PRIMARY KEY(id)
 );
 /* CREATE UNIQUE INDEX i_achievement_identifier ON achievement(identifier);*/
