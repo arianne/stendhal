@@ -5,7 +5,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.ReadAchievementIdentifierToIdMap;
 import games.stendhal.server.core.engine.dbcommand.WriteAchievementCommand;
 import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementCommand;
-import games.stendhal.server.entity.npc.condition.FinishedQuestGreaterOrEqualThanCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreaturesCondition;
 import games.stendhal.server.entity.player.Player;
@@ -235,7 +235,7 @@ public class AchievementNotifier {
 		Achievement newbie = new Achievement("xp.lvl.10", "Greenhorn", 
 												Category.EXPERIENCE, "Reach level 10", 
 												new LevelGreaterThanCondition(9));
-		Achievement newbie50 = new Achievement("xp.lvl.50", "Apprentice", 
+		Achievement newbie50 = new Achievement("xp.lvl.50", "Novice", 
 												Category.EXPERIENCE, "Reach level 50", 
 												new LevelGreaterThanCondition(49));
 		Achievement newbie100 = new Achievement("xp.lvl.100", "Apprentice", 
@@ -254,9 +254,9 @@ public class AchievementNotifier {
 	 */
 	private Collection<Achievement> createQuestAchievements() {
 		List<Achievement> questAchievements = new LinkedList<Achievement>();
-		questAchievements.add(new Achievement("quest.special.dmq.10", "Creature Hunter",
+		questAchievements.add(new Achievement("quest.special.dmq.10", "Semos' Protector",
 												Category.QUEST,  "Finish daily monster quest 10 times",
-												new FinishedQuestGreaterOrEqualThanCondition("daily", 10, 2)));
+												new QuestStateGreaterThanCondition("daily", 2, 9)));
 		return questAchievements;
 	}
 

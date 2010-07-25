@@ -11,11 +11,11 @@ import static org.junit.Assert.assertTrue;
 import utilities.PlayerTestHelper;
 
 /**
- * Tests for the {@link FinishedQuestGreaterOrEqualThanCondition}
+ * Tests for the {@link QuestStateGreaterThanCondition}
  * 
  * @author madmetzger
  */
-public class FinishedQuestGreaterOrEqualThanConditionTest {
+public class QuestStateGreaterThanConditionTest {
 	
 	private static Player player;
 	
@@ -27,19 +27,19 @@ public class FinishedQuestGreaterOrEqualThanConditionTest {
 	
 	@Test
 	public void testNotOftenEnoughFinished() {
-		FinishedQuestGreaterOrEqualThanCondition c = new FinishedQuestGreaterOrEqualThanCondition("testquest", 10, 1);
+		QuestStateGreaterThanCondition c = new QuestStateGreaterThanCondition("testquest", 1, 10);
 		assertFalse(c.fire(player, null, null));
 	}
 	
 	@Test
 	public void testExactlyMatched() {
-		FinishedQuestGreaterOrEqualThanCondition c = new FinishedQuestGreaterOrEqualThanCondition("testquest", 5, 1);
-		assertTrue(c.fire(player, null, null));
+		QuestStateGreaterThanCondition c = new QuestStateGreaterThanCondition("testquest", 1, 5);
+		assertFalse(c.fire(player, null, null));
 	}
 	
 	@Test
 	public void testMoreThanNeeded() {
-		FinishedQuestGreaterOrEqualThanCondition c = new FinishedQuestGreaterOrEqualThanCondition("testquest", 3, 1);
+		QuestStateGreaterThanCondition c = new QuestStateGreaterThanCondition("testquest", 1, 3);
 		assertTrue(c.fire(player, null, null));
 	}
 
