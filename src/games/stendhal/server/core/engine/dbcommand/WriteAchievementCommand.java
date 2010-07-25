@@ -30,7 +30,9 @@ public class WriteAchievementCommand extends AbstractDBCommand {
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException,
 			IOException {
-		savedId = DAORegister.get().get(AchievementDAO.class).saveAchievement(achievement.getIdentifier(), achievement.getTitle(), achievement.getCategory(), transaction);
+		savedId = DAORegister.get().get(AchievementDAO.class).saveAchievement(achievement.getIdentifier(), achievement.getTitle(),
+																			  achievement.getCategory(), achievement.getBaseScore(),
+																			  transaction);
 	}
 	
 	/**

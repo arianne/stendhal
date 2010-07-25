@@ -36,7 +36,7 @@ public class AchievementDAO {
 	}
 
 	/**
-	 * creates a new achievement
+	 * Creates a new achievement
 	 * 
 	 * @param identifier
 	 * @param title
@@ -45,22 +45,23 @@ public class AchievementDAO {
 	 * @return the id of the stored achievement
 	 * @throws SQLException
 	 */
-	public int saveAchievement(String identifier, String title, Category category, DBTransaction transaction) throws SQLException {
+	public int saveAchievement(String identifier, String title, Category category, int baseScore, DBTransaction transaction) throws SQLException {
 		int achievementId = 0;
 		String query = 	"INSERT INTO achievement " +
-						"(identifier, title, category) VALUES " +
-						"('[identifier]','[title]','[category]')";
+						"(identifier, title, category, base_score) VALUES " +
+						"('[identifier]','[title]','[category]', [base_score])";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("identifier", identifier);
 		parameters.put("title", title);
 		parameters.put("category", category.toString());
+		parameters.put("base_score", baseScore);
 		transaction.execute(query, parameters);
 		achievementId = transaction.getLastInsertId("achievement", "id");
 		return achievementId;
 	}
 
 	/**
-	 * loads a map from achievement identifier to database serial
+	 * Loads a map from achievement identifier to database serial
 	 * @param transaction
 	 * @return map with key identifier string and value database id
 	 * @throws SQLException
@@ -78,6 +79,7 @@ public class AchievementDAO {
 	}
 	
 	/**
+	 * Loads all achievements a player has reached
 	 * @param playerName
 	 * @return set identifiers of achievements reached by playerName
 	 * @throws SQLException 
