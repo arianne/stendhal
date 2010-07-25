@@ -10,6 +10,12 @@ import games.stendhal.server.entity.player.Player;
  */
 public class Achievement {
 	
+	public static final int EASY_BASE_SCORE = 10;
+	
+	public static final int MEDIUM_BASE_SCORE = 50;
+	
+	public static final int HARD_BASE_SCORE = 1000;
+	
 	private final String identifier;
 	
 	private final String title;

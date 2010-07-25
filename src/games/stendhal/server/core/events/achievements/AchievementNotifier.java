@@ -214,11 +214,11 @@ public class AchievementNotifier {
 	 */
 	private Collection<Achievement> createFightingAchievements() {
 		List<Achievement> fightingAchievements = new LinkedList<Achievement>();
-		Achievement killRats = new Achievement("fight.general.rats", "Rat hunter", 
-													Category.FIGHTING, "Kill 15 rats", 10,
+		Achievement killRats = new Achievement("fight.general.rats", "Rat Hunter", 
+													Category.FIGHTING, "Kill 15 rats", Achievement.EASY_BASE_SCORE,
 													new PlayerHasKilledNumberOfCreaturesCondition("rat", 15));
 		Achievement exterminator = new Achievement("fight.general.exterminator", "Exterminator", 
-													Category.FIGHTING, "Kill 10 rats of each kind", 10,
+													Category.FIGHTING, "Kill 10 rats of each kind", Achievement.EASY_BASE_SCORE,
 													new PlayerHasKilledNumberOfCreaturesCondition(10, "rat", "caverat", "venomrat", "zombie rat", "venom rat", "giantrat", "ratman", "ratwoman", "archrat"));
 		fightingAchievements.add(killRats);
 		fightingAchievements.add(exterminator);
@@ -233,13 +233,13 @@ public class AchievementNotifier {
 	private Collection<Achievement> createExperienceAchievements() {
 		List<Achievement> xpAchievements = new LinkedList<Achievement>();
 		Achievement newbie = new Achievement("xp.lvl.10", "Greenhorn", 
-												Category.EXPERIENCE, "Reach level 10", 10,
+												Category.EXPERIENCE, "Reach level 10", Achievement.EASY_BASE_SCORE,
 												new LevelGreaterThanCondition(9));
 		Achievement newbie50 = new Achievement("xp.lvl.50", "Novice", 
-												Category.EXPERIENCE, "Reach level 50", 10,
+												Category.EXPERIENCE, "Reach level 50", Achievement.EASY_BASE_SCORE,
 												new LevelGreaterThanCondition(49));
 		Achievement newbie100 = new Achievement("xp.lvl.100", "Apprentice", 
-												Category.EXPERIENCE, "Reach level 100", 10, 
+												Category.EXPERIENCE, "Reach level 100", Achievement.MEDIUM_BASE_SCORE, 
 												new LevelGreaterThanCondition(99));
 		xpAchievements.add(newbie);
 		xpAchievements.add(newbie50);
@@ -255,19 +255,19 @@ public class AchievementNotifier {
 	private Collection<Achievement> createQuestAchievements() {
 		List<Achievement> questAchievements = new LinkedList<Achievement>();
 		questAchievements.add(new Achievement("quest.special.dmq.10", "Semos' Protector",
-												Category.QUEST,  "Finish daily monster quest 10 times", 10,
+												Category.QUEST,  "Finish daily monster quest 10 times", Achievement.EASY_BASE_SCORE,
 												new QuestStateGreaterThanCondition("daily", 2, 9)));
 		questAchievements.add(new Achievement("quest.special.dmq.50", "Semos' Guardian",
-												Category.QUEST,  "Finish daily monster quest 50 times", 10,
+												Category.QUEST,  "Finish daily monster quest 50 times", Achievement.EASY_BASE_SCORE,
 												new QuestStateGreaterThanCondition("daily", 2, 49)));
 		questAchievements.add(new Achievement("quest.special.dmq.100", "Semos' Hero",
-												Category.QUEST,  "Finish daily monster quest 100 times", 50,
+												Category.QUEST,  "Finish daily monster quest 100 times", Achievement.MEDIUM_BASE_SCORE,
 												new QuestStateGreaterThanCondition("daily", 2, 99)));
 		questAchievements.add(new Achievement("quest.special.dmq.250", "Semos' Champion",
-												Category.QUEST,  "Finish daily monster quest 250 times", 50,
+												Category.QUEST,  "Finish daily monster quest 250 times", Achievement.MEDIUM_BASE_SCORE,
 												new QuestStateGreaterThanCondition("daily", 2, 249)));
 		questAchievements.add(new Achievement("quest.special.dmq.500", "Semos' Vanquisher",
-												Category.QUEST,  "Finish daily monster quest 500 times", 100,
+												Category.QUEST,  "Finish daily monster quest 500 times", Achievement.HARD_BASE_SCORE,
 												new QuestStateGreaterThanCondition("daily", 2, 499)));
 		return questAchievements;
 	}
