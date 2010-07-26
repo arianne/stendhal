@@ -9,7 +9,11 @@ import java.sql.SQLException;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
-
+/**
+ * Writes an Achievement assynchronously to the database
+ *  
+ * @author madmetzger
+ */
 public class WriteAchievementCommand extends AbstractDBCommand {
 	
 	private final Achievement achievement;
@@ -35,7 +39,7 @@ public class WriteAchievementCommand extends AbstractDBCommand {
 	}
 	
 	/**
-	 * @return the savedId
+	 * @return the id the Achievement got in the database
 	 */
 	public Integer getSavedId() {
 		return savedId;
