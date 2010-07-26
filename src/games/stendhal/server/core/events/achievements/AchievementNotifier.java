@@ -144,7 +144,7 @@ public class AchievementNotifier {
 			toCheck.addAll(list);
 		}
 		List<Achievement> reached = checkAchievements(player, toCheck);
-		player.sendPrivateText("You have reached #"+Integer.valueOf(reached.size()).toString()+" new achievements. Please check #http://stendhalgame.org for details.");
+		player.sendPrivateText("You have reached "+Integer.valueOf(reached.size()).toString()+" new achievements. Please check #http://stendhalgame.org for details.");
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.player;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.ReadAchievementsForPlayerCommand;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
@@ -14,7 +15,7 @@ import marauroa.server.db.command.ResultHandle;
 public class ReadAchievementsOnLogin implements LoginListener, TurnListener {
 	
 	private ResultHandle handle = new ResultHandle();
-
+	
 	public void onLoggedIn(Player player) {
 		DBCommand command = new ReadAchievementsForPlayerCommand(player);
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
@@ -32,6 +33,7 @@ public class ReadAchievementsOnLogin implements LoginListener, TurnListener {
 		for (String identifier : identifiers) {
 			p.addReachedAchievement(identifier);
 		}
+		SingletonRepository.getAchievementNotifier().onLogin(command.getPlayer());
 	}
 
 }
