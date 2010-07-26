@@ -17,9 +17,8 @@ public class WriteAchievementCommand extends AbstractDBCommand {
 	private Integer savedId;
 	
 	/**
-	 * @param achievement
-	 */
-	/**
+	 * Create a new WriteAchievementCommand
+	 * 
 	 * @param achievement
 	 */
 	public WriteAchievementCommand(Achievement achievement) {
