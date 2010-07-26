@@ -1,5 +1,6 @@
 package games.stendhal.client.update;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -22,16 +23,20 @@ public class ClientGameConfiguration {
 		try {
 			InputStream is =  ClientGameConfiguration.class
 					.getResourceAsStream("game.properties");
-			if (is != null) {
-				gameConfig.load(is);
-				is.close();
-			} else {
-				gameConfig = new DefaultGameProperties();
+			if (is == null) {
+				is = ClientGameConfiguration.class
+				.getResourceAsStream("game-default.properties");
 			}
+			if (is == null) {
+				throw new FileNotFoundException("Cannot read neither game.properties nor game-default.properties from classpath.");
+			}
+
+			gameConfig.load(is);
+			is.close();
 			return gameConfig;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new DefaultGameProperties();
+			return null;
 		}
 	}
 
