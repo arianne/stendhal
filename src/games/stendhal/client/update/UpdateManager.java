@@ -352,8 +352,8 @@ public class UpdateManager {
 			sb.append(file + ",");
 		}
 
-		sb.append(bootProp.getProperty("load-0.69", ""));
+		sb.append(bootProp.getProperty("load-0.86", ""));
 
-		bootProp.put("load-0.69", sb.toString());
+		bootProp.put("load-0.86", sb.toString());
 	}
 }
