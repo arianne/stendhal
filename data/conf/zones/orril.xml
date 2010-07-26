@@ -562,8 +562,7 @@
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
 				<parameter name="key">kotoch prison key</parameter>
-				<parameter name="rejected">You do not have the key to open the
-					lock.</parameter>
+				<parameter name="rejected">You do not have the key to open the lock.</parameter>
 			</implementation>
 		</portal>
 		<portal x="15" y="8" ref="kotoch_lock_inside">
