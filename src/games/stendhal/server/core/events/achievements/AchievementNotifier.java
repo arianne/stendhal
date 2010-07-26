@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreatur
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -102,7 +103,7 @@ public class AchievementNotifier {
 		}
 		return command;
 	}
-
+	
 	/**
 	 * checks all for level change relevant achievements for a player
 	 * 
@@ -140,7 +141,8 @@ public class AchievementNotifier {
 	private void getAndCheckAchievementsInCategory(Player player, Category category) {
 		if(achievements.containsKey(category)) {
 			List<Achievement> toCheck = achievements.get(category);
-			checkAchievements(player, toCheck);
+			List<Achievement> reached = checkAchievements(player, toCheck);
+			notifyPlayerAboutReachedAchievements(player, reached);
 		}
 	}
 
@@ -151,13 +153,27 @@ public class AchievementNotifier {
 	 * @param player
 	 * @param toCheck
 	 */
-	private void checkAchievements(Player player,
+	private List<Achievement> checkAchievements(Player player,
 			List<Achievement> toCheck) {
+		List<Achievement> reached = new ArrayList<Achievement>();
 		for (Achievement achievement : toCheck) {
 			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
-				notifyPlayerAboutReachedAchievement(player, achievement);
 				logReachingOfAnAchievement(player, achievement);
+				reached.add(achievement);
 			}
+		}
+		return reached;
+	}
+	
+	/**
+	 * Notifies a player about reached achievements via private message
+	 * 
+	 * @param player
+	 * @param achievements
+	 */
+	private void notifyPlayerAboutReachedAchievements(Player player, List<Achievement> achievements) {
+		for (Achievement achievement : achievements) {
+			notifyPlayerAboutReachedAchievement(player, achievement);
 		}
 	}
 	
