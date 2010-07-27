@@ -260,7 +260,7 @@ public class UpdateManager {
 	 * @return true, if the download was successful, false otherwise
 	 */
 	private boolean downloadFile(final String file) {
-		boolean res = tryDownloadFromPreferedLocation(file);
+		boolean res = tryDownloadFromPreferredLocation(file);
 		if (res) {
 			return true;
 		}
@@ -302,20 +302,20 @@ public class UpdateManager {
 	 * @param file name of file to download
 	 * @return true, if the download was successful; false otherwise
 	 */
-	private boolean tryDownloadFromPreferedLocation(String file) {
+	private boolean tryDownloadFromPreferredLocation(String file) {
 
-		// is a prefered download location specified?
-		String preferedLocationFolder = updateProp.getProperty("location.prefered.folder");
-		String preferedLocationSuffix = updateProp.getProperty("location.prefered.suffix", "");
-		System.out.println("checking for preferred location: preferredLocationFolder=" + preferedLocationFolder + " preferredLocationSuffix=" + preferedLocationSuffix);
-		if (preferedLocationFolder == null) {
-			// no prefered location specified
+		// is a preferred download location specified?
+		String preferredLocationFolder = updateProp.getProperty("location.preferred.folder");
+		String preferredLocationSuffix = updateProp.getProperty("location.preferred.suffix", "");
+		System.out.println("checking for preferred location: preferredLocationFolder=" + preferredLocationFolder + " preferredLocationSuffix=" + preferredLocationSuffix);
+		if (preferredLocationFolder == null) {
+			// no preferred location specified
 			return false;
 		}
 
 		// try to download
-		System.out.println("Downloading " + file + " from prefered location...");
-		final HttpClient httpClient = new HttpClient(preferedLocationFolder + file + preferedLocationSuffix, false);
+		System.out.println("Downloading " + file + " from preferred location...");
+		final HttpClient httpClient = new HttpClient(preferredLocationFolder + file + preferredLocationSuffix, false);
 		httpClient.setProgressListener(updateProgressBar);
 		if (!httpClient.fetchFile(jarFolder + file)) {
 			System.out.println("fetch file failed, will retry from normal location");
