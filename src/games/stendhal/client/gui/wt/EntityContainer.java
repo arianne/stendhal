@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
@@ -36,7 +36,8 @@ import org.apache.log4j.Logger;
  * 
  * @author mtotz
  */
-public class EntityContainer extends WtPanel implements PositionChangeListener {
+public class EntityContainer extends WtPanel implements PositionChangeListener, 
+	EntityChangeListener {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(EntityContainer.class);
@@ -106,13 +107,13 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 * 
 	 * @param gameScreen
 	 */
-	private void rescanSlotContent(final IGameScreen gameScreen) {
+	private void rescanSlotContent() {
 		if ((parent == null) || (slotName == null)) {
 			return;
 		}
 
 		final RPSlot rpslot = parent.getSlot(slotName);
-
+		
 		// Skip if not changed
 		if ((shownSlot != null) && shownSlot.equals(rpslot)) {
 			return;
@@ -124,23 +125,21 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 			logger.debug("ORIGINAL: " + rpslot);
 		}
 
-		final GameObjects gameObjects = GameObjects.getInstance();
-
 		final Iterator<EntitySlot> iter = slotPanels.iterator();
 
 		/*
 		 * Fill from contents
 		 */
 		if (rpslot != null) {
-			shownSlot = (RPSlot) rpslot.clone();
+			RPSlot newSlot = (RPSlot) rpslot.clone();
 
-			for (final RPObject object : shownSlot) {
+			for (final RPObject object : newSlot) {
 				if (!iter.hasNext()) {
 					logger.error("More objects than slots: " + slotName);
 					break;
 				}
 
-				IEntity entity = gameObjects.get(object);
+				IEntity entity = EntityFactory.createEntity(object);
 
 				if (entity == null) {
 					logger.warn("Unable to find entity for: " + object,
@@ -148,8 +147,10 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 					entity = EntityFactory.createEntity(object);
 				}
 
-				iter.next().setEntity(entity/*, gameScreen*/);
+				iter.next().setEntity(entity);
 			}
+			
+			shownSlot = newSlot;
 		} else {
 			shownSlot = null;
 			logger.error("No slot found: " + slotName);
@@ -159,7 +160,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		 * Clear remaining holders
 		 */
 		while (iter.hasNext()) {
-			iter.next().setEntity(null/*, gameScreen*/);
+			iter.next().setEntity(null);
 		}
 	}
 
@@ -218,8 +219,9 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 			entitySlot.setName(slot);
 		}
 
+		parent.addChangeListener(this);
 		shownSlot = null;
-		rescanSlotContent(gameScreen);
+		rescanSlotContent();
 	}
 
 	/**
@@ -231,7 +233,6 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	 */
 	@Override
 	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
-		rescanSlotContent(gameScreen);
 		super.drawContent(g, gameScreen);
 
 		checkDistance(gameScreen);
@@ -291,6 +292,12 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 					+ "," + py + " is too far from (" + ix + "," + iy + "):"
 					+ orig);
 			destroy(gameScreen);
+		}
+	}
+
+	public void entityChanged(IEntity entity, Object property) {
+		if (property == IEntity.PROP_CONTENT) {
+			rescanSlotContent();
 		}
 	}
 }
