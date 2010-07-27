@@ -710,30 +710,35 @@
 	<parameter name="y">15</parameter>
 	<parameter name="image">wooden_door</parameter>
 	<parameter name="orientation">h</parameter>
+	<parameter name="autoclose">300</parameter>
 	</configurator>
 	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 	<parameter name="x">9</parameter>
 	<parameter name="y">31</parameter>
 	<parameter name="image">wooden_door</parameter>
 	<parameter name="orientation">h</parameter>
+	<parameter name="autoclose">300</parameter>
 	</configurator>
 	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 	<parameter name="x">33</parameter>
 	<parameter name="y">15</parameter>
 	<parameter name="image">wooden_door</parameter>
 	<parameter name="orientation">h</parameter>
+	<parameter name="autoclose">300</parameter>
 	</configurator>
 	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 	<parameter name="x">33</parameter>
 	<parameter name="y">31</parameter>
 	<parameter name="image">wooden_door</parameter>
 	<parameter name="orientation">h</parameter>
+	<parameter name="autoclose">300</parameter>
 	</configurator>
 	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 	<parameter name="x">21</parameter>
 	<parameter name="y">31</parameter>
 	<parameter name="image">wooden_door</parameter>
 	<parameter name="orientation">h</parameter>
+	<parameter name="autoclose">300</parameter>
 	</configurator>
     </zone>
 
@@ -762,18 +767,21 @@
 	<parameter name="y">17</parameter>
 	<parameter name="image">wooden_door</parameter>
 	<parameter name="orientation">h</parameter>
+	<parameter name="autoclose">300</parameter>
 	</configurator>
 	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 	<parameter name="x">21</parameter>
 	<parameter name="y">23</parameter>
 	<parameter name="image">wooden_door</parameter>
 	<parameter name="orientation">h</parameter>
+	<parameter name="autoclose">300</parameter>
 	</configurator>
 	<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 	<parameter name="x">30</parameter>
 	<parameter name="y">17</parameter>
 	<parameter name="image">wooden_door</parameter>
 	<parameter name="orientation">h</parameter>
+	<parameter name="autoclose">300</parameter>
 	</configurator>
     </zone>
      <!-- Plains of the wizards -->
@@ -797,7 +805,7 @@
 	<parameter name="image">ice_path</parameter>
 	<parameter name="orientation">h</parameter>
 	<parameter name="condition">new PlayerHasItemWithHimCondition("ice scroll")</parameter>
-	<parameter name="autoclose">3</parameter>
+	<parameter name="autoclose">2</parameter>
 	</configurator>
     </zone>
 
