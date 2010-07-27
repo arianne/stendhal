@@ -16,6 +16,10 @@ public interface IEntity {
 	 */
 	Property PROP_CLASS = new Property();
 	/**
+	 * Property for slots changes.
+	 */
+	Property PROP_CONTENT = new Property();
+	/**
 	 * Name property.
 	 */
 	Property PROP_NAME = new Property();

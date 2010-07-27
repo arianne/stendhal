@@ -23,11 +23,6 @@ import marauroa.common.game.RPSlot;
  */
 public class Corpse extends Entity {
 	/**
-	 * Content property.
-	 */
-	public static final Property PROP_CONTENT = new Property();
-
-	/**
 	 * The current content slot.
 	 */
 	private RPSlot content;
@@ -80,6 +75,7 @@ public class Corpse extends Entity {
 	 * @param changes
 	 *            The changes.
 	 */
+	/*
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
@@ -87,5 +83,5 @@ public class Corpse extends Entity {
 			fireChange(PROP_CONTENT);
 		}
 	}
-
+*/
 }

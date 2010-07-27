@@ -581,6 +581,13 @@ public class Entity implements RPObjectChangeListener, IEntity {
 			visibility = changes.getInt("visibility");
 			fireChange(PROP_VISIBILITY);
 		}
+		
+		/*
+		 * Content changes
+		 */
+		if (!changes.slots().isEmpty()) {
+			fireChange(PROP_CONTENT);
+		}
 
 		/*
 		 * Position changes
@@ -671,6 +678,13 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		if (changes.has("visibility")) {
 			visibility = 100;
 			fireChange(PROP_VISIBILITY);
+		}
+		
+		/*
+		 * Content changes
+		 */
+		if (!changes.slots().isEmpty()) {
+			fireChange(PROP_CONTENT);
 		}
 	}
 

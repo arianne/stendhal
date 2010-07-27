@@ -20,11 +20,6 @@ import marauroa.common.game.RPSlot;
  */
 public class Chest extends Entity {
 	/**
-	 * Content property.
-	 */
-	public static final Property PROP_CONTENT = new Property();
-
-	/**
 	 * Open state property.
 	 */
 	public static final Property PROP_OPEN = new Property();
@@ -111,10 +106,6 @@ public class Chest extends Entity {
 		if (changes.has("open")) {
 			open = true;
 			fireChange(PROP_OPEN);
-		}
-
-		if (changes.hasSlot("content")) {
-			fireChange(PROP_CONTENT);
 		}
 	}
 
