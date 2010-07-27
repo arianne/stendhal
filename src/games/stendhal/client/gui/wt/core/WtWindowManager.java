@@ -14,7 +14,6 @@ package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.ManagedWindow;
-import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.common.MathHelper;
 
 import java.io.IOException;
