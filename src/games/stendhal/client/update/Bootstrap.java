@@ -38,7 +38,7 @@ public class Bootstrap {
 	 * missing classes to the parent classloader. (default is the other way
 	 * round)
 	 */
-	private static class ButtomUpOrderClassLoader extends URLClassLoader {
+	private static class BottomUpOrderClassLoader extends URLClassLoader {
 
 		/**
 		 * Creates a bottom up order class loader.
@@ -48,7 +48,7 @@ public class Bootstrap {
 		 * @param parent
 		 *            parent classloader
 		 */
-		ButtomUpOrderClassLoader(final URL[] urls, final ClassLoader parent) {
+		BottomUpOrderClassLoader(final URL[] urls, final ClassLoader parent) {
 			super(urls, parent);
 		}
 
@@ -163,7 +163,7 @@ public class Bootstrap {
 
 		// Create new class loader which the list of .jar-files as classpath
 		final URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-		final ClassLoader loader = new ButtomUpOrderClassLoader(urlArray,
+		final ClassLoader loader = new BottomUpOrderClassLoader(urlArray,
 				this.getClass().getClassLoader());
 		return loader;
 	}
