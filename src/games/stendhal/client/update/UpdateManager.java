@@ -33,13 +33,13 @@ public class UpdateManager {
 	 */
 	private void init(final boolean initialDownload) {
 		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER")
-				+ "/update.properties";
+				+ "/update-0.86.properties";
 		if (bootProp != null) {
-			serverFolder = bootProp.getProperty("server.folder",
+			serverFolder = bootProp.getProperty("server.folder-0.86",
 					ClientGameConfiguration.get("UPDATE_SERVER_FOLDER"))
 					+ "/";
-			updatePropertiesFile = bootProp.getProperty("server.update-prop",
-					serverFolder + "update.properties");
+			updatePropertiesFile = bootProp.getProperty("server.update-prop-0.86",
+					serverFolder + "update-0.86.properties");
 		}
 		final HttpClient httpClient = new HttpClient(updatePropertiesFile,
 				initialDownload);
