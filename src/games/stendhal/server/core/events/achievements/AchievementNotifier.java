@@ -274,9 +274,13 @@ public class AchievementNotifier {
 		Achievement newbie100 = new Achievement("xp.lvl.100", "Apprentice", 
 												Category.EXPERIENCE, "Reach level 100", Achievement.MEDIUM_BASE_SCORE, 
 												new LevelGreaterThanCondition(99));
+		Achievement newbie597 = new Achievement("xp.lvl.597", "Stendhal Master", 
+				Category.EXPERIENCE, "Reach level 597", Achievement.HARD_BASE_SCORE, 
+				new LevelGreaterThanCondition(596));
 		xpAchievements.add(newbie);
 		xpAchievements.add(newbie50);
 		xpAchievements.add(newbie100);
+		xpAchievements.add(newbie597);
 		return xpAchievements;
 	}
 	
