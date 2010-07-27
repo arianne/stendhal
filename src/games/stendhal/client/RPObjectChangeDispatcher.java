@@ -101,8 +101,8 @@ public class RPObjectChangeDispatcher {
 			final RPObject changes) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in client");
-			fireChangedAdded(object, changes);
 			object.applyDifferences(changes, null);
+			fireChangedAdded(object, changes);
 		} catch (final Exception e) {
 			logger.error("dispatchModifyAdded failed, object is " + object
 					+ ", changes is " + changes, e);
@@ -124,8 +124,8 @@ public class RPObjectChangeDispatcher {
 				logger.debug("Object(" + object.getID() + ") modified in client");
 				logger.debug("Original(" + object + ") modified in client");
 
-				fireChangedRemoved(object, changes);
 				object.applyDifferences(null, changes);
+				fireChangedRemoved(object, changes);
 
 				logger.debug("Modified(" + object + ") modified in client");
 				logger.debug("Changes(" + changes + ") modified in client");
@@ -341,7 +341,8 @@ public class RPObjectChangeDispatcher {
 			final RPObject sobject = slot.get(schanges.getID());
 
 			if (sobject == null) {
-				logger.info("Unable to find existing: " + schanges);
+				// This happens when a child object deleted itself
+				logger.debug("Unable to find existing: " + schanges);
 				continue;
 			}
 
