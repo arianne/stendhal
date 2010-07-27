@@ -305,20 +305,24 @@ public class AchievementNotifier {
 												new QuestStateGreaterThanCondition("daily", 2, 499)));
 		//daily item quest achievements
 		questAchievements.add(new Achievement("quest.special.diq.10", "Ados' Supporter",
-				Category.QUEST,  "Finish daily monster quest 10 times", Achievement.EASY_BASE_SCORE,
+				Category.QUEST,  "Finish daily item quest 10 times", Achievement.EASY_BASE_SCORE,
 				new QuestStateGreaterThanCondition("daily_item", 2, 9)));
 		questAchievements.add(new Achievement("quest.special.diq.50", "Ados' Provider",
-				Category.QUEST,  "Finish daily monster quest 50 times", Achievement.EASY_BASE_SCORE,
+				Category.QUEST,  "Finish daily item quest 50 times", Achievement.EASY_BASE_SCORE,
 				new QuestStateGreaterThanCondition("daily_item", 2, 49)));
 		questAchievements.add(new Achievement("quest.special.diq.100", "Ados' Supplier",
-				Category.QUEST,  "Finish daily monster quest 100 times", Achievement.MEDIUM_BASE_SCORE,
+				Category.QUEST,  "Finish daily item quest 100 times", Achievement.MEDIUM_BASE_SCORE,
 				new QuestStateGreaterThanCondition("daily_item", 2, 99)));
 		questAchievements.add(new Achievement("quest.special.diq.250", "Ados' Stockpiler",
-				Category.QUEST,  "Finish daily monster quest 250 times", Achievement.MEDIUM_BASE_SCORE,
+				Category.QUEST,  "Finish daily item quest 250 times", Achievement.MEDIUM_BASE_SCORE,
 				new QuestStateGreaterThanCondition("daily_item", 2, 249)));
 		questAchievements.add(new Achievement("quest.special.diq.50", "Ados' Hoarder",
-				Category.QUEST,  "Finish daily monster quest 50 times", Achievement.HARD_BASE_SCORE,
+				Category.QUEST,  "Finish daily item quest 50 times", Achievement.HARD_BASE_SCORE,
 				new QuestStateGreaterThanCondition("daily_item", 2, 499)));
+		//weekly item quest achievement
+		questAchievements.add(new Achievement("quest.special.wiq.5", "Archaeologist",
+				Category.QUEST,  "Finish weekly item quest 5 times", Achievement.HARD_BASE_SCORE,
+				new QuestStateGreaterThanCondition("weekly_item", 2, 4)));
 		return questAchievements;
 	}
 
