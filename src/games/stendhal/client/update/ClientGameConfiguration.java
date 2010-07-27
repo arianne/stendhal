@@ -31,9 +31,10 @@ public class ClientGameConfiguration {
 				throw new FileNotFoundException("Cannot read neither game.properties nor game-default.properties from classpath.");
 			}
 
-			gameConfig.load(is);
+			Properties config = new Properties();
+			config.load(is);
 			is.close();
-			return gameConfig;
+			return config;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
