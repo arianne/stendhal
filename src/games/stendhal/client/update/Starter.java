@@ -34,10 +34,9 @@ public class Starter {
 			if (Float.parseFloat(version) < 1.5f) {
 				JOptionPane.showMessageDialog(
 						null,
-						"You need at least Java 1.5.0 (also known as 5.0) but you only have "
-								+ version
-								+ ". You can download it at http://java.sun.com");
-				System.exit(-1);
+						"You need at least Java 6 (also known as 1.6.0) but you only have "
+						+ version
+						+ ". You can download it at http://java.com");
 			}
 		} catch (final RuntimeException e) {
 			// ignore
