@@ -2,15 +2,15 @@ package games.stendhal.server.core.events.achievements;
 
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.dbcommand.ReadAchievementIdentifierToIdMap;
-import games.stendhal.server.core.engine.dbcommand.WriteAchievementCommand;
+import games.stendhal.server.core.engine.db.AchievementDAO;
 import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementCommand;
-import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreaturesCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,12 +21,17 @@ import java.util.Set;
 
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.db.command.ResultHandle;
+import marauroa.server.game.db.DAORegister;
+
+import org.apache.log4j.Logger;
 /**
  * Checks for reached achievements and marks them as reached for a player if he has fullfilled them
  *  
  * @author madmetzger
  */
 public class AchievementNotifier {
+	
+	private static final Logger logger = Logger.getLogger(AchievementNotifier.class);
 	
 	private static AchievementNotifier instance;
 	
@@ -70,10 +75,13 @@ public class AchievementNotifier {
 			allAchievements.remove(identifier);
 		}
 		for (Achievement a : allAchievements.values()) {
-			WriteAchievementCommand command = new WriteAchievementCommand(a);
-			DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
-			Integer id = command.getSavedId();
-			identifiersToIds.put(a.getIdentifier(), id);
+			Integer id;
+			try {
+				id = DAORegister.get().get(AchievementDAO.class).saveAchievement(a.getIdentifier(), a.getTitle(), a.getCategory(), a.getBaseScore());
+				identifiersToIds.put(a.getIdentifier(), id);
+			} catch (SQLException e) {
+				logger.error("Error while saving new achievement "+a.getTitle(), e);
+			}
 		}
 		SingletonRepository.getLoginNotifier().addListener(new ReadAchievementsOnLogin());
 	}
@@ -84,26 +92,16 @@ public class AchievementNotifier {
 	 * @return a set of all identifier strings
 	 */
 	private Set<String> collectAllIdentifiersFromDatabase() {
-		DBCommandQueue.get().enqueueAndAwaitResult(new ReadAchievementIdentifierToIdMap(), handle);
-		ReadAchievementIdentifierToIdMap command = waitForResult();
-		Map<String, Integer> mapFromDB = command.getIdentifierToIdMap();
+		Map<String, Integer> mapFromDB = new HashMap<String, Integer>();
+		try {
+			mapFromDB = DAORegister.get().get(AchievementDAO.class).loadIdentifierIdPairs();
+		} catch (SQLException e) {
+			logger.error("Error while loading Identifier to id map for achievements.", e);
+		}
 		identifiersToIds.putAll(mapFromDB);
 		return mapFromDB.keySet();
 	}
 
-	/**
-	 * waits for the result of an issued ReadAchievementIdentifierToIdMap command
-	 * 
-	 * @return the completed command
-	 */
-	private ReadAchievementIdentifierToIdMap waitForResult() {
-		ReadAchievementIdentifierToIdMap command = DBCommandQueue.get().getOneResult(ReadAchievementIdentifierToIdMap.class, handle);
-		while(command == null) {
-			command = DBCommandQueue.get().getOneResult(ReadAchievementIdentifierToIdMap.class, handle);
-		}
-		return command;
-	}
-	
 	/**
 	 * checks all for level change relevant achievements for a player
 	 * 
@@ -144,7 +142,11 @@ public class AchievementNotifier {
 			toCheck.addAll(list);
 		}
 		List<Achievement> reached = checkAchievements(player, toCheck);
-		player.sendPrivateText("You have reached "+Integer.valueOf(reached.size()).toString()+" new achievements. Please check #http://stendhalgame.org for details.");
+		StringBuilder sb = new StringBuilder();
+		sb.append("You have reached ");
+		sb.append(Integer.valueOf(reached.size()));
+		sb.append(" new achievements. Please check #http://stendhalgame.org for details.");
+		player.sendPrivateText(sb.toString());
 	}
 
 	/**

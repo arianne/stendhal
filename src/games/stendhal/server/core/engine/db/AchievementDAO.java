@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import marauroa.server.db.DBTransaction;
+import marauroa.server.db.TransactionPool;
 /**
  * DAO to handle achievements for the stendhal website
  * @author madmetzger
@@ -41,11 +42,11 @@ public class AchievementDAO {
 	 * @param identifier
 	 * @param title
 	 * @param category
-	 * @param transaction
 	 * @return the id of the stored achievement
 	 * @throws SQLException
 	 */
-	public int saveAchievement(String identifier, String title, Category category, int baseScore, DBTransaction transaction) throws SQLException {
+	public int saveAchievement(String identifier, String title, Category category, int baseScore) throws SQLException {
+		DBTransaction transaction = TransactionPool.get().beginWork();
 		int achievementId = 0;
 		String query = 	"INSERT INTO achievement " +
 						"(identifier, title, category, base_score) VALUES " +
@@ -57,6 +58,7 @@ public class AchievementDAO {
 		parameters.put("base_score", baseScore);
 		transaction.execute(query, parameters);
 		achievementId = transaction.getLastInsertId("achievement", "id");
+		TransactionPool.get().commit(transaction);
 		return achievementId;
 	}
 
@@ -66,15 +68,17 @@ public class AchievementDAO {
 	 * @return map with key identifier string and value database id
 	 * @throws SQLException
 	 */
-	public Map<String, Integer> loadIdentifierIdPairs(DBTransaction transaction) throws SQLException {
+	public Map<String, Integer> loadIdentifierIdPairs() throws SQLException {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		String query = "SELECT identifier, id FROM achievement;";
+		DBTransaction transaction = TransactionPool.get().beginWork();
 		ResultSet set = transaction.query(query, new HashMap<String, Object>());
-			while (set.next()) {
-				String identifier = set.getString("identifier");
-				Integer id = set.getInt("id");
-				map.put(identifier, id);
-			};
+		TransactionPool.get().commit(transaction);
+		while (set.next()) {
+			String identifier = set.getString("identifier");
+			Integer id = set.getInt("id");
+			map.put(identifier, id);
+		};
 		return map;
 	}
 	
