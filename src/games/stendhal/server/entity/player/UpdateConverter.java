@@ -266,7 +266,7 @@ public abstract class UpdateConverter {
     	if (object.hasSlot("!buddy")) {
     		for (RPObject buddy : object.getSlot("!buddy")) {
     			for (final String buddyname : buddy) {
-    				if (!"id".equals(buddyname)) {
+    				if (buddyname.startsWith("_")) {
     					boolean online = false;
     					if (buddy.get(buddyname).equals("1")) {
     						online = true;
@@ -275,8 +275,10 @@ public abstract class UpdateConverter {
     					object.put("buddies", buddyname.substring(1), online);
     				}
     			}
+    			buddy.remove("_db_id");
     		}
-    	}
+		}
+		object.remove("buddies", "db_id");
 
 		//port to 0.86: port keymap to feature map, karama_indicator as feature
 		if (object.hasSlot("!features")) {
