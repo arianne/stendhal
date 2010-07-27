@@ -28,7 +28,7 @@ public class ClientGameConfiguration {
 				.getResourceAsStream("game-default.properties");
 			}
 			if (is == null) {
-				throw new FileNotFoundException("Cannot read neither game.properties nor game-default.properties from classpath.");
+				throw new FileNotFoundException("Cannot read either game.properties or game-default.properties from classpath.");
 			}
 			
 			Properties config = new Properties();

@@ -34,7 +34,7 @@ public class Bootstrap {
 	private Properties bootPropOrg;
 
 	/**
-	 * An URLClassLoader with does load its classes first and only delegates
+	 * An URLClassLoader which loads its classes first and only delegates
 	 * missing classes to the parent classloader. (default is the other way
 	 * round)
 	 */
@@ -92,7 +92,7 @@ public class Bootstrap {
 	public void saveBootProp() throws IOException {
 		// only try to save it, if it was changed (so that we do not have to
 		// care about all the things which could go wrong unless an update
-		// was done this time.
+		// was done this time.)
 		if (!bootProp.equals(bootPropOrg)) {
 			final String propFile = jarFolder + "jar.properties";
 			final OutputStream os = new FileOutputStream(propFile);
@@ -161,7 +161,7 @@ public class Bootstrap {
 			jarFiles.add(new File(filename).toURI().toURL());
 		}
 
-		// Create new class loader which the list of .jar-files as classpath
+		// Create new class loader with the list of .jar-files as classpath
 		final URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
 		final ClassLoader loader = new BottomUpOrderClassLoader(urlArray,
 				this.getClass().getClassLoader());
@@ -314,7 +314,7 @@ public class Bootstrap {
 						null,
 						" Sorry an error occurred because of inconsistent code signing.\n"
 						+ " Delete update files so that they are downloaded again after you restart Stendhal?\n"
-						+ " Note: This exception can occure if you include signed jars into a self build client.",
+						+ " Note: This exception can occur if you include signed jars into a self build client.",
 						"Stendhal", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
 				if (res == JOptionPane.YES_OPTION) {
