@@ -73,12 +73,12 @@ public class AchievementDAO {
 		String query = "SELECT identifier, id FROM achievement;";
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		ResultSet set = transaction.query(query, new HashMap<String, Object>());
-		TransactionPool.get().commit(transaction);
 		while (set.next()) {
 			String identifier = set.getString("identifier");
 			Integer id = set.getInt("id");
 			map.put(identifier, id);
 		};
+		TransactionPool.get().commit(transaction);
 		return map;
 	}
 	
