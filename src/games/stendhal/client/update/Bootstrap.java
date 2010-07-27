@@ -308,8 +308,19 @@ public class Bootstrap {
 						className, args));
 			} catch (final SecurityException e) {
 				// partly update
-				System.err.println("Got SecurityException most likely because signed jars files from the official distribution have been included into a self build client."
-						+ e);
+				e.printStackTrace();
+
+				final int res = JOptionPane.showConfirmDialog(
+						null,
+						" Sorry an error occurred because of inconsistent code signing.\n"
+						+ " Delete update files so that they are downloaded again after you restart Stendhal?\n"
+						+ " Note: This exception can occure if you include signed jars into a self build client.",
+						"Stendhal", JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE);
+				if (res == JOptionPane.YES_OPTION) {
+					clearUpdateFiles();
+					System.exit(-1);
+				}
 				startSelfBuild = true;
 			}
 		}
@@ -348,21 +359,14 @@ public class Bootstrap {
 		if (e instanceof OutOfMemoryError) {
 			JOptionPane.showMessageDialog(null,
 					"Sorry, an OutOfMemoryError occurred. Please restart Stendhal.");
-		} else if (e instanceof LinkageError) {
+		} else if (e instanceof LinkageError || e instanceof SecurityException) {
 			final int res = JOptionPane.showConfirmDialog(
 					null,
 					message + " Sorry an error occurred because of an inconsistent update state. Delete update files so that they are downloaded again after you restart Stendhal?",
 					"Stendhal", JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
-				bootProp.remove("load");
-				bootProp.remove("load-0.69");
-				bootProp.remove("load-0.86");
-				try {
-					saveBootProp();
-				} catch (final IOException e1) {
-					JOptionPane.showMessageDialog(null,	"Could not write jar.properties");
-				}
+				clearUpdateFiles();
 			}
 		} else {
 			String errorMessage = stacktraceToString(e);
@@ -372,6 +376,17 @@ public class Bootstrap {
 							+ errorMessage);
 		}
 		System.exit(1);
+	}
+
+	private void clearUpdateFiles() {
+		bootProp.remove("load");
+		bootProp.remove("load-0.69");
+		bootProp.remove("load-0.86");
+		try {
+			saveBootProp();
+		} catch (final IOException e1) {
+			JOptionPane.showMessageDialog(null,	"Could not write jar.properties");
+		}
 	}
 
 	/**
