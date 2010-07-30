@@ -809,15 +809,8 @@ public final class WordList {
 
 					stmt.execute();
 
-					final ResultSet idRes = stmt.getGeneratedKeys();
-					if (idRes.next()) {
-						entry.setId(idRes.getInt(1));
-						++count;
-					} else {
-						logger.error("missing auto-generated ID for word: "
-								+ key);
-					}
-					idRes.close();
+					entry.setId(transaction.getLastInsertId("words", "id"));
+					count++;
 				}
 			}
 		} finally {
