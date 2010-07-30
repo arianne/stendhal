@@ -1,6 +1,6 @@
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.core.events.achievements.Category;
+import games.stendhal.server.core.events.achievements.Achievement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,21 +45,45 @@ public class AchievementDAO {
 	 * @return the id of the stored achievement
 	 * @throws SQLException
 	 */
-	public int saveAchievement(String identifier, String title, Category category, int baseScore) throws SQLException {
+	public int saveAchievement(Achievement achievement) throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		int achievementId = 0;
 		String query = 	"INSERT INTO achievement " +
 						"(identifier, title, category, base_score) VALUES " +
 						"('[identifier]','[title]','[category]', [base_score])";
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("identifier", identifier);
-		parameters.put("title", title);
-		parameters.put("category", category.toString());
-		parameters.put("base_score", baseScore);
+		parameters.put("identifier", achievement.getIdentifier());
+		parameters.put("title", achievement.getTitle());
+		parameters.put("category", achievement.getCategory().toString());
+		parameters.put("base_score", achievement.getBaseScore());
 		transaction.execute(query, parameters);
 		achievementId = transaction.getLastInsertId("achievement", "id");
 		TransactionPool.get().commit(transaction);
 		return achievementId;
+	}
+	
+	/**
+	 * Updates the achievement with the given id
+	 * 
+	 * @param id
+	 * @param achievement
+	 * @throws SQLException 
+	 */
+	public void updateAchievement(Integer id, Achievement achievement) throws SQLException {
+		DBTransaction transaction = TransactionPool.get().beginWork();
+		String query = "UPDATE achievement SET " +
+						"identifier='[identifier]', " +
+						"title='[title]'," +
+						"base_score=[base_score] " +
+						"WHERE id = [id];";
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("identifier", achievement.getIdentifier());
+		parameters.put("title", achievement.getTitle());
+		parameters.put("category", achievement.getCategory().toString());
+		parameters.put("base_score", achievement.getBaseScore());
+		parameters.put("id", id);
+		transaction.execute(query, parameters);
+		TransactionPool.get().commit(transaction);
 	}
 
 	/**

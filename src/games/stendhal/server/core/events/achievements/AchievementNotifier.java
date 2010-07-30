@@ -17,10 +17,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import marauroa.server.db.command.DBCommandQueue;
-import marauroa.server.db.command.ResultHandle;
 import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
@@ -38,8 +36,6 @@ public class AchievementNotifier {
 	private Map<Category, List<Achievement>> achievements;
 	
 	private Map<String, Integer> identifiersToIds;
-	
-	private ResultHandle handle = new ResultHandle();
 	
 	private AchievementNotifier() {
 		achievements = new HashMap<Category, List<Achievement>>();
@@ -63,6 +59,7 @@ public class AchievementNotifier {
 	 * new added achievements are added to the achievements table
 	 */
 	public void initialize() {
+		//read all configured achievements and put them into the categorized map
 		Map<String, Achievement> allAchievements = createAchievements();
 		for(Achievement a : allAchievements.values()) {
 			if(!achievements.containsKey(a.getCategory())) {
@@ -70,19 +67,37 @@ public class AchievementNotifier {
 			}
 			achievements.get(a.getCategory()).add(a);
 		}
-		Set<String> allIdentifiersInDatabase = collectAllIdentifiersFromDatabase();
-		for(String identifier : allIdentifiersInDatabase) {
+		//collect all identifiers from database
+		Map<String, Integer> allIdentifiersInDatabase = collectAllIdentifiersFromDatabase();
+		//update stored data with configured achievements
+		identifiersToIds.putAll(allIdentifiersInDatabase);
+		for(String identifier : allIdentifiersInDatabase.keySet()) {
+			Achievement achievement = allAchievements.get(identifier);
+			try {
+				if(achievement != null) {
+					DAORegister.get().get(AchievementDAO.class).updateAchievement(allIdentifiersInDatabase.get(identifier), achievement);
+				} else {
+					//TODO delete achievement id from database and reached achievements?
+				}
+			} catch (SQLException e) {
+				logger.error("Error while updating exisiting achievement "+achievement.getTitle(), e);
+			}
+		}
+		// remove already stored achievements before saving them
+		for(String identifier : allIdentifiersInDatabase.keySet()) {
 			allAchievements.remove(identifier);
 		}
+		//save new achievements and add their identifier and id to the identifierToId map
 		for (Achievement a : allAchievements.values()) {
 			Integer id;
 			try {
-				id = DAORegister.get().get(AchievementDAO.class).saveAchievement(a.getIdentifier(), a.getTitle(), a.getCategory(), a.getBaseScore());
+				id = DAORegister.get().get(AchievementDAO.class).saveAchievement(a);
 				identifiersToIds.put(a.getIdentifier(), id);
 			} catch (SQLException e) {
 				logger.error("Error while saving new achievement "+a.getTitle(), e);
 			}
 		}
+		// register the login notifier that checks for each player the reached achievements on login
 		SingletonRepository.getLoginNotifier().addListener(new ReadAchievementsOnLogin());
 	}
 
@@ -91,15 +106,14 @@ public class AchievementNotifier {
 	 * 
 	 * @return a set of all identifier strings
 	 */
-	private Set<String> collectAllIdentifiersFromDatabase() {
+	private Map<String, Integer> collectAllIdentifiersFromDatabase() {
 		Map<String, Integer> mapFromDB = new HashMap<String, Integer>();
 		try {
 			mapFromDB = DAORegister.get().get(AchievementDAO.class).loadIdentifierIdPairs();
 		} catch (SQLException e) {
 			logger.error("Error while loading Identifier to id map for achievements.", e);
 		}
-		identifiersToIds.putAll(mapFromDB);
-		return mapFromDB.keySet();
+		return mapFromDB;
 	}
 
 	/**
