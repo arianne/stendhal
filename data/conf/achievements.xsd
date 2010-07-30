@@ -12,15 +12,21 @@
 	</complexType>
 	
 	<complexType name="achievement-type">
+		<annotation>
+			<documentation>
+				Represents a configured achievement with following parameters:
+				- identifier = unique string to identify an achievement in the database independent from its id
+				- title = a title to name that achievement a nice way
+				- category = to structure the kinds of achievements
+				- condition = what needs to be fulfilled to get this achievement? (Usage like portal conditions in zones)
+			</documentation>
+		</annotation>
 		<sequence>
-			<element name="condition" type="Q3:condition-type"/>
+			<element name="parameter" type="Q3:parameter-type" minOccurs="1" maxOccurs="4" />
 		</sequence>
-		<attribute name="identifier" type="string"/>
-		<attribute name="title" type="string"/>
-		<attribute name="category" type="string"/>
 	</complexType>
 	
-	<complexType name="condition-type">
+	<complexType name="parameter-type">
 		<simpleContent>
 			<extension base="string">
 				<attribute name="name" type="string"></attribute>

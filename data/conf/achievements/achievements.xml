@@ -2,7 +2,13 @@
 <achievements xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../achievements.xsd ">
     <achievement>
-    	<condition>
-    	</condition>
+    	<parameter name="identifier">
+    	</parameter>
+    	<parameter name="title">
+    	</parameter>
+    	<parameter name="category">
+    	</parameter>
+    	<parameter name="condition">
+    	</parameter>
     </achievement>
 </achievements>
