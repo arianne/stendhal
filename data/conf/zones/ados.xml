@@ -975,7 +975,7 @@ in roaches.
       	<attribute name="class">book_blue</attribute>
     </entity>
 
-    <entity x="4" y="2">
+    <entity x="4" y="6">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
        <attribute name="text">You glance at the statue. It shows a beautiful mermaid, sitting on a rock.</attribute>
        <attribute name="class">transparent</attribute>
