@@ -251,7 +251,7 @@ public class AchievementNotifier {
 													Category.FIGHTING, "Kill 15 rats", Achievement.EASY_BASE_SCORE,
 													new PlayerHasKilledNumberOfCreaturesCondition("rat", 15));
 		Achievement exterminator = new Achievement("fight.general.exterminator", "Exterminator", 
-													Category.FIGHTING, "Kill 10 rats of each kind", Achievement.EASY_BASE_SCORE,
+													Category.FIGHTING, "Kill 10 rats of each kind", Achievement.MEDIUM_BASE_SCORE,
 													new PlayerHasKilledNumberOfCreaturesCondition(10, "rat", "caverat", "venomrat", "zombie rat", "venom rat", "giantrat", "ratman", "ratwoman", "archrat"));
 		fightingAchievements.add(killRats);
 		fightingAchievements.add(exterminator);
@@ -272,14 +272,30 @@ public class AchievementNotifier {
 												Category.EXPERIENCE, "Reach level 50", Achievement.EASY_BASE_SCORE,
 												new LevelGreaterThanCondition(49));
 		Achievement newbie100 = new Achievement("xp.lvl.100", "Apprentice", 
-												Category.EXPERIENCE, "Reach level 100", Achievement.MEDIUM_BASE_SCORE, 
+												Category.EXPERIENCE, "Reach level 100", Achievement.EASY_BASE_SCORE, 
 												new LevelGreaterThanCondition(99));
-		Achievement newbie597 = new Achievement("xp.lvl.597", "Stendhal Master", 
+		Achievement newbie200 = new Achievement("xp.lvl.200", "Adventurer", 
+												Category.EXPERIENCE, "Reach level 200", Achievement.MEDIUM_BASE_SCORE, 
+												new LevelGreaterThanCondition(199));
+		Achievement newbie300 = new Achievement("xp.lvl.300", "Experienced Adventurer", 
+												Category.EXPERIENCE, "Reach level 100", Achievement.MEDIUM_BASE_SCORE, 
+												new LevelGreaterThanCondition(299));
+		Achievement newbie400 = new Achievement("xp.lvl.400", "Master Adventurer", 
+												Category.EXPERIENCE, "Reach level 400", Achievement.MEDIUM_BASE_SCORE, 
+												new LevelGreaterThanCondition(399));
+		Achievement newbie500 = new Achievement("xp.lvl.500", "Stendhal Master", 
+												Category.EXPERIENCE, "Reach level 500", Achievement.HARD_BASE_SCORE, 
+												new LevelGreaterThanCondition(499));
+		Achievement newbie597 = new Achievement("xp.lvl.597", "Stendhal High Master", 
 												Category.EXPERIENCE, "Reach level 597", Achievement.HARD_BASE_SCORE, 
 												new LevelGreaterThanCondition(596));
 		xpAchievements.add(newbie);
 		xpAchievements.add(newbie50);
 		xpAchievements.add(newbie100);
+		xpAchievements.add(newbie200);
+		xpAchievements.add(newbie300);
+		xpAchievements.add(newbie400);
+		xpAchievements.add(newbie500);
 		xpAchievements.add(newbie597);
 		return xpAchievements;
 	}
