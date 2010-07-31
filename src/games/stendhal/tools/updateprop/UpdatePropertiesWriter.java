@@ -28,6 +28,9 @@ public class UpdatePropertiesWriter {
 		this.keys = new TreeSet<String>((Set) prop.keySet());
 	}
 
+	/**
+	 * writes the update properties.
+	 */
 	public void process() {
 		header();
 		status();
@@ -37,6 +40,11 @@ public class UpdatePropertiesWriter {
 		fileSize();
 	}
 
+	/**
+	 * writes all keys starting with the specified prefix in alphabetical order.
+	 *
+	 * @param prefix prefix of keys
+	 */
 	private void writeKeysWithPrefix(String prefix) {
 		for (String key : keys) {
 			if (key.startsWith(prefix)) {
@@ -46,24 +54,48 @@ public class UpdatePropertiesWriter {
 		ps.println();
 	}
 
+	/**
+	 * writes all keys starting with the specified prefix and not starting with the exclude prefix
+	 * in alphabetical order.
+	 *
+	 * @param prefix prefix of keys
+	 * @param exclude exclude prefix of keys
+	 */
+	private void writeKeysWithPrefix(String prefix, String exclude) {
+		for (String key : keys) {
+			if (key.startsWith(prefix) && !key.startsWith(exclude)) {
+				ps.println(key + "=" + prop.getProperty(key));
+			}
+		}
+		ps.println();
+	}
+
+	/**
+	 * writes the header.
+	 */
 	private void header() {
 		ps.println("# This file contains information required for automatic updates");
 		ps.println();
 	}
 
+	/**
+	 * writes the status help
+	 */
 	private void status() {
 		ps.println("# Status of this version:");
 		ps.println("#     OUTDATED: sorry, you have to redownload");
 		ps.println("#     UPDATE_NEEDED:   there is an update available");
 		ps.println("#     CURRENT:  good, we don't have to do anything at the moment");
 
-		writeKeysWithPrefix("version.");
-		// TODO: exclude "version.destination"
+		writeKeysWithPrefix("version.", "version.destination");
 	}
 
+	/**
+	 * 
+	 */
 	private void destination() {
 		ps.println("# new version after update to calculate multiple updates in a row");
-		writeKeysWithPrefix("version.destination");
+		writeKeysWithPrefix("version.destination.");
 	}
 	
 
@@ -80,6 +112,5 @@ public class UpdatePropertiesWriter {
 	private void fileSize() {
 		ps.println("# size of complete files");
 		writeKeysWithPrefix("file-size.");
-		// TODO: Sort this in a nicer way
 	}
 }
