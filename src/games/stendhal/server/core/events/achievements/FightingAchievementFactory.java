@@ -5,7 +5,11 @@ import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreatur
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * Factory for fighting achievements
+ *  
+ * @author madmetzger
+ */
 public class FightingAchievementFactory extends AchievementFactory {
 	
 	@Override

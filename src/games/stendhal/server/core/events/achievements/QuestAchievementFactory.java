@@ -5,14 +5,13 @@ import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * Factory for quest achievements
+ *  
+ * @author madmetzger
+ */
 public class QuestAchievementFactory extends AchievementFactory {
 	
-	/**
-	 * creates a collection of all available quest achievements
-	 * 
-	 * @return all available quest achievements in a collection
-	 */
 	@Override
 	public Collection<Achievement> createAchievements() {
 		List<Achievement> questAchievements = new LinkedList<Achievement>();
