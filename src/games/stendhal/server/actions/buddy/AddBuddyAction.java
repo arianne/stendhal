@@ -10,6 +10,7 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.CheckCharacterExistsCommand;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -45,7 +46,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 		
 		DBCommand command = new CheckCharacterExistsCommand(player, who);
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
-		TurnNotifier.get().notifyInTurns(0, this);
+		TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 	}
 	
 	/**
@@ -57,7 +58,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 		CheckCharacterExistsCommand checkcommand = DBCommandQueue.get().getOneResult(CheckCharacterExistsCommand.class, handle);
 		
 		if (checkcommand == null) {
-			TurnNotifier.get().notifyInTurns(0, this);
+			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 			return;
 		}
 
