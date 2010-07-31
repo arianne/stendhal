@@ -18,7 +18,6 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.gui.wt.core.WtPanel;
-import games.stendhal.client.listener.PositionChangeListener;
 
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
@@ -36,8 +35,7 @@ import org.apache.log4j.Logger;
  * 
  * @author mtotz
  */
-public class EntityContainer extends WtPanel implements PositionChangeListener, 
-	EntityChangeListener {
+public class EntityContainer extends WtPanel implements EntityChangeListener {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(EntityContainer.class);
@@ -180,7 +178,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener,
 			// monster and a fast double
 			// click on another monster
 
-			if (user.getID().equals(parent.getID())) {
+			if (parent.isUser()) {
 				// We don't want to close our own stuff
 				return;
 			}
