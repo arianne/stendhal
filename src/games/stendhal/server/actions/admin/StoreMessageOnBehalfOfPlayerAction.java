@@ -7,6 +7,7 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 
@@ -36,7 +37,7 @@ public class StoreMessageOnBehalfOfPlayerAction extends AdministrationAction imp
 			
 			DBCommand command = new StoreMessageCommand(action.get("source"), action.get(TARGET), message, "P");
 			DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
-			TurnNotifier.get().notifyInTurns(0, this);
+			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 		}
 	}
 	
@@ -49,7 +50,7 @@ public class StoreMessageOnBehalfOfPlayerAction extends AdministrationAction imp
 		StoreMessageCommand checkcommand = DBCommandQueue.get().getOneResult(StoreMessageCommand.class, handle);
 		
 		if (checkcommand == null) {
-			TurnNotifier.get().notifyInTurns(0, this);
+			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 			return;
 		}
 

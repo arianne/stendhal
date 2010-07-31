@@ -4,6 +4,7 @@ import games.stendhal.server.core.engine.ChatMessage;
 import games.stendhal.server.core.engine.dbcommand.GetPostmanMessagesCommand;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class ReadMessagesOnLogin implements LoginListener, TurnListener {
 		DBCommand command = new GetPostmanMessagesCommand(player);
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
 		// wait one turn so that the messages come after any login messages
-		TurnNotifier.get().notifyInTurns(1, this);
+		TurnNotifier.get().notifyInTurns(1, new TurnListenerDecorator(this));
 	}
 	
 	/**
@@ -46,7 +47,7 @@ public class ReadMessagesOnLogin implements LoginListener, TurnListener {
 		GetPostmanMessagesCommand command = DBCommandQueue.get().getOneResult(GetPostmanMessagesCommand.class, handle);
 		
 		if (command == null) {
-			TurnNotifier.get().notifyInTurns(0, this);
+			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 			return;
 		}
 

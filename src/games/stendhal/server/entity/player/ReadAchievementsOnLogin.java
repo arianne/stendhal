@@ -4,6 +4,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.ReadAchievementsForPlayerCommand;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 
 import java.util.Set;
@@ -19,13 +20,13 @@ public class ReadAchievementsOnLogin implements LoginListener, TurnListener {
 	public void onLoggedIn(Player player) {
 		DBCommand command = new ReadAchievementsForPlayerCommand(player);
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
-		TurnNotifier.get().notifyInTurns(1, this);
+		TurnNotifier.get().notifyInTurns(1, new TurnListenerDecorator(this));
 	}
 
 	public void onTurnReached(int currentTurn) {
 		ReadAchievementsForPlayerCommand command = DBCommandQueue.get().getOneResult(ReadAchievementsForPlayerCommand.class, handle);
 		if (command == null) {
-			TurnNotifier.get().notifyInTurns(0, this);
+			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 			return;
 		}
 		Player p = command.getPlayer();
