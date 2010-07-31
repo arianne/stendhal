@@ -40,6 +40,9 @@ public class QuestAchievementFactory extends AchievementFactory {
 		//weekly item quest achievement
 		questAchievements.add(createAchievement("quest.special.wiq.5", "Archaeologist", "Finish weekly item quest 5 times", 
 												Achievement.HARD_BASE_SCORE, new QuestStateGreaterThanCondition("weekly_item", 2, 4)));
+		//elf princess quest achievement
+		questAchievements.add(createAchievement("quest.special.rhosyd.25", "Casanova", "Finish elf princess quest 25 times", 
+												Achievement.MEDIUM_BASE_SCORE, new QuestStateGreaterThanCondition("elf_princess", 2, 24)));
 		return questAchievements;
 	}
 
