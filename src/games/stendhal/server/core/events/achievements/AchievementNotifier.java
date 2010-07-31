@@ -4,7 +4,6 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.db.AchievementDAO;
 import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementCommand;
-import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
 
@@ -241,7 +240,7 @@ public class AchievementNotifier {
 	 */
 	private Map<String, Achievement> createAchievements() {
 		Map<String, Achievement> achievementMap = new HashMap<String, Achievement>();
-		for(Achievement a : createExperienceAchievements()) {
+		for(Achievement a : new ExperienceAchievementFactory().createAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		for(Achievement a : new FightingAchievementFactory().createAchievements()) {
@@ -253,46 +252,4 @@ public class AchievementNotifier {
 		return achievementMap;
 	}
 
-	/**
-	 * creates a collection of all experience related achievements
-	 * 
-	 * @return
-	 */
-	private Collection<Achievement> createExperienceAchievements() {
-		List<Achievement> xpAchievements = new LinkedList<Achievement>();
-		Achievement newbie = new Achievement("xp.lvl.10", "Greenhorn", 
-												Category.EXPERIENCE, "Reach level 10", Achievement.EASY_BASE_SCORE,
-												new LevelGreaterThanCondition(9));
-		Achievement newbie50 = new Achievement("xp.lvl.50", "Novice", 
-												Category.EXPERIENCE, "Reach level 50", Achievement.EASY_BASE_SCORE,
-												new LevelGreaterThanCondition(49));
-		Achievement newbie100 = new Achievement("xp.lvl.100", "Apprentice", 
-												Category.EXPERIENCE, "Reach level 100", Achievement.EASY_BASE_SCORE, 
-												new LevelGreaterThanCondition(99));
-		Achievement newbie200 = new Achievement("xp.lvl.200", "Adventurer", 
-												Category.EXPERIENCE, "Reach level 200", Achievement.MEDIUM_BASE_SCORE, 
-												new LevelGreaterThanCondition(199));
-		Achievement newbie300 = new Achievement("xp.lvl.300", "Experienced Adventurer", 
-												Category.EXPERIENCE, "Reach level 100", Achievement.MEDIUM_BASE_SCORE, 
-												new LevelGreaterThanCondition(299));
-		Achievement newbie400 = new Achievement("xp.lvl.400", "Master Adventurer", 
-												Category.EXPERIENCE, "Reach level 400", Achievement.MEDIUM_BASE_SCORE, 
-												new LevelGreaterThanCondition(399));
-		Achievement newbie500 = new Achievement("xp.lvl.500", "Stendhal Master", 
-												Category.EXPERIENCE, "Reach level 500", Achievement.HARD_BASE_SCORE, 
-												new LevelGreaterThanCondition(499));
-		Achievement newbie597 = new Achievement("xp.lvl.597", "Stendhal High Master", 
-												Category.EXPERIENCE, "Reach level 597", Achievement.HARD_BASE_SCORE, 
-												new LevelGreaterThanCondition(596));
-		xpAchievements.add(newbie);
-		xpAchievements.add(newbie50);
-		xpAchievements.add(newbie100);
-		xpAchievements.add(newbie200);
-		xpAchievements.add(newbie300);
-		xpAchievements.add(newbie400);
-		xpAchievements.add(newbie500);
-		xpAchievements.add(newbie597);
-		return xpAchievements;
-	}
-	
 }
