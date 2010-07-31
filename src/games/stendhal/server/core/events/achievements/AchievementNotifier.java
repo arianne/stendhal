@@ -5,7 +5,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.db.AchievementDAO;
 import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementCommand;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreaturesCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
 
@@ -245,31 +244,13 @@ public class AchievementNotifier {
 		for(Achievement a : createExperienceAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
-		for(Achievement a : createFightingAchievements()) {
+		for(Achievement a : new FightingAchievementFactory().createAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		for(Achievement a : new QuestAchievementFactory().createAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		return achievementMap;
-	}
-
-	/**
-	 * creates a collection of all available fighting achievements
-	 * 
-	 * @return
-	 */
-	private Collection<Achievement> createFightingAchievements() {
-		List<Achievement> fightingAchievements = new LinkedList<Achievement>();
-		Achievement killRats = new Achievement("fight.general.rats", "Rat Hunter", 
-													Category.FIGHTING, "Kill 15 rats", Achievement.EASY_BASE_SCORE,
-													new PlayerHasKilledNumberOfCreaturesCondition("rat", 15));
-		Achievement exterminator = new Achievement("fight.general.exterminator", "Exterminator", 
-													Category.FIGHTING, "Kill 10 rats of each kind", Achievement.MEDIUM_BASE_SCORE,
-													new PlayerHasKilledNumberOfCreaturesCondition(10, "rat", "caverat", "venomrat", "zombie rat", "venom rat", "giantrat", "ratman", "ratwoman", "archrat"));
-		fightingAchievements.add(killRats);
-		fightingAchievements.add(exterminator);
-		return fightingAchievements;
 	}
 
 	/**
