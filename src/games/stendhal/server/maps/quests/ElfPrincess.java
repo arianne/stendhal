@@ -65,6 +65,7 @@ import java.util.Arrays;
  */
 public class ElfPrincess extends AbstractQuest {
 
+	private static final int DELAY = 5;
 	private static final String QUEST_SLOT = "elf_princess";
 
 
@@ -90,7 +91,7 @@ public class ElfPrincess extends AbstractQuest {
 		
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "flower_brought"), new TimePassedCondition(QUEST_SLOT, 5, 1)),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "flower_brought"), new TimePassedCondition(QUEST_SLOT, DELAY, 1)),
 			ConversationStates.QUEST_OFFERED,
 			"The last Rhosyd you brought me was so lovely. Will you find me another from Rose Leigh?",
 			null);
@@ -98,10 +99,10 @@ public class ElfPrincess extends AbstractQuest {
 		//last brought flower is less than 5 minutes ago
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "flower_brought"), new NotCondition(new TimePassedCondition(QUEST_SLOT, 5, 1))),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "flower_brought"), new NotCondition(new TimePassedCondition(QUEST_SLOT, DELAY, 1))),
 				ConversationStates.QUEST_OFFERED,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT,"I need to put the lovely flower into my collection before you can bring me a new one. Please check back in", 5, 1));
+				new SayTimeRemainingAction(QUEST_SLOT,"I need to put the lovely flower into my collection before you can bring me a new one. Please check back in", DELAY, 1));
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
