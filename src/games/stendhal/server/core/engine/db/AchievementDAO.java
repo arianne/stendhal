@@ -49,12 +49,13 @@ public class AchievementDAO {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		int achievementId = 0;
 		String query = 	"INSERT INTO achievement " +
-						"(identifier, title, category, base_score) VALUES " +
-						"('[identifier]','[title]','[category]', [base_score])";
+						"(identifier, title, category, description, base_score) VALUES " +
+						"('[identifier]','[title]','[category]', '[description]' [base_score])";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("identifier", achievement.getIdentifier());
 		parameters.put("title", achievement.getTitle());
 		parameters.put("category", achievement.getCategory().toString());
+		parameters.put("description", achievement.getDescription());
 		parameters.put("base_score", achievement.getBaseScore());
 		transaction.execute(query, parameters);
 		achievementId = transaction.getLastInsertId("achievement", "id");
@@ -73,13 +74,16 @@ public class AchievementDAO {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		String query = "UPDATE achievement SET " +
 						"identifier='[identifier]', " +
-						"title='[title]'," +
+						"title='[title]', " +
+						"category = '[category]', " +
+						"description = '[description]', " +
 						"base_score=[base_score] " +
 						"WHERE id = [id];";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("identifier", achievement.getIdentifier());
 		parameters.put("title", achievement.getTitle());
 		parameters.put("category", achievement.getCategory().toString());
+		parameters.put("description", achievement.getDescription());
 		parameters.put("base_score", achievement.getBaseScore());
 		parameters.put("id", id);
 		transaction.execute(query, parameters);
