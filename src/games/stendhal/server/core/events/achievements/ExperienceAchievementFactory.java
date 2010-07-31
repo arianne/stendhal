@@ -5,7 +5,11 @@ import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * Factory for experience achievements
+ *  
+ * @author madmetzger
+ */
 public class ExperienceAchievementFactory extends AchievementFactory {
 
 	@Override
