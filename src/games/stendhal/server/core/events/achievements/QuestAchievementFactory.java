@@ -1,5 +1,6 @@
 package games.stendhal.server.core.events.achievements;
 
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 
 import java.util.Collection;
@@ -43,6 +44,9 @@ public class QuestAchievementFactory extends AchievementFactory {
 		//elf princess quest achievement
 		questAchievements.add(createAchievement("quest.special.rhosyd.25", "Faiumoni's Casanova", "Finish elf princess quest 25 times", 
 												Achievement.MEDIUM_BASE_SCORE, new QuestStateGreaterThanCondition("elf_princess", 2, 24)));
+		//ultimate collector quest achievement
+		questAchievements.add(createAchievement("quest.special.collector", "Ultimate Collector", "Finish ultimate collector quest", 
+												Achievement.HARD_BASE_SCORE, new QuestCompletedCondition("ultimate_collector")));
 		return questAchievements;
 	}
 
