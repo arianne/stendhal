@@ -50,7 +50,7 @@ public class AchievementDAO {
 		int achievementId = 0;
 		String query = 	"INSERT INTO achievement " +
 						"(identifier, title, category, description, base_score) VALUES " +
-						"('[identifier]','[title]','[category]', '[description]' [base_score])";
+						"('[identifier]','[title]','[category]', '[description]', [base_score])";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("identifier", achievement.getIdentifier());
 		parameters.put("title", achievement.getTitle());
