@@ -345,7 +345,7 @@ public class User extends Player {
 	 * @return true
 	 */
 	@Override
-	boolean isUser() {
+	public boolean isUser() {
 		return true;
 	}
 

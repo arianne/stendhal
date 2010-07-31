@@ -135,6 +135,10 @@ public class Gate implements IEntity {
 	public boolean isOnGround() {
 		return true;
 	}
+	
+	public boolean isUser() {
+		return false;
+	}
 
 	public void release() {
 		// do nothing

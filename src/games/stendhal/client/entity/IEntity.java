@@ -148,6 +148,13 @@ public interface IEntity {
 	 * @return <code>true</code> if the entity is on the ground.
 	 */
 	boolean isOnGround();
+	
+	/**
+	 * Check if the entity is the user.
+	 * 
+	 * @return <code>true</code> if the entity is the user
+	 */
+	boolean isUser();
 
 	/**
 	 * Get the resistance this has on other entities (0-100).

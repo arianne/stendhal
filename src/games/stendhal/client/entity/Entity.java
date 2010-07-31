@@ -135,9 +135,15 @@ public class Entity implements RPObjectChangeListener, IEntity {
 			l.entityChanged(this, property);
 		}
 	}
-	boolean isUser() {
+	
+	/*
+	 * (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#isUser()
+	 */
+	public boolean isUser() {
 		return false;
 	}
+	
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#getArea()
 	 */
