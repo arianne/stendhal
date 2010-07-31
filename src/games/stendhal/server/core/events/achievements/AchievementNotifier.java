@@ -74,11 +74,12 @@ public class AchievementNotifier {
 		for(String identifier : allIdentifiersInDatabase.keySet()) {
 			Achievement achievement = allAchievements.get(identifier);
 			try {
+				// this happens if an achievement is not configured anymore but already in the database
+				// in that case we should keep it as players could have reached it
+				// useful to stop checking for a certain achievement but keep results
 				if(achievement != null) {
 					DAORegister.get().get(AchievementDAO.class).updateAchievement(allIdentifiersInDatabase.get(identifier), achievement);
-				} else {
-					//TODO delete achievement id from database and reached achievements?
-				}
+				} 
 			} catch (SQLException e) {
 				logger.error("Error while updating exisiting achievement "+achievement.getTitle(), e);
 			}
