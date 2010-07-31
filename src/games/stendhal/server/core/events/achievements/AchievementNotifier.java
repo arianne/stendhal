@@ -6,7 +6,6 @@ import games.stendhal.server.core.engine.db.AchievementDAO;
 import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementCommand;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreaturesCondition;
-import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
 
@@ -249,7 +248,7 @@ public class AchievementNotifier {
 		for(Achievement a : createFightingAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
-		for(Achievement a : createQuestAchievements()) {
+		for(Achievement a : new QuestAchievementFactory().createAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		return achievementMap;
@@ -315,50 +314,4 @@ public class AchievementNotifier {
 		return xpAchievements;
 	}
 	
-	/**
-	 * creates a collection of all available quest achievements
-	 * 
-	 * @return
-	 */
-	private Collection<Achievement> createQuestAchievements() {
-		List<Achievement> questAchievements = new LinkedList<Achievement>();
-		//daily monster quest achievements
-		questAchievements.add(new Achievement("quest.special.dmq.10", "Semos' Protector",
-												Category.QUEST,  "Finish daily monster quest 10 times", Achievement.EASY_BASE_SCORE,
-												new QuestStateGreaterThanCondition("daily", 2, 9)));
-		questAchievements.add(new Achievement("quest.special.dmq.50", "Semos' Guardian",
-												Category.QUEST,  "Finish daily monster quest 50 times", Achievement.EASY_BASE_SCORE,
-												new QuestStateGreaterThanCondition("daily", 2, 49)));
-		questAchievements.add(new Achievement("quest.special.dmq.100", "Semos' Hero",
-												Category.QUEST,  "Finish daily monster quest 100 times", Achievement.MEDIUM_BASE_SCORE,
-												new QuestStateGreaterThanCondition("daily", 2, 99)));
-		questAchievements.add(new Achievement("quest.special.dmq.250", "Semos' Champion",
-												Category.QUEST,  "Finish daily monster quest 250 times", Achievement.MEDIUM_BASE_SCORE,
-												new QuestStateGreaterThanCondition("daily", 2, 249)));
-		questAchievements.add(new Achievement("quest.special.dmq.500", "Semos' Vanquisher",
-												Category.QUEST,  "Finish daily monster quest 500 times", Achievement.HARD_BASE_SCORE,
-												new QuestStateGreaterThanCondition("daily", 2, 499)));
-		//daily item quest achievements
-		questAchievements.add(new Achievement("quest.special.diq.10", "Ados' Supporter",
-												Category.QUEST,  "Finish daily item quest 10 times", Achievement.EASY_BASE_SCORE,
-												new QuestStateGreaterThanCondition("daily_item", 2, 9)));
-		questAchievements.add(new Achievement("quest.special.diq.50", "Ados' Provider",
-												Category.QUEST,  "Finish daily item quest 50 times", Achievement.EASY_BASE_SCORE,
-												new QuestStateGreaterThanCondition("daily_item", 2, 49)));
-		questAchievements.add(new Achievement("quest.special.diq.100", "Ados' Supplier",
-												Category.QUEST,  "Finish daily item quest 100 times", Achievement.MEDIUM_BASE_SCORE,
-												new QuestStateGreaterThanCondition("daily_item", 2, 99)));
-		questAchievements.add(new Achievement("quest.special.diq.250", "Ados' Stockpiler",
-												Category.QUEST,  "Finish daily item quest 250 times", Achievement.MEDIUM_BASE_SCORE,
-												new QuestStateGreaterThanCondition("daily_item", 2, 249)));
-		questAchievements.add(new Achievement("quest.special.diq.50", "Ados' Hoarder",
-												Category.QUEST,  "Finish daily item quest 50 times", Achievement.HARD_BASE_SCORE,
-												new QuestStateGreaterThanCondition("daily_item", 2, 499)));
-		//weekly item quest achievement
-		questAchievements.add(new Achievement("quest.special.wiq.5", "Archaeologist",
-												Category.QUEST,  "Finish weekly item quest 5 times", Achievement.HARD_BASE_SCORE,
-												new QuestStateGreaterThanCondition("weekly_item", 2, 4)));
-		return questAchievements;
-	}
-
 }
