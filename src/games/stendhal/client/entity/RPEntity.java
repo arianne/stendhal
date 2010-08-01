@@ -988,10 +988,6 @@ public abstract class RPEntity extends ActiveEntity {
 			def = changes.getInt("def");
 		}
 
-		if (changes.has("xp")) {
-			xp = changes.getInt("xp");
-		}
-
 		if (changes.has("level")) {
 			level = changes.getInt("level");
 		}
@@ -1029,29 +1025,36 @@ public abstract class RPEntity extends ActiveEntity {
 			guild = changes.get("guild");
 		}
 
-		if (changes.has("xp") && object.has("xp")) {
-			if (User.squaredDistanceTo(x, y) < 15 * 15) {
-				final int amount = (changes.getInt("xp") - object.getInt("xp"));
-				if (amount > 0) {
-					addTextIndicator("+" + amount,
-							NotificationType.SIGNIFICANT_POSITIVE);
-					ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-							getTitle()
-									+ " earns "
-									+ Grammar.quantityplnoun(amount,
-											"experience point") + ".",
-							NotificationType.SIGNIFICANT_POSITIVE));
-				} else if (amount < 0) {
-					addTextIndicator("" + amount,
-							NotificationType.SIGNIFICANT_NEGATIVE);
-					ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-							getTitle()
-									+ " loses "
-									+ Grammar.quantityplnoun(-amount,
-											"experience point") + ".",
-							NotificationType.SIGNIFICANT_NEGATIVE));
+
+		if (changes.has("xp")) {
+			int newXp = changes.getInt("xp"); 
+			
+			if (object.has("xp")) {
+				if (User.squaredDistanceTo(x, y) < 15 * 15) {
+					final int amount = newXp - xp;
+					if (amount > 0) {
+						addTextIndicator("+" + amount,
+								NotificationType.SIGNIFICANT_POSITIVE);
+						ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
+								getTitle()
+								+ " earns "
+								+ Grammar.quantityplnoun(amount,
+								"experience point") + ".",
+								NotificationType.SIGNIFICANT_POSITIVE));
+					} else if (amount < 0) {
+						addTextIndicator("" + amount,
+								NotificationType.SIGNIFICANT_NEGATIVE);
+						ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
+								getTitle()
+								+ " loses "
+								+ Grammar.quantityplnoun(-amount,
+								"experience point") + ".",
+								NotificationType.SIGNIFICANT_NEGATIVE));
+					}
 				}
 			}
+			
+			xp = newXp;
 		}
 
 		if (changes.has("level") && object.has("level")) {
