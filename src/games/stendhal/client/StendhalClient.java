@@ -158,7 +158,7 @@ public class StendhalClient extends ClientFramework {
 	 * @return <code>true</code> if in a batch update.
 	 */
 	public boolean isInBatchUpdate() {
-		return batchUpdate;
+		return batchUpdate || contentToLoad > 0;
 	}
 
 	/**
