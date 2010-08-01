@@ -452,6 +452,20 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	}
 	
 	@Override
+	public void paintImmediately(int x, int y, int w, int h) {
+		/*
+		 * Try to keep the old screen while the user is switching maps.
+		 * 
+		 * NOTE: Relies on the repaint() requests to eventually come to this,
+		 * so if swing internals change some time in the future, a new solution
+		 * may be needed.
+		 */
+		if (!StendhalClient.get().isInBatchUpdate()) {
+			super.paintImmediately(x, y, w, h);
+		}
+	}
+	
+	@Override
 	protected void paintComponent(final Graphics g) {
 		Collections.sort(views, entityViewComparator);
 		Graphics2D g2d = (Graphics2D) g;

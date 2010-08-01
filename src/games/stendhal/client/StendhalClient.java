@@ -95,7 +95,7 @@ public class StendhalClient extends ClientFramework {
 	/**
 	 * Whether the client is in a batch update.
 	 */
-	private boolean batchUpdate;
+	private volatile boolean batchUpdate;
 
 	private final StendhalPerceptionListener stendhalPerceptionListener;
 
