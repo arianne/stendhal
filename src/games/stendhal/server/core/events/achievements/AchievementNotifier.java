@@ -154,11 +154,14 @@ public class AchievementNotifier {
 			toCheck.addAll(list);
 		}
 		List<Achievement> reached = checkAchievements(player, toCheck);
-		StringBuilder sb = new StringBuilder();
-		sb.append("You have reached ");
-		sb.append(Integer.valueOf(reached.size()));
-		sb.append(" new achievements. Please check #http://stendhalgame.org for details.");
-		player.sendPrivateText(sb.toString());
+		// only send notice if actually a new added achievement was reached by doing nothing
+		if(!reached.isEmpty()) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("You have reached ");
+			sb.append(Integer.valueOf(reached.size()));
+			sb.append(" new achievements. Please check #http://stendhalgame.org for details.");
+			player.sendPrivateText(sb.toString());
+		}
 	}
 
 	/**
