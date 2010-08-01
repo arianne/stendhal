@@ -20,8 +20,8 @@ import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import marauroa.common.net.InputSerializer;
 
@@ -86,10 +86,14 @@ public class StaticGameLayers {
 	private boolean isValid;
 
 	public StaticGameLayers() {
-		collisions = new HashMap<String, CollisionDetection>();
-		protections = new HashMap<String, CollisionDetection>();	
-		layers = new HashMap<String, LayerRenderer>();
-		tilesets = new HashMap<String, TileStore>();
+		/*
+		 * These can be accesses from the EDT when drawing, or due to user
+		 * interaction.
+		 */
+		collisions = new ConcurrentHashMap<String, CollisionDetection>();
+		protections = new ConcurrentHashMap<String, CollisionDetection>();
+		layers = new ConcurrentHashMap<String, LayerRenderer>();
+		tilesets = new ConcurrentHashMap<String, TileStore>();
 
 		height = 0.0;
 		width = 0.0;
@@ -253,7 +257,7 @@ public class StaticGameLayers {
 		 * Set protection map
 		 */
 		protection = protections.get(area);
-		
+
 		/*
 		 * Get maximum layer size. Assign tileset to layers.
 		 */
