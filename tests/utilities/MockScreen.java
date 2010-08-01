@@ -124,7 +124,7 @@ public class MockScreen implements IGameScreen {
 	public void positionChanged(final double x, final double y) {
 	}
 
-	public void removeAll() {
+	public void removeAllObjects() {
 	}
 
 	public void removeEntity(final IEntity entity) {

@@ -25,9 +25,7 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.NotificationType;
 
-import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -35,26 +33,22 @@ import java.awt.Rectangle;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.geom.Point2D;
-import java.awt.image.BufferStrategy;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
+import javax.swing.JComponent;
+
 import org.apache.log4j.Logger;
 
 /**
  * The game screen. This manages and renders the visual elements of the game.
  */
-/*
- * In principle swing has a nice builtin double buffering. In practice it 
- * can not be used for anything but trivial cases, so using Canvas instead
- */
-public class GameScreen implements PositionChangeListener, IGameScreen {
+public class GameScreen extends JComponent implements PositionChangeListener, IGameScreen {
 	private static Logger logger = Logger.getLogger(GameScreen.class);
 
 	/**
@@ -71,17 +65,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * and keeps the player closer to the center of the screen when walking.
 	 */
 	private static final int PAN_INERTIA = 15;
-	
-	/** the logger instance. */
-	private static final Logger LOGGER = Logger.getLogger(GameScreen.class);
 
 	private static final Sprite offlineIcon;
 
 	/** the singleton instance. */
 	private static GameScreen screen;
 
-	private Canvas canvas;
-	private BufferStrategy buffer;
 	/**
 	 * Static game layers.
 	 */
@@ -111,7 +100,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	/**
 	 * The text bubbles.
 	 */
-	private final LinkedList<Text> texts;
+	private final List<Text> texts;
 
 	/**
 	 * The text bubbles to remove.
@@ -183,8 +172,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		public void componentMoved(ComponentEvent e) { 	}
 
 		public void componentResized(ComponentEvent e) {
-			sw = Math.min(canvas.getWidth(), stendhal.screenSize.width);
-			sh = Math.min(canvas.getHeight(), stendhal.screenSize.height);
+			sw = Math.min(getWidth(), stendhal.screenSize.width);
+			sh = Math.min(getHeight(), stendhal.screenSize.height);
 			// Reset the view so that the player is in the center
 			calculateView();
 			center();
@@ -200,16 +189,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *            The client.
 	 */
 	public GameScreen(final StendhalClient client) {
-		canvas = new Canvas();
-		canvas.setIgnoreRepaint(true);
-		
-		canvas.setSize(stendhal.screenSize);
-		canvas.addComponentListener(new CanvasResizeListener());
+		setSize(stendhal.screenSize);
+		addComponentListener(new CanvasResizeListener());
 		
 		gameLayers = client.getStaticGameLayers();
 
-		sw = canvas.getWidth();
-		sh = canvas.getHeight();
+		sw = getWidth();
+		sh = getHeight();
 
 		x = 0;
 		y = 0;
@@ -220,27 +206,19 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 
 		speed = 0;
 
-		texts = new LinkedList<Text>();
+		// Drawing is done in EDT
+		views = Collections.synchronizedList(new LinkedList<EntityView>());
+		texts = Collections.synchronizedList(new LinkedList<Text>());
 		textsToRemove = new LinkedList<Text>();
-		views = new LinkedList<EntityView>();
 		entities = new HashMap<IEntity, EntityView>();
 
 		// create ground
 		ground = new GroundContainer(client, this, sw, sh);
 
 		// register native event handler
-		canvas.addMouseListener(ground);
-		canvas.addMouseWheelListener(ground);
-		canvas.addMouseMotionListener(ground);
-	}
-	
-	/**
-	 * Get the canvas component
-	 * 
-	 * @return the canvas
-	 */
-	public Component getComponent() {
-		return canvas;
+		addMouseListener(ground);
+		addMouseWheelListener(ground);
+		addMouseMotionListener(ground);
 	}
 
 	/**
@@ -470,34 +448,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	}	
 
 	public void draw() {
-		/*
-		 * Don't try drawing until we are ready. A workaround until
-		 * the canvas has been done properly in swing.
-		 */
-		if (canvas.isDisplayable()) {
-			final Graphics g = getGraphics();
-			draw((Graphics2D) g);
-
-			buffer.show();
-			g.dispose();
-		}
+		repaint();
 	}
 	
-	public Graphics getGraphics() {
-		/*
-		 *  swing does not want to give a valid GraphicsConfiguration until the
-		 *  window has been drawn, so this can not be done in the constructor.
-		 */
-		if (buffer == null) {
-			canvas.createBufferStrategy(2);
-			buffer = canvas.getBufferStrategy(); 
-		}
-		
-		return buffer.getDrawGraphics();
-	}
-	
-	private void draw(final Graphics2D g2d) {
+	@Override
+	protected void paintComponent(final Graphics g) {
 		Collections.sort(views, entityViewComparator);
+		Graphics2D g2d = (Graphics2D) g;
 
 		/*
 		 * Draw the GameLayers from bootom to top, relies on exact naming of the
@@ -509,8 +466,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		// know about converting the position to screen
 		Graphics2D graphics = (Graphics2D) g2d.create();
 		if (graphics.getClipBounds() == null) {
-			graphics.setClip(0, 0, Math.min(canvas.getWidth(), stendhal.screenSize.width),
-					Math.min(canvas.getHeight(), stendhal.screenSize.height));
+			graphics.setClip(0, 0, Math.min(getWidth(), stendhal.screenSize.width),
+					Math.min(getHeight(), stendhal.screenSize.height));
 		}
 
 		int xAdjust = -getScreenViewX();
@@ -593,11 +550,15 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * Draw the screen entities.
 	 */
 	private void drawEntities(final Graphics2D g) {
-		for (final EntityView view : views) {
-			try {
-				view.draw(g);
-			} catch (RuntimeException e) {
-				logger.error(e, e);
+		// We are in EDT now. The main thread can add or remove new views at any
+		// time. Manual synchronization on iteration is mandated by the spec.
+		synchronized (views) {
+			for (final EntityView view : views) {
+				try {
+					view.draw(g);
+				} catch (RuntimeException e) {
+					logger.error(e, e);
+				}
 			}
 		}
 	}
@@ -606,8 +567,12 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * Draw the top portion screen entities (such as HP/title bars).
 	 */
 	private void drawTopEntities(final Graphics2D g) {
-		for (final EntityView view : views) {
-			view.drawTop(g);
+		// We are in EDT now. The main thread can add or remove new views at any
+		// time. Manual synchronization on iteration is mandated by the spec.
+		synchronized (views) {
+			for (final EntityView view : views) {
+				view.drawTop(g);
+			}
 		}
 	}
 
@@ -624,7 +589,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		 */
 		g2d.translate(-getScreenViewX(), -getScreenViewY());
 		
-		try {
+		synchronized (texts) {
 			for (final Text text : texts) {
 				if (!text.shouldBeRemoved()) {
 					text.draw(g2d);
@@ -632,8 +597,6 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 					removeText(text);
 				}
 			}
-		} catch (final ConcurrentModificationException e) {
-			LOGGER.error("cannot draw text", e);
 		}
 		
 		// Restore the coordinates
@@ -763,11 +726,13 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		while (found) {
 			found = false;
 
-			for (final Text item : texts) {
-				if ((item.getX() == sx) && (item.getY() == sy)) {
-					found = true;
-					sy += (SIZE_UNIT_PIXELS / 2);
-					break;
+			synchronized (texts) {
+				for (final Text item : texts) {
+					if ((item.getX() == sx) && (item.getY() == sy)) {
+						found = true;
+						sy += (SIZE_UNIT_PIXELS / 2);
+						break;
+					}
 				}
 			}
 		}
@@ -791,7 +756,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 *
 	 * @see games.stendhal.client.IGameScreen#removeAll()
 	 */
-	public void removeAll() {
+	public void removeAllObjects() {
 		views.clear();
 		texts.clear();
 		textsToRemove.clear();
@@ -803,8 +768,10 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#clearTexts()
 	 */
 	public void clearTexts() {
-		for (final Text text : texts) {
-			textsToRemove.add(text);
+		synchronized (texts) {
+			for (final Text text : texts) {
+				textsToRemove.add(text);
+			}
 		}
 	}
 
@@ -816,32 +783,34 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	public EntityView getEntityViewAt(final double x, final double y) {
 		ListIterator<EntityView> it;
 
-		/*
-		 * Try the physical entity areas first
-		 */
-		it = views.listIterator(views.size());
+		synchronized (views) {
+			/*
+			 * Try the physical entity areas first
+			 */
+			it = views.listIterator(views.size());
 
-		while (it.hasPrevious()) {
-			final EntityView view = it.previous();
+			while (it.hasPrevious()) {
+				final EntityView view = it.previous();
 
-			if (view.getEntity().getArea().contains(x, y)) {
-				return view;
+				if (view.getEntity().getArea().contains(x, y)) {
+					return view;
+				}
 			}
-		}
 
-		/*
-		 * Now the visual entity areas
-		 */
-		final int sx = convertWorldToScreen(x);
-		final int sy = convertWorldToScreen(y);
+			/*
+			 * Now the visual entity areas
+			 */
+			final int sx = convertWorldToScreen(x);
+			final int sy = convertWorldToScreen(y);
 
-		it = views.listIterator(views.size());
+			it = views.listIterator(views.size());
 
-		while (it.hasPrevious()) {
-			final EntityView view = it.previous();
+			while (it.hasPrevious()) {
+				final EntityView view = it.previous();
 
-			if (view.getArea().contains(sx, sy)) {
-				return view;
+				if (view.getArea().contains(sx, sy)) {
+					return view;
+				}
 			}
 		}
 
@@ -857,35 +826,37 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	public EntityView getMovableEntityViewAt(final double x, final double y) {
 		ListIterator<EntityView> it;
 
-		/*
-		 * Try the physical entity areas first
-		 */
-		it = views.listIterator(views.size());
+		synchronized (views) {
+			/*
+			 * Try the physical entity areas first
+			 */
+			it = views.listIterator(views.size());
 
-		while (it.hasPrevious()) {
-			final EntityView view = it.previous();
+			while (it.hasPrevious()) {
+				final EntityView view = it.previous();
 
-			if (view.isMovable()) {
-				if (view.getEntity().getArea().contains(x, y)) {
-					return view;
+				if (view.isMovable()) {
+					if (view.getEntity().getArea().contains(x, y)) {
+						return view;
+					}
 				}
 			}
-		}
 
-		/*
-		 * Now the visual entity areas
-		 */
-		final int sx = convertWorldToScreen(x);
-		final int sy = convertWorldToScreen(y);
+			/*
+			 * Now the visual entity areas
+			 */
+			final int sx = convertWorldToScreen(x);
+			final int sy = convertWorldToScreen(y);
 
-		it = views.listIterator(views.size());
+			it = views.listIterator(views.size());
 
-		while (it.hasPrevious()) {
-			final EntityView view = it.previous();
+			while (it.hasPrevious()) {
+				final EntityView view = it.previous();
 
-			if (view.isMovable()) {
-				if (view.getArea().contains(sx, sy)) {
-					return view;
+				if (view.isMovable()) {
+					if (view.getArea().contains(sx, sy)) {
+						return view;
+					}
 				}
 			}
 		}
@@ -899,16 +870,19 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	 * @see games.stendhal.client.IGameScreen#getTextAt(double, double)
 	 */
 	public Text getTextAt(final double x, final double y) {
-		final ListIterator<Text> it = texts.listIterator(texts.size());
-
 		final int sx = convertWorldToScreen(x);
 		final int sy = convertWorldToScreen(y);
 
-		while (it.hasPrevious()) {
-			final Text text = it.previous();
+		synchronized (texts) {
+			final ListIterator<Text> it = texts.listIterator(texts.size());
 
-			if (text.getArea().contains(sx, sy)) {
-				return text;
+
+			while (it.hasPrevious()) {
+				final Text text = it.previous();
+
+				if (text.getArea().contains(sx, sy)) {
+					return text;
+				}
 			}
 		}
 

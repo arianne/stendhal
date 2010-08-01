@@ -240,10 +240,10 @@ public class j2DClient implements UserInterface {
 		 */
 		screen = new GameScreen(client);
 		GameScreen.setDefaultScreen(screen);
-		screen.getComponent().setMinimumSize(new Dimension(stendhal.screenSize.width, 0));
+		screen.setMinimumSize(new Dimension(stendhal.screenSize.width, 0));
 		
 		// ... and put it on the ground layer of the pane
-		pane.add(screen.getComponent(), Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
+		pane.add(screen, Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
 
 		client.setScreen(screen);
 		positionChangeListener.add(screen);
@@ -255,7 +255,7 @@ public class j2DClient implements UserInterface {
 		/*
 		 * Always redirect focus to chat field
 		 */
-		screen.getComponent().addFocusListener(new FocusListener() {
+		screen.addFocusListener(new FocusListener() {
 			public void focusGained(final FocusEvent e) {
 				chatText.getPlayerChatText().requestFocus();
 			}
@@ -283,7 +283,7 @@ public class j2DClient implements UserInterface {
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
 		chatText.addKeyListener(keyListener);
-		screen.getComponent().addKeyListener(keyListener);
+		screen.addKeyListener(keyListener);
 
 		// Display a warning message in case the screen size was adjusted
 		// This is a temporary solution until this issue is fixed server side.
@@ -349,7 +349,7 @@ public class j2DClient implements UserInterface {
 		splitPane.setBorder(null);
 		// Works for showing the resize, but is extremely flickery
 		//splitPane.setContinuousLayout(true);
-		pane.addComponentListener(new SplitPaneResizeListener(screen.getComponent(), splitPane));
+		pane.addComponentListener(new SplitPaneResizeListener(screen, splitPane));
 
 		// Avoid panel drawing overhead
 		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
@@ -511,7 +511,7 @@ public class j2DClient implements UserInterface {
 					
 					if (cd != null) {
 						minimap.update(cd, pd,
-								screen.getComponent().getGraphicsConfiguration(),
+								screen.getGraphicsConfiguration(),
 								gameLayers.getArea());
 					} 
 					gameLayers.resetChangedArea();
@@ -921,7 +921,7 @@ public class j2DClient implements UserInterface {
 	 * @return The height.
 	 */
 	public int getHeight() {
-		return screen.getComponent().getHeight();
+		return screen.getHeight();
 	}
 
 	/**
@@ -930,7 +930,7 @@ public class j2DClient implements UserInterface {
 	 * @return The width.
 	 */
 	public int getWidth() {
-		return screen.getComponent().getWidth();
+		return screen.getWidth();
 	}
 
 

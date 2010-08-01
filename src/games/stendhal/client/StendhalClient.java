@@ -290,7 +290,7 @@ public class StendhalClient extends ClientFramework {
 		 * Remove screen objects (like text bubbles)
 		 */
 		logger.debug("CLEANING screen object list");
-		screen.removeAll();
+		screen.removeAllObjects();
 
 		contentToLoad = 0;
 

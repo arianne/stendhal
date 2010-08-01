@@ -93,7 +93,7 @@ public interface IGameScreen {
 	/**
 	 * Removes all objects from the screen.
 	 */
-	void removeAll();
+	void removeAllObjects();
 
 	/**
 	 * Removes all the text entities.
