@@ -261,7 +261,11 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			g2d.drawRect(x, y, width, height);
 
 			g2d.setColor(Color.green);
-			g2d.draw(entity.getArea());
+			// Another thread can remove entity
+			IEntity tmp = entity;
+			if (tmp != null) {
+				g2d.draw(tmp.getArea());
+			}
 		}
 	}
 
@@ -712,6 +716,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The action.
 	 */
 	public void onAction(final ActionType at) {
+		IEntity entity = this.entity;
 		// return prematurely if view has already been released
 		if (entity == null) {
 			Logger.getLogger(Entity2DView.class).warn(

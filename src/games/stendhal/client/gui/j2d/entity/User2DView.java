@@ -58,12 +58,15 @@ class User2DView extends Player2DView {
 		list.add(ActionType.WHERE.getRepresentation());
 		// list.add(ActionType.JOIN_GUILD.getRepresentation());
 
-		if (((User) entity).hasSheep()) {
-			list.add(ActionType.LEAVE_SHEEP.getRepresentation());
-		}
+		User user = (User) entity;
+		if (user != null) {
+			if (user.hasSheep()) {
+				list.add(ActionType.LEAVE_SHEEP.getRepresentation());
+			}
 
-		if (((User) entity).hasPet()) {
-			list.add(ActionType.LEAVE_PET.getRepresentation());
+			if (user.hasPet()) {
+				list.add(ActionType.LEAVE_PET.getRepresentation());
+			}
 		}
 	}
 

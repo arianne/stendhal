@@ -142,7 +142,14 @@ class Sign2DView extends Entity2DView {
 	 * @return ActionType
 	 */
 	private ActionType getActionType() {
-		String action = ((Sign) entity).getAction();
+		Sign sign = (Sign) entity;
+		if (sign == null) {
+			// The user switched maps, but we still need a reasonable return
+			// value
+			return ActionType.LOOK;
+		}
+		
+		String action = sign.getAction();
 		if (action == null) {
 			return ActionType.LOOK;
 		}

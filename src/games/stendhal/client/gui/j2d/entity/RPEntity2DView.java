@@ -321,7 +321,12 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		final int bx = x + ((width - barWidth) / 2);
 		final int by = y - 3;
 
-		final float hpRatio = ((RPEntity) entity).getHPRatio();
+		RPEntity rpentity = (RPEntity) entity;
+		if (rpentity == null) {
+			return;
+		}
+		
+		final float hpRatio = rpentity.getHPRatio();
 
 		final float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
 		final float g = Math.min(hpRatio * 2.0f, 1.0f);
@@ -390,15 +395,20 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected void drawIdeas(final Graphics2D g2d, final int x,
 			final int y, final int height) {
-		if (((RPEntity) entity).isEating()) {
-			if (((RPEntity) entity).isChoking()) {
+		RPEntity rpentity = (RPEntity) entity;
+		if (rpentity == null) {
+			return;
+		}
+		
+		if (rpentity.isEating()) {
+			if (rpentity.isChoking()) {
 				chokingSprite.draw(g2d, x, y + height - 2 * ICON_OFFSET);
 			} else {
 				eatingSprite.draw(g2d, x, y + height - 2 * ICON_OFFSET);
 			}
 		}
 
-		if (((RPEntity) entity).isPoisoned()) {
+		if (rpentity.isPoisoned()) {
 			poisonedSprite.draw(g2d, x - ICON_OFFSET, y + height - 2 * ICON_OFFSET);
 		}
 	}
@@ -421,7 +431,12 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected void drawCombat(final Graphics2D g2d, final int x,
 							  final int y, final int width, final int height) {
-		Rectangle2D wrect = entity.getArea();
+		RPEntity rpentity = (RPEntity) entity;
+		if (rpentity == null) {
+			return;
+		}
+		
+		Rectangle2D wrect = rpentity.getArea();
 		final Rectangle srect = new Rectangle((int) (wrect.getX() * IGameScreen.SIZE_UNIT_PIXELS),
 				(int) (wrect.getY() * IGameScreen.SIZE_UNIT_PIXELS), 
 				(int) (wrect.getWidth() * IGameScreen.SIZE_UNIT_PIXELS),
@@ -429,7 +444,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		
 		final double DIVISOR = 1.414213562; // sqrt(2)
 		
-		RPEntity rpentity = (RPEntity) entity;
 		if (rpentity.isBeingAttacked()) {
 			// Draw red box around 
 			//g2d.setColor(Color.white);
@@ -456,12 +470,12 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		drawAttack(g2d, x, y, width, height);
 
-		if (((RPEntity) entity).isDefending()) {
+		if (rpentity.isDefending()) {
 			// Draw bottom right combat icon
 			final int sx = srect.x + srect.width - ICON_OFFSET;
 			final int sy = y + height - 2 * ICON_OFFSET;
 
-			switch (((RPEntity) entity).getResolution()) {
+			switch (rpentity.getResolution()) {
 			case BLOCKED:
 				blockedSprite.draw(g2d, sx, sy);
 				break;
@@ -491,16 +505,16 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	private void drawAttack(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		RPEntity rpentity = (RPEntity) entity;
 		
-		if (rpentity.isAttacking() && rpentity.getShownDamageType() != null) {
+		if ((rpentity != null) && rpentity.isAttacking() && rpentity.getShownDamageType() != null) {
 			if (frameBladeStrike < NUM_ATTACK_FRAMES) {
 				RPEntity target = rpentity.getAttackTarget();
 
 				// A hack to check if it's a distance attack for proof
 				// of concept arrow drawing. Should be specified in the
 				// attack event itself
-				final Rectangle2D area = entity.getArea();
-				area.setRect(entity.getX() - 0.25, entity.getY() - 0.25, entity.getWidth()
-						+ 2 * 0.25, entity.getHeight() + 2 * 0.25);
+				final Rectangle2D area = rpentity.getArea();
+				area.setRect(rpentity.getX() - 0.25, rpentity.getY() - 0.25, rpentity.getWidth()
+						+ 2 * 0.25, rpentity.getHeight() + 2 * 0.25);
 				
 				if (area.intersects(target.getArea())) {
 					drawStrike(g2d, rpentity, x, y, width, height);
@@ -688,7 +702,8 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		if (((RPEntity) entity).isAttackedBy(User.get())) {
+		RPEntity rpentity = (RPEntity) entity;
+		if ((rpentity != null) && rpentity.isAttackedBy(User.get())) {
 			list.add(ActionType.STOP_ATTACK.getRepresentation());
 		} else {
 			list.add(ActionType.ATTACK.getRepresentation());

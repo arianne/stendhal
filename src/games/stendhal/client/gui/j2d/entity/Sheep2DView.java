@@ -53,13 +53,13 @@ class Sheep2DView extends DomesticAnimal2DView {
 	@Override
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
-		if (!User.isNull()) {
-			if (!User.get().hasSheep()) {
-				list.add(ActionType.OWN.getRepresentation());
-			} else if (User.get().getSheepID() == ((Sheep) entity).getID()
-					.getObjectID()) {
-				list.add(ActionType.LEAVE_SHEEP.getRepresentation());
-			}
+		User user = User.get();
+		Sheep sheep = (Sheep) entity;
+		if ((user != null) && !user.hasSheep()) {
+			list.add(ActionType.OWN.getRepresentation());
+		} else if ((sheep != null) && (user.getSheepID() == sheep.getID()
+				.getObjectID())) {
+			list.add(ActionType.LEAVE_SHEEP.getRepresentation());
 		}
 	}
 

@@ -33,7 +33,8 @@ class Portal2DView extends InvisibleEntity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		if (!((Portal) entity).isHidden()) {
+		Portal portal = (Portal) entity; 
+		if ((portal != null) && !portal.isHidden()) {
 			list.add(ActionType.USE.getRepresentation());
 
 			super.buildActions(list);

@@ -112,7 +112,8 @@ class Player2DView extends RPEntity2DView {
 	@Override
 	protected AlphaComposite getComposite() {
 		// Check for ghostmode to avoid ignored ghostmode admins becoming visible
-		if (User.isIgnoring(entity.getName()) && !((RPEntity) entity).isGhostMode()) {
+		RPEntity rpentity = (RPEntity) entity;
+		if ((rpentity != null) && User.isIgnoring(rpentity.getName()) && !rpentity.isGhostMode()) {
 			return AlphaComposite.DstOut;
 		}
 		return super.getComposite();
@@ -149,21 +150,21 @@ class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		if (!((RPEntity) entity).isGhostMode()) {
+		RPEntity player = (RPEntity) entity;
+		if ((player != null) && !player.isGhostMode()) {
 			super.buildActions(list);
 			
-			boolean hasBuddy = User.hasBuddy(entity.getName());
+			boolean hasBuddy = User.hasBuddy(player.getName());
 			if (!hasBuddy) {
 				list.add(ActionType.ADD_BUDDY.getRepresentation());
 			}
 			
-			if (User.isIgnoring(entity.getName())) {
+			if (User.isIgnoring(player.getName())) {
 				list.add(ActionType.UNIGNORE.getRepresentation());
 			} else if (!hasBuddy)  {
 				list.add(ActionType.IGNORE.getRepresentation());
 			}
 		}
-
 	}
 
 	/**
@@ -174,7 +175,12 @@ class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		boolean newIgnoreStatus = User.isIgnoring(entity.getName());
+		Player player = (Player) entity;
+		if (player == null) {
+			return;
+		}
+		
+		boolean newIgnoreStatus = User.isIgnoring(player.getName());
 		if (newIgnoreStatus != ignored) {
 			visibilityChanged = true;
 			ignored = newIgnoreStatus;
@@ -183,16 +189,15 @@ class Player2DView extends RPEntity2DView {
 		
 		super.draw(g2d, x, y, width, height);
 
-		if (((Player) entity).isAway()) {
+		if (player.isAway()) {
 			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);
 		}
-		if (((Player) entity).isGrumpy()) {
+		if (player.isGrumpy()) {
 			grumpySprite.draw(g2d, x - (width * 1 / 6), y - 6);
 		}
-		if (((Player) entity).isBadBoy()) {
+		if (player.isBadBoy()) {
 			skullSprite.draw(g2d, x , y);
 		}
-	
 	}
 
 	//

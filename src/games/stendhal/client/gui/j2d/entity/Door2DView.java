@@ -125,7 +125,8 @@ class Door2DView extends StateEntity2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		if (((Door) entity).isOpen()) {
+		Door door = (Door) entity;
+		if (door != null && door.isOpen()) {
 			list.add(ActionType.CLOSE.getRepresentation());
 		} else {
 			list.add(ActionType.OPEN.getRepresentation());

@@ -120,7 +120,8 @@ class Chest2DView extends StateEntity2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		if (((Chest) entity).isOpen()) {
+		Chest chest = (Chest) entity;
+		if (chest != null && chest.isOpen()) {
 			list.add(ActionType.INSPECT.getRepresentation());
 			list.add(ActionType.CLOSE.getRepresentation());
 		} else {
