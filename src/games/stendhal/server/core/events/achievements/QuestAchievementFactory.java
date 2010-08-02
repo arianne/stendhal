@@ -36,7 +36,7 @@ public class QuestAchievementFactory extends AchievementFactory {
 												Achievement.MEDIUM_BASE_SCORE, new QuestStateGreaterThanCondition("daily_item", 2, 99)));
 		questAchievements.add(createAchievement("quest.special.diq.250", "Ados' Stockpiler", "Finish daily item quest 250 times", 
 												Achievement.MEDIUM_BASE_SCORE, new QuestStateGreaterThanCondition("daily_item", 2, 249)));
-		questAchievements.add(createAchievement("quest.special.diq.50", "Ados' Hoarder", "Finish daily item quest 50 times", 
+		questAchievements.add(createAchievement("quest.special.diq.500", "Ados' Hoarder", "Finish daily item quest 500 times", 
 												Achievement.HARD_BASE_SCORE, new QuestStateGreaterThanCondition("daily_item", 2, 499)));
 		//weekly item quest achievement
 		questAchievements.add(createAchievement("quest.special.wiq.5", "Archaeologist", "Finish weekly item quest 5 times", 
