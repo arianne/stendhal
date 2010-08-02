@@ -49,6 +49,10 @@ public class StendhalPlayerDatabase {
 				transaction.execute("ALTER TABLE achievement ADD COLUMN (base_score INTEGER);", null);
 			}
 			
+			if(transaction.doesColumnExist("achievement", "description")) {
+				transaction.execute("ALTER TABLE achievement MODIFY COLUMN description VARCHAR(254)", null);
+			}
+			
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			logger.error(e, e);

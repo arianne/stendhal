@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS achievement (
     identifier VARCHAR(64),
     title VARCHAR(64),
     category VARCHAR(64),
-    description VARCHAR(64),
+    description VARCHAR(254),
     base_score INTEGER,
     PRIMARY KEY(id)
 );
