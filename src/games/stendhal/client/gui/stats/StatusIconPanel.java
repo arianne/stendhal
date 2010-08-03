@@ -70,8 +70,8 @@ public class StatusIconPanel extends JComponent {
 		}
 		// A hack to prevent eating and choking icons appearing 
 		// at the same time
-		if (isChoking == eating.isVisible()) {
-			eating.setVisible(!isChoking);
+		if (isChoking) {
+			eating.setVisible(false);
 		}
 	}
 	
