@@ -72,6 +72,13 @@ public class PushAction implements ActionListener {
 			final StendhalRPZone zone = player.getZone();
 			if (!zone.collides(rpEntity, x, y)) {
 				move(player, rpEntity, x, y);
+				// Stop players running toward to make trapping harder. Don't
+				// stop anyone just following a path (again to make annoying
+				// others harder)
+				if (dir.oppositeDirection() == rpEntity.getDirection()
+						&& !rpEntity.hasPath()) {
+					rpEntity.stop();
+				}
 			}
 		}
 	}
