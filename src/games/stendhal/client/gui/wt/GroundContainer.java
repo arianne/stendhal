@@ -20,6 +20,8 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.DragLayer;
+import games.stendhal.client.gui.DropTarget;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
@@ -52,7 +54,7 @@ import org.apache.log4j.Logger;
  * @author mtotz
  * 
  */
-public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspector, MouseWheelListener {
+public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspector, MouseWheelListener, DropTarget {
 	private static final Logger logger = Logger.getLogger(GroundContainer.class);
 
 	/** the game client. */
@@ -102,9 +104,10 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 		final EntityView view = screen.getMovableEntityViewAt(point.getX(), point
 				.getY());
 
-		// only Items can be dragged
 		if (view != null) {
-			return new MoveableEntityContainer(view.getEntity());
+			// An entity rather than a draggable panel. Let the DragLayer
+			// handle the drawing and dropping.
+			DragLayer.get().startDrag(view.getEntity());
 		}
 
 		return null;
@@ -432,5 +435,11 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 				client.addDirection(current.nextDirection().oppositeDirection(), true);
 			}
 		}
-	}	
+	}
+
+	public void dropEntity(IEntity entity, Point point) {
+		// Pack the entity in a way that WtDropTargets understand it, and pass
+		// it to the Wt pipeline
+		checkDropped(point.x, point.y, new MoveableEntityContainer(entity));
+	}
 }

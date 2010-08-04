@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.DropTarget;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
@@ -48,7 +49,7 @@ import org.apache.log4j.Logger;
 /**
  * The game screen. This manages and renders the visual elements of the game.
  */
-public class GameScreen extends JComponent implements PositionChangeListener, IGameScreen {
+public class GameScreen extends JComponent implements PositionChangeListener, IGameScreen, DropTarget {
 	private static Logger logger = Logger.getLogger(GameScreen.class);
 
 	/**
@@ -1080,5 +1081,10 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 
 			return rv;
 		}
+	}
+
+	public void dropEntity(IEntity entity, Point point) {
+		// Just pass it to the ground container
+		ground.dropEntity(entity, point);
 	}
 }

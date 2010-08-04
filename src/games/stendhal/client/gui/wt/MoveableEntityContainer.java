@@ -12,36 +12,22 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
-import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-/** this container is used to drag the entities around . */
+/** 
+ * A container for packing dragged entities so that WtDropTargets can receive
+ * them 
+ */
 class MoveableEntityContainer implements WtDraggable {
-
-	/** current x-pos of the dragged item. */
-	private int x;
-
-	/** current y-pos of the dragged item. */
-	private int y;
-
 	/** The moved object. */
 	private final IEntity entity;
-
-	/**
-	 * The entity view.
-	 */
-	private EntityView view;
 
 	/**
 	 * Create an entity drag container.
@@ -104,20 +90,6 @@ class MoveableEntityContainer implements WtDraggable {
 	 * @return true
 	 */
 	public boolean dragStarted() {
-		view = EntityViewFactory.create(entity);
-
-		if (view != null) {
-			view.setContained(true);
-
-			/*
-			 * Hide quantity until it can be made context sensitive to drag
-			 * modifiers.
-			 */
-			if (view instanceof StackableItem2DView) {
-				((StackableItem2DView) view).setShowQuantity(false);
-			}
-		}
-
 		return true;
 	}
 
@@ -129,11 +101,6 @@ class MoveableEntityContainer implements WtDraggable {
 	 * @return true
 	 */
 	public boolean dragFinished(final Point p) {
-		if (view != null) {
-			view.release(GameScreen.get());
-			view = null;
-		}
-
 		return true;
 	}
 
@@ -144,8 +111,6 @@ class MoveableEntityContainer implements WtDraggable {
 	 * @return true
 	 */
 	public boolean dragMoved(final Point p) {
-		x = p.x;
-		y = p.y;
 		return true;
 	}
 
@@ -156,12 +121,6 @@ class MoveableEntityContainer implements WtDraggable {
 	 *            the Graphic context to draw to.
 	 */
 	public void drawDragged(final Graphics g) {
-		if (view != null) {
-			final Graphics2D cg = (Graphics2D) g.create();
-
-			cg.translate(x, y);
-			view.draw(cg);
-			cg.dispose();
-		}
+		// Drawing not needed; it is handled by the drag layer
 	}
 }

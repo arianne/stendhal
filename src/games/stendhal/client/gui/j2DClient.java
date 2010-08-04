@@ -329,6 +329,9 @@ public class j2DClient implements UserInterface {
 		// Create the main window
 		mainFrame = new MainFrame();
 		mainFrame.getMainFrame().getContentPane().setBackground(Color.black);
+		JComponent glassPane = DragLayer.get();
+		mainFrame.getMainFrame().setGlassPane(glassPane);
+		glassPane.setVisible(true);
 		
 		// *** Create the layout ***
 		final JComponent leftColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL);

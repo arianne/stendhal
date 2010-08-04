@@ -23,6 +23,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.DragLayer;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
@@ -217,7 +218,8 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 	@Override
 	protected WtDraggable getDragged(final int x, final int y) {
 		if ((view != null) && !this.getParent().isMinimized()) {
-			return new MoveableEntityContainer(view.getEntity());
+			// Let the DragLayer handle the drawing and dropping.
+			DragLayer.get().startDrag(view.getEntity());
 		}
 
 		return null;
