@@ -12,6 +12,8 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.cursor.CursorRepository;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtCloseListener;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
@@ -53,6 +55,7 @@ import javax.swing.SwingUtilities;
 public class InternalManagedDialog implements ManagedWindow {
 	/** size of the titlebar. */
 	private static final int TITLEBAR_HEIGHT = 13;
+	private static CursorRepository cursorRepository = new CursorRepository();
 
 	/**
 	 * The close button.
@@ -140,6 +143,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		 */
 		dialog = new Panel();
 		dialog.setLayout(null);
+		dialog.addMouseListener(new DialogMouseListener());
 
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
@@ -805,6 +809,22 @@ public class InternalManagedDialog implements ManagedWindow {
 			if (ev.getButton() == MouseEvent.BUTTON1) {
 				tbClicked(ev.getClickCount());
 			}
+		}
+	}
+
+	/**
+	 * Mouse enter event handler for the dialog.
+	 */
+	private final class DialogMouseListener extends MouseAdapter {
+		/**
+		 * Handle mouse entered event.
+		 *
+		 * @param ev
+		 * The mouse event.
+		 */
+		@Override
+		public void mouseEntered(MouseEvent ev) {
+		ev.getComponent().setCursor(cursorRepository.get(StendhalCursor.NORMAL));
 		}
 	}
 }
