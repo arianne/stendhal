@@ -1,5 +1,6 @@
 package games.stendhal.server.core.events.achievements;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.db.AchievementDAO;
@@ -159,7 +160,7 @@ public class AchievementNotifier {
 			StringBuilder sb = new StringBuilder();
 			sb.append("You have reached ");
 			sb.append(Integer.valueOf(reached.size()));
-			sb.append(" new achievements. Please check #http://stendhalgame.org for details.");
+			sb.append(" new "+Grammar.plnoun(reached.size(), "achievement")+". Please check #http://stendhalgame.org for details.");
 			player.sendPrivateText(sb.toString());
 		}
 	}
