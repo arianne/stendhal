@@ -1,8 +1,10 @@
 package games.stendhal.server.maps.semos.village;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
@@ -32,8 +34,17 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 				addQuest("The only task I have for you is to behave nicely towards others.");
 				addGoodbye();
 			}
+
+			@Override
+			protected void onGoodbye(Player player) {
+				super.onGoodbye(player);
+				setDirection(Direction.DOWN);
+			}
+			
+			
 		};
 
+		npc.setDirection(Direction.DOWN);
 		npc.setEntityClass("elegantladynpc");
 		npc.setPosition(13, 35);
 		npc.initHP(100);
