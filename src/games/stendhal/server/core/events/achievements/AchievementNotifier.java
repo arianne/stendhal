@@ -163,7 +163,7 @@ public class AchievementNotifier {
 			player.sendPrivateText(sb.toString());
 		}
 	}
-
+	
 	/**
 	 * retrieve all achievements for a category and check if player has reached each of the found achievements
 	 * 
@@ -192,6 +192,12 @@ public class AchievementNotifier {
 			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
 				logReachingOfAnAchievement(player, achievement);
 				reached.add(achievement);
+			}
+		}
+		//check for meta achievements and add them to the reached list
+		if(!reached.isEmpty()) {
+			if(achievements.containsKey(Category.META)) {
+				reached.addAll(checkAchievements(player, achievements.get(Category.META)));
 			}
 		}
 		return reached;
@@ -250,6 +256,9 @@ public class AchievementNotifier {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		for(Achievement a : new QuestAchievementFactory().createAchievements()) {
+			achievementMap.put(a.getIdentifier(), a);
+		}
+		for(Achievement a : new MetaAchievementFactory().createAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		return achievementMap;
