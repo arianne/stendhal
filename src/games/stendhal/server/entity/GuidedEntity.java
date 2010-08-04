@@ -215,9 +215,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 		
 		for (final RPObject obj : getZone()) {
 			final Entity entity = (Entity) obj;
-			if (!getID().equals(entity.getID())) {
-				final Rectangle2D otherArea = entity.getArea(entity.getX(),
-						entity.getY());
+			if (this != entity) {
+				final Rectangle2D otherArea = entity.getArea(entity.getX(), entity.getY());
 				Rectangle2D intersect = getArea().createIntersection(otherArea);
 				// skip entities far away
 				if (!intersect.isEmpty()) {
