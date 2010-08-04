@@ -214,12 +214,15 @@ public class DisplaceAction implements ActionListener {
 	 */
 	private void displace(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {
 		new GameEvent(player.getName(), "displace", entity.get("type")).raise();
+		
+		int oldX = entity.getX();
+		int oldY = entity.getY();
+		entity.setPosition(x, y);
+		entity.notifyWorldAboutChanges();
+		
 		if (entity instanceof Item) {
 			final Item item = (Item) entity;
-			int oldX = item.getX();
-			int oldY = item.getY();
-			entity.setPosition(x, y);
-			entity.notifyWorldAboutChanges();
+			
 			item.onRemoveFromGround();
 			item.onPutOnGround(player);
 			new ItemLogger().displace(player, entity, zone, oldX, oldY, x, y);
