@@ -151,7 +151,7 @@ public class Character extends WtPanel {
 	 * 
 	 * @param gameScreen
 	 */
-	private void refreshPlayerStats(final IGameScreen gameScreen) {
+	private void refreshPlayerStats() {
 		if (playerEntity == null) {
 			return;
 		}
@@ -211,10 +211,10 @@ public class Character extends WtPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
-		refreshPlayerStats(gameScreen);
+	protected void drawContent(final Graphics2D g) {
+		refreshPlayerStats();
 
-		super.drawContent(g, gameScreen);
+		super.drawContent(g);
 	}
 
 	@Override

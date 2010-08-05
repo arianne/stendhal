@@ -163,7 +163,7 @@ public class WtTextPanel extends WtPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(final Graphics2D clientArea, final IGameScreen gameScreen) {
+	protected void drawContent(final Graphics2D clientArea) {
 
 		final Font font = clientArea.getFont().deriveFont((float) fontSize);
 		// set font and color

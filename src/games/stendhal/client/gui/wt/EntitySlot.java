@@ -187,8 +187,8 @@ class EntitySlot extends WtPanel implements WtDropTarget {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(final Graphics2D childArea, final IGameScreen gameScreen) {
-		super.drawContent(childArea, gameScreen);
+	protected void drawContent(final Graphics2D childArea) {
+		super.drawContent(childArea);
 
 		// draw the background image
 		background.draw(childArea, 0, 0);

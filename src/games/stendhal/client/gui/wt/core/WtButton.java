@@ -87,8 +87,8 @@ public class WtButton extends WtPanel {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
-		super.drawContent(g, gameScreen);
+	protected void drawContent(final Graphics2D g) {
+		super.drawContent(g);
 
 		// draw the image if we have one
 		if (image != null) {

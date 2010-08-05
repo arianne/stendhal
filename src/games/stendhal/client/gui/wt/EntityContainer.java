@@ -168,7 +168,7 @@ public class EntityContainer extends WtPanel implements EntityChangeListener {
 	 * 
 	 * @param gameScreen
 	 */
-	private void checkDistance(final IGameScreen gameScreen) {
+	private void checkDistance() {
 		final User user = User.get();
 
 		if ((user != null) && (parent != null)) {
@@ -230,10 +230,10 @@ public class EntityContainer extends WtPanel implements EntityChangeListener {
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
-		super.drawContent(g, gameScreen);
+	protected void drawContent(final Graphics2D g) {
+		super.drawContent(g);
 
-		checkDistance(gameScreen);
+		checkDistance();
 	}
 
 	/**

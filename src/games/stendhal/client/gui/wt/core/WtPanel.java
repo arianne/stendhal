@@ -880,7 +880,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *            graphics where to render to
 	 * @param gameScreen
 	 */
-	public void draw(Graphics2D g, final IGameScreen gameScreen) {
+	public void draw(Graphics2D g) {
 		// are we closed? then don't draw anything
 		if (isClosed()) {
 			return;
@@ -920,7 +920,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		if (!minimized) {
-			drawContent(g, gameScreen);
+			drawContent(g);
 		}
 	}
 
@@ -932,8 +932,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *            The graphics context to draw with.
 	 * @param gameScreen
 	 */
-	protected void drawContent(final Graphics2D g, final IGameScreen gameScreen) {
-		drawChildren(g, gameScreen);
+	protected void drawContent(final Graphics2D g) {
+		drawChildren(g);
 	}
 
 	/**
@@ -952,7 +952,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *            Graphics object clipped to the client region.
 	 * @param gameScreen
 	 */
-	private void drawChildren(final Graphics2D g, final IGameScreen gameScreen) {
+	private void drawChildren(final Graphics2D g) {
 		int i = children.size();
 
 		while (i-- != 0) {
@@ -962,7 +962,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			final Graphics2D cg = (Graphics2D) g.create(child.getX(), child.getY(),
 					child.getWidth(), child.getHeight());
 
-			child.draw(cg, gameScreen);
+			child.draw(cg);
 
 			cg.dispose();
 		}

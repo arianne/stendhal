@@ -129,9 +129,9 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * @param gameScreen
 	 */
 	@Override
-	public synchronized void draw(final Graphics2D g, final IGameScreen gameScreen) {
+	public synchronized void draw(final Graphics2D g) {
 		// draw the stuff
-		super.draw(g, gameScreen);
+		super.draw(g);
 
 		// do we have a dragged object?
 		if (dragInProgress && (draggedObject != null)) {

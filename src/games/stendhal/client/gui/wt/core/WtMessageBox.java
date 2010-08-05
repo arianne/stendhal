@@ -107,7 +107,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	 *            The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(final Graphics2D clientArea, final IGameScreen gameScreen) {
+	protected void drawContent(final Graphics2D clientArea) {
 		// layout the buttons
 		if (!layedout) {
 			final int lastHeight = textPanel.getLastHeight();
@@ -117,7 +117,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 			layedout = true;
 		}
 
-		super.drawContent(clientArea, gameScreen);
+		super.drawContent(clientArea);
 	}
 
 	/**

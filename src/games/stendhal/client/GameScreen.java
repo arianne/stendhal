@@ -535,7 +535,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		/*
 		 * Dialogs
 		 */
-		ground.draw(g2d, this);
+		ground.draw(g2d);
 
 		/*
 		 * Offline
