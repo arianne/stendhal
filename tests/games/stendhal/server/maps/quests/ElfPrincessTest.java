@@ -120,7 +120,19 @@ public class ElfPrincessTest {
 		en.step(player, "hi");
 		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "task");
+		
+		// Time limit. Fail now
+		assertTrue(getReply(npc).startsWith("I need to put the lovely flower into my collection before you can bring me a new one. Please check back in"));
+		en.step(player, "bye");
+
+		
+		// Allow restarting a bit later; 
+		player.setQuest("elf_princess", 1, Long.toString(System.currentTimeMillis() - 5 * 60 * 1000 - 10));
+		en.step(player, "hi");
+		assertEquals("Hail to thee, human.", getReply(npc));
+		en.step(player, "task");
 		assertEquals("The last Rhosyd you brought me was so lovely. Will you find me another from Rose Leigh?", getReply(npc));
+		
 		en.step(player, "yes");
 		assertEquals("Thank you! Once you find it, say #flower to me so I know you have it. I'll be sure to give you a nice reward.", getReply(npc));
 		en.step(player, "flower");
