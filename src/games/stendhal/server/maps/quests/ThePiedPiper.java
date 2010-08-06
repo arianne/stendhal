@@ -20,7 +20,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.piedpiper.QuestConstants;
+import games.stendhal.server.maps.quests.piedpiper.IQuestConstants;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -62,22 +62,49 @@ import org.apache.log4j.Logger;
  *
  * REPETITIONS: <ul><li> once between a week and two weeks.</ul>
  */
- public class ThePiedPiper extends AbstractQuest {
+ public class ThePiedPiper extends AbstractQuest implements IQuestConstants {
 
 	private static final String QUEST_SLOT = "the_pied_piper";
 	private static Logger logger = Logger.getLogger(ThePiedPiper.class);
 	protected LinkedList<Creature> rats = new LinkedList<Creature>();
 	
-	private QuestConstants qc = new QuestConstants();
-
+    // timings unit is second.
+	public static int QUEST_INACTIVE_TIME_MAX = 1;
+	public static int QUEST_INACTIVE_TIME_MIN = 1;
+	public static int QUEST_INVASION_TIME = 1;
+	public static int QUEST_AWAITING_TIME = 1;
+	public static int QUEST_SHOUT_TIME = 1;
+	
+	/**
+	 * function will set timings to either test server or game server.
+	 */
+	public void adjustTimings() {
+		if (System.getProperty("stendhal.testserver") == null) {		
+			// game timings
+			QUEST_INACTIVE_TIME_MAX = 60 * 60 * 24 * 14;
+			QUEST_INACTIVE_TIME_MIN = 60 * 60 * 24 * 7;
+			QUEST_INVASION_TIME = 60 * 60 * 2;
+			QUEST_AWAITING_TIME = 60 * 1;
+			QUEST_SHOUT_TIME = 60 * 10;
+			} 
+		else {	
+			// test timings
+			QUEST_INACTIVE_TIME_MAX = 60 * 11;
+			QUEST_INACTIVE_TIME_MIN = 60 * 10;
+			QUEST_INVASION_TIME = 60 * 20;
+			QUEST_AWAITING_TIME = 60 * 10;
+			QUEST_SHOUT_TIME = 60 * 2;
+			}
+	}
+	
 	// initializing to prevent null pointer exception
-    private QuestConstants.TPP_Phase phase = QuestConstants.TPP_Phase.TPP_INACTIVE;
+    private TPP_Phase phase = TPP_Phase.TPP_INACTIVE;
 
 	/**
 	 * constructor
 	 */
 	public ThePiedPiper() {
-		qc.adjustTimings();
+		adjustTimings();
 	}
 
 	final private ShouterTimer shouterTimer = new ShouterTimer();
@@ -88,7 +115,7 @@ import org.apache.log4j.Logger;
 		public void start() {
 			tellAllAboutRatsProblem();
 			TurnNotifier.get().dontNotify(this);
-			TurnNotifier.get().notifyInSeconds(qc.QUEST_SHOUT_TIME, this);
+			TurnNotifier.get().notifyInSeconds(QUEST_SHOUT_TIME, this);
 		}
 		public void stop() {
 			TurnNotifier.get().dontNotify(this);
@@ -104,7 +131,7 @@ import org.apache.log4j.Logger;
 	 */
 	protected void phaseInactiveToInvasion() {
 		logger.info("ThePiedPiper quest started (phase INVASION).");
-		phase=QuestConstants.TPP_Phase.TPP_INVASION;
+		phase=TPP_Phase.TPP_INVASION;
 		summonRats();
 		shouterTimer.start();
 		step_2();
@@ -116,7 +143,7 @@ import org.apache.log4j.Logger;
 	protected void phaseInvasionToInactive() {
 		tellAllAboutNoRatsInCity();
 		logger.info("ThePiedPiper quest: last rat was killed (phase INACTIVE).");
-		phase=QuestConstants.TPP_Phase.TPP_INACTIVE;
+		phase=TPP_Phase.TPP_INACTIVE;
 		shouterTimer.stop();
 		step_1();
 	}
@@ -127,7 +154,7 @@ import org.apache.log4j.Logger;
 	 */
 	protected void phaseInvasionToAwaiting() {
 		logger.info("ThePiedPiper quest timeout (phase AWAITING).");
-		phase=QuestConstants.TPP_Phase.TPP_AWAITING;
+		phase=TPP_Phase.TPP_AWAITING;
 		removeAllRats();
 		shouterTimer.stop();
 		tellAllAboutRatsIsWinners();
@@ -140,7 +167,7 @@ import org.apache.log4j.Logger;
 	 */
 	protected void phaseAwaitingToInactive() {
 		logger.info("ThePiedPiper quest is over (phase INACTIVE).");
-		phase=QuestConstants.TPP_Phase.TPP_INACTIVE;
+		phase=TPP_Phase.TPP_INACTIVE;
 		shouterTimer.stop();
 	//	tellAllAboutRatsIsGone();
 		step_1();
@@ -243,7 +270,7 @@ import org.apache.log4j.Logger;
 			final StringBuilder sb = new StringBuilder("Well, from the last reward, you killed ");
 			long moneys = 0;
 			int kills = 0;
-			for(int i=0; i<qc.RAT_TYPES.size(); i++) {
+			for(int i=0; i<RAT_TYPES.size(); i++) {
 				try {
 					kills=Integer.parseInt(player.getQuest(QUEST_SLOT,i+1));
 				} catch (NumberFormatException nfe) {
@@ -252,13 +279,13 @@ import org.apache.log4j.Logger;
 					kills=0;
 				};
 				// must add 'and' word before last creature in list
-				if(i==(qc.RAT_TYPES.size()-1)) {
+				if(i==(RAT_TYPES.size()-1)) {
 					sb.append("and ");
 				};
 
-				sb.append(Grammar.quantityplnoun(kills, qc.RAT_TYPES.get(i), "a"));
+				sb.append(Grammar.quantityplnoun(kills, RAT_TYPES.get(i), "a"));
 				sb.append(", ");
-				moneys = moneys + kills*qc.RAT_REWARDS.get(i);
+				moneys = moneys + kills*RAT_REWARDS.get(i);
 			}
 			sb.append("so I will give you ");
 			sb.append(moneys);
@@ -279,7 +306,7 @@ import org.apache.log4j.Logger;
 	private void killsRecorder(Player player, final RPEntity victim) {
 
 		final String str = victim.getName();
-		final int i = qc.RAT_TYPES.indexOf(str);
+		final int i = RAT_TYPES.indexOf(str);
 		if(i==-1) {
 			//no such creature in reward table, will not count it
 			logger.warn("Unknown creature killed: "+
@@ -322,7 +349,7 @@ import org.apache.log4j.Logger;
 	private int calculateReward(Player player) {
 		int moneys = 0;
 		int kills = 0;
-		for(int i=0; i<qc.RAT_TYPES.size(); i++) {
+		for(int i=0; i<RAT_TYPES.size(); i++) {
 			try {
 				final String killed = player.getQuest(QUEST_SLOT,i+1);
 				// have player quest slot or not yet?
@@ -333,7 +360,7 @@ import org.apache.log4j.Logger;
 				// player's quest slot don't contain valid number
 				// so he didn't killed such creatures.
 			};
-			moneys = moneys + kills*qc.RAT_REWARDS.get(i);
+			moneys = moneys + kills*RAT_REWARDS.get(i);
 		};
 		return(moneys);
 	}
@@ -348,7 +375,7 @@ import org.apache.log4j.Logger;
 		public void update (Observable obj, Object arg) {
 	        if (arg instanceof CircumstancesOfDeath) {
 	    		final CircumstancesOfDeath circs=(CircumstancesOfDeath)arg;
-	        	if(qc.RAT_ZONES.contains(circs.getZone().getName())) {
+	        	if(RAT_ZONES.contains(circs.getZone().getName())) {
 	        	if(circs.getKiller() instanceof Player) {
 	        		final Player player = (Player) circs.getKiller();
 	        		killsRecorder(player, circs.getVictim());
@@ -416,9 +443,9 @@ import org.apache.log4j.Logger;
 		final RatsObserver ratsObserver = new RatsObserver();
 
 		// generating rats in zones
-		for(int j=0; j<(qc.RAT_ZONES.size()); j++) {
+		for(int j=0; j<(RAT_ZONES.size()); j++) {
 			final StendhalRPZone zone = (StendhalRPZone) SingletonRepository.getRPWorld().getRPZone(
-					qc.RAT_ZONES.get(j));
+					RAT_ZONES.get(j));
 			final int maxRats = (int) Math.round(Math.sqrt(zone.getWidth()*zone.getHeight())/4);
 			final int minRats = (int) Math.round(Math.sqrt(zone.getWidth()*zone.getHeight())/12);
 			final int ratsCount = Rand.rand(maxRats-minRats)+minRats;
@@ -427,12 +454,12 @@ import org.apache.log4j.Logger;
 				final int x=Rand.rand(zone.getWidth());
 				final int y=Rand.rand(zone.getHeight());
 				// Gaussian distribution
-				int tc=Rand.randGaussian(0,qc.RAT_TYPES.size());
-				if ((tc>(qc.RAT_TYPES.size()-1)) || (tc<0)) {
+				int tc=Rand.randGaussian(0,RAT_TYPES.size());
+				if ((tc>(RAT_TYPES.size()-1)) || (tc<0)) {
 					tc=0;
 				};
 				// checking if EntityManager knows about this creature type.
-				final Creature tempCreature = new Creature((Creature) manager.getEntity(qc.RAT_TYPES.get(tc)));
+				final Creature tempCreature = new Creature((Creature) manager.getEntity(RAT_TYPES.get(tc)));
 				if (tempCreature == null) {
 					continue;
 				};
@@ -459,7 +486,7 @@ import org.apache.log4j.Logger;
 				rat.registerObjectsForNotification(ratsObserver);
 				/* -- commented because of these noises reflects on all archrats in game -- */
 				// add unique noises to humanoids
-				if (tc==qc.RAT_TYPES.indexOf("archrat")) {
+				if (tc==RAT_TYPES.indexOf("archrat")) {
 					final LinkedList<String> ll = new LinkedList<String>(
 							Arrays.asList("We will capture Ados!",
 							"Our revenge will awesome!"));
@@ -544,14 +571,14 @@ import org.apache.log4j.Logger;
 	 * Quest will start after quest inactive time period will over.
 	 */
 	private void step_1() {
-		newNotificationTime(qc.QUEST_INACTIVE_TIME_MAX, qc.QUEST_INACTIVE_TIME_MIN);
+		newNotificationTime(QUEST_INACTIVE_TIME_MAX, QUEST_INACTIVE_TIME_MIN);
 	}
 
 	/**
 	 * Quest will go to AWAITING state after invasion time period will over.
 	 */
 	private void step_2() {
-		newNotificationTime(qc.QUEST_INVASION_TIME, qc.QUEST_INVASION_TIME);
+		newNotificationTime(QUEST_INVASION_TIME, QUEST_INVASION_TIME);
 	}
 
 	/**
@@ -559,8 +586,8 @@ import org.apache.log4j.Logger;
 	 *  currently makes quest inactive.
 	 */
 	private void step_3() {
-		if (phase==QuestConstants.TPP_Phase.TPP_AWAITING) {
-			newNotificationTime(qc.QUEST_AWAITING_TIME, qc.QUEST_AWAITING_TIME);
+		if (phase==TPP_Phase.TPP_AWAITING) {
+			newNotificationTime(QUEST_AWAITING_TIME, QUEST_AWAITING_TIME);
 		}
 	}
 

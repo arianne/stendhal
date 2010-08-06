@@ -16,7 +16,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.townhall.MayorNPC;
-import games.stendhal.server.maps.quests.piedpiper.QuestConstants;
+import games.stendhal.server.maps.quests.piedpiper.IQuestConstants;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -26,7 +26,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
-public class ThePiedPiperTest {
+public class ThePiedPiperTest implements IQuestConstants{
 
 
 	// private static String questSlot = "the_pied_piper";
@@ -34,7 +34,6 @@ public class ThePiedPiperTest {
 	private static SpeakerNPC npc = null;
 	private static Engine en = null;
 	final static ThePiedPiper quest = new ThePiedPiper();
-	final static QuestConstants qc = new QuestConstants();
 	private int rewardMoneys = 0;
 	private int[] killedRats = {0,0,0,0,0,0};
 	private static Logger logger = Logger.getLogger(ThePiedPiperTest.class);
@@ -48,8 +47,8 @@ public class ThePiedPiperTest {
 		final StendhalRPZone playerzone = new StendhalRPZone("int_semos_guard_house");
 		SingletonRepository.getRPWorld().addRPZone(playerzone);
 
-		for(int i=0; i<qc.RAT_ZONES.size();i++) {
-			StendhalRPZone ratZone = new StendhalRPZone(qc.RAT_ZONES.get(i),100,100);
+		for(int i=0; i<RAT_ZONES.size();i++) {
+			StendhalRPZone ratZone = new StendhalRPZone(RAT_ZONES.get(i),100,100);
 			SingletonRepository.getRPWorld().addRPZone(ratZone);
 		}
 		
@@ -109,11 +108,11 @@ public class ThePiedPiperTest {
 		logger.info("number of rats to kill: "+numb);
 		for (int i=0; i<numb;i++) {
 			String name = quest.rats.get(0).getName();
-			int kind = qc.RAT_TYPES.indexOf(name);
+			int kind = RAT_TYPES.indexOf(name);
 			killRat(quest.rats.get(0),count);
 			count++;			
 			killedRats[kind]++;
-			rewardMoneys = rewardMoneys + qc.RAT_REWARDS.get(kind);
+			rewardMoneys = rewardMoneys + RAT_REWARDS.get(kind);
 			//logger.debug("player's quest slot: "+player.getQuest("the_pied_piper"));
 		}		
 	}
@@ -125,14 +124,14 @@ public class ThePiedPiperTest {
 	private String details() {
 		final StringBuilder sb = new StringBuilder();
 		int kills = 0;
-		for(int i=0; i<qc.RAT_TYPES.size(); i++) {
+		for(int i=0; i<RAT_TYPES.size(); i++) {
 				kills=killedRats[i];
 			// must add 'and' word before last creature in list
-			if(i==(qc.RAT_TYPES.size()-1)) {
+			if(i==(RAT_TYPES.size()-1)) {
 				sb.append("and ");
 			};
 
-			sb.append(Grammar.quantityplnoun(kills, qc.RAT_TYPES.get(i), "a"));
+			sb.append(Grammar.quantityplnoun(kills, RAT_TYPES.get(i), "a"));
 			sb.append(", ");
 		}
 		return(sb.toString());
