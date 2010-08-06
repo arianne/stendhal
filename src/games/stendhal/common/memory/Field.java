@@ -137,7 +137,7 @@ public class Field
 	 * @param shiftCount how much entries the data is shifted
 	 * @param expandIfNeeded if true the array will be expanted to match the shifted data
 	 * otherwise the shifted data will be truncated to match the array size
-	 * @return
+	 * @return the array
 	 */
 	public static float[] rshift(float[] field, int offset, int size, int shiftCount, boolean expandIfNeeded)
 	{
@@ -179,7 +179,7 @@ public class Field
 	 * @param shiftCount how much entries the data is shifted
 	 * @param expandIfNeeded if true the array will be expanted to match the shifted data
 	 * otherwise the shifted data will be truncated to match the array size
-	 * @return
+	 * @return the array
 	 */
 	public static <T> T[] rshift(T[] field, int offset, int size, int shiftCount, boolean expandIfNeeded)
 	{
@@ -218,7 +218,7 @@ public class Field
 	 * @param field the array that gets entries appended (must not be null)
 	 * @param size indicates the size of the array (this can differ from field.length)
 	 * @param values the entries to get appended
-	 * @return
+	 * @return the array
 	 */
 	public static <T> T[] append(T[] field, int size, T ...values)
 	{
@@ -228,13 +228,13 @@ public class Field
 	}
 
 	/**
-	 * Inserts entirs into an array at a specific position. The array will be expanded if needed
+	 * Inserts entries into an array at a specific position. The array will be expanded if needed
 	 *
 	 * @param field the array where the data should be inserted
 	 * @param index the position where the data should be inserted
 	 * @param size indicates the size of the array (this can differ from field.length)
 	 * @param values the entries to be inserted
-	 * @return
+	 * @return the array
 	 */
 	public static float[] insert(float[] field, int index, int size, float ...values)
 	{
@@ -253,13 +253,13 @@ public class Field
 	}
 
 	/**
-	 * Inserts entirs into an array at a specific position. The array will be expanded if needed
+	 * Inserts entries into an array at a specific position. The array will be expanded if needed
 	 *
 	 * @param field the array where the data should be inserted (must not be null)
 	 * @param index the position where the data should be inserted
 	 * @param size indicates the size of the array (this can differ from field.length)
 	 * @param values the entries to be inserted
-	 * @return
+	 * @return the array
 	 */
 	public static <T> T[] insert(T[] field, int index, int size, T ...values)
 	{

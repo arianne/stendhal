@@ -126,7 +126,6 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * 
 	 * @param g
 	 *            graphics where to render to
-	 * @param gameScreen
 	 */
 	@Override
 	public synchronized void draw(final Graphics2D g) {

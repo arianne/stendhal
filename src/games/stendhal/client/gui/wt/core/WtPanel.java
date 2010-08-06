@@ -878,7 +878,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param g
 	 *            graphics where to render to
-	 * @param gameScreen
 	 */
 	public void draw(Graphics2D g) {
 		// are we closed? then don't draw anything
@@ -930,7 +929,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param g
 	 *            The graphics context to draw with.
-	 * @param gameScreen
 	 */
 	protected void drawContent(final Graphics2D g) {
 		drawChildren(g);
