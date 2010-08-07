@@ -83,15 +83,15 @@ public class TellAction implements ActionListener {
 		}
 	}
 
-	private void tellAboutAwayStatusIfNeccessary() {
+	private boolean checkAway() {
 		// Handle /away messages
 		final String away = receiver.getAwayMessage();
 		if (away != null) {
-			if (receiver.isAwayNotifyNeeded(senderName)) {
-				// Send away response
-				tellIgnorePostman(sender, receiverName + " is away: " + away);
-			}
-		}
+			// Send away response
+			tellIgnorePostman(sender, "Please use postman to send a message to " + receiverName + ", who is away: " + away);
+			return false;
+		} 
+		return true;
 	}
 
 	private void tellIgnorePostman(final Player receiver, final String message) {
@@ -138,14 +138,17 @@ public class TellAction implements ActionListener {
 			return;
 		}
 
+		// check away
+		if (!checkAway()) {
+			return;
+		}
+
 		// transmit the message
 		receiver.sendPrivateText(message);
 
 		if (!senderName.equals(receiverName)) {
 			player.sendPrivateText("You tell " + receiverName + ": " + text);
 		}
-
-		tellAboutAwayStatusIfNeccessary();
 
 		receiver.setLastPrivateChatter(senderName);
 		new GameEvent(player.getName(), "chat", receiverName, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();

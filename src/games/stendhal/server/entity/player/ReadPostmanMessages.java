@@ -20,11 +20,18 @@ import org.apache.log4j.Logger;
  *
  * @author kymara
  */
-public class ReadMessagesOnLogin implements LoginListener, TurnListener {
+public class ReadPostmanMessages implements LoginListener, TurnListener {
 	
-	private static final Logger LOGGER = Logger.getLogger(ReadMessagesOnLogin.class);
+	private static final Logger LOGGER = Logger.getLogger(ReadPostmanMessages.class);
 	
 	private ResultHandle handle = new ResultHandle();
+	
+	public void readMessages(final Player player) {
+		DBCommand command = new GetPostmanMessagesCommand(player);
+		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
+		// wait one turn so that the messages come after any login messages
+		TurnNotifier.get().notifyInTurns(1, new TurnListenerDecorator(this));
+	}
 	
 	/** 
 	 * Execute command to get messages for the player when they log in
@@ -32,10 +39,7 @@ public class ReadMessagesOnLogin implements LoginListener, TurnListener {
 	 * @param player the player who logged in
 	 */
 	public void onLoggedIn(final Player player) {
-		DBCommand command = new GetPostmanMessagesCommand(player);
-		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
-		// wait one turn so that the messages come after any login messages
-		TurnNotifier.get().notifyInTurns(1, new TurnListenerDecorator(this));
+		readMessages(player);
 	}
 	
 	/**

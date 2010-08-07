@@ -354,33 +354,6 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * Check if another player should be notified that this player is away. This
-	 * assumes the player has already been checked for away. Players will be
-	 * reminded once an hour.
-	 * 
-	 * @param name
-	 *            The name of the other player.
-	 * 
-	 * @return <code>true</code> if the player should be notified.
-	 */
-	public boolean isAwayNotifyNeeded(final String name) {
-		final long now = System.currentTimeMillis();
-		final Long lObj = awayReplies.get(name);
-
-		if (lObj != null) {
-			/*
-			 * Only notify once an hour
-			 */
-			if ((now - lObj.longValue()) < (1000L * 60L * 60L)) {
-				return false;
-			}
-		}
-
-		awayReplies.put(name, now);
-		return true;
-	}
-
-	/**
 	 * Clear out all recorded away responses.
 	 */
 	public void resetAwayReplies() {

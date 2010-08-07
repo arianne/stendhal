@@ -12,6 +12,7 @@ import static games.stendhal.common.constants.Actions.TYPE;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.ReadPostmanMessages;
 import marauroa.common.game.RPAction;
 
 /**
@@ -43,6 +44,8 @@ public class AwayAction implements ActionListener {
 				player.setAwayMessage(action.get(MESSAGE));
 			} else {
 				player.setAwayMessage(null);
+				// get the postman messages you might have received when you were away
+				new ReadPostmanMessages().readMessages(player);
 			}
 
 			player.notifyWorldAboutChanges();
