@@ -269,10 +269,12 @@ public class SpeakerNPC extends NPC {
 
 		if (player != null) {
 			stop();
+			setIdea("attending");
 		} else {
 			if (hasPath()) {
 				setSpeed(getBaseSpeed());
 			}
+			setIdea(null);
 		}
 	}
 
