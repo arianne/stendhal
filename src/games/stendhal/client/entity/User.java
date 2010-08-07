@@ -132,15 +132,6 @@ public class User extends Player {
 	}
 
 	/**
-	 * gets the ID of the user's rpobject
-	 *
-	 * @return ID
-	 */
-	public int getObjectID() {
-		return rpObject.getID().getObjectID();
-	}
-
-	/**
 	 * checks whether the user owns a sheep
 	 *
 	 * @return true, if the user owns a sheep; false otherwise

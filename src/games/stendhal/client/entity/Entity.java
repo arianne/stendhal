@@ -177,6 +177,18 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	}
 
 	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.IEntity#getID()
+	 */
+	public final int getObjectID() {
+		if (rpObject == null) {
+			return -1;
+		} else {
+			return rpObject.getInt("id");
+		}
+	}
+
+	
+	/* (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#getEntityClass()
 	 */
 	public String getEntityClass() {
