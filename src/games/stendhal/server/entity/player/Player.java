@@ -757,8 +757,6 @@ public class Player extends RPEntity {
 	 */
 	public void setFeature(final String name, final String value) {
 		put("features", name, value);
-		// compatibility with Stendhal 0.84 and lower
-		setKeyedSlot("!features", name, value);
 	}
 
 	/**

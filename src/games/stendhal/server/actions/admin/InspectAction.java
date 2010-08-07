@@ -81,7 +81,6 @@ public class InspectAction extends AdministrationAction {
 					|| slot.getName().equals("!tutorial")
 					|| slot.getName().equals("skills")
 					|| slot.getName().equals("spells")
-					|| slot.getName().equals("!features")
 					|| slot.getName().equals("!kills")) {
 					continue;
 				}
