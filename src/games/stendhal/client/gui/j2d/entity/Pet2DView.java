@@ -55,7 +55,7 @@ class Pet2DView extends DomesticAnimal2DView {
 		super.buildActions(list);
 		User user = User.get();
 		Pet pet = (Pet) entity;
-		if ((user != null) && user.hasPet()) {
+		if ((user != null) && !user.hasPet()) {
 			list.add(ActionType.OWN.getRepresentation());
 		} else if ((pet != null) && (user.getPetID() == pet.getID().getObjectID())) {
 			list.add(ActionType.LEAVE_PET.getRepresentation());
