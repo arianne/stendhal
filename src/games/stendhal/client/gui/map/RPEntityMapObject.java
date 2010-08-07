@@ -8,7 +8,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.NPC;
 
 public class RPEntityMapObject extends MovingMapObject {
-	private static final Color COLOR_DOMESTIC_ANIMAL = Color.ORANGE;
+	private static final Color COLOR_DOMESTIC_ANIMAL = new Color(255, 150, 0);
 	private static final Color COLOR_CREATURE = Color.YELLOW;
 	private static final Color COLOR_NPC = new Color(0, 150, 0);
 	
