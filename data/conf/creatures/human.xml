@@ -178,7 +178,7 @@
   
    <creature name="littlewitch">
     <type class="human" subclass="littlewitch" tileid="human_little.png:0"/>
-    <description></description>
+    <description>You see a little witch, they are evil little girls that are very dangerous.</description>
     <attributes>
       <atk value="246"/>
       <def value="48"/>
