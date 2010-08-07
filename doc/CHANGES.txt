@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.87
+- NPCs have an 'ear' icon when they are attending a player
+- private messages can't be sent to an /away player - use postman
+- players returning from /away automatically get stored postman messages sent to them
+
 0.86
 
 *world*
