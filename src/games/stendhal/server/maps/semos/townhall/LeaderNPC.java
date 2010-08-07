@@ -22,7 +22,7 @@ public class LeaderNPC implements ZoneConfigurator {
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final String[] text = {"Super Trainer, listen to me. Your skills are excellent but as you rarely hunt any creatures you are lacking in XP. Since your level is a factor in how hard you can hit, you are not reaching your full potential.", "XP Hunter, I have teaching for you too. Your habit of always letting another soldier defend against creatures means that your skills are never increasing. Yes, you have good level but your skills matter too!", "Well Rounded, I must commend you. You have a good level and good skills, both are needed for you to be able to hit creatures hard, and so that you can defend yourself. Well done!"};
-		new MonologueBehaviour(buildSemosTownhallAreaLeader(zone), text);
+		new MonologueBehaviour(buildSemosTownhallAreaLeader(zone), text, 1);
 	}
 
 	/**

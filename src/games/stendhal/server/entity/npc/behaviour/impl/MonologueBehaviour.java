@@ -18,6 +18,7 @@ public final class MonologueBehaviour implements TurnListener {
 	private final SpeakerNPC speakerNPC;
 	private final String[] repeatedText;
 	private int i = 0;
+	private int minutes;
 	
 	/**
 	 * Creates a new MonologueBehaviour.
@@ -28,9 +29,10 @@ public final class MonologueBehaviour implements TurnListener {
 	 *            text to repeat
 	 */
 	public MonologueBehaviour(final SpeakerNPC speakerNPC,
-			final String[] repeatedText) {
+			final String[] repeatedText, final int minutes) {
 		this.speakerNPC = speakerNPC;
 		this.repeatedText = repeatedText;
+		this.minutes = minutes;
 		SingletonRepository.getTurnNotifier().notifyInTurns(1, this);
 	}
 
@@ -46,7 +48,7 @@ public final class MonologueBehaviour implements TurnListener {
 				i = i + 1;
 			}
 		}
-		// Schedule so we are notified again in 60 seconds
-		SingletonRepository.getTurnNotifier().notifyInTurns(60, this);
+		// Schedule so we are notified again in 
+		SingletonRepository.getTurnNotifier().notifyInSeconds(minutes*60, this);
 	}
 }
