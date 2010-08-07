@@ -52,6 +52,11 @@ public class StendhalPlayerDatabase {
 			if(transaction.doesColumnExist("achievement", "description")) {
 				transaction.execute("ALTER TABLE achievement MODIFY COLUMN description VARCHAR(254)", null);
 			}
+
+			if (!transaction.doesColumnExist("character_stats", "finger")) {
+				transaction.execute("ALTER TABLE character_stats ADD COLUMN (finger VARCHAR(32));", null);
+			}
+			
 			
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {

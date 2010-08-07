@@ -82,7 +82,8 @@ public class StendhalWebsiteDAO {
 			+ " outfit=[outfit], xp=[xp], money='[money]', married='[married]'," 
 			+ " atk='[atk]', def='[def]', hp='[hp]', karma='[karma]',"
 			+ " head='[head]', armor='[armor]', lhand='[lhand]', rhand='[rhand]',"
-			+ " legs='[legs]', feet='[feet]', cloak='[cloak]', lastseen='[lastseen]'"
+			+ " legs='[legs]', feet='[feet]', cloak='[cloak]', lastseen='[lastseen]',"
+			+ " finger='[finger]'"
 			+ " WHERE name='[name]'";
 
 		Map<String, Object> params = getParamsFromPlayer(instance);
@@ -112,6 +113,7 @@ public class StendhalWebsiteDAO {
 		params.put("legs", extractName(instance.getLegs()));
 		params.put("feet", extractName(instance.getBoots()));
 		params.put("cloak", extractName(instance.getCloak()));
+		params.put("finger", extractHandName(instance, "finger"));
 		params.put("name", instance.getName());
 		params.put("lastseen", new Timestamp(new Date().getTime()));
 		return params;
@@ -122,11 +124,11 @@ public class StendhalWebsiteDAO {
 			+ " (name, admin, sentence, age, level,"
 			+ " outfit, xp, money, married, atk, def, hp,"
 			+ " karma, head, armor, lhand, rhand,"
-			+ " legs, feet, cloak, lastseen)"
+			+ " legs, feet, cloak, finger, lastseen)"
 			+ " VALUES ('[name]', '[admin]', '[sentence]', '[age]', '[level]',"
 			+ " '[outfit]', '[xp]', '[money]', '[married]', '[atk]', '[atk]', '[hp]',"
 			+ " '[karma]', '[head]', '[armor]', '[lhand]', '[rhand]',"
-			+ " '[legs]', '[feet]', '[cloak]', '[lastseen]')";
+			+ " '[legs]', '[feet]', '[cloak]', '[finger]', '[lastseen]')";
 		Map<String, Object> params = getParamsFromPlayer(instance);
 		logger.debug("storeCharacter is running: " + query);
 		transaction.execute(query, params);
