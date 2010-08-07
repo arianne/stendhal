@@ -11,8 +11,6 @@ import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.StringTokenizer;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -71,18 +69,6 @@ public class TellAction implements ActionListener {
 		}
 	}
 
-	private void extractRealSenderFromMessageInCaseItWasSendViaPostman() {
-		// HACK: extract sender from postman messages
-		final StringTokenizer st = new StringTokenizer(text, " ");
-		if (senderName.equals("postman") && (st.countTokens() > 2)) {
-			final String temp = st.nextToken();
-			final String command = st.nextToken();
-			if (command.equals("asked")) {
-				senderName = temp;
-			}
-		}
-	}
-
 	private boolean checkAway() {
 		// Handle /away messages
 		final String away = receiver.getAwayMessage();
@@ -127,7 +113,6 @@ public class TellAction implements ActionListener {
 		}
 
 		final String message = createFullMessageText();
-		extractRealSenderFromMessageInCaseItWasSendViaPostman();
 
 		if (!checkIgnoreList(player)) {
 			return;
