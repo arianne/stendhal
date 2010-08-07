@@ -12,12 +12,14 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
+import java.awt.Graphics2D;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
@@ -33,7 +35,16 @@ class NPC2DView extends RPEntity2DView {
 	 */
 	private static final Logger logger = Logger.getLogger(NPC2DView.class);
 
+
+	/**
+	 * Sprite representing attending.
+	 */
+	private static Sprite attendingSprite;
 	
+	static {
+		final SpriteStore store = SpriteStore.get();
+		attendingSprite = store.getSprite("data/sprites/ideas/attending.png");
+	}
 	//
 	// RPEntity2DView
 	//
@@ -94,6 +105,22 @@ class NPC2DView extends RPEntity2DView {
 		}
 	}
 
+	/**
+	 * Draw the entity.
+	 * 
+	 * @param g2d
+	 *            The graphics to drawn on.
+	 */
+	@Override
+	protected void drawTop(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+		NPC npc = (NPC) entity;
+		super.drawTop(g2d, x, y, width, height);
+
+		if (npc.isAttending()) {
+			attendingSprite.draw(g2d, x + (width * 3 / 4), y - 10);
+		}
+		
+	}
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {

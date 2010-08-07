@@ -19,6 +19,30 @@ import marauroa.common.game.RPObject;
  * An NPC entity.
  */
 public class NPC extends AudibleEntity {
+	
+	/**
+	 * The NPC's idea.
+	 */
+	private String idea;
+	
+	/**
+	 * Get the idea setting.
+	 * 
+	 * @return The NPC's idea.
+	 */
+	public String getIdea() {
+		return idea;
+	}
+	
+	/**
+	 * Ask NPC if they are attending
+	 * 
+	 * @return true if attending.
+	 */
+	public boolean isAttending() {
+		return (idea != null);
+	}
+	
 	//
 	// Entity
 	//
@@ -36,7 +60,16 @@ public class NPC extends AudibleEntity {
 		super.initialize(object);
 
 		final String type = getType();
-
+		
+		/*
+		 * Idea
+		 */
+		if (object.has("idea")) {
+			idea = object.get("idea");
+		} else {
+			idea = null;
+		}
+		
 		if (type.startsWith("npc")) {
 			if (name.equals("Diogenes")) {
 				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "laugh-1", "laugh-2");
@@ -64,5 +97,49 @@ public class NPC extends AudibleEntity {
 	protected void onPosition(final double x, final double y) {
 		super.onPosition(x, y);
 		playRandomSoundFromGroup(SoundLayer.CREATURE_NOISE.groupName, "move", 20000);
+	}
+	
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		/*
+		 * Idea
+		 */
+		if (changes.has("idea")) {
+			idea = changes.get("idea");
+		}
+	}
+	
+	/**
+	 * The object removed attribute(s).
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
+	 */
+	@Override
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		/*
+		 * Idea
+		 */
+		if (changes.has("idea")) {
+			idea = null;
+		}
 	}
 }
