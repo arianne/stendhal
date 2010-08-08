@@ -2,11 +2,18 @@ Changelog
 ---------
 
 0.87
+
+*world*
 - NPCs have an 'ear' icon when they are attending a player
 - private messages can't be sent to an /away player - use postman
 - players returning from /away automatically get stored postman messages sent to them
 - own pets and sheep drawn on minimap
-- hoeing NPC in Semos PLains North East
+- hoeing NPC in Semos Plains North East
+
+*website*
+- read postman messages to and from your characters
+- login and launch game for a character without another login from 'My Characters'
+- redesign character page layout, with equipment aranged like in stendhal client
 
 0.86
 
