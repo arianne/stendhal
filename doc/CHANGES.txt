@@ -5,6 +5,8 @@ Changelog
 - NPCs have an 'ear' icon when they are attending a player
 - private messages can't be sent to an /away player - use postman
 - players returning from /away automatically get stored postman messages sent to them
+- own pets and sheep drawn on minimap
+- hoeing NPC in Semos PLains North East
 
 0.86
 
