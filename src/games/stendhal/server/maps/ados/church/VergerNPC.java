@@ -20,7 +20,7 @@ import games.stendhal.server.entity.player.Player;
 public class VergerNPC implements ZoneConfigurator {
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		final String[] text = {"... I know god helps me with not helping me because he trusts in me that I am able to help myself...", "... Am I really alone...? No, there are so many people on the world and I believe that at least one of them would like me...", "... some of these bad things are just as they are... I try my best, but sometimes I cannot change the fate... so it is not my fault...", "... Why am I always feeling so bad? I don't want to live like that any more! But hmm... it's not true that I am always feeling bad... I remember all these very nice times when I felt so great... Ah, I just have to thing more positive and life will be easier, I know..."};
+		final String[] text = {"... You are not alone because there are so many people to become friends with...", "... Don't worry! Everybody has a bad day sometimes...", "... Ah, just think more positive and life will be much easier...", "... Always keep in mind: Everything is going fine...", "Thanks for being here and sharing your time with me.", "Take care of the bad, give hope to the sad..."};
 		new MonologueBehaviour(buildNPC(zone), text, 3);
 	
 	}
