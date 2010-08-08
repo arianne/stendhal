@@ -61,7 +61,7 @@ public class BanAction extends AdministrationAction {
 				player.sendPrivateText("You have banned account " + username + " (character: " + bannedName + ") until " + expireStr + " for: " + reason);
 
 				// logging
-				logger.info(player.getName() + " has banned " + bannedName + " for: " + reason);
+				logger.info(player.getName() + " has banned  account " + username + " (character: " + bannedName + ") until " + expireStr + " for: " + reason);
 				new GameEvent(player.getName(), "ban",  bannedName, expireStr, reason).raise();
 				
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
