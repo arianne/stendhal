@@ -7,6 +7,7 @@ import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -14,17 +15,18 @@ import games.stendhal.server.entity.player.Player;
 /**
  * A praying NPC in ados church
  * 
- * @author madmetzger
+ * @author madmetzger and storyteller
  */
 public class VergerNPC implements ZoneConfigurator {
 
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
-		buildNPC(zone);
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
+		final String[] text = {"... I know god helps me with not helping me because he trusts in me that I am able to help myself...", "... Am I really alone...? No, there are so many people on the world and I believe that at least one of them would like me...", "... some of these bad things are just as they are... I try my best, but sometimes I cannot change the fate... so it is not my fault...", "... Why am I always feeling so bad? I don't want to live like that any more! But hmm... it's not true that I am always feeling bad... I remember all these very nice times when I felt so great... Ah, I just have to thing more positive and life will be easier, I know..."};
+		new MonologueBehaviour(buildNPC(zone), text, 3);
+	
 	}
-
-	private void buildNPC(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Simon") {
+	
+	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Simon") {
 
 			@Override
 			protected void createDialog() {
@@ -53,6 +55,8 @@ public class VergerNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.UP);
 		npc.initHP(100);
 		zone.add(npc);
+		
+		return npc;
 	}
 
 }
