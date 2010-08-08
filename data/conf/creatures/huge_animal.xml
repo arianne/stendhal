@@ -74,7 +74,7 @@
 
   <creature name="bone dragon">
     <type class="huge_animal" subclass="bone_dragon" tileid="huge_animal.png:2"/>
-    <description></description>
+    <description>You see a bone dragon. It's been said there are creatures with enough will to live that their souls still cling to life even as their flesh and blood has failed them. This is living proof.</description>
     <attributes>
       <atk value="435"/>
       <def value="48"/>
