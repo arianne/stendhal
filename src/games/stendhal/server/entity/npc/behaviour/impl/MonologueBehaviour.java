@@ -27,6 +27,8 @@ public final class MonologueBehaviour implements TurnListener {
 	 *            SpeakerNPC
 	 * @param repeatedText
 	 *            text to repeat
+	 * @param minutes
+	 * 			  after how many minutes to repeat text
 	 */
 	public MonologueBehaviour(final SpeakerNPC speakerNPC,
 			final String[] repeatedText, final int minutes) {
