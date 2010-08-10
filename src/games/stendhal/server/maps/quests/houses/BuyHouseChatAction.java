@@ -1,6 +1,10 @@
 
 package games.stendhal.server.maps.quests.houses;
 
+import marauroa.common.game.SlotIsFullException;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.HouseKey;
 import games.stendhal.server.entity.item.Item;
@@ -67,7 +71,7 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 					player.setQuest(questslot, itemName);
 
 					// put nice things and a helpful note in the chest
-					BuyHouseChatAction.fillChest(HouseUtilities.findChest(houseportal));
+					BuyHouseChatAction.fillChest(HouseUtilities.findChest(houseportal), houseportal.getDoorId());
 
 					// set the time so that the taxman can start harassing the player
 					final long time = System.currentTimeMillis();
@@ -90,21 +94,25 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 		}
 	}
 
-	private static void fillChest(final StoredChest chest) {
+	private static void fillChest(final StoredChest chest, String id) {
 		Item item = SingletonRepository.getEntityManager().getItem("note");
 		item.setDescription("WELCOME TO THE HOUSE OWNER\n"
 				+ "1. If you do not pay your house taxes, the house and all the items in the chest will be confiscated.\n"
 				+ "2. All people who can get in the house can use the chest.\n"
 				+ "3. Remember to change your locks as soon as the security of your house is compromised.\n"
 				+ "4. You can resell your house to the state if wished (please don't leave me)\n");
-		chest.add(item);
-		
-		item = SingletonRepository.getEntityManager().getItem("wine");
-		((StackableItem) item).setQuantity(2);
-		chest.add(item);
-		
-		item = SingletonRepository.getEntityManager().getItem("chocolate bar");
-		((StackableItem) item).setQuantity(2);
-		chest.add(item);
+		try {
+			chest.add(item);
+
+			item = SingletonRepository.getEntityManager().getItem("wine");
+			((StackableItem) item).setQuantity(2);
+			chest.add(item);
+
+			item = SingletonRepository.getEntityManager().getItem("chocolate bar");
+			((StackableItem) item).setQuantity(2);
+			chest.add(item);
+		} catch (SlotIsFullException e) {
+			Logger.getLogger(BuyHouseChatAction.class).info("Could not add " + item.getName() + " to chest in " + id, e);
+		}
 	}
 }
