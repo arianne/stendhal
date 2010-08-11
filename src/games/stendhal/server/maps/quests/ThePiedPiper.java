@@ -20,7 +20,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.piedpiper.IQuestConstants;
+import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -62,7 +62,7 @@ import org.apache.log4j.Logger;
  *
  * REPETITIONS: <ul><li> once between a week and two weeks.</ul>
  */
- public class ThePiedPiper extends AbstractQuest implements IQuestConstants {
+ public class ThePiedPiper extends AbstractQuest implements ITPPQuestConstants {
 
 	private static final String QUEST_SLOT = "the_pied_piper";
 	private static Logger logger = Logger.getLogger(ThePiedPiper.class);

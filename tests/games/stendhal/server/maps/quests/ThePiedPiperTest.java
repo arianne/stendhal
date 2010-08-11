@@ -16,7 +16,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.townhall.MayorNPC;
-import games.stendhal.server.maps.quests.piedpiper.IQuestConstants;
+import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -26,7 +26,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
-public class ThePiedPiperTest implements IQuestConstants{
+public class ThePiedPiperTest implements ITPPQuestConstants{
 
 
 	// private static String questSlot = "the_pied_piper";
