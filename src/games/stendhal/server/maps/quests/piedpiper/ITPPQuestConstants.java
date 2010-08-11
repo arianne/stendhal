@@ -3,7 +3,7 @@ package games.stendhal.server.maps.quests.piedpiper;
 import java.util.Arrays;
 import java.util.List;
 
-public interface IQuestConstants {
+public interface ITPPQuestConstants {
 	
 	/**
 	 * related to quest part.
