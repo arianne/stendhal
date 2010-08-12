@@ -50,7 +50,16 @@ public class StendhalPlayerDatabase {
 			}
 			
 			if(transaction.doesColumnExist("achievement", "description")) {
-				transaction.execute("ALTER TABLE achievement MODIFY COLUMN description VARCHAR(254)", null);
+				if(transaction.getColumnLength("achievement", "description") < 254) {
+					//rename
+					transaction.execute("ALTER TABLE achievement CHANGE description description_old ", null);
+					//add new
+					transaction.execute("ALTER TABLE achievement ADD description VARCHAR(254);", null);
+					//transfer data
+					transaction.execute("UPDATE achievement SET description = description_old;", null);
+					//drop renamed
+					transaction.execute("ALTER TABLE achievement DROP description", null);
+				}
 			}
 
 			if (!transaction.doesColumnExist("character_stats", "finger")) {
