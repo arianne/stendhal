@@ -124,7 +124,7 @@ public class HungryJoshuaTest {
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getQuest(questSlot), is("joshua"));
 		en.step(player, "bye");
-		assertEquals("Bye", getReply(npc));
+		assertEquals("Bye.", getReply(npc));
 
 		// -----------------------------------------------
 		npc = SingletonRepository.getNPCList().get("Xoderos");
