@@ -21,6 +21,7 @@ import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerCanEquipItemCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -132,10 +133,20 @@ public class ElfPrincess extends AbstractQuest {
 
 		rose.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+							 new PlayerCanEquipItemCondition("rhosyd")),
 			ConversationStates.IDLE, 
 			"Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.",
 			new MultipleActions(new EquipItemAction("rhosyd", 1, true), new SetQuestAction(QUEST_SLOT, 0, "got_flower")));
+		
+		rose.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+								 new NotCondition(new PlayerCanEquipItemCondition("rhosyd"))),
+				ConversationStates.IDLE, 
+				"Shame you don't have space to take a pretty flower from me. Come back when you can carry my precious blooms without damaging a petal.",
+				null);
+		
 
 	rose.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
