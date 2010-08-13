@@ -58,7 +58,7 @@ public class Present extends Box {
 		final String itemName = getInfoString();
 		final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 		player.sendPrivateText("Congratulations, you've got " 
-				+ Grammar.a_noun(ItemTools.itemNameToDisplayName(itemName)));
+				+ Grammar.a_noun(ItemTools.itemNameToDisplayName(itemName)) + "!");
 
 		player.equipOrPutOnGround(item);
 		player.notifyWorldAboutChanges();
