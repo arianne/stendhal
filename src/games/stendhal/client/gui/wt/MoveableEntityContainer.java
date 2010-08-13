@@ -25,7 +25,7 @@ import marauroa.common.game.RPObject;
  * A container for packing dragged entities so that WtDropTargets can receive
  * them 
  */
-class MoveableEntityContainer implements WtDraggable {
+public class MoveableEntityContainer implements WtDraggable {
 	/** The moved object. */
 	private final IEntity entity;
 
@@ -35,7 +35,7 @@ class MoveableEntityContainer implements WtDraggable {
 	 * @param entity
 	 *            The entity being moved.
 	 */
-	protected MoveableEntityContainer(final IEntity entity) {
+	public MoveableEntityContainer(final IEntity entity) {
 		this.entity = entity;
 	}
 

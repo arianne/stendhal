@@ -269,7 +269,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/** @return height of the panel. */
-	protected int getClientHeight() {
+	public int getClientHeight() {
 		int clientHeight = height;
 		if (frame) {
 			clientHeight -= FRAME_SIZE * 2;
