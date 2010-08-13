@@ -123,6 +123,8 @@ public class j2DClient implements UserInterface {
 	private JLayeredPane pane;
 
 	private KTextEdit gameLog;
+	
+	private ContainerPanel containerPanel;
 
 	private boolean gameRunning;
 
@@ -234,6 +236,7 @@ public class j2DClient implements UserInterface {
 		 *  won't try to resize it
 		 */
 		pane.setMaximumSize(stendhal.screenSize);
+		pane.setMinimumSize(new Dimension(stendhal.screenSize.width, 0));
 	
 		/*
 		 * Create the main game screen
@@ -298,13 +301,6 @@ public class j2DClient implements UserInterface {
 		 */
 		settings = new SettingsPanel(gameScreen);
 		screen.addDialog(settings);
-
-		character = new Character(this, gameScreen);
-		addWindow(character);
-		settings.add(character, "buddy", gameScreen);
-		
-		createAndAddOldBag(gameScreen);
-		//createAndAddNewBag(mainFrameContentPane);
 		
 		keyring = new KeyRing(gameScreen);
 		client.addFeatureChangeListener(keyring);
@@ -340,32 +336,51 @@ public class j2DClient implements UserInterface {
 		leftColumn.add(buddyPane, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		
 		// Chat entry and chat log
-		final JComponent chatBox = new JComponent() {};
-		chatBox.setLayout(new BorderLayout());
-		chatBox.add(chatText.getPlayerChatText(), BorderLayout.NORTH);
-		chatBox.add(gameLog, BorderLayout.CENTER);
+		final JComponent chatBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
+		// Set maximum size to prevent the entry requesting massive widths, but
+		// force expand if there's extra space anyway 
+		chatText.getPlayerChatText().setMaximumSize(new Dimension(stendhal.screenSize.width, Integer.MAX_VALUE));
+		chatBox.add(chatText.getPlayerChatText(), SBoxLayout.constraint(SLayout.EXPAND_X));
+		
+		chatBox.add(gameLog, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		chatBox.setMinimumSize(chatText.getPlayerChatText().getMinimumSize());
 		chatBox.setMaximumSize(new Dimension(stendhal.screenSize.width, Integer.MAX_VALUE));
 		
+		// Subcontainer for the game screen and container panel
+		JComponent screenAndContainers = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
+		screenAndContainers.add(pane);
+		containerPanel = new ContainerPanel();
+		containerPanel.setMinimumSize(new Dimension(0, 0));
+		screenAndContainers.add(containerPanel, 
+				SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
+		
+		// contents of the containerPanel
+		createAndAddOldBag(gameScreen);
+		character = new Character(this, gameScreen);
+		containerPanel.addChild(character);
+		settings.add(character, "buddy", gameScreen);
+		// Set total minimum size so that the left panel gets squeezed out
+		// of the view first. The height needs to be 0 so that the split pane
+		// allows making it smaller.
+		screenAndContainers.setMinimumSize(new Dimension(screenAndContainers.getPreferredSize().width, 0));
+		
 		// Give the user the ability to make the the game area less tall
-		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
+		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, screenAndContainers, chatBox);
 		splitPane.setBorder(null);
 		// Works for showing the resize, but is extremely flickery
 		//splitPane.setContinuousLayout(true);
-		pane.addComponentListener(new SplitPaneResizeListener(screen, splitPane));
+		screenAndContainers.addComponentListener(new SplitPaneResizeListener(screen, splitPane));
 
 		// Avoid panel drawing overhead
 		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
 		mainFrame.getMainFrame().setContentPane(windowContent);
 		
-		// Finally add the left pane, and the games creen + chat combo
+		// Finally add the left pane, and the games screen + chat combo
 		// Make the panel take any horizontal resize
 		windowContent.add(leftColumn, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		leftColumn.setMinimumSize(new Dimension());
 		
 		windowContent.add(splitPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
-		splitPane.setMinimumSize(stendhal.screenSize);
-		splitPane.setMaximumSize(new Dimension(stendhal.screenSize.width, Integer.MAX_VALUE));
 				
 		/*
 		 * Handle focus assertion and window closing
@@ -400,7 +415,8 @@ public class j2DClient implements UserInterface {
 				 *  different java versions seem to take the window decorations
 				 *  in account in rather random ways.
 				 */
-				final int width = mainFrame.getMainFrame().getWidth() - minimap.getComponent().getWidth();
+				final int width = mainFrame.getMainFrame().getWidth() 
+					- minimap.getComponent().getWidth() - containerPanel.getWidth();
 				final int height = mainFrame.getMainFrame().getHeight() - gameLog.getHeight();
 				
 				mainFrame.getMainFrame().setMinimumSize(new Dimension(width, height));
@@ -435,8 +451,8 @@ public class j2DClient implements UserInterface {
 
 	private void createAndAddOldBag(final GameScreen gameScreen) {
 		inventory = new EntityContainer("bag", 3, 4, gameScreen);
-		addWindow(inventory);
 		settings.add(inventory, "bag", gameScreen);
+		containerPanel.addChild(inventory);
 	}
 	
 	private void createAndAddNewBag(final Container content) {
@@ -539,6 +555,7 @@ public class j2DClient implements UserInterface {
 						logger.debug("Draw screen");
 						screen.draw();
 						minimap.refresh();
+						containerPanel.repaintChildren();
 					}
 				}
 	
