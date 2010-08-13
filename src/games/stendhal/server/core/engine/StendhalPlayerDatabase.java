@@ -51,14 +51,12 @@ public class StendhalPlayerDatabase {
 			
 			if(transaction.doesColumnExist("achievement", "description")) {
 				if(transaction.getColumnLength("achievement", "description") < 254) {
-					//rename
-					transaction.execute("ALTER TABLE achievement CHANGE description description_old ", null);
-					//add new
-					transaction.execute("ALTER TABLE achievement ADD description VARCHAR(254);", null);
-					//transfer data
-					transaction.execute("UPDATE achievement SET description = description_old;", null);
-					//drop renamed
+					transaction.execute("CREATE TABLE tmp_achievement_description (id INTEGER, description VARCHAR(254));", null);
+					transaction.execute("INSERT INTO tmp_achievement_description (id, description) SELECT id, description FROM achievement;", null);
 					transaction.execute("ALTER TABLE achievement DROP description", null);
+					transaction.execute("ALTER TABLE achievement ADD description VARCHAR(254);", null);
+					transaction.execute("UPDATE achievement SET description=(SELECT tmp_achievement_description.description FROM tmp_achievement_description WHERE achievement.id=tmp_achievement_description.id);", null);
+					transaction.execute("DROPT TABLE tmp_achievement_description;", null);
 				}
 			}
 
