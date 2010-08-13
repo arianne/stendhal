@@ -1368,7 +1368,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 *         in the entity
 	 */
 	@SuppressWarnings("unchecked")
-	protected final String getSlotNameToEquip(final Item item) {
+	public final String getSlotNameToEquip(final Item item) {
 		// get all possible slots for this item
 		final List<String> slotNames = item.getPossibleSlots();
 
