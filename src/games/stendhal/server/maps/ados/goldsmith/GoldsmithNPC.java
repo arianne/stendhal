@@ -59,7 +59,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				addGreeting("Hi!");
 				addJob("I'm the goldsmith of this city.");
 				addHelp("My brother Xoderos is a blacksmith in Semos. Currently he is selling tools. Perhaps he can make a #gold #pan for you.");
-				addGoodbye("Bye");
+				addGoodbye("Bye.");
 
 				// Joshua makes gold if you bring him gold nugget and wood
 				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
