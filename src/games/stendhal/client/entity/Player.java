@@ -166,9 +166,9 @@ public class Player extends AudibleEntity {
 			/*
 			 * Filter out a player "changing" to the same message
 			 */
-			if (!object.has("away")
-					|| !object.get("away").equals(changes.get("away"))) {
-				away = changes.get("away");
+			String newStatus = changes.get("away");
+			if ((newStatus == null && away != null) || !newStatus.equals(away)) {
+				away = newStatus;
 				fireChange(PROP_AWAY);
 				onAway(away);
 			}
@@ -177,9 +177,9 @@ public class Player extends AudibleEntity {
 			/*
 			 * Filter out a player "changing" to the same message
 			 */
-			if (!object.has("grumpy")
-					|| !object.get("grumpy").equals(changes.get("grumpy"))) {
-				grumpy = changes.get("grumpy");
+			String newStatus = changes.get("grumpy");
+			if ((newStatus == null && grumpy != null) || !newStatus.equals(grumpy)) {
+				grumpy = newStatus;
 				fireChange(PROP_GRUMPY);
 				onGrumpy(grumpy);
 			}
