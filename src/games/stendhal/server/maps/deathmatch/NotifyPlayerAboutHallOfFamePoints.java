@@ -58,6 +58,6 @@ class NotifyPlayerAboutHallOfFamePoints implements TurnListener {
 
 		// tell the player his score
 		int points = command.getPoints();
-		npc.say("Congratulations " + playerName + ", your score is now " + points);
+		npc.say("Congratulations " + playerName + ", your score is now " + points + ".");
 	}
 }
