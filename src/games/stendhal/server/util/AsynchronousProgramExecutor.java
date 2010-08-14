@@ -16,8 +16,8 @@ import org.apache.log4j.Logger;
  * 
  * @author hendrik
  */
-public class TwitterAccess extends Thread {
-	private static Logger logger = Logger.getLogger(TwitterAccess.class);
+public class AsynchronousProgramExecutor extends Thread {
+	private static Logger logger = Logger.getLogger(AsynchronousProgramExecutor.class);
 	private String message;
 	private String account;
 
@@ -29,7 +29,7 @@ public class TwitterAccess extends Thread {
 	 * @param message
 	 *            message to tweet
 	 */
-	public TwitterAccess(String account, String message) {
+	public AsynchronousProgramExecutor(String account, String message) {
 		this.account = account;
 		this.message = message;
 	}
