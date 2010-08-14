@@ -97,7 +97,6 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * drag finished.
 	 * 
 	 * @param p
-	 * @param gameScreen
 	 * @return true
 	 */
 	public boolean dragFinished(final Point p) {
