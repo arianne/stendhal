@@ -69,8 +69,8 @@ public class ContainerPanel extends JPanel {
 	 * screen.
 	 */
 	private static class WtWrapper extends JComponent implements DropTarget {
-		private final WtPanel contents;
-		private final MouseHandlerframe base;
+		private transient final WtPanel contents;
+		private transient final MouseHandlerframe base;
 		
 		//private Dimension size;
 		private boolean minimized;
@@ -118,6 +118,11 @@ public class ContainerPanel extends JPanel {
 			}
 			
 			return size;
+		}
+		
+		@Override
+		public Dimension getMinimumSize() {
+			return getPreferredSize();
 		}
 
 		public void dropEntity(IEntity entity, Point point) {
