@@ -355,10 +355,10 @@ public class j2DClient implements UserInterface {
 				SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
 		
 		// contents of the containerPanel
-		createAndAddOldBag(gameScreen);
 		character = new Character(this, gameScreen);
 		containerPanel.addChild(character);
 		settings.add(character, "buddy", gameScreen);
+		createAndAddOldBag(gameScreen);
 		// Set total minimum size so that the left panel gets squeezed out
 		// of the view first. The height needs to be 0 so that the split pane
 		// allows making it smaller.
