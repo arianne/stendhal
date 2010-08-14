@@ -14,7 +14,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
-import games.stendhal.server.util.TwitterAccess;
+import games.stendhal.server.util.AsynchronousProgramExecutor;
 
 
 public class PrepareOfferHandler {
@@ -160,7 +160,7 @@ public class PrepareOfferHandler {
 			if (TradingUtility.canPlayerAffordTradingFee(player, price)) {
 				if (createOffer(player, item, price, quantity)) {
 					TradingUtility.substractTradingFee(player, price);
-					new TwitterAccess("trade", buildTweetMessage(item, price)).start();
+                    new AsynchronousProgramExecutor("trade", buildTweetMessage(item, price)).start();
 					npc.say("I added your offer to the trading center and took the fee of "+ fee +".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
 				} else {

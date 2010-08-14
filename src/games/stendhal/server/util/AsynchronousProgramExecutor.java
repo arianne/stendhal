@@ -1,0 +1,72 @@
+package games.stendhal.server.util;
+
+import java.io.IOException;
+
+import marauroa.common.Configuration;
+
+import org.apache.log4j.Logger;
+
+/**
+ * Executes an external program
+ * 
+ * @author hendrik
+ */
+public class AsynchronousProgramExecutor extends Thread {
+	private static Logger logger = Logger.getLogger(AsynchronousProgramExecutor.class);
+	private String message;
+	private String account;
+
+	/**
+	 * Creates a new AsynchronousProgramExecutor
+	 * 
+	 * @param account
+	 *            account to use
+	 * @param message
+	 *            message to tweet
+	 */
+	public AsynchronousProgramExecutor(String account, String message) {
+		this.account = account;
+		this.message = message;
+	}
+
+	/**
+	 * Executes the program. Use "start()" for asynchronous access.
+	 */
+	public void run() {
+		Configuration configuration;
+		try {
+			configuration = Configuration.getConfiguration();
+		} catch (IOException e1) {
+			logger.error(e1, e1);
+			return;
+		}
+
+		// check that a password for this account was configured
+		if (!configuration.has("stendhal.program." + account)) {
+			return;
+		}
+
+		String cmd = configuration.get("stendhal.program." + account);
+		send(cmd, message);
+	}
+
+	/**
+	 * sends the message to the twitter account
+	 *
+	 * @param cmd command
+	 * @param message message to tweet
+	 */
+	private void send(String cmd, String message) {
+		try {
+			String[] args = new String[2];
+			args[0] = cmd;
+			args[1] = message;
+			Process p = Runtime.getRuntime().exec(args);
+			p.getErrorStream().close();
+			p.getOutputStream().close();
+			p.getInputStream().close();
+		} catch (IOException e) {
+			logger.error(e, e);
+		}
+	}
+}
