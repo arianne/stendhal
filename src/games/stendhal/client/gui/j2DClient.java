@@ -302,11 +302,6 @@ public class j2DClient implements UserInterface {
 		settings = new SettingsPanel(gameScreen);
 		screen.addDialog(settings);
 		
-		keyring = new KeyRing(gameScreen);
-		client.addFeatureChangeListener(keyring);
-		addWindow(keyring);
-		settings.add(keyring, "keyring", gameScreen);
-		
 		settings.addSeparator();
 		
 		settings.add(null, "help", gameScreen);
@@ -346,30 +341,36 @@ public class j2DClient implements UserInterface {
 		chatBox.setMinimumSize(chatText.getPlayerChatText().getMinimumSize());
 		chatBox.setMaximumSize(new Dimension(stendhal.screenSize.width, Integer.MAX_VALUE));
 		
-		// Subcontainer for the game screen and container panel
-		JComponent screenAndContainers = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
-		screenAndContainers.add(pane);
+		// Set total minimum size so that the left panel gets squeezed out
+		// of the view first. The height needs to be 0 so that the split pane
+		// allows making it smaller.
+		//screenAndContainers.setMinimumSize(new Dimension(screenAndContainers.getPreferredSize().width, 0));
+		
+		// Give the user the ability to make the the game area less tall
+		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
+		splitPane.setBorder(null);
+		// Works for showing the resize, but is extremely flickery
+		//splitPane.setContinuousLayout(true);
+		pane.addComponentListener(new SplitPaneResizeListener(screen, splitPane));
+		
+		/*
+		 * Container panel
+		 */
 		containerPanel = new ContainerPanel();
 		containerPanel.setMinimumSize(new Dimension(0, 0));
-		screenAndContainers.add(containerPanel, 
-				SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
 		
-		// contents of the containerPanel
+		/*
+		 * Contents of the containerPanel
+		 */
 		character = new Character(this, gameScreen);
 		containerPanel.addChild(character);
 		settings.add(character, "buddy", gameScreen);
 		createAndAddOldBag(gameScreen);
-		// Set total minimum size so that the left panel gets squeezed out
-		// of the view first. The height needs to be 0 so that the split pane
-		// allows making it smaller.
-		screenAndContainers.setMinimumSize(new Dimension(screenAndContainers.getPreferredSize().width, 0));
 		
-		// Give the user the ability to make the the game area less tall
-		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, screenAndContainers, chatBox);
-		splitPane.setBorder(null);
-		// Works for showing the resize, but is extremely flickery
-		//splitPane.setContinuousLayout(true);
-		screenAndContainers.addComponentListener(new SplitPaneResizeListener(screen, splitPane));
+		keyring = new KeyRing(gameScreen);
+		containerPanel.addChild(keyring);
+		client.addFeatureChangeListener(keyring);
+		settings.add(keyring, "keyring", gameScreen);
 
 		// Avoid panel drawing overhead
 		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
@@ -380,7 +381,15 @@ public class j2DClient implements UserInterface {
 		windowContent.add(leftColumn, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		leftColumn.setMinimumSize(new Dimension());
 		
-		windowContent.add(splitPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
+		/*
+		 * Put the splitpane and the container panel to a subcontainer to make
+		 * squeezing the window affect the left pane first rather than the right
+		 */
+		JComponent rightSide = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
+		rightSide.add(splitPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
+		rightSide.add(containerPanel, SBoxLayout.constraint(SLayout.EXPAND_Y));
+		rightSide.setMinimumSize(rightSide.getPreferredSize());
+		windowContent.add(rightSide, SBoxLayout.constraint(SLayout.EXPAND_Y));
 				
 		/*
 		 * Handle focus assertion and window closing
