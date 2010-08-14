@@ -16,18 +16,25 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  * A wrapper container for WtPanels outside the game screen.
  */
-public class ContainerPanel extends JPanel {
-	private final Map<WtPanel, JComponent> children = new HashMap<WtPanel, JComponent>(); 
+public class ContainerPanel extends JScrollPane {
+	/** A map of the children to enable removing them. */
+	private final Map<WtPanel, JComponent> children = new HashMap<WtPanel, JComponent>();
+	/** The actual content panel */
+	private final JPanel panel;
 
 	/**
 	 * Create a ContainerPanel.
 	 */
 	public ContainerPanel() {
-		setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+		panel = new JPanel();
+		panel.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+		setViewportView(panel);
+		setBorder(null);
 	}
 	
 	/**
@@ -38,7 +45,7 @@ public class ContainerPanel extends JPanel {
 	public void addChild(WtPanel child) {
 		JComponent wrapper = new WtWrapper(child);
 		children.put(child, wrapper);
-		add(wrapper);
+		panel.add(wrapper);
 	}
 	
 	/**
@@ -49,7 +56,7 @@ public class ContainerPanel extends JPanel {
 	public void removeChild(WtPanel child) {
 		JComponent wrapper = children.get(child);
 		if (wrapper != null) {
-			remove(wrapper);
+			panel.remove(wrapper);
 		}
 	}
 	
@@ -60,6 +67,20 @@ public class ContainerPanel extends JPanel {
 		for (JComponent child : children.values()) {
 			child.repaint();
 		}
+	}
+	
+	@Override
+	public Dimension getPreferredSize() {
+		Dimension size = panel.getPreferredSize();
+		JComponent scrollBar = getVerticalScrollBar();
+		if (scrollBar.isVisible()) {
+			/*
+			 * Try to claim a bit more space if the user enlarges the window and
+			 * there's not enough space sidewise.
+			 */
+			size.width += scrollBar.getWidth();
+		}
+		return size;
 	}
 	
 	/**
