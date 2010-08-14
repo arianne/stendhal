@@ -48,10 +48,10 @@ public class Character extends WtPanel {
 	private static final int SLOT_SIZE = 39; 
 
 	/** Space between slots. */
-	private static final int SLOT_SPACING = 3;
+	private static final int SLOT_SPACING = 2;
 	
 	/** Panel width. */
-	private static final int PANEL_WIDTH = 3 * SLOT_SIZE + 4 * SLOT_SPACING + 4;
+	private static final int PANEL_WIDTH = 3 * SLOT_SIZE + 4 * SLOT_SPACING + 3;
 
 	/** Panel height. */
 	private static final int PANEL_HEIGHT = 4 * SLOT_SIZE + 5 * SLOT_SPACING + 19;
