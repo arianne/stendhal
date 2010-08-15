@@ -34,7 +34,7 @@ public class ForeignWomanNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Goeiedag");
-				addHelp("Since I am living here in ados I dont need any kind of help, but thank you.");
+				addHelp("Since I am living here in Ados I dont need any kind of help, but thank you.");
 				
 				addQuest("Relax, relax, relax."); 
 				addJob("No, I am too old for working.");
