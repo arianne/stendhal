@@ -243,9 +243,9 @@ public class DailyItemQuest extends AbstractQuest {
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new DropRecordedItemAction(QUEST_SLOT,0));
-		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		actions.add(new IncrementQuestAction(QUEST_SLOT,2,1));
+		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		actions.add(new IncreaseXPDependentOnLevelAction(8, 90.0));
 		actions.add(new IncreaseKarmaAction(10.0));
 		actions.add(new CheckForReachedQuestAchievements());
