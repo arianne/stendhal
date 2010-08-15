@@ -56,7 +56,7 @@ public class StendhalPlayerDatabase {
 					transaction.execute("ALTER TABLE achievement DROP description", null);
 					transaction.execute("ALTER TABLE achievement ADD description VARCHAR(254);", null);
 					transaction.execute("UPDATE achievement SET description=(SELECT tmp_achievement_description.description FROM tmp_achievement_description WHERE achievement.id=tmp_achievement_description.id);", null);
-					transaction.execute("DROPT TABLE tmp_achievement_description;", null);
+					transaction.execute("DROP TABLE tmp_achievement_description;", null);
 				}
 			}
 
