@@ -211,9 +211,9 @@ public class DailyItemQuest extends AbstractQuest {
 		
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		actions.add(new StartRecordingRandomItemCollectionAction(QUEST_SLOT,0,items,"Ados is in need of supplies. Go fetch [item]"
-				+ " and say #complete, once you've brought it."));		
+				+ " and say #complete, once you've brought it."));	
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT),

@@ -165,9 +165,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 		
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		actions.add(new StartRecordingRandomItemCollectionAction(QUEST_SLOT,0,items,"I want Kirdneh's museum to be the greatest in the land! Please fetch [item]"
-				+ " and say #complete, once you've brought it."));		
+				+ " and say #complete, once you've brought it."));	
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT),
