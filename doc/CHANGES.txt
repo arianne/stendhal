@@ -15,6 +15,11 @@ Changelog
 - login and launch game for a character without another login from 'My Characters'
 - redesign character page layout, with equipment aranged like in stendhal client
 
+*client*
+- Game screen ported to swing
+- Drag and drop drawn to a layer above everything
+- Bag, character, keyring and settings moved out of the game screen
+
 0.86
 
 *world*
