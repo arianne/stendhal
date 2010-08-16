@@ -48,13 +48,14 @@ public class PrepareOfferHandler {
 	/**
 	 * Builds the message for the tweet to be posted
 	 * @param i the offered item
+	 * @param q the quantity of the offered item
 	 * @param p the price for the item
 	 * @return the message to be posted in the tweet
 	 */
-	public String buildTweetMessage(Item i, int p) {
+	public String buildTweetMessage(Item i, int q, int p) {
 		StringBuilder message = new StringBuilder();
-		message.append("New offer for some ");
-		message.append(i.getName());
+		message.append("New offer for ");
+		message.append(Grammar.quantityplnoun(q, i.getName(), "a"));
 		message.append(" at ");
 		message.append(p);
 		message.append(" money. ");
@@ -160,7 +161,7 @@ public class PrepareOfferHandler {
 			if (TradingUtility.canPlayerAffordTradingFee(player, price)) {
 				if (createOffer(player, item, price, quantity)) {
 					TradingUtility.substractTradingFee(player, price);
-					new AsynchronousProgramExecutor("trade", buildTweetMessage(item, price)).start();
+					new AsynchronousProgramExecutor("trade", buildTweetMessage(item, quantity, price)).start();
 					npc.say("I added your offer to the trading center and took the fee of "+ fee +".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
 				} else {

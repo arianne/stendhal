@@ -25,15 +25,15 @@ public class PrepareOfferHandlerTest {
 		PrepareOfferHandler handler = new PrepareOfferHandler();
 		Item item = ItemTestHelper.createItem("axe");
 		int price = 10;
-		assertThat(handler.buildTweetMessage(item, price),is("New offer for axe at 10 money. "));
+		assertThat(handler.buildTweetMessage(item, 1, price),is("New offer for an axe at 10 money. "));
 		item.put("atk",1);
-		assertThat(handler.buildTweetMessage(item, price),is("New offer for axe at 10 money. Stats are (ATK: 1)."));
+		assertThat(handler.buildTweetMessage(item, 1, price),is("New offer for an axe at 10 money. Stats are (ATK: 1)."));
 		item.put("rate",1);
-		assertThat(handler.buildTweetMessage(item, price),is("New offer for axe at 10 money. Stats are (ATK: 1 RATE: 1)."));
+		assertThat(handler.buildTweetMessage(item, 1, price),is("New offer for an axe at 10 money. Stats are (ATK: 1 RATE: 1)."));
 		item.put("def",1);
-		assertThat(handler.buildTweetMessage(item, price),is("New offer for axe at 10 money. Stats are (ATK: 1 DEF: 1 RATE: 1)."));
+		assertThat(handler.buildTweetMessage(item, 1, price),is("New offer for an axe at 10 money. Stats are (ATK: 1 DEF: 1 RATE: 1)."));
 		item.put("description","Some weird description to check if stats are extracted right!");
-		assertThat(handler.buildTweetMessage(item, price),is("New offer for axe at 10 money. Stats are (ATK: 1 DEF: 1 RATE: 1)."));
+		assertThat(handler.buildTweetMessage(item, 1, price),is("New offer for an axe at 10 money. Stats are (ATK: 1 DEF: 1 RATE: 1)."));
 	}
 
 }
