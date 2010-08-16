@@ -13,7 +13,8 @@ Changelog
 *website*
 - read postman messages to and from your characters
 - login and launch game for a character without another login from 'My Characters'
-- redesign character page layout, with equipment aranged like in stendhal client
+- redesign character page layout, with equipment arranged like in stendhal client
+- 'Recent Events' shows what has been happening in the world
 
 *client*
 - Game screen ported to swing
