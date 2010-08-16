@@ -5,6 +5,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.wt.MoveableEntityContainer;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
+import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtPanel;
 
 import java.awt.Dimension;
@@ -164,6 +165,19 @@ public class ContainerPanel extends JScrollPane {
 		 */
 		public MouseHandlerframe(int width, int height, IGameScreen gameScreen) {
 			super(width, height, gameScreen);
+		}
+		
+		@Override
+		public WtDraggable getDragged(Point p) {
+			WtDraggable dragged = super.getDragged(p);
+			/*
+			 * Don't allow dragging the panels anywhere even though they think
+			 * themselves that they're movable windows.
+			 */
+			if (dragged instanceof WtPanel) {
+				return null;
+			}
+			return dragged;
 		}
 
 		public void dropEntity(IEntity entity, Point point) {
