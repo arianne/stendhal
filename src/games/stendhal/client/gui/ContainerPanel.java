@@ -45,6 +45,7 @@ public class ContainerPanel extends JScrollPane {
 	 */
 	public void addChild(WtPanel child) {
 		JComponent wrapper = new WtWrapper(child);
+		wrapper.setAlignmentX(LEFT_ALIGNMENT);
 		children.put(child, wrapper);
 		panel.add(wrapper);
 	}
