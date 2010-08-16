@@ -13,6 +13,8 @@ import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.listener.RPObjectChangeListener;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import marauroa.common.game.RPObject;
 
@@ -212,18 +214,11 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param changes
 	 *            The object changes.
 	 */
-	protected void processFeaturesAdded(final RPObject changes) {
-		for (final String featureName : changes) {
-			// Skip internal ID field
-			if ("id".equals(featureName)) {
-				continue;
-			}
-			
-			if (!features.containsKey(featureName)) {
-				final String value = changes.get(featureName);
-
-				features.put(featureName, value);
-				fireFeatureEnabled(featureName, value);
+	protected void processFeaturesAdded(final Map<String, String> changes) {
+		for (final Entry<String, String> entry : changes.entrySet()) {
+			if (!features.containsKey(entry.getKey())) {
+				features.put(entry.getKey(), entry.getValue());
+				fireFeatureEnabled(entry.getKey(), entry.getValue());
 			}
 		}
 	}
@@ -234,16 +229,11 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param changes
 	 *            The object changes.
 	 */
-	protected void processFeaturesRemoved(final RPObject changes) {
-		for (final String featureName : changes) {
-			// Skip internal ID field
-			if ("id".equals(featureName)) {
-				continue;
-			}
-
-			if (features.containsKey(featureName)) {
-				features.remove(featureName);
-				fireFeatureDisabled(featureName);
+	protected void processFeaturesRemoved(final Map<String, String> changes) {
+		for (final String feature : changes.keySet()) {
+			if (features.containsKey(feature)) {
+				features.remove(feature);
+				fireFeatureDisabled(feature);
 			}
 		}
 	}
@@ -315,6 +305,10 @@ public class UserContext implements RPObjectChangeListener {
 				sheepID = changes.getInt("sheep");
 				// fireOwnedSheep(sheepID);
 			}
+			
+			if (changes.hasMap("features")) {
+				processFeaturesAdded(changes.getMap("features"));
+			}
 		}
 	}
 
@@ -340,6 +334,10 @@ public class UserContext implements RPObjectChangeListener {
 			if (changes.has("sheep")) {
 				sheepID = 0;
 				// fireOwnedSheep(sheepID);
+			}
+			
+			if (changes.hasMap("features")) {
+				processFeaturesRemoved(changes.getMap("features"));
 			}
 		}
 	}
@@ -372,11 +370,6 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	public void onSlotAdded(final RPObject object, final String slotName,
 			final RPObject sobject) {
-		if (isUser(object)) {
-			if (slotName.equals("!features")) {
-				processFeaturesAdded(sobject);
-			}
-		}
 	}
 
 	/**
@@ -394,11 +387,6 @@ public class UserContext implements RPObjectChangeListener {
 	public void onSlotChangedAdded(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		if (isUser(object)) {
-			if ("!features".equals(slotName)) {
-				processFeaturesAdded(schanges);
-			}
-		}
 	}
 
 	/**
@@ -416,11 +404,6 @@ public class UserContext implements RPObjectChangeListener {
 	public void onSlotChangedRemoved(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
-		if (isUser(object)) {
-			if ("!features".equals(slotName)) {
-				processFeaturesRemoved(schanges);
-			}
-		}
 	}
 
 	/**
@@ -435,15 +418,9 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	public void onSlotRemoved(final RPObject object, final String slotName,
 			final RPObject sobject) {
-		if (isUser(object)) {
-			if ("!features".equals(slotName)) {
-				processFeaturesRemoved(sobject);
-			}
-		}
 	}
 
 	public void setName(final String username) {
 		name = username;
-
 	}
 }
