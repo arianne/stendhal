@@ -110,6 +110,10 @@ public class ContainerPanel extends JScrollPane {
 			contents.moveTo(0, 0);
 			// Don't let the user close the window. Just allow minimize
 			contents.setCloseable(false);
+			// Restore any windows the user might have closed in previous
+			// versions of the client. The user has no way to regain them
+			// otherwise
+			contents.setVisible(true);
 			// Get the mouse handling from WtBaseFrame
 			base = new MouseHandlerframe(contents.getWidth(), contents.getHeight(), null);
 			addMouseListener(base);
