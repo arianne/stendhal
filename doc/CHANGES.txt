@@ -20,6 +20,10 @@ Changelog
 - Drag and drop drawn to a layer above everything
 - Bag, character, keyring and settings moved out of the game screen
 
+*code*
+- improved performance of pathfinder
+- use external program for twitter access instead of disabled http basic auth API
+
 0.86
 
 *world*
