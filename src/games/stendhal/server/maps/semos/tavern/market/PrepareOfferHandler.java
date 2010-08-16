@@ -54,7 +54,7 @@ public class PrepareOfferHandler {
 	public String buildTweetMessage(Item i, int p) {
 		StringBuilder message = new StringBuilder();
 		message.append("New offer for ");
-		message.append(Grammar.quantityplnoun(i.getQuantity(), i.getName(), "a"));
+		message.append(i.getName());
 		message.append(" at ");
 		message.append(p);
 		message.append(" money. ");
