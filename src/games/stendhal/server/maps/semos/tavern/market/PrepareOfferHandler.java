@@ -53,8 +53,8 @@ public class PrepareOfferHandler {
 	 */
 	public String buildTweetMessage(Item i, int p) {
 		StringBuilder message = new StringBuilder();
-		message.append("New offer for ");
-		message.append(Grammar.quantityplnoun(i.getQuantity(), i.getName(), "a"));
+		message.append("New offer for some ");
+		message.append(i.getName());
 		message.append(" at ");
 		message.append(p);
 		message.append(" money. ");
@@ -188,7 +188,7 @@ public class PrepareOfferHandler {
 					return false;
 				}
 
-				StringBuilder message = new StringBuilder("Offer for ");
+				StringBuilder message = new StringBuilder("Offer for some ");
 				message.append(item.getName());
 				message.append(" at ");
 				message.append(price);
