@@ -294,20 +294,7 @@ public class j2DClient implements UserInterface {
 		// clients being distributed
 		if (!stendhal.screenSize.equals(new Dimension(640, 480))) {
 			addEventLine(new HeaderLessEventLine(("Using window size cheat: " + getWidth() + "x" + getHeight()), NotificationType.NEGATIVE));
-		}	
-
-		/*
-		 * In-screen dialogs
-		 */
-		settings = new SettingsPanel(gameScreen);
-		screen.addDialog(settings);
-		
-		settings.addSeparator();
-		
-		settings.add(null, "help", gameScreen);
-		settings.add(null, "accountcontrol", gameScreen);
-		settings.add(null, "settings", gameScreen);
-		settings.add(null, "rp", gameScreen);
+		}
 		
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
@@ -341,11 +328,6 @@ public class j2DClient implements UserInterface {
 		chatBox.setMinimumSize(chatText.getPlayerChatText().getMinimumSize());
 		chatBox.setMaximumSize(new Dimension(stendhal.screenSize.width, Integer.MAX_VALUE));
 		
-		// Set total minimum size so that the left panel gets squeezed out
-		// of the view first. The height needs to be 0 so that the split pane
-		// allows making it smaller.
-		//screenAndContainers.setMinimumSize(new Dimension(screenAndContainers.getPreferredSize().width, 0));
-		
 		// Give the user the ability to make the the game area less tall
 		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
 		splitPane.setBorder(null);
@@ -362,15 +344,21 @@ public class j2DClient implements UserInterface {
 		/*
 		 * Contents of the containerPanel
 		 */
+		// The setting bar to the top
+		settings = new SettingsPanel(gameScreen);		
+		settings.add(null, "help", gameScreen);
+		settings.add(null, "accountcontrol", gameScreen);
+		settings.add(null, "settings", gameScreen);
+		settings.add(null, "rp", gameScreen);
+		containerPanel.addChild(settings);
+		
 		character = new Character(this, gameScreen);
 		containerPanel.addChild(character);
-		settings.add(character, "buddy", gameScreen);
 		createAndAddOldBag(gameScreen);
 		
 		keyring = new KeyRing(gameScreen);
 		containerPanel.addChild(keyring);
 		client.addFeatureChangeListener(keyring);
-		settings.add(keyring, "keyring", gameScreen);
 
 		// Avoid panel drawing overhead
 		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
@@ -460,7 +448,6 @@ public class j2DClient implements UserInterface {
 
 	private void createAndAddOldBag(final GameScreen gameScreen) {
 		inventory = new EntityContainer("bag", 3, 4, gameScreen);
-		settings.add(inventory, "bag", gameScreen);
 		containerPanel.addChild(inventory);
 	}
 	
