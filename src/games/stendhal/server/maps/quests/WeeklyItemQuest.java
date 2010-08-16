@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.CheckForReachedQuestAchievements;
+import games.stendhal.server.entity.npc.action.CheckForReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
@@ -202,7 +202,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		actions.add(new IncreaseXPDependentOnLevelAction(5.0/3.0, 290.0));
 		actions.add(new IncreaseKarmaAction(10.0));
-		actions.add(new CheckForReachedQuestAchievements());
+		actions.add(new CheckForReachedQuestAchievementsAction());
 		actions.add(new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				int goldamount;

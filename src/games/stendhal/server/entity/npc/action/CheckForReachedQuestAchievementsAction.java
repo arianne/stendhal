@@ -6,7 +6,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
-public class CheckForReachedQuestAchievements implements ChatAction {
+public class CheckForReachedQuestAchievementsAction implements ChatAction {
 
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
