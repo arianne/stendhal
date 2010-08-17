@@ -142,6 +142,7 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 	 */
 	@Test
 	public void testInactivePhase() {	
+		ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
 		assertTrue(quest.getHistory(player).isEmpty());
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -163,7 +164,12 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 	@Test
 	public void testInvasionPhase() {
 		// [17:50] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
-		quest.phaseInactiveToInvasion();
+        ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
+		ThePiedPiper.getPhaseClass(
+				ThePiedPiper.getPhase()).phaseToNextPhase(
+						ThePiedPiper.getNextPhaseClass(
+								ThePiedPiper.getPhase()));
+		//quest.phaseInactiveToInvasion();
         en.step(player, "bye"); // in case if previous test was failed
         en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -204,8 +210,13 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 	public void testAccumulatingRewards() {
 		int tempReward = 0;
 		LinkedList<String> questHistory = new LinkedList<String>();
+        ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
 		// [18:09] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
-		quest.phaseInactiveToInvasion();
+		ThePiedPiper.getPhaseClass(
+				ThePiedPiper.getPhase()).phaseToNextPhase(
+						ThePiedPiper.getNextPhaseClass(
+								ThePiedPiper.getPhase()));
+		//quest.phaseInactiveToInvasion();
 		en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -241,7 +252,11 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 		assertEquals(questHistory, quest.getHistory(player));
-		quest.phaseInactiveToInvasion();	
+		ThePiedPiper.getPhaseClass(
+				ThePiedPiper.getPhase()).phaseToNextPhase(
+						ThePiedPiper.getNextPhaseClass(
+								ThePiedPiper.getPhase()));
+		//quest.phaseInactiveToInvasion();	
 		killRats(quest.getRatsCount());
 		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
@@ -272,12 +287,22 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 	@Test
 	public void testAwaitingPhase() {	
 		LinkedList<String> questHistory = new LinkedList<String>();
-		quest.phaseInactiveToInvasion();		
+        ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
+		ThePiedPiper.getPhaseClass(
+				ThePiedPiper.getPhase()).phaseToNextPhase(
+						ThePiedPiper.getNextPhaseClass(
+								ThePiedPiper.getPhase()));
+		//quest.phaseInactiveToInvasion();		
 		killRats(quest.getRatsCount()/2);
 		questHistory.add("I have killed some rats in Ados city already, and trying to kill more.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		// [18:19] Mayor Chalmers shouts: Saddanly, rats captured city, they are living now under all Ados buildings. I am now in need of call Piped Piper, rats exterminator. Thank to all who tryed to clean up Ados,  you are welcome to get your reward.
-		quest.phaseInvasionToAwaiting();		
+		
+		ThePiedPiper.getPhaseClass(
+				ThePiedPiper.getPhase()).phaseToNextPhase(
+						ThePiedPiper.getNextPhaseClass(
+								ThePiedPiper.getPhase()));
+		//quest.phaseInvasionToAwaiting();		
 		en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -300,7 +325,8 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 		assertEquals("Good day to you.", getReply(npc));
 		
 		// [19:20] Mayor Chalmers shouts: Thanx gods, rats is gone now, Pied Piper hypnotized them and lead away to dungeons. Those of you, who helped to Ados city with rats problem, can get your reward now.
-		quest.phaseAwaitingToInactive();
+		ThePiedPiper.getPhaseClass(ThePiedPiper.getPhase()).phaseToDefaultPhase();
+		//quest.phaseAwaitingToInactive();
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
