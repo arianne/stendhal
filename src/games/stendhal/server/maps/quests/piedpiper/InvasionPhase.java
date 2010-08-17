@@ -197,7 +197,7 @@ public class InvasionPhase extends TPPQuest {
 	@Override
 	public void prepare() {
 		summonRats();
-		startShouts(timings.get(SHOUT_TIME), RatsProblem());
+		super.startShouts(timings.get(SHOUT_TIME), RatsProblem());
 	}
 
 	@Override

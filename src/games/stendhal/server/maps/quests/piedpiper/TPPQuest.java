@@ -61,8 +61,7 @@ public class TPPQuest implements ITPPQuest {
 			TurnNotifier.get().dontNotify(this);
 		}
 		
-		public void onTurnReached(int currentTurn) {
-			shoutMessage(shoutMsg);			
+		public void onTurnReached(int currentTurn) {			
 			start();
 		}
 		
@@ -75,7 +74,7 @@ public class TPPQuest implements ITPPQuest {
 		}
 
 		public ShouterTimer(final int time, final String msg) {
-			shoutTime=time;
+			setTime(time);
 			setShouts(msg);
 		}
 
