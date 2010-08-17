@@ -27,12 +27,6 @@ public interface Debug {
 	// Note: This line is updated by build.xml using a regexp so be sure to adjust it in case you modify this line.
 	String VERSION = "0.86.5";
 
-	
-	/**
-	 * This emulates perception losses. Never make this true and commit it to
-	 * CVS
-	 */
-	boolean EMULATE_PERCEPTION_LOSS = false;
 
 	/**
 	 * Log list sizes to find the memory leak. It must be somewhere...

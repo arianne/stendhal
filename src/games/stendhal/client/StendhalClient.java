@@ -18,7 +18,6 @@ import games.stendhal.client.gui.login.CharacterDialog;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
-import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 
 import java.io.ByteArrayInputStream;
@@ -243,13 +242,6 @@ public class StendhalClient extends ClientFramework {
 
 			if (message.getPerceptionType() == Perception.SYNC) {
 				onBeforeSync(message.getRPZoneID().getID());
-			}
-
-			/** This code emulate a perception loss. */
-			if (Debug.EMULATE_PERCEPTION_LOSS
-					&& (message.getPerceptionType() != Perception.SYNC)
-					&& ((message.getPerceptionTimestamp() % 30) == 0)) {
-				return;
 			}
 
 			handler.apply(message, world_objects);
