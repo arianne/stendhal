@@ -3,15 +3,8 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.core.pathfinder.Path;
-import games.stendhal.server.core.rp.StendhalRPAction;
-import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.creature.CircumstancesOfDeath;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -20,14 +13,16 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.piedpiper.AwaitingPhase;
+import games.stendhal.server.maps.quests.piedpiper.ITPPQuest;
 import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
+import games.stendhal.server.maps.quests.piedpiper.InactivePhase;
+import games.stendhal.server.maps.quests.piedpiper.InvasionPhase;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
@@ -64,132 +59,106 @@ import org.apache.log4j.Logger;
  */
  public class ThePiedPiper extends AbstractQuest implements ITPPQuestConstants {
 
-	private static final String QUEST_SLOT = "the_pied_piper";
-	private static Logger logger = Logger.getLogger(ThePiedPiper.class);
+	protected static Logger logger = Logger.getLogger(ThePiedPiper.class);
 	protected LinkedList<Creature> rats = new LinkedList<Creature>();
 	
-    // timings unit is second.
-	public static int QUEST_INACTIVE_TIME_MAX = 1;
-	public static int QUEST_INACTIVE_TIME_MIN = 1;
-	public static int QUEST_INVASION_TIME = 1;
-	public static int QUEST_AWAITING_TIME = 1;
-	public static int QUEST_SHOUT_TIME = 1;
+	private static LinkedList<ITPPQuest> phases = new LinkedList<ITPPQuest>();
+    private static TPP_Phase phase = TPP_Phase.TPP_INACTIVE;
+    
+	protected LinkedHashMap<String, Integer> timings = new LinkedHashMap<String, Integer>();		
 	
 	/**
 	 * function will set timings to either test server or game server.
 	 */
-	public void adjustTimings() {
+	private void setTimings() {
 		if (System.getProperty("stendhal.testserver") == null) {		
 			// game timings
-			QUEST_INACTIVE_TIME_MAX = 60 * 60 * 24 * 14;
-			QUEST_INACTIVE_TIME_MIN = 60 * 60 * 24 * 7;
-			QUEST_INVASION_TIME = 60 * 60 * 2;
-			QUEST_AWAITING_TIME = 60 * 1;
-			QUEST_SHOUT_TIME = 60 * 10;
+			timings.put(INACTIVE_TIME_MAX, 60 * 60 * 24 * 14);
+			timings.put(INACTIVE_TIME_MIN, 60 * 60 * 24 * 7);
+			timings.put(INVASION_TIME_MIN, 60 * 60 * 2);
+			timings.put(INVASION_TIME_MAX, 60 * 60 * 2);
+			timings.put(AWAITING_TIME_MIN, 60 * 1);
+			timings.put(AWAITING_TIME_MAX, 60 * 1);
+			timings.put(SHOUT_TIME, 60 * 10);
 			} 
 		else {	
 			// test timings
-			QUEST_INACTIVE_TIME_MAX = 60 * 11;
-			QUEST_INACTIVE_TIME_MIN = 60 * 10;
-			QUEST_INVASION_TIME = 60 * 20;
-			QUEST_AWAITING_TIME = 60 * 10;
-			QUEST_SHOUT_TIME = 60 * 2;
+			timings.put(INACTIVE_TIME_MAX, 60 * 2);
+			timings.put(INACTIVE_TIME_MIN, 60 * 1);
+			timings.put(INVASION_TIME_MIN, 60 * 20);
+			timings.put(INVASION_TIME_MAX, 60 * 20);
+			timings.put(AWAITING_TIME_MIN, 60 * 10);
+			timings.put(AWAITING_TIME_MAX, 60 * 10);
+			timings.put(SHOUT_TIME, 60 * 2);
 			}
 	}
-	
-	// initializing to prevent null pointer exception
-    private TPP_Phase phase = TPP_Phase.TPP_INACTIVE;
+	   
+    /**
+     * 
+     * @param ph
+     * @return
+     */
+    protected static int getPhaseIndex(TPP_Phase ph) {
+    	for (int i=0; i<getPhases().size(); i++) {
+    		if(getPhases().get(i).getPhase().compareTo(ph)==0) {
+    			return(i);
+    		}
+    	}
+    	// didnt found it! 
+    	logger.warn("Using improper phase for quest ("+ph.name()+"). size: "+getPhases().size());
+		return (-1);
+    }
+    
+    /**
+     * return next available quest phase
+     * @param ph - 
+     * @return
+     */
+    protected static TPP_Phase getNextPhase(TPP_Phase ph) {
+    	int pos=getPhaseIndex(ph);
+		return (getPhases().get(pos+1).getPhase());    	
+    }
+    
+    /**
+     * return next instance of quest phases classes from list
+     * @param ph
+     * @return
+     */
+    protected static ITPPQuest getNextPhaseClass(TPP_Phase ph) {
+		return getPhases().get(getPhaseIndex(getNextPhase(ph)));    	
+    }
+    
+    /**
+     * return instance of quest phases classes
+     * @param ph
+     * @return
+     */
+    protected static ITPPQuest getPhaseClass(TPP_Phase ph) {
+    	/*
+    	if(getPhaseIndex(ph)==-1) {
+    		return getDefaultPhaseClass();
+    	}
+    	*/
+    	return getPhases().get(getPhaseIndex(ph));
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    public static ITPPQuest getDefaultPhaseClass() {
+    	return getPhases().get(getPhaseIndex(TPP_Phase.TPP_INACTIVE));
+    }
 
-	/**
-	 * constructor
-	 */
-	public ThePiedPiper() {
-		adjustTimings();
-	}
 
-	final private ShouterTimer shouterTimer = new ShouterTimer();
-	/**
-	 * timer for npc's shouts to player.
-	 */
-	class ShouterTimer implements TurnListener {
-		public void start() {
-			tellAllAboutRatsProblem();
-			TurnNotifier.get().dontNotify(this);
-			TurnNotifier.get().notifyInSeconds(QUEST_SHOUT_TIME, this);
-		}
-		public void stop() {
-			TurnNotifier.get().dontNotify(this);
-		}
-		public void onTurnReached(int currentTurn) {
-			start();
-		}
-	}
-
-	/**
-	 * summon rats, make phase INVASION and
-	 * start timer to phase AWAITING.
-	 */
-	protected void phaseInactiveToInvasion() {
-		logger.info("ThePiedPiper quest started (phase INVASION).");
-		phase=TPP_Phase.TPP_INVASION;
-		summonRats();
-		shouterTimer.start();
-		step_2();
-	}
-
-	/**
-	 * last rat killed.
-	 */
-	protected void phaseInvasionToInactive() {
-		tellAllAboutNoRatsInCity();
-		logger.info("ThePiedPiper quest: last rat was killed (phase INACTIVE).");
-		phase=TPP_Phase.TPP_INACTIVE;
-		shouterTimer.stop();
-		step_1();
-	}
-
-	/**
-	 * remove rats, make phase AWAITING and
-	 * start timer to phase INACTIVE.
-	 */
-	protected void phaseInvasionToAwaiting() {
-		logger.info("ThePiedPiper quest timeout (phase AWAITING).");
-		phase=TPP_Phase.TPP_AWAITING;
-		removeAllRats();
-		shouterTimer.stop();
-		tellAllAboutRatsIsWinners();
-		step_3();
-	}
-
-	/**
-	 * make phase INACTIVE and
-	 * start timer to phase INVASION.
-	 */
-	protected void phaseAwaitingToInactive() {
-		logger.info("ThePiedPiper quest is over (phase INACTIVE).");
-		phase=TPP_Phase.TPP_INACTIVE;
-		shouterTimer.stop();
-	//	tellAllAboutRatsIsGone();
-		step_1();
-	}
-
-	final private QuestTimer questTimer = new QuestTimer();
+	private static QuestTimer questTimer;
 	/**
 	 * Timings logic of quest.
 	 */
 	class QuestTimer implements TurnListener {
 		public void onTurnReached(final int currentTurn) {
-			switch(phase){
-			case TPP_INACTIVE:
-					phaseInactiveToInvasion();
-				    break;
-			case TPP_INVASION:
-					phaseInvasionToAwaiting();
-				    break;
-			default:
-					phaseAwaitingToInactive();
-					break;
-			}
+			final ITPPQuest i = getPhaseClass(getPhase());
+			i.phaseToNextPhase(getNextPhaseClass(getPhase()));
 		}
 	}
 	
@@ -203,7 +172,7 @@ import org.apache.log4j.Logger;
 	 */
 	class AnswerOrOfferRewardAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final EventRaiser mayor) {
-			switch (phase) {
+			switch (getPhase()) {
 			case TPP_INACTIVE: // quest is not active
 					mayor.say("Ados isn't being invaded by rats right now. You can still "+
 							  "get a #reward for the last time you helped. You can ask for #details "+
@@ -231,7 +200,7 @@ import org.apache.log4j.Logger;
 	 */
 	class RewardPlayerAction implements ChatAction {
 		public void fire(final Player player, final Sentence sentence, final EventRaiser mayor) {
-			switch (phase) {
+			switch (getPhase()) {
 			case TPP_INVASION: // invasion time
 					mayor.say("Ados is being invaded by rats! "+
 							  "I dont want to reward you now, "+
@@ -294,49 +263,6 @@ import org.apache.log4j.Logger;
 		}
 	}
 
-	/**
-	 *  method for making records about killing rats
-	 *  in player's quest slot.
-	 *
-	 *  @param player
-	 *  			- player which killed rat.
-	 *  @param victim
-	 *  			- rat object
-	 */
-	private void killsRecorder(Player player, final RPEntity victim) {
-
-		final String str = victim.getName();
-		final int i = RAT_TYPES.indexOf(str);
-		if(i==-1) {
-			//no such creature in reward table, will not count it
-			logger.warn("Unknown creature killed: "+
-					    victim.getName());
-			return;
-		};
-
-		if((player.getQuest(QUEST_SLOT)==null)||
-		   (player.getQuest(QUEST_SLOT).equals("done")||
-		   (player.getQuest(QUEST_SLOT).equals("")))){
-			// player just killed his first creature.
-		    player.setQuest(QUEST_SLOT, "rats;0;0;0;0;0;0");
-		};
-
-		// we using here and after "i+1" because player's quest index 0
-		// is occupied by quest stage description.
-		if(player.getQuest(QUEST_SLOT,i+1)==""){
-			// something really wrong, will correct this...
-			player.setQuest(QUEST_SLOT,"rats;0;0;0;0;0;0");
-		};
-		int kills;
-		try {
-			kills = Integer.parseInt(player.getQuest(QUEST_SLOT, i+1))+1;
-		} catch (NumberFormatException nfe) {
-			// have no records about this creature in player's slot.
-			// treat it as he never killed this creature before.
-			kills=1;
-		};
-		player.setQuest(QUEST_SLOT, i+1, Integer.toString(kills));
-	}
 
 	/**
 	 * function for calculating reward's moneys for player
@@ -366,189 +292,13 @@ import org.apache.log4j.Logger;
 	}
 
 
-    /**
-     *  Implementation of Observer interface.
-     *  Update function will record the fact of rat's killing
-     *  in player's quest slot.
-     */
-	class RatsObserver implements Observer {
-		public void update (Observable obj, Object arg) {
-	        if (arg instanceof CircumstancesOfDeath) {
-	    		final CircumstancesOfDeath circs=(CircumstancesOfDeath)arg;
-	        	if(RAT_ZONES.contains(circs.getZone().getName())) {
-	        	if(circs.getKiller() instanceof Player) {
-	        		final Player player = (Player) circs.getKiller();
-	        		killsRecorder(player, circs.getVictim());
-	        	}
-	        	notifyDead(circs.getVictim());
-	        	};
-	        };
-	    }
-	}
-
-	/**
-	 *  Red alert! Rats in the Ados city!
-	 */
-	private void tellAllAboutRatsProblem() {
-		final String text = "Mayor Chalmers shouts: Ados City is being invaded by #rats!"+
-			              " Anyone who will help to clean up city, will be rewarded!";
-		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
-	}
-
-	/**
-	 *  Rats are dead :-)
-	 */
-	private void tellAllAboutNoRatsInCity() {
-		final String text = "Mayor Chalmers shouts: No #rats in Ados survived, "+
-				            "only those who always lived in the "+
-				            "haunted house. "+
-				            "Rat hunters are welcome to get their #reward.";
-		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
-	}
-
-	/**
-	 *  Rats now living under all buildings. Need to call Pied Piper :-)
-	 */
-	private void tellAllAboutRatsIsWinners() {
-		final String text = // "Mayor Chalmers shouts: Suddenly, #rats have captured city, "+
-							"Mayor Chalmers shouts: The #rats left as suddenly as they arrived. "+
-							"Perhaps they have returned to the sewers. "+
-				   //         "I now need to call the Pied Piper, a rat exterminator. "+
-							"Anyway, " +
-				            "Thanks to all who tried to clean up Ados, "+
-				            " you are welcome to get your #reward.";
-		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
-	}
-
-	/**
-	 *  Pied Piper sent rats away:-)
-	 
-	private void tellAllAboutRatsIsGone() {
-		final String text = "Mayor Chalmers shouts: Thankfully, all the #rats are gone now, " +
-							"the Pied Piper " +
-							"hypnotized them and led them away to dungeons. "+
-				            "Those of you, who helped Ados City with the rats problem, "+
-							"can get your #reward now.";
-		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
-	}*/
-
-	/**
-	 * rats invasion starts :-)
-	 * Iterate through each zone and select the min and max rat count based on zone size
-	 * Places rat if possible, if not skip this rat (so if 6 rats chosen perhaps only 3 are placed)
-	 */
-	private void summonRats() {
-
-		final EntityManager manager = SingletonRepository.getEntityManager();
-		final RatsObserver ratsObserver = new RatsObserver();
-
-		// generating rats in zones
-		for(int j=0; j<(RAT_ZONES.size()); j++) {
-			final StendhalRPZone zone = (StendhalRPZone) SingletonRepository.getRPWorld().getRPZone(
-					RAT_ZONES.get(j));
-			final int maxRats = (int) Math.round(Math.sqrt(zone.getWidth()*zone.getHeight())/4);
-			final int minRats = (int) Math.round(Math.sqrt(zone.getWidth()*zone.getHeight())/12);
-			final int ratsCount = Rand.rand(maxRats-minRats)+minRats;
-			logger.debug(ratsCount+ " rats selected at " + zone.getName());
-			for(int i=0 ; i<ratsCount; i++) {
-				final int x=Rand.rand(zone.getWidth());
-				final int y=Rand.rand(zone.getHeight());
-				// Gaussian distribution
-				int tc=Rand.randGaussian(0,RAT_TYPES.size());
-				if ((tc>(RAT_TYPES.size()-1)) || (tc<0)) {
-					tc=0;
-				};
-				// checking if EntityManager knows about this creature type.
-				final Creature tempCreature = new Creature((Creature) manager.getEntity(RAT_TYPES.get(tc)));
-				if (tempCreature == null) {
-					continue;
-				};
-				final Creature rat = new Creature(tempCreature.getNewInstance());
-
-				// chosen place is occupied
-				if (zone.collides(rat,x,y)) {
-					// Could not place the creature here.
-					// Treat it like it was never exists.
-					logger.debug("RATS " + zone.getName() + " " + x + " " + y + " collided.");
-					continue;
-				} else if (zone.getName().startsWith("0")) {
-					// If we can't make it here, we can't make it anywhere ...
-					// just checking the 0 level zones atm	
-					// the rat is not in the zone yet so we can't call the smaller version of the searchPath method
-					final List<Node> path = Path.searchPath(zone, x, y, zone.getWidth()/2,
-							zone.getHeight()/2, (64+64)*2);
-					if (path == null || path.size() == 0){
-						logger.debug("RATS " + zone.getName() + " " + x + " " + y + " no path to " + zone.getWidth()/2 + " " + zone.getHeight()/2);
-						continue;
-					}
-				} 
-				// spawn creature
-				rat.registerObjectsForNotification(ratsObserver);
-				/* -- commented because of these noises reflects on all archrats in game -- */
-				// add unique noises to humanoids
-				if (tc==RAT_TYPES.indexOf("archrat")) {
-					final LinkedList<String> ll = new LinkedList<String>(
-							Arrays.asList("We will capture Ados!",
-							"Our revenge will awesome!"));
-					LinkedHashMap<String, LinkedList<String>> lhm =
-						new LinkedHashMap<String, LinkedList<String>>();
-					// add to all states except death.
-					lhm.put("idle", ll);
-					lhm.put("fight", ll);
-					lhm.put("follow", ll);
-					rat.setNoises(lhm);
-				};
-				
-				StendhalRPAction.placeat(zone, rat, x, y);
-				rats.add(rat);
-			};
-		};
-	}
-
-	/**
-	 * function to control amount of alive rats.
-	 * @param dead
-	 * 			- creature that was just died.
-	 */
-	private void notifyDead(final RPEntity dead) {
-		if (!rats.remove(dead)) {
-			logger.warn("killed creature isn't in control list ("+dead.toString()+").");
-		}
-		if (rats.size()==0) {
-			phaseInvasionToInactive();
-		};
-    }
-
-	/**
-	 * removing rats from the world
-	 */
-	private void removeAllRats() {
-		final int sz=rats.size();
-		int i=0;
-		while(rats.size()!=0) {
-			try {
-			final Creature rat = rats.get(0);
-			rat.stopAttack();
-			rat.clearDropItemList();
-			rat.getZone().remove(rat);
-			rats.remove(0);
-			i++;
-			} catch (IndexOutOfBoundsException ioobe) {
-				// index is greater then size???
-				logger.error("removeAllRats IndexOutOfBoundException at "+
-						Integer.toString(i)+" position. Total "+
-						Integer.toString(sz)+" elements.", ioobe);
-			};
-		}
-	}
-
 
 	/**
 	 * Set new time period for quest timer (time to next quest phase).
 	 * @param max - maximal time in seconds
 	 * @param min - minimal time in seconds
 	 */
-	private void newNotificationTime(int max, int min) {
+	public static void setNewNotificationTime(int max, int min) {
 		TurnNotifier.get().dontNotify(questTimer);
 		TurnNotifier.get().notifyInSeconds(
 				Rand.randUniform(max, min),	questTimer);
@@ -557,38 +307,27 @@ import org.apache.log4j.Logger;
 	/**
 	 *   add states to NPC's FSM
 	 */
-	private void step_0() {
-		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("rats", "rats!"), null,
-				ConversationStates.ATTENDING, null, new AnswerOrOfferRewardAction());
-		npc.add(ConversationStates.ATTENDING, "reward", null,
-				ConversationStates.ATTENDING, null, new RewardPlayerAction());
-		npc.add(ConversationStates.ATTENDING, "details", null,
-				ConversationStates.ATTENDING, null, new DetailsKillingsAction());
+	private void prepareNPC() {
+		final SpeakerNPC mainNPC = SingletonRepository.getNPCList().get("Mayor Chalmers");
+		mainNPC.add(ConversationStates.ATTENDING, Arrays.asList("rats", "rats!"), null,
+					ConversationStates.ATTENDING, null, new AnswerOrOfferRewardAction());
+		mainNPC.add(ConversationStates.ATTENDING, "reward", null,
+					ConversationStates.ATTENDING, null, new RewardPlayerAction());
+		mainNPC.add(ConversationStates.ATTENDING, "details", null,
+					ConversationStates.ATTENDING, null, new DetailsKillingsAction());
 	}
-
+	
 	/**
-	 * Quest will start after quest inactive time period will over.
+	 * first start
 	 */
-	private void step_1() {
-		newNotificationTime(QUEST_INACTIVE_TIME_MAX, QUEST_INACTIVE_TIME_MIN);
-	}
-
-	/**
-	 * Quest will go to AWAITING state after invasion time period will over.
-	 */
-	private void step_2() {
-		newNotificationTime(QUEST_INVASION_TIME, QUEST_INVASION_TIME);
-	}
-
-	/**
-	 *  will start part II of this quest.
-	 *  currently makes quest inactive.
-	 */
-	private void step_3() {
-		if (phase==TPP_Phase.TPP_AWAITING) {
-			newNotificationTime(QUEST_AWAITING_TIME, QUEST_AWAITING_TIME);
-		}
+	private void startQuest() {	
+		setTimings();
+		getPhases().add(new InactivePhase(timings));
+		getPhases().add(new InvasionPhase(timings, rats));
+		getPhases().add(new AwaitingPhase(timings));
+		setNewNotificationTime(
+				getDefaultPhaseClass().getMinTimeOut(),
+				getDefaultPhaseClass().getMaxTimeOut());
 	}
 
  	@Override
@@ -611,8 +350,6 @@ import org.apache.log4j.Logger;
 		}
 		return history; 		
  	}
- 	
-
 
  	@Override
 	public String getName() {
@@ -621,13 +358,31 @@ import org.apache.log4j.Logger;
 
 	@Override
 	public void addToWorld() {
-		step_0();
-	    step_1();
-	    step_3();
-		super.addToWorld();
+		questTimer = new QuestTimer();
 		fillQuestInfo(
 				"The Pied Piper",
 				"Ados city have a rats problem periodically.",
 				true);
+				
+		prepareNPC();
+		super.addToWorld();
+		startQuest();
 	}
+
+	public static void setPhase(TPP_Phase phase) {
+		ThePiedPiper.phase = phase;
+	}
+
+	public static TPP_Phase getPhase() {
+		return phase;
+	}
+
+	public static void setPhases(LinkedList<ITPPQuest> phases) {
+		ThePiedPiper.phases = phases;
+	}
+
+	public static LinkedList<ITPPQuest> getPhases() {
+		return phases;
+	}
+
 }
