@@ -14,17 +14,14 @@ public class TPPQuest implements ITPPQuest {
 	protected static Logger logger = Logger.getLogger(ThePiedPiper.class);	
 	protected Map<String, Integer> timings;
 	
-	@Override
 	public String getSwitchingToNextPhaseMessage() {
 		return null;
 	}
 	
-	@Override
 	public String getSwitchingToDefPhaseMessage() {
 		return null;
 	}
 	
-	@Override
 	public TPP_Phase getPhase() {
 		return null;
 	}
@@ -100,7 +97,6 @@ public class TPPQuest implements ITPPQuest {
 
 		
 	
-	@Override
 	public void phaseToDefaultPhase() {
 		shoutMessage(getSwitchingToDefPhaseMessage());
 		ThePiedPiper.setPhase(ThePiedPiper.getDefaultPhaseClass().getPhase());
@@ -115,7 +111,6 @@ public class TPPQuest implements ITPPQuest {
 		ThePiedPiper.getPhases().get(0).prepare();
 	}
 
-	@Override
 	public void phaseToNextPhase(ITPPQuest nextPhase) {
 		shoutMessage(getSwitchingToNextPhaseMessage());
 		logger.info("ThePiedPiper quest: switch phase to ("+nextPhase.getPhase().name()+").");
@@ -127,17 +122,14 @@ public class TPPQuest implements ITPPQuest {
 		nextPhase.prepare();
 	}
 	
-	@Override
 	public void prepare() {
 		
 	}
 	
-	@Override
 	public int getMaxTimeOut() {
 		return 0;
 	}
 
-	@Override
 	public int getMinTimeOut() {
 		return 0;
 	}
