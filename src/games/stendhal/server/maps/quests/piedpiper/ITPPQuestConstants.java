@@ -26,6 +26,16 @@ public interface ITPPQuestConstants {
 		TPP_FINAL
 	}
 	
+	final String QUEST_SLOT = "the_pied_piper";
+	
+	final String INACTIVE_TIME_MAX = "QUEST_INACTIVE_TIME_MAX";
+	final String INACTIVE_TIME_MIN = "QUEST_INACTIVE_TIME_MIN";
+	final String INVASION_TIME_MIN = "QUEST_INVASION_TIME_MIN";
+	final String INVASION_TIME_MAX = "QUEST_INVASION_TIME_MAX";
+	final String AWAITING_TIME_MIN = "QUEST_AWAITING_TIME_MIN";
+	final String AWAITING_TIME_MAX = "QUEST_AWAITING_TIME_MAX";
+	final String SHOUT_TIME = "QUEST_SHOUT_TIME";
+	
 	/**
 	 * List of game zones, where rats will appears.
 	 *
@@ -78,4 +88,5 @@ public interface ITPPQuestConstants {
 			160,
 			360,
 			800);
+	
 }
