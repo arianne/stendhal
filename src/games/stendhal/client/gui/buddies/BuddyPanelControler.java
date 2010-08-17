@@ -89,7 +89,6 @@ public class BuddyPanelControler implements PropertyChangeListener {
 	
 	class MapBasedBuddyPropertyChangeListener implements PropertyChangeListener {
 
-		@SuppressWarnings("unchecked")
 		public void propertyChange(PropertyChangeEvent evt) {
 			if (evt == null) {
 				return;
