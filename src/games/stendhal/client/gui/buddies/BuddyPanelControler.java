@@ -94,6 +94,7 @@ public class BuddyPanelControler implements PropertyChangeListener {
 				return;
 			}
 			//remove
+			@SuppressWarnings("unchecked")
 			Map<String, String> oldBuddies = (Map<String, String>) evt.getOldValue();
 			if (oldBuddies != null) {
 				for (final Entry<String, String> entry : oldBuddies.entrySet()) {
@@ -105,6 +106,7 @@ public class BuddyPanelControler implements PropertyChangeListener {
 				}
 			}
 			//change online status
+			@SuppressWarnings("unchecked")
 			Map<String, String> newBuddies = (Map<String, String>) evt.getNewValue();
 			if (newBuddies != null) {
 				for (final Entry<String, String> entry : newBuddies.entrySet()) {
