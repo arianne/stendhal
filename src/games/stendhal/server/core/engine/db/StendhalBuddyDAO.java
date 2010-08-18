@@ -57,12 +57,14 @@ public class StendhalBuddyDAO {
 	 */
 	private void saveBuddyList(DBTransaction transaction, String charname, Set<String> buddies) throws SQLException {
 		Set<String> oldList = loadBuddyList(transaction, charname);
-		syncBuddyListToDB(transaction, charname, oldList, buddies);
+		Set<String> newList = buddies;
+		newList.add(charname);
+		syncBuddyListToDB(transaction, charname, oldList, newList);
 	}
 
 
 	/**
-	 * writes the current buddy list to the database, minimizing the write operatings.
+	 * writes the current buddy list to the database, minimizing the write operations.
 	 *
 	 * @param transaction DBTransaction
 	 * @param charname name of character
