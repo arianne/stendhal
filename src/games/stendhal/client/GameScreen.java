@@ -127,8 +127,6 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	/** Actual size of the screen in pixels. */
 	private int sw;
 	private int sh;
-
-	private long lastDrawYield = 0;
 	
 
 
@@ -558,15 +556,6 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 			blinkOffline--;
 		}
 		graphics.dispose();
-
-		// On Ubuntu 9.10 with Sub Java 1.6.0_15 the client does not react to typed letters
-		// in the chat line without the Thread.yield. The problem does neither occure on OpenJDK
-		// nor on Ubuntu 9.04
-		long now = System.currentTimeMillis();
-		if (now - lastDrawYield > 100) {
-			lastDrawYield = now;
-			Thread.yield();
-		}
 	}
 
 	/**
