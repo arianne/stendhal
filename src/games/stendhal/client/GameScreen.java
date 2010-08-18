@@ -513,20 +513,28 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 			g2d.fillRect(tmpX, 0, sw, sh);
 		}
 		
-		int layerWidth = getViewWidth() + 2;
-		int layerHeight = getViewHeight() + 2;
+		int startTileX = Math.max(0, (int) getViewX());
+		int startTileY = Math.max(0, (int) getViewY());
 		
-		final int xTemp = Math.max(0, (int) getViewX());
-		final int yTemp = Math.max(0, (int) getViewY());
+		// Restrict the drawn area by the clip bounds. Smaller than gamescreen
+		// draw requests can come for example from dragging items
+		Rectangle clip = graphics.getClipBounds();
+		startTileX = Math.max(startTileX, clip.x / IGameScreen.SIZE_UNIT_PIXELS);
+		startTileY = Math.max(startTileY, clip.y / IGameScreen.SIZE_UNIT_PIXELS);
+		int layerWidth = getViewWidth();
+		int layerHeight = getViewHeight();
+		// +2 is needed to ensure the drawn area is covered by the tiles
+		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
+		layerHeight = Math.min(layerHeight, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		
-		gameLayers.draw(graphics, set, "0_floor", xTemp, yTemp, layerWidth, layerHeight);
-		gameLayers.draw(graphics, set, "1_terrain", xTemp, yTemp, layerWidth, layerHeight);
-		gameLayers.draw(graphics, set, "2_object", xTemp, yTemp, layerWidth, layerHeight);
+		gameLayers.draw(graphics, set, "0_floor", startTileX, startTileY, layerWidth, layerHeight);
+		gameLayers.draw(graphics, set, "1_terrain", startTileX, startTileY, layerWidth, layerHeight);
+		gameLayers.draw(graphics, set, "2_object", startTileX, startTileY, layerWidth, layerHeight);
 		
 		drawEntities(graphics);
 
-		gameLayers.draw(graphics, set, "3_roof", xTemp, yTemp, layerWidth, layerHeight);
-		gameLayers.draw(graphics, set, "4_roof_add", xTemp, yTemp, layerWidth, layerHeight);
+		gameLayers.draw(graphics, set, "3_roof", startTileX, startTileY, layerWidth, layerHeight);
+		gameLayers.draw(graphics, set, "4_roof_add", startTileX, startTileY, layerWidth, layerHeight);
 		
 		drawTopEntities(graphics);
 		
