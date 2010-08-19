@@ -1096,8 +1096,11 @@ public class j2DClient implements UserInterface {
 
 
 	public void requestQuit() {
-		quitDialog.requestQuit();
-
+		if (client.getConnectionState()) {
+			quitDialog.requestQuit();
+		} else {
+			System.exit(0);
+		}
 	}
 
 	public IPerceptionListener getPerceptionListener() {
