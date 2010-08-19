@@ -1182,7 +1182,7 @@ Mature sheep wanted: please speak to Sato.
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">dungeon_entrance</parameter>
 				<parameter name="volume">80</parameter>
-				<parameter name="radius">7</parameter>
+				<parameter name="radius">4</parameter>
 			</implementation>
 		</entity>
 		
