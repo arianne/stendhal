@@ -68,7 +68,7 @@ public class PostmanIRC extends PircBot {
 
 			setName(nick);
 			setLogin(prop.getProperty("login"));
-			setVersion("0.3");
+			setVersion("0.4");
 			setVerbose(true);
 			setAutoNickChange(true);
 			setFinger("postman on " + gameServer);
@@ -106,12 +106,19 @@ public class PostmanIRC extends PircBot {
 	}
 
 	void sendSupportMessage(final String text) {
-		sendMessage(supportChannel, text);
+		sendMultilineMessage(supportChannel, text);
+	}
+
+	public final void sendMultilineMessage(String target, String message) {
+		StringTokenizer st = new StringTokenizer(message, "\r\n");
+		while (st.hasMoreTokens()) {
+			sendMessage(target, st.nextToken());
+		}
 	}
 
 	void sendMessageToAllChannels(final String text) {
 		for (final String channelName : channels) {
-			sendMessage(channelName, text);
+			sendMultilineMessage(channelName, text);
 		}
 	}
 
