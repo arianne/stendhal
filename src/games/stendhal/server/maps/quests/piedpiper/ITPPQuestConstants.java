@@ -26,6 +26,13 @@ public interface ITPPQuestConstants {
 		TPP_FINAL
 	}
 	
+	public TPP_Phase INACTIVE = TPP_Phase.TPP_INACTIVE;
+	public TPP_Phase INVASION = TPP_Phase.TPP_INVASION;
+	public TPP_Phase AWAITING = TPP_Phase.TPP_AWAITING;
+	public TPP_Phase OUTGOING = TPP_Phase.TPP_OUTGOING;
+	public TPP_Phase CHILDRENS = TPP_Phase.TPP_CHILDRENS;
+	public TPP_Phase FINAL = TPP_Phase.TPP_FINAL;
+	
 	final String QUEST_SLOT = "the_pied_piper";
 	
 	final String INACTIVE_TIME_MAX = "QUEST_INACTIVE_TIME_MAX";
