@@ -26,17 +26,22 @@ public class ForeignWomanNPC implements ZoneConfigurator {
 				nodes.add(new Node(73, 7));
 				nodes.add(new Node(73, 1));
                 nodes.add(new Node(70, 1));
-                nodes.add(new Node(70, 7));         
-				setPath(new FixedPath(nodes, true));
+                nodes.add(new Node(70, 34));  
+                nodes.add(new Node(75, 33));
+                nodes.add(new Node(75, 24)); 
+                nodes.add(new Node(74, 24)); 
+                nodes.add(new Node(74, 9));
+                nodes.add(new Node(73, 9)); 
+               	setPath(new FixedPath(nodes, true));
 
 			}
 
 			@Override
 			protected void createDialog() {
 				addGreeting("Goeiedag");
-				addHelp("Since I am living here in Ados I dont need any kind of help, but thank you.");
+				addHelp("Did you visit the wise man in the library up yet? His name is Wikipedian and he is popular for his huge knowledge.");
 				
-				addQuest("Relax, relax, relax."); 
+				addQuest("Since I am living here in Ados I dont need any kind of help, but thank you."); 
 				addJob("No, I am too old for working.");
 				addOffer("I can offer only this nice air, it smells of the sea.");
 				addGoodbye("Totsiens.");
