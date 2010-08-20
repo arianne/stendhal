@@ -224,9 +224,8 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 		assertEquals("There "+ Grammar.isare(quest.getRatsCount()) +
 				" still about "+ quest.getRatsCount() +" rats alive.", getReply(npc));
 		en.step(player, "details");
-		assertEquals("You killed no rats during the #rats invasion. "+
-				  "To get a #reward you have to kill at least "+
-				  "one rat at that time.", getReply(npc));
+		assertEquals("Ados is being invaded by rats! I dont want to either reward you or "+
+				  "explain details to you now, until all rats are dead.", getReply(npc));
 		en.step(player, "reward");
 		assertEquals("Ados is being invaded by rats! "+
 				  "I dont want to reward you now, "+
