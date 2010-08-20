@@ -36,12 +36,12 @@ public class InvasionPhase extends TPPQuest {
 		this.rats=rats;
 	}
 
-	@Override
+
 	public int getMinTimeOut() {
 		return minPhaseChangeTime;
 	}
 	
-	@Override
+
 	public int getMaxTimeOut() {
 		return maxPhaseChangeTime;
 	}
@@ -138,7 +138,7 @@ public class InvasionPhase extends TPPQuest {
 	/**
 	 *  Rats are dead :-)
 	 */
-	@Override
+
 	public String getSwitchingToDefPhaseMessage() {
 		final String text = "Mayor Chalmers shouts: No #rats in Ados survived, "+
 				            "only those who always lived in the "+
@@ -150,7 +150,6 @@ public class InvasionPhase extends TPPQuest {
 	/**
 	 *  Rats now living under all buildings. Need to call Pied Piper :-)
 	 */
-	@Override
 	public String getSwitchingToNextPhaseMessage() {
 		final String text = // "Mayor Chalmers shouts: Suddenly, #rats have captured city, "+
 							"Mayor Chalmers shouts: The #rats left as suddenly as they arrived. "+
@@ -194,19 +193,16 @@ public class InvasionPhase extends TPPQuest {
 		return(text);
 	}
 	
-	@Override
 	public void prepare() {
 		summonRats();
 		super.startShouts(timings.get(SHOUT_TIME), RatsProblem());
 	}
 
-	@Override
 	public void phaseToDefaultPhase() {
 		super.phaseToDefaultPhase();		
 	}
 
 
-	@Override
 	public void phaseToNextPhase(ITPPQuest nextPhase) {
 		removeAllRats();
 		super.phaseToNextPhase(nextPhase);		
@@ -276,7 +272,7 @@ public class InvasionPhase extends TPPQuest {
 		player.setQuest(QUEST_SLOT, i+1, Integer.toString(kills));
 	}
 	
-	@Override
+
 	public TPP_Phase getPhase() {
 		return TPP_Phase.TPP_INVASION;
 	}

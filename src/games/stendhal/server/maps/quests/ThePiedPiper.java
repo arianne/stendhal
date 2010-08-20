@@ -294,7 +294,6 @@ import org.apache.log4j.Logger;
 				ConversationStates.ATTENDING, 
 				null, 
 				new ChatAction() {
-					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						npc.say("There " + Grammar.isare(rats.size()) + 
 								" still about "+Integer.toString(rats.size())+

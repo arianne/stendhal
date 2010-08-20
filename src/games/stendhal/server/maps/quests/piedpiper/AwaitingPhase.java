@@ -18,23 +18,23 @@ public class AwaitingPhase extends TPPQuest {
 		maxPhaseChangeTime = timings.get(AWAITING_TIME_MAX);
 	}
 
-	@Override
+
 	public int getMinTimeOut() {
 		return minPhaseChangeTime;
 	}
 	
-	@Override
+
 	public int getMaxTimeOut() {
 		return maxPhaseChangeTime;
 	}
 
 
-	@Override
+
 	public void phaseToDefaultPhase() {
 		super.phaseToDefaultPhase();		
 	}
 
-	@Override
+
 	public void phaseToNextPhase(ITPPQuest nextPhase) {
 		super.phaseToNextPhase(nextPhase);
 	}
@@ -51,7 +51,7 @@ public class AwaitingPhase extends TPPQuest {
 		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
 	}*/
 	
-	@Override
+
 	public TPP_Phase getPhase() {
 		return TPP_Phase.TPP_AWAITING;
 	}
