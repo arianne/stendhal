@@ -126,6 +126,8 @@ Authors of Stendhal are:
   · Maps maker - minotaur labyrinth, wizards tower
   · Artist - wizards tower, pixel general
   · Quest/NPC creation
+- Bluelads4
+  · Coder (NPC Marla Ados)
 
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
