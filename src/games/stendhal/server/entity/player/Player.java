@@ -1043,10 +1043,11 @@ public class Player extends RPEntity {
 	 * @return all buddy names for this player
 	 */
 	public Set<String> getBuddies() {
+		HashSet<String> buddies = new HashSet<String>();
 		if(this.hasMap("buddies")) {
-			return this.getMap("buddies").keySet();
+			buddies.addAll(getMap("buddies").keySet());
 		}
-		return new HashSet<String>();
+		return buddies;
 	}
 	
 	public int countBuddies() {
