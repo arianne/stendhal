@@ -6,7 +6,6 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Grammar;
-import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.NotificationType;
 
 import java.awt.geom.Rectangle2D;

@@ -10,9 +10,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
-
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 /**
  * handles /tell-action (/msg-action). 

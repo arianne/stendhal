@@ -1,9 +1,6 @@
 package games.stendhal.server.actions.buddy;
 
-import static games.stendhal.common.constants.Actions.BUDDYONLINE;
-import static games.stendhal.common.constants.Actions.BUDDY_OFFLINE;
 import static games.stendhal.common.constants.Actions.TARGET;
-import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.core.engine.GameEvent;
@@ -14,7 +11,6 @@ import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.db.command.ResultHandle;
