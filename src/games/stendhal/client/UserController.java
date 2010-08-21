@@ -21,8 +21,7 @@ public class UserController implements ObjectChangeListener {
 	// maybe extend this
 	
 	public UserController() {
-		pcs.addPropertyChangeListener("!buddy", BuddyPanelControler.get());
-		pcs.addPropertyChangeListener("buddies", BuddyPanelControler.getMapBasedBuddyPropertyChangeListener());
+		pcs.addPropertyChangeListener("buddies", BuddyPanelControler.get());
 		pcs.addPropertyChangeListener("bag", BagPanelControler.get());
 		pcs.addPropertyChangeListener("features", KarmaIndicator.get());
 

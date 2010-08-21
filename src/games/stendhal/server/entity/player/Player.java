@@ -981,18 +981,6 @@ public class Player extends RPEntity {
 		final String playerOnline = "_" + who;
 
 		boolean found = false;
-		final RPSlot slot = getSlot("!buddy");
-		if (slot.size() > 0) {
-			final RPObject buddies = slot.iterator().next();
-			for (final String name : buddies) {
-				if (playerOnline.equals(name)) {
-					buddies.put(playerOnline, 1);
-					notifyWorldAboutChanges();
-					found = true;
-					break;
-				}
-			}
-		}
 		if (containsKey("buddies", who)) {
 			put("buddies", who, true);
 			found = true;
@@ -1016,18 +1004,6 @@ public class Player extends RPEntity {
 		final String playerOffline = "_" + who;
 
 		boolean found = false;
-		final RPSlot slot = getSlot("!buddy");
-		if (slot.size() > 0) {
-			final RPObject buddies = slot.iterator().next();
-			for (final String name : buddies) {
-				if (playerOffline.equals(name)) {
-					buddies.put(playerOffline, 0);
-					notifyWorldAboutChanges();
-					found = true;
-					break;
-				}
-			}
-		}
 		if (containsKey("buddies", who)) {
 			put("buddies", who, false);
 			found = true;
@@ -1047,16 +1023,6 @@ public class Player extends RPEntity {
 	 * @param isOnline buddy is online?
 	 */
 	public void setBuddyOnlineStatus(String buddyName, boolean isOnline) {
-		//keyed slot handling:
-		final RPSlot slot = getSlot("!buddy");
-		if (slot.size() > 0) {
-			final RPObject buddies = slot.iterator().next();
-			if(isOnline) {
-				buddies.put("_"+buddyName, 1);
-			} else {
-				buddies.put("_"+buddyName, 0);
-			}
-		}
 		//maps handling:
 		if(containsKey("buddies", buddyName)) {
 			put("buddies", buddyName, isOnline);
@@ -1077,7 +1043,17 @@ public class Player extends RPEntity {
 	 * @return all buddy names for this player
 	 */
 	public Set<String> getBuddies() {
-		return this.getMap("buddies").keySet();
+		if(this.hasMap("buddies")) {
+			return this.getMap("buddies").keySet();
+		}
+		return new HashSet<String>();
+	}
+	
+	public int countBuddies() {
+		if(this.hasBuddies()) {
+			return getMap("buddies").values().size();
+		}
+		return 0;
 	}
 
 	/**
@@ -2013,11 +1989,6 @@ public class Player extends RPEntity {
 	 * @param name the name of the buddy
 	 */
 	public void addBuddy(String name, boolean online) {
-		String onlineString = "0";
-		if(online) {
-			onlineString = "1";
-		}
-		setKeyedSlot("!buddy", "_" + name, onlineString);
 		put("buddies", name, online);
 	}
 	
@@ -2027,7 +1998,6 @@ public class Player extends RPEntity {
 	 * @param name the name of the buddy
 	 */
 	public void removeBuddy(String name) {
-		setKeyedSlot("!buddy", "_" + name, null);
 		remove("buddies", name);
 	}
 

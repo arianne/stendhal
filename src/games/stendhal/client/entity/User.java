@@ -375,8 +375,7 @@ public class User extends Player {
 		}
 
 		RPObject rpobject = User.get().rpObject;
-		return rpobject.has("buddies", name) 
-			|| KeyedSlotUtil.getKeyedSlot(rpobject, "!buddy", "_" + name) != null;
+		return rpobject.has("buddies", name);
 	}
 
 	/**

@@ -277,6 +277,8 @@ public abstract class UpdateConverter {
     			}
     			buddy.remove("_db_id");
     		}
+    		// remove buddy slot for 0.87
+    		object.removeSlot("!buddy");
 		}
 		object.remove("buddies", "db_id");
 

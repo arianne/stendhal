@@ -71,11 +71,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 				return;
 		} 
 		
-		String online = BUDDY_OFFLINE;
 		final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(who);
-		if ((buddy != null) && !buddy.isGhost()) {
-			online = BUDDYONLINE;
-		}
 		player.addBuddy(who, (buddy != null) && !buddy.isGhost());
 
 		player.sendPrivateText(who + " was added to your buddy list.");
@@ -89,17 +85,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 	 * @return number of buddies
 	 */
 	private int countBuddies(Player player) {
-		final RPObject object = KeyedSlotUtil.getKeyedSlotObject(player, "!buddy");
-		if (object == null) {
-			return 0;
-		}
-		int res = 0;
-		for (String key : object) {
-			if (key.startsWith("_")) {
-				res++;
-			}
-		}
-		return res;
+		return player.countBuddies();
 	}
 
 }

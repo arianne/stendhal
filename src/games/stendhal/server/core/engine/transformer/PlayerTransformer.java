@@ -62,22 +62,6 @@ public class PlayerTransformer implements Transformer {
 
 		loadItemsIntoSlots(player);
 
-		// buddy handling with keyed slot
-		if (player.getSlot("!buddy").size() > 0) {
-			final RPObject buddies = player.getSlot("!buddy").iterator().next();
-			for (final String buddyName : buddies) {
-				// TODO: Remove '_' prefix if ID is made completely virtual
-				if (buddyName.charAt(0) == '_') {
-					final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(
-							buddyName.substring(1));
-					if ((buddy != null) && !buddy.isGhost()) {
-						player.setBuddyOnlineStatus(buddyName.substring(1), true);
-					} else {
-						player.setBuddyOnlineStatus(buddyName.substring(1), false);
-					}
-				}
-			}
-		}
 		// buddy handling with maps
 		if(player.hasBuddies()) {
 			for(String buddyName : player.getBuddies()) {
