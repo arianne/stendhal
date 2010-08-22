@@ -32,5 +32,8 @@ public class ShopAssistantNPC extends SpeakerNPCFactory {
 
 		new ProducerAdder().addProducer(npc, behaviour,
 		        "Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.");
+		
+		npc.setDescription("You see Erna. She works since a long time for Leander now and is his loyal assistant.");
+	
 	}
 }
