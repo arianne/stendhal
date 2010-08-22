@@ -19,8 +19,8 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
@@ -43,7 +43,7 @@ import marauroa.common.game.RPSlot;
  * 
  * @author mtotz
  */
-public class Character extends WtPanel {
+public class Character extends WtPanel implements EntityChangeListener {
 	/** Height/width of slots. */
 	private static final int SLOT_SIZE = 39; 
 
@@ -60,9 +60,6 @@ public class Character extends WtPanel {
 
 	/** cached player entity. */
 	private User playerEntity;
-
-	/** the last player modification counter. */
-	private long oldPlayerModificationCount;
 
 	/**
 	 * Creates a new instance of Character.
@@ -144,26 +141,15 @@ public class Character extends WtPanel {
 	 */
 	public void setPlayer(final User userEntity) {
 		this.playerEntity = userEntity;
+		userEntity.addChangeListener(this);
+		refreshContents();
 	}
 
 	/**
-	 * refreshes the player stats and updates the text/slot panels.
-	 * 
-	 * @param gameScreen
+	 * Updates the player slot panels.
 	 */
-	private void refreshPlayerStats() {
-		if (playerEntity == null) {
-			return;
-		}
-
-		if (!playerEntity.isModified(oldPlayerModificationCount)) {
-			return;
-		}
-
-		final GameObjects gameObjects = GameObjects.getInstance();
-
+	private void refreshContents() {
 		// traverse all carrying slots
-
 		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = playerEntity.getSlot(slotName);
 
@@ -181,15 +167,7 @@ public class Character extends WtPanel {
 				if (iter.hasNext()) {
 					final RPObject object = iter.next();
 
-					IEntity entity = gameObjects.get(object);
-
-					/*
-					 * TODO: Remove once object mapping verified to work in all
-					 * cases.
-					 */
-					if (entity == null) {
-						entity = EntityFactory.createEntity(object);
-					}
+					IEntity entity = EntityFactory.createEntity(object);
 
 					entitySlot.setEntity(entity);
 				} else {
@@ -199,8 +177,6 @@ public class Character extends WtPanel {
 		}
 
 		setTitletext(playerEntity.getName());
-
-		oldPlayerModificationCount = playerEntity.getModificationCount();
 	}
 
 	/**
@@ -212,13 +188,17 @@ public class Character extends WtPanel {
 	 */
 	@Override
 	protected void drawContent(final Graphics2D g) {
-		refreshPlayerStats();
-
 		super.drawContent(g);
 	}
 
 	@Override
 	protected void playOpenSound() {
 		ClientSingletonRepository.getSound().getGroup(SoundLayer.USER_INTERFACE.groupName).play("click-6", 0, null, null, false, true);
+	}
+
+	public void entityChanged(IEntity entity, Object property) {
+		if (property == IEntity.PROP_CONTENT) {
+			refreshContents();
+		}
 	}
 }
