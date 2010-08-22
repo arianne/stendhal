@@ -15,6 +15,7 @@ Changelog
 - read postman messages to and from your characters
 - redesign character page layout, with equipment arranged like in stendhal client
 - 'Recent Events' shows what has been happening in the world
+- added mouse over tips for items and monsters
 
 *client*
 - Game screen ported to swing
