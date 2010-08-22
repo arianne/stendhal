@@ -88,6 +88,7 @@ public class RetireeNPC implements ZoneConfigurator {
 		};
 		npc.setPosition(24, 43);
 		npc.setEntityClass("beggarnpc");
+		npc.setDescription("Diogenes is a still sporty older man who retired from his job already but carries some nice hints with him.");
 		zone.add(npc);
 	}
 
