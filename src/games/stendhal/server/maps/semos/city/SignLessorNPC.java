@@ -205,6 +205,8 @@ public class SignLessorNPC implements ZoneConfigurator {
 		npc.setPosition(20, 50);
 		npc.setEntityClass("signguynpc");
 		zone.add(npc);
+		npc.setDescription("You see Gordon. He is taking an eye on the signs close to him…");
+
 	}
 
 }
