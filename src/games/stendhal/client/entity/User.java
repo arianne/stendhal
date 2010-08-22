@@ -45,7 +45,6 @@ public class User extends Player {
 
 	public User() {
 		instance = this;
-		modificationCount = 0;
 	}
 
 	
@@ -66,19 +65,6 @@ public class User extends Player {
 		super.onPosition(x, y);
 
 		WorldObjects.firePlayerMoved();
-	}
-
-	private int modificationCount;
-
-	/**
-	 * Returns the modificationCount. This counter is increased each time a
-	 * perception is received from the server (so all serverside changes
-	 * increases the mod-count). This counter's purpose is to be sure that this
-	 * entity is modified or not (ie for gui elements).
-	 * @return a number representing the amount of changes.
-	 */
-	public long getModificationCount() {
-		return modificationCount;
 	}
 
 	@Override
@@ -219,7 +205,6 @@ public class User extends Player {
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
-		modificationCount++;
 
 		// The first time we ignore it.
 		if (object != null) {
@@ -269,7 +254,6 @@ public class User extends Player {
 
 	@Override
 	public void onChangedRemoved(final RPObject base, final RPObject diff) {
-		modificationCount++;
 		super.onChangedRemoved(base, diff);
 		if (diff.hasSlot("!ignore")) {
 			RPObject ign = diff.getSlot("!ignore").getFirst();
@@ -277,19 +261,6 @@ public class User extends Player {
 				removeIgnore(ign);
 			}			
 		}
-	}
-
-	/**
-	 * Returns true when the entity was modified since the
-	 * <i>oldModificationCount</i>.
-	 * 
-	 * @param oldModificationCount
-	 *            the old modificationCount
-	 * @return true when the entity was modified, false otherwise
-	 * @see #getModificationCount()
-	 */
-	public boolean isModified(final long oldModificationCount) {
-		return oldModificationCount != modificationCount;
 	}
 
 	/**
