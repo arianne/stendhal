@@ -55,5 +55,11 @@ public class ChefNPC extends SpeakerNPCFactory {
 
 		new ProducerAdder().addProducer(npc, behaviour,
 				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.");
+		
+		npc.setDescription("You see Leander. His job gives him a beautiful smell.");
 	}
+	
 }
+
+		
+
