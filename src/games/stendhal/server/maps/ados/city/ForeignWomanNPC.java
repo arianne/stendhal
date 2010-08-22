@@ -49,6 +49,7 @@ public class ForeignWomanNPC implements ZoneConfigurator {
 			}
 		};
 
+		npc.setDescription("You see Marla. She made a long journey till reaching her resort.");
 		npc.setEntityClass("womanexoticdressnpc");
 		npc.setPosition(73, 7);
 		npc.setDirection(Direction.RIGHT);
