@@ -124,6 +124,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("man_005_npc");
+		npc.setDescription("You see Terry. He plays with tiny dragons during his free time.");
 		npc.setPosition(66, 8);
 		npc.initHP(100);
 		zone.add(npc);
