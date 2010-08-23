@@ -131,7 +131,8 @@ public class InvasionPhase extends TPPQuest {
 			logger.warn("killed creature isn't in control list ("+dead.toString()+").");
 		}
 		if (rats.size()==0) {
-			phaseToDefaultPhase();
+			phaseToDefaultPhase(
+					new LinkedList<String>(Arrays.asList("pied piper")));
 		};
     }
 	
@@ -198,14 +199,16 @@ public class InvasionPhase extends TPPQuest {
 		super.startShouts(timings.get(SHOUT_TIME), RatsProblem());
 	}
 
-	public void phaseToDefaultPhase() {
-		super.phaseToDefaultPhase();		
+	public void phaseToDefaultPhase(List<String> comments) {
+		comments.add("last rat killed");
+		super.phaseToDefaultPhase(comments);		
 	}
 
 
-	public void phaseToNextPhase(ITPPQuest nextPhase) {
+	public void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments) {
+		comments.add("switch phase, "+rats.size()+" rats still alive.");
 		removeAllRats();
-		super.phaseToNextPhase(nextPhase);		
+		super.phaseToNextPhase(nextPhase, comments);		
 	}
 	
     /**

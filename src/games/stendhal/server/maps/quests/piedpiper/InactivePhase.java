@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests.piedpiper;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -27,13 +28,13 @@ public class InactivePhase extends TPPQuest {
 
 	
 
-	public void phaseToDefaultPhase() {
+	public void phaseToDefaultPhase(List<String> comments) {
 		// not used		
 	}
 
 
-	public void phaseToNextPhase(ITPPQuest nextPhase) {
-		super.phaseToNextPhase(nextPhase);
+	public void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments) {
+		super.phaseToNextPhase(nextPhase, comments);
 	}
 	
 

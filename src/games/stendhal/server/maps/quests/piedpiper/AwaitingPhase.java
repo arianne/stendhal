@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests.piedpiper;
 
+import java.util.List;
 import java.util.Map;
 
 public class AwaitingPhase extends TPPQuest {
@@ -30,13 +31,13 @@ public class AwaitingPhase extends TPPQuest {
 
 
 
-	public void phaseToDefaultPhase() {
-		super.phaseToDefaultPhase();		
+	public void phaseToDefaultPhase(List<String> comments) {
+		super.phaseToDefaultPhase(comments);		
 	}
 
 
-	public void phaseToNextPhase(ITPPQuest nextPhase) {
-		super.phaseToNextPhase(nextPhase);
+	public void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments) {
+		super.phaseToNextPhase(nextPhase, comments);
 	}
 	
 	/**
