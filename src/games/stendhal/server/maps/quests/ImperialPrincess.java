@@ -20,7 +20,9 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * QUEST: Imperial princess
@@ -74,6 +76,26 @@ public class ImperialPrincess extends AbstractQuest {
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		final String questState = player.getQuest(QUEST_SLOT);
+		res.add("Princess Ylflia asked me for some herbs and potions to ease the pain of captives in Kalavan Basement.");
+		if (!questState.equals("recommended") && !questState.equals("done")) {
+			res.add("I must tell Princess Ylflia that I have \"herbs\" when I have collected all the herbs, potions and antidotes she needs.");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "recommended", "done")) {
+			res.add("I took Princess Ylflia the healing items and she told me she would recommend me to her father, the King.");
+		}
+		if (questState.equals("done")) {
+			res.add("King Cozart granted me citizenship of Kalavan.");
+		}
+		return res;
 	}
 	private void step_1() {
 
