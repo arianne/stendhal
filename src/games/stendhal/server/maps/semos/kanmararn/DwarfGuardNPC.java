@@ -50,6 +50,7 @@ public class DwarfGuardNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("dwarfguardnpc");
+		npc.setDescription("Hunel is a friendly looking dwarf. How did he come in here and why is he scared?");
 		npc.setPosition(10, 23);
 		npc.initHP(100);
 		zone.add(npc);
