@@ -15,5 +15,7 @@ public class InmateNPC extends SpeakerNPCFactory {
 	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Let me out!");
 		npc.addGoodbye();
+		
+		npc.setDescription("You see Conual. He is jailed for ages now. Seems like he really did something badly wrong!");
 	}
 }
