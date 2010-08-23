@@ -47,6 +47,7 @@ public class MayorNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("mayornpc");
+		npc.setDescription("The mighty mayor of Semos, Mayor Sakhs, is walking infront of you. He seems to be nervous...");
 		npc.setPosition(13, 3);
 		npc.initHP(100);
 		zone.add(npc);
