@@ -52,6 +52,7 @@ public class HealerNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("welcomernpc");
+		npc.setDescription("You see Ilisa. She is young, pretty and her magical aura is enclosing her.");
 		npc.setPosition(9, 6);
 		npc.initHP(100);
 		zone.add(npc);
