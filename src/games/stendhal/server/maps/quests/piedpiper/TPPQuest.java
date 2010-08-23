@@ -111,12 +111,16 @@ public class TPPQuest implements ITPPQuest {
 		ThePiedPiper.setNewNotificationTime(ThePiedPiper.getPhases().get(0).getMinTimeOut(),
 				ThePiedPiper.getPhases().get(0).getMaxTimeOut());	
 		ThePiedPiper.getPhases().get(0).prepare();
-		new GameEvent(null, "raid", comments).raise();
+		if(!comments.isEmpty()) {
+			new GameEvent(null, "raid", comments).raise();
+		}
 	}
 
 	public void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments) {
 		shoutMessage(getSwitchingToNextPhaseMessage());
-		new GameEvent(null, "raid", comments).raise();
+		if(!comments.isEmpty()) {
+			new GameEvent(null, "raid", comments).raise();
+		};
 		logger.info("ThePiedPiper quest: switch phase to ("+nextPhase.getPhase().name()+").");
 		ThePiedPiper.setPhase(nextPhase.getPhase());
 		stopShouts();
