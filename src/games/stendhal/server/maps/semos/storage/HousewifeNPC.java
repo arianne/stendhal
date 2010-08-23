@@ -49,6 +49,7 @@ public class HousewifeNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("welcomernpc");
+		npc.setDescription("You see Eonna. She is a lovely housewife and scared to death of rats!");
 		npc.setPosition(4, 13);
 		npc.initHP(100);
 		zone.add(npc);
