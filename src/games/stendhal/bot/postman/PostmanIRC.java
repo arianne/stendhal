@@ -106,7 +106,7 @@ public class PostmanIRC extends PircBot {
 	}
 
 	void sendSupportMessage(final String text) {
-		sendMultilineMessage(supportChannel, text);
+		sendMultilineMessage(supportChannel, text.replaceAll("Please use #/supportanswer .*", "").trim());
 	}
 
 	public final void sendMultilineMessage(String target, String message) {
