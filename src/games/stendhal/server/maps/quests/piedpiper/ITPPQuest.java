@@ -1,16 +1,18 @@
 package games.stendhal.server.maps.quests.piedpiper;
 
+import java.util.List;
+
 public interface ITPPQuest extends ITPPQuestConstants {
 	
 	/**
 	 * function will change phase to next phase 
 	 */
-	void phaseToNextPhase(ITPPQuest nextPhase);
+	void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments);
 	
 	/**
 	 * function will reset quest state to default phase (INACTIVE).
 	 */
-	void phaseToDefaultPhase();
+	void phaseToDefaultPhase(List<String> comments);
 	
 	/**
 	 * function return shout message when quest going to next phase 

@@ -1,9 +1,11 @@
 package games.stendhal.server.maps.quests.piedpiper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -97,7 +99,7 @@ public class TPPQuest implements ITPPQuest {
 
 		
 	
-	public void phaseToDefaultPhase() {
+	public void phaseToDefaultPhase(List<String> comments) {
 		shoutMessage(getSwitchingToDefPhaseMessage());
 		ThePiedPiper.setPhase(ThePiedPiper.getDefaultPhaseClass().getPhase());
 		logger.info("ThePiedPiper quest: switch phase ("+
@@ -109,10 +111,12 @@ public class TPPQuest implements ITPPQuest {
 		ThePiedPiper.setNewNotificationTime(ThePiedPiper.getPhases().get(0).getMinTimeOut(),
 				ThePiedPiper.getPhases().get(0).getMaxTimeOut());	
 		ThePiedPiper.getPhases().get(0).prepare();
+		new GameEvent(null, "raid", comments).raise();
 	}
 
-	public void phaseToNextPhase(ITPPQuest nextPhase) {
+	public void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments) {
 		shoutMessage(getSwitchingToNextPhaseMessage());
+		new GameEvent(null, "raid", comments).raise();
 		logger.info("ThePiedPiper quest: switch phase to ("+nextPhase.getPhase().name()+").");
 		ThePiedPiper.setPhase(nextPhase.getPhase());
 		stopShouts();
