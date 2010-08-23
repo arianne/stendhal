@@ -10,6 +10,7 @@ Changelog
 - own pets and sheep drawn on minimap
 - hoeing NPC in Semos Plains North East
 - added new NPC Marla to Ados
+- added some new descriptions to NPCs
 
 *website*
 - read postman messages to and from your characters
