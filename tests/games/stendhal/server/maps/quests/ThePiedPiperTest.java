@@ -46,6 +46,8 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 		
 		final StendhalRPZone playerzone = new StendhalRPZone("int_semos_guard_house");
 		SingletonRepository.getRPWorld().addRPZone(playerzone);
+		final StendhalRPZone piperzone = new StendhalRPZone("0_ados_city_n");
+		SingletonRepository.getRPWorld().addRPZone(piperzone);
 
 		for(int i=0; i<RAT_ZONES.size();i++) {
 			StendhalRPZone ratZone = new StendhalRPZone(RAT_ZONES.get(i),100,100);
@@ -71,6 +73,16 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 		player.addKarma(10000);
 		player.setInvisible(true);
 		player.setGhost(true);
+	}
+	
+	/**
+	 * switching quest to next available phase.
+	 */
+	private void switchToNextPhase() {
+		ThePiedPiper.getPhaseClass(
+				ThePiedPiper.getPhase()).phaseToNextPhase(
+						ThePiedPiper.getNextPhaseClass(
+								ThePiedPiper.getPhase()));
 	}
 
 	/**
@@ -165,10 +177,7 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 	public void testInvasionPhase() {
 		// [17:50] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
         ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
-		ThePiedPiper.getPhaseClass(
-				ThePiedPiper.getPhase()).phaseToNextPhase(
-						ThePiedPiper.getNextPhaseClass(
-								ThePiedPiper.getPhase()));
+        switchToNextPhase();
 		//quest.phaseInactiveToInvasion();
         en.step(player, "bye"); // in case if previous test was failed
         en.step(player, "hi");
@@ -211,12 +220,9 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 		int tempReward = 0;
 		LinkedList<String> questHistory = new LinkedList<String>();
         ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
-		// [18:09] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
-		ThePiedPiper.getPhaseClass(
-				ThePiedPiper.getPhase()).phaseToNextPhase(
-						ThePiedPiper.getNextPhaseClass(
-								ThePiedPiper.getPhase()));
+		switchToNextPhase();
 		//quest.phaseInactiveToInvasion();
+        // [18:09] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
 		en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -251,10 +257,7 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 		assertEquals(questHistory, quest.getHistory(player));
-		ThePiedPiper.getPhaseClass(
-				ThePiedPiper.getPhase()).phaseToNextPhase(
-						ThePiedPiper.getNextPhaseClass(
-								ThePiedPiper.getPhase()));
+		switchToNextPhase();
 		//quest.phaseInactiveToInvasion();	
 		killRats(quest.getRatsCount());
 		assertEquals(questHistory, quest.getHistory(player));
@@ -287,20 +290,14 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 	public void testAwaitingPhase() {	
 		LinkedList<String> questHistory = new LinkedList<String>();
         ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
-		ThePiedPiper.getPhaseClass(
-				ThePiedPiper.getPhase()).phaseToNextPhase(
-						ThePiedPiper.getNextPhaseClass(
-								ThePiedPiper.getPhase()));
+		switchToNextPhase();
 		//quest.phaseInactiveToInvasion();		
 		killRats(quest.getRatsCount()/2);
 		questHistory.add("I have killed some rats in Ados city already, and trying to kill more.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		// [18:19] Mayor Chalmers shouts: Saddanly, rats captured city, they are living now under all Ados buildings. I am now in need of call Piped Piper, rats exterminator. Thank to all who tryed to clean up Ados,  you are welcome to get your reward.
 		
-		ThePiedPiper.getPhaseClass(
-				ThePiedPiper.getPhase()).phaseToNextPhase(
-						ThePiedPiper.getNextPhaseClass(
-								ThePiedPiper.getPhase()));
+		switchToNextPhase();
 		//quest.phaseInvasionToAwaiting();		
 		en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
