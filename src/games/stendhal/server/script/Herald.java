@@ -42,7 +42,7 @@ public class Herald extends ScriptImpl {
     private final int REQUIRED_ADMINLEVEL_SET = 1000;
     private TurnNotifier turnNotifier = TurnNotifier.get();
 
-    private final String HaveNoTime = "Hi, I have to do my job, so I have no time to speak with you, sorry.";
+    //private final String HaveNoTime = "Hi, I have to do my job, so I have no time to speak with you, sorry.";
     private final String HiOldFriend = "Oh, you're here! Hi, my old friend, glad to see you.";
     private final String TooScared = "Oh, you are crazy, sure. I can't help you, the Emperor will kill us both for that.";
     private final String BadJoke = "Joke, yes? I like jokes, but not too much.";
