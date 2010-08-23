@@ -24,7 +24,15 @@ public class ReservedSubStringValidator implements AccountParameterValidator {
 		if (parameterValue.toLowerCase().contains("admin")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
-
+		if (parameterValue.toLowerCase().contains("support")) {
+			return Result.FAILED_RESERVED_NAME;
+		}
+		if (parameterValue.toLowerCase().contains("stendhal")) {
+			return Result.FAILED_RESERVED_NAME;
+		}
+		if (parameterValue.toLowerCase().contains("marauroa")) {
+			return Result.FAILED_RESERVED_NAME;
+		}
 
 		// name must not be equal to "gm". We do not use a substring filter
 		// here, because these to letters may be part of normal names.
