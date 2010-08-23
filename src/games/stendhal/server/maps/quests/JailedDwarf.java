@@ -39,7 +39,7 @@ public class JailedDwarf extends AbstractQuest {
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
-							raiser.say("Hi. As you see, I am still to nervous to leave ...");
+							raiser.say("Hi. As you see, I am still too nervous to leave ...");
 						} else {
 							if (player.isEquipped("kanmararn prison key")) {
 								player.setQuest(QUEST_SLOT, "done");
