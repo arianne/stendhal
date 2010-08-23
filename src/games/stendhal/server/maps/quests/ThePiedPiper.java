@@ -161,7 +161,8 @@ import org.apache.log4j.Logger;
 	class QuestTimer implements TurnListener {
 		public void onTurnReached(final int currentTurn) {
 			final ITPPQuest i = getPhaseClass(getPhase());
-			i.phaseToNextPhase(getNextPhaseClass(getPhase()));
+			i.phaseToNextPhase(getNextPhaseClass(getPhase()), 
+					new LinkedList<String>(Arrays.asList("pied piper")));
 		}
 	}
 	
