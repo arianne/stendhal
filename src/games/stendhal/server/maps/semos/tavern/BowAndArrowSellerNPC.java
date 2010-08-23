@@ -58,6 +58,7 @@ public class BowAndArrowSellerNPC implements ZoneConfigurator {
 		ouchit.setEntityClass("weaponsellernpc");
 		ouchit.setPosition(21, 3);
 		ouchit.initHP(100);
+		ouchit.setDescription("You see Ouchit. He loves wooden weapons...");
 		zone.add(ouchit);
 	}
 }

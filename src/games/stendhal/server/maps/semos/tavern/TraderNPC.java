@@ -61,6 +61,7 @@ public class TraderNPC implements ZoneConfigurator {
 		};
 
 		xinBlanca.setEntityClass("weaponsellernpc");
+		xinBlanca.setDescription("You see Xin Blanca. He is popular for equipping young adventurers...");
 		xinBlanca.setPosition(2, 15);
 		xinBlanca.initHP(100);
 		zone.add(xinBlanca);
