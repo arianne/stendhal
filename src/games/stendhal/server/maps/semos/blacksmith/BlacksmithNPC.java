@@ -56,5 +56,7 @@ public class BlacksmithNPC extends SpeakerNPCFactory {
 
 		new ProducerAdder().addProducer(npc, behaviour,
 		        "Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.");
+		
+		npc.setDescription("You see Xoderos, the strong Semos blacksmith.");
 	}
 }
