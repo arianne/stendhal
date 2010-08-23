@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -65,10 +66,14 @@ public class HelpTomi extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I met Tomi, a boy being tortured in hell.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.startsWith("done")) {
-			res.add("DONE");
+			res.add("Tomi asked for \"ice\" and took the ice sword I was carrying!");
+			String[] parts = questState.split(";");
+			if (MathHelper.parseIntDefault(parts[1],0)>1) {
+				res.add("I've given " + parts[1] + " ice swords to Tomi so far.");
+			}
 		}
 		return res;
 	}
