@@ -48,6 +48,7 @@ public class SergeantNPC implements ZoneConfigurator  {
 		};
 
 		npc.setEntityClass("royalguardnpc");
+		npc.setDescription("Sergeant James is a Sergeant in the Army of Semos. He seems to be a bit lost...");
 		npc.setPosition(66, 46);
 		npc.setBaseHP(100);
 		npc.initHP(75);
