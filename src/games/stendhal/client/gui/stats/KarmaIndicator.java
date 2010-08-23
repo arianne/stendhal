@@ -76,6 +76,12 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 		return pref;
 	}
 	
+	@Override
+	public Dimension getMinimumSize() {
+		// Preferred is also the minimum size where the bar can be drawn properly
+		return getPreferredSize();
+	}
+	
 	/**
 	 * Scale a karma value to bar length.
 	 * 
