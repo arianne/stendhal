@@ -57,7 +57,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		npc.setPosition(67, 13);
 		npc.setEntityClass("orcbuyernpc");
 		zone.add(npc);
-		npc.setDescription("You see the stinky orc Tor’Koom. His stomach is making loud noises!");
+		npc.setDescription("You see the stinky orc Tor'Koom. His stomach is making loud noises!");
 	}
 	
 	class SheepBuyerBehaviour extends BuyerBehaviour {
