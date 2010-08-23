@@ -82,7 +82,7 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 		ThePiedPiper.getPhaseClass(
 				ThePiedPiper.getPhase()).phaseToNextPhase(
 						ThePiedPiper.getNextPhaseClass(
-								ThePiedPiper.getPhase()));
+								ThePiedPiper.getPhase()), new LinkedList<String>());
 	}
 
 	/**
@@ -321,7 +321,8 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 		assertEquals("Good day to you.", getReply(npc));
 		
 		// [19:20] Mayor Chalmers shouts: Thanx gods, rats is gone now, Pied Piper hypnotized them and lead away to dungeons. Those of you, who helped to Ados city with rats problem, can get your reward now.
-		ThePiedPiper.getPhaseClass(ThePiedPiper.getPhase()).phaseToDefaultPhase();
+		ThePiedPiper.getPhaseClass(
+				ThePiedPiper.getPhase()).phaseToDefaultPhase(new LinkedList<String>());
 		//quest.phaseAwaitingToInactive();
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
