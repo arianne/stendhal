@@ -45,6 +45,7 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 		};
 
 		npc.setDirection(Direction.DOWN);
+		npc.setDescription("Ketteh Wehoh is sitting on a bench while waiting waiting for new adventurers.");
 		npc.setEntityClass("elegantladynpc");
 		npc.setPosition(13, 35);
 		npc.initHP(100);
