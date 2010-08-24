@@ -43,7 +43,7 @@ public class HousewifeNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hi there, young hero.");
 				addJob("I'm just a regular housewife.");
-				addHelp("I don't think I can help you with anything.");
+				addHelp("Oh I love the bakery products by Leander. His sandwiches are awesome! Did you know, that he is searching for a helping hand?");
 				addGoodbye();
 			}
 		};
