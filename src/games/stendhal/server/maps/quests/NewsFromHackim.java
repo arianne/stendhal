@@ -44,15 +44,15 @@ public class NewsFromHackim extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("Hackim the blacksmith assistant wants me to bring a secret message to Xin Blanca in Semos tavern.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
+			res.add("That job was just too hot for me and I don't want to do anything illegal.");
 			return res;
 		}
-		res.add("QUEST_ACCEPTED");
+		res.add("It can't be that bad to just collect a message to Xin Blanca. What will happen? I'll do it.");
 		if (isCompleted(player)) {
-			res.add("DONE");
+			res.add("I brought Xin Blanca the message by Hackim. That brought me some nice experience points.");
 		}
 		return res;
 	}
