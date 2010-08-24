@@ -57,9 +57,9 @@ public class MeetHayunn extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("Hayunn Naratha is the first guy I ever met while playing Stendhal and I started to talk with him.");
+		res.add("Hayunn Naratha is the first guy I ever met in this world, and I started to talk with him.");
 		if (isCompleted(player)) {
-			res.add("He told me lots of useful information about Stendhal and the way of how to play it. That increased my experiences.");
+			res.add("He told me lots of useful information about how to survive. That increased my experience.");
 		}
 		return res;
 	}
