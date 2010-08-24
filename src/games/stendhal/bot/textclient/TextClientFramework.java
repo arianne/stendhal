@@ -128,6 +128,12 @@ public class TextClientFramework extends StandardClientFramework {
 			} catch (final InterruptedException e) {
 				break;
 			}
+			if (!getConnectionState()) {
+				System.out.println();
+				System.out.println("Lost connection.");
+				System.out.println();
+				System.exit(1);
+			}
 		}
 	}
 
