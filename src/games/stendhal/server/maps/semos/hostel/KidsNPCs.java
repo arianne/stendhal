@@ -28,7 +28,7 @@ public class KidsNPCs implements ZoneConfigurator {
 	private void buildNPCs(final StendhalRPZone zone) {
 		final String[] names = {"Taylor", "Covester", "Mick", "Richard"};
 		final String[] classes = { "kid2npc", "kid1npc", "kid9npc", "kid8npc" };
-		final String[] descriptions = {"You see Taylor. She is deeply sleeping.", "You see Corvester. He snores quietly.", "You see Mick. He seems to be really tired.", "You see Richard. He had some stressful vacation days."};
+		final String[] descriptions = {"You see Taylor. She is deeply sleeping.", "You see Covester. He snores quietly.", "You see Mick. He seems to be really tired.", "You see Richard. He had some stressful vacation days."};
 		final int[][] start = { {3, 3}, {9, 3}, {15, 3}, {21, 3} };
 		for (int i = 0; i < 4; i++) {
 			final SpeakerNPC npc = new SpeakerNPC(names[i]) {

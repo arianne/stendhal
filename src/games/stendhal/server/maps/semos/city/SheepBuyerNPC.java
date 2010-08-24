@@ -76,7 +76,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		npc.setPosition(40, 45);
 		npc.setEntityClass("buyernpc");
 		zone.add(npc);
-		npc.setDescription("You see Sato. He loves sheeps!");
+		npc.setDescription("You see Sato. He loves sheeps");
 	}
 
 	class SheepBuyerBehaviour extends BuyerBehaviour {
