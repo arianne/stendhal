@@ -73,7 +73,7 @@ public class Snowballs extends AbstractQuest {
 		res.add("I went down into the icy caves and met Mr. Yeti.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
+			res.add("I didn't want to help Mr. Yeti out this time and he harshly send me away...");
 			return res;
 		}
 		res.add("Mr. Yeti asked me to collect some snowballs for him and I promised it.");
