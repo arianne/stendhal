@@ -32,6 +32,7 @@ public class KidsNPCs implements ZoneConfigurator {
 	private void buildKids(final StendhalRPZone zone) {
 		final String[] names = { "Jens", "George", "Anna" };
 		final String[] classes = { "kid3npc", "kid4npc", "kid5npc" };
+		final String[] descriptions = {"You see Jens. He seems to be a bit bored.", "You see George. He is a young boy who loves playing.", "You see Anna. She is a sweet girl who searches for toys."};
 		final Node[] start = new Node[] { new Node(40, 29), new Node(40, 41), new Node(45, 29) };
 		for (int i = 0; i < 3; i++) {
 			final SpeakerNPC npc = new SpeakerNPC(names[i]) {
@@ -75,6 +76,7 @@ public class KidsNPCs implements ZoneConfigurator {
 
 			npc.setEntityClass(classes[i]);
 			npc.setPosition(start[i].getX(), start[i].getY());
+			npc.setDescription(descriptions[i]);
 			npc.setDirection(Direction.DOWN);
 			npc.initHP(100);
 			zone.add(npc);

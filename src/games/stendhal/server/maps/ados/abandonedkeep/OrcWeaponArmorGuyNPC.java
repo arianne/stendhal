@@ -63,6 +63,7 @@ public class OrcWeaponArmorGuyNPC implements ZoneConfigurator {
 		hagnurk.setEntityClass("orcsalesmannpc");
 		hagnurk.setPosition(106, 5);
 		hagnurk.initHP(100);
+		hagnurk.setDescription("You see Hagnurk. He is an orcish salesman.");
 		zone.add(hagnurk);
 	}
 }

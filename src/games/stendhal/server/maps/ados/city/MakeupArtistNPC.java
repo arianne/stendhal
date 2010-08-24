@@ -62,6 +62,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 		npc.setPosition(20, 13);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
+		npc.setDescription("You see a beautiful looking woman. Her name is Fidorea and she loooves colours.");
 		zone.add(npc);
 	}
 }

@@ -76,6 +76,7 @@ public class WeaponryTraderNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
 		npc.setSpeed(0.1);
+		npc.setDescription("Alexander is a weaponry trader. He doesn't trust everyone...");
 		zone.add(npc);
 	}
 }

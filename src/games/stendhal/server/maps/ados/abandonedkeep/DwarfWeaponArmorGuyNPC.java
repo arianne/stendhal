@@ -63,6 +63,7 @@ public class DwarfWeaponArmorGuyNPC implements ZoneConfigurator {
 		gulimo.setEntityClass("greendwarfnpc");
 		gulimo.setPosition(3, 24);
 		gulimo.initHP(100);
+		gulimo.setDescription("You see Gulimo. He sells good quality armor and weapons.");
 		zone.add(gulimo);
 	}
 }

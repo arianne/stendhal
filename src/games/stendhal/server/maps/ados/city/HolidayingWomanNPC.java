@@ -43,7 +43,7 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello.");
-				addHelp("Sorry, I can't help you.");
+				addHelp("I walked around a bit and saw a nice looking tavern. Did you take a look inside already? It smells fantastic there!");
 				addOffer("I can only offer this nice weather today. Its really great.");
 				addQuest("I have no task for you, sorry."); 
 				addJob("Aaaah, I am on holiday here, only walking around.");
@@ -55,6 +55,7 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 		npc.setEntityClass("woman_016_npc");
 		npc.setPosition(47, 90);
 		npc.initHP(100);
+		npc.setDescription("You see Alice Farmer. She is on holidays in Ados.");
 		zone.add(npc);
 	}
 }

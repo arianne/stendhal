@@ -98,6 +98,7 @@ public class BakerNPC implements ZoneConfigurator {
 		baker.setDirection(Direction.DOWN);
 		baker.setPosition(15, 3);
 		baker.initHP(100);
+		baker.setDescription("Arlando is the official Ados baker who is popular for his excellent pies.");
 		zone.add(baker);
 	}
 
