@@ -70,18 +70,18 @@ public class Snowballs extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("I went down into the icy caves and met Mr. Yeti.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 			return res;
 		}
-		res.add("QUEST_ACCEPTED");
+		res.add("Mr. Yeti asked me to collect some snowballs for him and I promised it.");
 		if ((player.isEquipped("snowball", REQUIRED_SNOWBALLS)) || isCompleted(player)) {
-			res.add("FOUND_ITEM");
+			res.add("I found some snowballs after killing some ice golems.");
 		}
 		if (isCompleted(player)) {
-			res.add("DONE");
+			res.add("I made Mr. Yeti happy with giving him the snowballs he wanted.");
 		}
 		return res;
 	}
