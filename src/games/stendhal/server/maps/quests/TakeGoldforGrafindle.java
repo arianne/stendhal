@@ -55,19 +55,19 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		res.add("I went to the Nalwor bank and met Grafindle.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("The responsibility I would have with the gold bars was too high for me and I had to reject Grafindles request.");
+			res.add("The responsibility I would have with the gold bars was too high for me and I had to reject Grafindle's request.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "lorithien", "done")) {
-			res.add("As though as I'm a trustfully person, I promised Grandifle to get the gold from Lorithien.");
+			res.add("Because I'm a trustworthy person, I promised Grafindle to get the gold from Lorithien.");
 		}
 		if ((questState.equals("lorithien") && player.isEquipped("gold bar",
 				GOLD_AMOUNT))
 				|| questState.equals("done")) {
-			res.add("Wohoo! I collected the goldbars Grafindle needs!");
+			res.add("Wohoo! I collected the gold bars Grafindle needs!");
 		}
 		if (questState.equals("lorithien")
 				&& !player.isEquipped("gold bar", GOLD_AMOUNT)) {
-			res.add("Oh no! I lost the goldbars which I had to bring Grafindle!");
+			res.add("Oh no! I lost the gold bars which I had to bring Grafindle!");
 		}
 		if (questState.equals("done")) {
 			res.add("I gave the gold bars to Grafindle and he rewarded me with a key to the customer bank room.");
