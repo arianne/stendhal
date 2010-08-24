@@ -47,6 +47,8 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 						raiser.say(reply);
 					}
 				});
+				addJob("I am a dwarf Guardian and try to abandon adventurers to their fate.");
+				addHelp("Take care when you are running through the tunnels of the Semos mines. There are some strong creatures waiting! If you need a better equipment, you can ask Harold in the Semos Tavern for some offers, maybe he can help you out...");
 				addGoodbye();
 			}
 		};
