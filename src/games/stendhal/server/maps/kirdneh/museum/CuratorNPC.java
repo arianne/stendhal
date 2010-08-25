@@ -59,6 +59,7 @@ public class CuratorNPC implements ZoneConfigurator {
 		npc.setPosition(2, 38);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
+		npc.setDescription("You see Hazel, the curator of Kirdneh museum.");
 		zone.add(npc);
 	}
 }

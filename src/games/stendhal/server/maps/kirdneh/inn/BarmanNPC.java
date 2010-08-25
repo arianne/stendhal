@@ -76,6 +76,7 @@ public class BarmanNPC implements ZoneConfigurator {
 		barmanNPC.setEntityClass("barman2npc");
 		barmanNPC.setPosition(15, 4);
 		barmanNPC.initHP(100);
+		barmanNPC.setDescription("You see Ruarhi. He looks like a real bar-owner.");
 		zone.add(barmanNPC);
 	}
 }
