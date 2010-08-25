@@ -62,6 +62,7 @@ public class CraftsmanNPC implements ZoneConfigurator {
 		npc.setEntityClass("albinoelfnpc");
 		npc.setPosition(3, 11);
 		npc.initHP(100);
+		npc.setDescription("You see Lupos. As you can see, he is an albino elf.");
 		zone.add(npc);
 	}
 }

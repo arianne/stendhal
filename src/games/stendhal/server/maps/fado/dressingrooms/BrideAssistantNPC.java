@@ -56,6 +56,7 @@ public class BrideAssistantNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.RIGHT);
 		npc.setPosition(3, 10);
 		npc.initHP(100);
+		npc.setDescription("You see Tamara. She waits for new brides-to-be and is curious, who will tie the knot next.");
 		zone.add(npc);
 	}
 }

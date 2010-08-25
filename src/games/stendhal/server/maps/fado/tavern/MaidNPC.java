@@ -83,6 +83,7 @@ public class MaidNPC implements ZoneConfigurator {
 		tavernMaid.setEntityClass("oldmaidnpc");
 		tavernMaid.setPosition(10, 16);
 		tavernMaid.initHP(100);
+		tavernMaid.setDescription("You see Old Mother Helena. She is a fantastic cook and her soup is world-famous.");
 		zone.add(tavernMaid);
 	}
 }

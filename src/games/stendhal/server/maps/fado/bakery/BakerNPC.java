@@ -104,6 +104,7 @@ public class BakerNPC implements ZoneConfigurator {
 		baker.setDirection(Direction.DOWN);
 		baker.setPosition(15, 3);
 		baker.initHP(1000);
+		baker.setDescription("You see Linzo. He is the local Fado baker and a specialist in baking fish and leek pies.");
 		zone.add(baker);
 	}
 }

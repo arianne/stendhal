@@ -77,6 +77,7 @@ public class BeeKeeperNPC implements ZoneConfigurator {
 		npc.setEntityClass("beekeepernpc");
 		npc.setPosition(44, 76);
 		npc.initHP(100);
+		npc.setDescription("You see Aldrin. Take care of the bees which are flying around him.");
 		zone.add(npc);
 	}
 }

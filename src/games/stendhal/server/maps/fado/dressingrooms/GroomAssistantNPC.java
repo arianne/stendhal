@@ -60,6 +60,7 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 		npc.setEntityClass("executivenpc");
 		npc.setPosition(20, 10);
 		npc.initHP(100);
+		npc.setDescription("You see Timothy. He waits for men who are going to be married soon.");
 		zone.add(npc);
 	}
 }

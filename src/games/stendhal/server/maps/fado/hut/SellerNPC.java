@@ -45,6 +45,7 @@ public class SellerNPC implements ZoneConfigurator {
 		npc.setPosition(3, 5);
 		npc.setEntityClass("wizardwomannpc");
 		npc.setDirection(Direction.DOWN);
+		npc.setDescription("You see Sarzina. She is a healer and knows a lot about your karma.");
 		zone.add(npc);
 	}
 
