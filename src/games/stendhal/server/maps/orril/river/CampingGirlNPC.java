@@ -44,6 +44,7 @@ public class CampingGirlNPC implements ZoneConfigurator {
 		sally.setPosition(40, 61);
 		sally.setDirection(Direction.RIGHT);
 		sally.initHP(100);
+		sally.setDescription("You see Sally. She is the daughter of Leander, the Semos baker and currently camping near the river.");
 		zone.add(sally);
 	}
 }

@@ -71,6 +71,7 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 		bill.setPosition(105, 58);
 		bill.setDirection(Direction.DOWN);
 		bill.initHP(100);
+		bill.setDescription("Bill retired from being a gold prospector. Now he is waiting for followers in this business.");
 		zone.add(bill);
 	}
 }
