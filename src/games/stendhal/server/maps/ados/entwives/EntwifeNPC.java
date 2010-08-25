@@ -43,6 +43,7 @@ public class EntwifeNPC implements ZoneConfigurator {
 		entwife.setEntityClass("transparentnpc");
 		entwife.setPosition(25, 35);
 		entwife.initHP(100); 
+		entwife.setDescription("You see an old and wise entwife. She is called Tendertwig and guards the area around.");
 		zone.add(entwife);
 	}
 }
