@@ -65,6 +65,7 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 		forger.setDirection(Direction.RIGHT);
 		forger.setPosition(10, 12);
 		forger.initHP(100);
+		forger.setDescription("You see Pedinghaus. His clothes look like he seems to be talented in practicing magic...");
 		zone.add(forger);
 	}
 }

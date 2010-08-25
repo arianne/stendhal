@@ -59,6 +59,7 @@ public class FarmersWifeNPC implements ZoneConfigurator {
 		npc.setEntityClass("wifenpc");
 		npc.setPosition(27, 4);
 		npc.initHP(100);
+		npc.setDescription("You see Philomena. She smells a bit after cows, but her milk is unique.");
 	    zone.add(npc);
 	}
 }

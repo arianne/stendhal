@@ -68,6 +68,7 @@ public class BlacksheepHarryNPC implements ZoneConfigurator {
 	blacksheepharry.setDirection(Direction.DOWN);
 	blacksheepharry.setPosition(5, 2);
 	blacksheepharry.initHP(100);
+	blacksheepharry.setDescription("You see Blacksheep Harry. He is an insider when it's about one kind of fish.");
 	zone.add(blacksheepharry);
 		
 	}

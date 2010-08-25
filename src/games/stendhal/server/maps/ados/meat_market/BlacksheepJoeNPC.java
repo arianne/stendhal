@@ -68,6 +68,7 @@ public class BlacksheepJoeNPC implements ZoneConfigurator {
 	blacksheepjoe.setEntityClass("blacksheepnpc");
 	blacksheepjoe.setPosition(13, 13);
 	blacksheepjoe.initHP(100);
+	blacksheepjoe.setDescription("You see Blacksheep Joe. He is known for his special cheese sausages. Did you taste one already?");
 	zone.add(blacksheepjoe);
 		
 	}

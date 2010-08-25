@@ -67,6 +67,7 @@ public class BlacksheepBobNPC implements ZoneConfigurator {
 	blacksheepbob.setEntityClass("blacksheepnpc");
 	blacksheepbob.setPosition(2, 13);
 	blacksheepbob.initHP(100);
+	blacksheepbob.setDescription("You see Blacksheep Bob. He is popular for his sausage.");
 	zone.add(blacksheepbob);
 		
 	}

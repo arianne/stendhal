@@ -107,6 +107,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 		npc.setEntityClass("woman_009_npc");
 		npc.setPosition(6, 8);
 		npc.initHP(100);
+		npc.setDescription("Felina is walking around while taking care of her kittens. They are purring out of all corners.");
 		zone.add(npc);
 		
 		// Also put a cat in her bedroom (people can't Own it as it is behind a fence)

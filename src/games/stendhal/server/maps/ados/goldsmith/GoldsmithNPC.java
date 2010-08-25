@@ -87,6 +87,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 		goldsmith.setDirection(Direction.DOWN);
 		goldsmith.setPosition(18, 3);
 		goldsmith.initHP(100);
+		goldsmith.setDescription("You see Joshua. His family is popular for forging different materials. Do you know his brother, Xoderos, already?");
 		zone.add(goldsmith);
 	}
 }
