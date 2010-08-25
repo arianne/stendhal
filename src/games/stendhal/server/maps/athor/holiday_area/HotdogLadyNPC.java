@@ -63,6 +63,7 @@ public class HotdogLadyNPC implements ZoneConfigurator {
 		hotdoglady.setEntityClass("woman_013_npc");
 		hotdoglady.setPosition(34, 67);
 		hotdoglady.initHP(100);
+		hotdoglady.setDescription("You see Sara Beth. Her hotdog market is the most popular one on Athor island.");
 		zone.add(hotdoglady);
 	}
 }

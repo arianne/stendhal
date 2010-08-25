@@ -62,6 +62,7 @@ public class BarmanNPC implements ZoneConfigurator {
 		barman.setEntityClass("barmannpc");
 		barman.setPosition(8, 5);
 		barman.initHP(100);
+		barman.setDescription("You see Pedro, the bartender. He can mix the finest cocktails for you.");
 		zone.add(barman);
 	}
 }

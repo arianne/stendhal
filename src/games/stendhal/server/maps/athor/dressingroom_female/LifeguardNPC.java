@@ -81,6 +81,7 @@ public class LifeguardNPC implements ZoneConfigurator {
 		pam.setDirection(Direction.LEFT);
 		pam.setPosition(12, 11);
 		pam.initHP(100);
+		pam.setDescription("You see Pam. She waits for models who can wear her newest swimsuit collection.");
 		zone.add(pam);
 	}
 }
