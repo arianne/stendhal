@@ -52,6 +52,7 @@ public class ReaperNPC implements ZoneConfigurator {
 		npc.setEntityClass("grim_reaper_npc");
 		npc.setPosition(63, 76);
 		npc.initHP(100);
+		npc.setDescription("You see the Grim Reaper. His riddles will give you liberty.");
 		zone.add(npc);
 	}
 }

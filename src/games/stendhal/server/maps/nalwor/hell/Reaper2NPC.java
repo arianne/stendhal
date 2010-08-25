@@ -80,6 +80,7 @@ public class Reaper2NPC implements ZoneConfigurator {
 		npc.setEntityClass("grim_reaper2_npc");
 		npc.setPosition(68, 76);
 		npc.initHP(100);
+		npc.setDescription("You see the repaeR mirG. His mirror will give you liberty.");
 		zone.add(npc);
 	}
 }
