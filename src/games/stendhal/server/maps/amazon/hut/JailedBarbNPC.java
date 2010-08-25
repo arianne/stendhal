@@ -65,6 +65,7 @@ public class JailedBarbNPC implements ZoneConfigurator {
 		JailedBarbNPC.setEntityClass("jailedbarbariannpc");
 		JailedBarbNPC.setPosition(11, 12);
 		JailedBarbNPC.initHP(100);
+		JailedBarbNPC.setDescription("You see the jailed Barbarian Lorenz. What did he do to the Amazonesses?");
 		zone.add(JailedBarbNPC);
 	}
 }

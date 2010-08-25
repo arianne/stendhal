@@ -63,6 +63,7 @@ public class PrincessNPC implements ZoneConfigurator {
 		princessNPC.setEntityClass("amazoness_princessnpc");
 		princessNPC.setPosition(6, 13);
 		princessNPC.initHP(100);
+		princessNPC.setDescription("You see Princess Esclara. She smells after coconut and pineapples...");
 		zone.add(princessNPC);
 	}
 }

@@ -80,6 +80,7 @@ public class AmazonMermaidArmorNPC implements ZoneConfigurator {
 		mermaid.setEntityClass("marmaidnpc");
 		mermaid.setPosition(8, 92);
 		mermaid.initHP(100);
+		mermaid.setDescription("You see Nicklesworth. Isn't she a lovely mermaid?");
 		zone.add(mermaid);
 	}
 }
