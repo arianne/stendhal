@@ -65,7 +65,7 @@ public class KirdnehFishyMarketNPC implements ZoneConfigurator {
 		fishyguy.setEntityClass("sailor1npc");
 		fishyguy.setPosition(63, 89);
 		fishyguy.initHP(100);
-		fishyguy.setDescription("You see Fishmonger. He stinks a bit after the fish he buys.");
+		fishyguy.setDescription("You see a Fishmonger. He stinks a bit from the fish he buys.");
 		zone.add(fishyguy);
 	}
 }

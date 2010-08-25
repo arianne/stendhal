@@ -83,7 +83,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 		npc.setPosition(3, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		npc.setDescription("You see Susi. Did you ever heard the story about her being lost for some time?");
+		npc.setDescription("You see Susi. Did you ever hear the story about her being lost for some time?");
 		zone.add(npc);
 	}
 

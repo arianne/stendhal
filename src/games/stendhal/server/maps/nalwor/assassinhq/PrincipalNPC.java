@@ -59,7 +59,7 @@ public class PrincipalNPC implements ZoneConfigurator {
 		principal.setEntityClass("principalnpc");
 		principal.setPosition(2, 18);
 		principal.initHP(100);
-		principal.setDescription("The lady walking around is Femme Fatale. She is always on the search for armors and weapons.");
+		principal.setDescription("The lady walking around is Femme Fatale. She is always on the search for armor and weapons.");
 		zone.add(principal);
 	}
 }

@@ -57,7 +57,7 @@ public class TellerNPC implements ZoneConfigurator {
 		bankNPC.setEntityClass("youngnpc");
 		bankNPC.setPosition(15, 3);
 		bankNPC.initHP(1000);
-		bankNPC.setDescription("Yance is the Fado bank manager. He can give advises of how to use his chests.");
+		bankNPC.setDescription("Yance is the Fado bank manager. He can give advice on how to use the chests.");
 		zone.add(bankNPC);
 	}
 }
