@@ -32,7 +32,7 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Howdy partner!");
-				addJob("Once I was a very successful gold procpector, but with the age came the backache, so I'm a pensioner now. However I can still give advice to rookies!");
+				addJob("Once I was a very successful gold prospector, but with the age came the backache, so I'm a pensioner now. However I can still give advice to rookies!");
 				add(ConversationStates.ATTENDING, ConversationPhrases.HELP_MESSAGES, null,
 				        ConversationStates.INFORMATION_1,
 				        "I can tell you the secrets of prospecting for gold, if you are interested. Are you?", null);
