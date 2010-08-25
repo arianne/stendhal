@@ -85,7 +85,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 		npc.setEntityClass("investigatornpc");
 		npc.setPosition(9, 9);
 		npc.initHP(100);
-		npc.setDescription("Wikipedian is the Ados librarian. His reaveals: he knows a lot.");
+		npc.setDescription("Wikipedian is the Ados librarian. His name predicts: he knows a lot.");
 		zone.add(npc);
 	}
 
