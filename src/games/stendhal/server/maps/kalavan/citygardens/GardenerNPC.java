@@ -198,6 +198,7 @@ public class GardenerNPC implements ZoneConfigurator {
 		npc.setEntityClass("gardenernpc");
 		npc.setPosition(100, 123);
 		npc.initHP(100);
+		npc.setDescription("You see Sue. Her flowers are smelling fantastic. She really has green fingers.");
 		zone.add(npc);
 	}
 

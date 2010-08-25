@@ -70,6 +70,7 @@ public class PrincessNPC implements ZoneConfigurator {
 		princessNPC.setEntityClass("princess2npc");
 		princessNPC.setPosition(19, 21);
 		princessNPC.initHP(100);
+		princessNPC.setDescription("You see Princess Ylflia. Although she is a princess, she seems to be really friendly and helpful.");
 		zone.add(princessNPC);
 	}
 }

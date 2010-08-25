@@ -76,6 +76,7 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 		npc.setEntityClass("icecreamsellernpc");
 		npc.setPosition(73, 54);
 		npc.initHP(100);
+		npc.setDescription("Sam has a job, all kids are dreaming of. He sells icecream. Yummi!");
 		zone.add(npc);
 	}
 }
