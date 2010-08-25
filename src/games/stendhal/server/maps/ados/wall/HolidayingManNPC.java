@@ -44,9 +44,9 @@ public class HolidayingManNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hi hi.");
-				addHelp("Ehm... I don't need help at the moment, but thanks.");
-				addOffer("What?");
-				addQuest("Nothing to do."); 
+				addHelp("The mayor of this town is really nice. I visited him with my wife to get some help.");
+				addOffer("What? I'm on holidays!");
+				addQuest("Ehm... I don't need help at the moment, but thanks."); 
 				addJob("No no, I'm on holiday here with my wife Alice.");
 				addGoodbye("See you, and take care because of the lions beyond the wall.");
 
