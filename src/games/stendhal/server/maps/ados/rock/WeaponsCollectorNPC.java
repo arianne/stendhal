@@ -52,6 +52,7 @@ public class WeaponsCollectorNPC implements ZoneConfigurator {
 		npc.setPosition(16, 8);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
+		npc.setDescription("You see Balduin. He is living on these mountains as a hermit, but maybe he has something to do for you.");
 		zone.add(npc);
 	}
 }

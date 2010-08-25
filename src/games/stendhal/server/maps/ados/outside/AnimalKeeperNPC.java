@@ -170,6 +170,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		npc.setPosition(41, 40);
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
+		npc.setDescription("You see Katinka. She takes care of the animals around in the sanctuary.");
 		zone.add(npc);
 
 		// put special RespawnPoints

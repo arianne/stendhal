@@ -79,6 +79,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 		npc.setPosition(53, 28);
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
+		npc.setDescription("You see Dr. Feelgood. He is an expert in his job.");
 		zone.add(npc);
 	}
 	

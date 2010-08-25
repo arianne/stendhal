@@ -57,6 +57,7 @@ public class SeamstressNPC implements ZoneConfigurator {
 		seamstress.setEntityClass("woman_002_npc");
 		seamstress.setPosition(7, 7);
 		seamstress.initHP(100);
+		seamstress.setDescription("Ida is a well known seamstress in the shipping industry. Although she is more into ships, she could maybe help you as well.");
 		zone.add(seamstress);
 	}
 }
