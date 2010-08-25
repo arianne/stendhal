@@ -56,6 +56,7 @@ public class HolidayingManNPC implements ZoneConfigurator {
 		npc.setEntityClass("man_008_npc");
 		npc.setPosition(70, 52);
 		npc.initHP(100);
+		npc.setDescription("You see Martin Farmer. He is on holidays with his wife Alice.");
 		zone.add(npc);
 	}
 }

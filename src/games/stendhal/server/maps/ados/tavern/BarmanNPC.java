@@ -68,6 +68,7 @@ public class BarmanNPC implements ZoneConfigurator {
 		barman.setEntityClass("barman3npc");
 		barman.setPosition(27, 2);
 		barman.initHP(100);
+		barman.setDescription("You see a hot looking guy. His name is Dale and he describes himself as an expert on women...");
 		zone.add(barman);
 	}
 }

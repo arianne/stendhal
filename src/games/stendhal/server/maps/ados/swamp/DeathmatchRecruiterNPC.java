@@ -82,6 +82,7 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(24, 9);
 		npc.initHP(100);
+		npc.setDescription("You see Thonatus, recruiter for the Ados Deathmatch. You are lucky that you find him, he is fast normally.");
 		zone.add(npc);
 	}
 }
