@@ -191,6 +191,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		npc.setPosition(16, 5);
 		// npc.setPosition(101, 102);
 		npc.initHP(100);
+		npc.setDescription("You see Liliana. She is working in the Magic City clothes boutique.");
 		zone.add(npc);
 	}
 }

@@ -57,6 +57,7 @@ public class MagicBarmaidNPC implements ZoneConfigurator {
 		magicbarmaid.setEntityClass("woman_015_npc");
 		magicbarmaid.setPosition(13, 3);
 		magicbarmaid.initHP(100);
+		magicbarmaid.setDescription("You see Trillium. She is the Magic City barmaid of the theater and offers nice drinks and food.");
 		zone.add(magicbarmaid);
 	}
 }

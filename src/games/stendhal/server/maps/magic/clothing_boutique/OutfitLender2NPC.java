@@ -179,6 +179,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		npc.setEntityClass("wizardwomannpc");
 		npc.setPosition(5, 7);
 		npc.initHP(100);
+		npc.setDescription("You see Saskia. She is working in the Magic City boutique.");
 		zone.add(npc);
 	}
 }
