@@ -78,6 +78,7 @@ public class StorageNPC implements ZoneConfigurator {
 		storageNPC.setEntityClass("scarletarmynpc");
 		storageNPC.setPosition(35, 23);
 		storageNPC.initHP(100);
+		storageNPC.setDescription("Pjotr Yearl seems to be a bit stressed. Does he maybe need some help?");
 		zone.add(storageNPC);
 	}
 }

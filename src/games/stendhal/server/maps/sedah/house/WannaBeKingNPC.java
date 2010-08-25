@@ -51,6 +51,7 @@ public class WannaBeKingNPC implements ZoneConfigurator {
 		npc.setEntityClass("wannabekingnpc");
 		npc.setPosition(3, 7);
 		npc.initHP(100);
+		npc.setDescription("You see Ivan Abe. He wants to be the king of Kalavan.");
 		zone.add(npc);
 	}
 }
