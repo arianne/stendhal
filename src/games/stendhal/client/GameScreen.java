@@ -466,7 +466,10 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	
 	@Override
 	protected void paintComponent(final Graphics g) {
-		Collections.sort(views, entityViewComparator);
+		// sort uses iterators, so it must be wrapped in a synchronized block
+		synchronized (views) {
+			Collections.sort(views, entityViewComparator);
+		}
 		Graphics2D g2d = (Graphics2D) g;
 
 		/*
@@ -804,8 +807,11 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 			while (it.hasPrevious()) {
 				final EntityView view = it.previous();
 
-				if (view.getEntity().getArea().contains(x, y)) {
-					return view;
+				IEntity entity = view.getEntity();
+				if (entity != null) {
+					if (entity.getArea().contains(x, y)) {
+						return view;
+					}
 				}
 			}
 
