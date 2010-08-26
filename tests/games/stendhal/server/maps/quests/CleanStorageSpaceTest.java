@@ -62,7 +62,7 @@ public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I'm just a regular housewife.", getReply(npc));
 		assertTrue(en.step(player, "help"));
 		assertTrue(npc.isTalking());
-		assertEquals("I don't think I can help you with anything.",
+		assertEquals("Oh I love the bakery products by Leander. His sandwiches are awesome! Did you know, that he is searching for a helping hand?",
 				getReply(npc));
 		assertTrue(en.step(player, "bye"));
 		assertFalse(npc.isTalking());
