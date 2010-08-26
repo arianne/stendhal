@@ -819,13 +819,14 @@ public abstract class RPEntity extends GuidedEntity {
 		
 
 		final int newLevel = Level.getLevel(getXP());
-		final int levels = newLevel - getLevel();
+		final int oldLevel = getLevel();
+		final int levels = newLevel - oldLevel;
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setBaseHP(getBaseHP() + (int) Math.signum(levels) * 10);
 			setHP(getHP() + (int) Math.signum(levels) * 10);
-			new GameEvent(getName(), "level", Integer.toString(newLevel)).raise();
+			new GameEvent(getName(), "level", Integer.toString(oldLevel+(i+1)*((int) Math.signum(levels)))).raise();
 			setLevel(newLevel);
 		}
 	}
