@@ -19,6 +19,8 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Quest to buy icecream for a little girl.
@@ -185,6 +187,37 @@ public class IcecreamForAnnie extends AbstractQuest {
 		super.addToWorld();
 		icecreamStep();
 		meetMummyStep();
+	}
+
+
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("Annie Jones is a sweet little girl playing in Kalavan city gardens.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if ("rejected".equals(questState)) {
+			res.add("I don't like sweet little girls.");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "start","mummy") || isCompleted(player)) {
+			res.add("Little Annie wants an icecream.");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "start","mummy") && player.isEquipped("icecream") || isCompleted(player)) {
+			res.add("I found a tasty icecream for Annie.");
+		}
+        if ("mummy".equals(questState) || isCompleted(player)) {
+            res.add("I spoke to Mrs Jones, she agreed I could give an icecream to her daughter.");        
+        }
+        if (isCompleted(player)) {
+            if (isRepeatable(player)) {
+                res.add("I took icecream to Annie, she gave me a present. Perhaps she'd like another now.");
+            } else {
+                res.add("Annie is eating the icecream I gave her, and she gave me a present in return.");
+            }			
+		}
+		return res;
 	}
 	@Override
 	public String getName() {

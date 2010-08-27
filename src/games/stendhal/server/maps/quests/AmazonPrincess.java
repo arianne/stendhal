@@ -25,6 +25,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -178,6 +179,34 @@ npc.add(ConversationStates.ATTENDING,
 
 		offerQuestStep();
 		bringCocktailStep();
+	}
+
+
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("Princess Esclara welcomed me in her home on Amazon Island.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if ("rejected".equals(questState)) {
+			res.add("She asked me to fetch her a drink but I didn't think she should have one.");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "start") || isCompleted(player)) {
+			res.add("The Princess is thirsty, I promised her an exotic drink, and should tell her 'drink' when I have it.");
+		}
+		if (("start".equals(questState) && player.isEquipped("pina colada")) || isCompleted(player)) {
+			res.add("I found a pina colada for the Princess, I think she'd like that.");
+		}
+        if (isCompleted(player)) {
+            if (isRepeatable(player)) {
+                res.add("I took a pina colada to the Princess, but I'd bet she's ready for another. Maybe I'll get moer fish pies.");
+            } else {
+                res.add("Princess Esclara loved the pina colada I took her, she's not thirsty now. She gave me fish pies and a kiss!!");
+            }			
+		}
+		return res;
 	}
 
 	@Override
