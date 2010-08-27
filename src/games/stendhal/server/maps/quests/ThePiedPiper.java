@@ -62,7 +62,7 @@ import org.apache.log4j.Logger;
  */
  public class ThePiedPiper extends AbstractQuest implements ITPPQuestConstants {
 
-	protected static Logger logger = Logger.getLogger(ThePiedPiper.class);
+	protected static final Logger logger = Logger.getLogger(ThePiedPiper.class);
 	protected LinkedList<Creature> rats = new LinkedList<Creature>();
 	
 	private static LinkedList<ITPPQuest> phases = new LinkedList<ITPPQuest>();
