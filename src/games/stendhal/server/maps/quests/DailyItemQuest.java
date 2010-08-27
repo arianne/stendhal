@@ -330,13 +330,8 @@ public class DailyItemQuest extends AbstractQuest {
 				res.add("I have found the item to help Ados and need to take it.");
 			}
 		}
-		if (player.isQuestCompleted(QUEST_SLOT)) {
-			final String[] tokens = (questState + ";0;0;0").split(";");
-			final String questLast = tokens[1];
-			final long timeRemaining = (Long.parseLong(questLast) + MathHelper.MILLISECONDS_IN_ONE_DAY)
-			- System.currentTimeMillis();
-
-			if (timeRemaining > 0L) {
+		if (isCompleted(player)) {
+			if (!isRepeatable(player)) {
 				res.add("I fetched the last item the mayor asked me to find and claimed my reward within the last 24 hours.");
 			} else {
 				res.add("I fetched the last item the mayor asked me to find and now Ados needs supplies again.");
