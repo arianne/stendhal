@@ -140,24 +140,25 @@ public class Blackjack extends AbstractQuest {
 	 *            The number of cards that each player should draw.
 	 */
 	private void dealCards(final Player player, final int number) {
-		String message = "\n";
+		StringBuffer messagebuf = new StringBuffer();
+		messagebuf.append("\n");
 		int playerSum = sumValues(playerCards);
 		int bankSum = sumValues(bankCards);
 		for (int i = 0; i < number; i++) {
 			if (!playerStands) {
 				final String playerCard = deck.pop();
 				playerCards.add(playerCard);
-				message += "You got a " + playerCard + ".\n";
+				messagebuf.append("You got a " + playerCard + ".\n");
 			}
 
 			if (playerStands && (playerSum < bankSum)) {
-				message += "The bank stands.\n";
+				messagebuf.append("The bank stands.\n");
 				bankStands = true;
 			}
 			if (!bankStands) {
 				final String bankCard = deck.pop();
 				bankCards.add(bankCard);
-				message += "The bank got a " + bankCard + ".\n";
+				messagebuf.append("The bank got a " + bankCard + ".\n");
 			}
 			playerSum = sumValues(playerCards);
 			bankSum = sumValues(bankCards);
@@ -171,23 +172,23 @@ public class Blackjack extends AbstractQuest {
 				+ Grammar.enumerateCollection(bankCards));
 		bankCardsItem.notifyWorldAboutChanges();
 		if (!playerStands) {
-			message += "You have " + playerSum + ".\n";
+			messagebuf.append("You have " + playerSum + ".\n");
 			if (playerSum == 21) {
 				playerStands = true;
 			}
 		}
 		if (!bankStands) {
-			message += "The bank has " + bankSum + ".\n";
+			messagebuf.append("The bank has " + bankSum + ".\n");
 			if ((bankSum >= 17) && (bankSum <= 21) && (bankSum >= playerSum)) {
 				bankStands = true;
-				message += "The bank stands.\n";
+				messagebuf.append("The bank stands.\n");
 			}
 		}
 		final String message2 = analyze(player);
 		if (message2 != null) {
-			message += message2;
+			messagebuf.append(message2);
 		}
-		ramon.say(message);
+		ramon.say(messagebuf.toString());
 	}
 
 	/**
