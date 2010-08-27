@@ -1,10 +1,7 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.MathHelper;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -13,21 +10,20 @@ import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * QUEST: The Ring Maker
@@ -112,7 +108,7 @@ public class RingMaker extends AbstractQuest {
 				Arrays.asList("emerald ring", "life", "emerald"),
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING),
 						new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING + "unbound")),
-						new TimeExpiredCondition(REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE)),
+						new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)),
 				ConversationStates.ATTENDING, 
 				"I'm pleased to say, your ring of life is fixed! It's good as new now.",
 				new MultipleActions(
@@ -124,7 +120,7 @@ public class RingMaker extends AbstractQuest {
 				Arrays.asList("emerald ring", "life", "emerald"),
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING),
 						new QuestStateStartsWithCondition(QUEST_SLOT, FORGING + "unbound"),
-						new TimeExpiredCondition(REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE)),
+						new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)),
 				ConversationStates.ATTENDING, 
 				"I'm pleased to say, your ring of life is fixed! It's good as new now.",
 				new MultipleActions(
@@ -135,24 +131,9 @@ public class RingMaker extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, 
 				Arrays.asList("emerald ring", "life", "emerald"),
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING),
-						new NotCondition(new TimeExpiredCondition(REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE))),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1))),
 				ConversationStates.IDLE, null,
-				new ChatAction() {
-					public void fire(final Player player,
-							final Sentence sentence, final EventRaiser npc) {
-						final String[] tokens = player.getQuest(QUEST_SLOT)
-								.split(";");
-						final long delayInMilliseconds = REQUIRED_MINUTES	* MathHelper.MILLISECONDS_IN_ONE_MINUTE;
-						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliseconds)
-								- System.currentTimeMillis();
-						
-							npc.say("I haven't finished fixing your ring of life. Please check back in "
-											+ TimeUtil
-													.approxTimeUntil((int) (timeRemaining / 1000L))
-											+ ". Good bye for now.");
-							return;
-					}
-			});
+				new SayTimeRemainingAction(QUEST_SLOT,"I haven't finished fixing your ring of life. Please check back in", REQUIRED_MINUTES,1));
 		
 		
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, 
@@ -233,32 +214,6 @@ public class RingMaker extends AbstractQuest {
 			res.add("FORGING");
 		}
 		return res;
-	}
-	
-	class TimeExpiredCondition implements ChatCondition {
-
-		private long millisExpired;
-
-		public TimeExpiredCondition(final long timeInMilliSeconds) {
-			this.millisExpired = timeInMilliSeconds;
-		}
-		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-			final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-			final long timeRemaining = (Long.parseLong(tokens[1]) + millisExpired)
-					- System.currentTimeMillis();
-			return (timeRemaining < 0L);
-		}
-		@Override
-		public int hashCode() {
-			return HashCodeBuilder.reflectionHashCode(this);
-		}
-
-		@Override
-		public boolean equals(final Object obj) {
-			return EqualsBuilder.reflectionEquals(this, obj, false,
-					TimeExpiredCondition.class);
-		}
-		
 	}
 
 	@Override

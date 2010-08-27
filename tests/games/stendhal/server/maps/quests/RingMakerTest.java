@@ -355,31 +355,6 @@ public class RingMakerTest {
 	
 	}
 	
-	/**
-	 * Tests for timeepiredCondition.
-	 */
-	@Test
-	public void testTimeepiredCondition() throws Exception {
-		RingMaker rm = new RingMaker();
-		RingMaker.TimeExpiredCondition cond = rm.new TimeExpiredCondition(60000);
-		
-		player.setQuest(QUEST_SLOT, "forging;0");
-		assertTrue("time has expired", cond.fire(player, null, npc));
-		
-	}
-	
-	/**
-	 * Tests for notTimeepiredCondition.
-	 */
-	@Test
-	public void testnotTimeepiredCondition() throws Exception {
-		RingMaker rm = new RingMaker();
-		RingMaker.TimeExpiredCondition cond = rm.new TimeExpiredCondition(60000);
-		player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
-		assertFalse(cond.fire(player, null, npc));
-		
-			
-	}
 	
 	/**
 	 * Tests for name.
