@@ -66,10 +66,10 @@ public class WeeklyItemQuest extends AbstractQuest {
 	private static final String QUEST_SLOT = "weekly_item";
 	
 	/** How long until the player can give up and start another quest */
-	private final int expireDelay = MathHelper.MINUTES_IN_ONE_WEEK * 6; 
+	private static final int expireDelay = MathHelper.MINUTES_IN_ONE_WEEK * 6; 
 	
 	/** How often the quest may be repeated */
-	private final int delay = MathHelper.MINUTES_IN_ONE_WEEK; 
+	private static final int delay = MathHelper.MINUTES_IN_ONE_WEEK; 
 	
 	/**
 	 * All items which are hard enough to find but not tooo hard and not in Daily quest. If you want to do
