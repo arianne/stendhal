@@ -196,7 +196,7 @@ public class LookBookforCeryl extends AbstractQuest {
 			res.add("I do not want to find the book");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "jynath", "done")) {
-			res.add("I do want the find the black book");
+			res.add("I do want to find the black book");
 		}
 		if ((questState.equals("jynath") && player.isEquipped("black book"))
 				|| questState.equals("done")) {
