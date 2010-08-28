@@ -119,7 +119,10 @@ import org.apache.log4j.Logger;
      */
     protected static TPP_Phase getNextPhase(TPP_Phase ph) {
     	int pos=getPhaseIndex(ph);
-		return (getPhases().get(pos+1).getPhase());    	
+    	if(pos!=(getPhases().size()-1)) {
+		   return (getPhases().get(pos+1).getPhase());
+    	};
+    	return(getDefaultPhaseClass().getPhase());
     }
     
     /**
@@ -146,7 +149,7 @@ import org.apache.log4j.Logger;
     }
     
     /**
-     * 
+     * function return default phase class
      * @return
      */
     public static ITPPQuest getDefaultPhaseClass() {
