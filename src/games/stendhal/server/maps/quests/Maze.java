@@ -61,18 +61,18 @@ public class Maze extends AbstractQuest {
 	
 		npc.add(ConversationStates.ATTENDING,
 				"maze",
-				new TimePassedCondition(getSlotName(), COOLING_TIME, 0),
+				new TimePassedCondition(getSlotName(), 0, COOLING_TIME),
 				ConversationStates.QUEST_OFFERED,
 				"There will be a portal out in the opposite corner of the maze. I'll also add scrolls to the two other corners you can try to get if you are fast enough. Do you want to try?",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
 				"maze",
-				new NotCondition(new TimePassedCondition(getSlotName(), COOLING_TIME, 0)),
+				new NotCondition(new TimePassedCondition(getSlotName(), 0, COOLING_TIME)),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(getSlotName(), 
-						"I can send you to the maze only once in a day. You can go there again in", COOLING_TIME));
+						COOLING_TIME, "I can send you to the maze only once in a day. You can go there again in"));
 		
 		
 		npc.add(ConversationStates.QUEST_OFFERED,

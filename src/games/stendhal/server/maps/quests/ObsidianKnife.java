@@ -330,14 +330,14 @@ public class ObsidianKnife extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_DAYS * MINUTES_IN_DAYS, 1))),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_DAYS * MINUTES_IN_DAYS))),
 				ConversationStates.IDLE, 
 				null, 
-				new SayTimeRemainingAction(QUEST_SLOT, "I haven't finished reading that book. Maybe I'll be done in", REQUIRED_DAYS * MINUTES_IN_DAYS, 1));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_DAYS * MINUTES_IN_DAYS, "I haven't finished reading that book. Maybe I'll be done in"));
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new TimePassedCondition(QUEST_SLOT, REQUIRED_DAYS * MINUTES_IN_DAYS, 1)),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_DAYS * MINUTES_IN_DAYS)),
 				ConversationStates.QUEST_2_OFFERED, 
 				"I've finished reading! That was really interesting. I learned how to make a special #knife from #obsidian.", 
 				new SetQuestAction(QUEST_SLOT, "book_read"));
@@ -433,10 +433,10 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 				ConversationStates.IDLE, 
 				null, 
-				new SayTimeRemainingAction(QUEST_SLOT, "I haven't finished making the knife. Please check back in", REQUIRED_MINUTES, 1));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I haven't finished making the knife. Please check back in"));
 		
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new IncreaseXPAction(10000));
@@ -445,7 +445,7 @@ public class ObsidianKnife extends AbstractQuest {
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)),
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 				ConversationStates.IDLE, 
 				"The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!",
 				new MultipleActions(reward));

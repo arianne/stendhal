@@ -296,17 +296,17 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 			ConversationStates.ATTENDING, questTrigger,
 			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reward"), 
 							 // delay is in minutes, last parameter is argument of timestamp
-							 new NotCondition(new TimePassedCondition(QUEST_SLOT,DELAY_IN_MINUTES,1))),
+							 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES))),
 			ConversationStates.ATTENDING,
 			null,
-			new SayTimeRemainingAction(QUEST_SLOT,"Hello I am still busy with that baby dragon stew for Mr Yeti. You can get your reward in",DELAY_IN_MINUTES,1));
+			new SayTimeRemainingAction(QUEST_SLOT,1,DELAY_IN_MINUTES,"Hello I am still busy with that baby dragon stew for Mr Yeti. You can get your reward in"));
 
 
 		npc.add(
 			ConversationStates.ATTENDING, questTrigger,
 			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reward"), 
 							 // delay is in minutes, last parameter is argument of timestamp
-							 new TimePassedCondition(QUEST_SLOT,DELAY_IN_MINUTES,1)),
+							 new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES)),
 			ConversationStates.ATTENDING,
 			"Thank you! To say thank you, I'd like to offer you the chance to always #buy #roach from me cheaply. I have so much of it and perhaps you have a use for it.",
 			new MultipleActions(new SetQuestAction(QUEST_SLOT,"done"), new IncreaseXPAction(1000)));

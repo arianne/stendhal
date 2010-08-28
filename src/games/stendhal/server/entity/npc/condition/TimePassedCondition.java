@@ -24,12 +24,12 @@ public class TimePassedCondition implements ChatCondition {
 	 * 
 	 * @param questname
 	 *            name of quest-slot
-	 * @param delay
-	 *            delay in minutes
 	 * @param arg
 	 *            position of the timestamp within the quest slot 'array'
+	 * @param delay
+	 *            delay in minutes
 	 */
-	public TimePassedCondition(final String questname, final int delay, final int arg) {
+	public TimePassedCondition(final String questname, final int arg, final int delay) {
 		this.questname = questname;
 		this.delay = delay;
 		this.arg = arg;

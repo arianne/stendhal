@@ -24,16 +24,16 @@ public class SayTimeRemainingAction implements ChatAction {
 	 * 
 	 * @param questname
 	 *            name of quest-slot to check
-	 * @param message
-	 *            message to come before statement of remaining time
-	 * @param delay
-	 *            delay in minutes
 	 * @param arg
 	 *            position of the timestamp within the quest slot 'array'
+	 * @param delay
+	 *            delay in minutes
+	 * @param message
+	 *            message to come before statement of remaining time
 	 *            
 	 */
-	public SayTimeRemainingAction(final String questname, final String message,
-			final int delay, final int arg) {
+	public SayTimeRemainingAction(final String questname, final int arg,
+			final int delay, final String message) {
 		this.questname = questname;
 		this.message = message;
 		this.delay = delay;
@@ -44,15 +44,15 @@ public class SayTimeRemainingAction implements ChatAction {
 	 * 
 	 * @param questname
 	 *            name of quest-slot to check
-	 * @param message
-	 *            message to come before statement of remaining time
 	 * @param delay
 	 *            delay in minutes
+	 * @param message
+	 *            message to come before statement of remaining time
 	 *            
 	 */
 
-	public SayTimeRemainingAction(final String questname, final String message,
-			final int delay) {
+	public SayTimeRemainingAction(final String questname, final int delay,
+			final String message) {
 		this.questname = questname;
 		this.message = message;
 		this.delay = delay;

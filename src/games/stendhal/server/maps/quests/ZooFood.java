@@ -88,7 +88,7 @@ public class ZooFood extends AbstractQuest {
 			res.add("I have got the food required");
 		}
 		if (isCompleted(player)) {
-			if(new TimePassedCondition(QUEST_SLOT, DELAY, 1).fire(player, null, null)) {
+			if(new TimePassedCondition(QUEST_SLOT, 1, DELAY).fire(player, null, null)) {
 				res.add("The animals are hungry again! I need to ask Katinka what they need.");
 			} else {
 				res.add("The animals are not hungry! Yay, me!");
@@ -110,7 +110,7 @@ public class ZooFood extends AbstractQuest {
         // Player returns within one week of completing quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
-                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, DELAY, 1))),
+                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
 				ConversationStates.ATTENDING, "Welcome back to the Ados Wildlife Refuge! Thanks again for rescuing "
                                                 + "our animals!",
 				null
@@ -119,7 +119,7 @@ public class ZooFood extends AbstractQuest {
         // Player returns and longer than a week has passed, ask to help again
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
-                                 new TimePassedCondition(QUEST_SLOT, DELAY, 1)),
+                                 new TimePassedCondition(QUEST_SLOT, 1, DELAY)),
 				ConversationStates.QUEST_OFFERED, "Welcome back to the Ados Wildlife "
                 + "Refuge! Our animals are hungry again, can you bring some more food please?",
                 null);
@@ -163,9 +163,9 @@ public class ZooFood extends AbstractQuest {
         // Player returns within one week of completing quest
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
-                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, DELAY, 1))),
+                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
 				ConversationStates.ATTENDING, null, 
-				new SayTimeRemainingAction(QUEST_SLOT, "Thanks, we have enough food to feed the animals here for another", DELAY, 1));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, DELAY, "Thanks, we have enough food to feed the animals here for another"));
 
 	}
 
@@ -224,7 +224,7 @@ public class ZooFood extends AbstractQuest {
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
-					 new NotCondition(new TimePassedCondition(QUEST_SLOT, DELAY, 1))),
+					 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
 			ConversationStates.ATTENDING, "Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?",
 				null
 		);
@@ -232,7 +232,7 @@ public class ZooFood extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new OrCondition(new QuestNotCompletedCondition(QUEST_SLOT),
 					new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-							 new TimePassedCondition(QUEST_SLOT, DELAY, 1))),
+							 new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
 				ConversationStates.IDLE, "Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
 				null
 		);
@@ -259,6 +259,6 @@ public class ZooFood extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-						 new TimePassedCondition(QUEST_SLOT,DELAY,1)).fire(player, null, null);
+						 new TimePassedCondition(QUEST_SLOT,1,DELAY)).fire(player, null, null);
 	}
 }

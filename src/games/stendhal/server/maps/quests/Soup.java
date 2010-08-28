@@ -125,7 +125,7 @@ public class Soup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)), 
+			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), 
 			ConversationStates.QUEST_OFFERED,
 			"Hello again. Have you returned for more of my special soup?",
 			null);
@@ -134,10 +134,10 @@ public class Soup extends AbstractQuest {
 		// the time as finished
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))), 
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))), 
 				ConversationStates.ATTENDING, 
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, "I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in", REQUIRED_MINUTES , 1)
+				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES , "I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in")
 			);
 
 		// player responds to word 'revive'
@@ -396,6 +396,6 @@ public class Soup extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-						 new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)).fire(player, null, null);
+						 new TimePassedCondition(QUEST_SLOT,1,REQUIRED_MINUTES)).fire(player, null, null);
 	}
 }

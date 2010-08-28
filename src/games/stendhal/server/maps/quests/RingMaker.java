@@ -108,7 +108,7 @@ public class RingMaker extends AbstractQuest {
 				Arrays.asList("emerald ring", "life", "emerald"),
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING),
 						new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING + "unbound")),
-						new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)),
+						new TimePassedCondition(QUEST_SLOT,1,REQUIRED_MINUTES)),
 				ConversationStates.ATTENDING, 
 				"I'm pleased to say, your ring of life is fixed! It's good as new now.",
 				new MultipleActions(
@@ -120,7 +120,7 @@ public class RingMaker extends AbstractQuest {
 				Arrays.asList("emerald ring", "life", "emerald"),
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING),
 						new QuestStateStartsWithCondition(QUEST_SLOT, FORGING + "unbound"),
-						new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1)),
+						new TimePassedCondition(QUEST_SLOT,1,REQUIRED_MINUTES)),
 				ConversationStates.ATTENDING, 
 				"I'm pleased to say, your ring of life is fixed! It's good as new now.",
 				new MultipleActions(
@@ -131,9 +131,9 @@ public class RingMaker extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, 
 				Arrays.asList("emerald ring", "life", "emerald"),
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING),
-						new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES,1))),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT,1,REQUIRED_MINUTES))),
 				ConversationStates.IDLE, null,
-				new SayTimeRemainingAction(QUEST_SLOT,"I haven't finished fixing your ring of life. Please check back in", REQUIRED_MINUTES,1));
+				new SayTimeRemainingAction(QUEST_SLOT,1, REQUIRED_MINUTES,"I haven't finished fixing your ring of life. Please check back in"));
 		
 		
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, 

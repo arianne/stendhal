@@ -129,7 +129,7 @@ public class SadScientist extends AbstractQuest {
 		// time has passed
 		final ChatCondition condition = new AndCondition(
 						new QuestStateStartsWithCondition(QUEST_SLOT,"decorating"),
-						new TimePassedCondition(QUEST_SLOT, 5, 1)
+						new TimePassedCondition(QUEST_SLOT, 1, 5)
 					);
 		final ChatAction action = new MultipleActions(
 											new SetQuestAction(QUEST_SLOT,"done"),
@@ -147,10 +147,10 @@ public class SadScientist extends AbstractQuest {
 		// time has not yet passed
 		final ChatCondition notCondition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT,"decorating"),
-				new NotCondition( new TimePassedCondition(QUEST_SLOT, 5, 1))
+				new NotCondition( new TimePassedCondition(QUEST_SLOT, 1, 5))
 			);
-		ChatAction reply = new SayTimeRemainingAction(QUEST_SLOT, "I did not finish decorating the legs. " +
-				"Please check back in", 5, 1);
+		ChatAction reply = new SayTimeRemainingAction(QUEST_SLOT, 1, 5, "I did not finish decorating the legs. " +
+						"Please check back in");
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
 				notCondition, 
@@ -266,7 +266,7 @@ public class SadScientist extends AbstractQuest {
 	private void playerReturnsAfterGivingWhenFinished(final SpeakerNPC npc) {
 		final ChatCondition condition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT, "making;"),
-				new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)
+				new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)
 			);
 		final ChatAction action = new SetQuestAction(QUEST_SLOT,"find_vera");
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -291,14 +291,14 @@ public class SadScientist extends AbstractQuest {
 	private void playerReturnsAfterGivingTooEarly(final SpeakerNPC npc) {
 		final ChatCondition condition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT, "making;"),
-				new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))
+				new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))
 			);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				condition,
 				ConversationStates.IDLE, 
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, "Do you think I can work that fast? Go away. " +
-						"Come back in", REQUIRED_MINUTES, 1));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "Do you think I can work that fast? Go away. " +
+								"Come back in"));
 	}
 	
 	private void bringItemsPhase(final SpeakerNPC npc) {

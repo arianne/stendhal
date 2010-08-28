@@ -228,7 +228,7 @@ npc.add(ConversationStates.ATTENDING,
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"drinking;"),
-				 new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)).fire(player,null, null);
+				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
 	}
 	
 	@Override

@@ -330,7 +330,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 										new QuestNotStartedCondition(QUEST_SLOT),
 										new QuestCompletedCondition(QUEST_SLOT))),
 						new NotCondition(
-								new TimePassedCondition(QUEST_SLOT, expireDelay, 1))), 
+								new TimePassedCondition(QUEST_SLOT, 1, expireDelay))), 
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
@@ -349,7 +349,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 								new OrCondition(
 										new QuestNotStartedCondition(QUEST_SLOT),
 										new QuestCompletedCondition(QUEST_SLOT))),
-						new TimePassedCondition(QUEST_SLOT, expireDelay, 1)), 
+						new TimePassedCondition(QUEST_SLOT, 1, expireDelay)), 
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
@@ -369,10 +369,10 @@ public class DailyMonsterQuest extends AbstractQuest {
 				new AndCondition(
 						new QuestCompletedCondition(QUEST_SLOT),
 						new NotCondition( 
-								new TimePassedCondition(QUEST_SLOT, delay, 1))), 
+								new TimePassedCondition(QUEST_SLOT, 1, delay))), 
 				ConversationStates.ATTENDING, 
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT,"I can only give you a new quest once a day. Please check back in", delay, 1));
+				new SayTimeRemainingAction(QUEST_SLOT,1, delay, "I can only give you a new quest once a day. Please check back in"));
 
 		// player asked for quest first time or repeat it after passed proper time
 		npc.add(ConversationStates.ATTENDING,
@@ -381,7 +381,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 						new QuestNotStartedCondition(QUEST_SLOT),
 						new AndCondition(
 								new QuestCompletedCondition(QUEST_SLOT),
-								new TimePassedCondition(QUEST_SLOT, delay, 1))), 
+								new TimePassedCondition(QUEST_SLOT, 1, delay))), 
 				ConversationStates.ATTENDING, 
 				null,
 				new DailyQuestAction());		
@@ -462,7 +462,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.ABORT_MESSAGES, 
 				new NotCondition( 
-						new TimePassedCondition(QUEST_SLOT, expireDelay, 1)),
+						new TimePassedCondition(QUEST_SLOT, 1, expireDelay)),
 				ConversationStates.ATTENDING, 
 				"It hasn't been long since you've started your quest, I won't let you give up so soon.", 
 				null);
@@ -470,7 +470,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		// player have expired quest
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.ABORT_MESSAGES, 
-				new TimePassedCondition(QUEST_SLOT, expireDelay, 1),
+				new TimePassedCondition(QUEST_SLOT, 1, expireDelay),
 				ConversationStates.ATTENDING, 
 				null, 
 				new DailyQuestAbortAction());
@@ -502,6 +502,6 @@ public class DailyMonsterQuest extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-						 new TimePassedCondition(QUEST_SLOT,delay,1)).fire(player, null, null);
+						 new TimePassedCondition(QUEST_SLOT,1,delay)).fire(player, null, null);
 	}
 }

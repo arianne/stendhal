@@ -125,6 +125,6 @@ public class DragonLair extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-						 new TimePassedCondition(QUEST_SLOT,MathHelper.MINUTES_IN_ONE_WEEK,1)).fire(player, null, null);
+						 new TimePassedCondition(QUEST_SLOT,1,MathHelper.MINUTES_IN_ONE_WEEK)).fire(player, null, null);
 	}
 }

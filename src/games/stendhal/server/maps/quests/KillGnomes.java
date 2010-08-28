@@ -77,7 +77,7 @@ public class KillGnomes extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-						 new TimePassedCondition(QUEST_SLOT, WEEK_IN_MINUTES, 1)),
+						 new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES)),
 				ConversationStates.QUEST_OFFERED,
 				"Those pesky gnomes are stealing carrots again. I think they need another lesson. Will you help?",
 				null);
@@ -85,7 +85,7 @@ public class KillGnomes extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-						 new NotCondition(new TimePassedCondition(QUEST_SLOT, WEEK_IN_MINUTES, 1))),
+						 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES))),
 				ConversationStates.ATTENDING,
 				"The gnomes haven't made any trouble since you last taught them a lesson.",
 				null);
@@ -176,7 +176,7 @@ public class KillGnomes extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-				 new TimePassedCondition(QUEST_SLOT, WEEK_IN_MINUTES, 1)).fire(player,null, null);
+				 new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES)).fire(player,null, null);
 	}
 	
 	@Override

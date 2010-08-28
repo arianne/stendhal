@@ -256,10 +256,10 @@ public class VampireSword extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
 						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
-						new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1))),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 				ConversationStates.IDLE, null,
-				new SayTimeRemainingAction(QUEST_SLOT, "I haven't finished forging the sword. Please check back in" +
-						"", REQUIRED_MINUTES, 1));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I haven't finished forging the sword. Please check back in" +
+								""));
 		
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new IncreaseXPAction(5000));
@@ -271,7 +271,7 @@ public class VampireSword extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
 						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
-						new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES, 1)),
+						new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 			ConversationStates.IDLE, 
 			"I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!", 
 			new MultipleActions(reward));

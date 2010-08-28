@@ -142,7 +142,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hazel");
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-								 new NotCondition(new TimePassedCondition(QUEST_SLOT,expireDelay,1))), 
+								 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,expireDelay))), 
 				ConversationStates.ATTENDING,
 				null,
 				new SayRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to bring the museum [item]"
@@ -150,7 +150,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-								 new TimePassedCondition(QUEST_SLOT,expireDelay,1)), 
+								 new TimePassedCondition(QUEST_SLOT,1,expireDelay)), 
 				ConversationStates.ATTENDING,
 				null,
 				new SayRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to bring the museum [item]"
@@ -158,10 +158,10 @@ public class WeeklyItemQuest extends AbstractQuest {
 	
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-								 new NotCondition(new TimePassedCondition(QUEST_SLOT,delay,1))), 
+								 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,delay))), 
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT,"The museum can only afford to send you to fetch an item once a week. Please check back in", delay, 1));
+				new SayTimeRemainingAction(QUEST_SLOT,1, delay, "The museum can only afford to send you to fetch an item once a week. Please check back in"));
 		
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
@@ -172,7 +172,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT),
 								new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-												 new TimePassedCondition(QUEST_SLOT,delay,1))), 
+												 new TimePassedCondition(QUEST_SLOT,1,delay))), 
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(actions));
@@ -240,7 +240,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.ABORT_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-						 		 new TimePassedCondition(QUEST_SLOT,expireDelay,1)), 
+						 		 new TimePassedCondition(QUEST_SLOT,1,expireDelay)), 
 				ConversationStates.ATTENDING, 
 				"I see. Please, ask me for another #quest when you think you can help Kirdneh museum again.", 
 				new SetQuestAction(QUEST_SLOT, 0, "done"));
@@ -248,7 +248,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.ABORT_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-						 		 new NotCondition(new TimePassedCondition(QUEST_SLOT,expireDelay,1))), 
+						 		 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,expireDelay))), 
 				ConversationStates.ATTENDING, 
 				"It hasn't been long since you've started your quest, you shouldn't give up so soon.", 
 				null);
@@ -337,6 +337,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-						 new TimePassedCondition(QUEST_SLOT,delay,1)).fire(player, null, null);
+						 new TimePassedCondition(QUEST_SLOT,1,delay)).fire(player, null, null);
 	}
 }

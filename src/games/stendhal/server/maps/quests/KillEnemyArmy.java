@@ -397,7 +397,7 @@ import org.apache.log4j.Logger;
 					new QuestNotStartedCondition(QUEST_SLOT),
 					new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, "done"),
-						new TimePassedCondition(QUEST_SLOT, MathHelper.MINUTES_IN_ONE_WEEK, 1))),
+						new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK))),
 				ConversationStates.ATTENDING,
 				null,
 				new GiveQuestAction());
@@ -408,7 +408,7 @@ import org.apache.log4j.Logger;
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, "done"),
 						new NotCondition(
-								new TimePassedCondition(QUEST_SLOT, MathHelper.MINUTES_IN_ONE_WEEK, 1))),
+								new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK))),
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
