@@ -150,6 +150,22 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 	}
 	
 	/**
+	 * Tests for quest phases changing engine.
+	 */
+	@Test
+	public void testPhaseChanging() {
+		ThePiedPiper.setPhase(INACTIVE);
+		assertEquals(TPP_Phase.TPP_INACTIVE, ThePiedPiper.getDefaultPhaseClass().getPhase());
+		logger.info("current phase: "+ThePiedPiper.getPhase().name());
+		int sz=ThePiedPiper.getPhases().size();
+		for(int i=0; i<sz; i++) {
+			switchToNextPhase();
+			logger.info("current phase: "+ThePiedPiper.getPhase().name());
+		};
+		assertEquals(TPP_Phase.TPP_INACTIVE, ThePiedPiper.getPhase());
+	}
+	
+	/**
 	 * Tests for quest.
 	 */
 	@Test
@@ -349,4 +365,5 @@ public class ThePiedPiperTest implements ITPPQuestConstants{
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 	}
+	
 }
