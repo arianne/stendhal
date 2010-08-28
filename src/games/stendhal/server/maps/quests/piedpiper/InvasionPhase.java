@@ -188,7 +188,7 @@ public class InvasionPhase extends TPPQuest {
 	/**
 	 *  Red alert! Rats in the Ados city!
 	 */
-	protected String RatsProblem() {
+	protected String ratsProblem() {
 		final String text = "Mayor Chalmers shouts: Ados City is being invaded by #rats!"+
 			              " Anyone who will help to clean up city, will be rewarded!";
 		return(text);
@@ -196,7 +196,7 @@ public class InvasionPhase extends TPPQuest {
 	
 	public void prepare() {
 		summonRats();
-		super.startShouts(timings.get(SHOUT_TIME), RatsProblem());
+		super.startShouts(timings.get(SHOUT_TIME), ratsProblem());
 	}
 
 	public void phaseToDefaultPhase(List<String> comments) {
