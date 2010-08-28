@@ -15,7 +15,6 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -133,7 +132,7 @@ public class ElfPrincess extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 							 new PlayerCanEquipItemCondition("rhosyd"),
-                             new TimePassedCondition(QUEST_SLOT, 1, 5)),
+                             new TimePassedCondition(QUEST_SLOT, DELAY, 1)),
 			ConversationStates.IDLE, 
 			"Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.",
 			new MultipleActions(new EquipItemAction("rhosyd", 1, true), 
@@ -144,7 +143,7 @@ public class ElfPrincess extends AbstractQuest {
 		rose.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
-                                 new TimePassedCondition(QUEST_SLOT, 1, 5),
+                                 new TimePassedCondition(QUEST_SLOT, DELAY, 1),
 								 new NotCondition(new PlayerCanEquipItemCondition("rhosyd"))),
 				ConversationStates.IDLE, 
 				"Shame you don't have space to take a pretty flower from me. Come back when you can carry my precious blooms without damaging a petal.",
@@ -154,7 +153,7 @@ public class ElfPrincess extends AbstractQuest {
         rose.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
-                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, 5))),
+                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, DELAY, 1))),
 				ConversationStates.IDLE, 
 				"I gave you a flower not five minutes past! Her Royal Highness can enjoy that one for a while.",
 				null);

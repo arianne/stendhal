@@ -120,17 +120,6 @@ public class ElfPrincessTest {
 		en.step(player, "hi");
 		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "task");
-		
-		// Time limit. Fail now
-		assertTrue(getReply(npc).startsWith("I need to put the lovely flower into my collection before you can bring me a new one. Please check back in"));
-		en.step(player, "bye");
-
-		
-		// Allow restarting a bit later; 
-		player.setQuest("elf_princess", 1, Long.toString(System.currentTimeMillis() - 5 * 60 * 1000 - 10));
-		en.step(player, "hi");
-		assertEquals("Hail to thee, human.", getReply(npc));
-		en.step(player, "task");
 		assertEquals("The last Rhosyd you brought me was so lovely. Will you find me another from Rose Leigh?", getReply(npc));
 		
 		en.step(player, "yes");
@@ -143,11 +132,18 @@ public class ElfPrincessTest {
 		// -----------------------------------------------
 
 		enRose.step(player, "hi");
-		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.", getReply(npcRose));
+		assertEquals("I gave you a flower not five minutes past! Her Royal Highness can enjoy that one for a while.", getReply(npcRose));
 		assertEquals(ConversationStates.IDLE, enRose.getCurrentState());
 	
 		// -----------------------------------------------
 
+		// Allow get flower a bit later; 
+		player.setQuest("elf_princess", 1, Long.toString(System.currentTimeMillis() - 5 * 60 * 1000 - 10));
+		
+		enRose.step(player, "hi");
+		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.", getReply(npcRose));
+		assertEquals(ConversationStates.IDLE, enRose.getCurrentState());
+		
 		en.step(player, "hi");
 		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "flower");
