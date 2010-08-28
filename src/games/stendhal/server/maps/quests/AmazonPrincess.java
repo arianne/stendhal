@@ -201,7 +201,7 @@ npc.add(ConversationStates.ATTENDING,
 		}
         if (isCompleted(player)) {
             if (isRepeatable(player)) {
-                res.add("I took a pina colada to the Princess, but I'd bet she's ready for another. Maybe I'll get moer fish pies.");
+                res.add("I took a pina colada to the Princess, but I'd bet she's ready for another. Maybe I'll get more fish pies.");
             } else {
                 res.add("Princess Esclara loved the pina colada I took her, she's not thirsty now. She gave me fish pies and a kiss!!");
             }			
