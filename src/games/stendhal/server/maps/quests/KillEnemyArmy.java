@@ -514,8 +514,8 @@ import org.apache.log4j.Logger;
 			history.add("Despot Halb Errvl asked me to kill "+
 					givenNumber+" "+
 					Grammar.plnoun(givenNumber, givenEnemies));
-			String kn= new Integer(killedNumber).toString();
-			if(kn.equals("0")) {
+			String kn = Integer.valueOf(killedNumber).toString();
+			if(killedNumber == 0) {
 				kn="no";
 			};
 			history.add("Currently I have killed "+
