@@ -13,7 +13,7 @@ import games.stendhal.server.maps.quests.ThePiedPiper;
 
 public class TPPQuest implements ITPPQuest {
 	
-	protected static Logger logger = Logger.getLogger(ThePiedPiper.class);	
+	protected static final Logger logger = Logger.getLogger(ThePiedPiper.class);	
 	protected Map<String, Integer> timings;
 	
 	public String getSwitchingToNextPhaseMessage() {
