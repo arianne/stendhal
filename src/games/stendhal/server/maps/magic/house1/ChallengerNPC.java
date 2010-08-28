@@ -117,7 +117,7 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 								 ),
 				ConversationStates.ATTENDING, 
 				null, 
-				new SayTimeRemainingAction(QUEST_SLOT, "Your life force will not support the island so soon after you last visited. You will be ready again in", DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS));
+				new SayTimeRemainingAction(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS, "Your life force will not support the island so soon after you last visited. You will be ready again in"));
 
 	// player returns within DAYS_BEFORE_REPEAT days, if the zone still exists that he was in before, send him straight up. 
 		npc.add(ConversationStates.ANY, 

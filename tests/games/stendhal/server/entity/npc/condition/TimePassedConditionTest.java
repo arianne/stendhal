@@ -53,7 +53,7 @@ public class TimePassedConditionTest {
 		bob.setQuest(QUEST_SLOT, "spam;" + System.currentTimeMillis());
 		
 		// no, ten minutes has not passed since right now, 1st argument
-		assertFalse(new TimePassedCondition(QUEST_SLOT, delay, 1).fire(
+		assertFalse(new TimePassedCondition(QUEST_SLOT, 1, delay).fire(
 				bob,
 				ConversationParser.parse("testQuestInStateCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
@@ -69,7 +69,7 @@ public class TimePassedConditionTest {
 		bob.setQuest(QUEST_SLOT,  "spam;" + 1);
 		// yes, ten minutes has passed since really ancient ago time in unix history,
 		// testing version with argument
-		assertTrue(new TimePassedCondition(QUEST_SLOT, delay, 1).fire(
+		assertTrue(new TimePassedCondition(QUEST_SLOT, 1, delay).fire(
 				bob,
 				ConversationParser.parse("testQuestInStateCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
@@ -78,7 +78,7 @@ public class TimePassedConditionTest {
 		bob.setQuest(QUEST_SLOT,  "spam");
 		// the condition expects a TIME at space '1' i.e. spam;TIME but it doesn't get one
 		// so this is an 'old' quest state so yes time has passed
-		assertTrue(new TimePassedCondition(QUEST_SLOT, delay, 1).fire(
+		assertTrue(new TimePassedCondition(QUEST_SLOT, 1, delay).fire(
 				bob,
 				ConversationParser.parse("testQuestInStateCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
@@ -94,7 +94,7 @@ public class TimePassedConditionTest {
 		// the condition expects a Long TIME at space '1' i.e. spam;TIME but it doesn't get one
 		// it gets a string it can't parse
 		// so this is an 'old' quest state so yes time has passed
-		assertTrue(new TimePassedCondition(QUEST_SLOT, delay, 1).fire(
+		assertTrue(new TimePassedCondition(QUEST_SLOT, 1, delay).fire(
 				bob,
 				ConversationParser.parse("testQuestInStateCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));	
@@ -114,7 +114,7 @@ public class TimePassedConditionTest {
 	 */
 	@Test
 	public void testTimePassedConditionArgument() {
-		new TimePassedCondition(QUEST_SLOT, delay, 1);
+		new TimePassedCondition(QUEST_SLOT, 1, delay);
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class TimePassedConditionTest {
 	@Test
 	public void testToString() {
 		assertEquals("10 minutes passed since last doing quest questname?",
-				new TimePassedCondition(QUEST_SLOT, delay, 1).toString());
+				new TimePassedCondition(QUEST_SLOT, 1, delay).toString());
 		
 	}
 
