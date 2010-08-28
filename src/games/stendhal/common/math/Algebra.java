@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 public final class Algebra
 {
-    public static float EPSILON = 0.0000001f;
+    public static final float EPSILON = 0.0000001f;
 
     public static float[] vecf(float ...args)
     {
