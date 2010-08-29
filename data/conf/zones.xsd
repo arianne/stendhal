@@ -17,26 +17,24 @@
 
 
 		<sequence>
-			<element name="title" type="string" minOccurs="0" maxOccurs="1"></element>
+			<element name="title" type="string" minOccurs="0" maxOccurs="1" />
 			<choice minOccurs="0" maxOccurs="unbounded">
 				<element name="configurator" type="Q1:configurator"
-					minOccurs="1" maxOccurs="unbounded">
-				</element>
+					minOccurs="1" maxOccurs="unbounded"/>
 				<element name="portal" type="Q1:portal" minOccurs="1"
-					maxOccurs="unbounded">
-				</element>
+					maxOccurs="unbounded"/>
 				<element name="entity" type="Q1:entity" minOccurs="1"
-					maxOccurs="unbounded">
-				</element>
+					maxOccurs="unbounded" />
 			</choice>
 		</sequence>
 
-		<attribute name="name" type="string"></attribute>
+		<attribute name="name" type="string" />
 
-		<attribute name="x" type="int" use="optional"></attribute>
-		<attribute name="y" type="int" use="optional"></attribute>
-		<attribute name="level" type="int" use="optional"></attribute>
-		<attribute name="file" type="string" use="required"></attribute>
+		<attribute name="x" type="int" use="optional" />
+		<attribute name="y" type="int" use="optional" />
+		<attribute name="level" type="int" use="optional" />
+		<attribute name="file" type="string" use="required" />
+		<attribute name="region" type="string" use="optional" />
 
 	</complexType>
 

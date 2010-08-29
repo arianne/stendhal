@@ -271,6 +271,7 @@ public class ZonesXMLLoader {
 		}
 
 		final String file = element.getAttribute("file");
+		String region = this.region; 
 
 		int level;
 		int x;
@@ -323,8 +324,11 @@ public class ZonesXMLLoader {
 			x = ZoneDesc.UNSET;
 			y = ZoneDesc.UNSET;
 		}
+		if (element.hasAttribute("region")) {
+			region = element.getAttribute("region");
+		}
 
-		final ZoneDesc desc = new ZoneDesc(name, file, this.region, level, x, y);
+		final ZoneDesc desc = new ZoneDesc(name, file, region, level, x, y);
 
 		/*
 		 * Title element
