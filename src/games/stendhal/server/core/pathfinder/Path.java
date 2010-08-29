@@ -213,7 +213,7 @@ public abstract class Path {
 					entity.stop();
 					entity.clearPath();
 				}
-
+				entity.onFinishedPath();
 				return true;
 			}
 		} else {

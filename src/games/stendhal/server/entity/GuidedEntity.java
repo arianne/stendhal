@@ -13,6 +13,7 @@ import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
+import games.stendhal.server.entity.Registrator;
 
 import java.awt.geom.Rectangle2D;
 import java.util.List;
@@ -26,6 +27,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 	protected double baseSpeed;
 
 	private final EntityGuide guide = new EntityGuide();
+	
+	public Registrator pathnotifier = new Registrator();
 
 	/**
 	 * Create a guided entity.
@@ -201,6 +204,13 @@ public abstract class GuidedEntity extends ActiveEntity {
 				setSpeed(baseSpeed * (100 - resistance) / 100.0);
 			}
 		}
+	}
+	
+	/**
+	 * 
+	 */
+	public void onFinishedPath() {
+		pathnotifier.notifyObservers();
 	}
 	
 	/**
