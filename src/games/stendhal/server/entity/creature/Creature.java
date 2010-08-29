@@ -24,6 +24,7 @@ import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Registrator;
 import games.stendhal.server.entity.creature.impl.AttackStrategy;
 import games.stendhal.server.entity.creature.impl.AttackStrategyFactory;
 import games.stendhal.server.entity.creature.impl.Attacker;
