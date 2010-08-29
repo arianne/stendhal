@@ -19,6 +19,11 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.parser.WordList;
 
 import java.net.URI;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.IRPZone.ID;
@@ -54,25 +59,30 @@ public class StendhalRPWorld extends RPWorld {
 
 	// /** The pathfinder thread. */
 	// private PathfinderThread pathfinderThread;
+	
+	private final Map<String, Set<StendhalRPZone>> regionMap = new HashMap<String, Set<StendhalRPZone>>();
 
 	
 	protected StendhalRPWorld() {
 		super();
-
-		
-
 		instance = this;
 	}
 
 	@Override
 	public IRPZone removeRPZone(final ID zoneid) throws Exception {
+		final StendhalRPZone zone = (StendhalRPZone) super.getRPZone(zoneid);
+		for(final Set<StendhalRPZone> zones : regionMap.values()) {
+			if(zones.contains(zone)) {
+				zones.remove(zone);
+			}
+		}
 		return super.removeRPZone(zoneid);
 	}
 	
 	public void removeZone(final StendhalRPZone toBeRemoved) {
 		try {
 			removeRPZone(toBeRemoved.getID());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.error(e, e);
 		}
 	}
@@ -153,7 +163,6 @@ public class StendhalRPWorld extends RPWorld {
 	 * Checks for unpaired portals.
 	 */
 	private void validatePortals() {
-		
 		for (final IRPZone zone : this) {
 			for (final Portal portal : ((StendhalRPZone) zone).getPortals()) {
 				validatePortal(portal);
@@ -169,7 +178,7 @@ public class StendhalRPWorld extends RPWorld {
 			//TODO: find a more appropriate way to do this
 			// give gameevents a chance to be processed;
 			Thread.sleep(500);
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			//do nothing
 		}
 		
@@ -265,4 +274,65 @@ public class StendhalRPWorld extends RPWorld {
 
 		return null;
 	}
+	
+	/**
+	 * Adds a zone to a certain region in this world
+	 * @param region
+	 * @param zone
+	 */
+	public void addRPZone(final String region, final StendhalRPZone zone) {
+		super.addRPZone(zone);
+		if(!regionMap.containsKey(region)) {
+			regionMap.put(region, new HashSet<StendhalRPZone>());
+		}
+		regionMap.get(region).add(zone);
+	}
+	
+	/**
+	 * Retrieves all zones from a specified region with the given flags
+	 * 
+	 * @param region the name of the region to search for
+	 * @param exterior only exterior zones(true), interior zones(false) or all zones (null)
+	 * @param aboveGround only zones above ground(true), zones below ground(false) or all (null) 
+	 * @param accessible use true to filter out zones that are not accessible for everyone 
+	 * @return a list of zones
+	 */
+	public Collection<StendhalRPZone> getAllZonesFromRegion(final String region, final Boolean exterior, final Boolean aboveGround, final Boolean accessible) {
+		if(regionMap.containsKey(region)) {
+			final Set<StendhalRPZone> zonesInRegion = new HashSet<StendhalRPZone>(regionMap.get(region));
+			if(exterior != null) {
+				filterOutInteriorOrExteriorZones(zonesInRegion, exterior);
+			}
+			if(aboveGround != null) {
+				filterOutAboveOrBelowGround(zonesInRegion, aboveGround);
+			}
+			if(accessible != null) {
+				filterByAccessibility(zonesInRegion, accessible);
+			}
+		}
+		return new HashSet<StendhalRPZone>();
+	}
+
+	/**
+	 * Filter out exterior or interior zones from the given set
+	 * @param zonesInRegion
+	 * @param exterior
+	 */
+	private void filterOutInteriorOrExteriorZones(final Set<StendhalRPZone> zonesInRegion, final Boolean exterior) {
+		Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
+		for (StendhalRPZone zone : zonesInRegion) {
+			if(!(zone.isInterior() ^ exterior.booleanValue())) {
+				removals.add(zone);
+			}
+		}
+	}
+	
+	private void filterOutAboveOrBelowGround(final Set<StendhalRPZone> zonesInRegion, final Boolean aboveGround) {
+		
+	}
+
+	private void filterByAccessibility(final Set<StendhalRPZone> zonesInRegion, final Boolean accessible) {
+		
+	}
+
 }

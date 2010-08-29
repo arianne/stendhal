@@ -64,6 +64,11 @@ public class ZonesXMLLoader {
 	 * The zone group file.
 	 */
 	protected URI uri;
+	
+	/**
+	 * the region this zone group file is considered for
+	 */
+	private final String region;
 
 	/**
 	 * Create an xml based loader of zones.
@@ -71,6 +76,9 @@ public class ZonesXMLLoader {
 	 */
 	public ZonesXMLLoader(final URI uri) {
 		this.uri = uri;
+		String path = this.uri.getPath();
+		String xmlName = path.substring(path.lastIndexOf("/")+1);
+		region = xmlName.substring(0, xmlName.indexOf("."));
 	}
 
 	//
@@ -212,7 +220,7 @@ public class ZonesXMLLoader {
 			zone.setPosition(desc.getLevel(), desc.getX(), desc.getY());
 		}
 
-		SingletonRepository.getRPWorld().addRPZone(zone);
+		SingletonRepository.getRPWorld().addRPZone(desc.getRegion(), zone);
 
 		try {
 			zone.onInit();
@@ -232,7 +240,6 @@ public class ZonesXMLLoader {
 			Constructor<StendhalRPZone> constr = zoneclass.getConstructor(String.class);
 			return constr.newInstance(name);
 		} catch (ClassNotFoundException e) {
-			
 			e.printStackTrace();
 		} catch (SecurityException e) {
 			e.printStackTrace();
@@ -317,7 +324,7 @@ public class ZonesXMLLoader {
 			y = ZoneDesc.UNSET;
 		}
 
-		final ZoneDesc desc = new ZoneDesc(name, file, level, x, y);
+		final ZoneDesc desc = new ZoneDesc(name, file, this.region, level, x, y);
 
 		/*
 		 * Title element
@@ -410,6 +417,8 @@ public class ZonesXMLLoader {
 		protected String file;
 
 		protected String title;
+		
+		protected String region;
 
 		protected int level;
 
@@ -421,7 +430,7 @@ public class ZonesXMLLoader {
 
 		private String implementation;
 
-		public ZoneDesc(final String name, final String file, final int level, final int x, final int y) {
+		public ZoneDesc(final String name, final String file, final String region, final int level, final int x, final int y) {
 			this.name = name;
 			this.file = file;
 			this.level = level;
@@ -495,6 +504,13 @@ public class ZonesXMLLoader {
 		 */
 		public String getTitle() {
 			return title;
+		}
+		
+		/**
+		 * @return the zone's region
+		 */
+		public String getRegion() {
+			return region;
 		}
 
 		public int getX() {
