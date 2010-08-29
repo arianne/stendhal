@@ -208,7 +208,7 @@ public class RingMaker extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("Oh no! My ring of life broke while I died. Ognir said he will forge me a new one after bringin him an emerald, 80000 money and 2 gold bars.");
+		res.add("Ognir said he can forge me a new ring of life when it's broken after bringing him an emerald, 80000 money and 2 gold bars.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.startsWith(FORGING)) {
 			res.add("Ognir forges me a new ring now which will be finished in 10 minutes. Phew!");
