@@ -1,4 +1,4 @@
-package games.stendhal.server.entity.creature;
+package games.stendhal.server.entity;
 
 import java.util.Observable;
 import java.util.Observer;
