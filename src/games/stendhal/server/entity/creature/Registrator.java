@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 /**
   * Wrapper for java Observable object.
   */
-class Registrator extends Observable {
+public class Registrator extends Observable {
 	
 	/**
 	 * mark Registrator object as changed.
