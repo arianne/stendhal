@@ -198,7 +198,10 @@ public class RingMaker extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Ring Maker",
+				"Ognir, the expert of rings, can fix your broken ring of life.",
+				false);
 		fixRingStep(npcs.get("Ognir"));
 	}
 
