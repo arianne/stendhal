@@ -216,7 +216,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Look for a book for Ceryl",
-				"Ceryl wants a old book that was checked out.",
+				"Ceryl wants an old book that was checked out.",
 				false);
 		step1LearnAboutQuest();
 		step2getBook();
