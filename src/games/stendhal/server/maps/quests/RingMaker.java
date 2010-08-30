@@ -208,13 +208,25 @@ public class RingMaker extends AbstractQuest {
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
+		if (player.isEquipped("emerald ring")) { 
+			final RingOfLife emeraldRing = (RingOfLife) player.getFirstEquipped("emerald ring");
+			if (emeraldRing.isBroken()) {
+				res.add("Oh no! My ring of life is broken. I must look for an expert craftsman to help me fix it.");
+			}
+		}
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("Ognir said he can forge me a new ring of life when it's broken after bringing him an emerald, 80000 money and 2 gold bars.");
+		// Note: this will not be seen till the forging stage starts as no quest slot is set before then.
+		res.add("Ognir said he can fix my ring of life by bringing him an emerald, 80000 money and 2 gold bars.");
 		final String questState = player.getQuest(QUEST_SLOT);
-		if (questState.startsWith(FORGING)) {
-			res.add("Ognir forges me a new ring now which will be finished in 10 minutes. Phew!");
+		if (questState.startsWith(FORGING) && (new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null)) {
+				res.add("My fixed ring is ready to collect from Ognir! I must ask about \"life\" to get it back.");
+		} else if (questState.startsWith(FORGING) || isCompleted(player))  {
+				res.add("Ognir said it would take 10 minutes to fix my ring. I need to ask him about \"life\" so that he'll give it to me.");
+		}
+		if (isCompleted(player)) {
+			res.add("My ring of life is as good as new and will work again to limit my losses when I die.");
 		}
 		return res;
 	}
