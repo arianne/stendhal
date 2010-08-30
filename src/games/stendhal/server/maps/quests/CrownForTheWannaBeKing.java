@@ -296,6 +296,10 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		step_1();
 		step_2();
 		step_3();
+		fillQuestInfo(
+				"Crown for the Wannabe King",
+				"Ivan Abe wants to rule Kalavan ... and he needs a crown.",
+				false);
 	}
 
 	@Override

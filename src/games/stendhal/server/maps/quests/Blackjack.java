@@ -277,6 +277,7 @@ public class Blackjack extends AbstractQuest {
 	// @SuppressWarnings("unchecked")
 	public void addToWorld() {
 
+		// TODO: move ramon into his own NPC file.
 		ramon = new SpeakerNPC("Ramon") {
 			@Override
 			protected void createPath() {
@@ -391,6 +392,11 @@ public class Blackjack extends AbstractQuest {
 						}
 					}
 				});
+		
+		fillQuestInfo(
+				"Blackjack",
+				"While away your time on Athor Ferry with a challenging game of Blackjack.",
+				true);
 	}
 	@Override
 	public String getSlotName() {

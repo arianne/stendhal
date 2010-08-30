@@ -197,6 +197,10 @@ public class CloaksForBario extends AbstractQuest {
 		step_1();
 		step_2();
 		step_3();
+		fillQuestInfo(
+				"Cloaks for Bario",
+				"Bario, the freezing dwarf, needs cloaks to keep him warm.",
+				false);
 	}
 	@Override
 	public String getName() {

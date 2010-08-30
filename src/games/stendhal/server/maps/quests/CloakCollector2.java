@@ -333,6 +333,10 @@ public class CloakCollector2 extends AbstractQuest {
 		step_1();
 		step_2();
 		step_3();
+		fillQuestInfo(
+				"Cloaks Collector Two",
+				"Josephine wants even more cloaks!",
+				false);
 	}
 	private static void rewardPlayer(final Player player) {
 	    //  TODO: Once scent is done, add this as reward. Note it might be stackable, so check! 

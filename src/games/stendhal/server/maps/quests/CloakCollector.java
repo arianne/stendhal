@@ -56,6 +56,10 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		super.addToWorld();
 		step_1();
 		setupAbstractQuest();
+		fillQuestInfo(
+				"Cloaks Collector",
+				"Josephine wants cloaks of many colours.",
+				false);
 	}
 
 	private void step_1() {

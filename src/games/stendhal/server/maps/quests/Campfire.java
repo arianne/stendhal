@@ -255,7 +255,7 @@ public class Campfire extends AbstractQuest {
 		fillQuestInfo(
 				"Campfire", 
 				"Sally wants to build a campfire, but she doesn't have any wood.", 
-				false);
+				true);
 		prepareRequestingStep();
 		prepareBringingStep();
 	}

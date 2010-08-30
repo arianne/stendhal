@@ -262,6 +262,10 @@ and ask for horse hair.
 		bringWoodStep();
 		getHairStep();
 		bringHairStep();
+		fillQuestInfo(
+				"Bows for Ouchit",
+				"Ouchit is running out of bows! He needs help from you and Karl.",
+				false);
 	}
 
 	@Override

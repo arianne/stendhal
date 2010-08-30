@@ -176,7 +176,10 @@ npc.add(ConversationStates.ATTENDING,
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Amazon Princess",
+				"A thirsty princess wants a drink.",
+				true);
 		offerQuestStep();
 		bringCocktailStep();
 	}

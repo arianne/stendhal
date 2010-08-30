@@ -21,7 +21,10 @@ public class Balloon extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Balloon",
+				"Balloons can float away ...",
+				true);
 		/* login notifier to teleport away players logging into the clouds.
 		 * there is a note in TimedTeleportScroll that it should be done there or its subclass.
 		 */

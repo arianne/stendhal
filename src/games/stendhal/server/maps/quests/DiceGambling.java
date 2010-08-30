@@ -91,6 +91,11 @@ public class DiceGambling extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Coward! How will you ever become a hero when you risk nothing?",
 			null);
+		
+		fillQuestInfo(
+				"Dice Gambling",
+				"Try your luck at Semos Tavern's gambling table.",
+				true);
 
 	}
 	private Map <Integer, Pair<String, String>> initPrices() {
