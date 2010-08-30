@@ -293,7 +293,11 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Zekiels Practical Test",
+				"Zekiel, the guardian of the magic tower, wants to teach you about the wizards domain and history.",
+				true);
+		
 		prepareQuestOfferingStep();
 		bringItemsStep();
 		practicalTestStep();
