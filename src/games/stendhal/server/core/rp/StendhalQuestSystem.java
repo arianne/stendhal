@@ -257,28 +257,26 @@ public class StendhalQuestSystem {
 	 */
 	private void dumpQuest(final StringBuilder sb, final IQuest quest, final Player player) {
 		final QuestInfo questInfo = quest.getQuestInfo(player);
-		sb.append("\t" + questInfo.getName() + " : ");
+		sb.append(questInfo.getName() + " : ");
 		sb.append(questInfo.getDescription() + "\r\n");
 		
 		// XXX TODO: add information here about is quest repeatable or no
 		final List<String> history = quest.getHistory(player);
 		for (final String entry : history) {
-			sb.append("\t\t * " + entry + "\r\n");
+			sb.append("\t * " + entry + "\r\n");
 		}
-		sb.append("\r\n");
 		
 		final List<String> hints = quest.getHint(player);
 		for (final String entry : hints) {
-			sb.append("\t\t - " + entry + "\r\n");
-		}
-		sb.append("\r\n");		
+			sb.append("\t - " + entry + "\r\n");
+		}	
 	}
 
 	public String listQuests(final Player player) {
 		final StringBuilder sb = new StringBuilder();
 
 		// Open quests
-		sb.append("\r\nOpen Quests: ");
+		sb.append("\r\n#'Open Quests': ");
 		boolean first = true;
 		for (final IQuest quest : quests) {
 			if (quest.isStarted(player) && !quest.isCompleted(player)) {
@@ -291,7 +289,7 @@ public class StendhalQuestSystem {
 		}
 
 		// Completed Quests
-		sb.append("\r\nCompleted Quests: ");
+		sb.append("\r\n#'Completed Quests': ");
 		first = true;
 		for (final IQuest quest : quests) {
 			if (quest.isCompleted(player)) {
@@ -321,19 +319,19 @@ public class StendhalQuestSystem {
 		final StringBuilder sb = new StringBuilder();
 
 		// Open quests
-		sb.append("\r\nOpen Quests: ");
+		sb.append("\r\n#'Open Quests': ");
 
 		for (final IQuest quest : quests) {
 			if (quest.isStarted(player) && !quest.isCompleted(player)) {
-				sb.append("\n" + quest.getName() + " (" + quest.getSlotName() + "): " + player.getQuest(quest.getSlotName()));
+				sb.append("\r\n" + quest.getName() + " (" + quest.getSlotName() + "): " + player.getQuest(quest.getSlotName()));
 			}
 		}
 
 		// Completed Quests
-		sb.append("\r\nCompleted Quests: ");
+		sb.append("\n#'Completed Quests': ");
 		for (final IQuest quest : quests) {
 			if (quest.isCompleted(player)) {
-				sb.append("\n" + quest.getName() + " (" + quest.getSlotName() + "): " + player.getQuest(quest.getSlotName()));
+				sb.append("\r\n" + quest.getName() + " (" + quest.getSlotName() + "): " + player.getQuest(quest.getSlotName()));
 			}
 		}
 
