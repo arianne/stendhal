@@ -2,6 +2,7 @@ package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.LISTQUESTS;
 import static games.stendhal.common.constants.Actions.TARGET;
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -23,7 +24,7 @@ public class QuestListAction implements ActionListener {
 		} else {
 			st.append(SingletonRepository.getStendhalQuestSystem().listQuests(player));
 		}
-		player.sendPrivateText(st.toString());
+		player.sendPrivateText(NotificationType.DETAILED, st.toString());
 		player.notifyWorldAboutChanges();
 
 	}
