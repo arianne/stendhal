@@ -52,7 +52,7 @@ public class BanAction extends AdministrationAction {
 				String expireStr = "end of time";
 				if (hours > 0) {
 					Calendar date = new GregorianCalendar();
-					date.roll(Calendar.HOUR, hours);
+					date.add(Calendar.HOUR, hours);
 					expire = new Timestamp(date.getTimeInMillis());
 					expireStr = expire.toString();
 				}
