@@ -41,6 +41,10 @@ public enum NotificationType {
 		public Color getColor() {
 			return COLOR_NEGATIVE;
 		}
+		@Override
+		public String getStyleDescription() {
+			return REGULAR;
+		}
 	},
 	NORMAL("normal") {
 		@Override
@@ -52,6 +56,10 @@ public enum NotificationType {
 		@Override
 		public Color getColor() {
 			return COLOR_POSITIVE;
+		}
+		@Override
+		public String getStyleDescription() {
+			return REGULAR;
 		}
 	},
 	EMOTE("emote") {
@@ -101,6 +109,12 @@ public enum NotificationType {
 		public Color getColor() {
 			return COLOR_SUPPORT;
 		}
+	},
+	DETAILED("detailed") {
+		@Override
+		public String getStyleDescription() {
+			return REGULAR;
+		}
 	};
 	public static final Color COLOR_CLIENT = Color.gray;
 
@@ -136,6 +150,18 @@ public enum NotificationType {
 	
 	// strong bright orange
 	public static final Color COLOR_SUPPORT = new Color(0xff7200);
+	
+	// TODO: review thinking here of using constants.
+	// these are tied to the ones in client.KTextEdit.gui.initStylesForTextPane
+	// so should we tie them together somehow?
+	// also the definitions are crazy.
+	
+	// normal is bold
+	public static final String NORMALSTYLE = "normal";
+	// regular is not bold
+	public static final String REGULAR = "regular";
+	// fwiw, "bold" is blue, italic, bigger than normal, bold and blue.
+	
 	/**
 	 * The mapping mnemonic.
 	 */
@@ -173,6 +199,13 @@ public enum NotificationType {
 					return COLOR_NORMAL;
 	}
 
-
+	/**
+	 * Get the style that is tied to a notification type.
+	 *
+	 * @return The appropriate style.
+	 */
+	public String getStyleDescription() {
+		return NORMALSTYLE;
+	}
 
 }

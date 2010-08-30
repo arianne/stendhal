@@ -154,10 +154,12 @@ public class KTextEdit extends JComponent {
 	/**
 	 * @param desiredColor
 	 *            the color with which the text must be colored
+	 * @param styleDescription
+	 *            which style to use (may not be normal)
 	 * @return the colored style
 	 */
-	public Style getColor(final Color desiredColor) {
-		final Style s = textPane.getStyle("normal");
+	public Style getStyle(final Color desiredColor, final String styleDescription) {
+		final Style s = textPane.getStyle(styleDescription);
 		StyleConstants.setForeground(s, desiredColor);
 		return s;
 	}
@@ -192,13 +194,14 @@ public class KTextEdit extends JComponent {
 
 	protected void insertText(final String text, final NotificationType type) {
 		final Color color = type.getColor();
+		final String styleDescription = type.getStyleDescription();
 		final Document doc = textPane.getDocument();
 
 		try {
 			final FormatTextParser parser =	new FormatTextParser() {
 				@Override
 				public void normalText(final String txt) throws BadLocationException {
-					doc.insertString(doc.getLength(), txt, getColor(color));
+					doc.insertString(doc.getLength(), txt, getStyle(color,styleDescription));
 				}
 
 				@Override
@@ -216,7 +219,7 @@ public class KTextEdit extends JComponent {
 	protected void insertNewline() {
 		final Document doc = textPane.getDocument();
 		try {
-			doc.insertString(doc.getLength(), "\r\n", getColor(Color.black));
+			doc.insertString(doc.getLength(), "\r\n", getStyle(Color.black, "normal"));
 		} catch (final BadLocationException e) {
 			logger.error("Couldn't insert initial text.", e);
 		}
