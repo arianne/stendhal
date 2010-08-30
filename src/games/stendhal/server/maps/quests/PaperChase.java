@@ -36,7 +36,7 @@ import java.util.Map;
  * @author hendrik
  */
 public class PaperChase extends AbstractQuest {
-	private static final String QUEST_SLOT = "paper_chase";
+	private static final String QUEST_SLOT = "paper_chase_2010";
 
 	private static final List<String> NPC_IDLE = Arrays.asList("Hayunn Naratha", "Thanatos", "Pdiddi", "Monogenes");
 
