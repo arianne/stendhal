@@ -1,70 +1,26 @@
-/*
- * @(#) games/stendhal/client/gui/j2d/entity/GoldSource2DView.java
- *
- * $Id$
- */
-
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
-
-//
-//
 
 import games.stendhal.client.entity.ActionType;
 
-import java.util.List;
-
 /**
- * The 2D view of a gold source.
+ * The 2D view of a well source.
  */
-class WellSource2DView extends AnimatedLoopEntity2DView {
+class WellSource2DView extends UseableEntity2DView {
 
-	//
-	// Entity2DView
-	//
-
-	/**
-	 * Build a list of entity specific actions. <strong>NOTE: The first entry
-	 * should be the default.</strong>
-	 * 
-	 * @param list
-	 *            The list to populate.
-	 */
-	@Override
-	protected void buildActions(final List<String> list) {
-		list.add(ActionType.WISH.getRepresentation());
-
-		super.buildActions(list);
+	public WellSource2DView() {
+		super(ActionType.WISH);
 	}
 
-	//
-	// EntityView
-	//
-
-	/**
-	 * Perform the default action.
-	 */
-	@Override
-	public void onAction() {
-		onAction(ActionType.WISH);
-	}
-
-	/**
-	 * Perform an action.
-	 * 
-	 * @param at
-	 *            The action.
-	 */
-	@Override
-	public void onAction(final ActionType at) {
-		switch (at) {
-		case WISH:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
-			break;
-
-		default:
-			super.onAction(at);
-			break;
-		}
-
-	}
 }
