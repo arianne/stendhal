@@ -2,20 +2,12 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
 	xmlns:tns="http://www.example.org/zones" elementFormDefault="qualified"
 	xmlns:Q1="stendhal">
-
-
-
-
 	<complexType name="zone">
-
 		<annotation>
 			<documentation>
 				a zone can have 0 to many configurators
 			</documentation>
 		</annotation>
-
-
-
 		<sequence>
 			<element name="title" type="string" minOccurs="0" maxOccurs="1" />
 			<choice minOccurs="0" maxOccurs="unbounded">
@@ -27,15 +19,12 @@
 					maxOccurs="unbounded" />
 			</choice>
 		</sequence>
-
 		<attribute name="name" type="string" />
-
 		<attribute name="x" type="int" use="optional" />
 		<attribute name="y" type="int" use="optional" />
 		<attribute name="level" type="int" use="optional" />
 		<attribute name="file" type="string" use="required" />
 		<attribute name="region" type="string" use="optional" />
-
 	</complexType>
 
 	<complexType name="zones">
@@ -113,8 +102,6 @@
 		</sequence>
 		<attribute name="class-name" type="string"></attribute>
 	</complexType>
-
-
 
 	<complexType name="entity">
 		<sequence>
