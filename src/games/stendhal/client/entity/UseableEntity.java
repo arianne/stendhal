@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,8 +13,9 @@
 package games.stendhal.client.entity;
 
 /**
- * @author daniel
- * 
+ * A map entity with a use menu.
+ *
+ * @author hendrik
  */
-public class GoldSource extends Entity {
+public class UseableEntity extends Entity {
 }

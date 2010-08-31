@@ -23,10 +23,8 @@ import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Fire;
-import games.stendhal.client.entity.FishSource;
 import games.stendhal.client.entity.GameBoard;
 import games.stendhal.client.entity.Gate;
-import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.HousePortal;
 import games.stendhal.client.entity.IEntity;
@@ -44,10 +42,10 @@ import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.Spell;
 import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.entity.UseableEntity;
 import games.stendhal.client.entity.UseableItem;
 import games.stendhal.client.entity.UseableRing;
 import games.stendhal.client.entity.WalkBlocker;
-import games.stendhal.client.entity.WellSource;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -98,9 +96,9 @@ public final class EntityMap {
 				CarrotGrower.class);
 		register("growing_entity_spawner", null, null, GrainField.class);
 
-		register("gold_source", null, null, GoldSource.class);
-		register("fish_source", null, null, FishSource.class);
-		register("well_source", null, null, WellSource.class);
+		register("gold_source", null, null, UseableEntity.class);
+		register("fish_source", null, null, UseableEntity.class);
+		register("well_source", null, null, UseableEntity.class);
 
 		register("area", null, null, InvisibleEntity.class);
 

@@ -2,9 +2,9 @@ package games.stendhal.client.entity.factory;
 
 import static org.junit.Assert.assertEquals;
 import games.stendhal.client.entity.Gate;
-import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.UseableEntity;
 
 import org.junit.Test;
 
@@ -29,7 +29,7 @@ public class EntityMapTest {
 	public final void testGetClassGoldsource() {
 		Class< ? extends IEntity> entClass = EntityMap.getClass("gold_source",
 				null, null);
-		assertEquals(GoldSource.class, entClass);
+		assertEquals(UseableEntity.class, entClass);
 		entClass = EntityMap.getClass(null, null, null);
 		assertEquals(null, entClass);
 	}
@@ -41,7 +41,7 @@ public class EntityMapTest {
 	public final void testGetSeed() {
 		Class< ? extends IEntity> entClass = EntityMap.getClass("gold_source",
 				null, null);
-		assertEquals(GoldSource.class, entClass);
+		assertEquals(UseableEntity.class, entClass);
 		entClass = EntityMap.getClass(null, null, null);
 		assertEquals(null, entClass);
 	}

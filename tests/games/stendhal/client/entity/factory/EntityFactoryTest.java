@@ -12,7 +12,6 @@ import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Fire;
-import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.InvisibleEntity;
@@ -25,6 +24,7 @@ import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.entity.UseableEntity;
 import games.stendhal.client.entity.UseableItem;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
@@ -183,7 +183,7 @@ public class EntityFactoryTest {
 		final IEntity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a GoldSource by now",
-				GoldSource.class, en.getClass());
+				UseableEntity.class, en.getClass());
 	}
 
 	@Test
