@@ -18,4 +18,5 @@ package games.stendhal.client.entity;
  * @author hendrik
  */
 public class UseableEntity extends Entity {
+	// no code here, yet
 }
