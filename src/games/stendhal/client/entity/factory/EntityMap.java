@@ -96,6 +96,7 @@ public final class EntityMap {
 				CarrotGrower.class);
 		register("growing_entity_spawner", null, null, GrainField.class);
 
+		register("useable_entity", null, null, UseableEntity.class);
 		register("gold_source", null, null, UseableEntity.class);
 		register("fish_source", null, null, UseableEntity.class);
 		register("well_source", null, null, UseableEntity.class);

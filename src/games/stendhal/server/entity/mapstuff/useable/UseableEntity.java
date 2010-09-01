@@ -25,7 +25,14 @@ import games.stendhal.server.entity.Entity;
  */
 public abstract class UseableEntity extends Entity implements UseListener {
 
-	
+	/**
+	 * creates a new UseableEntity
+	 */
+	public UseableEntity() {
+		setRPClass("useable_entity");
+		put("type", "useable_entity");
+	}
+
 	public static void generateRPClass() {
 		final RPClass rpclass = new RPClass("useable_entity");
 		rpclass.isA("entity");
