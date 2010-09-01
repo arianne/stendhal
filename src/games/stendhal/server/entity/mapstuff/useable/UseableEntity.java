@@ -10,18 +10,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.mapstuff;
+package games.stendhal.server.entity.mapstuff.useable;
 
-import games.stendhal.server.core.config.factory.ConfigurableFactory;
-import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
+import games.stendhal.server.entity.Entity;
 
-/**
- * A factory for <code>Fire</code> objects.
- */
-public class FireFactory implements ConfigurableFactory {
+public class UseableEntity extends Entity {
 
-	public Object create(final ConfigurableFactoryContext ctx) {
-		return new Fire(ctx.getRequiredInt("width"),
-				ctx.getRequiredInt("height"));
-	}
 }
