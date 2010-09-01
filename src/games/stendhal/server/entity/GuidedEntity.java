@@ -210,6 +210,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * 
 	 */
 	public void onFinishedPath() {
+		pathnotifier.setChanges();
 		pathnotifier.notifyObservers();
 	}
 	
