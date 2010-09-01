@@ -12,8 +12,37 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.useable;
 
+import marauroa.common.game.RPClass;
+import marauroa.common.game.Definition.Type;
+import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 
-public class UseableEntity extends Entity {
+/**
+ * an entity that can be placed on the map and will allow the client to "use"
+ * it. It support animations and multiple states for the sprites.
+ *
+ * @author hendrik
+ */
+public abstract class UseableEntity extends Entity implements UseListener {
 
+	
+	public static void generateRPClass() {
+		final RPClass rpclass = new RPClass("useable_entity");
+		rpclass.isA("entity");
+		
+		// class: source/switch
+		rpclass.addAttribute("class", Type.STRING);
+
+		// subclass: long sword/leather/armor/...
+		rpclass.addAttribute("subclass", Type.STRING);
+
+		// name of item: gold_source
+		rpclass.addAttribute("name", Type.STRING);
+
+		// state (row in sprite image)
+		rpclass.addAttribute("state", Type.INT);
+
+		// menu (Make a wish,use)
+		rpclass.addAttribute("menu", Type.STRING);
+	}
 }

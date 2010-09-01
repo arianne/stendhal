@@ -35,6 +35,7 @@ import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.mapstuff.useable.FishSource;
 import games.stendhal.server.entity.mapstuff.useable.GoldSource;
+import games.stendhal.server.entity.mapstuff.useable.UseableEntity;
 import games.stendhal.server.entity.mapstuff.useable.WellSource;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
@@ -132,7 +133,9 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass("house_portal")) {
 			HousePortal.generateRPClass();
 		}
-
+		if (!RPClass.hasRPClass("useable_entity")) {
+			UseableEntity.generateRPClass();
+		}
 		// ActiveEntity sub-classes
 		if (!RPClass.hasRPClass("rpentity")) {
 			RPEntity.generateRPClass();
