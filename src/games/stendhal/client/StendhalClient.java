@@ -371,7 +371,6 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected void onAvailableCharacterDetails(Map<String, RPObject> characters) {
-		logger.info(characters);
 
 		// if there are no characters, create one with the specified name automatically
 		if (characters.size() == 0) {
