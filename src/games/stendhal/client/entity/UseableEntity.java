@@ -26,7 +26,7 @@ public class UseableEntity extends Entity {
 	 * @return row index in the sprite image
 	 */
 	public int getState() {
-		if (rpObject.has("state")) {
+		if (!rpObject.has("state")) {
 			return 0;
 		}
 		return rpObject.getInt("state");
