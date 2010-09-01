@@ -55,7 +55,11 @@ class UseableEntity2DView extends Entity2DView {
 		final SpriteStore store = SpriteStore.get();
 		Sprite sprite;
 		if (entity.getType().equals("ueseable_entity")) {
-			sprite = store.getSprite(translate("useable/" + getClassResourcePath() + "/" + entity.getName()));
+			if (entity.getName() == null) {
+				sprite = store.getSprite(translate("signs/transparent"));
+			} else {
+				sprite = store.getSprite(translate("useable/" + getClassResourcePath() + "/" + entity.getName()));
+			}
 		} else {
 			// compatiblity with 0.86 server
 			sprite = store.getSprite(translate("useable/source/" + entity.getType()));
