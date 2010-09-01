@@ -875,10 +875,10 @@ For example say:  11  if you want the room called Water of Love.
    <destination zone="int_magic_bank" ref="entrance"/>
   </portal>
   <entity x="48" y="112">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
   </entity>
   <entity x="49" y="112">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
   </entity>
 </zone>
 
@@ -1065,10 +1065,10 @@ it back as you got it!
 <zone name="-1_fado_great_cave_e3" level="-1" x="500256" y="500640" file="Level -1/fado/great_cave_e3.tmx">
  <configurator class-name="games.stendhal.server.maps.magic.city.GreeterNPC" />
   <entity x="60" y="35">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
   </entity>
   <entity x="61" y="35">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
   </entity>
   <portal x="12" y="108" ref="theater_entrance_left">
    <destination zone="int_magic_theater" ref="entrance_left"/>

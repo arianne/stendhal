@@ -749,7 +749,7 @@ below average.
 		file="Level 0/nalwor/river_se.tmx">
 		<entity x="185" y="64">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
+				class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
 				<parameter name="species">perch</parameter>
 			</implementation>
 		</entity>

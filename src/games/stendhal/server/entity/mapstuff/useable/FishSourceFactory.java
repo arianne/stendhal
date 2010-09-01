@@ -1,4 +1,4 @@
-package games.stendhal.server.entity.mapstuff.source;
+package games.stendhal.server.entity.mapstuff.useable;
 
 import games.stendhal.server.core.config.factory.ConfigurableFactory;
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;

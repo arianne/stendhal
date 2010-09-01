@@ -155,11 +155,11 @@
 		<!-- wishing well-->
 		<entity x="87" y="61">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 		<entity x="88" y="61">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 
 	</zone>
@@ -890,11 +890,11 @@ South: Semos city
 
 		<entity x="101" y="74">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 		<entity x="102" y="74">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 
 	</zone>
@@ -940,7 +940,7 @@ Southeast: Farmhouse
 
 		<entity x="53" y="26">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
+				class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
 				<parameter name="species">roach</parameter>
 			</implementation>
 		</entity>
@@ -1276,11 +1276,11 @@ South: Nalwor forest and Or'ril castle
 		<!-- wishing well outside Bank-->
 		<entity x="15" y="29">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 		<entity x="16" y="29">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 
 
@@ -2351,11 +2351,11 @@ East: Ados city
 		<!-- wishing well-->
 		<entity x="122" y="1">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 		<entity x="123" y="1">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 
 
@@ -2463,11 +2463,11 @@ Mature sheep wanted: please speak to Sato
 		<!-- wishing well-->
 		<entity x="44" y="70">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 		<entity x="45" y="70">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 
 	</zone>

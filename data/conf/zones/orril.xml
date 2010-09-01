@@ -137,11 +137,11 @@
 		
 		<entity x="43" y="103">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 		<entity x="44" y="103">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 	</zone>
 
@@ -149,13 +149,13 @@
 		file="Level 0/orril/river_s_w2.tmx">
 		<entity x="36" y="26">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
+				class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
 				<parameter name="species">trout</parameter>
 			</implementation>
 		</entity>
 		<entity x="61" y="77">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
+				class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
 				<parameter name="species">trout</parameter>
 			</implementation>
 		</entity>
@@ -179,15 +179,15 @@
 		</entity>
 		<entity x="101" y="67">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.GoldSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
 		</entity>
 		<entity x="108" y="59">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.GoldSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
 		</entity>
 		<entity x="120" y="67">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.GoldSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
 		</entity>
 
 		<portal x="39" y="5" ref="jynath_house_entrance">
@@ -250,11 +250,11 @@
 		
 		<entity x="0" y="8">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 		<entity x="1" y="8">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
 		<entity x="47" y="110">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
