@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.UseableEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -68,14 +69,13 @@ class UseableEntity2DView extends Entity2DView {
 		final int width = (int) entity.getWidth();
 		final int height = (int) entity.getHeight();
 
-		if (imageWidth > IGameScreen.SIZE_UNIT_PIXELS) {
-			sprite = store.getAnimatedSprite(sprite,
-					0, 0,
-					imageWidth / IGameScreen.SIZE_UNIT_PIXELS / width,
-					IGameScreen.SIZE_UNIT_PIXELS * width,
-					IGameScreen.SIZE_UNIT_PIXELS * height,
-					100);
-		} 
+		int state = ((UseableEntity) entity).getState();
+		sprite = store.getAnimatedSprite(sprite,
+				0, state,
+				imageWidth / IGameScreen.SIZE_UNIT_PIXELS / width,
+				IGameScreen.SIZE_UNIT_PIXELS * width,
+				IGameScreen.SIZE_UNIT_PIXELS * height,
+				100);
 
 		setSprite(sprite);
 	}

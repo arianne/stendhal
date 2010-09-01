@@ -18,5 +18,17 @@ package games.stendhal.client.entity;
  * @author hendrik
  */
 public class UseableEntity extends Entity {
-	// no code here, yet
+
+	/**
+	 * gets the internal state used to pick the correct row in the
+	 * sprite image.
+	 *
+	 * @return row index in the sprite image
+	 */
+	public int getState() {
+		if (rpObject.has("state")) {
+			return 0;
+		}
+		return rpObject.getInt("state");
+	}
 }
