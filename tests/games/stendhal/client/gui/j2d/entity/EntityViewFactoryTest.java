@@ -34,7 +34,7 @@ public class EntityViewFactoryTest {
 		
 		assertEquals(EntityViewFactory.getViewClass("door", null, null), Door2DView.class);
 	
-		assertEquals(EntityViewFactory.getViewClass("fire", null, null), AnimatedLoopEntity2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("fire", null, null), UseableEntity2DView.class);
 		assertEquals(EntityViewFactory.getViewClass("fish_source", null, null), FishSource2DView.class);
 
 		

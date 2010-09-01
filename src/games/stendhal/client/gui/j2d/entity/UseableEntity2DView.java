@@ -12,14 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
 
 /**
  * The 2D view of a useable entity
  */
-class UseableEntity2DView extends AnimatedLoopEntity2DView {
+class UseableEntity2DView extends Entity2DView {
 
 	private ActionType action;
 
@@ -37,6 +41,56 @@ class UseableEntity2DView extends AnimatedLoopEntity2DView {
 	 */
 	public UseableEntity2DView(ActionType action) {
 		this.action = action;
+	}
+
+
+	//
+	// Entity2DView
+	//
+
+	@Override
+	protected void buildRepresentation() {
+		final SpriteStore store = SpriteStore.get();
+		Sprite sprite = store.getSprite(translate("useable/" + entity.getType()));
+
+		/*
+		 * Entities are [currently] always 1x1. Extra columns are animation.
+		 * Extra rows are ignored.
+		 */
+		final int imageWidth = sprite.getWidth();
+		final int width = (int) entity.getWidth();
+		final int height = (int) entity.getHeight();
+
+		if (imageWidth > IGameScreen.SIZE_UNIT_PIXELS) {
+			sprite = store.getAnimatedSprite(sprite,
+					0, 0,
+					imageWidth / IGameScreen.SIZE_UNIT_PIXELS / width,
+					IGameScreen.SIZE_UNIT_PIXELS * width,
+					IGameScreen.SIZE_UNIT_PIXELS * height,
+					100);
+		} 
+
+		setSprite(sprite);
+	}
+
+
+	/**
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
+	 * 
+	 * Also, players can only interact with the topmost entity.
+	 * 
+	 * @return The drawing index.
+	 */
+	@Override
+	public int getZIndex() {
+		return 3000;
+	}
+
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.ACTIVITY;
 	}
 
 	//

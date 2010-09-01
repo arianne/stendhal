@@ -159,7 +159,7 @@ public class EntityViewFactory {
 		
 		register("door", null, null, Door2DView.class);
 	
-		register("fire", null, null, AnimatedLoopEntity2DView.class);
+		register("fire", null, null, UseableEntity2DView.class);
 		register("fish_source", null, null, FishSource2DView.class);
 
 		
