@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -51,7 +52,13 @@ class UseableEntity2DView extends Entity2DView {
 	@Override
 	protected void buildRepresentation() {
 		final SpriteStore store = SpriteStore.get();
-		Sprite sprite = store.getSprite(translate("useable/" + entity.getType()));
+		Sprite sprite;
+		if (entity.getType().equals("ueseable_entity")) {
+			sprite = store.getSprite(translate(entity.getType() + "/" + getClassResourcePath()));
+		} else {
+			// compatiblity with 0.86 server
+			sprite = store.getSprite(translate("useable/source/" + entity.getType()));
+		}
 
 		/*
 		 * Entities are [currently] always 1x1. Extra columns are animation.
@@ -73,6 +80,22 @@ class UseableEntity2DView extends Entity2DView {
 		setSprite(sprite);
 	}
 
+	/**
+	 * An entity was changed.
+	 * 
+	 * @param entity
+	 *            The entity that was changed.
+	 * @param property
+	 *            The property identifier.
+	 */
+	@Override
+	public void entityChanged(final IEntity entity, final Object property) {
+		super.entityChanged(entity, property);
+
+		if (property == IEntity.PROP_CLASS) {
+			representationChanged = true;
+		}
+	}
 
 	/**
 	 * Determines on top of which other entities this entity should be drawn.
