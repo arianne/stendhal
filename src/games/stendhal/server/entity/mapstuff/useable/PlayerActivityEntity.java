@@ -12,14 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.useable;
 
-//
-//
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.UseListener;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
@@ -31,7 +27,7 @@ import java.lang.ref.WeakReference;
  * the entity when it finished to succeed. The activity must finish before being
  * initiated again.
  */
-public abstract class PlayerActivityEntity extends Entity implements UseListener {
+public abstract class PlayerActivityEntity extends UseableEntity {
 
 	private static final long PENALTY_TIMEOUT = 30 * 60 * 1000;
 	private static final long PENALTY_COUNT = 3000;
