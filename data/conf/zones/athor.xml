@@ -250,6 +250,15 @@
          <attribute name="class">swimmer2npc</attribute>
        </entity>
 
+	<entity x="78" y="39">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+			<parameter name="sound">bell-1</parameter>
+			<parameter name="radius">50</parameter>
+		</implementation>
+		<attribute name="width">2</attribute>
+		<attribute name="height">2</attribute>
+	</entity>
+
        <entity x="27" y="44">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.HusbandNPC">
            <parameter name="name">John</parameter>
