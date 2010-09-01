@@ -1,6 +1,6 @@
 package utilities.RPClass;
 
-import games.stendhal.server.entity.mapstuff.source.FishSource;
+import games.stendhal.server.entity.mapstuff.useable.FishSource;
 import marauroa.common.game.RPClass;
 
 public class FishSourceTestHelper {
