@@ -43,6 +43,10 @@ public class PlaySoundEntity extends UseableEntity {
 	 * plays a sound
 	 */
 	public boolean onUsed(RPEntity user) {
+		if (!nextTo(user)) {
+			user.sendPrivateText("You cannot reach that from here.");
+			return false;
+		}
 		String sound = sounds[(int) (Math.random() * sounds.length)];
 		SoundEvent event = new SoundEvent(sound, radius, volume, SoundLayer.AMBIENT_SOUND);
 		this.addEvent(event);
