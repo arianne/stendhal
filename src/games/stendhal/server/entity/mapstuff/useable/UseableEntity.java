@@ -52,4 +52,22 @@ public abstract class UseableEntity extends Entity implements UseListener {
 		// menu (Make a wish,use)
 		rpclass.addAttribute("menu", Type.STRING);
 	}
+
+	/**
+	 * gets the current state
+	 *
+	 * @return current state
+	 */
+	public int getState() {
+		return getInt("state");
+	}
+
+	/**
+	 * sets the state
+	 *
+	 * @param state new state
+	 */
+	public void setState(int state) {
+		put("state", state);
+	}
 }
