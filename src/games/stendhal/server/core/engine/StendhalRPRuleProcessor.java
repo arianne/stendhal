@@ -42,6 +42,7 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import marauroa.common.Configuration;
 import marauroa.common.Pair;
@@ -289,8 +290,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	protected void executeNPCsPreLogic() {
 		// SpeakerNPC logic
 		final NPCList npcList = SingletonRepository.getNPCList();
-		for (final SpeakerNPC npc : npcList) {
-			npc.preLogic();
+		final Set<String> npcs = npcList.getNPCs();
+		for (final String npc : npcs) {
+			npcList.get(npc).preLogic();
 		}
 	}
 
