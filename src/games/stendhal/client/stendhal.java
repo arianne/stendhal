@@ -41,7 +41,7 @@ public class stendhal {
 
 	public static boolean doLogin;
 
-	public static String STENDHAL_FOLDER;
+	public static final String STENDHAL_FOLDER;
 	public static final String GAME_NAME;
 	/**
 	 * Just a try to get Webstart working without additional rights.
