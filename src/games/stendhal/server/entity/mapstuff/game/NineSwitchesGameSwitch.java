@@ -32,6 +32,7 @@ public class NineSwitchesGameSwitch extends UseableEntity{
 		this.board = board;
 		put("class", "switch");
 		put("name", "arrow_switch");
+		super.setMenu("Toggle|Use");
 	}
 
 	/**

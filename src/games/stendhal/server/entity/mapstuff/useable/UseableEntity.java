@@ -71,4 +71,17 @@ public abstract class UseableEntity extends Entity implements UseListener {
 		put("state", state);
 		notifyWorldAboutChanges();
 	}
+
+	/**
+	 * The menu to display on the client in the format:
+	 * <pre>
+	 *    Display Name 1|action1,
+	 *    Display Name 2|action2
+	 * </pre>
+	 *
+	 * @param menu menu string
+	 */
+	public void setMenu(String menu) {
+		put("menu", menu);
+	}
 }
