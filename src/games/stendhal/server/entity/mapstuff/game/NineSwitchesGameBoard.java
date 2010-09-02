@@ -149,7 +149,9 @@ public class NineSwitchesGameBoard implements TurnListener {
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
 		resetBoard();
-		TurnNotifier.get().notifyInSeconds(60, this);
+		if (playerName != null) {
+			TurnNotifier.get().notifyInSeconds(60, this);
+		}
 	}
 
 	/**
