@@ -54,7 +54,7 @@ class UseableEntity2DView extends Entity2DView {
 	protected void buildRepresentation() {
 		final SpriteStore store = SpriteStore.get();
 		Sprite sprite;
-		if (entity.getType().equals("ueseable_entity")) {
+		if (entity.getType().equals("useable_entity")) {
 			if (entity.getName() == null) {
 				sprite = store.getSprite(translate("signs/transparent"));
 			} else {
@@ -70,12 +70,12 @@ class UseableEntity2DView extends Entity2DView {
 		 * Extra rows are ignored.
 		 */
 		final int imageWidth = sprite.getWidth();
-		final int width = (int) entity.getWidth();
-		final int height = (int) entity.getHeight();
+		final int width = Math.max((int) entity.getWidth(), 1);
+		final int height = Math.max((int) entity.getHeight(), 1);
 
 		int state = ((UseableEntity) entity).getState();
 		sprite = store.getAnimatedSprite(sprite,
-				0, state,
+				0, state * IGameScreen.SIZE_UNIT_PIXELS * height,
 				imageWidth / IGameScreen.SIZE_UNIT_PIXELS / width,
 				IGameScreen.SIZE_UNIT_PIXELS * width,
 				IGameScreen.SIZE_UNIT_PIXELS * height,
@@ -96,7 +96,7 @@ class UseableEntity2DView extends Entity2DView {
 	public void entityChanged(final IEntity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if (property == IEntity.PROP_CLASS) {
+		if ((property == IEntity.PROP_CLASS) || (property == IEntity.PROP_STATE)) {
 			representationChanged = true;
 		}
 	}

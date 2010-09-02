@@ -43,6 +43,10 @@ public interface IEntity {
 	 * Visibility property.
 	 */
 	Property PROP_VISIBILITY = new Property();
+	/**
+	 * State property
+	 */
+	Property PROP_STATE = new Property();
 
 	/**
 	 * Add a change listener.

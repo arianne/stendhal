@@ -576,6 +576,15 @@ public class Entity implements RPObjectChangeListener, IEntity {
 			fireChange(PROP_TITLE);
 		}
 
+
+		/*
+		 * State
+		 */
+		// TODO: move into child class?
+		if (changes.has("state")) {
+			fireChange(PROP_STATE);
+		}
+
 		/*
 		 * Type
 		 */
