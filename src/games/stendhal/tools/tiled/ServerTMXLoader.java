@@ -41,7 +41,7 @@ public class ServerTMXLoader {
 
 	private static String makeUrl(final String filename) throws MalformedURLException {
 		final String url;
-		if ((filename.indexOf("://") > 0) || filename.startsWith("file:")) {
+		if ((filename.indexOf("://") > -1) || filename.startsWith("file:")) {
 			url = filename;
 		} else {
 			url = (new File(filename)).toURI().toURL().toString();

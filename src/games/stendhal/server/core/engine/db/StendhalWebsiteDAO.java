@@ -87,7 +87,7 @@ public class StendhalWebsiteDAO {
 			+ " WHERE name='[name]'";
 
 		Map<String, Object> params = getParamsFromPlayer(instance);
-		logger.debug("storeCharacter is running: " + query.toString());
+		logger.debug("storeCharacter is running: " + query);
 		final int count = transaction.execute(query, params);
 		return count;
 	}

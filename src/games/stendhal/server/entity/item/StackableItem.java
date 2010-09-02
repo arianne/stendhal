@@ -39,7 +39,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 	private static String[] initializeAttributeNamesToCopy() {
 		Collection<String> attsToCopy = new LinkedList<String>(Arrays.asList(IMPORTANT_ATTRIBUTES));
 		attsToCopy.add("description");
-		return  attsToCopy.toArray(new String [0]);
+		return attsToCopy.toArray(new String[attsToCopy.size()]);
 	}
 	
 	public StackableItem(final String name, final String clazz, final String subclass,

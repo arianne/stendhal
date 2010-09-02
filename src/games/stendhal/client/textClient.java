@@ -36,7 +36,7 @@ public class textClient extends Thread {
 
 	private final String port;
 
-	private static boolean ShowWorld;
+	private static boolean showWorld;
 
 	private final Map<RPObject.ID, RPObject> world_objects;
 
@@ -130,7 +130,7 @@ public class textClient extends Thread {
 						action.put("dy", "1");
 						clientManager.send(action);
 					}
-					if (ShowWorld) {
+					if (showWorld) {
 						System.out.println("<World contents ------------------------------------->");
 						int j = 0;
 						for (final RPObject object : world_objects.values()) {
@@ -240,7 +240,7 @@ public class textClient extends Thread {
 						port = args[i + 1];
 					} else if (args[i].equals("-W")) {
 						if ("1".equals(args[i + 1])) {
-							ShowWorld = true;
+							showWorld = true;
 						}
 					} else if (args[i].equals("-t")) {
 						tcp = true;
