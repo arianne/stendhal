@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.maps.quests.revivalweeks.DadNPC;
 import games.stendhal.server.maps.quests.revivalweeks.FoundGirl;
+import games.stendhal.server.maps.quests.revivalweeks.NineSwitchesGame;
 import games.stendhal.server.maps.quests.revivalweeks.OutfitLender2NPC;
 import games.stendhal.server.maps.quests.revivalweeks.TicTacToeGame;
 import games.stendhal.server.maps.quests.revivalweeks.TownerClosedSign;
@@ -28,6 +29,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		new OutfitLender2NPC().addToWorld();
 		new TownerClosedSign().addToWorld();
 		new TicTacToeGame().addToWorld();
+		new NineSwitchesGame().addToWorld();
 	}
 
 	@Override
