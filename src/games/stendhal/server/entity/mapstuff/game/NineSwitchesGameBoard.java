@@ -70,9 +70,9 @@ public class NineSwitchesGameBoard implements TurnListener {
 		boolean completed = checkBoard();
 		if (completed) {
 			// TODO: reward
-			npc.say("Gongratiolations, " + user.getName() + " you won");
-			// TODO: cancel time
+			npc.say("Congratulations, " + user.getName() + " you won");
 			playerName = null;
+			TurnNotifier.get().dontNotify(this);
 		}
 	}
 
@@ -89,6 +89,7 @@ public class NineSwitchesGameBoard implements TurnListener {
 				switches.add(gameSwitch);
 			}
 		}
+		resetBoard();
 	}
 
 
