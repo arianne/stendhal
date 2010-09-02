@@ -18,8 +18,6 @@ class ButtonCommandList extends CommandList {
 	 *            The menu name (needed?).
 	 * @param items
 	 *            The action names.
-	 * @param view
-	 *            The entity view.
 	 */
 	protected ButtonCommandList(final String name, final String[] items) {
 		super(name, items);
