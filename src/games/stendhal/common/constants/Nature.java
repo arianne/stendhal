@@ -1,5 +1,7 @@
 package games.stendhal.common.constants;
 
+import java.util.Locale;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -20,7 +22,7 @@ public enum Nature {
 	 */
 	public static Nature parse(String type) {
 		try {
-			return Nature.valueOf(type.toUpperCase());
+			return Nature.valueOf(type.toUpperCase(Locale.ENGLISH));
 		} catch (RuntimeException e) {
 			Logger.getLogger(Nature.class).error("Unknown damage type: " + type, e);
 			return CUT;
