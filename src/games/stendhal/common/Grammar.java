@@ -12,6 +12,7 @@
 package games.stendhal.common;
 
 import java.util.Collection;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 
@@ -263,7 +264,7 @@ public class Grammar {
 	 */
 	public static String fullForm(final String noun) {
 		String result;
-		final String lowString = noun.toLowerCase();
+		final String lowString = noun.toLowerCase(Locale.ENGLISH);
 		result = lowString.replace("#", "");
 		if (result.equals("meat") || result.equals("ham")
 				|| result.equals("cheese") || result.equals("wood")

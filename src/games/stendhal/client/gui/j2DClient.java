@@ -69,6 +69,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Locale;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
@@ -435,7 +436,7 @@ public class j2DClient implements UserInterface {
 	} // constructor
 
 	private void checkAndComplainAboutJavaImplementation() {
-		final String vmName = System.getProperty("java.vm.name", "unknown").toLowerCase();
+		final String vmName = System.getProperty("java.vm.name", "unknown").toLowerCase(Locale.ENGLISH);
 		if ((vmName.indexOf("hotspot") < 0) && (vmName.indexOf("openjdk") < 0)) {
 			final String text = "Stendhal is developed and tested on Sun Java and OpenJDK. You are using " 
 				+ System.getProperty("java.vm.vendor", "unknown") + " " 

@@ -2,6 +2,7 @@ package games.stendhal.server.core.account;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import marauroa.common.game.Result;
 
@@ -29,7 +30,7 @@ public class CommonPassword implements AccountParameterValidator {
 	}
 
 	public Result validate() {
-		if (commonPasswords.contains(parameterValue.toLowerCase())) {
+		if (commonPasswords.contains(parameterValue.toLowerCase(Locale.ENGLISH))) {
 			return Result.FAILED_PASSWORD_TO_WEAK;
 		}
 		return null;

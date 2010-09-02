@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -468,7 +469,7 @@ public class CreateAccountDialog extends JDialog {
 		@Override
 		public void insertString(final int offs, final String str, final AttributeSet a)
 				throws BadLocationException {
-			final String lower = str.toLowerCase();
+			final String lower = str.toLowerCase(Locale.ENGLISH);
 			boolean ok = true;
 			for (int i = lower.length() - 1; i >= 0; i--) {
 				final char chr = lower.charAt(i);

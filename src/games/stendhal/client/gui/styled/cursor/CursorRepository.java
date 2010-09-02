@@ -19,6 +19,7 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -66,7 +67,7 @@ public class CursorRepository {
 
 		// create cursor
 		Point hotSpot = stendhalCursor.getHotSpot();
-		String name = stendhalCursor.toString().toLowerCase();
+		String name = stendhalCursor.toString().toLowerCase(Locale.ENGLISH);
 		Cursor res = Toolkit.getDefaultToolkit().createCustomCursor(image, hotSpot, name);
 		cursorMap.put(stendhalCursor, res);
 		return res;

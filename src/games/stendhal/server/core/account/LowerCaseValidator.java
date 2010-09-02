@@ -1,5 +1,7 @@
 package games.stendhal.server.core.account;
 
+import java.util.Locale;
+
 import marauroa.common.game.Result;
 
 /**
@@ -21,7 +23,7 @@ public class LowerCaseValidator implements AccountParameterValidator {
 	}
 
 	public Result validate() {
-		if (!parameterValue.toLowerCase().equals(parameterValue)) {
+		if (!parameterValue.toLowerCase(Locale.ENGLISH).equals(parameterValue)) {
 			return Result.FAILED_INVALID_CHARACTER_USED;
 		}
 

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.Locale;
 import java.util.Properties;
 
 import marauroa.common.Configuration;
@@ -132,7 +133,7 @@ public class Cache {
 	private void cleanCache() {
 		final String homeDir = System.getProperty("user.home");
 		final String gameName = ClientGameConfiguration.get("GAME_NAME");
-		final String gameFolder = "/" + gameName.toLowerCase() + "/";
+		final String gameFolder = "/" + gameName.toLowerCase(Locale.ENGLISH) + "/";
 		final String cache = "cache";
 		final File cacheDir = new File(homeDir + gameFolder + cache);
 		if (cacheDir.isDirectory()) {
@@ -198,6 +199,11 @@ public class Cache {
 	 * @return InputStream or null if not in cache
 	 */
 	protected InputStream getItem(final TransferContent item) {
+		if (item.name.indexOf("..") > -1) {
+			logger.error("Cannot get item from cache because .. is not allowed in name " + item.name);
+			return null;
+		}
+
 		// 1. try to read it from stendhal-prefilled-cache.jar
 		InputStream is = getItemFromPrefilledCache(item);
 
@@ -218,6 +224,10 @@ public class Cache {
 	 */
 	protected void store(final TransferContent item, final byte[] data) {
 		try {
+			if (item.name.indexOf("..") > -1) {
+				logger.error("Cannot store item to cache because .. is not allowed in name " + item.name);
+				return;
+			}
 			final OutputStream os = Persistence.get().getOutputStream(true,
 					stendhal.STENDHAL_FOLDER + "cache/", item.name);
 			os.write(data);

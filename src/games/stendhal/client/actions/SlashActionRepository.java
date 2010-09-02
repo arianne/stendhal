@@ -1,6 +1,7 @@
 package games.stendhal.client.actions;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * Manages Slash Action Objects.
@@ -96,7 +97,7 @@ public class SlashActionRepository {
 	 * @return Action object
 	 */
 	public static SlashAction get(String name) {
-		name = name.toLowerCase();
+		name = name.toLowerCase(Locale.ENGLISH);
 		return actions.get(name);
 	}
 }

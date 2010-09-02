@@ -1,5 +1,7 @@
 package games.stendhal.server.core.account;
 
+import java.util.Locale;
+
 import marauroa.common.game.Result;
 
 /**
@@ -21,16 +23,19 @@ public class ReservedSubStringValidator implements AccountParameterValidator {
 	}
 
 	public Result validate() {
-		if (parameterValue.toLowerCase().contains("admin")) {
+		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("admin")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
-		if (parameterValue.toLowerCase().contains("support")) {
+		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("support")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
-		if (parameterValue.toLowerCase().contains("stendhal")) {
+		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("stendhal")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
-		if (parameterValue.toLowerCase().contains("marauroa")) {
+		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("marauroa")) {
+			return Result.FAILED_RESERVED_NAME;
+		}
+		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("arianne")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
 
@@ -39,12 +44,12 @@ public class ReservedSubStringValidator implements AccountParameterValidator {
 		// Since neither spaces (and other special characters) nor uppercase
 		// letters are allowed, it should not be possible to "highlight" the
 		// "GM" in any way within the name.
-		if (parameterValue.toLowerCase().equals("gm")) {
+		if (parameterValue.toLowerCase(Locale.ENGLISH).equals("gm")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
 
 		// the official server is hosted in Germany
-		if (parameterValue.toLowerCase().contains("hitler")) {
+		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("hitler")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
 

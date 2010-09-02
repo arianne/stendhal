@@ -27,6 +27,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Locale;
 
 import javax.swing.JPopupMenu;
 
@@ -236,7 +237,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		// Added support for ctrl + click for Mac OS X intensifly@gmx.com
 
 		final int onmask = InputEvent.CTRL_DOWN_MASK;
-		if (System.getProperty("os.name").toLowerCase().contains("os x")
+		if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).contains("os x")
 				&& ((e.getModifiersEx() & onmask) == onmask)) {
 			onMouseRightClick(p);
 		} else if (e.getButton() == MouseEvent.BUTTON1) {

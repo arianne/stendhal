@@ -25,6 +25,7 @@ import games.stendhal.client.update.Version;
 import games.stendhal.common.resource.ResourceManager;
 import java.awt.Dimension;
 import java.security.AccessControlException;
+import java.util.Locale;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -57,7 +58,7 @@ public class stendhal {
 
 		/** We set the main game folder to the game name */
 		GAME_NAME = ClientGameConfiguration.get("GAME_NAME");
-		STENDHAL_FOLDER = separator + GAME_NAME.toLowerCase() + separator;
+		STENDHAL_FOLDER = separator + GAME_NAME.toLowerCase(Locale.ENGLISH) + separator;
 
 		/** setup the search locations for the resource manager */
 		RESOURCE_MANAGER.addScheme("sound" , "data/sounds");
