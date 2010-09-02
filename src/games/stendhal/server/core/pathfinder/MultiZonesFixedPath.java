@@ -46,7 +46,6 @@ public class MultiZonesFixedPath implements Observer {
 		zone.add(ent);
 	}
 	
-	@Override
 	public void update(Observable o, Object arg) {
 		// will run at local path's end; have to change path to another
 		if(count!=(route.size()-1)) {
