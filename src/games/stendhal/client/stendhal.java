@@ -134,8 +134,8 @@ public class stendhal {
 		while (!doLogin) {
 			try {
 				Thread.sleep(200);
-			} catch (final Exception e) {
-				// simply ignore it
+			} catch (final InterruptedException e) {
+				logger.warn(e, e);
 			}
 		}
 	}
