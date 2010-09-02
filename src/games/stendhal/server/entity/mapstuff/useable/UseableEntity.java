@@ -69,5 +69,6 @@ public abstract class UseableEntity extends Entity implements UseListener {
 	 */
 	public void setState(int state) {
 		put("state", state);
+		notifyWorldAboutChanges();
 	}
 }
