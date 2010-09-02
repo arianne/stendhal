@@ -117,7 +117,8 @@ class UseableEntity2DView extends Entity2DView {
 
 	@Override
 	public StendhalCursor getCursor() {
-		return StendhalCursor.ACTIVITY;
+		String cursorName = ((UseableEntity) entity).getCursor();
+		return StendhalCursor.valueOf(cursorName, StendhalCursor.ACTIVITY);
 	}
 
 	//

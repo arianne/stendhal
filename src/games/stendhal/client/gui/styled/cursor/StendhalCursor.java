@@ -68,4 +68,19 @@ public enum StendhalCursor {
 		return hotSpot;
 	}
 
+	/**
+	 * gets a cursor based on its name
+	 *
+	 * @param cursorName    name of cursor, may be <code>null</code>
+	 * @param defaultCursor default cursor to use in case the cursorName does not exist or is <code>null</code>
+	 * @return StendhalCursor
+	 */
+	public static StendhalCursor valueOf(String cursorName, StendhalCursor defaultCursor) {
+		try {
+			return valueOf(cursorName);
+		} catch (RuntimeException e) {
+			return defaultCursor;
+		}
+	}
+
 }

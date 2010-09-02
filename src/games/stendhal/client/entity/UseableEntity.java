@@ -31,4 +31,16 @@ public class UseableEntity extends Entity {
 		}
 		return rpObject.getInt("state");
 	}
+
+	/**
+	 * gets the name of the cursor to use for this entity
+	 *
+	 * @return name of cursor
+	 */
+	public String getCursor() {
+		if (!rpObject.has("cursor")) {
+			return null;
+		}
+		return rpObject.get("cursor");
+	}
 }
