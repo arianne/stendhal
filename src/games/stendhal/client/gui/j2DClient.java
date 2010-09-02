@@ -60,6 +60,8 @@ import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
@@ -419,11 +421,23 @@ public class j2DClient implements UserInterface {
 				
 				mainFrame.getMainFrame().setMinimumSize(new Dimension(width, height));
 				mainFrame.getMainFrame().setVisible(true);
+				
+				/*
+				 * For small screens. Setting the maximum window size does
+				 * not help - pack() happily ignores it.
+				 */
+				Rectangle maxBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+				Dimension current = mainFrame.getMainFrame().getSize();
+				mainFrame.getMainFrame().setSize(Math.min(current.width, maxBounds.width), 
+						Math.min(current.height, maxBounds.height));
+				
 				/*
 				 * Needed for small screens; Sometimes the divider is placed
-				 * incorrectly unless we explicitly set it.
+				 * incorrectly unless we explicitly set it. Try to fit it on the
+				 * screen and show a bit of the chat.
 				 */
-				splitPane.setDividerLocation(stendhal.screenSize.height + 1);
+				splitPane.setDividerLocation(Math.min(stendhal.screenSize.height,
+						maxBounds.height  - 80));
 			}
 		});
 		directionRelease = null;
