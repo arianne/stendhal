@@ -1,18 +1,24 @@
 package games.stendhal.server.maps.quests.piedpiper;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.Node;
 import java.util.LinkedList;
 import marauroa.common.Pair;
 
 public class PathesBuildHelper {
+	
+	public static StendhalRPZone getZone(String name) {
+		return SingletonRepository.getRPWorld().getZone(name);
+	}
 
 	/**
 	 * route for pied piper incoming
 	 * @return - incoming path
 	 */
-	public static LinkedList<Pair<String, LinkedList<Node>>> getAwaitingPhasePath() {
-		LinkedList<Pair<String, LinkedList<Node>>> fullPath = 
-			new LinkedList<Pair<String, LinkedList<Node>>>();
+	public static LinkedList<Pair<StendhalRPZone, LinkedList<Node>>> getAwaitingPhasePath() {
+		LinkedList<Pair<StendhalRPZone, LinkedList<Node>>> fullPath = 
+			new LinkedList<Pair<StendhalRPZone, LinkedList<Node>>>();
 		
 		LinkedList<Node> localroute = new LinkedList<Node>();
 		
@@ -36,8 +42,8 @@ public class PathesBuildHelper {
 		localroute.add(new Node(115,52));
 		localroute.add(new Node(115,43));
 		localroute.add(new Node(127,43));
-		fullPath.add(new Pair<String, LinkedList<Node>>("0_ados_wall_n2", 
-				new LinkedList<Node>(localroute)));
+		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+				getZone("0_ados_wall_n2"), new LinkedList<Node>(localroute)));
 		
 		// market
 		localroute.clear();
@@ -48,8 +54,8 @@ public class PathesBuildHelper {
 		localroute.add(new Node(41,107));
 		localroute.add(new Node(35,107));
 		localroute.add(new Node(35,127));
-		fullPath.add(new Pair<String, LinkedList<Node>>("0_ados_city_n2", 
-				new LinkedList<Node>(localroute)));
+		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+				getZone("0_ados_city_n2"), new LinkedList<Node>(localroute)));
 		
 		// city north part
 		localroute.clear();
@@ -90,8 +96,8 @@ public class PathesBuildHelper {
 		localroute.add(new Node(49,125));	
 		localroute.add(new Node(52,125));	
 		localroute.add(new Node(52,127));
-		fullPath.add(new Pair<String, LinkedList<Node>>("0_ados_city_n", 
-				new LinkedList<Node>(localroute)));
+		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+				getZone("0_ados_city_n"), new LinkedList<Node>(localroute)));
 
 		// city central
 		localroute.clear();
@@ -107,8 +113,8 @@ public class PathesBuildHelper {
 		localroute.add(new Node(55,97));	
 		localroute.add(new Node(42,97));	
 		localroute.add(new Node(42,94));	
-		fullPath.add(new Pair<String, LinkedList<Node>>("0_ados_city", 
-				new LinkedList<Node>(localroute)));
+		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+				getZone("0_ados_city"), new LinkedList<Node>(localroute)));
 		
 		// town hall 
 		localroute.clear();
@@ -117,8 +123,8 @@ public class PathesBuildHelper {
 		localroute.add(new Node(9,8));
 		localroute.add(new Node(9,4));
 		localroute.add(new Node(5,4));
-		fullPath.add(new Pair<String, LinkedList<Node>>("int_ados_town_hall", 
-				new LinkedList<Node>(localroute)));
+		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+				getZone("int_ados_town_hall"), new LinkedList<Node>(localroute)));
 		
 		// 1 floor
 		localroute.clear();
@@ -129,8 +135,8 @@ public class PathesBuildHelper {
 		localroute.add(new Node(6,15));
 		localroute.add(new Node(37,15));
 		localroute.add(new Node(37,3));
-		fullPath.add(new Pair<String, LinkedList<Node>>("int_ados_town_hall_1", 
-				new LinkedList<Node>(localroute)));
+		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+				getZone("int_ados_town_hall_1"), new LinkedList<Node>(localroute)));
 		
 		// 2 floor
 		localroute.clear();
@@ -139,8 +145,8 @@ public class PathesBuildHelper {
 		localroute.add(new Node(26,14));
 		//localroute.add(new Node(26,14)); // very left point
 		//localroute.add(new Node(32,14)); // very right point
-		fullPath.add(new Pair<String, LinkedList<Node>>("int_ados_town_hall_2", 
-				new LinkedList<Node>(localroute)));	
+		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+				getZone("int_ados_town_hall_2"), new LinkedList<Node>(localroute)));	
 		
 		return fullPath;		
 	}
