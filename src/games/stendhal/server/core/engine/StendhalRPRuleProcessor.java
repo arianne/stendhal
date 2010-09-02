@@ -27,7 +27,6 @@ import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.PlayerLoggedOnEvent;
 import games.stendhal.server.events.PlayerLoggedOutEvent;
