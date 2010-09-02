@@ -149,11 +149,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 						if (extension.length() > 0) {
 							StendhalServerExtension.getInstance(config.get(extension)).init();
 						}
-					} catch (final Exception ex) {
+					} catch (final RuntimeException ex) {
 						logger.error("Error while loading extension: " + extension, ex);
 					}
 				}
-			} catch (final Exception ep) {
+			} catch (final RuntimeException ep) {
 				logger.info("No server extensions configured in ini file.");
 			}
 
@@ -461,11 +461,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					final URL url = new URL(msg);
 					HttpURLConnection.setFollowRedirects(false);
 					final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-					final BufferedReader br = new BufferedReader(
+                    try {					
+                        final BufferedReader br = new BufferedReader(
 							new InputStreamReader(connection.getInputStream()));
-					msg = br.readLine();
-					br.close();
-					connection.disconnect();
+                        try {					
+                            msg = br.readLine();
+                        } finally {
+                            br.close();
+                        }
+                    } finally {
+				        connection.disconnect();
+                    }
 				}
 			}
 		} catch (final Exception e) {
