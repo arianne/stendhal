@@ -47,7 +47,7 @@ public class NineSwitchesGame {
 				add(ConversationStates.IDLE, 
 						Arrays.asList("catch"), 
 						ConversationStates.IDLE,
-						"Each switch is linked to it neighbour and will toggle them as well. "
+						"Each switch is linked to it neighbour and will toggle them as well. You have one minutes to solve the puzzle."
 						+ "Do you want to #play?.",
 						null);
 				add(ConversationStates.IDLE, 
@@ -67,6 +67,7 @@ public class NineSwitchesGame {
 						new PlayAction(board));
 			}
 		};
+		// TODO: nice outfit
 		npc.setEntityClass("paulnpc"); 
 		npc.setPosition(88, 119);
 		npc.setDirection(Direction.DOWN);
@@ -93,10 +94,7 @@ public class NineSwitchesGame {
 				npc.say("Sorry, " + player.getName() + " there is already a game in progress. Please wait a little.");
 				return;
 			}
-
-			npc.say(player.getName() + ", good luck");
 			board.setPlayerName(player.getName());
-			// TODO: start timer
 		}
 	}
 

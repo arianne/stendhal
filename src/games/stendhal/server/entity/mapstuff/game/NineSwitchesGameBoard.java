@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.mapstuff.game;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -23,7 +25,7 @@ import java.util.ArrayList;
  *
  * @author hendrik
  */
-public class NineSwitchesGameBoard {
+public class NineSwitchesGameBoard implements TurnListener {
 	private StendhalRPZone zone;
 	private int x;
 	private int y;
@@ -99,7 +101,7 @@ public class NineSwitchesGameBoard {
 		int index = switches.indexOf(gameSwitch);
 		int row = index / 3;
 		int col = index % 3;
-		
+
 		if (row > 0) {
 			switches.get((row - 1) * 3 + col).toggle();
 		}
@@ -136,6 +138,7 @@ public class NineSwitchesGameBoard {
 		for (NineSwitchesGameSwitch gameSwitch : switches) {
 			gameSwitch.setState(0);
 		}
+		switches.get(4).setState(1);
 	}
 
 	/**
@@ -146,6 +149,7 @@ public class NineSwitchesGameBoard {
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
 		resetBoard();
+		TurnNotifier.get().notifyInSeconds(60, this);
 	}
 
 	/**
@@ -164,5 +168,11 @@ public class NineSwitchesGameBoard {
 	 */
 	public void setNPC(SpeakerNPC npc) {
 		this.npc = npc;
+	}
+
+	public void onTurnReached(int currentTurn) {
+		npc.say("Sorry " + playerName + ", your time is up.");
+		setPlayerName(null);
+		resetBoard();
 	}
 }
