@@ -20,7 +20,7 @@ public class AchievementDAO {
 	
 	/**
 	 * logs a reached achievement into the database
-	 * 
+	 *
 	 * @param achievementId
 	 * @param playerName
 	 * @param transaction
@@ -37,11 +37,9 @@ public class AchievementDAO {
 	}
 
 	/**
-	 * Creates a new achievement
-	 * 
-	 * @param identifier
-	 * @param title
-	 * @param category
+	 * Saves the base data of an achievement
+	 *
+	 * @param achievement Achievement to save
 	 * @return the id of the stored achievement
 	 * @throws SQLException
 	 */
@@ -65,7 +63,7 @@ public class AchievementDAO {
 	
 	/**
 	 * Updates the achievement with the given id
-	 * 
+	 *
 	 * @param id
 	 * @param achievement
 	 * @throws SQLException 
@@ -92,7 +90,7 @@ public class AchievementDAO {
 
 	/**
 	 * Loads a map from achievement identifier to database serial
-	 * @param transaction
+	 *
 	 * @return map with key identifier string and value database id
 	 * @throws SQLException
 	 */
