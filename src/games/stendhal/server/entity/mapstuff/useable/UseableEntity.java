@@ -46,11 +46,14 @@ public abstract class UseableEntity extends Entity implements UseListener {
 		// name of item: gold_source
 		rpclass.addAttribute("name", Type.STRING);
 
-		// state (row in sprite image)
-		rpclass.addAttribute("state", Type.INT);
+		// cursor
+		rpclass.addAttribute("cursor", Type.STRING);
 
 		// menu (Make a wish,use)
 		rpclass.addAttribute("menu", Type.STRING);
+
+		// state (row in sprite image)
+		rpclass.addAttribute("state", Type.INT);
 	}
 
 	/**
@@ -83,5 +86,14 @@ public abstract class UseableEntity extends Entity implements UseListener {
 	 */
 	public void setMenu(String menu) {
 		put("menu", menu);
+	}
+
+	/**
+	 * defines the name of the mouse cursor image to use
+	 *
+	 * @param cursorName name of cursor
+	 */
+	public void setCursor(String cursorName) {
+		put("cursor", cursorName);
 	}
 }
