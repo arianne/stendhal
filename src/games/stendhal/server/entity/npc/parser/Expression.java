@@ -15,7 +15,7 @@ public final class Expression {
     public static final Expression EMPTY_EXPRESSION = new Expression("", "");
 
     /** JOKER is a joker String used in pattern matches. */
-    protected static final String JOKER = "*";
+    public static final String JOKER = "*";
 
     /** Original, un-normalized string expression. */
     private String original;
