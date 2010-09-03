@@ -85,7 +85,8 @@ public class SettingsPanel extends JPanel {
 	 *            The menu label, which also defines the image to look up, and the group of commands if relevant.
 	 */
 	public void add(final String label) {
-		final JButton button = new JButton(new ImageIcon("data/gui/"+label+".png"));
+		ImageIcon icon = new ImageIcon(SettingsPanel.class.getClassLoader().getResource("data/gui/"+label+".png"));
+		final JButton button = new JButton(icon);
 		button.setMargin(new Insets(BUTTON_PADDING, BUTTON_PADDING, BUTTON_PADDING, BUTTON_PADDING));
 		/*
 		 * Don't let the buttons take focus. Keyboard focus anywhere else but
