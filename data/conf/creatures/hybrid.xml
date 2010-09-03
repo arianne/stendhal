@@ -209,7 +209,7 @@
   
   <creature name="snarfkin">
     <type class="hybrid" subclass="snarfkin" tileid="hybrid.png:11"/>
-    <description></description>
+    <description>You see a snarfkin, the favourite pet of wizards. Be careful, their claws are poisonous!</description>
     <attributes>
       <atk value="472"/>
       <def value="74"/>

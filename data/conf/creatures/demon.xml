@@ -67,7 +67,7 @@
   
     <creature name="demon">
     <type class="demon" subclass="demon" tileid="demon.png:4"/>
-    <description></description>
+    <description>You see a demon. He personifies evil.</description>
     <attributes>
       <atk value="591"/>
       <def value="80"/>

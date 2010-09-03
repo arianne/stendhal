@@ -98,7 +98,7 @@
   
   <creature name="baby angel">
     <type class="fairy" subclass="baby_angel" tileid="fairy.png:0"/>
-    <description></description>
+    <description>You see a baby angel. Will it ever get a chance to grow up?</description>
     <attributes>
       <atk value="628"/>
       <def value="100"/>

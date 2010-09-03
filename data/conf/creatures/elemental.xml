@@ -36,6 +36,7 @@
   
   <creature name="earth elemental">
     <type class="elemental" subclass="earth_elemental" tileid="elemental.png:1"/>
+    <description>You see an earth elemental. The earth is quaking as it moves over the surface.</description>
     <attributes>
       <atk value="407"/>
       <def value="66"/>
@@ -64,7 +65,7 @@
 
   <creature name="fire elemental">
     <type class="elemental" subclass="fire_elemental" tileid="elemental.png:2"/>
-    <description></description>
+    <description>You see a fire elemental and hardly can stand the heat.</description>
     <attributes>
       <atk value="411"/>
       <def value="67"/>
@@ -98,6 +99,7 @@
 
   <creature name="water elemental">
     <type class="elemental" subclass="water_elemental" tileid="elemental.png:3"/>
+    <description></description>
     <attributes>
       <atk value="403"/>
       <def value="64"/>
@@ -133,6 +135,7 @@
 
   <creature name="air elemental">
     <type class="elemental" subclass="air_elemental" tileid="elemental.png:4"/>
+    <description>You see an air elemental and feel a fresh brow past you.</description>
     <attributes>
       <atk value="409"/>
       <def value="68"/>
@@ -161,6 +164,7 @@
 
   <creature name="ice elemental">
     <type class="elemental" subclass="ice_elemental" tileid="elemental.png:5"/>
+    <description>You see an ice elemental and  sense a  shiver on your spine.</description>
     <attributes>
       <atk value="400"/>
       <def value="61"/>
