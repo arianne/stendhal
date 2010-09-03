@@ -39,7 +39,6 @@ import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 import games.stendhal.client.gui.wt.KeyRing;
-import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
@@ -346,12 +345,12 @@ public class j2DClient implements UserInterface {
 		 * Contents of the containerPanel
 		 */
 		// The setting bar to the top
-		settings = new SettingsPanel(gameScreen);		
-		settings.add(null, "help", gameScreen);
-		settings.add(null, "accountcontrol", gameScreen);
-		settings.add(null, "settings", gameScreen);
-		settings.add(null, "rp", gameScreen);
-		containerPanel.addChild(settings);
+		settings = new SettingsPanel();		
+		settings.add("help");
+		settings.add("accountcontrol");
+		settings.add("settings");
+		settings.add("rp");
+		containerPanel.add(settings, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
 		character = new Character(this, gameScreen);
 		containerPanel.addChild(character);

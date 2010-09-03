@@ -51,6 +51,17 @@ public class ContainerPanel extends JScrollPane {
 	}
 	
 	/**
+	 * Add a JComponent to the ContainerPanel.
+	 * 
+	 * @param child component to be added
+	 * @param constraints packing constraints
+	 */
+	public void add(JComponent child, Object constraints) {
+		child.setAlignmentX(LEFT_ALIGNMENT);
+		panel.add(child, constraints);
+	}
+	
+	/**
 	 * Remove a child component from the panel.
 	 * 
 	 * @param child The Wt component to be removed
