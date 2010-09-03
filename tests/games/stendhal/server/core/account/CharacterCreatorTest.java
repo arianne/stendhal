@@ -44,7 +44,8 @@ public class CharacterCreatorTest {
 		final DBTransaction transaction = TransactionPool.get().beginWork();;
 		try {
 			transaction.execute("DELETE FROM character_stats where name='player';", null);
-			transaction.execute("DELETE rpobject , characters from rpobject , characters where characters.charname = 'player' and characters.object_id = rpobject.object_id;", null);
+			transaction.execute("DELETE FROM rpobject WHERE object_id IN (SELECT object_id FROM characters WHERE characters.charname = 'player');", null);
+			transaction.execute("DELETE FROM characters WHERE characters.charname = 'player';", null);
 			TransactionPool.get().commit(transaction);
 		} catch (final SQLException e) {
 			TransactionPool.get().rollback(transaction);
