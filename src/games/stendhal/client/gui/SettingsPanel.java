@@ -70,8 +70,6 @@ public class SettingsPanel extends JPanel {
 
 	/**
 	 * Creates a new instance of SettingsPanel.
-	 * 
-	 * @param gameScreen
 	 */
 	public SettingsPanel() {
 		setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL, SPACING));
