@@ -25,7 +25,6 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.bag.BagPanelControler;
 import games.stendhal.client.gui.buddies.BuddyPanelControler;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
@@ -53,7 +52,6 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundLayer;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -357,7 +355,7 @@ public class j2DClient implements UserInterface {
 		
 		character = new Character(this, gameScreen);
 		containerPanel.addChild(character);
-		createAndAddOldBag(gameScreen);
+		createAndAddBag(gameScreen);
 		
 		keyring = new KeyRing(gameScreen);
 		containerPanel.addChild(keyring);
@@ -461,16 +459,9 @@ public class j2DClient implements UserInterface {
 		}
 	}
 
-	private void createAndAddOldBag(final GameScreen gameScreen) {
+	private void createAndAddBag(final GameScreen gameScreen) {
 		inventory = new EntityContainer("bag", 3, 4, gameScreen);
 		containerPanel.addChild(inventory);
-	}
-	
-	private void createAndAddNewBag(final Container content) {
-		final BagPanelControler bag = new BagPanelControler();
-		bag.getComponent().setPreferredSize(new Dimension(200, getHeight()));
-		content.add(bag.getComponent(), BorderLayout.EAST);
-		
 	}
 
 	public void cleanup() {
