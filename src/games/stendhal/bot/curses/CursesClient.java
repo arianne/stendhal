@@ -91,7 +91,9 @@ public class CursesClient {
         System.setProperty("jcurses.protocol.filename", "jcurses.log");
         Protocol.activateChannel(Protocol.DEBUG);
         Protocol.debug("startClient()");
-        clientWindow = new CursesWindow(0, 0, Toolkit.getScreenWidth(), Toolkit.getScreenHeight());
+        clientWindow = new CursesWindow(0, 0, 
+               Toolkit.getScreenWidth(), Toolkit.getScreenHeight(), 
+               character + " - Stendhal");
         clientWindow.show();
     }
     

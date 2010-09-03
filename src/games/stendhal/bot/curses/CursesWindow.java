@@ -44,9 +44,10 @@ public class CursesWindow extends Window implements ActionListener {
      * @param y y-position
      * @param width  width of the window
      * @param height height of the window
+     * @param title title of window
      */
-    public CursesWindow(int x, int y, int width, int height) {
-        super(x, y, width, height, true, "Stendhal");
+    public CursesWindow(int x, int y, int width, int height, String title) {
+        super(x, y, width, height, true, title);
         chatLog = new List();
         textField = new TextField();
         button = new Button("Send");
