@@ -13,6 +13,9 @@
 package games.stendhal.bot.curses;
 
 import games.stendhal.client.scripting.ChatLineParser;
+
+import java.util.StringTokenizer;
+
 import jcurses.event.ActionEvent;
 import jcurses.event.ActionListener;
 import jcurses.widgets.Button;
@@ -63,6 +66,7 @@ public class CursesWindow extends Window implements ActionListener {
         String line = textField.getText();
         textField.setText("");
         ChatLineParser.parseAndHandle(line);
+        this.repaint();
     }
 
     /**
@@ -71,6 +75,13 @@ public class CursesWindow extends Window implements ActionListener {
      * @param line line to add
      */
     public void addChatLine(String line) {
-        chatLog.add(line);
+        StringTokenizer st = new StringTokenizer(line, "\r\n");
+        while (st.hasMoreTokens()) {
+            String token = st.nextToken();
+            chatLog.add(token);
+        }
+        chatLog.select(chatLog.getItemsCount() - 1);
+        this.repaint();
+        chatLog.select(chatLog.getItemsCount() - 1);
     }
 }
