@@ -1,136 +1,115 @@
 package games.stendhal.bot.curses;
 
-import jcurses.event.ActionEvent;
-import jcurses.event.ActionListener;
-import jcurses.event.ItemEvent;
-import jcurses.event.ItemListener;
-import jcurses.event.ValueChangedEvent;
-import jcurses.event.ValueChangedListener;
-import jcurses.event.WindowEvent;
-import jcurses.event.WindowListener;
-import jcurses.system.CharColor;
+import games.stendhal.bot.core.StandardClientFramework;
+import games.stendhal.bot.textclient.InputReader;
+import games.stendhal.bot.textclient.TextClientFramework;
+import games.stendhal.server.util.StringUtils;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.SocketException;
+
 import jcurses.system.Toolkit;
-import jcurses.util.Message;
 import jcurses.util.Protocol;
-import jcurses.widgets.BorderPanel;
-import jcurses.widgets.Button;
-import jcurses.widgets.CheckBox;
-import jcurses.widgets.GridLayoutManager;
-import jcurses.widgets.Label;
-import jcurses.widgets.List;
-import jcurses.widgets.PasswordField;
-import jcurses.widgets.PopUpMenu;
-import jcurses.widgets.TextArea;
-import jcurses.widgets.Widget;
-import jcurses.widgets.WidgetsConstants;
-import jcurses.widgets.Window;
 
 
-public class CursesClient extends Window implements ItemListener, ActionListener, ValueChangedListener, WindowListener, WidgetsConstants {
+public class CursesClient {
+    private CursesWindow clientWindow;
+    String username = null;
+    String password = null;
+    String character = null;
+    String host = null;
+    String port = "32160";
+    boolean showWorld = false;
+    boolean createAccount = false;
+    
+    public void connect(final String[] args) {
+        try {
+            if (args.length > 0) {
+                int i = 0;
 
-    public static void main(String[] args) throws Exception {
-        //Protocol initialisieren
-        System.setProperty("jcurses.protocol.filename", "jcurses.log");
-        Protocol.activateChannel(Protocol.DEBUG);
-        Protocol.debug("Programm beginnt");
-        Window cursesClient = new CursesClient(Toolkit.getScreenWidth(), Toolkit.getScreenHeight() - 10);
-        cursesClient.addListener((WindowListener) cursesClient);
-        cursesClient.show();
+                while (i != args.length) {
+                    if (args[i].equals("-u")) {
+                        username = args[i + 1];
+                    } else if (args[i].equals("-p")) {
+                        password = args[i + 1];
+                    } else if (args[i].equals("-c")) {
+                        character = args[i + 1];
+                    } else if (args[i].equals("-h")) {
+                        host = args[i + 1];
+                    } else if (args[i].equals("-P")) {
+                        port = args[i + 1];
+                    } else if (args[i].equals("-W")) {
+                        if ("1".equals(args[i + 1])) {
+                            showWorld = true;
+                        }
+                    } else if (args[i].equals("-a")) {
+                        createAccount = true;
+                    }
+                    i++;
+                }
 
-        InputJCursesWindow input = new InputJCursesWindow(0, 0, Toolkit.getScreenWidth(), 5);
-        input.show();
-        //Toolkit.clearScreen(new CharColor(CharColor.BLUE, CharColor.BLUE, CharColor.REVERSE));
-    }
+                if (createAccount) {
+                    username = "testuser" + StringUtils.generateStringOfCharacters(10);
+                    password = username;
+                    character = username;
+                    System.out.println(username);
+                }
 
-    private CheckBox _c1 = null;
-    private CheckBox _c2 = null;
-    private Label _l1 = null;
-    private Label _l2 = null;
-    private Button _b1 = null;
-    private Button _b2 = null;
-    private List _list = null;
+                if ((username != null) 
+                        && (character != null) && (host != null)
+                        && (port != null)) {
+                    if (password == null) {
+                        System.out.print("Password: \u001B[37;47m");
+                        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                        password = br.readLine();
+                        System.out.print("\u001B[m");
+                        
+                    }
+                    System.out.println("Connecting");
 
-    private TextArea _textArea = new TextArea(-1, -1, "1111\n2222\n3333\n4444\n\n66666\n77777\n888888\n99999999999999999\n1010100101");
-    private PasswordField _pass = new PasswordField();
-
-    public CursesClient(int width, int height) {
-        super(0, 7, width, height, true, "cursesClient");
-
-        BorderPanel bp = new BorderPanel();
-
-        _c1 = new CheckBox();
-        _c2 = new CheckBox(true);
-        _l1 = new Label("textfeld");
-        _l2 = new Label("checkbox2");
-        _b1 = new Button("OK");
-        _b1.setShortCut('o');
-        _b1.addListener(this);
-        _b2 = new Button("Cancel");
-        _b2.setShortCut('p');
-        _b2.addListener(this);
-
-        _list = new List();
-        _list.add("item1");
-        _list.add("item201234567890123456789");
-        _list.add("item3");
-        _list.add("item4");
-        _list.add("item5");
-        _list.addListener(this);
-        _list.getSelectedItemColors().setColorAttribute(CharColor.BOLD);
-
-
-        GridLayoutManager manager1 = new GridLayoutManager(1, 1);
-        getRootPanel().setLayoutManager(manager1);
-        manager1.addWidget(bp, 0, 0, 1, 1, ALIGNMENT_CENTER, ALIGNMENT_CENTER);
-
-
-        GridLayoutManager manager = new GridLayoutManager(2, 5);
-        bp.setLayoutManager(manager);
-
-        //manager.addWidget(_l1,0,0,1,2,ALIGNMENT_CENTER, ALIGNMENT_CENTER);
-        manager.addWidget(_list, 0, 0, 1, 4, ALIGNMENT_TOP, ALIGNMENT_CENTER);
-        manager.addWidget(_textArea, 1, 0, 1, 2, ALIGNMENT_CENTER, ALIGNMENT_CENTER);
-        manager.addWidget(_pass, 1, 2, 1, 2, ALIGNMENT_CENTER, ALIGNMENT_CENTER);
-        manager.addWidget(_b1, 0, 4, 1, 1, ALIGNMENT_CENTER, ALIGNMENT_CENTER);
-        manager.addWidget(_b2, 1, 4, 1, 1, ALIGNMENT_CENTER, ALIGNMENT_CENTER);
-    }
-
-    public void actionPerformed(ActionEvent event) {
-        Widget w = event.getSource();
-
-        if (w == _b1) {
-        } else {
-            new Message("Meldung!", "01234567890\nassssssss\naaaaaaa\naaaaaa", "CANCEL").show();
-            PopUpMenu menu = new PopUpMenu(53, 5, "cursesClient");
-
-            for (int i = 1; i < 100; i++) {
-                if ((i == 35) || (i == 4)) {
-                    menu.addSeparator();
-                } else {
-                    menu.add("item" + i);
+                
+                    return;
                 }
             }
-            menu.show();
-            new Message("meldung", menu.getSelectedItem() + ":" + menu.getSelectedIndex(), "OK").show();
-        }
-        //close();
-    }
 
-    public void stateChanged(ItemEvent e) {
-        Protocol.debug("-----------------");
-        new Message("meldung", e.getItem() + ":" + e.getType(), "OK").show();
-    }
-
-
-    public void valueChanged(ValueChangedEvent e) {
-        new Message("Alarm", "Geändert in ", "" + _list.getSelectedIndex()).show();
-    }
-
-
-    public void windowChanged(WindowEvent event) {
-        Protocol.debug("window event: " + event.getType());
-        if (event.getType() == WindowEvent.CLOSING) {
-            event.getSourceWindow().close();
+            System.out.println("Stendhal CursesClient");
+            System.out.println();
+            System.out.println("  games.stendhal.bot.curses.CursesClient -u username -p pass -h host -P port -c character");
+            System.out.println();
+            System.out.println("Required parameters");
+            StandardClientFramework.printConnectionParameters();
+            System.out.println("Optional parameters");
+            System.out.println("* -W\tShow world content? 0 or 1");
+        } catch (final Exception e) {
+            e.printStackTrace();
+            System.exit(1);
         }
     }
+
+    public void startClient() throws Exception {
+        System.setProperty("jcurses.protocol.filename", "jcurses.log");
+        Protocol.activateChannel(Protocol.DEBUG);
+        Protocol.debug("startClient()");
+        clientWindow = new CursesWindow(0, 0, Toolkit.getScreenWidth(), Toolkit.getScreenHeight());
+        clientWindow.show();
+    }
+    
+    public void gameLoop() throws SocketException {
+        Protocol.debug("gameLoop()");
+        new CursesUI(clientWindow);
+        Protocol.debug("CursesUI initialized");
+        TextClientFramework client = new TextClientFramework(host, username, password, character, port, showWorld, createAccount);
+        Protocol.debug("TextClientFramework initialized");
+        client.script();
+        Protocol.debug("login script executed");
+    }
+
+    public static void main(String[] args) throws Exception {
+        CursesClient client = new CursesClient();
+        client.connect(args);
+        client.startClient();
+        client.gameLoop();
+    }
+
 }

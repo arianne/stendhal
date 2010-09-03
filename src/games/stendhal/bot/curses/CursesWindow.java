@@ -17,6 +17,7 @@ import jcurses.event.ActionEvent;
 import jcurses.event.ActionListener;
 import jcurses.widgets.Button;
 import jcurses.widgets.GridLayoutManager;
+import jcurses.widgets.List;
 import jcurses.widgets.TextField;
 import jcurses.widgets.WidgetsConstants;
 import jcurses.widgets.Window;
@@ -26,9 +27,10 @@ import jcurses.widgets.Window;
  *
  * @author hendrik
  */
-public class InputJCursesWindow extends Window implements ActionListener {
+public class CursesWindow extends Window implements ActionListener {
 
-    private TextField textArea;
+    private List chatLog;
+    private TextField textField;
     private Button button;
 
     /**
@@ -39,23 +41,36 @@ public class InputJCursesWindow extends Window implements ActionListener {
      * @param width  width of the window
      * @param height height of the window
      */
-    public InputJCursesWindow(int x, int y, int width, int height) {
-        super(x, y, width, height, true, "Input");
-        textArea = new TextField();
+    public CursesWindow(int x, int y, int width, int height) {
+        super(x, y, width, height, true, "Stendhal");
+        chatLog = new List();
+        textField = new TextField();
         button = new Button("Send");
         button.addListener(this);
 
-        GridLayoutManager manager = new GridLayoutManager(1, 2);
+        GridLayoutManager manager = new GridLayoutManager(1, 3);
         super.getRootPanel().setLayoutManager(manager);
-        manager.addWidget(textArea, 0, 0, 1, 1, WidgetsConstants.ALIGNMENT_CENTER, WidgetsConstants.ALIGNMENT_CENTER);
-        manager.addWidget(button, 0, 1, 1, 1, WidgetsConstants.ALIGNMENT_CENTER, WidgetsConstants.ALIGNMENT_CENTER);
+        manager.addWidget(chatLog, 0, 0, 1, 1, WidgetsConstants.ALIGNMENT_CENTER, WidgetsConstants.ALIGNMENT_CENTER);
+        manager.addWidget(textField, 0, 1, 1, 1, WidgetsConstants.ALIGNMENT_CENTER, WidgetsConstants.ALIGNMENT_CENTER);
+        manager.addWidget(button, 0, 2, 1, 1, WidgetsConstants.ALIGNMENT_CENTER, WidgetsConstants.ALIGNMENT_CENTER);
         
     }
 
-
+    /**
+     * handles the line typed by the user.
+     */
     public void actionPerformed(ActionEvent arg0) {
-        String line = textArea.getText();
-        textArea.setText("");
+        String line = textField.getText();
+        textField.setText("");
         ChatLineParser.parseAndHandle(line);
+    }
+
+    /**
+     * adds a line to the chatlog
+     *
+     * @param line line to add
+     */
+    public void addChatLine(String line) {
+        chatLog.add(line);
     }
 }
