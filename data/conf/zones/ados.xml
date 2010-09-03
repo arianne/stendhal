@@ -64,10 +64,10 @@
 
     <!-- wishing well-->
   <entity x="86" y="21">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable..WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
   </entity>
   <entity x="87" y="21">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable..WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
   </entity>
  </zone>
 
@@ -2626,7 +2626,7 @@ Southeast: Docks
 		</entity>
      
      <entity x="61" y="36">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable..FishSource">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
      	<parameter name="species">char</parameter>
     	</implementation>
   	 </entity>
@@ -2856,7 +2856,7 @@ Southeast: Docks
   </portal>
 
    <entity x="89" y="63">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable..FishSource">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
      	<parameter name="species">cod</parameter>
     	</implementation>
     </entity>
