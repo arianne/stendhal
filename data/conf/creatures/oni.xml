@@ -65,7 +65,7 @@
   
   <creature name="oni priest">
     <type class="oni" subclass="oni_priest" tileid="oni.png:2"/>
-    <description></description>
+    <description>You see a mysterious oni priest, uttering strange incantations.</description>
     <attributes>
       <atk value="547"/>
       <def value="76"/>

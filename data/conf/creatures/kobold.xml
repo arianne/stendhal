@@ -4,7 +4,7 @@
     
   <creature name="kobold">
     <type class="kobold" subclass="kobold" tileid="kobold.png:1"/>
-    <description>You see a kobold, people says that is a mythical spirit.</description>
+    <description>You see a kobold, people say that is a mythical spirit.</description>
     <attributes>
       <atk value="88"/>
       <def value="16"/>

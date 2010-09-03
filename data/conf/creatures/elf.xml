@@ -174,7 +174,7 @@
   
   <creature name="commander elf">
     <type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
-    <description></description>
+    <description>You see a busy commander elf. He has control over the army of elves.</description>
     <attributes>
       <atk value="285"/>
       <def value="102"/>
@@ -210,7 +210,7 @@
   
   <creature name="archmage elf">
     <type class="elf" subclass="archmage_elf" tileid="elf.png:1"/>
-    <description></description>
+    <description>You see an archmage elf. She is pretty.</description>
     <attributes>
       <atk value="256"/>
       <def value="87"/>

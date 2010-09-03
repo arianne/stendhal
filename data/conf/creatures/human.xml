@@ -40,7 +40,7 @@
 
   <creature name="risecia archer">
     <type class="human" subclass="risecia_archer" tileid="human.png:5"/>
-    <description>You see a risecia archer, just one of the warriors who want to protect his chief.</description>
+    <description>You see a risecia archer, just one of the warriors who wants to protect his chief.</description>
     <attributes>
       <atk value="159"/>
       <def value="38"/>
@@ -74,7 +74,7 @@
   
   <creature name="risecia swordsman">
     <type class="human" subclass="risecia_swordsman" tileid="human.png:7"/>
-    <description>You see a risecia swordsman, The blade of his sword will cut your head!</description>
+    <description>You see a risecia swordsman, the blade of his sword will cut your head!</description>
     <attributes>
       <atk value="194"/>
       <def value="27"/>
