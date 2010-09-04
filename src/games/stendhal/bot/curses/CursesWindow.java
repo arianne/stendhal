@@ -13,11 +13,9 @@
 package games.stendhal.bot.curses;
 
 import games.stendhal.client.scripting.ChatLineParser;
-
-import java.util.StringTokenizer;
-
 import jcurses.event.ActionEvent;
 import jcurses.event.ActionListener;
+import jcurses.system.CharColor;
 import jcurses.widgets.Button;
 import jcurses.widgets.GridLayoutManager;
 import jcurses.widgets.TextArea;
@@ -48,6 +46,7 @@ public class CursesWindow extends Window implements ActionListener {
     public CursesWindow(int x, int y, int width, int height, String title) {
         super(x, y, width, height, true, title);
         chatLog = new TextArea();
+        chatLog.setColors(new CharColor(CharColor.WHITE, CharColor.BLACK));
         textField = new TextField();
         button = new Button("Send");
         button.setShortCut('\n');
