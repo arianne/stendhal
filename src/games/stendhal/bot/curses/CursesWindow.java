@@ -51,6 +51,7 @@ public class CursesWindow extends Window implements ActionListener {
         chatLog = new List();
         textField = new TextField();
         button = new Button("Send");
+        button.setShortCut('\n');
         button.addListener(this);
 
         int innerHeight = height - 5;
