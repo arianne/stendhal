@@ -367,8 +367,16 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		int[] dim;
 		boolean[] violations = new boolean[numComponents]; 
 		int numViolations = 0;
-		int numSqueezable = numComponents;
 		
+		// Only visible components can be squeezed
+		int numVisible = 0;
+		for (Component c : parent.getComponents()) {
+			if (c.isVisible()) {
+				numVisible++;
+			}
+		}
+		
+		int numSqueezable;
 		/*
 		 * Start by trying to squeeze all, and then mark as
 		 * incompressible the components whose size would become
@@ -378,7 +386,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		do {
 			dim = new int[numComponents];
 
-			numSqueezable = numComponents;
+			numSqueezable = numVisible;
 			for (boolean b : violations) {
 				if (b) {
 					numSqueezable--;
