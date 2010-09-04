@@ -19,34 +19,31 @@ class AntidoteEater implements TurnListener {
 	}
 
 	public void onTurnReached(final int currentTurn) {
-		if (ref.get() == null) {
+		Player player = ref.get();
+		
+		if (player == null) {
 			return;
 		}
-		ref.get().removeImmunity();
-
+		player.removeImmunity();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (obj == null) {
-			return false;
-		}
 		if (obj instanceof AntidoteEater) {
 			final AntidoteEater other = (AntidoteEater) obj;
-			if (ref.get() == null) {
+			Player player = ref.get();
+			if (player == null) {
 				return other.ref.get() == null;
 			}
-			return ref.get().equals(other.ref.get());
-
+			
+			return player.equals(other.ref.get());
 		} else {
 			return false;
 		}
-
 	}
 
 	@Override
 	public int hashCode() {
-
 		return refName.hashCode();
 	}
 }
