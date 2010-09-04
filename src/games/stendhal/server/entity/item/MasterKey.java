@@ -18,9 +18,8 @@ public class MasterKey extends HouseKey {
 		setInfoString("any player's house;0;");
 	}
 	
-	
-	
 	// Open any door that can be opened with HouseKeys
+	@Override
 	public boolean matches(final String houseId, final int number) {
 		return true;
 	}
