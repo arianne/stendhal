@@ -13,6 +13,9 @@
 package games.stendhal.bot.curses;
 
 import games.stendhal.client.scripting.ChatLineParser;
+
+import java.util.StringTokenizer;
+
 import jcurses.event.ActionEvent;
 import jcurses.event.ActionListener;
 import jcurses.system.CharColor;
@@ -30,6 +33,7 @@ import jcurses.widgets.Window;
  */
 public class CursesWindow extends Window implements ActionListener {
 
+    private int windowWidth;
     private TextArea chatLog;
     private TextField textField;
     private Button button;
@@ -45,6 +49,7 @@ public class CursesWindow extends Window implements ActionListener {
      */
     public CursesWindow(int x, int y, int width, int height, String title) {
         super(x, y, width, height, true, title);
+        this.windowWidth = width;
         chatLog = new TextArea();
         chatLog.setColors(new CharColor(CharColor.WHITE, CharColor.BLACK));
         textField = new TextField();
@@ -77,8 +82,32 @@ public class CursesWindow extends Window implements ActionListener {
      * @param line line to add
      */
     public void addChatLine(String line) {
-        chatLog.setText(chatLog.getText() + System.getProperty("line.separator") + line);
+        chatLog.setText(chatLog.getText() + splitLines(line, windowWidth - 5));
         chatLog.setCursorLocation(0, Integer.MAX_VALUE);
         this.repaint();
+    }
+
+    /**
+     * wraps long lines so that they fit within "width" characters
+     *
+     * @param lines lines to split
+     * @param width maximum width
+     * @return split lines
+     */
+    private String splitLines(String lines, int width) {
+        String lineSeparator = System.getProperty("line.separator");
+        StringBuilder res = new StringBuilder();
+        StringTokenizer st = new StringTokenizer(lines, "\r\n");
+        while (st.hasMoreTokens()) {
+            String line = st.nextToken();
+            while (line.length() > width) {
+                res.append(line.substring(0, width));
+                res.append(lineSeparator);
+                line = line.substring(width);
+            }
+            res.append(line);
+            res.append(lineSeparator);
+        }
+        return res.toString();
     }
 }

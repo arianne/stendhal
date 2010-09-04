@@ -3,6 +3,7 @@ package games.stendhal.bot.curses;
 import games.stendhal.bot.core.StandardClientFramework;
 import games.stendhal.bot.textclient.InputReader;
 import games.stendhal.bot.textclient.TextClientFramework;
+import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.server.util.StringUtils;
 
 import java.io.BufferedReader;
@@ -109,6 +110,8 @@ public class CursesClient {
 
     public static void main(String[] args) throws Exception {
         CursesClient client = new CursesClient();
+        SlashActionRepository.register();
+        Protocol.debug("initialized SlashActionRepository");
         client.connect(args);
         client.startClient();
         client.gameLoop();
