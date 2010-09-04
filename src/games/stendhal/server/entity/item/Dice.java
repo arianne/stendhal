@@ -32,7 +32,7 @@ public class Dice extends Item {
 
 	public Dice(final Map<String, String> attributes) {
 		super("dice", "misc", "dice", attributes);
-		randomize(null);
+		randomize();
 	}
 
 	public Dice() {
@@ -47,7 +47,7 @@ public class Dice extends Item {
 	 */
 	public Dice(final Dice item) {
 		super(item);
-		randomize(null);
+		randomize();
 	}
 
 	public void setCroupierNPC(final CroupierNPC croupierNPC) {
@@ -75,11 +75,12 @@ public class Dice extends Item {
 		}
 	}
 
-	public int[] getTopFaces() {
-		return topFaces;
-	}
-
-	public String getTopFacesString() {
+	/**
+	 * Get a list of the top faces as a readable string.
+	 * 
+	 * @return list of top faces
+	 */
+	private String getTopFacesString() {
 		final List<String> topFacesStrings = new LinkedList<String>();
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
 			topFacesStrings.add(Integer.toString(topFaces[i]));
@@ -87,6 +88,11 @@ public class Dice extends Item {
 		return Grammar.enumerateCollection(topFacesStrings);
 	}
 
+	/**
+	 * Get the sum of the thrown dice.
+	 * 
+	 * @return sum of the set of dices
+	 */
 	public int getSum() {
 		int result = 0;
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
@@ -95,7 +101,10 @@ public class Dice extends Item {
 		return result;
 	}
 
-	private void randomize(final Player player) {
+	/**
+	 * Throw the dice.
+	 */
+	private void randomize() {
 		topFaces = new int[NUMBER_OF_DICE];
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
 			final int topFace = Rand.roll1D6();
@@ -106,7 +115,7 @@ public class Dice extends Item {
 	@Override
 	public void onPutOnGround(final Player player) {
 		super.onPutOnGround(player);
-		randomize(player);
+		randomize();
 		updateCroupierNPC();
 		if (croupierNPC != null) {
 			croupierNPC.onThrown(this, player);
