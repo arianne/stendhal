@@ -18,10 +18,9 @@ import java.util.StringTokenizer;
 
 import jcurses.event.ActionEvent;
 import jcurses.event.ActionListener;
-import jcurses.system.Toolkit;
 import jcurses.widgets.Button;
 import jcurses.widgets.GridLayoutManager;
-import jcurses.widgets.List;
+import jcurses.widgets.TextArea;
 import jcurses.widgets.TextField;
 import jcurses.widgets.WidgetsConstants;
 import jcurses.widgets.Window;
@@ -33,7 +32,7 @@ import jcurses.widgets.Window;
  */
 public class CursesWindow extends Window implements ActionListener {
 
-    private List chatLog;
+    private TextArea chatLog;
     private TextField textField;
     private Button button;
 
@@ -48,7 +47,7 @@ public class CursesWindow extends Window implements ActionListener {
      */
     public CursesWindow(int x, int y, int width, int height, String title) {
         super(x, y, width, height, true, title);
-        chatLog = new List();
+        chatLog = new TextArea();
         textField = new TextField();
         button = new Button("Send");
         button.setShortCut('\n');
@@ -79,13 +78,8 @@ public class CursesWindow extends Window implements ActionListener {
      * @param line line to add
      */
     public void addChatLine(String line) {
-        StringTokenizer st = new StringTokenizer(line, "\r\n");
-        while (st.hasMoreTokens()) {
-            String token = st.nextToken();
-            chatLog.add(token);
-        }
-        chatLog.select(chatLog.getItemsCount() - 1);
+        chatLog.setText(chatLog.getText() + System.getProperty("line.separator") + line);
+        chatLog.setCursorLocation(0, Integer.MAX_VALUE);
         this.repaint();
-        chatLog.select(chatLog.getItemsCount() - 1);
     }
 }
