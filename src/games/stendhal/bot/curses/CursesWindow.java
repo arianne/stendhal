@@ -48,7 +48,7 @@ public class CursesWindow extends Window implements ActionListener {
      * @param title title of window
      */
     public CursesWindow(int x, int y, int width, int height, String title) {
-        super(x, y, width, height, true, title);
+        super(x, y, width, height, false, title);
         this.windowWidth = width;
         chatLog = new TextArea();
         chatLog.setColors(new CharColor(CharColor.WHITE, CharColor.BLACK));
