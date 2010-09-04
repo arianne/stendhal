@@ -978,8 +978,6 @@ public class Player extends RPEntity {
 	 *            The name of the player who has logged in.
 	 */
 	public void notifyOnline(final String who) {
-		final String playerOnline = "_" + who;
-
 		boolean found = false;
 		if (containsKey("buddies", who)) {
 			put("buddies", who, true);
@@ -1001,8 +999,6 @@ public class Player extends RPEntity {
 	 *            The name of the player who has logged out.
 	 */
 	public void notifyOffline(final String who) {
-		final String playerOffline = "_" + who;
-
 		boolean found = false;
 		if (containsKey("buddies", who)) {
 			put("buddies", who, false);
