@@ -108,12 +108,24 @@ public class CursesClient {
         Protocol.debug("login script executed");
     }
 
+    /**
+     * starts the curses client
+     *
+     * @param args standard Stendhal command line parameters
+     * @throws Exception in case of an unexpected error
+     */
     public static void main(String[] args) throws Exception {
         CursesClient client = new CursesClient();
         SlashActionRepository.register();
         Protocol.debug("initialized SlashActionRepository");
         client.connect(args);
         client.startClient();
+
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                Toolkit.shutdown();
+            }
+        });
         client.gameLoop();
     }
 
