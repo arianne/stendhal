@@ -1,7 +1,6 @@
 package games.stendhal.bot.curses;
 
 import games.stendhal.bot.core.StandardClientFramework;
-import games.stendhal.bot.textclient.InputReader;
 import games.stendhal.bot.textclient.TextClientFramework;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.server.util.StringUtils;
