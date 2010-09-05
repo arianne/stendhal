@@ -9,11 +9,11 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 /**
- * Checks if player has visited certain zones
+ * Checks if player has visited certain zones in a region
  *  
  * @author madmetzger
  */
-public class PlayerVisitedZonesCondition implements ChatCondition {
+public class PlayerVisitedZonesInRegionCondition implements ChatCondition {
 
 	private final String region;
 	
@@ -31,7 +31,7 @@ public class PlayerVisitedZonesCondition implements ChatCondition {
 	 * @param aboveGround
 	 * @param accessible
 	 */
-	public PlayerVisitedZonesCondition(String region, Boolean exterior,
+	public PlayerVisitedZonesInRegionCondition(String region, Boolean exterior,
 			Boolean aboveGround, Boolean accessible) {
 		this.region = region;
 		this.exterior = exterior;
@@ -46,7 +46,7 @@ public class PlayerVisitedZonesCondition implements ChatCondition {
 	 * @param exterior 
 	 * @param aboveGround
 	 */
-	public PlayerVisitedZonesCondition(String region, Boolean exterior,
+	public PlayerVisitedZonesInRegionCondition(String region, Boolean exterior,
 			Boolean aboveGround) {
 		this(region, exterior, aboveGround, Boolean.TRUE);
 	}
