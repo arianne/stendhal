@@ -12,6 +12,7 @@ package games.stendhal.server.core.config;
 import games.stendhal.server.core.config.zone.ConfiguratorXMLReader;
 import games.stendhal.server.core.config.zone.EntitySetupXMLReader;
 import games.stendhal.server.core.config.zone.PortalSetupXMLReader;
+import games.stendhal.server.core.config.zone.RegionNameSubstitutionHelper;
 import games.stendhal.server.core.config.zone.SetupDescriptor;
 import games.stendhal.server.core.config.zone.SetupXMLReader;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -324,9 +325,7 @@ public class ZonesXMLLoader {
 			x = ZoneDesc.UNSET;
 			y = ZoneDesc.UNSET;
 		}
-		if (element.hasAttribute("region")) {
-			region = element.getAttribute("region");
-		}
+		region = parseRegionFromZone(name);
 
 		final ZoneDesc desc = new ZoneDesc(name, file, region, level, x, y);
 
@@ -382,6 +381,27 @@ public class ZonesXMLLoader {
 
 	//
 	//
+
+	/**
+	 * Extracts the region out of the given zone name
+	 * Basic zone name convention:
+	 * exteriors:
+	 * lvl_region_zonename_orientation (i.e. 0 or n1)
+	 * interiors:
+	 * int_region_zonename_number (number for houses)
+	 * @param name the name of the zone to parse
+	 */
+	private String parseRegionFromZone(String name) {
+		String[] split = name.split("_");
+		if(split != null) {
+			// standard exterior and interior zones have more than 3 parts 
+			if (split.length >= 3) {
+				return RegionNameSubstitutionHelper.get().replaceRegionName(split[1]);
+			}
+		}
+		//each zone that shouldn't be accounted as a region would be considered as "no region"
+		return RegionNameSubstitutionHelper.get().getDefaultRegion();
+	}
 
 	/*
 	 *  THIS REQUIRES StendhalRPWorld SETUP (i.e. marauroa.ini) XXX

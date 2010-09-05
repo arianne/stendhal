@@ -1,0 +1,54 @@
+package games.stendhal.server.core.config.zone;
+
+import java.util.HashMap;
+import java.util.Map;
+/**
+ * Helper class to substitute region names
+ * i.e. it should name "magic" to "magic city"
+ *  
+ * @author madmetzger
+ */
+public class RegionNameSubstitutionHelper {
+	
+	private static RegionNameSubstitutionHelper instance;
+	
+	private final Map<String, String> replacements = new HashMap<String, String>();
+	
+	private RegionNameSubstitutionHelper() {
+		replacements.put("magic", "magic city");
+		replacements.put("wofol", "wofol city");
+		replacements.put("sedah", "sedah city");
+		replacements.put("adventure", getDefaultRegion());
+		replacements.put("admin", getDefaultRegion());
+		replacements.put("hell", getDefaultRegion());
+		replacements.put("xxxx", getDefaultRegion());
+		replacements.put("testing", getDefaultRegion());
+	}
+	
+	public String replaceRegionName(String name) {
+		if(replacements.containsKey(name)) {
+			return replacements.get(name);
+		}
+		return name;
+	}
+	
+	/**
+	 * @return the name of the default region
+	 */
+	public String getDefaultRegion() {
+		return "no_region";
+	}
+
+	/**
+	 * Singleton access method
+	 * 
+	 * @return the singleton instance
+	 */
+	public static RegionNameSubstitutionHelper get() {
+		if(instance == null) {
+			instance = new RegionNameSubstitutionHelper(); 
+		}
+		return instance;
+	}
+
+}
