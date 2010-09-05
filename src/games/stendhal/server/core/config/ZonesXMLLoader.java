@@ -395,7 +395,7 @@ public class ZonesXMLLoader {
 		String[] split = name.split("_");
 		if(split != null) {
 			// standard exterior and interior zones have more than 3 parts 
-			if (split.length >= 3) {
+			if (split.length > 1) {
 				return RegionNameSubstitutionHelper.get().replaceRegionName(split[1]);
 			}
 		}
