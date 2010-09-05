@@ -23,6 +23,9 @@ public class RegionNameSubstitutionHelper {
 		replacements.put("hell", getDefaultRegion());
 		replacements.put("xxxx", getDefaultRegion());
 		replacements.put("testing", getDefaultRegion());
+		//TODO: remove when bug #3060003 is fixed
+		replacements.put("pillar", "semos");
+		replacements.put("plain", "semos");
 	}
 	
 	/**
