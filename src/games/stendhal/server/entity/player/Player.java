@@ -2004,6 +2004,11 @@ public class Player extends RPEntity {
 		AchievementNotifier.get().onLevelChange(this);
 	}
 	
+	/**
+	 * Adds the identifier of an achievement to the reached achievements
+	 * 
+	 * @param identifier
+	 */
 	public void addReachedAchievement(String identifier) {
 		getAchievements().add(identifier);
 	}
@@ -2012,8 +2017,22 @@ public class Player extends RPEntity {
 		return reachedAchievements;
 	}
 	
+	/**
+	 * Checks if a player has reached the achievement with the given identifier
+	 * 
+	 * @param identifier
+	 * @return true if player had reached the achievement with the given identifier
+	 */
 	public boolean hasReachedAchievement(String identifier) {
 		return getAchievements().contains(identifier);
+	}
+	/**
+	 * Checks if the player has visited the given zone
+	 * @param zone the zone to check for
+	 * @return true if player visited the zone
+	 */
+	public boolean hasVisitedZone(StendhalRPZone zone) {
+		return null != getKeyedSlot("!visited", zone.getName());
 	}
 	
 }
