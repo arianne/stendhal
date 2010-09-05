@@ -25,6 +25,12 @@ public class RegionNameSubstitutionHelper {
 		replacements.put("testing", getDefaultRegion());
 	}
 	
+	/**
+	 * Replaces the given zone name if configured. If no replacement is defined the original name is returned
+	 * 
+	 * @param name
+	 * @return the replaced name
+	 */
 	public String replaceRegionName(String name) {
 		if(replacements.containsKey(name)) {
 			return replacements.get(name);
