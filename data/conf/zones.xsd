@@ -24,7 +24,6 @@
 		<attribute name="y" type="int" use="optional" />
 		<attribute name="level" type="int" use="optional" />
 		<attribute name="file" type="string" use="required" />
-		<attribute name="region" type="string" use="optional" />
 	</complexType>
 
 	<complexType name="zones">
