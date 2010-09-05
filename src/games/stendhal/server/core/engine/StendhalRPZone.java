@@ -1352,6 +1352,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public void disallowOut(int x, int y, int width, int height) {
 		teleRules.disallowOut(x, y, width, height);
 	}
+	
+	public boolean isPublicAccessible() {
+		return true;
+	}
 
 	public void onRemoved() {
 		for (RPObject inspected : this) {

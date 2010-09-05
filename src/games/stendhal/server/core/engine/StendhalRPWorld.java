@@ -315,8 +315,8 @@ public class StendhalRPWorld extends RPWorld {
 
 	/**
 	 * Filter out exterior or interior zones from the given set
-	 * @param zonesInRegion
-	 * @param exterior
+	 * @param zonesInRegion the set to filter
+	 * @param exterior if true only exterior zones stay in the set
 	 */
 	private void filterOutInteriorOrExteriorZones(final Set<StendhalRPZone> zonesInRegion, final Boolean exterior) {
 		Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
@@ -325,14 +325,39 @@ public class StendhalRPWorld extends RPWorld {
 				removals.add(zone);
 			}
 		}
+		zonesInRegion.removeAll(removals);
 	}
 	
+	/**
+	 * Filter out zones above or below ground
+	 * 
+	 * @param zonesInRegion
+	 * @param aboveGround
+	 */
 	private void filterOutAboveOrBelowGround(final Set<StendhalRPZone> zonesInRegion, final Boolean aboveGround) {
-		
+		Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
+		for (StendhalRPZone zone : zonesInRegion) {
+			if(!(zone.getLevel()<0 ^ aboveGround.booleanValue())) {
+				removals.add(zone);
+			}
+		}
+		zonesInRegion.removeAll(removals);
 	}
 
 	private void filterByAccessibility(final Set<StendhalRPZone> zonesInRegion, final Boolean accessible) {
-		
+		Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
+		for (StendhalRPZone zone : zonesInRegion) {
+			boolean addToRemovals = false;
+			if(accessible.booleanValue()) {
+				addToRemovals = zone.isPublicAccessible();
+			} else {
+				addToRemovals = !zone.isPublicAccessible();
+			}
+			if (addToRemovals) {
+				removals.add(zone);
+			}
+		}
+		zonesInRegion.removeAll(removals);
 	}
 
 }
