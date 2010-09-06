@@ -166,9 +166,13 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 * for adjusting the internal parameters for the change. 
 	 */
 	private class CanvasResizeListener implements ComponentListener {
-		public void componentHidden(ComponentEvent e) {	}
+		public void componentHidden(ComponentEvent e) {
+			// do nothing
+		}
 
-		public void componentMoved(ComponentEvent e) { 	}
+		public void componentMoved(ComponentEvent e) {
+			// do nothing
+		}
 
 		public void componentResized(ComponentEvent e) {
 			sw = Math.min(getWidth(), stendhal.screenSize.width);
@@ -178,7 +182,9 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 			center();
 		}
 
-		public void componentShown(ComponentEvent e) { 	}
+		public void componentShown(ComponentEvent e) {
+			// do nothing
+		}
 	}
 
 	/**
@@ -459,8 +465,12 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		 * so if swing internals change some time in the future, a new solution
 		 * may be needed.
 		 */
-		if (!StendhalClient.get().isInBatchUpdate()) {
-			super.paintImmediately(x, y, w, h);
+		if (StendhalClient.get().tryAcquireDrawingSemaphore()) {
+			try {
+				super.paintImmediately(x, y, w, h);
+			} finally {
+				StendhalClient.get().releaseDrawingSemaphore();
+			}
 		}
 	}
 	

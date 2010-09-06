@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
 
 import javax.swing.JOptionPane;
 
@@ -95,7 +96,8 @@ public class StendhalClient extends ClientFramework {
 	/**
 	 * Whether the client is in a batch update.
 	 */
-	private volatile boolean batchUpdate;
+	private boolean inBatchUpdate = false;
+	private Semaphore drawingSemaphore = new Semaphore(1);
 
 	private final StendhalPerceptionListener stendhalPerceptionListener;
 
@@ -146,19 +148,6 @@ public class StendhalClient extends ClientFramework {
 
 	public GameObjects getGameObjects() {
 		return gameObjects;
-	}
-
-	
-
-	/**
-	 * Check if the client is in the middle of a batch update. A batch update
-	 * starts when a content transfer starts and end on the first perception
-	 * event.
-	 * 
-	 * @return <code>true</code> if in a batch update.
-	 */
-	public boolean isInBatchUpdate() {
-		return batchUpdate || contentToLoad > 0;
 	}
 
 	/**
@@ -233,14 +222,6 @@ public class StendhalClient extends ClientFramework {
 				logger.debug("message: " + message);
 			}
 
-			/*
-			 * End any batch updates if not transfering
-			 */
-			if (batchUpdate && !isInTransfer()) {
-				logger.debug("Batch update finished");
-				batchUpdate = false;
-			}
-
 			if (message.getPerceptionType() == Perception.SYNC) {
 				onBeforeSync(message.getRPZoneID().getID());
 			}
@@ -249,6 +230,11 @@ public class StendhalClient extends ClientFramework {
 		} catch (final Exception e) {
 			logger.error("error processing message " + message, e);
 		}
+
+		if (inBatchUpdate && (contentToLoad == 0)) {
+			inBatchUpdate = false;
+			drawingSemaphore.release();
+		}
 	}
 
 	@Override
@@ -256,7 +242,8 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * A batch update has begun
 		 */
-		batchUpdate = true;
+		drawingSemaphore.acquireUninterruptibly();
+		inBatchUpdate = true;
 		logger.debug("Batch update started");
 
 		/** We clean the game object container */
@@ -343,7 +330,6 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected void onTransfer(final List<TransferContent> items) {
-		batchUpdate = true;
 		for (final TransferContent item : items) {
 			try {
 				cache.store(item, item.data);
@@ -627,6 +613,14 @@ public class StendhalClient extends ClientFramework {
 			this.character = character;
 		}
 		return res;
+	}
+
+	public void releaseDrawingSemaphore() {
+		drawingSemaphore.release();
+	}
+
+	public boolean tryAcquireDrawingSemaphore() {
+		return drawingSemaphore.tryAcquire();
 	}
 
 	
