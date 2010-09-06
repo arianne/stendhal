@@ -75,14 +75,19 @@ class UseableEntity2DView extends Entity2DView {
 		int frames = imageWidth / IGameScreen.SIZE_UNIT_PIXELS / width;
 		
 		// Just use the normal sprite if there are no animation frames
+		int state = ((UseableEntity) entity).getState();
 		if (frames > 1) {
-			int state = ((UseableEntity) entity).getState();
 			sprite = store.getAnimatedSprite(sprite,
 					0, state * IGameScreen.SIZE_UNIT_PIXELS * height,
 					imageWidth / IGameScreen.SIZE_UNIT_PIXELS / width,
 					IGameScreen.SIZE_UNIT_PIXELS * width,
 					IGameScreen.SIZE_UNIT_PIXELS * height,
 					100);
+		} else {
+			sprite = store.getTile(sprite, 
+					0, state * IGameScreen.SIZE_UNIT_PIXELS * height, 
+					IGameScreen.SIZE_UNIT_PIXELS * width,
+					IGameScreen.SIZE_UNIT_PIXELS * height);
 		}
 
 		setSprite(sprite);

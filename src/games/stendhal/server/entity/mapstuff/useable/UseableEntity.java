@@ -31,6 +31,7 @@ public abstract class UseableEntity extends Entity implements UseListener {
 	public UseableEntity() {
 		setRPClass("useable_entity");
 		put("type", "useable_entity");
+		super.setSize(1, 1);
 	}
 
 	public static void generateRPClass() {
