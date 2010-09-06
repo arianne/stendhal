@@ -14,7 +14,9 @@ package games.stendhal.server.entity.slot;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Item;
 import marauroa.common.game.RPObject;
+
 
 /**
  * a pseudo slot which represents a location on the ground
@@ -23,6 +25,8 @@ import marauroa.common.game.RPObject;
  */
 public class GroundSlot extends EntitySlot {
 	private StendhalRPZone zone;
+	private int itemid;
+	private Item item;
 	private int x;
 	private int y;
 
@@ -37,6 +41,13 @@ public class GroundSlot extends EntitySlot {
 		this.zone = zone;
 		this.x = x;
 		this.y = y;
+	}
+
+	public GroundSlot(StendhalRPZone zone, Item item) {
+		this.zone = zone;
+		this.item = item;
+		this.x = item.getX();
+		this.y = item.getY();
 	}
 
 	@Override
@@ -58,5 +69,5 @@ public class GroundSlot extends EntitySlot {
 		return -1;
 	}
 
-	
+
 }

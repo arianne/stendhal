@@ -37,7 +37,7 @@ public class ItemIdentificationPath {
 	private StendhalRPZone zone;
 	private EntitySlot slot;
 	private Item item;
-	private int quantity = -1;
+	private int quantity = 0;
 
 
 	/**
@@ -58,6 +58,9 @@ public class ItemIdentificationPath {
 	public ItemIdentificationPath(RPAction action, boolean source) {
 		String zoneName = action.get("zoneid");
 		zone = SingletonRepository.getRPWorld().getZone(zoneName);
+		if (action.has("quantity)")) {
+			quantity = action.getInt("quantity");
+		}
 		if (source) {
 			fillBySource(action);
 		} else {
@@ -86,16 +89,62 @@ public class ItemIdentificationPath {
 	/**
 	 * gets the desired quantity
 	 *
-	 * @return quantity, or <code>-1/<code> if not specified
+	 * @return quantity, or <code>0/<code> if not specified
 	 */
 	public int getQuantity() {
 		return quantity;
 	}
 
+	/**
+	 * handles an item identifcation for a source
+	 *
+	 * @param action RPAction
+	 */
 	private void fillBySource(RPAction action) {
-		// TODO
+		if (action.has(EquipActionConsts.BASE_OBJECT)) {
+			fillBySlotSource(action);
+		} else if (action.has(EquipActionConsts.BASE_ITEM)) {
+			fillByGroundSource(action);
+		} else {
+			// TODO: zone, (objectid, slot)*, itemid
+			logger.warn("Source identification missing in " + action);
+		}
 	}
 
+	/**
+	 * handles source slots within objects
+	 *
+	 * @param action RPAction
+	 */
+	private void fillBySlotSource(final RPAction action) {
+		findSlotByObjectIdAndSlotName(
+				action,
+				EquipActionConsts.TARGET_OBJECT, 
+				EquipActionConsts.TARGET_SLOT);
+
+		RPObject.ID itemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), "");
+		item = (Item) slot.get(itemId);
+	}
+
+	/**
+	 * handles items on the ground
+	 *
+	 * @param action RPAction
+	 */
+	private void fillByGroundSource(RPAction action) {
+		int itemid = action.getInt(EquipActionConsts.BASE_ITEM);
+		Entity entity = (Entity) zone.get(new RPObject.ID(itemid, zone.getID()));
+		if (entity instanceof Item) {
+			item = (Item) entity;
+		}
+		slot = new GroundSlot(zone, item);
+	}
+
+	/**
+	 * handles an item identification for a target
+	 *
+	 * @param action RPAction
+	 */
 	private void fillByTarget(RPAction action) {
 		if (action.has(EquipActionConsts.TARGET_OBJECT)
 				&& action.has(EquipActionConsts.TARGET_SLOT)) {
@@ -112,23 +161,16 @@ public class ItemIdentificationPath {
 		}
 	}
 
+	/**
+	 * fill by a target slot in a target entity
+	 *
+	 * @param action RPAction
+	 */
 	private void fillBySlotTarget(RPAction action) {
-		// get base entity
-		int objectId = action.getInt(EquipActionConsts.TARGET_OBJECT);
-		RPObject.ID id = new RPObject.ID(objectId, zone.getID());
-		Entity parent = (Entity) zone.get(id);
-		if (parent == null) {
-			logger.warn("cannot find target entity for action " + action);
-			return;
-		}
-
-		// get slot
-		String slotName = action.get(EquipActionConsts.TARGET_SLOT);
-		if (!parent.hasSlot(slotName)) {
-			logger.warn("Parent doesn't have slot: " + action);
-			return;
-		}
-		slot = (EntitySlot) parent.getSlot(slotName);
+		findSlotByObjectIdAndSlotName(
+			action,
+			EquipActionConsts.TARGET_OBJECT, 
+			EquipActionConsts.TARGET_SLOT);
 	}
 
 	/**
@@ -140,5 +182,25 @@ public class ItemIdentificationPath {
 		int x = action.getInt(EquipActionConsts.GROUND_X);
 		int y = action.getInt(EquipActionConsts.GROUND_Y);
 		slot = new GroundSlot(zone, x, y);
+	}
+
+	private void findSlotByObjectIdAndSlotName(RPAction action, String attributeKeyForObject, String attributeKeyForSlot) {
+		// get base entity
+		int objectId = action.getInt(attributeKeyForObject);
+		RPObject.ID id = new RPObject.ID(objectId, zone.getID());
+		Entity parent = (Entity) zone.get(id);
+		if (parent == null) {
+			logger.warn("cannot find " + attributeKeyForObject + " for action " + action);
+			return;
+		}
+
+		// get slot
+		String slotName = action.get(attributeKeyForSlot);
+		if (!parent.hasSlot(slotName)) {
+			logger.warn("Parent doesn't have slot " + attributeKeyForSlot + " used in: " + action);
+			return;
+		}
+		slot = (EntitySlot) parent.getSlot(slotName);
+
 	}
 }
