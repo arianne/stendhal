@@ -264,6 +264,7 @@ public class j2DClient implements UserInterface {
 			}
 
 			public void focusLost(final FocusEvent e) {
+				// do nothing
 			}
 		});
 
@@ -517,24 +518,28 @@ public class j2DClient implements UserInterface {
 				logger.debug("Move objects");
 				gameObjects.update(delta);
 	
-				if (!client.isInBatchUpdate() && gameLayers.isAreaChanged()) {
-					/*
-					 * Update the screen
-					 */
-					screen.setMaxWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
-					screen.center();
+				if (gameLayers.isAreaChanged() && client.tryAcquireDrawingSemaphore()) {
+					try {
+						/*
+						 * Update the screen
+						 */
+						screen.setMaxWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
+						screen.center();
 	
-					// [Re]create the map
+						// [Re]create the map
 		
-					final CollisionDetection cd = gameLayers.getCollisionDetection();
-					final CollisionDetection pd = gameLayers.getProtectionDetection();
-					
-					if (cd != null) {
-						minimap.update(cd, pd,
-								screen.getGraphicsConfiguration(),
-								gameLayers.getArea());
-					} 
-					gameLayers.resetChangedArea();
+						final CollisionDetection cd = gameLayers.getCollisionDetection();
+						final CollisionDetection pd = gameLayers.getProtectionDetection();
+
+						if (cd != null) {
+							minimap.update(cd, pd,
+									screen.getGraphicsConfiguration(),
+									gameLayers.getArea());
+						} 
+						gameLayers.resetChangedArea();
+					} finally {
+						client.releaseDrawingSemaphore();
+					}
 				}
 	
 				final User user = User.get();
@@ -550,13 +555,16 @@ public class j2DClient implements UserInterface {
 						lastuser = user;
 					}
 				}
-	
-				if (!client.isInBatchUpdate()) {
-					if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
-						logger.debug("Draw screen");
-						screen.draw();
-						minimap.refresh();
-						containerPanel.repaintChildren();
+				if (client.tryAcquireDrawingSemaphore()) {
+					try {
+						if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
+							logger.debug("Draw screen");
+							screen.draw();
+							minimap.refresh();
+							containerPanel.repaintChildren();
+						}
+					} finally {
+						client.releaseDrawingSemaphore();
 					}
 				}
 	
@@ -1135,9 +1143,13 @@ public class j2DClient implements UserInterface {
 			this.splitPane = splitPane;
 		}
 		
-		public void componentHidden(ComponentEvent e) {	}
+		public void componentHidden(ComponentEvent e) {
+			// do nothing
+		}
 
-		public void componentMoved(ComponentEvent e) { 	}
+		public void componentMoved(ComponentEvent e) {
+			// do nothing
+		}
 
 		public void componentResized(ComponentEvent e) {
 			Dimension newSize = e.getComponent().getSize();
@@ -1154,7 +1166,9 @@ public class j2DClient implements UserInterface {
 			}
 		}
 
-		public void componentShown(ComponentEvent e) { 	}
+		public void componentShown(ComponentEvent e) {
+			// do nothing
+		}
 	}
 
 
