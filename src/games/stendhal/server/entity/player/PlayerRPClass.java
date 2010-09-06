@@ -114,6 +114,8 @@ public class PlayerRPClass {
 		// a GUI for the spells later on.
 		player.addRPSlot("spells", 9, Definition.PRIVATE);
 
+		player.addRPSlot("trade", 4);
+
 		// The guild name
 		player.addAttribute("guild", Type.STRING);
 

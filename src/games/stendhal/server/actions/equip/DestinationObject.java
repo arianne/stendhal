@@ -7,6 +7,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
@@ -102,7 +103,7 @@ class DestinationObject extends MoveableObject {
 		final StendhalRPZone zone = player.getZone();
 
 		if (parent != null) {
-			final RPSlot rpslot = parent.getSlot(slot);
+			final EntitySlot rpslot = (EntitySlot) parent.getSlot(slot);
 			if (!(rpslot instanceof EntitySlot)
 					|| (!((EntitySlot) rpslot).isReachableForTakingThingsOutOfBy(player))) {
 				logger.warn("Unreachable slot");
@@ -144,6 +145,14 @@ class DestinationObject extends MoveableObject {
 				logger.warn("tried to put item " + entity.getID()
 						+ " into itself, equip rejected");
 				return false;
+			}
+
+			if (entity instanceof Item) {
+				Item item = (Item) entity;
+				if (item.isBound() && rpslot.isTargetBoundCheckRequired()) {
+					player.sendPrivateText("You cannot put this special quest reward there because it can only be used by you.");
+					return false;
+				}
 			}
 
 		} else {

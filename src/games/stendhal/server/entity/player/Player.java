@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import static games.stendhal.common.constants.Actions.ADMINLEVEL;
+import static games.stendhal.common.constants.Actions.AWAY;
+import static games.stendhal.common.constants.Actions.GHOSTMODE;
+import static games.stendhal.common.constants.Actions.GRUMPY;
+import static games.stendhal.common.constants.Actions.INVISIBLE;
+import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 import games.stendhal.common.Constants;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
@@ -36,6 +42,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.item.Stackable;
+import games.stendhal.server.entity.player.PlayerTrade.TradeState;
 import games.stendhal.server.events.PrivateTextEvent;
 
 import java.util.ArrayList;
@@ -53,13 +60,6 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 
 import org.apache.log4j.Logger;
-
-import static games.stendhal.common.constants.Actions.ADMINLEVEL;
-import static games.stendhal.common.constants.Actions.AWAY;
-import static games.stendhal.common.constants.Actions.GHOSTMODE;
-import static games.stendhal.common.constants.Actions.GRUMPY;
-import static games.stendhal.common.constants.Actions.INVISIBLE;
-import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 
 public class Player extends RPEntity {
 	
@@ -112,6 +112,7 @@ public class Player extends RPEntity {
 
 	private final PlayerQuests quests = new PlayerQuests(this);
 	private final PlayerDieer  dieer  = new PlayerDieer(this);
+	private final PlayerTrade  trade  = new PlayerTrade(this);
 	private final KillRecording killRec = new KillRecording(this);
 	private final PetOwner petOwner = new PetOwner(this);
 
@@ -2034,5 +2035,41 @@ public class Player extends RPEntity {
 	public boolean hasVisitedZone(StendhalRPZone zone) {
 		return null != getKeyedSlot("!visited", zone.getName());
 	}
+
+	/**
+	 * gets the state of player to player trades
+	 *
+	 * @return TradeState
+	 */
+	protected TradeState getTradeState() {
+		return trade.getTradeState();
+	}
+
+	/**
+	 * gets the partner of a player to player trade
+	 *
+	 * @return name of partner or <code>null</code> if no trade is ongoing
+	 */
+	protected String getTradePartner() {
+		return trade.getPartnerName();
+	}
+
+	/**
+	 * starts a trade with this partner
+	 *
+	 * @param partner partner to trade with
+	 */
+	protected void startTrade(Player partner) {
+		trade.startTrade(partner);
+	}
+
+	/**
+	 * cancels a trade and moves the items back
+	 *
+	 * @param partnerName name of partner (to make sure the correct trade offer is canceled)
+	 */
+	protected void cancelTradeInternally(String partnerName) {
+		trade.cancelTradeInternally(partnerName);
+		}
 	
 }

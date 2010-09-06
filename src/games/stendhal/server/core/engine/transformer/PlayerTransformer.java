@@ -19,6 +19,7 @@ import games.stendhal.server.entity.slot.BankSlot;
 import games.stendhal.server.entity.slot.Banks;
 import games.stendhal.server.entity.slot.PlayerKeyringSlot;
 import games.stendhal.server.entity.slot.PlayerSlot;
+import games.stendhal.server.entity.slot.PlayerTradeSlot;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -136,6 +137,8 @@ public class PlayerTransformer implements Transformer {
 				final PlayerSlot newSlot;
 				if (slotName.equals("keyring")) {
 					newSlot = new PlayerKeyringSlot(slotName);
+				} else if (slotName.equals("trade")) {
+					newSlot = new PlayerTradeSlot(slotName);
 				} else {
 					newSlot = new PlayerSlot(slotName);
 				}
