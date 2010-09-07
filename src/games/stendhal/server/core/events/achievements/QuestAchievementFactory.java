@@ -17,32 +17,32 @@ public class QuestAchievementFactory extends AchievementFactory {
 	public Collection<Achievement> createAchievements() {
 		List<Achievement> questAchievements = new LinkedList<Achievement>();
 		//daily monster quest achievements
-		questAchievements.add(createAchievement("quest.special.dmq.10", "Semos' Protector", "Finish daily monster quest 10 times",
+		questAchievements.add(createAchievement("quest.special.daily.0010", "Semos' Protector", "Finish daily monster quest 10 times",
 												Achievement.EASY_BASE_SCORE, new QuestStateGreaterThanCondition("daily", 2, 9)));
-		questAchievements.add(createAchievement("quest.special.dmq.50", "Semos' Guardian", "Finish daily monster quest 50 times", 
+		questAchievements.add(createAchievement("quest.special.daily.0050", "Semos' Guardian", "Finish daily monster quest 50 times", 
 												Achievement.EASY_BASE_SCORE, new QuestStateGreaterThanCondition("daily", 2, 49)));
-		questAchievements.add(createAchievement("quest.special.dmq.100", "Semos' Hero", "Finish daily monster quest 100 times", 
+		questAchievements.add(createAchievement("quest.special.daily.0100", "Semos' Hero", "Finish daily monster quest 100 times", 
 												Achievement.MEDIUM_BASE_SCORE, new QuestStateGreaterThanCondition("daily", 2, 99)));
-		questAchievements.add(createAchievement("quest.special.dmq.250", "Semos' Champion", "Finish daily monster quest 250 times", 
+		questAchievements.add(createAchievement("quest.special.daily.0250", "Semos' Champion", "Finish daily monster quest 250 times", 
 												Achievement.MEDIUM_BASE_SCORE, new QuestStateGreaterThanCondition("daily", 2, 249)));
-		questAchievements.add(createAchievement("quest.special.dmq.500", "Semos' Vanquisher", "Finish daily monster quest 500 times", 
+		questAchievements.add(createAchievement("quest.special.daily.0500", "Semos' Vanquisher", "Finish daily monster quest 500 times", 
 												Achievement.HARD_BASE_SCORE, new QuestStateGreaterThanCondition("daily", 2, 499)));
 		//daily item quest achievements
-		questAchievements.add(createAchievement("quest.special.diq.10", "Ados' Supporter", "Finish daily item quest 10 times", 
+		questAchievements.add(createAchievement("quest.special.daily_item.0010", "Ados' Supporter", "Finish daily item quest 10 times", 
 												Achievement.EASY_BASE_SCORE, new QuestStateGreaterThanCondition("daily_item", 2, 9)));
-		questAchievements.add(createAchievement("quest.special.diq.50", "Ados' Provider", "Finish daily item quest 50 times", 
+		questAchievements.add(createAchievement("quest.special.daily_item.0050", "Ados' Provider", "Finish daily item quest 50 times", 
 												Achievement.EASY_BASE_SCORE, new QuestStateGreaterThanCondition("daily_item", 2, 49)));
-		questAchievements.add(createAchievement("quest.special.diq.100", "Ados' Supplier", "Finish daily item quest 100 times",
+		questAchievements.add(createAchievement("quest.special.daily_item.0100", "Ados' Supplier", "Finish daily item quest 100 times",
 												Achievement.MEDIUM_BASE_SCORE, new QuestStateGreaterThanCondition("daily_item", 2, 99)));
-		questAchievements.add(createAchievement("quest.special.diq.250", "Ados' Stockpiler", "Finish daily item quest 250 times", 
+		questAchievements.add(createAchievement("quest.special.daily_item.0250", "Ados' Stockpiler", "Finish daily item quest 250 times", 
 												Achievement.MEDIUM_BASE_SCORE, new QuestStateGreaterThanCondition("daily_item", 2, 249)));
-		questAchievements.add(createAchievement("quest.special.diq.500", "Ados' Hoarder", "Finish daily item quest 500 times", 
+		questAchievements.add(createAchievement("quest.special.daily_item.0500", "Ados' Hoarder", "Finish daily item quest 500 times", 
 												Achievement.HARD_BASE_SCORE, new QuestStateGreaterThanCondition("daily_item", 2, 499)));
 		//weekly item quest achievement
-		questAchievements.add(createAchievement("quest.special.wiq.5", "Archaeologist", "Finish weekly item quest 5 times", 
+		questAchievements.add(createAchievement("quest.special.weekly_item.0005", "Archaeologist", "Finish weekly item quest 5 times", 
 												Achievement.HARD_BASE_SCORE, new QuestStateGreaterThanCondition("weekly_item", 2, 4)));
 		//elf princess quest achievement
-		questAchievements.add(createAchievement("quest.special.rhosyd.25", "Faiumoni's Casanova", "Finish elf princess quest 25 times", 
+		questAchievements.add(createAchievement("quest.special.elf_princess.0025", "Faiumoni's Casanova", "Finish elf princess quest 25 times", 
 												Achievement.MEDIUM_BASE_SCORE, new QuestStateGreaterThanCondition("elf_princess", 2, 24)));
 		//ultimate collector quest achievement
 		questAchievements.add(createAchievement("quest.special.collector", "Ultimate Collector", "Finish ultimate collector quest", 
