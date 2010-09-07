@@ -117,7 +117,7 @@ public class UnblockTradeTable extends ScriptImpl implements TurnListener {
 		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		zone = world.getZone("int_semos_bank");
 		pathArea = new Area(zone, 32, 7, 35, 7);
-		tablePathArea = new Area(zone, 32, 2, 40, 8);
+		tablePathArea = new Area(zone, 35, 2, 40, 8);
 		TurnNotifier.get().notifyInSeconds(CHECK_INTERVAL, this);
 	}
 
