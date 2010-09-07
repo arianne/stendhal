@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Moves players away that spend to much time in an restricted area
- *
+ * 
  * @author hendrik
  */
 public class UnblockTradeTable extends ScriptImpl implements TurnListener {
@@ -33,88 +33,81 @@ public class UnblockTradeTable extends ScriptImpl implements TurnListener {
 	public void onTurnReached(int currentTurn) {
 		TurnNotifier.get().notifyInSeconds(CHECK_INTERVAL, this);
 		if (!isBlockSituation()) {
-		    cleanup();
-		    return;
+			cleanup();
+			return;
 		}
 
 		record();
 		if (shouldActionBeTaken()) {
-		    teleportAway();
-            cleanup();
-	    }
+			teleportAway();
+			cleanup();
+		}
 	}
 
-
 	private boolean isBlockSituation() {
-	    List<Player> playersOnPath = pathArea.getPlayers();
-	    List<Player> playersOnTablePath = tablePathArea.getPlayers();
+		List<Player> playersOnPath = pathArea.getPlayers();
+		List<Player> playersOnTablePath = tablePathArea.getPlayers();
 
-	    // is someone on a blocking spot?
-	    if (playersOnPath.isEmpty()) {
-	        return false;
-	    }
+		// is someone on a blocking spot?
+		if (playersOnPath.isEmpty()) {
+			return false;
+		}
 
-	    // are there two players around the table?
-        if (playersOnTablePath.size() == 2) {
-            return false;
-        }
+		// are there two players around the table?
+		if (playersOnTablePath.size() == 2) {
+			return false;
+		}
 
-        // is there no other player near the table?
-        Player bad = getBadPlayer();
-        playersOnTablePath.remove(bad);
-        if (playersOnTablePath.size() == 0) {
-            return true;
-        }
-        return false;
-    }
+		// is there no other player near the table?
+		Player bad = getBadPlayer();
+		playersOnTablePath.remove(bad);
+		if (playersOnTablePath.size() == 0) {
+			return true;
+		}
+		return false;
+	}
 
+	private void cleanup() {
+		player = null;
+		firstTurn = -1;
+	}
 
-    private void cleanup() {
-        player = null;
-        firstTurn = -1;
-    }
+	private void record() {
+		if (firstTurn < 0) {
+			firstTurn = TurnNotifier.get().getCurrentTurnForDebugging();
+			player = getBadPlayer();
+		}
+	}
 
+	private Player getBadPlayer() {
+		List<Player> playersOnPath = pathArea.getPlayers();
+		if (playersOnPath.isEmpty()) {
+			return null;
+		}
+		Player res = playersOnPath.get(0);
+		for (Player p : playersOnPath) {
+			if (p.getX() > res.getX()) {
+				res = p;
+			}
+		}
+		return res;
+	}
 
-    private void record() {
-        if (firstTurn < 0) {
-            firstTurn = TurnNotifier.get().getCurrentTurnForDebugging();
-            player = getBadPlayer();
-        }
-    }
+	private boolean shouldActionBeTaken() {
+		int currentTurn = TurnNotifier.get().getCurrentTurnForDebugging();
+		return ((firstTurn > -1) && (firstTurn + GRACE_PERIOD_IN_TURNS < currentTurn));
+	}
 
+	private void teleportAway() {
+		if (player != null) {
+			// at the top left corner of the table, one tile to the right
+			// So that the player cannot just run down, but close to the left
+			// because player tend to put items on the ground.
+			player.teleport(zone, 36, 2, Direction.DOWN, player);
+		}
+	}
 
-    private Player getBadPlayer() {
-        List<Player> playersOnPath = pathArea.getPlayers();
-        if (playersOnPath.isEmpty()) {
-            return null;
-        }
-        Player res = playersOnPath.get(0);
-        for (Player p : playersOnPath) {
-            if (p.getX() > res.getX()) {
-                res = p;
-            }
-        }
-        return res;
-    }
-
-
-    private boolean shouldActionBeTaken() {
-        int currentTurn = TurnNotifier.get().getCurrentTurnForDebugging();
-        return ((firstTurn > -1) && (firstTurn + GRACE_PERIOD_IN_TURNS < currentTurn)); 
-    }
-
-
-    private void teleportAway() {
-        if (player != null) {
-            // at the top left corner of the table, one tile to the right
-            // So that the player cannot just run down, but close to the left
-            // because player tend to put items on the ground.
-            player.teleport(zone, 36, 2, Direction.DOWN, player);
-        }
-    }
-
-
-    /**
+	/**
 	 * executes the script
 	 */
 	@Override
@@ -124,7 +117,7 @@ public class UnblockTradeTable extends ScriptImpl implements TurnListener {
 		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		zone = world.getZone("int_semos_bank");
 		pathArea = new Area(zone, 32, 7, 35, 7);
-        tablePathArea = new Area(zone, 32, 2, 40, 8);
+		tablePathArea = new Area(zone, 32, 2, 40, 8);
 		TurnNotifier.get().notifyInSeconds(CHECK_INTERVAL, this);
 	}
 
