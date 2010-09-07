@@ -240,7 +240,7 @@ public class AchievementNotifier {
 	 */
 	private void notifyPlayerAboutReachedAchievement(Player player,
 			Achievement achievement) {
-		player.sendPrivateText("Congratulations! You have reached the "+achievement.getTitle()+" achievement!");
+//		player.sendPrivateText("Congratulations! You have reached the "+achievement.getTitle()+" achievement!");
 	}
 
 	/**
