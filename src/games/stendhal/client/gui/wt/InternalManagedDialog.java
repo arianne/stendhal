@@ -14,7 +14,6 @@ import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.cursor.CursorRepository;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
-import games.stendhal.client.gui.wt.core.WtCloseListener;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.Color;
@@ -33,8 +32,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -66,11 +63,6 @@ public class InternalManagedDialog implements ManagedWindow {
 	 * The window content.
 	 */
 	private JComponent content;
-
-	/**
-	 * Listeners interesting in close notifications.
-	 */
-	private List<WtCloseListener> closeListeners;
 
 	/**
 	 * The simulated dialog.
@@ -136,7 +128,6 @@ public class InternalManagedDialog implements ManagedWindow {
 
 		minimized = false;
 		movable = true;
-		closeListeners = new LinkedList<WtCloseListener>();
 
 		/*
 		 * Heavy weight to work with AWT canvas
@@ -381,19 +372,6 @@ public class InternalManagedDialog implements ManagedWindow {
 	}
 
 	/**
-	 * Call all registered close listeners.
-	 */
-	private void fireCloseListeners() {
-		WtCloseListener[] listeners;
-
-		listeners = closeListeners.toArray(new WtCloseListener[closeListeners.size()]);
-
-		for (final WtCloseListener l : listeners) {
-			l.onClose(getName());
-		}
-	}
-
-	/**
 	 * Set the content component. For now, if the content wishes to resize the
 	 * dialog, it should set a client property named <code>size-change</code>
 	 * on itself.
@@ -512,26 +490,6 @@ public class InternalManagedDialog implements ManagedWindow {
 	}
 
 	/**
-	 * Register a close listener.
-	 * 
-	 * @param listener
-	 *            A close listener.
-	 */
-	public void registerCloseListener(final WtCloseListener listener) {
-		closeListeners.add(listener);
-	}
-
-	/**
-	 * Unregister a close listener.
-	 * 
-	 * @param listener
-	 *            A close listener.
-	 */
-	public void removeCloseListener(final WtCloseListener listener) {
-		closeListeners.remove(listener);
-	}
-
-	/**
 	 * Set whether the window is minimizable.
 	 * 
 	 * @param minimizable
@@ -598,13 +556,6 @@ public class InternalManagedDialog implements ManagedWindow {
 		 * Update saved state
 		 */
 		WtWindowManager.getInstance().setVisible(this, visible);
-
-		/*
-		 * Notify close listeners
-		 */
-		if (!visible) {
-			fireCloseListeners();
-		}
 	}
 
 	//

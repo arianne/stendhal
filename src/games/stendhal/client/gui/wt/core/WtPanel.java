@@ -131,9 +131,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** the parent of this panel. */
 	private WtPanel parent;
 
-	/** List of registered CloseListener. */
-	private List<WtCloseListener> closeListeners;
-
 	/** List of registered ClickListener. */
 	private List<WtClickListener> clickListeners;
 
@@ -178,7 +175,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.resizeable = false;
 		this.closeable = true;
 		this.closed = false;
-		this.closeListeners = new ArrayList<WtCloseListener>();
 		this.clickListeners = new ArrayList<WtClickListener>();
 		this.transparency = 1.0f;
 		this.gameScreen = gameScreen;
@@ -187,25 +183,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		texture =  WoodStyle.getInstance().getBackground();
-	}
-
-	/**
-	 * Adds a CloseListener to this panel. All registered closelistener are
-	 * notified before the panel is closed
-	 * 
-	 * @param listener
-	 */
-	public void registerCloseListener(final WtCloseListener listener) {
-		closeListeners.add(listener);
-	}
-
-	/**
-	 * removes a (registered) closelistener.
-	 * 
-	 * @param listener
-	 */
-	public void removeCloseListener(final WtCloseListener listener) {
-		closeListeners.remove(listener);
 	}
 
 	/**
@@ -628,7 +605,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		parent = null;
-		closeListeners.clear();
 		clickListeners.clear();
 	}
 
@@ -680,16 +656,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		closed = !visible;
-
-		if (closed) {
-			// inform all listeners we're closed
-			final WtCloseListener[] listeners = closeListeners
-					.toArray(new WtCloseListener[closeListeners.size()]);
-
-			for (final WtCloseListener listener : listeners) {
-				listener.onClose(name);
-			}
-		}
 
 		// tell the windowmanager we're changed (if we use it)
 		if (useWindowManager()) {

@@ -9,7 +9,6 @@ package games.stendhal.client.gui;
 //
 //
 
-import games.stendhal.client.gui.wt.core.WtCloseListener;
 
 /**
  * A managed window.
@@ -65,22 +64,6 @@ public interface ManagedWindow {
 	 * @return <code>true</code> if the move was allowed.
 	 */
 	boolean moveTo(int x, int y);
-
-	/**
-	 * Register a close listener.
-	 * 
-	 * @param listener
-	 *            A close listener.
-	 */
-	void registerCloseListener(WtCloseListener listener);
-
-	/**
-	 * Unregister a close listener.
-	 * 
-	 * @param listener
-	 *            A close listener.
-	 */
-	void removeCloseListener(WtCloseListener listener);
 
 	/**
 	 * Set the window as minimized.
