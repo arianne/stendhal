@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Elana, the life wizard of the Wizards Tower
  *
- * @see games.stendhal.server.maps.quests.WizardElanaPlainQuest
+ * see games.stendhal.server.maps.quests.WizardElanaPlainQuest
  */
 public class WhiteLifeSorceressNPC implements ZoneConfigurator {
 

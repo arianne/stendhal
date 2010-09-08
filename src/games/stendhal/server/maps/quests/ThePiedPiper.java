@@ -99,7 +99,7 @@ import org.apache.log4j.Logger;
     /**
      * 
      * @param ph
-     * @return
+     * @return phase index
      */
     protected static int getPhaseIndex(TPP_Phase ph) {
     	for (int i=0; i<getPhases().size(); i++) {
@@ -115,7 +115,7 @@ import org.apache.log4j.Logger;
     /**
      * return next available quest phase
      * @param ph - 
-     * @return
+     * @return next phase
      */
     protected static TPP_Phase getNextPhase(TPP_Phase ph) {
     	int pos=getPhaseIndex(ph);
@@ -128,7 +128,7 @@ import org.apache.log4j.Logger;
     /**
      * return next instance of quest phases classes from list
      * @param ph
-     * @return
+     * @return next phase class
      */
     protected static ITPPQuest getNextPhaseClass(TPP_Phase ph) {
 		return getPhases().get(getPhaseIndex(getNextPhase(ph)));    	
@@ -137,7 +137,7 @@ import org.apache.log4j.Logger;
     /**
      * return instance of quest phases classes
      * @param ph
-     * @return
+     * @return phase class
      */
     protected static ITPPQuest getPhaseClass(TPP_Phase ph) {
     	/*
@@ -150,7 +150,7 @@ import org.apache.log4j.Logger;
     
     /**
      * function return default phase class
-     * @return
+     * @return default phase class
      */
     public static ITPPQuest getDefaultPhaseClass() {
     	return getPhases().get(getPhaseIndex(INACTIVE));

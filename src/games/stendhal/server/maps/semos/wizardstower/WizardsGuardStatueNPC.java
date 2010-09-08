@@ -11,7 +11,7 @@ import java.util.Map;
  * Zekiel, the guardian statue of the Wizards Tower (Zekiel in the basement)
  *
  * @see games.stendhal.server.maps.quests.ZekielsPracticalTestQuest
- * @see games.stendhal.server.maps.semos.WizardsGuardStatueSpireNPC
+ * @see games.stendhal.server.maps.semos.wizardstower.WizardsGuardStatueSpireNPC
  */
 public class WizardsGuardStatueNPC implements ZoneConfigurator {
 

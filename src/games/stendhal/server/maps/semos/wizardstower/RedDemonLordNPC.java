@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Xaruhwaiyz, the demon lord
  *
- * @see games.stendhal.server.maps.quests.WizardMalleusPlainQuest
+ * see games.stendhal.server.maps.quests.WizardMalleusPlainQuest
  */
 public class RedDemonLordNPC implements ZoneConfigurator {
 

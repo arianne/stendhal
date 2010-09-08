@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Ravashack, the death wizard of the Wizards Tower
  *
- * @see games.stendhal.server.maps.quests.WizardRavashackPlainQuest
+ * see games.stendhal.server.maps.quests.WizardRavashackPlainQuest
  */
 public class BlackDeathWizardNPC implements ZoneConfigurator {
 

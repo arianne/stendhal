@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Malleus, the fire wizard of the Wizards Tower
  *
- * @see games.stendhal.server.maps.quests.WizardMalleusPlainQuest
+ * see games.stendhal.server.maps.quests.WizardMalleusPlainQuest
  */
 public class RedFireWizardNPC implements ZoneConfigurator {
 

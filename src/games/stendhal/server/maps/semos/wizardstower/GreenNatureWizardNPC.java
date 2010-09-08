@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Silvanus, the nature wizard of the Wizards Tower
  *
- * @see games.stendhal.server.maps.quests.WizardSilvanusPlainQuest
+ * see games.stendhal.server.maps.quests.WizardSilvanusPlainQuest
  */
 public class GreenNatureWizardNPC implements ZoneConfigurator {
 

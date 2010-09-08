@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Erastus, the archmage of the Wizards Tower
  *
- * @see games.stendhal.server.maps.quests.ArchmageErastusQuest
+ * see games.stendhal.server.maps.quests.ArchmageErastusQuest
  */
 public class BlueArchmageNPC implements ZoneConfigurator {
 

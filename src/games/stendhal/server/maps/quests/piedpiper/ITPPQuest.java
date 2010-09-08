@@ -16,25 +16,25 @@ public interface ITPPQuest extends ITPPQuestConstants {
 	
 	/**
 	 * function return shout message when quest going to next phase 
-	 * @return
+	 * @return next phase message
 	 */
 	String getSwitchingToNextPhaseMessage();
 	
 	/**
 	 * function return shout message when quest going to default phase
-	 * @return
+	 * @return default phase message
 	 */
 	String getSwitchingToDefPhaseMessage();
 	
 	/**
 	 * return minimal timeout period for quest phase
-	 * @return
+	 * @return minimum timeout
 	 */
 	int getMinTimeOut();
 	
 	/**
 	 * return maximal timeout period for quest phase
-	 * @return
+	 * @return maximum timeout
 	 */
 	int getMaxTimeOut();
 	

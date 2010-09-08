@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Cassandra, the ice sorceress of the Wizards Tower
  *
- * @see games.stendhal.server.maps.quests.SorceressCassandraPlainQuest
+ * see games.stendhal.server.maps.quests.SorceressCassandraPlainQuest
  */
 public class BlueIceSorceressNPC implements ZoneConfigurator {
 

@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Jaer, the air wizard of the Wizards Tower
  *
- * @see games.stendhal.server.maps.quests.WizardJaerPlainQuest
+ * see games.stendhal.server.maps.quests.WizardJaerPlainQuest
  */
 public class OrientalAirWizardNPC implements ZoneConfigurator {
 

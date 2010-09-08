@@ -91,7 +91,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	
 	/**
 	 * function return current entity's path.
-	 * @return
+	 * @return path
 	 */
 	public FixedPath getPath() {
 		return guide.path;

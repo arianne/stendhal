@@ -10,8 +10,8 @@ public class AwaitingPhase extends TPPQuest {
 
 	/**
 	 * constructor
-	 * @param minTime ,
-	 * @param maxTime - a pair of time parameters for phase timeout
+	 * @param timings 
+	 * - a pair of time parameters for phase timeout
 	 */
 	public AwaitingPhase(Map<String, Integer> timings) {
 		super(timings);
