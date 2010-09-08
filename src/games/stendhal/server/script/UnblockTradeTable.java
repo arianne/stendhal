@@ -1,6 +1,7 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -12,6 +13,8 @@ import games.stendhal.server.util.Area;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * Moves players away that spend to much time in an restricted area
  * 
@@ -21,6 +24,8 @@ public class UnblockTradeTable extends ScriptImpl implements TurnListener {
 	private static final int CHECK_INTERVAL = 10;
 	private static final int GRACE_PERIOD_IN_TURNS = 200;
 
+	private static Logger logger = Logger.getLogger(UnblockTradeTable.class);
+	
 	private StendhalRPZone zone;
 	private Area pathArea;
 	private Area tablePathArea;
@@ -103,7 +108,10 @@ public class UnblockTradeTable extends ScriptImpl implements TurnListener {
 			// at the top left corner of the table, one tile to the right
 			// So that the player cannot just run down, but close to the left
 			// because player tend to put items on the ground.
+			logger.info("Teleported " + player.getName()
+					+ " away from trading table coordinates " + player.getX() + "," + player.getY());
 			player.teleport(zone, 36, 2, Direction.DOWN, player);
+			new GameEvent("trade table", "teleport", player.getName(), zone.getName(), "36", "2").raise();
 		}
 	}
 
