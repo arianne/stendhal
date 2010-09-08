@@ -5,6 +5,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -134,12 +135,12 @@ public class Blackjack extends AbstractQuest {
 	/**
 	 * Deals <i>number</i> cards to the player, if the player is not standing,
 	 * and to the bank, if the bank is not standing.
-	 * @param player 
+	 * @param rpEntity 
 	 *
 	 * @param number
 	 *            The number of cards that each player should draw.
 	 */
-	private void dealCards(final Player player, final int number) {
+	private void dealCards(final RPEntity rpEntity, final int number) {
 		StringBuffer messagebuf = new StringBuffer();
 		messagebuf.append("\n");
 		int playerSum = sumValues(playerCards);
@@ -184,7 +185,7 @@ public class Blackjack extends AbstractQuest {
 				messagebuf.append("The bank stands.\n");
 			}
 		}
-		final String message2 = analyze(player);
+		final String message2 = analyze(rpEntity);
 		if (message2 != null) {
 			messagebuf.append(message2);
 		}
@@ -192,32 +193,32 @@ public class Blackjack extends AbstractQuest {
 	}
 
 	/**
-	 * @param player 
+	 * @param rpEntity 
 	 * @return The text that the dealer should say, or null if he shouldn't say
 	 *         anything.
 	 */
-	private String analyze(final Player player) {
+	private String analyze(final RPEntity rpEntity) {
 		final int playerSum = sumValues(playerCards);
 		final int bankSum = sumValues(bankCards);
 		String message = null;
 		if (isBlackjack(bankCards) && isBlackjack(playerCards)) {
 			message = "You have a blackjack, but the bank has one too. It's a push. ";
-			message += payOff(player, 1);
+			message += payOff(rpEntity, 1);
 		} else if (isBlackjack(bankCards)) {
 			message = "The bank has a blackjack. Better luck next time!";
 		} else if (isBlackjack(playerCards)) {
 			message = "You have a blackjack! Congratulations! ";
-			message += payOff(player, 3);
+			message += payOff(rpEntity, 3);
 		} else if (playerSum > 21) {
 			if (bankSum > 21) {
 				message = "Both have busted! This is a draw. ";
-				message += payOff(player, 1);
+				message += payOff(rpEntity, 1);
 			} else {
 				message = "You have busted! Better luck next time!";
 			}
 		} else if (bankSum > 21) {
 			message = "The bank has busted! Congratulations! ";
-			message += payOff(player, 2);
+			message += payOff(rpEntity, 2);
 		} else {
 			if (!playerStands) {
 				message = "Do you want another card?";
@@ -228,10 +229,10 @@ public class Blackjack extends AbstractQuest {
 				message = "The bank has won. Better luck next time!";
 			} else if (bankSum == playerSum) {
 				message = "This is a draw. ";
-				message += payOff(player, 1);
+				message += payOff(rpEntity, 1);
 			} else {
 				message = "You have won. Congratulations! ";
-				message += payOff(player, 2);
+				message += payOff(rpEntity, 2);
 			}
 		}
 		return message;
@@ -254,17 +255,17 @@ public class Blackjack extends AbstractQuest {
 	/**
 	 * Gives the player <i>factor</i> times his stake.
 	 *
-	 * @param player
+	 * @param rpEntity
 	 *            The player.
 	 * @param factor
 	 *            The multiplier. 1 for draw, 2 for win, 3 for win with
 	 *            blackjack.
 	 * @return A message that the NPC should say to inform the player.
 	 */
-	private String payOff(final Player player, final int factor) {
+	private String payOff(final RPEntity rpEntity, final int factor) {
 		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
 		money.setQuantity(factor * stake);
-		player.equipOrPutOnGround(money);
+		rpEntity.equipOrPutOnGround(money);
 		if (factor == 1) {
 			return "You get your stake back.";
 		} else {
