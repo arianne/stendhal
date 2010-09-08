@@ -626,23 +626,23 @@ below average.
 			<destination zone="int_nalwor_tower_5" ref="upstairs" />
 		</portal>
 	</zone>
-	<zone name="int_0_nalwor_city_house_67" file="interiors/abstract/house_000.tmx">
+	<zone name="int_nalwor_house_67" file="interiors/abstract/house_000.tmx">
 		<portal x="7" y="14" ref="entrance">
 			<destination zone="0_nalwor_city" ref="house_67_entrance" />
 		</portal>
 	</zone>
-	<zone name="int_0_nalwor_city_house_68" file="interiors/abstract/house_000.tmx">
+	<zone name="int_nalwor_house_68" file="interiors/abstract/house_000.tmx">
 		<portal x="7" y="14" ref="entrance">
 			<destination zone="0_nalwor_city" ref="house_68_entrance" />
 		</portal>
 	</zone>
-	<zone name="int_0_nalwor_city_house_69" file="interiors/abstract/house_000.tmx">
+	<zone name="int_0_nalwor_house_69" file="interiors/abstract/house_000.tmx">
 		<portal x="7" y="14" ref="entrance">
 			<destination zone="0_nalwor_city" ref="house_69_entrance" />
 		</portal>
 	</zone>
 
-	<zone name="int_0_nalwor_city_house_70" file="interiors/abstract/house_000.tmx">
+	<zone name="int_nalwor_house_70" file="interiors/abstract/house_000.tmx">
 		<portal x="7" y="14" ref="entrance">
 			<destination zone="0_nalwor_city" ref="house_70_entrance" />
 		</portal>
