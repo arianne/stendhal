@@ -2287,19 +2287,19 @@ Holy mackerel! These chips are tasty.
 			<destination zone="int_semos_swanky_pad" ref="entrance" />
 		</portal>
 
-		<entity x="31" y="51">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, water-3, wave-11</parameter>
-				<parameter name="min">30</parameter>
-				<parameter name="max">60</parameter>
-				<parameter name="radius">10</parameter>
+		<entity x="27" y="50">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">water-5</parameter>
+				<parameter name="radius">20</parameter>
+				<parameter name="volume">80</parameter>
 			</implementation>
 		</entity>
 
 		<entity x="47" y="48">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-				<parameter name="sound">water-4</parameter>
-				<parameter name="radius">6</parameter>
+				<parameter name="sound">water-5</parameter>
+				<parameter name="radius">20</parameter>
+				<parameter name="volume">80</parameter>
 			</implementation>
 		</entity>
 
