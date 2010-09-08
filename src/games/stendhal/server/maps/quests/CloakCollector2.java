@@ -262,7 +262,6 @@ public class CloakCollector2 extends AbstractQuest {
 
 								if (missing.isEmpty()) {
 									rewardPlayer(player);
-									// TODO: Make speech mention scent reward if applicable.
 									entity.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Here, take these killer boots. I think they're gorgeous but they don't fit me!");
 									player.setQuest(QUEST_SLOT, "done;rewarded");
 									final Item boots = SingletonRepository.getEntityManager().getItem("killer boots");
@@ -339,12 +338,6 @@ public class CloakCollector2 extends AbstractQuest {
 				false);
 	}
 	private static void rewardPlayer(final Player player) {
-	    //  TODO: Once scent is done, add this as reward. Note it might be stackable, so check! 
-	    //	Item scent = StendhalRPWorld.get()
-	    //			.getRuleManager()
-	    //			.getEntityManager().getItem("scent");
-	    //	scent.setBoundTo(player.getName());
-	    //	player.equip(scent, true);
 		player.addKarma(100.0);
 		player.addXP(100000);
       	}
