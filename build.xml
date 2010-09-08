@@ -160,7 +160,6 @@
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="libs/pircbot.jar"/>
-
 			</classpath>
 
 		</javac>
@@ -461,7 +460,7 @@
 
 	</target>
 
-	<target name="docs" depends="server_build, client_build" description="Build javadocs for fixedStendhal">
+	<target name="docs" description="Build javadocs for fixedStendhal">
 		<javadoc packagenames="games.stendhal.*"
 		   defaultexcludes="yes"
 		   destdir="${docs}"
@@ -469,11 +468,24 @@
 		   encoding="UTF-8"
 		   version="true"
 		   use="true"
-		   classpath="${classpath}"
 		   windowtitle="Stendhal API Documentation Version: ${version}">
 			<fileset dir="${src}">
 				<include name="**/*.java"/>
 			</fileset>
+			<classpath>
+				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${groovy_jar}"/>
+				<pathelement path="${marauroa_jar}"/>
+				<pathelement path="${jorbis_jar}"/>
+				<pathelement path="${junit_jar}"/>
+				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${simple_jar}"/>
+				<pathelement path="${swinglayout_jar}"/>
+				<pathelement path="${tiled_jar}"/>
+				<pathelement path="libs/ant.jar"/>
+				<pathelement path="libs/jcurses.jar"/>
+				<pathelement path="libs/pircbot.jar"/>
+			</classpath>
 		</javadoc>
 	</target>
 
@@ -857,20 +869,6 @@
 				<include name="TEST-*.xml"/>
 			</fileset>
 		</delete>
-	</target>
-
-	<target name="java_doc" description="Build javadoc">
-		<javadoc packagenames="games.*"
-			sourcepath="src"
-			defaultexcludes="yes"
-			destdir="api"
-			author="true"
-	        version="true"
-	        use="true"
-	        windowtitle="Stendhal API"
-	        encoding="UTF-8">
-
-		</javadoc>
 	</target>
 
 	<target name="checkxml" description="Verify XML files are well-formed">
