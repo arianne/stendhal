@@ -314,7 +314,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "done"), 
 				ConversationStates.ATTENDING,
-				"Oh! I didnt' reward you for helping me again! Here, take this boots. I think they're gorgeous but they don't fit me :(", 
+				"Oh! I didn't reward you for helping me again! Here, take these boots. I think they're gorgeous but they don't fit me :(", 
 				new MultipleActions(new EquipItemAction("killer boots", 1, true), new SetQuestAction(QUEST_SLOT, "done;rewarded")));
 	
 		//		 player returns after finishing the quest and was rewarded

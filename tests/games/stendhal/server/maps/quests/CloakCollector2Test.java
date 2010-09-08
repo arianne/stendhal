@@ -226,7 +226,7 @@ public class CloakCollector2Test {
 		player.setQuest(QUEST_NAME, "done");
 		
 		en.stepTest(player, ConversationPhrases.GREETING_MESSAGES.get(0));
-		assertEquals("Message for the compatibility hack",  "Oh! I didnt' reward you for helping me again! Here, take this boots. I think they're gorgeous but they don't fit me :(", getReply(npc));
+		assertEquals("Message for the compatibility hack",  "Oh! I didn't reward you for helping me again! Here, take these boots. I think they're gorgeous but they don't fit me :(", getReply(npc));
 		assertEquals("done;rewarded", player.getQuest(QUEST_NAME));
 		assertTrue("The player got the boots", player.isEquipped("killer boots"));
 		
