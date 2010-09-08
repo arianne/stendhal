@@ -2,6 +2,7 @@ package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
 import games.stendhal.server.entity.npc.condition.EmoteCondition;
@@ -136,7 +137,7 @@ public class SpeakerNPC extends NPC {
 	 * The player who is currently talking to the NPC, or null if the NPC is
 	 * currently not taking part in a conversation.
 	 */
-	private Player attending;
+	private RPEntity attending;
 
 	/**
 	 * alternative image for website
@@ -173,10 +174,15 @@ public class SpeakerNPC extends NPC {
 	/**
 	 * Is called when the NPC stops chatting with a player. Override it if
 	 * needed.
-	 * @param player who has been talked to.
+	 * @param attending2 who has been talked to.
 	 */
-	protected void onGoodbye(final Player player) {
+	protected void onGoodbye(final RPEntity attending2) {
 		// do nothing
+	}
+	
+	protected void onGoodbye(final Player attending2) {
+		// do nothing
+		onGoodbye((RPEntity) attending2);
 	}
 
 	/**
@@ -253,7 +259,7 @@ public class SpeakerNPC extends NPC {
 	 *
 	 * @return Player
 	 */
-	public Player getAttending() {
+	public RPEntity getAttending() {
 		return attending;
 	}
 
@@ -264,7 +270,7 @@ public class SpeakerNPC extends NPC {
 	 * @param player
 	 *            the player with whom the NPC should be talking.
 	 */
-	public void setAttending(final Player player) {
+	public void setAttending(final RPEntity player) {
 		attending = player;
 
 		if (player != null) {
@@ -327,7 +333,7 @@ public class SpeakerNPC extends NPC {
 		} else if (attending != null) {
 			// If the player is too far away
 			if ((attending.squaredDistance(this) > 8 * 8)
-					|| attending.isDisconnected()
+					|| ((attending instanceof Player) && (((Player) attending).isDisconnected()))
 			// or if the player fell asleep ;)
 					|| (SingletonRepository.getRuleProcessor().getTurn()
 							- lastMessageTurn > playerChatTimeout)) {
