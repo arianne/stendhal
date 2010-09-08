@@ -25,7 +25,6 @@ import games.stendhal.server.entity.player.Player;
  * 
  * REPETITIONS: - None
  * 
- * TODO: make it possible to repeat the quest if the player said "no"
  */
 public class MeetMonogenes extends AbstractQuest {
 	@Override
