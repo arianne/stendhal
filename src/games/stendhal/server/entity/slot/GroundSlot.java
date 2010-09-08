@@ -43,6 +43,11 @@ public class GroundSlot extends EntitySlot {
 		this.y = y;
 	}
 
+	/**
+	 * creates a new GroundSlot with an item.
+	 * @param zone zone
+	 * @param item item on the ground
+	 */
 	public GroundSlot(StendhalRPZone zone, Item item) {
 		this.zone = zone;
 		this.item = item;
