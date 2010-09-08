@@ -353,42 +353,35 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	static void readAdminsFromFile(final Player player) {
 		if (adminNames == null) {
-			adminNames = new LinkedList<String>();
+			List<String> tempAdminNames = new LinkedList<String>();
 
 			String adminFilename = "data/conf/admins.txt";
-			final String adminFilenameAlt = "data/conf/admins.list";
 			
 			try {
 				InputStream is = player.getClass().getClassLoader().getResourceAsStream(
 						adminFilename);
 
 				if (is == null) {
-					// backwards compatibility for those who used to have admins.list
-					is = player.getClass().getClassLoader().getResourceAsStream(
-							adminFilenameAlt);
-					if (is == null) {
-						logger.info("Neither " + adminFilename + " nor " + adminFilenameAlt + " exist.");
-					}
-					// update filename for any error messages
-					adminFilename = adminFilenameAlt;
-				} else {
+					logger.info(adminFilename + " does not exist.");
+					return;
+				}
 
-					final BufferedReader in = new BufferedReader(
-							new UnicodeSupportingInputStreamReader(is));
-					try {
-						String line;
-						while ((line = in.readLine()) != null) {
-							adminNames.add(line);
-						}
-					} catch (final Exception e) {
-						logger.error("Error loading admin names from: "
-								+ adminFilename, e);
+				final BufferedReader in = new BufferedReader(
+						new UnicodeSupportingInputStreamReader(is));
+				try {
+					String line;
+					while ((line = in.readLine()) != null) {
+						tempAdminNames.add(line);
 					}
+				} catch (final Exception e) {
+					logger.error("Error loading admin names from: "+ adminFilename, e);
+				} finally {
 					in.close();
 				}
+
+				adminNames = tempAdminNames;
 			} catch (final Exception e) {
-				logger.error(
-						"Error loading admin names from: " + adminFilename, e);
+				logger.error("Error loading admin names from: " + adminFilename, e);
 			}
 		}
 

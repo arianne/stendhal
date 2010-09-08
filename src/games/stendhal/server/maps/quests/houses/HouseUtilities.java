@@ -108,7 +108,7 @@ public class HouseUtilities {
 	protected static List<HousePortal> getHousePortals() {
 		if (allHousePortals == null) {
 			// this is only done once per server run
-			allHousePortals = new LinkedList<HousePortal>();
+			List<HousePortal> allHousePortals = new LinkedList<HousePortal>();
 			
 			for (final String zoneName : zoneNames) {
 				final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
