@@ -636,7 +636,7 @@ below average.
 			<destination zone="0_nalwor_city" ref="house_68_entrance" />
 		</portal>
 	</zone>
-	<zone name="int_0_nalwor_house_69" file="interiors/abstract/house_000.tmx">
+	<zone name="int_nalwor_house_69" file="interiors/abstract/house_000.tmx">
 		<portal x="7" y="14" ref="entrance">
 			<destination zone="0_nalwor_city" ref="house_69_entrance" />
 		</portal>
@@ -661,19 +661,19 @@ below average.
 		
 		
 		<portal x="73" y="82" ref="house_70_entrance">
-			<destination zone="int_0_nalwor_city_house_70" ref="entrance" />
+			<destination zone="int_nalwor_house_70" ref="entrance" />
 		</portal>
 
 		<portal x="67" y="82" ref="house_69_entrance">
-			<destination zone="int_0_nalwor_city_house_69" ref="entrance" />
+			<destination zone="int_nalwor_house_69" ref="entrance" />
 		</portal>
 
 		<portal x="57" y="82" ref="house_68_entrance">
-			<destination zone="int_0_nalwor_city_house_68" ref="entrance" />
+			<destination zone="int_nalwor_house_68" ref="entrance" />
 		</portal>
 
 		<portal x="42" y="82" ref="house_67_entrance">
-			<destination zone="int_0_nalwor_city_house_67" ref="entrance" />
+			<destination zone="int_nalwor_house_67" ref="entrance" />
 		</portal>
 
 		<portal x="73" y="93" ref="pottery_entrance">
