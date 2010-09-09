@@ -13,6 +13,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collection;
 
+import marauroa.server.game.db.DatabaseFactory;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +36,7 @@ public class ZonesXMLLoaderTest {
 	@Before
 	public void setUp() throws Exception {
 		MockStendlRPWorld.get();
-		
+		new DatabaseFactory().initializeDatabase();
 	}
 
 	/**
@@ -55,8 +57,9 @@ public class ZonesXMLLoaderTest {
 		ZonesXMLLoader loader = new ZonesXMLLoader(new URI("testsemos.xml"));
 		loader.load();
 		StendhalRPWorld world = SingletonRepository.getRPWorld();
-		Collection<StendhalRPZone> region = world.getAllZonesFromRegion("kanmararn", Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
-		assertThat(region.isEmpty(), is(Boolean.FALSE));
+		Collection<StendhalRPZone> regionKanmararn = world.getAllZonesFromRegion("kanmararn", Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
+		assertThat(regionKanmararn.isEmpty(), is(Boolean.FALSE));
+		assertThat(regionKanmararn.size(), is(3));
 	}
 
 }
