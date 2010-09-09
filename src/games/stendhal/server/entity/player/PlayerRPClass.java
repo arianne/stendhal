@@ -14,8 +14,8 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.constants.Events;
 import marauroa.common.game.Definition;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
 /**
  * Handles the RPClass registration.
@@ -39,6 +39,7 @@ public class PlayerRPClass {
 		player.addRPEvent(Events.PRIVATE_TEXT, Definition.PRIVATE);
 		player.addRPEvent(Events.PLAYER_LOGGED_ON, Definition.PRIVATE);
 		player.addRPEvent(Events.PLAYER_LOGGED_OUT, Definition.PRIVATE);
+		player.addRPEvent(Events.TRADE_STATE_CHANGE, Definition.PRIVATE);
 
 		player.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
 		player.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
