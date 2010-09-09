@@ -15,6 +15,7 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.TradeState;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.events.TradeStateChangeEvent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -95,8 +96,6 @@ class PlayerTrade {
 	protected void startTrade(Player partner) {
 		this.partnerName = partner.getName();
 		this.tradeState = TradeState.MAKING_OFFERS;
-		partner.startTrade(player);
-		// TODO: tell client
 	}
 
 
@@ -108,6 +107,8 @@ class PlayerTrade {
 	public void offerTrade(Player partner) {
 		if (checkPendingTradeOffer(partner)) {
 			startTrade(partner);
+			partner.startTrade(player);
+			tellClients();
 		}
 
 		if (!checkIfTradeMayBeOffered(partner)) {
@@ -136,6 +137,7 @@ class PlayerTrade {
 			partner.cancelTradeInternally(player.getName());
 		}
 		cancelTradeInternally(partnerName);
+		tellClients();
 	}
 
 
@@ -149,7 +151,6 @@ class PlayerTrade {
 			partnerName = null;
 			tradeState = TradeState.NO_ACTIVE_TRADE;
 			// TODO: move items back
-			// TODO: tell client about cancel
 		}
 	}
 
@@ -167,10 +168,8 @@ class PlayerTrade {
 		Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 		if (partner == null) {
 			cancelTradeInternally(partnerName);
-			return;
 		}
-
-		// TODO: tell both clients
+		tellClients();
 	}
 
 
@@ -183,6 +182,7 @@ class PlayerTrade {
 		Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 		if (partner == null) {
 			cancelTradeInternally(partnerName);
+			tellClients();
 			return;
 		}
 	
@@ -190,16 +190,16 @@ class PlayerTrade {
 			player.sendPrivateText("You traded with " + partnerName + ".");
 			partner.sendPrivateText("You traded with " + player.getName() + ".");
 			// TODO: transferItems();
-			// TODO: tell both player about succesful trade
 		} else if (partner.getTradeState() == TradeState.LOCKED) {
 			player.sendPrivateText("Okay, your trade is almost complete, just waiting for " + partnerName + " to press Deal.");
-			// TODO: tell client
 		} else if (partner.getTradeState() == TradeState.MAKING_OFFERS) {
 			player.sendPrivateText("Your partner must lock his offer first.");
 		} else {
 			logger.warn("Inconsitent state at \"deal\" in trade of " + player.getName() + " with partner " + partnerName);
 			cancelTrade();
 		}
+
+		tellClients();
 	}
 
 
@@ -215,7 +215,7 @@ class PlayerTrade {
 			otherRes = partner.unlockTradeItemOfferInternally(player.getName());
 		}
 		if (myRes || otherRes) {
-			// TODO: tell both clients
+			tellClients();
 		}
 	}
 
@@ -253,6 +253,21 @@ class PlayerTrade {
 	public String getPartnerName() {
 		return partnerName;
 	}
+
+
+	/**
+	 * inform both clients about the current state of trading.
+	 */
+	private void tellClients() {
+		Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
+		if (partner == null) {
+			player.addEvent(new TradeStateChangeEvent(-1, tradeState, TradeState.NO_ACTIVE_TRADE));
+		} else {
+			player.addEvent(new TradeStateChangeEvent(partner.getInt("id"), tradeState, partner.getTradeState()));
+			partner.addEvent(new TradeStateChangeEvent(player.getInt("id"), partner.getTradeState(), tradeState));
+		}
+	}
+
 
 	// TODO: cancelTrade on logout
 	// TODO: move items back on login (so that they don't end up unprotected on the ground on full bag during logout).
