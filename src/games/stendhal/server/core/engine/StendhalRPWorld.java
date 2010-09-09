@@ -298,8 +298,9 @@ public class StendhalRPWorld extends RPWorld {
 	 * @return a list of zones
 	 */
 	public Collection<StendhalRPZone> getAllZonesFromRegion(final String region, final Boolean exterior, final Boolean aboveGround, final Boolean accessible) {
+		final Set<StendhalRPZone> zonesInRegion = new HashSet<StendhalRPZone>();
 		if(regionMap.containsKey(region)) {
-			final Set<StendhalRPZone> zonesInRegion = new HashSet<StendhalRPZone>(regionMap.get(region));
+			zonesInRegion.addAll(regionMap.get(region));
 			if(exterior != null) {
 				filterOutInteriorOrExteriorZones(zonesInRegion, exterior);
 			}
@@ -310,7 +311,7 @@ public class StendhalRPWorld extends RPWorld {
 				filterByAccessibility(zonesInRegion, accessible);
 			}
 		}
-		return new HashSet<StendhalRPZone>();
+		return zonesInRegion;
 	}
 
 	/**
@@ -321,8 +322,14 @@ public class StendhalRPWorld extends RPWorld {
 	private void filterOutInteriorOrExteriorZones(final Set<StendhalRPZone> zonesInRegion, final Boolean exterior) {
 		Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
 		for (StendhalRPZone zone : zonesInRegion) {
-			if(!(zone.isInterior() ^ exterior.booleanValue())) {
-				removals.add(zone);
+			if(exterior) {
+				if(zone.isInterior()) {
+					removals.add(zone);
+				}
+			} else {
+				if(!zone.isInterior()) {
+					removals.add(zone);
+				}
 			}
 		}
 		zonesInRegion.removeAll(removals);
@@ -337,8 +344,14 @@ public class StendhalRPWorld extends RPWorld {
 	private void filterOutAboveOrBelowGround(final Set<StendhalRPZone> zonesInRegion, final Boolean aboveGround) {
 		Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
 		for (StendhalRPZone zone : zonesInRegion) {
-			if(!(zone.getLevel()<0 ^ aboveGround.booleanValue())) {
-				removals.add(zone);
+			if(aboveGround.booleanValue()) {
+				if(zone.getLevel() < 0) {
+					removals.add(zone);
+				}
+			} else {
+				if(zone.getLevel() >= 0) {
+					removals.add(zone);
+				}
 			}
 		}
 		zonesInRegion.removeAll(removals);
@@ -349,9 +362,9 @@ public class StendhalRPWorld extends RPWorld {
 		for (StendhalRPZone zone : zonesInRegion) {
 			boolean addToRemovals = false;
 			if(accessible.booleanValue()) {
-				addToRemovals = zone.isPublicAccessible();
-			} else {
 				addToRemovals = !zone.isPublicAccessible();
+			} else {
+				addToRemovals = zone.isPublicAccessible();
 			}
 			if (addToRemovals) {
 				removals.add(zone);

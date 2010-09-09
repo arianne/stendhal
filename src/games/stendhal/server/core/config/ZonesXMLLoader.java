@@ -460,6 +460,7 @@ public class ZonesXMLLoader {
 			this.level = level;
 			this.x = x;
 			this.y = y;
+			this.region = region;
 
 			descriptors = new ArrayList<SetupDescriptor>();
 		}
