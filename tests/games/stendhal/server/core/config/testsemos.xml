@@ -151,7 +151,7 @@
 	</zone>
 
 	<!--for the admin house -->
-	<zone name="int_semos_house" file="interiors/semos/house.tmx">
+	<zone name="int_semos_house" file="interiors/semos/house.tmx" accessible="false" >
 	</zone>
 
 	<zone name="0_semos_road_e" level="0" x="500128" y="500000">

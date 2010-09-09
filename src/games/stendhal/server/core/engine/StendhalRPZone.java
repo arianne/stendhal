@@ -1167,6 +1167,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private int debugturn;
 
+	private boolean accessible;
+
 	
 
 	@Override
@@ -1353,16 +1355,28 @@ public class StendhalRPZone extends MarauroaRPZone {
 		teleRules.disallowOut(x, y, width, height);
 	}
 	
-	public boolean isPublicAccessible() {
-		return true;
-	}
-
 	public void onRemoved() {
 		for (RPObject inspected : this) {
 			if (inspected instanceof ActiveEntity) {
 				((ActiveEntity) inspected).onRemoved(this);
 			}
 		}
+	}
+
+	/**
+	 * @return is this zone accessible by the public
+	 */
+	public boolean isPublicAccessible() {
+		return accessible;
+	}
+	
+	/**
+	 * Sets the public accessibility of this zone
+	 * 
+	 * @param accessible
+	 */
+	public void setPublicAccessible(boolean accessible) {
+		this.accessible = accessible;
 	}
 	
 }

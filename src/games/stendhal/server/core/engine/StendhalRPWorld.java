@@ -304,7 +304,7 @@ public class StendhalRPWorld extends RPWorld {
 			if(exterior != null) {
 				filterOutInteriorOrExteriorZones(zonesInRegion, exterior);
 			}
-			if(aboveGround != null) {
+			if(aboveGround != null && exterior != null && exterior) {
 				filterOutAboveOrBelowGround(zonesInRegion, aboveGround);
 			}
 			if(accessible != null) {

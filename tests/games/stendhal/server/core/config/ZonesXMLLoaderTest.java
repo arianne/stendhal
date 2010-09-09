@@ -13,6 +13,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collection;
 
+import marauroa.common.game.IRPZone;
 import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.After;
@@ -60,6 +61,14 @@ public class ZonesXMLLoaderTest {
 		Collection<StendhalRPZone> regionKanmararn = world.getAllZonesFromRegion("kanmararn", Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
 		assertThat(regionKanmararn.isEmpty(), is(Boolean.FALSE));
 		assertThat(regionKanmararn.size(), is(3));
+		Collection<StendhalRPZone> regionWofolExteriors = world.getAllZonesFromRegion("wofol city", Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
+		assertThat(regionWofolExteriors.isEmpty(), is(Boolean.TRUE));
+		Collection<StendhalRPZone> regionWofolInteriors = world.getAllZonesFromRegion("wofol city", Boolean.FALSE, Boolean.FALSE, Boolean.TRUE);
+		assertThat(regionWofolInteriors.isEmpty(), is(Boolean.FALSE));
+		assertThat(regionWofolInteriors.size(), is(19));
+		Collection<StendhalRPZone> regionSemosInteriors = world.getAllZonesFromRegion("semos", Boolean.FALSE, Boolean.FALSE, Boolean.TRUE);
+		IRPZone rpZone = world.getRPZone("int_semos_house");
+		assertThat(regionSemosInteriors.contains(rpZone), is(Boolean.FALSE));
 	}
 
 }
