@@ -25,6 +25,7 @@ import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.TradeState;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -42,7 +43,6 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.item.Stackable;
-import games.stendhal.server.entity.player.PlayerTrade.TradeState;
 import games.stendhal.server.events.PrivateTextEvent;
 
 import java.util.ArrayList;

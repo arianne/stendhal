@@ -13,6 +13,7 @@
 
 package games.stendhal.server.entity.player;
 
+import games.stendhal.common.TradeState;
 import games.stendhal.server.core.engine.SingletonRepository;
 
 import java.util.Arrays;
@@ -27,26 +28,6 @@ import org.apache.log4j.Logger;
  */
 class PlayerTrade {
 
-	/**
-	 * the state of the trading.
-	 */
-	public enum TradeState {
-
-		/** there is no active trade at the moment */
-		NO_ACTIVE_TRADE,
-
-		/** Offering to begin a trade */
-		OFFERING_TRADE,
-
-		/** making offers in an active trade */
-		MAKING_OFFERS,
-
-		/** i completed my offer, waiting for the other party to confirm */
-		LOCKED,
-
-		/** waiting for the other player to click deal.*/
-		DEAL_WAITING_FOR_OTHER_DEAL;
-	}
 
 	private static Logger logger = Logger.getLogger(PlayerTrade.class);
 
