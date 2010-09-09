@@ -2037,6 +2037,15 @@ public class Player extends RPEntity {
 	}
 
 	/**
+	 * offers the other player to start a trading session
+	 * 
+	 * @param partner to offer the trade to
+	 */
+	public void offerTrade(Player partner) {
+		trade.offerTrade(partner);
+	}
+
+	/**
 	 * gets the state of player to player trades
 	 *
 	 * @return TradeState
@@ -2089,5 +2098,26 @@ public class Player extends RPEntity {
 	 */
 	public boolean unlockTradeItemOfferInternally(String partnerName) {
 		return trade.unlockItemOfferInternally(partnerName);
+	}
+
+	/**
+	 * locks the item offer.
+	 */
+	public void lockTrade() {
+		trade.lockItemOffer();
+	}
+
+	/**
+	 * accepts the trade if both offers are locked.
+	 */
+	public void dealTrade() {
+		trade.deal();
+	}
+
+	/**
+	 * cancels a trade or trade offer.
+	 */
+	public void cancelTrade() {
+		trade.cancelTrade();
 	}
 }

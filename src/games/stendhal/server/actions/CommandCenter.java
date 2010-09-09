@@ -90,6 +90,7 @@ public class CommandCenter {
 		SentenceAction.register();
 		StoreMessageAction.register();
 		StopAction.register();
+		TradeAction.register();
 		UseAction.register();
 		WhereAction.register();
 		WhoAction.register();
