@@ -281,5 +281,6 @@ class PlayerTrade {
 
 
 	// TODO: cancelTrade on logout
+	// TODO: cancelTrade on zone change of one of the partners
 	// TODO: move items back on login (so that they don't end up unprotected on the ground on full bag during logout).
 }
