@@ -47,6 +47,7 @@ class PlayerTrade {
 	 */
 	public PlayerTrade(Player player) {
 		this.player = player;
+		this.tradeState = TradeState.NO_ACTIVE_TRADE;
 	}
 
 	/**
@@ -109,6 +110,7 @@ class PlayerTrade {
 			startTrade(partner);
 			partner.startTrade(player);
 			tellClients();
+			return;
 		}
 
 		if (!checkIfTradeMayBeOffered(partner)) {
@@ -119,6 +121,7 @@ class PlayerTrade {
 		player.sendPrivateText("You offered to trade with " + partner.getName() + ".");
 		partner.sendPrivateText(player.getName() + " wants to trade with you. Right click on " + player.getName() + " and select \"Trade\" to start a trading session.");
 		this.partnerName = partner.getName();
+		this.tradeState = TradeState.OFFERING_TRADE;
 	}
 
 
@@ -160,7 +163,7 @@ class PlayerTrade {
 	 * as complete, the trade is executed.
 	 */
 	public void lockItemOffer() {
-		if (tradeState != TradeState.OFFERING_TRADE) {
+		if (tradeState != TradeState.MAKING_OFFERS) {
 			return;
 		}
 
@@ -192,6 +195,7 @@ class PlayerTrade {
 			// TODO: transferItems();
 		} else if (partner.getTradeState() == TradeState.LOCKED) {
 			player.sendPrivateText("Okay, your trade is almost complete, just waiting for " + partnerName + " to press Deal.");
+			tradeState = TradeState.DEAL_WAITING_FOR_OTHER_DEAL;
 		} else if (partner.getTradeState() == TradeState.MAKING_OFFERS) {
 			player.sendPrivateText("Your partner must lock his offer first.");
 		} else {
