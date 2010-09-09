@@ -220,6 +220,8 @@ public class ZonesXMLLoader {
 		} else {
 			zone.setPosition(desc.getLevel(), desc.getX(), desc.getY());
 		}
+		
+		zone.setPublicAccessible(desc.accessible);
 
 		SingletonRepository.getRPWorld().addRPZone(desc.getRegion(), zone);
 
@@ -327,7 +329,11 @@ public class ZonesXMLLoader {
 		}
 		region = parseRegionFromZone(name);
 
-		final ZoneDesc desc = new ZoneDesc(name, file, region, level, x, y);
+		boolean accessible = true;
+		if (element.hasAttribute("accessible")) {
+			accessible = Boolean.parseBoolean(element.getAttribute("accessible"));
+		}
+		final ZoneDesc desc = new ZoneDesc(name, file, region, level, x, y, accessible );
 
 		/*
 		 * Title element
@@ -454,12 +460,15 @@ public class ZonesXMLLoader {
 
 		private String implementation;
 
-		public ZoneDesc(final String name, final String file, final String region, final int level, final int x, final int y) {
+		private final boolean accessible;
+
+		public ZoneDesc(final String name, final String file, final String region, final int level, final int x, final int y, final boolean accessible) {
 			this.name = name;
 			this.file = file;
 			this.level = level;
 			this.x = x;
 			this.y = y;
+			this.accessible = accessible;
 			this.region = region;
 
 			descriptors = new ArrayList<SetupDescriptor>();
@@ -557,6 +566,10 @@ public class ZonesXMLLoader {
 		 */
 		public void setTitle(final String title) {
 			this.title = title;
+		}
+		
+		public boolean isAccessible() {
+			return accessible;
 		}
 	}
 }
