@@ -1,11 +1,11 @@
 package games.stendhal.client.events;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.common.constants.Events;
 import marauroa.common.game.RPEvent;
+
+import org.apache.log4j.Logger;
 
 /**
  * creates RPEvent handler
@@ -57,6 +57,8 @@ public class EventFactory {
 			event = new PrivateTextEvent();
 		} else if (name.equals(Events.ATTACK)) {
 			event = new AttackEvent();
+		} else if (name.equals(Events.TRADE_STATE_CHANGE)) {
+			event = new TradeStateChangeEvent();
 		}
 
 		if (event != null) {
