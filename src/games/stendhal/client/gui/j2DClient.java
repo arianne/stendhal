@@ -864,6 +864,8 @@ public class j2DClient implements UserInterface {
 	public void addWindow(final ManagedWindow mw) {
 		if (mw instanceof InternalManagedDialog) {
 			addDialog(((InternalManagedDialog) mw).getDialog());
+		} else if (mw instanceof InternalManagedWindow) {
+			addDialog((InternalManagedWindow) mw);
 		} else if (mw instanceof WtPanel) {
 			screen.addDialog((WtPanel) mw);
 		} else {
