@@ -188,11 +188,13 @@ class PlayerTrade {
 			tellClients();
 			return;
 		}
-	
+
 		if (partner.getTradeState() == TradeState.DEAL_WAITING_FOR_OTHER_DEAL) {
 			player.sendPrivateText("You traded with " + partnerName + ".");
 			partner.sendPrivateText("You traded with " + player.getName() + ".");
 			// TODO: transferItems();
+			cancelTradeInternally(partnerName);
+			partner.cancelTradeInternally(player.getName());
 		} else if (partner.getTradeState() == TradeState.LOCKED) {
 			player.sendPrivateText("Okay, your trade is almost complete, just waiting for " + partnerName + " to press Deal.");
 			tradeState = TradeState.DEAL_WAITING_FOR_OTHER_DEAL;
