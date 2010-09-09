@@ -52,7 +52,7 @@ public class ZonesXMLLoaderTest {
 	 */
 	@Test
 	public void testReadZone() throws URISyntaxException, SAXException, IOException {
-		ZonesXMLLoader loader = new ZonesXMLLoader(new URI("/data/conf/zones/semos.xml"));
+		ZonesXMLLoader loader = new ZonesXMLLoader(new URI("testsemos.xml"));
 		loader.load();
 		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		Collection<StendhalRPZone> region = world.getAllZonesFromRegion("kanmararn", Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
