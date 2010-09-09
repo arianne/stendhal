@@ -7,21 +7,21 @@ package games.stendhal.client.gui.login;
 public class Profile {
 
 	/** Default server port. */
-	public static final int DEFAULT_SERVER_PORT = 32160;
+	static final int DEFAULT_SERVER_PORT = 32160;
 	
 	/** Old server names to remap. */
-	protected static final String[] OLD_SERVER_HOSTS = { "stendhal.ath.cx", "stendhal.game-host.org" };
+	private static final String[] OLD_SERVER_HOSTS = { "stendhal.ath.cx", "stendhal.game-host.org" };
 
 	/** Default server name to replace old ones with. */
-	protected static final String NEW_SERVER_HOST = "stendhalgame.org";
+	private static final String NEW_SERVER_HOST = "stendhalgame.org";
 
-	protected String host;
+	private String host;
 
-	protected int port;
+	private int port;
 
-	protected String user;
+	private String user;
 
-	protected String password;
+	private String password;
 
 	private String character;
 

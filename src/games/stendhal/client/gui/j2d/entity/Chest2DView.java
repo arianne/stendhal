@@ -59,12 +59,8 @@ class Chest2DView extends StateEntity2DView {
 
 	/**
 	 * Create a 2D view of a chest.
-	 * 
-	 * @param chest
-	 *            The entity to render.
 	 */
 	public Chest2DView() {
-		
 		openChanged = false;
 		requestOpen = false;
 	}
@@ -227,7 +223,8 @@ class Chest2DView extends StateEntity2DView {
 				requestOpen = true;
 			}
 
-			/* no break */
+			at.send(at.fillTargetInfo(entity.getRPObject()));
+			break;
 
 		case CLOSE:
 			

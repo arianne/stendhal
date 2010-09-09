@@ -51,7 +51,11 @@ public class SpellXMLLoader extends DefaultHandler {
 				throw new FileNotFoundException("cannot find resource '" + uri
 						+ "' in classpath");
 			}
-			saxParser.parse(is, this);
+			try {
+				saxParser.parse(is, this);
+			} finally {
+				is.close();
+			}
 		} catch (final ParserConfigurationException t) {
 			logger.error(t);
 		} catch (final IOException e) {

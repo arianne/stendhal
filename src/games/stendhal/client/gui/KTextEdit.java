@@ -37,19 +37,19 @@ public class KTextEdit extends JComponent {
 	protected static final Color HEADER_COLOR = Color.gray;
 
 	private static final String GAME_LOG_FILE = System.getProperty("user.home") 
-	+ stendhal.STENDHAL_FOLDER + "gamechat.log";
+		+ stendhal.STENDHAL_FOLDER + "gamechat.log";
 	
 	
 	private final class TextPaneMouseListener extends MouseAdapter {
 		@Override
 		public void mousePressed(final MouseEvent e) {
-	        maybeShowPopup(e);
-	    }
+			maybeShowPopup(e);
+		}
 
 		@Override
-	    public void mouseReleased(final MouseEvent e) {
-	        maybeShowPopup(e);
-	    }
+		public void mouseReleased(final MouseEvent e) {
+			maybeShowPopup(e);
+		}
 
 		private void maybeShowPopup(final MouseEvent e) {
 			if (e.isPopupTrigger()) {
@@ -336,9 +336,12 @@ public class KTextEdit extends JComponent {
 		FileWriter fo;
 		try {
 			fo = new FileWriter(GAME_LOG_FILE);
-			textPane.write(fo);
-			fo.close();
-			
+			try {
+				textPane.write(fo);
+			} finally {
+				fo.close();
+			}
+
 			addLine("", "Chat log has been saved to " + GAME_LOG_FILE, NotificationType.CLIENT);
 		} catch (final Exception ex) {
 			logger.error(ex, ex);

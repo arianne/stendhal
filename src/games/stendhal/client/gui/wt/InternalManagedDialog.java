@@ -766,7 +766,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Mouse enter event handler for the dialog.
 	 */
-	private final class DialogMouseListener extends MouseAdapter {
+	private static final class DialogMouseListener extends MouseAdapter {
 		/**
 		 * Handle mouse entered event.
 		 *
@@ -775,7 +775,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		 */
 		@Override
 		public void mouseEntered(MouseEvent ev) {
-		ev.getComponent().setCursor(cursorRepository.get(StendhalCursor.NORMAL));
+			ev.getComponent().setCursor(cursorRepository.get(StendhalCursor.NORMAL));
 		}
 	}
 }
