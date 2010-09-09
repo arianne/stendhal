@@ -15,6 +15,11 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 /**
  * handles player to player trade
  *
@@ -37,8 +42,15 @@ class PlayerTrade {
 		MAKING_OFFERS,
 
 		/** i completed my offer, waiting for the other party to confirm */
-		WAITING_FOR_CONFIRMATION;
+		LOCKED,
+
+		/** waiting for the other player to click deal.*/
+		DEAL_WAITING_FOR_OTHER_DEAL;
 	}
+
+	private static Logger logger = Logger.getLogger(PlayerTrade.class);
+
+	private static final List<TradeState> LOCKED_STATES = Arrays.asList(TradeState.LOCKED, TradeState.DEAL_WAITING_FOR_OTHER_DEAL);
 
 	private String partnerName;
 
@@ -138,7 +150,7 @@ class PlayerTrade {
 
 		player.sendPrivateText("You canceled the trade");
 		Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
-		if (player != null) {
+		if (partner != null) {
 			partner.sendPrivateText(player.getName() + " canceled the trade with you.");
 			partner.cancelTradeInternally(player.getName());
 		}
@@ -165,20 +177,47 @@ class PlayerTrade {
 	 * marks an item offer as complete. If both players have marked their item offers
 	 * as complete, the trade is executed.
 	 */
-	public void completeItemOffer() {
+	public void lockItemOffer() {
 		if (tradeState != TradeState.OFFERING_TRADE) {
-			tradeState = TradeState.WAITING_FOR_CONFIRMATION;
+			return;
+		}
 
-			Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
-			if (partner == null) {
-				// TODO: cancel trade
-				return;
-			}
-			if (partner.getTradeState() == TradeState.WAITING_FOR_CONFIRMATION) {
-				// TODO: transferItems();
-			} else {
-				// TODO: tell both clients about completion of this player
-			}
+		tradeState = TradeState.LOCKED;
+		Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
+		if (partner == null) {
+			cancelTradeInternally(partnerName);
+			return;
+		}
+
+		// TODO: tell both clients
+	}
+
+
+	public void deal() {
+		if (tradeState != TradeState.LOCKED) {
+			player.sendPrivateText("You must lock your offer first.");
+			return;
+		}
+
+		Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
+		if (partner == null) {
+			cancelTradeInternally(partnerName);
+			return;
+		}
+	
+		if (partner.getTradeState() == TradeState.DEAL_WAITING_FOR_OTHER_DEAL) {
+			player.sendPrivateText("You traded with " + partnerName + ".");
+			partner.sendPrivateText("You traded with " + player.getName() + ".");
+			// TODO: transferItems();
+			// TODO: tell both player about succesful trade
+		} else if (partner.getTradeState() == TradeState.LOCKED) {
+			player.sendPrivateText("Okay, your trade is almost complete, just waiting for " + partnerName + " to press Deal.");
+			// TODO: tell client
+		} else if (partner.getTradeState() == TradeState.MAKING_OFFERS) {
+			player.sendPrivateText("Your partner must lock his offer first.");
+		} else {
+			logger.warn("Inconsitent state at \"deal\" in trade of " + player.getName() + " with partner " + partnerName);
+			cancelTrade();
 		}
 	}
 
@@ -186,13 +225,34 @@ class PlayerTrade {
 	/**
 	 * removes the marking of an item offer as complete
 	 */
-	public void uncompleteItemOffer() {
-		if (tradeState != TradeState.WAITING_FOR_CONFIRMATION) {
-			tradeState = TradeState.OFFERING_TRADE;
+	public void unlockItemOffer() {
+		boolean myRes = unlockItemOfferInternally(partnerName);
+		boolean otherRes = false;
+		
+		Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
+		if (partner != null) {
+			otherRes = partner.unlockTradeItemOfferInternally(player.getName());
+		}
+		if (myRes || otherRes) {
 			// TODO: tell both clients
 		}
 	}
 
+	/**
+	 * interally unlocks a trade
+	 *
+	 * @param partnerName name of partner (to make sure the correct trade offer is canceled)
+	 * @return true, if a trade was unlocked, false if it was already unlocked
+	 */
+	boolean unlockItemOfferInternally(String partnerName) {
+		if ((this.partnerName == null) || this.partnerName.equals(partnerName)) {
+			if (LOCKED_STATES.contains(tradeState)) {
+				tradeState = TradeState.OFFERING_TRADE;
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * gets the current state of trading
@@ -213,9 +273,6 @@ class PlayerTrade {
 		return partnerName;
 	}
 
-	// TODO: two state accept or delay to prevent last second changes
 	// TODO: cancelTrade on logout
 	// TODO: move items back on login (so that they don't end up unprotected on the ground on full bag during logout).
-	// TODO: cancelTrade on moving
-	// TODO: cancelTrate on other item actions (which might fill the bag)
 }

@@ -2070,6 +2070,24 @@ public class Player extends RPEntity {
 	 */
 	protected void cancelTradeInternally(String partnerName) {
 		trade.cancelTradeInternally(partnerName);
-		}
+	}
 	
+
+	/**
+	 * unlockas a trade item offer for example because of some modifications
+	 * on the trade slot.
+	 */
+	public void unlockTradeItemOffer() {
+		trade.unlockItemOffer();
+	}
+
+	/**
+	 * internally unlocks
+	 *
+	 * @param partnerName name of partner (to make sure the correct trade offer is canceled)
+	 * @return true, if a trade was unlocked, false if it was already unlocked
+	 */
+	public boolean unlockTradeItemOfferInternally(String partnerName) {
+		return trade.unlockItemOfferInternally(partnerName);
+	}
 }
