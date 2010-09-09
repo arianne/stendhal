@@ -106,6 +106,11 @@ class PlayerTrade {
 	 * @param partner to offer the trade to
 	 */
 	public void offerTrade(Player partner) {
+		if (player.getName().equals(partner.getName())) {
+			player.sendPrivateText("Sorry, you cannot trade with yourself.");
+			return;
+		}
+
 		if (checkPendingTradeOffer(partner)) {
 			startTrade(partner);
 			partner.startTrade(player);
