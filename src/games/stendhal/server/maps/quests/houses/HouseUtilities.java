@@ -108,7 +108,7 @@ public class HouseUtilities {
 	protected static List<HousePortal> getHousePortals() {
 		if (allHousePortals == null) {
 			// this is only done once per server run
-			List<HousePortal> allHousePortals = new LinkedList<HousePortal>();
+			List<HousePortal> tempAllHousePortals = new LinkedList<HousePortal>();
 			
 			for (final String zoneName : zoneNames) {
 				final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
@@ -117,12 +117,12 @@ public class HouseUtilities {
 				} else {
 					for (final Portal portal : zone.getPortals()) {
 						if (portal instanceof HousePortal) {
-							allHousePortals.add((HousePortal) portal);
+							tempAllHousePortals.add((HousePortal) portal);
 						}
 					}
 				}
 			}
-
+			allHousePortals = tempAllHousePortals;
 		}
 		final int size = allHousePortals.size();
 		logger.debug("Number of house portals in world is " + Integer.toString(size));
