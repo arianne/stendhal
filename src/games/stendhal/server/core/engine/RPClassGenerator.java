@@ -54,6 +54,7 @@ import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.events.TextEvent;
+import games.stendhal.server.events.TradeStateChangeEvent;
 import games.stendhal.server.events.TransitionGraphEvent;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
@@ -221,11 +222,14 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass(Events.SOUND)) {
 			SoundEvent.generateRPClass();
 		}
+		if (!RPClass.hasRPClass("text")) {
+			TextEvent.generateRPClass();
+		}
 		if (!RPClass.hasRPClass("transition_graph")) {
 			TransitionGraphEvent.generateRPClass();
 		}
-		if (!RPClass.hasRPClass("text")) {
-			TextEvent.generateRPClass();
+		if (!RPClass.hasRPClass(Events.TRADE_STATE_CHANGE)) {
+			TradeStateChangeEvent.generateRPClass();
 		}
 		
 		if (!RPClass.hasRPClass(Events.PLAYER_LOGGED_ON)) {
