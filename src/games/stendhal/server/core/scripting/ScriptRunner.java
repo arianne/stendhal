@@ -78,7 +78,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 	
 	// need that function to filter scripts names 
 	public String searchTermToRegex(String searchTerm) {
-		final String metaSymbols = new String("*?()[]{}+-.^$|\\");
+		final String metaSymbols = "*?()[]{}+-.^$|\\";
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int i = 0; i < searchTerm.length(); i++) {
 			final char c = searchTerm.charAt(i);
