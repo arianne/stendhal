@@ -37,7 +37,6 @@ import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.stats.StatsPanelController;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
-import games.stendhal.client.gui.wt.InternalManagedDialog;
 import games.stendhal.client.gui.wt.KeyRing;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
@@ -862,9 +861,7 @@ public class j2DClient implements UserInterface {
 	 *             If an unsupported ManagedWindow is given.
 	 */
 	public void addWindow(final ManagedWindow mw) {
-		if (mw instanceof InternalManagedDialog) {
-			addDialog(((InternalManagedDialog) mw).getDialog());
-		} else if (mw instanceof InternalManagedWindow) {
+		if (mw instanceof InternalManagedWindow) {
 			addDialog((InternalManagedWindow) mw);
 		} else if (mw instanceof WtPanel) {
 			screen.addDialog((WtPanel) mw);
