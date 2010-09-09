@@ -2,7 +2,7 @@ package games.stendhal.client.gui;
 
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.gui.wt.InternalManagedDialog;
+import games.stendhal.client.gui.layout.SBoxLayout;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -11,69 +11,79 @@ import java.awt.event.ActionListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
 public class QuitDialog {
-	Component quitDialog;
+	private static final int PADDING = 12;
+	InternalManagedWindow quitDialog;
 	
 	Component getQuitDialog() {
 		return quitDialog;
 	}
+	
 	public QuitDialog() {
 		quitDialog = buildQuitDialog();
 		quitDialog.setVisible(false);
 		quitDialog.addHierarchyBoundsListener(new ParentResizeListener());
 	}
+	
 	/**
-	 * Build the in-window quit dialog [panel].
-	 * @return the quitdialog
+	 * Build the in-window quit dialog.
 	 * 
-	 * 
+	 * @return the quit dialog
 	 */
-	protected Component buildQuitDialog() {
-		InternalManagedDialog imd;
-		JComponent panel;
-		JButton b;
+	private InternalManagedWindow buildQuitDialog() {
+		// dialog contents
+		JComponent content = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, PADDING);
+		content.setBorder(BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING));
 
-		panel = new JComponent() {};
-		panel.setOpaque(false);
-		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(150, 75));
+		// create "yes" button
+		JButton yesButton = new JButton();
+		yesButton.setText("Yes");
+		yesButton.addActionListener(new QuitConfirmCB());
+		content.add(yesButton);
 
-		b = new JButton();
-		b.setText("Yes");
-		b.setBounds(30, 25, 40, 25);
-		b.addActionListener(new QuitConfirmCB());
+		// create "no" button
+		JButton noButton = new JButton();
+		noButton.setText("No");
+		noButton.addActionListener(new QuitCancelCB());
+		content.add(noButton);
+		
+		// Beautify button sizes; ensure that they are equal
+		Dimension yPref = yesButton.getPreferredSize();
+		Dimension nPref = noButton.getPreferredSize();
+		Dimension pref = new Dimension(Math.max(yPref.width, nPref.width),
+				Math.max(yPref.height, nPref.height));
+		yesButton.setPreferredSize(pref);
+		noButton.setPreferredSize(pref);
 
-		panel.add(b);
+		// Pack the whole thing in a managed window
+		InternalManagedWindow window = new InternalManagedWindow("quit", "Quit");
+		window.setContent(content);
+		window.setMinimizable(false);
+		window.setHideOnClose(true);
+		window.setMovable(false);
 
-		b = new JButton();
-		b.setText("No");
-		b.setBounds(80, 25, 40, 25);
-		b.addActionListener(new QuitCancelCB());
-
-		panel.add(b);
-
-		imd = new InternalManagedDialog("quit", "Quit");
-		imd.setContent(panel);
-		imd.setMinimizable(false);
-		imd.setMovable(false);
-
-		return imd.getDialog();
+		return window;
 	}
 	
+	/**
+	 * Call back at "No" answer to quit.
+	 */
 	protected class QuitCancelCB implements ActionListener {
 		public void actionPerformed(final ActionEvent ev) {
 			quitDialog.setVisible(false);
 		}
 	}
 
+	/**
+	 * Call back at quit confirmed.
+	 */
 	protected class QuitConfirmCB implements ActionListener {
 		public void actionPerformed(final ActionEvent ev) {
-		
 				j2DClient.get().shutdown();
-		
 		}
 	}
 	
@@ -82,23 +92,13 @@ public class QuitDialog {
 	 * and shows a dialog in which the player can confirm that they really wants
 	 * to quit the program. If so it flags the client for termination.
 	 */
-	
 	public void requestQuit() {
 		/*
 		 * Stop the player
 		 */
 		StendhalClient.get().stop();
-
-		centerDialog();
-
-		quitDialog.validate();
+		quitDialog.center();
 		quitDialog.setVisible(true);
-	}
-	
-	private void centerDialog() {
-		final Dimension psize = quitDialog.getPreferredSize();
-		quitDialog.setBounds((j2DClient.get().getWidth() - psize.width) / 2,
-				(j2DClient.get().getHeight() - psize.height) / 2, psize.width, psize.height);
 	}
 	
 	/**
@@ -111,7 +111,7 @@ public class QuitDialog {
 		public void ancestorResized(HierarchyEvent e) {
 			if (quitDialog.isVisible()) {
 				if (e.getChanged().equals(quitDialog.getParent())) {
-					centerDialog();
+					quitDialog.center();
 				}
 			}
 		}
