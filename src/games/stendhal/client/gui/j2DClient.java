@@ -274,11 +274,6 @@ public class j2DClient implements UserInterface {
 		 */
 		quitDialog = new QuitDialog();
 		pane.add(quitDialog.getQuitDialog(), JLayeredPane.MODAL_LAYER);
-		/*
-		 * Window manager may try to restore the visibility of the dialog when
-		 * it's added to the pane.
-		 */
-		quitDialog.getQuitDialog().setVisible(false);
 
 		/*
 		 * Game log
@@ -412,6 +407,12 @@ public class j2DClient implements UserInterface {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				mainFrame.getMainFrame().pack();
+				/*
+				 * Window manager may try to restore the visibility of the dialog when
+				 * it's added to the pane.
+				 */
+				quitDialog.getQuitDialog().setVisible(false);
+				
 				/*
 				 *  A bit roundabout way to calculate the desired minsize, but
 				 *  different java versions seem to take the window decorations
