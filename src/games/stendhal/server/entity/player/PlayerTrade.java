@@ -15,10 +15,16 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.TradeState;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TradeStateChangeEvent;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
@@ -175,7 +181,37 @@ class PlayerTrade {
 		if ((this.partnerName == null) || this.partnerName.equals(partnerName)) {
 			partnerName = null;
 			tradeState = TradeState.NO_ACTIVE_TRADE;
-			// TODO: move items back
+			moveItemsBack();
+		}
+	}
+
+	private void moveItemsBack() {
+		RPSlot tradeSlot = player.getSlot("trade");
+		List<Item> items = new LinkedList<Item>();
+		if (tradeSlot == null) {
+			return;
+		}
+		for (RPObject item : tradeSlot) {
+			if (item instanceof Item) {
+				items.add((Item) item);
+			}
+		}
+		tradeSlot.clear();
+		RPSlot bagSlot = player.getSlot("bag");
+		final StendhalRPZone zone = player.getZone();
+		boolean onGround = false;
+		for (Item item : items) {
+			if (!bagSlot.isFull()) {
+				// TODO: merge stackable items
+				bagSlot.add(item);
+			} else {
+				item.setPosition(player.getX(), player.getY());
+				zone.add(item, player);
+				onGround = true;
+			}
+		}
+		if (onGround) {
+			player.sendPrivateText("Some items did not fit in your bag and have been put on the ground.");
 		}
 	}
 

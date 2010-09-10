@@ -240,8 +240,6 @@ public class Player extends RPEntity {
 		directions = new ArrayList<Direction>();
 		awayReplies = new HashMap<String, Long>();
 
-		trade.cancelTradeInternally(null);
-
 		// Beginner's luck (unless overriden by update)
 		karma = 10.0;
 		tradescore = 0;
@@ -2080,7 +2078,7 @@ public class Player extends RPEntity {
 	 *
 	 * @param partnerName name of partner (to make sure the correct trade offer is canceled)
 	 */
-	protected void cancelTradeInternally(String partnerName) {
+	public void cancelTradeInternally(String partnerName) {
 		trade.cancelTradeInternally(partnerName);
 	}
 	

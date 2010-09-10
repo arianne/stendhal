@@ -62,6 +62,8 @@ public class PlayerTransformer implements Transformer {
 
 
 		loadItemsIntoSlots(player);
+		player.cancelTradeInternally(null);
+		
 
 		// buddy handling with maps
 		if(player.hasBuddies()) {
@@ -129,7 +131,7 @@ public class PlayerTransformer implements Transformer {
 
 		// load items
 		final String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor",
-				"legs", "feet", "finger", "cloak", "keyring" };
+				"legs", "feet", "finger", "cloak", "keyring", "trade" };
 
 		try {
 			for (final String slotName : slotsItems) {
