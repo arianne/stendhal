@@ -43,5 +43,6 @@ public class PlayerTradeSlot extends PlayerSlot {
 		return super.remove(id);
 	}
 
-	// TODO: check modifications to stackable items
+	// TODO: unlock on adding or removing of parts of stackable items
+	// TODO: unlock on "Use" or prevent "Use"
 }
