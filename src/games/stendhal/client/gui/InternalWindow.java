@@ -191,17 +191,25 @@ public class InternalWindow extends JPanel {
 	}
 	
 	/**
+	 * Close the window. Either deletes or hides it, according to the policy
+	 * set with {@link #setHideOnClose}.
+	 */
+	protected void close() {
+		Container parent = InternalWindow.this.getParent();
+		if (hideOnClose) {
+			setVisible(false);
+		} else {
+			parent.remove(InternalWindow.this);
+			parent.validate();
+		}
+	}
+	
+	/**
 	 * Handle close button.
 	 */
 	private class CloseListener implements ActionListener {
 		public void actionPerformed(final ActionEvent ev) {
-			Container parent = InternalWindow.this.getParent();
-			if (hideOnClose) {
-				setVisible(false);
-			} else {
-				parent.remove(InternalWindow.this);
-				parent.validate();
-			}
+			close();
 			playSound(closeSound);
 		}
 	}
