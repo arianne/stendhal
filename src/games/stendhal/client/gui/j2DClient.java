@@ -35,7 +35,6 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.stats.StatsPanelController;
-import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.KeyRing;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
@@ -149,7 +148,7 @@ public class j2DClient implements UserInterface {
 	private MapPanelController minimap;
 
 	/** the inventory.*/
-	private EntityContainer inventory;
+	private SlotWindow inventory;
 
 	private User lastuser;
 
@@ -356,7 +355,7 @@ public class j2DClient implements UserInterface {
 		character.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(character);
 		
-		createAndAddBag(gameScreen);
+		createAndAddBag();
 		
 		keyring = new KeyRing(gameScreen);
 		containerPanel.addChild(keyring);
@@ -414,8 +413,9 @@ public class j2DClient implements UserInterface {
 				 * it's added to the pane.
 				 */
 				quitDialog.getQuitDialog().setVisible(false);
-				// Character window may have been closed in old clients
+				// Windows may have been closed in old clients
 				character.setVisible(true);
+				inventory.setVisible(true);
 				
 				/*
 				 *  A bit roundabout way to calculate the desired minsize, but
@@ -468,9 +468,10 @@ public class j2DClient implements UserInterface {
 		}
 	}
 
-	private void createAndAddBag(final GameScreen gameScreen) {
-		inventory = new EntityContainer("bag", 3, 4, gameScreen);
-		containerPanel.addChild(inventory);
+	private void createAndAddBag() {
+		inventory = new SlotWindow("bag", 3, 4);
+		inventory.setCloseable(false);
+		containerPanel.addRepaintable(inventory);
 	}
 
 	public void cleanup() {
@@ -559,7 +560,7 @@ public class j2DClient implements UserInterface {
 					if (user != lastuser) {
 						character.setPlayer(user);
 						keyring.setSlot(user, "keyring", gameScreen);
-						inventory.setSlot(user, "bag", gameScreen);
+						inventory.setSlot(user, "bag");
 	
 						lastuser = user;
 					}
