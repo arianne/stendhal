@@ -76,6 +76,14 @@ public class ContainerPanel extends JScrollPane {
 	public void addRepaintable(JComponent child) {
 		panel.add(child);
 		repaintable.add(child);
+		/*
+		 * Prevent moving the window. This may provide a nice way for users to
+		 * reorder the windows eventually. The container would just need to
+		 * reorder the windows based on y-order when the dragging ends. 
+		 */
+		if (child instanceof InternalManagedWindow) {
+			((InternalManagedWindow) child).setMovable(false);
+		}
 	}
 	
 	/**
