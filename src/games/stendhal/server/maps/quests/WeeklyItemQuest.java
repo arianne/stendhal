@@ -289,9 +289,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 				amount=MathHelper.parseIntDefault(elements[1], 1);
 			}
 			if (!player.isEquipped(questItem, amount)) {
-				res.add("I have been asked to find a rare item for Kirdneh museum.");
+				res.add(String.format("I have been asked to find a rare %s for Kirdneh museum.", questItem));
 			} else {
-				res.add("I have the rare item for Kirdneh museum and need to take it.");
+				res.add(String.format("I have the rare %s for Kirdneh museum and need to take it.", questItem));
 			}
 		}
 		if (player.isQuestCompleted(QUEST_SLOT)) {
