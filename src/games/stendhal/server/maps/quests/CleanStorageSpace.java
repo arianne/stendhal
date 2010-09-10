@@ -165,7 +165,7 @@ public class CleanStorageSpace extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Clean the Storage Space",
-				"Eonna has a underground storage space filled with rats and snakes. She wants me, a true hero, to clean it out.",
+				"Eonna has an underground storage space filled with rats and snakes. She wants me, a true hero, to clean it out.",
 				false);
 		step_1();
 		step_2();

@@ -242,7 +242,7 @@ public class HungryJoshua extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Hungry Joshua",
-				"Xoderos is worried about his brother Joshua who lives in Ados because they are short of supples.",
+				"Xoderos is worried about his brother Joshua who lives in Ados because they are short of supplies.",
 				false);
 		step_1();
 		step_2();
