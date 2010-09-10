@@ -37,11 +37,9 @@
 		</entity>
 
 		<entity x="77" y="123">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">11</parameter>
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">water-5</parameter>
+				<parameter name="radius">15</parameter>
 				<parameter name="volume">40</parameter>
 			</implementation>
 		</entity>
@@ -173,6 +171,15 @@
    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
 		<configurator
 			class-name="games.stendhal.server.maps.semos.gnomevillage.GarbiddleNPC"/>
+		
+		<entity x="77" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">water-5</parameter>
+				<parameter name="radius">7</parameter>
+				<parameter name="volume">35</parameter>
+			</implementation>
+		</entity>
+		
 		<portal x="63" y="115" ref="right1">
 			<destination zone="0_semos_mountain_n_w2" ref="left1" />
 		</portal>
