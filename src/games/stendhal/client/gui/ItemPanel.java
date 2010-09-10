@@ -49,8 +49,6 @@ public class ItemPanel extends JComponent implements DropTarget {
 	private EntityView view;
 	/** The entity to whom the displayed slot belongs to */
 	private IEntity parent;
-	/** Name of the slot represented by this panel */
-	private final String slotName;
 	
 	/**
 	 * Create a new ItemPanel.
@@ -60,7 +58,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 	 */
 	public ItemPanel(final String slotName, final Sprite placeholder) {
 		this.placeholder = placeholder;
-		this.slotName = slotName;
+		setName(slotName);
 		
 		Dimension size = new Dimension(background.getWidth(), background.getHeight()); 
 		setPreferredSize(size);
@@ -167,7 +165,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 
 		// 'move to'
 		action.put(EquipActionConsts.TARGET_OBJECT, parent.getID().getObjectID());
-		action.put(EquipActionConsts.TARGET_SLOT, slotName);
+		action.put(EquipActionConsts.TARGET_SLOT, getName());
 
 		StendhalClient.get().send(action);
 	}
@@ -262,7 +260,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 			action.put("type", "equip");
 			// source object and content from THIS container
 			action.put(EquipActionConsts.BASE_OBJECT, parent.getID().getObjectID());
-			action.put(EquipActionConsts.BASE_SLOT, slotName);
+			action.put(EquipActionConsts.BASE_SLOT, getName());
 			action.put(EquipActionConsts.BASE_ITEM, content.getID().getObjectID());
 			// target is player's bag
 			action.put(EquipActionConsts.TARGET_OBJECT, User.get().getID().getObjectID());
