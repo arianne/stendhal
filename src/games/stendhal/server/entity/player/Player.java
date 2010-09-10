@@ -2051,7 +2051,7 @@ public class Player extends RPEntity {
 	 *
 	 * @return TradeState
 	 */
-	protected TradeState getTradeState() {
+	public TradeState getTradeState() {
 		return trade.getTradeState();
 	}
 
