@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
+import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
@@ -34,6 +35,14 @@ public class InternalManagedWindow extends InternalWindow implements
 	 */
 	public InternalManagedWindow(String handle, String title) {
 		super(title);
+		/*
+		 * Abusing AWT methods to pass information to WtWindowManager. The
+		 * method is practically undocumented and seems to exist for storing
+		 * identifiers to the components (ie. exactly what we need the name
+		 * for). Anyway, it does not seem to break anything and doing this
+		 * otherwise would require breaking WtWindowManager interface. 
+		 */
+		setName(handle);
 		/*
 		 * Do not steal the keyboard focus. Users may be confused how
 		 * to get it back. 
@@ -74,6 +83,18 @@ public class InternalManagedWindow extends InternalWindow implements
 		 */
 		setSize(getPreferredSize());
 		relocate(getLocation());
+		WtWindowManager.getInstance().setMinimized(this, minimized);
+	}
+	
+	@Override
+	public void addNotify() {
+		super.addNotify();
+		/*
+		 * Getting the remembered window formatting is not safe until all the
+		 * components are in place. Also the window needs to be capable of
+		 * setting its location (if on GameScreen)
+		 */
+		WtWindowManager.getInstance().formatWindow(this);
 	}
 	
 	/**
