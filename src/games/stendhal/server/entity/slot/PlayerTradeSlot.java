@@ -1,9 +1,8 @@
 package games.stendhal.server.entity.slot;
 
+import games.stendhal.common.TradeState;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObject.ID;
 
 /**
  * Slots of players which are use to offer items for trading.
@@ -23,7 +22,10 @@ public class PlayerTradeSlot extends PlayerSlot {
 
 	@Override
 	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
-		return super.hasAsAncestor(entity);
+	    if (((Player) getOwner()).getTradeState() != TradeState.MAKING_OFFERS) {
+	        return false;
+	    }
+		return super.isReachableForTakingThingsOutOfBy(entity);
 	}
 
 	@Override
@@ -31,18 +33,5 @@ public class PlayerTradeSlot extends PlayerSlot {
 		return true;
 	}
 
-	@Override
-	protected int add(RPObject object, boolean assignId) {
-		((Player) getOwner()).unlockTradeItemOffer();
-		return super.add(object, assignId);
-	}
-
-	@Override
-	public RPObject remove(ID id) {
-		((Player) getOwner()).unlockTradeItemOffer();
-		return super.remove(id);
-	}
-
-	// TODO: unlock on adding or removing of parts of stackable items
 	// TODO: unlock on "Use" or prevent "Use"
 }
