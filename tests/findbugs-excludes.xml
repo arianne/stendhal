@@ -1,5 +1,13 @@
 <FindBugsFilter>
 	<Match> 
+		<Bug pattern="EQ_UNUSUAL" />
+		<Package name="~games\.stendhal\.server\.entity\.npc\.action.*" />
+	</Match>
+	<Match> 
+		<Bug pattern="EQ_UNUSUAL" />
+		<Package name="~games\.stendhal\.server\.entity\.npc\.condition.*" />
+	</Match>
+	<Match> 
 		<Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
 		<Package name="~games\.stendhal\.server\.entity.*" />
 	</Match>
