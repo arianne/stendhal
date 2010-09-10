@@ -257,7 +257,7 @@ public class WtWindowManager {
 	 * @param panel
 	 * @param state
 	 */
-	protected void setMinimized(final ManagedWindow panel, final boolean state) {
+	public void setMinimized(final ManagedWindow panel, final boolean state) {
 		final WindowConfiguration config = getConfig(panel);
 
 		config.minimized = state;
