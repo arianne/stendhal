@@ -51,6 +51,8 @@ public class InternalWindow extends JPanel {
 	final TitleBar titleBar;
 	final JButton minimizeButton;
 	final JButton closeButton;
+	/** Title text label */
+	final JLabel titleLabel;
 	
 	private JComponent content;
 	private boolean hideOnClose = false;
@@ -70,7 +72,7 @@ public class InternalWindow extends JPanel {
 		titleBar = new TitleBar();
 		add(titleBar, BorderLayout.NORTH);
 		titleBar.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL, TITLEBAR_PADDING));
-		JLabel titleLabel = new JLabel(title);
+		titleLabel = new JLabel(title);
 		// Squeeze the label if there's not enough space
 		titleLabel.setMinimumSize(new Dimension(0, 0));
 		titleBar.add(titleLabel);
@@ -177,6 +179,15 @@ public class InternalWindow extends JPanel {
 	 */
 	protected JComponent getTitlebar() {
 		return titleBar;
+	}
+	
+	/**
+	 * Set the window title.
+	 * 
+	 * @param title
+	 */
+	protected void setTitle(String title) {
+		titleLabel.setText(title);
 	}
 	
 	/**
