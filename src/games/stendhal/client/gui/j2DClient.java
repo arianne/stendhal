@@ -35,7 +35,6 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.stats.StatsPanelController;
-import games.stendhal.client.gui.wt.KeyRing;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
@@ -357,8 +356,9 @@ public class j2DClient implements UserInterface {
 		
 		createAndAddBag();
 		
-		keyring = new KeyRing(gameScreen);
-		containerPanel.addChild(keyring);
+		keyring = new KeyRing();
+		keyring.setAlignmentX(Component.LEFT_ALIGNMENT);
+		containerPanel.addRepaintable(keyring);
 		client.addFeatureChangeListener(keyring);
 
 		// Avoid panel drawing overhead
@@ -416,6 +416,11 @@ public class j2DClient implements UserInterface {
 				// Windows may have been closed in old clients
 				character.setVisible(true);
 				inventory.setVisible(true);
+				/*
+				 * Keyring, on the other hand, *should* be hidden until revealed
+				 * by feature change 
+				 */
+				keyring.setVisible(false);
 				
 				/*
 				 *  A bit roundabout way to calculate the desired minsize, but
@@ -559,7 +564,7 @@ public class j2DClient implements UserInterface {
 					// Note: this is an exact object reference check
 					if (user != lastuser) {
 						character.setPlayer(user);
-						keyring.setSlot(user, "keyring", gameScreen);
+						keyring.setSlot(user, "keyring");
 						inventory.setSlot(user, "bag");
 	
 						lastuser = user;

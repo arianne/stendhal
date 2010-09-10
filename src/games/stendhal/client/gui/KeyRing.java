@@ -4,42 +4,31 @@
  * $Id$
  */
 
-package games.stendhal.client.gui.wt;
+package games.stendhal.client.gui;
 
 //
 //
 
-import games.stendhal.client.IGameScreen;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.listener.FeatureChangeListener;
+
+import javax.swing.SwingUtilities;
 
 /**
  * A key ring.
  */
-public class KeyRing extends EntityContainer implements FeatureChangeListener {
-	/** 
-	 * A hack to store user's preference about the minimization status. The normal
-	 * mechanism does not work properly because the key ring is triggered by feature 
-	 * enabling.
-	 */
-	private boolean userPrefMinimized;
+public class KeyRing extends SlotWindow implements FeatureChangeListener {
 	/**
 	 * Create a key ring.
 	 * 
 	 * @param gameScreen
 	 * 
 	 */
-	public KeyRing(final IGameScreen gameScreen) {
+	public KeyRing() {
 		// Remember if you change these numbers change also a number in
 		// src/games/stendhal/server/entity/RPEntity.java
-		super("keyring", 2, 4, gameScreen);
-		
-		// Store the preference
-		userPrefMinimized = isMinimized();
-
-		// Hide by default
-		setMinimizeable(false);
-		setMinimized(true);
+		super("keyring", 2, 4);
+		// A panel window; forbid closing
+		setCloseable(false);
 	}
 
 	//
@@ -49,7 +38,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	/**
 	 * Disable the keyring.
 	 */
-	private void disable() {
+	private void disableKeyring() {
 		/*
 		 * You can not really lose a keyring for now, but
 		 * a disable message is received at every map change.
@@ -70,7 +59,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 */
 	public void featureDisabled(final String name) {
 		if (name.equals("keyring")) {
-			disable();
+			disableKeyring();
 		}
 	}
 
@@ -84,26 +73,13 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 */
 	public void featureEnabled(final String name, final String value) {
 		if (name.equals("keyring")) {
-			if (!isMinimizeable()) {
-				setMinimizeable(true);
-				setMinimized(userPrefMinimized);
+			if(!isVisible()) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						setVisible(true);
+					}
+				});
 			}
 		}
-	}
-
-	//
-	// WtPanel
-	//
-
-	/**
-	 * Destroy the panel.
-	 * 
-	 * @param gameScreen
-	 */
-	@Override
-	public void destroy(final IGameScreen gameScreen) {
-		StendhalClient.get().removeFeatureChangeListener(this);
-
-		super.destroy(gameScreen);
 	}
 }
