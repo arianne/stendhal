@@ -274,6 +274,11 @@ public class j2DClient implements UserInterface {
 		 */
 		quitDialog = new QuitDialog();
 		pane.add(quitDialog.getQuitDialog(), JLayeredPane.MODAL_LAYER);
+		/*
+		 * Window manager may try to restore the visibility of the dialog when
+		 * it's added to the pane.
+		 */
+		quitDialog.getQuitDialog().setVisible(false);
 
 		/*
 		 * Game log
