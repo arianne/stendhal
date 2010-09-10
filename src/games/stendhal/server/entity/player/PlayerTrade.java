@@ -180,46 +180,24 @@ class PlayerTrade {
 	 */
 	protected void cancelTradeInternally(String partnerName) {
 		if ((this.partnerName == null) || this.partnerName.equals(partnerName)) {
-			partnerName = null;
-			tradeState = TradeState.NO_ACTIVE_TRADE;
+			this.partnerName = null;
+			this.tradeState = TradeState.NO_ACTIVE_TRADE;
 			moveItemsBack();
 		}
 	}
 
 	private void moveItemsBack() {
 		RPSlot tradeSlot = player.getSlot("trade");
-		List<Item> items = new LinkedList<Item>();
-		if (tradeSlot == null) {
-			return;
-		}
-		for (RPObject item : tradeSlot) {
-			if (item instanceof Item) {
-				items.add((Item) item);
-			}
-		}
-		tradeSlot.clear();
+		List<Item> items = moveItemsFromSlotToList(tradeSlot);
 		RPSlot bagSlot = player.getSlot("bag");
-		final StendhalRPZone zone = player.getZone();
-		boolean onGround = false;
-		for (Item item : items) {
-			if (!bagSlot.isFull()) {
-				// TODO: merge stackable items
-				bagSlot.add(item);
-				new ItemLogger().equipAction(player, item, new String[]{"slot", player.getName(), "trade"}, new String[]{"slot", player.getName(), "bag"});
-			} else {
-				item.setPosition(player.getX(), player.getY());
-				zone.add(item, player);
-				onGround = true;
-                new ItemLogger().equipAction(player, item, new String[]{"slot", player.getName(), "trade"}, new String[]{"slot", zone.getName(), player.getX() + " " + player.getY()});
-			}
-		}
+		boolean onGround = !moveItemsFromListToSlotOrGround(player, player.getName(), player.getName(), items, bagSlot);
 		if (onGround) {
 			player.sendPrivateText("Some items did not fit in your bag and have been put on the ground.");
 		}
 	}
 
 
-	/**
+    /**
 	 * marks an item offer as complete. If both players have marked their item offers
 	 * as complete, the trade is executed.
 	 */
@@ -253,7 +231,7 @@ class PlayerTrade {
 		if (partner.getTradeState() == TradeState.DEAL_WAITING_FOR_OTHER_DEAL) {
 			player.sendPrivateText("You traded with " + partnerName + ".");
 			partner.sendPrivateText("You traded with " + player.getName() + ".");
-			// TODO: transferItems();
+			transferItems(partner);
 			cancelTradeInternally(partnerName);
 			partner.cancelTradeInternally(player.getName());
 		} else if (partner.getTradeState() == TradeState.LOCKED) {
@@ -269,8 +247,69 @@ class PlayerTrade {
 		tellClients();
 	}
 
+	/**
+	 * transfers items from one person's trade slots to the trade slot of the other person and via versa
+	 *
+	 * @param partner partner
+	 */
+	private void transferItems(Player partner) {
+        RPSlot playerTradeSlot = player.getSlot("trade");
+        RPSlot partnerTradeSlot = partner.getSlot("trade");
+        List<Item> playerItems = moveItemsFromSlotToList(playerTradeSlot);
+        List<Item> partnerItems = moveItemsFromSlotToList(partnerTradeSlot);
+        
+        moveItemsFromListToSlotOrGround(null, player.getName(), partner.getName(), playerItems, partnerTradeSlot);
+        moveItemsFromListToSlotOrGround(null, partner.getName(), player.getName(), partnerItems, playerTradeSlot);
+    }
 
 	/**
+	 * moves all items from a slot to a list, clearing the slot in the end
+	 *
+	 * @param slot RPSlot to clear
+	 * @return list of items that used to be in the slot
+	 */
+	private List<Item> moveItemsFromSlotToList(RPSlot slot) {
+        List<Item> items = new LinkedList<Item>();
+        for (RPObject item : slot) {
+            if (item instanceof Item) {
+                items.add((Item) item);
+            }
+        }
+        slot.clear();
+        return items;
+	}
+
+
+	/**
+	 * moves items from a list into a slot
+	 *
+	 * @param source       the player doing the action
+	 * @param sourcePlayer the owner of the source slot
+	 * @param targetPlayer the owner of the target slot
+	 * @param items        list of items
+	 * @param targetSlot   target slot
+	 * @return true, if items fit into the slot; false if items were put on the ground
+	 */
+    private boolean moveItemsFromListToSlotOrGround(Player source, String sourcePlayer, String targetPlayer, List<Item> items, RPSlot targetSlot) {
+        final StendhalRPZone zone = player.getZone();
+        boolean onGround = false;
+        for (Item item : items) {
+            if (!targetSlot.isFull()) {
+                // TODO: merge stackable items
+                targetSlot.add(item);
+                new ItemLogger().equipAction(source, item, new String[]{"slot", sourcePlayer, "trade"}, new String[]{"slot", targetPlayer, targetSlot.getName()});
+            } else {
+                item.setPosition(player.getX(), player.getY());
+                zone.add(item, player);
+                onGround = true;
+                new ItemLogger().equipAction(source, item, new String[]{"slot", sourcePlayer, "trade"}, new String[]{"ground", zone.getName(), player.getX() + " " + player.getY()});
+            }
+        }
+        items.clear();
+        return !onGround;
+    }
+
+    /**
 	 * removes the marking of an item offer as complete
 	 */
 	public void unlockItemOffer() {
