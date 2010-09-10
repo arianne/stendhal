@@ -131,6 +131,23 @@ class PlayerTrade {
 
 
 	/**
+	 * cancels a trade because 
+	 */
+	protected void cancelTradeBecauseOfLogout() {
+		if (tradeState == TradeState.NO_ACTIVE_TRADE) {
+			return;
+		}
+		Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
+		if (partner != null) {
+			partner.sendPrivateText(player.getName() + " disappeared, cancelling the trade with you.");
+			partner.cancelTradeInternally(player.getName());
+		}
+		partnerName = null;
+		// Do not move own items back. This is done on login because the
+		// bag might be full and items might end up on the ground.
+	}
+
+	/**
 	 * cancels a trade and tells the player and partner about it.
 	 */
 	public void cancelTrade() {
@@ -278,6 +295,7 @@ class PlayerTrade {
 			partner.addEvent(new TradeStateChangeEvent(player.getInt("id"), partner.getTradeState(), tradeState));
 		}
 	}
+
 
 
 	// TODO: cancelTrade on logout

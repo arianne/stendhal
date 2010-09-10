@@ -201,6 +201,7 @@ public class Player extends RPEntity {
 		player.getPetOwner().destroy();
 		player.stop();
 		player.stopAttack();
+		player.trade.cancelTradeBecauseOfLogout();
 
 		/*
 		 * Normally a zoneid attribute shouldn't logically exist after an entity
@@ -238,6 +239,8 @@ public class Player extends RPEntity {
 		poisonToConsume = new LinkedList<ConsumableItem>();
 		directions = new ArrayList<Direction>();
 		awayReplies = new HashMap<String, Long>();
+
+		trade.cancelTradeInternally(null);
 
 		// Beginner's luck (unless overriden by update)
 		karma = 10.0;
