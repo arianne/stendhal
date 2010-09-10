@@ -12,7 +12,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
-import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
