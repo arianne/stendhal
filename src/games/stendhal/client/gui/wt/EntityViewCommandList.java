@@ -8,7 +8,7 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
  * 
  * @author mtotz
  */
-class EntityViewCommandList extends CommandList {
+public class EntityViewCommandList extends CommandList {
 	
 	private static final long serialVersionUID = -1607102841664745919L;
 	
@@ -26,17 +26,19 @@ class EntityViewCommandList extends CommandList {
 	 * @param view
 	 *            The entity view.
 	 */
-	protected EntityViewCommandList(final String name, final String[] items, final EntityView view) {
+	public EntityViewCommandList(final String name, final String[] items, final EntityView view) {
 		super(name, items);
 		this.view = view;
-
 	}
 
-	/** an action has been chosen. 
-	 * @param command */
+	/** 
+	 * an action has been chosen. 
+	 * @param command 
+	 * 
+	 */
+	@Override
 	protected void doAction(final String command) {
 		// tell the entity what happened
 		view.onAction(ActionType.getbyRep(command));
 	}
-
 }
