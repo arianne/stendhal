@@ -13,6 +13,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
@@ -25,8 +27,10 @@ import javax.swing.JScrollPane;
 public class ContainerPanel extends JScrollPane {
 	/** A map of the children to enable removing them. */
 	private final Map<WtPanel, JComponent> children = new HashMap<WtPanel, JComponent>();
-	/** The actual content panel */
+	/** The actual content panel. */
 	private final JPanel panel;
+	/** Components that should be repainted in the game loop.  */
+	private final List<JComponent> repaintable = new LinkedList<JComponent>();
 
 	/**
 	 * Create a ContainerPanel.
@@ -62,6 +66,19 @@ public class ContainerPanel extends JScrollPane {
 	}
 	
 	/**
+	 * Add a component that should be repainted in the drawing loop. This is
+	 * not a particularly pretty way to do it, but individual timers for item
+	 * slots end up being more expensive, and the RepaintManager merges the
+	 * draw request anyway.
+	 * 
+	 * @param child
+	 */
+	public void addRepaintable(JComponent child) {
+		panel.add(child);
+		repaintable.add(child);
+	}
+	
+	/**
 	 * Remove a child component from the panel.
 	 * 
 	 * @param child The Wt component to be removed
@@ -78,6 +95,9 @@ public class ContainerPanel extends JScrollPane {
 	 */
 	public void repaintChildren() {
 		for (JComponent child : children.values()) {
+			child.repaint();
+		}
+		for (JComponent child : repaintable) {
 			child.repaint();
 		}
 	}
