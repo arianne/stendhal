@@ -35,7 +35,6 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.stats.StatsPanelController;
-import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.gui.wt.KeyRing;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -352,8 +351,11 @@ public class j2DClient implements UserInterface {
 		settings.add("rp");
 		containerPanel.add(settings, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
-		character = new Character(this, gameScreen);
-		containerPanel.addChild(character);
+		// Character window
+		character = new Character();
+		character.setAlignmentX(Component.LEFT_ALIGNMENT);
+		containerPanel.addRepaintable(character);
+		
 		createAndAddBag(gameScreen);
 		
 		keyring = new KeyRing(gameScreen);
@@ -412,6 +414,8 @@ public class j2DClient implements UserInterface {
 				 * it's added to the pane.
 				 */
 				quitDialog.getQuitDialog().setVisible(false);
+				// Character window may have been closed in old clients
+				character.setVisible(true);
 				
 				/*
 				 *  A bit roundabout way to calculate the desired minsize, but
