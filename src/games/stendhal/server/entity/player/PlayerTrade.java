@@ -14,6 +14,7 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.TradeState;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -204,10 +205,12 @@ class PlayerTrade {
 			if (!bagSlot.isFull()) {
 				// TODO: merge stackable items
 				bagSlot.add(item);
+				new ItemLogger().equipAction(player, item, new String[]{"slot", player.getName(), "trade"}, new String[]{"slot", player.getName(), "bag"});
 			} else {
 				item.setPosition(player.getX(), player.getY());
 				zone.add(item, player);
 				onGround = true;
+                new ItemLogger().equipAction(player, item, new String[]{"slot", player.getName(), "trade"}, new String[]{"slot", zone.getName(), player.getX() + " " + player.getY()});
 			}
 		}
 		if (onGround) {
