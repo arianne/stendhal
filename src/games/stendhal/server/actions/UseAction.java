@@ -25,6 +25,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RaidCreatureCorpse;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -62,16 +63,21 @@ public class UseAction implements ActionListener {
 	}
 
 	private void useItemInSlot(final Player player, final RPAction action) {
+        final EntitySlot slot = EntityHelper.getSlot(player, action);
 		final Entity object = EntityHelper.entityFromSlot(player, action);
-		if ((object != null) && canAccessSlot(player, object.getBaseContainer())) {
+		if ((object != null) && canAccessSlot(player, slot, object.getBaseContainer())) {
 			tryUse(player, object);
 		}
 	}
 
-	private boolean canAccessSlot(final Player player, final RPObject base) {
+	private boolean canAccessSlot(final Player player, final EntitySlot slot, final RPObject base) {
 		if (!((base instanceof Player) || (base instanceof Corpse) || (base instanceof Chest))) {
 			// Only allow to use objects from players, corpses or chests
 			return false;
+		}
+
+		if ((slot != null) && !slot.isReachableForTakingThingsOutOfBy(player)) {
+		    return false;
 		}
 
 		if ((base instanceof Player)

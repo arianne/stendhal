@@ -1,9 +1,13 @@
 package games.stendhal.server.util;
 
+import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.slot.GroundSlot;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -187,4 +191,58 @@ public class EntityHelper {
 		
 		return null;
 	}
+
+	/**
+	 * gets the item slot from an action
+	 *
+	 * @param player Player executing the action
+	 * @param action action
+	 * @return EntitySlot or <code>null</code> if the action was invalid
+	 */
+    public static EntitySlot getSlot(Player player, RPAction action) {
+        final StendhalRPZone zone = player.getZone();
+
+        if (action.has(ATTR_BASEITEM) && action.has(ATTR_BASEOBJECT) && action.has(ATTR_BASESLOT)) {
+
+            final int baseObject = action.getInt(ATTR_BASEOBJECT);
+
+            final RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
+            if (!zone.has(baseobjectid)) {
+                return null;
+            }
+
+            final RPObject base = zone.get(baseobjectid);
+            if (!(base instanceof Entity)) {
+                // Shouldn't really happen because everything is an entity
+                return null;
+            }
+
+            final Entity baseEntity = (Entity) base;
+
+            if (baseEntity.hasSlot(action.get(ATTR_BASESLOT))) {
+                final RPSlot slot = baseEntity.getSlot(action.get(ATTR_BASESLOT));
+                if (!(slot instanceof EntitySlot)) {
+                    return null;
+                }
+                return (EntitySlot) slot;
+            }
+
+        } else if (action.has(TARGET)) {
+            
+            String target = action.get(TARGET);
+
+            if ((target.length() > 1) && (target.charAt(0) == '#')
+                    && Character.isDigit(target.charAt(1))) {
+                final int objectId = Integer.parseInt(target.substring(1));
+
+                Entity entity = entityFromZoneByID(objectId, zone);
+                if ((entity != null) && (entity instanceof Item)) {
+                    return new GroundSlot(zone, (Item) entity);
+                } else {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
 }
