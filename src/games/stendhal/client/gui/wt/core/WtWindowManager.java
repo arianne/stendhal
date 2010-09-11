@@ -205,9 +205,6 @@ public class WtWindowManager {
 	private void restoreToScreen(ManagedWindow panel, WindowConfiguration config) {
 		int width = 0;
 		int height = 0;
-		// hard coded rough settings panel dimensions
-		int settingswidth = 180;
-		int settingsheight = 25;
 		
 		if (panel instanceof WtPanel) {
 			WtPanel wp = ((WtPanel) panel);
@@ -229,12 +226,6 @@ public class WtWindowManager {
 		final int yDiff = stendhal.screenSize.height - config.y - height;
 		if (yDiff < 0) {
 			config.y += yDiff;
-		}
-		
-		/* The settings panel is not movable now so move any windows left under it */
-		if (config.x < settingswidth && config.y < settingsheight) {
-			config.x = settingswidth;
-			config.y = settingsheight;
 		}
 	}
 
