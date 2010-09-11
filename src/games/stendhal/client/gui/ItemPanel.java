@@ -238,15 +238,13 @@ public class ItemPanel extends JComponent implements DropTarget {
 						}
 					};
 					setComponentPopupMenu(menu);
-					menu.setInvoker(ItemPanel.this);
 				}
-				// Relocate under the cursor
-				Point screenLocation = getLocationOnScreen();
-				// Offset a bit so that the first entry is under the mouse
-				point.x += screenLocation.x - POPUP_MENU_OFFSET;
-				point.y += screenLocation.y - POPUP_MENU_OFFSET;
-				menu.setLocation(point);
-				menu.setVisible(true);
+				/*
+				 * Relocate under the cursor. Offset a bit so that the first
+				 * entry is under the mouse.
+				 */
+				menu.show(ItemPanel.this, point.x - POPUP_MENU_OFFSET,
+						point.y - POPUP_MENU_OFFSET);
 			}
 		}
 		

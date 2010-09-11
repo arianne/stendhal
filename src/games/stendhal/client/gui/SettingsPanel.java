@@ -22,7 +22,6 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.wt.ButtonCommandList;
 
 import java.awt.Insets;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -96,7 +95,6 @@ public class SettingsPanel extends JPanel {
 		 * Add the popup menu
 		 */
 		ButtonCommandList commands = new ButtonCommandList(label, groupsAndCommands.get(label));
-		commands.setInvoker(button);
 		button.setComponentPopupMenu(commands);
 		
 		button.addActionListener(new ButtonListener(button));
@@ -116,13 +114,7 @@ public class SettingsPanel extends JPanel {
 		
 		public void actionPerformed(ActionEvent e) {
 			JPopupMenu menu = button.getComponentPopupMenu();
-			if (!menu.isVisible()) {
-				// Move the menu in the right place just below the button
-				Point location = button.getLocationOnScreen();
-				menu.setLocation(location.x, location.y + button.getHeight());
-				
-				menu.setVisible(true);
-			}
+			menu.show(button, 0, button.getHeight());
 		}
 	}
 }
