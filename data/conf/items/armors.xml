@@ -12,6 +12,7 @@
     <value value="7"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="armor"/>
     </equipable>
   </item>
@@ -28,6 +29,7 @@
     <value value="189"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="armor"/>
     </equipable>
   </item>
@@ -43,6 +45,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -57,6 +60,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -71,6 +75,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -85,6 +90,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -99,6 +105,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -113,6 +120,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -126,6 +134,7 @@
     <value value="3584"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="armor"/>
     </equipable>
   </item>
@@ -141,6 +150,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -155,6 +165,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -169,6 +180,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -183,6 +195,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -197,6 +210,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -211,6 +225,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -225,6 +240,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -238,6 +254,7 @@
     <value value="23625"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="armor"/>
     </equipable>
   </item>
@@ -253,6 +270,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -270,6 +288,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -284,6 +303,7 @@
     <value value="34391"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="armor"/>
     </equipable>
   </item>
@@ -301,6 +321,7 @@
     <susceptibility type="light" value="0.95"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="armor"/>
     </equipable>
   </item>
@@ -319,6 +340,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -333,6 +355,7 @@
     <value value="56000"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="armor"/>
     </equipable>
   </item>
@@ -348,6 +371,7 @@
     <value value="76000"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="armor"/>
     </equipable>
   </item>
@@ -363,6 +387,7 @@
     <value value="86000"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="armor"/>
     </equipable>
   </item>
@@ -383,6 +408,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -400,6 +426,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -416,6 +443,7 @@
     <equipable>
       <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 </items>

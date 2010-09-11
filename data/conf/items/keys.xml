@@ -10,6 +10,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -23,6 +24,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -36,6 +38,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -49,6 +52,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -62,6 +66,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -75,6 +80,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -88,6 +94,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -102,6 +109,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -115,6 +123,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -129,6 +138,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -142,6 +152,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -155,6 +166,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -168,6 +180,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -181,6 +194,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -194,6 +208,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -207,6 +222,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -220,6 +236,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>
@@ -233,6 +250,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>-->
@@ -246,6 +264,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="keyring"/>
     </equipable>
   </item>

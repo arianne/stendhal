@@ -13,6 +13,7 @@
     <value value="5400"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -29,6 +30,7 @@
     <value value="5716"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -47,6 +49,7 @@
     <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -64,6 +67,7 @@
     <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -80,6 +84,7 @@
     <value value="6250"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -98,6 +103,7 @@
     <damage type="light"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -114,6 +120,7 @@
     <value value="8533"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -131,6 +138,7 @@
     <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -149,6 +157,7 @@
     <damage type="fire"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -168,6 +177,7 @@
   <value value="10400"/>
   <equipable>
      <slot name="bag"/>
+      <slot name="trade"/>
      <slot name="lhand"/>
 	 <slot name="rhand"/>
   </equipable>
@@ -184,6 +194,7 @@
     <value value="16637"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -202,6 +213,7 @@
     <equipable>
       <slot name="rhand"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -218,6 +230,7 @@
     <equipable>
       <slot name="lhand"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -232,6 +245,7 @@
     <value value="34300"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -248,6 +262,7 @@
     <value value="34300"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -264,6 +279,7 @@
     <value value="42187"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -280,6 +296,7 @@
     <value value="51200"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -296,6 +313,7 @@
     <value value="90535"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -312,6 +330,7 @@
     <value value="90535"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -328,6 +347,7 @@
     <value value="69120"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -345,6 +365,7 @@
     <damage type="fire"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -363,6 +384,7 @@
     <value value="98742"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -379,6 +401,7 @@
     <value value="109760"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -397,6 +420,7 @@
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -412,6 +436,7 @@
     <damage type="fire"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -430,6 +455,7 @@
     <damage type="ice"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -448,6 +474,7 @@
     <value value="182044"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -464,6 +491,7 @@
     <value value="196520"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -480,6 +508,7 @@
     <value value="199650"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -496,6 +525,7 @@
     <value value="219700"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -513,6 +543,7 @@
     <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -529,6 +560,7 @@
     <value value="303750"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -545,6 +577,7 @@
     <value value="304844"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -563,6 +596,7 @@
     <damage type="light"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -580,6 +614,7 @@
     <value value="457142"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -598,6 +633,7 @@
     <damage type="dark"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
@@ -617,6 +653,7 @@
     <damage type="fire"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>

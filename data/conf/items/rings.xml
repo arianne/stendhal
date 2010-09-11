@@ -11,6 +11,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="finger"/>
       <slot name="keyring"/>
     </equipable>
@@ -25,6 +26,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="finger"/>
       <slot name="keyring"/>
     </equipable>
@@ -41,6 +43,7 @@
     <value value="100000"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="finger"/>
       <slot name="keyring"/>
     </equipable>

@@ -12,6 +12,7 @@
     <equipable>
       <slot name="legs"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -26,6 +27,7 @@
     <equipable>
       <slot name="legs"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -40,6 +42,7 @@
     <equipable>
       <slot name="legs"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -54,6 +57,7 @@
     <equipable>
       <slot name="legs"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -68,6 +72,7 @@
     <equipable>
       <slot name="legs"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -82,6 +87,7 @@
     <equipable>
       <slot name="legs"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -96,6 +102,7 @@
     <equipable>
       <slot name="legs"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -112,6 +119,7 @@
     <equipable>
       <slot name="legs"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -125,6 +133,7 @@
     <value value="7317"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="legs"/>
     </equipable>
   </item>
@@ -139,6 +148,7 @@
     <value value="9317"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="legs"/>
     </equipable>
   </item>
@@ -153,6 +163,7 @@
     <value value="10017"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="legs"/>
     </equipable>
   </item>
@@ -167,6 +178,7 @@
     <value value="15017"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="legs"/>
     </equipable>
   </item>
@@ -183,6 +195,7 @@
     <susceptibility type="dark" value="0.95"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="legs"/>
     </equipable>
   </item>
@@ -199,6 +212,7 @@
     <susceptibility type="dark" value="1.3"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="legs"/>
     </equipable>
   </item>

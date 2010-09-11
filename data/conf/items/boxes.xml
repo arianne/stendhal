@@ -10,6 +10,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -22,6 +23,7 @@
     <value value="1"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -35,6 +37,7 @@
     <value value="100"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 </items>

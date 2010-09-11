@@ -12,6 +12,7 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -26,6 +27,7 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -40,6 +42,7 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -54,6 +57,7 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -68,6 +72,7 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -82,6 +87,7 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -96,6 +102,7 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -110,6 +117,7 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -126,6 +134,7 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -141,6 +150,7 @@
     <susceptibility type="ice" value="0.95"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="feet"/>
     </equipable>
   </item>
@@ -155,6 +165,7 @@
     <value value="9317"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="feet"/>
     </equipable>
   </item>
@@ -169,6 +180,7 @@
     <value value="9317"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="feet"/>
     </equipable>
   </item>
@@ -184,6 +196,7 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -197,6 +210,7 @@
     <value value="17625"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="feet"/>
     </equipable>
   </item>
@@ -213,6 +227,7 @@
     <susceptibility type="dark" value="0.9"/> 
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="feet"/>
     </equipable>
   </item>
@@ -229,6 +244,7 @@
     <susceptibility type="light" value="0.9"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="feet"/>
     </equipable>
   </item>
@@ -243,6 +259,7 @@
     <value value="30625"/>
     <equipable>
       <slot name="bag"/>
+      <slot name="trade"/>
       <slot name="feet"/>
     </equipable>
   </item>
