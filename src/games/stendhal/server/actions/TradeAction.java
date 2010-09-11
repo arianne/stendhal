@@ -56,6 +56,8 @@ public class TradeAction implements ActionListener {
 			player.offerTrade((Player) entity);
 		} else if (actionStr.equals("lock")) {
 			player.lockTrade();
+		} else if (actionStr.equals("unlock")) {
+			player.unlockTradeItemOffer();
 		} else if (actionStr.equals("deal")) {
 			player.dealTrade();
 		} else if (actionStr.equals("cancel")) {
