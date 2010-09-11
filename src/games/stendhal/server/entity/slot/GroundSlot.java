@@ -15,7 +15,9 @@ package games.stendhal.server.entity.slot;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
-import marauroa.common.game.RPObject;
+import games.stendhal.server.entity.player.Player;
+
+import java.util.List;
 
 
 /**
@@ -57,22 +59,35 @@ public class GroundSlot extends EntitySlot {
 
 	@Override
 	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
-		// TODO Auto-generated method stub
-		return super.isReachableForTakingThingsOutOfBy(entity);
+		// TODO do range check
+		return !isItemBelowOtherPlayer(entity);
 	}
 
 	@Override
 	public boolean isReachableForThrowingThingsIntoBy(Entity entity) {
-		// TODO Auto-generated method stub
-		return super.isReachableForThrowingThingsIntoBy(entity);
+		// TODO do range check
+		return true;
 	}
 
-
-	@Override
-	protected int add(RPObject object, boolean assignId) {
-		// TODO Auto-generated method stub
-		return -1;
+	/**
+	 * Checks whether the item is below <b>another</b> player.
+	 * 
+	 * @param sourceItem to check
+	 * @return true, if it cannot be taken; false otherwise
+	 */
+	private boolean isItemBelowOtherPlayer(final Entity player) {
+		if (item == null) {
+			return false;
+		}
+		final List<Player> players = player.getZone().getPlayers();
+		for (final Player otherPlayer : players) {
+			if (player.equals(otherPlayer)) {
+				continue;
+			}
+			if (otherPlayer.getArea().intersects(item.getArea())) {
+				return true;
+			}
+		}
+		return false;
 	}
-
-
 }
