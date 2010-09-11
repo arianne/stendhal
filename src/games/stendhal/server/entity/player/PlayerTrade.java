@@ -224,7 +224,6 @@ class PlayerTrade {
 		Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 		if (partner == null) {
 			cancelTradeInternally(partnerName);
-			tellClients();
 			return;
 		}
 
@@ -237,14 +236,13 @@ class PlayerTrade {
 		} else if (partner.getTradeState() == TradeState.LOCKED) {
 			player.sendPrivateText("Okay, your trade is almost complete, just waiting for " + partnerName + " to press Deal.");
 			tradeState = TradeState.DEAL_WAITING_FOR_OTHER_DEAL;
+			tellClients();
 		} else if (partner.getTradeState() == TradeState.MAKING_OFFERS) {
 			player.sendPrivateText("Your partner must lock his offer first.");
 		} else {
 			logger.warn("Inconsitent state at \"deal\" in trade of " + player.getName() + " with partner " + partnerName);
 			cancelTrade();
 		}
-
-		tellClients();
 	}
 
 	/**
