@@ -156,7 +156,6 @@ public enum ActionType {
 	 *            action to be sent
 	 */
 	public void send(final RPAction rpaction) {
-		System.err.println("sending: " + rpaction);
 		StendhalClient.get().send(rpaction);
 	}
 	
