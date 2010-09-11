@@ -83,7 +83,7 @@ public class UseAction implements ActionListener {
 		if (base instanceof RaidCreatureCorpse) {
 			RaidCreatureCorpse corpse = (RaidCreatureCorpse) base;
 			if (!corpse.mayUse(player)) {
-				player.sendPrivateText("Only " + corpse.getOwner() + " may access the corpse for now.");
+				player.sendPrivateText("Only " + corpse.getCorpseOwner() + " may access the corpse for now.");
 				
 				return false;
 			}

@@ -105,8 +105,8 @@ class SourceObject extends MoveableObject {
 		if (parent instanceof RaidCreatureCorpse) {
 			RaidCreatureCorpse corpse = (RaidCreatureCorpse) parent;
 			if (!corpse.mayUse(player)) {
-				logger.debug(player.getName() + " tried to access RaidCreatureCorpse owned by " + corpse.getOwner());
-				player.sendPrivateText("Only " + corpse.getOwner() + " may access the corpse for now.");
+				logger.debug(player.getName() + " tried to access RaidCreatureCorpse owned by " + corpse.getCorpseOwner());
+				player.sendPrivateText("Only " + corpse.getCorpseOwner() + " may access the corpse for now.");
 				return invalidSource;
 			}
 		}

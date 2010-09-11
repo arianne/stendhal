@@ -10,7 +10,7 @@ import games.stendhal.server.entity.player.Player;
 public class RaidCreatureCorpse extends Corpse {
 	// completely rot in 3 minutes
 	private static final int DEGRADATION_STEP_TIMEOUT = 3 * 60 / 5;
-	private String owner = null;  
+	private String corpseOwner = null;  
 	/**
 	 * Create a corpse.
 	 * 
@@ -23,7 +23,7 @@ public class RaidCreatureCorpse extends Corpse {
 		super(victim, killerName);
 		
 		if (victim.isAttacking()) {
-			owner = victim.getAttackTarget().getName();
+			corpseOwner = victim.getAttackTarget().getName();
 		}
 	}
 	
@@ -34,7 +34,7 @@ public class RaidCreatureCorpse extends Corpse {
 	 * @return true iff the player may access the items in the slots 
 	 */
 	public boolean mayUse(Player player) {
-		return (owner == null || owner.equals(player.getName()));
+		return (corpseOwner == null || corpseOwner.equals(player.getName()));
 	}
 	
 	/**
@@ -44,8 +44,8 @@ public class RaidCreatureCorpse extends Corpse {
 	 * @return the name of the owner or <code>null</code> if anyone
 	 * may use the items
 	 */
-	public String getOwner() {
-		return owner;
+	public String getCorpseOwner() {
+		return corpseOwner;
 	}
 	
 	@Override
@@ -56,7 +56,7 @@ public class RaidCreatureCorpse extends Corpse {
 	@Override
 	public void onTurnReached(final int currentTurn) {
 		// clear the owner so that all players can access the items
-		owner = null;
+		corpseOwner = null;
 		super.onTurnReached(currentTurn);
 	}
 }
