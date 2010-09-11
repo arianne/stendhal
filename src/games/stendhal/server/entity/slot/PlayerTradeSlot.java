@@ -32,6 +32,4 @@ public class PlayerTradeSlot extends PlayerSlot {
 	public boolean isTargetBoundCheckRequired() {
 		return true;
 	}
-
-	// TODO: unlock on "Use" or prevent "Use"
 }
