@@ -148,7 +148,7 @@ public class j2DClient implements UserInterface {
 
 	/** the inventory.*/
 	private SlotWindow inventory;
-
+	
 	private User lastuser;
 
 
@@ -264,10 +264,10 @@ public class j2DClient implements UserInterface {
 			}
 		});
 
+		
+		// On Screen windows
 		/*
 		 * Quit dialog
-		 *
-		 *
 		 */
 		quitDialog = new QuitDialog();
 		pane.add(quitDialog.getQuitDialog(), JLayeredPane.MODAL_LAYER);
@@ -408,19 +408,7 @@ public class j2DClient implements UserInterface {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				mainFrame.getMainFrame().pack();
-				/*
-				 * Window manager may try to restore the visibility of the dialog when
-				 * it's added to the pane.
-				 */
-				quitDialog.getQuitDialog().setVisible(false);
-				// Windows may have been closed in old clients
-				character.setVisible(true);
-				inventory.setVisible(true);
-				/*
-				 * Keyring, on the other hand, *should* be hidden until revealed
-				 * by feature change 
-				 */
-				keyring.setVisible(false);
+				setInitialWindowStates();
 				
 				/*
 				 *  A bit roundabout way to calculate the desired minsize, but
@@ -460,6 +448,29 @@ public class j2DClient implements UserInterface {
 		checkAndComplainAboutJavaImplementation();
 		WorldObjects.addWorldListener(getSoundSystemFacade());
 	} // constructor
+	
+	/**
+	 * Modify the states of the on screen windows. The window manager normally
+	 * restores the state of the window as it was on the previous session. For
+	 * some windows this is not desirable.
+	 * <p>
+	 * <em>Note:</em> This need to be called from the event dispatch thread.
+	 */
+	private void setInitialWindowStates() {
+		/*
+		 * Window manager may try to restore the visibility of the dialog when
+		 * it's added to the pane.
+		 */
+		quitDialog.getQuitDialog().setVisible(false);
+		// Windows may have been closed in old clients
+		character.setVisible(true);
+		inventory.setVisible(true);
+		/*
+		 * Keyring, on the other hand, *should* be hidden until revealed
+		 * by feature change 
+		 */
+		keyring.setVisible(false);
+	}
 
 	private void checkAndComplainAboutJavaImplementation() {
 		final String vmName = System.getProperty("java.vm.name", "unknown").toLowerCase(Locale.ENGLISH);
