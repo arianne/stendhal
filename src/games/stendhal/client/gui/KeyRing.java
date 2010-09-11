@@ -19,9 +19,6 @@ import javax.swing.SwingUtilities;
 public class KeyRing extends SlotWindow implements FeatureChangeListener {
 	/**
 	 * Create a key ring.
-	 * 
-	 * @param gameScreen
-	 * 
 	 */
 	public KeyRing() {
 		// Remember if you change these numbers change also a number in
