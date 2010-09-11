@@ -164,6 +164,7 @@ class Player2DView extends RPEntity2DView {
 			} else if (!hasBuddy)  {
 				list.add(ActionType.IGNORE.getRepresentation());
 			}
+			list.add(ActionType.TRADE.getRepresentation());
 		}
 	}
 
@@ -222,6 +223,10 @@ class Player2DView extends RPEntity2DView {
 			break;
 
 		case UNIGNORE:
+			at.send(at.fillTargetInfo(entity.getRPObject()));
+			break;
+			
+		case TRADE:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 			

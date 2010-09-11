@@ -68,6 +68,14 @@ public enum ActionType {
 			return rpaction;
 		}
 	},
+	TRADE("trade", "Trade") {
+		@Override
+		public RPAction fillTargetInfo(final RPObject object) {
+			RPAction rpaction = super.fillTargetInfo(object);
+			rpaction.put("action", "offer_trade");
+			return rpaction;
+		}
+	},
 	ADMIN_INSPECT("inspect", "(*)Inspect"),
 	ADMIN_DESTROY("destroy", "(*)Destroy"),
 	ADMIN_ALTER("alter", "(*)Alter"),
@@ -148,6 +156,7 @@ public enum ActionType {
 	 *            action to be sent
 	 */
 	public void send(final RPAction rpaction) {
+		System.err.println("sending: " + rpaction);
 		StendhalClient.get().send(rpaction);
 	}
 	
