@@ -146,6 +146,7 @@ public class TradingController {
 					window.allowAccept(false);
 					window.allowOffer(true);
 					window.allowCancel(true);
+					window.setUserStatus(myState);
 				}
 			};
 			break;
@@ -155,6 +156,7 @@ public class TradingController {
 					window.allowAccept(partnerState == TradeState.LOCKED);
 					window.allowOffer(false);
 					window.allowCancel(true);
+					window.setUserStatus(myState);
 				}
 			};
 			break;
@@ -164,6 +166,8 @@ public class TradingController {
 					window.allowAccept(false);
 					window.allowOffer(false);
 					window.allowCancel(true);
+					// It's the partner's offer that has been accepted
+					window.setPartnerStatus(myState);
 				}
 			};
 			break;
@@ -189,6 +193,7 @@ public class TradingController {
 				public void run() {
 					window.allowAccept(false);
 					window.allowCancel(true);
+					window.setPartnerStatus(partnerState);
 					// - keep current offering state
 				}
 			};
@@ -199,6 +204,7 @@ public class TradingController {
 					window.allowAccept(myState == TradeState.LOCKED);
 					window.allowOffer(myState != TradeState.LOCKED);
 					window.allowCancel(true);
+					window.setPartnerStatus(partnerState);
 				}
 			};
 			break;
@@ -208,6 +214,8 @@ public class TradingController {
 					window.allowAccept(true);
 					window.allowOffer(false);
 					window.allowCancel(true);
+					// It's the user's trade that has been accepted
+					window.setUserStatus(partnerState);
 				}
 			};
 			break;

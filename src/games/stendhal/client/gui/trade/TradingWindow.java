@@ -1,5 +1,6 @@
 package games.stendhal.client.gui.trade;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +17,7 @@ import games.stendhal.client.gui.SlotGrid;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.common.Grammar;
+import games.stendhal.common.TradeState;
 
 /**
  * The trading window. Panels for each of the trader's trading slots and
@@ -30,6 +32,9 @@ class TradingWindow extends InternalManagedWindow {
 	private final JButton offerButton;
 	private final JButton acceptButton;
 	private final JButton cancelButton;
+	
+	private final JLabel myOfferStatus;
+	private final JLabel partnerOfferStatus;
 	
 	/**
 	 * Create a new TradingWindow.
@@ -51,9 +56,14 @@ class TradingWindow extends InternalManagedWindow {
 		 */
 		JComponent partnerColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL, padding);
 		partnersOfferLabel = new JLabel("Partner's offer");
+		partnersOfferLabel.setAlignmentX(CENTER_ALIGNMENT);
 		partnerColumn.add(partnersOfferLabel);
 		partnerSlots = new SlotGrid(2, 2);
 		partnerColumn.add(partnerSlots);
+		
+		partnerOfferStatus = new JLabel("Changing");
+		partnerOfferStatus.setAlignmentX(CENTER_ALIGNMENT);
+		partnerColumn.add(partnerOfferStatus);
 		
 		acceptButton = new JButton("Accept");
 		acceptButton.setEnabled(false);
@@ -75,10 +85,16 @@ class TradingWindow extends InternalManagedWindow {
 		 */
 		JComponent myColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING);
 		JLabel myOfferLabel = new JLabel("My offer");
+		myOfferLabel.setAlignmentX(CENTER_ALIGNMENT);
 		myColumn.add(myOfferLabel);
+		
 		mySlots = new SlotGrid(2, 2);
 		myColumn.add(mySlots);
 		slotRow.add(myColumn);
+		
+		myOfferStatus = new JLabel("Changing");
+		myOfferStatus.setAlignmentX(CENTER_ALIGNMENT);
+		myColumn.add(myOfferStatus);
 		
 		offerButton = new JButton("Offer");
 		offerButton.addActionListener(new ActionListener() {
@@ -117,6 +133,49 @@ class TradingWindow extends InternalManagedWindow {
 	void setPartnerName(String name) {
 		setTitle("Trading with " + name);
 		partnersOfferLabel.setText(Grammar.suffix_s(name) + " offer");
+	}
+	
+	/**
+	 * Set the user's status indicator.
+	 * 
+	 * @param state new status
+	 */
+	void setUserStatus(TradeState state) {
+		setTraderStatus(myOfferStatus, state);
+	}
+	
+	/**
+	 * Set the trading partner's status indicator.
+	 *  
+	 * @param state new status
+	 */
+	void setPartnerStatus(TradeState state) {
+		setTraderStatus(partnerOfferStatus, state);
+	}
+	
+	/**
+	 * Set the status message and color of an indicator label.
+	 * 
+	 * @param indicator label to be changed
+	 * @param state new state
+	 */
+	private void setTraderStatus(JLabel indicator, TradeState state) {
+		switch (state) {
+		case MAKING_OFFERS:
+			indicator.setForeground(Color.GRAY);
+			indicator.setText("Changing");
+			break;
+		case LOCKED:
+			indicator.setForeground(Color.WHITE);
+			indicator.setText("Offered");
+			break;
+		case DEAL_WAITING_FOR_OTHER_DEAL:
+			indicator.setForeground(Color.GREEN);
+			indicator.setText("ACCEPTED");
+			break;
+		default:
+				
+		}
 	}
 	
 	/**
