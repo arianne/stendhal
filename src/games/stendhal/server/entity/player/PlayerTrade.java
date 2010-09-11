@@ -169,7 +169,6 @@ class PlayerTrade {
 			partner.cancelTradeInternally(player.getName());
 		}
 		cancelTradeInternally(partnerName);
-		tellClients();
 	}
 
 
@@ -183,6 +182,7 @@ class PlayerTrade {
 			this.partnerName = null;
 			this.tradeState = TradeState.NO_ACTIVE_TRADE;
 			moveItemsBack();
+			tellClients();
 		}
 	}
 
