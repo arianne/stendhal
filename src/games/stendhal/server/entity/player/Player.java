@@ -1720,6 +1720,7 @@ public class Player extends RPEntity {
 		 */
 		setKeyedSlot("!visited", zoneName,
 				Long.toString(System.currentTimeMillis()));
+		trade.cancelTrade();
 	}
 
 	/**
@@ -1986,6 +1987,7 @@ public class Player extends RPEntity {
 	 * adds a buddy to the player's buddy list
 	 * 
 	 * @param name the name of the buddy
+	 * @param online if the player is online
 	 */
 	public void addBuddy(String name, boolean online) {
 		put("buddies", name, online);
@@ -2084,7 +2086,7 @@ public class Player extends RPEntity {
 	
 
 	/**
-	 * unlockas a trade item offer for example because of some modifications
+	 * unlocks a trade item offer for example because of some modifications
 	 * on the trade slot.
 	 */
 	public void unlockTradeItemOffer() {
