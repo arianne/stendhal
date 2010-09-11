@@ -161,6 +161,10 @@ class TradingWindow extends InternalManagedWindow {
 	 */
 	private void setTraderStatus(JLabel indicator, TradeState state) {
 		switch (state) {
+		case NO_ACTIVE_TRADE:
+			indicator.setForeground(Color.GRAY);
+			indicator.setText("Inactive");
+			break;
 		case MAKING_OFFERS:
 			indicator.setForeground(Color.GRAY);
 			indicator.setText("Changing");
@@ -205,6 +209,8 @@ class TradingWindow extends InternalManagedWindow {
 		offerButton.setEnabled(false);
 		acceptButton.setEnabled(false);
 		cancelButton.setEnabled(false);
+		setUserStatus(TradeState.NO_ACTIVE_TRADE);
+		setPartnerStatus(TradeState.NO_ACTIVE_TRADE);
 	}
 	
 	/**
