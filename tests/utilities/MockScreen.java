@@ -7,7 +7,6 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.NotificationType;
 
@@ -149,10 +148,6 @@ public class MockScreen implements IGameScreen {
 
 	public EntityView getMovableEntityViewAt(final double x, final double y) {
 		return null;
-	}
-
-	public void addDialog(final WtPanel panel) {
-		
 	}
 
 	public int convertWorldXToScreenView(final double wx) {

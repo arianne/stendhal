@@ -14,13 +14,12 @@ package games.stendhal.client;
 
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.DropTarget;
+import games.stendhal.client.gui.GroundContainer;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
-import games.stendhal.client.gui.wt.GroundContainer;
-import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -218,7 +217,8 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		entities = new HashMap<IEntity, EntityView>();
 
 		// create ground
-		ground = new GroundContainer(client, this, sw, sh);
+		//ground = new GroundContainer(client, this, sw, sh);
+		ground = new GroundContainer(client, this, this);
 
 		// register native event handler
 		addMouseListener(ground);
@@ -267,15 +267,6 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		}
 		
 		return textBoxFactory;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#addDialog(games.stendhal.client.gui.wt.core.WtPanel)
-	 */
-	public void addDialog(final WtPanel panel) {
-		ground.addChild(panel);
 	}
 
 	/*
@@ -550,11 +541,6 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		drawTopEntities(graphics);
 		
 		drawText(g2d);
-
-		/*
-		 * Dialogs
-		 */
-		ground.draw(g2d);
 
 		/*
 		 * Offline

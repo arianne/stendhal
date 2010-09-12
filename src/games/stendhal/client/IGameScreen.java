@@ -3,7 +3,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Graphics;
@@ -17,14 +16,6 @@ public interface IGameScreen {
 
 	/** Prepare screen for the next frame to be rendered and move it if needed .*/
 	void nextFrame();
-
-	/**
-	 * Add a legacy dialog to the screen.
-	 *
-	 * @param panel
-	 *            The dialog to add.
-	 */
-	void addDialog(final WtPanel panel);
 
 	/**
 	 * Add an entity.

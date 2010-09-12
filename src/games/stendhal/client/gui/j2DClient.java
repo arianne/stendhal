@@ -35,7 +35,6 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.stats.StatsPanelController;
-import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
 import games.stendhal.client.sound.SoundGroup;
@@ -890,8 +889,6 @@ public class j2DClient implements UserInterface {
 	public void addWindow(final ManagedWindow mw) {
 		if (mw instanceof InternalManagedWindow) {
 			addDialog((InternalManagedWindow) mw);
-		} else if (mw instanceof WtPanel) {
-			screen.addDialog((WtPanel) mw);
 		} else {
 			throw new IllegalArgumentException("Unsupport ManagedWindow type: "
 					+ mw.getClass().getName());
