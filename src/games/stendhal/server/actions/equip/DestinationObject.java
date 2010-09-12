@@ -189,13 +189,18 @@ class DestinationObject extends MoveableObject {
 		return true;
 	}
 	
-	/* returns true if zone is semos tavern and entity is dice */
+	/** 
+	 * returns true if zone is semos tavern and entity is dice
+	 *
+	 * @param entity the item
+	 * @param player the player to get the zone from
+	 */
 	private boolean isGamblingZoneAndIsDice(final Entity entity, final Player player) {
 		final StendhalRPZone zone = player.getZone();
 		return "int_semos_tavern_0".equals(zone.getName()) && ("dice").equals(entity.getTitle());
 	}
 	
-	/* returns true if destination is trading table in semos bank */
+	/** returns true if destination is trading table in semos bank */
 	public boolean isTradingTable(final Entity other, final Player player) {
 		final StendhalRPZone zone = player.getZone();
 			// Note! Hardcoded in the location of trading table, it starts at x = 32
