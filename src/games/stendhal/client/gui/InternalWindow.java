@@ -21,6 +21,8 @@ import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -61,6 +63,8 @@ public class InternalWindow extends JPanel {
 	private String minimizeSound = "click-8";
 	private String closeSound = "click-6";
 	
+	private final List<CloseListener> closeListeners = new LinkedList<CloseListener>();
+	
 	/**
 	 * Create a new InternalWindow.
 	 * 
@@ -92,8 +96,18 @@ public class InternalWindow extends JPanel {
 		closeButton.setMargin(new Insets(0, 0, 0, 0));
 		closeButton.setBorder(BorderFactory.createEmptyBorder());
 		closeButton.setFocusable(false);
-		closeButton.addActionListener(new CloseListener());
+		closeButton.addActionListener(new CloseActionListener());
 		titleBar.add(closeButton);
+	}
+	
+	/**
+	 * Add a close listener to the window. All the listeners will be notified
+	 * when this window is closed.
+	 * 
+	 * @param listener
+	 */
+	public void addCloseListener(CloseListener listener) {
+		closeListeners.add(listener);
 	}
 	
 	/**
@@ -194,7 +208,7 @@ public class InternalWindow extends JPanel {
 	 * Close the window. Either deletes or hides it, according to the policy
 	 * set with {@link #setHideOnClose}.
 	 */
-	protected void close() {
+	public void close() {
 		Container parent = InternalWindow.this.getParent();
 		if (hideOnClose) {
 			setVisible(false);
@@ -202,12 +216,16 @@ public class InternalWindow extends JPanel {
 			parent.remove(InternalWindow.this);
 			parent.validate();
 		}
+		// notify listeners
+		for (CloseListener listener : closeListeners) {
+			listener.windowClosed(this);
+		}
 	}
 	
 	/**
 	 * Handle close button.
 	 */
-	private class CloseListener implements ActionListener {
+	private class CloseActionListener implements ActionListener {
 		public void actionPerformed(final ActionEvent ev) {
 			close();
 			playSound(closeSound);
@@ -373,5 +391,12 @@ public class InternalWindow extends JPanel {
 					getWidth() + insets.left + insets.right, getHeight());
 			graphics.dispose();
 		}
+	}
+	
+	/**
+	 * Listener interface for window close events.
+	 */
+	public interface CloseListener {
+		void windowClosed(InternalWindow window);
 	}
 }
