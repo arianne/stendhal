@@ -22,6 +22,7 @@ import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.DragLayer;
 import games.stendhal.client.gui.DropTarget;
+import games.stendhal.client.gui.SlotWindow;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
@@ -398,20 +399,20 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 	// Inspector
 	//
 
-	public EntityContainer inspectMe(final IEntity suspect, final RPSlot content,
-			final EntityContainer container, final int width, final int height,
-			final IGameScreen gameScreen) {
+	public SlotWindow inspectMe(final IEntity suspect, final RPSlot content,
+			final SlotWindow container, final int width, final int height) {
 		if ((container != null) && container.isVisible()) {
+			container.raise();
 			return container;
 		} else {
-			EntityContainer newContainer = new EntityContainer(suspect.getType(), width, height,
-					gameScreen);
+			SlotWindow window = new SlotWindow(suspect.getType(), width, height);
+			window.setSlot(suspect, content.getName());
 
-			addChild(newContainer);
+			j2DClient.get().addWindow(window);
+			window.raise();
+			window.setVisible(true);
 
-			newContainer.setSlot(suspect, content.getName(), gameScreen);
-			newContainer.setVisible(true);
-			return newContainer;
+			return window;
 		}
 	}
 

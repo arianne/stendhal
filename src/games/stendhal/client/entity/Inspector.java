@@ -1,11 +1,8 @@
 package games.stendhal.client.entity;
 
-import games.stendhal.client.IGameScreen;
-import games.stendhal.client.gui.wt.EntityContainer;
+import games.stendhal.client.gui.SlotWindow;
 import marauroa.common.game.RPSlot;
 
 public interface Inspector {
-
-	EntityContainer inspectMe(IEntity entity, RPSlot content,
-			EntityContainer container, int width , int height, IGameScreen gameScreen);
+	SlotWindow inspectMe(IEntity entity, RPSlot content, SlotWindow container, int width, int height);
 }

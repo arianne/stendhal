@@ -9,14 +9,15 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.gui.InternalWindow;
+import games.stendhal.client.gui.SlotWindow;
+import games.stendhal.client.gui.InternalWindow.CloseListener;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
-import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -46,13 +47,10 @@ class Corpse2DView extends Entity2DView {
 	/**
 	 * The current content inspector.
 	 */
-	private EntityContainer wtEntityContainer;
+	private SlotWindow slotWindow;
 
 	/**
 	 * Create a 2D view of an entity.
-	 * 
-	 * @param corpse
-	 *            The entity to render.
 	 */
 	public Corpse2DView() {
 		
@@ -193,9 +191,21 @@ class Corpse2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case INSPECT:
-			wtEntityContainer = inspector.inspectMe(entity,
-					((Corpse) entity).getContent(), wtEntityContainer, 2, 2, GameScreen
-							.get());
+			boolean addListener = slotWindow == null;
+			slotWindow = inspector.inspectMe(entity,
+					((Corpse) entity).getContent(), slotWindow, 2, 2);
+			/*
+			 * Register a listener for window closing so that we can
+			 * drop the reference to the closed window and let the
+			 * garbage collector claim it.
+			 */
+			if (addListener) {
+				slotWindow.addCloseListener(new CloseListener() {
+					public void windowClosed(InternalWindow window) {
+						slotWindow = null;
+					}
+				});
+			}
 			break;
 
 		default:
@@ -212,9 +222,8 @@ class Corpse2DView extends Entity2DView {
 	 */
 	@Override
 	public void release(final IGameScreen gameScreen) {
-		if (wtEntityContainer != null) {
-			wtEntityContainer.destroy(gameScreen);
-			wtEntityContainer = null;
+		if (slotWindow != null) {
+			slotWindow.close();
 		}
 
 		super.release(gameScreen);

@@ -9,14 +9,15 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.gui.InternalWindow;
+import games.stendhal.client.gui.SlotWindow;
+import games.stendhal.client.gui.InternalWindow.CloseListener;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
-import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -55,7 +56,7 @@ class Chest2DView extends StateEntity2DView {
 	/**
 	 * The current content inspector.
 	 */
-	private EntityContainer wtEntityContainer;
+	private SlotWindow slotWindow;
 
 	/**
 	 * Create a 2D view of a chest.
@@ -158,16 +159,15 @@ class Chest2DView extends StateEntity2DView {
 		super.update();
 
 		if (openChanged) {
-			if (((Chest) entity).isOpen()) {
+			Chest chest = (Chest) entity;
+			if (chest.isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
-					wtEntityContainer = inspector.inspectMe(entity, ((Chest) entity)
-							.getContent(), wtEntityContainer, 5, 6, GameScreen.get());
+					showWindow();
 				}
 			} else {
-				if (wtEntityContainer != null) {
-					wtEntityContainer.destroy(GameScreen.get());
-					wtEntityContainer = null;
+				if (slotWindow != null) {
+					slotWindow.close();
 				}
 			}
 
@@ -212,9 +212,7 @@ class Chest2DView extends StateEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case INSPECT:
-
-			wtEntityContainer = inspector.inspectMe(entity, ((Chest) entity).getContent(),
-					wtEntityContainer, 5, 6, GameScreen.get());
+			showWindow();
 			break;
 
 		case OPEN:
@@ -245,9 +243,8 @@ class Chest2DView extends StateEntity2DView {
 	 */
 	@Override
 	public void release(final IGameScreen gameScreen) {
-		if (wtEntityContainer != null) {
-			wtEntityContainer.destroy(gameScreen);
-			wtEntityContainer = null;
+		if (slotWindow != null) {
+			slotWindow.close();
 		}
 
 		super.release(gameScreen);
@@ -259,5 +256,26 @@ class Chest2DView extends StateEntity2DView {
 		// TODO: use empty detection like in Corpse2DView, but not for bank chests
 		//because they are always empty when closed
 		return StendhalCursor.BAG;
+	}
+	
+	/**
+	 * Show the content window.
+	 */
+	private void showWindow() {
+		boolean addListener = slotWindow == null;
+		slotWindow = inspector.inspectMe(entity, ((Chest) entity).getContent(),
+				slotWindow, 5, 6);
+		/*
+		 * Register a listener for window closing so that we can
+		 * drop the reference to the closed window and let the
+		 * garbage collector claim it.
+		 */
+		if (addListener) {
+			slotWindow.addCloseListener(new CloseListener() {
+				public void windowClosed(InternalWindow window) {
+					slotWindow = null;
+				}
+			});
+		}
 	}
 }
