@@ -97,6 +97,17 @@ public class InternalManagedWindow extends InternalWindow implements
 	}
 	
 	/**
+	 * Raise the window if possible-
+	 */
+	public void raise() {
+		final Container parent = getParent();
+
+		if (parent instanceof JLayeredPane) {
+			((JLayeredPane) parent).moveToFront(InternalManagedWindow.this);
+		}
+	}
+	
+	/**
 	 * Make the window movable or unmovable by the user. Even unmovable users
 	 * obey window locations from the window manager.
 	 * 
@@ -206,11 +217,7 @@ public class InternalManagedWindow extends InternalWindow implements
 				/*
 				 * Raise the window if possible.
 				 */
-				final Container parent = getParent();
-
-				if (parent instanceof JLayeredPane) {
-					((JLayeredPane) parent).moveToFront(InternalManagedWindow.this);
-				}
+				raise();
 			}
 		}
 	}
