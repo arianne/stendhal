@@ -82,7 +82,7 @@ public class QuitDialog {
 	/**
 	 * Call back at quit confirmed.
 	 */
-	protected class QuitConfirmCB implements ActionListener {
+	private static class QuitConfirmCB implements ActionListener {
 		public void actionPerformed(final ActionEvent ev) {
 				j2DClient.get().shutdown();
 		}
