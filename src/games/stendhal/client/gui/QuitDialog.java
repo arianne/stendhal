@@ -2,10 +2,10 @@ package games.stendhal.client.gui;
 
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.gui.layout.SBoxLayout;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.HierarchyBoundsListener;
@@ -36,7 +36,8 @@ public class QuitDialog {
 	 */
 	private InternalManagedWindow buildQuitDialog() {
 		// dialog contents
-		JComponent content = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, PADDING);
+		JComponent content = new JComponent() {};
+		content.setLayout(new GridLayout(1, 2, PADDING, PADDING));
 		content.setBorder(BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING));
 
 		// create "yes" button
