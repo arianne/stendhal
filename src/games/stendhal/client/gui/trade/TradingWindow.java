@@ -105,6 +105,13 @@ class TradingWindow extends InternalManagedWindow {
 		offerButton.setAlignmentX(RIGHT_ALIGNMENT);
 		myColumn.add(offerButton);
 		
+		/*
+		 * Separate the cancel button from the rest of the components to
+		 * highlight its special status.
+		 */
+		content.add(new JSeparator(SwingConstants.HORIZONTAL),
+				SBoxLayout.constraint(SLayout.EXPAND_X));
+		
 		// Cancel button
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
@@ -112,7 +119,7 @@ class TradingWindow extends InternalManagedWindow {
 				controller.cancelTrade();
 			}
 		});
-		// separate it from the offer making buttons
+
 		cancelButton.setAlignmentX(RIGHT_ALIGNMENT);
 		content.add(cancelButton);
 		
