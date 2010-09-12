@@ -206,12 +206,6 @@ public class WtWindowManager {
 		int width = 0;
 		int height = 0;
 		
-		if (panel instanceof WtPanel) {
-			WtPanel wp = ((WtPanel) panel);
-			width = wp.getWidth();
-			height = WtPanel.FRAME_SIZE + WtPanel.TITLEBAR_SIZE;
-		}
-		
 		final int xDiff = stendhal.screenSize.width - config.x - width;
 		/*
 		 * -30 is a fudge factor to move only windows that are clearly
