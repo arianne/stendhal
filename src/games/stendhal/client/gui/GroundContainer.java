@@ -17,8 +17,6 @@ import games.stendhal.common.EquipActionConsts;
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.geom.Point2D;
@@ -39,7 +37,7 @@ import org.apache.log4j.Logger;
  * Mouse handler for the game screen floor.
  */
 public class GroundContainer extends MouseHandler implements Inspector, 
-	MouseListener, MouseMotionListener, MouseWheelListener, DropTarget {
+	MouseWheelListener {
 	/** 
 	 * The amount to shift popup menus to have the first entry under 
 	 * the mouse.
