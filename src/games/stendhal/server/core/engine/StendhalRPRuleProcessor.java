@@ -169,14 +169,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public boolean checkGameVersion(final String game, final String version) {
 		try {
-			if (game.equals(Configuration.getConfiguration().get("server_typeGame", "stendhal"))) {
-				return true;
+			if (!game.equals(Configuration.getConfiguration().get("server_typeGame", "stendhal"))) {
+				return false;
 			}
+			if (Debug.VERSION.compareTo(version) > 0) {
+				logger.warn("Client version: " + version);
+			}
+			return true;
 		} catch (IOException e) {
 			logger.error(e, e);
 			return false;
 		}
-		return false;
 	}
 
 	/**
