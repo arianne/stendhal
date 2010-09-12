@@ -83,13 +83,23 @@ public class Postman {
 						if (st.hasMoreTokens()) {
 							cmd = st.nextToken();
 						}
-						if (cmd.equalsIgnoreCase("hi")) {
+						if (cmd.equalsIgnoreCase("hi") 
+								|| cmd.equalsIgnoreCase("hello")
+								|| cmd.equalsIgnoreCase("hallo")
+								|| cmd.equalsIgnoreCase("greetings")
+								|| cmd.equalsIgnoreCase("hola")) {
 							chat(GREETING);
-						} else if (cmd.equalsIgnoreCase("bye")) {
+						} else if (cmd.equalsIgnoreCase("bye")
+								|| cmd.equalsIgnoreCase("goodbye")
+								|| cmd.equalsIgnoreCase("farewell")
+								|| cmd.equalsIgnoreCase("cya")
+								|| cmd.equalsIgnoreCase("adios")) {
 							chat("Bye.");
 						} else if (cmd.equalsIgnoreCase("help")
+								|| cmd.equalsIgnoreCase("ayuda")
 								|| cmd.equalsIgnoreCase("info")
 								|| cmd.equalsIgnoreCase("job")
+								|| cmd.equalsIgnoreCase("work")
 								|| cmd.equalsIgnoreCase("offer")
 								|| cmd.equalsIgnoreCase("letter")
 								|| cmd.equalsIgnoreCase("parcel")) {
