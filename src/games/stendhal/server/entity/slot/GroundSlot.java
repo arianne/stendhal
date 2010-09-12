@@ -13,10 +13,13 @@
 package games.stendhal.server.entity.slot;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
+import java.awt.Rectangle;
 import java.util.List;
 
 
@@ -65,9 +68,36 @@ public class GroundSlot extends EntitySlot {
 
 	@Override
 	public boolean isReachableForThrowingThingsIntoBy(Entity entity) {
-		// TODO do range check
+		// and in reach
+		if (entity.squaredDistance(x, y) > (8 * 8)) {
+			//entity.sendPrivateText("That is too far away.");
+			return false;
+		}
+		
+		if (!isGamblingZoneAndIsDice(item)) {
+			// and there is a path there
+			final List<Node> path = Path.searchPath(entity, zone,
+					entity.getX(), entity.getY(), new Rectangle(x, y, 1, 1),
+					64 /* maxDestination * maxDestination */, false);
+			if (path.isEmpty()) {
+				// player.sendPrivateText("There is no easy path to that place.");
+				return false;
+			}
+		}
+
 		return true;
 	}
+
+	/** 
+	 * returns true if zone is semos tavern and entity is dice
+	 *
+	 * @param entity the item
+	 */
+	private boolean isGamblingZoneAndIsDice(final Item entity) {
+		return "int_semos_tavern_0".equals(zone.getName()) && ("dice").equals(entity.getTitle());
+	}
+
+
 
 	/**
 	 * Checks whether the item is below <b>another</b> player.
