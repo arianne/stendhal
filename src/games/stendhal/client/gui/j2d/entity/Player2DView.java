@@ -18,6 +18,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.update.Version;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
@@ -164,7 +165,10 @@ class Player2DView extends RPEntity2DView {
 			} else if (!hasBuddy)  {
 				list.add(ActionType.IGNORE.getRepresentation());
 			}
-			list.add(ActionType.TRADE.getRepresentation());
+			String serverVersion = User.getServerRelease();
+			if ((serverVersion == null) || (Version.compare(serverVersion, "0.87") > 0)) {
+				list.add(ActionType.TRADE.getRepresentation());
+			}
 		}
 	}
 
