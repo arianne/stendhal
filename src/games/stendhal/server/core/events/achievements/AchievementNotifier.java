@@ -2,11 +2,9 @@ package games.stendhal.server.core.events.achievements;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.db.AchievementDAO;
 import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementCommand;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -96,8 +94,6 @@ public class AchievementNotifier {
 				logger.error("Error while saving new achievement "+a.getTitle(), e);
 			}
 		}
-		// register the login notifier that checks for each player the reached achievements on login
-		SingletonRepository.getLoginNotifier().addListener(new ReadAchievementsOnLogin());
 	}
 
 	/**
