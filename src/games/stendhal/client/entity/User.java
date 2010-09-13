@@ -348,6 +348,15 @@ public class User extends Player {
 		return rpobject.has("buddies", name);
 	}
 
+	public static String getServerRelease() {
+		if (User.isNull()) {
+			return null;
+		}
+		
+		
+		return User.get().rpObject.get("release");
+	}
+
 	/**
 	 * Add players to the set of ignored players.
 	 * Player names are the attributes prefixed with '_'.
