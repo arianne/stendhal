@@ -44,6 +44,9 @@ public class QuestStateGreaterThanCondition implements ChatCondition {
 		if(player.hasQuest(questSlot)) {
 			String questState = player.getQuest(questSlot);
 			String[] content = questState.split(";");
+			if(content.length - 1 < index) {
+				return false;
+			}
 			int actualNumber = MathHelper.parseIntDefault(content[index], 0);
 			return actualNumber > numberOfTimesFinished;
 		}
