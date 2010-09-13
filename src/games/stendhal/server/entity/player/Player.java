@@ -29,7 +29,6 @@ import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
-import games.stendhal.server.core.events.achievements.AchievementNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
@@ -1999,12 +1998,6 @@ public class Player extends RPEntity {
 		remove("buddies", name);
 	}
 
-	@Override
-	public void setLevel(int level) {
-		super.setLevel(level);
-		AchievementNotifier.get().onLevelChange(this);
-	}
-	
 	/**
 	 * Adds the identifier of an achievement to the reached achievements
 	 * 

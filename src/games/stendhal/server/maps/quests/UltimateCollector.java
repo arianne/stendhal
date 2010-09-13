@@ -3,13 +3,12 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.CheckForReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
-import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -21,8 +20,8 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -245,7 +244,6 @@ public class UltimateCollector extends AbstractQuest {
 				"Wow, it's incredible to see this close up! Many thanks. Now, perhaps we can #deal together.",
 				new MultipleActions(new DropRecordedItemAction(QUEST_SLOT), 
 									new SetQuestAction(QUEST_SLOT, "done"),
-									new CheckForReachedQuestAchievementsAction(),
 									new IncreaseXPAction(100000)));
 		
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
