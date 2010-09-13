@@ -34,6 +34,7 @@ public class SlashActionRepository {
 		
 		actions.put("clear", new ClearChatLogAction());
 		actions.put("clickmode", new ClickModeAction());
+		actions.put("clientinfo", new ClientInfoAction());
 		actions.put("commands", help);
 		actions.put("crash", new CrashClientAction());
 
