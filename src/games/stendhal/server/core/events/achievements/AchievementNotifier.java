@@ -138,28 +138,7 @@ public class AchievementNotifier {
 	public void onFinishQuest(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.QUEST);
 	}
-	
-	/**
-	 * Checks on login of a player which achievements the player has reached and gives a summarizing message
-	 * 
-	 * @param player
-	 */
-	public void onLogin(Player player) {
-		List<Achievement> toCheck = new ArrayList<Achievement>();
-		Collection<List<Achievement>> values = achievements.values();
-		for (List<Achievement> list : values) {
-			toCheck.addAll(list);
-		}
-		List<Achievement> reached = checkAchievements(player, toCheck);
-		// only send notice if actually a new added achievement was reached by doing nothing
-		if(!reached.isEmpty()) {
-			StringBuilder sb = new StringBuilder();
-			sb.append("You have reached ");
-			sb.append(Integer.valueOf(reached.size()));
-			sb.append(" new "+Grammar.plnoun(reached.size(), "achievement")+". Please check #http://stendhalgame.org for details.");
-			player.sendPrivateText(sb.toString());
-		}
-	}
+
 	
 	/**
 	 * retrieve all achievements for a category and check if player has reached each of the found achievements
