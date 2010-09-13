@@ -85,8 +85,12 @@ public class UseActionTest {
 		final Item cheese = SingletonRepository.getEntityManager().getItem("cheese");
 		chest.add(cheese);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
+		zone.collisionMap.clear();
+		player.setPosition(1, 1);
+		chest.setPosition(1, 2);
 		zone.add(player);
 		zone.add(chest);
+		chest.open();
 		final RPAction action = new RPAction();
 		action.put(BASEITEM, cheese.getID().getObjectID());
 		action.put(BASEOBJECT, chest.getID().getObjectID());
