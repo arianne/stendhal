@@ -52,6 +52,14 @@
 
 	<zone name="0_orril_castle" level="0" x="499872" y="500256"
 		file="Level 0/orril/castle.tmx">
+		
+		<entity x="0" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">a_weird_place</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+				
 		<portal x="60" y="96" ref="outside_gate_left2">
 			<destination zone="0_orril_castle" ref="inside_gate_left2" />
 		</portal>
@@ -108,6 +116,14 @@
 	</zone>
 
 	<zone name="int_orril_castle_0" file="interiors/orril/castle_0.tmx">
+
+		<entity x="0" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">a_weird_place</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
 		<portal x="26" y="62" ref="entrance_left">
 			<destination zone="0_orril_castle" ref="castle_entrance_left" />
 		</portal>
@@ -415,6 +431,13 @@
 		<configurator
 			class-name="games.stendhal.server.maps.orril.castle.GreenDragonCreature" />
 
+		<entity x="0" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">a_weird_place</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+
 		<portal x="69" y="37" ref="0">
 			<destination zone="-2_orril_lich_palace" ref="0" />
 			<implementation
@@ -428,6 +451,14 @@
 
 	<zone name="-1_orril_castle" level="-1" x="499872" y="500256"
 		file="Level -1/orril/castle.tmx">
+
+		<entity x="0" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">a_weird_place</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
+		
 		<portal x="19" y="22" ref="0">
 			<destination zone="int_orril_castle_0" ref="4" />
 		</portal>
