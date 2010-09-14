@@ -234,7 +234,7 @@ class PlayerTrade {
 			cancelTradeInternally(partnerName);
 			partner.cancelTradeInternally(player.getName());
 		} else if (partner.getTradeState() == TradeState.LOCKED) {
-			player.sendPrivateText("Okay, your trade is almost complete, just waiting for " + partnerName + " to press Deal.");
+			player.sendPrivateText("Okay, your trade is almost complete, just waiting for " + partnerName + " to press Accept.");
 			tradeState = TradeState.DEAL_WAITING_FOR_OTHER_DEAL;
 			tellClients();
 		} else if (partner.getTradeState() == TradeState.MAKING_OFFERS) {
@@ -324,7 +324,7 @@ class PlayerTrade {
 	}
 
 	/**
-	 * interally unlocks a trade
+	 * internally unlocks a trade
 	 *
 	 * @param partnerName name of partner (to make sure the correct trade offer is canceled)
 	 * @return true, if a trade was unlocked, false if it was already unlocked
