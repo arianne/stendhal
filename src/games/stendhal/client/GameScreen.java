@@ -465,12 +465,8 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		 * so if swing internals change some time in the future, a new solution
 		 * may be needed.
 		 */
-		if (StendhalClient.get().tryAcquireDrawingSemaphore()) {
-			try {
-				super.paintImmediately(x, y, w, h);
-			} finally {
-				StendhalClient.get().releaseDrawingSemaphore();
-			}
+		if (!StendhalClient.get().isInBatchUpdate()) {
+			super.paintImmediately(x, y, w, h);
 		}
 	}
 	
