@@ -2,6 +2,7 @@ package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.common.Debug;
 import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPAction;
 
@@ -29,7 +30,10 @@ class ClientInfoAction implements SlashAction {
 			patchLevel = "";
 		}
 
-		sb.append("\nOS: " + System.getProperty("os.name") + " " + patchLevel
+		sb.append("\n");
+		sb.append("Stendhal: " + Debug.VERSION + "\n");
+		// TODO: add classpath and information about webstart/download
+		sb.append("OS: " + System.getProperty("os.name") + " " + patchLevel
 				+ " " + System.getProperty("os.version") + " "
 				+ System.getProperty("os.arch") + "\n");
 		sb.append("Java-Runtime: " + System.getProperty("java.runtime.name")
@@ -38,6 +42,10 @@ class ClientInfoAction implements SlashAction {
 		sb.append("Java-VM: " + System.getProperty("java.vm.vendor") + " "
 				+ System.getProperty("java.vm.name") + " "
 				+ System.getProperty("java.vm.version") + "\n");
+
+		final long freeMemory = Runtime.getRuntime().freeMemory() / 1024;
+		final long totalMemory = Runtime.getRuntime().totalMemory() / 1024;
+		sb.append("Total/Used memory: " + totalMemory + "/" + (totalMemory - freeMemory) + "\n");
 
 
 		tell.put("type", "support");
