@@ -518,24 +518,28 @@ public class j2DClient implements UserInterface {
 				logger.debug("Move objects");
 				gameObjects.update(delta);
 	
-				if (gameLayers.isAreaChanged() && !client.isInBatchUpdate()) {
-					/*
-					 * Update the screen
-					 */
-					screen.setMaxWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
-					screen.center();
+				if (gameLayers.isAreaChanged() && client.tryAcquireDrawingSemaphore()) {
+					try {
+						/*
+						 * Update the screen
+						 */
+						screen.setMaxWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
+						screen.center();
+	
+						// [Re]create the map
+		
+						final CollisionDetection cd = gameLayers.getCollisionDetection();
+						final CollisionDetection pd = gameLayers.getProtectionDetection();
 
-					// [Re]create the map
-
-					final CollisionDetection cd = gameLayers.getCollisionDetection();
-					final CollisionDetection pd = gameLayers.getProtectionDetection();
-
-					if (cd != null) {
-						minimap.update(cd, pd,
-								screen.getGraphicsConfiguration(),
-								gameLayers.getArea());
+						if (cd != null) {
+							minimap.update(cd, pd,
+									screen.getGraphicsConfiguration(),
+									gameLayers.getArea());
+						} 
+						gameLayers.resetChangedArea();
+					} finally {
+						client.releaseDrawingSemaphore();
 					}
-					gameLayers.resetChangedArea();
 				}
 	
 				final User user = User.get();
@@ -551,12 +555,17 @@ public class j2DClient implements UserInterface {
 						lastuser = user;
 					}
 				}
-				
-				if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
-					logger.debug("Draw screen");
-					screen.draw();
-					minimap.refresh();
-					containerPanel.repaintChildren();
+				if (client.tryAcquireDrawingSemaphore()) {
+					try {
+						if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
+							logger.debug("Draw screen");
+							screen.draw();
+							minimap.refresh();
+							containerPanel.repaintChildren();
+						}
+					} finally {
+						client.releaseDrawingSemaphore();
+					}
 				}
 	
 				logger.debug("Query network");

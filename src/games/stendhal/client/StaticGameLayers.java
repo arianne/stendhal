@@ -75,15 +75,15 @@ public class StaticGameLayers {
 	private double width;
 
 	/** Name of the layers set that we are rendering right now. */
-	private volatile String area;
+	private String area;
 
 	/** true when the area has been changed. */
-	private volatile boolean areaChanged;
+	private boolean areaChanged;
 
 	/**
 	 * Whether the internal state is valid.
 	 */
-	private volatile boolean isValid;
+	private boolean isValid;
 
 	public StaticGameLayers() {
 		/*
@@ -218,10 +218,8 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 * Set the name of the area to be rendered. This must not be called before
-	 * ll the layer data for the area have been added.
-	 * 
-	 * @param area the area name
+	 * Set the name of the area to be rendered.
+	 * @param area the areas name
 	 */
 	public void setAreaName(final String area) {
 		this.area = area;
@@ -232,7 +230,7 @@ public class StaticGameLayers {
 	/**
 	 * Invalidate any cached settings.
 	 */
-	private void invalidate() {
+	public void invalidate() {
 		isValid = false;
 	}
 
@@ -241,7 +239,6 @@ public class StaticGameLayers {
 			return;
 		}
 
-		String area = this.area;
 		if (area == null) {
 			height = 0.0;
 			width = 0.0;
@@ -358,6 +355,13 @@ public class StaticGameLayers {
 	 */
 	public boolean isAreaChanged() {
 		return areaChanged;
+	}
+
+	/**
+	 * marks the area as changed
+	 */
+	public void markAreaChanged() {
+		this.areaChanged = true;
 	}
 
 	/**

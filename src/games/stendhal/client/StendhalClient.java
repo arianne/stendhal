@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
 
 import javax.swing.JOptionPane;
 
@@ -95,9 +96,8 @@ public class StendhalClient extends ClientFramework {
 	/**
 	 * Whether the client is in a batch update.
 	 */
-	private volatile boolean inBatchUpdate = false;
-	/** Name of the current area */
-	private String areaName;
+	private boolean inBatchUpdate = false;
+	private Semaphore drawingSemaphore = new Semaphore(1);
 
 	private final StendhalPerceptionListener stendhalPerceptionListener;
 
@@ -233,7 +233,7 @@ public class StendhalClient extends ClientFramework {
 
 		if (inBatchUpdate && (contentToLoad == 0)) {
 			inBatchUpdate = false;
-			staticLayers.setAreaName(areaName);
+			drawingSemaphore.release();
 		}
 	}
 
@@ -242,6 +242,7 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * A batch update has begun
 		 */
+		drawingSemaphore.acquireUninterruptibly();
 		inBatchUpdate = true;
 		logger.debug("Batch update started");
 
@@ -262,8 +263,7 @@ public class StendhalClient extends ClientFramework {
 				return items;
 			}
 
-			//staticLayers.setAreaName(name.substring(0, i));
-			areaName = name.substring(0, i);
+			staticLayers.setAreaName(name.substring(0, i));
 		}
 
 		/*
@@ -303,17 +303,6 @@ public class StendhalClient extends ClientFramework {
 
 		return items;
 	}
-	
-	/**
-	 * Check if the client is in the middle of a batch update. A batch update
-	 * starts when a content transfer starts and end on the first perception
-	 * event.
-	 * 
-	 * @return <code>true</code> if in a batch update.
-	 */
-	public boolean isInBatchUpdate() {
-		return inBatchUpdate;
-	}
 
 	/**
 	 * Determine if we are in the middle of transfering new content.
@@ -349,6 +338,8 @@ public class StendhalClient extends ClientFramework {
 				logger.error("onTransfer", e);
 			}
 		}
+		staticLayers.markAreaChanged();
+
 		contentToLoad -= items.size();
 
 		/*
@@ -623,4 +614,14 @@ public class StendhalClient extends ClientFramework {
 		}
 		return res;
 	}
+
+	public void releaseDrawingSemaphore() {
+		drawingSemaphore.release();
+	}
+
+	public boolean tryAcquireDrawingSemaphore() {
+		return drawingSemaphore.tryAcquire();
+	}
+
+	
 }
