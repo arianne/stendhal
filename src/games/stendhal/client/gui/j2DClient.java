@@ -555,17 +555,12 @@ public class j2DClient implements UserInterface {
 						lastuser = user;
 					}
 				}
-				if (client.tryAcquireDrawingSemaphore()) {
-					try {
-						if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
-							logger.debug("Draw screen");
-							screen.draw();
-							minimap.refresh();
-							containerPanel.repaintChildren();
-						}
-					} finally {
-						client.releaseDrawingSemaphore();
-					}
+
+				if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
+					logger.debug("Draw screen");
+					screen.draw();
+					minimap.refresh();
+					containerPanel.repaintChildren();
 				}
 	
 				logger.debug("Query network");
