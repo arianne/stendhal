@@ -529,14 +529,17 @@ public class j2DClient implements UserInterface {
 				// later we can figure out how long we have been doing redrawing
 				// / networking, then we know how long we need to sleep to make
 				// the next flip happen at the right time
-	
+long startTime = System.currentTimeMillis();
+long[] times = new long[14];
 				screen.nextFrame();
+times[0] = System.currentTimeMillis();
 				final long now = System.currentTimeMillis();
 				final int delta = (int) (now - refreshTime);
 				refreshTime = now;
 	
 				logger.debug("Move objects");
 				gameObjects.update(delta);
+times[1] = System.currentTimeMillis();
 	
 				if (gameLayers.isAreaChanged() && client.tryAcquireDrawingSemaphore()) {
 					try {
@@ -561,9 +564,10 @@ public class j2DClient implements UserInterface {
 						client.releaseDrawingSemaphore();
 					}
 				}
-	
+times[2] = System.currentTimeMillis();
+
 				final User user = User.get();
-	
+
 				if (user != null) {
 					// check if the player object has changed.
 					// Note: this is an exact object reference check
@@ -575,17 +579,33 @@ public class j2DClient implements UserInterface {
 						lastuser = user;
 					}
 				}
+times[3] = System.currentTimeMillis();
 				if (client.tryAcquireDrawingSemaphore()) {
+times[4] = System.currentTimeMillis();
 					try {
+times[5] = System.currentTimeMillis();
 						if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
 							logger.debug("Draw screen");
+times[6] = System.currentTimeMillis();
 							screen.draw();
+times[7] = System.currentTimeMillis();
 							minimap.refresh();
+times[8] = System.currentTimeMillis();
 							containerPanel.repaintChildren();
+times[9] = System.currentTimeMillis();
 						}
 					} finally {
 						client.releaseDrawingSemaphore();
+times[10] = System.currentTimeMillis();
 					}
+				} else {
+					times[4] = System.currentTimeMillis();
+					times[5] = System.currentTimeMillis();
+					times[6] = System.currentTimeMillis();
+					times[7] = System.currentTimeMillis();
+					times[8] = System.currentTimeMillis();
+					times[9] = System.currentTimeMillis();
+					times[10] = System.currentTimeMillis();
 				}
 	
 				logger.debug("Query network");
@@ -593,6 +613,7 @@ public class j2DClient implements UserInterface {
 				if (client.loop(0)) {
 					lastMessageHandle = refreshTime;
 				}
+times[11] = System.currentTimeMillis();
 	
 				/*
 				 * Process delayed direction release
@@ -603,7 +624,8 @@ public class j2DClient implements UserInterface {
 	
 					directionRelease = null;
 				}
-	
+times[11] = System.currentTimeMillis();
+
 				if (logger.isDebugEnabled()) {
 					if ((refreshTime - lastFpsTime) >= 1000L) {
 						logger.debug("FPS: " + fps);
@@ -617,7 +639,8 @@ public class j2DClient implements UserInterface {
 						lastFpsTime = refreshTime;
 					}
 				}
-	
+times[12] = System.currentTimeMillis();
+
 				// Shows a offline icon if no messages are received in 120 seconds.
 				if ((refreshTime - lastMessageHandle > 120000L)
 						|| !client.getConnectionState()) {
@@ -625,13 +648,14 @@ public class j2DClient implements UserInterface {
 				} else {
 					setOffline(false);
 				}
-	
+times[13] = System.currentTimeMillis();
+
 				logger.debug("Start sleeping");
 				// we know how long we want per screen refresh (40ms) then
 				// we add the refresh time and subtract the current time
 				// leaving us with the amount we still need to sleep.
 				long wait = frameLength + refreshTime - System.currentTimeMillis();
-	
+
 				if (wait > 0) {
 					if (wait > 100L) {
 						logger.info("Waiting " + wait + " ms");
@@ -643,6 +667,12 @@ public class j2DClient implements UserInterface {
 					} catch (final InterruptedException e) {
 						logger.error(e, e);
 					}
+				} else {
+					StringBuilder sb = new StringBuilder();
+					for (long time : times) {
+						sb.append(" " + (time - startTime));
+					}
+					logger.warn("Game loop time overflow at " + startTime + ": " + sb.toString());
 				}
 	
 				logger.debug("End sleeping");
