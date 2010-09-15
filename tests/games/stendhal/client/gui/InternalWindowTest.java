@@ -115,6 +115,10 @@ public class InternalWindowTest {
 		InternalWindow window = new InternalWindow("Test window");
 		assertEquals("Initial title text", "Test window", window.titleLabel.getText());
 		window.setTitle("Changed");
+		// html ellipsis workaround
 		assertEquals("Changed title text", "<html>Changed</html>", window.titleLabel.getText());
+		// which should not be used when there are spaces in the title
+		window.setTitle("Changed again");
+		assertEquals("Changed title text", "Changed again", window.titleLabel.getText());
 	}
 }
