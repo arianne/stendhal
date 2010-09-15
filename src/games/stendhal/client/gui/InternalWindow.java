@@ -76,7 +76,8 @@ public class InternalWindow extends JPanel {
 		titleBar = new TitleBar();
 		add(titleBar, BorderLayout.NORTH);
 		titleBar.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL, TITLEBAR_PADDING));
-		titleLabel = new JLabel(title);
+		titleLabel = new JLabel();
+		setTitle(title);
 		// Squeeze the label if there's not enough space
 		titleLabel.setMinimumSize(new Dimension(0, 0));
 		titleBar.add(titleLabel);
@@ -201,6 +202,14 @@ public class InternalWindow extends JPanel {
 	 * @param title
 	 */
 	protected void setTitle(String title) {
+		/*
+		 * Work around JLabel drawing ellipsis when it's short of space. To
+		 * avoid titles like "cor..." for corpses.
+		 */
+		if (title.indexOf(' ') == -1) {
+			// A html title with spaces could wrap to the next line
+			title = "<html>" + title + "</html>";
+		}
 		titleLabel.setText(title);
 	}
 	
