@@ -23,6 +23,9 @@ public class NineSwitchesGame {
 	private NineSwitchesGameBoard board;
 	private SpeakerNPC npc;
 
+	// 1 min at 300 ms/turn
+	private static final int CHAT_TIMEOUT = 200;
+	
 	private void addBoard() {
 		board = new NineSwitchesGameBoard(zone, 87, 120);
 	}
@@ -52,6 +55,7 @@ public class NineSwitchesGame {
 			}
 		};
 		npc.setEntityClass("gamesupervisornpc"); 
+		npc.setPlayerChatTimeout(CHAT_TIMEOUT);
 		npc.setPosition(88, 119);
 		npc.setDescription("You see Maltos. Aren't you jealous of his awesome hair?");
 		npc.setDirection(Direction.DOWN);
