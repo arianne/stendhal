@@ -70,7 +70,7 @@ public class NineSwitchesGameBoard implements TurnListener {
 		boolean completed = checkBoard();
 		if (completed) {
 			// TODO: reward
-			npc.say("Congratulations, " + user.getName() + " you won");
+			npc.say("Congratulations, " + user.getName() + " you won!");
 			playerName = null;
 			TurnNotifier.get().dontNotify(this);
 		}
