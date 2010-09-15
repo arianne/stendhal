@@ -111,7 +111,7 @@ public class SpeakerNPC extends NPC {
 	 * Determines how long a conversation can be paused before it will
 	 * terminated by the NPC. Defaults to 30 seconds at 300 ms / turn.
 	 */
-	private long playerChatTimeout = 90;
+	private long playerChatTimeout = 100;
 
 	// Default wait message when NPC is busy
 	private String waitMessage;
