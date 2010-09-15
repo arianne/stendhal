@@ -4,6 +4,7 @@ import static games.stendhal.common.constants.Actions.AWAY;
 import static games.stendhal.common.constants.Actions.GRUMPY;
 import games.stendhal.common.Debug;
 import games.stendhal.common.FeatureList;
+import games.stendhal.common.Version;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -170,7 +171,7 @@ public class PlayerTransformer implements Transformer {
 
 		try {
 			if (object.has("zoneid") && object.has("x") && object.has("y")) {
-				if (object.get("release").equals(Debug.VERSION)) {
+				if (Version.checkCompatibility(object.get("release"),Debug.VERSION)) {
 					zone = SingletonRepository.getRPWorld().getZone(object.get("zoneid"));
 				} else {
 					player.put("release", Debug.VERSION);
