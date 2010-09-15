@@ -51,9 +51,9 @@ public class NineSwitchesGame {
 						new PlayAction(board));
 			}
 		};
-		// TODO: nice outfit
-		npc.setEntityClass("paulnpc"); 
+		npc.setEntityClass("gamesupervisornpc"); 
 		npc.setPosition(88, 119);
+		npc.setDescription("You see Maltos. Aren't you jealous of his awesome hair?");
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
