@@ -39,7 +39,7 @@ public class Blackjack extends AbstractQuest {
 	
 	
 	// 1 min at 300 ms/turn
-	private static final int ONE_MINUTE = 180;
+	private static final int CHAT_TIMEOUT = 200;
 
 	private static final int MIN_STAKE = 10;
 
@@ -331,7 +331,7 @@ public class Blackjack extends AbstractQuest {
 		// increase the timeout, as otherwise the player often
 		// would use their stake because of reacting too slow.
 		
-		ramon.setPlayerChatTimeout(ONE_MINUTE); 
+		ramon.setPlayerChatTimeout(CHAT_TIMEOUT); 
 
 		ramon.add(ConversationStates.ATTENDING, "play", null,
 				ConversationStates.ATTENDING,
