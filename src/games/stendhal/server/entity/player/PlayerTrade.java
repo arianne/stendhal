@@ -129,7 +129,9 @@ class PlayerTrade {
 			return;
 		}
 
-		cancelTrade();
+		if ((this.tradeState != TradeState.NO_ACTIVE_TRADE) && (this.tradeState != TradeState.OFFERING_TRADE)) {
+			cancelTrade();
+		}
 		player.sendPrivateText("You offered to trade with " + partner.getName() + ".");
 		partner.sendPrivateText(player.getName() + " wants to trade with you. Right click on " + player.getName() + " and select \"Trade\" to start a trading session.");
 		this.partnerName = partner.getName();
