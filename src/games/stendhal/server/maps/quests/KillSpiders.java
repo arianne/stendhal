@@ -172,7 +172,7 @@ public class KillSpiders extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Kill spiders",
-				"Morgrin, groundskeeper of magic school, want to clear magic school basement from spiders.",
+				"Morgrin, groundskeeper of magic school, wants to clear magic school basement from spiders.",
 				true);
 		step_1();
 		step_2();
