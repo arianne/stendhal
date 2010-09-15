@@ -40,8 +40,8 @@ import java.util.Map;
 public class SignLessorNPC implements ZoneConfigurator {
 	protected String text;
 
-	// 1 min at 300 ms/turn
-	private static final int ONE_MINUTE = 180;
+	// 1.5 mins at 300 ms/turn
+	private static final int CHAT_TIMEOUT = 300;
 	private static final int MONEY = 100; 
 	protected RentedSignList rentedSignList;
 
@@ -60,7 +60,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 				addGreeting("Hi, I #rent signs and #remove outdated ones.");
 				addJob("I #rent signs for a day.");
 				addHelp("If you want to #rent a sign, just tell me what I should write on it.");
-				setPlayerChatTimeout(ONE_MINUTE);
+				setPlayerChatTimeout(CHAT_TIMEOUT);
 				
 				add(ConversationStates.ATTENDING, "rent", 
 					new LevelLessThanCondition(6), 
