@@ -1,26 +1,25 @@
-package games.stendhal.common;
+package games.stendhal.client.update;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.client.update.Version;
 
 import org.junit.Test;
 
-public class TestVersion {
+public class VersionTest {
 
 	/**
 	 * Tests for extractVersion.
 	 */
 	@Test
 	public void testExtractVersion() {
-		assertEquals("extratVersion 0: ", "", Version.cut("0.52.1", 0));
-		assertEquals("extratVersion 1: ", "0", Version.cut("0.52.1", 1));
-		assertEquals("extratVersion 2: ", "0.52", Version.cut("0.52.1",
+		assertEquals("extractVersion 0: ", "", Version.cut("0.52.1", 0));
+		assertEquals("extractVersion 1: ", "0", Version.cut("0.52.1", 1));
+		assertEquals("extractVersion 2: ", "0.52", Version.cut("0.52.1",
 				2));
-		assertEquals("extratVersion 3: ", "0.52.1", Version.cut(
+		assertEquals("extractVersion 3: ", "0.52.1", Version.cut(
 				"0.52.1", 3));
-		assertEquals("extratVersion 4: ", "0.52.1", Version.cut(
+		assertEquals("extractVersion 4: ", "0.52.1", Version.cut(
 				"0.52.1", 4));
 	}
 
