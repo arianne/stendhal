@@ -300,6 +300,10 @@ import org.apache.log4j.Logger;
 	public void addToWorld() {
 		npc = npcs.get(QUEST_NPC);
 		super.addToWorld();
+		fillQuestInfo(
+				"Kill Blordroughs",
+				"Despot Halb Errvl wants you to kill some Blordrough warriors.",
+				true);
 		step_1();
 	}
 	

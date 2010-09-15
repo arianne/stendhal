@@ -164,7 +164,10 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Kill Dhohr Nuggetcutter",
+				"Zogfang, the orc which guards the entrance of Abandonded Keep, wants you to kill the remaining dwarves from the area around.",
+				false);
 		step_1();
 		step_2();
 		step_3();
