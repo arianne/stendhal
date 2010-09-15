@@ -104,6 +104,10 @@ public class MeetBunny extends AbstractQuest {
 		/* activate bunny here in 2011
 	    createbunny();
 		new TeleporterBehaviour(bunny, "*hop* *hop* *hop* Happy Easter!"); */
+		fillQuestInfo(
+				"Meet Easter Bunny",
+				"Eastern will come soon and some heroes saw the bunny already hopping around the world of Faiumoni. Will you be lucky enough to catch it in time? Take care, it is really fast although it carries some heavy surprises with him...",
+				false);
 	}
 
 	@Override

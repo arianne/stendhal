@@ -25,6 +25,10 @@ public class Maze extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Maze",
+				"Everything you need is a good eye...",
+				false);
 		addMazeSign();
 		setupConversation();
 	}

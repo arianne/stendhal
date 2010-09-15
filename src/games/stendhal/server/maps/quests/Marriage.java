@@ -51,7 +51,10 @@ public class Marriage extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		
+		fillQuestInfo(
+				"Marriage",
+				"Did you find the partner with whom you want to spent your life in Faiumoni with? Then make the next bigger step and tie the knots!",
+				false);
 		MarriageQuestChain marriage = new MarriageQuestChain();
 		marriage.addToWorld();
 	}

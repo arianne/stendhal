@@ -34,6 +34,10 @@ public class MeetMonogenes extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Meet Monogenes",
+				"Listen carefully to a wise old man in Semos. His map can guide you through the town.",
+				false);
 		final SpeakerNPC npc = npcs.get("Monogenes");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,

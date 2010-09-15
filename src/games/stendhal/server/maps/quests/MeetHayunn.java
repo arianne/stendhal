@@ -192,6 +192,10 @@ public class MeetHayunn extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Meet Hayunn Naratha",
+				"Hayunn Naratha can teach young heroes important basics of the Stendhal world.",
+				false);
 		prepareHayunn();
 	}
 

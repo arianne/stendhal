@@ -117,6 +117,10 @@ public class MeetHackim extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Meet Hackim Easso",
+				"The blacksmith assistant Hackim Easso has some useful information.",
+				false);
 		yesTrigger = new LinkedList<String>(ConversationPhrases.YES_MESSAGES);
 		yesTrigger.add("Xin Blanca");
 		yesTrigger.add("Blanca");

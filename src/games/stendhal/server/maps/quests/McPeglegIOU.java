@@ -90,6 +90,10 @@ public class McPeglegIOU extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"McPegleg IOU",
+				"Did you find something named IOU up yet? Maybe McPegleg knows what to do with it...",
+				false);
 
 		step_1();
 		step_2();

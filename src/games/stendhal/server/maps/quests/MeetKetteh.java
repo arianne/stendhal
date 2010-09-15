@@ -94,7 +94,10 @@ public class MeetKetteh extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Meet Ketteh Wehoh",
+				"A lady sits infront of a hut in Semos Village and takes care, that new inhabitants of Faiumoni will walk around without freezing.",
+				false);
 		step1();
 	}
 
