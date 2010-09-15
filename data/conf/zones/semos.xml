@@ -992,6 +992,14 @@ The sharper minded amongst you might prefer to click directly on the creature. I
 
 	<zone name="int_semos_hostel" file="interiors/semos/hostel.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.hostel.KidsNPCs" />
+
+		<entity x="9" y="3">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">sleep-1</parameter>
+				<parameter name="radius">15</parameter>
+			</implementation>
+		</entity>
+
 		<portal x="12" y="23" ref="entrance_left">
 			<destination zone="0_semos_village_w" ref="hostel_entrance" />
 		</portal>
