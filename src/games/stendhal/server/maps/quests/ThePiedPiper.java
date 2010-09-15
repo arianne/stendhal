@@ -74,8 +74,8 @@ import org.apache.log4j.Logger;
 	 * function will set timings to either test server or game server.
 	 */
 	private void setTimings() {
-		if (System.getProperty("stendhal.testserver") == null) {		
-			// game timings
+	/*	if (System.getProperty("stendhal.testserver") == null) {		
+			// game timings */
 			timings.put(INACTIVE_TIME_MAX, 60 * 60 * 24 * 14);
 			timings.put(INACTIVE_TIME_MIN, 60 * 60 * 24 * 7);
 			timings.put(INVASION_TIME_MIN, 60 * 60 * 2);
@@ -83,7 +83,7 @@ import org.apache.log4j.Logger;
 			timings.put(AWAITING_TIME_MIN, 60 * 1);
 			timings.put(AWAITING_TIME_MAX, 60 * 1);
 			timings.put(SHOUT_TIME, 60 * 10);
-			} 
+	/*		} 
 		else {	
 			// test timings
 			timings.put(INACTIVE_TIME_MAX, 60 * 2);
@@ -93,7 +93,7 @@ import org.apache.log4j.Logger;
 			timings.put(AWAITING_TIME_MIN, 60 * 10);
 			timings.put(AWAITING_TIME_MAX, 60 * 10);
 			timings.put(SHOUT_TIME, 60 * 2);
-			}
+			} */
 	}
 	   
     /**
