@@ -149,6 +149,10 @@ public class HelpTomi extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		// want "ice" and quest_messages to have same meaning in this quest
+		fillQuestInfo(
+				"Help Tomi",
+				"Tomi, a boy being tortured in the hot hell, sweats all over his body. The only thing which can help him is... ICE!",
+				true);
 	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		questTrigger.add(extraTrigger);
 		step1();

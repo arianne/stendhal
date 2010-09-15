@@ -317,7 +317,10 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Help Mrs Yeti",
+				"Mrs Yeti is really unhappy with her current lovelife because her husband turned away from her. Now the couple is in deep trouble. Just a special love potion can help Mrs Yeti to get her husband back. Will you help her?",
+				true);
 		startQuest();
 		makePotion();
 		makeMagicKnife();

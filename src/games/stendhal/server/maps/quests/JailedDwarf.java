@@ -59,6 +59,10 @@ public class JailedDwarf extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Jailed Dwarf",
+				"Down in Kanmararn, you will find an afraid dwarf locked in a cell waiting for visitors. He is supposed to be the guard, but duergars have raided the prision. He might need some armor to survive once out of it.",
+				true);
 		step_1();
 	}
 	@Override

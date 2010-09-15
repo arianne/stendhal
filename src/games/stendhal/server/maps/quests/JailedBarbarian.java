@@ -295,7 +295,10 @@ import java.util.Arrays;
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Jailed Barbarian",
+				"Lorenz is a jailed Barbarian on Athor Island. Will you find out, why he has to stay there and if you can help him somehow?",
+				true);
 		step1();
 		step2();
 		step3();

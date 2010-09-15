@@ -185,6 +185,10 @@ public class IcecreamForAnnie extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Icecream for Annie",
+				"The best surprise for a litte girl like Annie is a cool icecream on summerdays while playing on the playground. But take care: ask your mom for her permission first!",
+				true);
 		icecreamStep();
 		meetMummyStep();
 	}

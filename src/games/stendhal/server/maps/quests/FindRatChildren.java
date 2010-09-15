@@ -264,7 +264,10 @@ public class FindRatChildren extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Find Rat Children",
+				"Agnus, who lives in Rat City, asks young heroes to find her children and look after them. They went down into the dark tunnels and didn't show up yet again...",
+				true);
 		askingStep();
 		findingStep();
 		retrievingStep();

@@ -222,6 +222,10 @@ public class FishermansLicenseCollector extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Fishermans License part 2",
+				"Are you a real fisherman? If so, try to convince Santiago the fisherman about your skills and bring him one of each fish.",
+				true);
 		step_1();
 		step_2();
 		step_3();
