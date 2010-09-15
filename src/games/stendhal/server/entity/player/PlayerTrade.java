@@ -79,6 +79,15 @@ class PlayerTrade {
 			return false;
 		}
 
+		if (!player.getChatBucket().checkAndAdd()) {
+			return false;
+		}
+
+		if (GagManager.checkIsGaggedAndInformPlayer(player)) {
+			return false;
+		}
+
+
 		// TODO: check grumpy
 		return true;
 	}
