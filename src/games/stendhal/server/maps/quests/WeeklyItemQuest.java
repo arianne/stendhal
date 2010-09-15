@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -289,9 +290,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 				amount=MathHelper.parseIntDefault(elements[1], 1);
 			}
 			if (!player.isEquipped(questItem, amount)) {
-				res.add(String.format("I have been asked to find a rare %s for Kirdneh museum.", questItem));
+				res.add(String.format("I have been asked to find " +Grammar.quantityplnoun(amount, questItem, "a") + " for Kirdneh museum."));
 			} else {
-				res.add(String.format("I have the rare %s for Kirdneh museum and need to take it.", questItem));
+				res.add(String.format("I have" +Grammar.quantityplnoun(amount, questItem, "a") + "for Kirdneh museum and need to take it."));
 			}
 		}
 		if (player.isQuestCompleted(QUEST_SLOT)) {
