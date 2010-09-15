@@ -3,6 +3,8 @@ package games.stendhal.server.maps.quests.revivalweeks;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.mapstuff.game.NineSwitchesGameBoard;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -12,6 +14,8 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A Game about Nine switches game for one player
@@ -34,8 +38,24 @@ public class NineSwitchesGame {
 		npc = new SpeakerNPC("Maltos") {
 			@Override
 			protected void createPath() {
-				// NPC doesn't move
-				setPath(null);
+				final List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(88, 119));
+				nodes.add(new Node(88, 117));
+				nodes.add(new Node(84, 117));
+				nodes.add(new Node(84, 121));
+				nodes.add(new Node(86, 121));
+				nodes.add(new Node(84, 121));
+				nodes.add(new Node(84, 124));
+				nodes.add(new Node(88, 124));
+				nodes.add(new Node(88, 123));
+				nodes.add(new Node(88, 124));
+				nodes.add(new Node(91, 124));
+				nodes.add(new Node(91, 121));
+				nodes.add(new Node(90, 121));
+				nodes.add(new Node(91, 121));
+				nodes.add(new Node(91, 117));
+				nodes.add(new Node(88, 117));
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override
