@@ -174,11 +174,11 @@ public class PlayerTransformer implements Transformer {
 				if (Version.checkCompatibility(object.get("release"),Debug.VERSION)) {
 					zone = SingletonRepository.getRPWorld().getZone(object.get("zoneid"));
 				} else {
-					player.put("release", Debug.VERSION);
 					if (player.getLevel() >= 2) {
 						TutorialNotifier.newrelease(player);
 					}
 				}
+				player.put("release", Debug.VERSION);
 			}
 		} catch (final RuntimeException e) {
 			// If placing the player at its last position
