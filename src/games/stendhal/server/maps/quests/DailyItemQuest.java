@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -325,9 +326,9 @@ public class DailyItemQuest extends AbstractQuest {
 				amount=MathHelper.parseIntDefault(elements[1], 1);
 			}
 			if (!player.isEquipped(questItem, amount)) {
-				res.add("I have been asked to fetch an item to help Ados. I haven't got it yet.");
+				res.add(("I have been asked to fetch " +Grammar.quantityplnoun(amount, questItem, "a") +" to help Ados. I haven't got it yet."));
 			} else {
-				res.add("I have found the item to help Ados and need to take it.");
+				res.add(("I have found " +Grammar.quantityplnoun(amount, questItem, "a")+" to help Ados and need to take it."));
 			}
 		}
 		if (isCompleted(player)) {
