@@ -115,6 +115,6 @@ public class InternalWindowTest {
 		InternalWindow window = new InternalWindow("Test window");
 		assertEquals("Initial title text", "Test window", window.titleLabel.getText());
 		window.setTitle("Changed");
-		assertEquals("Changed title text", "Changed", window.titleLabel.getText());
+		assertEquals("Changed title text", "<html>Changed</html>", window.titleLabel.getText());
 	}
 }
