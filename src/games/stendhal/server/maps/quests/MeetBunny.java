@@ -37,8 +37,8 @@ public class MeetBunny extends AbstractQuest {
 
 	private StendhalRPZone zone;
 	
-	// The default is 90 so make ours half this
-	private static final int TIME_OUT = 45;
+	// The default is 100 (30 seconds) so make ours half this
+	private static final int TIME_OUT = 50;
 
 	@Override
 	public String getSlotName() {
