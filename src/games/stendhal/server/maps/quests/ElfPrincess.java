@@ -208,7 +208,10 @@ public class ElfPrincess extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Rhosyd for Elf Princess",
+				"Tywysoga, the Elf Princess in Nalwor Tower, requests to find the wandering flower seller Rose Leigh to get a precious rhosyd from her.",
+				false);
 		offerQuestStep();
 		getFlowerStep();
 		bringFlowerStep();
