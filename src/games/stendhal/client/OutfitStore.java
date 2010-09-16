@@ -72,7 +72,9 @@ public class OutfitStore {
 		code /= 100;
 		
 		int haircode = code % 100;
-
+		code /= 100;
+		
+		int detailcode = code % 100;
 		
 		// Base (body) layer
 		Sprite layer = getBaseSprite(basecode);
@@ -93,6 +95,10 @@ public class OutfitStore {
 
 		// Hair layer
 		layer = getHairSprite(haircode);
+		layer.draw(g, 0, 0);
+		
+		// Item layer
+		layer = getDetailSprite(detailcode);
 		layer.draw(g, 0, 0);
 
 		return sprite;
@@ -203,6 +209,27 @@ public class OutfitStore {
 		return store.getSprite(ref);
 	}
 
+	/**
+	 * Get the item sprite tileset.
+	 * 
+	 * @param index
+	 *            The resource index.
+	 * 
+	 * @return The sprite, or <code>null</code>.
+	 */
+	public Sprite getDetailSprite(final int index) {
+		if (index == 0) {
+			return getEmptySprite();
+		}
+
+		final String ref = "data/sprites/outfit/detail_" + index + ".png";
+		if (!store.existsSprite(ref)) {
+			return null;
+		}
+
+		return store.getSprite(ref);
+	}
+	
 	/**
 	 * Get an outfit sprite.
 	 * 
