@@ -37,7 +37,7 @@ import javax.swing.border.Border;
  * A window like panel component with a title bar and optional close and
  * minimize buttons.
  */
-public class InternalWindow extends JPanel {
+public class InternalWindow extends JPanel implements ComponentPaintCache.Cacheable {
 	private static final int TITLEBAR_HEIGHT = 13;
 	/** Space between titlebar components and before the title */
 	private static final int TITLEBAR_PADDING = 2;
@@ -64,6 +64,8 @@ public class InternalWindow extends JPanel {
 	private String closeSound = "click-6";
 	
 	private final List<CloseListener> closeListeners = new LinkedList<CloseListener>();
+	
+	final ComponentPaintCache cache;
 	
 	/**
 	 * Create a new InternalWindow.
@@ -99,6 +101,8 @@ public class InternalWindow extends JPanel {
 		closeButton.setFocusable(false);
 		closeButton.addActionListener(new CloseActionListener());
 		titleBar.add(closeButton);
+		
+		cache = new ComponentPaintCache(this);
 	}
 	
 	/**
@@ -352,10 +356,11 @@ public class InternalWindow extends JPanel {
 	/**
 	 * A JPanel that draws only the lower part of the border
 	 */
-	private static class TitleBar extends JPanel {
+	private static class TitleBar extends JPanel implements ComponentPaintCache.Cacheable {
 		/** Original, unmodified insets */
 		private Insets insets;
 		private final Border border;
+		private final ComponentPaintCache cache; 
 		
 		public TitleBar() {
 			/*
@@ -367,6 +372,7 @@ public class InternalWindow extends JPanel {
 			border = BorderFactory.createCompoundBorder(getBorder(), 
 					BorderFactory.createEmptyBorder(-insets.top, 0, 0, 0));
 			setBorder(border);
+			cache = new ComponentPaintCache(this);
 		}
 		
 		/**
@@ -400,6 +406,17 @@ public class InternalWindow extends JPanel {
 					getWidth() + insets.left + insets.right, getHeight());
 			graphics.dispose();
 		}
+		
+		@Override
+		public void paint(Graphics g) {
+			cache.paintComponent(g);
+			paintChildren(g);
+		}
+		
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+		}
 	}
 	
 	/**
@@ -407,5 +424,26 @@ public class InternalWindow extends JPanel {
 	 */
 	public interface CloseListener {
 		void windowClosed(InternalWindow window);
+	}
+	
+	/* ********************************************************************
+	 * Speed up the drawing by caching the image of the window. This is done
+	 * because repeatedly drawing the borders makes a noticeable performance
+	 * hit.
+	 */
+	@Override
+	public void paint(Graphics g) {
+		cache.paintComponent(g);
+		paintChildren(g);
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+	}
+	
+	@Override
+	public void paintBorder(Graphics g) {
+		super.paintBorder(g);
 	}
 }
