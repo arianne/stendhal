@@ -15,6 +15,7 @@ package games.stendhal.server.entity.mapstuff.game;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -32,6 +33,8 @@ public class NineSwitchesGameBoard implements TurnListener {
 
 	private SpeakerNPC npc;
 	private ArrayList<NineSwitchesGameSwitch> switches;
+	
+	private static final Outfit BALLOON_OUTFIT = new Outfit(1, null, null, null, null);
 
 	private String playerName;
 
@@ -69,8 +72,8 @@ public class NineSwitchesGameBoard implements TurnListener {
 		switchGameSwitch(gameSwitch);
 		boolean completed = checkBoard();
 		if (completed) {
-			// TODO: reward
 			npc.say("Congratulations, " + user.getName() + " you won!");
+	    	user.setOutfit(BALLOON_OUTFIT);
 			playerName = null;
 			TurnNotifier.get().dontNotify(this);
 		}
