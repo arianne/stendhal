@@ -11,14 +11,14 @@ import org.apache.log4j.Logger;
  * You can use this data structure so that you don't have to deal with the way
  * outfits are stored internally.
  * 
- * An outfit can contain of up to four parts: hair, head, dress, and base.
+ * An outfit can contain up to five parts: detail, hair, head, dress, and base.
  * 
  * Note, however, that you can create outfit objects that consist of less than
- * four parts by setting the other parts to <code>null</code>. For example,
+ * five parts by setting the other parts to <code>null</code>. For example,
  * you can create a dress outfit that you can combine with the player's current
  * so that the player gets the dress, but keeps his hair, head, and base.
  *
- * Not all outfits are choosable by players.
+ * Not all outfits can be chosen by players.
  *  
  * @author daniel
  * 
@@ -28,6 +28,9 @@ public class Outfit {
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(Outfit.class);
 
+	/** The detail index, as a value between 0 and 99, or null. */
+	private Integer detail;
+	
 	/** The hair index, as a value between 0 and 99, or null. */
 	private Integer hair;
 
@@ -44,7 +47,7 @@ public class Outfit {
 	 * Creates a new default outfit (naked person).
 	 */
 	public Outfit() {
-		this(0, 0, 0, 0);
+		this(0, 0, 0, 0, 0);
 	}
 
 	/**
@@ -52,6 +55,8 @@ public class Outfit {
 	 * entity that put on this outfit to keep on the corresponding parts of its
 	 * current outfit.
 	 * 
+	 * @param detail
+	 *            The index of the detail style, or null
 	 * @param hair
 	 *            The index of the hair style, or null
 	 * @param head
@@ -61,7 +66,8 @@ public class Outfit {
 	 * @param base
 	 *            The index of the base style, or null
 	 */
-	public Outfit(final Integer hair, final Integer head, final Integer dress, final Integer base) {
+	public Outfit(final Integer detail, final Integer hair, final Integer head, final Integer dress, final Integer base) {
+		this.detail = detail;
 		this.hair = hair;
 		this.head = head;
 		this.dress = dress;
@@ -72,9 +78,8 @@ public class Outfit {
 	 * Creates a new outfit based on a numeric code.
 	 * 
 	 * @param code
-	 *            A 8-digit decimal number where the first pair (from the left)
-	 *            of digits stand for hair, the second pair for head, the third
-	 *            pair for dress, and the fourth pair for base.
+	 *            A 10-digit decimal number where the last part (from the right) stands for base,
+	 *            the next for dress, then head, then hair, then detail
 	 */
 	public Outfit(final int code) {
 		
@@ -85,6 +90,8 @@ public class Outfit {
 		this.head = code / 10000 % 100;
 		
 		this.hair = code / 1000000 % 100;
+		
+		this.detail = code / 100000000 % 100;
 	}
 
 	/**
@@ -123,16 +130,26 @@ public class Outfit {
 	public Integer getHead() {
 		return head;
 	}
+	
+	/**
+	 * Gets the index of this outfit's detail style.
+	 * 
+	 * @return The index, or null if this outfit doesn't contain a detail.
+	 */
+	public Integer getDetail() {
+		return detail;
+	}
+
 
 	/**
 	 * Represents this outfit in a numeric code.
 	 * 
-	 * @return A 8-digit decimal number where the first pair of digits stand for
-	 *         hair, the second pair for head, the third pair for dress, and the
-	 *         fourth pair for base.
+	 * @return A 10-digit decimal number where the first pair of digits stand for
+	 *         detail, the second pair for hair, the third pair for head, the
+	 *         fourth pair for dress, and the fifth pair for base
 	 */
 	public int getCode() {
-		return hair * 1000000 + head * 10000 + dress * 100 + base;
+		return detail * 100000000 + hair * 1000000 + head * 10000 + dress * 100 + base;
 	}
 
 	/**
@@ -145,12 +162,18 @@ public class Outfit {
 	 * @return the combined outfit
 	 */
 	public Outfit putOver(final Outfit other) {
+		int newDetail;
 		int newHair;
 		int newHead;
 		int newDress;
 		int newBase;
 		// wear the this outfit 'over' the other outfit;
 		// use the other outfit for parts that are not defined for this outfit.
+		if (this.detail == null) {
+			newDetail = other.detail;
+		} else {
+			newDetail = this.detail;
+		}
 		if (this.hair == null) {
 			newHair = other.hair;
 		} else {
@@ -171,7 +194,7 @@ public class Outfit {
 		} else {
 			newBase = this.base;
 		}
-		return new Outfit(newHair, newHead, newDress, newBase);
+		return new Outfit(newDetail, newHair, newHead, newDress, newBase);
 	}
 
 	/**
@@ -182,7 +205,8 @@ public class Outfit {
 	 * @return true iff this outfit is part of the given outfit.
 	 */
 	public boolean isPartOf(final Outfit other) {
-		return ((hair == null) || hair.equals(other.hair))
+		return  ((detail == null) || detail.equals(other.detail))
+				&& ((hair == null) || hair.equals(other.hair))
 				&& ((head == null) || head.equals(other.head))
 				&& ((dress == null) || dress.equals(other.dress))
 				&& ((base == null) || base.equals(other.base));
@@ -195,7 +219,8 @@ public class Outfit {
 	 * @return true if it is a normal outfit
 	 */
 	public boolean isChoosableByPlayers() {
-		return (hair < Outfits.HAIR_OUTFITS) && (hair >= 0) 
+		return (detail == null || detail == 0) 
+			&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0) 
 		    && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
 			&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0) 
 			&& (base < Outfits.BODY_OUTFITS) && (base >= 0);
@@ -229,6 +254,6 @@ public class Outfit {
 		final int newDress = Rand.randUniform(1, 16);
 		final int newBase = Rand.randUniform(1, 5);
 		LOGGER.debug("chose random outfit: "  + newHair + " " + newHead + " " + newDress + " " + newBase);
-		return new Outfit(newHair, newHead, newDress, newBase);
+		return new Outfit(0, newHair, newHead, newDress, newBase);
 	}
 }

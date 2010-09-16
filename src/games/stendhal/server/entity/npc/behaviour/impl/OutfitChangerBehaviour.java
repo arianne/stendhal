@@ -50,27 +50,27 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 
 		// swimsuits for men
 		outfitTypes.put("trunks", Arrays.asList(
-				new Outfit(null, null, 95, null), new Outfit(null, null, 96,
-						null), new Outfit(null, null, 97, null), new Outfit(
-						null, null, 98, null)));
+				new Outfit(null, null, null, 95, null), new Outfit(null, null, null, 96,
+						null), new Outfit(null, null, null, 97, null), new Outfit(
+								null, null, null, 98, null)));
 
 		// swimsuits for women
-		outfitTypes.put("swimsuit", Arrays.asList(new Outfit(null, null, 91,
-				null), new Outfit(null, null, 92, null), new Outfit(null, null,
-				93, null), new Outfit(null, null, 94, null)));
+		outfitTypes.put("swimsuit", Arrays.asList(new Outfit(null, null, null, 91,
+				null), new Outfit(null, null, null, 92, null), new Outfit(null, null, null,
+				93, null), new Outfit(null, null, null, 94, null)));
 
-		outfitTypes.put("mask", Arrays.asList(new Outfit(0, 80, null, null),
-				new Outfit(0, 81, null, null), new Outfit(0, 82, null, null),
-				new Outfit(0, 83, null, null), new Outfit(0, 84, null, null),
-				new Outfit(0, 85, null, null)));
+		outfitTypes.put("mask", Arrays.asList(new Outfit(null, 0, 80, null, null),
+				new Outfit(null, 0, 81, null, null), new Outfit(null, 0, 82, null, null),
+				new Outfit(null, 0, 83, null, null), new Outfit(null, 0, 84, null, null),
+				new Outfit(null, 0, 85, null, null)));
 
 		// wedding dress for brides
 		// it seems this must be an array as list even though it's only one item
-		outfitTypes.put("gown", Arrays.asList(new Outfit(null, null, 88, null)));
+		outfitTypes.put("gown", Arrays.asList(new Outfit(null, null, null, 88, null)));
 
 		// // wedding suit for grooms
 		// it seems this must be an array as list even though it's only one item
-		outfitTypes.put("suit", Arrays.asList(new Outfit(null, null, 87, null)));
+		outfitTypes.put("suit", Arrays.asList(new Outfit(null, null, null, 87, null)));
 	}
 
 	/**

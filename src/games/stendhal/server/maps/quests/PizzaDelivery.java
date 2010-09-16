@@ -54,7 +54,7 @@ import java.util.Map;
  */
 public class PizzaDelivery extends AbstractQuest {
 
-	private static final Outfit UNIFORM = new Outfit(null, null, Integer.valueOf(90), null);
+	private static final Outfit UNIFORM = new Outfit(null, null, null, Integer.valueOf(90), null);
 
 	/**
 	 * A customer data object.

@@ -31,7 +31,7 @@ public class DadNPC {
 			}
 		};
 
-		npc2.setOutfit(new Outfit(27, 07, 34, 01));
+		npc2.setOutfit(new Outfit(0, 27, 07, 34, 01));
 		npc2.setPosition(21, 10);
 		npc2.setDirection(Direction.LEFT);
 		npc2.initHP(100);

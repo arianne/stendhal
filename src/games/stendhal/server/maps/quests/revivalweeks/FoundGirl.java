@@ -68,7 +68,7 @@ public class FoundGirl {
 		};
 
 		//	npcs.add(npc);
-		npc.setOutfit(new Outfit(04, 07, 32, 13));
+		npc.setOutfit(new Outfit(0, 04, 07, 32, 13));
 		npc.setPosition(4, 17);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
