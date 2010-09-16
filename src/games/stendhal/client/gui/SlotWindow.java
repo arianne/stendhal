@@ -44,8 +44,13 @@ public class SlotWindow extends InternalManagedWindow {
 	}
 	
 	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	public void paint(Graphics g) {
+		super.paint(g);
+		/*
+		 * This needs to be done in paint(), not in paintComponent (as far as
+		 * the check is done at paint time). paintComponent does not necessarily
+		 * get called at all due to InternalWindow using cached drawing. 
+		 */
 		checkDistance();
 	}
 	
