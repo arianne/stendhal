@@ -55,6 +55,10 @@ public class ToysCollector extends AbstractQuest implements
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Toys Collector",
+				"Try to find some toys for Anna and her friends.",
+				false);
 		setupAbstractQuest();
 		specialStuff();
 	}

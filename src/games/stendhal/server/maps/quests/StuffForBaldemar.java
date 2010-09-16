@@ -474,7 +474,10 @@ public class StuffForBaldemar extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Stuff for Baldemar",
+				"Talk to Baldemar and he might offer to forge a shiny useful item for you.",
+				false);
 		step_1();
 		step_2();
 		step_3();

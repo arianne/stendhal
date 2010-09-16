@@ -265,6 +265,10 @@ public class SolveRiddles extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Solve Riddles",
+				"You have to solve riddles to leave the hottest area in Faiumoni.",
+				false);
 		setRiddle();
 	}
 

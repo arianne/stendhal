@@ -377,6 +377,10 @@ public class Soup extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Soup",
+				"Try to get all ingredients which you need for a healthy soup.",
+				false);
 		step_1();
 		step_2();
 		step_3();

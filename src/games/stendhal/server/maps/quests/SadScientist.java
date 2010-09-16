@@ -101,6 +101,10 @@ public class SadScientist extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"A Sad Scientist",
+				"Vasi Elos, a lonely scientist, wants you to bring him a present for his honey.",
+				false);
 		prepareQuestSteps();
 	}
 

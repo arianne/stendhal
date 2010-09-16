@@ -451,6 +451,10 @@ public class ReverseArrow extends AbstractQuest implements
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		fillQuestInfo(
+				"Reverse Arrow",
+				"Do you think you can solve this little riddle? Be fast, you just have a few seconds time.",
+				false);
 
 		SingletonRepository.getLoginNotifier().addListener(this);
 

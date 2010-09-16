@@ -227,7 +227,10 @@ public class Snowballs extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Snowballs for Mr. Yeti",
+				"The inhabitant of the icy region in Faiumoni needs your help to collect some snowballs for him.",
+				false);
 		prepareRequestingStep();
 		prepareBringingStep();
 	}
