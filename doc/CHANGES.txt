@@ -1,6 +1,16 @@
 Changelog
 ---------
 
+0.88
+- right click on a player to start trading with them using a GUI
+- don't reset to townhall on minor releases
+- new music in orril castle
+- can have a detail layer over outfits
+- new game for Semos Mine Town Revival Weeks: 9 switches
+
+0.87.1 
+- fixed an issue causing the client to be unresponsive for some windows users
+
 0.87
 
 *world*
