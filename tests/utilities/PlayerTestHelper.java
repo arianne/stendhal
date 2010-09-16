@@ -94,7 +94,7 @@ public abstract class PlayerTestHelper {
 	public static Player createPlayerWithOutFit(final String name) {
 		final Player player = createPlayer(name);
 
-		player.setOutfit(new Outfit(1, 1, 1, 1));
+		player.setOutfit(new Outfit(0, 1, 1, 1, 1));
 
 		return player;
 	}
