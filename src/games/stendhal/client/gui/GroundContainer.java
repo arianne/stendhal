@@ -156,7 +156,7 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	}
 
 	@Override
-	protected boolean onMouseClick(Point point) { 
+	protected boolean onMouseClick(Point point) {
 		// Context menu detection
 		if (ignoreClick) {
 			ignoreClick = false;
@@ -272,6 +272,11 @@ public class GroundContainer extends MouseHandler implements Inspector,
 		windowWasActiveOnMousePressed = (KeyboardFocusManager.getCurrentKeyboardFocusManager().getActiveWindow() != null);
 		xOnMousePressed = e.getX();
 		yOnMousePressed = e.getY();
+		/*
+		 * The canvas does not want to keep the focus, but this way it at least
+		 * will end up for the right component.
+		 */
+		canvas.requestFocus();
 		super.mousePressed(e);
 	}
 
