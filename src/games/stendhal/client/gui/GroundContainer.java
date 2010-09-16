@@ -9,6 +9,8 @@ import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.styled.cursor.CursorRepository;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.EntityViewCommandList;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.Direction;
@@ -16,6 +18,7 @@ import games.stendhal.common.EquipActionConsts;
 
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
@@ -44,6 +47,8 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	 */
 	private static final int MENU_OFFSET = 10;
 	private static final Logger logger = Logger.getLogger(GroundContainer.class);
+	
+	private CursorRepository cursorRepository = new CursorRepository(); 
 	
 	/** The game screen this handler is providing mouse processing */
 	private final IGameScreen screen;
@@ -98,6 +103,56 @@ public class GroundContainer extends MouseHandler implements Inspector,
 			// Let the DragLayer handle the drawing and dropping.
 			DragLayer.get().startDrag(view.getEntity());
 		}
+	}
+
+	@Override
+	public synchronized void mouseMoved(MouseEvent e) {
+		super.mouseMoved(e);
+		/*
+		 * Get cursor from entity below the mouse.
+		 */
+		if ((e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0) {
+			return;
+		}
+
+		StendhalCursor cursor = getCursor(e.getPoint());
+		canvas.setCursor(cursorRepository.get(cursor));
+	}
+	
+	/**
+	 * Get cursor for a point.
+	 * 
+	 * @param point
+	 * @return cursor
+	 */
+	public StendhalCursor getCursor(Point point) {
+		StendhalCursor cursor = null;
+
+		Point2D point2 = screen.convertScreenViewToWorld(point);
+
+		// is the cursor aiming at a text box?
+		final Text text = screen.getTextAt(point2.getX(), point2.getY());
+		if (text != null) {
+			return StendhalCursor.NORMAL;
+		}
+
+		// is the cursor aiming at an entity?
+		final EntityView view = screen.getEntityViewAt(point2.getX(), point2.getY());
+		if (view != null) {
+			cursor = view.getCursor();
+		}
+
+		// is the cursor pointing on the ground?
+		if (cursor == null) {
+			cursor = StendhalCursor.WALK;
+			StaticGameLayers layers = client.getStaticGameLayers();
+			if ((layers.getCollisionDetection() != null) && layers.getCollisionDetection().collides((int) point2.getX(), (int) point2.getY())) {
+				cursor = StendhalCursor.STOP;
+			} else if (calculateZoneChangeDirection(point2) != null) {
+				cursor = StendhalCursor.WALK_BORDER;					
+			}
+		}
+		return cursor;
 	}
 
 	@Override
