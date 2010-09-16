@@ -53,7 +53,8 @@ public class OutfitStore {
 	 * Build an outfit sprite.
 	 * 
 	 * The outfit is described by an "outfit code". It is an 8-digit integer of
-	 * the form RRHHDDBB where RR is the number of the hair graphics, HH for the
+	 * the form TTRRHHDDBB where TT is the number of the detail graphics (optional)
+	 * RR is the number of the hair graphics (optional), HH for the
 	 * head, DD for the dress, and BB for the base.
 	 * 
 	 * @param code
@@ -234,7 +235,8 @@ public class OutfitStore {
 	 * Get an outfit sprite.
 	 * 
 	 * The outfit is described by an "outfit code". It is an 8-digit integer of
-	 * the form RRHHDDBB where RR is the number of the hair graphics, HH for the
+	 * the form TTRRHHDDBB where where TT is the number of the detail graphics (optional)
+	 * RR is the number of the hair graphics, HH for the
 	 * head, DD for the dress, and BB for the base.
 	 * 
 	 * @param code
