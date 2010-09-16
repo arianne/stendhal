@@ -71,7 +71,11 @@ public class MithrilCloak extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Mithril Cloak",
+				"Do you want to have one of the best armors which currently is on the market? It is shiny and strong and you can be someone with the power to bring Ida the things she needs for it.",
+				false);
+		
 		// login notifier to teleport away players logging into the twilight zone.
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
 			public void onLoggedIn(final Player player) {

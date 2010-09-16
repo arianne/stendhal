@@ -134,7 +134,10 @@ public class MeetZynn extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Meet Zynn Iwuhos",
+				"Meet Zynn Iwuhos in the Semos library and ask him for some useful information.",
+				false);
 		step_1();
 	}
 	@Override

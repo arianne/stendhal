@@ -587,7 +587,10 @@ public class PizzaDelivery extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		fillQuestInfo(
+				"Pizza delivery",
+				"*Yummi!* It smells awesome, it is hot... Hurry up and deliver it!",
+				false);
 		buildCustomerDatabase();
 		prepareBaker();
 		prepareCustomers();
