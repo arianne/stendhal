@@ -11,6 +11,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Builds a npc in Ados (name:Marla) who is there on vacation
+ * 
+ * @author erdnuggel (idea), madmetzger and Vanessa Julius
+ *
+ */
 public class ForeignWomanNPC implements ZoneConfigurator {
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
