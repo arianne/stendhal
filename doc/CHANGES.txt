@@ -7,6 +7,8 @@ Changelog
 - new music in orril castle
 - can have a detail layer over outfits
 - new game for Semos Mine Town Revival Weeks: 9 switches
+- new NPC Andy in Ados near the church
+- added more quest histories
 
 0.87.1 
 - fixed an issue causing the client to be unresponsive for some windows users
