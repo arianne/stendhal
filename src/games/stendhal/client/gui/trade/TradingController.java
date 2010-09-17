@@ -53,13 +53,15 @@ public class TradingController {
 		setPartner(partner);
 		setUser(user);
 		setPartnerState(partnerState);
-		if (window.getParent() == null) {
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					j2DClient.get().addWindow(window);
-					window.setVisible(true);
-				}
-			});
+		if (myState != TradeState.NO_ACTIVE_TRADE) {
+			if (window.getParent() == null) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						j2DClient.get().addWindow(window);
+						window.setVisible(true);
+					}
+				});
+			}
 		}
 	}
 	
