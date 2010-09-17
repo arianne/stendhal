@@ -3002,7 +3002,7 @@ Southeast: Docks
  </zone>
 
  <zone name="0_ados_city_s" level="0" x="500896" y="500128" file="Level 0/ados/city_s.tmx">
-  
+   <configurator class-name="games.stendhal.server.maps.ados.city.ManWithHatNPC"/>
 		<entity x="85" y="10">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
 				<parameter name="sound">water-2, wave-11</parameter>
