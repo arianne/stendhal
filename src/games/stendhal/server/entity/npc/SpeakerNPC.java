@@ -254,10 +254,10 @@ public class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * The player who is currently talking to the NPC, or null if the NPC is
+	 * The entity who is currently talking to the NPC, or null if the NPC is
 	 * currently not taking part in a conversation.
 	 *
-	 * @return Player
+	 * @return RPEntity
 	 */
 	public RPEntity getAttending() {
 		return attending;
@@ -268,7 +268,7 @@ public class SpeakerNPC extends NPC {
 	 * need to use this for most NPCs.
 	 *
 	 * @param rpentity
-	 *            the player with whom the NPC should be talking.
+	 *            the entity with whom the NPC should be talking.
 	 */
 	public void setAttending(final RPEntity rpentity) {
 		attending = rpentity;
