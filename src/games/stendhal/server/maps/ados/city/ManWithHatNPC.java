@@ -46,8 +46,8 @@ public class ManWithHatNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Sniff!");
-				addHelp("When I lived together with my lovely wife, we used to travell a lot. We loved the beach on Athor Island! Please, leave me alone now...");
-				addQuest("I am too old and to sad for giving jobs to others...*sniff-sniff*"); 
+				addHelp("When I lived together with my beloved wife, we used to travell a lot. We loved the beach on Athor Island! *Sigh* These memories are making me even more sad...Please, leave me alone now...");
+				addQuest("I am too old and too sad to think about jobs for others...*sniff-sniff*"); 
 				addJob("*Cry* I had to stop working after my wife died...");
 				addOffer("Nothing, I lost my darling!");
 				addGoodbye("Buuaaahaaaahaa!");
