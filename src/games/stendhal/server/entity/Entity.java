@@ -16,14 +16,16 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
@@ -697,5 +699,22 @@ public abstract class Entity extends RPObject {
 		}
 
 		return false;
+	}
+
+	/**
+	 * gets the named entity slot
+	 *
+	 * @param name name of entity slot
+	 * @return EntitySlot or <code>null</code>
+	 */
+	public EntitySlot getEntitySlot(String name) {
+		if (!super.hasSlot(name)) {
+			return null;
+		}
+		RPSlot slot = super.getSlot(name);
+		if (!(slot instanceof EntitySlot)) {
+			return null;
+		}
+		return (EntitySlot) slot;
 	}
 }
