@@ -21,6 +21,7 @@ public class PlayerSlot extends EntitySlot {
 
 	@Override
 	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
+		setErrorMessage("Hey, no pickpocketing.");
 		return super.hasAsAncestor(entity);
 	}
 }

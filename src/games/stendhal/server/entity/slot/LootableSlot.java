@@ -23,6 +23,7 @@ public class LootableSlot extends EntitySlot {
 
 	@Override
 	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
+		setErrorMessage("The " + ((Entity)getOwner()).getDescriptionName(true) + " is too far away.");
 		return entity.nextTo(owner);
 	}
 

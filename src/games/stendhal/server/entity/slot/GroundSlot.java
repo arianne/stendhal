@@ -63,14 +63,20 @@ public class GroundSlot extends EntitySlot {
 	@Override
 	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
 		// TODO do range check
-		return !isItemBelowOtherPlayer(entity);
+
+		String playerName = getOtherPlayerStandingOnItem(entity);
+		if (playerName != null) {
+			setErrorMessage("This items is protected by " + playerName);
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public boolean isReachableForThrowingThingsIntoBy(Entity entity) {
 		// and in reach
 		if (entity.squaredDistance(x, y) > (8 * 8)) {
-			//entity.sendPrivateText("That is too far away.");
+			setErrorMessage("That is too far away.");
 			return false;
 		}
 		
@@ -80,7 +86,7 @@ public class GroundSlot extends EntitySlot {
 					entity.getX(), entity.getY(), new Rectangle(x, y, 1, 1),
 					64 /* maxDestination * maxDestination */, false);
 			if (path.isEmpty()) {
-				// player.sendPrivateText("There is no easy path to that place.");
+				setErrorMessage("There is no easy path to that place.");
 				return false;
 			}
 		}
@@ -103,11 +109,11 @@ public class GroundSlot extends EntitySlot {
 	 * Checks whether the item is below <b>another</b> player.
 	 * 
 	 * @param sourceItem to check
-	 * @return true, if it cannot be taken; false otherwise
+	 * @return name of other player standing on the item or <code>null</code>
 	 */
-	private boolean isItemBelowOtherPlayer(final Entity player) {
+	private String getOtherPlayerStandingOnItem(final Entity player) {
 		if (item == null) {
-			return false;
+			return null;
 		}
 		final List<Player> players = player.getZone().getPlayers();
 		for (final Player otherPlayer : players) {
@@ -115,9 +121,9 @@ public class GroundSlot extends EntitySlot {
 				continue;
 			}
 			if (otherPlayer.getArea().intersects(item.getArea())) {
-				return true;
+				return otherPlayer.getName();
 			}
 		}
-		return false;
+		return null;
 	}
 }

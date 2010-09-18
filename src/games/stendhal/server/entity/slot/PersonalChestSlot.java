@@ -1,9 +1,8 @@
 package games.stendhal.server.entity.slot;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
-
-import org.apache.log4j.Logger;
 
 /**
  * a slot of a personal chest.
@@ -11,7 +10,6 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class PersonalChestSlot extends ChestSlot {
-	private static Logger logger = Logger.getLogger(PersonalChestSlot.class);
 	private final PersonalChest chest;
 
 	/**
@@ -20,12 +18,12 @@ public class PersonalChestSlot extends ChestSlot {
 	 * @param owner personal chest owning this slot
 	 */
 	public PersonalChestSlot(final PersonalChest owner) {
-	    super(owner);
-	    this.chest = owner;
-    }
+		super(owner);
+		this.chest = owner;
+	}
 
 	@Override
-    public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
 
 		// first delegate to super method to check that the player
 		// is next to the chest
@@ -38,11 +36,13 @@ public class PersonalChestSlot extends ChestSlot {
 		// different session. Marauroa is supposed to prevent two session
 		// for the same character being active at the same time, but we should
 		// not depend on this as the banks have had lots of bugs in the past.
-	    if (chest.getAttending() != entity) {
-	    	logger.error(entity + " tried to take stuff out of the bank chest " + chest + " which is currently attenting " + chest.getAttending());
-	    	return false;
-	    }
-	    return true;
-    }
+		if (chest.getAttending() != entity) {
+			if (chest.getAttending() != null) {
+				setErrorMessage("You cannot take items out of " + Grammar.suffix_s(chest.getAttending().getName()) + " bank chest.");
+			}
+			return false;
+		}
+		return true;
+	}
 
 }

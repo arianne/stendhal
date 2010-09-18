@@ -28,7 +28,7 @@ public class ChestSlot extends LootableSlot {
 	@Override
 	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
 		if (!chest.isOpen()) {
-			logger.debug(entity + " tried to take stuff out of the closed chest " + chest);
+			setErrorMessage("This " + ((Entity)getOwner()).getDescriptionName(true) + " is not open.");
 			return false;
 		}
 		return super.isReachableForTakingThingsOutOfBy(entity);
