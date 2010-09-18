@@ -1,24 +1,33 @@
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.gui.styled.WoodStyle;
-
 import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.swing.BoxLayout;
+import javax.swing.JComponent;
+import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class BuddyPanelControler implements PropertyChangeListener {
-	
 	private static PropertyChangeListener instance;
-	BuddyPanel buddyPanel;
+	
+	private final JComponent buddyPanel;
+	private final BuddyListModel model;
 
 	public BuddyPanelControler() {
-		buddyPanel = new BuddyPanel(WoodStyle.getInstance());
-		buddyPanel.setVisible(true);
-		buddyPanel.setSize(100, 200);
+		// The panel is actually just the background
+		buddyPanel = new JPanel();
+		// the default layout manager is too dumb to understand alignment
+		buddyPanel.setLayout(new BoxLayout(buddyPanel, BoxLayout.Y_AXIS));
+		// now the actual sorted list
+		model = new BuddyListModel();
+		JList list = new BuddyPanel(model);
+		list.setAlignmentX(Component.LEFT_ALIGNMENT);
+		buddyPanel.add(list);
 		instance = this;
 	}
 
@@ -37,7 +46,7 @@ public class BuddyPanelControler implements PropertyChangeListener {
 			for (final Entry<String, String> entry : oldBuddies.entrySet()) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						buddyPanel.remove(entry.getKey());		
+						model.removeBuddy(entry.getKey());		
 					}
 				});
 			}
@@ -47,19 +56,12 @@ public class BuddyPanelControler implements PropertyChangeListener {
 		Map<String, String> newBuddies = (Map<String, String>) evt.getNewValue();
 		if (newBuddies != null) {
 			for (final Entry<String, String> entry : newBuddies.entrySet()) {
-				if (!Boolean.parseBoolean(entry.getValue())) {
-					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
-							buddyPanel.setOffline(entry.getKey());
-						}
-					});
-				} else {
-					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
-							buddyPanel.setOnline(entry.getKey());
-						}
-					});
-				}
+				final boolean online = Boolean.parseBoolean(entry.getValue());
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						model.setOnline(entry.getKey(), online);
+					}
+				});
 			}
 		}
 	}

@@ -2,15 +2,12 @@ package games.stendhal.client.gui.buddies;
 
 
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.styled.Style;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
-@SuppressWarnings("serial")
 class BuddyLabelPopMenu extends JPopupMenu {
-
-	protected BuddyLabelPopMenu(final Style style, final String buddyName, final boolean online) {
+	protected BuddyLabelPopMenu(final String buddyName, final boolean online) {
 		super(buddyName);
 		if (online) {
 			createOnlineMenu(buddyName);
@@ -29,7 +26,6 @@ class BuddyLabelPopMenu extends JPopupMenu {
 		JMenuItem leaveMessageBuddyMenuItem = new JMenuItem("Leave Message");
 		this.add(leaveMessageBuddyMenuItem);
 		leaveMessageBuddyMenuItem.addActionListener(new LeaveBuddyMessageAction(buddyName));
-		
 	}
 
 	private void createOnlineMenu(final String buddyName) {
@@ -49,8 +45,6 @@ class BuddyLabelPopMenu extends JPopupMenu {
 			JMenuItem teleportToBuddyMenuItem = new JMenuItem("(*)Teleport To");
 			this.add(teleportToBuddyMenuItem);
 			teleportToBuddyMenuItem.addActionListener(new TeleportToBuddyAction(buddyName));
-		}
-		
+		}	
 	}
-
 }

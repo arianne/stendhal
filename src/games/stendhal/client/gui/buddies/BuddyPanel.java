@@ -1,69 +1,64 @@
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.gui.styled.Style;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import java.awt.Component;
-import java.text.Collator;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import javax.swing.JList;
+import javax.swing.JPopupMenu;
 
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-
-@SuppressWarnings("serial")
-class BuddyPanel extends JPanel {
-	private final Map<String, BuddyLabel> labelMap = new ConcurrentHashMap<String, BuddyLabel>();
-	protected BuddyPanel(final Style style) {
-		super();
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		setVisible(true);
+/**
+ * JList that can show popup menues for buddies. Use <code>BuddyListModel</code>
+ * with this.
+ */
+class BuddyPanel extends JList {
+	/**
+	 * The amount of pixels that popup menus will be shifted up and left from
+	 * the clicking point.
+	 */
+	private static final int POPUP_OFFSET = 10;
+	
+	/**
+	 * Create a new BuddyList.
+	 * 
+	 * @param model associated list model
+	 */
+	protected BuddyPanel(final BuddyListModel model) {
+		super(model);
+		setCellRenderer(new BuddyLabel());
+		setOpaque(false);
+		this.setFocusable(false);
+		this.addMouseListener(new BuddyPanelMouseListener());
 	}
+	
+	/**
+	 * MouseListener for triggering the buddy list popup menus.
+	 */
+	private class BuddyPanelMouseListener extends MouseAdapter {
+		@Override
+		public void mousePressed(final MouseEvent e) {
+			maybeShowPopup(e);
+		}
 
+		@Override
+		public void mouseReleased(final MouseEvent e) {
+			maybeShowPopup(e);
+		}
 
-	private void addBuddy(final String buddyName, final boolean isOnline) {
-		if (labelMap.get(buddyName) == null) {
-			// Find the place to put the label to keep the list in nice, alphabetical order
-			int index = 0;
-			for (final Component component : this.getComponents()) {
-				final String current = ((BuddyLabel) component).getText();
-				if (Collator.getInstance().compare(buddyName, current) < 0) {
-					break;
+		/**
+		 * Show the popup if the mouse even is a popup trigger for the platform.
+		 * 
+		 * @param e
+		 */
+		private void maybeShowPopup(final MouseEvent e) {
+			if (e.isPopupTrigger()) {
+				int index = BuddyPanel.this.locationToIndex(e.getPoint());
+				Object obj = BuddyPanel.this.getModel().getElementAt(index);
+				if (obj instanceof Buddy) {
+					Buddy buddy = (Buddy) obj;
+					final JPopupMenu popup = new BuddyLabelPopMenu(buddy.getName(), buddy.isOnline());
+					popup.show(e.getComponent(), e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
 				}
-				index++;
 			}
-			final BuddyLabel label = new BuddyLabel(buddyName, isOnline);
-			labelMap.put(buddyName, label);
-			this.add(label, Component.LEFT_ALIGNMENT, index);
-			revalidate();
 		}
-
 	}
-
-	void setOffline(final String buddyName) {
-		if (labelMap.get(buddyName) == null) {
-			addBuddy(buddyName, false);
-		} else {
-			labelMap.get(buddyName).setOnline(false);
-		}
-		revalidate();
-	}
-
-
-	void setOnline(final String buddyName) {
-		if (labelMap.get(buddyName) == null) {
-			addBuddy(buddyName, true);
-		} else {
-			labelMap.get(buddyName).setOnline(true);
-		}
-		revalidate();
-	}
-
-
-	public void remove(final String buddyName) {
-		this.remove(labelMap.get(buddyName));
-		labelMap.remove(buddyName);
-		revalidate();
-		repaint();
-	}
-
 }

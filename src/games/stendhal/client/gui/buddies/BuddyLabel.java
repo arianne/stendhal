@@ -1,14 +1,18 @@
 package games.stendhal.client.gui.buddies;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 
-@SuppressWarnings("serial")
-class BuddyLabel extends JLabel {
-
+/**
+ * Rendering component for buddies in a JList.
+ */
+class BuddyLabel extends JLabel implements ListCellRenderer {
 	/**
 	 * The online icon image.
 	 */
@@ -20,8 +24,7 @@ class BuddyLabel extends JLabel {
 	private static ImageIcon offlineIcon = new ImageIcon(BuddyLabel.class.getClassLoader().getResource("data/gui/buddy_offline.png"));
 
 	void setOnline(final boolean online) {
-			this.setEnabled(online);
-			paintImmediately(getVisibleRect());
+		this.setEnabled(online);
 	}
 
 	public BuddyLabel() {
@@ -51,6 +54,16 @@ class BuddyLabel extends JLabel {
 		this.setDisabledIcon(offlineIcon);
 		this.setForeground(Color.GREEN);
 		this.setSize(new Dimension(200, 30));
-		this.addMouseListener(new BuddyLabelMouseListener());
+	}
+
+	public Component getListCellRendererComponent(JList list, Object value,
+			int index, boolean selected, boolean focused) {
+		// We ignore most of the parameters
+		if (value instanceof Buddy) {
+			Buddy buddy = (Buddy) value;
+			setText(buddy.getName());
+			setOnline(buddy.isOnline());
+		}
+		return this;
 	}
 }
