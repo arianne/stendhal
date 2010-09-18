@@ -49,6 +49,16 @@ public class ItemPanel extends JComponent implements DropTarget {
 	private EntityView view;
 	/** The entity to whom the displayed slot belongs to */
 	private IEntity parent;
+	/**
+	 * Current associated popup menu. Using
+	 * {@link #setComponentPopupMenu(JPopupMenu)} is
+	 * <b>not</b> safe because of a swing bug that can under some conditions
+	 * display the menu at the location of the mouse click and prevent the
+	 * correct menu displaying code (which does the offset adjustments) from
+	 * being called.<p>
+	 * Fix for bug #3069835.
+	 */
+	private JPopupMenu popupMenu;
 	
 	/**
 	 * Create a new ItemPanel.
@@ -108,8 +118,8 @@ public class ItemPanel extends JComponent implements DropTarget {
 			setCursor(null);
 		}
 		
-		// The old popup menu is no longer valid 
-		setComponentPopupMenu(null);
+		// The old popup menu is no longer valid
+		popupMenu = null;
 		repaint();
 	}
 	
@@ -185,7 +195,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 		protected boolean onMouseClick(Point point) {
 			// ignore empty slots
 			if (view == null) {
-				return false;
+				return true;
 			}
 			
 			boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
@@ -226,24 +236,21 @@ public class ItemPanel extends JComponent implements DropTarget {
 		@Override
 		protected void onMouseRightClick(Point point) {
 			if (view != null) {
-				JPopupMenu menu = ItemPanel.this.getComponentPopupMenu();
-				
-				if (menu == null) {
-				// create the context menu
-					menu = new EntityViewCommandList(getName(), view.getActions(), view) {
+				if (popupMenu == null) {
+					// create the context menu
+					popupMenu = new EntityViewCommandList(getName(), view.getActions(), view) {
 						@Override
 						protected void doAction(final String command) {
 							super.doAction(command);
 							setVisible(false);
 						}
 					};
-					setComponentPopupMenu(menu);
 				}
 				/*
 				 * Relocate under the cursor. Offset a bit so that the first
 				 * entry is under the mouse.
 				 */
-				menu.show(ItemPanel.this, point.x - POPUP_MENU_OFFSET,
+				popupMenu.show(ItemPanel.this, point.x - POPUP_MENU_OFFSET,
 						point.y - POPUP_MENU_OFFSET);
 			}
 		}
