@@ -135,7 +135,6 @@ public class StendhalQuestSystem {
 		loadQuest(new Blackjack());
 		loadQuest(new BowsForOuchit());
 		loadQuest(new Campfire());
-		//loadQuest(new CarmenCataclysm());
 		loadQuest(new CleanStorageSpace());
 		loadQuest(new CloakCollector());
 		loadQuest(new CloakCollector2());
@@ -145,7 +144,6 @@ public class StendhalQuestSystem {
 		loadQuest(new DailyItemQuest());
 		loadQuest(new DailyMonsterQuest());
 		loadQuest(new DiceGambling());
-		// loadQuet(new DiogenesCataclysm());
 		loadQuest(new DragonLair());
 		loadQuest(new ElfPrincess());
 		loadQuest(new ElvishArmor());
@@ -154,7 +152,6 @@ public class StendhalQuestSystem {
 		loadQuest(new FishermansLicenseQuiz());
 		loadQuest(new FishermansLicenseCollector());
 		loadQuest(new HatForMonogenes());
-		// loadQuest(new HayunnCataclysm());
 		loadQuest(new HelpTomi());
 		loadQuest(new HelpMrsYeti());
 		loadQuest(new HerbsForCarmen());
@@ -188,9 +185,7 @@ public class StendhalQuestSystem {
 		loadQuest(new MeetSanta());
 		loadQuest(new MeetZynn());
 		loadQuest(new MithrilCloak());
-		// loadQuet(new MonogenesCataclysm());
 		loadQuest(new NewsFromHackim());
-		// loadQuset(new NomyrCataclysm());
 		loadQuest(new ObsidianKnife());
 		loadQuest(new PizzaDelivery());
 		loadQuest(new PlinksToy());
@@ -198,7 +193,6 @@ public class StendhalQuestSystem {
 		loadQuest(new ReverseArrow());
 		loadQuest(new RingMaker());
 		loadQuest(new SadScientist());
-		// loadQuet(new SatoCataclysm());
 		if (System.getProperty("stendhal.minetown") != null) {
 			loadQuest(new SemosMineTownRevivalWeeks());
 			loadQuest(new PaperChase());
