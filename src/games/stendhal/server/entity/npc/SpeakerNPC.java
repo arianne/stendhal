@@ -264,16 +264,16 @@ public class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * Sets the player to whom the NPC is currently listening. Note: You don't
+	 * Sets the rpentity to whom the NPC is currently listening. Note: You don't
 	 * need to use this for most NPCs.
 	 *
-	 * @param player
+	 * @param rpentity
 	 *            the player with whom the NPC should be talking.
 	 */
-	public void setAttending(final RPEntity player) {
-		attending = player;
+	public void setAttending(final RPEntity rpentity) {
+		attending = rpentity;
 
-		if (player != null) {
+		if (rpentity != null) {
 			stop();
 			setIdea("attending");
 		} else {
