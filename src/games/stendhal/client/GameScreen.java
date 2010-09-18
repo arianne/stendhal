@@ -527,7 +527,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		int layerHeight = getViewHeight();
 		// +2 is needed to ensure the drawn area is covered by the tiles
 		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
-		layerHeight = Math.min(layerHeight, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
+		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		
 		gameLayers.draw(graphics, set, "0_floor", startTileX, startTileY, layerWidth, layerHeight);
 		gameLayers.draw(graphics, set, "1_terrain", startTileX, startTileY, layerWidth, layerHeight);
