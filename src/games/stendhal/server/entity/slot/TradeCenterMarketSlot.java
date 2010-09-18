@@ -47,4 +47,14 @@ public class TradeCenterMarketSlot extends EntitySlot {
 	public boolean isTargetBoundCheckRequired() {
 		return true;
 	}
+
+
+	/**
+	 * gets the type of the slot ("slot", "ground", "market")
+	 *
+	 * @return slot type
+	 */
+	public String getSlotType() {
+		return "marget";
+	}
 }

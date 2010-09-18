@@ -74,4 +74,13 @@ public class EntitySlot extends RPSlot implements Slot {
 	public void clearErrorMessage() {
 		errorMessage = null;
 	}
+
+	/**
+	 * gets the type of the slot ("slot", "ground", "market")
+	 *
+	 * @return slot type
+	 */
+	public String getSlotType() {
+		return "slot";
+	}
 }

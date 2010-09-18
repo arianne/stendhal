@@ -126,4 +126,14 @@ public class GroundSlot extends EntitySlot {
 		}
 		return null;
 	}
+
+
+	/**
+	 * gets the type of the slot ("slot", "ground", "market")
+	 *
+	 * @return slot type
+	 */
+	public String getSlotType() {
+		return "ground";
+	}
 }
