@@ -56,7 +56,7 @@ create table if not exists halloffame_archive
   rank integer not null,
   points integer not null,
   day date not null,
-  recent chat(1) not null,
+  recent char(1) not null,
   primary key(id)
   ) 
  ;
