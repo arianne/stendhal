@@ -81,7 +81,7 @@ public class EventRaiser {
 	}
 
 	/**
-	 * sets the sate of the FSM used by SpeakerNPCs
+	 * sets the state of the FSM used by SpeakerNPCs
 	 *
 	 * @param stateAfterCompletion new state
 	 */
@@ -91,6 +91,19 @@ public class EventRaiser {
 		}
 	}
 
+	/**
+	 * Sets the rpentity to whom the SpeakerNPC is currently listening. Note: You don't
+	 * need to use this for most SpeakerNPCs.
+	 *
+	 * @param rpentity
+	 *            the entity with whom the NPC should be talking.
+	 */
+	public void setAttending(final RPEntity rpentity) {
+		if (entity instanceof SpeakerNPC) {
+			((SpeakerNPC) entity).setAttending(rpentity);
+		}
+	}
+	
 	/**
 	 * adds an RPEvent
 	 *

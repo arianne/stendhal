@@ -284,7 +284,7 @@ public class SpeakerNPC extends NPC {
 	 */
 	public void setAttending(final RPEntity rpentity) {
 		attending = rpentity;
-
+		lastMessageTurn = SingletonRepository.getRuleProcessor().getTurn();
 		if (rpentity != null) {
 			stop();
 			setIdea("attending");
