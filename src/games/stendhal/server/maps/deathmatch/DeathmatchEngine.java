@@ -16,6 +16,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.creature.DeathMatchCreature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Date;
@@ -32,11 +33,14 @@ class DeathmatchEngine implements TurnListener {
 	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
 
 	private final Player player;
+	private final EventRaiser raiser;
+	
 	private final DeathmatchInfo dmInfo;
 
 	private CreatureSpawner spawner;
 
 	private boolean keepRunning = true;
+	
 
 	/**
 	 * Creates a new ScriptAction to handle the deathmatch logic.
@@ -46,10 +50,10 @@ class DeathmatchEngine implements TurnListener {
 	 * @param deathmatchInfo
 	 *            Information about the place of the deathmatch
 	 */
-	public DeathmatchEngine(final Player player, final DeathmatchInfo deathmatchInfo) {
+	public DeathmatchEngine(final Player player, final DeathmatchInfo deathmatchInfo, final EventRaiser raiser) {
 		this.dmInfo = deathmatchInfo;
 		this.player = player;
-
+		this.raiser = raiser;
 		initialize();
 	}
 
@@ -119,8 +123,16 @@ class DeathmatchEngine implements TurnListener {
 				spawner.spawnDailyMonster(player, dmInfo);
 				deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
 				player.setQuest("deathmatch", deathmatchState.toQuestString());
-				// remove this ScriptAction since we're done
 
+				raiser.say(player.getName() + ", has completed the deathmatch.");
+				
+				// Is it possible to make the npc attend the player so they can say victory?
+				// currently it makes him say good bye straight away.
+				// raiser.say(player.getName() + ", you have completed this deathmatch and can now claim #victory.");
+				// raiser.setCurrentState(ConversationStates.ATTENDING);
+				// raiser.setAttending(player);
+				
+				// remove this ScriptAction since we're done
 				keepRunning = false;
 			}
 			// all creature are there

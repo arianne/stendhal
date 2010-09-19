@@ -37,6 +37,6 @@ public class StartAction implements ChatAction {
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		raiser.say("Have fun!");
-		deathmatchInfo.startSession(player);
+		deathmatchInfo.startSession(player, raiser);
 	}
 }

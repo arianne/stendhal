@@ -15,6 +15,7 @@ package games.stendhal.server.maps.deathmatch;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
@@ -75,10 +76,10 @@ public class DeathmatchInfo {
 		return entranceSpot;
 	}
 
-	void startSession(final Player player) {
+	void startSession(final Player player,final EventRaiser raiser ) {
 		final DeathmatchState deathmatchState = DeathmatchState.createStartState(player.getLevel());
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
-		final DeathmatchEngine dmEngine = new DeathmatchEngine(player, this);
+		final DeathmatchEngine dmEngine = new DeathmatchEngine(player, this, raiser);
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, dmEngine);
 	}
 	
