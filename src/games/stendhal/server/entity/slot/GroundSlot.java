@@ -62,7 +62,14 @@ public class GroundSlot extends EntitySlot {
 
 	@Override
 	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
-		// TODO do range check
+
+		// TODO: test me
+		int xDistance = Math.abs(entity.getX() - x);
+		int yDistance = Math.abs(entity.getY() - y);
+		if ((xDistance <= 1) && (yDistance <= 1)) {
+			setErrorMessage("You are too far away");
+			return false;
+		}
 
 		String playerName = getOtherPlayerStandingOnItem(entity);
 		if (playerName != null) {
@@ -136,4 +143,6 @@ public class GroundSlot extends EntitySlot {
 	public String getSlotType() {
 		return "ground";
 	}
+
+	// TODO: ((Entity) getOwner() will not work
 }
