@@ -1,7 +1,6 @@
-package games.stendhal.tools;
-
+/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2010 - Marauroa                      *
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +10,7 @@ package games.stendhal.tools;
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+package games.stendhal.tools;
 
 import java.io.BufferedReader;
 import java.io.File;

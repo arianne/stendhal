@@ -1,6 +1,15 @@
-/**
- *
- */
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps;
 
 import games.stendhal.server.core.engine.RPClassGenerator;
@@ -13,10 +22,7 @@ public class MockStendlRPWorld extends StendhalRPWorld {
 	public void modify(final RPObject object) {
 	}
 
-	
-	
 	protected void createRPClasses() {
-		
 		new RPClassGenerator().createRPClasses();
 	}
 	
@@ -28,11 +34,8 @@ public class MockStendlRPWorld extends StendhalRPWorld {
 		return instance;
 	}
 
-	
-	
 	@Override
 	protected void initialize() {
-
 	}
 	
 	public static void  reset() {
