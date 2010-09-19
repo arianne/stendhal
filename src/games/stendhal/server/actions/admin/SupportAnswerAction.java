@@ -62,7 +62,7 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 					reply = messageTemplates.get(reply);
 					reply = String.format(reply, action.get(TARGET));
 				} else {
-					player.sendPrivateText(reply + " is not a recognised shortcut. Did you mean $faq, $faqsocial, $ignore, $faqpvp, $wiki, $knownbug, $bugstracker, $rules, $notsupport or $spam?");
+					player.sendPrivateText(reply + " is not a recognised shortcut. Please check #/gmhelp #support for a list.");
 					// send no support answer message if the shortcut wasn't understood
 					return;
 				}				
