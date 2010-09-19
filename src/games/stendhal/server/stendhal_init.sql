@@ -48,7 +48,21 @@ create table if not exists halloffame
 
 /*CREATE INDEX i_halloffame_charname ON halloffame(charname);*/
 
-  
+create table if not exists halloffame_archive
+  (
+  id integer auto_increment not null,
+  charname varchar(32) not null,
+  fametype char(1) not null,
+  rank integer not null,
+  points integer not null,
+  day date not null,
+  primary key(id)
+  ) 
+ ;
+
+/*CREATE INDEX i_halloffame_day_charname ON halloffame_archive(day, charname);*/
+
+
 CREATE TABLE IF NOT EXISTS itemid (
   last_id INTEGER
 );
