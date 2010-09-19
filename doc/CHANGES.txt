@@ -8,6 +8,7 @@ Changelog
 - can have a detail layer over outfits
 - new game for Semos Mine Town Revival Weeks: 9 switches
 - new NPC Andy in Ados near the church
+- new NPC Haunchy Meatoch on Ados market
 - added more quest histories
 - rest of the Wt replaced with swing
 - corpse and chest windows raise themselves if one with an already open window is inspected
