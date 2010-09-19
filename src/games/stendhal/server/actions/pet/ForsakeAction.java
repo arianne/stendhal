@@ -49,7 +49,7 @@ public class ForsakeAction implements ActionListener {
 					if (sheep.has(DB_ID)) {
 						sheep.remove(DB_ID);
 					}
-					new GameEvent(player.getName(), "foresake", species);
+					new GameEvent(player.getName(), "leave", Integer.toString(sheep.getWeight())).raise();
 				} else {
 					logger.error("sheep not found in disown action: " + action.toString());
 				}
@@ -63,7 +63,7 @@ public class ForsakeAction implements ActionListener {
 					if (pet.has(DB_ID)) {
 						pet.remove(DB_ID);
 					}
-					new GameEvent(player.getName(), "foresake", species);
+					new GameEvent(player.getName(), "leave", species, Integer.toString(pet.getWeight())).raise();
 				} else {
 					logger.error("pet not found in disown action: " + action.toString());
 				}
