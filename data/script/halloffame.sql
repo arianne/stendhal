@@ -109,3 +109,16 @@ FROM character_stats, (SELECT @rownum:=0) r
 WHERE admin<=600 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
 ORDER BY xp DESC;
 
+
+INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
+SELECT name, 'B', @rownum:=@rownum+1 as rank, xp/(age+1) As points, CURRENT_DATE(), 0 
+FROM character_stats, (SELECT @rownum:=0) r 
+WHERE admin<=600 
+ORDER BY points DESC;
+
+INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
+SELECT name, 'B', @rownum:=@rownum+1 as rank, xp/(age+1) As points, CURRENT_DATE(), 1 
+FROM character_stats, (SELECT @rownum:=0) r 
+WHERE admin<=600 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
+ORDER BY points DESC;
+
