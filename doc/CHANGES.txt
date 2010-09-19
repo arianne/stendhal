@@ -12,6 +12,10 @@ Changelog
 - rest of the Wt replaced with swing
 - corpse and chest windows raise themselves if one with an already open window is inspected
 - buddies are sorted first by online status, then by name
+- deathmatch assistant announces completion and player can directly claim victory 
+
+*website*
+- animated/large NPCs like tomi and vulcanus now have an image
 
 0.87.1 
 - fixed an issue causing the client to be unresponsive for some windows users
