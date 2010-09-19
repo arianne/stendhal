@@ -17,6 +17,7 @@ import games.stendhal.common.ItemTools;
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.slot.Slot;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -707,7 +708,7 @@ public abstract class Entity extends RPObject {
 	 * @param name name of entity slot
 	 * @return EntitySlot or <code>null</code>
 	 */
-	public EntitySlot getEntitySlot(String name) {
+	public Slot getEntitySlot(String name) {
 		if (!super.hasSlot(name)) {
 			return null;
 		}
@@ -715,6 +716,6 @@ public abstract class Entity extends RPObject {
 		if (!(slot instanceof EntitySlot)) {
 			return null;
 		}
-		return (EntitySlot) slot;
+		return (Slot) slot;
 	}
 }
