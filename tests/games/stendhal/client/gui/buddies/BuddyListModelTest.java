@@ -13,8 +13,9 @@
 package games.stendhal.client.gui.buddies;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
@@ -91,6 +92,12 @@ public class BuddyListModelTest implements ListDataListener {
 		// Check that there were no spurious calls
 		assertFalse("contentsChanged() should not be called", contentsChangedFlag);
 		assertFalse("intervalRemoved() should not be called", intervalRemovedFlag);
+		
+		// Check the final order
+		assertEquals("daibaduu", getBuddy(model, 0).getName());
+		assertEquals("dumdiduu", getBuddy(model, 1).getName());
+		assertEquals("hubbaduu", getBuddy(model, 2).getName());
+		assertEquals("alibaba", getBuddy(model, 3).getName());
 	}
 	
 	/**
@@ -135,6 +142,12 @@ public class BuddyListModelTest implements ListDataListener {
 		// interval; alibaba moved from second last to first
 		assertEquals(0, Math.min(index0, index1));
 		assertEquals(2, Math.max(index0, index1));
+		
+		// Check the final order
+		assertEquals("alibaba", getBuddy(model, 0).getName());
+		assertEquals("daibaduu", getBuddy(model, 1).getName());
+		assertEquals("hubbaduu", getBuddy(model, 2).getName());
+		assertEquals("dumdiduu", getBuddy(model, 3).getName());
 	}
 	
 	/**
@@ -170,6 +183,12 @@ public class BuddyListModelTest implements ListDataListener {
 		assertFalse("intervalAdded() should not be called", intervalAddedFlag);
 		assertFalse("intervalRemoved() should not be called", intervalRemovedFlag);
 		assertFalse("contentsChanged() should not be called", contentsChangedFlag);
+		
+		// Check the final order
+		assertEquals("daibaduu", getBuddy(model, 0).getName());
+		assertEquals("dumdiduu", getBuddy(model, 1).getName());
+		assertEquals("hubbaduu", getBuddy(model, 2).getName());
+		assertEquals("alibaba", getBuddy(model, 3).getName());
 	}
 	
 	/**
@@ -205,6 +224,30 @@ public class BuddyListModelTest implements ListDataListener {
 		assertEquals(2, index0);
 		assertEquals(2, index1);
 		assertEquals("Number of buddies", 2, model.getSize());
+		
+		// Check the final order
+		assertEquals("daibaduu", getBuddy(model, 0).getName());
+		assertEquals("hubbaduu", getBuddy(model, 1).getName());
+	}
+	
+	/**
+	 * Get a buddy. The model returns an object. not a Buddy, so this is
+	 * just a convenience method doing the casting and type checking.
+	 * 
+	 * @param model BuddyModel
+	 * @param index index of the element to be fetched
+	 * @return Buddy at index 
+	 */
+	private Buddy getBuddy(BuddyListModel model, int index) {
+		Buddy buddy = null;
+		Object obj = model.getElementAt(index);
+		if (obj instanceof Buddy) {
+			buddy = (Buddy) obj;
+		} else {
+			fail();
+		}
+		
+		return buddy;
 	}
 
 	/*
