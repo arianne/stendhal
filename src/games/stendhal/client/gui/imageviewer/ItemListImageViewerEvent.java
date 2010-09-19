@@ -13,9 +13,12 @@
 package games.stendhal.client.gui.imageviewer;
 
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.ComponentPaintCache;
+import games.stendhal.client.gui.ComponentPaintCache.Cacheable;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -63,7 +66,8 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		// Note: setMaximumSize does not work, so we use setPreferredSize and check
 		//       the number of entries ourself.
 		if (event.getSlot("content").size() > 6) {
-			JPanel panel = new JPanel();
+			// Speed up drawing. The html table won't change anyway.
+			JPanel panel = new CachedPanel();
 			JScrollPane scrollPane = new JScrollPane();
 			panel.add(label);
 			scrollPane.setViewportView(panel);
@@ -157,4 +161,42 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		return url;
 	}
 	
+	/**
+	 * A JPanel using caching for itself and its child components for faster
+	 * drawing. Speed is important for large on screen windows because they get
+	 * redrawn in every game loop due to the game screen being redrawn.
+	 */
+	private static class CachedPanel extends JPanel implements Cacheable {
+		private final ComponentPaintCache cache;
+		/**
+		 * Create a new CachedPanel.
+		 */
+		public CachedPanel() {
+			cache = new ComponentPaintCache(this);
+			// cache the label as well
+			cache.setPaintChildren(true);
+		}
+		
+		@Override
+		public void paint(Graphics g) {
+			cache.paintComponent(g);
+		}
+		
+		// *** Cached painting requires exposing the following 
+		
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+		}
+		
+		@Override
+		public void paintBorder(Graphics g) {
+			super.paintBorder(g);
+		}
+		
+		@Override
+		public void paintChildren(Graphics g) {
+			super.paintChildren(g);
+		}
+	}
 }
