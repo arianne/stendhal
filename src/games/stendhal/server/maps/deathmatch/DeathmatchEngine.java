@@ -16,6 +16,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.creature.DeathMatchCreature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
@@ -124,13 +125,10 @@ class DeathmatchEngine implements TurnListener {
 				deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
 				player.setQuest("deathmatch", deathmatchState.toQuestString());
 
-				raiser.say(player.getName() + ", has completed the deathmatch.");
-				
-				// Is it possible to make the npc attend the player so they can say victory?
-				// currently it makes him say good bye straight away.
-				// raiser.say(player.getName() + ", you have completed this deathmatch and can now claim #victory.");
-				// raiser.setCurrentState(ConversationStates.ATTENDING);
-				// raiser.setAttending(player);
+				// make the npc attend the player so they can say victory
+				raiser.say(player.getName() + ", you have completed this deathmatch and can now claim #victory.");
+			    raiser.setCurrentState(ConversationStates.ATTENDING);
+				raiser.setAttending(player);
 				
 				// remove this ScriptAction since we're done
 				keepRunning = false;
