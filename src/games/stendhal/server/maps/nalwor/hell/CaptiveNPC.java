@@ -52,6 +52,7 @@ public class CaptiveNPC implements ZoneConfigurator {
 		};
 
 		tomi.setEntityClass("transparentnpc");
+		tomi.setAlternativeImage("tomi");
 		tomi.setPosition(119, 13);
 		tomi.setBaseHP(100); 
 		tomi.setHP(50);

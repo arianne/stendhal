@@ -60,6 +60,7 @@ public class SmithNPC implements ZoneConfigurator {
 
 		smith.setDescription("You see Vulcanus. You feel a strange sensation near him.");
 		smith.setEntityClass("transparentnpc");
+		smith.setAlternativeImage("vulcanus");
 		smith.setPosition(62, 115);
 		smith.setDirection(Direction.DOWN);
 		smith.initHP(100);

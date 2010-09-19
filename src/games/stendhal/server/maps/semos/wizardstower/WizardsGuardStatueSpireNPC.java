@@ -140,6 +140,7 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 
 		zekielspire.setDescription("You see Zekiel, the guardian of this tower.");
 		zekielspire.setEntityClass("transparentnpc");
+		zekielspire.setAlternativeImage("zekiel");
 		zekielspire.setPosition(15, 15);
 		zekielspire.initHP(100);
 		zone.add(zekielspire);

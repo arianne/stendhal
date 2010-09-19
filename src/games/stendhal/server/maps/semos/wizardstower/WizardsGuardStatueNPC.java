@@ -63,6 +63,7 @@ public class WizardsGuardStatueNPC implements ZoneConfigurator {
 
 		zekiel.setDescription("You see Zekiel, the guardian of this tower.");
 		zekiel.setEntityClass("transparentnpc");
+		zekiel.setAlternativeImage("zekiel");
 		zekiel.setPosition(15, 15);
 		zekiel.initHP(100);
 		zone.add(zekiel);
