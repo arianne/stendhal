@@ -63,7 +63,7 @@ public class UseAction implements ActionListener {
 	}
 
 	private void useItemInSlot(final Player player, final RPAction action) {
-        final EntitySlot slot = EntityHelper.getSlot(player, action);
+		final EntitySlot slot = EntityHelper.getSlot(player, action);
 		final Entity object = EntityHelper.entityFromSlot(player, action);
 		if ((object != null) && canAccessSlot(player, slot, object.getBaseContainer())) {
 			tryUse(player, object);
@@ -77,7 +77,7 @@ public class UseAction implements ActionListener {
 		}
 
 		if ((slot != null) && !slot.isReachableForTakingThingsOutOfBy(player)) {
-		    return false;
+			return false;
 		}
 
 		if ((base instanceof Player)
