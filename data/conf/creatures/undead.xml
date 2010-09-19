@@ -263,7 +263,7 @@
   
   <creature name="death">
     <type class="undead" subclass="death" tileid="undead.png:2"/>
-    <description></description>
+    <description>You see Death. Do you have the will to stare him in the face? Today he's not in the mood to bargain with your soul.</description>
     <attributes>
       <atk value="283"/>
       <def value="69"/>
