@@ -30,10 +30,16 @@ import java.awt.Transparency;
  * the component need a proper redraw. Size changes are automatically handled.
  */
 public class ComponentPaintCache {
+	/** The cached component */
 	Cacheable component;
+	/** Cached width of the component */
 	private int oldWidth;
+	/** Cached height of the component */
 	private int oldHeight;
+	/** Cached image of the component and its borders */
 	private Image cachedImage;
+	/** Should the child components be cached as well */
+	private boolean paintChildren;
 
 	/**
 	 * Create a new paint cache.
@@ -67,6 +73,16 @@ public class ComponentPaintCache {
 			imageGraphics.setClip(0, 0, width, height);
 			component.paintComponent(imageGraphics);
 			component.paintBorder(imageGraphics);
+			if (paintChildren) {
+				/*
+				 * JComponent.paint produces garbage, and paintComponent &
+				 * paintBorder need to be exposed for those that can't include
+				 * the children anyway. Otherwise it would be easiest to use
+				 * SwingUtilities.paintComponent and accept JComponent in the
+				 * constructor, but now we need the interface anyway.
+				 */
+				component.paintChildren(imageGraphics);
+			}
 			imageGraphics.dispose();				
 		}
 		g.drawImage(cachedImage, 0, 0, null);
@@ -77,6 +93,18 @@ public class ComponentPaintCache {
 	 */
 	public void invalidate() {
 		cachedImage = null;
+	}
+	
+	/**
+	 * Set if the child components should be cached as images as well. The
+	 * default is not caching. Do change it to true unless the children are
+	 * static images or you take care of calling invalidate() when they change.
+	 *   
+	 * @param paint <code>true</code> if the child components should be included
+	 * 	in the cached image, <code>false</code> otherwise
+	 */
+	public void setPaintChildren(boolean paint) {
+		paintChildren = paint;
 	}
 	
 	/**
@@ -109,6 +137,10 @@ public class ComponentPaintCache {
 		 * @param g graphics
 		 */
 		void paintBorder(Graphics g);
+		/**
+		 * Paint everything, including the child components.
+		 */
+		void paintChildren(Graphics g);
 		/**
 		 * Get the component graphics configuration.
 		 * 

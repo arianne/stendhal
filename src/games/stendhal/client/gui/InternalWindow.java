@@ -425,9 +425,16 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 			paintChildren(g);
 		}
 		
+		// *** for cached painting ***
+		
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
+		}
+		
+		@Override
+		public void paintChildren(Graphics g) {
+			super.paintChildren(g);
 		}
 	}
 	
@@ -457,5 +464,10 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	@Override
 	public void paintBorder(Graphics g) {
 		super.paintBorder(g);
+	}
+	
+	@Override
+	public void paintChildren(Graphics g) {
+		super.paintChildren(g);
 	}
 }
