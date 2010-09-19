@@ -3,8 +3,6 @@
  */
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.gui.styled.WoodStyle;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -25,7 +23,7 @@ final class BuddyLabelMouseListener extends MouseAdapter {
 
     private void maybeShowPopup(final MouseEvent e) {
         if (e.isPopupTrigger()) {
-        	final JPopupMenu popup = new BuddyLabelPopMenu(new WoodStyle(), e.getComponent().getName(), e.getComponent().isEnabled());
+        	final JPopupMenu popup = new BuddyLabelPopMenu(e.getComponent().getName(), e.getComponent().isEnabled());
         	popup.show(e.getComponent(), e.getX(), e.getY());
         }
     }
