@@ -56,11 +56,12 @@ create table if not exists halloffame_archive
   rank integer not null,
   points integer not null,
   day date not null,
+  recent chat(1) not null,
   primary key(id)
   ) 
  ;
 
-/*CREATE INDEX i_halloffame_day_charname ON halloffame_archive(day, charname);*/
+/*CREATE INDEX i_halloffame_day_charname ON halloffame_archive(day, recent, charname);*/
 
 
 CREATE TABLE IF NOT EXISTS itemid (
