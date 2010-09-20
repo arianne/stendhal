@@ -68,7 +68,7 @@ public class TeacherNPC implements ZoneConfigurator {
 		fisherman.setDirection(Direction.DOWN);
 		fisherman.setPosition(3, 3);
 		fisherman.initHP(100);
-		fisherman.setDescription("You see Santiago. All fishermen are taking trust in his experiences.");
+		fisherman.setDescription("You see Santiago. All fishermen take trust in his experiences.");
 		zone.add(fisherman);
 	}
 }
