@@ -324,6 +324,25 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
+    <item name="garlic">
+    <type class="food" subclass="garlic" tileid="-1"/>
+    <description>You see some fresh garlic.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="40"/>
+      <frequency value="20"/>
+      <quantity value="1"/>
+      <regen value="3"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
 
   <item name="cauliflower">
     <type class="food" subclass="cauliflower" tileid="-1"/>

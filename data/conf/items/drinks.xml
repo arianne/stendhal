@@ -307,6 +307,26 @@
     </equipable>
   </item>
 
+<item name="fish soup">
+    <type class="drink" subclass="fish_soup" tileid="-1"/>
+    <description>You see a bowl of fish soup. Its contents fill you up.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+      <amount value="3500"/>
+      <frequency value="8"/>
+      <quantity value="1"/>
+      <regen value="25"/>
+      <persistent value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1250"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="potion">
     <type class="drink" subclass="potion" tileid="-1"/>
     <description>You see a potion. Take it to battle and you may survive longer.</description>
