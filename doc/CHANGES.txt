@@ -18,6 +18,7 @@ Changelog
 - buddies are sorted first by online status, then by name
 - deathmatch assistant announces completion and player can directly claim victory
 - new items fish soup and garlic
+- added garlic to Sues selling list
 
 *website*
 - animated/large NPCs like tomi and vulcanus now have an image
