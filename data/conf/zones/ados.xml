@@ -80,6 +80,7 @@
  <zone name="0_ados_city_n2" level="0" x="500896" y="499744" file="Level 0/ados/city_n2.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.city.WeaponryTraderNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.city.BBQGrillmasterNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.city.OldFishermanNPC"/>
            <entity x="78" y="99">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
        <attribute name="text">This is a small boat, anchored at the docks.</attribute>
