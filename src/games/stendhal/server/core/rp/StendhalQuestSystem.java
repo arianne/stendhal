@@ -37,6 +37,7 @@ import games.stendhal.server.maps.quests.ElfPrincess;
 import games.stendhal.server.maps.quests.ElvishArmor;
 import games.stendhal.server.maps.quests.FindGhosts;
 import games.stendhal.server.maps.quests.FindRatChildren;
+import games.stendhal.server.maps.quests.FishSoup;
 import games.stendhal.server.maps.quests.FishermansLicenseCollector;
 import games.stendhal.server.maps.quests.FishermansLicenseQuiz;
 import games.stendhal.server.maps.quests.HatForMonogenes;
@@ -163,6 +164,7 @@ public class StendhalQuestSystem {
 		loadQuest(new FindRatChildren());
 		loadQuest(new FishermansLicenseQuiz());
 		loadQuest(new FishermansLicenseCollector());
+		loadQuest(new FishSoup());
 		loadQuest(new HatForMonogenes());
 		loadQuest(new HelpTomi());
 		loadQuest(new HelpMrsYeti());
