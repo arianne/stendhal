@@ -81,6 +81,7 @@
     <configurator class-name="games.stendhal.server.maps.ados.market.WeaponryTraderNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.BBQGrillmasterNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.OldFishermanNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.market.FishSoupMakerNPC"/>
            <entity x="78" y="99">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
        <attribute name="text">This is a small boat, anchored at the docks.</attribute>
