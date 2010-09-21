@@ -64,7 +64,7 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 				addOffer("If you wish to access your personal chest in solitude, I can give you access to a private #vault. A guidebook inside will explain how it works.");		
 				addGoodbye("It was a pleasure to serve you.");
 				add(ConversationStates.ANY, "vault", new QuestCompletedCondition("armor_dagobert"), ConversationStates.IDLE, null, 
-						new MultipleActions(new PlaySoundAction("keys-1"), new VaultChatAction()));
+						new MultipleActions(new PlaySoundAction("keys-1", true), new VaultChatAction()));
 				
 				add(ConversationStates.ANY, "vault", new QuestNotCompletedCondition("armor_dagobert"), ConversationStates.ATTENDING, "Perhaps you could do a #favour for me, and then I will tell you more about the private banking vaults.", null);
 				

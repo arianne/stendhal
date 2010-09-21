@@ -30,6 +30,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 public class PlaySoundAction implements ChatAction {
 
 	final String sound;
+	private final boolean delay;
 
 	/**
 	 * Creates a new PlaySoundAction.
@@ -38,15 +39,31 @@ public class PlaySoundAction implements ChatAction {
 	 */
 	public PlaySoundAction(String sound) {
 		this.sound = sound;
+		this.delay = false;
+	}
+
+	/**
+	 * Creates a new PlaySoundAction.
+	 * 
+	 * @param sound sound to play
+	 * @param delay delay the sound for one turn because of zone change?
+	 */
+	public PlaySoundAction(String sound, boolean delay) {
+		this.sound = sound;
+		this.delay = delay;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		TurnNotifier.get().notifyInTurns(0, new SoundTurnListener(player));
+		if (!delay) {
+			player.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
+		} else {
+			TurnNotifier.get().notifyInTurns(0, new SoundTurnListener(player));
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "PlaySound";
+		return "PlaySound<" + sound + ">";
 	}
 
 	@Override
