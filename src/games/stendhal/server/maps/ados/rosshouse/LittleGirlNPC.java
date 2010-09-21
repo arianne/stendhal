@@ -41,7 +41,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 		createGirlNPC(zone);
 	}
 
-	private void createGirlNPC(final StendhalRPZone zone) {
+	public void createGirlNPC(final StendhalRPZone zone) {
 		
 		if (System.getProperty("stendhal.minetown") != null) {
 			return;

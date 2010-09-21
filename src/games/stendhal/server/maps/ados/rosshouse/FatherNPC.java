@@ -37,7 +37,7 @@ public class FatherNPC implements ZoneConfigurator {
 		createDadNPC(zone);
 	}
 
-	private void createDadNPC(final StendhalRPZone zone) {
+	public void createDadNPC(final StendhalRPZone zone) {
 
 		if (System.getProperty("stendhal.minetown") != null) {
 			return;
