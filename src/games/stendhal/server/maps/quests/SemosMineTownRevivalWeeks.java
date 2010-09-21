@@ -17,7 +17,6 @@ import games.stendhal.server.maps.quests.revivalweeks.FoundGirl;
 import games.stendhal.server.maps.quests.revivalweeks.NineSwitchesGame;
 import games.stendhal.server.maps.quests.revivalweeks.PaperChaseSign;
 import games.stendhal.server.maps.quests.revivalweeks.TicTacToeGame;
-import games.stendhal.server.maps.quests.revivalweeks.TownerClosedSign;
 
 /**
  * <p>Creates a special version of Susi by the semos mine town.
@@ -39,7 +38,6 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		super.addToWorld();
 		new FoundGirl().addToWorld();
 		new DadNPC().addToWorld();
-		new TownerClosedSign().addToWorld();
 		new TicTacToeGame().addToWorld();
 		new NineSwitchesGame().addToWorld();
 		paperChaseSign = new PaperChaseSign();

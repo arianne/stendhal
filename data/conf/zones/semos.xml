@@ -71,7 +71,14 @@
 			<destination zone="int_semos_frank_house" ref="exit" />
 		</portal>
 
+		<entity x="105" y="114">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<!-- This is actually a lie, the real reason is that we cannot tell apart
+				 if someone is behind the top of the tower or in front of it. -->
+			<attribute name="text">Because of the missing guard rail it is too dangerous to enter the tower.</attribute>
+		</entity>
 	</zone>
+
 	<zone name="int_semos_frank_house" file="interiors/semos/frank_house.tmx">
 
 		<portal x="7" y="30" ref="exit">
