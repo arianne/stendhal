@@ -95,7 +95,6 @@ public class FoundGirl {
 
 		npc.addJob("I am just a litte girl waiting for my father to take me out of the house. We will have lots of fun here at the #Semos #Mine #Town #Revival #Weeks!");
 		npc.addGoodbye("Have fun!");
-		npc.addReply("debuggera", "Debuggera is my crazy twin sister.");
 		npc.addHelp("Just have fun.");
 		npc.addOffer("I can offer you my #friendship.");
 

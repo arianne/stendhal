@@ -73,9 +73,6 @@ public class LittleGirlNPC implements ZoneConfigurator {
 				addJob("I am just a little girl.");
 				addGoodbye("Have fun!");
 
-				// TODO: Do we want to keep this? They used to have the same graphics but they are not anymore.
-				addReply("debuggera", "She is my crazy twin sister.");
-
 				addQuest("I might see you some time at the #Semos #Mine #Town #Revival #Weeks.");
 
 				// Revival Weeks
