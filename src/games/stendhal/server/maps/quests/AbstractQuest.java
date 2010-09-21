@@ -26,15 +26,14 @@ import java.util.List;
  */
 abstract class AbstractQuest implements IQuest {
 
-	
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
-	
+
 	protected QuestInfo questInfo = new QuestInfo();
-	
+
 	public QuestInfo getQuestInfo(Player player) {
 		return questInfo;
-	}	
-	
+	}
+
 	/**
 	 * fill fields of questInfo object with info about this quest 
 	 * @param name - name of the quest
@@ -59,6 +58,16 @@ abstract class AbstractQuest implements IQuest {
 	
 	public void addToWorld() {
 		// sub classes can implement this method
+	}
+
+	/**
+	 * removes a quest from the world.
+	 *
+	 * @return true, if the quest could be removed; false otherwise.
+	 */
+	public boolean removeFromWorld() {
+		// sub classes can implement this method but should not call super if they do
+		return false;
 	}
 
 	public List<String> getHint(final Player player) {

@@ -360,4 +360,19 @@ public class StendhalQuestSystem {
 		}
 		return null;
 	}
+
+	public void unloadQuest(String questName) {
+		IQuest quest = getQuest(questName);
+		if (quest == null) {
+			logger.error("Quest " + questName + " is not loaded", new Throwable());
+			return;
+		}
+
+		boolean res = quest.removeFromWorld();
+		if (res) {
+			quests.remove(quest);
+		} else {
+			logger.error(this.getClass() + " cannot be removed from the world");
+		}
+	}
 }

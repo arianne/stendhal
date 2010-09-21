@@ -35,6 +35,13 @@ public interface IQuest {
 	void addToWorld();
 
 	/**
+	 * removes a quest from the world.
+	 *
+	 * @return true if the quest could be unloaded, false otherwise 
+	 */
+	boolean removeFromWorld();
+
+	/**
 	 * Was the quest started?
 	 *
 	 * @param player
