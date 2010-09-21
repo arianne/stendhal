@@ -49,7 +49,6 @@ public class PlaySoundAction implements ChatAction {
 		return "PlaySound";
 	}
 
-
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
@@ -61,12 +60,19 @@ public class PlaySoundAction implements ChatAction {
 				PlaySoundAction.class);
 	}
 
+
+	/**
+	 * Plays a sound in the specified turn.
+	 */
 	class SoundTurnListener implements TurnListener {
 		private Player player;
 		SoundTurnListener(Player player) {
 			this.player = player;
 		}
 
+		/**
+		 * plays the sound
+		 */
 		public void onTurnReached(int currentTurn) {
 			player.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
 		}
