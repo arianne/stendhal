@@ -22,7 +22,7 @@ import games.stendhal.server.entity.player.Player;
  *  
  * @author madmetzger
  */
-public class CheckForReachedQuestAchievementsAction implements ChatAction {
+public class ProcessReachedQuestAchievementsAction implements ChatAction {
 
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
