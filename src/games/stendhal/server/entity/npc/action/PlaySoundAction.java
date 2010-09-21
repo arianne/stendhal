@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -28,13 +29,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class PlaySoundAction implements ChatAction {
 
-	private final String sound;
+	final String sound;
 
-	
-	this.sound = sound;
-	
-	private final Player player;
-	
 	/**
 	 * Creates a new PlaySoundAction.
 	 * 
@@ -45,7 +41,7 @@ public class PlaySoundAction implements ChatAction {
 	}
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		 
+		TurnNotifier.get().notifyInTurns(0, new SoundTurnListener(player));
 	}
 
 	@Override
@@ -65,13 +61,15 @@ public class PlaySoundAction implements ChatAction {
 				PlaySoundAction.class);
 	}
 
-	
-	}
 	class SoundTurnListener implements TurnListener {
+		private Player player;
+		SoundTurnListener(Player player) {
+			this.player = player;
+		}
+
+		public void onTurnReached(int currentTurn) {
+			player.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
+		}
 		
-	@Override
-	public void onTurnReached(int currentTurn) {
-		player.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
-			
-}
+	}
 }
