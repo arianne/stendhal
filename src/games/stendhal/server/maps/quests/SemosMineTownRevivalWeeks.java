@@ -27,6 +27,7 @@ import games.stendhal.server.maps.quests.revivalweeks.TownerClosedSign;
 public class SemosMineTownRevivalWeeks extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "semos_mine_town_revival";
+	private PaperChaseSign paperChaseSign;
 
 	@Override
 	public String getSlotName() {
@@ -41,7 +42,20 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		new TownerClosedSign().addToWorld();
 		new TicTacToeGame().addToWorld();
 		new NineSwitchesGame().addToWorld();
-		new PaperChaseSign().addToWorld();
+		paperChaseSign = new PaperChaseSign();
+		paperChaseSign.addToWorld();
+	}
+
+	/**
+	 * removes a quest from the world.
+	 *
+	 * @return true, if the quest could be removed; false otherwise.
+	 */
+	@Override
+	public boolean removeFromWorld() {
+		// TODO: implement me
+		paperChaseSign.removeFromWorld();
+		return true;
 	}
 
 	@Override

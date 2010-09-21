@@ -172,6 +172,7 @@ public class PaperChase extends AbstractQuest {
 	 */
 	public void setSign(Sign sign) {
 		loadSignFromHallOfFame.setSign(sign);
+		loadSignFromHallOfFame.fire(null, null, null);
 	}
 
 	private void addToNPCs() {
@@ -249,6 +250,7 @@ public class PaperChase extends AbstractQuest {
 		setupGreetings();
 		setupTexts();
 		addToNPCs();
+		createHallOfFameSign();
 	}
 
 
