@@ -51,10 +51,19 @@ public class LoadSignFromHallOfFameAction implements ChatAction {
 		this.ascending = ascending;
 	}
 
-
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
-		SignFromHallOfFameLoader loader = new SignFromHallOfFameLoader(sign, introduction, fametype, max, ascending, false);
-		TurnNotifier.get().notifyInTurns(0, loader);
+		if (sign != null) {
+			SignFromHallOfFameLoader loader = new SignFromHallOfFameLoader(sign, introduction, fametype, max, ascending, false);
+			TurnNotifier.get().notifyInTurns(0, loader);
+		}
 	}
 
+	/**
+	 * sets the sign to be updated
+	 *
+	 * @param sign a Sign or <code>null</code>
+	 */
+	public void setSign(Sign sign) {
+		this.sign = sign;
+	}
 }
