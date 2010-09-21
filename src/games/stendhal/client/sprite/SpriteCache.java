@@ -9,10 +9,7 @@ package games.stendhal.client.sprite;
 //
 //
 
-import java.lang.ref.Reference;
-import java.lang.ref.SoftReference;
-import java.util.HashMap;
-import java.util.Map;
+import games.stendhal.client.MemoryCache;
 
 import org.apache.log4j.Logger;
 
@@ -33,13 +30,14 @@ public class SpriteCache {
 	/**
 	 * The sprite map.
 	 */
-	protected Map<Object, Reference<Sprite>> sprites;
+	protected MemoryCache<Object, Sprite> sprites;
+	
 
 	/**
 	 * Create a sprite cache.
 	 */
 	public SpriteCache() {
-		sprites = new HashMap<Object, Reference<Sprite>>();
+		sprites = new MemoryCache<Object, Sprite>();
 	}
 
 	//
@@ -69,7 +67,7 @@ public class SpriteCache {
 	 */
 	public void add(final Object key, final Sprite sprite) {
 		if (key != null) {
-			sprites.put(key, new SoftReference<Sprite>(sprite));
+			sprites.put(key, sprite);
 			LOGGER.debug("SpriteCache - add: " + key);
 		}
 	}
@@ -92,26 +90,6 @@ public class SpriteCache {
 	 * @return A sprite, or <code>null</code> if not found.
 	 */
 	public Sprite get(final Object key) {
-		if (key == null) {
-			return null;
-		}
-
-		final Reference<Sprite> ref = sprites.get(key);
-
-		if (ref == null) {
-			LOGGER.debug("SpriteCache - miss: " + key);
-			return null;
-		}
-
-		final Sprite sprite = ref.get();
-
-		if (sprite == null) {
-			LOGGER.debug("SpriteCache - GC'd miss: " + key);
-			sprites.remove(key);
-		} else {
-			LOGGER.debug("SpriteCache - hit: " + key);
-		}
-
-		return sprite;
+		return sprites.get(key);
 	}
 }

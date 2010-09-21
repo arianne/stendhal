@@ -24,8 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import marauroa.common.net.InputSerializer;
 
@@ -49,7 +47,7 @@ public class TileStore implements Tileset {
 	/**
 	 * A cache of loaded tilesets. 
 	 */
-	private static final Map<String, Tileset> tilesetsLoaded = new HashMap<String, Tileset>();
+	private static final MemoryCache<String, Tileset> tilesetsLoaded = new MemoryCache<String, Tileset>();
 
 	/**
 	 * The sprite store.
