@@ -42,7 +42,7 @@ public class SayTextAction implements ChatAction {
 
 	@Override
 	public String toString() {
-		return "SetSayText";
+		return "SayText";
 	}
 
 
