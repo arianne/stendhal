@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -34,6 +32,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.SystemPropertyCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -60,7 +59,7 @@ public class PaperChase extends AbstractQuest {
 
 	private Map<String, String> greetings = new HashMap<String, String>();
 
-	private ChatAction loadSignFromHallOfFame;
+	private LoadSignFromHallOfFameAction loadSignFromHallOfFame;
 
 
 	private void setupGreetings() {
@@ -152,24 +151,28 @@ public class PaperChase extends AbstractQuest {
 	private void addTaskToNPC(final int idx) {
 		final String state = points.get(idx);
 		final SpeakerNPC npc = npcs.get(state);
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), null,
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), new SystemPropertyCondition("stendhal.minetown"),
 				ConversationStates.ATTENDING, null, new PaperChasePoint(idx));
 		if (NPC_IDLE.contains(state)) {
-			npc.add(ConversationStates.ANY, Arrays.asList("paper", "chase"), null,
+			npc.add(ConversationStates.ANY, Arrays.asList("paper", "chase"), new SystemPropertyCondition("stendhal.minetown"),
 					ConversationStates.ANY, null, new PaperChasePoint(idx));
 		}
 	}
 
 
 	private void createHallOfFameSign() {
-		Sign sign = new Sign();
-		sign.setPosition(94, 110);
-		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
-		zone.add(sign);
-		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(sign, "Those who travelled the world:\n", "P", 2000, true);
+		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Those who travelled the world:\n", "P", 2000, true);
 		loadSignFromHallOfFame.fire(null, null, null);
 	}
 
+	/**
+	 * sets the sign to show the hall of fame
+	 *
+	 * @param sign a Sign or <code>null</code>.
+	 */
+	public void setSign(Sign sign) {
+		loadSignFromHallOfFame.setSign(sign);
+	}
 
 	private void addToNPCs() {
 		SpeakerNPC npc = npcs.get("Saskia");
@@ -183,21 +186,21 @@ public class PaperChase extends AbstractQuest {
 		npc.add(
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
-			new QuestStartedCondition(QUEST_SLOT),
+			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING,
 			"I have nothing to do for you. But thanks for asking",
 			null);
 		npc.add(
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
-			new QuestNotStartedCondition(QUEST_SLOT),
+			new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.QUEST_OFFERED,
 			"Those who had to stay at home because of their duties, have prepared a #paper #chase.",
 			null);
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
 			Arrays.asList("paper", "chase"),
-			null,
+			new SystemPropertyCondition("stendhal.minetown"),
 			ConversationStates.ATTENDING,
 			"You must ask every person on the trail about the #paper #chase. First you must find the beer-loving author of KNOW HOW TO KILL CREATURES.",
 			startAction);
@@ -210,13 +213,14 @@ public class PaperChase extends AbstractQuest {
 
 		// Saskia does the post processing of this quest
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
-			new QuestNotStartedCondition(QUEST_SLOT),
+				new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING, "Oh, that is a nice #quest.", null);
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
 			new AndCondition(
 					new QuestStartedCondition(QUEST_SLOT), 
 					new QuestNotInStateCondition(QUEST_SLOT, 0, "Saskia"),
-					new QuestNotInStateCondition(QUEST_SLOT, 0, "done")),
+					new QuestNotInStateCondition(QUEST_SLOT, 0, "done"),
+					new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING, "I guess you still have to talk to some people.", null);
 
 		ChatAction reward = new MultipleActions(
@@ -228,7 +232,7 @@ public class PaperChase extends AbstractQuest {
 			loadSignFromHallOfFame);
 	
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
-			new QuestInStateCondition(QUEST_SLOT, 0, "Saskia"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "Saskia"), new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING, 
 			"Very good. You did the complete quest, talking to all those people around the world. I will add you name to the sign for everyone to see. And here are some magic scrolls as reward. They will help you on further travels.",
 			reward);
@@ -244,8 +248,6 @@ public class PaperChase extends AbstractQuest {
 				false);
 		setupGreetings();
 		setupTexts();
-	
-		createHallOfFameSign();
 		addToNPCs();
 	}
 

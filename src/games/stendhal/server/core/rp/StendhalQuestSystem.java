@@ -207,9 +207,9 @@ public class StendhalQuestSystem {
 		loadQuest(new ReverseArrow());
 		loadQuest(new RingMaker());
 		loadQuest(new SadScientist());
+		loadQuest(new PaperChase()); // needs to be loaded before SemosMineTownRevivalWeeks
 		if (System.getProperty("stendhal.minetown") != null) {
 			loadQuest(new SemosMineTownRevivalWeeks());
-			loadQuest(new PaperChase());
 		}
 		loadQuest(new SolveRiddles());
 		loadQuest(new SevenCherubs());
@@ -344,5 +344,20 @@ public class StendhalQuestSystem {
 		}
 
 		return sb.toString();
+	}
+
+	/**
+	 * gets the IQuest object for a named quest.
+	 *
+	 * @param questName name of quest
+	 * @return IQuest or <code>null</code> if it does not exist.
+	 */
+	public IQuest getQuest(String questName) {
+		for (final IQuest quest : quests) {
+			if (quest.getName().equals(questName)) {
+				return quest;
+			}
+		}
+		return null;
 	}
 }
