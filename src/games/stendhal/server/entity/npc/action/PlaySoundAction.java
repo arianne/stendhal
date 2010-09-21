@@ -23,28 +23,28 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * says the specified text, it works just like the normal parameter of add
+ * plays the specified sound
  */
 public class PlaySoundAction implements ChatAction {
 
-	private final String text;
+	private final String sound;
 
 	/**
-	 * Creates a new SayTextAction.
+	 * Creates a new PlaySoundAction.
 	 * 
-	 * @param text text to say
+	 * @param sound sound to play
 	 */
-	public PlaySoundAction(String text) {
-		this.text = text;
+	public PlaySoundAction(String sound) {
+		this.sound = sound;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		 player.addEvent(new SoundEvent("keys-1", SoundLayer.CREATURE_NOISE));
+		 player.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
 	}
 
 	@Override
 	public String toString() {
-		return "SetSayText";
+		return "PlaySound";
 	}
 
 
