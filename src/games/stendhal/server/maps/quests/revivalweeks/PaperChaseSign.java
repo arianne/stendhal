@@ -11,7 +11,7 @@ import games.stendhal.server.maps.quests.PaperChase;
  *
  * @author hendrik
  */
-public class PaperChaseSign {
+public class PaperChaseSign implements LoadableContent {
 	private Sign sign;
 
 	/**
@@ -43,11 +43,14 @@ public class PaperChaseSign {
 	}
 
 	/**
-	 * removes the sign from the world
+	 * try to remove the content from the world-
+	 *
+	 * @return <code>true</code>
 	 */
-	public void removeFromWorld() {
+	public boolean removeFromWorld() {
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 		zone.remove(sign);
 		updateQuest();
+		return true;
 	}
 }

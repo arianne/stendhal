@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -31,11 +32,14 @@ import java.util.Arrays;
  *
  * @author hendrik
  */
-public class TicTacToeGame {
+public class TicTacToeGame implements LoadableContent {
 	private StendhalRPZone zone;
 	private TicTacToeBoard board;
 	private SpeakerNPC npc;
 
+	/**
+	 * creates TicTacToeBoard and adds it to the world.
+	 */
 	private void addBoard() {
 		board = new TicTacToeBoard();
 		board.setPosition(87, 111);
@@ -43,6 +47,9 @@ public class TicTacToeGame {
 		board.addToWorld();
 	}
 
+	/**
+	 * adds the NPC which moderates the game to the world.
+	 */
 	private void addNPC() {
 		npc = new SpeakerNPC("Paul Sheriff") {
 			@Override
@@ -138,6 +145,18 @@ public class TicTacToeGame {
 		addBoard();
 		addNPC();
 		board.setNPC(npc);
+	}
+
+	/**
+	 * try to remove the content from the world-
+	 *
+	 * @return <code>true</code>
+	 */
+	public boolean removeFromWorld() {
+		NPCList.get().remove("Paul Sheriff");
+		zone.remove(npc);
+		zone.remove(board);
+		return true;
 	}
 
 }

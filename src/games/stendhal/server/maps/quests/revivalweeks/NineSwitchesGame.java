@@ -21,6 +21,7 @@ import games.stendhal.server.entity.mapstuff.game.NineSwitchesGameBoard;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -34,7 +35,7 @@ import java.util.List;
  *
  * @author hendrik
  */
-public class NineSwitchesGame {
+public class NineSwitchesGame implements LoadableContent {
 	private StendhalRPZone zone;
 	private NineSwitchesGameBoard board;
 	private SpeakerNPC npc;
@@ -126,4 +127,16 @@ public class NineSwitchesGame {
 		board.setNPC(npc);
 	}
 
+
+	/**
+	 * try to remove the content from the world-
+	 *
+	 * @return <code>true</code>
+	 */
+	public boolean removeFromWorld() {
+		NPCList.get().remove("Paul Sheriff");
+		zone.remove(npc);
+		board.remove();
+		return true;
+	}
 }
