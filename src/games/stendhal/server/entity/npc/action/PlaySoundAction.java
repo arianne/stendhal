@@ -55,7 +55,7 @@ public class PlaySoundAction implements ChatAction {
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		if (!delay) {
-			player.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
+			raiser.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
 		} else {
 			TurnNotifier.get().notifyInTurns(0, new SoundTurnListener(player));
 		}
