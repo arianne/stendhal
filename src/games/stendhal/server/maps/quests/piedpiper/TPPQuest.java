@@ -107,9 +107,7 @@ public class TPPQuest implements ITPPQuest {
 	protected void stopShouts() {
 		shouterTimer.stop();
 	}
-	
 
-		
 	
 	public void phaseToDefaultPhase(List<String> comments) {
 		shoutMessage(getSwitchingToDefPhaseMessage());
@@ -117,12 +115,12 @@ public class TPPQuest implements ITPPQuest {
 		logger.info("ThePiedPiper quest: switch phase ("+
 				ThePiedPiper.getPhase().name()+
 				") to ("+
-				ThePiedPiper.getPhases().get(0).getPhase().name()+
-				").");
+				ThePiedPiper.getDefaultPhaseClass().getPhase().name());
 		stopShouts();
-		ThePiedPiper.setNewNotificationTime(ThePiedPiper.getPhases().get(0).getMinTimeOut(),
-				ThePiedPiper.getPhases().get(0).getMaxTimeOut());	
-		ThePiedPiper.getPhases().get(0).prepare();
+		ThePiedPiper.setNewNotificationTime(
+				ThePiedPiper.getDefaultPhaseClass().getMinTimeOut(),
+				ThePiedPiper.getDefaultPhaseClass().getMaxTimeOut());	
+		ThePiedPiper.getDefaultPhaseClass().prepare();
 		if(!comments.isEmpty()) {
 			new GameEvent(null, "raid", comments.toString()).raise();
 		}
