@@ -347,8 +347,8 @@ public class SpeakerNPC extends NPC {
 			if ((attending.squaredDistance(this) > 8 * 8)
 					|| ((attending instanceof Player) && (((Player) attending).isDisconnected()))
 			// or if the player fell asleep ;)
-					|| (SingletonRepository.getRuleProcessor().getTurn()
-							- lastMessageTurn > playerChatTimeout)) {
+					|| ((attending instanceof Player) && (SingletonRepository.getRuleProcessor().getTurn()
+							- lastMessageTurn > playerChatTimeout))) {
 				// we force him to say bye to NPC :)
 				if (goodbyeMessage != null) {
 					say(goodbyeMessage);
