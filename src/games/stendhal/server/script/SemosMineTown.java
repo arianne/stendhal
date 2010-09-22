@@ -56,7 +56,7 @@ public class SemosMineTown extends ScriptImpl {
 	 * ends the Semos Mine Town Revival Weeks
 	 */
 	private void stopSemosMineTowns(Player admin) {
-		if (StendhalQuestSystem.get().getQuest(SemosMineTownRevivalWeeks.QUEST_NAME) != null) {
+		if (StendhalQuestSystem.get().getQuest(SemosMineTownRevivalWeeks.QUEST_NAME) == null) {
 			admin.sendPrivateText("Semos Mine Town Revival Weeks are not active.");
 			return;
 		}

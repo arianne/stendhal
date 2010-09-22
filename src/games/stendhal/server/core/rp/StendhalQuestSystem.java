@@ -382,6 +382,7 @@ public class StendhalQuestSystem {
 		boolean res = quest.removeFromWorld();
 		if (res) {
 			quests.remove(quest);
+			logger.info("Unloading Quest: " + quest.getName());
 		} else {
 			logger.error(this.getClass() + " cannot be removed from the world");
 		}
