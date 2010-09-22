@@ -16,9 +16,6 @@ package games.stendhal.client.gui.j2d.entity;
 class SheepFood2DView extends Food2DView {
 	/**
 	 * Create a 2D view of sheep food.
-	 * 
-	 * @param food
-	 *            The entity to render.
 	 */
 	public SheepFood2DView() {
 		super.setStates(6);

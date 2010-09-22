@@ -38,14 +38,9 @@ class Ring2DView extends Item2DView {
 
 	/**
 	 * Create a 2D view of a chest.
-	 * 
-	 * @param ring
-	 *            The entity to render.
 	 */
 	public Ring2DView() {
 		super();
-	
-
 	
 		stateChanged = false;
 	}

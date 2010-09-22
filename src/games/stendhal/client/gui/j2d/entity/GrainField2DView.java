@@ -40,9 +40,6 @@ class GrainField2DView extends StateEntity2DView {
 
 	/**
 	 * Create a 2D view of a grain field.
-	 * 
-	 * @param grainField
-	 *            The entity to render.
 	 */
 	public GrainField2DView() {
 		super();

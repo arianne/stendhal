@@ -319,7 +319,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 *            A view.
 	 */
 	private void removeEntityView(final EntityView view) {
-		view.release(this);
+		view.release();
 		views.remove(view);
 	}
 

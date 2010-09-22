@@ -46,9 +46,6 @@ class Door2DView extends StateEntity2DView {
 
 	/**
 	 * Create a 2D view of a door.
-	 * 
-	 * @param door
-	 *            The entity to render.
 	 */
 	public Door2DView() {
 	

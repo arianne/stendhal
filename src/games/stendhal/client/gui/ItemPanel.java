@@ -108,7 +108,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 				return;
 			}
 
-			view.release(null);
+			view.release();
 		}
 
 		if (entity != null) {

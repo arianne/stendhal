@@ -60,9 +60,6 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	/**
 	 * Create a 2D view of a animal.
-	 * 
-	 * @param animal
-	 *            The entity to render.
 	 */
 	public DomesticAnimal2DView() {
 

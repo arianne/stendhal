@@ -6,7 +6,6 @@
 
 package games.stendhal.client.gui.j2d.entity;
 
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
@@ -65,10 +64,8 @@ public interface EntityView {
 	/**
 	 * Release any view resources. This view should not be used after this is
 	 * called.
-	 * @param gameScreen 
-	 * 			 The gameScreen to paint on.
 	 */
-	public void release(IGameScreen gameScreen);
+	public void release();
 
 	public Rectangle getArea();
 	

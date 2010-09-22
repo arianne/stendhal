@@ -238,16 +238,14 @@ class Chest2DView extends StateEntity2DView {
 	/**
 	 * Release any view resources. This view should not be used after this is
 	 * called.
-	 * 
-	 * @param gameScreen
 	 */
 	@Override
-	public void release(final IGameScreen gameScreen) {
+	public void release() {
 		if (slotWindow != null) {
 			slotWindow.close();
 		}
 
-		super.release(gameScreen);
+		super.release();
 	}
 
 

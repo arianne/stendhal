@@ -763,7 +763,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Release any view resources. This view should not be used after this is
 	 * called.
 	 */
-	public void release(final IGameScreen gameScreen) {
+	public void release() {
 		entity.removeChangeListener(this);
 		entity = null;
 	}
