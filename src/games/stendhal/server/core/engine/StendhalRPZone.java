@@ -805,6 +805,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 			modify(base);
 
+			if (object instanceof SpeakerNPC) {
+				SingletonRepository.getNPCList().remove(((SpeakerNPC) object).getName());
+			}
+
+			if (object instanceof NPC) {
+				npcs.remove((NPC) object);
+			}
+
 			final RPSlot slot = object.getContainerSlot();
 			return slot.remove(object.getID());
 		} else {
