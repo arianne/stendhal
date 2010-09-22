@@ -80,13 +80,17 @@ import org.apache.log4j.Logger;
 	private static LinkedList<ITPPQuest> phases = new LinkedList<ITPPQuest>();
     private static TPP_Phase phase = INACTIVE;
     
-	protected LinkedHashMap<String, Integer> timings = new LinkedHashMap<String, Integer>();		
+	protected LinkedHashMap<String, Integer> timings = new LinkedHashMap<String, Integer>();
+	
+	public static SpeakerNPC getMainNPC() {
+		return SingletonRepository.getNPCList().get("Mayor Chalmers");
+	}
 	
 	/**
 	 * function will set timings to either test server or game server.
 	 */
 	private void setTimings() {
-	/*	if (System.getProperty("stendhal.testserver") == null) {		
+		if (System.getProperty("stendhal.testserver") == null) {		
 			// game timings */
 			timings.put(INACTIVE_TIME_MAX, 60 * 60 * 24 * 14);
 			timings.put(INACTIVE_TIME_MIN, 60 * 60 * 24 * 7);
@@ -95,17 +99,17 @@ import org.apache.log4j.Logger;
 			timings.put(AWAITING_TIME_MIN, 60 * 1);
 			timings.put(AWAITING_TIME_MAX, 60 * 1);
 			timings.put(SHOUT_TIME, 60 * 10);
-	/*		} 
+			} 
 		else {	
 			// test timings
 			timings.put(INACTIVE_TIME_MAX, 60 * 2);
 			timings.put(INACTIVE_TIME_MIN, 60 * 1);
 			timings.put(INVASION_TIME_MIN, 60 * 20);
 			timings.put(INVASION_TIME_MAX, 60 * 20);
-			timings.put(AWAITING_TIME_MIN, 60 * 10);
-			timings.put(AWAITING_TIME_MAX, 60 * 10);
+			timings.put(AWAITING_TIME_MIN, 60 * 20);
+			timings.put(AWAITING_TIME_MAX, 60 * 20);
 			timings.put(SHOUT_TIME, 60 * 2);
-			} */
+			} 
 	}
 	   
     /**
@@ -113,7 +117,7 @@ import org.apache.log4j.Logger;
      * @param ph
      * @return phase index
      */
-    protected static int getPhaseIndex(TPP_Phase ph) {
+    public static int getPhaseIndex(TPP_Phase ph) {
     	for (int i=0; i<getPhases().size(); i++) {
     		if(getPhases().get(i).getPhase().compareTo(ph)==0) {
     			return(i);
@@ -129,7 +133,7 @@ import org.apache.log4j.Logger;
      * @param ph - 
      * @return next phase
      */
-    protected static TPP_Phase getNextPhase(TPP_Phase ph) {
+    public static TPP_Phase getNextPhase(TPP_Phase ph) {
     	int pos=getPhaseIndex(ph);
     	if(pos!=(getPhases().size()-1)) {
 		   return (getPhases().get(pos+1).getPhase());
@@ -142,7 +146,7 @@ import org.apache.log4j.Logger;
      * @param ph
      * @return next phase class
      */
-    protected static ITPPQuest getNextPhaseClass(TPP_Phase ph) {
+    public static ITPPQuest getNextPhaseClass(TPP_Phase ph) {
 		return getPhases().get(getPhaseIndex(getNextPhase(ph)));    	
     }
     
@@ -151,7 +155,7 @@ import org.apache.log4j.Logger;
      * @param ph
      * @return phase class
      */
-    protected static ITPPQuest getPhaseClass(TPP_Phase ph) {
+    public static ITPPQuest getPhaseClass(TPP_Phase ph) {
     	/*
     	if(getPhaseIndex(ph)==-1) {
     		return getDefaultPhaseClass();
@@ -289,10 +293,10 @@ import org.apache.log4j.Logger;
 	 *   add states to NPC's FSM
 	 */
 	private void prepareNPC() {
-		final SpeakerNPC mainNPC = SingletonRepository.getNPCList().get("Mayor Chalmers");
+
 		
 		// Player asking about rats when quest is inactive
-		mainNPC.add(
+		getMainNPC().add(
 				ConversationStates.ATTENDING, 
 				Arrays.asList("rats", "rats!"), 
 				new TPPQuestInPhaseCondition(INACTIVE),
@@ -303,7 +307,7 @@ import org.apache.log4j.Logger;
 				null);
 		
 		// Player asking about rats at invasion time.
-		mainNPC.add(
+		getMainNPC().add(
 				ConversationStates.ATTENDING, 
 				Arrays.asList("rats", "rats!"), 
 				new TPPQuestInPhaseCondition(INVASION),
@@ -318,7 +322,7 @@ import org.apache.log4j.Logger;
 				});
 		
 		// Player asking about rats when quest is neither inactive nor invasion phase
-		mainNPC.add(
+		getMainNPC().add(
 				ConversationStates.ATTENDING, 
 				Arrays.asList("rats", "rats!"), 
 				new AndCondition(
@@ -331,7 +335,7 @@ import org.apache.log4j.Logger;
 				null);		
 		
 		// Player asked about reward at invasion time
-		mainNPC.add(
+		getMainNPC().add(
 				ConversationStates.ATTENDING, 
 				"reward", 
 				new TPPQuestInPhaseCondition(INVASION),
@@ -342,7 +346,7 @@ import org.apache.log4j.Logger;
 				null);
 		
 		// Player asked about reward not at invasion time
-		mainNPC.add(
+		getMainNPC().add(
 				ConversationStates.ATTENDING, 
 				"reward", 
 				new NotCondition(new TPPQuestInPhaseCondition(INVASION)),
@@ -351,7 +355,7 @@ import org.apache.log4j.Logger;
 				new RewardPlayerAction());
 		
 		//Player asked about details at invasion time
-		mainNPC.add(
+		getMainNPC().add(
 				ConversationStates.ATTENDING, 
 				"details", 
 				new TPPQuestInPhaseCondition(INVASION),
@@ -362,7 +366,7 @@ import org.apache.log4j.Logger;
 				  " until all rats are dead.", 
 				null);
 		
-		mainNPC.add(
+		getMainNPC().add(
 				ConversationStates.ATTENDING, 
 				"details", 
 				new NotCondition(new TPPQuestInPhaseCondition(INVASION)),
