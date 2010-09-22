@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.mapstuff.game;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.token.BoardToken;
 import games.stendhal.server.entity.item.token.Token.TokenMoveListener;
 
@@ -142,4 +143,16 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 			token.resetToHomePosition();
 		}
 	}
+
+	@Override
+	public void onRemoved(StendhalRPZone zone) {
+		super.onRemoved(zone);
+
+		// remove the tokens with the board
+		for (BoardToken token : tokens) {
+			zone.remove(token);
+		}
+	}
+
+	
 }

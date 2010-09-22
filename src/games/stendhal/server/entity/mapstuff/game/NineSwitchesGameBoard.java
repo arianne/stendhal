@@ -181,4 +181,13 @@ public class NineSwitchesGameBoard implements TurnListener {
 		setPlayerName(null);
 		resetBoard();
 	}
+
+	/**
+	 * removes the game board with all its switches from the world
+	 */
+	public void remove() {
+		for (NineSwitchesGameSwitch gameSwitch : switches) {
+			zone.remove(gameSwitch);
+		}
+	}
 }
