@@ -208,9 +208,6 @@ public class StendhalQuestSystem {
 		loadQuest(new RingMaker());
 		loadQuest(new SadScientist());
 		loadQuest(new PaperChase()); // needs to be loaded before SemosMineTownRevivalWeeks
-		if (System.getProperty("stendhal.minetown") != null) {
-			loadQuest(new SemosMineTownRevivalWeeks());
-		}
 		loadQuest(new SolveRiddles());
 		loadQuest(new SevenCherubs());
 		loadQuest(new Snowballs());
@@ -226,34 +223,48 @@ public class StendhalQuestSystem {
 		loadQuest(new VampireSword());
 		loadQuest(new WeaponsCollector());
 		loadQuest(new WeaponsCollector2());
-        loadQuest(new WeeklyItemQuest());
+		loadQuest(new WeeklyItemQuest());
 		loadQuest(new WizardBank());
 		loadQuest(new ZekielsPracticalTestQuest());
 		loadQuest(new ZooFood());
 
+		if (System.getProperty("stendhal.minetown") != null) {
+			loadQuest(new SemosMineTownRevivalWeeks());
+		}
+
+
 		TurnNotifier.get().notifyInTurns(10, new DumpSpeakerNPCtoDB());
 	}
 
-	private void loadQuest(final IQuest quest) {
+	/**
+	 * loads the quests and adds it to the world
+	 *
+	 * @param quest a Quest
+	 */
+	public void loadQuest(final IQuest quest) {
+
+		// for quicker startup, check the stendhal.quest.regex parameter
 		final String regex = System.getProperty("stendhal.quest.regex", ".*");
 		if (!quest.getName().matches(regex)) {
 			return;
 		}
-		
+
+		// load the quest and add it to the world
 		try {
 			initQuestAndAddToWorld(quest);
 		} catch (Exception e) {
-			logger.warn("Quest(" + quest.getName() + ") loading failed.", e);
+			logger.error("Quest(" + quest.getName() + ") loading failed.", e);
 		}
-		
 	}
 
-
+	/**
+	 * adds a quest to the world
+	 *
+	 * @param quest Quest to add
+	 */
 	private void initQuestAndAddToWorld(final IQuest quest) {
-	
 		logger.info("Loading Quest: " + quest.getName());
 		quest.addToWorld();
-
 		quests.add(quest);
 	}
 

@@ -14,9 +14,13 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.maps.quests.revivalweeks.DadNPC;
 import games.stendhal.server.maps.quests.revivalweeks.FoundGirl;
+import games.stendhal.server.maps.quests.revivalweeks.LoadableContent;
 import games.stendhal.server.maps.quests.revivalweeks.NineSwitchesGame;
 import games.stendhal.server.maps.quests.revivalweeks.PaperChaseSign;
 import games.stendhal.server.maps.quests.revivalweeks.TicTacToeGame;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * <p>Creates a special version of Susi by the semos mine town.
@@ -25,8 +29,9 @@ import games.stendhal.server.maps.quests.revivalweeks.TicTacToeGame;
  */
 public class SemosMineTownRevivalWeeks extends AbstractQuest {
 
+	public static final String QUEST_NAME = "SemosMineTownRevivalWeeks";
 	private static final String QUEST_SLOT = "semos_mine_town_revival";
-	private PaperChaseSign paperChaseSign;
+	private List<LoadableContent> content = new LinkedList<LoadableContent>();
 
 	@Override
 	public String getSlotName() {
@@ -35,13 +40,20 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
+		System.setProperty("stendhal.minetown", "true");
 		super.addToWorld();
+
 		new FoundGirl().addToWorld();
 		new DadNPC().addToWorld();
-		new TicTacToeGame().addToWorld();
-		new NineSwitchesGame().addToWorld();
-		paperChaseSign = new PaperChaseSign();
-		paperChaseSign.addToWorld();
+
+		content.add(new PaperChaseSign());
+		content.add(new TicTacToeGame());
+		content.add(new NineSwitchesGame());
+
+		// add it to the world
+		for (LoadableContent loadableContent : content) {
+			loadableContent.addToWorld();
+		}
 	}
 
 	/**
@@ -51,13 +63,15 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 	 */
 	@Override
 	public boolean removeFromWorld() {
-		// TODO: implement me
-		paperChaseSign.removeFromWorld();
+		System.getProperties().remove("stendhal.minetown");
+		for (LoadableContent loadableContent : content) {
+			loadableContent.removeFromWorld();
+		}
 		return true;
 	}
 
 	@Override
 	public String getName() {
-		return "SemosMineTownRevivalWeeks";
+		return QUEST_NAME;
 	}
 }
