@@ -16,12 +16,14 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.maps.ados.rosshouse.FatherNPC;
 
 /**
  * Susi's father during the Semos Mine Town Revival Weeks
  */
-public class DadNPC {
+public class DadNPC implements LoadableContent {
 	private void createDadNPC() {
 		final StendhalRPZone zone2 = SingletonRepository.getRPWorld().getZone("int_semos_frank_house");
 		final SpeakerNPC npc2 = new SpeakerNPC("Mr Ross") {
@@ -50,7 +52,37 @@ public class DadNPC {
 		zone2.add(npc2);
 	}
 
+
+	/**
+	 * removes an NPC from the world and NPC list
+	 *
+	 * @param name name of NPC
+	 */
+	private void removeNPC(String name) {
+		SpeakerNPC npc = NPCList.get().get(name);
+		if (npc == null) {
+			return;
+		}
+		npc.getZone().remove(npc);
+	}
+
 	public void addToWorld() {
+		removeNPC("Mr Ross");
 		createDadNPC();
+	}
+
+
+	/**
+	 * removes Susi from the Mine Town and places her back into her home in Ados.
+	 *
+	 * @return <code>true</code>, if the content was removed, <code>false</code> otherwise
+	 */
+	public boolean removeFromWorld() {
+		removeNPC("Mr Ross");
+
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_ados_ross_house");
+		new FatherNPC().createDadNPC(zone);
+
+		return true;
 	}
 }

@@ -43,9 +43,8 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		System.setProperty("stendhal.minetown", "true");
 		super.addToWorld();
 
-		new FoundGirl().addToWorld();
-		new DadNPC().addToWorld();
-
+		content.add(new FoundGirl());
+		content.add(new DadNPC());
 		content.add(new PaperChaseSign());
 		content.add(new TicTacToeGame());
 		content.add(new NineSwitchesGame());

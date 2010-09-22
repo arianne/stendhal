@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -36,13 +37,14 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerExactlyInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.ados.rosshouse.LittleGirlNPC;
 
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
-public class FoundGirl {
+public class FoundGirl implements LoadableContent {
 	private SpeakerNPC npc;
 	private ChatCondition noFriends;
 	private ChatCondition anyFriends;
@@ -231,9 +233,43 @@ public class FoundGirl {
 				reward);
 	}
 
+	/**
+	 * removes an NPC from the world and NPC list
+	 *
+	 * @param name name of NPC
+	 */
+	private void removeNPC(String name) {
+		SpeakerNPC npc = NPCList.get().get(name);
+		if (npc == null) {
+			return;
+		}
+		npc.getZone().remove(npc);
+	}
+
+
+	/**
+	 * removes Susi from her home in Ados and adds her to the Mine Towns.
+	 */
 	public void addToWorld() {
+		removeNPC("Susi");
+
 		buildConditions();
 		createGirlNPC();
 		addDialog();
+	}
+
+
+	/**
+	 * removes Susi from the Mine Town and places her back into her home in Ados.
+	 *
+	 * @return <code>true</code>, if the content was removed, <code>false</code> otherwise
+	 */
+	public boolean removeFromWorld() {
+		removeNPC("Susi");
+
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_ados_ross_house");
+		new LittleGirlNPC().createGirlNPC(zone);
+
+		return true;
 	}
 }
