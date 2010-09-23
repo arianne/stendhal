@@ -28,7 +28,6 @@ import games.stendhal.common.math.Numeric;
 import games.stendhal.common.resource.ResourceLocator;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -61,7 +60,7 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 
 		private boolean mEnabled = true;
 		private float mVolume = 1.0f;
-		private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
+		private final MemoryCache<String, Sound> mSounds = new MemoryCache<String, Sound>();
 
 		public boolean loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
 			try {
