@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.sound.sound;
 
+import games.stendhal.client.MemoryCache;
 import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.User;
@@ -30,7 +31,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.WeakHashMap;
 import java.util.regex.Pattern;
 
 import javax.sound.sampled.AudioFormat;
@@ -140,7 +140,7 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		mAudioFormat = new AudioFormat(44100, 16, 2, true, false);
 	}
 
-	private final Map<String, Sound> mSounds = new WeakHashMap<String, Sound>();
+	private final MemoryCache<String, Sound> mSounds = new MemoryCache<String, Sound>();
 	private final Map<String, Group> mGroups = new LinkedHashMap<String, Group>();
 	private final ResourceLocator mResourceLocator = stendhal.getResourceManager();
 	private float mMasterVolume = 1.0f;
