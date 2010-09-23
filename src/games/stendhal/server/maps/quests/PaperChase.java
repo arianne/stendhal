@@ -53,7 +53,7 @@ public class PaperChase extends AbstractQuest {
 
 	private List<String> points = Arrays.asList("Hayunn Naratha", "Thanatos", "Haizen", "Zara", "Leander", "Sally", 
 												"Plink", "Jef", "Blacksheep Harry", 
-												"Pdiddi", "Monogenes", "Vulcanus", "Saskia");
+												"Pdiddi", "Monogenes", "Vulcanus", "Fidorea");
 
 	private Map<String, String> texts = new HashMap<String, String>();
 
@@ -75,7 +75,7 @@ public class PaperChase extends AbstractQuest {
 		greetings.put("Pdiddi", "You got me. ");
 		greetings.put("Monogenes", "Good work on finding me. Now, I may look bald but I'm not really, it's just a short hair cut. ");
 		greetings.put("Vulcanus", "Did you know my name is derived from Greek? ");
-		greetings.put("Saskia", "Well done for finding me. ");
+		greetings.put("Fidorea", "Well done for finding me. ");
 	}
 	
 
@@ -95,7 +95,7 @@ public class PaperChase extends AbstractQuest {
 		texts.put("Pdiddi", "Next you need to see the dodgy geezer who pretends to be running a tavern east of Semos.");
 		texts.put("Monogenes", "Your next clue is to find a human who really is bald. He's pretty old, too.");
 		texts.put("Vulcanus", "Next you must find the son of a god, who greets you in Greek.");
-		texts.put("Saskia", "The final person to talk to, is the one who started all this.");
+		texts.put("Fidorea", "The final person to talk to, is the one who started all this.");
 	}
 	
 	/**
@@ -116,7 +116,7 @@ public class PaperChase extends AbstractQuest {
 
 			// player does not have this quest or finished it
 			if (questState == null) {
-				raiser.say("Please talk to Saskia in the Semos Mine Town to start the paper chase.");
+				raiser.say("Please talk to Fidorea in the Semos Mine Town to start the paper chase.");
 				return;
 			}
 
@@ -175,15 +175,15 @@ public class PaperChase extends AbstractQuest {
 		loadSignFromHallOfFame.fire(null, null, null);
 	}
 
-	private void addToNPCs() {
-		SpeakerNPC npc = npcs.get("Saskia");
+	public void addToStarterNPCs() {
+		SpeakerNPC npc = npcs.get("Fidorea");
 
 		ChatAction startAction = new MultipleActions(
 			new SetQuestAction(QUEST_SLOT, 0, points.get(0)), 
 			new SetQuestToPlayerAgeAction(QUEST_SLOT, 1),
 			new SetQuestToYearAction(QUEST_SLOT, 2));
 
-		// Saskia introduces the quests
+		// Fidorea introduces the quests
 		npc.add(
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
@@ -212,14 +212,14 @@ public class PaperChase extends AbstractQuest {
 			addTaskToNPC(i);
 		}
 
-		// Saskia does the post processing of this quest
+		// Fidorea does the post processing of this quest
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
 				new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING, "Oh, that is a nice #quest.", null);
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
 			new AndCondition(
 					new QuestStartedCondition(QUEST_SLOT), 
-					new QuestNotInStateCondition(QUEST_SLOT, 0, "Saskia"),
+					new QuestNotInStateCondition(QUEST_SLOT, 0, "Fidorea"),
 					new QuestNotInStateCondition(QUEST_SLOT, 0, "done"),
 					new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING, "I guess you still have to talk to some people.", null);
@@ -233,7 +233,7 @@ public class PaperChase extends AbstractQuest {
 			loadSignFromHallOfFame);
 	
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "Saskia"), new SystemPropertyCondition("stendhal.minetown")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "Fidorea"), new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING, 
 			"Very good. You did the complete quest, talking to all those people around the world. I will add you name to the sign for everyone to see. And here are some magic scrolls as reward. They will help you on further travels.",
 			reward);
@@ -249,7 +249,6 @@ public class PaperChase extends AbstractQuest {
 				false);
 		setupGreetings();
 		setupTexts();
-		addToNPCs();
 		createHallOfFameSign();
 	}
 

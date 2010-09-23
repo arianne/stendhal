@@ -28,6 +28,7 @@ import java.util.Map;
  * @author hendrik
  */
 public class MakeupArtistNPC implements ZoneConfigurator {
+
 	/**
 	 * Configure a zone.
 	 *
@@ -35,10 +36,17 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildFidorea(zone);
+		buildFidorea(zone, 20, 13);
 	}
 
-	private void buildFidorea(final StendhalRPZone zone) {
+	/**
+	 * creates Fidorea in the specified zone
+	 *
+	 * @param zone StendhalRPZone
+	 * @param x x
+	 * @param y y
+	 */
+	public void buildFidorea(final StendhalRPZone zone, int x, int y) {
 		final SpeakerNPC npc = new SpeakerNPC("Fidorea") {
 
 			@Override
@@ -71,7 +79,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("woman_008_npc");
-		npc.setPosition(20, 13);
+		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		npc.setDescription("You see a beautiful looking woman. Her name is Fidorea and she loooves colours.");
