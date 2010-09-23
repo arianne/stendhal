@@ -55,7 +55,7 @@ public class FishSoupMakerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello and welcome on Ados market!");
+				//addGreeting();
 				addHelp("I can cook a really tasty fish soup for you but if you are not into fish, I can suggest a good friend of mine to you, Old Mother Helena in Fado. She makes the best vegetable soups in whole Faiumoni!");
 				
 				addQuest("I don't have any quests for you, but I can offer you some fresh made fish soup for your travels."); 

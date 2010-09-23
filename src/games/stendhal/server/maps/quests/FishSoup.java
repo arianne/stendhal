@@ -129,7 +129,7 @@ public class FishSoup extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.INFORMATION_1,
-			"Hello on Ados market. Are you intersted in something #tasty?",
+			"Hello and welcome on Ados market! Are you intersted in something #tasty?",
 			null);
 
 		// player returns after finishing the quest (it is repeatable) after the
@@ -322,7 +322,7 @@ public class FishSoup extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, "",
 			new NotCondition(new TriggerInListCondition(NEEDED_FOOD)),
 			ConversationStates.QUESTION_1,
-			"I won't put that in your fishsoup.", null);
+			"I won't put that in your fish soup.", null);
 
 		// allow to say goodbye while Florence is listening for food names
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.GOODBYE_MESSAGES, null,
