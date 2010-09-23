@@ -22,6 +22,7 @@
 		<attribute name="name" type="string" />
 		<attribute name="x" type="int" use="optional" />
 		<attribute name="y" type="int" use="optional" />
+		<attribute name="accessible" type="boolean" use="optional" default="true" />
 		<attribute name="level" type="int" use="optional" />
 		<attribute name="file" type="string" use="required" />
 	</complexType>
