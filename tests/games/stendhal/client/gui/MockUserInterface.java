@@ -127,5 +127,9 @@ public class MockUserInterface implements UserInterface {
 			// do nothing
 			return null;
 		}
+
+		public void enableStreaming() {
+			// do nothing
+		}
 	}
 }

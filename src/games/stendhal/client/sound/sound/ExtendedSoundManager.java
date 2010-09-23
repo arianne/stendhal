@@ -21,6 +21,7 @@ import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.client.sound.manager.AudibleArea;
 import games.stendhal.client.sound.manager.DeviceEvaluator;
 import games.stendhal.client.sound.manager.SoundFile;
+import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.client.sound.manager.SoundManagerNG;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.math.Algebra;
@@ -61,6 +62,7 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		private boolean mEnabled = true;
 		private float mVolume = 1.0f;
 		private final MemoryCache<String, Sound> mSounds = new MemoryCache<String, Sound>();
+		private boolean streaming = false;
 
 		public boolean loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
 			try {
@@ -99,16 +101,31 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 			}
 		}
 
+		/**
+		 * enables streaming of the music data for this group.
+		 */
+		public void enableStreaming() {
+			streaming = true;
+		}
+
 		public Sound play(String soundName, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
 			return play(soundName, 1.0f, layerLevel, area, fadeInDuration, autoRepeat, clone);
 		}
 
 		public Sound play(String soundName, float volume, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
+			if (soundName == null) {
+				return null;
+			}
 			try {
 				
 				if (mEnabled) {
 					Sound sound = mSounds.get(soundName);
-	
+					if (sound == null) {
+						loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, this.streaming);
+						logger.info("Loading " + soundName + " streaming: " + streaming);
+						sound = mSounds.get(soundName);
+					}
+
 					if (sound != null) {
 						if (clone)
 							sound = sound.clone();

@@ -44,4 +44,8 @@ public class NoSoundGroup implements SoundGroup {
 		return new NoSoundHandle();
 	}
 
+	public void enableStreaming() {
+		// do nothing
+	}
+
 }

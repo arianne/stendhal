@@ -84,6 +84,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 			if (layer == SoundLayer.BACKGROUND_MUSIC) {
 				streaming = true;
 				fadingDuration.set(3, Time.Unit.SEC);
+				group.enableStreaming();
 			}
 		}
 		if (object.has("sound")) {

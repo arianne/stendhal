@@ -24,8 +24,23 @@ public interface SoundGroup {
 
 	public SoundHandle play(String soundName, float volume, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone);
 
+	/**
+	 * gets the current volumne
+	 *
+	 * @return volumne
+	 */
 	public float getVolume();
 
-	public void changeVolume(float intToFloat);
+	/**
+	 * changes the volumne
+	 * 
+	 * @param volume volume
+	 */
+	public void changeVolume(float volume);
+
+	/**
+	 * enables streaming for this group.
+	 */
+	public void enableStreaming();
 
 }
