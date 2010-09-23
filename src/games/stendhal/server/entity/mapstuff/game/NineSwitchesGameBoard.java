@@ -72,8 +72,8 @@ public class NineSwitchesGameBoard implements TurnListener {
 		switchGameSwitch(gameSwitch);
 		boolean completed = checkBoard();
 		if (completed) {
-			npc.say("Congratulations, " + user.getName() + " you won!");
-	    	user.setOutfit(BALLOON_OUTFIT);
+			npc.say("Congratulations, " + user.getName() + " you won! Here take this balloon.");
+			user.setOutfit(BALLOON_OUTFIT);
 			playerName = null;
 			TurnNotifier.get().dontNotify(this);
 		}
