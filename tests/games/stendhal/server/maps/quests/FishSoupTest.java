@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.junit.Assert.assertEquals;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -19,7 +21,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.market.FishSoupMakerNPC;
-import games.stendhal.server.maps.fado.tavern.MaidNPC;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -28,8 +29,6 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
-import static org.junit.Assert.assertEquals;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class FishSoupTest {
 
