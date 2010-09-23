@@ -13,6 +13,7 @@
 package games.stendhal.client.sound.sound;
 
 import games.stendhal.client.WorldObjects.WorldListener;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundGroup;
@@ -21,7 +22,6 @@ import games.stendhal.client.sound.manager.DeviceEvaluator;
 import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.SoundManagerNG;
 import games.stendhal.client.sound.system.Time;
-import games.stendhal.client.stendhal;
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Numeric;
 import games.stendhal.common.resource.ResourceLocator;
@@ -29,6 +29,8 @@ import games.stendhal.common.resource.ResourceLocator;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.WeakHashMap;
 import java.util.regex.Pattern;
 
 import javax.sound.sampled.AudioFormat;
@@ -138,8 +140,8 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		mAudioFormat = new AudioFormat(44100, 16, 2, true, false);
 	}
 
-	private final HashMap<String, Sound> mSounds = new HashMap<String, Sound>();
-	private final HashMap<String, Group> mGroups = new LinkedHashMap<String, Group>();
+	private final Map<String, Sound> mSounds = new WeakHashMap<String, Sound>();
+	private final Map<String, Group> mGroups = new LinkedHashMap<String, Group>();
 	private final ResourceLocator mResourceLocator = stendhal.getResourceManager();
 	private float mMasterVolume = 1.0f;
 
