@@ -15,8 +15,21 @@ package games.stendhal.client.actions;
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
+/**
+ * alters the server side state of a quest
+ */
 class AlterQuestAction implements SlashAction {
 
+	/**
+	 * Alters an entity's attributes.
+	 * 
+	 * @param params
+	 *            The formal parameters.
+	 * @param remainder
+	 *            Line content after parameters.
+	 * 
+	 * @return <code>true</code> if was handled.
+	 */
 	public boolean execute(final String[] params, final String remainder) {
 		if ((params == null) || (params.length < getMinimumParameters())) {
 			return false;
@@ -32,10 +45,20 @@ class AlterQuestAction implements SlashAction {
 		return true;
 	}
 
+	/**
+	 * Get the maximum number of formal parameters.
+	 * 
+	 * @return The parameter count.
+	 */
 	public int getMaximumParameters() {
 		return 3;
 	}
 
+	/**
+	 * Get the minimum number of formal parameters.
+	 * 
+	 * @return The parameter count.
+	 */
 	public int getMinimumParameters() {
 		
 		return 2;

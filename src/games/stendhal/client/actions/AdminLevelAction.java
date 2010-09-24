@@ -16,7 +16,7 @@ import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
- * Set the admin level of a player.
+ * Displays or sets the admin level of a player.
  */
 class AdminLevelAction implements SlashAction {
 

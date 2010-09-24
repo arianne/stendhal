@@ -15,9 +15,10 @@ package games.stendhal.client.actions;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
 /**
  * Factory to create all known {@link SlashAction}s that open a specified URL in the browser
- *  
+ * 
  * @author madmetzger
  */
 public class BareBonesBrowserLaunchCommandsFactory {
@@ -37,7 +38,8 @@ public class BareBonesBrowserLaunchCommandsFactory {
 	}
 
 	/**
-	 * creates {@link SlashAction}s for all in initialize specified values 
+	 * creates {@link SlashAction}s for all in initialize specified values
+	 * 
 	 * @return map of the created actions
 	 */
 	public static Map<String, SlashAction> createBrowserCommands() {

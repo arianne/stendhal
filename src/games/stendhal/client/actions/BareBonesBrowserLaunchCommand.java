@@ -16,15 +16,21 @@ import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.BareBonesBrowserLaunch;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
+
 /**
  * generalized super class to provide a uniform way to open urls in the browser
- * @author madmetzger
  *
+ * @author madmetzger
  */
 public class BareBonesBrowserLaunchCommand implements SlashAction{
 	
-	protected final String urlToOpen;
+	private final String urlToOpen;
 
+	/**
+	 * creates a new BareBonesBrowserLaunchCommand
+	 *
+	 * @param url url to open
+	 */
 	public BareBonesBrowserLaunchCommand(String url) {
 		urlToOpen = url;
 	}
@@ -38,7 +44,7 @@ public class BareBonesBrowserLaunchCommand implements SlashAction{
 	 */
 	public boolean execute(final String[] params, final String remainder) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-				"Trying to open #"+urlToOpen+" in your browser.",
+				"Trying to open #" + urlToOpen + " in your browser.",
 		NotificationType.CLIENT));
 	
 		BareBonesBrowserLaunch.openURL(urlToOpen);

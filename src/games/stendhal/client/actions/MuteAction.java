@@ -19,7 +19,7 @@ import games.stendhal.client.sound.system.Time;
 
 
 /**
- * Set sound characteristics.
+ * mutes or umutes the sound
  */
 class MuteAction implements SlashAction {
 

@@ -59,6 +59,12 @@ class VolumeAction implements SlashAction {
 		return true;
 	}
 
+	/**
+	 * changes the volume for the specified group
+	 *
+	 * @param groupName name of group
+	 * @param volumeString new volume
+	 */
 	private void changeVolume(String groupName, String volumeString) {
 		try {
 			boolean groupExists = false;

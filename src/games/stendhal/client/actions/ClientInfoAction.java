@@ -59,11 +59,8 @@ class ClientInfoAction implements SlashAction {
 		final long totalMemory = Runtime.getRuntime().totalMemory() / 1024;
 		sb.append("Total/Used memory: " + totalMemory + "/" + (totalMemory - freeMemory) + "\n");
 
-
 		tell.put("type", "support");
 		tell.put("text", sb.toString());
-
-		
 
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(sb.toString(), NotificationType.CLIENT));
 		ClientSingletonRepository.getClientFramework().send(tell);

@@ -16,7 +16,7 @@ import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
 /**
- * Add a player to the ignore list.
+ * Marks the player as grumpy.
  */
 class GrumpyAction implements SlashAction {
 

@@ -16,7 +16,7 @@ import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 
 /**
- * Set sound characteristics.
+ * displays a help message about the new commands /mute and /volumne
  */
 class SoundAction implements SlashAction {
 
