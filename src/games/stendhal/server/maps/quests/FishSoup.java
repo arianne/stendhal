@@ -380,7 +380,7 @@ public class FishSoup extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Fish soup",
-				"Try to get all ingredients which you need for a healthy and tasty fish soup by Florence Boullabaise.",
+				"Try to get all ingredients which you need for a healthy and tasty fish soup by Florence Boullabaisse.",
 				false);
 		step_1();
 		step_2();
@@ -389,7 +389,7 @@ public class FishSoup extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "Fish soup";
+		return "FishSoup";
 	}
 	
 	
