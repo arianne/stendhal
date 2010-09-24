@@ -31,6 +31,8 @@ import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
 
 public class FishSoupTest {
+	
+	private static final String QUEST_SLOT = "fishsoup_maker"; 
 
 	private Player player = null;
 	private SpeakerNPC npc = null;
@@ -115,6 +117,43 @@ public class FishSoupTest {
 		en.step(player, "bye");
 		assertEquals("Have a nice stay and day on Ados market!", getReply(npc));
 		assertEquals(player.getXP(), 150);
+		en.step(player, "hi");
+		assertEquals("Oh I am sorry, I have to wash my cooking pots first before making more soup for you. Please come back in 20 minutes.", getReply(npc));
+		en.step(player, "bye");
+		assertEquals("Have a nice stay and day on Ados market!", getReply(npc));
+		
+		//Test when player has everything
+		player.setQuest(QUEST_SLOT, "done;0");
+		en.step(player, "hi");
+		assertEquals("Hello again. Have you returned for more of my special fish soup?", getReply(npc));
+		en.step(player, "yes");
+		assertEquals("You made a good choice and I bet you'll not be disappointed. Do you have anything I need already?", getReply(npc));
+		en.step(player, "yes");
+		assertEquals("What did you bring?", getReply(npc));
+		en.step(player, "leek");
+		assertEquals("Oh common, I don't have time for jokes! You don't have a leek with you.", getReply(npc));
+		en.step(player, "onion");
+		assertEquals("Oh common, I don't have time for jokes! You don't have an onion with you.", getReply(npc));
+		en.step(player, "bye");
+		assertEquals("Bye.", getReply(npc));
+		PlayerTestHelper.equipWithItem(player, "leek");
+		PlayerTestHelper.equipWithItem(player, "surgeonfish");
+		PlayerTestHelper.equipWithItem(player, "cod");
+		PlayerTestHelper.equipWithItem(player, "perch");
+		PlayerTestHelper.equipWithItem(player, "mackerel");
+		PlayerTestHelper.equipWithItem(player, "clownfish");
+		PlayerTestHelper.equipWithItem(player, "tomato");
+		PlayerTestHelper.equipWithItem(player, "garlic");
+		PlayerTestHelper.equipWithItem(player, "char");
+		PlayerTestHelper.equipWithItem(player, "onion");
+		PlayerTestHelper.equipWithItem(player, "roach");
+		en.step(player, "hi");
+		assertEquals("Welcome back! I hope you collected some #ingredients for the fish soup, or #everything.", getReply(npc));
+		en.step(player, "everything");
+		assertEquals("The soup's on the market table for you, it will heal you. Tell me if I can help you with anything else.", getReply(npc));
+		en.step(player, "bye");
+		assertEquals("Have a nice stay and day on Ados market!", getReply(npc));
+		assertEquals(player.getXP(), 180);
 		en.step(player, "hi");
 		assertEquals("Oh I am sorry, I have to wash my cooking pots first before making more soup for you. Please come back in 20 minutes.", getReply(npc));
 		en.step(player, "bye");
