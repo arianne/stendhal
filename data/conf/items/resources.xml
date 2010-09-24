@@ -65,6 +65,22 @@
     </equipable>
   </item>
 
+  <item name="coal">
+    <type class="resource" subclass="coal" tileid="-1"/>
+    <description>You see a black and shiny piece of stone coal. It stayed in the ground for million of years.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="2.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="wool">
     <type class="resource" subclass="wool" tileid="-1"/>
     <description>You see wool.  It was recently shorn.</description>
