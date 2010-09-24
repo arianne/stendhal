@@ -59,12 +59,12 @@ public class NineSwitchesGameBoard implements TurnListener {
 	 */
 	public void usedSwitch(RPEntity user, NineSwitchesGameSwitch gameSwitch) {
 		if (playerName == null) {
-			npc.say(user.getName() + ", please talk to me to start a game.");
+			user.sendPrivateText(npc.getName() + ": " + user.getName() + ", please talk to me to start a game.");
 			return;
 		}
 
 		if (!user.getName().equals(playerName)) {
-			user.sendPrivateText("Hey " + user.getName() + ", " + playerName + " is currently playing. Please wait a little.");
+			user.sendPrivateText(npc.getName() + ": Hey " + user.getName() + ", " + playerName + " is currently playing. Please wait a little.");
 			return;
 		}
 
