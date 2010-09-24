@@ -89,7 +89,7 @@ public class DumpTransitionsEx extends ScriptImpl {
 			dumpedTable.append(getStateName(transition.getState()) + " -> "
 					+ getStateName(transition.getNextState()));
 			final String transitionName = getExtendedTransitionName(transition);
-			dumpedTable.append(" [ label = \"" + transitionName + "\" ];\r\n");
+			dumpedTable.append(" [ label = \"" + transitionName.replace("{", "\\{").replace("}", "\\}") + "\" ];\r\n");
 		}
 	}
 
@@ -156,6 +156,7 @@ public class DumpTransitionsEx extends ScriptImpl {
 		if (entryName.startsWith(prefix)) {
 			entryName = entryName.substring(prefix.length());
 		}
+		entryName = entryName.replace("{", "\\{").replace("}", "\\}");
 		return entryName;
 	}
 }
