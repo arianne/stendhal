@@ -64,7 +64,7 @@ public class FishSoup extends AbstractQuest {
 			"cod", "char", "roach", "clownfish", "onion", "mackerel",
 			"garlic", "leek", "perch", "tomato");
 
-	private static final String QUEST_SLOT = "soup_maker";
+	private static final String QUEST_SLOT = "fishsoup_maker";
 
 	private static final int REQUIRED_MINUTES = 20;
 
