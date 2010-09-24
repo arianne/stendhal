@@ -122,7 +122,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							if (text.length() > 1000) {
-								text = text.substring(1000);
+								text = text.substring(0, 1000) + "...";
 							}
 
 							// do not accept all upper case
