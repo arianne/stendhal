@@ -48,7 +48,6 @@ public class SlashActionRepository {
 		actions.put("clickmode", new ClickModeAction());
 		actions.put("clientinfo", new ClientInfoAction());
 		actions.put("commands", help);
-		actions.put("crash", new CrashClientAction());
 
 		actions.put("drop", new DropAction());
 
@@ -110,7 +109,7 @@ public class SlashActionRepository {
 	 * @return Action object
 	 */
 	public static SlashAction get(String name) {
-		name = name.toLowerCase(Locale.ENGLISH);
-		return actions.get(name);
+		String temp = name.toLowerCase(Locale.ENGLISH);
+		return actions.get(temp);
 	}
 }
