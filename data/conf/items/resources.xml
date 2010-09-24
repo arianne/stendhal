@@ -83,7 +83,7 @@
 
   <item name="wool">
     <type class="resource" subclass="wool" tileid="-1"/>
-    <description>You see wool.  It was recently shorn.</description>
+    <description>You see wool. It was recently shorn.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
@@ -147,7 +147,7 @@
 
   <item name="mithril nugget">
     <type class="resource" subclass="mithril_ore" tileid="-1"/>
-    <description>You see a mithril nugget.  Its pale silvery color shines, and it may be useful.</description>
+    <description>You see a mithril nugget. Its pale silvery color shines, and it may be useful.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
