@@ -115,7 +115,7 @@
 
   <item name="gold nugget">
     <type class="resource" subclass="gold_ore" tileid="-1"/>
-    <description>You see a gold nugget.  Its rich golden colour shines, and it may be useful.</description>
+    <description>You see a gold nugget. Its rich golden colour shines, and it may be useful.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
