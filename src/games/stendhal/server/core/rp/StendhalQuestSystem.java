@@ -28,6 +28,7 @@ import games.stendhal.server.maps.quests.CloakCollector;
 import games.stendhal.server.maps.quests.CloakCollector2;
 import games.stendhal.server.maps.quests.CloaksForBario;
 import games.stendhal.server.maps.quests.ClubOfThorns;
+import games.stendhal.server.maps.quests.CoalForHaunchy;
 import games.stendhal.server.maps.quests.CrownForTheWannaBeKing;
 import games.stendhal.server.maps.quests.DailyItemQuest;
 import games.stendhal.server.maps.quests.DailyMonsterQuest;
@@ -153,6 +154,7 @@ public class StendhalQuestSystem {
 		loadQuest(new CloakCollector2());
 		loadQuest(new CloaksForBario());
 		loadQuest(new ClubOfThorns());
+		loadQuest(new CoalForHaunchy());
 		loadQuest(new CrownForTheWannaBeKing());
 		loadQuest(new DailyItemQuest());
 		loadQuest(new DailyMonsterQuest());
