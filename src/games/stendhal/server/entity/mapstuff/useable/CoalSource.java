@@ -58,6 +58,8 @@ public class CoalSource extends PlayerActivityEntity {
 	 */
 	public CoalSource() {
 		this("coal");
+		put("class", "source");
+		put("name", "coal_source");
 	}
 	
 	/**
