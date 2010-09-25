@@ -93,7 +93,7 @@ public abstract class Pet extends DomesticAnimal {
 	 * Creates a new Pet that is owned by a player.
 	 * @param owner 
 	 */
-	public Pet(final Player owner) {
+	public Pet(final RPObject owner) {
 		super(owner);
 		baseSpeed = 0.5;
 		setATK(ATK);
