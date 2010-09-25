@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -22,6 +21,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -34,7 +34,6 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -93,33 +92,17 @@ npc.add(ConversationStates.ATTENDING,
 
 npc.add(ConversationStates.ATTENDING,
 		ConversationPhrases.QUEST_MESSAGES,
-		new QuestStateStartsWithCondition(QUEST_SLOT, "drinking;"),
-		ConversationStates.ATTENDING,
-		null,
-		new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-						// tokens[0]=="drinking" see condition
-						long timeWhenQuestWasDone = Long.parseLong(tokens[1]);
-						
-						final long delay = REQUIRED_MINUTES	* MathHelper.MILLISECONDS_IN_ONE_MINUTE;
-						// if this is > 0, she's still drunk!
-						final long timeRemaining = (timeWhenQuestWasDone + delay)
-								- System.currentTimeMillis();
-						if (timeRemaining > 0) {
-							String timeWhenSober = TimeUtil.timeUntil((int) (timeRemaining / 1000));
-							npc.say("I'm sure I'll be too drunk to have another for at least "
-											+ timeWhenSober
-											+ "!");
-							return;
-							
-						}
-						// She has recovered and is ready for another
-						npc.say("The last cocktail you brought me was so lovely. Will you bring me another?");
-						npc.setCurrentState(ConversationStates.QUEST_OFFERED);
-					}
+		new AndCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES), new QuestStateStartsWithCondition(QUEST_SLOT, "drinking;")),
+		ConversationStates.QUEST_OFFERED,
+		"The last cocktail you brought me was so lovely. Will you bring me another?",
+		null);
 
-				});
+npc.add(ConversationStates.ATTENDING,
+		ConversationPhrases.QUEST_MESSAGES,
+		new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), new QuestStateStartsWithCondition(QUEST_SLOT, "drinking;")),
+		ConversationStates.QUEST_OFFERED,
+		null,
+		new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I'm sure I'll be too drunk to have another for at least "));
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
