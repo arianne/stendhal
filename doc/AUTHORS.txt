@@ -129,7 +129,14 @@ Authors of Stendhal are:
 - Bluelads4
   · Coder (NPCs, quests like on Ados Market, items)
   · Artist - charas (NPCs) + items (gimp)
-
+- Storyteller  
+  · Descriptions (creatures and objects)
+  · Audio (background music and sounds)
+  · Artist (items: coal, some modifications like garlic and fish soup)
+  . Ideas (quests, NPCs, features and many, many more ;)
+  . Coder (adding sounds, dialogues)
+  
+  
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
 
@@ -156,6 +163,4 @@ Notable contributors:
 - Hades the Emperor
   · Artist (creatures images using charas, e.g. imperial army)
   · Artist (some player outfits)
-- storyteller
-  · Descriptions (creatures and objects)
-  · Background music
+
