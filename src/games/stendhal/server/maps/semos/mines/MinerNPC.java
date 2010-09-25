@@ -66,18 +66,17 @@ public class MinerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Good luck!");
 				addReply("good luck", "Good luck! I hope you'll leave this mine healthy!");
-				addReply("glück auf", "Glüüück Auf, Glück Auf...! *sing");
+				addReply("glÃ¼ck auf", "GlÃ¼Ã¼Ã¼ck Auf, GlÃ¼ck Auf...! *sing");
 				addHelp("Always remember your way! Otherwise you may get lost in these tunnels which run deep into the mountain! And... before I forget: There seems to be something dangerous in the #mine... I hear very strange #sounds from time to time which come from somewhere down...");
 				addReply("mine","This mine is a huge system of tunnels, dug into the mountain a long time ago. Nobody knows all ways through the tunnels any more, except the dwarves maybe, harhar... *cough*");
 				addReply("sounds","The sounds are very weird... Sometimes they sound like someone is shouting from far away... just like commanding soldiers or so... I also heard steps in the shadows a few times... that's really scary...");
-				addOffer("I can sell you a useful tool for getting some coal with. Most of my friends who used to work with me left me some time ago, so you can buy some #picks which they left here.");
-				addReply("picks", "You need a pick for getting some coal from places on the walls in this mine.");
+				addOffer("I can sell you a useful tool for getting some coal with. Most of my friends who used to work with me left me some time ago, so you can buy some #picks which they left here. I'd also like to give you some of my drink and food but there isn't much left... I still need to work some hours so I need it for myself, sorry... But I can show you a hand drawn #map of the mine if you want.");
+				addReply("picks", "You need a pick for getting some coal from places on the walls in Semos Mine.");
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
                 offerings.put("pick", 450);
                 new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addQuest("Sorry but as you can see, I'm covered with dust and still didn't finish my work up yet. I can't think about any quests for you, but you can help me to gain some coal."); 
 				addJob("I am a miner. Working in a mine is quite hard work. If you get deep and deeper into the earth it gets very warm and even more dusty. And you can hardly see anything in this low light...");
-				addOffer("I'd also like to give you some of my drink and food but there isn't much left... I still need to work some hours so I need it for myself, sorry... But I can show you a hand drawn #map of the mine if you want.");
 				addReply("map","This is a map of the Semos Mine which I have drawn by myself some time ago. It may help you to find the way. But take care, not everything is exactly right!",
 						new ExamineChatAction("map-semos-mine.png", "Semos Mine", "Rough map of Semos Mine"));
 				addGoodbye("Nice to meet you. Good luck!");
