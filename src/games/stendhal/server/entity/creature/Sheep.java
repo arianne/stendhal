@@ -112,7 +112,8 @@ public class Sheep extends DomesticAnimal {
 	 * @param owner
 	 */
 	public Sheep(final Player owner) {
-		super(owner);
+		super();
+		super.setOwner(owner);
 		setRPClass("sheep");
 		put("type", "sheep");
 

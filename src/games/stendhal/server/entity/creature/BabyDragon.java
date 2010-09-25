@@ -87,7 +87,8 @@ public class BabyDragon extends Pet {
 	 * @param owner The player who should own the baby dragon
 	 */
 	public BabyDragon(final Player owner) {
-		super(owner);
+		super();
+		setOwner(owner);
 		setUp();
 		setRPClass("baby_dragon");
 		put("type", "baby_dragon");

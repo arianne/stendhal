@@ -44,16 +44,6 @@ public abstract class DomesticAnimal extends Creature {
 	 * Creates a new wild DomesticAnimal.
 	 */
 	public DomesticAnimal() {
-		this(null);
-		put("title_type", "friend");
-	}
-
-	/**
-	 * Creates a new DomesticAnimal that is owned by a player.
-	 * @param owner of the new animal
-	 */
-	public DomesticAnimal(final Player owner) {
-		this.owner = owner;
 		put("title_type", "friend");
 
 		setPosition(0, 0);

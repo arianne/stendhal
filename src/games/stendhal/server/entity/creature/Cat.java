@@ -82,10 +82,11 @@ public class Cat extends Pet {
 	 * Creates a new Cat that may be owned by a player.
 	 * @param owner 
 	 */
-	public Cat(final RPObject owner) {
+	public Cat(final Player owner) {
 		// call set up before parent constructor is called as it needs those
 		// values
-		super(owner);
+		super();
+		setOwner(owner);
 		setUp();
 		setRPClass("cat");
 		put("type", "cat");
