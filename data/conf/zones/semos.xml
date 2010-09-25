@@ -2517,6 +2517,11 @@ Mature sheep wanted: please speak to Sato
 	<zone name="-1_semos_mine_ne" level="-1" x="500128" y="499744"
 		file="Level -1/semos/mine_ne.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.mines.MinerNPC" />
+		
+		<entity x="79" y="107">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource;" />
+		</entity>
 	</zone>
 
 	<zone name="-1_semos_mine_n_e2" level="-1" x="500256" y="499744"
