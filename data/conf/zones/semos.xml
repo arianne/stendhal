@@ -2520,7 +2520,7 @@ Mature sheep wanted: please speak to Sato
 		
 		<entity x="79" y="107">
 			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource;" />
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
 		</entity>
 	</zone>
 

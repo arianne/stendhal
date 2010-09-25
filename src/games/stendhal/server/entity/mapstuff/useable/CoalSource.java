@@ -69,8 +69,8 @@ public class CoalSource extends PlayerActivityEntity {
 	public CoalSource(final String itemName) {
 		this.itemName = itemName;
 
-		setRPClass("useable");
-		put("type", "useable");
+		setRPClass("useable_entity");
+		put("type", "useable_entity");
 		put("class", "source");
 		put("name", "coal_source");
 
