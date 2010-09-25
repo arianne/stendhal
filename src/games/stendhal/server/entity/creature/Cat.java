@@ -82,7 +82,7 @@ public class Cat extends Pet {
 	 * Creates a new Cat that may be owned by a player.
 	 * @param owner 
 	 */
-	public Cat(final Player owner) {
+	public Cat(final RPObject owner) {
 		// call set up before parent constructor is called as it needs those
 		// values
 		super(owner);
@@ -90,10 +90,11 @@ public class Cat extends Pet {
 		setRPClass("cat");
 		put("type", "cat");
 
-		if (owner != null) {
-			// add pet to zone and create RPID to be used in setPet()
-			owner.getZone().add(this);
-			owner.setPet(this);
+		if ((owner != null) && (owner instanceof Player)) {
+			// add pet to zone and create RPObject.ID to be used in setPet()
+			Player player = (Player) owner;
+			player.getZone().add(this);
+			player.setPet(this);
 		}
 
 		update();
