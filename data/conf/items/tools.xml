@@ -79,9 +79,9 @@
     </equipable>
   </item>
 
-<item name="coal pick">
-    <type class="tool" subclass="coal_pick" tileid="-1"/>
-    <description>You see a coal pick. It is a tool which helps you to get some coal.</description>
+<item name="pick">
+    <type class="tool" subclass="pick" tileid="-1"/>
+    <description>You see a pick. It is a tool which helps you to get some coal.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="10.0"/>
