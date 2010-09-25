@@ -58,18 +58,8 @@ public class CoalSource extends PlayerActivityEntity {
 	 */
 	public CoalSource() {
 		this("coal");
-		put("class", "source");
-		put("name", "coal_source");
 	}
-	
-	/**
-	 * source name.
-	 */
-	@Override
-	public String getName() {
-		return("coal rich rock");
-	}
-	
+
 	/**
 	 * Create a coal source.
 	 * 
@@ -81,8 +71,18 @@ public class CoalSource extends PlayerActivityEntity {
 
 		setRPClass("useable");
 		put("type", "useable");
+		put("class", "source");
+		put("name", "coal_source");
 
-		setDescription("You see something black glittering.");
+		setDescription("You see something black on the rock.");
+	}
+
+	/**
+	 * source name.
+	 */
+	@Override
+	public String getName() {
+		return("coal rich rock");
 	}
 
 
