@@ -11,6 +11,7 @@ Changelog
 - new NPC Haunchy Meatoch on Ados market
 - new NPC Florence Boullabaisse on Ados market
 - new NPC Fritz on Ados market
+- new NPC Barbarus in Semos Mine
 - new fish soup maker on Ados market (Florence Boullabaisse)
 - added new quest on Ados market to Haunchy Meatoch
 - added more quest histories
@@ -18,7 +19,7 @@ Changelog
 - corpse and chest windows raise themselves if one with an already open window is inspected
 - buddies are sorted first by online status, then by name
 - deathmatch assistant announces completion and player can directly claim victory
-- new items fish soup, garlic, grilled steak, coal
+- new items fish soup, garlic, grilled steak, coal, pick
 - added garlic to Sues selling list
 
 *website*
