@@ -100,7 +100,7 @@ npc.add(ConversationStates.ATTENDING,
 npc.add(ConversationStates.ATTENDING,
 		ConversationPhrases.QUEST_MESSAGES,
 		new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), new QuestStateStartsWithCondition(QUEST_SLOT, "drinking;")),
-		ConversationStates.QUEST_OFFERED,
+		ConversationStates.ATTENDING,
 		null,
 		new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I'm sure I'll be too drunk to have another for at least "));
 		

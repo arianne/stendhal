@@ -113,7 +113,7 @@ npc.add(ConversationStates.ATTENDING,
 npc.add(ConversationStates.ATTENDING,
 		ConversationPhrases.QUEST_MESSAGES,
 		new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), new QuestStateStartsWithCondition(QUEST_SLOT, "grilling;")),
-		ConversationStates.QUEST_OFFERED,
+		ConversationStates.ATTENDING,
 		null,
 		new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "The coal amount behind my counter is still high enough. I will not need more for at least "));
 
