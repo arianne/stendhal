@@ -76,7 +76,7 @@ public class HealerAdder {
 												+ " money. Do you have that much?");
 							} else {
 								if ((player.getATK() > 35) || (player.getDEF() > 35)) {
-									raiser.say("Sorry, I cannot heal you because you are way too strong for my limited powers");
+									raiser.say("Sorry, I cannot heal you because you are way too strong for my limited powers.");
 								} else if (!player.isNew()
 										&& (player.getLastPVPActionTime() > System
 												.currentTimeMillis()
