@@ -195,6 +195,9 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("spinach",5);
 		items.put("courgette",5);
 		items.put("collard",5);
+		items.put("coal",10);
+		items.put("pick",1);
+		items.put("grilled steak",1);
 	}
 	
 	private void getQuest() {
