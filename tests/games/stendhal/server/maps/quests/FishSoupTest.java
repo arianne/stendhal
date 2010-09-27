@@ -70,7 +70,7 @@ public class FishSoupTest {
 		en.step(player, "ingredients");
 		assertEquals("I need 11 ingredients before I make the soup: #surgeonfish, #cod, #char, #roach, #clownfish, #onion, #mackerel, #garlic, #leek, #perch, and #tomato. Will you collect them?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("Oh, I hope you will make another decission one time. You definetly miss something!", getReply(npc));
+		assertEquals("Oh, I hope you will change your mind another time. You'd definitely miss out!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Have a nice stay and day on Ados market!", getReply(npc));
 		en.step(player, "hi");
@@ -84,9 +84,9 @@ public class FishSoupTest {
 		en.step(player, "yes");
 		assertEquals("What did you bring?", getReply(npc));
 		en.step(player, "leek");
-		assertEquals("Oh common, I don't have time for jokes! You don't have a leek with you.", getReply(npc));
+		assertEquals("Oh come on, I don't have time for jokes! You don't have a leek with you.", getReply(npc));
 		en.step(player, "onion");
-		assertEquals("Oh common, I don't have time for jokes! You don't have an onion with you.", getReply(npc));
+		assertEquals("Oh come on, I don't have time for jokes! You don't have an onion with you.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		PlayerTestHelper.equipWithItem(player, "leek");
@@ -131,9 +131,9 @@ public class FishSoupTest {
 		en.step(player, "yes");
 		assertEquals("What did you bring?", getReply(npc));
 		en.step(player, "leek");
-		assertEquals("Oh common, I don't have time for jokes! You don't have a leek with you.", getReply(npc));
+		assertEquals("Oh come on, I don't have time for jokes! You don't have a leek with you.", getReply(npc));
 		en.step(player, "onion");
-		assertEquals("Oh common, I don't have time for jokes! You don't have an onion with you.", getReply(npc));
+		assertEquals("Oh come on, I don't have time for jokes! You don't have an onion with you.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		PlayerTestHelper.equipWithItem(player, "leek");

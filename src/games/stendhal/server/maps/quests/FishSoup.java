@@ -75,7 +75,7 @@ public class FishSoup extends AbstractQuest {
 	
 	/**
 	 * Returns a list of the names of all food that the given player still has
-	 * to bring to fulfill the quest.
+	 * to bring to fulfil the quest.
 	 * 
 	 * @param player
 	 *            The player doing the quest
@@ -196,7 +196,7 @@ public class FishSoup extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
-				"Oh, I hope you will make another decission one time. You definetly miss something!", null);
+				"Oh, I hope you will change your mind another time. You'd definitely miss out!", null);
 
 		// players asks about the ingredients individually
 		npc.add(
@@ -204,7 +204,8 @@ public class FishSoup extends AbstractQuest {
 			Arrays.asList("surgeonfish","cod", "char", "roach", "clownfish", "mackerel", "perch"),
 			null,
 			ConversationStates.QUEST_OFFERED,
-			"There are different fishing places all over Faiumoni. If you want to find out where you can find which kind of fish, take a look into the library here in Ados.",
+			"There are different fishing places all over Faiumoni. If you want to find out where you can find any kind of fish," +
+			" take a look in the library here in Ados. Will you fetch the ingredients?",
 			null);
 
 		// players asks about the ingredients individually
@@ -222,7 +223,8 @@ public class FishSoup extends AbstractQuest {
 			Arrays.asList("tomato", "garlic"),
 			null,
 			ConversationStates.QUEST_OFFERED,
-			"There is a nice gardener, Sue, in the Kalavan City gardens who sells tomatoes and garlic. " + "So will you fetch the ingredients?", null);
+			"There is a nice gardener, Sue, in the Kalavan City gardens who sells tomatoes and garlic. " 
+			+ "So will you fetch the ingredients?", null);
 	}
 
 	private void step_2() {
@@ -296,7 +298,7 @@ public class FishSoup extends AbstractQuest {
 								npc.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
-							npc.say("Oh common, I don't have time for jokes! You don't have "
+							npc.say("Oh come on, I don't have time for jokes! You don't have "
 								+ Grammar.a_noun(itemName)
 								+ " with you.");
 						}
