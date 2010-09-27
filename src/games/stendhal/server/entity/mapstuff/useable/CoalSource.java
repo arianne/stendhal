@@ -16,6 +16,8 @@ package games.stendhal.server.entity.mapstuff.useable;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
@@ -25,15 +27,13 @@ import org.apache.log4j.Logger;
  * A coal source is a spot where a player can pick for coal. He
  * needs a pick, time, and luck.
  * 
- * Prospecting takes 7-11 seconds; during this time, the player keep standing
- * next to the gold source. In fact, the player only has to be there when the
+ * Picking coals takes 7-11 seconds; during this time, the player keep standing
+ * next to the coal source. In fact, the player only has to be there when the
  * prospecting action has finished. Therefore, make sure that two sources
  * are always at least 5 sec of walking away from each other, so that the player
  * can't prospect at several sites simultaneously.
  *
- * Some karma is used to decide if the player was successful at the well or not.
- * 
- * @author daniel
+ * @author hendrik
  */
 public class CoalSource extends PlayerActivityEntity {
 	private static final Logger logger = Logger.getLogger(CoalSource.class);
@@ -42,11 +42,6 @@ public class CoalSource extends PlayerActivityEntity {
 	 * The equipment needed.
 	 */
 	private static final String NEEDED_EQUIPMENT = "pick";
-
-	/**
-	 * The chance that prospecting is successful.
-	 */
-	private static final double FINDING_PROBABILITY = 0.5;
 
 	/**
 	 * The name of the item to be found.
@@ -73,8 +68,10 @@ public class CoalSource extends PlayerActivityEntity {
 		put("type", "useable_entity");
 		put("class", "source");
 		put("name", "coal_source");
+		put("state", 0);
 
 		setDescription("You see something black on the rock.");
+		handleRespawn();
 	}
 
 	/**
@@ -122,11 +119,7 @@ public class CoalSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected boolean isSuccessful(final Player player) {
-		final int random = Rand.roll1D100();
-        /*
-        * Use some karma to help decide if the outcome is successful
-		*/
-        return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
+		return getState() > 0;
 	}
 
 	/**
@@ -143,14 +136,27 @@ public class CoalSource extends PlayerActivityEntity {
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
 			if (item != null) {
-    			    player.equipOrPutOnGround(item);
-    			    player.sendPrivateText("You found "
-    					+ Grammar.a_noun(item.getTitle()) + ".");
+				player.equipOrPutOnGround(item);
+				player.sendPrivateText("You found "
+						+ Grammar.a_noun(item.getTitle()) + ".");
 			} else {
 				logger.error("could not find item: " + itemName);
 			}
+			setState(getState()- 1);
+			handleRespawn();
 		} else {
 			player.sendPrivateText("You didn't find anything.");
+		}
+	}
+
+	/**
+	 * triggers the respawn if the coal was compeletly picked
+	 */
+	private void handleRespawn() {
+		if (getState() == 0) {
+			final int time = Rand.randExponential(6000);
+			int turn = Math.max(time, 200);
+			TurnNotifier.get().notifyInSeconds(turn, new Refiller());
 		}
 	}
 
@@ -163,5 +169,18 @@ public class CoalSource extends PlayerActivityEntity {
 	@Override
 	protected void onStarted(final Player player) {
 		player.sendPrivateText("You have started to pick for coal.");
+	}
+
+	/**
+	 * refills the coal
+	 *
+	 * @author hendrik
+	 */
+	private class Refiller implements TurnListener {
+
+		public void onTurnReached(int currentTurn) {
+			setState(Rand.randUniform(1, 3));
+		}
+		
 	}
 }
