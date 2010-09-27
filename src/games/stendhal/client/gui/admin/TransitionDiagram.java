@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui.admin;
 
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Dimension;
@@ -56,8 +56,8 @@ public class TransitionDiagram {
 			ps.close();
 
 			// execute
-			String dotPath = StendhalClient.get().getCache().getConfiguration().get(
-					"stendhal.dotPath");
+			
+			String dotPath = WtWindowManager.getInstance().getProperty("dot", "dot");
 			if (dotPath == null) {
 				dotPath = "dot";
 			}
