@@ -93,8 +93,6 @@ class SourceObject extends MoveableObject {
 		final RPSlot baseSlot = ((EntitySlot) parent.getSlot(slotName)).getWriteableSlot();
 
 		if (!isValidBaseSlot(player, baseSlot)) {
-			logger.warn("Unreachable slot");
-			player.sendPrivateText("The " + slotName + " of " + parent.getDescriptionName(true) + " is too far away.");
 			return invalidSource;
 		}
 		final RPObject.ID baseItemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), "");
@@ -128,7 +126,17 @@ class SourceObject extends MoveableObject {
 	}
 
 	private static boolean isValidBaseSlot(final Player player, final RPSlot baseSlot) {
-		return (baseSlot instanceof EntitySlot) && (((EntitySlot) baseSlot).isReachableForTakingThingsOutOfBy(player));
+		if (! (baseSlot instanceof EntitySlot)) {
+			return false;
+		}
+		EntitySlot slot = (EntitySlot) baseSlot;
+		slot.clearErrorMessage();
+		boolean res = slot.isReachableForTakingThingsOutOfBy(player);
+		if (!res) {
+			logger.debug("Unreachable slot");
+			player.sendPrivateText(slot.getErrorMessage());
+		}
+		return res;
 	}
 
 	private static SourceObject createSourceForNonContainedItem(final RPAction action, final Player player) {
@@ -264,7 +272,7 @@ class SourceObject extends MoveableObject {
 			return true;
 		}
 		logger.debug("distance check failed " + other.squaredDistance(checker));
-		player.sendPrivateText("You cannot reach that far");
+		player.sendPrivateText("You cannot reach that far.");
 		return false;
 	}
 

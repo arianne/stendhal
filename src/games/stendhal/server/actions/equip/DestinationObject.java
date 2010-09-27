@@ -116,9 +116,10 @@ class DestinationObject extends MoveableObject {
 
 		if (parent != null) {
 			final EntitySlot rpslot = (EntitySlot) parent.getSlot(slot);
-			if (!(rpslot instanceof EntitySlot)
-					|| (!((EntitySlot) rpslot).isReachableForTakingThingsOutOfBy(player))) {
-				logger.warn("Unreachable slot");
+			rpslot.clearErrorMessage();
+			if (!rpslot.isReachableForThrowingThingsIntoBy(player)) {
+				player.sendPrivateText(rpslot.getErrorMessage());
+				logger.debug("Unreachable slot");
 				return false;
 			}
 
