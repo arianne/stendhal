@@ -66,9 +66,19 @@ public class TradingController {
 		setUser(user);
 		setPartnerState(partnerState);
 		if (myState != TradeState.NO_ACTIVE_TRADE) {
-			if (window.getParent() == null) {
+			if (myState == TradeState.TRADE_COMPLETED) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
+						/*
+						 * Completed a trade. Close the window.
+						 */
+						window.close();
+					}
+				});
+			} else if (window.getParent() == null) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						// Starting a trade, and there was no window visible.
 						j2DClient.get().addWindow(window);
 						window.setVisible(true);
 					}
