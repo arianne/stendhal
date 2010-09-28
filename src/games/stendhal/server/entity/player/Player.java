@@ -2076,14 +2076,20 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * cancels a trade and moves the items back
+	 * cancels a trade and moves the items back.
 	 *
 	 * @param partnerName name of partner (to make sure the correct trade offer is canceled)
 	 */
 	public void cancelTradeInternally(String partnerName) {
 		trade.cancelTradeInternally(partnerName);
 	}
-	
+
+	/**
+	 * completes a trade internally.
+	 */
+	void completeTradeInternally() {
+		trade.completeTradeInternally();
+	}
 
 	/**
 	 * unlocks a trade item offer for example because of some modifications

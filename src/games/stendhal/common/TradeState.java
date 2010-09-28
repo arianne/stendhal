@@ -30,5 +30,8 @@ public enum TradeState {
 	LOCKED,
 
 	/** waiting for the other player to click deal.*/
-	DEAL_WAITING_FOR_OTHER_DEAL;
+	DEAL_WAITING_FOR_OTHER_DEAL,
+
+	/** a trade was accpeted and completed */
+	TRADE_COMPLETED;
 }

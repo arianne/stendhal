@@ -239,6 +239,9 @@ class PlayerTrade {
 		}
 
 		if (partner.getTradeState() == TradeState.DEAL_WAITING_FOR_OTHER_DEAL) {
+			tradeState = TradeState.TRADE_COMPLETED;
+			partner.completeTradeInternally();
+			tellClients();
 			player.sendPrivateText("You traded with " + partnerName + ".");
 			partner.sendPrivateText("You traded with " + player.getName() + ".");
 			transferItems(partner);
@@ -381,6 +384,14 @@ class PlayerTrade {
 			player.addEvent(new TradeStateChangeEvent(partner.getInt("id"), tradeState, partner.getTradeState()));
 			partner.addEvent(new TradeStateChangeEvent(player.getInt("id"), partner.getTradeState(), tradeState));
 		}
+	}
+
+
+	/**
+	 * flags the trade as compelted
+	 */
+	public void completeTradeInternally() {
+		tradeState = TradeState.TRADE_COMPLETED;
 	}
 
 
