@@ -42,4 +42,10 @@ public class ChestSlot extends LootableSlot {
 		}
 		return super.isReachableForTakingThingsOutOfBy(entity);
 	}
+
+
+	@Override
+	public boolean isTargetBoundCheckRequired() {
+		return true;
+	}
 }

@@ -57,4 +57,9 @@ public class PersonalChestSlot extends ChestSlot {
 		return true;
 	}
 
+
+	@Override
+	public boolean isTargetBoundCheckRequired() {
+		return false;
+	}
 }
