@@ -128,7 +128,8 @@ class TradingWindow extends InternalManagedWindow {
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.cancelTrade();
+				// Close the window and cancel the trade
+				close();
 			}
 		});
 
