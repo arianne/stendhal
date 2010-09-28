@@ -122,7 +122,6 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 					Sound sound = mSounds.get(soundName);
 					if (sound == null) {
 						loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, this.streaming);
-						logger.info("Loading " + soundName + " streaming: " + streaming);
 						sound = mSounds.get(soundName);
 					}
 
