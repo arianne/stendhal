@@ -79,7 +79,7 @@ public class CoalSource extends PlayerActivityEntity {
 	 */
 	@Override
 	public String getName() {
-		return("coal rich rock");
+		return("the coal rich rock");
 	}
 
 
