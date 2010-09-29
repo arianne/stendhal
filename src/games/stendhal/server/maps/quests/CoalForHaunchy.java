@@ -59,7 +59,7 @@ import java.util.List;
  * <ul>
  * <li>Karma +20 in all</li>
  * <li>XP +200 in all</li>
- * <li>Some grilled steaks, random between 1 and 4.</li>
+ * <li>Some grilled steaks, random between 2 and 7.</li>
  * </ul>
  *
  * REPETITIONS:
@@ -82,7 +82,7 @@ public class CoalForHaunchy extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, 
-				"I cannot use wood for this huge BBQ. To keep the heat I need some really old stone coal but there isn't much left. The problem is, that I can't fetch it myself because my steaks would burn then so I have to stay here. Can you bring me 10 pieces of #coal for my BBQ please?",
+				"I cannot use wood for this huge BBQ. To keep the heat I need some really old stone coal but there isn't much left. The problem is, that I can't fetch it myself because my steaks would burn then so I have to stay here. Can you bring me 25 pieces of #coal for my BBQ please?",
 				null);
 
 		npc.add(
@@ -103,14 +103,14 @@ public class CoalForHaunchy extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES), new QuestStateStartsWithCondition(QUEST_SLOT, "grilling;")),
+				new AndCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES), new QuestStateStartsWithCondition(QUEST_SLOT, "waiting;")),
 				ConversationStates.QUEST_OFFERED,
 				"The last coal you brought me is mostly gone again. Will you bring me some more?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), new QuestStateStartsWithCondition(QUEST_SLOT, "grilling;")),
+				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), new QuestStateStartsWithCondition(QUEST_SLOT, "waiting;")),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "The coal amount behind my counter is still high enough. I will not need more for at least "));
@@ -148,7 +148,7 @@ public class CoalForHaunchy extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new MultipleActions(
-						new DropItemAction("coal",10), 
+						new DropItemAction("coal",25), 
 						new ChatAction() {
 							public void fire(final Player player,
 									final Sentence sentence,
@@ -158,7 +158,7 @@ public class CoalForHaunchy extends AbstractQuest {
 								npc.say("Thank you!! Take these "
 										+ grilledsteakAmount
 										+ " grilled steaks from my grill!");
-								new SetQuestAndModifyKarmaAction(getSlotName(), "grilling;" 
+								new SetQuestAndModifyKarmaAction(getSlotName(), "waiting;" 
 										+ System.currentTimeMillis(), 10.0).fire(player, sentence, npc);
 
 							}
@@ -211,7 +211,7 @@ public class CoalForHaunchy extends AbstractQuest {
 		}
 		if (isCompleted(player)) {
 			if (isRepeatable(player)) {
-				res.add("I took 10 pieces of coal to the Haunchy, but I'd bet his amount is low again and needs more. Maybe I'll get more grilled tasty steaks.");
+				res.add("I took 25 pieces of coal to the Haunchy, but I'd bet his amount is low again and needs more. Maybe I'll get more grilled tasty steaks.");
 			} else {
 				res.add("Haunchy Meatoch was really happy when I gave him the coal, he has enough for now. He gave me some of the best steaks which I ever ate!");
 			}			
@@ -231,12 +231,12 @@ public class CoalForHaunchy extends AbstractQuest {
 
 	@Override
 	public boolean isRepeatable(final Player player) {
-		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"grilling;"),
+		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"waiting;"),
 				new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
 	}
 
 	@Override
 	public boolean isCompleted(final Player player) {
-		return new QuestStateStartsWithCondition(QUEST_SLOT,"grilling;").fire(player, null, null);
+		return new QuestStateStartsWithCondition(QUEST_SLOT,"waiting;").fire(player, null, null);
 	}
 }
