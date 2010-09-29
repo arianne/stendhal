@@ -973,10 +973,10 @@
     <type class="food" subclass="grilled_steak" tileid="-1"/>
     <description>You see a fresh grilled steak. It smells awesome and is really juicy.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
-      <amount value="200"/>
+      <amount value="150"/>
       <frequency value="20"/>
       <quantity value="1"/>
-      <regen value="20"/>
+      <regen value="15"/>
     </attributes>
     <weight value="1.0"/>
     <value value="2"/>
