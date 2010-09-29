@@ -20,7 +20,8 @@ Changelog
 - buddies are sorted first by online status, then by name
 - deathmatch assistant announces completion and player can directly claim victory
 - new items fish soup, garlic, grilled steak, coal, pick
-- added garlic to Sues selling list
+- coal sources for extracting coal
+- added garlic to Sues sales list
 
 *website*
 - animated/large NPCs like tomi and vulcanus now have an image
