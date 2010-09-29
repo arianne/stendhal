@@ -59,7 +59,7 @@ import java.util.List;
  * <ul>
  * <li>Karma +20 in all</li>
  * <li>XP +200 in all</li>
- * <li>Some grilled steaks, random between 2 and 7.</li>
+ * <li>Some grilled steaks, random between 1 and 4.</li>
  * </ul>
  *
  * REPETITIONS:
@@ -153,7 +153,7 @@ public class CoalForHaunchy extends AbstractQuest {
 							public void fire(final Player player,
 									final Sentence sentence,
 									final EventRaiser npc) {
-								int grilledsteakAmount = Rand.roll1D6() + 1;
+								int grilledsteakAmount = Rand.rand(4) + 1;
 								new EquipItemAction("grilled steak", grilledsteakAmount, true).fire(player, sentence, npc);
 								npc.say("Thank you!! Take these "
 										+ grilledsteakAmount
