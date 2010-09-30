@@ -830,6 +830,8 @@
 </zone>
 
  <zone name="int_kirdneh_river_house_0" file="interiors/kirdneh/river_house_0.tmx">
+ <configurator class-name="games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC"/>
+ 
   <portal x="22" y="2" ref="downstair">
     <destination zone="-1_fado_great_cave_n_e2" ref="kirdneh_house"/>
   </portal> 
