@@ -12,6 +12,7 @@ Changelog
 - new NPC Florence Boullabaisse on Ados market
 - new NPC Fritz on Ados market
 - new NPC Barbarus in Semos Mine
+- new NPC Ortiv Milquetoast in Kirdneh River House
 - new fish soup maker on Ados market (Florence Boullabaisse)
 - added new quest on Ados market to Haunchy Meatoch
 - added more quest histories
