@@ -370,6 +370,7 @@ public class StendhalClient extends ClientFramework {
 				final CharacterResult result = createCharacter(character, template);
 				if (result.getResult().failed()) {
 					logger.error(result.getResult().getText());
+					JOptionPane.showMessageDialog(StendhalFirstScreen.get(), result.getResult().getText());
 				}
 			} catch (final Exception e) {
 				logger.error(e, e);
