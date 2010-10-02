@@ -184,7 +184,7 @@ public class KillSpiders extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Kill spiders",
-				"Morgrin, groundskeeper of magic school, wants to clear magic school basement from spiders.",
+				"Morgrin, groundskeeper of magic school, wants to clear the magic school basement from spiders.",
 				true);
 		step_1();
 		step_2();
@@ -214,7 +214,7 @@ public class KillSpiders extends AbstractQuest {
 			return history;
 		};
 		if ("killed".equals(questState)) {
-			history.add("i have killed all spiders in magic shool basement and get mythical egg.");
+			history.add("I have killed all spiders in magic school basement and got a mythical egg.");
 			return history;
 		};
 
@@ -226,16 +226,16 @@ public class KillSpiders extends AbstractQuest {
 		final boolean sp3 = "giant spider".equals(player.getQuest(QUEST_SLOT, 3));
 		final boolean sp = "start".equals(player.getQuest(QUEST_SLOT, 0));
 		if (sp1) {
-			history.add("i have killed spider in basement.");
+			history.add("I have killed a spider in the basement.");
 		};
 		if (sp2) {
-			history.add("i have killed poisonous spider in basement.");
+			history.add("I have killed a poisonous spider in the basement.");
 		};					
 		if (sp3) {
-			history.add("i have killed giant spider in basement.");
+			history.add("I have killed a giant spider in the basement.");
 		};	
 		if (sp1 && sp2 && sp3) {
-			history.add("i have killed all 3 spiders in basement, and going to Morgrin for my reward.");
+			history.add("I have killed all 3 spiders in the basement. Now I go back to Morgrin to fetch my reward.");
 		};
 		
 		// here is support for old-style quest

@@ -96,7 +96,7 @@ public class MedicineForTad extends AbstractQuest {
 		}
 		if ((questState.equals("corpse&herbs") && player.isEquipped("arandula"))
 				|| player.isQuestInState(QUEST_SLOT, "potion", "done")) {
-			res.add("I found some Arandula herbs and will bring them to ilisa.");
+			res.add("I found some Arandula herbs and will bring them to Ilisa.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "potion", "done")) {
 			res.add("Ilisa created a powerful potion to help Tad. She asked me to tell him that it is ready.");

@@ -93,7 +93,7 @@ public class Snowballs extends AbstractQuest {
 			res.add("I found some snowballs after killing some ice golems.");
 		}
 		if (isCompleted(player)) {
-			res.add("I made Mr. Yeti happy with giving him the snowballs he wanted.");
+			res.add("I made Mr. Yeti happy when I gave him the snowballs he wanted.");
 		}
 		return res;
 	}

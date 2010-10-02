@@ -276,7 +276,7 @@ public class KillDarkElves extends AbstractQuest {
 			return history;
 		};
 		if ("done".equals(questState)) {
-			history.add("I completed Maerion's quest and got an  emerald ring of life!");
+			history.add("I completed Maerion's quest and got an emerald ring of life!");
 			return history;
 		};	
 
