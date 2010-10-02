@@ -120,7 +120,7 @@
 		<antcall target="internalUpdatePrereleaseVersion" />
 	</target>
 
-	<target name="internalUpdatePrereleaseVersion" if="${PRE_RELEASE}">
+	<target name="internalUpdatePrereleaseVersion" if="PRE_RELEASE">
 		<tstamp prefix="date">
 			<format property="iso" pattern="yyyy-MM-dd" />
 		</tstamp>
