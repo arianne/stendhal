@@ -22,6 +22,7 @@ import marauroa.common.game.RPAction;
  * Send a support request message with client information.
  */
 class ClientInfoAction implements SlashAction {
+	private boolean first = true;
 
 	/**
 	 * Execute a chat command.
@@ -63,12 +64,14 @@ class ClientInfoAction implements SlashAction {
 		final long freeMemory = Runtime.getRuntime().freeMemory() / 1024;
 		final long totalMemory = Runtime.getRuntime().totalMemory() / 1024;
 		sb.append("Total/Used memory: " + totalMemory + "/" + (totalMemory - freeMemory) + "\n");
-
-		tell.put("type", "support");
-		tell.put("text", sb.toString());
-
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(sb.toString(), NotificationType.CLIENT));
-		ClientSingletonRepository.getClientFramework().send(tell);
+
+		if (first) {
+			tell.put("type", "support");
+			tell.put("text", sb.toString());
+			ClientSingletonRepository.getClientFramework().send(tell);
+			first = false;
+		}
 
 		return true;
 	}
