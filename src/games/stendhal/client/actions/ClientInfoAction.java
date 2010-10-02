@@ -43,7 +43,12 @@ class ClientInfoAction implements SlashAction {
 		}
 
 		sb.append("\n");
-		sb.append("Stendhal: " + Debug.VERSION + "\n");
+		sb.append("Stendhal: " + Debug.VERSION);
+		if (Debug.PRE_RELEASE_VERSION != null) {
+			sb.append(" -");
+			sb.append(Debug.PRE_RELEASE_VERSION);
+		}
+		sb.append("\n");
 		// TODO: add classpath and information about webstart/download
 		sb.append("OS: " + System.getProperty("os.name") + " " + patchLevel
 				+ " " + System.getProperty("os.version") + " "
