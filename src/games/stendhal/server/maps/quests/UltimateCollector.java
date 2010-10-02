@@ -104,15 +104,15 @@ public class UltimateCollector extends AbstractQuest {
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
-		res.add("FIRST_CHAT");
+		res.add("Balduin asked me for a last special ultimate weapon collector quest.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
+			res.add("I don't want to bring him any more weapons at the moment.");
 			return res;
 		}
-		res.add("QUEST_ACCEPTED");
+		res.add("I accepted his last ultimate quest and promised to bring him a special and rare weapon.");
 		if (isCompleted(player)) {
-			res.add("DONE");
+			res.add("Yay! I am *the* ultimate weapon collector now!");
 		}
 		return res;
 	}
