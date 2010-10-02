@@ -38,9 +38,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import marauroa.common.Configuration;
@@ -65,7 +67,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPRuleProcessor.class);
 	/** list of super admins read from admins.list. */
-	private static List<String> adminNames;
+	private static Map<String, String> adminNames;
 	/** welcome message unless overwriten by an url */
 	private static String welcomeMessage = "Welcome to Stendhal. Need help? #http://stendhalgame.org/wiki/AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
 
@@ -356,7 +358,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	static void readAdminsFromFile(final Player player) {
 		if (adminNames == null) {
-			List<String> tempAdminNames = new LinkedList<String>();
+			Map<String, String> tempAdminNames = new HashMap<String, String>();
 
 			String adminFilename = "data/conf/admins.txt";
 			
@@ -374,7 +376,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				try {
 					String line;
 					while ((line = in.readLine()) != null) {
-						tempAdminNames.add(line);
+						String[] tokens = line.split("=");
+						if (tokens.length >= 2) {
+							tempAdminNames.put(tokens[0].trim(), tokens[1].trim());
+						} else {
+							tempAdminNames.put(tokens[0].trim(), Integer.toString(AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER));
+						}
 					}
 				} catch (final Exception e) {
 					logger.error("Error loading admin names from: "+ adminFilename, e);
@@ -388,8 +395,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 		}
 
-		if (adminNames.contains(player.getName())) {
-			player.setAdminLevel(AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
+		if (adminNames.get(player.getName()) != null) {
+			player.setAdminLevel(Integer.parseInt(adminNames.get(player.getName())));
 		}
 	}
 
