@@ -42,6 +42,7 @@ import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.client.sound.nosound.NoSoundFacade;
 import games.stendhal.common.CollisionDetection;
+import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundLayer;
@@ -284,9 +285,14 @@ public class j2DClient implements UserInterface {
 		// I hope that it discourages its use without the risks of unupdateable
 		// clients being distributed
 		if (!stendhal.screenSize.equals(new Dimension(640, 480))) {
-			addEventLine(new HeaderLessEventLine(("Using window size cheat: " + getWidth() + "x" + getHeight()), NotificationType.NEGATIVE));
+			addEventLine(new HeaderLessEventLine("Using window size cheat: " + getWidth() + "x" + getHeight(), NotificationType.NEGATIVE));
 		}
-		
+
+		// Display a hint if this is a debug client
+		if (Debug.PRE_RELEASE_VERSION != null) {
+			addEventLine(new HeaderLessEventLine("This is a pre release test client client: " + Debug.VERSION + " - " + Debug.PRE_RELEASE_VERSION, NotificationType.CLIENT));
+		}
+
 		// set some default window positions
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);

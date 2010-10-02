@@ -46,7 +46,7 @@ class ClientInfoAction implements SlashAction {
 		sb.append("\n");
 		sb.append("Stendhal: " + Debug.VERSION);
 		if (Debug.PRE_RELEASE_VERSION != null) {
-			sb.append(" -");
+			sb.append(" - ");
 			sb.append(Debug.PRE_RELEASE_VERSION);
 		}
 		sb.append("\n");

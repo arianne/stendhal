@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.update.ClientGameConfiguration;
+import games.stendhal.common.Debug;
 
 import java.net.URL;
 
@@ -49,8 +50,12 @@ public class MainFrame {
 	}
 
 	private void setTitle() {
+		String preRelease = "";
+		if (Debug.PRE_RELEASE_VERSION != null) {
+			preRelease = " - " + Debug.PRE_RELEASE_VERSION;
+		}
 		mainFrame.setTitle(ClientGameConfiguration.get("GAME_NAME") + " "
-				+ stendhal.VERSION
+				+ stendhal.VERSION + preRelease
 				+ " - a multiplayer online game using Arianne");
 	}
 

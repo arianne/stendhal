@@ -22,6 +22,7 @@ import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.Version;
 
+import games.stendhal.common.Debug;
 import games.stendhal.common.resource.ResourceManager;
 import java.awt.Dimension;
 import java.security.AccessControlException;
@@ -110,6 +111,7 @@ public class stendhal {
 
 		logger.info("Setting base at :" + STENDHAL_FOLDER);
 		logger.info("Stendhal " + VERSION);
+		logger.info(Debug.PRE_RELEASE_VERSION);
 
 		String patchLevel = System.getProperty("sun.os.patch.level");
 		if ((patchLevel == null) || (patchLevel.equals("unknown"))) {
