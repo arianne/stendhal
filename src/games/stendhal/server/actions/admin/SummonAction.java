@@ -121,8 +121,7 @@ public class SummonAction extends AdministrationAction {
 								if (((Creature) entity).isRare() && System.getProperty("stendhal.testserver") == null) {
 									// Rare creatures should not be summoned even in raids
 									// Require parameter -Dstendhal.testserver=junk
-									error("Creatures with the rare property may only be summoned on test servers " 
-												+ "which are activated with the vm parameter: -Dstendhal.testserver=junk");
+									error("Rare creatures may not be summoned.");
 									return;
 								} 
 							} else {
