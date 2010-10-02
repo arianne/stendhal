@@ -111,6 +111,23 @@
 			match="-0\..*\.jar&quot;"
 			replace="-${version}.jar&quot;"
 			byline="true"/>
+
+		<!-- pre release version -->
+		<replaceregexp file="${src}/games/stendhal/common/Debug.java"
+			match="String PRE_RELEASE_VERSION ?= .*;"
+			replace="String PRE_RELEASE_VERSION = null;"
+			byline="true"/>
+		<antcall target="internalUpdatePrereleaseVersion" />
+	</target>
+
+	<target name="internalUpdatePrereleaseVersion" if="${PRE_RELEASE}">
+		<tstamp prefix="date">
+			<format property="iso" pattern="yyyy-MM-dd" />
+		</tstamp>
+		<replaceregexp file="${src}/games/stendhal/common/Debug.java"
+			match="String PRE_RELEASE_VERSION ?= .*;"
+			replace="String PRE_RELEASE_VERSION = &quot;PRE_RELEASE ${date.iso}&quot;;"
+			byline="true"/>
 	</target>
 
 	<target name="clean">
