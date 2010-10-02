@@ -85,7 +85,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 		return result;
 	}
 		
-	private static final List<String> NEEDED_ITEMS = Arrays.asList("flask=1;arandula=2;red lionfish=10;kokuda;toadstool=12;licorice=2;apple=10;red wine=30;garlic=2");
+	private static final List<String> NEEDED_ITEMS = Arrays.asList("flask=1;arandula=2;red lionfish=10;kokuda;toadstool=12;licorice=2;apple=10;wine=30;garlic=2");
 
 	private static final String QUEST_SLOT = "mixture_for_ortiv";
 
@@ -134,7 +134,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 		// players asks about the ingredients individually
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
-			Arrays.asList("flask=1;arandula=2;red lionfish=10;kokuda;toadstool=12;licorice=2;apple=10;red wine=30;garlic=2"),
+			Arrays.asList("flask","arandula","red lionfish","kokuda","toadstool","licorice","apple","wine","garlic"),
 			null,
 			ConversationStates.QUEST_OFFERED,
 			"Will you fetch the ingredients?",
