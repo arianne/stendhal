@@ -15,12 +15,13 @@ Changelog
 - new NPC Ortiv Milquetoast in Kirdneh River House
 - new fish soup maker on Ados market (Florence Boullabaisse)
 - added new quest on Ados market to Haunchy Meatoch
+- added new quest in the Kirdneh River House to Ortiv Milquetoast
 - added more quest histories
 - rest of the Wt replaced with swing
 - corpse and chest windows raise themselves if one with an already open window is inspected
 - buddies are sorted first by online status, then by name
 - deathmatch assistant announces completion and player can directly claim victory
-- new items fish soup, garlic, grilled steak, coal, pick
+- new items fish soup, garlic, grilled steak, coal, pick, red lionfish
 - coal sources for extracting coal
 - added garlic to Sues sales list
 
