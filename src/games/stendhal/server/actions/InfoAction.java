@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.common.Debug;
 import games.stendhal.server.entity.player.Player;
 
 import java.text.SimpleDateFormat;
@@ -19,19 +20,25 @@ import java.util.Date;
 
 import marauroa.common.game.RPAction;
 
+/**
+ * Answers with the server time and if this is the test server with the version information.
+ * 
+ * @author hendrik
+ */
 public class InfoAction implements ActionListener {
 
 	private static final String DATE_FORMAT_NOW = "dd-MMMM-yyyy HH:mm:ss";
 
 	public void onAction(final Player player, final RPAction action) {
 		player.sendPrivateText("The server time is " + getGametime());
-
+		if (Debug.PRE_RELEASE_VERSION != null) {
+			player.sendPrivateText("Testserver version " + Debug.VERSION + " - " + Debug.PRE_RELEASE_VERSION);
+		}
 	}
 
 	private String getGametime() {
-		 final SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
-		    return sdf.format(new Date(System.currentTimeMillis()));
-		
+		final SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+		return sdf.format(new Date(System.currentTimeMillis()));
 	}
 
 }
