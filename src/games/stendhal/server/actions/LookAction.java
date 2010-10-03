@@ -25,9 +25,11 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 
+/**
+ * Processes a look menu action.
+ */
 public class LookAction implements ActionListener {
 
-	
 
 	public static void register() {
 		CommandCenter.register(LOOK, new LookAction());

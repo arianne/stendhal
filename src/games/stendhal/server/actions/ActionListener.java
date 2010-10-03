@@ -15,6 +15,9 @@ package games.stendhal.server.actions;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+/**
+ * processes actions sent by the client.
+ */
 public interface ActionListener {
 
 	/**

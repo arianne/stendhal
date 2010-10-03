@@ -24,9 +24,12 @@ import java.util.TreeSet;
 
 import marauroa.common.game.RPAction;
 
+/**
+ * Lists all online players with their levels.
+ * Administrators in ghostmode are only visible to other admins
+ * and are flagged with a "!".
+ */
 public class WhoAction implements ActionListener {
-
-	
 
 	public static void register() {
 		final WhoAction query = new WhoAction();

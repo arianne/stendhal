@@ -23,6 +23,9 @@ import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+/**
+ * Tells the client where the queried player is on the world.
+ */
 public class WhereAction implements ActionListener {
 
 	public static void register() {

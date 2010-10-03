@@ -19,7 +19,9 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
-
+/**
+ * Changes the outfit for the player
+ */
 public class OutfitAction implements ActionListener {
 
 

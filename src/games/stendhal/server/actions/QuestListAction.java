@@ -19,6 +19,9 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+/**
+ * list the known quest or gives details on them.
+ */
 public class QuestListAction implements ActionListener {
 	
 

@@ -22,6 +22,9 @@ import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
+/**
+ * sets a sentences that is displayed on the character page of the website.
+ */
 public class SentenceAction implements ActionListener {
 	private static Logger logger = Logger.getLogger(SentenceAction.class);
 

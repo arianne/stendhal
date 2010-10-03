@@ -43,6 +43,10 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Handles actions sent by the client. They are dispatched to the 
+ * specialized action classes in which they are processed.
+ */
 public class CommandCenter {
 	private static final UnknownAction UNKNOWN_ACTION = new UnknownAction();
 	private static ConcurrentHashMap<String, ActionListener> actionsMap;

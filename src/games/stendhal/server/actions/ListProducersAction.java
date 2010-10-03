@@ -17,6 +17,9 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+/**
+ * Lists the producers with have open tasks for the asking player.
+ */
 public class ListProducersAction implements ActionListener {
 	
 

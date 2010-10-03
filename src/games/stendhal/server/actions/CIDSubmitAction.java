@@ -23,6 +23,9 @@ import marauroa.common.game.RPAction;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.container.PlayerEntryContainer;
 
+/**
+ * handles CID actions.
+ */
 public class CIDSubmitAction implements ActionListener {
 	
 	//Key is ID, value contains list of names

@@ -30,6 +30,9 @@ import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
+/**
+ * Uses an item or an other entity that implements Useable
+ */
 public class UseAction implements ActionListener {
 
 	public static void register() {
