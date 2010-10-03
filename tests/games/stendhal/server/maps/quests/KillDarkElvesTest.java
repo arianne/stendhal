@@ -167,7 +167,7 @@ public class KillDarkElvesTest {
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
 			assertEquals(playerSays, "Thanks for your help. I am relieved to have the amulet back.", getReply(npc));
 			questHistory.clear();
-			questHistory.add("I completed Maerion's quest and got an  emerald ring of life!");
+			questHistory.add("I completed Maerion's quest and got an emerald ring of life!");
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
@@ -334,7 +334,7 @@ public class KillDarkElvesTest {
 			assertThat(bob.getXP(), greaterThan(xp));
 			assertTrue(bob.isQuestCompleted(QUEST_SLOT));
 			questHistory.clear();
-			questHistory.add("I completed Maerion's quest and got an  emerald ring of life!");			
+			questHistory.add("I completed Maerion's quest and got an emerald ring of life!");			
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
@@ -495,7 +495,7 @@ public class KillDarkElvesTest {
 			assertThat(bob.getXP(), greaterThan(xp));
 			assertTrue(bob.isQuestCompleted(QUEST_SLOT));
 			questHistory.clear();
-			questHistory.add("I completed Maerion's quest and got an  emerald ring of life!");			
+			questHistory.add("I completed Maerion's quest and got an emerald ring of life!");			
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
