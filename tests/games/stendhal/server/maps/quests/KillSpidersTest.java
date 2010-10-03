@@ -135,16 +135,16 @@ public class KillSpidersTest extends SpidersCreatures {
 
 		killSpider("spider");
 		assertEquals("spider", player.getQuest(questSlot, 1));
-		questHistory.add("i have killed spider in basement.");
+		questHistory.add("I have killed a spider in the basement.");
 		assertEquals(questHistory, quest.getHistory(player));
 		killSpider("poisonous spider");
 		assertEquals("poisonous spider",player.getQuest(questSlot, 2));
-		questHistory.add("i have killed poisonous spider in basement.");
+		questHistory.add("I have killed a poisonous spider in the basement.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		killSpider("giant spider");
 		assertEquals("giant spider",player.getQuest(questSlot, 3));
-		questHistory.add("i have killed giant spider in basement.");
-		questHistory.add("i have killed all 3 spiders in basement, and going to Morgrin for my reward.");
+		questHistory.add("I have killed a giant spider in the basement.");
+		questHistory.add("I have killed all 3 spiders in the basement. Now I go back to Morgrin to fetch my reward.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		final int xp = player.getXP();
 		final double karma = player.getKarma();
@@ -157,7 +157,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getKarma(), greaterThan(karma));
 		assertTrue(player.getQuest(questSlot).startsWith("killed"));
-		questHistory.add("i have killed all spiders in magic shool basement and get mythical egg.");
+		questHistory.add("I have killed all spiders in magic school basement and got a mythical egg.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
@@ -210,7 +210,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertEquals("Bye.", getReply(npc));
 		
 		player.setSharedKill("spider");
-		questHistory.add("i have killed spider in basement.");
+		questHistory.add("I have killed a spider in the basement.");
 		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("Go down and kill the creatures, no time left.", getReply(npc));
@@ -218,7 +218,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertEquals("Bye.", getReply(npc));
 		
 		player.setSharedKill("poisonous spider");
-		questHistory.add("i have killed poisonous spider in basement.");
+		questHistory.add("I have killed a poisonous spider in the basement.");
 		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("Go down and kill the creatures, no time left.", getReply(npc));
@@ -226,8 +226,8 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertEquals("Bye.", getReply(npc));
 		
 		player.setSharedKill("giant spider");
-		questHistory.add("i have killed giant spider in basement.");
-		questHistory.add("i have killed all 3 spiders in basement, and going to Morgrin for my reward.");
+		questHistory.add("I have killed a giant spider in the basement.");
+		questHistory.add("I have killed all 3 spiders in the basement. Now I go back to Morgrin to fetch my reward.");
 		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("Oh thank you my friend. Here you have something special, I got it from a Magican. Who he was I do not know. What the egg's good for, I do not know. I only know, it could be useful for you.", getReply(npc));
@@ -236,7 +236,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertThat(player.getKarma(), greaterThan(karma));
 		assertTrue(player.getQuest(questSlot).startsWith("killed"));
 		questHistory.clear();
-		questHistory.add("i have killed all spiders in magic shool basement and get mythical egg.");
+		questHistory.add("I have killed all 3 spiders in the basement. Now I go back to Morgrin to fetch my reward.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));       
