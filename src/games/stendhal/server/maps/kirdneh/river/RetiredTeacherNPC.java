@@ -76,9 +76,9 @@ public class RetiredTeacherNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Ohh a stranger found my hidden house, welcome!");
 				addHelp("Never ever get into trouble with assassins when they are stronger than you! They will come to get you otherwise!");
-				addQuest("I currently work on a mixture to keep the rowdy gang downstairs... Maybe you can help me later with getting me some of the ingredients I'll need.");
 				addJob("I was a teacher for alchemy once but some of my students turned into ugly bandits and assassins... I don't know what happens in Faiumoni at the moment as though as I just stay in my save house the whole day long...");
 				addOffer("Sorry, but I can't offer you anything... I have some mayor problems in my basement at the moment...");
+				addQuest("I want to prepare a mixture for keeping the assassins and bandits in my cellar. I could need some #ingredients for that...");
 				addGoodbye("Take care of you and please be fast with visiting me again, I'm scared alone!");
 				
 			}
