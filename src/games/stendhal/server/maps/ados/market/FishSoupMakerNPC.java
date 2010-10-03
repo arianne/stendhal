@@ -62,7 +62,7 @@ public class FishSoupMakerNPC implements ZoneConfigurator {
 				addJob("I am a trained cook but specialized into soups. My most favourite soup is a fish soup but I also like normal ones...");
 				addOffer("If you are really hungry or need some food for your travels, I can cook a really tasty fish soup for you after a selfmade receipe.");
 				addGoodbye("Have a nice stay and day on Ados market!");
-				
+				addEmotionReply("cuddle", "cuddle");
 			}
 		};
 
