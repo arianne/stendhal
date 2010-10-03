@@ -88,7 +88,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 			res.add("I don't want to help Ortiv at the moment. He should go out and take the ingredients by himself.");
 		}
 		if ("done".equals(questState)) {
-			res.add("I helped Ortiv. Now he can sleep save again in his bed. He rewarded me with some XP and an assassin dagger for my use.");
+			res.add("I helped Ortiv. Now he can sleep safe again in his bed. He rewarded me with some XP and an assassin dagger for my use.");
 		}
 		return res;
 	}
@@ -268,7 +268,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 						if (missingItems.size() > 0) {
 							raiser.say("Wonderful! Did you bring anything else with you?");
 						} else {
-							raiser.say("Thank you so much! Now I can start mixing the mixture which will hopefully keep me save inside of my own house without the assassins and bandits comming up from downstairs. Here is an assassin dagger for you. I had to take it away from one of my students in the class once and now you can maybe fight and win against them.");
+							raiser.say("Thank you so much! Now I can start mixing the mixture which will hopefully keep me safe inside of my own house without the assassins and bandits comming up from downstairs. Here is an assassin dagger for you. I had to take it away from one of my students in the class once and now you can maybe fight and win against them.");
 							player.setQuest(QUEST_SLOT, "done");
 							final Item reward = (Item) SingletonRepository.getEntityManager().getItem("assassin dagger");
 							player.equipOrPutOnGround(reward);
@@ -313,7 +313,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, 
-				"Thank you so much! I can sleep savely and calm again now! You rescued me!", null);
+				"Thank you so much! I can sleep safely and calm again now! You rescued me!", null);
 		
 	}
 	
