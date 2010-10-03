@@ -97,7 +97,7 @@ public class PostmanMain extends Thread {
 
 			@Override
 			protected String getVersionNumber() {
-				return Version.VERSION;
+				return Version.getVersion();
 			}
 
 			@Override

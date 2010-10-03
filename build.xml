@@ -73,8 +73,8 @@
 			replace="String VERSION = &quot;${version}&quot;;"
 			byline="true"/>
 		<replaceregexp file="${src}/games/stendhal/client/update/Version.java"
-			match="public static final String VERSION ?= ?&quot;.*&quot;;"
-			replace="public static final String VERSION = &quot;${version}&quot;;"
+			match="private static final String VERSION ?= ?&quot;.*&quot;;"
+			replace="private static final String VERSION = &quot;${version}&quot;;"
 			byline="true"/>
 		<replaceregexp file="${src}/games/stendhal/server/core/engine/GenerateINI.java"
 			match="out.println\(&quot;server_version=.*&quot;\);"

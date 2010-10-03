@@ -79,7 +79,7 @@ public class UpdateManager {
 			versionState = VersionState.INITIAL_DOWNLOAD;
 		} else {
 			final String versionStateString = updateProp.getProperty("version."
-					+ Version.VERSION);
+					+ Version.getVersion());
 			versionState = VersionState.getFromString(versionStateString);
 		}
 
@@ -116,7 +116,7 @@ public class UpdateManager {
 			break;
 
 		case UPDATE_NEEDED:
-			version = Version.VERSION;
+			version = Version.getVersion();
 			files = getFilesToUpdate(version);
 			filesToAddToClasspath = new ArrayList<String>(files);
 			removeAlreadyExistingFiles(files);

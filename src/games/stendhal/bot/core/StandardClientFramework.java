@@ -132,7 +132,7 @@ public abstract class StandardClientFramework extends ClientFramework {
 
 	@Override
 	protected String getVersionNumber() {
-		return Version.VERSION;
+		return Version.getVersion();
 	}
 
 	@Override

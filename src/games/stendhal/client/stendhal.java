@@ -67,7 +67,7 @@ public class stendhal {
 		RESOURCE_MANAGER.addScheme("audio" , "data/sounds", "data/music");
 	}
 
-	public static final String VERSION = Version.VERSION;
+	public static final String VERSION = Version.getVersion();
 
 	public static Dimension screenSize = new Dimension(640, 480);
 	
