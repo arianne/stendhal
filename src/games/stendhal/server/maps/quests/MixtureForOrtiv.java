@@ -13,26 +13,30 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
-import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
-import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.ItemCollection;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * QUEST: Mixture for Ortiv
@@ -66,81 +70,91 @@ import java.util.List;
  */
 public class MixtureForOrtiv extends AbstractQuest {
 
-	private List<String> missingITEMS(final Player player, final boolean hash) {
-		final List<String> result = new LinkedList<String>();
-		
-		String doneText = player.getQuest(QUEST_SLOT);
-		if (doneText == null) {
-			doneText = "";
-		}
-		final List<String> done = Arrays.asList(doneText.split(";"));
-		for (String ingredient : NEEDED_ITEMS) {
-			if (!done.contains(ingredient)) {
-				if (hash) {
-					ingredient = "#" + ingredient;
-				}
-				result.add(ingredient);
-			}
-		}
-		return result;
-	}
-		
-	private static final List<String> NEEDED_ITEMS = Arrays.asList("flask=1;arandula=2;red lionfish=10;kokuda;toadstool=12;licorice=2;apple=10;wine=30;garlic=2");
+	public static final String QUEST_SLOT = "mixture_for_ortiv";
 
-	private static final String QUEST_SLOT = "mixture_for_ortiv";
+	/**
+	 * required items for the quest.
+	 */
+	protected static final String NEEDED_ITEMS = "flask=1;arandula=2;red lionfish=10;kokuda;toadstool=12;licorice=2;apple=10;wine=30;garlic=2";
 
 	@Override
-	public String getSlotName() {
-		return QUEST_SLOT;
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("I met Ortiv Milquetoast, a retired teacher in his house at Kirdneh River.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if ("rejected".equals(questState)) {
+			res.add("I don't want to help Ortiv at the moment. He should go out and take the ingredients by himself.");
+		}
+		if ("done".equals(questState)) {
+			res.add("I helped Ortiv. Now he can sleep save again in his bed. He rewarded me with some XP and an assassin dagger for my use.");
+		}
+		return res;
 	}
-	
-	private void offerQuestStep() {
+
+	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Ortiv Milquetoast");
-			npc.add(ConversationStates.ATTENDING,
-					ConversationPhrases.QUEST_MESSAGES, 
+
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(
+					new LevelGreaterThanCondition(2),
 					new QuestNotStartedCondition(QUEST_SLOT),
-					ConversationStates.QUEST_OFFERED, 
-					"I currently work on a mixture to keep the rowdy gang downstairs... Maybe you can help me later with getting me some of the #ingredients I'll need.",
-					null);
-			
-		// player asks what exactly is missing
-		npc.add(ConversationStates.QUEST_OFFERED, "ingredients", null,
-			ConversationStates.QUEST_OFFERED, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					final List<String> needed = missingITEMS(player, true);
-					npc.say("I need "
-							+ Grammar.quantityplnoun(needed.size(),
-									"ingredient", "one")
-							+ " to prepare the mixture which will hopefully save me from the assassins and bandits in my cellar: "
-							+ Grammar.enumerateCollection(needed)
-							+ ". Will you collect them?");
-				}
-			});
-
-		// player is willing to collect
-		npc.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES, null,
+					new NotCondition(new QuestInStateCondition(QUEST_SLOT,"rejected"))),
 			ConversationStates.QUESTION_1, 
-			"Oh that will be awesome, stranger! You can maybe rescue my life with that! Do you have anything I need already?",
-			new SetQuestAction(QUEST_SLOT, ""));
+			"Ohh a stranger found my hidden house, welcome! Maybe you can help me with something?", null);
 
-		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				"I thought you will maybe help me... But I was wrong, obviously... So wrong as with my students while I was a teacher...", null);
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+			new QuestInStateCondition(QUEST_SLOT,"rejected"),
+			ConversationStates.QUEST_OFFERED, 
+			"Hey, did you think about helping me again? Will you do it?", null);
 
-		// players asks about the ingredients individually
 		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			Arrays.asList("flask","arandula","red lionfish","kokuda","toadstool","licorice","apple","wine","garlic"),
-			null,
-			ConversationStates.QUEST_OFFERED,
-			"Will you fetch the ingredients?",
+			ConversationStates.QUESTION_1,
+			ConversationPhrases.YES_MESSAGES,
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"I currently work on a mixture to keep the rowdy gang downstairs... Maybe you can help me later with getting me some of the #ingredients I'll need.",
 			null);
 
-		// players asks about the ingredients individually
+		npc.add(
+			ConversationStates.QUESTION_1,
+			ConversationPhrases.NO_MESSAGES,
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"I currently work on a mixture to keep the rowdy gang downstairs... Maybe you can help me later with getting me some of the #ingredients I'll need.",
+			null);
+
+		npc.add(
+			ConversationStates.ATTENDING,
+			"ingredients",
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.QUEST_OFFERED,
+			"I was a teacher for alchemy once, now I try to mix something together. I need some ingredients for that and hope that you will help me. Will you?",
+			null);
+
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.YES_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+			null,
+			new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
+								new ChatAction() {
+									public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+										raiser.say("Oh that will be awesome, stranger! You can maybe rescue my life with that! Please bring me those ingredients: " 
+												   + Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash()) + ".");
+									}}));
+
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+			"I thought you will maybe help me... But I was wrong, obviously... So wrong as with my students while I was a teacher...",
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+
 		npc.add(
 				ConversationStates.ATTENDING,
 				"apple",
@@ -199,7 +213,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 			
 			npc.add(
 					ConversationStates.ATTENDING,
-					"red wine",
+					"glasses of wine",
 					null,
 					ConversationStates.ATTENDING,
 					"Mhhhmm there isn't anything better than mixing stuff together while enjoying a glass of red wine *cough* but I need it of course for my mixture as well... I bet, you can buy wine somewhere, maybe in a tavern or a bar...",
@@ -214,168 +228,189 @@ public class MixtureForOrtiv extends AbstractQuest {
 					null);
 	}
 
-	private void step_2() {
-		// Fetch the ingredients and bring them back to Ortiv.
-	}
-
-	private void step_3() {
+	private void prepareBringingStep() {
 		final SpeakerNPC npc = npcs.get("Ortiv Milquetoast");
+	
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_2,
+				"Hello again! I'm glad to see you. Did you bring me any #ingredients for my mixture?",
+				null);
 
-		// player returns while quest is still active
-		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
-			ConversationStates.QUESTION_1,
-			"Hello again! I'm glad to see you. Did you bring me any #ingredients for my mixture?",
-			null);
+		/* player asks what exactly is missing (says ingredients) */
+		npc.add(ConversationStates.QUESTION_2, "ingredients", null,
+				ConversationStates.QUESTION_2, null,
+				new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						final List<String> needed = getMissingItems(player).toStringListWithHash();
+						raiser.say("I need "
+								+ Grammar.enumerateCollection(needed)
+								+ ". Did you bring something?");
+					}
+				});
 
-		// player asks what exactly is missing
-		npc.add(ConversationStates.QUESTION_1, "ingredients",
-			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
-			ConversationStates.QUESTION_1, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					final List<String> needed = missingITEMS(player, true);
-					npc.say("I still need "
-							+ Grammar.quantityplnoun(needed.size(),
-									"ingredient", "one") + ": "
-							+ Grammar.enumerateCollection(needed)
-							+ ". Did you bring anything I need for my mixture?");
-				}
-			});
-
-		// player says he has a required ingredient with him
-		npc.add(ConversationStates.QUESTION_1,
+		/* player says he has a required item with him (says yes) */
+		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.QUESTION_1, "Great, what did you bring?", null);
+				ConversationStates.QUESTION_2, "Awesome, what did you bring?",
+				null);
 
-		npc.add(ConversationStates.QUESTION_1, NEEDED_ITEMS, null,
-			ConversationStates.QUESTION_1, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					final Expression item = sentence.getTriggerExpression();
+		/* create the ChatAction used for item triggers */
+		final ChatAction itemsChatAction = new ChatAction() {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+                final String item = sentence.getTriggerExpression().getNormalized();
+			    ItemCollection missingItems = getMissingItems(player);
+				final Integer missingCount = missingItems.get(item);
 
-					TriggerList missing = new TriggerList(missingITEMS(player, false));
+				if ((missingCount != null) && (missingCount > 0)) {
+					if (dropItems(player, item, missingCount)) {
+						missingItems = getMissingItems(player);
 
-					final Expression found = missing.find(item);
-					if (found != null) {
-						final String itemName = found.getOriginal();
-
-						if (player.drop(itemName)) {
-							// register ingredient as done
-							final String doneText = player.getQuest(QUEST_SLOT);
-							player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
-
-							// check if the player has brought all Food
-							missing = new TriggerList(missingITEMS(player, true));
-
-							if (missing.size() > 0) {
-								npc.say("Wonderful! Did you bring anything else with you?");
-							} else {
-								player.addKarma(25.0);
-								player.addXP(5000);
-								npc.say("Here is an assassin dagger for you. I had to take it away from one of my students in the class once.");
-								player.setQuest(QUEST_SLOT, "done;");
-								player.notifyWorldAboutChanges();
-								npc.setCurrentState(ConversationStates.ATTENDING);
-							}
+						if (missingItems.size() > 0) {
+							raiser.say("Wonderful! Did you bring anything else with you?");
 						} else {
-							npc.say("Oh you don't have "
-								+ Grammar.a_noun(itemName)
-								+ " with you.");
+							raiser.say("Thank you so much! Now I can start mixing the mixture which will hopefully keep me save inside of my own house without the assassins and bandits comming up from downstairs. Here is an assassin dagger for you. I had to take it away from one of my students in the class once and now you can maybe fight and win against them.");
+							player.setQuest(QUEST_SLOT, "done");
+							final Item reward = (Item) SingletonRepository.getEntityManager().getItem("assassin dagger");
+							player.equipOrPutOnGround(reward);
+							player.addXP(5000);
+							player.notifyWorldAboutChanges();
+							player.addKarma(25.0);
+							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					} else {
-						npc.say("You brought me that ingredient already.");
+						raiser.say("Oh, you don't have " + item + " with you.");
 					}
+				} else {
+					raiser.say("You brought me that ingredient already.");
 				}
-			});
-		
-		// Perhaps player wants to give all the ingredients at once
-		npc.add(ConversationStates.QUESTION_1, "everything",
-				null,
-				ConversationStates.QUESTION_1,
-				null,
-				new ChatAction() {
-			    public void fire(final Player player, final Sentence sentence,
-					   final EventRaiser npc) {
-			    	checkForAllIngredients(player, npc);
 			}
-		});
+		};
 
-		// player says something which isn't in the needed food list.
-		npc.add(ConversationStates.QUESTION_1, "",
-			new NotCondition(new TriggerInListCondition(NEEDED_ITEMS)),
-			ConversationStates.QUESTION_1,
-			"I won't put that in the mixture.", null);
+		/* add triggers for the item names */
+		final ItemCollection items = new ItemCollection();
+		items.addFromQuestStateString(NEEDED_ITEMS);
+		for (final Map.Entry<String, Integer> item : items.entrySet()) {
+			npc.add(ConversationStates.QUESTION_2, item.getKey(), null,
+					ConversationStates.QUESTION_2, null, itemsChatAction);
+		}
 
-		// allow to say goodbye while Ortiv is listening for item names
-		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.GOODBYE_MESSAGES, null,
-				ConversationStates.IDLE, "Bye.", null);
-
+		/* player says he didn't bring any items (says no) */
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
-			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
-			ConversationStates.ATTENDING,
-			"Ok, well I have to be a bit more patient then.", null);
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Ok, well I have to be a bit more patient then. Just let me know if I can #help you somehow instead.", 
+				null);
 
-		// player says he didn't bring any Items to different question
-		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
-			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
-			ConversationStates.ATTENDING, "Okay then. I'll wait for your return.",
-			null);
-	}
+		/* player says he didn't bring any items to different question */
+		npc.add(ConversationStates.QUESTION_2,
+				ConversationPhrases.NO_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Ok, well I have to be a bit more patient then. Just let me know if I can #help you somehow instead.", null);
 
-	private void checkForAllIngredients(final Player player, final EventRaiser npc) {
-		List<String> missing = missingITEMS(player, false);
-		for (final String item : missing) {
-		if (player.drop(item)) {							
-			// register ingredient as done
-			final String doneText = player.getQuest(QUEST_SLOT);
-			player.setQuest(QUEST_SLOT, doneText + ";"
-			+ item);
-			}
-		}
-		// check if the player has brought all ingredients
-		missing = missingITEMS(player, true);
-		if (missing.size() > 0) {
-			npc.say("You didn't have all the ingredients I need. I still need "
-							+ Grammar.quantityplnoun(missing.size(),
-									"ingredient", "one") + ": "
-									+ Grammar.enumerateCollection(missing)
-									+ ". Please come back, when you have everything with you.");
-			return;
-		} else {
-			// you get less XP if you did it the lazy way
-			// and no karma
-			player.addXP(5000);
-			npc.say("Here is an assassin dagger for you. I had to take it away from one of my students in the class once.");
-			player.setQuest(QUEST_SLOT, "done;");
-			player.notifyWorldAboutChanges();
-			npc.setCurrentState(ConversationStates.ATTENDING);
-		}
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"Thank you so much! I can sleep savely and calm again now! You rescued me!", null);
+		
 	}
 	
+	/**
+	 * Returns all items that the given player still has to bring to complete the quest.
+	 *
+	 * @param player The player doing the quest
+	 * @return A list of item names
+	 */
+	private ItemCollection getMissingItems(final Player player) {
+		final ItemCollection missingItems = new ItemCollection();
+
+		missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
+
+		return missingItems;
+	}
+
+	/**
+	 * Drop specified amount of given item. If player doesn't have enough items,
+	 * all carried ones will be dropped and number of missing items is updated.
+	 *
+	 * @param player
+	 * @param itemName
+	 * @param itemCount
+	 * @return true if something was dropped
+	 */
+	private boolean dropItems(final Player player, final String itemName, int itemCount) {
+		boolean result = false;
+
+		 // parse the quest state into a list of still missing items
+		final ItemCollection itemsTodo = new ItemCollection();
+
+		itemsTodo.addFromQuestStateString(player.getQuest(QUEST_SLOT));
+
+		if (player.drop(itemName, itemCount)) {
+			if (itemsTodo.removeItem(itemName, itemCount)) {
+				result = true;
+			}
+		} else {
+			/*
+			 * handle the cases the player has part of the items or all divided
+			 * in different slots
+			 */
+			final List<Item> items = player.getAllEquipped(itemName);
+			if (items != null) {
+				for (final Item item : items) {
+					final int quantity = item.getQuantity();
+					final int n = Math.min(itemCount, quantity);
+
+					if (player.drop(itemName, n)) {
+						itemCount -= n;
+
+						if (itemsTodo.removeItem(itemName, n)) {
+							result = true;
+						}
+					}
+
+					if (itemCount == 0) {
+						result = true;
+						break;
+					}
+				}
+			}
+		}
+
+		 // update the quest state if some items are handed over
+		if (result) {
+			player.setQuest(QUEST_SLOT, itemsTodo.toStringForQuestState());
+		}
+
+		return result;
+	}
+
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		fillQuestInfo(
 				"Mixture for Ortiv",
-				"Ortiv asks you for some ingredients for a mixture which will help him to keep the assassins and bandits in the cellar",
-				false);
-		offerQuestStep();
-		step_2();
-		step_3();
+				"Ortiv asks you for some ingredients for a mixture which will help him to keep the assassins and bandits in the cellar.",
+				true);
+		prepareRequestingStep();
+		prepareBringingStep();
+	}
+
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
 	}
 
 	@Override
 	public String getName() {
 		return "MixtureForOrtiv";
 	}
-	
-	
-	@Override
-	public int getMinLevel() {
-		return 20;
+
+	public String getTitle() {
+		
+		return "Mixture for Ortiv";
 	}
 	
 }
