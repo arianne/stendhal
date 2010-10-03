@@ -244,16 +244,16 @@ public class KillSpiders extends AbstractQuest {
 			final boolean osp2 = player.hasKilled("poisonous spider");
 			final boolean osp3 = player.hasKilled("giant spider");
 			if (osp1) {
-				history.add("i have killed spider in basement.");				
+				history.add("I have killed a spider in the basement.");				
 			};
 			if (osp2) {
-				history.add("i have killed poisonous spider in basement.");				
+				history.add("I have killed a poisonous spider in the basement.");				
 			};
 			if (osp3) {
-				history.add("i have killed giant spider in basement.");				
+				history.add("I have killed a giant spider in the basement.");				
 			};
 			if (osp1 && osp2 && osp3) {
-				history.add("i have killed all 3 spiders in basement, and going to Morgrin for my reward.");				
+				history.add("I have killed all 3 spiders in the basement. Now I go back to Morgrin to fetch my reward.");				
 			};		
 		}
 		
