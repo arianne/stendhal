@@ -26,7 +26,6 @@ import org.apache.log4j.Logger;
  * 
  * @author timothyb89
  */
-@SuppressWarnings("serial")
 public class ImageViewPanel extends ViewPanel {
 
 	/**

@@ -115,6 +115,7 @@ public class ProgressBar extends JFrame {
 						}
 						m_stepCounter--;
 					} catch (final InterruptedException ie) {
+						// ignore
 					}
 				}
 				ProgressBar.this.dispose();

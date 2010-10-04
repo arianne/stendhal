@@ -25,7 +25,6 @@ import javax.swing.event.MenuKeyEvent;
 /**
  * A popup-menu that will redirect most key events to its invoker.
  */
-@SuppressWarnings("serial")
 public abstract class WtPopupMenu extends JPopupMenu {
 
 	/**

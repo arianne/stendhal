@@ -119,6 +119,7 @@ public class QuitDialog {
 	 */
 	private class ParentResizeListener implements HierarchyBoundsListener {
 		public void ancestorMoved(HierarchyEvent e) {
+			// ignore
 		}
 
 		public void ancestorResized(HierarchyEvent e) {

@@ -56,7 +56,6 @@ public class SoundFile extends SignalProcessor implements Cloneable
 		}
 	};
 
-	@SuppressWarnings("empty-statement")
     public SoundFile(Resource resource, Type fileType, int outputNumSamplesPerChannel, boolean enableStreaming) throws IOException
     {
 		assert resource != null;
