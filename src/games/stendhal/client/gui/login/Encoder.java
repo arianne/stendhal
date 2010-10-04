@@ -1,11 +1,24 @@
-/**
- *Created by L. Stevens thegeneral@users.sourceforge.net
- *This is used to serve as deterrent, to hopfully prevent someone from looking at the saved pword
- */
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.gui.login;
 
 import java.util.BitSet;
 
+/**
+ * This is used to serve as deterrent, to hopfully prevent someone from looking at the saved pword
+ *
+ * @author by L. Stevens thegeneral@users.sourceforge.net
+ */
 class Encoder {
 
 	private final BitSet key;

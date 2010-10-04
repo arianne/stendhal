@@ -16,4 +16,5 @@ package games.stendhal.client.entity;
  * An generic entity that is not drawn.
  */
 public class InvisibleEntity extends Entity {
+	// do nothing, just be invisible
 }

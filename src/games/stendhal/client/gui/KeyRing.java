@@ -22,11 +22,6 @@ import javax.swing.SwingUtilities;
  */
 public class KeyRing extends SlotWindow implements FeatureChangeListener {
 	/**
-	 * serial version uid
-	 */
-	private static final long serialVersionUID = 2182192545574139973L;
-
-	/**
 	 * Create a key ring.
 	 */
 	public KeyRing() {

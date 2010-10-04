@@ -1,6 +1,15 @@
-/**
- * 
- */
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.gui.chattext;
 
 import games.stendhal.common.filter.CollectionFilter;
@@ -12,6 +21,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+
 /**
  * Matches the entered text of chat with the online player list to enable tab completion of nicknames
  * 

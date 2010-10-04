@@ -29,10 +29,7 @@ public class Gate2DView extends Entity2DView {
 	static final HashMap<String, Sprite[]> sprites = new HashMap<String, Sprite[]>();
 
 	private Sprite openSprite, closedSprite;
-	
-	public Gate2DView() {
-	}
-	
+
 	@Override
 	public void initialize(IEntity entity) {
 		super.initialize(entity);
@@ -61,6 +58,7 @@ public class Gate2DView extends Entity2DView {
 	
 	@Override
 	protected void buildRepresentation() {
+		// not needed
 	}
 	
 	@Override
