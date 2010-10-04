@@ -55,7 +55,7 @@ public class StendhalBuddyDAO {
 	 * @throws SQLException 
 	 * @throws SQLException in case of an database error
 	 */
-	private void saveBuddyList(DBTransaction transaction, String charname, Set<String> buddies) throws SQLException {
+	public void saveBuddyList(DBTransaction transaction, String charname, Set<String> buddies) throws SQLException {
 		Set<String> oldList = loadBuddyList(transaction, charname);
 		Set<String> newList = buddies;
 		newList.add(charname);
