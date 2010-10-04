@@ -257,9 +257,9 @@ public class WeddingRing extends Ring {
 	/**
 	 * Destroy a wedding ring.
 	 * To be used when a ring is put in a same slot with another.
+	 *
 	 * @param container 
-	 * 
-	 * @param rings the ring to be destroyed
+	 * @param ring the ring to be destroyed
 	 */
 	private void destroyRing(SlotOwner container, final WeddingRing ring, final RPSlot slot) {
 		// The players need to be told first, while the ring still

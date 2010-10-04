@@ -188,7 +188,7 @@ public class PrepareOfferHandler {
 		 * Try creating an offer.
 		 * 
 		 * @param player the player who makes the offer
-		 * @param itemName name of the item for sale
+		 * @param item item for sale
 		 * @param price price for the item
 		 * @param number number of items to sell
 		 * @return true if making the offer was successful, false otherwise

@@ -280,7 +280,6 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @see #start()
 	 * @see #stop()
-	 * @see #setAnimating(boolean)
 	 */
 	private boolean isAnimating() {
 		return animating;

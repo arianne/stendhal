@@ -111,7 +111,7 @@ public class OwnAction implements ActionListener {
 	 * checks whether this entity is reachable (whether a path exists) 
 	 *
 	 * @param player player to complain to
-	 * @param animal entity to check
+	 * @param entity entity to check
 	 * @return true if the entity is reachable.
 	 */
 	private boolean checkEntityIsReachable(final Player player, final Entity entity) {

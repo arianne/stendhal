@@ -2394,8 +2394,9 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 	
-	/** Equips the item in the specified slot. 
-	 * @param entity 
+	/**
+	 * Equips the item in the specified slot. 
+	 * 
 	 * @param slotName 
 	 * @param item 
 	 * @return true if successful*/

@@ -115,7 +115,6 @@ public class GroundSlot extends EntitySlot {
 	/**
 	 * Checks whether the item is below <b>another</b> player.
 	 * 
-	 * @param sourceItem to check
 	 * @return name of other player standing on the item or <code>null</code>
 	 */
 	private String getOtherPlayerStandingOnItem(final Entity player) {

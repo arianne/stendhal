@@ -788,10 +788,10 @@ public final class WordList {
 	 * Insert a number of word entries into the database, using the given
 	 * Transaction object.
 	 * 
-	 * @param trans
+	 * @param transaction
 	 * @param keys
 	 * @return success flag
-	 * @throws SQLException
+	 * @throws SQLException in cvase of an SQL error
 	 */
 	private boolean insertIntoDB(final DBTransaction transaction,
 			final Set<String> keys) throws SQLException {

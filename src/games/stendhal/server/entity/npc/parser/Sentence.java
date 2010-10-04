@@ -735,7 +735,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * Build a string from the list of expressions following the given one.
      *
      * @param expr
-     * @return
+     * @return next expression
      */
     private String stringFromExpressionsAfter(final Expression expr) {
         if (expr == null) {
@@ -768,7 +768,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * Iterate until we find the given Expression object.
      *
      * @param expr
-     * @return
+     * @return Iterator
      */
     private Iterator<Expression> iteratorFromExpression(final Expression expr) {
         final Iterator<Expression> it = expressions.iterator();

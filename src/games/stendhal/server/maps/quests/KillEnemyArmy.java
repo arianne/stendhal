@@ -317,12 +317,12 @@ import org.apache.log4j.Logger;
 		return(count);
 	}
 
-	/**
-	 * function will update player quest slot.
-	 * @param player - player for which we will record quest.
-	 */
 
 	class GiveQuestAction implements ChatAction {
+		/**
+		 * function will update player quest slot.
+		 * @param player - player for which we will record quest.
+		 */
 		public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 			final String monstersType = chooseRandomEnemys();
 			player.setQuest(QUEST_SLOT, 1, monstersType);
@@ -341,12 +341,11 @@ import org.apache.log4j.Logger;
 		}
 	}
 
-	/**
-	 * function will complete quest and reward player.
-	 * @param player - player to be rewarded.
-	 * @param killed - number of killed creatures.
-	 */
 	class RewardPlayerAction implements ChatAction {
+		/**
+		 * function will complete quest and reward player.
+		 * @param player - player to be rewarded.
+		 */
 		public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 			final String monsters = player.getQuest(QUEST_SLOT, 1);
 			int killed=getKilledCreaturesNumber(player);
