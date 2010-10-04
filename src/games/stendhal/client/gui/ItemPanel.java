@@ -40,6 +40,11 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public class ItemPanel extends JComponent implements DropTarget {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = 3409932623156446910L;
+
 	/** 
 	 * Amount in pixels to shift the popup menu under the mouse, compared to
 	 * the left up corner.

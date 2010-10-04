@@ -27,6 +27,12 @@ import javax.swing.SwingUtilities;
 import marauroa.common.game.RPObject;
 
 public class StatsPanel extends JPanel {
+
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -353271026575752035L;
+
 	private final StatLabel hpLabel, atkLabel, defLabel, xpLabel, levelLabel, moneyLabel;
 	private final StatusIconPanel statusIcons;
 	private final KarmaIndicator karmaIndicator;
@@ -301,8 +307,10 @@ public class StatsPanel extends JPanel {
 			}
 		});
 	}
-	
+
 	private static class StatLabel extends JLabel {
+		private static final long serialVersionUID = -6830358556358203566L;
+
 		public StatLabel() {
 			// unbold
 			Font f = getFont();

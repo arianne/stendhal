@@ -39,8 +39,12 @@ import org.apache.log4j.Logger;
  * TODO: Move the message formatting (and setup) code to a common class so that
  * the in-game text bubbles can use the same code for rendering.
  */
-@SuppressWarnings("serial")
 public class KHtmlEdit extends KTextEdit {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -8415450500521691744L;
+
 	private static Logger logger = Logger.getLogger(KHtmlEdit.class);
 
 	//

@@ -19,6 +19,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 class BuddyLabelPopMenu extends JPopupMenu {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -8258597079393606179L;
+
 	protected BuddyLabelPopMenu(final String buddyName, final boolean online) {
 		super(buddyName);
 		if (online) {

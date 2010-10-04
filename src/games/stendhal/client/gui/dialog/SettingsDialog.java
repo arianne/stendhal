@@ -1,23 +1,30 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * Settings.java
- *
- * Created on 14.05.2010, 01:00:51
- */
-
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.gui.dialog;
 
 /**
+ * a settings dialog created using the netbeans designer
  *
  * @author hendrik
  */
 public class SettingsDialog extends javax.swing.JDialog {
 
-    /** Creates new form Settings */
+	/**
+	 * serial  version uid
+	 */
+	private static final long serialVersionUID = 5605519805726654305L;
+
+	/** Creates new form Settings */
     public SettingsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

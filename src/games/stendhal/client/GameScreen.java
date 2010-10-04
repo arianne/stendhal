@@ -49,6 +49,11 @@ import org.apache.log4j.Logger;
  * The game screen. This manages and renders the visual elements of the game.
  */
 public class GameScreen extends JComponent implements PositionChangeListener, IGameScreen, DropTarget {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -4070406295913030925L;
+
 	private static Logger logger = Logger.getLogger(GameScreen.class);
 
 	/**
@@ -676,9 +681,9 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 * 
 	 */
 	private void addText(final double x, final double y, final String text,
-			final Color color, final boolean talking) {
+			final Color color, final boolean isTalking) {
 		addText(convertWorldToScreen(x), convertWorldToScreen(y), text, color,
-				talking);
+				isTalking);
 	}
 
 	/**

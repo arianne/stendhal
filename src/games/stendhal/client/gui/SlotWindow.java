@@ -23,6 +23,11 @@ import java.awt.geom.Rectangle2D;
  */
 public class SlotWindow extends InternalManagedWindow {
 	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = 7599313996868476471L;
+
+	/**
 	 * when the player is this far away from the container, the panel is closed.
 	 */
 	private static final int MAX_DISTANCE = 4;
@@ -69,8 +74,6 @@ public class SlotWindow extends InternalManagedWindow {
 	/**
 	 * Check the distance of the player to the base item. When the player is too
 	 * far away, this panel closes itself.
-	 * 
-	 * @param gameScreen
 	 */
 	private void checkDistance() {
 		final User user = User.get();

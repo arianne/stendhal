@@ -23,6 +23,11 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import org.apache.log4j.Logger;
 
 public class StyledLookAndFeel extends MetalLookAndFeel {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -3834174297983517102L;
+
 	private static final String pkg = "games.stendhal.client.gui.styled.";
 	
 	private final Style style;

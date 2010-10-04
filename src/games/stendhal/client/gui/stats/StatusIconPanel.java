@@ -21,6 +21,10 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 public class StatusIconPanel extends JComponent {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -6263002049434805442L;
 	private static final ImageIcon eatingIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/eat.png"));
 	private static final ImageIcon chokingIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/choking.png"));
 	private static final ImageIcon poisonIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/poisoned.png"));

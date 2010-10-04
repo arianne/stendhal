@@ -29,6 +29,11 @@ import org.apache.log4j.Logger;
 @SuppressWarnings("serial")
 public class ImageViewPanel extends ViewPanel {
 
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = 7018901196859465211L;
+
 	public static final String FONT_COLOR = "#FFFFFF";
 	public static final String FONT_SIZE = "5";
 	/**

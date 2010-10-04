@@ -38,6 +38,11 @@ import javax.swing.JPopupMenu;
  */
 public class SettingsPanel extends JPanel {
 	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -8601268317610622278L;
+
+	/**
 	 * The button insets width.
 	 */
 	private static final int BUTTON_PADDING = 3;

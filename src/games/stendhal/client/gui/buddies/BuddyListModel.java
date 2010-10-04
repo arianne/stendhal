@@ -27,6 +27,11 @@ import org.apache.log4j.Logger;
  * status and secondarily by buddy name.
  */
 public class BuddyListModel extends AbstractListModel {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = 6616529427540883628L;
+
 	/*
 	 * LinkedHashMap would nicely combine order and fast searches, but
 	 * unfortunately it does not allow sorting after creation. (Likewise for

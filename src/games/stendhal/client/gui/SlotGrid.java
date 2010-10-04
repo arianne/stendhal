@@ -32,6 +32,11 @@ import marauroa.common.game.RPSlot;
  * A view of an RPSlot in a grid of ItemPanels.
  */
 public class SlotGrid extends JComponent implements EntityChangeListener {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -1822952960582728997L;
+
 	private static final int PADDING = 1;
 	private static final Logger logger = Logger.getLogger(SlotGrid.class);
 	
@@ -86,8 +91,6 @@ public class SlotGrid extends JComponent implements EntityChangeListener {
 	
 	/**
 	 * Rescans the content of the slot.
-	 * 
-	 * @param gameScreen
 	 */
 	private void rescanSlotContent() {
 		if ((parent == null) || (slotName == null)) {

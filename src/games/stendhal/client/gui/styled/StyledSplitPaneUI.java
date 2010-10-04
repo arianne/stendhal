@@ -59,6 +59,11 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 	 * A split pane divider drawn with style.
 	 */
 	private static class StyledSplitPaneDivider extends BasicSplitPaneDivider {
+		/**
+		 * serial version uid
+		 */
+		private static final long serialVersionUID = 3799692779880585757L;
+
 		private final Style style;
 		
 		/**

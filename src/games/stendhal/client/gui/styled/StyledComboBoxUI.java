@@ -68,6 +68,12 @@ public class StyledComboBoxUI extends BasicComboBoxUI {
 	 * A ListCellRenderer that returns opaque labels.
 	 */
 	private static class StyledComboBoxRenderer extends BasicComboBoxRenderer {
+
+		/**
+		 * serial version uid
+		 */
+		private static final long serialVersionUID = 2422539249048597661L;
+
 		@Override
 		public Component getListCellRendererComponent(JList list, Object value, 
 				int index, boolean isSelected, boolean cellHasFocus) {

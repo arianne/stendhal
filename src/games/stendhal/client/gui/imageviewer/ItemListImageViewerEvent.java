@@ -128,7 +128,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 	/**
 	 * formats the price depending on its sign.
 	 *
-	 * @param RPObject representing an item to display 
+	 * @param item representing an item to display 
 	 * @return html code to display price
 	 */
 	private String getFormatedPrice(RPObject item) {
@@ -167,6 +167,12 @@ public class ItemListImageViewerEvent extends ViewPanel {
 	 * redrawn in every game loop due to the game screen being redrawn.
 	 */
 	private static class CachedPanel extends JPanel implements Cacheable {
+
+		/**
+		 * serial version uid
+		 */
+		private static final long serialVersionUID = -5591729630898137399L;
+
 		private final ComponentPaintCache cache;
 		/**
 		 * Create a new CachedPanel.

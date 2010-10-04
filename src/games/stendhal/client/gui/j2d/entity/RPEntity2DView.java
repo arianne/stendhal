@@ -1,13 +1,17 @@
-/*
- * @(#) games/stendhal/client/gui/j2d/entity/RPEntity2DView.java
- *
- * $Id$
- */
-
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
-//
-//
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
@@ -209,7 +213,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	/**
 	 * Create the title sprite.
-	 * @param gameScreen 
 	 * 
 	 * @return The title sprite.
 	 */
@@ -287,7 +290,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The drawn Y coordinate.
 	 * @param width
 	 *            The drawn width.
-	 * @param gameScreen 
 	 */
 	protected void drawFloaters(final Graphics2D g2d, final int x, final int y,
 			final int width) {
@@ -426,8 +428,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The drawn entity width.
 	 * @param height
 	 *            The drawn entity height.
-	 * @param srect
-	 *            The rectangle around the entity
 	 */
 	protected void drawCombat(final Graphics2D g2d, final int x,
 							  final int y, final int width, final int height) {
@@ -534,7 +534,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *  
 	 * @param g2d
 	 * @param entity
-	 * @param target
 	 * @param x
 	 * @param y
 	 * @param width
@@ -674,7 +673,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * 
 	 * @param map
 	 *            The map to populate.
-	 * @param gameScreen
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map) {

@@ -27,6 +27,12 @@ import javax.swing.Timer;
  * A component that draws an animated sprite.
  */
 public class AnimatedIcon extends JComponent {
+
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = 2855060585196386211L;
+
 	private static final int TILE_SIZE = 32;
 
 	final Sprite[] sprite;

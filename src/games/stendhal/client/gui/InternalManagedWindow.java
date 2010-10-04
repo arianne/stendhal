@@ -31,8 +31,12 @@ import javax.swing.SwingUtilities;
  * An InternalWindow that implements ManagedWindow. Intended for the various
  * on screen windows.
  */
-public class InternalManagedWindow extends InternalWindow implements
-		ManagedWindow {
+public class InternalManagedWindow extends InternalWindow implements ManagedWindow {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -3389618500246332016L;
+
 	private static CursorRepository cursorRepository = new CursorRepository();
 	
 	private Point dragStart; 

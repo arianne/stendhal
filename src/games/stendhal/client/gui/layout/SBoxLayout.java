@@ -173,7 +173,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * Add to the primary dimension.
 	 * 
 	 * @param result the dimension to be expanded
-	 * @param amount the expanding amount
+	 * @param length the expanding amount
 	 */
 	private void addToPrimary(Dimension result, int length) {
 		d.setPrimary(result, d.getPrimary(result) + length);
@@ -688,7 +688,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 		/**
 		 * Translate X and Y to axial and perpendicular
 		 * @param dir
-		 * @return
+		 * @return SLayout
 		 */
 		SLayout translate(SLayout dir);
 		
@@ -827,6 +827,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * An utility component for layout.
 	 */
 	private static class Spring extends JComponent {
+		private static final long serialVersionUID = -6405699460017588727L;
 	}
 	
 	/**

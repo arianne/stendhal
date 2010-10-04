@@ -36,6 +36,11 @@ import games.stendhal.common.TradeState;
  * buttons for the trading operations.
  */
 class TradingWindow extends InternalManagedWindow {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -8404391354667893368L;
+
 	private final TradingController controller;
 	private final SlotGrid partnerSlots;
 	private final SlotGrid mySlots;

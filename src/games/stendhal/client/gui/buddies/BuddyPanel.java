@@ -24,11 +24,16 @@ import javax.swing.JPopupMenu;
  */
 class BuddyPanel extends JList {
 	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -1728697267036233233L;
+
+	/**
 	 * The amount of pixels that popup menus will be shifted up and left from
 	 * the clicking point.
 	 */
 	private static final int POPUP_OFFSET = 10;
-	
+
 	/**
 	 * Create a new BuddyList.
 	 * 

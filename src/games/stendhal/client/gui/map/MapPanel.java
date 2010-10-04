@@ -45,6 +45,11 @@ import marauroa.common.game.RPAction;
 
 public class MapPanel extends JComponent implements PositionChangeListener {
 	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -6471592733173102868L;
+
+	/**
 	 * The color of the background (palest grey).
 	 */
 	private static final Color COLOR_BACKGROUND = new Color(0.8f, 0.8f, 0.8f);

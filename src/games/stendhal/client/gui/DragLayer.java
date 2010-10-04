@@ -37,6 +37,11 @@ import javax.swing.SwingUtilities;
  * http://weblogs.java.net/blog/2006/09/20/well-behaved-glasspane
  */
 public class DragLayer extends JComponent implements AWTEventListener {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -726066169323112688L;
+
 	private static DragLayer instance;
 	
 	/** The dragged entity, or <code>null</code> if nothing is being dragged. */

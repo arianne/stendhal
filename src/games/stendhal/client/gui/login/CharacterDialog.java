@@ -282,7 +282,6 @@ public class CharacterDialog extends JDialog implements Runnable {
 	 * either enabled the login dialog in interactive mode or exits
 	 * the client in non interactive mode.
 	 *
-	 * @param progressBar  ProgressBar to remove
 	 * @param errorMessage error message
 	 * @param errorTitle   title of error dialog box
 	 */

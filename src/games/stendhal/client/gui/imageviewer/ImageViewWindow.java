@@ -27,10 +27,21 @@ import javax.swing.SwingUtilities;
  */
 public class ImageViewWindow extends InternalManagedWindow {
 	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = 1890235227090651033L;
+
+	/**
 	 * The padding of the window, in pixels, when generating the maximum size.
 	 */
 	private static final int PADDING = 100;
 
+	/**
+	 * creates a new ImageViewWindow
+	 *
+	 * @param title title of the window
+	 * @param viewPanel View Panel
+	 */
 	public ImageViewWindow(String title, ViewPanel viewPanel) {
 		super("examine", title);
 		

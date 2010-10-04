@@ -50,6 +50,10 @@ import javax.swing.border.Border;
  * minimize buttons.
  */
 public class InternalWindow extends JPanel implements ComponentPaintCache.Cacheable {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = 7086677981083580331L;
 	private static final int TITLEBAR_HEIGHT = 13;
 	/** Space between titlebar components and before the title */
 	private static final int TITLEBAR_PADDING = 2;
@@ -369,6 +373,10 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * A JPanel that draws only the lower part of the border
 	 */
 	private static class TitleBar extends JPanel implements ComponentPaintCache.Cacheable {
+		/**
+		 * serial version uid
+		 */
+		private static final long serialVersionUID = -6859560118307192124L;
 		/** Original, unmodified insets */
 		private Insets insets;
 		private final Border border;

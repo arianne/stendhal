@@ -26,6 +26,11 @@ import javax.swing.JScrollPane;
  * A wrapper container for WtPanels outside the game screen.
  */
 public class ContainerPanel extends JScrollPane {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -6660529477793122360L;
+
 	/** The actual content panel. */
 	private final JPanel panel;
 	/** Components that should be repainted in the game loop.  */

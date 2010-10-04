@@ -23,6 +23,11 @@ import javax.swing.event.MenuKeyEvent;
 @SuppressWarnings("serial")
 public abstract class WtPopupMenu extends JPopupMenu {
 
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = 2957332264488056194L;
+
 	public WtPopupMenu(final String name) {
 		super(name);
 	}

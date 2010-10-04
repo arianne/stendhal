@@ -298,7 +298,7 @@ public class LoginDialog extends JDialog {
 	/**
 	 * Create the remove character button.
 	 * 
-	 * @return
+	 * @return JButton
 	 */
 	private JButton createRemoveButton() {
 		final URL url = getClass().getClassLoader().getResource("data/gui/trash.png");

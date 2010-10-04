@@ -14,7 +14,12 @@ import java.util.LinkedList;
  */
 public class AudibleAreaList extends LinkedList<AudibleArea> implements AudibleArea
 {
-    public float getHearingIntensity(float[] hearerPos)
+    /**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = 8277563402183797791L;
+
+	public float getHearingIntensity(float[] hearerPos)
     {
         if(isEmpty())
             return 0.0f;

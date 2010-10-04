@@ -26,6 +26,11 @@ import javax.swing.ListCellRenderer;
  */
 class BuddyLabel extends JLabel implements ListCellRenderer {
 	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = 4293696464719089570L;
+
+	/**
 	 * The online icon image.
 	 */
 	private static ImageIcon onlineIcon = new ImageIcon(BuddyLabel.class.getClassLoader().getResource("data/gui/buddy_online.png"));

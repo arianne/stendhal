@@ -34,6 +34,11 @@ import marauroa.common.game.RPSlot;
  * Window for showing the equipment the player is wearing.
  */
 public class Character extends InternalManagedWindow implements EntityChangeListener {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -5585214190674481472L;
+
 	/** Padding between the ItemPanels */
 	private static final int PADDING = 1;
 	/** The pixel amount the hand slots should be below the armor slot */

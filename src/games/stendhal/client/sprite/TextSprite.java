@@ -56,7 +56,6 @@ public class TextSprite extends ImageSprite {
 	 * 
 	 * @param g The graphics context.
 	 * @param textColor The text color.
-	 * @param outlineColor The outline color.
 	 * @param text The text to draw.
 	 * @param x X position.
 	 * @param y Y position.

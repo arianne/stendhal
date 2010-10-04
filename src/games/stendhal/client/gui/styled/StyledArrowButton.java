@@ -22,6 +22,10 @@ import javax.swing.plaf.basic.BasicArrowButton;
  * BasicArrowButton fails to use ButtonUI even remotely properly.
  */
 class StyledArrowButton extends BasicArrowButton {
+	/**
+	 * serial version uid
+	 */
+	private static final long serialVersionUID = -2284019956498162070L;
 	private static final int ARROW_SIZE = 5;
 
 	/**
