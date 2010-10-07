@@ -85,7 +85,7 @@ public class ScriptInJava extends ScriptingSandbox {
 			final Method theMethod = Script.class.getMethod("load", signature);
 			theMethod.invoke(script, params);
 		} catch (final Exception e) {
-			logger.error(e, e);
+			logger.debug(e, e);
 			setMessage(e.toString());
 			return false;
 		}
@@ -96,6 +96,10 @@ public class ScriptInJava extends ScriptingSandbox {
 	public boolean execute(final Player admin, final List<String> args) {
 		final Class< ? >[] signature = new Class[] { Player.class, List.class };
 		final Object[] params = new Object[] { admin, args };
+
+		if (script == null) {
+			return false;
+		}
 
 		try {
 			final Method theMethod = script.getClass().getMethod("execute", signature);
