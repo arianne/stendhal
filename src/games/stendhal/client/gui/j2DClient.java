@@ -290,7 +290,7 @@ public class j2DClient implements UserInterface {
 
 		// Display a hint if this is a debug client
 		if (Debug.PRE_RELEASE_VERSION != null) {
-			addEventLine(new HeaderLessEventLine("This is a pre release test client client: " + Debug.VERSION + " - " + Debug.PRE_RELEASE_VERSION, NotificationType.CLIENT));
+			addEventLine(new HeaderLessEventLine("This is a pre release test client: " + Debug.VERSION + " - " + Debug.PRE_RELEASE_VERSION, NotificationType.CLIENT));
 		}
 
 		// set some default window positions
