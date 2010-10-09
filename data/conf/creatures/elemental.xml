@@ -135,7 +135,7 @@
 
   <creature name="air elemental">
     <type class="elemental" subclass="air_elemental" tileid="elemental.png:4"/>
-    <description>You see an air elemental and feel a fresh brow past you.</description>
+    <description>You see an air elemental and feel a fresh breeze past you.</description>
     <attributes>
       <atk value="409"/>
       <def value="68"/>
