@@ -581,12 +581,7 @@ public class j2DClient implements UserInterface {
 					}
 				}
 
-				if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
-					logger.debug("Draw screen");
-					screen.draw();
-					minimap.refresh();
-					containerPanel.repaintChildren();
-				}
+				triggerPainting();
 	
 				logger.debug("Query network");
 	
@@ -675,6 +670,21 @@ public class j2DClient implements UserInterface {
 	
 		getSoundSystemFacade().exit();
 	}
+
+	private int paintCounter;
+	private void triggerPainting() {
+		if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
+			paintCounter++;
+			if (mainFrame.getMainFrame().isActive() || paintCounter >= 20) {
+				paintCounter = 0;
+				logger.debug("Draw screen");
+				minimap.refresh();
+				containerPanel.repaintChildren();
+				screen.draw();
+			}
+		}
+    }
+
 	private SoundGroup initSoundSystem() {
 		SoundGroup group = getSoundSystemFacade().getGroup(SoundLayer.USER_INTERFACE.groupName);
 		group.loadSound("harp-1", "audio:/harp-1.ogg", Type.OGG, false);
