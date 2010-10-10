@@ -17,8 +17,10 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
-import marauroa.common.Pair;
 import java.util.HashMap;
+import java.util.Map;
+
+import marauroa.common.Pair;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -30,7 +32,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class StartRecordingKillsAction implements ChatAction {
 	//first number in pair is required solo kills, second is required shared kills
-    private final HashMap<String, Pair<Integer, Integer>> toKill;
+    private final Map<String, Pair<Integer, Integer>> toKill;
     private final String QUEST_SLOT;
     private final int KILLS_INDEX;
 
@@ -41,10 +43,10 @@ public class StartRecordingKillsAction implements ChatAction {
 	 * @param index index within questslot
 	 * @param toKill list of creatures which should be killed by the player
 	 */
-	public StartRecordingKillsAction(final String questSlot, final int index, final HashMap<String, Pair<Integer, Integer>> toKill) {
+	public StartRecordingKillsAction(final String questSlot, final int index, final Map<String, Pair<Integer, Integer>> toKill) {
 		this.toKill = toKill;
-		this.QUEST_SLOT=questSlot;
-		this.KILLS_INDEX=index;
+		this.QUEST_SLOT = questSlot;
+		this.KILLS_INDEX = index;
 	}
 
 	/**
