@@ -37,7 +37,7 @@ import utilities.QuestHelper;
  * @author IschBing, hendrik
  */
 public class KillGnomesTest {
-	private static final String QUEST_VALUE_STARTED = "start;infantry gnome,0,1,0,0,gnome,0,1,0,0,cavalryman gnome,0,1,0,0";
+	private static final String QUEST_VALUE_STARTED = "start;cavalryman gnome,0,1,0,0,gnome,0,1,0,0,infantry gnome,0,1,0,0";
 
 	private Player player = null;
 	private SpeakerNPC npc = null;

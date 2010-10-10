@@ -32,9 +32,10 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import marauroa.common.Pair;
 
@@ -102,7 +103,7 @@ public class KillGnomes extends AbstractQuest {
 				"The gnomes haven't made any trouble since you last taught them a lesson.",
 				null);
 
-		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>();
+		final Map<String, Pair<Integer, Integer>> toKill = new TreeMap<String, Pair<Integer, Integer>>();
 		toKill.put("gnome", new Pair<Integer, Integer>(0,1));
 		toKill.put("infantry gnome", new Pair<Integer, Integer>(0,1));
 		toKill.put("cavalryman gnome",new Pair<Integer, Integer>(0,1));
