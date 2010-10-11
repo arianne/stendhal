@@ -60,9 +60,9 @@ public class BBQGrillmasterNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hey! Isn't it a nice day for having a BBQ?");
-				addHelp("Unfortunetly the steaks aren't ready yet... If you are hungry and can't wait, you could check some offers in the near out like the Blacksheep offers near the fisherhuts in Ados or you can take a ferry to Athor for getting some nice snacks..."); 
-				addJob("I am a grillmaster as you can prolly see. I love the smell of fresh grilled meat!");
+				addGreeting("Hey! Nice day for a BBQ!");
+				addHelp("Unfortunately the steaks aren't ready yet... If you are hungry and can't wait, you could check some offers in the near out like the Blacksheep offers near the fisherhuts in Ados or you can take a ferry to Athor for getting some nice snacks..."); 
+				addJob("I am a grillmaster as you can probably see. I love the smell of fresh grilled meat!");
 				addOffer("I hope that my steaks will be ready soon. Please be a bit patient or have some other snacks first.");
 				addGoodbye("A nice day to you! Always keep your fire burning!");
 				
