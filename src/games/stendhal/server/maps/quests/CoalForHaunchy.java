@@ -144,7 +144,7 @@ public class CoalForHaunchy extends AbstractQuest {
 
 		npc.add(
 				ConversationStates.ATTENDING, triggers,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("coal",10)),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("coal",25)),
 				ConversationStates.ATTENDING, 
 				null,
 				new MultipleActions(
@@ -167,7 +167,7 @@ public class CoalForHaunchy extends AbstractQuest {
 
 		npc.add(
 				ConversationStates.ATTENDING, triggers,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("coal",10))),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("coal",25))),
 				ConversationStates.ATTENDING,
 				"You don't have the coal amount which I need yet. Go and pick some more pieces up, please.",
 				null);
@@ -204,10 +204,10 @@ public class CoalForHaunchy extends AbstractQuest {
 			res.add("He asked me to fetch him some pieces of coal but I don't have time to collect some.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start") || isCompleted(player)) {
-			res.add("The BBQ grill-heat is low and I promised Haunchy to help him out with 10 pieces of coal.");
+			res.add("The BBQ grill-heat is low and I promised Haunchy to help him out with 25 pieces of coal.");
 		}
-		if (("start".equals(questState) && player.isEquipped("coal",10)) || isCompleted(player)) {
-			res.add("I found 10 pieces of coal for the Haunchy and think he will be happy.");
+		if (("start".equals(questState) && player.isEquipped("coal",25)) || isCompleted(player)) {
+			res.add("I found 25 pieces of coal for the Haunchy and think he will be happy.");
 		}
 		if (isCompleted(player)) {
 			if (isRepeatable(player)) {
