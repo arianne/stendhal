@@ -129,7 +129,7 @@ public class FishSoup extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.INFORMATION_1,
-			"Hello and welcome on Ados market! Are you intersted in something #tasty?",
+			"Hello and welcome on Ados market! I have something really tasty and know what would #revive you.",
 			null);
 
 		// player returns after finishing the quest (it is repeatable) after the
@@ -152,9 +152,9 @@ public class FishSoup extends AbstractQuest {
 				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES , "Oh I am sorry, I have to wash my cooking pots first before making more soup for you. Please come back in")
 			);
 
-		// player responds to word 'tasty'
+		// player responds to word 'revive'
 		npc.add(ConversationStates.INFORMATION_1, 
-				"tasty",
+				"revive",
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, 
 				null,
