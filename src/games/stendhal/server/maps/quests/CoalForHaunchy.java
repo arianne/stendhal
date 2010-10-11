@@ -78,6 +78,8 @@ public class CoalForHaunchy extends AbstractQuest {
 
 	private void offerQuestStep() {
 		final SpeakerNPC npc = npcs.get("Haunchy Meatoch");
+		
+		// player says quest when he has not ever done the quest before (rejected or just new)
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
@@ -93,7 +95,7 @@ public class CoalForHaunchy extends AbstractQuest {
 				"Coal isn't easy to find. You normally can find it somewhere in the ground but perhaps you are lucky and find some in the old Semos Mine tunnels...",
 				null);
 
-
+        // player has completed the quest (doesn't happen here)
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
@@ -101,13 +103,15 @@ public class CoalForHaunchy extends AbstractQuest {
 				"I can go on with grilling my tasty steaks now! Thank you!",
 				null);
 
+		// player asks about quest which he has done already and he is allowed to repeat it
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES), new QuestStateStartsWithCondition(QUEST_SLOT, "waiting;")),
 				ConversationStates.QUEST_OFFERED,
 				"The last coal you brought me is mostly gone again. Will you bring me some more?",
 				null);
-
+		
+		// player asks about quest which he has done already but it is not time to repeat it
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), new QuestStateStartsWithCondition(QUEST_SLOT, "waiting;")),
@@ -142,6 +146,7 @@ public class CoalForHaunchy extends AbstractQuest {
 		triggers.add("stone coal");
 		triggers.addAll(ConversationPhrases.QUEST_MESSAGES);
 
+		// player asks about quest or says coal when they are supposed to bring some coal and they have it
 		npc.add(
 				ConversationStates.ATTENDING, triggers,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("coal",25)),
@@ -164,17 +169,18 @@ public class CoalForHaunchy extends AbstractQuest {
 							}
 						}));
 
-
+		// player asks about quest or says coal when they are supposed to bring some coal and they don't have it
 		npc.add(
 				ConversationStates.ATTENDING, triggers,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("coal",25))),
 				ConversationStates.ATTENDING,
 				"You don't have the coal amount which I need yet. Go and pick some more pieces up, please.",
 				null);
-
+		
 		npc.add(
-				ConversationStates.ATTENDING, triggers,
-				new QuestNotInStateCondition(QUEST_SLOT, "start"),
+				ConversationStates.ATTENDING, 
+				Arrays.asList("coal","stone coal"),
+				new QuestNotInStateCondition(QUEST_SLOT,"start"),
 				ConversationStates.ATTENDING,
 				"Sometime you could do me a #favour ...", null);
 
