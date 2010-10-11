@@ -155,8 +155,8 @@ public class CoalSource extends PlayerActivityEntity {
 	private void handleRespawn() {
 		if (getState() == 0) {
 			final int time = Rand.randExponential(6000);
-			int turn = Math.max(time, 200);
-			TurnNotifier.get().notifyInSeconds(turn, new Refiller());
+			int turn = Math.max(time, 6000);
+			TurnNotifier.get().notifyInTurns(turn, new Refiller());
 		}
 	}
 
