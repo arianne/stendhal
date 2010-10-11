@@ -2554,6 +2554,75 @@ Mature sheep wanted: please speak to Sato
 				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
 		</entity>
 		
+		<entity x="222" y="26">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="175" y="13">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="137" y="23">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="102" y="65">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="123" y="67">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="73" y="2">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="7" y="14">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="9" y="44">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="29" y="73">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="32" y="94">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="172" y="66">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="249" y="80">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="213" y="95">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="239" y="124">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
 	</zone>
 
 	<zone name="-1_semos_mine_n2_e" level="-1" x="500128" y="499616"
@@ -2603,6 +2672,26 @@ Mature sheep wanted: please speak to Sato
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
 		</entity>
+		
+		<entity x="79" y="4">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="67" y="9">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="60" y="22">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="42" y="5">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
 			
 	</zone>
 
@@ -2640,20 +2729,54 @@ Mature sheep wanted: please speak to Sato
 				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
 		</entity>
 		
-		<entity x="101" y="106">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
-		</entity>
-		
 		<entity x="121" y="47">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
 		</entity>
 		
+		<entity x="113" y="88">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
 	</zone>
 
 	<zone name="-1_semos_mine_n_e2" level="-1" x="500256" y="499744"
 		file="Level -1/semos/mine_n_e2.tmx">
+		
+		<entity x="56" y="49">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="64" y="48">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="102" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="90" y="48">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="101" y="50">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="116" y="72">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="95" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
 	</zone>
 
 	<zone name="int_wofol_house1" file="interiors/wofol/house1.tmx">
