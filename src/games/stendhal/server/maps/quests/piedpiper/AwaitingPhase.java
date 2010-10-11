@@ -205,7 +205,7 @@ public class AwaitingPhase extends TPPQuest {
 				return;
 			};
 			TurnNotifier.get().dontNotify(this);
-			TurnNotifier.get().notifyInSeconds(4, this);
+			TurnNotifier.get().notifyInSeconds(8, this);
 		}
 	}	
 	
