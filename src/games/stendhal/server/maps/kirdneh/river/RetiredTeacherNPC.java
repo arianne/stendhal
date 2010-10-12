@@ -79,7 +79,7 @@ public class RetiredTeacherNPC implements ZoneConfigurator {
 				addJob("I was a teacher for alchemy once but some of my students turned into ugly bandits and assassins... I don't know what happens in Faiumoni at the moment, though, as I just stay in my safe house the whole day long...");
 				addOffer("Sorry, but I can't offer you anything... I have some major problems in my basement at the moment...");
 				addQuest("I want to prepare a mixture for keeping the assassins and bandits in my cellar. I could need some ingredients for that soon...");
-				addGoodbye("Take care of you and please return soon to visit me again, I'm scared alone!");
+				addGoodbye("Take care of yourself and please return soon to visit me again, I'm scared alone!");
 				
 			}
 		};
