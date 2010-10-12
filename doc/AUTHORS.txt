@@ -136,7 +136,6 @@ Authors of Stendhal are:
   . Ideas (quests, NPCs, features and many, many more ;)
   . Coder (adding sounds, dialogues)
   
-  
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
 
@@ -163,4 +162,7 @@ Notable contributors:
 - Hades the Emperor
   · Artist (creatures images using charas, e.g. imperial army)
   · Artist (some player outfits)
+- Omero
+  · Coder (trivial patch to the client GUI for deleting local profiles, some NPCs)
+  · Artist (some new pies, so far)
 
