@@ -269,7 +269,7 @@ public class Grammar {
 		if (result.equals("meat") || result.equals("ham")
 				|| result.equals("cheese") || result.equals("wood")
 				|| result.equals("paper") || result.equals("iron")
-				|| result.equals("chicken")) {
+				|| result.equals("chicken") || result.equals("coal")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "piece of ",
 					"pieces of ");
 		} else if (result.endsWith(" ore")) {
