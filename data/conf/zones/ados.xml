@@ -1321,7 +1321,7 @@ in roaches.
     <entity x="3" y="11">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buypoisons</parameter>
-      <parameter name="title">Klaas (Athor Ferry cargo hold, NOTE TO SELF: keep an eye on this guy!) buys:</parameter>
+      <parameter name="title">Klaas (Athor Ferry cargo hold, NOTE TO SELF: keep an eye on him!) buys:</parameter>
       <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">transparent</attribute>
