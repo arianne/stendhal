@@ -74,17 +74,17 @@ public class RetiredTeacherNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Ohh a stranger found my hidden house, welcome!");
+				addGreeting("Ohh, a stranger found my hidden house, welcome!");
 				addHelp("Never ever get into trouble with assassins when they are stronger than you! They will come to get you otherwise! And some of them are waiting downstairs under my basement!");
-				addJob("I was a teacher for alchemy once but some of my students turned into ugly bandits and assassins... I don't know what happens in Faiumoni at the moment as though as I just stay in my save house the whole day long...");
-				addOffer("Sorry, but I can't offer you anything... I have some mayor problems in my basement at the moment...");
+				addJob("I was a teacher for alchemy once but some of my students turned into ugly bandits and assassins... I don't know what happens in Faiumoni at the moment, though, as I just stay in my safe house the whole day long...");
+				addOffer("Sorry, but I can't offer you anything... I have some major problems in my basement at the moment...");
 				addQuest("I want to prepare a mixture for keeping the assassins and bandits in my cellar. I could need some ingredients for that soon...");
-				addGoodbye("Take care of you and please be fast with visiting me again, I'm scared alone!");
+				addGoodbye("Take care of yourself and please return soon to visit me again, I'm scared alone!");
 				
 			}
 		};
 
-		npc.setDescription("You see Ortiv Milquetoast. Although he has some kind of teacher aura around him, he seems to be quite scared and nervous.");
+		npc.setDescription("You see Ortiv Milquetoast. Though he has some kind of teacher aura around him, he seems to be quite scared and nervous.");
 		npc.setEntityClass("retiredteachernpc");
 		npc.setPosition(15, 28);
 		npc.setDirection(Direction.RIGHT);
