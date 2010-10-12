@@ -988,7 +988,7 @@
   
   <creature name="assassin">
     <type class="human" subclass="assassin" tileid="human_evil.png:0"/>
-    <description>You see an assassin. He is a very good at killing his victims silently without being seen by anyone.</description>
+    <description>You see an assassin. He is very good at killing his victims silently without being seen by anyone.</description>
     <attributes>
       <atk value="448"/>
       <def value="70"/>
