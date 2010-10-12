@@ -126,29 +126,29 @@ public class AwaitingPhase extends TPPQuest {
 		
 		private void fillConversations() {
 			//piper
-			conversations.add("Hi Mayor. For what you called me here?");
+			conversations.add("Good day, Mayor Chalmers. What did you call me here for?");
 			//mayor
-			conversations.add("Hello, very glad to see our respectable hero here. Who didnt hear about you, there is almost...");
+			conversations.add("Hello, very glad to see our respectable hero here. Who hasn't heard about you, there is almost...");
 			//piper
-			conversations.add("Talk about your business to me, my time costs a much of moneys.");
+			conversations.add("Please talk about your business to me, my time is precious.");
 			//mayor
-			conversations.add("... ok, what I talked about? Ah yes, our city have a little problem with #rats.");
+			conversations.add("... ok, what was I saying? Ah yes, our city has a little problem with #rats.");
 			//piper
 			conversations.add("Again?");
 			//mayor
-			conversations.add("Yes, these animals are of course too stupid to remember a lesson they have a few time ago.");
+			conversations.add("Yes, these animals are too stupid to remember a lesson they learnt only recently.");
 			//piper
-			conversations.add("No problem, if you are ready to pay.");
+			conversations.add("I can help, if you are ready to pay.");
 			//mayor
-			conversations.add("City have no other way to eliminate this source of infections. I will pay to you.");
+			conversations.add("Ados City has no other way to eliminate this nuisance. We will pay you.");
 			//piper
 			conversations.add("Do you know my usual price?");
 			//mayor
 			conversations.add("Yes, I have it written somewhere in my papers.");
 			//piper
-			conversations.add("Good. I will return for my reward soon, prepare it.");
+			conversations.add("Good. I will return for my reward soon, please prepare it.");
 			//mayor
-			conversations.add("Dont worry, how can I break your trustworth to me and my city?");
+			conversations.add("Don't worry, how can I break your trust in me and my city?");
 		}
 		
 		/**
@@ -167,8 +167,8 @@ public class AwaitingPhase extends TPPQuest {
 		private void setupDialog() {
 			if(mayor.isTalking()) {
 				mayor.say("Sorry, "+mayor.getAttending().getName()+
-						" but i see that our city's saver here. I have to speak with him quickly."+
-						" Please speak with me again after finish of our talking.");
+						" but I see that our city's savoiur is here. I have to speak with him quickly."+
+						" Please speak with me again after we finish talking.");
 				mayor.setCurrentState(ConversationStates.IDLE);
 			};
 			mayor.setCurrentState(ConversationStates.ATTENDING);
@@ -205,7 +205,7 @@ public class AwaitingPhase extends TPPQuest {
 				return;
 			};
 			TurnNotifier.get().dontNotify(this);
-			TurnNotifier.get().notifyInSeconds(4, this);
+			TurnNotifier.get().notifyInSeconds(8, this);
 		}
 	}	
 	
@@ -253,8 +253,8 @@ public class AwaitingPhase extends TPPQuest {
 	public String getSwitchingToNextPhaseMessage() {
 		final String text = 
 			"Mayor Chalmers shouts: Thankfully, all the #rats are gone now, " +
-			"the Pied Piper hypnotized them and led them away to dungeons. "+
-			"Those of you, who helped Ados City with the rats problem, "+
+			"the Pied Piper hypnotized them and led them away to the dungeons. "+
+			"Those of you who helped Ados City with the rats problem "+
 			"can get your #reward now.";		
 		return text;
 	}

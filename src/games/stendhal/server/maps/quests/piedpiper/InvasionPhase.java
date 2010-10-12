@@ -165,7 +165,7 @@ public class InvasionPhase extends TPPQuest {
 	 */
 	public String getSwitchingToNextPhaseMessage() {
 		final String text = 
-			"Mayor Chalmers shouts: Suddenly, #rats have captured city, "+
+			"Mayor Chalmers shouts: Suddenly, #rats have captured the city, "+
 		  //"Mayor Chalmers shouts: The #rats left as suddenly as they arrived. "+
 		  //"Perhaps they have returned to the sewers. "+
 			"I now need to call the Pied Piper, a rat exterminator. "+
@@ -202,7 +202,7 @@ public class InvasionPhase extends TPPQuest {
 	 */
 	protected String ratsProblem() {
 		final String text = "Mayor Chalmers shouts: Ados City is being invaded by #rats!"+
-			              " Anyone who will help to clean up city, will be rewarded!";
+			              " Anyone who will help to clean up the city, will be rewarded!";
 		return(text);
 	}
 	
