@@ -1319,18 +1319,14 @@ in roaches.
 
 <!--had to do it by hand because he is not in shoplist -->
     <entity x="3" y="11">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      <attribute name="text">Klaas (Athor Ferry cargo hold) buys -
-poison 40 
-toadstool 60
-greater poison 60
-deadly poison 100
-mega poison 500
-disease poison 2000
-(NOTE TO SELF: keep an eye on this guy!)
-</attribute>
-<attribute name="class">transparent</attribute>
-</entity>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buypoisons</parameter>
+      <parameter name="title">Klaas (Athor Ferry cargo hold, NOTE TO SELF: keep an eye on this guy!) buys:</parameter>
+      <parameter name="seller">false</parameter>
+     </implementation>
+     <attribute name="class">transparent</attribute>
+    </entity>
+    
     <entity x="17" y="11">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyadosarmors</parameter>
