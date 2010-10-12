@@ -64,8 +64,8 @@ public class FishSoupTest {
 		en = npc.getEngine();
 		player.setXP(100);
 		en.step(player, "hi");
-		assertEquals("Hello and welcome on Ados market! Are you intersted in something #tasty?", getReply(npc));
-		en.step(player, "tasty");
+		assertEquals("Hello and welcome on Ados market! I have something really tasty and know what would #revive you.", getReply(npc));
+		en.step(player, "revive");
 		assertEquals("My special fish soup has a magic touch. I need you to bring me the #ingredients.", getReply(npc));
 		en.step(player, "ingredients");
 		assertEquals("I need 11 ingredients before I make the soup: #surgeonfish, #cod, #char, #roach, #clownfish, #onion, #mackerel, #garlic, #leek, #perch, and #tomato. Will you collect them?", getReply(npc));
@@ -74,8 +74,8 @@ public class FishSoupTest {
 		en.step(player, "bye");
 		assertEquals("Have a nice stay and day on Ados market!", getReply(npc));
 		en.step(player, "hi");
-		assertEquals("Hello and welcome on Ados market! Are you intersted in something #tasty?", getReply(npc));
-		en.step(player, "tasty");
+		assertEquals("Hello and welcome on Ados market! I have something really tasty and know what would #revive you.", getReply(npc));
+		en.step(player, "revive");
 		assertEquals("My special fish soup has a magic touch. I need you to bring me the #ingredients.", getReply(npc));
 		en.step(player, "ingredients");
 		assertEquals("I need 11 ingredients before I make the soup: #surgeonfish, #cod, #char, #roach, #clownfish, #onion, #mackerel, #garlic, #leek, #perch, and #tomato. Will you collect them?", getReply(npc));
