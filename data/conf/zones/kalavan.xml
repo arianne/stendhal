@@ -779,7 +779,18 @@
   <portal x="40" y="26" ref="cottage_entrance">
    <destination zone="int_kalavan_cottage" ref="entrance"/>
   </portal>
+  <portal x="9" y="12" ref="cottage_2_entrance">
+   <destination zone="int_kalavan_cottage_2" ref="entrance"/>
+  </portal>
  </zone>
+
+ <zone name="int_kalavan_cottage_2" file="interiors/kalavan/cottage_2.tmx">
+  <configurator class-name="games.stendhal.server.maps.kalavan.cottage_2.ConfectionerApplePieNPC"/>
+  <configurator class-name="games.stendhal.server.maps.kalavan.cottage_2.ConfectionerCherryPieNPC"/>
+  <portal x="10" y="16" ref="entrance">
+   <destination zone="0_kalavan_city_gardens" ref="cottage_2_entrance"/>
+  </portal>
+ </zone> 
 
  <zone name="int_kalavan_cottage" file="interiors/kalavan/cottage.tmx">
   <configurator class-name="games.stendhal.server.maps.kalavan.cottage.HouseKeeperNPC"/>
