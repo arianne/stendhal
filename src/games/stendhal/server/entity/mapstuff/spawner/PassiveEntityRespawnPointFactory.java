@@ -74,6 +74,8 @@ public class PassiveEntityRespawnPointFactory {
 
 		} else if (clazz.contains("meat_and_fish")) {
 			passiveEntityrespawnPoint = createMeatAndFish(type);
+		} else if (clazz.contains("dairy")) {
+			passiveEntityrespawnPoint = createDairy(type);
 		}
 
 		if (passiveEntityrespawnPoint == null) {
@@ -82,6 +84,19 @@ public class PassiveEntityRespawnPointFactory {
 			return null;
 		}
 
+		return passiveEntityrespawnPoint;
+	}
+
+	private static PassiveEntityRespawnPoint createDairy(final int type) {
+		PassiveEntityRespawnPoint passiveEntityrespawnPoint;
+		switch (type) {
+		case 0:
+			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("egg", 100);
+			break;
+		default:
+			passiveEntityrespawnPoint = null;
+			break;
+		}
 		return passiveEntityrespawnPoint;
 	}
 
