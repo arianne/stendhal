@@ -269,7 +269,7 @@ public class Grammar {
 		if (result.equals("meat") || result.equals("ham")
 				|| result.equals("cheese") || result.equals("wood")
 				|| result.equals("paper") || result.equals("iron")
-				|| result.equals("chicken") || result.equals("coal")) {
+				|| result.equals("chicken")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "piece of ",
 					"pieces of ");
 		} else if (result.endsWith(" ore")) {
@@ -284,13 +284,19 @@ public class Grammar {
 		} else if (result.equals("bread")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "loaf of ",
 					"loaves of ");
-		} else if (result.equals("beer") || result.endsWith("potion")
-				|| result.endsWith("poison") || result.endsWith("antidote")) {
+		} else if (result.equals("beer")
+				|| result.equals("milk")
+				|| result.endsWith("potion")
+				|| result.endsWith("poison")
+				|| result.endsWith("antidote")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "bottle of ",
 					"bottles of ");
-        } else if (result.equals("wine")) {
-            result = addPrefixIfNotAlreadyThere(lowString, "glass of ",
-												"glasses of ");
+		} else if (result.equals("honey")) {
+			result = addPrefixIfNotAlreadyThere(lowString, "jar of ",
+					"jars of ");
+		} else if (result.equals("wine")) {
+			result = addPrefixIfNotAlreadyThere(lowString, "glass of ",
+					"glasses of ");
 		} else if (result.startsWith("book ")) {
 			result = result.substring(5) + " book";
 		} else if (result.equals("arandula")) {
@@ -303,10 +309,10 @@ public class Grammar {
 			result = addPrefixIfNotAlreadyThere(lowString, "pair of ",
 					"pairs of ");
 		} else if (result.equals("daisies")) {
-            result = addPrefixIfNotAlreadyThere(lowString, "bunch of ",
+			result = addPrefixIfNotAlreadyThere(lowString, "bunch of ",
                                                 "bunches of ");
 		} else if (result.equals("oil")) {
-            result = addPrefixIfNotAlreadyThere(lowString, "can of ",
+			result = addPrefixIfNotAlreadyThere(lowString, "can of ",
                                                 "cans of ");
 		} else if (result.endsWith(" thread")) {
 				result = addPrefixIfNotAlreadyThere(lowString, "spool of ",
@@ -349,6 +355,7 @@ public class Grammar {
 		result = removePrefix(result, "sheaf of ");
 		result = removePrefix(result, "loaf of ");
 		result = removePrefix(result, "bottle of ");
+		result = removePrefix(result, "jar of ");
 		result = removePrefix(result, "sprig of ");
 		result = removePrefix(result, "suit of ");
 		result = removePrefix(result, "pair of ");
@@ -373,6 +380,7 @@ public class Grammar {
 		result = removePrefix(result, "sheaves of ");
 		result = removePrefix(result, "loaves of ");
 		result = removePrefix(result, "bottles of ");
+		result = removePrefix(result, "jars of ");
 		result = removePrefix(result, "sprigs of ");
 		result = removePrefix(result, "suits of ");
 		result = removePrefix(result, "pairs of ");
