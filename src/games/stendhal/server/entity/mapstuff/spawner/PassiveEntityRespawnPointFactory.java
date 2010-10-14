@@ -91,7 +91,7 @@ public class PassiveEntityRespawnPointFactory {
 		PassiveEntityRespawnPoint passiveEntityrespawnPoint;
 		switch (type) {
 		case 0:
-			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("egg", 100);
+			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("egg", 25800);
 			break;
 		default:
 			passiveEntityrespawnPoint = null;
