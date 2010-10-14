@@ -745,6 +745,44 @@
     </equipable>
   </item>
 
+  <item name="apple pie">
+    <type class="food" subclass="applepie" tileid="-1"/>
+    <description>You see a delicious apple pie, made with only genuine ingredients.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="230"/>
+      <frequency value="15"/>
+      <quantity value="1"/>
+      <regen value="15"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="20"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="cherry pie">
+    <type class="food" subclass="cherrypie" tileid="-1"/>
+    <description>You see a delicious cherry pie, made with only genuine ingredients.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="230"/>
+      <frequency value="15"/>
+      <quantity value="1"/>
+      <regen value="15"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="20"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="pizza">
     <type class="food" subclass="pizza" tileid="-1"/>
     <description>You see a tasty pizza, and hope they put extra cheese on it.</description>
@@ -973,10 +1011,10 @@
     <type class="food" subclass="grilled_steak" tileid="-1"/>
     <description>You see a fresh grilled steak. It smells awesome and is really juicy.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
-      <amount value="150"/>
+      <amount value="200"/>
       <frequency value="20"/>
       <quantity value="1"/>
-      <regen value="15"/>
+      <regen value="20"/>
     </attributes>
     <weight value="1.0"/>
     <value value="2"/>
