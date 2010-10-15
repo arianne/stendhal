@@ -27,10 +27,11 @@ Changelog
 - coal sources for extracting coal
 - added garlic to Sues sales list
 - new game for Semos Mine Town Revival Weeks: 9 switches
+- Mayor Chalmers enlisted the Pied Piper to help with the rat problem
 
 *website*
 - animated/large NPCs like tomi and vulcanus now have an image
-
+- display ranks on character page
 
 
 0.87.1 
