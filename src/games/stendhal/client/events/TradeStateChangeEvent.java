@@ -34,7 +34,6 @@ public class TradeStateChangeEvent extends Event<RPEntity> {
 	 */
 	@Override
 	public void execute() {
-		logger.info("Trade event: " + event);
 		try {
 			IEntity partner = findPartner();
 			TradeState myState = TradeState.valueOf(event.get("user_trade_state"));
