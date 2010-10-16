@@ -107,7 +107,7 @@
      
   <creature name="Chief Falatheen of the Risecia">
     <type class="human" subclass="risecia_leader" tileid="human.png:6"/>
-    <description>You see the Chief Falatheen of the Risecia, he doesn't want to die! His little warriors are protecting him against invaders.</description> 
+    <description>You see the Chief Falatheen of the Risecia, he doesn't want to die! His little warriors protect him against invaders.</description> 
     <attributes>
       <atk value="209"/>
       <def value="22"/>
@@ -144,7 +144,7 @@
   
   <creature name="cannibal woman">
     <type class="human" subclass="cannibalwoman" tileid="human.png:1"/>
-    <description>You see a cannibal woman. She wants to make a soup with your bones!</description> 
+    <description>You see a cannibal woman. She wants to make a soup out of your bones!</description> 
     <attributes>
       <atk value="244"/>
       <def value="75"/>
@@ -178,7 +178,7 @@
   
    <creature name="littlewitch">
     <type class="human" subclass="littlewitch" tileid="human_little.png:0"/>
-    <description>You see a little witch, they are evil little girls that are very dangerous.</description>
+    <description>You see a little witch. Witches are are evil little girls who are very dangerous.</description>
     <attributes>
       <atk value="246"/>
       <def value="48"/>
@@ -247,7 +247,7 @@
 
   <creature name="littlewizard">
     <type class="human" subclass="littlewizard" tileid="human_little.png:1"/>
-    <description>You see a littlewizard. He is a child but he is already able to cast powerful spells.</description>
+    <description>You see a little wizard. Although he is a child, he is already able to cast powerful spells.</description>
     <attributes>
       <atk value="266"/>
       <def value="50"/>
@@ -274,7 +274,7 @@
  
   <creature name="kalavan housewife">
     <type class="human" subclass="kalavan_housewife" tileid="human_kalavan.png:2"/>
-    <description>You see a kalavan housewife. She lives in kalavan city and she is very angry with rude people who want to steal her food out of the kitchen and destroy her beautiful flower garden!</description>
+    <description>You see a kalavan housewife. She lives in Kalavan city and she very angry with rude people who want to steal her food out of the kitchen and destroy her beautiful flower garden!</description>
     <attributes>
       <atk value="274"/>
       <def value="42"/>
@@ -302,7 +302,7 @@
  
    <creature name="cannibal">
     <type class="human" subclass="cannibal" tileid="human.png:0"/>
-    <description>You see a cannibal. He is hunting you to cook and eat you! It´s useless to tell him that your flesh is not good, better fight him or run away!</description>
+    <description>You see a cannibal. He hunts you for cooking and eating your fresh meat! It´s useless to tell him that your flesh is not good, better fight him or run away!</description>
     <attributes>
       <atk value="281"/>
       <def value="91"/>
@@ -333,7 +333,7 @@
  
    <creature name="kalavan peasant">
     <type class="human" subclass="kalavan_peasant" tileid="human_kalavan.png:3"/>
-    <description>You see a kalavan peasant. He works in the fields around kalavan city. As he heard there were strangers in the city he came to help the kalavan citizens in fighting the enemies!</description>
+    <description>You see a kalavan peasant. He works in the fields around Kalavan city. As he heard there were strangers in the city he came to help the kalavan citizens in fighting the enemies!</description>
     <attributes>
       <atk value="296"/>
       <def value="44"/>
@@ -518,7 +518,7 @@
 
   <creature name="imperial veteran">
     <type class="human" subclass="imperial_veteran" tileid="human_kalavan.png:0"/>
-    <description>You see an imperial veteran. He fought in many battles and wars. Now he is old, but over the years he always looked for an new enemy to fight against.</description>
+    <description>You see an imperial veteran. He fought in many battles and wars. Now he is old, but over the years he always looked for a new enemy to fight against.</description>
     <attributes>
       <atk value="330"/>
       <def value="57"/>
@@ -780,7 +780,7 @@
   
    <creature name="apprentice assassin">
     <type class="human" subclass="apprentice_assassin" tileid="human_evil.png:7"/>
-    <description>You see a apprentice assassin. He has been taught some very awesome moves and methods, so he is already able to kill an enemy almost perfectly!</description>
+    <description>You see an apprentice assassin. He has been taught some very awesome moves and methods, so he is already able to kill an enemy almost perfectly!</description>
     <attributes>
       <atk value="375"/>
       <def value="123"/>
@@ -1622,7 +1622,7 @@
 
   <creature name="shadows assassin">
     <type class="human" subclass="shadows_assassin" tileid="human_evil.png:3"/>
-    <description>You see a shadows assassin. He knows how to become one with the shadows and to move in the dark without been seen or making any sound.</description>
+    <description>You see a shadows assassin. He knows how to become one with the shadows and to move in the dark without being seen or making any sound.</description>
     <attributes>
       <atk value="645"/>
       <def value="87"/>
