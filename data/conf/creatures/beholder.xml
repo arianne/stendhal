@@ -4,7 +4,7 @@
     
   <creature name="young beholder">
     <type class="beholder" subclass="young_beholder" tileid="beholder.png:2"/>
-    <description>You see a young beholder, with his big eye you can't hide from him!</description>
+    <description>You see a young beholder. His huge eye will find you everywhere!</description>
     <attributes>
       <atk value="96"/>
       <def value="16"/>
@@ -33,7 +33,7 @@
   
   <creature name="beholder">
     <type class="beholder" subclass="beholder" tileid="beholder.png:0"/>
-    <description>You see a beholder, they can see you very well with that big eye...</description>
+    <description>You see a beholder which can see you very well with its huge eye...</description>
     <attributes>
       <atk value="126"/>
       <def value="20"/>
