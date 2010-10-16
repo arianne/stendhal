@@ -118,7 +118,7 @@
 
   <creature name="penguin">
     <type class="animal" subclass="penguin" tileid="animal.png:16"/>
-    <description>You see a penguin, smart, and silly.</description>
+    <description>You see a penguin, smart and silly.</description>
     <attributes>
       <atk value="36"/>
       <def value="7"/>
@@ -149,7 +149,7 @@
 
   <creature name="pigeon">
     <type class="animal" subclass="pigeon" tileid="animal.png:23"/>
-    <description>You see a pigeon, they love the little seeds.</description>
+    <description>You see a pigeon, it loves the little seeds.</description>
     <attributes>
       <atk value="36"/>
       <def value="7"/>
@@ -236,7 +236,7 @@
   
   <creature name="wolf">
     <type class="animal" subclass="wolf" tileid="animal.png:20"/>
-	<description>You see a wolf, they are wild and very hungry!</description>
+	<description>You see a wolf. It is wild and very hungry!</description>
     <attributes>
       <atk value="46"/>
       <def value="9"/>
@@ -266,7 +266,7 @@
 
   <creature name="big bad wolf">
     <type class="animal" subclass="wolf" tileid="animal.png:26"/>
-	<description>You see a wolf, they are wild and very hungry!</description>
+	<description>You see a big bad wolf. It is really wild, hungry and really dangerous!</description>
     <attributes>
       <atk value="46"/>
       <def value="9"/>
@@ -298,7 +298,7 @@
 
   <creature name="fox">
     <type class="animal" subclass="fox" tileid="animal.png:24"/>
-	<description>You see a fox, they are becoming extinct!</description>
+	<description>You see a fox, it becomes extinct!</description>
     <attributes>
       <atk value="55"/>
       <def value="8"/>
@@ -324,7 +324,7 @@
 
   <creature name="caiman">
     <type class="animal" subclass="caiman" tileid="animal.png:6"/>
-    <description>You see a caiman, they are hidden in the water.</description>
+    <description>You see a caiman, which is hidden in the water.</description>
     <attributes>
       <atk value="49"/>
       <def value="9"/>
@@ -384,7 +384,7 @@
 
   <creature name="panda">
     <type class="animal" subclass="pandabear" tileid="animal.png:22"/>
-    <description>You see a panda, they came from an exotic land.</description>
+    <description>You see a panda which comes from an exotic land.</description>
     <attributes>
       <atk value="48"/>
       <def value="7"/>
@@ -445,7 +445,7 @@
 
   <creature name="bear">
     <type class="animal" subclass="bear" tileid="animal.png:1"/>
-    <description>You see a bear, you are lucky and found it awake.</description>
+    <description>You see a bear. You are lucky and found it awake.</description>
     <attributes>
       <atk value="80"/>
       <def value="14"/>
@@ -505,7 +505,7 @@
   
     <creature name="elephant">
     <type class="animal" subclass="elephant" tileid="animal.png:11"/>
-    <description>You see a elephant, a big animal, it's dangerous...</description>
+    <description>You see an elephant, a huge animal with lots of ham and meat. Are you sure that you want to attack it?</description>
     <attributes>
       <atk value="73"/>
       <def value="6"/>
@@ -536,7 +536,7 @@
   
   <creature name="tiger">
     <type class="animal" subclass="tiger" tileid="animal.png:19"/>
-    <description>You see a tiger, they like deer and human meat.</description>
+    <description>You see a tiger, which likes deer and human meat.</description>
     <attributes>
       <atk value="88"/>
       <def value="15"/>
@@ -566,7 +566,7 @@
   
   <creature name="killer bat">
     <type class="animal" subclass="killer_bat" tileid="animal.png:13"/>
-    <description>You see a killer bat, it will suck your blood!</description>
+    <description>You see a killer bat which will suck your blood!</description>
     <attributes>
       <atk value="104"/>
       <def value="19"/>
@@ -620,7 +620,7 @@
   
   <creature name="black bear">
     <type class="animal" subclass="black_bear" tileid="animal.png:2"/>
-    <description>You see a strong black bear, they hibernate in winter.</description>
+    <description>You see a strong black bear which hibernates in winter.</description>
     <attributes>
       <atk value="119"/>
       <def value="16"/>
@@ -677,7 +677,7 @@
    
   <creature name="spider">
     <type class="animal" subclass="spider" tileid="animal.png:18"/>
-    <description>You see a spider, they are making a giant spider web to trap you!</description>
+    <description>You see a spider. It makes a giant spider web to trap you!</description>
     <attributes>
       <atk value="213"/>
       <def value="56"/>
