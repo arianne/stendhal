@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.awt.Graphics2D;
@@ -27,7 +28,7 @@ class InvisibleEntity2DView extends Entity2DView {
 	//
 
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IEntity entity) {
 	}
 
 	/**

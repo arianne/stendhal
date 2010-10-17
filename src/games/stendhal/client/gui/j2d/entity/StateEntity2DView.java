@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -102,7 +103,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * animation sprites and sets the default frame.
 	 */
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IEntity entity) {
 		buildAnimations();
 
 		setSprite(getStateSprite());

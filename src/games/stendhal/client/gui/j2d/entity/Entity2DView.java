@@ -158,7 +158,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Rebuild the representation using the base entity. 
 	 */
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IEntity entity) {
 		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));
 	}
 
@@ -600,8 +600,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Handle updates.
 	 */
 	protected void update() {
+		IEntity entity = this.entity;
+		if (entity == null) {
+			return;
+		}
 		if (representationChanged) {
-			buildRepresentation();
+			buildRepresentation(entity);
 			representationChanged = false;
 		}
 

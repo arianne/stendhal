@@ -50,7 +50,7 @@ class Sign2DView extends Entity2DView {
 	}
 
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IEntity entity) {
 		String name = getClassResourcePath();
 
 		if (name == null) {

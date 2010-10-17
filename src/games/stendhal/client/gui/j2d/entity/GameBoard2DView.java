@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -26,7 +27,7 @@ class GameBoard2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IEntity entity) {
 		final SpriteStore store = SpriteStore.get();
 		Sprite sprite = store.getSprite(translate(getClassResourcePath()));
 		setSprite(sprite);

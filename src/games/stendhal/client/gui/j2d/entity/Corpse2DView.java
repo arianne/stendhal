@@ -85,7 +85,7 @@ class Corpse2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IEntity entity) {
 		final String imageName = entity.getRPObject().get("image");
 		final Sprite sprite = SpriteStore.get().getSprite(translate("corpse/"  + imageName));
 

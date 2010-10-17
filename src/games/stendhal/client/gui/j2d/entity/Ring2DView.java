@@ -64,7 +64,7 @@ class Ring2DView extends Item2DView {
 	 * 
 	 */
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IEntity entity) {
 		final SpriteStore store = SpriteStore.get();
 		final Sprite tiles = store.getSprite(translate(getClassResourcePath()));
 

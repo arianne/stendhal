@@ -57,7 +57,7 @@ public class Gate2DView extends Entity2DView {
 	}
 	
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IEntity entity) {
 		// not needed
 	}
 	

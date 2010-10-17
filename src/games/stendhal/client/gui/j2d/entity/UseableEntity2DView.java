@@ -51,7 +51,7 @@ class UseableEntity2DView extends Entity2DView {
 	//
 
 	@Override
-	protected void buildRepresentation() {
+	protected void buildRepresentation(IEntity entity) {
 		final SpriteStore store = SpriteStore.get();
 		Sprite sprite;
 		if (entity.getType().equals("useable_entity")) {
