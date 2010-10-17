@@ -174,7 +174,7 @@
   
   <creature name="commander elf">
     <type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
-    <description>You see a busy commander elf. He has the control over the army of elves.</description>
+    <description>You see a busy commander elf. He has control over the army of elves.</description>
     <attributes>
       <atk value="285"/>
       <def value="102"/>
