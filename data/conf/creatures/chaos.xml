@@ -143,7 +143,7 @@
 
   <creature name="chaos dragonrider">
     <type class="chaos" subclass="chaos_dragonrider" tileid="chaos.png:1"/>
-    <description>You see a chaos dragonrider. He is very well trained in dragon riding, but also on the ground he can fight well.</description>
+    <description>You see a chaos dragonrider. He is very well trained in dragon riding, but he can also fight well on the ground.</description>
     <attributes>
       <atk value="706"/>
       <def value="89"/>

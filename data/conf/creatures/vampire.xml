@@ -4,7 +4,7 @@
  
   <creature name="vampire bride">
     <type class="vampire" subclass="vampire_lord_bride_evil" tileid="vampire.png:0"/>
-    <description>You see a vampire bride, she was resurrected from the dead by a wicked vampire lord.</description>
+    <description>You see a vampire bride. She was resurrected from the dead by a wicked vampire lord.</description>
     <attributes>
       <atk value="186"/>
       <def value="4"/>

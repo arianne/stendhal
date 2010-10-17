@@ -4,7 +4,7 @@
     
   <creature name="gargoyle">
     <type class="gargoyle" subclass="gargoyle" tileid="gargoyle.png:2"/>
-    <description>You see a gargoyle, you should think that it is a statue, but no, it is alive!</description>
+    <description>You see a gargoyle, You should think that it is a statue, but no, it is alive!</description>
     <attributes>
       <atk value="98"/>
       <def value="16"/>
@@ -30,7 +30,7 @@
   
   <creature name="elder gargoyle">
     <type class="gargoyle" subclass="elder_gargoyle" tileid="gargoyle.png:1"/>
-    <description>You see an elder gargoyle, they are wise...</description>
+    <description>You see an elder gargoyle, it is wise...</description>
     <attributes>
       <atk value="114"/>
       <def value="16"/>
@@ -57,7 +57,7 @@
   
   <creature name="dark gargoyle">
     <type class="gargoyle" subclass="dark_gargoyle" tileid="gargoyle.png:0"/>
-    <description>You see a dark gargoyle, are you feeling the fear?</description>
+    <description>You see a dark gargoyle, do you feel the fear?</description>
     <attributes>
       <atk value="134"/>
       <def value="22"/>

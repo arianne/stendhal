@@ -4,7 +4,7 @@
     
   <creature name="tiny skelly">
     <type class="hybrid" subclass="tiny_skelly" tileid="hybrid.png:9"/>
-    <description>You see a tiny skelly, they are silly, little and evil, be careful with his poison...</description>
+    <description>You see a tiny skelly. It is silly, little and evil, be careful with its poison...</description>
     <attributes>
       <atk value="173"/>
       <def value="28"/>
@@ -209,7 +209,7 @@
   
   <creature name="snarfkin">
     <type class="hybrid" subclass="snarfkin" tileid="hybrid.png:11"/>
-    <description>You see a snarfkin, the favourite pet of wizards. Be careful, their claws are poisonous!</description>
+    <description>You see a snarfkin, the favourite pet of wizards. Be careful, its claws are poisonous!</description>
     <attributes>
       <atk value="472"/>
       <def value="74"/>

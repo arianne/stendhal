@@ -96,7 +96,7 @@
   
    <creature name="ram">
     <type class="farm_animal" subclass="ram" tileid="farm_animal.png:10"/>
-    <description>You see a ram, maybe are you able to shear it?</description>
+    <description>You see a ram, maybe you are able to shear it?</description>
     <attributes>
       <atk value="52"/>
       <def value="7"/>
@@ -124,7 +124,7 @@
   
    <creature name="beaver">
     <type class="farm_animal" subclass="beaver" tileid="farm_animal.png:0"/>
-    <description>You see a beaver, they like to build dams in the river.</description>
+    <description>You see a beaver. It likes to build dams in the river.</description>
     <attributes>
       <atk value="53"/>
       <def value="8"/>
@@ -179,7 +179,7 @@
 
   <creature name="goat">
     <type class="farm_animal" subclass="goat" tileid="farm_animal.png:4"/>
-    <description>You see a goat, they are wild and live in the mountain.</description>
+    <description>You see a goat, which is wild and lives in the mountain.</description>
     <attributes>
       <atk value="52"/>
       <def value="9"/>
@@ -205,7 +205,7 @@
 
   <creature name="horse">
     <type class="farm_animal" subclass="horse" tileid="farm_animal.png:7"/>
-    <description>You see funny horse, don't slap it or it will run away!</description>
+    <description>You see a horse, don't slap it or it will run away!</description>
     <attributes>
       <atk value="48"/>
       <def value="10"/>
@@ -234,7 +234,7 @@
 
   <creature name="white horse">
     <type class="farm_animal" subclass="white_horse" tileid="farm_animal.png:11"/>
-    <description>You see a white horse, they love to stay with their brown friends.</description>
+    <description>You see a white horse which loves it to stay with its brown friends.</description>
     <attributes>
       <atk value="50"/>
       <def value="9"/>
@@ -292,7 +292,7 @@
 
   <creature name="grass snake">
     <type class="farm_animal" subclass="grass_snake" tileid="farm_animal.png:5"/>
-    <description>You see a grass snake, they are pretty dangerous.</description>
+    <description>You see a grass snake which is quite dangerous.</description>
     <attributes>
       <atk value="68"/>
       <def value="15"/>

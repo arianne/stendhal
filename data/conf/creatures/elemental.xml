@@ -164,7 +164,7 @@
 
   <creature name="ice elemental">
     <type class="elemental" subclass="ice_elemental" tileid="elemental.png:5"/>
-    <description>You see an ice elemental and  sense a  shiver on your spine.</description>
+    <description>You see an ice elemental and sense a shiver on your spine.</description>
     <attributes>
       <atk value="400"/>
       <def value="61"/>

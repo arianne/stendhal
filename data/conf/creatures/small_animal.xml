@@ -66,7 +66,7 @@
 
   <creature name="caverat">
     <type class="small_animal" subclass="caverat" tileid="small_animal.png:0"/>
-    <description>You see a caverat, they are dirty and love the dungeons. </description>
+    <description>You see a caverat which is dirty and loves the dungeons. </description>
     <attributes>
       <atk value="34"/>
       <def value="6"/>
@@ -94,7 +94,7 @@
   
   <creature name="razorrat">
     <type class="small_animal" subclass="razorrat" tileid="small_animal.png:2"/>
-    <description>You see a razorrat, his noise will make you crazy!</description>
+    <description>You see a razorrat, its noise will make you crazy!</description>
     <attributes>
       <atk value="119"/>
       <def value="28"/>
@@ -152,7 +152,7 @@
   
   <creature name="zombie rat">
     <type class="small_animal" subclass="zombierat" tileid="small_animal.png:4"/>
-    <description>You see a hungry zombie rat, they won't like to see you.</description>
+    <description>You see a hungry zombie rat and it doesn't like to see you.</description>
     <attributes>
       <atk value="105"/>
       <def value="19"/>

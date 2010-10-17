@@ -4,7 +4,7 @@
  
   <creature name="frogman">
     <type class="frogman" subclass="frogman" tileid="frogman.png:1"/>
-    <description>You see a frogman, living in a lake not very deep.</description>
+    <description>You see a frogman which lives in a lake which isn't very deep.</description>
     <attributes>
       <atk value="171"/>
       <def value="33"/>

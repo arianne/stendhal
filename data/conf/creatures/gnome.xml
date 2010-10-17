@@ -4,7 +4,7 @@
     
   <creature name="gnome">
     <type class="gnome" subclass="gnome" tileid="gnome.png:0"/>
-    <description>You see a gnome, they live in the mountains.</description>
+    <description>You see a gnome who lives in the mountains.</description>
     <attributes>
       <atk value="51"/>
       <def value="7"/>
@@ -70,7 +70,7 @@
   </creature>
     <creature name="infantry gnome">
     <type class="gnome" subclass="infantryman" tileid="gnome_patrol.png:0"/>
-    <description>You see a infantry gnome, he will protect his little town against the humans!</description>
+    <description>You see an infantry gnome who will protect his little town against the humans!</description>
     <attributes>
       <atk value="58"/>
       <def value="15"/>
@@ -104,7 +104,7 @@
  
    <creature name="cavalryman gnome">
     <type class="gnome" subclass="cavalryman" tileid="gnome_patrol.png:1"/>
-    <description>You see a cavalryman gnome, they do long travels to search for gold.</description>
+    <description>You see a cavalryman gnome who does long travels to search for gold.</description>
     <attributes>
       <atk value="90"/>
       <def value="14"/>

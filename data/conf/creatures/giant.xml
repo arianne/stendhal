@@ -4,7 +4,7 @@
     
   <creature name="cyclops">
     <type class="giant" subclass="cyclops" tileid="giant.png:0"/>
-    <description>You see a cyclops, they just have one eye!</description>
+    <description>You see a cyclops. It just has one eye.</description>
     <attributes>
       <atk value="125"/>
       <def value="26"/>
@@ -36,7 +36,7 @@
   
   <creature name="ogre">
     <type class="giant" subclass="ogre" tileid="giant.png:2"/>
-    <description>You see an ogre, they are nude and rude!</description>
+    <description>You see an ogre, it is nude and rude!</description>
     <attributes>
       <atk value="151"/>
       <def value="20"/>
@@ -98,7 +98,7 @@
   
   <creature name="ogre soldier">
     <type class="giant" subclass="ogre_soldier" tileid="giant.png:3"/>
-    <description>You see an ogre soldier, smelling like they have not had a bath for years. Ewww.</description>
+    <description>You see an ogre soldier, smelling like it didn't have had a bath for years. Ewww.</description>
     <attributes>
       <atk value="222"/>
       <def value="40"/>

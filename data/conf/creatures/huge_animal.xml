@@ -74,7 +74,7 @@
 
   <creature name="bone dragon">
     <type class="huge_animal" subclass="bone_dragon" tileid="huge_animal.png:2"/>
-    <description>You see a bone dragon. It's been said there are creatures with enough will to live that their souls still cling to life even as their flesh and blood has failed them. This is living proof.</description>
+    <description>You see a bone dragon. It's been said that there are creatures with enough will to live that their souls still cling to life even as their flesh and blood has failed them. This is living proof.</description>
     <attributes>
       <atk value="435"/>
       <def value="48"/>
@@ -104,7 +104,7 @@
   
   <creature name="blue dragon">
     <type class="huge_animal" subclass="blue_dragon" tileid="huge_animal.png:1"/>
-    <description>You see a blue dragon. It has a very beautiful blue skin which shimmers mysteriously in the light. But don´t forget that it has also claws and teeth!</description>
+    <description>You see a blue dragon. It has a very beautiful blue skin which shimmers mysteriously in the light. But don´t forget that it also has claws and teeth!</description>
     <attributes>
       <atk value="511"/>
       <def value="57"/>
@@ -412,7 +412,7 @@
 
   <creature name="golden death">
     <type class="huge_animal" subclass="golden_death" tileid="huge_animal.png:12"/>
-    <description>You see the golden death. He came to take away your soul to pay for all your sins.</description>
+    <description>You see the golden death. He came to take your soul away to pay for all your sins.</description>
     <attributes>
       <atk value="1968"/>
       <def value="171"/>

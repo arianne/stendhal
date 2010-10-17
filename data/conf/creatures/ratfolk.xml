@@ -4,7 +4,7 @@
     
    <creature name="ratman">
     <type class="ratfolk" subclass="ratman" tileid="ratfolk.png:1"/>
-    <description>You see a ratman, they are a mutation that comes from old times.</description>
+    <description>You see a ratman. It ise a mutation that comes from old times.</description>
     <attributes>
       <atk value="171"/>
       <def value="19"/>
@@ -42,7 +42,7 @@
 
   <creature name="ratwoman">
     <type class="ratfolk" subclass="ratwoman" tileid="ratfolk.png:2"/>
-    <description>You see a ratwoman, they are a mutation of the women with the rats in the century XVIII.</description>
+    <description>You see a ratwoman. It is a mutation of the women with the rats in the century XVIII.</description>
     <attributes>
       <atk value="170"/>
       <def value="18"/>
@@ -78,7 +78,7 @@
 
   <creature name="archrat">
     <type class="ratfolk" subclass="archrat" tileid="ratfolk.png:0"/>
-    <description>You see an archrat. You will be distracted with his aura, be careful...</description>
+    <description>You see an archrat. You will be distracted with its aura, be careful...</description>
     <attributes>
       <atk value="229"/>
       <def value="77"/>

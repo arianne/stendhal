@@ -4,7 +4,7 @@
    
   <creature name="unicorn">
     <type class="mythical_being" subclass="unicorn" tileid="mythical_being.png:1"/>
-    <description>You see a rare unicorn. They are widely believed to be only a myth.</description>
+    <description>You see a rare unicorn. It is widely believed to be only a myth.</description>
     <attributes>
       <atk value="308"/>
       <def value="108"/>

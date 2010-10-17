@@ -4,7 +4,7 @@
     
   <creature name="elf">
     <type class="elf" subclass="elf" tileid="elf.png:3"/>
-    <description>You see an elf, they love the forest and live in peace.</description>
+    <description>You see an elf which loves the forest and lives in peace.</description>
     <attributes>
       <atk value="177"/>
       <def value="30"/>
@@ -37,7 +37,7 @@
   
   <creature name="militia elf">
     <type class="elf" subclass="militia_elf" tileid="elf.png:6"/>
-    <description>You see a militia elf, they train hard to beat you!</description>
+    <description>You see a militia elf which trains hard to beat you!</description>
     <attributes>
       <atk value="200"/>
       <def value="44"/>
@@ -71,7 +71,7 @@
   
   <creature name="archer elf">
     <type class="elf" subclass="archer_elf" tileid="elf.png:0"/>
-    <description>You see an archer elf, they can do much damage with their wooden arrows.</description> 
+    <description>You see an archer elf which can do much damage with its wooden arrows.</description> 
     <attributes>
       <atk value="198"/>
       <def value="42"/>
@@ -174,7 +174,7 @@
   
   <creature name="commander elf">
     <type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
-    <description>You see a busy commander elf. He has control over the army of elves.</description>
+    <description>You see a busy commander elf. He has the control over the army of elves.</description>
     <attributes>
       <atk value="285"/>
       <def value="102"/>

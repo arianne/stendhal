@@ -4,7 +4,7 @@
     
   <creature name="skeleton">
     <type class="undead" subclass="skeleton" tileid="undead.png:9"/>
-    <description>You see a skeleton, they survive to get revenge.</description>
+    <description>You see a skeleton which survives to get revenge.</description>
     <attributes>
       <atk value="98"/>
       <def value="13"/>
@@ -40,7 +40,7 @@
 
   <creature name="ghost">
     <type class="undead" subclass="ghost" tileid="undead.png:5"/>
-    <description>You see a ghost, don't be afraid! They don't seem to be evil.</description>
+    <description>You see a ghost, don't be afraid! It doesn't seem to be evil.</description>
     <attributes>
       <atk value="171"/>
       <def value="25"/>
@@ -70,7 +70,7 @@
  
   <creature name="bloody zombie">
     <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
-    <description>You see a bloody zombie, can you see the drops of blood that fall from his body?</description>
+    <description>You see a bloody zombie. Can you see the drops of blood that fall from his body?</description>
     <attributes>
       <atk value="182"/>
       <def value="34"/>
@@ -103,7 +103,7 @@
  
   <creature name="zombie">
     <type class="undead" subclass="zombie" tileid="undead.png:11"/>
-    <description>You see a zombie, they wake up just to take revenge, be silent.</description>
+    <description>You see a zombie. It woke up just to take revenge, be silent.</description>
     <attributes>
       <atk value="202"/>
       <def value="49"/>
@@ -132,7 +132,7 @@
   
   <creature name="headless monster">
     <type class="undead" subclass="headless_monster" tileid="undead.png:6"/>
-    <description>You see a headless monster, how he can hear that we come to him?</description>
+    <description>You see a headless monster, how can he hear that we come to him?</description>
     <attributes>
       <atk value="221"/>
       <def value="54"/>
@@ -162,7 +162,7 @@
      
    <creature name="warrior skeleton">
     <type class="undead" subclass="warrior_skeleton" tileid="undead.png:10"/>
-    <description>You see a warrior skeleton, he's just a normal skeleton with a shield!</description>
+    <description>You see a warrior skeleton, it's just a normal skeleton with a shield!</description>
     <attributes>
       <atk value="233"/>
       <def value="65"/>
@@ -263,7 +263,7 @@
   
   <creature name="death">
     <type class="undead" subclass="death" tileid="undead.png:2"/>
-    <description>You see Death. Do you have the will to stare him in the face? Today he's not in the mood to bargain with your soul.</description>
+    <description>You see a Death. Do you have the will to stare him in the face? Today he's not in the mood to bargain with your soul.</description>
     <attributes>
       <atk value="283"/>
       <def value="69"/>
@@ -671,7 +671,7 @@
 
   <creature name="devil monk">
     <type class="undead" subclass="devil_monk" tileid="undead_fallen.png:8"/>
-    <description>You see a devil monk. He is member of a devil cult which practises black rituals.</description>
+    <description>You see a devil monk. He is a member of a devil cult which practises black rituals.</description>
     <attributes>
       <atk value="1089"/>
       <def value="108"/>

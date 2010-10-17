@@ -4,7 +4,7 @@
  
   <creature name="orc">
     <type class="orc" subclass="orc" tileid="orc.png:2"/>
-    <description>You see a orc, he is noisy and silly.</description>
+    <description>You see an orc which is noisy and silly.</description>
     <attributes>
       <atk value="136"/>
       <def value="32"/>
@@ -64,7 +64,7 @@
       
   <creature name="orc warrior">
     <type class="orc" subclass="orc_warrior" tileid="orc.png:3"/>
-    <description>You see an orc warrior, they won't like you searching in the mountain.</description>
+    <description>You see an orc warrior which doesn't like you searching in the mountain.</description>
     <attributes>
       <atk value="166"/>
       <def value="28"/>
@@ -96,7 +96,7 @@
 
   <creature name="orc hunter">
     <type class="orc" subclass="orc_hunter" tileid="orc.png:1"/>
-    <description>You see an orc hunter, they are seeking for you!</description>
+    <description>You see an orc hunter. It it seeking for you!</description>
     <attributes>
       <atk value="165"/>
       <def value="44"/>
@@ -127,7 +127,7 @@
   
   <creature name="orc chief">
     <type class="orc" subclass="orc_chief" tileid="orc.png:0"/>
-    <description>You see an orc chief, he is too busy to attend to you!</description>
+    <description>You see an orc chief which is too busy to attend to you!</description>
     <attributes>
       <atk value="200"/>
       <def value="60"/>

@@ -4,7 +4,7 @@
     
   <creature name="leprechaun">
     <type class="fairy" subclass="leprechaun" tileid="fairy.png:2"/>
-    <description>You see a leprechaun, you would be lucky if you found their treasure.</description>
+    <description>You see a leprechaun, you would be lucky if you will find his treasure.</description>
     <attributes>
       <atk value="126"/>
       <def value="20"/>
@@ -37,7 +37,7 @@
   
   <creature name="littlefairy">
     <type class="fairy" subclass="littlefairy" tileid="fairy.png:3"/>
-    <description>You see a littlefairy, they are magic and nice.</description>
+    <description>You see a little fairy, which is magical and nice.</description>
     <attributes>
       <atk value="143"/>
       <def value="26"/>
@@ -64,7 +64,7 @@
  
   <creature name="clurichaun">
     <type class="fairy" subclass="clurichaun" tileid="fairy.png:1"/>
-    <description>You see a clurichaun, they are rich, but you don't know if you are able to find his gold!</description>
+    <description>You see a clurichaun. He is rich, but you don't know if you are able to find his gold!</description>
     <attributes>
       <atk value="152"/>
       <def value="27"/>

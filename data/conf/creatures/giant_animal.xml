@@ -4,7 +4,7 @@
     
  <creature name="giantrat">
     <type class="giant_animal" subclass="giantrat" tileid="giant_animal.png:1"/>
-    <description>You see a giantrat, they are like an experiment gone wrong!</description>
+    <description>You see a giant rat. It seems like it survived from an experiment which went wrong.</description>
     <attributes>
       <atk value="173"/>
       <def value="30"/>
@@ -67,7 +67,7 @@
   <!-- used to be in giant human folder which is why the tiled image is different -->
   <creature name="dwarf golem">
     <type class="giant_animal" subclass="dwarf_golem" tileid="giant_human.png:5"/>
-    <description>You see a dwarf golem. A long time ago a dwarf got turned into a big rock by some mystical forces. To save their friend the other dwarfs created a golem out of this rock! From this day the dwarf golem lives together with them.</description>
+    <description>You see a dwarf golem. A long time ago a dwarf got turned into a big rock by some mystical forces. To save their friend the other dwarves created a golem out of this rock! From this day the dwarf golem lives together with them.</description>
     <attributes>
       <atk value="939"/>
       <def value="99"/>

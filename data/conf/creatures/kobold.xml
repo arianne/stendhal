@@ -4,7 +4,7 @@
     
   <creature name="kobold">
     <type class="kobold" subclass="kobold" tileid="kobold.png:1"/>
-    <description>You see a kobold, people say that is a mythical spirit.</description>
+    <description>You see a kobold. People say that it is a mythical spirit.</description>
     <attributes>
       <atk value="88"/>
       <def value="16"/>
@@ -78,7 +78,7 @@
 
   <creature name="archer kobold">
     <type class="kobold" subclass="archer_kobold" tileid="kobold.png:0"/>
-    <description>You see an archer kobold, they run away from the humans.</description>
+    <description>You see an archer kobold. It runs away from humans.</description>
     <attributes>
       <atk value="115"/>
       <def value="28"/>
@@ -115,7 +115,7 @@
   
   <creature name="veteran kobold">
     <type class="kobold" subclass="veteran_kobold" tileid="kobold.png:4"/>
-    <description>You see a veteran kobold, they are mighty!</description>
+    <description>You see a veteran kobold, it is mighty!</description>
     <attributes>
       <atk value="125"/>
       <def value="31"/>

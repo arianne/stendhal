@@ -4,7 +4,7 @@
     
   <creature name="dwarf">
     <type class="dwarf" subclass="dwarf" tileid="dwarf.png:1"/>
-    <description>You see a dwarf, they just work in the mines to find some gold for us.</description>
+    <description>You see a dwarf who works in the mine to find some iron for us.</description>
     <attributes>
       <atk value="168"/>
       <def value="26"/>
@@ -37,7 +37,7 @@
 
   <creature name="dwarf guardian">
     <type class="dwarf" subclass="dwarf_guardian" tileid="dwarf.png:0"/>
-    <description>You see a dwarf guardian, they are making defense against the humans.</description>
+    <description>You see a dwarf guardian who fights against the humans.</description>
     <attributes>
       <atk value="200"/>
       <def value="31"/>
@@ -481,7 +481,7 @@
   
   <creature name="mountain hero dwarf">
     <type class="dwarf" subclass="hero_dwarf" tileid="mountain_dwarf.png:3"/>
-    <description>You see a mountain hero dwarf. Many, many dwarfs admire him! He was a member of a dwarf group who discovered a very big gold deposit!</description>
+    <description>You see a mountain hero dwarf. Many, many dwarves admire him! He was a member of a dwarvish group which discovered a very big gold deposit!</description>
     <attributes>
       <atk value="503"/>
       <def value="72"/>
@@ -514,7 +514,7 @@
 
   <creature name="mountain leader dwarf">
     <type class="dwarf" subclass="leader_dwarf" tileid="mountain_dwarf.png:4"/>
-    <description>You see a mountain leader dwarf. He is responsible for the mountain dwarfs and their work, and also for the organization of the guardian troops. But in serious cases he will also fight on his own!</description>
+    <description>You see a mountain leader dwarf. He is responsible for the mountain dwarves and their work, and also for the organization of the guardian troops. But in serious cases he will also fight on his own!</description>
     <attributes>
       <atk value="560"/>
       <def value="83"/>
@@ -580,7 +580,7 @@
   
   <creature name="giant dwarf">
     <type class="dwarf" subclass="giant_dwarf" tileid="dwarf.png:5"/>
-    <description>You see a giant dwarf. It is very hard for him to be a giant dwarf because the some of the other dwarfs don´t really see him as one of them because of his height... But in his big heart he is a dwarf and in battle he will fight against every enemy!</description>
+    <description>You see a giant dwarf. It is very hard for him to be a giant dwarf because some of the other dwarves don´t really see him as one of them because of his height... But in his big heart he is a dwarf and in a battle he will fight against each enemy!</description>
     <attributes>
       <atk value="616"/>
       <def value="99"/>

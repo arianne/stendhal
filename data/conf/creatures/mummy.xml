@@ -4,7 +4,7 @@
     
   <creature name="mummy">
     <type class="mummy" subclass="mummy" tileid="mummy.png:0"/>
-    <description>You see a mummy, they usually sleep in a coffin.</description>
+    <description>You see a mummy which usually sleeps in a coffin.</description>
     <attributes>
       <atk value="154"/>
       <def value="42"/>
