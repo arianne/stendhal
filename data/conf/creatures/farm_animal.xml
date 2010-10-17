@@ -234,7 +234,7 @@
 
   <creature name="white horse">
     <type class="farm_animal" subclass="white_horse" tileid="farm_animal.png:11"/>
-    <description>You see a white horse which loves it to stay with its brown friends.</description>
+    <description>You see a white horse, they love to stay with their brown friends.</description>
     <attributes>
       <atk value="50"/>
       <def value="9"/>
