@@ -4,7 +4,7 @@
 
  <creature name="child dark elf">
     <type class="dark_elf" subclass="baby_drow" tileid="dark_elf.png:10"/>
-    <description>You see a dark elf child. You should know that dark elves are already quite strong and intelligent when they are children. Don´t think you can fight him so easily!</description>
+    <description>You see a child dark elf. You should know that dark elves are already quite strong and intelligent when they are children. Don't think you can fight him so easily!</description>
     <attributes>
       <atk value="374"/>
       <def value="67"/>
