@@ -104,7 +104,7 @@
   
   <creature name="blue dragon">
     <type class="huge_animal" subclass="blue_dragon" tileid="huge_animal.png:1"/>
-    <description>You see a blue dragon. It has a very beautiful blue skin which shimmers mysteriously in the light. But don´t forget that it also has claws and teeth!</description>
+    <description>You see a blue dragon. It has a very beautiful blue skin which shimmers mysteriously in the light. But don't forget that it also has claws and teeth!</description>
     <attributes>
       <atk value="511"/>
       <def value="57"/>
