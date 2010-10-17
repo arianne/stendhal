@@ -4,7 +4,7 @@
     
   <creature name="leprechaun">
     <type class="fairy" subclass="leprechaun" tileid="fairy.png:2"/>
-    <description>You see a leprechaun, you would be lucky if you will find his treasure.</description>
+    <description>You see a leprechaun, you would be lucky if you found his treasure.</description>
     <attributes>
       <atk value="126"/>
       <def value="20"/>
