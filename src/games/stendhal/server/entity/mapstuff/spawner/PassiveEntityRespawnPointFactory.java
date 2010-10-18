@@ -209,6 +209,9 @@ public class PassiveEntityRespawnPointFactory {
 		case 11:
 			passiveEntityrespawnPoint = new VegetableGrower("garlic");
 			break;
+		case 12:
+			passiveEntityrespawnPoint = new VegetableGrower("artichoke");
+			break;
 		default:
 			passiveEntityrespawnPoint = null;
 			break;
