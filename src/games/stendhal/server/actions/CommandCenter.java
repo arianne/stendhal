@@ -111,6 +111,7 @@ public class CommandCenter {
 		WhereAction.register();
 		WhoAction.register();
 		register("info", new InfoAction());
+		register("mark", new MarkAction());
 	}
 
 	public static boolean execute(final RPObject caster, final RPAction action) {

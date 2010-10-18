@@ -48,6 +48,7 @@ class HelpAction implements SlashAction {
 				"* Items: ",
 				"- /drop [quantity] <item>\tDrop a certain number of an item",
 				"- /listproducers\tFind out what items are being produced for you",
+				"- /mark <text> \tMark your empty scroll with your comments",				
 				"* Buddies and Enemies: ",
 				"- /add <player> \tAdd <player> to your buddy list",
 				"- /remove <player> \tRemove <player> from your buddy list",
