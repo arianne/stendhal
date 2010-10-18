@@ -16,13 +16,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.semos.temple.HealerNPC;
 import games.stendhal.server.maps.semos.townhall.BoyNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
@@ -45,17 +45,17 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
 		new DatabaseFactory().initializeDatabase();
-		generatePlayerRPClasses();
 		ItemTestHelper.generateRPClasses();
 
 		MockStendhalRPRuleProcessor.get();
 		MockStendlRPWorld.get();
 
 		setupZone(ZONE_NAME, new BoyNPC());
-
-		SingletonRepository.getNPCList().add(new SpeakerNPC("Ilisa"));
+		
+		setupZone(ZONE_NAME, new HealerNPC());
 
 		new MedicineForTad().addToWorld();
+		
 	}
 
 	public MedicineForTadTest() {
@@ -155,16 +155,47 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?",
 				getReply(ilisa));
 		engineIlisa.step(player, "yes");
+		assertEquals("North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for.",getReply(ilisa));
 		assertEquals("corpse&herbs", player.getQuest(QUEST_SLOT));
+		engineIlisa.step(player, "tad");
+		assertEquals("He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him.", getReply(ilisa));
 		engineIlisa.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
+		assertEquals("Bye.", getReply(ilisa));
 
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(tad.isTalking());
 
 		assertEquals("Tad has already asked and the quest was accepted",
 				"*sniff* *sniff* I still feel ill, please hurry with that #favour for me.", getReply(tad));
+		engineTad.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
+		assertFalse(tad.isTalking());
+		assertEquals("Bye.", getReply(tad));
 
-		//TODO still to be finished: get the herb for Ilisa
+		engineIlisa.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
+		assertEquals("Can you fetch those #herbs for the #medicine?", getReply(ilisa));
+		engineIlisa.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
+		assertEquals("Bye.", getReply(ilisa));
+		
+		// doesn't work as it causes an npe and adding it to setUp() doesn't help
+		//PlayerTestHelper.equipWithItem(player, "arandula");
+		final StackableItem arandula = new StackableItem("arandula", "", "", null);
+		arandula.setQuantity(1);
+		arandula.setID(new ID(2, ZONE_NAME));
+		player.getSlot("bag").add(arandula);
+		engineIlisa.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
+		assertEquals(
+				"Okay! Thank you. Now I will just mix these... a pinch of this... and a few drops... there! Can you ask #Tad to stop by and collect it? I want to see how he's doing.",
+				getReply(ilisa));
+		engineIlisa.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
+		assertEquals("Bye.", getReply(ilisa));
+		
+		assertEquals("potion", player.getQuest(QUEST_SLOT));
+		
+		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
+		assertEquals("Thanks! I will go talk with #ilisa as soon as possible.", getReply(tad));
+		assertEquals("done", player.getQuest(QUEST_SLOT));
+		
+		
 	}
 
 }
