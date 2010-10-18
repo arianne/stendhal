@@ -219,10 +219,14 @@ public class MithrilCloakTest {
 		assertEquals(en.getCurrentState(), ConversationStates.PRODUCTION_OFFERED);
 		en.step(player, "yes");
 		assertEquals("It's unorthodox, but I will make 40 silk thread for you. Please be discreet and come back in about 6 and a half hours.", getReply(npc));
-		//TODO should test coming back too soon.
 		en.step(player, "bye");
 		assertEquals("Ta ta!", getReply(npc));
-
+		
+		en.step(player, "hi");
+		assertTrue(getReply(npc).startsWith("Shhhh, I'm still working on your request to make silk thread for you. I'll be done in about"));
+		en.step(player, "bye");
+		assertEquals("Ta ta!", getReply(npc));
+		
 		player.setQuest(questSlot, "makingthread;40;silk thread;0"); 
 		assertEquals("makingthread;40;silk thread;0", player.getQuest(questSlot));
 		en.step(player, "hi");
