@@ -41,7 +41,21 @@
  </zone>
 
  <zone name="0_amazon_island_nw" level="0" x="501024" y="499744" file="Level 0/amazon/island_nw.tmx">
+	
+	<entity x="43" y="90">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+     	<parameter name="species">red_lionfish</parameter>
+    	</implementation>
+  	 </entity>
+  	 
+  	 <entity x="93" y="19">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+     	<parameter name="species">red_lionfish</parameter>
+    	</implementation>
+  	 </entity>
+
  </zone>
+
 
  <zone name="0_amazon_island_ne" level="0" x="501152" y="499744" file="Level 0/amazon/island_ne.tmx">
   <configurator class-name="games.stendhal.server.maps.amazon.fleamarket.AmazonMermaidArmorNPC"/>
@@ -54,19 +68,41 @@
 	</implementation>
 	<attribute name="class">blackboard</attribute>
   </entity>
+  
+  	 <entity x="5" y="94">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+     	<parameter name="species">red_lionfish</parameter>
+    	</implementation>
+  	 </entity>
+  	 
   <portal x="48" y="98" ref="in">
    <destination zone="int_amazon_princess_hut" ref="out"/>
   </portal>
  </zone>
 
  <zone name="0_amazon_island_sw" level="0" x="501024" y="499872" file="Level 0/amazon/island_sw.tmx">
+  
+  	 <entity x="13" y="38">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+     	<parameter name="species">red_lionfish</parameter>
+    	</implementation>
+  	 </entity>
+  
   <portal x="64" y="26" ref="in">
    <destination zone="int_amazon_prison_hut" ref="out"/>
   </portal>
  </zone>
 
  <zone name="0_amazon_island_se" level="0" x="501152" y="499872" file="Level 0/amazon/island_se.tmx">
+ 	
+ 	 <entity x="62" y="109">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+     	<parameter name="species">red_lionfish</parameter>
+    	</implementation>
+  	 </entity>
+ 
  </zone>
+
 
   <!--  Level -1 -->
  <zone name="-1_amazon_caves" level="-1" x="501152" y="499744" file="Level -1/amazon/caves.tmx">
