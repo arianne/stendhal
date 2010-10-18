@@ -269,7 +269,13 @@ public class PassiveEntityRespawnPointFactoryTest {
 
 		PassiveEntityRespawnPoint value_11 = PassiveEntityRespawnPointFactory
 				.create(clazz, 11, null, 0, 0);
-		assertNull(value_11);
+		assertNotNull(value_11);
+		assertTrue(value_11 instanceof VegetableGrower);
+		assertEquals("garlic", ((VegetableGrower) value_11).getVegetableName());
+		
+		PassiveEntityRespawnPoint value_12 = PassiveEntityRespawnPointFactory
+		.create(clazz, 12, null, 0, 0);
+		assertNull(value_12);
 
 	}
 
