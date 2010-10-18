@@ -16,14 +16,14 @@ public class MarkAction implements ActionListener {
 
 				Item scroll = SingletonRepository.getEntityManager().getItem("marked scroll");				
 				scroll.setInfoString(is);
-				scroll.setDescription("You see the marked by "+player.getName()+" scroll. It says: \""+ds+"\". ");
+				scroll.setDescription("You see a scroll marked by "+player.getName()+". It says: \""+ds+"\". ");
 				player.equipOrPutOnGround(scroll);
-				player.sendPrivateText("You marked scroll (\""+ds+"\")");
+				player.sendPrivateText("You marked a scroll with \""+ds+"\".");
 			} else {
-				player.sendPrivateText("You dont have scrolls to mark it!");
+				player.sendPrivateText("You don't have any empty scrolls to mark.");
 			}			
 		} else {
-			player.sendPrivateText("you need enter description.");
+			player.sendPrivateText("If you want to add a label please give the text for it: #/mark #text. To mark without a label, Right click and Use.");
 		}
 
 	}
