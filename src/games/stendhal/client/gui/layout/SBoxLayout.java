@@ -836,6 +836,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * workaround for components not passing information about new subcomponents
 	 * if the user explicitly specifies the constraints. 
 	 * 
+	 * @param target the container where to add a string to
 	 * @return A spring with preferred dimensions 0, 0.
 	 */
 	public static JComponent addSpring(Container target) {

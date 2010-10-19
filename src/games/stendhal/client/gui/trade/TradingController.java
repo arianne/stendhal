@@ -56,6 +56,7 @@ public class TradingController {
 	/**
 	 * Set the new trading state.
 	 * 
+	 * @param user the trading user
 	 * @param partner the trading partner
 	 * @param myState state of the user
 	 * @param partnerState state of the trading partner 

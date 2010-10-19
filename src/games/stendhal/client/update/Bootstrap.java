@@ -344,6 +344,7 @@ public class Bootstrap {
 	/**
 	 * Handles exceptions during program invocation.
 	 * 
+	 * @param message
 	 * @param t
 	 *            exception
 	 */

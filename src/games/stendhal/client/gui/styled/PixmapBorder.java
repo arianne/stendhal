@@ -181,6 +181,7 @@ public class PixmapBorder implements Border {
 	 * Get the appropriate border draw width for a component.
 	 * 
 	 * @param component
+	 * @return border width
 	 */
 	private int getBorderWidth(Component component) {
 		if ((component instanceof JMenuItem) 

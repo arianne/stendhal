@@ -144,7 +144,9 @@ public class stendhal {
 	}
 
 	/**
-	 * get the singleton instance for the resource manager
+	 * Get the singleton instance for the resource manager
+	 * 
+	 * @return the current resource manager 
 	 */
 	public static ResourceManager getResourceManager() {
 		return RESOURCE_MANAGER;

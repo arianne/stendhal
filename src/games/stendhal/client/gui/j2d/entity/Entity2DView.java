@@ -156,7 +156,9 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	}
 
 	/**
-	 * Rebuild the representation using the base entity. 
+	 * Rebuild the representation using the base entity.
+	 * 
+	 * @param entity the eEntity to build the representation for
 	 */
 	protected void buildRepresentation(IEntity entity) {
 		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));

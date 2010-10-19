@@ -22,6 +22,8 @@ public class StyleUtil {
 	/**
 	 * Get the current <code>Style</code>, or <code>null</code> if it
 	 * has not been set in the UIManager.
+	 * 
+	 * @return Current Style, or <code>null</code> if no Style is in use
 	 */
 	public static Style getStyle() {
 		Object obj = UIManager.get("StendhalStyle");

@@ -139,6 +139,8 @@ public class ComponentPaintCache {
 		void paintBorder(Graphics g);
 		/**
 		 * Paint everything, including the child components.
+		 * 
+		 * @param g graphics
 		 */
 		void paintChildren(Graphics g);
 		/**

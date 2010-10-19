@@ -390,7 +390,10 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	
 	/**
 	 * Tell the player to move to point p
+	 * 
 	 * @param p the point
+	 * @param doubleClick <code>true</code> if the movement was requested with
+	 * 	a double click, <code>false</code> otherwise
 	 */
 	private void movePlayer(final Point p, boolean doubleClick) {
 		// Ignore clicks to the title area 

@@ -69,6 +69,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 		/**
 		 * Create a new StyledSplitPaneDivider.
 		 * 
+		 * @param ui UI delegate of the parent <code>JSplitPane</code>
 		 * @param style drawing style
 		 */
 		public StyledSplitPaneDivider(StyledSplitPaneUI ui, Style style) {

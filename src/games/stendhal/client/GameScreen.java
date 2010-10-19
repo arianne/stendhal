@@ -564,6 +564,8 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 
 	/**
 	 * Draw the screen entities.
+	 * 
+	 * @param g destination graphics
 	 */
 	private void drawEntities(final Graphics2D g) {
 		// We are in EDT now. The main thread can add or remove new views at any
@@ -581,6 +583,8 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 
 	/**
 	 * Draw the top portion screen entities (such as HP/title bars).
+	 * 
+	 * @param g destination graphics
 	 */
 	private void drawTopEntities(final Graphics2D g) {
 		// We are in EDT now. The main thread can add or remove new views at any
@@ -594,6 +598,8 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 
 	/**
 	 * Draw the screen text bubbles.
+	 * 
+	 * @param g2d destination graphics
 	 */
 	private void drawText(final Graphics2D g2d) {
 		texts.removeAll(textsToRemove);

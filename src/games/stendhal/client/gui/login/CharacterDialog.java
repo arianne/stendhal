@@ -79,6 +79,7 @@ public class CharacterDialog extends JDialog implements Runnable {
 	 * 
 	 * @param characters map of available characters, and <code>RPObjects</code>
 	 * 	representing them
+	 * @param owner the parent window
 	 */
 	public CharacterDialog(final Map<String, RPObject> characters, JFrame owner) {
 		super(owner);

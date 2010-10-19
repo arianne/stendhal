@@ -40,6 +40,8 @@ public class StatsPanelController {
 	
 	/**
 	 * Get the <code>StatsPanelController</code> instance.
+	 * 
+	 * @return the StatsPanelController instance
 	 */
 	public static synchronized StatsPanelController get() {
 		if (instance == null) {
