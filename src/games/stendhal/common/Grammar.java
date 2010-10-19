@@ -297,6 +297,9 @@ public class Grammar {
 		} else if (result.equals("wine")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "glass of ",
 					"glasses of ");
+		} else if (result.equals("tea")) {
+			result = addPrefixIfNotAlreadyThere(lowString, "cup of ",
+					"cups of ");
 		} else if (result.startsWith("book ")) {
 			result = result.substring(5) + " book";
 		} else if (result.equals("arandula")) {
@@ -360,6 +363,7 @@ public class Grammar {
 		result = removePrefix(result, "suit of ");
 		result = removePrefix(result, "pair of ");
 		result = removePrefix(result, "glas of ");
+		result = removePrefix(result, "cup of ");
 
 		return result;
 	}
@@ -385,6 +389,7 @@ public class Grammar {
 		result = removePrefix(result, "suits of ");
 		result = removePrefix(result, "pairs of ");
 		result = removePrefix(result, "glasses of ");
+		result = removePrefix(result, "cups of ");
 		return result;
 	}
 
