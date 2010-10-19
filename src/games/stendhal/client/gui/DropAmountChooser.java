@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
@@ -35,10 +36,18 @@ import org.apache.log4j.Logger;
  * of the drop handling of those drops.
  */
 public class DropAmountChooser {
+	/** Space between the popup border and actual content components */
+	private static final int BORDER = 2;
+	
+	/** Item to be dropped. */
 	final StackableItem item;
+	/** Target where the user is dropping the item. */
 	final DropTarget target;
+	/** Drop location within the target component */
 	final Point location;
+	/** Created selector popup menu */
 	final JPopupMenu popup;
+	/** Number selector within the popup menu */
 	JSpinner spinner;
 	
 	/**
@@ -98,6 +107,7 @@ public class DropAmountChooser {
 		});
 		
 		JComponent content = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
+		content.setBorder(BorderFactory.createEmptyBorder(BORDER, BORDER, BORDER, BORDER));
 		content.add(spinner);
 		content.add(button);
 		menu.add(content);
