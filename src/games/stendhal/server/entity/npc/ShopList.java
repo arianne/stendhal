@@ -435,7 +435,7 @@ public class ShopList {
 		shops.add("buypoisons", "poison", 40);
 		shops.add("buypoisons", "toadstool", 60);
 		shops.add("buypoisons", "greater poison", 60);
-		//shops.add("buypoisons", "red lionfish", 80);
+		shops.add("buypoisons", "red lionfish", 50);
 		shops.add("buypoisons", "deadly poison", 100);
 		shops.add("buypoisons", "mega poison", 500);
 		shops.add("buypoisons", "disease poison", 2000);
