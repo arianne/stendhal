@@ -35,7 +35,7 @@ public abstract class TransactionBehaviour extends Behaviour {
 	 *            The NPC who sells/buys
 	 * @param player
 	 *            The player who buys/sells
-	 * @return true iff the transaction was successful.
+	 * @return true if the transaction was successful.
 	 */
 	public abstract boolean transactAgreedDeal(EventRaiser seller, Player player);
 
