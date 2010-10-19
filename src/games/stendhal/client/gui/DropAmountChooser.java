@@ -18,6 +18,8 @@ import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -25,6 +27,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+
+import org.apache.log4j.Logger;
 
 /**
  * A class for showing a selector for dropped item amounts and taking control
@@ -60,6 +64,8 @@ public class DropAmountChooser {
 	 */
 	protected void show(Component parent, Point location) {
 		popup.show(parent, location.x, location.y);
+		// Needs to be after show()
+		getTextField().requestFocus();
 	}
 	
 	/**
@@ -72,8 +78,24 @@ public class DropAmountChooser {
 		
 		SpinnerModel model = new SpinnerNumberModel(1, 0, item.getQuantity(), 1);
 		spinner = new JSpinner(model);
+		/* 
+		 * Setup a key listener for the editor field so that the drop is
+		 * performed when the user presses enter.
+		 */
+		getTextField().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					doDrop();
+				}
+			}
+		});
 		JButton button = new JButton("Drop");
-		button.addActionListener(new DropListener());
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				doDrop();
+			}
+		});
 		
 		JComponent content = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
 		content.add(spinner);
@@ -84,21 +106,35 @@ public class DropAmountChooser {
 	}
 	
 	/**
-	 * Listener for the user pressing the "Drop" button. Drop the chosen amount
-	 * of items to the target.
+	 * Perform the drop.
 	 */
-	private class DropListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			Object value = spinner.getValue();
-			if (value instanceof Integer) {
-				int amount = (Integer) value;
-				// No need to send drop commands if the user does not want to
-				// drop anything
-				if (amount > 0) {
-					target.dropEntity(item, amount, location);
-				}
+	private void doDrop() {
+		Object value = spinner.getValue();
+		if (value instanceof Integer) {
+			int amount = (Integer) value;
+			// No need to send drop commands if the user does not want to
+			// drop anything
+			if (amount > 0) {
+				target.dropEntity(item, amount, location);
 			}
 			popup.setVisible(false);
+		}
+	}
+	
+	/**
+	 * Get the editable text field component of the spinner.
+	 * 
+	 * @return text field
+	 */
+	private JComponent getTextField() {
+		// There really seems to be no simpler way to do this
+		JComponent editor = spinner.getEditor();
+		if (editor instanceof JSpinner.DefaultEditor) {
+			return ((JSpinner.DefaultEditor) editor).getTextField();
+		} else {
+			Logger.getLogger(DropAmountChooser.class).error("Unknown editor type", new Throwable());
+			// This will not work, but at least it won't crash the client
+			return editor;
 		}
 	}
 }
