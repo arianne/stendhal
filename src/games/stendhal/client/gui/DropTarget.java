@@ -21,7 +21,7 @@ public interface DropTarget {
 	 * Drop an entity at a given location. Called when dragging ends.
 	 * 
 	 * @param entity dropped entity
-	 * @param number of dropped entities. -1 in case everything in the stack
+	 * @param amount number of dropped entities. -1 in case everything in the stack
 	 * 	should be dropped
 	 * @param point location within the DropTarget
 	 */
