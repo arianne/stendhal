@@ -60,12 +60,16 @@ public class StyledSpinnerUI extends BasicSpinnerUI {
 	
 	@Override
 	protected Component createNextButton() {
-		return new StyledArrowButton(SwingConstants.NORTH, style);
+		Component button = new StyledArrowButton(SwingConstants.NORTH, style);
+		installNextButtonListeners(button);
+		return button;
 	}
 	
 	@Override
 	protected Component createPreviousButton() {
-		return new StyledArrowButton(SwingConstants.SOUTH, style);
+		Component button = new StyledArrowButton(SwingConstants.SOUTH, style);
+		installPreviousButtonListeners(button);
+		return button;
 	}
 	
 	@Override
