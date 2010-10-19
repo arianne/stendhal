@@ -431,7 +431,7 @@ public class ShopList {
 		// ados market 
 		shops.add("buyadosarmors", "blue shield", 900);
 		
-		// Athor ferry (prices are equal to the absolute value of their HP losses amount)
+		// Athor ferry
 		shops.add("buypoisons", "poison", 40);
 		shops.add("buypoisons", "toadstool", 60);
 		shops.add("buypoisons", "greater poison", 60);
