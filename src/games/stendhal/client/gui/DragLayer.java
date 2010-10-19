@@ -13,6 +13,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
@@ -131,8 +132,10 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	/**
 	 * Stop dragging the item, and let the component below the cursor handle
 	 * the dropped entity.
+	 * 
+	 * @param event The mouse event that triggered the drop
 	 */
-	private void stopDrag() {
+	private void stopDrag(MouseEvent event) {
 		Container parent = getParent();
 		Point containerPoint = SwingUtilities.convertPoint(this, point, parent);
 		// Find out the underlying component  
@@ -142,12 +145,36 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			IEntity entity = dragged.getEntity();
 			if (entity != null) {
 				Point componentPoint = SwingUtilities.convertPoint(this, point, component);
-				
-				((DropTarget) component).dropEntity(entity, componentPoint);
+				if (showAmountChooser(event, entity)) {
+					// Delegate dropping to the amount chooser
+					DropAmountChooser chooser = new DropAmountChooser((StackableItem) entity, (DropTarget) component, componentPoint);
+					chooser.show(component, componentPoint);
+				} else {
+					// Dropping everything
+					((DropTarget) component).dropEntity(entity, -1, componentPoint);
+				}
 			} 
 		}
 
 		dragged = null;
+	}
+	
+	/**
+	 * Determine if the user should be given a chooser popup for selecting the
+	 * amount of items to be dropped.
+	 * 
+	 * @param event the mouse event that triggered the drop
+	 * @param entity dropped entity
+	 * 
+	 * @return <code>true</code> if a chooser should be displayed, 
+	 * 	<code>false</code> otherwise
+	 */
+	private boolean showAmountChooser(MouseEvent event, IEntity entity) {
+		if (((event.getModifiersEx() & MouseEvent.CTRL_DOWN_MASK) != 0)
+				&& (entity instanceof StackableItem)) {
+			return ((StackableItem) entity).getQuantity() > 1;
+		}
+		return false;
 	}
 
 	/*
@@ -164,7 +191,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			if (e.getID() == MouseEvent.MOUSE_DRAGGED) {
 				requestDraw();
 			} else if ((event.getID() == MouseEvent.MOUSE_RELEASED) && (dragged != null)) {
-				stopDrag();
+				stopDrag(event);
 				requestDraw();
 				point = null;
 			}

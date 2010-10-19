@@ -66,8 +66,6 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	private final IGameScreen screen;
 	/** Client for sending actions */
 	private final StendhalClient client;
-	/** The UI. */
-	private final j2DClient ui;
 	/** Component to place popup menus */
 	private final JComponent canvas;
 
@@ -100,7 +98,6 @@ public class GroundContainer extends MouseHandler implements Inspector,
 		this.client = client;
 		this.screen = gameScreen;
 		this.canvas = canvas;
-		this.ui = j2DClient.get();
 	}
 
 	@Override
@@ -195,16 +192,16 @@ public class GroundContainer extends MouseHandler implements Inspector,
 		final EntityView view = screen.getEntityViewAt(location.getX(), location.getY());
 		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
 		if ((view != null) && view.isInteractive()) {
-			if (ui.isCtrlDown()) {
+			if (isCtrlDown()) {
 				view.onAction();
 				return true;
-			} else if (ui.isShiftDown()) {
+			} else if (isShiftDown()) {
 				view.onAction(ActionType.LOOK);
 				return true;
 			} else if (!doubleClick) {
 				return view.onHarmlessAction();
 			}
-		} else if (windowWasActiveOnMousePressed && !ui.isCtrlDown()) {
+		} else if (windowWasActiveOnMousePressed && !isCtrlDown()) {
 			if (!doubleClick) {
 				createAndSendMoveToAction(location, false);
 				// let it pass "unhandled", so that the possible double click
@@ -346,7 +343,7 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	 * (non-Javadoc)
 	 * @see games.stendhal.client.gui.DropTarget#dropEntity(games.stendhal.client.entity.IEntity, java.awt.Point)
 	 */
-	public void dropEntity(IEntity entity, Point point) {
+	public void dropEntity(IEntity entity, int amount, Point point) {
 		final RPAction action = new RPAction();
 		
 		RPObject item = entity.getRPObject();
@@ -367,9 +364,8 @@ public class GroundContainer extends MouseHandler implements Inspector,
 		}
 		action.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
 
-		// if ctrl is pressed, attempt to split stackables
-		if (ui.isCtrlDown()) {
-			action.put("quantity", 1);
+		if (amount >= 1) {
+			action.put("quantity", amount);
 		}
 
 		// 'move to'

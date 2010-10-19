@@ -1087,8 +1087,8 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		}
 	}
 
-	public void dropEntity(IEntity entity, Point point) {
+	public void dropEntity(IEntity entity, int amount, Point point) {
 		// Just pass it to the ground container
-		ground.dropEntity(entity, point);
+		ground.dropEntity(entity, amount, point);
 	}
 }

@@ -35,6 +35,8 @@ abstract class MouseHandler implements MouseListener, MouseMotionListener {
 	 * part of a double click.
 	 */
 	private boolean lastClickWasHandled;
+	/** Event key mask for detecting ctrl and shift clicks */
+	private int flags;
 	
 	/**
 	 * Called on left mouse single click.
@@ -128,11 +130,10 @@ abstract class MouseHandler implements MouseListener, MouseMotionListener {
 	private void onMouseClick(final MouseEvent e) {
 		final Point p = e.getPoint();
 
+		flags = e.getModifiersEx();
 		// Added support for ctrl + click for Mac OS X intensifly@gmx.com
-
-		final int onmask = InputEvent.CTRL_DOWN_MASK;
 		if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).contains("os x")
-				&& ((e.getModifiersEx() & onmask) == onmask)) {
+				&& isCtrlDown()) {
 			onMouseRightClick(p);
 		} else if (e.getButton() == MouseEvent.BUTTON1) {
 			if (e.getClickCount() == 1) {
@@ -148,5 +149,23 @@ abstract class MouseHandler implements MouseListener, MouseMotionListener {
 			// no double rightclick supported
 			onMouseRightClick(p);
 		}
+	}
+	
+	/**
+	 * Check if the control key was down during the mouse event.
+	 * 
+	 * @return <code>true</code> if the control key was down
+	 */
+	protected boolean isCtrlDown() {
+		return ((flags & InputEvent.CTRL_DOWN_MASK) != 0);
+	}
+	
+	/**
+	 * Check if the shift key was down during the mouse event.
+	 * 
+	 * @return <code>true</code> if the shift key was down
+	 */
+	protected boolean isShiftDown() {
+		return ((flags & InputEvent.SHIFT_DOWN_MASK) != 0);
 	}
 }

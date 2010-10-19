@@ -126,12 +126,6 @@ public class j2DClient implements UserInterface {
 
 
 	ChatTextController chatText = new ChatTextController();
-	
-	private boolean ctrlDown;
-
-	private boolean shiftDown;
-
-	private boolean altDown;
 
 	/** settings panel. */
 	private SettingsPanel settings;
@@ -852,22 +846,6 @@ public class j2DClient implements UserInterface {
 		directionRelease = new DelayedDirectionRelease(direction, facing);
 	}
 
-
-
-
-
-	/**
-	 * Save the current keyboard modifier (i.e. Alt/Ctrl/Shift) state.
-	 *
-	 * @param ev
-	 *            The keyboard event.
-	 */
-	protected void updateModifiers(final KeyEvent ev) {
-		altDown = ev.isAltDown();
-		ctrlDown = ev.isControlDown();
-		shiftDown = ev.isShiftDown();
-	}
-
 	/**
 	 * Shutdown the client. Save state and tell the main loop to stop.
 	 */
@@ -898,33 +876,6 @@ public class j2DClient implements UserInterface {
 			throw new IllegalArgumentException("Unsupport ManagedWindow type: "
 					+ mw.getClass().getName());
 		}
-	}
-
-	/**
-	 * Determine if the Alt key is held down.
-	 *
-	 * @return Returns <code>true</code> if down.
-	 */
-	public boolean isAltDown() {
-		return altDown;
-	}
-
-	/**
-	 * Determine if the [Ctrl] key is held down.
-	 *
-	 * @return Returns <code>true</code> if down.
-	 */
-	public boolean isCtrlDown() {
-		return ctrlDown;
-	}
-
-	/**
-	 * Determine if the [Shift] key is held down.
-	 *
-	 * @return Returns <code>true</code> if down.
-	 */
-	public boolean isShiftDown() {
-		return shiftDown;
 	}
 
 	//
@@ -1034,13 +985,10 @@ public class j2DClient implements UserInterface {
 
 	protected class GameKeyHandler implements KeyListener {
 		public void keyPressed(final KeyEvent e) {
-			updateModifiers(e);
-
 			onKeyPressed(e);
 		}
 
 		public void keyReleased(final KeyEvent e) {
-			updateModifiers(e);
 			onKeyReleased(e);
 		}
 

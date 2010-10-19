@@ -170,7 +170,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 		}
 	}
 
-	public void dropEntity(IEntity entity, Point point) {
+	public void dropEntity(IEntity entity, int amount, Point point) {
 		// Don't drag an item into the same slot
 		if ((view != null) && (entity == view.getEntity())) {
 			return;
@@ -180,6 +180,9 @@ public class ItemPanel extends JComponent implements DropTarget {
 		final RPAction action = new RPAction();
 		// looks like an equip
 		action.put("type", "equip");
+		if (amount >= 1) {
+			action.put("quantity", amount);
+		}
 
 		// fill 'moved from' parameters
 		final RPObject rpObject = entity.getRPObject();
