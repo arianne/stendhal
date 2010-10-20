@@ -2904,6 +2904,7 @@ Mature sheep wanted: please speak to Sato
 	</zone>
 
 	<zone name="int_wofol_bar" file="interiors/wofol/bar.tmx">
+		<configurator class-name="games.stendhal.server.maps.wofol.bar.KoboldBarmaidNPC" />
 		<portal x="3" y="8" ref="entrance">
 			<destination zone="-1_semos_mine_nw" ref="bar_entrance" />
 		</portal>
