@@ -472,16 +472,15 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	
 	@Override
 	protected void paintComponent(final Graphics g) {
+		
 		// sort uses iterators, so it must be wrapped in a synchronized block
 		synchronized (views) {
 			Collections.sort(views, entityViewComparator);
 		}
 		Graphics2D g2d = (Graphics2D) g;
 
-		/*
-		 * Draw the GameLayers from bootom to top, relies on exact naming of the
-		 * layers
-		 */
+		// Draw the GameLayers from bootom to top, relies on exact naming of the
+		// layers
 		final String set = gameLayers.getAreaName();
 		
 		// An adjusted graphics object so that the drawn objects do not need to
@@ -495,9 +494,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		int xAdjust = -getScreenViewX();
 		int yAdjust = -getScreenViewY();
 		graphics.translate(xAdjust, yAdjust);
-		/*
-		 * End of the world (map falls short of the view)?
-		 */
+		// End of the world (map falls short of the view)?
 		if (xAdjust > 0) {
 			g2d.setColor(Color.BLACK);
 			g2d.fillRect(0, 0, xAdjust, sh);
@@ -534,6 +531,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		
+
 		gameLayers.draw(graphics, set, "0_floor", startTileX, startTileY, layerWidth, layerHeight);
 		gameLayers.draw(graphics, set, "1_terrain", startTileX, startTileY, layerWidth, layerHeight);
 		gameLayers.draw(graphics, set, "2_object", startTileX, startTileY, layerWidth, layerHeight);
@@ -547,9 +545,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		
 		drawText(g2d);
 
-		/*
-		 * Offline
-		 */
+		// Offline
 		if (offline && (blinkOffline > 0)) {
 			offlineIcon.draw(g2d, 560, 420);
 		}
@@ -559,6 +555,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		} else {
 			blinkOffline--;
 		}
+
 		graphics.dispose();
 	}
 
