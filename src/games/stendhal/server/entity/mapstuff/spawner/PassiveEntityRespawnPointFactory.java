@@ -299,10 +299,10 @@ public class PassiveEntityRespawnPointFactory {
 		case 0:
 			passiveEntityrespawnPoint = new GrainField("grain");
 			break;
-	// add another picture to the existing corn.png image so we can also draw on cane
-	/*	case 1:
+
+		case 1:
 			passiveEntityrespawnPoint = new GrainField("cane");
-			break; */
+			break;
 		default:
 			passiveEntityrespawnPoint = null;
 			break;
