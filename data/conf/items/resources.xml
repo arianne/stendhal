@@ -17,6 +17,22 @@
     </equipable>
   </item>
 
+  <item name="cane">
+    <type class="resource" subclass="cane" tileid="-1"/>
+    <description>You see a sugar cane. You can grind it for raw sugar.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.05"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="grain">
     <type class="resource" subclass="grain" tileid="-1"/>
     <description>You see a sheaf of grain.</description>
