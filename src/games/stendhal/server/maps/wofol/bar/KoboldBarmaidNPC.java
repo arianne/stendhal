@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -73,21 +74,27 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 			}
 
 			@Override
+
 			protected void createDialog() {
 				class TorcibudSellerBehaviour extends SellerBehaviour {
 					TorcibudSellerBehaviour(final Map<String, Integer> items) {
 						super(items);
 					}
 
+					/**
+					  * Wrviliza will sell her mild or strong koboldish torcibud
+					  * only when the player can afford the price and carries as many empty bottles
+					  * as the requested amount in his inventory.
+					  */
 					@Override
 					public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
 						final Item item = getAskedItem(chosenItemName);
 						String requiredContainer = "";
 
 						if ("mild koboldish torcibud".equals(chosenItemName)) {
-							requiredContainer = "bottle";
+							requiredContainer = "slim bottle";
 						} else if ("strong koboldish torcibud".equals(chosenItemName)) {
-							requiredContainer = "big bottle";
+							requiredContainer = "eared bottle";
 						}
 
 						int price = getCharge(player);
@@ -96,16 +103,16 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 						        price = (int) (BAD_BOY_BUYING_PENALTY * price);
 						}
 						
-						if ("bottle".equals(requiredContainer) || "big bottle".equals(requiredContainer)) {
+						if ("slim bottle".equals(requiredContainer) || "eared bottle".equals(requiredContainer)) {
 							if (!player.isEquipped(requiredContainer, amount) || !player.isEquipped("money", price)) {
-								seller.say("Wroff! I can only sell you "
+								seller.say("Wrauff! I can only sell you "
 									+ Grammar.plnoun(getAmount(), getChosenItemName())
 									+ "if you meet the price of " + price + " and have " + amount + " empty "
 									+ Grammar.plnoun(getAmount(), requiredContainer));
 							        return false;
 							}
 						} else if (!player.isEquipped("money", price)) {
-								seller.say("Wroff! I can only sell you "
+								seller.say("Wruff! I can only sell you "
 									+ Grammar.plnoun(getAmount(), getChosenItemName())
 									+ " when you will have enough money");
 						        return false;
@@ -123,8 +130,9 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 							return true;
 
 					        } else {
-					                seller.say("Wruff.. You cannot carry "
-					                                + Grammar.plnoun(getAmount(), getChosenItemName()) + ".");
+					                seller.say("Wruff.. You cannot carry any "
+					                                + Grammar.plnoun(getAmount(), getChosenItemName())
+									+ " in your bag now.");
 					                return false;
 					        }
 					}
@@ -132,25 +140,28 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 
 				final Map<String, Integer> items = new HashMap<String, Integer>();
 
-				items.put("beer", 10);
-				items.put("wine", 20);
-				items.put("mild koboldish torcibud", 3000);
-				items.put("strong koboldish torcibud", 5000);
+				//beer and wine have higher than average prices here.
+				items.put("beer", 18);
+				items.put("wine", 25);
+				items.put("mild koboldish torcibud", 95);
+				items.put("strong koboldish torcibud", 195);
 
 				new SellerAdder().addSeller(this, new TorcibudSellerBehaviour(items));
 
-				addGreeting("Wroff! I'm Wrviliza, wife of #Wrvil... Welcome in Wofol's Den bar wanderer!");
+				addGreeting("Wroff! I'm Wrviliza, wife of #Wrvil... Welcome into Wofol's Den bar wanderer!");
 				addJob("Wroff! I offer wine, beer and my famous #mild or #strong koboldish #torcibud");
-				addHelp("Wruff... If you are thirsty I can #offer you some beverage. Have you noticed this is a bar?");
+				addHelp("Wruff... If you are thirsty I can #offer you some beverage. Have you noticed that this is a bar?");
 				addGoodbye("Wroff... Wroff!");
 
 
+				addReply(Arrays.asList("wine","beer"),
+						"Wrof! It will quench your thirst for a few coins...");
 				addReply("mild",
-						"Wrof! Not so #strong koboldish #torcibud.");
+						"Wrof! Not so #strong koboldish #torcibud. Give a slim bottle and 90 money... Wrof!");
 				addReply("strong",
-						"Wrof! Not so #mild koboldish #torcibud.");
+						"Wrof! Not so #mild koboldish #torcibud. Give a eared bottle and 180 money... Wrof!");
 				addReply("torcibud",
-						"Wrof! Real stuff! Want me #offer some?");
+						"Wrof! Real stuff from a secret koboldish recipe! Want me #offer some?");
 				addReply("wrvil",
 						"Wrof! He be my husband. Runs shop in northern Wo'fol...");
 			}
