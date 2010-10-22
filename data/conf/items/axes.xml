@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
+
+  <item name="sickle">
+    <type class="axe" subclass="sickle" tileid="-1"/>
+    <description>You see a sickle, it is a useful tool for farming.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="2"/>
+      <rate value="2"/>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="100"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="old scythe">
     <type class="axe" subclass="oldscythe" tileid="-1"/>
     <description>You see an old scythe, it used to be weapon of death. But now it is only a useful tool for farming.</description>
