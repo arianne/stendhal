@@ -3,10 +3,10 @@
 	xsi:schemaLocation="stendhal ../items.xsd ">
 	
   <item name="mild koboldish torcibud">
-    <type class="drink" subclass="mild_koboldish_torcibud" tileid="-1"/>
-    <description>You see mild koboldish torcibud.</description>
+    <type class="drink" subclass="koboldish_torcibud_mild" tileid="-1"/>
+    <description>You see a bottle of mild koboldish torcibud. It will help you recover when you're all bruised and battered.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
-       <amount value="30"/>
+       <amount value="90"/>
       <frequency value="12"/>
       <quantity value="1"/>
       <regen value="3"/>
@@ -22,13 +22,32 @@
   </item>
 
   <item name="strong koboldish torcibud">
-    <type class="drink" subclass="strong_koboldish_torcibud" tileid="-1"/>
-    <description>You see strong koboldish torcibud.</description>
+    <type class="drink" subclass="koboldish_torcibud_strong" tileid="-1"/>
+    <description>You see a bottle of strong koboldish torcibud. It will help you recover when you're all bruised and battered.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
-       <amount value="60"/>
-      <frequency value="12"/>
+       <amount value="180"/>
+      <frequency value="10"/>
       <quantity value="1"/>
-      <regen value="3"/>
+      <regen value="6"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="vsop koboldish torcibud">
+    <type class="drink" subclass="koboldish_torcibud_vsop" tileid="-1"/>
+    <description>You see a bottle of VSOP koboldish torcibud, expecially aged in oak kegs wrapped by the darkness of a dungeon cellar. It will help you recover when you're all bruised and battered.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+       <amount value="270"/>
+      <frequency value="8"/>
+      <quantity value="1"/>
+      <regen value="9"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
