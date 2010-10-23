@@ -695,6 +695,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else if (object instanceof Player) {
 			players.add((Player) object);
 			playersAndFriends.add((Player) object);
+			SingletonRepository.getAchievementNotifier().onZoneEnter((Player) object);
 		} else if (object instanceof AttackableCreature) {
 			playersAndFriends.add((AttackableCreature) object);
 		} else if (object instanceof Sheep) {

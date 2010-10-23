@@ -156,13 +156,26 @@ public class AchievementNotifier {
 	}
 	
 	/**
+	 * check all achievements for a player that belong to the zone category
+	 * 
+	 * @param player
+	 */
+	public void onZoneEnter(Player player) {
+		getAndCheckAchievementsInCategory(player, Category.ZONE);
+	}
+	
+	/**
 	 * Checks on login of a player which achievements the player has reached and gives a summarizing message
 	 * 
 	 * @param player
 	 */
 	public void onLogin(Player player) {
 		List<Achievement> toCheck = new ArrayList<Achievement>();
-		Collection<List<Achievement>> values = achievements.values();
+		//Avoid checking of zone achievements on login to
+		//prevent double check when player is initially placed into a zone
+		HashMap<Category,List<Achievement>> map = new HashMap<Category, List<Achievement>>(achievements);
+		map.remove(Category.ZONE);
+		Collection<List<Achievement>> values = map.values();
 		for (List<Achievement> list : values) {
 			toCheck.addAll(list);
 		}
@@ -273,6 +286,9 @@ public class AchievementNotifier {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		for(Achievement a : new QuestAchievementFactory().createAchievements()) {
+			achievementMap.put(a.getIdentifier(), a);
+		}
+		for(Achievement a : new ZoneAchievementFactory().createAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		for(Achievement a : new MetaAchievementFactory().createAchievements()) {
