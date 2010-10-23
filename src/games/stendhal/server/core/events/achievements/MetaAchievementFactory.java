@@ -34,7 +34,15 @@ public class MetaAchievementFactory extends AchievementFactory {
 		List<Achievement> achievements = new LinkedList<Achievement>();
 		achievements.add(createAchievement("meta.quest.daily-weekly", "Conscientuous Comrade", 
 										   "Complete all achievements for daily item quest, daily monster quest and weekly item quest",
-										   Achievement.HARD_BASE_SCORE, new PlayerHasCompletedAchievementsCondition("quest.special.diq.500", "quest.special.wiq.5", "quest.special.dmq.500")));
+										   Achievement.HARD_BASE_SCORE, 
+										   new PlayerHasCompletedAchievementsCondition("quest.special.diq.500", "quest.special.wiq.5", "quest.special.dmq.500")));
+		achievements.add(createAchievement("meta.quest.daily-weekly", "Expert Explorer", 
+										   "Visit all outside regions",
+										   Achievement.HARD_BASE_SCORE, 
+										   new PlayerHasCompletedAchievementsCondition(
+												   "zone.outside.semos", "zone.outside.ados", "zone.outside.fado",
+												   "zone.outside.orril", "zone.outside.amazon", "zone.outside.athor",
+												   "zone.outside.kikareukin", "zone.outside.kirdneh")));
 		return achievements;
 	}
 
