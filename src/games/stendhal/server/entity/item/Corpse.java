@@ -61,6 +61,11 @@ public class Corpse extends PassiveEntity implements
 
 	private static final int DEGRADATION_STEP_TIMEOUT = DEGRADATION_TIMEOUT
 			/ MAX_STAGE;
+	
+	/** Minimum resistance of a single corpse */
+	private static final int MIN_RESISTANCE = 5;
+	/** Theoretical resistance of a single corpse */
+	private static final int MAX_RESISTANCE = 70;
 
 	private int stage;
 
@@ -112,7 +117,8 @@ public class Corpse extends PassiveEntity implements
 		put("stage", stage);
 		// default to player corpse image
 		put(ATTR_IMAGE, "player");
-
+		setResistance(calculateResistance());
+		
 		final RPSlot slot = new LootableSlot(this);
 		addSlot(slot);
 	}
@@ -158,9 +164,25 @@ public class Corpse extends PassiveEntity implements
 		SingletonRepository.getTurnNotifier().notifyInSeconds(getDegradationStepTimeout(), this.turnlistener);
 		stage = 0;
 		put("stage", stage);
+		setResistance(calculateResistance());
 
 		final RPSlot slot = new LootableSlot(this);
 		addSlot(slot);
+	}
+
+	/**
+	 * Calculate walking resistance for the corpse.
+	 *  
+	 * @return resistance value between <code>100 * MIN_RESISTANCE</code> and
+	 * <code>100 * MAX_RESISTANCE</code>
+	 */
+	private int calculateResistance() {
+		// Using area would make the resistance grow very fast for large corpses
+		double mean = Math.sqrt(getWidth() * getHeight());
+		// Get a [0, 1[ value for a corpse size index 
+		double normalized = 1 - 1 / Math.max(1.0, mean);
+		// Scale between max and min
+		return Math.max(MIN_RESISTANCE, (int) (MAX_RESISTANCE * normalized));
 	}
 
 	//
