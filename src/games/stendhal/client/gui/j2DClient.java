@@ -669,7 +669,7 @@ public class j2DClient implements UserInterface {
 	private void triggerPainting() {
 		if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
 			paintCounter++;
-			if (mainFrame.getMainFrame().isActive() || paintCounter >= 20) {
+			if (mainFrame.getMainFrame().isActive() || System.getProperty("stendhal.skip.inactive", "false").equals("false") || paintCounter >= 20) {
 				paintCounter = 0;
 				logger.debug("Draw screen");
 				minimap.refresh();
