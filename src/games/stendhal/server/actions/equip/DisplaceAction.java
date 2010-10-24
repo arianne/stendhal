@@ -25,6 +25,8 @@ import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.Stackable;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 
@@ -61,6 +63,10 @@ public class DisplaceAction implements ActionListener {
 		}
 
 		final int targetObject = action.getInt(BASEITEM);
+		int quantity = -1;
+		if (action.has("quantity")) {
+			quantity = action.getInt("quantity");
+		}
 		final StendhalRPZone zone = player.getZone();
 
 		final Entity object = EntityHelper.entityFromZoneByID(targetObject, zone);
@@ -74,7 +80,7 @@ public class DisplaceAction implements ActionListener {
 		final PassiveEntity entity = (PassiveEntity) object;
 
 		if (mayDisplace(player, zone, x, y, entity)) {
-			displace(player, zone, x, y, entity);
+			displace(player, zone, x, y, entity, quantity);
 		}
 	}
 
@@ -212,20 +218,58 @@ public class DisplaceAction implements ActionListener {
 	 * @param y      new y-position
 	 * @param entity entity to move
 	 */
-	private void displace(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {
+	private void displace(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity, final int quantity) {
 		new GameEvent(player.getName(), "displace", entity.get("type")).raise();
 		
 		int oldX = entity.getX();
 		int oldY = entity.getY();
-		entity.setPosition(x, y);
-		entity.notifyWorldAboutChanges();
+
 		
 		if (entity instanceof Item) {
-			final Item item = (Item) entity;
-			
-			item.onRemoveFromGround();
-			item.onPutOnGround(player);
-			new ItemLogger().displace(player, entity, zone, oldX, oldY, x, y);
+			Item item = (Item) entity;
+			int entityQuantity = -1;
+
+			if (item instanceof Stackable) {
+				entityQuantity = ((Stackable<?>) item).getQuantity();
+			}
+
+			int actualQuantity = quantity;
+			if ((quantity <= 0) && (entityQuantity <= 0) && (quantity > entityQuantity)) {
+				actualQuantity = -1;
+			}
+
+			Item newItem = removeFromWorld(player, item, actualQuantity);
+
+			newItem.setPosition(x, y);
+			if (newItem != item) {
+				zone.add(newItem);
+			}
+			newItem.notifyWorldAboutChanges();
+			newItem.onPutOnGround(player);
+
+			new ItemLogger().displace(player, newItem, zone, oldX, oldY, x, y);
+		} else {
+			entity.setPosition(x, y);
+			entity.notifyWorldAboutChanges();
 		}
 	}
+	
+	/**
+	 * removes the entity from the world and returns it (so it may be added
+	 * again). In case of splitted StackableItem the only item is reduced and a
+	 * new StackableItem with the splitted off amount is returned.
+	 * 
+	 * @return Entity to place somewhere else in the world
+	 */
+	private Item removeFromWorld(final Player player, final Item item, final int quantity) {
+		if (quantity > 0) {
+			final StackableItem newItem = ((StackableItem) item).splitOff(quantity);
+			new ItemLogger().splitOff(player, item, newItem, quantity);
+			return newItem;
+		} else {
+			item.onRemoveFromGround();
+			return item;
+		}
+	}
+
 }
