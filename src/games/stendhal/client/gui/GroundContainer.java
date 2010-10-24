@@ -381,6 +381,10 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	 * @see java.awt.event.MouseWheelListener#mouseWheelMoved(java.awt.event.MouseWheelEvent)
 	 */
 	public void mouseWheelMoved(MouseWheelEvent e) {
+		if (User.isNull()) {
+			return;
+		}
+
 		/*
 		 * Turning with mouse wheel. Ignore all but the first to avoid flooding
 		 * the server with turn commands.
