@@ -373,7 +373,6 @@ tileset/ground/rock/hell.png			*	 315:331
 tileset/ground/rock/hell.png			*	 316:332
 tileset/ground/rock/hell.png			*	 347:348
 
-
 # water from ground.png
 # the waves travel north, if the map uses the first tile,
 # south, if the second.
@@ -616,3 +615,8 @@ tileset/item/statue/gazingball_statue.png	13	13:34:37:28
 
 # gazingball statue - animation in a row(rainbow)
 tileset/item/statue/gazingball_statue.png	*	29:32:35:38:15:18:21:24:28:31:34:37:27:30:33:36:17:20:23:26:16:19:22:25
+
+# swamp water bubbles
+tileset/ground/water/swamp_water.png	*	18@800:21@1200:24@1800:27:30@2000
+tileset/ground/water/swamp_water.png	*	19@800:22@1200:25@1800:28:31@2000
+tileset/ground/water/swamp_water.png	*	20@800:23@1200:26@1800:29:32@2000
