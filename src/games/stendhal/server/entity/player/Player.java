@@ -1641,11 +1641,13 @@ public class Player extends RPEntity {
 
 	private void agePlayer(final int turn) {
 		/*
-		 * 180 means 60 seconds x 3 turns per second.
+		 * 200 means 60 seconds x 300mx per turn.
 		 */
-		if ((turn % 180) == 0) {
-			setAge(getAge() + 1);
-			notifyWorldAboutChanges();
+		if (!isGhost()) {
+			if ((turn % 200) == 0) {
+				setAge(getAge() + 1);
+				notifyWorldAboutChanges();
+			}
 		}
 	}
 
