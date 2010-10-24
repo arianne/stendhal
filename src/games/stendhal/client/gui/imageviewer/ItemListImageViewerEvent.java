@@ -112,7 +112,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		String price = getFormatedPrice(item);
 
 		html.append("<tr  style=\"color: #D0D0D0\"><td>");
-		html.append("<img src=\"" + url.toString() + "\">");
+		html.append("<div style=\"width:32px !important; height:32px; background-repeat: no-repeat; background-image: url('" + url.toString() + "')\">&nbsp;</div>");
 		html.append("</td><td>");
 		html.append(price);
 		html.append("</td><td>");
