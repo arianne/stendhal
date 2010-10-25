@@ -149,13 +149,17 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 				addReply(Arrays.asList("wine","beer"),
 						"Wrof! It will quench your thirst for a few coins...");
 				addReply("mild",
-						"Wrof! Not so #strong koboldish #torcibud. Give a slim bottle and 90 money... Wrof!");
+						"Wrof! Not so #strong koboldish #torcibud. Give an empty #slim #bottle and 90 money... Wrof!");
 				addReply("strong",
-						"Wrof! Not so #mild koboldish #torcibud. Give a eared bottle and 180 money... Wrof!");
+						"Wrof! Not so #mild koboldish #torcibud. Give an empty #eared #bottle and 180 money... Wrof!");
 				addReply("torcibud",
 						"Wrof! Real stuff from a secret koboldish recipe! Want me #offer some?");
 				addReply("wrvil",
 						"Wrof! He be my husband. Runs shop in northern Wo'fol...");
+				addReply("eared bottle",
+						"Wrof! A large bottle with handles on the neck that resemble ears... Have you never seen one?");
+				addReply("slim bottle",
+						"Wrof! A bottle narrower at bottom and a bit wider at the shoulders ... I'm sure you've seen one already!");
 			}
 		};
 
