@@ -2251,7 +2251,7 @@ Holy mackerel! These chips are tasty.
 	</zone>
 
 	<!--for the admin house -->
-	<zone name="int_semos_house" file="interiors/semos/house.tmx">
+	<zone name="int_semos_house" file="interiors/semos/house.tmx" accessible="false">
 		<configurator class-name="games.stendhal.server.maps.semos.house.FlowerSellerNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.house.AdminHelpNPC" />
 
@@ -3231,7 +3231,7 @@ Mature sheep wanted: please speak to Sato
 	</zone>
 
 	<zone name="-3_semos_jail" level="-3" x="499872" y="500000"
-		file="Level -3/semos/jail_walk.tmx">
+		file="Level -3/semos/jail_walk.tmx" accessible="false">
 		<configurator class-name="games.stendhal.server.core.config.zone.NoMoveTo" />
 		<portal x="59" y="67" ref="jail_entrance_left">
 			<destination zone="int_semos_temple" ref="restart_life" />
