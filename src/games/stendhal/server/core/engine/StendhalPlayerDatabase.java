@@ -56,11 +56,11 @@ public class StendhalPlayerDatabase {
 			if (!transaction.doesColumnExist("postman", "messagetype")) {
 				transaction.execute("ALTER TABLE postman ADD COLUMN (messagetype CHAR(1));", null);
 			}
-			
+
 			if (!transaction.doesColumnExist("achievement", "base_score")) {
 				transaction.execute("ALTER TABLE achievement ADD COLUMN (base_score INTEGER);", null);
 			}
-			
+
 			if(transaction.doesColumnExist("achievement", "description")) {
 				if(transaction.getColumnLength("achievement", "description") < 254) {
 					transaction.execute("CREATE TABLE tmp_achievement_description (id INTEGER, description VARCHAR(254));", null);
@@ -75,8 +75,12 @@ public class StendhalPlayerDatabase {
 			if (!transaction.doesColumnExist("character_stats", "finger")) {
 				transaction.execute("ALTER TABLE character_stats ADD COLUMN (finger VARCHAR(32));", null);
 			}
-			
-			
+
+			// 0.89
+			if (!transaction.doesColumnExist("postman", "deleted")) {
+				transaction.execute("ALTER TABLE postman ADD COLUMN (deleted CHAR(1) DEFAULT 'N');", null);
+			}
+
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			logger.error(e, e);

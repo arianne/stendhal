@@ -163,6 +163,7 @@ CREATE TABLE IF NOT EXISTS postman (
   target     VARCHAR(64),
   message    TEXT,
   delivered  BOOLEAN DEFAULT 0,
+  deleted    CHAR (1) DEFAULT 'N',
   timedate TIMESTAMP default CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 );
