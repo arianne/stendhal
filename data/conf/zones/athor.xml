@@ -453,7 +453,7 @@
     
      </zone>
      
-     <zone name="int_athor_apartment_101" file="interiors/athor/holiday_apartment_1.tmx">
+     <zone name="int_athor_apartment_101" file="interiors/athor/holiday_apartment_1.tmx" accessible="false">
        <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	   	<parameter name="x">2</parameter>
@@ -464,7 +464,7 @@
        </portal>
      </zone>
 
-     <zone name="int_athor_apartment_102" file="interiors/athor/holiday_apartment_2.tmx">
+     <zone name="int_athor_apartment_102" file="interiors/athor/holiday_apartment_2.tmx" accessible="false">
 	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	   	<parameter name="x">13</parameter>
@@ -475,7 +475,7 @@
        </portal>
      </zone>
 
-     <zone name="int_athor_apartment_103" file="interiors/athor/holiday_apartment_3.tmx">
+     <zone name="int_athor_apartment_103" file="interiors/athor/holiday_apartment_3.tmx" accessible="false">
 	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	   	<parameter name="x">7</parameter>
@@ -486,7 +486,7 @@
        </portal>
      </zone>
 
-     <zone name="int_athor_apartment_104" file="interiors/athor/holiday_apartment_4.tmx">
+     <zone name="int_athor_apartment_104" file="interiors/athor/holiday_apartment_4.tmx" accessible="false">
 	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	   	<parameter name="x">7</parameter>
@@ -497,7 +497,7 @@
        </portal>
      </zone>
 
-     <zone name="int_athor_apartment_105" file="interiors/athor/holiday_apartment_5.tmx">
+     <zone name="int_athor_apartment_105" file="interiors/athor/holiday_apartment_5.tmx" accessible="false">
 	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	   	<parameter name="x">2</parameter>
@@ -508,7 +508,7 @@
        </portal>
      </zone>
 
-     <zone name="int_athor_apartment_106" file="interiors/athor/holiday_apartment_6.tmx">
+     <zone name="int_athor_apartment_106" file="interiors/athor/holiday_apartment_6.tmx" accessible="false">
 	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	   	<parameter name="x">2</parameter>
@@ -519,7 +519,7 @@
        </portal>
      </zone>
 
-     <zone name="int_athor_apartment_107" file="interiors/athor/holiday_apartment_7.tmx">
+     <zone name="int_athor_apartment_107" file="interiors/athor/holiday_apartment_7.tmx" accessible="false">
 	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	   	<parameter name="x">12</parameter>
@@ -530,7 +530,7 @@
        </portal>
      </zone>
 
-     <zone name="int_athor_apartment_108" file="interiors/athor/holiday_apartment_8.tmx">
+     <zone name="int_athor_apartment_108" file="interiors/athor/holiday_apartment_8.tmx" accessible="false">
        <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	   	<parameter name="x">2</parameter>
