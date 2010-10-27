@@ -952,6 +952,7 @@ public class Player extends RPEntity {
 		this.age = age;
 		put("age", age);
 		TutorialNotifier.aged(this, age);
+		SingletonRepository.getAchievementNotifier().onAge(this);
 	}
 
 	/**

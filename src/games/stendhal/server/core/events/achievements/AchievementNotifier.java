@@ -165,6 +165,15 @@ public class AchievementNotifier {
 	}
 	
 	/**
+	 * check all achievements for a player that belong to the age category
+	 * 
+	 * @param player
+	 */
+	public void onAge(Player player) {
+		getAndCheckAchievementsInCategory(player, Category.AGE);
+	}
+	
+	/**
 	 * Checks on login of a player which achievements the player has reached and gives a summarizing message
 	 * 
 	 * @param player
@@ -289,6 +298,9 @@ public class AchievementNotifier {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		for(Achievement a : new ZoneAchievementFactory().createAchievements()) {
+			achievementMap.put(a.getIdentifier(), a);
+		}
+		for(Achievement a : new AgeAchievementFactory().createAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
 		for(Achievement a : new MetaAchievementFactory().createAchievements()) {
