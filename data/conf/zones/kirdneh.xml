@@ -258,7 +258,7 @@
   </portal>
  </zone>
 
- <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx">
+ <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -276,7 +276,7 @@
    <destination zone="0_kirdneh_city" ref="26"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_27" file="interiors/kirdneh/house_27.tmx">
+ <zone name="int_kirdneh_house_27" file="interiors/kirdneh/house_27.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -294,7 +294,7 @@
    <destination zone="0_kirdneh_city" ref="27"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_28" file="interiors/kirdneh/house_28.tmx">
+ <zone name="int_kirdneh_house_28" file="interiors/kirdneh/house_28.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -312,7 +312,7 @@
    <destination zone="0_kirdneh_city" ref="28"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_29" file="interiors/kirdneh/house_29.tmx">
+ <zone name="int_kirdneh_house_29" file="interiors/kirdneh/house_29.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -330,7 +330,7 @@
    <destination zone="0_kirdneh_city" ref="29"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_30" file="interiors/kirdneh/house_30.tmx">
+ <zone name="int_kirdneh_house_30" file="interiors/kirdneh/house_30.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -348,7 +348,7 @@
    <destination zone="0_kirdneh_city" ref="30"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_31" file="interiors/kirdneh/house_31.tmx">
+ <zone name="int_kirdneh_house_31" file="interiors/kirdneh/house_31.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -366,7 +366,7 @@
    <destination zone="0_kirdneh_city" ref="31"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_32" file="interiors/kirdneh/house_32.tmx">
+ <zone name="int_kirdneh_house_32" file="interiors/kirdneh/house_32.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -384,7 +384,7 @@
    <destination zone="0_kirdneh_city" ref="32"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_33" file="interiors/kirdneh/house_33.tmx">
+ <zone name="int_kirdneh_house_33" file="interiors/kirdneh/house_33.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -402,7 +402,7 @@
    <destination zone="0_kirdneh_city" ref="33"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_34" file="interiors/kirdneh/house_34.tmx">
+ <zone name="int_kirdneh_house_34" file="interiors/kirdneh/house_34.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -420,7 +420,7 @@
    <destination zone="0_kirdneh_city" ref="34"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_35" file="interiors/kirdneh/house_35.tmx">
+ <zone name="int_kirdneh_house_35" file="interiors/kirdneh/house_35.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -438,7 +438,7 @@
    <destination zone="0_kirdneh_city" ref="35"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_36" file="interiors/kirdneh/house_36.tmx">
+ <zone name="int_kirdneh_house_36" file="interiors/kirdneh/house_36.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -459,14 +459,14 @@
    <destination zone="int_kirdneh_house_36_basement" ref="up"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_36_basement" file="interiors/kirdneh/house_36_basement.tmx">
+ <zone name="int_kirdneh_house_36_basement" file="interiors/kirdneh/house_36_basement.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="2" y="2" ref="up">
    <destination zone="int_kirdneh_house_36" ref="down"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_37" file="interiors/kirdneh/house_37.tmx">
+ <zone name="int_kirdneh_house_37" file="interiors/kirdneh/house_37.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -487,14 +487,14 @@
    <destination zone="int_kirdneh_house_37_basement" ref="up"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_37_basement"	file="interiors/kirdneh/house_37_basement.tmx">
+ <zone name="int_kirdneh_house_37_basement"	file="interiors/kirdneh/house_37_basement.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="2" y="2" ref="up">
    <destination zone="int_kirdneh_house_37" ref="down"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_38" file="interiors/kirdneh/house_38.tmx">
+ <zone name="int_kirdneh_house_38" file="interiors/kirdneh/house_38.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -512,7 +512,7 @@
    <destination zone="0_kirdneh_city" ref="38"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_39" file="interiors/kirdneh/house_39.tmx">
+ <zone name="int_kirdneh_house_39" file="interiors/kirdneh/house_39.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -530,7 +530,7 @@
    <destination zone="0_kirdneh_city" ref="39"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_40" file="interiors/kirdneh/house_40.tmx">
+ <zone name="int_kirdneh_house_40" file="interiors/kirdneh/house_40.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -548,7 +548,7 @@
    <destination zone="0_kirdneh_city" ref="40"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_41" file="interiors/kirdneh/house_41.tmx">
+ <zone name="int_kirdneh_house_41" file="interiors/kirdneh/house_41.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -566,7 +566,7 @@
    <destination zone="0_kirdneh_city" ref="41"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_42" file="interiors/kirdneh/house_42.tmx">
+ <zone name="int_kirdneh_house_42" file="interiors/kirdneh/house_42.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -587,14 +587,14 @@
    <destination zone="int_kirdneh_house_42_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_42_1" file="interiors/kirdneh/house_42_1.tmx">
+ <zone name="int_kirdneh_house_42_1" file="interiors/kirdneh/house_42_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="2" y="2" ref="down">
    <destination zone="int_kirdneh_house_42" ref="up"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_43" file="interiors/kirdneh/house_43.tmx">
+ <zone name="int_kirdneh_house_43" file="interiors/kirdneh/house_43.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -630,7 +630,7 @@
    <destination zone="0_kirdneh_city" ref="44"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_45" file="interiors/kirdneh/house_45.tmx">
+ <zone name="int_kirdneh_house_45" file="interiors/kirdneh/house_45.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -648,7 +648,7 @@
    <destination zone="0_kirdneh_city" ref="45"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_46" file="interiors/kirdneh/house_46.tmx">
+ <zone name="int_kirdneh_house_46" file="interiors/kirdneh/house_46.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -666,7 +666,7 @@
    <destination zone="0_kirdneh_city" ref="46"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_47" file="interiors/kirdneh/house_47.tmx">
+ <zone name="int_kirdneh_house_47" file="interiors/kirdneh/house_47.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -684,7 +684,7 @@
    <destination zone="0_kirdneh_city" ref="47"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_48" file="interiors/kirdneh/house_48.tmx">
+ <zone name="int_kirdneh_house_48" file="interiors/kirdneh/house_48.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -705,14 +705,14 @@
    <destination zone="int_kirdneh_house_48_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_48_1" file="interiors/kirdneh/house_48_1.tmx">
+ <zone name="int_kirdneh_house_48_1" file="interiors/kirdneh/house_48_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="2" y="2" ref="down">
    <destination zone="int_kirdneh_house_48" ref="up"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_49" file="interiors/kirdneh/house_49.tmx">
+ <zone name="int_kirdneh_house_49" file="interiors/kirdneh/house_49.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -733,7 +733,7 @@
    <destination zone="int_kirdneh_house_49_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_49_1" file="interiors/kirdneh/house_49_1.tmx">
+ <zone name="int_kirdneh_house_49_1" file="interiors/kirdneh/house_49_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="2" y="2" ref="down">
