@@ -502,82 +502,82 @@ For example say:  11  if you want the room called Water of Love.
            </portal>
          </zone> -->
 
-         <zone name="int_fado_lovers_room_0" file="interiors/fado/lovers_room_0.tmx">
+         <zone name="int_fado_lovers_room_0" file="interiors/fado/lovers_room_0.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 	 
-	 <zone name="int_fado_lovers_room_1" file="interiors/fado/lovers_room_1.tmx">
+	 <zone name="int_fado_lovers_room_1" file="interiors/fado/lovers_room_1.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 
-         <zone name="int_fado_lovers_room_2" file="interiors/fado/lovers_room_2.tmx">
+         <zone name="int_fado_lovers_room_2" file="interiors/fado/lovers_room_2.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 	 
-	 <zone name="int_fado_lovers_room_3" file="interiors/fado/lovers_room_3.tmx">
+	 <zone name="int_fado_lovers_room_3" file="interiors/fado/lovers_room_3.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 
-         <zone name="int_fado_lovers_room_4" file="interiors/fado/lovers_room_4.tmx">
+         <zone name="int_fado_lovers_room_4" file="interiors/fado/lovers_room_4.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 	 
-	 <zone name="int_fado_lovers_room_5" file="interiors/fado/lovers_room_5.tmx">
+	 <zone name="int_fado_lovers_room_5" file="interiors/fado/lovers_room_5.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 
-         <zone name="int_fado_lovers_room_6" file="interiors/fado/lovers_room_6.tmx">
+         <zone name="int_fado_lovers_room_6" file="interiors/fado/lovers_room_6.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 	 
-	 <zone name="int_fado_lovers_room_7" file="interiors/fado/lovers_room_7.tmx">
+	 <zone name="int_fado_lovers_room_7" file="interiors/fado/lovers_room_7.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 
-         <zone name="int_fado_lovers_room_8" file="interiors/fado/lovers_room_8.tmx">
+         <zone name="int_fado_lovers_room_8" file="interiors/fado/lovers_room_8.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 	 
-	 <zone name="int_fado_lovers_room_9" file="interiors/fado/lovers_room_9.tmx">
+	 <zone name="int_fado_lovers_room_9" file="interiors/fado/lovers_room_9.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 
-         <zone name="int_fado_lovers_room_10" file="interiors/fado/lovers_room_10.tmx">
+         <zone name="int_fado_lovers_room_10" file="interiors/fado/lovers_room_10.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 	 
-	 <zone name="int_fado_lovers_room_11" file="interiors/fado/lovers_room_11.tmx">
+	 <zone name="int_fado_lovers_room_11" file="interiors/fado/lovers_room_11.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 
-         <zone name="int_fado_lovers_room_12" file="interiors/fado/lovers_room_12.tmx">
+         <zone name="int_fado_lovers_room_12" file="interiors/fado/lovers_room_12.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 	 
-	 <zone name="int_fado_lovers_room_13" file="interiors/fado/lovers_room_13.tmx">
+	 <zone name="int_fado_lovers_room_13" file="interiors/fado/lovers_room_13.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 
-         <zone name="int_fado_lovers_room_14" file="interiors/fado/lovers_room_14.tmx">
+         <zone name="int_fado_lovers_room_14" file="interiors/fado/lovers_room_14.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 	 
-	 <zone name="int_fado_lovers_room_15" file="interiors/fado/lovers_room_15.tmx">
+	 <zone name="int_fado_lovers_room_15" file="interiors/fado/lovers_room_15.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
      </zone>
