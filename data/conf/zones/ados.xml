@@ -1078,7 +1078,7 @@ in roaches.
     </portal>
   </zone>
 
- <zone name="int_ados_house_71" file="interiors/ados/house_71.tmx">
+ <zone name="int_ados_house_71" file="interiors/ados/house_71.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	<parameter name="x">13</parameter>
@@ -1088,7 +1088,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_71"/>
   </portal>
  </zone>
- <zone name="int_ados_house_72" file="interiors/ados/house_72.tmx">
+ <zone name="int_ados_house_72" file="interiors/ados/house_72.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	<parameter name="x">6</parameter>
@@ -1098,7 +1098,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_72"/>
   </portal>
  </zone>
- <zone name="int_ados_house_73" file="interiors/ados/house_73.tmx">
+ <zone name="int_ados_house_73" file="interiors/ados/house_73.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	<parameter name="x">9</parameter>
@@ -1108,7 +1108,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_73"/>
   </portal>
  </zone>
- <zone name="int_ados_house_74" file="interiors/ados/house_74.tmx">
+ <zone name="int_ados_house_74" file="interiors/ados/house_74.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	<parameter name="x">28</parameter>
@@ -1118,7 +1118,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_74"/>
   </portal>
  </zone>
- <zone name="int_ados_house_75" file="interiors/ados/house_75.tmx">
+ <zone name="int_ados_house_75" file="interiors/ados/house_75.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	<parameter name="x">2</parameter>
@@ -1128,7 +1128,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_75"/>
   </portal>
  </zone>
- <zone name="int_ados_house_76" file="interiors/ados/house_76.tmx">
+ <zone name="int_ados_house_76" file="interiors/ados/house_76.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	<parameter name="x">3</parameter>
@@ -1138,7 +1138,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_76"/>
   </portal>
  </zone>
- <zone name="int_ados_house_77" file="interiors/ados/house_77.tmx">
+ <zone name="int_ados_house_77" file="interiors/ados/house_77.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	<parameter name="x">13</parameter>
@@ -2047,7 +2047,7 @@ My fee:
     </portal>
   </zone>
 
- <zone name="int_ados_house_50" file="interiors/ados/house_50.tmx">
+ <zone name="int_ados_house_50" file="interiors/ados/house_50.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2068,14 +2068,14 @@ My fee:
     <destination zone="int_ados_house_50_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_ados_house_50_1" file="interiors/ados/house_50_1.tmx">
+ <zone name="int_ados_house_50_1" file="interiors/ados/house_50_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="12" y="14" ref="down">
     <destination zone="int_ados_house_50" ref="up"/>
   </portal>
  </zone>
- <zone name="int_ados_house_51" file="interiors/ados/house_51.tmx">
+ <zone name="int_ados_house_51" file="interiors/ados/house_51.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2096,14 +2096,14 @@ My fee:
     <destination zone="int_ados_house_51_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_ados_house_51_1" file="interiors/ados/house_51_1.tmx">
+ <zone name="int_ados_house_51_1" file="interiors/ados/house_51_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
    <portal x="3" y="1" ref="down">
     <destination zone="int_ados_house_51" ref="up"/>
   </portal>
  </zone>
- <zone name="int_ados_house_52" file="interiors/ados/house_52.tmx">
+ <zone name="int_ados_house_52" file="interiors/ados/house_52.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2124,14 +2124,14 @@ My fee:
     <destination zone="int_ados_house_52_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_ados_house_52_1" file="interiors/ados/house_52_1.tmx">
+ <zone name="int_ados_house_52_1" file="interiors/ados/house_52_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_52" ref="up"/>
   </portal>
  </zone>
- <zone name="int_ados_house_53" file="interiors/ados/house_53.tmx">
+ <zone name="int_ados_house_53" file="interiors/ados/house_53.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2152,14 +2152,14 @@ My fee:
     <destination zone="int_ados_house_53_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_ados_house_53_1" file="interiors/ados/house_53_1.tmx">
+ <zone name="int_ados_house_53_1" file="interiors/ados/house_53_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_53" ref="up"/>
   </portal>
  </zone>
- <zone name="int_ados_house_54" file="interiors/ados/house_54.tmx">
+ <zone name="int_ados_house_54" file="interiors/ados/house_54.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2183,14 +2183,14 @@ My fee:
     <destination zone="int_ados_house_54_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_ados_house_54_1" file="interiors/ados/house_54_1.tmx">
+ <zone name="int_ados_house_54_1" file="interiors/ados/house_54_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_54" ref="up"/>
   </portal>
  </zone>
- <zone name="int_ados_house_55" file="interiors/ados/house_55.tmx">
+ <zone name="int_ados_house_55" file="interiors/ados/house_55.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2214,7 +2214,7 @@ My fee:
     <destination zone="int_ados_house_55_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_ados_house_55_1" file="interiors/ados/house_55_1.tmx">
+ <zone name="int_ados_house_55_1" file="interiors/ados/house_55_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
@@ -2222,7 +2222,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_56" file="interiors/ados/house_56.tmx">
+ <zone name="int_ados_house_56" file="interiors/ados/house_56.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2243,7 +2243,7 @@ My fee:
     <destination zone="int_ados_house_56_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_ados_house_56_1" file="interiors/ados/house_56_1.tmx">
+ <zone name="int_ados_house_56_1" file="interiors/ados/house_56_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
@@ -2251,7 +2251,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_57" file="interiors/ados/house_57.tmx">
+ <zone name="int_ados_house_57" file="interiors/ados/house_57.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2272,7 +2272,7 @@ My fee:
     <destination zone="int_ados_house_57_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_ados_house_57_1" file="interiors/ados/house_57_1.tmx">
+ <zone name="int_ados_house_57_1" file="interiors/ados/house_57_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
@@ -2280,7 +2280,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_58" file="interiors/ados/house_58.tmx">
+ <zone name="int_ados_house_58" file="interiors/ados/house_58.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2295,7 +2295,7 @@ My fee:
     <destination zone="int_ados_house_58_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_ados_house_58_1" file="interiors/ados/house_58_1.tmx">
+ <zone name="int_ados_house_58_1" file="interiors/ados/house_58_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
@@ -2309,7 +2309,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_59" file="interiors/ados/house_59.tmx">
+ <zone name="int_ados_house_59" file="interiors/ados/house_59.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2330,7 +2330,7 @@ My fee:
     <destination zone="int_ados_house_59_1" ref="down"/>
   </portal>
  </zone>
- <zone name="int_ados_house_59_1" file="interiors/ados/house_59_1.tmx">
+ <zone name="int_ados_house_59_1" file="interiors/ados/house_59_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
@@ -2338,7 +2338,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_60" file="interiors/ados/house_60.tmx">
+ <zone name="int_ados_house_60" file="interiors/ados/house_60.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2360,7 +2360,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_60_1" file="interiors/ados/house_60_1.tmx">
+ <zone name="int_ados_house_60_1" file="interiors/ados/house_60_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
@@ -2368,7 +2368,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_61" file="interiors/ados/house_61.tmx">
+ <zone name="int_ados_house_61" file="interiors/ados/house_61.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2384,7 +2384,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_61_1" file="interiors/ados/house_61_1.tmx">
+ <zone name="int_ados_house_61_1" file="interiors/ados/house_61_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
@@ -2398,7 +2398,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_62" file="interiors/ados/house_62.tmx">
+ <zone name="int_ados_house_62" file="interiors/ados/house_62.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2420,7 +2420,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_62_1" file="interiors/ados/house_62_1.tmx">
+ <zone name="int_ados_house_62_1" file="interiors/ados/house_62_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
@@ -2428,7 +2428,7 @@ My fee:
   </portal>
  </zone>
 
- <zone name="int_ados_house_63" file="interiors/ados/house_63.tmx">
+ <zone name="int_ados_house_63" file="interiors/ados/house_63.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2446,7 +2446,7 @@ My fee:
     <destination zone="0_ados_city" ref="house_63"/>
   </portal>
  </zone>
- <zone name="int_ados_house_64" file="interiors/ados/house_64.tmx">
+ <zone name="int_ados_house_64" file="interiors/ados/house_64.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2464,7 +2464,7 @@ My fee:
     <destination zone="0_ados_city" ref="house_64"/>
   </portal>
  </zone>
- <zone name="int_ados_house_65" file="interiors/ados/house_65.tmx">
+ <zone name="int_ados_house_65" file="interiors/ados/house_65.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2482,7 +2482,7 @@ My fee:
     <destination zone="0_ados_city" ref="house_65"/>
   </portal>
  </zone>
- <zone name="int_ados_house_66" file="interiors/ados/house_66.tmx">
+ <zone name="int_ados_house_66" file="interiors/ados/house_66.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2500,7 +2500,7 @@ My fee:
     <destination zone="0_ados_city" ref="house_66"/>
   </portal>
  </zone>
- <zone name="int_ados_house_67" file="interiors/ados/house_67.tmx">
+ <zone name="int_ados_house_67" file="interiors/ados/house_67.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2518,7 +2518,7 @@ My fee:
     <destination zone="0_ados_city" ref="house_67"/>
   </portal>
  </zone>
- <zone name="int_ados_house_68" file="interiors/ados/house_68.tmx">
+ <zone name="int_ados_house_68" file="interiors/ados/house_68.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
@@ -2530,7 +2530,7 @@ My fee:
     <destination zone="0_ados_city" ref="house_68"/>
   </portal>
  </zone>
- <zone name="int_ados_house_69" file="interiors/ados/house_69.tmx">
+ <zone name="int_ados_house_69" file="interiors/ados/house_69.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	<parameter name="x">9</parameter>
@@ -2540,7 +2540,7 @@ My fee:
     <destination zone="0_ados_city" ref="house_69"/>
   </portal>
  </zone>
- <zone name="int_ados_house_70" file="interiors/ados/house_70.tmx">
+ <zone name="int_ados_house_70" file="interiors/ados/house_70.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	<parameter name="x">11</parameter>
