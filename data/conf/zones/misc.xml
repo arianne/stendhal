@@ -35,19 +35,19 @@ Walk on, and you will be returned to the land of the living...
 		</entity>
 	</zone>
 
-	<zone name="int_admin_playground" file="interiors/abstract/admin_playground.tmx">
+	<zone name="int_admin_playground" file="interiors/abstract/admin_playground.tmx" accessible="false">
 	</zone>
 
-	<zone name="int_testing_grid" file="interiors/abstract/testing_grid.tmx">
+	<zone name="int_testing_grid" file="interiors/abstract/testing_grid.tmx" accessible="false">
 	</zone>
 
-	<zone name="int_vault" file="interiors/abstract/vault.tmx">
+	<zone name="int_vault" file="interiors/abstract/vault.tmx" accessible="false">
 	</zone>
 
-	<zone name="int_adventure_island" file="interiors/abstract/adventure_island.tmx">
+	<zone name="int_adventure_island" file="interiors/abstract/adventure_island.tmx" accessible="false">
 	</zone>
 
-	<zone name="int_pathfinding" file="interiors/abstract/pathfinding.tmx">
+	<zone name="int_pathfinding" file="interiors/abstract/pathfinding.tmx" accessible="false">
 
 		<configurator class-name="games.stendhal.server.maps.FeaturesTestArea" />
 
