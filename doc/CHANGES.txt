@@ -2,7 +2,8 @@ Changelog
 ---------
 0.89
 - added quest to Ortiv Milquetoast in Kirdneh River House
-
+- quantity selector for control-drop
+- corpses have resistance
 
 
 0.88
