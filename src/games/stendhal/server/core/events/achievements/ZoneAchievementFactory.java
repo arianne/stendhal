@@ -1,5 +1,6 @@
 package games.stendhal.server.core.events.achievements;
 
+import games.stendhal.server.entity.npc.condition.PlayerVisitedZonesCondition;
 import games.stendhal.server.entity.npc.condition.PlayerVisitedZonesInRegionCondition;
 
 import java.util.Collection;
@@ -54,6 +55,13 @@ public class ZoneAchievementFactory extends AchievementFactory {
 		list.add(createAchievement("zone.underground.amazon", "Human Mole", "Visit all underground zones in the Amazon region", 
 									Achievement.MEDIUM_BASE_SCORE, 
 									new PlayerVisitedZonesInRegionCondition("amazon", null, Boolean.FALSE)));
+		//All interior zone achievements
+		
+		//Special zone achievements
+		list.add(createAchievement("zone.special.bank", "Safe Deposit", "Visit all banks", 
+									Achievement.MEDIUM_BASE_SCORE, 
+									new PlayerVisitedZonesCondition("int_semos_bank", "int_nalwor_bank", "int_kirdneh_bank", 
+																	"int_fado_bank", "int_magic_bank", "int_ados_bank")));
 		return list;
 	}
 
