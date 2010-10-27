@@ -151,7 +151,7 @@
   
   <creature name="googon">
     <type class="hybrid" subclass="googon" tileid="hybrid.png:10"/>
-    <description></description>
+    <description>You see a googon that comes from the worst place in this world...Be careful this creature is a deadly killer.</description>
     <attributes>
       <atk value="430"/>
       <def value="128"/>
