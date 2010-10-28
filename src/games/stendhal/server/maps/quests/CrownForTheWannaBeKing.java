@@ -159,6 +159,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get(NPC_NAME);
 
 		/* player returns while quest is still active */
+		// TODO: Use 'conditions' for this.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {
@@ -210,6 +211,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		}
 
 		/* player says he didn't bring any items (says no) */
+		// TODO: Use 'conditions' for this.
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
 				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
@@ -222,6 +224,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				"Well don't come back before you find something for me!", null);
 
 		/* player says he didn't bring any items to different question */
+		// TODO: Use 'conditions' for this.
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
 				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
@@ -243,6 +246,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		 * player returns after finishing the quest or before collecting the
 		 * reward
 		 */
+		// TODO: Use 'conditions' for this.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new ChatCondition() {

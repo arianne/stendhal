@@ -45,7 +45,7 @@ public class JailedDwarf extends AbstractQuest {
 	}
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Hunel");
-
+		   // TODO: Use standard actions and conditions
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				null, ConversationStates.ATTENDING, null,
 				new ChatAction() {

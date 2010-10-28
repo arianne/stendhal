@@ -101,6 +101,7 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"I don't have anything for you to do, really.", null);
 
+		// TODO: Use 'conditions and actions' for this.
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.QUEST_OFFERED, null,
@@ -168,6 +169,7 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationStates.ATTENDING, "Too bad.", null);
 
 		// player says he has a blue elf cloak with him
+		// TODO: Use 'conditions and actions' for this, as far as possible
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,

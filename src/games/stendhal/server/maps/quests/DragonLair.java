@@ -65,6 +65,8 @@ public class DragonLair extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 	private void step_1() {
+		// TODO: Use standard actions and conditions for this quest
+		
 		final SpeakerNPC npc = npcs.get("Wishman");
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
@@ -95,6 +97,7 @@ public class DragonLair extends AbstractQuest {
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
 		
+
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,

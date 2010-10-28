@@ -59,7 +59,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 	}
 	private void icecreamStep() {
 		final SpeakerNPC npc = npcs.get("Annie Jones");
-
+		// TODO: Use standard actions and conditions for this quest
 		npc.addGreeting(null, new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				if (!player.hasQuest(QUEST_SLOT)) {

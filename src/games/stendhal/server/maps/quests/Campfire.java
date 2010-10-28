@@ -188,6 +188,7 @@ public class Campfire extends AbstractQuest {
 			null);
 		
 		// if they ask for quest while not already supposed to be collecting wood, deal with it correctly
+		// TODO: Use 'conditions and actions' for this.
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotInStateCondition(QUEST_SLOT, "start"),
