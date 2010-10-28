@@ -12,16 +12,17 @@
 
 package games.stendhal.server.maps.quests;
  
-import games.stendhal.common.Rand;
 import games.stendhal.common.Grammar;
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.entity.npc.action.*;
-import games.stendhal.server.entity.npc.condition.*;
+import games.stendhal.common.Rand;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.player.*;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
-
-import java.util.*;
 
 public class KoboldishTorcibud extends AbstractQuest {
  
