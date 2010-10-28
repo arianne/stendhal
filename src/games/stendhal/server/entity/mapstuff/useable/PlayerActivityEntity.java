@@ -114,6 +114,14 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 	 */
 	protected abstract void onStarted(final Player player);
 
+	/**
+	 * Check for excessive usage
+	 * 
+	 * @param player
+	 *            The player starting the activity.
+	 *            
+	 * @return <code>true</code> if the usage was excessive
+	 */
 	protected boolean isPenalized(final Player player) {
 		String timestamp = player.get("source_usage", this.getName() + ".lastused");
 		int usageCount = 0;
