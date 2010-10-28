@@ -15,6 +15,7 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.common.constants.Actions.ADMINLEVEL;
 import static games.stendhal.common.constants.Actions.NEWLEVEL;
 import static games.stendhal.common.constants.Actions.TARGET;
+import games.stendhal.common.constants.Actions;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -69,6 +70,7 @@ class AdminLevelAction extends AdministrationAction {
 
 					new GameEvent(player.getName(), ADMINLEVEL, target.getName(), ADMINLEVEL, action.get(NEWLEVEL)).raise();
 					target.setAdminLevel(newlevel);
+					dropPrivileges(target);
 					target.update();
 					target.notifyWorldAboutChanges();
 
@@ -83,9 +85,27 @@ class AdminLevelAction extends AdministrationAction {
 			player.sendPrivateText(response);
 		}
 	}
+	
+	/**
+	 * Drop persistent administrator attributes if the player is no longer
+	 * allowed to have them.
+	 *  
+	 * @param player the player whose privileges should be re-examined 
+	 */
+	private void dropPrivileges(Player player) {
+		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, Actions.TELECLICKMODE, false)) {
+			player.setTeleclickEnabled(false);
+		}
+		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, Actions.GHOSTMODE, false)) {
+			player.setGhost(false);
+		}
+		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, Actions.INVISIBLE, false)) {
+			player.setInvisible(false);
+		}
+	}
 
 	private boolean isAllowedtoSeeGhosts(final Player player) {
-		return AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "ghostmode", false);
+		return AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, Actions.GHOSTMODE, false);
 	}
 
 }
