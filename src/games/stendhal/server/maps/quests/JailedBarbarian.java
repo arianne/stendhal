@@ -68,7 +68,6 @@ import java.util.List;
  */
  
  public class JailedBarbarian extends AbstractQuest {
-   // TODO: Use standard actions throughout this quest
  	private static final String QUEST_SLOT = "jailedbarb";
  	
  
