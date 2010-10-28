@@ -57,6 +57,9 @@ public class BarmanNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addJob("I #mix cocktails!");
 				addQuest("What you say?");
+				addOffer("Perhaps I can #mix a nice #coconut and #pineapple cocktail to cool you down...");
+				addReply("pineapple","Sadly pineapples don't grow on Athor, you'll have to hunt me some yourself.");
+				addReply("coconut","I'll use the milk to #mix your cocktail, look for them under palm trees.");
 				addHelp("You want a pina colada mixed, I'm your man!");
 				addGoodbye("Cheers!");
 
