@@ -65,7 +65,7 @@ public abstract class DomesticAnimal extends Creature {
 	}
 
 	/**
-	 * Creates a wild DomesticAnimal based on an existing RPObjec, and assigns
+	 * Creates a wild DomesticAnimal based on an existing RPObject, and assigns
 	 * it to a player.
 	 * 
 	 * @param object
