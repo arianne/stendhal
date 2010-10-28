@@ -68,6 +68,8 @@ import java.util.Arrays;
  */
 public class RainbowBeans extends AbstractQuest {
 
+	// TODO: refactor to use standard conditions and actions
+	
 	private static final int REQUIRED_LEVEL = 30;
 
 	private static final int REQUIRED_MONEY = 2000;

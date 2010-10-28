@@ -77,6 +77,8 @@ import java.util.List;
  */
 public class ObsidianKnife extends AbstractQuest {
 
+	// TODO: refactor to use standard conditions and actions
+	
 	private static final int MINUTES_IN_DAYS = 24 * 60;
 
 	private static final int REQUIRED_FOOD = 100;

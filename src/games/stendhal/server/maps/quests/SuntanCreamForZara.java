@@ -50,6 +50,9 @@ import java.util.List;
  * REPETITIONS: - None.
  */
 public class SuntanCreamForZara extends AbstractQuest {
+	
+	// TODO: refactor to use standard conditions and actions
+	
 	private static final String QUEST_SLOT = "suntan_cream_zara";
 
 	@Override

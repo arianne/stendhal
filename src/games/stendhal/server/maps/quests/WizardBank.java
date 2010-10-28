@@ -40,7 +40,7 @@ import marauroa.common.game.IRPZone;
  */
 
 public class WizardBank extends AbstractQuest implements LoginListener {
-
+	
 	// constants
 	private static final String QUEST_SLOT = "wizard_bank";
 
@@ -161,6 +161,9 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	}
 
 	private void createNPC() {
+		
+		// TODO: refactor to use standard conditions and actions
+		
 		npc = new SpeakerNPC("Javier X") {
 			@Override
 			protected void createPath() {

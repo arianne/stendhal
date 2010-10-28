@@ -49,6 +49,9 @@ import java.util.List;
  * REPETITIONS: <ul><li> None.</ul>
  */
 public class TakeGoldforGrafindle extends AbstractQuest {
+	
+	// TODO: refactor to use standard conditions and actions
+	
 	private static final int GOLD_AMOUNT = 25;
 
 	private static final String QUEST_SLOT = "grafindle_gold";

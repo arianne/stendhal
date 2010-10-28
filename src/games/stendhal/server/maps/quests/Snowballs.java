@@ -98,6 +98,7 @@ public class Snowballs extends AbstractQuest {
 		return res;
 	}
 
+	// TODO: refactor to use standard conditions and actions
 	private boolean canStartQuestNow(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return true;

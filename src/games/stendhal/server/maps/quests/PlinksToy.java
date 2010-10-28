@@ -136,7 +136,8 @@ public class PlinksToy extends AbstractQuest {
 
 	private void step_3() {
 		final SpeakerNPC npc = npcs.get("Plink");
-
+		
+		// TODO: refactor to use standard actions
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(QUEST_SLOT)), new PlayerHasItemWithHimCondition("teddy")),
 			ConversationStates.ATTENDING, null,
