@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
@@ -21,7 +20,13 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -29,11 +34,12 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -109,41 +115,7 @@ public class Campfire extends AbstractQuest {
 		return res;
 	}
 
-	private void respondToQuestMessage(final EventRaiser npc, final Player player) {
-		// first time player asks 
-		if (!player.hasQuest(QUEST_SLOT)) {
-			npc.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
-			return;
-		} else {
-			// quest can't be in state 'start' by condition. so it must be a number (the previous time) or 'rejected' or something else
-		   long lastTime; 
-			try {
- 				lastTime = Long.parseLong(player.getQuest(QUEST_SLOT));
-			} catch (final NumberFormatException e) {
-				// it wasn't a number.
- 				// compatibility: Old Stendhal version stored "done" on
- 				// completed quest or state might be 'rejected'
-				npc.say("My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.");
- 				return;
- 			}
 
-		   
-		   final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
-		   
-		   final long timeRemaining = (lastTime + delay) - System.currentTimeMillis();
-		   
-		   if (timeRemaining < 0) {
-			   // it's been at least 5 minutes and sally wants wood again
-			   npc.say("My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.");
-		   return;
-		   } else {
-			   // sally's not ready for wood yet
-			   npc.say("Thanks, but I think the wood you brought me already will last me " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000)) + " more.");
-			   npc.setCurrentState(ConversationStates.ATTENDING);
-		   return;
-		   }
-		}
-	}
 
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Sally");
@@ -186,19 +158,31 @@ public class Campfire extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"You already promised me to bring me some wood! Ten pieces, remember?",
 			null);
-		
-		// if they ask for quest while not already supposed to be collecting wood, deal with it correctly
-		// TODO: Use 'conditions and actions' for this.
-		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestNotInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.QUEST_OFFERED, null,
-			new ChatAction() {
-			   	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					respondToQuestMessage(npc, player);
-				}
-			});
 
+		// first time player asks/ player had rejected
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED, 
+				"I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.",
+				null);
+		
+		// player returns - enough time has passed
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)),
+				ConversationStates.QUEST_OFFERED, 
+				"My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.",
+				null);
+
+		// player returns - enough time has passed
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES))),
+				ConversationStates.ATTENDING, 
+				null,
+				new SayTimeRemainingAction(QUEST_SLOT,REQUIRED_MINUTES,"Thanks, but I think the wood you brought me already will last me another"));
+		
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES,
@@ -219,30 +203,33 @@ public class Campfire extends AbstractQuest {
 	private void prepareBringingStep() {
 		final SpeakerNPC npc = npcs.get("Sally");
 		// player has wood and tells sally, yes, it is for her
+		
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("wood", REQUIRED_WOOD));
+		reward.add(new IncreaseXPAction(50));
+		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT));
+		reward.add(new IncreaseKarmaAction(10));
+		reward.add(new ChatAction() {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				String rewardClass;
+				if (Rand.throwCoin() == 1) {
+					rewardClass = "meat";
+				} else {
+					rewardClass = "ham";
+				}
+				npc.say("Thank you! Here, take some " + rewardClass + "!");
+				final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
+				reward.setQuantity(REQUIRED_WOOD);
+				player.equipOrPutOnGround(reward);
+				player.notifyWorldAboutChanges();
+			}
+		});
+		
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES, 
 			new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD),
 			ConversationStates.ATTENDING, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						player.drop("wood", REQUIRED_WOOD);
-						player.setQuest(QUEST_SLOT,  "" + System.currentTimeMillis());
-						player.addXP(50);
-
-						String rewardClass;
-						if (Rand.throwCoin() == 1) {
-							rewardClass = "meat";
-						} else {
-							rewardClass = "ham";
-						}
-						npc.say("Thank you! Here, take some " + rewardClass + "!");
-						final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
-						reward.setQuantity(REQUIRED_WOOD);
-						player.equipOrPutOnGround(reward);
-						player.addKarma(10);
-						player.notifyWorldAboutChanges();
-					}
-				});
+			new MultipleActions(reward));
 
 		//player said the wood was for her but has dropped it from his bag or hands
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
