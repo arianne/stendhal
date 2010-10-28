@@ -2,6 +2,25 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
 	
+  <item name="fierywater">
+    <type class="drink" subclass="fierywater" tileid="-1"/>
+    <description>You see a bottle of fierywater. Do not drink it pure, you would evaporate!</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+       <amount value="-1000"/>
+      <frequency value="1"/>
+      <quantity value="1"/>
+      <regen value="-1000"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="mild koboldish torcibud">
     <type class="drink" subclass="koboldish_torcibud_mild" tileid="-1"/>
     <description>You see a bottle of mild koboldish torcibud. It will help you recover when you're all bruised and battered.</description>
