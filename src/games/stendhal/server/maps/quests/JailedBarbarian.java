@@ -12,13 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -26,10 +29,10 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * QUEST: The Jailed Barbarian
@@ -107,19 +110,18 @@ import java.util.Arrays;
 	private void step2() {
 	final SpeakerNPC npc = npcs.get("Lorenz");	
 	
+	    final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("scythe"));
+		reward.add(new IncreaseXPAction(1000));
+		reward.add(new SetQuestAction(QUEST_SLOT, "capture"));
+		reward.add(new IncreaseKarmaAction(10));
+		
 		npc.add(ConversationStates.ATTENDING, "scythe",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
 				new PlayerHasItemWithHimCondition("scythe")),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					player.drop("scythe");
-					player.addKarma(10);
-					player.addXP(1000);
-					npc.say("Thank you!! First part is done! Now I can cut all flowers down! Now please ask Princess Esclara why I am here! I think saying my name should tell her something...");
-					player.setQuest(QUEST_SLOT, "capture");
-				};
-		});
+				ConversationStates.ATTENDING, 
+				"Thank you!! First part is done! Now I can cut all flowers down! Now please ask Princess Esclara why I am here! I think saying my name should tell her something...",
+				new MultipleActions(reward));
 
 		npc.add(
 			ConversationStates.ATTENDING, "scythe",
@@ -141,13 +143,10 @@ import java.util.Arrays;
 	
 		npc.add(ConversationStates.ATTENDING, "Lorenz",
 				new QuestInStateCondition(QUEST_SLOT, "capture"),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					npc.say("You want to know why he is in there? He and his ugly friends dug the #tunnel to our sweet Island! That's why he got jailed!");
-					player.setQuest(QUEST_SLOT, "princess");
-				};
-		});
+				ConversationStates.ATTENDING,
+				"You want to know why he is in there? He and his ugly friends dug the #tunnel to our sweet Island! That's why he got jailed!",
+				new SetQuestAction(QUEST_SLOT, "princess"));
+		
 		npc.add(ConversationStates.ATTENDING, "tunnel",
 				new QuestInStateCondition(QUEST_SLOT, "princess"),
 				ConversationStates.ATTENDING, "I am angry now and won't speak any more of it! If you want to learn more you'll have to ask him about the #tunnel!",
@@ -160,13 +159,9 @@ import java.util.Arrays;
 	
 		npc.add(ConversationStates.ATTENDING, "tunnel",
 				new QuestInStateCondition(QUEST_SLOT, "princess"),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					npc.say("What she drives me nuts, like all the flowers! This makes me hungry, go and get an #egg for me! Just let me know, you got one.");
-					player.setQuest(QUEST_SLOT, "egg");
-				};
-		});	
+				ConversationStates.ATTENDING, 
+				"What she drives me nuts, like all the flowers! This makes me hungry, go and get an #egg for me! Just let me know, you got one.",
+				new SetQuestAction(QUEST_SLOT, "egg"));	
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
@@ -184,21 +179,20 @@ import java.util.Arrays;
 	}
 	
 	private void step5() {
-	final SpeakerNPC npc = npcs.get("Lorenz");	
-	
+		final SpeakerNPC npc = npcs.get("Lorenz");	
+		
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("egg"));
+		reward.add(new IncreaseXPAction(1000));
+		reward.add(new SetQuestAction(QUEST_SLOT, "jailed"));
+		reward.add(new IncreaseKarmaAction(10)); 
+		
 		npc.add(ConversationStates.ATTENDING, "egg",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "egg"),
-				new PlayerHasItemWithHimCondition("egg")),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					player.drop("egg");
-					player.addKarma(10);
-					player.addXP(1000);
-					npc.say("Thank you again my friend. Now you have to tell Princess Ylflia, in Kalavan Castle, that I am #jailed here. Please hurry up!");
-					player.setQuest(QUEST_SLOT, "jailed");
-				};
-		});
+						new PlayerHasItemWithHimCondition("egg")),
+						ConversationStates.ATTENDING, 
+						"Thank you again my friend. Now you have to tell Princess Ylflia, in Kalavan Castle, that I am #jailed here. Please hurry up!",
+						new MultipleActions(reward));
 
 		npc.add(
 			ConversationStates.ATTENDING, "egg",
@@ -232,13 +226,9 @@ import java.util.Arrays;
 	
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("jailed", "Lorenz"),
 				new QuestInStateCondition(QUEST_SLOT, "jailed"),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					npc.say("Oh my dear. My father should not know it. Hope he is fine! Thanks for this message! Send him #greetings! You better return to him, he could need more help.");
-					player.setQuest(QUEST_SLOT, "spoken");
-				};
-		});
+				ConversationStates.ATTENDING, 
+				"Oh my dear. My father should not know it. Hope he is fine! Thanks for this message! Send him #greetings! You better return to him, he could need more help.",
+				new SetQuestAction(QUEST_SLOT, "spoken"));
 
 		npc.add(ConversationStates.ATTENDING, "greetings",
 				new QuestInStateCondition(QUEST_SLOT, "spoken"),
@@ -252,13 +242,9 @@ import java.util.Arrays;
 	
 		npc.add(ConversationStates.ATTENDING, "greetings",
 				new QuestInStateCondition(QUEST_SLOT, "spoken"),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					npc.say("Thanks my friend. Now a final task for you! Bring me a barbarian armor. Without this I cannot escape from here! Go! Go! And let me know when you have the #armor !");
-					player.setQuest(QUEST_SLOT, "armor");
-				};
-		});
+				ConversationStates.ATTENDING, 
+				"Thanks my friend. Now a final task for you! Bring me a barbarian armor. Without this I cannot escape from here! Go! Go! And let me know when you have the #armor !",
+				new SetQuestAction(QUEST_SLOT, "armor"));
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
@@ -269,25 +255,21 @@ import java.util.Arrays;
 	}
 	
 	private void step8() {
-	final SpeakerNPC npc = npcs.get("Lorenz");	
-	
+		final SpeakerNPC npc = npcs.get("Lorenz");	
+
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("barbarian armor"));
+		reward.add(new IncreaseXPAction(50000));
+		reward.add(new EquipItemAction("gold bar", 20));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+		reward.add(new IncreaseKarmaAction(15)); 
+		
 		npc.add(ConversationStates.ATTENDING, "armor",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "armor"),
-				new PlayerHasItemWithHimCondition("barbarian armor")),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					player.drop("barbarian armor");
-					 final StackableItem gold = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
-					final int goldamount = 20;
-					gold.setQuantity(goldamount);
-					player.equipOrPutOnGround(gold);
-					player.addKarma(15);
-					player.addXP(50000);
-					npc.say("Thats all! Now I am prepared for my escape! Here is something I have stolen from Princess Esclara! Do not let her know. And now leave me!");
-					player.setQuest(QUEST_SLOT, "done");
-				};
-		});
+						new PlayerHasItemWithHimCondition("barbarian armor")),
+						ConversationStates.ATTENDING, 
+						"Thats all! Now I am prepared for my escape! Here is something I have stolen from Princess Esclara! Do not let her know. And now leave me!",
+						new MultipleActions(reward));
 
 		npc.add(
 			ConversationStates.ATTENDING, "armor",
