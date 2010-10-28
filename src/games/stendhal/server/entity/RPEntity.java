@@ -817,7 +817,13 @@ public abstract class RPEntity extends GuidedEntity {
 		new GameEvent(getName(), "added xp", params).raise();
 		new GameEvent(getName(), "xp", String.valueOf(xp)).raise();
 		
-
+		updateLevel();
+	}
+	
+	/**
+	 * Change the level to match the XP, if needed
+	 */
+	protected void updateLevel() {
 		final int newLevel = Level.getLevel(getXP());
 		final int oldLevel = getLevel();
 		final int levels = newLevel - oldLevel;

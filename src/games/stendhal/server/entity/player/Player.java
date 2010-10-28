@@ -542,8 +542,8 @@ public class Player extends RPEntity {
 		super.update();
 
 		if (has("xp")) {
-			// I want to force level to be updated.
-			addXP(0);
+			// Force level to be updated.
+			updateLevel();
 		}
 
 		if (has("age")) {
