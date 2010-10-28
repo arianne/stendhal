@@ -351,7 +351,7 @@ public class ReverseArrow extends AbstractQuest implements
 						+ TIME + " seconds.");
 			}
 		};
-		// TODO change outfit
+
 		npc.setEntityClass("oldwizardnpc"); 
 		npc.setPosition(20, 8);
 		npc.setDirection(Direction.DOWN);
