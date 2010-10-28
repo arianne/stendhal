@@ -18,8 +18,11 @@ import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -28,11 +31,11 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -137,19 +140,17 @@ public class PlinksToy extends AbstractQuest {
 	private void step_3() {
 		final SpeakerNPC npc = npcs.get("Plink");
 		
-		// TODO: refactor to use standard actions
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("teddy"));
+		reward.add(new IncreaseXPAction(20));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+		reward.add(new IncreaseKarmaAction(10));
+		
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(QUEST_SLOT)), new PlayerHasItemWithHimCondition("teddy")),
-			ConversationStates.ATTENDING, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					player.drop("teddy");
-					npc.say("You found him! *hugs teddy* Thank you, thank you! *smile*");
-					player.addXP(20);
-					player.addKarma(10.0);
-					player.setQuest(QUEST_SLOT, "done");
-				}
-			});
+			ConversationStates.ATTENDING, 
+			"You found him! *hugs teddy* Thank you, thank you! *smile*",
+			new MultipleActions(reward));
 
 		npc.add(
 			ConversationStates.ATTENDING,
