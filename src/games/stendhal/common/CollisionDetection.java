@@ -153,14 +153,14 @@ public class CollisionDetection {
 	public boolean leavesZone(final Rectangle2D shape) {
 		final double x = shape.getX();
 		final double y = shape.getY();
-		// double w=shape.getWidth();
-		// double h=shape.getHeight();
+		final double w = shape.getWidth();
+		final double h = shape.getHeight();
 
-		if ((x < 0) || (x/* +w */ >= width)) {
+		if ((x < 0) || (x + w >= width)) {
 			return true;
 		}
 
-		if ((y < 0) || (y/* +h */ >= height)) {
+		if ((y < 0) || (y + h >= height)) {
 			return true;
 		}
 
@@ -175,13 +175,13 @@ public class CollisionDetection {
 	public boolean collides(final Rectangle2D shape) {
 		final double x = shape.getX();
 		final double y = shape.getY();
-		double w = shape.getWidth();
-		double h = shape.getHeight();
-		if ((x < 0) || (x/* +w */ >= width)) {
+		final double w = shape.getWidth();
+		final double h = shape.getHeight();
+		if ((x < 0) || (x + w > width)) {
 			return true;
 		}
 
-		if ((y < 0) || (y/* +h */ >= height)) {
+		if ((y < 0) || (y + h > height)) {
 			return true;
 		}
 
