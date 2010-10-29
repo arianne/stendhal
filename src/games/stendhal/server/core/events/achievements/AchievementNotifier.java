@@ -303,6 +303,9 @@ public class AchievementNotifier {
 		for(Achievement a : new AgeAchievementFactory().createAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
+		for(Achievement a : new ItemAchievementFactory().createAchievements()) {
+			achievementMap.put(a.getIdentifier(), a);
+		}
 		for(Achievement a : new MetaAchievementFactory().createAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}

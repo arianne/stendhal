@@ -8,5 +8,5 @@ package games.stendhal.server.core.events.achievements;
  * @author madmetzger
  */
 public enum Category {
-	EXPERIENCE, FIGHTING, QUEST, META, ZONE, AGE
+	EXPERIENCE, FIGHTING, QUEST, META, ZONE, AGE, ITEM
 }
