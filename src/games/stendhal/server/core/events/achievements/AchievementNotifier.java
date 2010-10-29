@@ -174,6 +174,15 @@ public class AchievementNotifier {
 	}
 	
 	/**
+	 * check all achievements for a player that belong to the item category
+	 * 
+	 * @param player
+	 */
+	public void onItemLoot(Player player) {
+		getAndCheckAchievementsInCategory(player, Category.ITEM);
+	}
+	
+	/**
 	 * Checks on login of a player which achievements the player has reached and gives a summarizing message
 	 * 
 	 * @param player
