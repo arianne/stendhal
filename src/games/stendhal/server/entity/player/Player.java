@@ -115,6 +115,7 @@ public class Player extends RPEntity {
 	private final PlayerTrade  trade  = new PlayerTrade(this);
 	private final KillRecording killRec = new KillRecording(this);
 	private final PetOwner petOwner = new PetOwner(this);
+	private final PlayerLootedItemsHandler itemCounter = new PlayerLootedItemsHandler(this);
 
 	/**
 	 * The number of minutes that this player has been logged in on the server.
@@ -2131,5 +2132,22 @@ public class Player extends RPEntity {
 	 */
 	public void cancelTrade() {
 		trade.cancelTrade();
+	}
+	
+	/**
+	 * Gets the how often this player has looted the given item
+	 * @param item the item name
+	 * @return the number of loots from corpses
+	 */
+	public int getNumberOfLootsForItem(String item) {
+		return itemCounter.getNumberOfLootsForItem(item);
+	}
+	
+	/**
+	 * Increases the count of loots for the given item
+	 * @param item the item name
+	 */
+	public void incLootForItem(String item) {
+		itemCounter.incLootForItem(item);
 	}
 }
