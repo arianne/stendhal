@@ -2146,8 +2146,9 @@ public class Player extends RPEntity {
 	/**
 	 * Increases the count of loots for the given item
 	 * @param item the item name
+	 * @param count 
 	 */
-	public void incLootForItem(String item) {
-		itemCounter.incLootForItem(item);
+	public void incLootForItem(String item, int count) {
+		itemCounter.incLootForItem(item, count);
 	}
 }

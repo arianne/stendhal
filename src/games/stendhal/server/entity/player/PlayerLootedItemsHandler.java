@@ -31,12 +31,13 @@ public class PlayerLootedItemsHandler {
 	 * Increases the count of loots for the given item for this PlayerLootedItemsHandler's player
 	 * @param item the item name
 	 */
-	public void incLootForItem(String item) {
+	public void incLootForItem(String item, int count) {
 		if(!player.has(LOOTED_ITEMS,item)) {
 			player.put(LOOTED_ITEMS, item, 0);
 		}
 		int current = player.getInt(LOOTED_ITEMS, item);
-		player.put(LOOTED_ITEMS, item, current+1);
+		int increased = current + count;
+		player.put(LOOTED_ITEMS, item, increased);
 	}
 
 }

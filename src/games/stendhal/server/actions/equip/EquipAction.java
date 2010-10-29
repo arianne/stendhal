@@ -16,6 +16,7 @@ import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -82,7 +83,8 @@ public class EquipAction extends EquipmentAction {
 				if(entity instanceof Item) {
 					((Item) entity).setFromCorpse(false);
 				}
-				player.incLootForItem(entity.getTitle());
+				player.incLootForItem(entity.getTitle(), amount);
+				SingletonRepository.getAchievementNotifier().onItemLoot(player);
 			}
 			
 			new GameEvent(player.getName(), "equip", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount)).raise();
