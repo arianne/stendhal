@@ -62,6 +62,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	
 	private Map<Nature, Double> susceptibilities;
 	
+	private boolean fromCorpse = false;
+	
 	/**
 	 * 
 	 * Creates a new Item.
@@ -657,5 +659,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		} else {
 			return super.getTitle();
 		}
+	}
+
+	public void setFromCorpse(boolean fromCorpse) {
+		this.fromCorpse = fromCorpse;
+	}
+
+	public boolean isFromCorpse() {
+		return fromCorpse;
 	}
 }

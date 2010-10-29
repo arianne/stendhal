@@ -21,21 +21,43 @@ import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.LootableSlot;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
 public class Corpse extends PassiveEntity implements 
 		EquipListener {
+	/**
+	 * TurnListener to degradate a corpse
+	 *   
+	 * @author madmetzger
+	 */
+	private final class CorpseRottingTurnListener implements TurnListener {
+		public void onTurnReached(final int currentTurn) {
+			Corpse.this.onTurnReached(currentTurn);
+		}
+	}
+	
+	/**
+	 * TurnListener to release this corpse to get everyone able to be rewarded for looting this corpse
+	 * (i.e. for achievements)
+	 *  
+	 * @author madmetzger
+	 */
+	private final class CorpseReleaseRewardingForEveryoneTurnListener implements TurnListener {
+		public void onTurnReached(final int currentTurn) {
+			Corpse.this.everyoneRewardableForLootedItems = true;
+		}
+	}
+
 	/**
 	 * The killer's name attribute name.
 	 */
@@ -59,6 +81,7 @@ public class Corpse extends PassiveEntity implements
 	/** number of degradation steps. */
 	private static final int MAX_STAGE = 5; 
 
+	/** time between two degradation steps */
 	private static final int DEGRADATION_STEP_TIMEOUT = DEGRADATION_TIMEOUT
 			/ MAX_STAGE;
 	
@@ -66,23 +89,22 @@ public class Corpse extends PassiveEntity implements
 	private static final int MIN_RESISTANCE = 5;
 	/** Theoretical resistance of a single corpse */
 	private static final int MAX_RESISTANCE = 70;
-
+	
+	/** Time (in seconds) before everone can be awarded on removal of an item from this corpse */
+	private static final int MIN_HOLDING_TIME_FOR_ITEMS = 5;
+	
+	/** Can everyone be rewarded for looting items from this corpse?*/
+	private boolean everyoneRewardableForLootedItems = false;
+	
 	private int stage;
 
-	private TurnListener turnlistener = new TurnListener() {
-
-		public void onTurnReached(final int currentTurn) {
-			
-			Corpse.this.onTurnReached(currentTurn);
-			
-		}
-		
-		
-	};
+	private TurnListener corpseDegradator = new CorpseRottingTurnListener();
+	private TurnListener itemForRewardsReleaser = new CorpseReleaseRewardingForEveryoneTurnListener();
 	
 	@Override
 	public void onRemoved(final StendhalRPZone zone) {
-		SingletonRepository.getTurnNotifier().dontNotify(turnlistener);
+		SingletonRepository.getTurnNotifier().dontNotify(corpseDegradator);
+		SingletonRepository.getTurnNotifier().dontNotify(itemForRewardsReleaser);
 		super.onRemoved(zone);
 	}
 
@@ -146,7 +168,7 @@ public class Corpse extends PassiveEntity implements
 		put(ATTR_IMAGE, victim.getCorpseName());
 		setSize(victim.getCorpseWidth(), victim.getCorpseHeight());
 
-		if ((killerName != null) && (victim instanceof Player)) {
+		if ((killerName != null)) {
 			put(ATTR_NAME, victim.getTitle());
 			put(ATTR_KILLER, killerName);
 		} else if (has(ATTR_KILLER)) {
@@ -161,7 +183,9 @@ public class Corpse extends PassiveEntity implements
 				(int) (rect.getX() + ((rect.getWidth() - getWidth()) / 2.0)),
 				(int) (rect.getY() + ((rect.getHeight() - getHeight()) / 2.0)));
 
-		SingletonRepository.getTurnNotifier().notifyInSeconds(getDegradationStepTimeout(), this.turnlistener);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(getDegradationStepTimeout(), this.corpseDegradator);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(MIN_HOLDING_TIME_FOR_ITEMS, this.itemForRewardsReleaser);
+		
 		stage = 0;
 		put("stage", stage);
 		setResistance(calculateResistance());
@@ -232,20 +256,31 @@ public class Corpse extends PassiveEntity implements
 		}
 	}
 
+	/**
+	 * @return true iff this corpse is completely rotten
+	 */
 	private boolean isCompletelyRotten() {
-		stage++;
-		put("stage", stage);
-
-		modify();
-
 		return stage >= MAX_STAGE;
 	}
 
+	/**
+	 * degradate this corpse
+	 */
+	private void degradateCorpse() {
+		stage++;
+		put("stage", stage);
+		modify();
+	}
+
+	/**
+	 * degradate this corpse and remove it if it is completely rotten
+	 */
 	public void onTurnReached(final int currentTurn) {
+		degradateCorpse();
 		if (isCompletelyRotten()) {
 				this.getZone().remove(this);
 		} else {
-			SingletonRepository.getTurnNotifier().notifyInSeconds(getDegradationStepTimeout(), this.turnlistener);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(getDegradationStepTimeout(), this.corpseDegradator);
 		}
 	}
 
@@ -295,7 +330,10 @@ public class Corpse extends PassiveEntity implements
 			text += get(ATTR_NAME);
 
 			if (has(ATTR_KILLER)) {
-				text += ", killed by " + get(ATTR_KILLER);
+				// only display the killer if it is the corpse of a player
+				if (get("class").equals("player")) {
+					text += ", killed by " + get(ATTR_KILLER);
+				}
 			}
 		} else {
 			text += Grammar.a_noun(ItemTools.itemNameToDisplayName(get("class")));
@@ -353,5 +391,23 @@ public class Corpse extends PassiveEntity implements
 	
 	protected int getDegradationStepTimeout() {
 		return DEGRADATION_STEP_TIMEOUT;
+	}
+	
+	/**
+	 * Checks if the items from this corpse are deserved by everyone for rewarding (i.e. for achievements)
+	 * 
+	 * @return true if everyone should be rewarded
+	 */
+	public boolean isItemLootingRewardableForEveryone() {
+		return everyoneRewardableForLootedItems && !get("class").equals("player");
+	}
+	
+	/**
+	 * gets the killer of this corpse
+	 * 
+	 * @return the name of the killer
+	 */
+	public String getKiller() {
+		return get(ATTR_KILLER);
 	}
 }

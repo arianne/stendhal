@@ -17,6 +17,7 @@ import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RaidCreatureCorpse;
 import games.stendhal.server.entity.item.Stackable;
@@ -41,9 +42,9 @@ class SourceObject extends MoveableObject {
 	/** the item . */
 	private Item item;
 
-
-
 	private int quantity;
+	
+	private boolean canLootingBeLogged = false;
 
 	public static SourceObject createSourceObject(final RPAction action, final Player player) {
 
@@ -122,6 +123,13 @@ class SourceObject extends MoveableObject {
 		}
 		
 		source = new SourceObject(player, parent, slotName, (Item) entity);
+		
+		// handle logging of looting items
+		if (parent instanceof Corpse) {
+			Corpse corpse = (Corpse) parent;
+			checkIfPlayerDeservesLogging(player, corpse, source, (Item) entity);
+		}
+		
 		return source;
 	}
 
@@ -349,6 +357,35 @@ class SourceObject extends MoveableObject {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Checks if the equipped item can be logged as looted item for the looting player
+	 * 
+	 * @return true iff the player deserves it
+	 */
+	public boolean canLootingBeLogged() {
+		return canLootingBeLogged;
+	}
+	
+	/**
+	 * Determines if looting should be logged for the player
+	 * 
+	 * @param player
+	 * @param corpse
+	 * @param source
+	 * @param item
+	 */
+	private static void checkIfPlayerDeservesLogging(Player player, Corpse corpse, SourceObject source, Item item) {
+		if (item.isFromCorpse()) {
+			if (corpse.isItemLootingRewardableForEveryone()) {
+				source.canLootingBeLogged = true;
+			} else {
+				if (player.getName().equals(corpse.getKiller())) {
+					source.canLootingBeLogged = true;
+				}
+			}
+		}
 	}
 
 	@Override

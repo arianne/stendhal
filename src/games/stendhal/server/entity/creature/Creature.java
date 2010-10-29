@@ -528,6 +528,7 @@ public class Creature extends NPC {
 	@Override
 	protected void dropItemsOn(final Corpse corpse) {
 		for (final Item item : dropItemInstances) {
+			item.setFromCorpse(true);
 			corpse.add(item);
 			if (corpse.isFull()) {
 				break;
@@ -536,7 +537,7 @@ public class Creature extends NPC {
 
 		for (final Item item : createDroppedItems(SingletonRepository.getEntityManager())) {
 			corpse.add(item);
-
+			item.setFromCorpse(true);
 			if (corpse.isFull()) {
 				break;
 			}
