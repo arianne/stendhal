@@ -233,6 +233,12 @@ class Corpse2DView extends Entity2DView {
 
 	@Override
 	public StendhalCursor getCursor() {
+		StendhalCursor cursor = super.getCursor();
+
+		// compatibility code
+		if (cursor != StendhalCursor.UNKNOWN) {
+			return cursor;
+		}
 		Corpse corpse = (Corpse) entity;
 		if ((corpse != null) && corpse.getContent().iterator().hasNext()) {
 			return StendhalCursor.BAG;
