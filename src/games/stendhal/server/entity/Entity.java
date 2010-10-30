@@ -110,7 +110,7 @@ public abstract class Entity extends RPObject {
 		final RPClass entity = new RPClass("entity");
 
 		// Some things may have a textual description
-		entity.addAttribute("description", Type.LONG_STRING);
+		entity.addAttribute("description", Type.LONG_STRING, Definition.HIDDEN);
 
 		// TODO: Try to remove this attribute later (at DB reset?)
 		entity.addAttribute("type", Type.STRING);
