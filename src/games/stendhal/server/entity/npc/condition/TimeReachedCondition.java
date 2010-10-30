@@ -28,7 +28,6 @@ public class TimeReachedCondition implements ChatCondition {
 
 	private final String questname;
 	private final int index;
-    private final boolean requiredstate;
 	
 	/**
 	 * Creates a new TimeReachedCondition for checking wether or not
@@ -62,7 +61,7 @@ public class TimeReachedCondition implements ChatCondition {
          * The player never did it 
          */
 		if (!player.hasQuest(questname)) {
-			return true
+			return true;
 		}
 
 		if (index > -1) {
