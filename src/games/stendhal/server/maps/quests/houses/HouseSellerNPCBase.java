@@ -47,7 +47,8 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 	 *            the name of the NPC
 	 * @param location
 	 *            where are the houses?
-	 * @param houseTax TODO
+	 * @param houseTax 
+	 * 		      class which controls house tax, and confiscation of houses
 	*/
 	HouseSellerNPCBase(final String name, final String location, final HouseTax houseTax) {
 		super(name);			
