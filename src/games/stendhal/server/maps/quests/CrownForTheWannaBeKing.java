@@ -14,9 +14,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -27,7 +25,12 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -162,13 +165,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		// TODO: Use 'conditions' for this.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence,	final Entity entity) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.isQuestCompleted(QUEST_SLOT)
-								&& !"reward".equals(player.getQuest(QUEST_SLOT));
-					}
-				},
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "reward")),
 				ConversationStates.QUESTION_1,
 				"Oh it's you again. Did you bring me any #items for my new crown?",
 				null);
@@ -211,27 +208,15 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		}
 
 		/* player says he didn't bring any items (says no) */
-		// TODO: Use 'conditions' for this.
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.isQuestCompleted(QUEST_SLOT)
-								&& !"reward".equals(player
-										.getQuest(QUEST_SLOT));
-					}
-				}, ConversationStates.IDLE,
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "reward")), 
+				ConversationStates.IDLE,
 				"Well don't come back before you find something for me!", null);
 
 		/* player says he didn't bring any items to different question */
-		// TODO: Use 'conditions' for this.
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-						return !player.isQuestCompleted(QUEST_SLOT)
-								&& !"reward".equals(player.getQuest(QUEST_SLOT));
-					}
-				}, ConversationStates.IDLE,
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "reward")), 
+				ConversationStates.IDLE,
 				"Farewell, come back after you have what I need!", null);
 
 
@@ -246,15 +231,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		 * player returns after finishing the quest or before collecting the
 		 * reward
 		 */
-		// TODO: Use 'conditions' for this.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-						return player.isQuestCompleted(QUEST_SLOT)
-								|| "reward".equals(player.getQuest(QUEST_SLOT));
-					}
-				},
+				new OrCondition(new QuestCompletedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, "reward")),
 				ConversationStates.IDLE,
 				"My new crown will be ready soon and I will dethrone the king! Mwahahaha!",
 				null);

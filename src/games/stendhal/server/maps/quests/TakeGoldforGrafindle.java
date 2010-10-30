@@ -12,22 +12,28 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -49,8 +55,6 @@ import java.util.List;
  * REPETITIONS: <ul><li> None.</ul>
  */
 public class TakeGoldforGrafindle extends AbstractQuest {
-	
-	// TODO: refactor to use standard conditions and actions
 	
 	private static final int GOLD_AMOUNT = 25;
 
@@ -95,17 +99,17 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Grafindle");
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					if (player.isQuestCompleted(QUEST_SLOT)) {
-						raiser.say("I ask only that you are honest.");
-					} else {
-						raiser.say("I need someone who can be trusted with #gold.");
-					}
-				}
-			});
+			ConversationPhrases.QUEST_MESSAGES, 
+			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING, "I need someone who can be trusted with #gold.",
+			null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"I ask only that you are honest.",
+				null);
 
 		/** In case quest is completed */
 		npc.add(ConversationStates.ATTENDING, "gold",
@@ -128,12 +132,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			null,
 			ConversationStates.IDLE,
 			"Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.",
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					player.setQuest(QUEST_SLOT, "start");
-					player.addKarma(5.0);
-				}
-			});
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT,"start", 5.0));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
 				ConversationPhrases.NO_MESSAGES, null,
@@ -170,22 +169,17 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		 * If player has quest and is in the correct state, just give him the
 		 * gold bars.
 		 */
+		final List<ChatAction> givegold = new LinkedList<ChatAction>();
+		givegold.add(new EquipItemAction("gold bar",GOLD_AMOUNT, true));
+		givegold.add(new SetQuestAction(QUEST_SLOT, "lorithien"));	
+		
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
 			"I'm so glad you're here! I'll be much happier when this gold is safely in the bank.",
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					player.setQuest(QUEST_SLOT, "lorithien");
-
-					final StackableItem goldbars = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
-					goldbars.setQuantity(GOLD_AMOUNT);
-					goldbars.setBoundTo(player.getName());
-					player.equipOrPutOnGround(goldbars);
-				}
-			});
+			new MultipleActions(givegold));
 
 		/** If player keep asking for book, just tell him to hurry up */
 		npc.add(
@@ -215,28 +209,24 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Grafindle");
 
 		/** Complete the quest */
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("gold bar", GOLD_AMOUNT));
+		reward.add(new EquipItemAction("nalwor bank key", 1, true));
+		reward.add(new IncreaseXPAction(200));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+		reward.add(new IncreaseKarmaAction(10));
+		
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "lorithien"),
-			ConversationStates.ATTENDING, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					if (player.drop("gold bar", GOLD_AMOUNT)) {
-						raiser.say("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.");
-						final Item nalworkey = SingletonRepository.getEntityManager()
-								.getItem("nalwor bank key");
-						nalworkey.setBoundTo(player.getName());
-						player.equipToInventoryOnly(nalworkey);
-						player.addXP(200);
-						player.addKarma(10.0);
-
-						player.notifyWorldAboutChanges();
-
-						player.setQuest(QUEST_SLOT, "done");
-					} else {
-						raiser.say("Haven't you got the gold bars from #Lorithien yet? Please go get them, quickly!");
-					}
-				}
-			});
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "lorithien"), new PlayerHasItemWithHimCondition("gold bar", GOLD_AMOUNT)),
+			ConversationStates.ATTENDING,
+			"Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.",
+			new MultipleActions(reward));
+		
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "lorithien"), new NotCondition(new PlayerHasItemWithHimCondition("gold bar", GOLD_AMOUNT))),
+				ConversationStates.ATTENDING,
+				"Haven't you got the gold bars from #Lorithien yet? Please go get them, quickly!",
+				null);
 	}
 
 	@Override
