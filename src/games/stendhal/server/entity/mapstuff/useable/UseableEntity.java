@@ -31,6 +31,7 @@ public abstract class UseableEntity extends Entity implements UseListener {
 	public UseableEntity() {
 		setRPClass("useable_entity");
 		put("type", "useable_entity");
+		put("cursor", "ACTIVITY");
 		super.setSize(1, 1);
 	}
 
@@ -86,12 +87,4 @@ public abstract class UseableEntity extends Entity implements UseListener {
 		put("menu", menu);
 	}
 
-	/**
-	 * defines the name of the mouse cursor image to use
-	 *
-	 * @param cursorName name of cursor
-	 */
-	public void setCursor(String cursorName) {
-		put("cursor", cursorName);
-	}
 }
