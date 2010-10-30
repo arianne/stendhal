@@ -52,7 +52,8 @@ public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 	 * 
 	 * @param questname name of quest-slot to change
 	 * @param index index of sub state
-	 * @param timestamp an arbitrary timestamp in milliseconds
+	 * @param min_delay minimum delay in minutes
+	 * @param max_delay maximum delay in minutes
 	 */
 	public SetQuestToFutureRandomTimeStampAction(final String questname, final int index, final int min_delay, final int max_delay) {
 		this.questname = questname;

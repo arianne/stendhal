@@ -29,12 +29,10 @@ public class TimeReachedCondition implements ChatCondition {
 	private final int index;
 	
 	/**
-	 * Creates a new TimeReachedCondition for checking wether or not
-     * a timestamp in quest slot has been reached or passed by also specifying
-     * what should be the required state (true or false).
+	 * Creates a new TimeReachedCondition for checking whether 
+     * a timestamp in quest slot has been reached 
 	 * 
 	 * @param questname name of the quest slot to check
-     * @param requiredstate to ask wether or not the arbitrary timestamp has been reached or passed
 	 */
 	public TimeReachedCondition(final String questname) {
 		this.questname = questname;
@@ -46,7 +44,6 @@ public class TimeReachedCondition implements ChatCondition {
 	 * 
 	 * @param questname name of quest slot to check
 	 * @param index position of a timestamp within the quest slot 'array'
-     * @param requiredstate to ask wether or not the arbitrary timestamp has been reached or passed
 	 */
 	public TimeReachedCondition(final String questname, final int index) {
 		this.questname = questname;
