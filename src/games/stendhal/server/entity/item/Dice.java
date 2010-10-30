@@ -104,10 +104,13 @@ public class Dice extends Item {
 	/**
 	 * Throw the dice.
 	 */
-	private void randomize() {
+	void randomize() {
 		topFaces = new int[NUMBER_OF_DICE];
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
-			final int topFace = Rand.roll1D6();
+			int topFace = Rand.roll1D6();
+			if (topFace == 6) {
+				topFace = Rand.roll1D6();
+			}
 			topFaces[i] = topFace;
 		}
 	}
