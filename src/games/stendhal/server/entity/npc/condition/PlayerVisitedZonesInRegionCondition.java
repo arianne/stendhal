@@ -14,6 +14,9 @@ package games.stendhal.server.entity.npc.condition;
 
 import java.util.Collection;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -71,6 +74,22 @@ public class PlayerVisitedZonesInRegionCondition implements ChatCondition {
 			}
 		}
 		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				PlayerVisitedZonesInRegionCondition.class);
+	}
+
+	@Override
+	public String toString() {
+		return "player visited <region: "+region+", exterior: "+exterior+", above ground: "+aboveGround+", accessible: "+accessible+">";
 	}
 
 }
