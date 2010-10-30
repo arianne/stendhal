@@ -162,7 +162,6 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get(NPC_NAME);
 
 		/* player returns while quest is still active */
-		// TODO: Use 'conditions' for this.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "reward")),
