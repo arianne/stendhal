@@ -18,6 +18,8 @@ import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -28,6 +30,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
+import javax.swing.text.JTextComponent;
 
 import org.apache.log4j.Logger;
 
@@ -63,6 +67,27 @@ public class DropAmountChooser {
 		this.target = target;
 		location = point;
 		popup = createPopup();
+		
+		/*
+		 * Select the text when the the popup is displayed. Unfortunately the
+		 * selection is normally cleared when the text field gets focus, so we
+		 * need to do it in a focus listener. Also the focus listener gets run
+		 * before the selection is cleared so to get the desired effect the
+		 * selection needs to be pushed to the event queue.
+		 */
+		final JComponent field = getTextField();
+		if (field instanceof JTextComponent) {
+			field.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							((JTextComponent) field).selectAll();
+						}
+					});
+				}
+			});
+		}
 	}
 	
 	/**
