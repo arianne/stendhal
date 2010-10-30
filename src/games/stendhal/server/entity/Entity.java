@@ -675,6 +675,31 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
+	 * gets the name of the mouse cursor or <code>null</code>.
+	 *
+	 * @return name of the mouse cursor or <code>null</code>.
+	 */
+	public String getCursor() {
+		if (has("cursor")) {
+			return get("cursor");
+		}
+		return null;
+	}
+
+	/**
+	 * sets the name of the mouse cursor
+	 *
+	 * @param cursor name of cursor
+	 */
+	public void setCursor(String cursor) {
+		if (cursor == null) {
+			remove("cursor");
+		} else {
+			put("cursor", cursor);
+		}
+	}
+
+	/**
 	 * Set the entity's visibility.
 	 * 
 	 * @param visibility
