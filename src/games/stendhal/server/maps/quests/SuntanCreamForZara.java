@@ -12,21 +12,30 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -50,8 +59,6 @@ import java.util.List;
  * REPETITIONS: - None.
  */
 public class SuntanCreamForZara extends AbstractQuest {
-	
-	// TODO: refactor to use standard conditions and actions
 	
 	private static final String QUEST_SLOT = "suntan_cream_zara";
 
@@ -88,27 +95,34 @@ public class SuntanCreamForZara extends AbstractQuest {
 		final SpeakerNPC zara = npcs.get("Zara");
 
 		zara.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
-			ConversationStates.QUEST_OFFERED, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					if (player.hasQuest(QUEST_SLOT)) {
-						if (player.isQuestCompleted(QUEST_SLOT)) {
-							npc.say("I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!");
-							npc.setCurrentState(ConversationStates.ATTENDING);
-						} else if ("rejected".equals(player.getQuest(QUEST_SLOT))) {
-							npc.say("You refused to help me last time and my skin is getting worse. " 
-								+ "Please can you bring me the magic #'suntan cream' that the #lifeguards produce?");
-						} else {
-							npc.say("Did you forget that you promised me to ask the #lifeguards for #'suntan cream'?");
-							npc.setCurrentState(ConversationStates.ATTENDING);
-						}
-					} else {
-						npc.say("I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #'suntan cream' that the #lifeguards produce?");
-					}
-				}
-			});
-
+			ConversationPhrases.QUEST_MESSAGES, 
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING, 
+			"I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!",
+			null);
+		
+		zara.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestInStateCondition(QUEST_SLOT, "rejected"),
+				ConversationStates.QUEST_OFFERED, 
+				"You refused to help me last time and my skin is getting worse. " 
+				+ "Please can you bring me the magic #'suntan cream' that the #lifeguards produce?",
+				null);
+		
+		zara.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"Did you forget that you promised me to ask the #lifeguards for #'suntan cream'?",
+				null);
+		
+		zara.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
+				ConversationStates.QUEST_OFFERED, 
+				"I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #'suntan cream' that the #lifeguards produce?",
+				null);
+		
 		zara.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
@@ -152,40 +166,34 @@ public class SuntanCreamForZara extends AbstractQuest {
 
 		zara.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.QUEST_ITEM_BROUGHT, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					if (player.isEquipped("suntan cream")) {
-						npc.say("Great! You got the suntan cream! Is it for me?");
-					} else {
-						npc.say("I know that the #'suntan cream' is hard to get, but I hope that you didn't forget my painful problem...");
-						npc.setCurrentState(ConversationStates.ATTENDING);
-					}
-				}
-			});
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("suntan cream")),
+			ConversationStates.QUEST_ITEM_BROUGHT, 
+			"Great! You got the suntan cream! Is it for me?",
+			null);
+		
+		zara.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("suntan cream"))),
+				ConversationStates.ATTENDING, 
+				"I know that the #'suntan cream' is hard to get, but I hope that you didn't forget my painful problem...",
+				null);
 
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("suntan cream"));
+		reward.add(new EquipItemAction("small key", 1, true));
+		reward.add(new IncreaseXPAction(1000));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+		reward.add(new IncreaseKarmaAction(15));
+		
 		zara.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES,
 			// make sure the player isn't cheating by putting the
-			// helmet away and then saying "yes"
+			// cream away and then saying "yes"
 			new PlayerHasItemWithHimCondition("suntan cream"),
 			ConversationStates.ATTENDING,
 			"Thank you! I feel much better immediately! Here, take this key to my row house in Ados. Feel at home as long as I'm still here!",
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					player.drop("suntan cream");
-					final Item zaraKey = SingletonRepository.getEntityManager()
-							.getItem("small key");
-					zaraKey.setBoundTo(player.getName());
-					player.equipOrPutOnGround(zaraKey);
-					player.addXP(1000);
-					player.addKarma(15);
-					player.setQuest(QUEST_SLOT, "done");
-					player.notifyWorldAboutChanges();
-				}
-			});
+			new MultipleActions(reward));
 
 		zara.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.NO_MESSAGES, null,
