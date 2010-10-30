@@ -22,7 +22,8 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Sets the state of a quest to an arbitrary timestamp
+ * Sets the state of a quest to a timestamp,
+ * randomly picked between minimum and maximum delay from current system time in minutes 
  *
  * @author omero
  */
