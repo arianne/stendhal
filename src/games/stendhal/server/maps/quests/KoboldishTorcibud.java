@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.quests;
  
 import games.stendhal.common.Rand;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.*;
@@ -30,11 +31,12 @@ public class KoboldishTorcibud extends AbstractQuest {
  
     public static final String QUEST_SLOT = "koboldish_torcibud";
 
-    // the torcibud quest may be repeated after some delay
-    private static final int BASE_DELAY_DAYS = 5;
+    // the torcibud quest cannot be repeated before 3 to 6 days
+    private static final int MIN_DELAY = 3 * MathHelper.MINUTES_IN_ONE_DAY;
+    private static final int MAX_DELAY = 6 * MathHelper.MINUTES_IN_ONE_DAY;
 
     // how much XP is given as the reward
-    private static final int XP_REWARD = 100;
+    private static final int XP_REWARD = 500;
 
     // a template of the items that wrviliza will ask for the quest,
     // it is only used to initialize the triggers in phase_2.
@@ -100,11 +102,6 @@ public class KoboldishTorcibud extends AbstractQuest {
             "fierywater=" + Rand.roll1D6() + ";";
     }
 
-    private String getRandomDelayTimestamp(int base_delay_days) {
-        String tstamp = Long.toString(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * ( BASE_DELAY_DAYS + Rand.roll1D6())); 
-        return tstamp;
-    }
-
     /**
      * The player meets the Kobold Barmaid Wrviliza and possibly gets a quest from her
      */
@@ -112,31 +109,44 @@ public class KoboldishTorcibud extends AbstractQuest {
      
         final SpeakerNPC npc = npcs.get("Wrviliza");
 
-        // player greeting NPC and has rejected or never took the quest in the past
+        // player says his greetings to Wrviliza and has rejected the quest in the past
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
-            new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
-            ConversationStates.ATTENDING,
-            "Wroff! Welcome into the Kobold's Den bar wanderer! I'm Wrviliza, wife of #Wrvil. May I #offer you something?",
+            new QuestInStateCondition(QUEST_SLOT, 0, "rejected"),
+            ConversationStates.QUEST_OFFERED,
+            "Wroff! Welcome back wanderer... Are you back to help me gather #stuff to make good #torcibud this time?",
             null);
 
         // player asks the quest and has rejected or never took the quest in the past
         npc.add(ConversationStates.ATTENDING,
             ConversationPhrases.QUEST_MESSAGES,
-            new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
+            new OrCondition(
+				new QuestNotStartedCondition(QUEST_SLOT),
+				new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
             ConversationStates.QUEST_OFFERED,
             "Wrof! My stock of supplies for preparing koboldish #torcibud is running thin. Would you help me getting some #stuff?",
             null
         );
 
-        // player asks the quest and has already done the quest
+        // player has done the quest already and enough time has passed since
         npc.add(ConversationStates.ATTENDING,
             ConversationPhrases.QUEST_MESSAGES,
-            new QuestCompletedCondition(QUEST_SLOT),
-            ConversationStates.ATTENDING,
-            "Wrof! My stock of supplies needs not to be refurbished since you last helped me, thanks!",
-            null
-        );
+            new AndCondition(
+                new QuestCompletedCondition(QUEST_SLOT),
+                new TimeReachedCondition(QUEST_SLOT, 1)),
+            ConversationStates.QUEST_OFFERED,
+            "Wroff! Indeed I'd need some #stuff for making some more koboldish #torcibud. Will you help?",
+            null);
+
+        // player has done the quest already but it's too early to get another
+        npc.add(ConversationStates.ATTENDING,
+            ConversationPhrases.QUEST_MESSAGES,
+            new AndCondition(
+                new QuestCompletedCondition(QUEST_SLOT),
+                new NotCondition(new TimeReachedCondition(QUEST_SLOT, 1))),
+            ConversationStates.ATTENDING, null,
+            new SayTimeRemainingUntilTimeReachedAction(QUEST_SLOT, 1,
+                "Wrof! Thank you but my stock of supplies for making good #torcibud will be fine for"));
 
         npc.add(ConversationStates.QUEST_OFFERED,
             "torcibud",
@@ -147,7 +157,9 @@ public class KoboldishTorcibud extends AbstractQuest {
 
         npc.add(ConversationStates.QUEST_OFFERED,
             Arrays.asList("stuff","ingredients","supplies"),
-            new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
+            new OrCondition(
+                new QuestNotStartedCondition(QUEST_SLOT),
+                new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
             ConversationStates.QUEST_OFFERED,
             "Wrof! Some bottles, artichokes, a few herbs and fierywater... Things like that. So, will you help?",
             null);
@@ -188,7 +200,7 @@ public class KoboldishTorcibud extends AbstractQuest {
 
         final SpeakerNPC npc = npcs.get("Wrviliza");
 
-        // player greeting NPC with the quest active
+        // player says his greetings to Wrviliza and the quest is running
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
             new ChatCondition() {
@@ -215,60 +227,43 @@ public class KoboldishTorcibud extends AbstractQuest {
                 }
             });
 
-        // player answers yes
+        // player answers yes when asked if he has brought any items
         npc.add(ConversationStates.QUESTION_1,
             ConversationPhrases.YES_MESSAGES, null,
             ConversationStates.QUESTION_1,
             "Fine, what did you bring?",
             null);
     
-        // player answers no 
+        // player answers no when asked if he has brought any items
         npc.add(ConversationStates.QUESTION_1,
             ConversationPhrases.NO_MESSAGES,
             new ChatCondition() {
                 public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-                    return player.hasQuest(QUEST_SLOT)
-                        && !player.isQuestCompleted(QUEST_SLOT)
-                        && !"reward".equals(player.getQuest(QUEST_SLOT));
+                    return player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT);
                 }
             },
             ConversationStates.ATTENDING,
             "Wruf! Take your time... no hurry!",
             null);
 
-        // player answers no to 'offer' question
-        npc.add(ConversationStates.ATTENDING,
-            ConversationPhrases.NO_MESSAGES,
-            new ChatCondition() {
-                public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-                    return !player.isQuestCompleted(QUEST_SLOT)
-                        && !"reward".equals(player.getQuest(QUEST_SLOT));
-                }
-            },
-            ConversationStates.ATTENDING,
-            "Wruf! Wruf!",
-            null);
-
         // create the ChatAction to reward the player
         ChatAction addRewardAction = new ChatAction() {
             public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
                 final StackableItem koboldish_torcibud_vsop = (StackableItem) SingletonRepository.getEntityManager().getItem("vsop koboldish torcibud");
-                final int torcibud_bottles = 1 + 1 * Rand.roll1D6();
+                final int torcibud_bottles = 1 + Rand.roll1D6();
                 koboldish_torcibud_vsop.setQuantity(torcibud_bottles);
                 player.equipOrPutOnGround(koboldish_torcibud_vsop);
                 npc.say(
                     "Wrof! Here take "
                     + Integer.toString(torcibud_bottles)
-                    + " bottles of my V.S.O.P. Koboldish Torcibud with my best wishes for you!"
-                    + " [0]<" + player.getQuest(QUEST_SLOT, 0)
-                    + "> [1]<" + player.getQuest(QUEST_SLOT, 1) + ">");
+                    + " bottles of my V.S.O.P. Koboldish Torcibud with my best wishes for you!");
             }
         };
 
         // player collected all the items
         ChatAction completeAction = new MultipleActions(
             new SetQuestAction(QUEST_SLOT, 0, "done"),
-            new SetQuestAction(QUEST_SLOT, 1, getRandomDelayTimestamp(BASE_DELAY_DAYS)),
+            new SetQuestToFutureRandomTimeStampAction(QUEST_SLOT, 1, MIN_DELAY, MAX_DELAY),
             addRewardAction,
             new IncreaseXPAction(XP_REWARD));
 
