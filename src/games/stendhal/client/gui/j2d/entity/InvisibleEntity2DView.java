@@ -56,6 +56,11 @@ class InvisibleEntity2DView extends Entity2DView {
 		return 5000;
 	}
 
+	@Override
+	public boolean isInteractive() {
+		return false;
+	}
+
 	/**
 	 * gets the mouse cursor image to use for this entity
 	 *
