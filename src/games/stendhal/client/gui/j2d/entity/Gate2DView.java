@@ -55,12 +55,17 @@ public class Gate2DView extends Entity2DView {
 	protected void buildActions(final List<String> list) {
 		list.add(ActionType.USE.getRepresentation());
 	}
-	
+
 	@Override
 	protected void buildRepresentation(IEntity entity) {
 		// not needed
 	}
-	
+
+	@Override
+	public void onAction() {
+		onAction(ActionType.USE);
+	}
+
 	@Override
 	public void onAction(final ActionType at) {
 		if (entity == null) {

@@ -15,10 +15,8 @@ package games.stendhal.client.entity;
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject.ID;
-
-
+import marauroa.common.game.RPSlot;
 
 public class Gate implements IEntity {
 
@@ -34,7 +32,7 @@ public class Gate implements IEntity {
 	}
 
 	public void addChangeListener(final EntityChangeListener listener) {
-		
+		// unused
 	}
 
 	public Rectangle2D getArea() {
@@ -158,7 +156,7 @@ public class Gate implements IEntity {
 	}
 
 	public void removeChangeListener(final EntityChangeListener listener) {
-		
+		// unused
 	}
 
 	public void setAudibleRange(final double range) {
@@ -167,8 +165,11 @@ public class Gate implements IEntity {
 	}
 
 	public void update(final int delta) {
-		
+		// unused
 	}
 
-	
+	public String getCursor() {
+		return "ACTIVITY";
+	}
+
 }
