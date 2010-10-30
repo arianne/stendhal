@@ -20,8 +20,10 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Check if current system time matches or is past a timestamp stored in a quest slot
+ * Check if current system time reached a timestamp stored in a quest slot.
  * If the quest slot isn't in the expected format, returns true
+ *
+ * @author omero
  */
 public class TimeReachedCondition implements ChatCondition {
 
@@ -29,8 +31,7 @@ public class TimeReachedCondition implements ChatCondition {
 	private final int index;
 	
 	/**
-	 * Creates a new TimeReachedCondition for checking whether 
-     * a timestamp in quest slot has been reached 
+	 * Creates a new TimeReachedCondition for checking wether or not a timestamp in quest slot has been reached
 	 * 
 	 * @param questname name of the quest slot to check
 	 */
@@ -40,7 +41,7 @@ public class TimeReachedCondition implements ChatCondition {
 	}
 
 	/**
-	 * Creates a new TimeReachedCondition where timestamp is stored in a quest slot
+	 * Creates a new TimeReachedCondition for checking wether or not a timestamp in quest slot has been reached
 	 * 
 	 * @param questname name of quest slot to check
 	 * @param index position of a timestamp within the quest slot 'array'
@@ -54,7 +55,7 @@ public class TimeReachedCondition implements ChatCondition {
 		long timestamp;
 
         /**
-         * The player never did it 
+         * The player never did the quest, assume the time is right for taking it now
          */
 		if (!player.hasQuest(questname)) {
 			return true;
@@ -83,7 +84,7 @@ public class TimeReachedCondition implements ChatCondition {
 
 	@Override
 	public String toString() {
-		return "timestamp reached?";
+		return "TimeReachedCondition<" + questname + "[" + index + "]>";
 	}
 
 	@Override
