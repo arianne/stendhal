@@ -242,4 +242,11 @@ public interface IEntity {
 	 */
 	void update(final int delta);
 
+	/**
+	 * gets the cursor name
+	 *
+	 * @return name of cursor
+	 */
+	String getCursor();
+
 }

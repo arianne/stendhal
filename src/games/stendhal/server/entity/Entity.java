@@ -145,6 +145,9 @@ public abstract class Entity extends RPObject {
 		 */
 		entity.addAttribute("visibility", Type.INT, Definition.VOLATILE);
 
+		// cursor
+		entity.addAttribute("cursor", Type.STRING);
+
 		// sound events
 		entity.addRPEvent(Events.SOUND, Definition.VOLATILE);
 	}

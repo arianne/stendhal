@@ -786,6 +786,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return StendhalCursor
 	 */
 	public StendhalCursor getCursor() {
-		return StendhalCursor.UNKNOWN;
+		String cursorName = entity.getCursor();
+		return StendhalCursor.valueOf(cursorName, StendhalCursor.UNKNOWN);
 	}
 }

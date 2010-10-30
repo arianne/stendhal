@@ -47,9 +47,6 @@ public abstract class UseableEntity extends Entity implements UseListener {
 		// name of item: gold_source
 		rpclass.addAttribute("name", Type.STRING);
 
-		// cursor
-		rpclass.addAttribute("cursor", Type.STRING);
-
 		// menu (Make a wish,use)
 		rpclass.addAttribute("menu", Type.STRING);
 

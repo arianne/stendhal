@@ -814,5 +814,17 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		return sbuf.toString();
 	}
 
-	
+
+	/**
+	 * gets the name of the cursor to use for this entity
+	 *
+	 * @return name of cursor
+	 */
+	public String getCursor() {
+		if (!rpObject.has("cursor")) {
+			return null;
+		}
+		return rpObject.get("cursor");
+	}
+
 }

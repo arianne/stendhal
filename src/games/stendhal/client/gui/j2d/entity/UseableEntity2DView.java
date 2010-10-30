@@ -16,7 +16,6 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.UseableEntity;
-import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -124,11 +123,6 @@ class UseableEntity2DView extends Entity2DView {
 		return 3000;
 	}
 
-	@Override
-	public StendhalCursor getCursor() {
-		String cursorName = ((UseableEntity) entity).getCursor();
-		return StendhalCursor.valueOf(cursorName, StendhalCursor.ACTIVITY);
-	}
 
 	//
 	// Entity2DView
