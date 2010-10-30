@@ -109,7 +109,9 @@ public class KoboldishTorcibud extends AbstractQuest {
      
         final SpeakerNPC npc = npcs.get("Wrviliza");
 
-        // player says his greetings to Wrviliza and has rejected the quest in the past
+        // player sends his greetings and never asked for a quest handled in NPC class
+
+        // player sends his greetings to Wrviliza and has rejected the quest in the past
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
             new QuestInStateCondition(QUEST_SLOT, 0, "rejected"),
@@ -117,18 +119,16 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wroff! Welcome back wanderer... Are you back to help me gather #stuff to make good #torcibud this time?",
             null);
 
-        // player asks the quest and has rejected or never took the quest in the past
+        // player asks for a quest
         npc.add(ConversationStates.ATTENDING,
             ConversationPhrases.QUEST_MESSAGES,
-            new OrCondition(
-				new QuestNotStartedCondition(QUEST_SLOT),
-				new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
+            new QuestNotStartedCondition(QUEST_SLOT),
             ConversationStates.QUEST_OFFERED,
             "Wrof! My stock of supplies for preparing koboldish #torcibud is running thin. Would you help me getting some #stuff?",
             null
         );
 
-        // player has done the quest already and enough time has passed since
+        // player has done the quest already but not enough time has passed since completing it
         npc.add(ConversationStates.ATTENDING,
             ConversationPhrases.QUEST_MESSAGES,
             new AndCondition(
@@ -148,6 +148,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             new SayTimeRemainingUntilTimeReachedAction(QUEST_SLOT, 1,
                 "Wrof! Thank you but my stock of supplies for making good #torcibud will be fine for"));
 
+        // player is curious about torcibud when offered the quest
         npc.add(ConversationStates.QUEST_OFFERED,
             "torcibud",
             new QuestNotStartedCondition(QUEST_SLOT),
@@ -155,6 +156,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wruff. I will make more when I have enough #stuff!",
             null);
 
+        // player is curious about stuff, ingredients or supplies when offered the quest
         npc.add(ConversationStates.QUEST_OFFERED,
             Arrays.asList("stuff","ingredients","supplies"),
             new OrCondition(
@@ -164,7 +166,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wrof! Some bottles, artichokes, a few herbs and fierywater... Things like that. So, will you help?",
             null);
 
-        //player accepts the quest and gets to know the required items
+        //player accepts the quest and gets to know what Wrviliza needs (switch to phase_2)
         npc.add(ConversationStates.QUEST_OFFERED,
             ConversationPhrases.YES_MESSAGES, null,
             ConversationStates.QUESTION_1, null,
@@ -182,15 +184,27 @@ public class KoboldishTorcibud extends AbstractQuest {
             }
         );
 
-        //player is not inclined to comply with the request (looses some karma)
+        //player is not inclined to comply with the request, 1st time and he will loose karma
         npc.add(ConversationStates.QUEST_OFFERED,
-            ConversationPhrases.NO_MESSAGES, null,
-            ConversationStates.IDLE,
-            "Wruff... I guess I'll have to ask someone with a better attitude!",
+            ConversationPhrases.NO_MESSAGES,
+            new QuestNotActiveCondition(QUEST_SLOT),
+            ConversationStates.ATTENDING,
+            "Wruff... I guess I will have to ask to someone with a better attitude!",
             new MultipleActions(
             new SetQuestAction(QUEST_SLOT, 0, "rejected"),
-        new  DecreaseKarmaAction(20.0)));
+            new DecreaseKarmaAction(20.0)));
 
+        //player is not inclined to comply with the request and he has rejected it already.
+        //Wrviliza holds a grudge by turning idle again.
+        //If player wants to buy any beverage here, he should really take the quest now
+        npc.add(ConversationStates.QUEST_OFFERED,
+            ConversationPhrases.NO_MESSAGES,
+            new QuestNotInStateCondition(QUEST_SLOT, 0, "rejected"),
+            ConversationStates.IDLE,
+            "Wruff... I guess you will wander around with a dry gulch then...",
+            new MultipleActions(
+            new SetQuestAction(QUEST_SLOT, 0, "rejected"),
+            new DecreaseKarmaAction(20.0)));
     }
 
     /**
@@ -203,18 +217,12 @@ public class KoboldishTorcibud extends AbstractQuest {
         // player says his greetings to Wrviliza and the quest is running
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
-            new ChatCondition() {
-                public boolean fire(final Player player, final Sentence sentence,   final Entity entity) {
-                    return player.hasQuest(QUEST_SLOT)
-                        && !player.isQuestCompleted(QUEST_SLOT)
-                        && !"reward".equals(player.getQuest(QUEST_SLOT));
-                }
-            },
+            new QuestActiveCondition(QUEST_SLOT),
             ConversationStates.QUESTION_1,
-            "Wrof! Welcome back. Did you gather #stuff for me?",
+            "Wrof! Welcome back. Did you gather any #stuff for me?",
             null);
 
-        // player says 'stuff'
+        // player says stuff to be reminded of what is still missing
         npc.add(ConversationStates.QUESTION_1, "stuff", null,
             ConversationStates.QUESTION_1,
             null,
@@ -237,19 +245,18 @@ public class KoboldishTorcibud extends AbstractQuest {
         // player answers no when asked if he has brought any items
         npc.add(ConversationStates.QUESTION_1,
             ConversationPhrases.NO_MESSAGES,
-            new ChatCondition() {
-                public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-                    return player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT);
-                }
-            },
+            new QuestNotCompletedCondition(QUEST_SLOT),
             ConversationStates.ATTENDING,
-            "Wruf! Take your time... no hurry!",
+            "Wruf! Take your time... no hurry! What matters bring you down here then?",
             null);
 
         // create the ChatAction to reward the player
         ChatAction addRewardAction = new ChatAction() {
             public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-                final StackableItem koboldish_torcibud_vsop = (StackableItem) SingletonRepository.getEntityManager().getItem("vsop koboldish torcibud");
+                final StackableItem
+                    koboldish_torcibud_vsop = (StackableItem)
+                        SingletonRepository
+                            .getEntityManager().getItem("vsop koboldish torcibud");
                 final int torcibud_bottles = 1 + Rand.roll1D6();
                 koboldish_torcibud_vsop.setQuantity(torcibud_bottles);
                 player.equipOrPutOnGround(koboldish_torcibud_vsop);
