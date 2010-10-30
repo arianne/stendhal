@@ -21,6 +21,9 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Checks if player has visited a list of certain zones
  *  
@@ -52,6 +55,22 @@ public class PlayerVisitedZonesCondition implements ChatCondition {
 			}
 		}
 		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				PlayerVisitedZonesCondition.class);
+	}
+
+	@Override
+	public String toString() {
+		return "player visited <"+zoneNames+">";
 	}
 
 }
