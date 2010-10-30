@@ -84,9 +84,9 @@ public class PlayerRPClass {
 
 		// Kills recorder - needed for quest
 		player.addRPSlot("!kills", 1, Definition.HIDDEN);
-		
+
 		// Count looted items
-		player.addAttribute("looted_items", Type.MAP);
+		player.addAttribute("looted_items", Type.MAP, Definition.HIDDEN);
 
 		// We use this for the buddy system
 		player.addRPSlot("!buddy", 1, Definition.PRIVATE);
