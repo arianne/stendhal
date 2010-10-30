@@ -140,11 +140,14 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 
 				new SellerAdder().addSeller(this, new TorcibudSellerBehaviour(items));
 
-				addGreeting("Wroff! I'm Wrviliza, wife of #Wrvil... Welcome into Wofol's Den bar wanderer!");
+				addGreeting(
+					"Wroff! Welcome into the Kobold's Den bar wanderer!"
+						+ " I'm Wrviliza, wife of #Wrvil."
+						+ " If you want me to #offer you some beverages, just say so!");
+
 				addJob("Wroff! I offer wine, beer and my famous #mild or #strong koboldish #torcibud");
 				addHelp("Wruff... If you are thirsty I can #offer you some beverage. Have you noticed that this is a bar?");
-				addGoodbye("Wroff... Wroff!");
-
+				addGoodbye("Wroff... Goodbye and good luck!");
 
 				addReply(Arrays.asList("wine","beer"),
 						"Wrof! It will quench your thirst for a few coins...");
@@ -153,11 +156,11 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 				addReply("strong",
 						"Wrof! Not so #mild koboldish #torcibud. Give an empty #eared #bottle and 180 money... Wrof!");
 				addReply("torcibud",
-						"Wrof! Real stuff from a secret koboldish recipe! Want me #offer some?");
+						"Wrof! Real stuff from a secret koboldish recipe! Ask me to #offer you some!");
 				addReply("wrvil",
 						"Wrof! He be my husband. Runs shop in northern Wo'fol...");
 				addReply("eared bottle",
-						"Wrof! A large bottle with handles on the neck that resemble ears... Have you never seen one?");
+						"Wrof! A large bottle with handles on the neck that resemble ears... Have you ever seen one?");
 				addReply("slim bottle",
 						"Wrof! A bottle narrower at bottom and a bit wider at the shoulders ... I'm sure you've seen one already!");
 			}
