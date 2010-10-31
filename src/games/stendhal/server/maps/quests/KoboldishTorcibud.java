@@ -47,6 +47,29 @@ import games.stendhal.server.util.ItemCollection;
 import java.util.Arrays;
 import java.util.Map;
 
+import marauroa.common.game.IRPZone;
+
+/**
+ * QUEST: V.S.O.P. Koboldish Torcibud
+ * <p>
+ * PARTICIPANTS: <ul><li> Wrviliza, the Kobold Barmaid in Wo'fol bar </ul>
+ * 
+ * STEPS: <ul><li> Wrviliza will ask some items and ingredients 
+ * to refurbish her stock of supplies for making her famous koboldish torcibud
+ * <li> gather the items and ingredients and bring them to the bar
+ * <li> some bottles of V.S.O.P. Koboldish Torcibud will be put on the bar counter
+ * <li> drinking a bottle of V.S.O.P. Koboldish Torcibud will heal lost HP
+ * <li> accepting the quest grants some Karma
+ * <li> rejecting the quest wastes some Karma
+ * </ul>
+ *
+ * REWARD: <ul><li>healing V.S.O.P. Koboldish Torcibud <li>500 XP</ul>
+ *
+ * REPETITIONS: <ul><li> unlimited
+ * <li>once every 3 to 6 days (randomly determined at quest completion time</ul>
+ *
+ * @author omero
+ */
 public class KoboldishTorcibud extends AbstractQuest {
  
     public static final String QUEST_SLOT = "koboldish_torcibud";
@@ -245,7 +268,8 @@ public class KoboldishTorcibud extends AbstractQuest {
             null);
 
         // player says stuff to be reminded of what is still missing
-        npc.add(ConversationStates.QUESTION_1, "stuff", null,
+        npc.add(ConversationStates.QUESTION_1,
+            "stuff", null,
             ConversationStates.QUESTION_1,
             null,
             new ChatAction() {
@@ -281,7 +305,16 @@ public class KoboldishTorcibud extends AbstractQuest {
                             .getEntityManager().getItem("vsop koboldish torcibud");
                 final int torcibud_bottles = 1 + Rand.roll1D6();
                 koboldish_torcibud_vsop.setQuantity(torcibud_bottles);
-                player.equipOrPutOnGround(koboldish_torcibud_vsop);
+                koboldish_torcibud_vsop.setBoundTo(player.getName());
+                // vsop torcibud will heal up to 75% of the player's base HP he has when getting rewarded
+                koboldish_torcibud_vsop.put("amount", player.getBaseHP()*75/100);
+
+                //player.equipOrPutOnGround(koboldish_torcibud_vsop);
+                //put the rewarded bottles on the counter
+                final IRPZone zone = SingletonRepository.getRPWorld().getZone("int_wofol_bar");
+                koboldish_torcibud_vsop.setPosition(3, 3);
+                zone.add(koboldish_torcibud_vsop);
+
                 npc.say(
                     "Wrof! Here take "
                     + Integer.toString(torcibud_bottles)
@@ -289,12 +322,12 @@ public class KoboldishTorcibud extends AbstractQuest {
             }
         };
 
-        // player collected all the items
+        // player collected all the items. grant the XP before handing out the torcibud
         ChatAction completeAction = new MultipleActions(
             new SetQuestAction(QUEST_SLOT, 0, "done"),
             new SetQuestToFutureRandomTimeStampAction(QUEST_SLOT, 1, MIN_DELAY, MAX_DELAY),
-            addRewardAction,
-            new IncreaseXPAction(XP_REWARD));
+            new IncreaseXPAction(XP_REWARD),
+            addRewardAction);
 
         // create the ChatAction used for item triggers
         final ChatAction itemsChatAction = new CollectRequestedItemsAction(
