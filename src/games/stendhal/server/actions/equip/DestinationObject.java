@@ -213,14 +213,6 @@ class DestinationObject extends MoveableObject {
 		return "int_semos_tavern_0".equals(zone.getName()) && ("dice").equals(entity.getTitle());
 	}
 	
-	/** returns true if destination is trading table in semos bank */
-	public boolean isTradingTable(final Entity other, final Player player) {
-		final StendhalRPZone zone = player.getZone();
-			// Note! Hardcoded in the location of trading table, it starts at x = 32
-			return "int_semos_bank".equals(zone.getName()) && x >= 32;
-			
-	}
-	
 	/** returns true when this DestinationObject is valid. */
 	@Override
 	public boolean isValid() {
