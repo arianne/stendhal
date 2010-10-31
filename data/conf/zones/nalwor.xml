@@ -358,15 +358,9 @@ below average.
 			<configurator
 			class-name="games.stendhal.server.maps.nalwor.assassinhq.KaryoNPC" />
 		-->
-		<entity x="20" y="3">
-			<implementation
-				class-name="games.stendhal.server.maps.nalwor.assassinhq.ChiefFalatheenDishwasherNPC">
-				<parameter name="name">Chief Falatheen Humble Dishwasher
-				</parameter>
-			</implementation>
-			<attribute name="class">chieffalatheennpc
-			</attribute>
-		</entity>
+		<configurator
+                class-name="games.stendhal.server.maps.nalwor.assassinhq.ChiefFalatheenDishwasherNPC" />
+                
 		<entity x="23" y="1">
            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
             <parameter name="shop">buyveggiesandherbs</parameter>
