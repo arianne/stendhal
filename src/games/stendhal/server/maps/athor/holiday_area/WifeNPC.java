@@ -12,26 +12,44 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.holiday_area;
 
+import games.stendhal.common.Direction;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
-//TODO: take NPC definition elements which are currently in XML and include here
-public class WifeNPC extends SpeakerNPCFactory {
 
-	@Override
-	protected SpeakerNPC instantiate(final String name) {
-		final SpeakerNPC npc = new SpeakerNPC(name) {
+import java.util.Map;
+
+public class WifeNPC implements ZoneConfigurator  {
+
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		buildNPC(zone);
+	}
+
+	private void buildNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Jane") {
 			@Override
 			public void say(final String text) {
 				// She doesn't move around because she's "lying" on her towel.
 				say(text, false);
 			}
+
+			@Override
+			protected void createPath() {
+				// doesn't move
+				setPath(null);
+			}
+			
+			@Override
+			public void createDialog() {
+				addGreeting("Hi!");
+				addGoodbye("Bye!");
+			}
+
 		};
-		return npc;
-	}
-	
-	@Override
-	public void createDialog(final SpeakerNPC npc) {
-		npc.addGreeting("Hi!");
-		npc.addGoodbye("Bye!");
+		npc.setPosition(28, 44);
+		npc.setEntityClass("swimmer6npc");
+		npc.setDirection(Direction.DOWN);
+		zone.add(npc);		
 	}
 }

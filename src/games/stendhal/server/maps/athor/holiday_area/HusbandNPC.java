@@ -1,4 +1,5 @@
 /* $Id$ */
+
 /***************************************************************************
  *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
@@ -12,29 +13,48 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.holiday_area;
 
+import games.stendhal.common.Direction;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
-//TODO: take NPC definition elements which are currently in XML and include here
-public class HusbandNPC extends SpeakerNPCFactory {
 
-	@Override
-	protected SpeakerNPC instantiate(final String name) {
-		final SpeakerNPC npc = new SpeakerNPC(name) {
+import java.util.Map;
+
+public class HusbandNPC implements ZoneConfigurator  {
+
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		buildNPC(zone);
+	}
+
+	private void buildNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("John") {
 			@Override
 			public void say(final String text) {
 				// He doesn't move around because he's "lying" on his towel.
 				say(text, false);
 			}
+
+			@Override
+			protected void createPath() {
+				// doesn't move
+				setPath(null);
+			}
+			
+			@Override
+			public void createDialog() {
+				addGreeting("Hi!");
+				addQuest("We have no tasks, we're here on holiday.");
+				addJob("I am a coachman, but on this island there are no carriages!");
+				addHelp("Don't try to talk to my wife, she is very shy.");
+				addGoodbye("Bye!");
+			}
+
 		};
-		return npc;
-	}
-	
-	@Override
-	public void createDialog(final SpeakerNPC npc) {
-		npc.addGreeting("Hi!");
-		npc.addQuest("We have no tasks, we're here on holiday.");
-		npc.addJob("I am a coachman, but on this island there are no carriages!");
-		npc.addHelp("Don't try to talk to my wife, she is very shy.");
-		npc.addGoodbye("Bye!");
+		npc.setPosition(27, 44);
+		npc.setEntityClass("swimmer5npc");
+		npc.setDirection(Direction.DOWN);
+		zone.add(npc);		
 	}
 }
+

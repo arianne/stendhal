@@ -120,8 +120,9 @@
      </zone>
      
      <zone name="0_athor_island" level="0" x="501024" y="500384" file="Level 0/athor/island.tmx">
-       <configurator
-            class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC" />
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC" />
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HusbandNPC" />
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WifeNPC" />
        <portal x="57" y="57" ref="apartment_1_entrance">
          <destination zone="int_athor_apartment_101" ref="out"/>
 		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
@@ -261,15 +262,6 @@
 		<attribute name="height">2</attribute>
 	</entity>
 
-       <entity x="27" y="44">
-         <implementation class-name="games.stendhal.server.maps.athor.holiday_area.HusbandNPC">
-           <parameter name="name">John</parameter>
-           <parameter name="direction">down</parameter>
-         </implementation>
-
-         <attribute name="class">swimmer5npc</attribute>
-       </entity>
-
        <entity x="67" y="63">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC">
            <parameter name="name">Enrique</parameter>
@@ -369,15 +361,6 @@
          </implementation>
 
          <attribute name="class">swimmer7npc</attribute>
-       </entity>
-
-       <entity x="28" y="44">
-         <implementation class-name="games.stendhal.server.maps.athor.holiday_area.WifeNPC">
-           <parameter name="name">Jane</parameter>
-           <parameter name="direction">down</parameter>
-         </implementation>
-
-         <attribute name="class">swimmer6npc</attribute>
        </entity>
 
        <entity x="62" y="72">
