@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
@@ -21,17 +20,26 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -68,7 +76,8 @@ public class Snowballs extends AbstractQuest {
 	@Override
 	public boolean isCompleted(final Player player) {
 		return player.hasQuest(QUEST_SLOT)
-				&& !player.getQuest(QUEST_SLOT).equals("start");
+				&& !player.getQuest(QUEST_SLOT).equals("start") 
+				&& !player.getQuest(QUEST_SLOT).equals("rejected");
 	}
 
 	@Override
@@ -98,33 +107,18 @@ public class Snowballs extends AbstractQuest {
 		return res;
 	}
 
-	// TODO: refactor to use standard conditions and actions
-	private boolean canStartQuestNow(final Player player) {
-		if (!player.hasQuest(QUEST_SLOT)) {
-			return true;
-		} else if (player.getQuest(QUEST_SLOT).equals("start")) {
-			return false;
-		} else {
-			final long timeRemaining = calculateRemainingTime(player);
-			if (timeRemaining < 0) {
-				player.setQuest(QUEST_SLOT, "0");
-				return true;
-			} else {
-				return false;
-			}
-		}
-	}
-
-	private long calculateRemainingTime(final Player player) {
-		final String lasttime = player.getQuest(QUEST_SLOT);
-		final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
-		final long timeRemaining = (MathHelper.parseLongDefault(lasttime, 0) + delay) - System.currentTimeMillis();
-		return timeRemaining;
-	}
-
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Mr. Yeti");
 
+		// says hi without having started quest before
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Greetings stranger! Have you seen my snow sculptures? I need a #favor from someone friendly like you.",
+				null);
+		
+		// says hi - got the snow yeti asked for 
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS)),
@@ -132,50 +126,62 @@ public class Snowballs extends AbstractQuest {
 			"Greetings stranger! I see you have the snow I asked for. Are these snowballs for me?",
 			null);
 
+		// says hi - didn't get the snow yeti asked for 
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS))),
 			ConversationStates.ATTENDING, 
 			"You're back already? Don't forget that you promised to collect a bunch of snowballs for me!",
 			null);
-
+		
+		// says hi - quest was done before and is now repeatable
 		npc.add(ConversationStates.IDLE, 
-			ConversationPhrases.GREETING_MESSAGES,
-			new QuestNotInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.ATTENDING, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					if (canStartQuestNow(player)) {
-						npc.say("Greetings stranger! Have you seen my snow sculptures? Could you do me a #favor?");
-					} else {
-						int seconds = (int) (calculateRemainingTime(player) / 1000);
-						npc.say("I have enough snow for my new sculpture. Thank you for helping! " 
-								+ "I might start a new one in " + TimeUtil.approxTimeUntil(seconds));
-					}
-				}
-			});
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES)),
+				ConversationStates.ATTENDING,
+				"Greetings again! Have you seen my latest snow sculptures? I need a #favor again ...",
+				null);
+		
+		// says hi - quest was done before and is not yet repeatable
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES))),
+				ConversationStates.ATTENDING,
+				null,
+				new SayTimeRemainingAction(QUEST_SLOT, REQUIRED_MINUTES, "I have enough snow for my new sculpture. Thank you for helping! " 
+						+ "I might start a new one in" ));
 
+		// asks about quest - has never started it
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED,
+				"I like to make snow sculptures, but the snow in this cavern is not good enough. Would you help me and get some snowballs? I need twenty five of them.",
+				null);
+		
+		// asks about quest but already on it
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
 			new QuestInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.QUEST_OFFERED,
-			"You already promised me to bring some snowballs! Twentyfive pieces, remember?",
+			ConversationStates.ATTENDING,
+			"You already promised me to bring some snowballs! Twenty five pieces, remember ...",
 			null);
-
+		
+		// asks about quest - has done it but it's repeatable now
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestNotInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.QUEST_OFFERED, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					if (canStartQuestNow(player)) {
-						npc.say("I like to make snow sculptures, but the snow in this cavern is not good enough. Would you help me and get some snowballs? I need twenty five of them.");
-					} else {
-						npc.say("I have enough snow to finish my sculpture, but thanks for asking.");
-						npc.setCurrentState(ConversationStates.ATTENDING);
-					}
-				}
-			});
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES)),
+				ConversationStates.QUEST_OFFERED,
+				"I like to make snow sculptures, but the snow in this cavern is not good enough. Would you help me and get some snowballs? I need twenty five of them.",
+				null);
+		
+		// asks about quest - has done it and it's too soon to do again
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES))),
+				ConversationStates.ATTENDING,
+				"I have enough snow to finish my sculpture, but thanks for asking.",
+				null);
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -195,18 +201,18 @@ public class Snowballs extends AbstractQuest {
 	}
 
 	private void prepareBringingStep() {
+		
 		final SpeakerNPC npc = npcs.get("Mr. Yeti");
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, 
-			new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS),
-			ConversationStates.ATTENDING, null,
-				new ChatAction() {
+		
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("snowball", REQUIRED_SNOWBALLS));
+		reward.add(new IncreaseXPAction(50));
+		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT));
+		reward.add(new IncreaseKarmaAction(15));
+		// player gets either cod or perch, which we don't have a standard action for
+		// and the npc says the name of the reward, too
+		reward.add(new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						player.drop("snowball", REQUIRED_SNOWBALLS);
-						player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());
-						player.addXP(500);
-						player.addKarma(15);
-
 						String rewardClass;
 						if (Rand.throwCoin() == 1) {
 							rewardClass = "cod";
@@ -220,6 +226,13 @@ public class Snowballs extends AbstractQuest {
 						player.notifyWorldAboutChanges();
 					}
 				});
+		
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+			ConversationPhrases.YES_MESSAGES, 
+			new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS),
+			ConversationStates.ATTENDING,
+			null,
+			new MultipleActions(reward));
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES, 
