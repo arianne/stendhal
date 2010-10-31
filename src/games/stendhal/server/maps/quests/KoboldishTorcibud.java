@@ -12,20 +12,40 @@
 
 package games.stendhal.server.maps.quests;
  
-import games.stendhal.common.Rand;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Grammar;
+import games.stendhal.common.MathHelper;
+import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.entity.npc.action.*;
-import games.stendhal.server.entity.npc.condition.*;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.player.*;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
+import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingUntilTimeReachedAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToFutureRandomTimeStampAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.TimeReachedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Map;
 
 public class KoboldishTorcibud extends AbstractQuest {
  
