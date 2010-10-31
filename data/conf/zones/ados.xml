@@ -3273,7 +3273,7 @@ Southeast: Docks
  </zone> -->
 
  <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="Level 0/ados/coast_s_w2.tmx">
-
+     <configurator class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC" />
 		<entity x="96" y="105">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
 				<parameter name="sound">water-2, wave-11</parameter>
@@ -3284,14 +3284,6 @@ Southeast: Docks
 			</implementation>
 		</entity>
 
-   <entity x="101" y="103">
-     <implementation class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC">
-       <parameter name="name">Eliza</parameter>
-       <parameter name="direction">left</parameter>
-     </implementation>
-
-     <attribute name="class">woman_008_npc</attribute>
-   </entity>
  </zone>
  
 
@@ -3472,6 +3464,7 @@ Southeast: Docks
  <!--  Level -3 -->
 
   <zone name="-3_ados_abandoned_keep" level="-3" x="500512" y="499744" file="Level -3/ados/abandoned_keep.tmx">
+    <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.DwarfBuyerGuyNPC"/>
     <entity x="35" y="31">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyoddsandends</parameter>
@@ -3480,14 +3473,7 @@ Southeast: Docks
      </implementation>
      <attribute name="class">blackboard</attribute>
     </entity>
-    <entity x="25" y="32">
-    <implementation class-name="games.stendhal.server.maps.ados.abandonedkeep.DwarfBuyerGuyNPC">
-      <parameter name="name">Ritati Dragontracker</parameter>
-      <parameter name="node0">25,32</parameter>
-      <parameter name="node1">38,32</parameter>
-    </implementation>
-    <attribute name="class">olddwarfnpc</attribute>
-  </entity>    
+   
    </zone>
 
  <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="Level -3/ados/outside_nw.tmx">

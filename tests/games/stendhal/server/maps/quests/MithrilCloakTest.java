@@ -22,7 +22,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -76,11 +75,7 @@ public class MithrilCloakTest {
 		new MithrilForgerNPC().configureZone(zone, null);
 		new WomanNPC().configureZone(zone, null);
 		new DealerNPC().configureZone(zone, null);
-		
-		SpeakerNPC npc = new SpeakerNPC("Ritati DragonTracker");
-		SingletonRepository.getNPCList().add(npc);
-		final SpeakerNPCFactory npcConf = new DwarfBuyerGuyNPC();
-		npcConf.createDialog(npc);
+		new DwarfBuyerGuyNPC().configureZone(zone, null);
 		
 		final AbstractQuest quest = new MithrilCloak();
 		// Pdiddi's hi response is defined in RainbowBeans
