@@ -12,29 +12,58 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.basement;
 
+import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Inside Nalwor Inn basement .
  */
-//TODO: take NPC definition elements which are currently in XML and include here
-public class ArcheryDealerNPC extends SpeakerNPCFactory {
+
+public class ArcheryDealerNPC implements ZoneConfigurator  {
+
 	private final ShopList shops = SingletonRepository.getShopList();
 
-	@Override
-	public void createDialog(final SpeakerNPC magearcher) {
-		magearcher.addGreeting("Well met, kind stranger.");
-		magearcher.addJob("I buy archery equipment for our village.");
-		magearcher.addHelp("I can offer you no help. Sorry.");
-		magearcher.addOffer("Check the blackboard for prices.");
-		magearcher.addQuest("I have no quest for you.");
-		magearcher.addGoodbye("Have a happy. Bye.");
-		new BuyerAdder().add(magearcher, new BuyerBehaviour(shops.get("buyarcherstuff")), false);			    
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		buildNPC(zone);
+	}
 
+	private void buildNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Merenwen") {
+
+			@Override
+			protected void createPath() {
+				final List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(10,5));
+				nodes.add(new Node(16,5));
+				nodes.add(new Node(16,6));
+				nodes.add(new Node(10,6));
+				setPath(new FixedPath(nodes, true));
+			}
+
+			@Override
+			public void createDialog() {
+				addGreeting("Well met, kind stranger.");
+				addJob("I buy archery equipment for our village.");
+				addHelp("I can offer you no help. Sorry.");
+				addOffer("Check the blackboard for prices.");
+				addQuest("I have no quest for you.");
+				addGoodbye("Have a happy. Bye.");
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyarcherstuff")), false);			    
+			}};
+			npc.setPosition(10, 5);
+			npc.setEntityClass("mageelfnpc");
+			zone.add(npc);		
 	}
 }

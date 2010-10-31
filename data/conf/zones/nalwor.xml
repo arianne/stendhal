@@ -225,6 +225,7 @@ below average.
 	</zone>
 
 	<zone name="int_nalwor_inn_basement" file="interiors/nalwor/inn_basement.tmx">
+	 <configurator class-name="games.stendhal.server.maps.nalwor.basement.ArcheryDealerNPC"/>
 		<portal x="5" y="2" ref="upstairs">
 			<destination zone="int_nalwor_inn" ref="downstairs" />
 		</portal>
@@ -239,19 +240,6 @@ below average.
 
 			<attribute name="class">blackboard</attribute>
 		</entity>
-
-		<entity x="10" y="5">
-			<implementation
-				class-name="games.stendhal.server.maps.nalwor.basement.ArcheryDealerNPC">
-				<parameter name="name">Merenwen</parameter>
-				<parameter name="node0">10,5</parameter>
-				<parameter name="node1">16,5</parameter>
-				<parameter name="node2">16,6</parameter>
-				<parameter name="node3">10,6</parameter>
-			</implementation>
-			<attribute name="class">mageelfnpc</attribute>
-		</entity>
-
 
 	</zone>
 
