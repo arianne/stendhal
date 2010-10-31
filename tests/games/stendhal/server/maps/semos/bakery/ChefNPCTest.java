@@ -16,13 +16,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -35,30 +35,18 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String QUEST = "leander_make_sandwiches";
 
-	private SpeakerNPC npc;
-	private Engine en;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-
+		
+		StendhalRPZone zone = new StendhalRPZone("admin_test");
+		new ChefNPC().configureZone(zone, null);
+		
 		setupZone(ZONE_NAME);
 	}
 
 	public ChefNPCTest() {
-		super(ZONE_NAME, "chef");
-	}
-
-	@Override
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
-
-		npc = new SpeakerNPC("chef");
-		final ChefNPC cnpc = new ChefNPC();
-
-		en = npc.getEngine();
-		cnpc.createDialog(npc);
+		super(ZONE_NAME, "Leander");
 	}
 
 	@Override
@@ -74,6 +62,10 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testHiAndBye() {
+		
+		final SpeakerNPC npc = getNPC("Leander");
+		final Engine en = npc.getEngine();
+		
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -89,6 +81,9 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testHiAndMakeNoStuff() {
+		final SpeakerNPC npc = getNPC("Leander");
+		final Engine en = npc.getEngine();
+		
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -109,6 +104,9 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testHiAndMakeWithStuffSingle() {
+		final SpeakerNPC npc = getNPC("Leander");
+		final Engine en = npc.getEngine();
+		
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -163,6 +161,9 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testHiAndMakeWithStuffMultiple() {
+		final SpeakerNPC npc = getNPC("Leander");
+		final Engine en = npc.getEngine();
+		
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -218,6 +219,9 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testMultipleWithoutName() {
+		final SpeakerNPC npc = getNPC("Leander");
+		final Engine en = npc.getEngine();
+		
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(

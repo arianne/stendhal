@@ -2067,61 +2067,11 @@ Holy mackerel! These chips are tasty.
 	</zone>
 
 	<zone name="int_semos_bakery" file="interiors/semos/bakery.tmx">
+	    <configurator class-name="games.stendhal.server.maps.semos.bakery.ChefNPC" />
+	    <configurator class-name="games.stendhal.server.maps.semos.bakery.ShopAssistantNPC" />
 		<portal x="26" y="14" ref="entrance">
 			<destination zone="0_semos_city" ref="bakery_entrance" />
 		</portal>
-
-		<entity x="15" y="3">
-			<implementation class-name="games.stendhal.server.maps.semos.bakery.ChefNPC">
-				<parameter name="name">Leander</parameter>
-				<!-- to the well -->
-				<parameter name="node0">15,3</parameter>
-				<!-- to a barrel -->
-				<parameter name="node1">15,8</parameter>
-				<!-- to the baguette on the table -->
-				<parameter name="node2">13,8</parameter>
-				<!-- around the table -->
-				<parameter name="node3">13,10</parameter>
-				<parameter name="node4">10,10</parameter>
-				<!-- to the sink -->
-				<parameter name="node5">10,12</parameter>
-				<!-- to the pizza/cake/whatever -->
-				<parameter name="node6">7,12</parameter>
-				<parameter name="node7">7,10</parameter>
-				<!-- to the pot -->
-				<parameter name="node8">3,10</parameter>
-				<!-- towards the oven -->
-				<parameter name="node9">3,4</parameter>
-				<parameter name="node10">5,4</parameter>
-				<!--to the oven-->
-				<parameter name="node11">5,3</parameter>
-				<!-- one step back -->
-				<parameter name="node12">5,4</parameter>
-				<!-- towards the well-->
-				<parameter name="node13">15,4</parameter>
-			</implementation>
-
-			<attribute name="class">chefnpc</attribute>
-		</entity>
-
-		<entity x="26" y="9">
-			<implementation
-				class-name="games.stendhal.server.maps.semos.bakery.ShopAssistantNPC">
-				<parameter name="name">Erna</parameter>
-				<parameter name="node0">26,9</parameter>
-				<parameter name="node1">26,6</parameter>
-				<parameter name="node2">28,6</parameter>
-				<parameter name="node3">28,2</parameter>
-				<parameter name="node4">28,5</parameter>
-				<parameter name="node5">22,5</parameter>
-				<parameter name="node6">22,4</parameter>
-				<parameter name="node7">22,7</parameter>
-				<parameter name="node8">26,7</parameter>
-			</implementation>
-
-			<attribute name="class">housewifenpc</attribute>
-		</entity>
-
 
 		<entity x="29" y="7">
 			<implementation
