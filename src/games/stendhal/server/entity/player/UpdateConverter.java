@@ -343,13 +343,7 @@ public abstract class UpdateConverter {
 		// We avoid to lose potion in case there is an entry with the old and the new name at the same
 		// time by combining them by calculating the minimum of the two times and the sum of the two amounts.
 		migrateSumTimedQuestSlot(player, "Valo_concoct_potion", "valo_concoct_potion");
-		
-		// fix quest slots for kills quests.		
-		fixKillQuestsSlots(player);
-		
-		// fix DailyMonsterQuest slot
-		fixDailyMonsterQuestSlot(player);
-		
+
 		// From 0.66 to 0.67
 		// update quest slot content, 
 		// replace "_" with " ", for item/creature names
@@ -389,7 +383,14 @@ public abstract class UpdateConverter {
 				player.setQuest(questSlot, buffer.toString());
 			}
 		}
-    }
+
+		// fix quest slots for kills quests.		
+		fixKillQuestsSlots(player);
+		
+		// fix DailyMonsterQuest slot
+		fixDailyMonsterQuestSlot(player);
+		
+	}
 
 	private static void fixDailyMonsterQuestSlot(final Player player) {
 		final String QUEST_SLOT = "daily";
