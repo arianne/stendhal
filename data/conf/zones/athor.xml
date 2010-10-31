@@ -120,6 +120,8 @@
      </zone>
      
      <zone name="0_athor_island" level="0" x="501024" y="500384" file="Level 0/athor/island.tmx">
+       <configurator
+            class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC" />
        <portal x="57" y="57" ref="apartment_1_entrance">
          <destination zone="int_athor_apartment_101" ref="out"/>
 		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
@@ -276,15 +278,6 @@
          </implementation>
 
          <attribute name="class">swimmer3npc</attribute>
-       </entity>
-
-       <entity x="60" y="33">
-         <implementation class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC">
-           <parameter name="name">Zara</parameter>
-           <parameter name="direction">down</parameter>
-         </implementation>
-
-         <attribute name="class">swimmer8npc</attribute>
        </entity>
 
        <entity x="5" y="49">
