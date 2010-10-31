@@ -186,7 +186,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wrof! Some bottles, artichokes, a few herbs and fierywater... Things like that. So, will you help?",
             null);
 
-        //player accepts the quest and gets to know what Wrviliza needs (switch to phase_2)
+        // player accepts the quest and gets to know what Wrviliza needs (switch to phase_2)
         npc.add(ConversationStates.QUEST_OFFERED,
             ConversationPhrases.YES_MESSAGES, null,
             ConversationStates.QUESTION_1, null,
@@ -204,22 +204,24 @@ public class KoboldishTorcibud extends AbstractQuest {
             }
         );
 
-        //player is not inclined to comply with the request, 1st time and he will loose karma
+        // player is not inclined to comply with the request and has not already rejected it once
         npc.add(ConversationStates.QUEST_OFFERED,
             ConversationPhrases.NO_MESSAGES,
-            new QuestNotActiveCondition(QUEST_SLOT),
+            new AndCondition(
+                new QuestNotActiveCondition(QUEST_SLOT),
+                new QuestNotInStateCondition(QUEST_SLOT, 0, "rejected")),
             ConversationStates.ATTENDING,
             "Wruff... I guess I will have to ask to someone with a better attitude!",
             new MultipleActions(
             new SetQuestAction(QUEST_SLOT, 0, "rejected"),
             new DecreaseKarmaAction(20.0)));
 
-        //player is not inclined to comply with the request and he has rejected it already.
-        //Wrviliza holds a grudge by turning idle again.
+        //player is not inclined to comply with the request and he has rejected it last time
         //If player wants to buy any beverage here, he should really take the quest now
+        //Wrviliza holds a grudge by turning idle again.
         npc.add(ConversationStates.QUEST_OFFERED,
             ConversationPhrases.NO_MESSAGES,
-            new QuestNotInStateCondition(QUEST_SLOT, 0, "rejected"),
+            new QuestInStateCondition(QUEST_SLOT, 0, "rejected"),
             ConversationStates.IDLE,
             "Wruff... I guess you will wander around with a dry gulch then...",
             new MultipleActions(
