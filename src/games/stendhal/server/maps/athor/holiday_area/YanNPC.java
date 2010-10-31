@@ -12,17 +12,43 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.holiday_area;
 
+import games.stendhal.common.Direction;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
-//TODO: take NPC definition elements which are currently in XML and include here
-public class YanNPC extends SpeakerNPCFactory {
 
-	@Override
-	public void createDialog(final SpeakerNPC npc) {
-		npc.addGreeting("Hello stranger!");
-		npc.addQuest("I don't have a task for you.");
-		npc.addJob("Sorry, but on holiday I don't want to talk about work.");
-		npc.addHelp("A cocktail bar is open! Look for a hut with a straw roof.");
-		npc.addGoodbye("See you later!");
+import java.util.Map;
+
+public class YanNPC implements ZoneConfigurator  {
+
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		buildNPC(zone);
+	}
+
+	private void buildNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Yan") {
+
+			@Override
+			protected void createPath() {
+				// doesn't move
+				setPath(null);
+			}
+			
+			@Override
+			public void createDialog() {
+				addGreeting("Hello stranger!");
+				addQuest("I don't have a task for you.");
+				addJob("Sorry, but on holiday I don't want to talk about work.");
+				addHelp("A cocktail bar is open! Look for a hut with a straw roof.");
+				addGoodbye("See you later!");
+			}
+
+		};
+		npc.setPosition(62, 72);
+		npc.setEntityClass("swimmer4npc");
+		npc.setDirection(Direction.DOWN);
+		zone.add(npc);		
 	}
 }
+
