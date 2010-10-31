@@ -1185,21 +1185,11 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 </zone>
 
 <zone name="int_magic_house1" file="interiors/magic/house1.tmx">
+ <configurator class-name="games.stendhal.server.maps.magic.house1.ChallengerNPC" />
  <portal x="10" y="18" ref="entrance">
    <destination zone="-1_fado_great_cave_n_e2" ref="house1_entrance"/>
   </portal>
-  <entity x="14" y="4">
-			<implementation
-				class-name="games.stendhal.server.maps.magic.house1.ChallengerNPC">
-				<parameter name="name">Haastaja</parameter>
-				<parameter name="direction">down</parameter>
-			</implementation>
 
-			<attribute name="class">chaos_sorcerornpc</attribute>
-			<attribute name="description">You see Haastaja, the Challenger. He is a mighty Chaos Sorcerer.</attribute>
-			<attribute name="level">600</attribute>
-			<attribute name="hp">75</attribute>
-	</entity>
 		
 </zone>
 

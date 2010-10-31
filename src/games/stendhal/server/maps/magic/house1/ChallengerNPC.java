@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.magic.house1;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -22,7 +23,6 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
@@ -33,25 +33,33 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
 import org.apache.log4j.Logger;
-//TODO: take NPC definition elements which are currently in XML and include here
-public class ChallengerNPC extends SpeakerNPCFactory {
- private static final int MINUTES_IN_DAYS = 24 * 60;
-/** how many creatures will be spawned.*/
- private static final int NUMBER_OF_CREATURES = 5;
- /** lowest level allowed to island.*/
- private static final int MIN_LEVEL = 50;
- /** Cost multiplier for getting to island. */
- private static final int COST_FACTOR = 300;
-  /** How long to wait before visiting island again. */
- private static final int DAYS_BEFORE_REPEAT = 3;
- /** The name of the quest slot where we store the time last visited. */
- private static final String QUEST_SLOT = "adventure_island";
- 
- private static final Logger logger = Logger.getLogger(ChallengerNPC.class);
+
+/**
+ * The Chaos Sorcerer controlling entry to the adventure island
+ * 
+ * @author kymara
+ */
+public class ChallengerNPC implements ZoneConfigurator  {
+
+	private static final int MINUTES_IN_DAYS = 24 * 60;
+	/** how many creatures will be spawned.*/
+	private static final int NUMBER_OF_CREATURES = 5;
+	/** lowest level allowed to island.*/
+	private static final int MIN_LEVEL = 50;
+	/** Cost multiplier for getting to island. */
+	private static final int COST_FACTOR = 300;
+	/** How long to wait before visiting island again. */
+	private static final int DAYS_BEFORE_REPEAT = 3;
+	/** The name of the quest slot where we store the time last visited. */
+	private static final String QUEST_SLOT = "adventure_island";
+
+	private static final Logger logger = Logger.getLogger(ChallengerNPC.class);
+
 	private final class ChallengeChatAction implements ChatAction {
 
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
@@ -62,9 +70,9 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 				return;
 			}
 			final StendhalRPZone challengezone = (StendhalRPZone) SingletonRepository
-					.getRPWorld().getRPZone("int_adventure_island");
+			.getRPWorld().getRPZone("int_adventure_island");
 			String zoneName = player.getName() + "_adventure_island";
-			
+
 			final AdventureIsland zone = new AdventureIsland(zoneName, challengezone, player);
 
 			SingletonRepository.getRPWorld().addRPZone(zone);
@@ -83,95 +91,108 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 			}
 			player.drop("money", cost);
 			player.sendPrivateText(message);
-			
+
 			player.notifyWorldAboutChanges();
 		}
 	}
 
-	@Override
-	public void createDialog(final SpeakerNPC npc) {
-		npc.addGreeting("And so, the hero has come.");
-		npc.addQuest("Pay the #fee and you can #fight my trained magical creatures. There will be " + NUMBER_OF_CREATURES 
-					 + " in all, at a level to challenge you.");
-		npc.addHelp("If you are strong enough and will pay the #fee, you can #fight " + NUMBER_OF_CREATURES 
-					+ " of my animals on a private adventure island.");
-		npc.addJob("I train magical animals for fighting and offer warriors the chance to #battle against them on a magical island.");
-		npc.addOffer("To fight against " + NUMBER_OF_CREATURES + " of my trained creatures, chosen for your level, make the #challenge.");		
-		npc.addGoodbye("Bye.");
-		npc.add(ConversationStates.ANY, 
-				"fee", 
-				new AndCondition(new LevelGreaterThanCondition(MIN_LEVEL - 1), 
-								 new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS)), 
-				ConversationStates.QUEST_OFFERED, 
-				null,
-				new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		buildNPC(zone);
+	}
+
+	private void buildNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Haastaja") {
+
+			@Override
+			protected void createPath() {
+				setPath(null);
+			}
+
+			@Override
+			public void createDialog() {
+				addGreeting("And so, the hero has come.");
+				addQuest("Pay the #fee and you can #fight my trained magical creatures. There will be " + NUMBER_OF_CREATURES 
+						+ " in all, at a level to challenge you.");
+				addHelp("If you are strong enough and will pay the #fee, you can #fight " + NUMBER_OF_CREATURES 
+						+ " of my animals on a private adventure island.");
+				addJob("I train magical animals for fighting and offer warriors the chance to #battle against them on a magical island.");
+				addOffer("To fight against " + NUMBER_OF_CREATURES + " of my trained creatures, chosen for your level, make the #challenge.");		
+				addGoodbye("Bye.");
+				add(ConversationStates.ANY, 
+						"fee", 
+						new AndCondition(new LevelGreaterThanCondition(MIN_LEVEL - 1), 
+								new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS)), 
+								ConversationStates.QUEST_OFFERED, 
+								null,
+								new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						npc.say("The fee is your current level, multiplied by " + COST_FACTOR + " and payable in cash. At your level of " 
 								+ player.getLevel() + " the fee is " + COST_FACTOR * player.getLevel() + " money. Do you want to fight?");			
-				}
-		});
-			
-		// player meets conditions, first remind them of the dangers and wait for a 'yes'
-		npc.add(ConversationStates.ANY, 
-				Arrays.asList("challenge", "fight", "battle"), 
-				new AndCondition(new LevelGreaterThanCondition(MIN_LEVEL - 1), 
-								 new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS)), 
-				ConversationStates.QUEST_OFFERED, 
-				"I accept your challenge. If you can pay the #fee, I will summon an island with " + NUMBER_OF_CREATURES 
-				+ " dangerous creatures for you to face. So, are you sure you want to enter the adventure island?", 
-				null);
-		// player returns within DAYS_BEFORE_REPEAT days, and his island has expired 
-		npc.add(ConversationStates.ANY, 
-				Arrays.asList("challenge", "fight", "battle", "fee"),
-				new AndCondition(
-								 new NotCondition(new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS)), 
-								 new NotCondition(new AdventureZoneExistsCondition())
-								 ),
-				ConversationStates.ATTENDING, 
-				null, 
-				new SayTimeRemainingAction(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS, "Your life force will not support the island so soon after you last visited. You will be ready again in"));
+					}
+				});
 
-	// player returns within DAYS_BEFORE_REPEAT days, if the zone still exists that he was in before, send him straight up. 
-		npc.add(ConversationStates.ANY, 
-				Arrays.asList("challenge", "fight", "battle", "fee"),
-				new AndCondition(
-								 new NotCondition(new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS)), 
-								 new AdventureZoneExistsCondition()
-								 ),
-				ConversationStates.QUESTION_1, 
-				"The island which I recently summoned for you, remains for you to visit at no extra cost. Do you wish to return to it?", 
-				null);
+				// player meets conditions, first remind them of the dangers and wait for a 'yes'
+				add(ConversationStates.ANY, 
+						Arrays.asList("challenge", "fight", "battle"), 
+						new AndCondition(new LevelGreaterThanCondition(MIN_LEVEL - 1), 
+								new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS)), 
+								ConversationStates.QUEST_OFFERED, 
+								"I accept your challenge. If you can pay the #fee, I will summon an island with " + NUMBER_OF_CREATURES 
+								+ " dangerous creatures for you to face. So, are you sure you want to enter the adventure island?", 
+								null);
+				// player returns within DAYS_BEFORE_REPEAT days, and his island has expired 
+				add(ConversationStates.ANY, 
+						Arrays.asList("challenge", "fight", "battle", "fee"),
+						new AndCondition(
+								new NotCondition(new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS)), 
+								new NotCondition(new AdventureZoneExistsCondition())
+						),
+						ConversationStates.ATTENDING, 
+						null, 
+						new SayTimeRemainingAction(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS, "Your life force will not support the island so soon after you last visited. You will be ready again in"));
 
-		// player below MIN_LEVEL
-		npc.add(ConversationStates.ANY, 
-				Arrays.asList("challenge", "fight", "battle", "fee"), 
-				new LevelLessThanCondition(MIN_LEVEL), 
-				ConversationStates.ATTENDING, 
-				"You are too weak to fight against " + NUMBER_OF_CREATURES  + " at once. Come back when you are at least Level " + MIN_LEVEL + ".",
-				null);
-		// all conditions are met and player says yes he wants to fight
-		npc.add(ConversationStates.QUEST_OFFERED, 
-				ConversationPhrases.YES_MESSAGES, 
-				new LevelGreaterThanCondition(MIN_LEVEL - 1), 
-				ConversationStates.IDLE, 
-				null, 
-				new ChallengeChatAction());
-		// player was reminded of dangers and he doesn't want to fight
-		npc.add(ConversationStates.QUEST_OFFERED, 
-				ConversationPhrases.NO_MESSAGES, 
-				null, 
-				ConversationStates.ATTENDING, 
-				"Fair enough.", 
-				null);	
+				// player returns within DAYS_BEFORE_REPEAT days, if the zone still exists that he was in before, send him straight up. 
+				add(ConversationStates.ANY, 
+						Arrays.asList("challenge", "fight", "battle", "fee"),
+						new AndCondition(
+								new NotCondition(new TimePassedCondition(QUEST_SLOT, DAYS_BEFORE_REPEAT * MINUTES_IN_DAYS)), 
+								new AdventureZoneExistsCondition()
+						),
+						ConversationStates.QUESTION_1, 
+						"The island which I recently summoned for you, remains for you to visit at no extra cost. Do you wish to return to it?", 
+						null);
 
-		// player wishes to return to an existing adventure island
-		npc.add(ConversationStates.QUESTION_1, 
-				ConversationPhrases.YES_MESSAGES, 
-				// check again it does exist
-				new AdventureZoneExistsCondition(),
-				ConversationStates.IDLE, 
-				null, 
-				new ChatAction() {
+				// player below MIN_LEVEL
+				add(ConversationStates.ANY, 
+						Arrays.asList("challenge", "fight", "battle", "fee"), 
+						new LevelLessThanCondition(MIN_LEVEL), 
+						ConversationStates.ATTENDING, 
+						"You are too weak to fight against " + NUMBER_OF_CREATURES  + " at once. Come back when you are at least Level " + MIN_LEVEL + ".",
+						null);
+				// all conditions are met and player says yes he wants to fight
+				add(ConversationStates.QUEST_OFFERED, 
+						ConversationPhrases.YES_MESSAGES, 
+						new LevelGreaterThanCondition(MIN_LEVEL - 1), 
+						ConversationStates.IDLE, 
+						null, 
+						new ChallengeChatAction());
+				// player was reminded of dangers and he doesn't want to fight
+				add(ConversationStates.QUEST_OFFERED, 
+						ConversationPhrases.NO_MESSAGES, 
+						null, 
+						ConversationStates.ATTENDING, 
+						"Fair enough.", 
+						null);	
+
+				// player wishes to return to an existing adventure island
+				add(ConversationStates.QUESTION_1, 
+						ConversationPhrases.YES_MESSAGES, 
+						// check again it does exist
+						new AdventureZoneExistsCondition(),
+						ConversationStates.IDLE, 
+						null, 
+						new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String zoneName = player.getName() + "_adventure_island";
 						final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
@@ -179,24 +200,32 @@ public class ChallengerNPC extends SpeakerNPCFactory {
 						player.notifyWorldAboutChanges();
 					}
 				});
-				
-		// player wished to return to an existing adventure island but it's now gone
-		npc.add(ConversationStates.QUESTION_1, 
-				ConversationPhrases.YES_MESSAGES, 
-				// check again it does exist
-				new NotCondition(new AdventureZoneExistsCondition()),
-				ConversationStates.ATTENDING,
-				"Sorry, but the island vanished between the offer I just made you and you saying 'yes'. You cannot visit it now.",
-				null);
+
+				// player wished to return to an existing adventure island but it's now gone
+				add(ConversationStates.QUESTION_1, 
+						ConversationPhrases.YES_MESSAGES, 
+						// check again it does exist
+						new NotCondition(new AdventureZoneExistsCondition()),
+						ConversationStates.ATTENDING,
+						"Sorry, but the island vanished between the offer I just made you and you saying 'yes'. You cannot visit it now.",
+						null);
 
 
-		// player declined to return to an existing adventure island
-		npc.add(ConversationStates.QUESTION_1, 
-				ConversationPhrases.NO_MESSAGES, 
-				null, 
-				ConversationStates.ATTENDING, 
-				"Very well.", 
-				null);
+				// player declined to return to an existing adventure island
+				add(ConversationStates.QUESTION_1, 
+						ConversationPhrases.NO_MESSAGES, 
+						null, 
+						ConversationStates.ATTENDING, 
+						"Very well.", 
+						null);
+			}};
+			npc.setPosition(14, 4);
+			npc.setEntityClass("chaos_sorcerornpc");
+			npc.setDirection(Direction.DOWN);
+			npc.setDescription("You see Haastaja, the Challenger. He is a mighty Chaos Sorcerer.");
+			npc.setLevel(600);
+			npc.initHP(75);
+			zone.add(npc);		
 	}
 
 	// Not made as an entity.npc.condition. file because the zone name depends on player here. 
