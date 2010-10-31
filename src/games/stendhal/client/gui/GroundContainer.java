@@ -19,6 +19,7 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.styled.cursor.CursorRepository;
@@ -27,6 +28,7 @@ import games.stendhal.client.gui.wt.EntityViewCommandList;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.Direction;
 import games.stendhal.common.EquipActionConsts;
+import games.stendhal.common.NotificationType;
 
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
@@ -414,12 +416,18 @@ public class GroundContainer extends MouseHandler implements Inspector,
 		} else {
 			SlotWindow window = new SlotWindow(suspect.getType(), width, height);
 			window.setSlot(suspect, content.getName());
-
-			j2DClient.get().addWindow(window);
-			window.raise();
-			window.setVisible(true);
-
-			return window;
+			// Only display the window if it's actually going to stay open
+			if (window.isCloseEnough()) {
+				j2DClient.get().addWindow(window);
+				window.raise();
+				window.setVisible(true);
+				return window;
+			} else {
+				// Otherwise just give a message to the user and let the window
+				// be collected as garbage
+				j2DClient.get().addEventLine(new EventLine("", "The " + suspect.getType() + " is too far away.", NotificationType.CLIENT));
+				return null;
+			}
 		}
 	}
 }

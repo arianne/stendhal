@@ -203,7 +203,7 @@ class Corpse2DView extends Entity2DView {
 			 * drop the reference to the closed window and let the
 			 * garbage collector claim it.
 			 */
-			if (addListener) {
+			if (addListener && (slotWindow != null)) {
 				slotWindow.addCloseListener(new CloseListener() {
 					public void windowClosed(InternalWindow window) {
 						slotWindow = null;

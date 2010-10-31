@@ -76,6 +76,20 @@ public class SlotWindow extends InternalManagedWindow {
 	 * far away, this panel closes itself.
 	 */
 	private void checkDistance() {
+		if (!isCloseEnough()) {
+			close();
+		}
+	}
+	
+	/**
+	 * Check if the user is close enough the parent entity of the slot. If
+	 * the user is too far away the window should not be opened, and it should
+	 * be closed if it was already open.
+	 * 
+	 * @return <code>true</code> if the user is close enough to have the window
+	 * 	open, <code>false</code> otherwise.
+	 */
+	public boolean isCloseEnough() {
 		final User user = User.get();
 
 		if ((user != null) && (parent != null)) {
@@ -84,28 +98,28 @@ public class SlotWindow extends InternalManagedWindow {
 			// after double clicking one
 			// monster and a fast double
 			// click on another monster
-
 			if (parent.isUser()) {
 				// We don't want to close our own stuff
-				return;
+				return true;
 			}
 
-			checkDistance(user.getX(), user.getY());
+			return isCloseEnough(user.getX(), user.getY());
 		}
+
+		return true;
 	}
 	
 	/**
-	 * The user position changed.
+	 * Check if the user is close enough the parent entity of the slot. If
+	 * the user is too far away the window should not be opened, and it should
+	 * be closed if it was already open.
 	 * 
-	 * @param x
-	 *            The X coordinate (in world units).
-	 * @param y
-	 *            The Y coordinate (in world units).
+	 * @param x x coordinate of the user
+	 * @param y y coordinate of the user
+	 * @return <code>true</code> if the user is close enough to have the window
+	 * 	open, <code>false</code> otherwise.
 	 */
-	public void checkDistance(final double x, final double y) {
-		/*
-		 * Check if the user has moved too far away
-		 */
+	private boolean isCloseEnough(final double x, final double y) {
 		final int px = (int) x;
 		final int py = (int) y;
 
@@ -114,8 +128,6 @@ public class SlotWindow extends InternalManagedWindow {
 				orig.getWidth() + MAX_DISTANCE * 2, orig.getHeight()
 						+ MAX_DISTANCE * 2);
 
-		if (!orig.contains(px, py)) {
-			close();
-		}
+		return orig.contains(px, py);
 	}
 }
