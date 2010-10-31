@@ -703,7 +703,11 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public void setBaseHP(final int newhp) {
 		this.base_hp = newhp;
-		put("base_hp", newhp);
+		try {
+			put("base_hp", newhp);
+		} catch (IllegalArgumentException e) {
+			logger.error("Failed to set base HP to " + newhp + ". Entity was: " + this, e);
+		}
 	}
 
 	/**
@@ -725,7 +729,11 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public void setHP(final int hp) {
 		this.hp = hp;
-		put("hp", hp);
+		try {
+			put("hp", hp);
+		} catch (IllegalArgumentException e) {
+			logger.error("Failed to set HP to " + hp + ". Entity was: " + this, e);
+		}
 	}
 
 	/**
