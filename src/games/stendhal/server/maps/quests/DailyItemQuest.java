@@ -150,6 +150,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("ham",10);
 		items.put("sandwich",5);
 		items.put("pie",5);
+		items.put("egg",1);
 		items.put("button mushroom",10);
 		items.put("porcini",10);
 		items.put("toadstool",15);
