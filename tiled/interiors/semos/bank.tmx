@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="48" height="32" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="48" height="32" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/furniture/carpet/carpets_2.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
@@ -87,22 +86,22 @@
  </tileset>
  <layer name="0_floor" width="48" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3QMQoAIBADwStErvEj/v+BNtaCIprABrYfUiKimBYCBvz3quZ+9/9v1sz97v/j1w//G+Nqv334tcOv7c9HndhTyH8afvz48ePHjx8//n1/nyn6B4mPvDwAGAAA
+   H4sIAAAAAAAAAO3QMQoAIAwEwRRB8hb//0Aba9EgeoE92H44NzMvmgkY8N+rFfdX/x8//krhx79jXO23D792+LX98aiMPYT82fDjx48fP378+PGf+/tM0T8AiqwaPAAYAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="48" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2XuU4DMRCG5wlowg3h2JKGGwkhSIEEiLPnqKjhOQK0SEADr8pYuxajkeMd27PrjcQvfVIysddfvJfdA4BJxjTSU6qvCXD1lWCOv4DMIscVc8i8Yl3iP8P6SqDj7kGZIbLN6sPqN16Xtpf622O68og8MVw+ozxT6hr+PO814w6QE6X6lADety4fHv8D5LDiSKkugfad8GDim/+280aQxjf/45Bxnf9P5Au6Nf/ryCayEUgf8vvb62AHWY2ggLz+9DqQvCdccH97Pg1bDdR5tP3t+dxVrn+36L/UYJ2GPgc1/O16jI5L12PcJ6T9j8Nf6/pfhL9rtU/G1ayPugdS/ZeRFUahXOf3hqZ/G/jugVT/2L1bCPsN+tt9X8haNwa6Ptb2T3n/PpPPl8gL+e565nTNn8b4vwb26Yr/OZT+odHyP0XOErjI7H+FXCdyk9E/V/79S/+Q/b9WzJia/m3+Bzue1vrTt1e+Re5q2sRi9+Gx/mZ9WLdPvkceBO1iKRL8fwFD6T0EABgAAA==
+   H4sIAAAAAAAAAO2XyU7DMBCG5x3KVqAsOXJhR0IIOFQCVLY7y4k7z1HoFYkbvCoTxRajUWKP7UncSv2lT4qmdvw1cRK7BwALjCWkp1TfEVDXV0J5/jVkBRka+siqYl3iv8z6SqDjnkCVMXLI6mPzG69L20v97TkleWvwafJMqbfh/+UZ9xK5UqovCuB9ffl2+J8h54YLpboE2tcX1/Wfhbiu/yxkfv31sovsI3uBDCC/v50HR8h2BAXk9afzQPKdqIP72/tZctBCnUfb397PY+X6T4f+Gy3Waeh7UMPfrsfouHQ9xn1C2v/W+GvN/3X4n6sDMq5mvekZSPXfRLYYhXKdPxua/l3gegZS/WP3biGctuhv930ha90YmtbH2u/P0LyT4zvkwxxPoP6dM23+NKX/Z2CfafEfQeUfGi3/a+QmgdvM/vfIQyKPGf1zZe5f+U+6Fjdjavp3+R/seFrrT9de+Ql59rSJxe7DY/3L9aFvn/yCvAraxVIk+P8B09uYOwAYAAA=
   </data>
  </layer>
  <layer name="2_object" width="48" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YuQoCMRCG8wKeLyVutWrjA3gfqKUWNlaKR6sgiIg+pxOYBR3GJLvsBc4HH5NjQv4ixbJKReMVcU8QkmRJXDNrNu6oK2H7Teh8BbDIWFJu+R8oZQ8eQvTTM7/OfxLkX6nv7Hrumv+JUo7gKUQ/PcOdb2D1sep8ZbDCWFVu+bOEvvUNs5Y3mpb9M3hJI4ggCIIgEGbgnHGRZagQSH4zHbBrqD2wz6wH1MA6jrdYrzFlc2EADg11BI6Zdc0U9HCsv8V2qaWOD8/eIgi5ZZJ1gD/Ht7fk/s421iTe0o3M9X+TVgL3COnyBv1c/OoAGAAA
+   H4sIAAAAAAAAAO2UywrCMBBF+3diVz42rsX3A/UzFB+gS0UR0e/0CpNNiGlaJk2qc+AwM2kgdzE0SYrxKvjNlTv5bY6VLdzBB6nPZ9gNli6bPTzAJ6nP13DRWHDJn3fXYttNtWsc99X+6r1P1K5x3Ff7q/dC3BzhyTBX/f8jCIIgVIsFXBpchQyVA8lvpwf7ljqAQ8O5ogbr1K+pXpiyuTCCY0udwKnh/MMcptS34Ka01Hyk2VcEIVpmoQP8OY0feLND1ccu3bS5Cdse3hHK5Q3jmp8kABgAAA==
   </data>
  </layer>
  <layer name="3_roof" width="48" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WsQ0AIQwEQYqkAnqC5CkWQhrgjeQZ6eR0Q5fCbS06AEir743jAv/6ogOSm9EBQAo1OgCAZ/g/edECcfUqTgAYAAA=
+   H4sIAAAAAAAAAO3WsQkAIAwEQId0MK11WB1A0MoI3kGKdN98SEpwrkcHALbKnLrY9Rfua9EBPufuATfk6AAAPMP/yYsGSX829gAYAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="48" height="32">
@@ -115,9 +114,9 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAAAA8GY/w/7KABgAAA==
   </data>
  </layer>
- <layer name="collision" width="48" height="32" visible="0" opacity="0.37">
+ <layer name="collision" width="48" height="32" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UwQ7AIAgDUL7e795pFzMTFErB0aQXk7mHcRsiMrr0vkGt7xjmVPJr1qr4ZWO/jH6Pu4eO9/mzY73/0dEYqvgtZcTLfpMfvY6aAe1fzVDFj7Szzt/TH9GvsE3tr9P2x1pXZoTfmtO9svlPn8tSlp8V5tl5pLJdFK7MM6C+P8Qs856Mf0rkO//SB846O7sAGAAA
+   H4sIAAAAAAAAAO3UwQ6AIAwD0H093+2JixEic6WdrEkvJOIbEZuZtSq9Paj1FcMs2f2jvcuv4c+Q8uOz+j2y4rknKv4o+5/86HXUDGj/aIYsfqSddf6R/h19CttU/jwtv4YZ4f8a715qfu9zKmX5WWGeXUQy2+2FS3kG1P1DzHLfk/FP2fnOU3oBC/e5FQAYAAA=
   </data>
  </layer>
  <layer name="protection" width="48" height="32" visible="0" opacity="0.33">
