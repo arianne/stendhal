@@ -180,7 +180,7 @@ public class GenerateINI {
 		String temp = "";
 		do {
 			System.out.println("Which database system do you want to use? \"h2\" is an integrated database that ");
-			System.out.println("works out of the box, \"mysql\" requires a MySQL server. If in doubt, say \"h2\": ");
+			System.out.println("works out of the box, \"mysql\" requires a MySQL server. If in doubt, say \"h2\" [h2]: ");
 			temp = getStringWithDefault(in, "h2").toLowerCase().trim();
 		} while (!temp.equals("h2") && !temp.equals("mysql"));
 		return temp;
