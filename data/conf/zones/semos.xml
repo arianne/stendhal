@@ -2330,6 +2330,9 @@ East: Ados city
 	<zone name="0_semos_plains_s" level="0" x="500000" y="500064"
 		file="Level 0/semos/plains_s.tmx">
 		
+      <configurator
+            class-name="games.stendhal.server.maps.semos.plains.ExperiencedWarriorNPC" />
+		
 		<entity x="28" y="63">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">deep_forest</parameter>
@@ -2376,20 +2379,6 @@ TO SEMOS
 
 Mature sheep wanted: please speak to Sato
    </attribute>
-		</entity>
-
-		<entity x="37" y="2">
-			<implementation
-				class-name="games.stendhal.server.maps.semos.plains.ExperiencedWarriorNPC">
-				<parameter name="name">Starkad</parameter>
-				<parameter name="class">experiencedwarriornpc</parameter>
-				<parameter name="node0">37,2</parameter>
-				<parameter name="node1">37,16</parameter>
-				<parameter name="node2">85,16</parameter>
-				<parameter name="node3">85,32</parameter>
-				<parameter name="node4">107,32</parameter>
-				<parameter name="node5">107,2</parameter>
-			</implementation>
 		</entity>
 
 
