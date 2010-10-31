@@ -292,6 +292,12 @@ public abstract class UpdateConverter {
 			object.put("features", "karma_indicator", "");
 		}
 
+		// port to 0.89: fix age
+		if (object.has("age")) {
+			if (!object.has("release") || (object.get("release").compareTo("0.88") <= 0)) {
+				object.put("age", object.getInt("age") * 180 / 200);
+			}
+		}
 	}
 
 	/**

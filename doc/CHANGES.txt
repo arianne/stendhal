@@ -4,7 +4,7 @@ Changelog
 - added quest to Ortiv Milquetoast in Kirdneh River House
 - quantity selector for control-drop
 - corpses have resistance
-
+- fixed calculation of player ages (it assumed that a second was 3*300ms)
 
 0.88
 
