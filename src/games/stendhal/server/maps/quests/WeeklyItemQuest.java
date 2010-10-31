@@ -131,7 +131,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 		items.put("chaos shield",1);
 		items.put("chaos armor",1);
 		items.put("green dragon shield",1);
-		items.put("egg",1);
 		items.put("golden arrow",5);
 		items.put("power arrow",5);
 		items.put("mainio legs",1);
