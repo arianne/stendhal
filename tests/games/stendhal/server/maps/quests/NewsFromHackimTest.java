@@ -18,7 +18,6 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC;
@@ -46,10 +45,11 @@ public class NewsFromHackimTest {
 
 	@Before
 	public void setUp() {
-		npcHackim = new SpeakerNPC("Hackim Easso");
-		SingletonRepository.getNPCList().add(npcHackim);
-		final SpeakerNPCFactory npcConf = new BlacksmithAssistantNPC();
-		npcConf.createDialog(npcHackim);
+		final StendhalRPZone zone = new StendhalRPZone("admin_test");
+		
+		new BlacksmithAssistantNPC().configureZone(zone, null);
+		npcHackim = SingletonRepository.getNPCList().get("Hackim Easso");
+		
 		enHackim = npcHackim.getEngine();
 
 		final ZoneConfigurator zoneConf = new TraderNPC();

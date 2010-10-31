@@ -1640,6 +1640,8 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 	</zone>
 
 	<zone name="int_semos_blacksmith" file="interiors/semos/blacksmith.tmx">
+	    <configurator class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC" />
+	    <configurator class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC" />
 		<portal x="15" y="14" ref="entrance">
 			<destination zone="0_semos_city" ref="blacksmith_entrance" />
 		</portal>
@@ -1666,41 +1668,6 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 				<parameter name="sound">fire-5</parameter>
 				<parameter name="volume">50</parameter>
 			</implementation>
-		</entity>
-
-
-		<entity x="23" y="12">
-			<implementation
-				class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC">
-				<parameter name="name">Xoderos</parameter>
-				<parameter name="node0">23,12</parameter>
-				<parameter name="node1">29,12</parameter>
-				<parameter name="node2">29,5</parameter>
-				<parameter name="node3">17,5</parameter>
-				<parameter name="node4">17,9</parameter>
-				<parameter name="node5">28,9</parameter>
-				<parameter name="node6">28,12</parameter>
-			</implementation>
-			<attribute name="class">blacksmithnpc</attribute>
-		</entity>
-
-		<entity x="5" y="2">
-			<implementation
-				class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC">
-				<parameter name="name">Hackim Easso</parameter>
-				<parameter name="node0">5,2</parameter>
-				<parameter name="node1">8,2</parameter>
-				<parameter name="node2">7,2</parameter>
-				<parameter name="node3">7,7</parameter>
-				<parameter name="node4">16,7</parameter>
-				<parameter name="node5">16,2</parameter>
-				<parameter name="node6">15,2</parameter>
-				<parameter name="node7">16,2</parameter>
-				<parameter name="node8">16,7</parameter>
-				<parameter name="node9">7,7</parameter>
-				<parameter name="node10">7,2</parameter>
-			</implementation>
-			<attribute name="class">naughtyteennpc</attribute>
 		</entity>
 
 		<entity x="25" y="11">

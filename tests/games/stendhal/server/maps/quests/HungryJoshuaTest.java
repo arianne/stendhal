@@ -19,12 +19,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -57,13 +55,8 @@ public class HungryJoshuaTest {
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 
 		new GoldsmithNPC().configureZone(zone, null);
-		
-		SpeakerNPC npc = new SpeakerNPC("Xoderos");
-		SingletonRepository.getNPCList().add(npc);
-		final SpeakerNPCFactory npcConf = new BlacksmithNPC();
-		npcConf.createDialog(npc);
+		new BlacksmithNPC().configureZone(zone, null);
 
-				
 		final AbstractQuest quest = new HungryJoshua();
 		quest.addToWorld();
 

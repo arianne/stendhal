@@ -12,14 +12,24 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.blacksmith;
 
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The blacksmith's young assistant (original name: Hackim Easso).
@@ -27,31 +37,65 @@ import games.stendhal.server.entity.player.Player;
  * 
  * @see games.stendhal.server.maps.quests.MeetHackim
  */
-//TODO: take NPC definition elements which are currently in XML and include here
-public class BlacksmithAssistantNPC extends SpeakerNPCFactory {
+public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 
-	@Override
-	public void createDialog(final SpeakerNPC npc) {
-		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				null,
-		        ConversationStates.ATTENDING,
-		        null,
-		        new ChatAction() {
-			        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				        if (player.hasQuest("meet_hackim")) {
-					        npc.say("Hi again, " + player.getTitle()
-					                + ". How can I #help you this time?");
-				        } else {
-					        npc.say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
-					        player.setQuest("meet_hackim", "start");
-				        }
-			        }
-		        });
-		npc.addHelp("I'm the blacksmith's assistant. Tell me... Have you come here to buy weapons?");
-		npc.addJob("I help Xoderos the blacksmith to make weapons for Deniran's army. I mostly only bring the coal for the fire and put the weapons up on the shelves. Sometimes, when Xoderos isn't looking, I like to use one of the swords to pretend I'm a famous adventurer!");
-		npc.addGoodbye();
-		
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		buildNPC(zone);
+	}
+
+	private void buildNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Hackim Easso") {
+
+			@Override
+			protected void createPath() {
+				final List<Node> nodes = new LinkedList<Node>();
+                nodes.add(new Node(5,2));
+                nodes.add(new Node(8,2));
+                nodes.add(new Node(7,2));
+                nodes.add(new Node(7,7));
+                nodes.add(new Node(16,7));
+                nodes.add(new Node(16,2));
+                nodes.add(new Node(15,2));
+                nodes.add(new Node(16,2));
+                nodes.add(new Node(16,7));
+                nodes.add(new Node(7,7));
+                nodes.add(new Node(7,2));
+				setPath(new FixedPath(nodes, true));
+			}
+			
+			@Override
+			public void createDialog() {
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new QuestNotStartedCondition("meet_hackim"),
+				        ConversationStates.ATTENDING,
+				        "Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?",
+				        new SetQuestAction("meet_hackim","start"));
+				
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new QuestStartedCondition("meet_hackim"),
+				        ConversationStates.ATTENDING,
+				        null,
+				        new ChatAction() {
+					        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+							        npc.say("Hi again, " + player.getTitle()
+							                + ". How can I #help you this time?");
+					        }
+				        });
+				
+				addHelp("I'm the blacksmith's assistant. Tell me... Have you come here to buy weapons?");
+				addJob("I help Xoderos the blacksmith to make weapons for Deniran's army. I mostly only bring the coal for the fire and put the weapons up on the shelves. Sometimes, when Xoderos isn't looking, I like to use one of the swords to pretend I'm a famous adventurer!");
+				addGoodbye();
+			}
+
+		};
+		npc.setPosition(5, 2);
+		npc.setEntityClass("naughtyteennpc");
 		npc.setDescription("You see Hackim Easso, the blacksmiths assistant.");
+		zone.add(npc);		
 	}
 }
+
+		
