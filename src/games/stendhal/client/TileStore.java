@@ -107,7 +107,7 @@ public class TileStore implements Tileset {
 		final int mapsize = tiles.size();
 
 		if (mapsize > baseindex) {
-			logger.error("Tileset base index mismatch (" + mapsize + " > "
+			logger.info("Tileset base index mismatch (" + mapsize + " > "
 					+ baseindex + "): " + ref);
 			for (int i = baseindex; i < mapsize; i++) {
 				tiles.remove(baseindex);
