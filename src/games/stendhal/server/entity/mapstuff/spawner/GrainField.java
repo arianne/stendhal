@@ -16,8 +16,9 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPObject;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A grain field can be harvested by players who have a scythe. After that, it
@@ -35,41 +36,41 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 	private static final int MAX_RESISTANCE = 80;
 
 	private String grainName;
+	private List<String> tools;
 
-	protected final void setGrainName(final String grainName) {
-		this.grainName = grainName;
-	}
-
-    protected String getGrainName() {
+	protected String getGrainName() {
 		return grainName;
-    }
-
-	public GrainField(final RPObject object, final String name) {
-		super(object, name + "_field", name + " field", "Harvest", RIPE, 1, 1);
-		grainName = name;
-		updateResistance();
-		update();
 	}
 
-	public GrainField(final String name) {
+	/**
+	 * creates a new GrainField
+	 *
+	 * @param name   name of the field
+	 * @param tools  list of tool that can be used to harvest. 
+	 *               The first one will be used in the message to the player
+	 *               if he is missing a suitable tool.
+	 */
+	public GrainField(final String name, final List<String> tools) {
 		super(name + "_field", name + " field", "Harvest", RIPE, 1, 1);
+		this.tools = new LinkedList<String>(tools);
 		grainName = name;
 	}
-	
+
+	/**
+	 * Sets the ripeness
+	 */
 	@Override
 	protected void setRipeness(final int ripeness) {
 		super.setRipeness(ripeness);
 		updateResistance();
 	}
-	
+
 	/**
 	 * Set resistance according the current ripeness.
 	 */
 	private void updateResistance() {
-		/*
-		 * Ripeness starts from 0. Give it a tiny bit of resistance for
-		 * walking over newly ploughed ground.
-		 */
+		// Ripeness starts from 0. Give it a tiny bit of resistance for
+		// walking over newly ploughed ground.
 		setResistance((getRipeness() + 1) * MAX_RESISTANCE / (RIPE + 1));
 	}
 
@@ -96,41 +97,39 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 	 * @return true if successful
 	 */
 	public boolean onUsed(final RPEntity entity) {
-		if (entity.nextTo(this)) {
-			if (getRipeness() == RIPE) {
-                if ("cane".equals(grainName)) {
-                    if (entity.isEquipped("sickle")) {
-                        onFruitPicked(null);
-                        final Item grain = SingletonRepository.getEntityManager().getItem(
-                                grainName);
-                        entity.equipOrPutOnGround(grain);
-                        return true;
-                    } else if (entity instanceof Player) {
-                        entity.sendPrivateText("You need a sickle to harvest " + grainName + " fields.");
-                        return false;
-                    }
-                } else {
-                    if (entity.isEquipped("old scythe")
-                        || entity.isEquipped("scythe") 
-                        || entity.isEquipped("black scythe")) {
-                        onFruitPicked(null);
-                        final Item grain = SingletonRepository.getEntityManager().getItem(
-                                grainName);
-                        entity.equipOrPutOnGround(grain);
-                        return true;
-                    } else if (entity instanceof Player) {
-                        entity.sendPrivateText("You need a scythe to harvest " + grainName + " fields.");
-                        return false;
-                    }
-                }
-			} else if (entity instanceof Player) {
-				entity.sendPrivateText("This " + grainName + " is not yet ripe enough to harvest.");
-				return false;
-			}
-		} else if (entity instanceof Player) {
+		if (!entity.nextTo(this)) {
 			entity.sendPrivateText("You can't reach that " + grainName + " from here.");
+			return false;
+		}
+
+		if (getRipeness() != RIPE) {
+			entity.sendPrivateText("This " + grainName + " is not yet ripe enough to harvest.");
+			return false;
+		}
+
+		if (!isNeededToolEquipped(entity)) {
+			entity.sendPrivateText("You need a " + tools.get(0) +" to harvest " + grainName + " fields.");
+			return false;
+		}
+
+		onFruitPicked(null);
+		final Item grain = SingletonRepository.getEntityManager().getItem(grainName);
+		entity.equipOrPutOnGround(grain);
+		return true;
+	}
+
+	/**
+	 * Checks whether one of the needed tools is equipped
+	 *
+	 * @param entity RPEntity to check
+	 * @return true if a suitable tool is equiped; false otherwise.
+	 */
+	private boolean isNeededToolEquipped(RPEntity entity) {
+		for (String tool : tools) {
+			if (entity.isEquipped(tool)) {
+				return true;
+			}
 		}
 		return false;
 	}
-
 }

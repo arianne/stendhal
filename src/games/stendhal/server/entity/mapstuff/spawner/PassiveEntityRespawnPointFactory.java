@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.spawner;
 
+import java.util.Arrays;
+
 import marauroa.common.game.IRPZone.ID;
 
 import org.apache.log4j.Logger;
@@ -297,11 +299,11 @@ public class PassiveEntityRespawnPointFactory {
 		PassiveEntityRespawnPoint passiveEntityrespawnPoint;
 		switch (type) {
 		case 0:
-			passiveEntityrespawnPoint = new GrainField("grain");
+			passiveEntityrespawnPoint = new GrainField("grain", Arrays.asList("scythe", "old scythe", "black scythe"));
 			break;
 
 		case 1:
-			passiveEntityrespawnPoint = new GrainField("cane");
+			passiveEntityrespawnPoint = new GrainField("cane", Arrays.asList("scythe"));
 			break;
 		default:
 			passiveEntityrespawnPoint = null;
