@@ -2900,6 +2900,8 @@ Mature sheep wanted: please speak to Sato
 		file="Level -1/semos/jail.tmx">
 		<configurator class-name="games.stendhal.server.entity.player.Jail" />
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
+		<configurator class-name="games.stendhal.server.maps.semos.jail.GuardNPC" />
+		<configurator class-name="games.stendhal.server.maps.semos.jail.InmateNPC" />
 		<!--for the admin house-->
 		<portal x="15" y="7" ref="house_exit_4">
 			<implementation
@@ -2909,26 +2911,9 @@ Mature sheep wanted: please speak to Sato
 		<portal x="28" y="17" ref="entrance">
 			<destination zone="0_semos_plains_w" ref="jail_entrance" />
 		</portal>
-		<entity x="9" y="7">
-			<implementation class-name="games.stendhal.server.maps.semos.jail.GuardNPC">
-				<parameter name="name">Marcus</parameter>
-				<parameter name="node0">9,7</parameter>
-				<parameter name="node1">21,7</parameter>
-				<parameter name="node2">21,8</parameter>
-				<parameter name="node3">9,8</parameter>
-			</implementation>
 
-			<attribute name="class">youngsoldiernpc</attribute>
-		</entity>
 
-		<entity x="13" y="3">
-			<implementation class-name="games.stendhal.server.maps.semos.jail.InmateNPC">
-				<parameter name="name">Conual</parameter>
-				<parameter name="direction">down</parameter>
-			</implementation>
 
-			<attribute name="class">militiaelfnpc</attribute>
-		</entity>
 
 
 	</zone>

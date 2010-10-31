@@ -12,22 +12,44 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.jail;
 
+import games.stendhal.common.Direction;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+
+import java.util.Map;
 
 /**
  * An elven inmate (original name: Conual). He's just decoration. 
  * 
  * @author hendrik
  */
-//TODO: take NPC definition elements which are currently in XML and include here
-public class InmateNPC extends SpeakerNPCFactory {
+public class InmateNPC implements ZoneConfigurator  {
 
-	@Override
-	public void createDialog(final SpeakerNPC npc) {
-		npc.addGreeting("Let me out!");
-		npc.addGoodbye();
-		
-		npc.setDescription("You see Conual. He is jailed for ages now. Seems like he really did something badly wrong!");
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		buildNPC(zone);
+	}
+
+	private void buildNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Conual") {
+
+			@Override
+			protected void createPath() {
+				setPath(null);
+			}
+
+			@Override
+			public void createDialog() {
+				addGreeting("Let me out!");
+				addGoodbye();
+			}};
+			npc.setPosition(13, 3);
+			npc.setEntityClass("militiaelfnpc");
+			npc.setDirection(Direction.DOWN);
+			npc.setDescription("You see Conual. He is jailed for ages now. Seems like he really did something badly wrong!");
+			zone.add(npc);		
 	}
 }
+
+		

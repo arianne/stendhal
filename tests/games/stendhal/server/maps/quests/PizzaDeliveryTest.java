@@ -88,6 +88,7 @@ public class PizzaDeliveryTest {
 		new SheepBuyerNPC().configureZone(zone, null);
 		new MillerNPC().configureZone(zone, null);
 		new ChefNPC().configureZone(zone, null);
+		new GuardNPC().configureZone(zone, null);
 		
 		SpeakerNPC npc = new SpeakerNPC("Cyk");
 		SingletonRepository.getNPCList().add(npc);
@@ -97,10 +98,7 @@ public class PizzaDeliveryTest {
 		SingletonRepository.getNPCList().add(npc);
 		npcConf = new FerryConveyerNPC();
 		npcConf.createDialog(npc);		
-		npc = new SpeakerNPC("Marcus");
-		SingletonRepository.getNPCList().add(npc);
-		npcConf = new GuardNPC();
-		npcConf.createDialog(npc);
+
 		npc = new SpeakerNPC("Tor'Koom");
 		
 		//	ramon is added in this quest - so we have to load this before we load pizza one.
