@@ -102,15 +102,33 @@ public class Dice extends Item {
 	}
 
 	/**
-	 * Throw the dice.
+	 * Player throws the dice, get the new values on the faces
 	 */
-	void randomize() {
+	private void randomize(final Player player) {
+		topFaces = new int[NUMBER_OF_DICE];
+		double karma = player.useKarma(2);
+		for (int i = 0; i < NUMBER_OF_DICE; i++) {
+			int topFace = Rand.roll1D6();
+			// if the player has no karma or bad karma, then re-roll a 6
+			if (topFace == 6 && karma <= 0) {
+				topFace = Rand.roll1D6();
+			}
+			topFaces[i] = topFace;
+		}
+		// if the player has no karma or bad karma, don't give them the booby prize
+		if (getSum() == NUMBER_OF_DICE && karma <= 0) {
+			// topFaces must have been 1,1,1...1, so just change one of them.
+			topFaces[0] = 2;
+		}
+	}
+	
+	/**
+	 * A new die needs values on the faces
+	 */
+	private void randomize() {
 		topFaces = new int[NUMBER_OF_DICE];
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
 			int topFace = Rand.roll1D6();
-			if (topFace == 6) {
-				topFace = Rand.roll1D6();
-			}
 			topFaces[i] = topFace;
 		}
 	}
@@ -118,7 +136,7 @@ public class Dice extends Item {
 	@Override
 	public void onPutOnGround(final Player player) {
 		super.onPutOnGround(player);
-		randomize();
+		randomize(player);
 		updateCroupierNPC();
 		if (croupierNPC != null) {
 			croupierNPC.onThrown(this, player);
