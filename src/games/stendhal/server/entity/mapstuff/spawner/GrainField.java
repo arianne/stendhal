@@ -98,18 +98,31 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 	public boolean onUsed(final RPEntity entity) {
 		if (entity.nextTo(this)) {
 			if (getRipeness() == RIPE) {
-				if (entity.isEquipped("old scythe")
-					|| entity.isEquipped("scythe") 
-					|| entity.isEquipped("black scythe")) {
-					onFruitPicked(null);
-					final Item grain = SingletonRepository.getEntityManager().getItem(
-							grainName);
-					entity.equipOrPutOnGround(grain);
-					return true;
-				} else if (entity instanceof Player) {
-					entity.sendPrivateText("You need a scythe to harvest " + grainName + " fields.");
-					return false;
-				}
+                if ("cane".equals(grainName)) {
+                    if (entity.isEquipped("sickle")) {
+                        onFruitPicked(null);
+                        final Item grain = SingletonRepository.getEntityManager().getItem(
+                                grainName);
+                        entity.equipOrPutOnGround(grain);
+                        return true;
+                    } else if (entity instanceof Player) {
+                        entity.sendPrivateText("You need a sickle to harvest " + grainName + " fields.");
+                        return false;
+                    }
+                } else {
+                    if (entity.isEquipped("old scythe")
+                        || entity.isEquipped("scythe") 
+                        || entity.isEquipped("black scythe")) {
+                        onFruitPicked(null);
+                        final Item grain = SingletonRepository.getEntityManager().getItem(
+                                grainName);
+                        entity.equipOrPutOnGround(grain);
+                        return true;
+                    } else if (entity instanceof Player) {
+                        entity.sendPrivateText("You need a scythe to harvest " + grainName + " fields.");
+                        return false;
+                    }
+                }
 			} else if (entity instanceof Player) {
 				entity.sendPrivateText("This " + grainName + " is not yet ripe enough to harvest.");
 				return false;
