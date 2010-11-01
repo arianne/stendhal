@@ -99,7 +99,7 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 							if (!player.isEquipped(requiredContainer, amount) || !player.isEquipped("money", price)) {
 								seller.say("Wrauff! I can only sell you "
 									+ Grammar.plnoun(getAmount(), getChosenItemName())
-									+ "if you meet the price of " + price + " and have " + amount + " empty "
+									+ " if you meet the price of " + price + " and have " + amount + " empty "
 									+ Grammar.plnoun(getAmount(), requiredContainer));
 							        return false;
 							}
@@ -146,21 +146,21 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 						+ " If you want me to #offer you some beverages, just say so!");
 
 				addJob("Wroff! I offer wine, beer and my famous #mild or #strong koboldish #torcibud");
-				addHelp("Wruff... If you are thirsty I can #offer you some beverage. Have you noticed that this is a bar?");
+				addHelp("Wruff... If you are thirsty I can #offer you some beverage. If you didn't notice, this is a bar!");
 				addGoodbye("Wroff... Goodbye and good luck!");
 
 				addReply(Arrays.asList("wine","beer"),
 						"Wrof! It will quench your thirst for a few coins...");
 				addReply("mild",
-						"Wrof! Not so #strong koboldish #torcibud. Give an empty #slim #bottle and 90 money... Wrof!");
+						"Wrof! Not so #strong koboldish #torcibud. Give an empty #slim #bottle and 95 money... Wrof!");
 				addReply("strong",
-						"Wrof! Not so #mild koboldish #torcibud. Give an empty #eared #bottle and 180 money... Wrof!");
+						"Wrof! Not so #mild koboldish #torcibud. Give an empty #eared #bottle and 195 money... Wrof!");
 				addReply("torcibud",
 						"Wrof! Real stuff from a secret koboldish recipe! Ask me to #offer you some!");
 				addReply("wrvil",
 						"Wrof! He be my husband. Runs shop in northern Wo'fol...");
 				addReply("eared bottle",
-						"Wrof! A large bottle with handles on the neck that resemble ears... Have you ever seen one?");
+						"Wrof! A large bottle with handles on the neck that resemble ears... It cannot be you have never seen one!");
 				addReply("slim bottle",
 						"Wrof! A bottle narrower at bottom and a bit wider at the shoulders ... I'm sure you've seen one already!");
 			}
