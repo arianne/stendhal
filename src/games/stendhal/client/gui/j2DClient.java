@@ -337,10 +337,10 @@ public class j2DClient implements UserInterface {
 		 */
 		// The setting bar to the top
 		settings = new SettingsPanel();		
-		settings.add("help");
 		settings.add("accountcontrol");
 		settings.add("settings");
 		settings.add("rp");
+		settings.add("help");
 		containerPanel.add(settings, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
 		// Character window
