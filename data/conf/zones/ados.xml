@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../zones.xsd ">
+    xsi:schemaLocation="stendhal ../zones.xsd ">
  <!--
    ** Load zones. Written from left to right and from top to bottom.
    ** Please respect it!
@@ -13,54 +13,54 @@
  <zone name="0_ados_mountain_n2_w" level="0" x="500512" y="499744" file="Level 0/ados/mountain_n2_w.tmx">
    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
    <configurator class-name="games.stendhal.server.maps.ados.entwives.EntwifeNPC"/>
-		<portal x="18" y="52" ref="ent1n">
-			<destination zone="0_ados_mountain_n2_w" ref="ent1s" />
-			<attribute name="hidden"/>
-		</portal>
-		<portal x="18" y="53" ref="ent1s">
-			<destination zone="0_ados_mountain_n2_w" ref="ent1n" />
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-				<parameter name="minimum-level">100</parameter>
-				<parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
-			</implementation>
-			<attribute name="hidden"/>
-		</portal>
-		<portal x="19" y="52" ref="ent2n">
-			<destination zone="0_ados_mountain_n2_w" ref="ent2s" />
-			<attribute name="hidden"/>
-		</portal>
-		<portal x="19" y="53" ref="ent2s">
-			<destination zone="0_ados_mountain_n2_w" ref="ent2n" />
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-				<parameter name="minimum-level">100</parameter>
-				<parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
-			</implementation>
-			<attribute name="hidden"/>
-		</portal>
-		<portal x="20" y="52" ref="ent3n">
-			<destination zone="0_ados_mountain_n2_w" ref="ent3s" />
-			<attribute name="hidden"/>
-		</portal>
-		<portal x="20" y="53" ref="ent3s">
-			<destination zone="0_ados_mountain_n2_w" ref="ent3n" />
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-				<parameter name="minimum-level">100</parameter>
-				<parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
-			</implementation>
-			<attribute name="hidden"/>
-		</portal>
-		<portal x="21" y="52" ref="ent4n">
-			<destination zone="0_ados_mountain_n2_w" ref="ent4s" />
-			<attribute name="hidden"/>
-		</portal>
-		<portal x="21" y="53" ref="ent4s">
-			<destination zone="0_ados_mountain_n2_w" ref="ent4n" />
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-				<parameter name="minimum-level">100</parameter>
-				<parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
-			</implementation>
-			<attribute name="hidden"/>
-		</portal>
+        <portal x="18" y="52" ref="ent1n">
+            <destination zone="0_ados_mountain_n2_w" ref="ent1s" />
+            <attribute name="hidden"/>
+        </portal>
+        <portal x="18" y="53" ref="ent1s">
+            <destination zone="0_ados_mountain_n2_w" ref="ent1n" />
+            <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+                <parameter name="minimum-level">100</parameter>
+                <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+            </implementation>
+            <attribute name="hidden"/>
+        </portal>
+        <portal x="19" y="52" ref="ent2n">
+            <destination zone="0_ados_mountain_n2_w" ref="ent2s" />
+            <attribute name="hidden"/>
+        </portal>
+        <portal x="19" y="53" ref="ent2s">
+            <destination zone="0_ados_mountain_n2_w" ref="ent2n" />
+            <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+                <parameter name="minimum-level">100</parameter>
+                <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+            </implementation>
+            <attribute name="hidden"/>
+        </portal>
+        <portal x="20" y="52" ref="ent3n">
+            <destination zone="0_ados_mountain_n2_w" ref="ent3s" />
+            <attribute name="hidden"/>
+        </portal>
+        <portal x="20" y="53" ref="ent3s">
+            <destination zone="0_ados_mountain_n2_w" ref="ent3n" />
+            <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+                <parameter name="minimum-level">100</parameter>
+                <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+            </implementation>
+            <attribute name="hidden"/>
+        </portal>
+        <portal x="21" y="52" ref="ent4n">
+            <destination zone="0_ados_mountain_n2_w" ref="ent4s" />
+            <attribute name="hidden"/>
+        </portal>
+        <portal x="21" y="53" ref="ent4s">
+            <destination zone="0_ados_mountain_n2_w" ref="ent4n" />
+            <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+                <parameter name="minimum-level">100</parameter>
+                <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+            </implementation>
+            <attribute name="hidden"/>
+        </portal>
 
     <!-- wishing well-->
   <entity x="86" y="21">
@@ -82,7 +82,8 @@
     <configurator class-name="games.stendhal.server.maps.ados.market.BBQGrillmasterNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.OldFishermanNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.FishSoupMakerNPC"/>
-           <entity x="78" y="99">
+    <configurator class-name="games.stendhal.server.maps.ados.market.FierywaterDistillerNPC"/>
+    <entity x="78" y="99">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
        <attribute name="text">This is a small boat, anchored at the docks.</attribute>
        <attribute name="class">transparent</attribute>
@@ -163,103 +164,103 @@
     </entity> 
     
 
-		<entity x="85" y="14">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="85" y="14">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
     
-		<entity x="84" y="30">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
-		
-		<entity x="85" y="47">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
-		
-		<entity x="78" y="76">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="84" y="30">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
+        
+        <entity x="85" y="47">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
+        
+        <entity x="78" y="76">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="78" y="90">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="78" y="90">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="78" y="106">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="78" y="106">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="77" y="121">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="77" y="121">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
  </zone>
 
  <zone name="0_ados_mountain_n_w2" level="0" x="500384" y="499872" file="Level 0/ados/mountain_n_w2.tmx">
  
- 		<entity x="124" y="122">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">wind-2</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">70</parameter>
-				<parameter name="volume">60</parameter>
-			</implementation>
-		</entity>
+        <entity x="124" y="122">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">wind-2</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">70</parameter>
+                <parameter name="volume">60</parameter>
+            </implementation>
+        </entity>
  
  </zone>
 
  <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="Level 0/ados/mountain_nw.tmx">
   
-  		<entity x="5" y="124">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">wind-2</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">80</parameter>
-				<parameter name="volume">60</parameter>
-			</implementation>
-		</entity>
+        <entity x="5" y="124">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">wind-2</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">80</parameter>
+                <parameter name="volume">60</parameter>
+            </implementation>
+        </entity>
   
   <entity x="126" y="107">
    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
@@ -286,11 +287,11 @@ West: Semos
   </entity>
 
   <entity x="53" y="92">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
-		<parameter name="width">7</parameter>
-		<parameter name="height">7</parameter>
-		<parameter name="enterMessage">You hear #very loud hissing from the hole in the ground. There must be some gigantic snakes within.</parameter>
-	</implementation>
+        <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="width">7</parameter>
+        <parameter name="height">7</parameter>
+        <parameter name="enterMessage">You hear #very loud hissing from the hole in the ground. There must be some gigantic snakes within.</parameter>
+    </implementation>
   </entity>
 
   <portal x="75" y="50" ref="magician_house_entrance">
@@ -325,25 +326,25 @@ areas.
   <configurator class-name="games.stendhal.server.maps.ados.outside.AnimalKeeperNPC" />
   <configurator class-name="games.stendhal.server.maps.ados.outside.VeterinarianNPC" />
 
-		<entity x="56" y="30">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">5</parameter>
-				<parameter name="radius">10</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="56" y="30">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">5</parameter>
+                <parameter name="radius">10</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="40" y="36">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">5</parameter>
-				<parameter name="radius">10</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="40" y="36">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">5</parameter>
+                <parameter name="radius">10</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
   <portal x="67" y="24" ref="0">
    <destination zone="-1_ados_outside_nw" ref="0"/>
@@ -394,25 +395,25 @@ West: Semos
    <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch"/>
    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
 
-		<entity x="100" y="26">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">bird-2b, blackbird-6b, blackbird-7b, blackbird-8b</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">20</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="100" y="26">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">bird-2b, blackbird-6b, blackbird-7b, blackbird-8b</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">20</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="95" y="49">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">20</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="95" y="49">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">20</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
    <entity x="88" y="78">
      <implementation class-name="games.stendhal.server.entity.mapstuff.area.LifeDrainArea">
@@ -474,115 +475,115 @@ West: Semos
    <configurator class-name="games.stendhal.server.maps.ados.city.KidGhostNPC" /> 
    <configurator class-name="games.stendhal.server.maps.ados.city.HolidayingWomanNPC"/>
    
-		<entity x="83" y="9">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="83" y="9">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="83" y="20">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="83" y="20">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="69" y="32">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="69" y="32">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="75" y="51">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
-		
-		<entity x="77" y="67">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="75" y="51">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
+        
+        <entity x="77" y="67">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="81" y="89">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
-		
-		<entity x="81" y="116">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="81" y="89">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
+        
+        <entity x="81" y="116">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="27" y="117">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">bird-2b, bird-1b</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">10</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="27" y="117">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">bird-2b, bird-1b</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">10</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="42" y="41">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">bird-2b, bird-1b, bird-3b</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">10</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="42" y="41">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">bird-2b, bird-1b, bird-3b</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">10</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="13" y="46">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">blackbird-6b, blackbird-8b</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">15</parameter>
-				<parameter name="radius">20</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-		</entity>
+        <entity x="13" y="46">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">blackbird-6b, blackbird-8b</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">15</parameter>
+                <parameter name="radius">20</parameter>
+                <parameter name="volume">100</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="33" y="10">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">bird-2b, bird-1b</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">10</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="33" y="10">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">bird-2b, bird-1b</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">10</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
 
    <portal x="60" y="16" ref="tavern_entrance_left">
@@ -956,8 +957,8 @@ Under new management. Chests to the right are still held by Semos Bank Merchants
     <configurator class-name="games.stendhal.server.maps.ados.library.LibrarianNPC" />
 
     <entity x="4" y="27">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      	<attribute name="text">
+        <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+        <attribute name="text">
 FISHING SPOTS IN FAIUMONI
 The best spot to fish for cod is in 
 Ados, as this species lives in the sea.
@@ -974,8 +975,8 @@ In a mountain lake near Ados is a spot
 where char fish are very easy to find.
 In Semos there is a lake which is rich 
 in roaches.
-      	</attribute>
-      	<attribute name="class">book_blue</attribute>
+        </attribute>
+        <attribute name="class">book_blue</attribute>
     </entity>
 
     <entity x="4" y="6">
@@ -1036,15 +1037,15 @@ in roaches.
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.MithrilForgerNPC" />
     
-		<entity x="2" y="4">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">fire-3, fire-8</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="2" y="4">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">fire-3, fire-8</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
     
     <portal x="4" y="14" ref="entrance_goldsmith">
      <destination zone="0_ados_city_n" ref="goldsmith_entrance"/>
@@ -1081,8 +1082,8 @@ in roaches.
  <zone name="int_ados_house_71" file="interiors/ados/house_71.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">13</parameter>
-	<parameter name="y">9</parameter>
+    <parameter name="x">13</parameter>
+    <parameter name="y">9</parameter>
   </configurator>
   <portal x="12" y="14" ref="in">
     <destination zone="0_ados_wall" ref="house_71"/>
@@ -1091,8 +1092,8 @@ in roaches.
  <zone name="int_ados_house_72" file="interiors/ados/house_72.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">6</parameter>
-	<parameter name="y">10</parameter>
+    <parameter name="x">6</parameter>
+    <parameter name="y">10</parameter>
   </configurator>
   <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_72"/>
@@ -1101,8 +1102,8 @@ in roaches.
  <zone name="int_ados_house_73" file="interiors/ados/house_73.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">9</parameter>
-	<parameter name="y">2</parameter>
+    <parameter name="x">9</parameter>
+    <parameter name="y">2</parameter>
   </configurator>
   <portal x="1" y="7" ref="in">
     <destination zone="0_ados_wall" ref="house_73"/>
@@ -1111,8 +1112,8 @@ in roaches.
  <zone name="int_ados_house_74" file="interiors/ados/house_74.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">28</parameter>
-	<parameter name="y">2</parameter>
+    <parameter name="x">28</parameter>
+    <parameter name="y">2</parameter>
   </configurator>
   <portal x="17" y="20" ref="in">
     <destination zone="0_ados_wall" ref="house_74"/>
@@ -1121,8 +1122,8 @@ in roaches.
  <zone name="int_ados_house_75" file="interiors/ados/house_75.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">2</parameter>
-	<parameter name="y">10</parameter>
+    <parameter name="x">2</parameter>
+    <parameter name="y">10</parameter>
   </configurator>
   <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_75"/>
@@ -1131,8 +1132,8 @@ in roaches.
  <zone name="int_ados_house_76" file="interiors/ados/house_76.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">3</parameter>
-	<parameter name="y">13</parameter>
+    <parameter name="x">3</parameter>
+    <parameter name="y">13</parameter>
   </configurator>
   <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_76"/>
@@ -1141,8 +1142,8 @@ in roaches.
  <zone name="int_ados_house_77" file="interiors/ados/house_77.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">13</parameter>
-	<parameter name="y">13</parameter>
+    <parameter name="x">13</parameter>
+    <parameter name="y">13</parameter>
   </configurator>
   <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_77"/>
@@ -1161,7 +1162,7 @@ in roaches.
       <parameter name="shop">sellarrows</parameter>
       <parameter name="title">Ammunition sale</parameter>
       <parameter name="seller">true</parameter>
-	  <parameter name="caption">You can buy these arrows here.</parameter>
+      <parameter name="caption">You can buy these arrows here.</parameter>
      </implementation>
 
      <attribute name="class">blackboard</attribute>
@@ -1222,7 +1223,7 @@ in roaches.
       <parameter name="shop">buycloaks</parameter>
       <parameter name="title">Ida's sewing room</parameter>
       <parameter name="seller">false</parameter>
-	  <parameter name="caption">Ida will buy these cloaks.</parameter>
+      <parameter name="caption">Ida will buy these cloaks.</parameter>
      </implementation>
 
      <attribute name="class">book_blue</attribute>
@@ -1248,18 +1249,18 @@ in roaches.
    <zone name="int_ados_twilight_zone" file="interiors/ados/twilight_zone.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SeamstressNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SlimeCreature" />
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>	
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>  
 <!--some feedback for a player who might be trapped inside and not know
     what to do. if they come back after their quest slot isn't 'twilight_zone'
     anymore, but before they are 'done' they are then trapped forever as lda
     will only take the elixir if she's still sick from the player point of
     view. -->
-	<portal x="6" y="18" ref="twilight_door_left">
+    <portal x="6" y="18" ref="twilight_door_left">
      <destination zone="0_ados_city" ref="sewing_entrance"/>
-	 <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCompletedPortal">
-	  <parameter name="quest">mithril_cloak</parameter>
-	  <parameter name="rejected">The only way out is to help Ida by making her well again. Find the elixir she needs.</parameter>
-	 </implementation>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCompletedPortal">
+      <parameter name="quest">mithril_cloak</parameter>
+      <parameter name="rejected">The only way out is to help Ida by making her well again. Find the elixir she needs.</parameter>
+     </implementation>
     </portal>
     <portal x="7" y="18" ref="twilight_door_right">
      <destination zone="0_ados_city" ref="sewing_entrance"/>
@@ -1273,23 +1274,23 @@ in roaches.
  
    <zone name="int_ados_bar" file="interiors/ados/bar.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.bar.BarMaidNPC" />
-	<configurator class-name="games.stendhal.server.maps.semos.tavern.StichardRallmanNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.tavern.StichardRallmanNPC" />
 
      <portal x="15" y="30" ref="bar_entrance">
-	<destination zone="0_ados_city" ref="bar"/>
+    <destination zone="0_ados_city" ref="bar"/>
      </portal>
      <portal x="28" y="2" ref="upstair_left">
-	<destination zone="int_ados_bar_1" ref="downstair"/>
+    <destination zone="int_ados_bar_1" ref="downstair"/>
      </portal>
      <portal x="29" y="2" ref="upstair_right">
-	<destination zone="int_ados_bar_1" ref="downstair"/>
+    <destination zone="int_ados_bar_1" ref="downstair"/>
      </portal>
    </zone>
 
 
    <zone name="int_ados_bar_1" file="interiors/ados/bar_1.tmx">
      <portal x="28" y="2" ref="downstair">
-	<destination zone="int_ados_bar" ref="upstair_left"/>
+    <destination zone="int_ados_bar" ref="upstair_left"/>
      </portal>
     </zone>
    
@@ -1302,12 +1303,12 @@ in roaches.
      </implementation>
     </entity>
    
-		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">medieval_harp</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">medieval_harp</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
    
     <portal x="22" y="17" ref="entrance">
      <destination zone="0_ados_city" ref="town_hall_entrance"/>
@@ -1551,22 +1552,22 @@ in roaches.
    <zone name="int_ados_town_hall_1" file="interiors/ados/buraucrazy_1.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.townhall.ClerkNPC" />
     
-		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">medieval_harp</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">medieval_harp</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-  	   	<entity x="33" y="2">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">fire-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="volume">40</parameter>
-			<parameter name="radius">7</parameter>
-		</implementation>
-		</entity>
+        <entity x="33" y="2">
+        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+            <parameter name="sound">fire-2</parameter>
+            <parameter name="min">1</parameter>
+            <parameter name="max">1</parameter>
+            <parameter name="volume">40</parameter>
+            <parameter name="radius">7</parameter>
+        </implementation>
+        </entity>
 
     
     <entity x="25" y="6">
@@ -1586,12 +1587,12 @@ in roaches.
    <zone name="int_ados_town_hall_2" file="interiors/ados/buraucrazy_2.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.townhall.MayorNPC" />
     
-		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">medieval_harp</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">medieval_harp</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
     
     <portal x="36" y="3" ref="downstairs">
      <destination zone="int_ados_town_hall_1" ref="upstairs"/>
@@ -1614,32 +1615,32 @@ in roaches.
    
    <zone name="int_ados_town_hall_3" file="interiors/ados/buraucrazy_3.tmx">
     
-		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">medieval_harp</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">medieval_harp</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-  	   	<entity x="24" y="2">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">fire-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="volume">40</parameter>
-			<parameter name="radius">7</parameter>
-		</implementation>
-		</entity>
+        <entity x="24" y="2">
+        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+            <parameter name="sound">fire-2</parameter>
+            <parameter name="min">1</parameter>
+            <parameter name="max">1</parameter>
+            <parameter name="volume">40</parameter>
+            <parameter name="radius">7</parameter>
+        </implementation>
+        </entity>
 
-  	   	<entity x="34" y="2">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">fire-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="volume">40</parameter>
-			<parameter name="radius">7</parameter>
-		</implementation>
-		</entity>
+        <entity x="34" y="2">
+        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+            <parameter name="sound">fire-2</parameter>
+            <parameter name="min">1</parameter>
+            <parameter name="max">1</parameter>
+            <parameter name="volume">40</parameter>
+            <parameter name="radius">7</parameter>
+        </implementation>
+        </entity>
 
     
     <portal x="3" y="3" ref="downstairs">
@@ -2040,8 +2041,8 @@ My fee:
  
  <zone name="int_ados_ross_house" file="interiors/ados/ross_house.tmx">
         <configurator class-name="games.stendhal.server.maps.ados.rosshouse.LittleGirlNPC"/>    
-	<configurator class-name="games.stendhal.server.maps.ados.rosshouse.FatherNPC"/>
-	<configurator class-name="games.stendhal.server.maps.ados.rosshouse.ItemsOnTable"/>
+    <configurator class-name="games.stendhal.server.maps.ados.rosshouse.FatherNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.rosshouse.ItemsOnTable"/>
     <portal x="7" y="14" ref="entrance">
      <destination zone="0_ados_city" ref="ross_house_entrance"/>
     </portal>
@@ -2049,16 +2050,16 @@ My fee:
 
  <zone name="int_ados_house_50" file="interiors/ados/house_50.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">13</parameter>
-	<parameter name="y">13</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">13</parameter>
+    <parameter name="y">13</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">8</parameter>
-	<parameter name="y">12</parameter>
-	<parameter name="width">1</parameter>
+    <parameter name="x">8</parameter>
+    <parameter name="y">12</parameter>
+    <parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
   <portal x="7" y="14" ref="in">
@@ -2070,23 +2071,23 @@ My fee:
  </zone>
  <zone name="int_ados_house_50_1" file="interiors/ados/house_50_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="12" y="14" ref="down">
     <destination zone="int_ados_house_50" ref="up"/>
   </portal>
  </zone>
  <zone name="int_ados_house_51" file="interiors/ados/house_51.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">13</parameter>
-	<parameter name="y">13</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">13</parameter>
+    <parameter name="y">13</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">12</parameter>
-	<parameter name="y">12</parameter>
-	<parameter name="width">1</parameter>
+    <parameter name="x">12</parameter>
+    <parameter name="y">12</parameter>
+    <parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
   <portal x="7" y="14" ref="in">
@@ -2098,23 +2099,23 @@ My fee:
  </zone>
  <zone name="int_ados_house_51_1" file="interiors/ados/house_51_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
    <portal x="3" y="1" ref="down">
     <destination zone="int_ados_house_51" ref="up"/>
   </portal>
  </zone>
  <zone name="int_ados_house_52" file="interiors/ados/house_52.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">12</parameter>
-	<parameter name="y">13</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">12</parameter>
+    <parameter name="y">13</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">2</parameter>
-	<parameter name="y">12</parameter>
-	<parameter name="width">2</parameter>
+    <parameter name="x">2</parameter>
+    <parameter name="y">12</parameter>
+    <parameter name="width">2</parameter>
     <parameter name="height">2</parameter>
  </configurator>
   <portal x="7" y="14" ref="in">
@@ -2126,23 +2127,23 @@ My fee:
  </zone>
  <zone name="int_ados_house_52_1" file="interiors/ados/house_52_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_52" ref="up"/>
   </portal>
  </zone>
  <zone name="int_ados_house_53" file="interiors/ados/house_53.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">13</parameter>
-	<parameter name="y">8</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">13</parameter>
+    <parameter name="y">8</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">8</parameter>
-	<parameter name="y">12</parameter>
-	<parameter name="width">4</parameter>
+    <parameter name="x">8</parameter>
+    <parameter name="y">12</parameter>
+    <parameter name="width">4</parameter>
     <parameter name="height">1</parameter>
  </configurator>
   <portal x="7" y="14" ref="in">
@@ -2154,23 +2155,23 @@ My fee:
  </zone>
  <zone name="int_ados_house_53_1" file="interiors/ados/house_53_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_53" ref="up"/>
   </portal>
  </zone>
  <zone name="int_ados_house_54" file="interiors/ados/house_54.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">12</parameter>
-	<parameter name="y">13</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">12</parameter>
+    <parameter name="y">13</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">12</parameter>
-	<parameter name="y">10</parameter>
-	<parameter name="width">2</parameter>
+    <parameter name="x">12</parameter>
+    <parameter name="y">10</parameter>
+    <parameter name="width">2</parameter>
     <parameter name="height">2</parameter>
  </configurator>
   <portal x="9" y="14" ref="in_left">
@@ -2185,23 +2186,23 @@ My fee:
  </zone>
  <zone name="int_ados_house_54_1" file="interiors/ados/house_54_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_54" ref="up"/>
   </portal>
  </zone>
  <zone name="int_ados_house_55" file="interiors/ados/house_55.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">12</parameter>
-	<parameter name="y">13</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">12</parameter>
+    <parameter name="y">13</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">12</parameter>
-	<parameter name="y">10</parameter>
-	<parameter name="width">2</parameter>
+    <parameter name="x">12</parameter>
+    <parameter name="y">10</parameter>
+    <parameter name="width">2</parameter>
     <parameter name="height">2</parameter>
  </configurator>
   <portal x="9" y="14" ref="in_left">
@@ -2216,7 +2217,7 @@ My fee:
  </zone>
  <zone name="int_ados_house_55_1" file="interiors/ados/house_55_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_55" ref="up"/>
   </portal>
@@ -2224,16 +2225,16 @@ My fee:
 
  <zone name="int_ados_house_56" file="interiors/ados/house_56.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">13</parameter>
-	<parameter name="y">13</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">13</parameter>
+    <parameter name="y">13</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">3</parameter>
-	<parameter name="y">11</parameter>
-	<parameter name="width">2</parameter>
+    <parameter name="x">3</parameter>
+    <parameter name="y">11</parameter>
+    <parameter name="width">2</parameter>
     <parameter name="height">2</parameter>
  </configurator>
   <portal x="7" y="14" ref="in">
@@ -2245,7 +2246,7 @@ My fee:
  </zone>
  <zone name="int_ados_house_56_1" file="interiors/ados/house_56_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_56" ref="up"/>
   </portal>
@@ -2253,16 +2254,16 @@ My fee:
 
  <zone name="int_ados_house_57" file="interiors/ados/house_57.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">12</parameter>
-	<parameter name="y">13</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">12</parameter>
+    <parameter name="y">13</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">10</parameter>
-	<parameter name="y">3</parameter>
-	<parameter name="width">3</parameter>
+    <parameter name="x">10</parameter>
+    <parameter name="y">3</parameter>
+    <parameter name="width">3</parameter>
     <parameter name="height">2</parameter>
  </configurator>
   <portal x="7" y="14" ref="in">
@@ -2274,7 +2275,7 @@ My fee:
  </zone>
  <zone name="int_ados_house_57_1" file="interiors/ados/house_57_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_57" ref="up"/>
   </portal>
@@ -2282,11 +2283,11 @@ My fee:
 
  <zone name="int_ados_house_58" file="interiors/ados/house_58.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">11</parameter>
-	<parameter name="y">13</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">11</parameter>
+    <parameter name="y">13</parameter>
   </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_58"/>
@@ -2297,11 +2298,11 @@ My fee:
  </zone>
  <zone name="int_ados_house_58_1" file="interiors/ados/house_58_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">3</parameter>
-	<parameter name="y">11</parameter>
-	<parameter name="width">2</parameter>
+    <parameter name="x">3</parameter>
+    <parameter name="y">11</parameter>
+    <parameter name="width">2</parameter>
     <parameter name="height">2</parameter>
  </configurator>
   <portal x="3" y="3" ref="down">
@@ -2311,16 +2312,16 @@ My fee:
 
  <zone name="int_ados_house_59" file="interiors/ados/house_59.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">13</parameter>
-	<parameter name="y">8</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">13</parameter>
+    <parameter name="y">8</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">2</parameter>
-	<parameter name="y">4</parameter>
-	<parameter name="width">1</parameter>
+    <parameter name="x">2</parameter>
+    <parameter name="y">4</parameter>
+    <parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
   <portal x="7" y="14" ref="in">
@@ -2332,7 +2333,7 @@ My fee:
  </zone>
  <zone name="int_ados_house_59_1" file="interiors/ados/house_59_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_59" ref="up"/>
   </portal>
@@ -2340,16 +2341,16 @@ My fee:
 
  <zone name="int_ados_house_60" file="interiors/ados/house_60.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">7</parameter>
-	<parameter name="y">2</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">7</parameter>
+    <parameter name="y">2</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">4</parameter>
-	<parameter name="y">12</parameter>
-	<parameter name="width">1</parameter>
+    <parameter name="x">4</parameter>
+    <parameter name="y">12</parameter>
+    <parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
   <portal x="7" y="14" ref="in">
@@ -2362,7 +2363,7 @@ My fee:
 
  <zone name="int_ados_house_60_1" file="interiors/ados/house_60_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_60" ref="up"/>
   </portal>
@@ -2370,11 +2371,11 @@ My fee:
 
  <zone name="int_ados_house_61" file="interiors/ados/house_61.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">5</parameter>
-	<parameter name="y">2</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">5</parameter>
+    <parameter name="y">2</parameter>
   </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_61"/>
@@ -2386,11 +2387,11 @@ My fee:
 
  <zone name="int_ados_house_61_1" file="interiors/ados/house_61_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">2</parameter>
-	<parameter name="y">9</parameter>
-	<parameter name="width">2</parameter>
+    <parameter name="x">2</parameter>
+    <parameter name="y">9</parameter>
+    <parameter name="width">2</parameter>
     <parameter name="height">2</parameter>
  </configurator>
   <portal x="3" y="3" ref="down">
@@ -2400,16 +2401,16 @@ My fee:
 
  <zone name="int_ados_house_62" file="interiors/ados/house_62.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">13</parameter>
-	<parameter name="y">9</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">13</parameter>
+    <parameter name="y">9</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">10</parameter>
-	<parameter name="y">7</parameter>
-	<parameter name="width">1</parameter>
+    <parameter name="x">10</parameter>
+    <parameter name="y">7</parameter>
+    <parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
   <portal x="7" y="14" ref="in">
@@ -2422,7 +2423,7 @@ My fee:
 
  <zone name="int_ados_house_62_1" file="interiors/ados/house_62_1.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_62" ref="up"/>
   </portal>
@@ -2430,16 +2431,16 @@ My fee:
 
  <zone name="int_ados_house_63" file="interiors/ados/house_63.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">20</parameter>
-	<parameter name="y">2</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">20</parameter>
+    <parameter name="y">2</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">20</parameter>
-	<parameter name="y">20</parameter>
-	<parameter name="width">1</parameter>
+    <parameter name="x">20</parameter>
+    <parameter name="y">20</parameter>
+    <parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
   <portal x="21" y="17" ref="in">
@@ -2448,16 +2449,16 @@ My fee:
  </zone>
  <zone name="int_ados_house_64" file="interiors/ados/house_64.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">20</parameter>
-	<parameter name="y">2</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">20</parameter>
+    <parameter name="y">2</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">18</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
+    <parameter name="x">18</parameter>
+    <parameter name="y">21</parameter>
+    <parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
   <portal x="21" y="17" ref="in">
@@ -2466,16 +2467,16 @@ My fee:
  </zone>
  <zone name="int_ados_house_65" file="interiors/ados/house_65.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">10</parameter>
-	<parameter name="y">14</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">10</parameter>
+    <parameter name="y">14</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">20</parameter>
-	<parameter name="y">20</parameter>
-	<parameter name="width">1</parameter>
+    <parameter name="x">20</parameter>
+    <parameter name="y">20</parameter>
+    <parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
   <portal x="21" y="18" ref="in">
@@ -2484,16 +2485,16 @@ My fee:
  </zone>
  <zone name="int_ados_house_66" file="interiors/ados/house_66.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">19</parameter>
-	<parameter name="y">2</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">19</parameter>
+    <parameter name="y">2</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">3</parameter>
-	<parameter name="y">23</parameter>
-	<parameter name="width">2</parameter>
+    <parameter name="x">3</parameter>
+    <parameter name="y">23</parameter>
+    <parameter name="width">2</parameter>
     <parameter name="height">1</parameter>
  </configurator>
   <portal x="20" y="19" ref="in">
@@ -2502,16 +2503,16 @@ My fee:
  </zone>
  <zone name="int_ados_house_67" file="interiors/ados/house_67.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">20</parameter>
-	<parameter name="y">2</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">20</parameter>
+    <parameter name="y">2</parameter>
   </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">3</parameter>
-	<parameter name="y">15</parameter>
-	<parameter name="width">2</parameter>
+    <parameter name="x">3</parameter>
+    <parameter name="y">15</parameter>
+    <parameter name="width">2</parameter>
     <parameter name="height">2</parameter>
  </configurator>
   <portal x="11" y="21" ref="in">
@@ -2520,11 +2521,11 @@ My fee:
  </zone>
  <zone name="int_ados_house_68" file="interiors/ados/house_68.tmx" accessible="false">
   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
+            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <parameter name="x">22</parameter>
+    <parameter name="y">2</parameter>
   </configurator>
   <portal x="13" y="21" ref="in">
     <destination zone="0_ados_city" ref="house_68"/>
@@ -2533,8 +2534,8 @@ My fee:
  <zone name="int_ados_house_69" file="interiors/ados/house_69.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">9</parameter>
-	<parameter name="y">10</parameter>
+    <parameter name="x">9</parameter>
+    <parameter name="y">10</parameter>
   </configurator>
   <portal x="1" y="15" ref="in">
     <destination zone="0_ados_city" ref="house_69"/>
@@ -2543,8 +2544,8 @@ My fee:
  <zone name="int_ados_house_70" file="interiors/ados/house_70.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">11</parameter>
-	<parameter name="y">2</parameter>
+    <parameter name="x">11</parameter>
+    <parameter name="y">2</parameter>
   </configurator>
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city" ref="house_70"/>
@@ -2584,15 +2585,15 @@ My fee:
 
    <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="Level 0/ados/rock_w.tmx">
     
- 		<entity x="123" y="43">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">wind-2</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">120</parameter>
-				<parameter name="volume">60</parameter>
-			</implementation>
-		</entity>
+        <entity x="123" y="43">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">wind-2</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">120</parameter>
+                <parameter name="volume">60</parameter>
+            </implementation>
+        </entity>
     
     <entity x="14" y="50">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
@@ -2604,32 +2605,32 @@ Southeast: Docks
      <attribute name="class">signpost</attribute>
     </entity>
     <entity x="62" y="78">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
-		<parameter name="width">6</parameter>
-		<parameter name="height">4</parameter>
-		<parameter name="enterMessage">You see massive footprints around the entrance.</parameter>
-	</implementation>
+        <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="width">6</parameter>
+        <parameter name="height">4</parameter>
+        <parameter name="enterMessage">You see massive footprints around the entrance.</parameter>
+    </implementation>
     </entity>
    </zone>
    
    <zone name="0_ados_rock" level="0" x="500512" y="500000" file="Level 0/ados/rock.tmx">
      <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC"/>
      
- 		<entity x="3" y="35">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">wind-2</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">90</parameter>
-				<parameter name="volume">60</parameter>
-			</implementation>
-		</entity>
+        <entity x="3" y="35">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">wind-2</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">90</parameter>
+                <parameter name="volume">60</parameter>
+            </implementation>
+        </entity>
      
      <entity x="61" y="36">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">char</parameter>
-    	</implementation>
-  	 </entity>
+        <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">char</parameter>
+        </implementation>
+     </entity>
   <portal x="118" y="103" ref="caves_exit">
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
@@ -2637,12 +2638,12 @@ Southeast: Docks
    
    <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="Level 0/ados/outside_w.tmx">
    
-   		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">lost_in_the_fog</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-   		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">lost_in_the_fog</parameter>
+                <parameter name="volume">100</parameter>
+            </implementation>
+        </entity>
    
    </zone>
 
@@ -2715,75 +2716,75 @@ Southeast: Docks
    
    <zone name="0_ados_city" level="0" x="500896" y="500000" file="Level 0/ados/city.tmx">
  <configurator class-name="games.stendhal.server.maps.ados.city.ForeignWomanNPC"/>
-		<entity x="80" y="12">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="80" y="12">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="88" y="35">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
-		
-		<entity x="88" y="59">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="88" y="35">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
+        
+        <entity x="88" y="59">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="82" y="84">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="82" y="84">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="82" y="104">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>		
+        <entity x="82" y="104">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>       
 
-		<entity x="82" y="124">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="82" y="124">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="114" y="116">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="114" y="116">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
 
     <entity x="55" y="109">
@@ -2856,9 +2857,9 @@ Southeast: Docks
   </portal>
 
    <entity x="89" y="63">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">cod</parameter>
-    	</implementation>
+        <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">cod</parameter>
+        </implementation>
     </entity>
    <portal x="5" y="52" ref="house_63">
      <destination zone="int_ados_house_63" ref="in"/>
@@ -2929,17 +2930,17 @@ Southeast: Docks
      <destination zone="int_ados_bar" ref="bar_entrance"/>
    </portal>
    <portal x="67" y="65" ref="fishermans_hut_west_entrance">
-     	<destination zone="int_ados_fishermans_hut_west" ref="entrance_fishermans_hut_west"/>
+        <destination zone="int_ados_fishermans_hut_west" ref="entrance_fishermans_hut_west"/>
     </portal>
    <portal x="75" y="61" ref="fishermans_hut_north_entrance">
-     	<destination zone="int_ados_fishermans_hut_north" ref="entrance_fishermans_hut_north"/>
+        <destination zone="int_ados_fishermans_hut_north" ref="entrance_fishermans_hut_north"/>
     </portal>
    <portal x="75" y="70" ref="meat_market_entrance">
-     	<destination zone="int_ados_meat_market" ref="entrance_meat_market"/>
+        <destination zone="int_ados_meat_market" ref="entrance_meat_market"/>
     </portal>
 
     <portal x="34" y="110" ref="ross_house_entrance">
-     	<destination zone="int_ados_ross_house" ref="entrance"/>
+        <destination zone="int_ados_ross_house" ref="entrance"/>
     </portal>
    <portal x="42" y="93" ref="town_hall_entrance">
      <destination zone="int_ados_town_hall" ref="entrance"/>
@@ -2975,12 +2976,12 @@ Southeast: Docks
    <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="Level 0/ados/swamp.tmx">
      <configurator class-name="games.stendhal.server.maps.ados.swamp.DeathmatchRecruiterNPC"/>
    
-      		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">lost_in_the_fog</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-   		</entity>
+            <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">lost_in_the_fog</parameter>
+                <parameter name="volume">100</parameter>
+            </implementation>
+        </entity>
    
    </zone>
    
@@ -3003,91 +3004,91 @@ Southeast: Docks
 
  <zone name="0_ados_city_s" level="0" x="500896" y="500128" file="Level 0/ados/city_s.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.city.ManWithHatNPC"/>
-		<entity x="85" y="10">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="85" y="10">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="93" y="33">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="93" y="33">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="103" y="55">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity> 
+        <entity x="103" y="55">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity> 
 
-		<entity x="109" y="78">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>  
+        <entity x="109" y="78">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>  
 
-		<entity x="120" y="95">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="120" y="95">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="74" y="64">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">15</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="74" y="64">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">15</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="44" y="12">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">blackbird-6b, blackbird-7b</parameter>
-				<parameter name="min">2</parameter>
-				<parameter name="max">15</parameter>
-				<parameter name="radius">20</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="44" y="12">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">blackbird-6b, blackbird-7b</parameter>
+                <parameter name="min">2</parameter>
+                <parameter name="max">15</parameter>
+                <parameter name="radius">20</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
-		<entity x="67" y="23">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">bird-2b, bird-1b</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">10</parameter>
-				<parameter name="radius">25</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
-		
-		
-		<entity x="53" y="24">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource">
-			</implementation>
-		</entity>
+        <entity x="67" y="23">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">bird-2b, bird-1b</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">10</parameter>
+                <parameter name="radius">25</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
+        
+        
+        <entity x="53" y="24">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource">
+            </implementation>
+        </entity>
   
   <portal x="53" y="25" ref="church_entrance">
      <destination zone="int_ados_church_0" ref="entrance_right"/>
@@ -3155,12 +3156,12 @@ Southeast: Docks
  <zone name="int_ados_church_0" file="interiors/ados/church_0.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.church.VergerNPC" />
   
-		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">sacred_moments</parameter>
-				<parameter name="volume">120</parameter>
-			</implementation>
-		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">sacred_moments</parameter>
+                <parameter name="volume">120</parameter>
+            </implementation>
+        </entity>
   
   <portal x="19" y="19" ref="entrance_left">
      <destination zone="0_ados_city_s" ref="church_entrance"/>
@@ -3189,12 +3190,12 @@ Southeast: Docks
   <zone name="int_ados_church_1" file="interiors/ados/church_1.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.church.HealerNPC" />
 
-		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">mystical_aura</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">mystical_aura</parameter>
+                <parameter name="volume">100</parameter>
+            </implementation>
+        </entity>
 
     <portal x="4" y="4" ref="downstairs">
      <destination zone="int_ados_church_0" ref="upstairs"/>
@@ -3204,8 +3205,8 @@ Southeast: Docks
  <zone name="int_ados_house_78" file="interiors/ados/house_78.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+    <parameter name="x"></parameter>
+    <parameter name="y"></parameter>
   </configurator>
   <portal x="" y="" ref="in">
     <destination zone="0_ados_city_s" ref="house_78"/>
@@ -3214,8 +3215,8 @@ Southeast: Docks
  <zone name="int_ados_house_79" file="interiors/ados/house_79.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+    <parameter name="x"></parameter>
+    <parameter name="y"></parameter>
   </configurator>
   <portal x="" y="" ref="in">
     <destination zone="0_ados_city_s" ref="house_79"/>
@@ -3224,8 +3225,8 @@ Southeast: Docks
  <zone name="int_ados_house_80" file="interiors/ados/house_80.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+    <parameter name="x"></parameter>
+    <parameter name="y"></parameter>
   </configurator>
   <portal x="" y="" ref="in">
     <destination zone="0_ados_city_s" ref="house_80"/>
@@ -3234,8 +3235,8 @@ Southeast: Docks
  <zone name="int_ados_house_81" file="interiors/ados/house_81.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+    <parameter name="x"></parameter>
+    <parameter name="y"></parameter>
   </configurator>
   <portal x="" y="" ref="in">
     <destination zone="0_ados_city_s" ref="house_81"/>
@@ -3244,8 +3245,8 @@ Southeast: Docks
  <zone name="int_ados_house_82" file="interiors/ados/house_82.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+    <parameter name="x"></parameter>
+    <parameter name="y"></parameter>
   </configurator>
   <portal x="" y="" ref="in">
     <destination zone="0_ados_city_s" ref="house_82"/>
@@ -3254,8 +3255,8 @@ Southeast: Docks
  <zone name="int_ados_house_83" file="interiors/ados/house_83.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+    <parameter name="x"></parameter>
+    <parameter name="y"></parameter>
   </configurator>
   <portal x="" y="" ref="in">
     <destination zone="0_ados_city_s" ref="house_83"/>
@@ -3264,8 +3265,8 @@ Southeast: Docks
  <zone name="int_ados_house_84" file="interiors/ados/house_84.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x"></parameter>
-	<parameter name="y"></parameter>
+    <parameter name="x"></parameter>
+    <parameter name="y"></parameter>
   </configurator>
   <portal x="" y="" ref="in">
     <destination zone="0_ados_city_s" ref="house_84"/>
@@ -3274,15 +3275,15 @@ Southeast: Docks
 
  <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="Level 0/ados/coast_s_w2.tmx">
      <configurator class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC" />
-		<entity x="96" y="105">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-				<parameter name="sound">water-2, wave-11</parameter>
-				<parameter name="min">1</parameter>
-				<parameter name="max">1</parameter>
-				<parameter name="radius">22</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
+        <entity x="96" y="105">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+                <parameter name="sound">water-2, wave-11</parameter>
+                <parameter name="min">1</parameter>
+                <parameter name="max">1</parameter>
+                <parameter name="radius">22</parameter>
+                <parameter name="volume">80</parameter>
+            </implementation>
+        </entity>
 
  </zone>
  
@@ -3308,14 +3309,14 @@ Southeast: Docks
   <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.OrcKillGiantDwarfNPC"/>
  
      <entity x="110" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-				<parameter name="shop">sellbetterstuff1</parameter>
-				<parameter name="title">Weapons and armor shop</parameter>
-				<parameter name="seller">true</parameter>
-				<parameter name="caption">You can buy good quality weapons and armor here.</parameter>
-			</implementation>
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+                <parameter name="shop">sellbetterstuff1</parameter>
+                <parameter name="title">Weapons and armor shop</parameter>
+                <parameter name="seller">true</parameter>
+                <parameter name="caption">You can buy good quality weapons and armor here.</parameter>
+            </implementation>
 
-			<attribute name="class">blackboard</attribute>
+            <attribute name="class">blackboard</attribute>
     </entity>
 
 </zone>
@@ -3347,22 +3348,22 @@ Southeast: Docks
  </zone>
  <zone name="-1_ados_wall_n" level="-1" x="500768" y="499872" file="Level -1/ados/wall_n.tmx">
  
-  		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">sewers</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">sewers</parameter>
+                <parameter name="volume">100</parameter>
+            </implementation>
+        </entity>
  
  </zone>
  <zone name="-1_ados_city_n" level="-1" x="500896" y="499872" file="Level -1/ados/city_n.tmx">
  
-  		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">sewers</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">sewers</parameter>
+                <parameter name="volume">100</parameter>
+            </implementation>
+        </entity>
  
  </zone>
  <zone name="-1_ados_wall" level="-1" x="500768" y="500000" file="Level -1/ados/wall.tmx">
@@ -3370,12 +3371,12 @@ Southeast: Docks
    <destination zone="int_ados_barracks_0" ref="down"/>
   </portal>
 
-  		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">sewers</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">sewers</parameter>
+                <parameter name="volume">100</parameter>
+            </implementation>
+        </entity>
 
  </zone> 
  <zone name="-1_ados_city" level="-1" x="500896" y="500000" file="Level -1/ados/city.tmx">  
@@ -3383,13 +3384,13 @@ Southeast: Docks
    <destination zone="int_ados_castle_dungeons" ref="crawlyspacedown"/>
   </portal>
 
-  		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">sewers</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-		</entity>
-		 
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">sewers</parameter>
+                <parameter name="volume">100</parameter>
+            </implementation>
+        </entity>
+         
  </zone>
  <!-- commented out till ready <zone name="-1_ados_vaults" level="-1" x="500768" y="500128" file="Level -1/ados/vaults.tmx">
   <portal x="49" y="28" ref="up_left">
@@ -3402,12 +3403,12 @@ Southeast: Docks
 
  <zone name="-1_ados_city_s" level="-1" x="500896" y="500128" file="Level -1/ados/city_s.tmx">
  
- 		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">sewers</parameter>
-				<parameter name="volume">100</parameter>
-			</implementation>
-		</entity>
+        <entity x="1" y="1">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+                <parameter name="sound">sewers</parameter>
+                <parameter name="volume">100</parameter>
+            </implementation>
+        </entity>
  
  </zone>
  
@@ -3494,14 +3495,14 @@ Southeast: Docks
   <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.DwarfWeaponArmorGuyNPC"/>
  
      <entity x="13" y="26">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-			<parameter name="shop">sellbetterstuff2</parameter>
-			<parameter name="title">Weapons and armor shop</parameter>
-			<parameter name="seller">true</parameter>
-			<parameter name="caption">You can buy excellent quality weapons and armor here.</parameter>
-		</implementation>
+        <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+            <parameter name="shop">sellbetterstuff2</parameter>
+            <parameter name="title">Weapons and armor shop</parameter>
+            <parameter name="seller">true</parameter>
+            <parameter name="caption">You can buy excellent quality weapons and armor here.</parameter>
+        </implementation>
 
-		<attribute name="class">blackboard</attribute>
+        <attribute name="class">blackboard</attribute>
     </entity>
 
  </zone>
