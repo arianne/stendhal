@@ -58,7 +58,7 @@ class GMHelpAction implements SlashAction {
 				"- /teleportto <player> \t\tTeleport yourself near the specified player",
 				"- /teleclickmode \t\t\t Makes you teleport to the location you double click",
 				"- /ghostmode \t\t\t Makes yourself invisible and intangible",
-				"- /alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, or SET. See /gmhelp alter for details",
+				"- /alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, SET or UNSET. See /gmhelp alter for details",
 				"- /altercreature <id> name/atk/def/hp/xp \tChange all the values of the creature. Useful in raids.run",
 				"- /alterquest <player> <questslot> <value> \tUpdate the <questslot> for <player> to be <value>",
 				"- /summon <creature|item> [x] [y]\tSummon the specified item or creature at co-ordinates <x>, <y> in the current zone",
@@ -69,7 +69,7 @@ class GMHelpAction implements SlashAction {
 		} else if ((params.length == 1) && (params[0] != null)) {
 			if ("alter".equals(params[0])) {
 				lines = Arrays.asList(
-					"/alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, or SET",
+					"/alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, SET or UNSET",
 					"Examples of <attrib>: atk, def, base_hp, hp, atk_xp, def_xp, xp, outfit",
 					"When modifying 'outfit', you should use SET mode and provide an 8-digit number; the first 2 digits are the 'hair' setting, then 'head', 'outfit', then 'body'",
 					"For example: #'/alter testplayer outfit set 12109901'",
