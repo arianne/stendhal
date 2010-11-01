@@ -5,6 +5,8 @@ Changelog
 - quantity selector for control-drop
 - corpses have resistance
 - fixed calculation of player ages (it assumed that a second was 3*300ms)
+- Added new fish-source on Amazon island
+- added red lionfish on Shop list Athor ferry
 
 0.88
 
