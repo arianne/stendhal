@@ -33,6 +33,8 @@ import java.util.Map;
   * Provides Wrviliza, the kobold barmaid in Wo'fol.
   * She's Wrvil's wife.
   *
+  * Offers a quest wich rewards the player with some bottles of V.S.O.P. koboldish torcibud.
+  *
   * @author omero
   */
 public class KoboldBarmaidNPC implements ZoneConfigurator {
@@ -130,13 +132,16 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 					}
 				}
 
+                // edit prices here and they'll be correct everywhere else
+                final int MILD_KOBOLDISH_TORCIBUD_PRICE = 95;
+                final int STRONG_KOBOLDISH_TORCIBUD_PRICE = 195;
+                
 				final Map<String, Integer> items = new HashMap<String, Integer>();
-
 				//beer and wine have higher than average prices here.
 				items.put("beer", 18);
 				items.put("wine", 25);
-				items.put("mild koboldish torcibud", 95);
-				items.put("strong koboldish torcibud", 195);
+				items.put("mild koboldish torcibud", MILD_KOBOLDISH_TORCIBUD_PRICE);
+				items.put("strong koboldish torcibud", STRONG_KOBOLDISH_TORCIBUD_PRICE);
 
 				new SellerAdder().addSeller(this, new TorcibudSellerBehaviour(items));
 
@@ -144,7 +149,6 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 					"Wroff! Welcome into the Kobold's Den bar wanderer!"
 						+ " I'm Wrviliza, wife of #Wrvil."
 						+ " If you want me to #offer you some beverages, just say so!");
-
 				addJob("Wroff! I offer wine, beer and my famous #mild or #strong koboldish #torcibud");
 				addHelp("Wruff... If you are thirsty I can #offer you some beverage. If you didn't notice, this is a bar!");
 				addGoodbye("Wroff... Goodbye and good luck!");
@@ -152,9 +156,11 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 				addReply(Arrays.asList("wine","beer"),
 						"Wrof! It will quench your thirst for a few coins...");
 				addReply("mild",
-						"Wrof! Not so #strong koboldish #torcibud. Give an empty #slim #bottle and 95 money... Wrof!");
+						"Wrof! Not so #strong koboldish #torcibud. Give an empty #slim #bottle and "
+                            + MILD_KOBOLDISH_TORCIBUD_PRICE + " moneys... Wrof!");
 				addReply("strong",
-						"Wrof! Not so #mild koboldish #torcibud. Give an empty #eared #bottle and 195 money... Wrof!");
+						"Wrof! Not so #mild koboldish #torcibud. Give an empty #eared #bottle and "
+                            + STRONG_KOBOLDISH_TORCIBUD_PRICE + " moneys... Wrof!");
 				addReply("torcibud",
 						"Wrof! Real stuff from a secret koboldish recipe! Ask me to #offer you some!");
 				addReply("wrvil",
