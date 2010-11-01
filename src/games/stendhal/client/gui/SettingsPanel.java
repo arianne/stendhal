@@ -55,6 +55,8 @@ public class SettingsPanel extends JPanel {
 	 * Stores the commands available for each group label 
 	 */
 	private static Map<String, String[]> groupsAndCommands;
+	/** Tooltip texts for each menu button indexed by the group label */
+	private static final Map<String, String> tooltips = new HashMap<String, String>();
 	
 	/**
 	 * Set the commands available for each group label 
@@ -66,6 +68,11 @@ public class SettingsPanel extends JPanel {
 		groupsAndCommands.put("settings", new String[] {"Mute", "Clickmode"});
 		groupsAndCommands.put("rp", new String[] {"Who", "Hall Of Fame", "List Producers"});
 	//	groupsAndCommands.put("contribute", new String[] {"Report Bug", "Request Feature", "Chat"});
+		
+		tooltips.put("help", "Help topics");
+		tooltips.put("accountcontrol", "Manage accounts");
+		tooltips.put("settings", "Settings");
+		tooltips.put("rp", "Game commands");
 	}
 	
 	static {
@@ -103,6 +110,7 @@ public class SettingsPanel extends JPanel {
 		button.setComponentPopupMenu(commands);
 		
 		button.addActionListener(new ButtonListener(button));
+		button.setToolTipText(tooltips.get(label));
 		add(button);
 	}
 
