@@ -27,23 +27,8 @@
  <!-- Level 0 (Ground) -->
 
      <zone name="0_athor_ship_w2" level="0" x="500768" y="500384" file="Level 0/athor/ship_w2.tmx">
-       <entity x="22" y="38">
-         <implementation class-name="games.stendhal.server.maps.athor.ship.CaptainNPC">
-           <parameter name="name">Captain</parameter>
-           <parameter name="direction">down</parameter>
-         </implementation>
-
-         <attribute name="class">piratenpc</attribute>
-       </entity>
-
-       <entity x="29" y="34">
-         <implementation class-name="games.stendhal.server.maps.athor.ship.CoastConveyerNPC">
-           <parameter name="name">Jackie</parameter>
-           <parameter name="direction">left</parameter>
-         </implementation>
-
-         <attribute name="class">pirate_sailor2npc</attribute>
-       </entity>
+      <configurator class-name="games.stendhal.server.maps.athor.ship.CoastConveyerNPC"/>
+      <configurator class-name="games.stendhal.server.maps.athor.ship.CaptainNPC"/>
 
        <entity x="34" y="39">
     	   <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
