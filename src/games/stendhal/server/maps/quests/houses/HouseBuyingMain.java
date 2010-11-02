@@ -21,7 +21,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  *
  * @author kymara
  */
-
 public class HouseBuyingMain {
 	static HouseTax houseTax;
 
@@ -34,64 +33,44 @@ public class HouseBuyingMain {
 	/** Kirdneh house seller Zone name. */
 	private static final String KIRDNEH_TOWNHALL = "int_kirdneh_townhall";
 
-	/** Kalavan house seller. */
-	private StendhalRPZone kalavan_city_zone;
-	/** Athor house seller Zone. */
-	private StendhalRPZone athor_island_zone;
-	/** Ados house seller Zone.  */
-	private StendhalRPZone ados_townhall_zone;
-	/** Kirdneh house seller Zone. */
-	private StendhalRPZone kirdneh_townhall_zone;
-	
-	
-
-
-	
-
 	/** The NPC for Kalavan Houses. */
-	private void createNPC() {
+	public void createKalavanNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new KalavanHouseseller("Barrett Holmes", "kalavan", houseTax);
-		
-
-		kalavan_city_zone.add(npc);
+		zone.add(npc);
 	}
 
 	/** The NPC for Ados Houses. */
-	private void createNPC2() {
-		final SpeakerNPC npc2 = new AdosHouseSeller("Reg Denson", "ados", houseTax);
-
-
-		ados_townhall_zone.add(npc2);
+	public void createAdosNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new AdosHouseSeller("Reg Denson", "ados", houseTax);
+		zone.add(npc);
 	}
 
 	/** The NPC for Kirdneh Houses. */
-	private void createNPC3() {
-		final SpeakerNPC npc3 = new KirdnehHouseSeller("Roger Frampton", "kirdneh", houseTax);
-
-		kirdneh_townhall_zone.add(npc3);
+	public void createKirdnehNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new KirdnehHouseSeller("Roger Frampton", "kirdneh", houseTax);
+		zone.add(npc);
 	}
 
 	/** The NPC for Athor Apartments. */
-	private void createNPC4() {
-		final SpeakerNPC npc4 = new AthorHouseSeller("Cyk", "athor", houseTax);
-
-		athor_island_zone.add(npc4);
+	public void createAthorNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new AthorHouseSeller("Cyk", "athor", houseTax);
+		zone.add(npc);
 	}
 
 	public void addToWorld() {
 		// Start collecting taxes as well
 		houseTax = new HouseTax();
 		
-		kalavan_city_zone = SingletonRepository.getRPWorld().getZone(KALAVAN_CITY);
-		createNPC();
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(KALAVAN_CITY);
+		createKalavanNPC(zone);
 
-		ados_townhall_zone = SingletonRepository.getRPWorld().getZone(ADOS_TOWNHALL);
-		createNPC2();
+		zone = SingletonRepository.getRPWorld().getZone(ADOS_TOWNHALL);
+		createAdosNPC(zone);
 
-		kirdneh_townhall_zone = SingletonRepository.getRPWorld().getZone(KIRDNEH_TOWNHALL);
-		createNPC3();
+		zone = SingletonRepository.getRPWorld().getZone(KIRDNEH_TOWNHALL);
+		createKirdnehNPC(zone);
 
-		athor_island_zone = SingletonRepository.getRPWorld().getZone(ATHOR_ISLAND);
-		createNPC4();
+		zone = SingletonRepository.getRPWorld().getZone(ATHOR_ISLAND);
+		createAthorNPC(zone);
 	}
 }

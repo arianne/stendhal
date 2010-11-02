@@ -34,6 +34,7 @@ import games.stendhal.server.maps.ados.outside.VeterinarianNPC;
 import games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC;
 import games.stendhal.server.maps.ados.wall.HolidayingManNPC;
 import games.stendhal.server.maps.orril.magician_house.WitchNPC;
+import games.stendhal.server.maps.quests.houses.HouseBuyingMain;
 import games.stendhal.server.maps.semos.bakery.ChefNPC;
 import games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC;
 import games.stendhal.server.maps.semos.jail.GuardNPC;
@@ -91,8 +92,9 @@ public class PizzaDeliveryTest {
 		//	ramon is added in this quest - so we have to load this before we load pizza one.
 		final AbstractQuest blackjackquest = new Blackjack();
 		blackjackquest.addToWorld();
-		
-		new HouseBuying().addToWorld();
+
+		// Taxman is required by HouseBuying
+		new HouseBuyingMain().createAthorNPC(zone);
 		
 		final AbstractQuest quest = new PizzaDelivery();
 		quest.addToWorld();
