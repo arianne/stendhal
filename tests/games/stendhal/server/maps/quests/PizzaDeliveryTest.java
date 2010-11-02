@@ -421,7 +421,7 @@ public class PizzaDeliveryTest {
 		en = npc1.getEngine();
 		// on time
 		en.step(player, "hi");
-		assertEquals("Hey there!", getReply(npc1));
+		assertEquals("Hello, player.", getReply(npc1));
 		en.step(player, "pizza");
 		// [17:10] kymara earns 50 experience points.
 		assertEquals("Wow, I never believed you would really deliver this half over the world! Here, take these Pizza Hawaii bucks!", getReply(npc1));
