@@ -95,7 +95,13 @@ final class AthorHouseSeller extends HouseSellerNPCBase {
 	protected void createPath() {
 		setPath(null);
 	}
-
+	
+	@Override
+	public void say(final String text) {
+		// He doesn't move around because he's "lying" on his towel.
+		say(text, false);
+	}
+	
 	@Override
 	protected int getHighestHouseNumber() {
 		return 108;
