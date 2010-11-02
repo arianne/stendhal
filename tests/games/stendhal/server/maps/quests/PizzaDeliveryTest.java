@@ -18,15 +18,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-
-import java.util.List;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -37,7 +33,6 @@ import games.stendhal.server.maps.ados.outside.AnimalKeeperNPC;
 import games.stendhal.server.maps.ados.outside.VeterinarianNPC;
 import games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC;
 import games.stendhal.server.maps.ados.wall.HolidayingManNPC;
-import games.stendhal.server.maps.athor.holiday_area.SunbatherNPC;
 import games.stendhal.server.maps.orril.magician_house.WitchNPC;
 import games.stendhal.server.maps.semos.bakery.ChefNPC;
 import games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC;
@@ -45,6 +40,8 @@ import games.stendhal.server.maps.semos.jail.GuardNPC;
 import games.stendhal.server.maps.semos.plains.MillerNPC;
 import games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC;
 import games.stendhal.server.maps.semos.village.SheepSellerNPC;
+
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -91,20 +88,16 @@ public class PizzaDeliveryTest {
 		new GuardNPC().configureZone(zone, null);
 		new FerryConveyerNPC().configureZone(zone, null);
 		
-		SpeakerNPC npc = new SpeakerNPC("Cyk");
-		SingletonRepository.getNPCList().add(npc);
-		SpeakerNPCFactory npcConf = new SunbatherNPC();
-		npcConf.createDialog(npc);		
-
-		npc = new SpeakerNPC("Tor'Koom");
-		
 		//	ramon is added in this quest - so we have to load this before we load pizza one.
 		final AbstractQuest blackjackquest = new Blackjack();
 		blackjackquest.addToWorld();
 		
+		new HouseBuying().addToWorld();
+		
 		final AbstractQuest quest = new PizzaDelivery();
 		quest.addToWorld();
 
+		
 		// katinka's hi response is defined here
 		final AbstractQuest zooquest = new ZooFood();
 		zooquest.addToWorld();
