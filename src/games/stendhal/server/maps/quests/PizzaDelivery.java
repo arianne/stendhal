@@ -32,6 +32,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 /**
  * QUEST: Pizza Delivery
  * <p>
@@ -65,7 +67,7 @@ import java.util.Map;
  * </ul>
  */
 public class PizzaDelivery extends AbstractQuest {
-
+	private static final Logger logger = Logger.getLogger(PizzaDelivery.class);
 	private static final Outfit UNIFORM = new Outfit(null, null, null, Integer.valueOf(90), null);
 
 	/**
@@ -585,6 +587,10 @@ public class PizzaDelivery extends AbstractQuest {
 	private void prepareCustomers() {
 		for (final String name : customerDB.keySet()) {
 			final SpeakerNPC npc = npcs.get(name);
+			if (npc == null) {
+				logger.error("NPC " + name + " is used in the Pizza Delivery quest but does not exist in game.", new Throwable());
+				continue;
+			}
 
 			npc.add(ConversationStates.ATTENDING, "pizza", null,
 				ConversationStates.ATTENDING, null,
