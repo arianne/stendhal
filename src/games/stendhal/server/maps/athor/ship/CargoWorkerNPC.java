@@ -12,46 +12,84 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.ship;
 
+import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /** Factory for cargo worker on Athor Ferry. */
-//TODO: take NPC definition elements which are currently in XML and include here
-public class CargoWorkerNPC extends SpeakerNPCFactory {
 
-	@Override
-	public void createDialog(final SpeakerNPC npc) {
-		npc.addGreeting("Ahoy! Nice to see you in the cargo hold!");
-		npc.addJob("I'm taking care of the cargo. My job would be much easier without all these #rats.");
-		npc.addHelp("You could earn some money if you'd #offer me something to poison these damn #rats.");
-		npc.addReply(Arrays.asList("rat", "rats"),
-		        "These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
+public class CargoWorkerNPC implements ZoneConfigurator  {
 
-		new BuyerAdder().add(npc, 
-				new BuyerBehaviour(SingletonRepository.getShopList().get("buypoisons")), true);
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		buildNPC(zone);
+	}
 
-		npc.addGoodbye("Please kill some rats on your way up!");
-		new AthorFerry.FerryListener() {
+	private void buildNPC(StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Klaas") {
 
-			
-			public void onNewFerryState(final Status status) {
-				switch (status) {
-				case ANCHORED_AT_MAINLAND:
-				case ANCHORED_AT_ISLAND:
-					npc.say("Attention: We have arrived!");
-					break;
-
-				default:
-					npc.say("Attention: We have set sail!");
-					break;
-				}
+			@Override
+			protected void createPath() {
+				final List<Node> nodes = new LinkedList<Node>();
+				// to the bucket
+				nodes.add(new Node(24,42));
+				// along the corridor
+				nodes.add(new Node(24,35));
+				// walk between barrels and boxes
+				nodes.add(new Node(17,35));
+				// to the stairs
+				nodes.add(new Node(17,39));
+				// walk between the barrels 
+				nodes.add(new Node(22,39));
+				// towards the bow
+				nodes.add(new Node(22,42));
+				setPath(new FixedPath(nodes, true));
 			}
-		};
+
+			@Override
+			public void createDialog() {
+				addGreeting("Ahoy! Nice to see you in the cargo hold!");
+				addJob("I'm taking care of the cargo. My job would be much easier without all these #rats.");
+				addHelp("You could earn some money if you'd #offer me something to poison these damn #rats.");
+				addReply(Arrays.asList("rat", "rats"),
+				"These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
+
+				new BuyerAdder().add(this, 
+						new BuyerBehaviour(SingletonRepository.getShopList().get("buypoisons")), true);
+
+				addGoodbye("Please kill some rats on your way up!");
+			}};
+
+			new AthorFerry.FerryListener() {
+
+
+				public void onNewFerryState(final Status status) {
+					switch (status) {
+					case ANCHORED_AT_MAINLAND:
+					case ANCHORED_AT_ISLAND:
+						npc.say("Attention: We have arrived!");
+						break;
+
+					default:
+						npc.say("Attention: We have set sail!");
+						break;
+					}
+				}
+			};
+
+			npc.setPosition(24, 42);
+			npc.setEntityClass("seller2npc");
+			zone.add(npc);	
 	}
 }

@@ -127,6 +127,7 @@
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.YanNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.DiverNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC" />
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.FerryConveyerNPC" />
        <portal x="57" y="57" ref="apartment_1_entrance">
          <destination zone="int_athor_apartment_101" ref="out"/>
 		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
@@ -237,15 +238,6 @@
        <portal x="63" y="67" ref="diving_board">
          <destination zone="0_athor_island" ref="diving_board_destination"/>
        </portal>
-       
-       <entity x="16" y="88">
-         <implementation class-name="games.stendhal.server.maps.athor.holiday_area.FerryConveyerNPC">
-           <parameter name="name">Jessica</parameter>
-           <parameter name="direction">left</parameter>
-         </implementation>
-
-         <attribute name="class">woman_008_npc</attribute>
-       </entity>
 
 	<entity x="78" y="39">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
@@ -403,17 +395,10 @@
      </zone>
 
      <zone name="int_athor_dressing_room_m" file="interiors/athor/dressing_room_m.tmx">
+      <configurator class-name="games.stendhal.server.maps.athor.dressingroom_male.LifeguardNPC"/>
        <portal x="6" y="14" ref="out">
          <destination zone="0_athor_island" ref="dressing_room_m_entrance"/>
        </portal>
-       <entity x="3" y="11">
-         <implementation class-name="games.stendhal.server.maps.athor.dressingroom_male.LifeguardNPC">
-           <parameter name="name">David</parameter>
-           <parameter name="direction">right</parameter>
-         </implementation>
-
-         <attribute name="class">lifeguardmalenpc</attribute>
-       </entity>
 
         <!-- This must be after the NPC configurator -->
         <entity x="3" y="10">
@@ -454,21 +439,7 @@
  <!-- Level -1 -->
 
      <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="Level -1/athor/ship_w2.tmx">
-       <entity x="27" y="28">
-         <implementation class-name="games.stendhal.server.maps.athor.ship.CookNPC">
-           <parameter name="name">Laura</parameter>
-           <!-- to the oven -->
-           <parameter name="node0">27,28</parameter>
-           <!-- to the table -->
-           <parameter name="node1">27,31</parameter>
-           <!-- to the dining room -->
-           <parameter name="node2">18,31</parameter>
-           <!-- to the barrel -->
-           <parameter name="node2">28,31</parameter>
-         </implementation>
-
-    <attribute name="class">tavernbarmaidnpc</attribute>
-   </entity>
+     <configurator class-name="games.stendhal.server.maps.athor.ship.CookNPC"/>
 
    <entity x="24" y="35">
          <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
@@ -619,26 +590,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
  <!-- Level -2 -->
 
  <zone name="-2_athor_ship_w2" level="-2" x="500768" y="500384" file="Level -2/athor/ship_w2.tmx">
-   <entity x="24" y="42">
-     <implementation class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC">
-       <parameter name="name">Klaas</parameter>
-
-       <!-- to the bucket -->
-       <parameter name="node0">24,42</parameter>
-       <!-- along the corridor -->
-       <parameter name="node1">24,35</parameter>
-       <!-- walk between barrels and boxes -->
-       <parameter name="node2">17,35</parameter>
-       <!-- to the stairs -->
-       <parameter name="node3">17,39</parameter>
-       <!-- walk between the barrels -->
-       <parameter name="node4">22,39</parameter>
-       <!-- towards the bow -->
-       <parameter name="node5">22,42</parameter>
-     </implementation>
-
-     <attribute name="class">seller2npc</attribute>
-   </entity>
+  <configurator class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC"/>
 
     <!-- This must be after the NPC factory -->
    <entity x="22" y="30">
