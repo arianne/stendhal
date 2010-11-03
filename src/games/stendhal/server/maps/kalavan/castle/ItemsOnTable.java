@@ -69,6 +69,32 @@ public class ItemsOnTable implements ZoneConfigurator {
 		zone.add(plantGrower5);
 
 		plantGrower5.setToFullGrowth();
+
+		// grower for an empty eared bottle (24h)
+		final PassiveEntityRespawnPoint bottleGrower1 = new PassiveEntityRespawnPoint("eared bottle", 288000);
+		bottleGrower1.setPosition(91, 90);
+		bottleGrower1.setDescription("Scientists often put bottles down here.");
+		zone.add(bottleGrower1);
+
+		bottleGrower1.setToFullGrowth();
+
+		// grower for an empty slim bottle
+		final PassiveEntityRespawnPoint bottleGrower2 = new PassiveEntityRespawnPoint("slim bottle", 3000);
+		bottleGrower2.setPosition(102, 89);
+		bottleGrower2.setDescription("Scientists often put bottles down here.");
+		zone.add(bottleGrower2);
+
+		bottleGrower2.setToFullGrowth();
+
+		// grower for an empty fat bottle
+		final PassiveEntityRespawnPoint bottleGrower3 = new PassiveEntityRespawnPoint("fat bottle", 3000);
+		bottleGrower3.setPosition(104, 105);
+		bottleGrower3.setDescription("Scientists often put bottles down here.");
+		zone.add(bottleGrower3);
+
+		bottleGrower3.setToFullGrowth();
+
+
 	}
 
 }
