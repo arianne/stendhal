@@ -85,6 +85,30 @@ public class RPEntityTest {
 		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 36, 7), is(75));
 		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 49, 7), is(43));
 		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 64, 7), is(0));
+		
+		// same with non standard distances.
+		// a short range weapon first
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 0, 4), is(80));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 1, 4), is(64));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 4, 4), is(96));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 9, 4), is(96));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 16, 4), is(64));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 25, 4), is(0));
+		
+		// and a long range weapon (dunno if we actually have anything for
+		// this long range)
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 0, 10), is(80));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 1, 10), is(33));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 4, 10), is(59));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 9, 10), is(79));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 16, 10), is(92));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 25, 10), is(99));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 36, 10), is(99));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 49, 10), is(92));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 64, 10), is(79));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 81, 10), is(59));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 100, 10), is(33));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 121, 10), is(0));
 	}
 
 	/**
@@ -513,7 +537,7 @@ public class RPEntityTest {
 	 * Tests for setXP.
 	 */
 	@Test
-	public void testSetXP() throws Exception {
+	public void testSetXP() {
 
 		final RPEntity entity = new RPEntity() {
 
@@ -539,7 +563,7 @@ public class RPEntityTest {
 	 * Tests for addXP.
 	 */
 	@Test
-	public void testaddXP() throws Exception {
+	public void testaddXP() {
 
 		final RPEntity entity = new RPEntity() {
 
