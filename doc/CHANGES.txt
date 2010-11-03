@@ -7,6 +7,15 @@ Changelog
 - fixed calculation of player ages (it assumed that a second was 3*300ms)
 - Added new fish-source on Amazon island
 - added red lionfish on Shop list Athor ferry
+- added Eheneumniranin, a half-elf that lost his memories. He's sickleing the grain field in ados forest farm area.
+- added Gertha and Martha in Kalavan city gardens, they'll bake delicious apple and cherry pies
+- added Wrviliza, a kobold barmaid in Wo'fol bar, she also provides new drinks (mild and strong koboldish torcibud)
+- added a quest in Wo'fol (the reward is V.S.O.P. koboldish torcibud)
+- added new grower(s): artichoke, garlic, mandragora (a magical herb), cane fields
+- added hen nests (egg spawner).
+- added sprites and tileset for several empty bottles (some will be needed for a quest)
+- added Uncle Dag in Ados market, he runs a distillery stand there and produces fierywater
+- added a sickle, a farming tool used to harvest canes
 
 0.88
 
