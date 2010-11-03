@@ -32,6 +32,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import marauroa.common.Log4J;
+import marauroa.common.MarauroaUncaughtExceptionHandler;
 
 import org.apache.log4j.Logger;
 
@@ -162,6 +163,7 @@ public class stendhal {
 		// get size string
 		parseCommandlineArguments(args);
 		startLogSystem();
+		MarauroaUncaughtExceptionHandler.setup(false);
 		UserContext userContext = new UserContext();
 		PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
 		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
