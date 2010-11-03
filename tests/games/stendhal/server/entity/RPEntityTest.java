@@ -76,15 +76,15 @@ public class RPEntityTest {
 
 		final int damage = 100;
 
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 0), is(80));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 1), is(43));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 4), is(75));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 9), is(93));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 16), is(100));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 25), is(93));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 36), is(75));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 49), is(43));
-		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 64), is(0));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 0, 7), is(80));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 1, 7), is(43));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 4, 7), is(75));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 9, 7), is(93));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 16, 7), is(100));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 25, 7), is(93));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 36, 7), is(75));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 49, 7), is(43));
+		assertThat(RPEntity.applyDistanceAttackModifiers(damage, 64, 7), is(0));
 	}
 
 	/**
