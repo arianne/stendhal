@@ -308,8 +308,10 @@ public class Creature extends NPC {
 	}
 	
 	/**
-	 * override noises for changes.
+	 * Override noises for changes.
 	 * 
+	 * @param creatureNoises noises to be used instead of the defaults for the
+	 * 	creature 
 	 */
 	public void setNoises(final LinkedHashMap<String, LinkedList<String>> creatureNoises){
 		noises.clear();
@@ -424,7 +426,11 @@ public class Creature extends NPC {
 		setRespawned(true);
 	}
 
-	/** Returns the respawn time in turns */
+	/**
+	 * Get the respawn time of the creature.
+	 * 
+	 * @return respawn time in turns
+	 */
 	public int getRespawnTime() {
 		return respawnTime;
 	}
@@ -725,14 +731,13 @@ public class Creature extends NPC {
 	}
 
 	@Override
-	public boolean canDoRangeAttack(final RPEntity target) {
+	public int getMaxRangeForArcher() {
 		if (getAiProfiles().containsKey("archer")) {
 			// The creature can shoot, but only if the target is at most
 			// 7 tiles away.
-			return squaredDistance(target) <= 7 * 7;
+			return 7;
 		}
-		return false;
-		//  return super.canDoRangeAttack(target);
+		return 0;
 	}
 
 	/**

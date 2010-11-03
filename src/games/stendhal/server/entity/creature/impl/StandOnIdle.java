@@ -30,7 +30,7 @@ public class StandOnIdle implements Idlebehaviour {
 	 */
 	protected boolean retreatUnderFire(final Creature creature) {
 		for (RPEntity attacker : creature.getAttackingRPEntities()) {
-			if (attacker.canDoRangeAttack(creature)) {
+			if (attacker.canDoRangeAttack(creature, attacker.getMaxRangeForArcher())) {
 				retreat(creature, attacker);
 
 				return true;

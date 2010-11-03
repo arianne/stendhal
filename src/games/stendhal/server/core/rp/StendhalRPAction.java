@@ -199,7 +199,7 @@ public class StendhalRPAction {
 		if (!player.nextTo(defender)) {
 			// The attacker is not directly standing next to the defender.
 			// Find out if he can attack from the distance.
-			if (player.canDoRangeAttack(defender)) {
+			if (player.canDoRangeAttack(defender, player.getMaxRangeForArcher())) {
 
 				// Check line of view to see if there is any obstacle.
 				if (zone.collidesOnLine(player.getX(), player.getY(),

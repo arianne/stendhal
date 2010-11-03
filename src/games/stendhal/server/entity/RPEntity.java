@@ -48,11 +48,11 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import marauroa.common.game.Definition;
-import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
+import marauroa.common.game.Definition.Type;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
@@ -531,12 +531,13 @@ public abstract class RPEntity extends GuidedEntity {
 		int damage = (int) (defender.getSusceptibility(getDamageType()) 
 				* (WEIGHT_ATK * attack - defence) / maxDefence);
 
-		if (canDoRangeAttack(defender)) {
+		final int maxRange = getMaxRangeForArcher();
+		if ((maxRange > 0) && canDoRangeAttack(defender, maxRange)) {
 			// The attacker is attacking either using a range weapon with
 			// ammunition such as a bow and arrows, or a missile such as a
 			// spear.
 			damage = applyDistanceAttackModifiers(damage,
-					squaredDistance(defender));
+					squaredDistance(defender), maxRange);
 		}
 
 		return damage;
@@ -551,13 +552,13 @@ public abstract class RPEntity extends GuidedEntity {
 	 *            modifiers for distance attacks.
 	 * @param squareDistance
 	 *            the distance
+	 * @param maxrange maximum attack range
 	 * @return The damage that will be done with the distance attack.
 	 */
 	public static int applyDistanceAttackModifiers(final int damage,
-			final double squareDistance) {
-		final double maxrange = 7;
-		final double maxrangeSquared = maxrange * maxrange;
-		if (maxrangeSquared < squareDistance) {
+			final double squareDistance, final double maxrange) {
+		final double maxRangeSquared = maxrange * maxrange;
+		if (maxRangeSquared < squareDistance) {
 			return 0;
 		} else if (squareDistance == 0) {
 			// as a special case, make archers switch to melee when the enemy is
@@ -2082,18 +2083,22 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Can this entity do a distance attack on the given target?
 	 * 
 	 * @param target
+	 * @param maxrange maximum attack distance
 	 * 
 	 * @return true if this entity is armed with a distance weapon and if the
 	 *         target is in range.
 	 */
-	public boolean canDoRangeAttack(final RPEntity target) {
-		final int maxRange = getMaxRangeForArcher();
-		// there's at least one square between, and the target's in range
-		return (squaredDistance(target) >= 1)
-				&& (squaredDistance(target) <= maxRange * maxRange);
+	public boolean canDoRangeAttack(final RPEntity target, final int maxrange) {
+		// the target's in range
+		return (squaredDistance(target) <= maxrange * maxrange);
 	}
 
-	private int getMaxRangeForArcher() {
+	/**
+	 * Get the maximum distance attack range.
+	 * 
+	 * @return maximum range, or 0 if the entity can't attack from distance
+	 */
+	public int getMaxRangeForArcher() {
 		final Item rangeWeapon = getRangeWeapon();
 		final StackableItem ammunition = getAmmunition();
 		final StackableItem missiles = getMissileIfNotHoldingOtherWeapon();
