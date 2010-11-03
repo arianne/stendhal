@@ -41,6 +41,15 @@ public class ItemsOnTable implements ZoneConfigurator {
 		zone.add(plantGrower);
 
 		plantGrower.setToFullGrowth();
+
+		// grower for an empty slim bottle (see Koboldish Torcibud quest)
+		final PassiveEntityRespawnPoint bottleGrower = new PassiveEntityRespawnPoint("slim bottle", 1500);
+		bottleGrower.setPosition(10, 5);
+		bottleGrower.setDescription("A spot where a bottle could be standing.");
+		zone.add(bottleGrower);
+
+		bottleGrower.setToFullGrowth();
+
 	}
 
 	private Item addPersistentItem(final String name, final StendhalRPZone zone, final int x, final int y) {
