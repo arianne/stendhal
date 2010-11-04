@@ -86,6 +86,7 @@ public class KoboldishTorcibud extends AbstractQuest {
     private static final String REQUIRED_ITEMS_TEMPLATE =
         "eared bottle=0;" +
         "slim bottle=0;" +
+        "mandragora=0;" +
         "artichoke=0;" +
         "arandula=0;" +
         "sclaria=0;" +
@@ -129,15 +130,18 @@ public class KoboldishTorcibud extends AbstractQuest {
      */
     private String getRequiredItemsCollection(int pLevel) {
 
-        int FACTOR_BOTTLE_EARED = 80;
         int FACTOR_BOTTLE_SLIM = 60;
+        int FACTOR_BOTTLE_EARED = 80;
+		int FACTOR_MANDRAGORA = 100;
 
         int required_bottle_eared = Rand.roll1D6() + (pLevel / FACTOR_BOTTLE_EARED);
         int required_bottle_slim = Rand.roll1D6() + (pLevel / FACTOR_BOTTLE_SLIM);
+		int required_mandragora = Rand.randUniform(1,3) + (pLevel / FACTOR_MANDRAGORA);
 
         return
             "eared bottle=" + required_bottle_eared + ";" +
             "slim bottle=" + required_bottle_slim + ";" +
+            "mandragora=" + required_mandragora + ";" +
             "artichoke=" + Rand.roll1D6() + ";" +
             "arandula=" + Rand.roll1D6() + ";" +
             "sclaria=" + Rand.roll1D6() + ";" +
