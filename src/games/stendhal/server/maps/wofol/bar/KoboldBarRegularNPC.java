@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
-  * Provides Ortiz, a regular customer of Kobold's Den bar in Wo'fol.
+  * Provides Kormic, a regular customer of Kobold's Den bar in Wo'fol.
   *
   * @author omero
   */
@@ -49,7 +49,7 @@ public class KoboldBarRegularNPC implements ZoneConfigurator {
 
     private void buildNPC(final StendhalRPZone zone) {
 
-        final SpeakerNPC npc = new SpeakerNPC("Ortiz") {
+        final SpeakerNPC npc = new SpeakerNPC("Kormic") {
 
             @Override
             public void say(final String text) {
@@ -80,7 +80,7 @@ public class KoboldBarRegularNPC implements ZoneConfigurator {
         npc.setPosition(6, 5);
         npc.initHP(100);
         npc.setDirection(Direction.UP);
-        npc.setDescription("You see Ortiz, a regular here in Kobold's Den bar.");
+        npc.setDescription("You see Kormic, a regular here in Kobold's Den bar.");
         zone.add(npc);
 
     }
