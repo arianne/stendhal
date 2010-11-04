@@ -285,6 +285,7 @@ public class Grammar {
 			result = addPrefixIfNotAlreadyThere(lowString, "loaf of ",
 					"loaves of ");
 		} else if (result.equals("beer")
+				|| result.equals("fierywater")
 				|| result.equals("milk")
 				|| result.endsWith("potion")
 				|| result.endsWith("poison")
@@ -305,6 +306,9 @@ public class Grammar {
 		} else if (result.equals("arandula")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "sprig of ",
 					"sprigs of ");
+		} else if (result.equals("mandragora")) {
+			result = addPrefixIfNotAlreadyThere(lowString, "root of ",
+					"roots of ");
 		} else if (result.indexOf(" armor") > -1) {
 			result = addPrefixIfNotAlreadyThere(lowString, "suit of ",
 					"suits of ");
@@ -360,6 +364,7 @@ public class Grammar {
 		result = removePrefix(result, "bottle of ");
 		result = removePrefix(result, "jar of ");
 		result = removePrefix(result, "sprig of ");
+		result = removePrefix(result, "root of ");
 		result = removePrefix(result, "suit of ");
 		result = removePrefix(result, "pair of ");
 		result = removePrefix(result, "glas of ");
@@ -386,6 +391,7 @@ public class Grammar {
 		result = removePrefix(result, "bottles of ");
 		result = removePrefix(result, "jars of ");
 		result = removePrefix(result, "sprigs of ");
+		result = removePrefix(result, "roots of ");
 		result = removePrefix(result, "suits of ");
 		result = removePrefix(result, "pairs of ");
 		result = removePrefix(result, "glasses of ");
