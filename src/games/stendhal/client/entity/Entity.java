@@ -398,15 +398,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		}
 
 		/*
-		 * Type
-		 */
-		if (object.has("type")) {
-			type = object.get("type");
-		} else {
-			type = null;
-		}
-
-		/*
 		 * Resistance
 		 */
 		if (object.has("resistance")) {
@@ -443,6 +434,10 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		 * Notify placement
 		 */
 		onPosition(x, y);
+		/*
+		 * Type
+		 */
+		type = object.getRPClass().getName();
 
 		inAdd = true;
 		onChangedAdded(new RPObject(), object);
@@ -586,15 +581,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		}
 
 		/*
-		 * Type
-		 */
-		if (changes.has("type")) {
-			type = changes.get("type");
-			fireChange(PROP_TYPE);
-			fireChange(PROP_TITLE);
-		}
-
-		/*
 		 * Resistance
 		 */
 		if (changes.has("resistance")) {
@@ -680,15 +666,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		 */
 		if (changes.has("title")) {
 			title = null;
-			fireChange(PROP_TITLE);
-		}
-
-		/*
-		 * Type
-		 */
-		if (changes.has("type")) {
-			type = null;
-			fireChange(PROP_TYPE);
 			fireChange(PROP_TITLE);
 		}
 

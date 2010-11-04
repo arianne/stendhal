@@ -48,10 +48,6 @@ public interface IEntity {
 	 */
 	Property PROP_TITLE = new Property();
 	/**
-	 * Type property.
-	 */
-	Property PROP_TYPE = new Property();
-	/**
 	 * Visibility property.
 	 */
 	Property PROP_VISIBILITY = new Property();

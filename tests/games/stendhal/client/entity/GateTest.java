@@ -23,6 +23,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.awt.geom.Rectangle2D;
 
+import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
 import org.junit.After;
@@ -32,9 +33,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class GateTest {
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		if (!RPClass.hasRPClass("test_rpclass")) {
+			new RPClass("test_rpclass");
+		}
 	}
 
 	@AfterClass
@@ -246,9 +249,9 @@ public class GateTest {
 		object.put("y", 2);
 		object.put("width", 3);
 		object.put("height", 4);
-		object.put("type", "type");
+		object.setRPClass("test_rpclass");
 		g.initialize(object);
-		assertThat(g.getType(), is("type"));
+		assertThat(g.getType(), is("test_rpclass"));
 	}
 
 	/**

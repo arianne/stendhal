@@ -17,12 +17,20 @@ import static org.junit.Assert.assertNotNull;
 
 import java.awt.geom.Rectangle2D;
 
+import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class EntityTest {
+	@BeforeClass
+	public static void init() {
+		if (!RPClass.hasRPClass("test_rpclass")) {
+			new RPClass("test_rpclass");
+		}
+	}
 
 	/**
 	 * Tests for entity.
@@ -44,7 +52,6 @@ public class EntityTest {
 		MockEntity en;
 		RPObject rpo;
 		rpo = new RPObject();
-		rpo.put("type", "_hugo");
 
 		en = new MockEntity();
 		assertEquals(0, en.count);
@@ -58,14 +65,13 @@ public class EntityTest {
 	@Test
 	public final void testEntityRPObject() {
 		final RPObject rpo = new RPObject();
-		rpo.put("type", "hugo");
+		rpo.setRPClass("test_rpclass");
 		rpo.put("name", "bob");
 
 		final IEntity en = new MockEntity();
 		en.initialize(rpo);
-		assertEquals("hugo", en.getType());
+		assertEquals("test_rpclass", en.getType());
 		assertEquals("bob", en.getName());
-
 	}
 
 	/**
@@ -73,7 +79,6 @@ public class EntityTest {
 	 */
 	@Test
 	public final void testGetID() {
-
 		final RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.setID(new ID(1, "woohoo"));
@@ -92,17 +97,17 @@ public class EntityTest {
 		IEntity en;
 		RPObject rpo;
 		rpo = new RPObject();
-		rpo.put("type", "_hugo");
+		rpo.setRPClass("test_rpclass");
 		en = new MockEntity();
 		en.initialize(rpo);
-		assertEquals("_hugo", en.getType());
+		assertEquals("test_rpclass", en.getType());
 
 		rpo = new RPObject();
-		rpo.put("type", "hugo");
+		rpo.setRPClass("test_rpclass");
 		rpo.put("name", "ragnarok");
 		en = new MockEntity();
 		en.initialize(rpo);
-		assertEquals("hugo", en.getType());
+		assertEquals("test_rpclass", en.getType());
 		assertEquals("ragnarok", en.getName());
 	}
 

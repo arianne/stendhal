@@ -975,7 +975,7 @@ public abstract class RPEntity extends ActiveEntity {
 			 * Title
 			 */
 			if (changes.has("class") || changes.has("name")
-					|| changes.has("title") || changes.has("type")) {
+					|| changes.has("title")) {
 				fireChange(PROP_TITLE);
 			}
 		}

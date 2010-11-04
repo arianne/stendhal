@@ -186,12 +186,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 			return;
 		}
 
-		// TODO: Remove once 'type' isn't used anymore
-		if (!object.has("type")) {
-			logger.error("Entity without type: " + object);
-			return;
-		}
-
 		final IEntity entity = add(object);
 
 		if (entity != null) {

@@ -108,7 +108,7 @@ public class Gate implements IEntity {
 		if (rpObject == null) {
 			return null;
 		}
-		return rpObject.get("type");
+		return rpObject.getRPClass().getName();
 	}
 
 	public int getVisibility() {

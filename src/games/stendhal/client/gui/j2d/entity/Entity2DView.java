@@ -648,8 +648,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			animatedChanged = true;
 		} else if (property == IEntity.PROP_POSITION) {
 			positionChanged = true;
-		} else if (property == IEntity.PROP_TYPE) {
-			representationChanged = true;
 		} else if (property == IEntity.PROP_VISIBILITY) {
 			visibilityChanged = true;
 		}
