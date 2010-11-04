@@ -40,6 +40,7 @@ public class StendhalCharacterDAO extends CharacterDAO {
 		try {
 			if (player instanceof Player) {
 				final Player instance = (Player) player;
+				DAORegister.get().get(StendhalHallOfFameDAO.class).setHallOfFamePoints(transaction, instance.getName(), "T", instance.getTradescore());
 				DAORegister.get().get(StendhalWebsiteDAO.class).insertIntoCharStats(transaction, instance);
 				DAORegister.get().get(StendhalBuddyDAO.class).saveBuddyList(transaction, character, instance.getBuddies());
 			}
