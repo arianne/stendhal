@@ -25,6 +25,7 @@ public class SeedSellerBehaviour extends SellerBehaviour {
 	static {
 		pricelist.put("lilia seed", 10);
 		pricelist.put("daisies seed", 20);
+		pricelist.put("zantedeschia seed", 15);
 	}
 	
 
