@@ -74,7 +74,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 	/**
 	 * required items for the quest.
 	 */
-	protected static final String NEEDED_ITEMS = "flask=1;arandula=2;red lionfish=10;kokuda=1;toadstool=12;licorice=2;apple=10;wine=30;garlic=2";
+	protected static final String NEEDED_ITEMS = "flask=1;arandula=2;red lionfish=10;kokuda=1;toadstool=12;licorice=2;apple=10;wine=30;garlic=2;mortar=1";
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -82,7 +82,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("I met Ortiv Milquetoast, a retired teacher in his house at Kirdneh River.");
+		res.add("I met Ortiv Milquetoast, a retired teacher in his house at Kirdneh River and asked him for a quest.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("I don't want to help Ortiv at the moment. He should go out and take the ingredients by himself.");
@@ -224,6 +224,14 @@ public class MixtureForOrtiv extends AbstractQuest {
 					null,
 					ConversationStates.ATTENDING,
 					"I know, assassins and bandits aren't vampires, but I'll try to use it against them as well. There is a nice gardener in the Kalavan City Gardens who may sell some of her own planted garlic.",
+					null);
+			
+			npc.add(
+					ConversationStates.ATTENDING,
+					"mortar",
+					null,
+					ConversationStates.ATTENDING,
+					"I have heard that admins can summon that item for testing at the moment. Maybe you can find one who can help you.",
 					null);
 	}
 
