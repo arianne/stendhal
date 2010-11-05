@@ -44,19 +44,22 @@ abstract class StateEntity2DView extends Entity2DView {
 	//
 
 	/**
-	 * Build animations. 
+	 * Build animations.
+	 *  
+	 * @param entity the entity to build animations for 
 	 */
-	protected void buildAnimations() {
-		buildSprites(sprites);
+	protected void buildAnimations(IEntity entity) {
+		buildSprites(entity, sprites);
 	}
 
 	/**
 	 * Populate named state sprites.
 	 * 
+	 * @param entity The entity to build sprites for
 	 * @param map
 	 *            The map to populate. 
 	 */
-	protected abstract void buildSprites(final Map<Object, Sprite> map);
+	protected abstract void buildSprites(IEntity entity, final Map<Object, Sprite> map);
 	
 	/**
 	 * Get a keyed state sprite.
@@ -104,7 +107,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation(IEntity entity) {
-		buildAnimations();
+		buildAnimations(entity);
 
 		setSprite(getStateSprite());
 	}

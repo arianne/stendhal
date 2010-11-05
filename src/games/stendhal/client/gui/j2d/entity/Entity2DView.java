@@ -167,12 +167,13 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Calculate sprite image offset for the entity.
 	 * 
+	 * @param entity entity
 	 * @param swidth
 	 *            The sprite width (in pixels).
 	 * @param sheight
 	 *            The sprite height (in pixels).
 	 */
-	protected void calculateOffset(final int swidth, final int sheight) {
+	protected void calculateOffset(IEntity entity, final int swidth, final int sheight) {
 		final Rectangle2D area = entity.getArea();
 
 		calculateOffset(swidth, sheight, (int) (IGameScreen.SIZE_UNIT_PIXELS * area.getWidth()),

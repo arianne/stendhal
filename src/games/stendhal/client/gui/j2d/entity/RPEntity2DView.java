@@ -671,18 +671,19 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Populate keyed state sprites.
 	 * 
+	 * @param entity the entity to build sprites for
 	 * @param map
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
+	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
 		final Sprite tiles = getAnimationSprite();
 
 		width = tiles.getWidth() / getTilesX();
 		height = tiles.getHeight() / getTilesY();
 
 		buildSprites(map, tiles, width, height);
-		calculateOffset(width, height);
+		calculateOffset(entity, width, height);
 	}
 
 	//

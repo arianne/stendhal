@@ -57,11 +57,12 @@ class GrainField2DView extends StateEntity2DView {
 	/**
 	 * Populate named state sprites.
 	 * 
+	 * @param entity the entity to build sprites for
 	 * @param map
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
+	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
 		int width = getWidth();
 		String clazz = entity.getEntityClass();
 
@@ -89,7 +90,7 @@ class GrainField2DView extends StateEntity2DView {
 					imageHeight));
 		}
 		
-		calculateOffset(width, imageHeight);
+		calculateOffset(entity, width, imageHeight);
 	}
 	
 	

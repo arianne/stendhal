@@ -68,7 +68,7 @@ class Door2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
+	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
 		final String name = entity.getEntityClass();
 
 		final SpriteStore store = SpriteStore.get();
@@ -92,7 +92,7 @@ class Door2DView extends StateEntity2DView {
 					.getTile(tiles, 0, height, width, height));
 		}
 
-		calculateOffset(width, height);
+		calculateOffset(entity, width, height);
 	}
 
 	/**

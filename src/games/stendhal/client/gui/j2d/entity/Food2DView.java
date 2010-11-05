@@ -39,11 +39,12 @@ class Food2DView extends StateEntity2DView {
 	/**
 	 * Populate named state sprites.
 	 * 
+	 * @param entity the entity to build sprites for
 	 * @param map
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
+	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
 		final SpriteStore store = SpriteStore.get();
 		final Sprite tiles = store.getSprite(translate(entity.getType()));
 

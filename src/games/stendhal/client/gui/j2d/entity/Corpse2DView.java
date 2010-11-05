@@ -94,7 +94,7 @@ class Corpse2DView extends Entity2DView {
 
 		setSprite(sprite);
 
-		calculateOffset(width, height);
+		calculateOffset(entity, width, height);
 	}
 
 	/**
