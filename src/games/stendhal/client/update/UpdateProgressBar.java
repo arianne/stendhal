@@ -35,6 +35,9 @@ public class UpdateProgressBar extends JFrame implements
 	 */
 	public UpdateProgressBar(final int max) {
 		super("Downloading...");
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		addWindowListener(new UpdateProgressBarWindowListener());
+
 		this.max = max;
 		try {
 			final URL url = this.getClass().getClassLoader().getResource(
