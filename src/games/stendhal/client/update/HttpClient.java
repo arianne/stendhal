@@ -104,7 +104,7 @@ public class HttpClient {
 				try {
 					HttpURLConnection.setFollowRedirects(true);
 					connection = (HttpURLConnection) url.openConnection();
-					connection.setConnectTimeout(timeout);
+					connection.setConnectTimeout(myTimeout);
 					if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
 						System.err.println("HttpServer returned an error code ("
 								+ urlString
