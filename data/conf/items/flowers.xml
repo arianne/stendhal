@@ -67,4 +67,21 @@
     </equipable>
   </item>
 
+  <item name="zantedeschia">
+    <type class="flower" subclass="zantedeschia" tileid="-1"/>
+    <description>You see a zantedeschia, a delicate bloom with the sweetest fragrance.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+     <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
 </items>
