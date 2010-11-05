@@ -17,9 +17,9 @@
     </equipable>
   </item>
   
-    <item name="mortar">
+    <item name="pestle and mortar">
     <type class="tool" subclass="mortar" tileid="-1"/>
-    <description>You see a mortar. It is the traditional tool to pestle herbs, food and other substances.</description>
+    <description>You see a pestle and mortar. These are the traditional tools to pestle herbs, food and other substances.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="10.0"/>
