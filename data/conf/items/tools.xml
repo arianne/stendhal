@@ -17,6 +17,21 @@
     </equipable>
   </item>
   
+    <item name="mortar">
+    <type class="tool" subclass="mortar" tileid="-1"/>
+    <description>You see a mortar. It is the traditional tool to pestle herbs, food and other substances.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
   <item name="gold pan">
     <type class="tool" subclass="gold_pan" tileid="-1"/>
     <description>You see a gold pan. It is the traditional tool to prospect for gold.</description>
