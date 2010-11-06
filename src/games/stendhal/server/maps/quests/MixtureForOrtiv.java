@@ -34,6 +34,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -74,7 +75,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 	/**
 	 * required items for the quest.
 	 */
-	protected static final String NEEDED_ITEMS = "flask=1;arandula=2;red lionfish=10;kokuda=1;toadstool=12;licorice=2;apple=10;wine=30;garlic=2;mortar=1";
+	protected static final String NEEDED_ITEMS = "flask=1;arandula=2;red lionfish=10;kokuda=1;toadstool=12;licorice=2;apple=10;wine=30;garlic=2;pestle and mortar=1";
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -142,7 +143,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 			new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
 								new ChatAction() {
 									public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-										raiser.say("Oh that will be awesome, stranger! You can maybe rescue my life with that! Please bring me those ingredients: " 
+										raiser.say("Oh that would be wonderful, stranger! You might save my life! Please bring me " 
 												   + Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash()) + ".");
 									}}));
 
@@ -151,88 +152,31 @@ public class MixtureForOrtiv extends AbstractQuest {
 			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"I thought you will maybe help me... But I was wrong, obviously... So wrong as with my students while I was a teacher...",
+			"I thought you would maybe help me... But I was wrong, obviously... So wrong as with my students while I was a teacher...",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
-		npc.add(
-				ConversationStates.ATTENDING,
-				"apple",
-				null,
-				ConversationStates.ATTENDING,
-				"Apples are the favourite dish of assassins. I saw some apple trees on the east of semos and near to Orril and Nalwor river.",
-				null);
+		npc.addReply("apple", "Apples are the favourite food of assassins. I saw some apple trees on the east " +
+				"of semos and near to Orril and Nalwor river.");
 
-			npc.add(
-				ConversationStates.ATTENDING,
-				"flask",
-				null,
-				ConversationStates.ATTENDING,
-				"I've heard of a young woman in Semos who sells them.",
-				null);
+			npc.addReply("flask", "I've heard of a young woman in Semos who sells them.");
 
-			npc.add(
-				ConversationStates.ATTENDING,
-				"toadstool",
-				null,
-				ConversationStates.ATTENDING,
-				"Toadstools are quite poisonous. I've heard that some hunters in the forests ate a few ones and felt sick for days.",
-				null);
+			npc.addReply("toadstool", "Toadstools are quite poisonous. I've heard that some hunters in the forests ate a few" +
+					" and felt sick for days.");
 
-			npc.add(
-				ConversationStates.ATTENDING,
-				"arandula",
-				null,
-				ConversationStates.ATTENDING,
-				"North of Semos, near the tree grove, grows a herb called arandula as some of my old friends told me.",
-				null);
+			npc.addReply("arandula", "North of Semos, near the tree grove, grows a herb called arandula as some of my old friends told me.");
 			
-			npc.add(
-					ConversationStates.ATTENDING,
-					"red lionfish",
-					null,
-					ConversationStates.ATTENDING,
-					"Red lionfishs are hard to find...They are clad in white stripes alternated with red, maroon, or brown. I've heard about a place in Faiumoni where you can fish for some but be careful, every spine of the lionfish is venomous!",
-					null);
+			npc.addReply("red lionfish","Red lionfish are hard to find...They are clad in white stripes alternated with red, maroon, " +
+					"or brown. I've heard about a place in Faiumoni where you can fish for some but be careful, every spine of the lionfish is venomous!");
 			
-			npc.add(
-					ConversationStates.ATTENDING,
-					"kokuda",
-					null,
-					ConversationStates.ATTENDING,
-					"Kokuda is really hard to find. I'm glad if you can try to get one from Athor island...",
-					null);
+			npc.addReply("kokuda","Kokuda is really hard to find. I'm glad if you can try to get one from Athor island...");
 
-			npc.add(
-					ConversationStates.ATTENDING,
-					"licorice",
-					null,
-					ConversationStates.ATTENDING,
-					"There is a nice little bar in magic city in which a young girl sells these awesome tasting sweets.",
-					null);
+			npc.addReply("licorice", "There is a nice little bar in magic city in which a young girl sells this lovely tasting sweet.");
 			
-			npc.add(
-					ConversationStates.ATTENDING,
-					"glasses of wine",
-					null,
-					ConversationStates.ATTENDING,
-					"Mhhhmm there isn't anything better than mixing stuff together while enjoying a glass of red wine *cough* but I need it of course for my mixture as well... I bet, you can buy wine somewhere, maybe in a tavern or a bar...",
-					null);
+			npc.addReply("glasses of wine", "Mhhhmm there isn't anything better than mixing stuff together while enjoying a glass of red wine *cough* but I need it of course for my mixture as well... I bet, you can buy wine somewhere, maybe in a tavern or a bar...");
 			
-			npc.add(
-					ConversationStates.ATTENDING,
-					"garlic",
-					null,
-					ConversationStates.ATTENDING,
-					"I know, assassins and bandits aren't vampires, but I'll try to use it against them as well. There is a nice gardener in the Kalavan City Gardens who may sell some of her own planted garlic.",
-					null);
+			npc.addReply("garlic", "I know, assassins and bandits aren't vampires, but I'll try to use it against them as well. There is a nice gardener in the Kalavan City Gardens who may sell some of her own grown garlic.");
 			
-			npc.add(
-					ConversationStates.ATTENDING,
-					"mortar",
-					null,
-					ConversationStates.ATTENDING,
-					"I have heard that admins can summon that item for testing at the moment. Maybe you can find one who can help you.",
-					null);
+			npc.addReply(Arrays.asList("pestle","mortar","pestle and mortar"), "I have heard that admins can summon that item for testing at the moment. Maybe you can find one who can help you.");
 	}
 
 	private void prepareBringingStep() {
