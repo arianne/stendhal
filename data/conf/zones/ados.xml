@@ -2983,6 +2983,15 @@ Southeast: Docks
             </implementation>
         </entity>
    
+        <portal x="81" y="29" ref="broken_bars_1">
+                <destination zone="0_ados_swamp" ref="broken_bars_2" />
+                <attribute name="hidden"/>
+            </portal>
+
+        <portal x="81" y="30" ref="broken_bars_2">
+                <destination zone="0_ados_swamp" ref="broken_bars_1" />
+                <attribute name="hidden"/>
+            </portal>
    </zone>
    
  <zone name="0_ados_wall_s" level="0" x="500768" y="500128" file="Level 0/ados/wall_s.tmx">
