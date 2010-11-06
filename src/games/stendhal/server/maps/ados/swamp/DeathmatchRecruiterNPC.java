@@ -45,34 +45,33 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> path = new LinkedList<Node>();
-				path.add(new Node(24, 9));
-				path.add(new Node(38, 9));
-				path.add(new Node(38, 15));
-				path.add(new Node(35, 15));
-				path.add(new Node(35, 21));
-				path.add(new Node(47, 21));
-				path.add(new Node(47, 10));
-				path.add(new Node(43, 10));
-				path.add(new Node(43, 6));
-				path.add(new Node(55, 6));
-				path.add(new Node(55, 16));
-				path.add(new Node(62, 16));
-				path.add(new Node(62, 14));
-				path.add(new Node(64, 14));
-				path.add(new Node(64, 15));
-				path.add(new Node(70, 15));
-				path.add(new Node(70, 18));
-				path.add(new Node(80, 18));
-				path.add(new Node(80, 9));
-				path.add(new Node(69, 9));
-				path.add(new Node(69, 14));
-				path.add(new Node(56, 14));
-				path.add(new Node(56, 8));
-				path.add(new Node(47, 8));
-				path.add(new Node(47, 21));
-				path.add(new Node(35, 21));
-				path.add(new Node(35, 15));
-				path.add(new Node(24, 15));
+				path.add(new Node(15, 26));
+				path.add(new Node(28, 26));
+				path.add(new Node(28, 32));
+				path.add(new Node(25, 32));
+				path.add(new Node(25, 38));
+				path.add(new Node(37, 38));
+				path.add(new Node(37, 27));
+				path.add(new Node(33, 27));
+				path.add(new Node(33, 23));
+				path.add(new Node(45, 23));
+				path.add(new Node(45, 33));
+				path.add(new Node(52, 33));
+				path.add(new Node(52, 31));
+				path.add(new Node(50, 31));
+				path.add(new Node(50, 46));
+				path.add(new Node(57, 46));
+				path.add(new Node(57, 49));
+				path.add(new Node(67, 49));
+				path.add(new Node(67, 40));
+				path.add(new Node(46, 40));
+				path.add(new Node(46, 50));
+				path.add(new Node(46, 31));
+				path.add(new Node(37, 31));
+				path.add(new Node(37, 38));
+				path.add(new Node(25, 38));
+				path.add(new Node(25, 32));
+				path.add(new Node(15, 32));
 				setPath(new FixedPath(path, true));
 			}
 
@@ -92,7 +91,7 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("youngsoldiernpc");
-		npc.setPosition(24, 9);
+		npc.setPosition(15, 26);
 		npc.initHP(100);
 		npc.setDescription("You see Thonatus, recruiter for the Ados Deathmatch. You are lucky that you find him, he is fast normally.");
 		zone.add(npc);
