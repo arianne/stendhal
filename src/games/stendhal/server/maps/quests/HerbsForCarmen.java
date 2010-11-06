@@ -13,16 +13,19 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTextAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
@@ -215,38 +218,18 @@ public class HerbsForCarmen extends AbstractQuest {
 				ConversationStates.QUESTION_2, "Great, what did you bring?",
 				null);
 
+		ChatAction completeAction = new  MultipleActions(
+				new SetQuestAction(QUEST_SLOT, "done"),
+				new SayTextAction("Great! Now I can heal many people for free. Thanks a lot. Take this for your work."),
+				new IncreaseXPAction(50),
+				new IncreaseKarmaAction(5),
+				new EquipItemAction("antidote", 2)
+				);
 		/* create the ChatAction used for item triggers */
-		final ChatAction itemsChatAction = new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-                final String item = sentence.getTriggerExpression().getNormalized();
-			    ItemCollection missingItems = getMissingItems(player);
-				final Integer missingCount = missingItems.get(item);
+		final ChatAction itemsChatAction = new CollectRequestedItemsAction(QUEST_SLOT, "Good, do you have anything else?",
+											"You have already brought that for me but thank you anyway.", completeAction,
+											ConversationStates.ATTENDING);
 
-				if ((missingCount != null) && (missingCount > 0)) {
-					if (dropItems(player, item, missingCount)) {
-						missingItems = getMissingItems(player);
-
-						if (missingItems.size() > 0) {
-							raiser.say("Good, do you have anything else?");
-						} else {
-							raiser.say("Great! Now I can heal many people for free. Thanks a lot. Take this for your work.");
-							player.setQuest(QUEST_SLOT, "done");
-							final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem("antidote");
-							reward.setQuantity(2);
-							player.equipOrPutOnGround(reward);
-							player.addXP(50);
-							player.notifyWorldAboutChanges();
-							player.addKarma(5.0);
-							raiser.setCurrentState(ConversationStates.ATTENDING);
-						}
-					} else {
-						raiser.say("Oh, you don't have " + item + " with you!");
-					}
-				} else {
-					raiser.say("You have already brought that for me but thank you anyway.");
-				}
-			}
-		};
 
 		/* add triggers for the item names */
 		final ItemCollection items = new ItemCollection();
@@ -290,62 +273,6 @@ public class HerbsForCarmen extends AbstractQuest {
 		missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
 
 		return missingItems;
-	}
-
-	/**
-	 * Drop specified amount of given item. If player doesn't have enough items,
-	 * all carried ones will be dropped and number of missing items is updated.
-	 *
-	 * @param player
-	 * @param itemName
-	 * @param itemCount
-	 * @return true if something was dropped
-	 */
-	private boolean dropItems(final Player player, final String itemName, int itemCount) {
-		boolean result = false;
-
-		 // parse the quest state into a list of still missing items
-		final ItemCollection itemsTodo = new ItemCollection();
-
-		itemsTodo.addFromQuestStateString(player.getQuest(QUEST_SLOT));
-
-		if (player.drop(itemName, itemCount)) {
-			if (itemsTodo.removeItem(itemName, itemCount)) {
-				result = true;
-			}
-		} else {
-			/*
-			 * handle the cases the player has part of the items or all divided
-			 * in different slots
-			 */
-			final List<Item> items = player.getAllEquipped(itemName);
-			if (items != null) {
-				for (final Item item : items) {
-					final int quantity = item.getQuantity();
-					final int n = Math.min(itemCount, quantity);
-
-					if (player.drop(itemName, n)) {
-						itemCount -= n;
-
-						if (itemsTodo.removeItem(itemName, n)) {
-							result = true;
-						}
-					}
-
-					if (itemCount == 0) {
-						result = true;
-						break;
-					}
-				}
-			}
-		}
-
-		 // update the quest state if some items are handed over
-		if (result) {
-			player.setQuest(QUEST_SLOT, itemsTodo.toStringForQuestState());
-		}
-
-		return result;
 	}
 
 	@Override

@@ -141,7 +141,7 @@ public class HerbsForCarmenTest {
 		en.step(player, "yes");
 		assertEquals("Great, what did you bring?", getReply(npc));
 		en.step(player, "apple");
-		assertEquals("Oh, you don't have apple with you!", getReply(npc));
+		assertEquals("You don't have apple with you!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		

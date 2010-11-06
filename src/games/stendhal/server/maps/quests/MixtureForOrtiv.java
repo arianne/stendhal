@@ -13,14 +13,18 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTextAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
@@ -206,38 +210,17 @@ public class MixtureForOrtiv extends AbstractQuest {
 				ConversationStates.QUESTION_2, "Awesome, what did you bring?",
 				null);
 
+		ChatAction completeAction = new  MultipleActions(
+				new SetQuestAction(QUEST_SLOT, "done"),
+				new SayTextAction("Thank you so much! Now I can start mixing the mixture which will hopefully keep me safe inside of my own house without the assassins and bandits comming up from downstairs. Here is an assassin dagger for you. I had to take it away from one of my students in the class once and now you can maybe fight and win against them."),
+				new IncreaseXPAction(5000),
+				new IncreaseKarmaAction(25),
+				new EquipItemAction("assassin dagger", 1 ,true)
+				);
 		/* create the ChatAction used for item triggers */
-		final ChatAction itemsChatAction = new ChatAction() {
-			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-                final String item = sentence.getTriggerExpression().getNormalized();
-			    ItemCollection missingItems = getMissingItems(player);
-				final Integer missingCount = missingItems.get(item);
-
-				if ((missingCount != null) && (missingCount > 0)) {
-					if (dropItems(player, item, missingCount)) {
-						missingItems = getMissingItems(player);
-
-						if (missingItems.size() > 0) {
-							raiser.say("Wonderful! Did you bring anything else with you?");
-						} else {
-							raiser.say("Thank you so much! Now I can start mixing the mixture which will hopefully keep me safe inside of my own house without the assassins and bandits comming up from downstairs. Here is an assassin dagger for you. I had to take it away from one of my students in the class once and now you can maybe fight and win against them.");
-							player.setQuest(QUEST_SLOT, "done");
-							final Item reward = (Item) SingletonRepository.getEntityManager().getItem("assassin dagger");
-							player.equipOrPutOnGround(reward);
-							reward.setBoundTo(player.getName());
-							player.addXP(5000);
-							player.notifyWorldAboutChanges();
-							player.addKarma(25.0);
-							raiser.setCurrentState(ConversationStates.ATTENDING);
-						}
-					} else {
-						raiser.say("Oh, you don't have " + item + " with you.");
-					}
-				} else {
-					raiser.say("You brought me that ingredient already.");
-				}
-			}
-		};
+		final ChatAction itemsChatAction = new CollectRequestedItemsAction(QUEST_SLOT, "Wonderful! Did you bring anything else with you?",
+											"You brought me that ingredient already.", completeAction,
+											ConversationStates.ATTENDING);
 
 		/* add triggers for the item names */
 		final ItemCollection items = new ItemCollection();
@@ -281,62 +264,6 @@ public class MixtureForOrtiv extends AbstractQuest {
 		missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
 
 		return missingItems;
-	}
-
-	/**
-	 * Drop specified amount of given item. If player doesn't have enough items,
-	 * all carried ones will be dropped and number of missing items is updated.
-	 *
-	 * @param player
-	 * @param itemName
-	 * @param itemCount
-	 * @return true if something was dropped
-	 */
-	private boolean dropItems(final Player player, final String itemName, int itemCount) {
-		boolean result = false;
-
-		 // parse the quest state into a list of still missing items
-		final ItemCollection itemsTodo = new ItemCollection();
-
-		itemsTodo.addFromQuestStateString(player.getQuest(QUEST_SLOT));
-
-		if (player.drop(itemName, itemCount)) {
-			if (itemsTodo.removeItem(itemName, itemCount)) {
-				result = true;
-			}
-		} else {
-			/*
-			 * handle the cases the player has part of the items or all divided
-			 * in different slots
-			 */
-			final List<Item> items = player.getAllEquipped(itemName);
-			if (items != null) {
-				for (final Item item : items) {
-					final int quantity = item.getQuantity();
-					final int n = Math.min(itemCount, quantity);
-
-					if (player.drop(itemName, n)) {
-						itemCount -= n;
-
-						if (itemsTodo.removeItem(itemName, n)) {
-							result = true;
-						}
-					}
-
-					if (itemCount == 0) {
-						result = true;
-						break;
-					}
-				}
-			}
-		}
-
-		 // update the quest state if some items are handed over
-		if (result) {
-			player.setQuest(QUEST_SLOT, itemsTodo.toStringForQuestState());
-		}
-
-		return result;
 	}
 
 	@Override
