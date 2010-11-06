@@ -244,7 +244,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 	/**
 	 * A special door that only lets one player in at a time, and that notifies
-	 * this script on sucessful usage.
+	 * this script on successful usage.
 	 */
 	class NotifyingDoor extends OnePlayerRoomDoor {
 		NotifyingDoor(final String clazz) {
@@ -338,7 +338,7 @@ public class ReverseArrow extends AbstractQuest implements
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							raiser.say("Hi again "
 								+ player.getTitle()
-								+ ". I rembemer that you solved this problem already. You can do it again, of course.");
+								+ ". I remember that you solved this problem already. You can do it again, of course.");
 						} else {
 							raiser.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
 						}
@@ -347,7 +347,7 @@ public class ReverseArrow extends AbstractQuest implements
 				addHelp("You have to stand next to a token in order to move it.");
 				addJob("I am the supervisor for this task.");
 				addGoodbye("It was nice to meet you.");
-				addQuest("Your task in this game is to revert the direction of this arrow moving only 3 tokens within "
+				addQuest("Your task in this game is to reverse the direction of this arrow moving only 3 tokens within "
 						+ TIME + " seconds.");
 			}
 		};
