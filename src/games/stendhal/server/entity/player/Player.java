@@ -2032,7 +2032,12 @@ public class Player extends RPEntity {
 	 * @return true if player had reached the achievement with the given identifier
 	 */
 	public boolean hasReachedAchievement(String identifier) {
-		return getAchievements().contains(identifier);
+		if (getAchievements() != null) {
+			return getAchievements().contains(identifier);
+		} else {
+			// if there were no reached achievements at all then the achievement can't have been reached
+			return false;
+		}
 	}
 	/**
 	 * Checks if the player has visited the given zone
