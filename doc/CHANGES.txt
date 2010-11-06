@@ -1,21 +1,31 @@
 Changelog
 ---------
 0.89
-- added quest to Ortiv Milquetoast in Kirdneh River House
+
+*features*
 - quantity selector for control-drop
 - corpses have resistance
+- scrolls can be labelled with /mark command
+- cancel client download if the user closes the progress bar window and confirms the dialog
+
+*world*
+- Eheneumniranin, a half-elf that lost his memories. He's sickleing the grain field in ados forest farm area.
+- Gertha and Martha in Kalavan city gardens, they'll bake delicious apple and cherry pies
+- Wrviliza, a kobold barmaid in Wo'fol bar, she also provides new drinks (mild and strong koboldish torcibud)
+- Uncle Dag in Ados market, he runs a distillery stand there and produces fierywater
+- quest in Wo'fol (the reward is V.S.O.P. koboldish torcibud)
+- quest for Ortiv Milquetoast in Kirdneh River House
+- artichoke, garlic and mandragora (a magical herb) are growing, and cane fields
+- hen nests spawn eggs
+- new types of empty bottle
+- sickles can be used to harvest canes
+- a new fish-source on Amazon island
+- red lionfish can be sold on the Athor ferry
+
+*code*
 - fixed calculation of player ages (it assumed that a second was 3*300ms)
-- Added new fish-source on Amazon island
-- added red lionfish on Shop list Athor ferry
-- added Eheneumniranin, a half-elf that lost his memories. He's sickleing the grain field in ados forest farm area.
-- added Gertha and Martha in Kalavan city gardens, they'll bake delicious apple and cherry pies
-- added Wrviliza, a kobold barmaid in Wo'fol bar, she also provides new drinks (mild and strong koboldish torcibud)
-- added a quest in Wo'fol (the reward is V.S.O.P. koboldish torcibud)
-- added new grower(s): artichoke, garlic, mandragora (a magical herb), cane fields
-- added hen nests (egg spawner).
-- added sprites and tileset for several empty bottles (some will be needed for a quest)
-- added Uncle Dag in Ados market, he runs a distillery stand there and produces fierywater
-- added a sickle, a farming tool used to harvest canes
+- all NPCs defined with a zone configurator (standardisation across code)
+- old style quests refactored to use standard conditions and actions
 
 0.88
 
