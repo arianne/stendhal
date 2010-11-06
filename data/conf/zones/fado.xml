@@ -30,7 +30,9 @@
  <zone name="0_fado_city" level="0" x="499616" y="500512" file="Level 0/fado/city.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.city.GreeterNPC"/>
            <configurator class-name="games.stendhal.server.maps.fado.city.NunNPC"/>
-           <portal x="36" y="17" ref="tavern_entrance_left">
+           <configurator class-name="games.stendhal.server.maps.fado.city.SmallBoyNPC"/>
+           
+ 	<portal x="36" y="17" ref="tavern_entrance_left">
              <destination zone="int_fado_tavern" ref="entrance_left"/>
            </portal>
            
@@ -87,8 +89,9 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource">
 		</implementation>
 	</entity>
+	
 
-   	</zone>
+ </zone>
  
          <zone name="int_fado_bank" file="interiors/fado/bank.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.bank.TellerNPC"/>
