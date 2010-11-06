@@ -22,6 +22,7 @@ Changelog
 - a new fish-source on Amazon island
 - red lionfish can be sold on the Athor ferry
 - ados swamp and surroundings has a new landscape
+- Bobby, a small boy in Fado, waits for some visitors
 
 *code*
 - fixed calculation of player ages (it assumed that a second was 3*300ms)
