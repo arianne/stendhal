@@ -18,16 +18,16 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 /**
- * Condition to check if a player has finished a quest a certain number of times
+ * Condition to check if the value in a quest slot is greater than an expected value
  * 
  * @author madmetzger
  */
 public class QuestStateGreaterThanCondition implements ChatCondition {
 	
 	/**
-	 * how often should the quest be finished to fullfill this condition
+	 * expected value to compare against
 	 */
-	private final int numberOfTimesFinished;
+	private final int expectedSmallerValue;
 	
 	/**
 	 * at which index is the number of finishings stored in the quest slot
@@ -40,15 +40,15 @@ public class QuestStateGreaterThanCondition implements ChatCondition {
 	private final String questSlot;
 
 	/**
-	 * Create a new FinishedQuestGreaterOrEqualThanCondition
+	 * Create a new QuestStateGreaterThanCondition
 	 * @param quest name of the quest slot
-	 * @param numberOfTimesFinished how often to finish at least?
 	 * @param index index where the number is stored in the quest slot
+	 * @param expectedSmallerValue expected smaller value to compare
 	 */
 	public QuestStateGreaterThanCondition(String quest, int index,
-			int numberOfTimesFinished) {
+			int expectedSmallerValue) {
 		this.questSlot = quest;
-		this.numberOfTimesFinished = numberOfTimesFinished;
+		this.expectedSmallerValue = expectedSmallerValue;
 		this.index = index;
 	}
 
@@ -60,7 +60,7 @@ public class QuestStateGreaterThanCondition implements ChatCondition {
 				return false;
 			}
 			int actualNumber = MathHelper.parseIntDefault(content[index], 0);
-			return actualNumber > numberOfTimesFinished;
+			return actualNumber > expectedSmallerValue;
 		}
 		return false;
 	}
