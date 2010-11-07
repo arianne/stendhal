@@ -31,4 +31,6 @@ public final class Events {
 	public static final String ATTACK = "attack";
 
 	public static final String TRADE_STATE_CHANGE = "trade_state_change_event";
+	
+	public static final String VIEW_CHANGE = "view_change";
 }

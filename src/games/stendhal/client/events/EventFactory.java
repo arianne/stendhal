@@ -102,6 +102,8 @@ public class EventFactory {
 			event = new PlayerLoggedOnEvent();
 		} else if (name.equals(Events.PLAYER_LOGGED_OUT)) {
 			event = new PlayerLoggedOutEvent();
+		} else if (name.equals(Events.VIEW_CHANGE)) {
+			event = new ViewChangeEvent();
 		}
 
 		if (event != null) {
