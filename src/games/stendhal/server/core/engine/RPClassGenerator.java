@@ -68,6 +68,7 @@ import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.events.TextEvent;
 import games.stendhal.server.events.TradeStateChangeEvent;
 import games.stendhal.server.events.TransitionGraphEvent;
+import games.stendhal.server.events.ViewChangeEvent;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
@@ -250,6 +251,10 @@ public class RPClassGenerator {
 		
 		if (!RPClass.hasRPClass(Events.PLAYER_LOGGED_OUT)) {
 			PlayerLoggedOutEvent.generateRPClass();
+		}
+		
+		if (!RPClass.hasRPClass(Events.VIEW_CHANGE)) {
+			ViewChangeEvent.generateRPClass();
 		}
 
 		// guilds

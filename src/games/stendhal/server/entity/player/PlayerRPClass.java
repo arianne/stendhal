@@ -135,6 +135,7 @@ public class PlayerRPClass {
 		player.addRPEvent("transition_graph", Definition.PRIVATE);
 		player.addRPEvent("examine", Definition.PRIVATE);
 		player.addRPEvent("show_item_list", Definition.PRIVATE);
+		player.addRPEvent(Events.VIEW_CHANGE, Definition.PRIVATE);
 
 		player.addAttribute("source_usage", Type.MAP, Definition.HIDDEN);
 	}
