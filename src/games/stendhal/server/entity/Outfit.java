@@ -210,6 +210,50 @@ public class Outfit {
 	}
 
 	/**
+	 * Gets the result that you get when you remove (parts of) an outfit.
+	 * Removes the parts in the parameter, from the current outfit.
+	 * NOTE: If a part does not match, the current outfit part will remain the same.
+	 * 
+	 * @param other
+	 *            the outfit that should be removed from the current one
+	 * @return the new outfit, with the parameter-outfit removed
+	 */
+	public Outfit removeOutfit(final Outfit other) {
+		int newDetail;
+		int newHair;
+		int newHead;
+		int newDress;
+		int newBase;
+		// wear the this outfit 'over' the other outfit;
+		// use the other outfit for parts that are not defined for this outfit.
+		if (this.detail == other.detail) {
+			newDetail = 0;
+		} else {
+			newDetail = this.detail;
+		}
+		if (this.hair == other.hair) {
+			newHair = 0;
+		} else {
+			newHair = this.hair;
+		}
+		if (this.head == other.head) {
+			newHead = 0;
+		} else {
+			newHead = this.head;
+		}
+		if (this.dress == other.dress) {
+			newDress = 0;
+		} else {
+			newDress = this.dress;
+		}
+		if (this.base == other.base) {
+			newBase = 0;
+		} else {
+			newBase = this.base;
+		}
+		return new Outfit(newDetail, newHair, newHead, newDress, newBase);
+	}
+	/**
 	 * Checks whether this outfit is equal to or part of another outfit.
 	 * 
 	 * @param other

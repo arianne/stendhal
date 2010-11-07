@@ -60,7 +60,9 @@ public class SmallBoyNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hm?");
-				addHelp("I wonder if balloons can fly high enough to touch the clouds");
+				addQuest("Would you get me a #balloon?. Unless the mine town weeks are currently on,"
+						+ " then I can get my own :)");
+				addHelp("I wonder if a #balloon could fly high enough to touch the clouds");
 				addJob("A Job? Is that something you can eat?");
 				addGoodbye("Good bye.");
 			}
@@ -74,6 +76,7 @@ public class SmallBoyNPC implements ZoneConfigurator {
 
 		boynpc.setOutfit(new Outfit(0,33,18,03,0));
 		boynpc.setPosition(42, 30);
+		boynpc.setDirection(Direction.RIGHT);
 		boynpc.initHP(100);
 		boynpc.setDescription("You see Bobby. He is looking at the sky and seems to be daydreaming.");
 		zone.add(boynpc);
