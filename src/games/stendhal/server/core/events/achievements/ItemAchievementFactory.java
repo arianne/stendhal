@@ -1,6 +1,7 @@
 package games.stendhal.server.core.events.achievements;
 
 import games.stendhal.server.entity.npc.condition.PlayerLootedNumberOfItemsCondition;
+import games.stendhal.server.entity.npc.condition.PlayerProducedNumberOfItemsCondition;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -34,6 +35,9 @@ public class ItemAchievementFactory extends AchievementFactory {
 		itemAchievements.add(createAchievement("item.set.black", "Come to the dark side", "Loot a complete black equipment set", 
 				Achievement.HARD_BASE_SCORE,
 				new PlayerLootedNumberOfItemsCondition(1, "black armor", "black helmet", "black cloak", "black legs", "black boots", "black shield")));
+		itemAchievements.add(createAchievement("item.produce.flour", "Jenny's Assistant", "Produce 1000 flour", 
+				Achievement.EASY_BASE_SCORE,
+				new PlayerProducedNumberOfItemsCondition(1000, "flour")));
 		return itemAchievements;
 	}
 

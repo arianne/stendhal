@@ -2169,4 +2169,8 @@ public class Player extends RPEntity {
 	public void incLootForItem(String item, int count) {
 		itemCounter.incLootForItem(item, count);
 	}
+	
+	public void incProducedCountForItem(String item, int count) {
+		incLootForItem("produced."+item, count);
+	}
 }
