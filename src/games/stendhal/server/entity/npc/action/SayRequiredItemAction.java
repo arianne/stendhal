@@ -45,7 +45,7 @@ public class SayRequiredItemAction implements ChatAction {
 	 * @param index
 	 *            position of the itemname,amount within the quest slot 'array'
 	 * @param message
-	 *            message to come before statement of item name to collect
+	 *            message with substitution defined for item: [item], [#item], or [the item]
 	 *            
 	 */
 	public SayRequiredItemAction(final String questname, final int index, final String message) {
@@ -59,7 +59,7 @@ public class SayRequiredItemAction implements ChatAction {
 	 * @param questname
 	 *            name of quest-slot to check
 	 * @param message
-	 *            message to come before statement of item name to collect
+	 * 		      message with substitution defined for item: [item], [#item], or [the item]
 	 *            
 	 */
 
