@@ -24,10 +24,10 @@ public class PlayerLootedItemsHandler {
 	 * @return the number of loots from corpses
 	 */
 	public int getNumberOfLootsForItem(String item) {
-		if(!player.hasMap(LOOTED_ITEMS)) {
-			return 0;
+		if(player.containsKey(LOOTED_ITEMS, item)) {
+			return player.getInt(LOOTED_ITEMS,item);
 		}
-		return player.getInt(LOOTED_ITEMS,item);
+		return 0;
 	}
 	
 	/**
