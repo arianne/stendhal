@@ -140,6 +140,7 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 					}
 				}
 			});
+			positionChanged(entity.getX(), entity.getY());
 			
 			object = new PlayerMapObject(entity);
 		} else if (entity instanceof Player) {
