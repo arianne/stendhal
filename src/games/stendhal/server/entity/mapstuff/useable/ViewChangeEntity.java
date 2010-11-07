@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.useable;
 
 import games.stendhal.server.entity.RPEntity;
@@ -30,7 +41,7 @@ public class ViewChangeEntity extends UseableEntity {
 	@Override
 	public String describe() {
 		return "You see a scrying orb. A note on it says \"Using costs " + COST
-			+ "money. Stay still and concentrate while viewing\".";
+			+ " money. Stay still and concentrate while viewing\".";
 	}
 
 	public boolean onUsed(RPEntity user) {
