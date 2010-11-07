@@ -14,19 +14,31 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * QUEST: Cloaks for Bario
@@ -81,6 +93,7 @@ public class CloaksForBario extends AbstractQuest {
 				"Hey! How did you get down here? You did what? Huh. Well, I'm Bario. I don't suppose you could do a #task for me?",
 				null);
 
+		// player is willing to help
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
@@ -88,6 +101,7 @@ public class CloaksForBario extends AbstractQuest {
 				"I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?",
 				null);
 
+		// player should already be getting cloaks
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
@@ -95,32 +109,13 @@ public class CloaksForBario extends AbstractQuest {
 				"You promised me to bring me ten blue elven cloaks. Remember?",
 				null);
 
+		// player has already finished the quest
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I don't have anything for you to do, really.", null);
-
-		// TODO: Use 'conditions and actions' for this.
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, null,
-				ConversationStates.QUEST_OFFERED, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						if (player.isQuestCompleted(QUEST_SLOT)) {
-							// player has already finished the quest
-							raiser.say("I don't have anything else for you to do, really. Thanks for the offer.");
-							raiser.setCurrentState(ConversationStates.ATTENDING);
-						} else {
-							if (player.hasQuest(QUEST_SLOT) && !"rejected".equals(player.getQuest(QUEST_SLOT))) {
-								raiser.say("You promised me to bring me ten blue elven cloaks. Remember?");
-							} else {
-								raiser.say("I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?");
-							}
-						}
-					}
-				});
-
+		
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
@@ -168,40 +163,49 @@ public class CloaksForBario extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Too bad.", null);
 
-		// player says he has a blue elf cloak with him
-		// TODO: Use 'conditions and actions' for this, as far as possible
+		// player says he has a blue elf cloak with him but he needs to bring more than one still
+		// could also have used GreaterThanCondition for Quest State but this is okay, note we can only get to question 1 if we were active
 		npc.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						if (player.drop("blue elf cloak")) {
-							// find out how many cloaks the player still has to
-							// bring
-							final int toBring = Integer.parseInt(player.getQuest(QUEST_SLOT)) - 1;
-							if (toBring > 0) {
+				ConversationPhrases.YES_MESSAGES, 
+				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "1"), new PlayerHasItemWithHimCondition("blue elf cloak")),
+				ConversationStates.QUESTION_1, null,
+				new MultipleActions(
+						new DropItemAction("blue elf cloak"),
+						new ChatAction() {
+							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+								// find out how many cloaks the player still has to
+								// bring. incase something has gone wrong and we can't parse the slot, assume it was just started
+								final int toBring = MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT),  REQUIRED_CLOAKS) -1;
+
 								player.setQuest(QUEST_SLOT,
 										Integer.toString(toBring));
 								raiser.say("Thank you very much! Do you have another one? I still need "
 										+ Grammar.quantityplnoun(toBring,
 												"cloak", "one") + ".");
-								raiser.setCurrentState(ConversationStates.QUESTION_1);
-							} else {
-								final Item goldenShield = SingletonRepository.getEntityManager().getItem(
-										"golden shield");
-								goldenShield.setBoundTo(player.getName());
-								player.equipOrPutOnGround(goldenShield);
-								player.addXP(15000);
-								player.addKarma(25);
-								player.notifyWorldAboutChanges();
-								player.setQuest(QUEST_SLOT, "done");
-								raiser.say("Thank you very much! Now I have enough cloaks to survive the winter. Here, take this golden shield as a reward.");
+
 							}
-						} else {
-							raiser.say("Really? I don't see any...");
-						}
-					}
-				});
+						}));
+		
+		// player says he has a blue elf cloak with him and it's the last one
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("blue elf cloak"));
+		reward.add(new EquipItemAction("golden shield", 1, true));
+		reward.add(new IncreaseXPAction(15000));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+		reward.add(new IncreaseKarmaAction(25));
+		npc.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES, 
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "1"), new PlayerHasItemWithHimCondition("blue elf cloak")),
+				ConversationStates.ATTENDING,
+				"Thank you very much! Now I have enough cloaks to survive the winter. Here, take this golden shield as a reward.",
+				new MultipleActions(reward));
+		
+		npc.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES, 
+				new NotCondition(new PlayerHasItemWithHimCondition("blue elf cloak")),
+				ConversationStates.ATTENDING, 
+				"Really? I don't see any...", 
+				null);
 	}
 
 	@Override
