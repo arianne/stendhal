@@ -235,6 +235,7 @@ public class AchievementNotifier {
 			List<Achievement> toCheck) {
 		List<Achievement> reached = new ArrayList<Achievement>();
 
+		// continue checking only if player's achievements are already loaded from the database
 		if (!player.arePlayerAchievementsLoaded()) {
 			return reached;
 		}
