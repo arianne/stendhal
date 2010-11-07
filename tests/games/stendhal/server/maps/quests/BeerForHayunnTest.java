@@ -144,7 +144,7 @@ public class BeerForHayunnTest {
 		history.add("I have a beer.");
 		assertEquals(history, bfh.getHistory(player));
 		player.setQuest("beer_hayunn", "done");
-		history.add("I gave the beer to Hayunn. He paid me 20 gold coins and 10 xp.");
+		history.add("I gave the beer to Hayunn. He paid me 20 gold coins and 50 xp.");
 		assertEquals(history, bfh.getHistory(player));
 
 	}
