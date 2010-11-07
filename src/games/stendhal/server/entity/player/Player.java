@@ -141,7 +141,7 @@ public class Player extends RPEntity {
 	/**
 	 * all identifiers of reached achievements, filled on login of player
 	 */
-	private Set<String> reachedAchievements = new HashSet<String>();
+	private Set<String> reachedAchievements;
 
 	public static void generateRPClass() {
 		try {
