@@ -234,6 +234,11 @@ public class AchievementNotifier {
 	private List<Achievement> checkAchievements(Player player,
 			List<Achievement> toCheck) {
 		List<Achievement> reached = new ArrayList<Achievement>();
+
+		if (!player.arePlayerAchievementsLoaded()) {
+			return reached;
+		}
+
 		for (Achievement achievement : toCheck) {
 			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
 				logReachingOfAnAchievement(player, achievement);
