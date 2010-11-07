@@ -2021,8 +2021,12 @@ public class Player extends RPEntity {
 		getAchievements().add(identifier);
 	}
 
-	Set<String> getAchievements() {
+	private Set<String> getAchievements() {
 		return reachedAchievements;
+	}
+	
+	public void initReachedAchievements() {
+		reachedAchievements = new HashSet<String>();
 	}
 
 	/**

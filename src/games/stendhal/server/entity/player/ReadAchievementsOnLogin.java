@@ -43,6 +43,7 @@ public class ReadAchievementsOnLogin implements LoginListener, TurnListener {
 		}
 		Player p = command.getPlayer();
 		Set<String> identifiers = command.getIdentifiers();
+		p.initReachedAchievements();
 		for (String identifier : identifiers) {
 			p.addReachedAchievement(identifier);
 		}
