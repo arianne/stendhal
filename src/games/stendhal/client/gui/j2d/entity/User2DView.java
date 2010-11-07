@@ -23,7 +23,11 @@ import java.util.List;
  * The 2D view of a user.
  */
 class User2DView extends Player2DView {
-
+	@Override
+	public void initialize(final IEntity entity) {
+		super.initialize(entity);
+		j2DClient.get().setPosition(entity.getX(), entity.getY());
+	}
 	//
 	// RPEntity2DView
 	//
