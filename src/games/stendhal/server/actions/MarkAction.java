@@ -2,6 +2,7 @@ package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -9,23 +10,39 @@ import marauroa.common.game.RPAction;
 public class MarkAction implements ActionListener {
 
 	public void onAction(Player player, RPAction action) {
-		if(action.has(TARGET)) {
-			if(player.drop("empty scroll", 1)) {
-				String ds=action.get(TARGET)+" "+action.get("args");
-				String is=player.getZone().getName()+" "+player.getX()+" "+player.getY();
+
+		// can't try to drop the scroll straight away as teleport may not be allowed
+		if(player.isEquipped("empty scroll", 1)) {
+
+			final StendhalRPZone zone = player.getZone();
+			final int x = player.getX();
+			final int y = player.getY();
+
+			if (zone.isTeleportInAllowed(x, y)) {
+				
+				player.drop("empty scroll", 1);
+
+				String infostring = zone.getName() + " " + x + " " + y;
 
 				Item scroll = SingletonRepository.getEntityManager().getItem("marked scroll");				
-				scroll.setInfoString(is);
-				scroll.setDescription("You see a scroll marked by "+player.getName()+". It says: \""+ds+"\". ");
-				player.equipOrPutOnGround(scroll);
-				player.sendPrivateText("You marked a scroll with \""+ds+"\".");
-			} else {
-				player.sendPrivateText("You don't have any empty scrolls to mark.");
-			}			
-		} else {
-			player.sendPrivateText("If you want to add a label please give the text for it: #/mark #text. To mark without a label, Right click and Use.");
-		}
+				scroll.setInfoString(infostring);
+				
+				// add a description if the player wanted one
+				if (action.has(TARGET)) {
+					String description = action.get(TARGET) + " " + action.get("args");
+					scroll.setDescription("You see a scroll marked by " + player.getName() + ". It says: \""+ description +"\". ");
+				}
 
-	}
+				player.equipOrPutOnGround(scroll);
+
+			} else {
+				player.sendPrivateText("The strong anti magic aura in this area prevents the scroll from working!");
+			}
+		} else {
+			player.sendPrivateText("You don't have any empty scrolls to mark.");
+		}			
+	} 
 
 }
+
+
