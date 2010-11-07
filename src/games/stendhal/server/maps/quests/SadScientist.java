@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -27,11 +26,12 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
-import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -82,15 +82,6 @@ import java.util.Map;
  * </ul>
  */
 public class SadScientist extends AbstractQuest {
-
-	private final class CheckAndRespondAboutMissingItemsAction implements
-			ChatAction {
-		public void fire(Player player, Sentence sentence, EventRaiser npc) {
-			npc.say("Please return when you have anything I need for the jewelled legs. I need "
-					+ Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
-					+".");
-		}
-	}
 
 	private static final String LETTER_DESCRIPTION = "You see a letter for Vasi Elos.";
 	private static final String QUEST_SLOT = "sad_scientist";
@@ -160,6 +151,7 @@ public class SadScientist extends AbstractQuest {
 				ConversationStates.IDLE, 
 				"Here are the black legs. Now I beg you to wear them. The symbol of my pain is done. Fare thee well.",
 				action);
+		
 		// time has not yet passed
 		final ChatCondition notCondition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT,"decorating"),
@@ -192,6 +184,7 @@ public class SadScientist extends AbstractQuest {
 				"Ha, ha, ha! I will cover those jewelled legs with this blood and they will transform " +
 				"into a #symbol of pain.", 
 				null);
+		
 		npc.add(ConversationStates.ATTENDING, "symbol",
 				condition, ConversationStates.IDLE, 
 				"I am going to create a pair of black legs. Come back in 5 minutes.", 
@@ -220,7 +213,6 @@ public class SadScientist extends AbstractQuest {
 				new PlayerHasItemWithHimCondition("note")
 			);
 		
-
 		final ChatAction action = new MultipleActions(
 					new SetQuestAction(QUEST_SLOT, 0, "kill_scientist"),
 					new StartRecordingKillsAction(QUEST_SLOT, 1, "Sergej Elos", 0, 1),
@@ -231,6 +223,7 @@ public class SadScientist extends AbstractQuest {
 				ConversationStates.INFORMATION_2,
 				"Hello! Do you have anything for me?",
 				null);
+		
 		npc.add(ConversationStates.INFORMATION_2, Arrays.asList("letter", "yes", "note"),
 				condition,
 				ConversationStates.ATTENDING,
@@ -238,6 +231,7 @@ public class SadScientist extends AbstractQuest {
 				"I want to transform them. I want to make them a symbol of pain. You! Go kill my brother, " +
 				"the Imperial Scientist Sergej Elos. Give me his blood.",
 				action);
+		
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.GOODBYE_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, 0, "kill_scientist"),
 				ConversationStates.INFORMATION_2,
@@ -292,11 +286,13 @@ public class SadScientist extends AbstractQuest {
 				" jewelled legs to you, I need a message from my darling. Ask Mayor" +
 				" Sakhs for Vera. Can you do that for me?",
 				null);
+		
 		npc.add(ConversationStates.INFORMATION_1, ConversationPhrases.YES_MESSAGES,
 				condition,
 				ConversationStates.IDLE, 
 				"Oh, thank you. I am waiting.",
 				action);
+		
 		npc.add(ConversationStates.INFORMATION_1, ConversationPhrases.NO_MESSAGES,
 				condition,
 				ConversationStates.IDLE, 
@@ -320,30 +316,35 @@ public class SadScientist extends AbstractQuest {
 	private void bringItemsPhase(final SpeakerNPC npc) {
 		//condition for quest being active and in item collection phase
 		ChatCondition itemPhaseCondition = getConditionForNotBeingInCollectionPhase();
+		
 		//player returns during item collection phase
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				itemPhaseCondition,
 				ConversationStates.QUESTION_1, 
 				"Hello. Do you have any #items I need for the jewelled legs?",
 				null);
+		
 		//player asks for items
 		npc.add(ConversationStates.QUESTION_1, Arrays.asList("items","item"),
 				itemPhaseCondition,
 				ConversationStates.QUESTION_1, 
 				null,
-				new CheckAndRespondAboutMissingItemsAction());
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Please return when you have anything I need for the jewelled legs. I need [items]."));
+		
 		//player says no
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
 				itemPhaseCondition,
 				ConversationStates.IDLE, 
 				"What a wasteful child.",
 				null);
+		
 		//player says yes
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES,
 				itemPhaseCondition,
 				ConversationStates.QUESTION_1, 
 				"Fine! So what did you bring with you?",
 				null);
+		
 		//add transition for each item
 		final ChatAction itemsChatAction = new CollectRequestedItemsAction(
 														QUEST_SLOT, "Good, do you have anything else?",
@@ -354,6 +355,7 @@ public class SadScientist extends AbstractQuest {
 																		"the jewels to. Please return with a pair of shadow legs. Bye.")),
 														ConversationStates.IDLE
 														);
+		
 		/* add triggers for the item names */
 		final ItemCollection items = new ItemCollection();
 		items.addFromQuestStateString(NEEDED_ITEMS);
@@ -432,6 +434,7 @@ public class SadScientist extends AbstractQuest {
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
 				"So...looks like you want to help me?",null);
+		
 		//accept the quest
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
@@ -440,6 +443,7 @@ public class SadScientist extends AbstractQuest {
 				"My wife is living in Semos City. She loves gems. Can you bring me some #gems that I need to make a " +
 				"pair of precious #legs?" ,
 				null);
+		
 		// #gems
 		npc.add(ConversationStates.QUEST_STARTED,
 				Arrays.asList("gem","gems"),
@@ -448,6 +452,7 @@ public class SadScientist extends AbstractQuest {
 				"I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars and one mithril bar." +
 				" Can you do that for my wife?",
 				null);
+		
 		// #legs
 		npc.add(ConversationStates.QUEST_STARTED,
 				Arrays.asList("leg","legs"),
@@ -456,6 +461,7 @@ public class SadScientist extends AbstractQuest {
 				"Jewelled legs. I need an emerald, an obsidian, a sapphire, 2 carbuncles, 20 gold bars and one mithril bar." +
 				" Can you do that for my wife? Can you bring what I need?",
 				null);
+		
 		//yes, no after start of quest
 		npc.add(ConversationStates.QUEST_STARTED,
 				ConversationPhrases.YES_MESSAGES,
@@ -470,6 +476,7 @@ public class SadScientist extends AbstractQuest {
 				ConversationStates.QUEST_STARTED,
 				"Go away before I kill you!" ,
 				null);
+		
 		//reject the quest
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
@@ -486,20 +493,6 @@ public class SadScientist extends AbstractQuest {
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
 				"Go away!",null);
-	}
-	
-	/**
-	 * Returns all items that the given player still has to bring to complete the quest.
-	 *
-	 * @param player The player doing the quest
-	 * @return A list of item names
-	 */
-	private ItemCollection getMissingItems(final Player player) {
-		final ItemCollection missingItems = new ItemCollection();
-
-		missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
-
-		return missingItems;
 	}
 	
 	// The items and surviving in the basement mean we shouldn't direct them till level 100 or so

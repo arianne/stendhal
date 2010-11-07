@@ -12,11 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
@@ -24,6 +22,7 @@ import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -34,7 +33,6 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 
@@ -143,11 +141,7 @@ public class HerbsForCarmen extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			null,
 			new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
-								new ChatAction() {
-									public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-										raiser.say("Oh how nice. Please bring me those ingredients: " 
-												   + Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash()) + ".");
-									}}));
+								new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Oh how nice. Please bring me those ingredients: [items].")));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -203,14 +197,7 @@ public class HerbsForCarmen extends AbstractQuest {
 		/* player asks what exactly is missing (says ingredients) */
 		npc.add(ConversationStates.QUESTION_2, "ingredients", null,
 				ConversationStates.QUESTION_2, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						final List<String> needed = getMissingItems(player).toStringListWithHash();
-						raiser.say("I need "
-								+ Grammar.enumerateCollection(needed)
-								+ ". Did you bring something?");
-					}
-				});
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?"));
 
 		/* player says he has a required item with him (says yes) */
 		npc.add(ConversationStates.QUESTION_2,
@@ -261,20 +248,6 @@ public class HerbsForCarmen extends AbstractQuest {
 		
 	}
 	
-	/**
-	 * Returns all items that the given player still has to bring to complete the quest.
-	 *
-	 * @param player The player doing the quest
-	 * @return A list of item names
-	 */
-	private ItemCollection getMissingItems(final Player player) {
-		final ItemCollection missingItems = new ItemCollection();
-
-		missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
-
-		return missingItems;
-	}
-
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
