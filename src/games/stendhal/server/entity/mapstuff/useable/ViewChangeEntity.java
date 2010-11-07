@@ -1,12 +1,18 @@
 package games.stendhal.server.entity.mapstuff.useable;
 
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ViewChangeEvent;
 
 /**
- * An entity that when used, tells the client to change the view center.
+ * An entity that when used, tells the client to change the view center. Used
+ * for the DM arena scrying devices. If this starts to be used elsewhere, it
+ * should be generalized to use conditions and actions.
  */
 public class ViewChangeEntity extends UseableEntity {
+	private static final String QUEST = "learn_scrying";
+	private static final int COST = 5;
+	
 	private final int x;
 	private final int y;
 	
@@ -20,14 +26,31 @@ public class ViewChangeEntity extends UseableEntity {
 		this.x = x;
 		this.y = y;
 	}
+	
+	@Override
+	public String describe() {
+		return "You see a scrying orb. A note on it says \"Using costs " + COST
+			+ "money. Stay still and concentrate while viewing\".";
+	}
 
 	public boolean onUsed(RPEntity user) {
 		if (!nextTo(user)) {
 			user.sendPrivateText("You cannot reach that from here.");
 			return false;
 		}
-		user.addEvent(new ViewChangeEvent(x, y));
-
-		return true;
+		if (user instanceof Player) {
+			Player player = (Player) user;
+			if (player.hasQuest(QUEST)) {
+				if (player.drop("money", COST)) {
+					player.addEvent(new ViewChangeEvent(x, y));
+					return true;
+				} else {
+					player.sendPrivateText("You do not have enough money.");
+				}
+			} else {
+				player.sendPrivateText("You don't know how to use the strange device.");
+			}
+		}
+		return false;
 	}
 }

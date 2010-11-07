@@ -463,6 +463,13 @@ West: Semos
      <attribute name="name">deathmatch spikes</attribute>
    </entity>
 
+   <entity x="86" y="95">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+       <parameter name="x">100</parameter>
+       <parameter name="y">86</parameter>
+     </implementation>
+   </entity>
+
    <!-- exit for the admin house -->
   <portal x="97" y="74" ref="house_exit_2">
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
