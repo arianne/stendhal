@@ -64,17 +64,6 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 	/**
-	 * The entity has started motion.
-	 * 
-	 * @param dx
-	 *            The X axis speed/delta.
-	 * @param dy
-	 *            The Y axis speed/delta.
-	 */
-	protected void onMotion(final double dx, final double dy) {
-	}
-
-	/**
 	 * The entity has stopped motion.
 	 */
 	protected void onStop() {
@@ -172,8 +161,10 @@ public abstract class ActiveEntity extends Entity {
 			this.y = y;
 		}
 
-		onPosition(x, y);
-		onMotion(dx, dy);
+		// Call onPosition only if the entity actually moved
+		if (!compareDouble(dx, 0.0, 0.001) || !compareDouble(dy, 0.0, 0.001)) {
+			onPosition(x, y);
+		}
 	}
 
 	//
@@ -227,8 +218,6 @@ public abstract class ActiveEntity extends Entity {
 			// update the location of the entity based on speeds
 			x += (dx * step);
 			y += (dy * step);
-
-			
 
 			if (GameObjects.getInstance().collides(this)) {
 				x = oldX;
