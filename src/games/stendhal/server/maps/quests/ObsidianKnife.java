@@ -20,14 +20,14 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.*;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
-import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.*;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -155,26 +155,36 @@ public class ObsidianKnife extends AbstractQuest {
 	private void prepareQuestOfferingStep() {
 		final SpeakerNPC npc = npcs.get("Alrak");
 
+		
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					if (!player.hasQuest(QUEST_SLOT)
-							|| player.getQuest(QUEST_SLOT).equals("rejected")) {
-						npc.say("You know, it's hard to get food round here. I don't have any #supplies for next year.");
-						npc.setCurrentState(ConversationStates.QUEST_ITEM_QUESTION);
-					} else if (player.isQuestCompleted(QUEST_SLOT)) {
-						npc.say("I'm inspired to work again! I'm making things for Wrvil now. Thanks for getting me interested in forging again.");
-					} else if (player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("food_brought")) {
-						npc.say("Now I'm less worried about food I've realised I'm bored. There's a #book I'd love to read.");
-						npc.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
-					} else {
-						npc.say("I'm sure I asked you to do something for me, already.");
-					}
-				}
-			});
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_ITEM_QUESTION, 
+				"You know, it's hard to get food round here. I don't have any #supplies for next year.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"I'm inspired to work again! I'm making things for Wrvil now. Thanks for getting me interested in forging again.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestInStateCondition(QUEST_SLOT, "food_brought"),
+				ConversationStates.QUEST_ITEM_BROUGHT, 
+				"Now I'm less worried about food I've realised I'm bored. There's a #book I'd love to read.",
+				null);
+		
+		// any other state than above
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "food_brought")),
+				ConversationStates.ATTENDING, 
+				"I'm sure I asked you to do something for me, already.",
+				null);
+						
 
 		/*
 		 * Player agrees to collect the food asked for. his quest slot gets set
