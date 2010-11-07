@@ -58,6 +58,7 @@ import games.stendhal.server.maps.quests.KillDhohrNuggetcutter;
 import games.stendhal.server.maps.quests.KillEnemyArmy;
 import games.stendhal.server.maps.quests.KillGnomes;
 import games.stendhal.server.maps.quests.KillSpiders;
+import games.stendhal.server.maps.quests.KoboldishTorcibud;
 import games.stendhal.server.maps.quests.LearnAboutKarma;
 import games.stendhal.server.maps.quests.LearnAboutOrbs;
 import games.stendhal.server.maps.quests.LookBookforCeryl;
@@ -189,6 +190,7 @@ public class StendhalQuestSystem {
 		loadQuest(new KillEnemyArmy());
 		loadQuest(new KillGnomes());
 		loadQuest(new KillSpiders());
+		loadQuest(new KoboldishTorcibud());
 		loadQuest(new Marriage());
 		loadQuest(new Maze());
 		loadQuest(new McPeglegIOU());
