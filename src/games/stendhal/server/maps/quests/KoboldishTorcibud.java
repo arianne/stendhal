@@ -12,7 +12,6 @@
 
 package games.stendhal.server.maps.quests;
  
-import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -24,8 +23,10 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingUntilTimeReachedAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToFutureRandomTimeStampAction;
@@ -108,18 +109,6 @@ public class KoboldishTorcibud extends AbstractQuest {
     @Override
         public String getName() {
         return "KoboldishTorcibud";
-    }
-
-    /**
-     * Returns all items that the given player still has to bring to complete the quest.
-     *
-     * @param player The player doing the quest
-     * @return A list of item names
-     */
-    private ItemCollection getMissingItems(final Player player) {
-        final ItemCollection missingItems = new ItemCollection();
-        missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
-        return missingItems;
     }
 
     /**
@@ -217,19 +206,17 @@ public class KoboldishTorcibud extends AbstractQuest {
         npc.add(ConversationStates.QUEST_OFFERED,
             ConversationPhrases.YES_MESSAGES, null,
             ConversationStates.QUESTION_1, null,
-            new ChatAction() {
-                public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-                    int pLevel = player.getLevel();
-
-                    player.setQuest(QUEST_SLOT, 0, getRequiredItemsCollection(pLevel));
-                    player.addKarma(20);
-
-                    raiser.say("Wroff! Right now, I need "
-                        + Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
-                        + ". Do you by chance have anything of that with you already?");
-                }
-            }
-        );
+            new MultipleActions(
+            		new ChatAction() {
+            			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+            				int pLevel = player.getLevel();
+            				player.setQuest(QUEST_SLOT, 0, getRequiredItemsCollection(pLevel));
+            			}
+            		},
+            		new IncreaseKarmaAction(20),
+            		// here we have been careful to say the items from the collection only after the quest slot was set, 
+            		// because in this quest, the amounts depend on level, above.
+            		new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Wroff! Right now, I need [items]. Do you by chance have anything of that with you already?")));
 
         // player is not inclined to comply with the request and has not already rejected it once
         npc.add(ConversationStates.QUEST_OFFERED,
@@ -240,8 +227,8 @@ public class KoboldishTorcibud extends AbstractQuest {
             ConversationStates.ATTENDING,
             "Wruff... I guess I will have to ask to someone with a better attitude!",
             new MultipleActions(
-            new SetQuestAction(QUEST_SLOT, 0, "rejected"),
-            new DecreaseKarmaAction(20.0)));
+            		new SetQuestAction(QUEST_SLOT, 0, "rejected"),
+            		new DecreaseKarmaAction(20.0)));
 
         //player is not inclined to comply with the request and he has rejected it last time
         //If player wants to buy any beverage here, he should really take the quest now
@@ -252,8 +239,8 @@ public class KoboldishTorcibud extends AbstractQuest {
             ConversationStates.IDLE,
             "Wruff... I guess you will wander around with a dry gulch then...",
             new MultipleActions(
-            new SetQuestAction(QUEST_SLOT, 0, "rejected"),
-            new DecreaseKarmaAction(20.0)));
+            		new SetQuestAction(QUEST_SLOT, 0, "rejected"),
+            		new DecreaseKarmaAction(20.0)));
     }
 
     /**
@@ -276,14 +263,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             "stuff", null,
             ConversationStates.QUESTION_1,
             null,
-            new ChatAction() {
-                public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
-                    entity.say(
-                        "Wrof! I still need "
-                            + Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash())
-                            + ". Did you bring anything of that sort?");
-                }
-            });
+            new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Wrof! I still need [items]. Did you bring anything of that sort?"));
 
         // player answers yes when asked if he has brought any items
         npc.add(ConversationStates.QUESTION_1,
