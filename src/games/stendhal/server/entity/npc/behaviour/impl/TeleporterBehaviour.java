@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 
 /**
  * teleports the SpeakerNPC to a random location on the outside world and causes
- * it to walk a random bit.
+ * it to walk a random path
  * 
  * @author hendrik
  */
@@ -67,13 +67,13 @@ public final class TeleporterBehaviour implements TurnListener {
 	 *            SpeakerNPC
 	 * @param repeatedText
 	 *            text to repeat
-	 * @param useHighProbabiltyZones
+	 * @param useHighProbabilityZones
 	 *            true to make teleportation to a hand 
-	 *            selected list of zone more likly
+	 *            selected list of zones more likely
 	 */
-	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String repeatedText, final boolean useHighProbabiltyZones) {
+	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String repeatedText, final boolean useHighProbabilityZones) {
 		this(speakerNPC, repeatedText);
-		if (useHighProbabiltyZones) {
+		if (useHighProbabilityZones) {
 			addHighProbability();
 		}
 	}
@@ -149,7 +149,7 @@ public final class TeleporterBehaviour implements TurnListener {
 			}
 		}
 
-		// try to build a path (but give up after 10 successless tries)
+		// try to build a path (but give up after 10 failed tries)
 		for (int i = 0; i < 10; i++) {
 			final int tx = Rand.rand(zone.getWidth() - 4) + 2;
 			final int ty = Rand.rand(zone.getHeight() - 5) + 2;
