@@ -87,7 +87,7 @@ public class BeerForHayunn extends AbstractQuest {
 			res.add("I have a beer.");
 		}
 		if ("done".equals(questState)) {
-			res.add("I gave the beer to Hayunn. He paid me 20 gold coins and 10 xp.");
+			res.add("I gave the beer to Hayunn. He paid me 20 gold coins and 50 xp.");
 		}
 		return res;
 	}
