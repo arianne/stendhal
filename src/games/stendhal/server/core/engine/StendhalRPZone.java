@@ -657,6 +657,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 	
 	private synchronized void add(final RPObject object, final Player player, final boolean expire) {
+		if (object instanceof Player) {
+			Player playerObject = (Player) object;
+			SingletonRepository.getAchievementNotifier().onZoneEnter(playerObject);
+		}
 		/*
 		 * Assign [zone relative] ID info. TODO: Move up to MarauroaRPZone
 		 */
@@ -693,9 +697,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		if (object instanceof Blood) {
 			bloods.add((Blood) object);
 		} else if (object instanceof Player) {
-			players.add((Player) object);
-			playersAndFriends.add((Player) object);
-			SingletonRepository.getAchievementNotifier().onZoneEnter((Player) object);
+			Player playerObject = (Player) object;
+			players.add(playerObject);
+			playersAndFriends.add(playerObject);
 		} else if (object instanceof AttackableCreature) {
 			playersAndFriends.add((AttackableCreature) object);
 		} else if (object instanceof Sheep) {
