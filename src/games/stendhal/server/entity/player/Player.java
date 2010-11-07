@@ -2021,10 +2021,19 @@ public class Player extends RPEntity {
 		getAchievements().add(identifier);
 	}
 
-	private Set<String> getAchievements() {
+	Set<String> getAchievements() {
 		return reachedAchievements;
 	}
-	
+
+	/**
+	 * checks if the achievements of this player object are already loaded
+	 *
+	 * @return true, if the achievement set is loaded, false otherwise
+	 */
+	public boolean arePlayerAchievementsLoaded() {
+		return reachedAchievements != null;
+	}
+
 	/**
 	 * Checks if a player has reached the achievement with the given identifier
 	 * 
