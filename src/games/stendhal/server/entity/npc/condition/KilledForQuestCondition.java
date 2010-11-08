@@ -31,6 +31,9 @@ import org.apache.log4j.Logger;
  *       w,x and a,b - number of creatures to kill, solo and shared;
  *       y,z and c,d - number of creatures killed by player before starting this quest, both solo and shared.
  * 
+ * @see games.stendhal.server.entity.npc.action.StartRecordingKillsAction 
+ * @see games.stendhal.server.entity.npc.condition.KilledInSumForQuestCondition
+ * 
  * @author yoriy
  */
 public class KilledForQuestCondition implements ChatCondition {

@@ -28,6 +28,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Starts the recording of kills.
  * 
+ * @see games.stendhal.server.entity.npc.condition.KilledForQuestCondition
+ * @see games.stendhal.server.entity.npc.condition.KilledInSumForQuestCondition
+ * 
  * @author hendrik
  */
 public class StartRecordingKillsAction implements ChatAction {
