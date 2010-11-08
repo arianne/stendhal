@@ -15,9 +15,9 @@ Changelog
 - Uncle Dag in Ados market, he runs a distillery stand there and produces fierywater
 - quest in Wo'fol (the reward is V.S.O.P. koboldish torcibud)
 - quest for Ortiv Milquetoast in Kirdneh River House
-- artichoke, garlic and mandragora (a magical herb) are growing, and cane fields
+- artichoke, garlic, mandragora (a magical herb) and zantedeschia (a flower) are growing, and cane fields
 - hen nests spawn eggs
-- new types of empty bottle
+- new types of empty bottles
 - sickles can be used to harvest canes
 - a new fish-source on Amazon island
 - red lionfish can be sold on the Athor ferry
