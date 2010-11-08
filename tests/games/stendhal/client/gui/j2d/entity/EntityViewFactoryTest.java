@@ -102,6 +102,7 @@ public class EntityViewFactoryTest {
 		assertEquals(EntityViewFactory.getViewClass("item", "food", null), UseableItem2DView.class);
 		assertEquals(EntityViewFactory.getViewClass("item", "drink", null),  UseableItem2DView.class);
 		assertEquals(EntityViewFactory.getViewClass("item", "tool", "foodmill"),  UseableItem2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "tool", "sugarmill"),  UseableItem2DView.class);
 		
 		assertEquals(EntityViewFactory.getViewClass("item", "ring", null), UseableRing2DView.class);
 		
