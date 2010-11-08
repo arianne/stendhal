@@ -196,5 +196,26 @@ public class OutfitTest {
 		 of = new Outfit(null, 0, 0, 1, 0);
 		assertFalse(of.isNaked());
 	}
-
+	
+	/**
+	 * Tests for removeOutfit
+	 */
+	@Test
+	public void testRemoveOutfit() {
+		Outfit orig = new Outfit(12345678);
+		Outfit result = orig.removeOutfit(new Outfit(12, null, null, null, null));
+		assertEquals(Integer.valueOf(0), result.getDetail());
+		assertEquals(Integer.valueOf(12), result.getHair());
+		assertEquals(Integer.valueOf(34), result.getHead());
+		assertEquals(Integer.valueOf(56), result.getDress());
+		assertEquals(Integer.valueOf(78), result.getBase());
+		
+		orig = new Outfit(null, 12, 34, 56, null);
+		result = orig.removeOutfit(new Outfit(1, null, null, null, null));
+		assertEquals(12345600, result.getCode());
+		
+		orig = new Outfit(12345678);
+		result = orig.removeOutfit(new Outfit(12345678));
+		assertEquals(0, result.getCode());
+	}
 }
