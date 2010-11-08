@@ -23,8 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 /**
- * Checks if a player has killed (not only solo kills) an amount of one or more special creatures
- *  
+ * Checks if a player has killed the specified creature at least the specified number of times
+ * This can be with or without the help of other players
+ * 
  * @author madmetzger
  */
 public class PlayerHasKilledNumberOfCreaturesCondition implements ChatCondition {
