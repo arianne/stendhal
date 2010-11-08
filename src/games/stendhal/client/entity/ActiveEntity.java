@@ -128,6 +128,8 @@ public abstract class ActiveEntity extends Entity {
 	protected void onMove(final int x, final int y, final Direction direction,
 			final double speed) {
 
+		double oldx = this.x;
+		double oldy = this.y;
 		this.dx = direction.getdx() * speed;
 		this.dy = direction.getdy() * speed;
 
@@ -162,7 +164,7 @@ public abstract class ActiveEntity extends Entity {
 		}
 
 		// Call onPosition only if the entity actually moved
-		if (!compareDouble(dx, 0.0, 0.001) || !compareDouble(dy, 0.0, 0.001)) {
+		if (!compareDouble(this.x, oldx, 0.001) || !compareDouble(this.y, oldy, 0.001)) {
 			onPosition(x, y);
 		}
 	}
