@@ -11,6 +11,9 @@ import games.stendhal.server.entity.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * Checks if a player has produced a given number of items
  * 
@@ -33,5 +36,21 @@ public class PlayerProducedNumberOfItemsCondition implements ChatCondition {
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		return condition.fire(player, sentence, npc);
 	}
+	
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				PlayerProducedNumberOfItemsCondition.class);
+	}
+
+	@Override
+	public String toString() {
+		return condition.toString().replace("produced.","").replace("looted", "produced");
+	}
+	
 }
