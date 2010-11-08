@@ -132,7 +132,7 @@ public class FindRatChildren extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"Why must my children say out so long? Please find them and tell me who is ok.",
+				"Why must my children stay out so long? Please find them and tell me who is ok.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
