@@ -58,7 +58,7 @@ public class PlayerLootedNumberOfItemsCondition implements ChatCondition {
 
 	@Override
 	public String toString() {
-		return "player looted <"+number+" of "+items.toString()+">";
+		return "player has looted <"+number+" of "+items.toString()+">";
 	}
 
 }
