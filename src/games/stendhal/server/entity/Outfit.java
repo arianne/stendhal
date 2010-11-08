@@ -226,30 +226,30 @@ public class Outfit {
 		int newBase;
 		// wear the this outfit 'over' the other outfit;
 		// use the other outfit for parts that are not defined for this outfit.
-		if (this.detail == other.detail) {
+		if ((detail == null) || detail.equals(other.detail)) {
 			newDetail = 0;
 		} else {
-			newDetail = this.detail;
+			newDetail = detail;
 		}
-		if (this.hair == other.hair) {
+		if ((hair == null) || hair.equals(other.hair)) {
 			newHair = 0;
 		} else {
-			newHair = this.hair;
+			newHair = hair;
 		}
-		if (this.head == other.head) {
+		if ((head == null) || head.equals(other.head)) {
 			newHead = 0;
 		} else {
-			newHead = this.head;
+			newHead = head;
 		}
-		if (this.dress == other.dress) {
+		if ((dress == null) || dress.equals(other.dress)) {
 			newDress = 0;
 		} else {
-			newDress = this.dress;
+			newDress = dress;
 		}
-		if (this.base == other.base) {
+		if ((base == null) || base.equals(other.base)) {
 			newBase = 0;
 		} else {
-			newBase = this.base;
+			newBase = base;
 		}
 		return new Outfit(newDetail, newHair, newHead, newDress, newBase);
 	}
