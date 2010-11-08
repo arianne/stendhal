@@ -29,6 +29,8 @@ import org.apache.log4j.Logger;
 
 /**
  * States the name of the item, with formatting/grammar rules, stored in the quest slot
+ * 
+ * StartRecordingRandomItemCollectionAction, PlayerHasRecordedItemWithHimCondition and DropRecordedItemAction
  */
 public class SayRequiredItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropRecordedItemAction.class);

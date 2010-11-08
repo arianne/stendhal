@@ -24,6 +24,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Sets the state of a quest to a timestamp,
  * randomly picked between minimum and maximum delay from current system time in minutes 
+ * 
+ * Ideally used with TimeReachedCondition and SayTimeRemainingUntilTimeReachedAction
  *
  * @author omero
  */

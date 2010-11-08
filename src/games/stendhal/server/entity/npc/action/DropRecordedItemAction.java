@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 /**
  * Drops the specified item.
  * 
- * Ideal used in conjunction with StartRecordingRandomItemCollectionAction and PlayerHasRecordedItemWithHimCondition
+ * Ideal used in conjunction with StartRecordingRandomItemCollectionAction, SayRequiredItemAction, and PlayerHasRecordedItemWithHimCondition
  */
 public class DropRecordedItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropRecordedItemAction.class);

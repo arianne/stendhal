@@ -21,7 +21,9 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Tells the time remaining from current system time to a timestamp stored in a quest slot
- *
+ * 
+ * Ideally used with SetQuestToFutureRandomTimeStampAction  (optionally) and TimeReachedCondition 
+ * 
  * @author omero
  */
 public class SayTimeRemainingUntilTimeReachedAction implements ChatAction {
