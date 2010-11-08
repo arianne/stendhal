@@ -7,7 +7,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
-public class MarkAction implements ActionListener {
+public class MarkScrollAction implements ActionListener {
 
 	public void onAction(Player player, RPAction action) {
 
