@@ -22,6 +22,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Does the player carry the specified item?
+ * 
+ * @see games.stendhal.server.entity.npc.action.DropItemAction
  */
 public class PlayerHasItemWithHimCondition implements ChatCondition {
 

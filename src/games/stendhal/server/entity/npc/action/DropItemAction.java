@@ -21,6 +21,8 @@ import org.apache.log4j.Logger;
 
 /**
  * Drops the specified item.
+ * 
+ * @see games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition
  */
 public class DropItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropItemAction.class);
