@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
+
   <item name="cherry">
     <type class="food" subclass="cherry" tileid="-1"/>
     <description>You see a cherry.  It tangy taste revives you a little.</description>
@@ -993,6 +994,25 @@
     <description>You see a jar of sticky sweet honey. It's the clear runny kind.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="20"/>
+      <frequency value="40"/>
+      <quantity value="1"/>
+      <regen value="4"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="6"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+   <item name="sugar">
+    <type class="food" subclass="sugar" tileid="-1"/>
+    <description>You see a sack of raw sugar.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="30"/>
       <frequency value="40"/>
       <quantity value="1"/>
       <regen value="4"/>
