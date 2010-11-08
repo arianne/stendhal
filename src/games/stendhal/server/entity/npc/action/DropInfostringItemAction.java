@@ -25,6 +25,8 @@ import org.apache.log4j.Logger;
 
 /**
  * Drops the specified item with the specified infostring
+ * 
+ * @see games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition
  */
 public class DropInfostringItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropItemAction.class);

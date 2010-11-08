@@ -25,6 +25,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Does the player carry the specified item with the specified infostring?
+ * 
+ * @see games.stendhal.server.entity.npc.action.DropInfostringItemAction
  */
 public class PlayerHasInfostringItemWithHimCondition implements ChatCondition {
 
