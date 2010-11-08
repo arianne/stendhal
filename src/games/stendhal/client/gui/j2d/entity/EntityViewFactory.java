@@ -223,6 +223,7 @@ public class EntityViewFactory {
 		register("item", "food", null, UseableItem2DView.class);
 		register("item", "drink", null,  UseableItem2DView.class);
 		register("item", "tool", "foodmill",  UseableItem2DView.class);
+		register("item", "tool", "sugarmill",  UseableItem2DView.class);
 
 		register("item", "ring", null, UseableRing2DView.class);
 
