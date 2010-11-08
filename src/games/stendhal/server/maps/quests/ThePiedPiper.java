@@ -75,7 +75,7 @@ import org.apache.log4j.Logger;
  public class ThePiedPiper extends AbstractQuest implements ITPPQuestConstants {
 
 	protected static final Logger logger = Logger.getLogger(ThePiedPiper.class);
-	protected LinkedList<Creature> rats = new LinkedList<Creature>();
+	private LinkedList<Creature> rats = new LinkedList<Creature>();
 	
 	private static LinkedList<ITPPQuest> phases = new LinkedList<ITPPQuest>();
     private static TPP_Phase phase = INACTIVE;
@@ -172,6 +172,15 @@ import org.apache.log4j.Logger;
     	return getPhases().get(getPhaseIndex(INACTIVE));
     }
 
+	/**
+	 * switching quest to next available phase.
+	 */
+	public static void switchToNextPhase() {
+	getPhaseClass(
+				getPhase()).phaseToNextPhase(
+						getNextPhaseClass(
+								getPhase()), new LinkedList<String>());
+	}
 
 	private static QuestTimer questTimer;
 	/**
@@ -185,8 +194,8 @@ import org.apache.log4j.Logger;
 		}
 	}
 	
-	protected int getRatsCount() {
-		return(rats.size());
+	public int getRatsCount() {
+		return(getRats().size());
 	}
 
 	/**
@@ -315,8 +324,8 @@ import org.apache.log4j.Logger;
 				null, 
 				new ChatAction() {
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
-						npc.say("There " + Grammar.isare(rats.size()) + 
-								" still about "+Integer.toString(rats.size())+
+						npc.say("There " + Grammar.isare(getRats().size()) + 
+								" still about "+Integer.toString(getRats().size())+
 								" rats alive.");
 					}	
 				});
@@ -381,7 +390,7 @@ import org.apache.log4j.Logger;
 	private void startQuest() {	
 		setTimings();
 		getPhases().add(new InactivePhase(timings));
-		getPhases().add(new InvasionPhase(timings, rats));
+		getPhases().add(new InvasionPhase(timings, getRats()));
 		getPhases().add(new AwaitingPhase(timings));
 		setNewNotificationTime(
 				getDefaultPhaseClass().getMinTimeOut(),
@@ -441,6 +450,14 @@ import org.apache.log4j.Logger;
 
 	public static LinkedList<ITPPQuest> getPhases() {
 		return phases;
+	}
+
+	public void setRats(LinkedList<Creature> rats) {
+		this.rats = rats;
+	}
+
+	public LinkedList<Creature> getRats() {
+		return rats;
 	}
 
 }
