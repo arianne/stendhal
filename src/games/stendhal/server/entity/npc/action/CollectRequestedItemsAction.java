@@ -23,6 +23,8 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 /**
  * This {@link ChatAction} handles item lists a player has to bring for a quest
+ * 
+ * May be used with quests using SayRequiredItemsFromCollectionAction
  *  
  * @author madmetzger
  *

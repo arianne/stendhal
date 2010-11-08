@@ -23,6 +23,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Does the player carry the specified item?
+ * 
+ * Ideal used in conjunction with StartRecordingRandomItemCollectionAction and DropRecordedItemAction
  */
 public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 

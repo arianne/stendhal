@@ -28,7 +28,8 @@ import java.util.Map;
 
 /**
  * Start recording random item collection request.
- * For a quest to use this it needs the list of items with their quantities as a Map<String, Integer> 
+ * For a quest to use this it needs the list of items with their quantities as a Map<String, Integer>
+ * Ideal used in conjunction with PlayerHasRecordedItemWithHimCondition and DropRecordedItemAction
  */
 public class StartRecordingRandomItemCollectionAction implements ChatAction {
 
