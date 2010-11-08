@@ -24,6 +24,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Has 'delay' time passed since the quest was last done?
  * If the quest slot isn't in the expected format, returns true
+ * 
+ * Ideally used with SayTimeRemainingAction and SetQuestToTimeStampAction
  */
 public class TimePassedCondition implements ChatCondition {
 
