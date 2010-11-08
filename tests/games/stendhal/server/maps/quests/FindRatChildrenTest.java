@@ -114,6 +114,8 @@ public class FindRatChildrenTest {
 		assertEquals("My children have gone to play in the sewers. They have been gone for a long time. Will you find them and see if they are ok?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("That's so nice of you. Good luck searching for them.", getReply(npc));
+		en.step(player, "task");
+		assertEquals("Why must my children stay out so long? Please find them and tell me who is ok.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye", getReply(npc));
 		
@@ -139,7 +141,7 @@ public class FindRatChildrenTest {
 		en.step(player, "banana");
 		assertEquals("Sorry, I don't understand you. What name are you trying to say?", getReply(npc));
 		en.step(player, "Cody");
-		assertEquals("I don't think you actually checked if they were ok. If you seen any of my other children, please tell me who.", getReply(npc));
+		assertEquals("I don't think you actually checked if they were ok. If you have seen any of my other children, please tell me who.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("No problem, come back later.", getReply(npc));
 		
@@ -188,9 +190,9 @@ public class FindRatChildrenTest {
 		en.step(player, "children");
 		assertEquals("I wish to know that my children are ok. Please tell me who is ok.", getReply(npc));
 		en.step(player, "CODY");
-		assertEquals("Thank you. If you seen any of my other children, please tell me who.", getReply(npc));
+		assertEquals("Thank you. If you have seen any of my other children, please tell me who.", getReply(npc));
 		en.step(player, "mariel");
-		assertEquals("I don't think you actually checked if they were ok. If you seen any of my other children, please tell me who.", getReply(npc));
+		assertEquals("I don't think you actually checked if they were ok. If you have seen any of my other children, please tell me who.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("No problem, come back later.", getReply(npc));
 		
@@ -243,7 +245,7 @@ public class FindRatChildrenTest {
 		en.step(player, "hi");
 		assertEquals("If you found any of my #children, please tell me their name.", getReply(npc));
 		en.step(player, "mariel");
-		assertEquals("Thank you. If you seen any of my other children, please tell me who.", getReply(npc));
+		assertEquals("Thank you. If you have seen any of my other children, please tell me who.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("No problem, come back later.", getReply(npc));
 		
@@ -257,10 +259,10 @@ public class FindRatChildrenTest {
 		en.step(player, "hi");
 		assertEquals("If you found any of my #children, please tell me their name.", getReply(npc));
 		en.step(player, "avalon");
-		assertEquals("Thank you. If you seen any of my other children, please tell me who.", getReply(npc));
+		assertEquals("Thank you. If you have seen any of my other children, please tell me who.", getReply(npc));
 		// test saying a name we already had given
 		en.step(player, "Cody");
-		assertEquals("Yes you told me that they were ok already, thanks. If you seen any of my other children, please tell me who.", getReply(npc));
+		assertEquals("Yes you told me that they were ok already, thanks. If you have seen any of my other children, please tell me who.", getReply(npc));
 		en.step(player, "Opal");
 		assertEquals("Thank you. Now that I know my kids are safe, I can set my mind at rest.", getReply(npc));
 		// [11:50] kymara earns 5000 experience points.

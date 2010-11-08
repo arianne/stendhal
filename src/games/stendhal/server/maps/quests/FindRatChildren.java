@@ -233,7 +233,7 @@ public class FindRatChildren extends AbstractQuest {
 				missing = new TriggerList(missingNames(player));
 
 				if (missing.size() > 0) {
-					reply += " If you seen any of my other children, please tell me who.";
+					reply += " If you have seen any of my other children, please tell me who.";
 					npc.say(reply);
 				} else {
 
