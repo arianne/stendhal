@@ -23,7 +23,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Check if current system time reached a timestamp stored in a quest slot.
  * If the quest slot isn't in the expected format, returns true
  * 
- * Ideally used with SetQuestToFutureRandomTimeStampAction (optionally) and SayTimeRemainingUntilTimeReachedAction
+ * @see games.stendhal.server.entity.npc.action.SayTimeRemainingUntilTimeReachedAction
+ * @see games.stendhal.server.entity.npc.action.SetQuestToFutureRandomTimeStampAction
  *
  * @author omero
  */

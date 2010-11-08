@@ -30,7 +30,7 @@ import org.apache.log4j.Logger;
 /**
  * States the name of the items missing from a quest slot with items like item=amount;item2=amount2;item3=amount3
  * 
- * May be used with quests using CollectRequestedItemsAction
+ * @see games.stendhal.server.entity.npc.action.CollectRequestedItemsAction
  */
 public class SayRequiredItemsFromCollectionAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropRecordedItemAction.class);

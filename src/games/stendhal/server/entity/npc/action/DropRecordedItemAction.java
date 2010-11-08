@@ -23,7 +23,10 @@ import org.apache.log4j.Logger;
 /**
  * Drops the specified item.
  * 
- * Ideal used in conjunction with StartRecordingRandomItemCollectionAction, SayRequiredItemAction, and PlayerHasRecordedItemWithHimCondition
+ * @see games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction
+ * @see games.stendhal.server.entity.npc.action.SayRequiredItemAction
+ * @see games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition
+ * 
  */
 public class DropRecordedItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropRecordedItemAction.class);

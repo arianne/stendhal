@@ -22,9 +22,12 @@ import games.stendhal.server.util.TimeUtil;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
+ * 
  * Tells the time remaining between the timestamp on quest slot + delay time, and now.
  * 
- * Ideally used with TimePassedCondition and SetQuestToTimeStampAction
+ * @see games.stendhal.server.entity.npc.condition.TimePassedCondition 
+ * @see games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction
+ * 
  */
 public class SayTimeRemainingAction implements ChatAction {
 

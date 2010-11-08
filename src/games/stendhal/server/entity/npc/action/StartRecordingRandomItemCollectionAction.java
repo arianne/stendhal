@@ -27,9 +27,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 
  * Start recording random item collection request.
  * For a quest to use this it needs the list of items with their quantities as a Map<String, Integer>
- * Ideal used in conjunction with PlayerHasRecordedItemWithHimCondition, SayRequiredItemAction, and DropRecordedItemAction
+ * 
+ * @see games.stendhal.server.entity.npc.action.SayRequiredItemAction
+ * @see games.stendhal.server.entity.npc.action.DropRecordedItemAction
+ * @see games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition
+ * 
  */
 public class StartRecordingRandomItemCollectionAction implements ChatAction {
 

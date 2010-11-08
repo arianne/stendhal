@@ -24,7 +24,10 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Does the player carry the specified item?
  * 
- * Ideal used in conjunction with StartRecordingRandomItemCollectionAction, SayRequiredItemAction, and DropRecordedItemAction
+ * @see games.stendhal.server.entity.npc.action.SayRequiredItemAction
+ * @see games.stendhal.server.entity.npc.action.DropRecordedItemAction
+ * @see games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction
+ * 
  */
 public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 

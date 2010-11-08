@@ -22,7 +22,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Tells the time remaining from current system time to a timestamp stored in a quest slot
  * 
- * Ideally used with SetQuestToFutureRandomTimeStampAction  (optionally) and TimeReachedCondition 
+ * @see games.stendhal.server.entity.npc.condition.TimeReachedCondition 
+ * @see games.stendhal.server.entity.npc.action.SetQuestToFutureRandomTimeStampAction 
  * 
  * @author omero
  */
