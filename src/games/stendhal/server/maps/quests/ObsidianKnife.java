@@ -76,7 +76,11 @@ import java.util.List;
  * </ul>
  */
 public class ObsidianKnife extends AbstractQuest {
-
+	
+	// Please note, if you want to code a quest where you're asked to collect a number of some randomly picked item, like alrak asks you to initially, 
+	// please use StartRecordingRandomItemCollectionAction, SayRequiredItemAction, PlayerHasRecordedItemWithHimCondition and DropRecordedItemAction
+    // This quest was written before they were available and you should not use it as a template.
+	
 	// TODO: refactor to use standard conditions and actions
 	
 	private static final int MINUTES_IN_DAYS = 24 * 60;
