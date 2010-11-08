@@ -312,4 +312,22 @@ public class Outfit {
 		LOGGER.debug("chose random outfit: "  + newHair + " " + newHead + " " + newDress + " " + newBase);
 		return new Outfit(0, newHair, newHead, newDress, newBase);
 	}
+	
+	@Override
+	public boolean equals(Object other) {	
+
+		if (!(other instanceof Outfit)) {
+			return false;
+		}
+		else {
+			Outfit outfit = (Outfit)other;
+			return this.getCode() == outfit.getCode();
+		}
+
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getCode();
+	}
 }
