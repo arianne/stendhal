@@ -164,8 +164,6 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 	private void createNPC() {
 		
-		// TODO: refactor to use standard conditions and actions
-		
 		npc = new SpeakerNPC("Javier X") {
 			@Override
 			protected void createPath() {
@@ -235,51 +233,74 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 						+ COST + " money.",
 						null);
 				
+				add(ConversationStates.ATTENDING,
+						ConversationPhrases.YES_MESSAGES,
+						new AndCondition(
+								new PlayerHasItemWithHimCondition("money", COST), 
+								new QuestNotActiveCondition(QUEST_SLOT)),
+								ConversationStates.ATTENDING,
+								"Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.",
+								new MultipleActions(
+										new DropItemAction("money", COST),
+										new TeleportAction(ZONE_NAME, 10, 10, Direction.DOWN),
+										new SetQuestAction(QUEST_SLOT, "start"),
+										new ChatAction() {
+											public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+												SingletonRepository.getTurnNotifier().notifyInTurns(0, new Timer(player));
+											}}));
+				
+				add(ConversationStates.ATTENDING,
+						ConversationPhrases.YES_MESSAGES,
+						new AndCondition(
+								new NotCondition(new PlayerHasItemWithHimCondition("money", COST)), 
+								new QuestNotActiveCondition(QUEST_SLOT)),
+						ConversationStates.ATTENDING,
+						"You do not have enough money!",
+						null);
+				
+				add(ConversationStates.ATTENDING,
+						ConversationPhrases.YES_MESSAGES,
+						new QuestActiveCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING,
+						"Hm, I do not understand you. If you wish to #leave, just say",
+						null);
 
-				addReply(ConversationPhrases.YES_MESSAGES, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						if (player.isQuestCompleted(QUEST_SLOT)
-								|| !player.hasQuest(QUEST_SLOT)) {
-							if (player.drop("money", COST)) {
-								raiser.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
+				add(ConversationStates.ATTENDING,
+						ConversationPhrases.NO_MESSAGES,
+						new QuestNotActiveCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING,
+						"Very well.",
+						null);
 
-								player.teleport(zone, 10, 10, Direction.DOWN, player);
+				add(ConversationStates.ATTENDING,
+						ConversationPhrases.NO_MESSAGES,
+						new QuestActiveCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING,
+						"Hm, I do not understand you. If you wish to #leave, just say",
+						null);
 
-								SingletonRepository.getTurnNotifier().notifyInTurns(0, new Timer(player));
+				add(ConversationStates.ATTENDING,
+						"leave",
+						new QuestNotActiveCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING,
+						"Leave where?",
+						null);
 
-								player.setQuest(QUEST_SLOT, "start");
-							} else {
-								raiser.say("You do not have enough money!");
-							}
-						} else {
-							raiser.say("Hm, I do not understand you. If you wish to #leave, just say");
-						}
-					}
-				});
 
-				addReply(ConversationPhrases.NO_MESSAGES, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						if (player.isQuestCompleted(QUEST_SLOT)
-								|| !player.hasQuest(QUEST_SLOT)) {
-							raiser.say("Very well.");
-						} else {
-							raiser.say("Hm, I do not understand you. If you wish to #leave, just say");
-						}
-					}
-				});
+				add(ConversationStates.ATTENDING,
+						"leave",
+						new QuestActiveCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING,
+						"Thank you for using the Wizard's Bank",
+						// we used to use teleportAway() here 
+						new MultipleActions(
+								new TeleportAction(ZONE_NAME, 15, 16, Direction.DOWN),
+								new SetQuestAction(QUEST_SLOT, "done"),
+								new ChatAction() {
+									public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+										SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
+									}}));
 
-				addReply("leave", null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						if (player.isQuestCompleted(QUEST_SLOT)) {
-							raiser.say("Leave where?");
-						} else {
-							teleportAway(player);
-							// remove the players Timer
-							SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
-							raiser.say("Thank you for using the Wizard's Bank");
-						}
-					}
-				});
 
 				addJob("I control access to the bank. My spells ensure people cannot simply come and go as they please. We charge a #fee to #enter.");
 

@@ -212,7 +212,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(player.hasQuest(QUEST_SLOT));
 
 		assertTrue(en.step(player, "leave"));
-		assertEquals("Thank you for using the Wizard's Bank", getReply(npc));
+		assertEquals("Leave where?", getReply(npc));
 		assertTrue(npc.isTalking());
 		assertFalse(player.hasQuest(QUEST_SLOT));
 
