@@ -748,6 +748,7 @@
         </portal>
     </zone>
     <zone name="int_rat_bakery" file="interiors/ratcity/bakery.tmx">
+        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChefNPC" />
         <portal x="10" y="1" ref="entrance">
             <destination zone="-3_orril_dungeon" ref="bakery_entrance" />
         </portal>		
