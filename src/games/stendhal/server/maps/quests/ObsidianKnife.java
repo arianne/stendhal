@@ -20,18 +20,26 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.*;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
-import games.stendhal.server.entity.npc.condition.*;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.KilledCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
@@ -80,8 +88,6 @@ public class ObsidianKnife extends AbstractQuest {
 	// Please note, if you want to code a quest where you're asked to collect a number of some randomly picked item, like alrak asks you to initially, 
 	// please use StartRecordingRandomItemCollectionAction, SayRequiredItemAction, PlayerHasRecordedItemWithHimCondition and DropRecordedItemAction
     // This quest was written before they were available and you should not use it as a template.
-	
-	// TODO: refactor to use standard conditions and actions
 	
 	private static final int MINUTES_IN_DAYS = 24 * 60;
 
@@ -328,26 +334,22 @@ public class ObsidianKnife extends AbstractQuest {
 	private void bringBookStep() {
 		final SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_book"), new PlayerHasItemWithHimCondition("blue book")),
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, "got_book"), 
+						new PlayerHasItemWithHimCondition("blue book")),
 				ConversationStates.IDLE, 
 				"Great! I think I'll read this for a while. Bye!",
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						player.drop("blue book");
-						player.addXP(500);
-						player.setQuest(QUEST_SLOT, "reading;" + System.currentTimeMillis());
-					}
-				});
+				new MultipleActions(
+						new DropItemAction("blue book"),
+						new IncreaseXPAction(500),
+						new SetQuestAction(QUEST_SLOT, "reading;"),
+						new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
 
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-						return player.hasQuest(QUEST_SLOT) 
-						&& (player.getQuest(QUEST_SLOT).equals("seeking_book") || player.getQuest(QUEST_SLOT).equals("got_book")) 
-						&& !player.isEquipped("blue book");
-					}
-				},
+				new AndCondition(
+						new OrCondition(new QuestInStateCondition(QUEST_SLOT,"seeking_book"), new QuestInStateCondition(QUEST_SLOT, "got_book")), 
+						new NotCondition(new PlayerHasItemWithHimCondition("blue book"))),
 				ConversationStates.ATTENDING,
 				"Hello again. I hope you haven't forgotten about the gem book I wanted.",
 				null);
@@ -405,40 +407,29 @@ public class ObsidianKnife extends AbstractQuest {
 		// he's killed a black dragon
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-						return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
-							&& player.hasKilled("black dragon")
-							&& player.isEquipped("obsidian")
-							&& player.isEquipped(FISH);
-					}
-				}, 
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, "knife_offered"), 
+						new KilledCondition("black dragon"),
+						new PlayerHasItemWithHimCondition("obsidian"),
+						new PlayerHasItemWithHimCondition(FISH)), 
 				ConversationStates.IDLE, 
-				null, 
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						player.drop("obsidian");
-						player.drop(FISH);
-						npc.say("You found the gem for the blade and the fish bone to make the handle! I'll start work right away. Come back in "
-								+ REQUIRED_MINUTES + " minutes.");
-						player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
-					}
-				});
+				"You found the gem for the blade and the fish bone to make the handle! I'll start work right away. Come back in "
+				+ REQUIRED_MINUTES + " minutes.", 
+				new MultipleActions(
+				new DropItemAction("obsidian"),
+				new DropItemAction(FISH),
+				new SetQuestAction(QUEST_SLOT, "forging;"),
+				new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
 
 		// player says hi to NPC when equipped with the fish and the gem and
 		// he's not killed a black dragon
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-						return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
-							&& !player.hasKilled("black dragon")
-							&& player.isEquipped("obsidian")
-							&& player.isEquipped(FISH);
-					}
-				},
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, "knife_offered"), 
+						new NotCondition(new KilledCondition("black dragon")),
+						new PlayerHasItemWithHimCondition("obsidian"),
+						new PlayerHasItemWithHimCondition(FISH)),
 				ConversationStates.ATTENDING,
 				"Didn't you hear me properly? I told you to go slay a black dragon for the obsidian, not buy it! How do I know this isn't a fake gem? *grumble* I'm not making a special knife for someone who is scared to face a dragon.",
 				null);
@@ -446,13 +437,12 @@ public class ObsidianKnife extends AbstractQuest {
 		// player says hi to NPC when not equipped with the fish and the gem
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals("knife_offered")
-								&& !(player.isEquipped("obsidian") && player.isEquipped(FISH));
-					}
-				},
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, "knife_offered"), 
+						new NotCondition(
+								new AndCondition(
+										new PlayerHasItemWithHimCondition("obsidian"),
+										new PlayerHasItemWithHimCondition(FISH)))),
 				ConversationStates.ATTENDING,
 				"Hello again. Don't forget I offered to make that obsidian knife, if you bring me a "
 					+ FISH
@@ -478,25 +468,6 @@ public class ObsidianKnife extends AbstractQuest {
 				"The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!",
 				new MultipleActions(reward));
 		
-		
-
-		// Here because of the random response from different actions bug, we
-		// define the greeting message for all cases not covered so far:
-		npc.add(
-				ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-						final List<String> NOT_COVERED_LIST = Arrays.asList(
-								"food_brought", "start", "meat", "ham",
-								"cheese", "rejected");
-						return !player.hasQuest(QUEST_SLOT)
-								|| player.isQuestCompleted(QUEST_SLOT)
-								|| (player.hasQuest(QUEST_SLOT) 
-								&& NOT_COVERED_LIST.contains(player.getQuest(QUEST_SLOT)));
-					}
-				}, ConversationStates.ATTENDING,
-				"How did you get down here? I usually only see #kobolds.", null);
 	}
 
 	@Override
