@@ -127,6 +127,8 @@ public class ShopList {
 		shops.add("selltools", "hammer", 60);
 		// used for harvest grain.
 		shops.add("selltools", "old scythe", 120);
+        // for harvesting cane fields
+		shops.add("selltools", "sickle", 80);
 		shops.add("selltools", "gold pan", 230);
 
 		shops.add("buyiron", "iron", 75);
