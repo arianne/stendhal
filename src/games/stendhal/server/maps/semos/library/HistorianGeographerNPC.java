@@ -16,13 +16,12 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -63,22 +62,20 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.ATTENDING,
-				        null, new ChatAction() {
-
-					        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						        // A little trick to make NPC remember if it has met
-						        // player before anc react accordingly
-						        // NPC_name quest doesn't exist anywhere else neither is
-						        // used for any other purpose
-						        if (player.isQuestCompleted("Zynn")) {
-							        raiser.say("Hi again, " + player.getTitle() + ". How can I #help you this time?");
-						        } else {
-							        raiser.say("Hi, potential reader! Here you can find records of the history of Semos, and lots of interesting facts about this island of Faiumoni. If you like, I can give you a quick introduction to its #geography and #history! I also keep up with the #news, so feel free to ask me about that.");
-							        player.setQuest("Zynn", "done");
-						        }
-					        }
-				        });
+				
+				addGreeting(null, new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
+				
+				// A little trick to make NPC remember if it has met
+		        // player before and react accordingly
+		        // NPC_name quest doesn't exist anywhere else neither is
+		        // used for any other purpose
+				add(ConversationStates.IDLE, 
+						ConversationPhrases.GREETING_MESSAGES,
+						new QuestNotCompletedCondition("Zynn"), 
+						ConversationStates.INFORMATION_1, 
+						"Hi, potential reader! Here you can find records of the history of Semos, and lots of interesting facts about this island of Faiumoni. If you like, I can give you a quick introduction to its #geography and #history! I also keep up with the #news, so feel free to ask me about that.",
+						new SetQuestAction("Zynn", "done"));
+				
 				addHelp("I can best help you by sharing my knowledge of Faiumoni's #geography and #history, as well as the latest #news.");
 				addJob("I'm a historian and geographer, committed to writing down every objective fact about Faiumoni. Did you know I wrote most of the books in this library? Well, apart from \"Know How To Kill Creatures\", of course... Hayunn Naratha wrote that.");
 

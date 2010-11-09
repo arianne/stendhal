@@ -12,19 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
+import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * QUEST: Speak with Monogenes PARTICIPANTS: - Monogenes
@@ -51,28 +50,22 @@ public class MeetMonogenes extends AbstractQuest {
 				"Listen carefully to a wise old man in Semos. His map can guide you through the town.",
 				false);
 		final SpeakerNPC npc = npcs.get("Monogenes");
-
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				null, ConversationStates.ATTENDING, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						// A little trick to make NPC remember if it has met the
-						// player before and react accordingly.
-						// NPC_name quest doesn't exist anywhere else neither is
-						// used for any other purpose.
-						if (player.isQuestCompleted("Monogenes")) {
-							raiser.say("Hi again, " + player.getTitle()
-									+ ". How can I #help you this time?");
-						} else {
-							raiser.say("Hello there, stranger! Don't be too intimidated if people are quiet and reserved... " +
-											"the fear of Blordrough and his forces has spread all over the country, and we're all " +
-											"a bit concerned. I can offer a few tips on socializing though, would you like to hear them?");
-							player.setQuest("Monogenes", "done");
-							raiser.setCurrentState(ConversationStates.INFORMATION_1);
-						}
-					}
-				});
-
+		
+		npc.addGreeting(null, new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
+		
+		// A little trick to make NPC remember if it has met
+        // player before and react accordingly
+        // NPC_name quest doesn't exist anywhere else neither is
+        // used for any other purpose
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestNotCompletedCondition("Monogenes"), 
+				ConversationStates.INFORMATION_1, 
+				"Hello there, stranger! Don't be too intimidated if people are quiet and reserved... " +
+				"the fear of Blordrough and his forces has spread all over the country, and we're all " +
+				"a bit concerned. I can offer a few tips on socializing though, would you like to hear them?",
+				new SetQuestAction("Monogenes", "done"));
+				
 		npc.add(
 			ConversationStates.ATTENDING,
 			ConversationPhrases.HELP_MESSAGES,

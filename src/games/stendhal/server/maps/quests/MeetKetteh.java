@@ -12,18 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NakedCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -49,41 +50,45 @@ public class MeetKetteh extends AbstractQuest {
 
 		final SpeakerNPC npc = npcs.get("Ketteh Wehoh");
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new NakedCondition(), ConversationStates.ATTENDING,
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new NakedCondition(), 
+				ConversationStates.ATTENDING,
 				"Who are you? Aiiieeeee!!! You're naked! Quickly, right-click on yourself and choose SET OUTFIT!\nIt's lucky you met me as I teach good #manners. My next lesson for you is that if anyone says a word in #blue it is polite to repeat it back to them. So, repeat after me: #manners.",
 				new SetQuestAction(QUEST_SLOT, "seen_naked"));
 
 		
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new NotCondition(new NakedCondition()), new QuestInStateCondition(QUEST_SLOT, "seen_naked")),
-				ConversationStates.ATTENDING, null,
-					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-							// OK, player is NOT naked this time, but was last
-							// time.
-							raiser.say("Hi again, " + player.getTitle()	+ ". I'm so glad you have some clothes on now.");
-							// don't be unforgiving
-							player.setQuest(QUEST_SLOT, "seen"); 
-						}
-					});
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new NotCondition(new NakedCondition()), 
+						new QuestInStateCondition(QUEST_SLOT, "seen_naked")),
+				ConversationStates.ATTENDING, 
+				null,
+				new MultipleActions(
+						new SayTextWithPlayerNameAction("Hi again, [name]. I'm so glad you have some clothes on now."),
+						new SetQuestAction(QUEST_SLOT, "done")));
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new NotCondition(new NakedCondition()), new QuestNotInStateCondition(QUEST_SLOT, "seen_naked")),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						if (player.hasQuest(QUEST_SLOT)) {
-							// We have met the player before and he was NOT
-							// naked last time nor is he now
-							raiser.say("Hi again, " + player.getTitle() + ".");
-						} else {
-							// We haver never seen the player before.
-							raiser.say("Hi " + player.getTitle() + ", nice to meet you. You know, we have something in common - good #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners.");
-							player.setQuest(QUEST_SLOT, "seen");
-						}
-					}
-				});
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new NotCondition(new NakedCondition()), 
+						new QuestNotStartedCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING, 
+				null,
+				new MultipleActions(
+						new SayTextWithPlayerNameAction("Hi [name], nice to meet you. You know, we have something in common - good #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners."),
+						new SetQuestAction(QUEST_SLOT, "seen")));
+		
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new NotCondition(new NakedCondition()), 
+						new QuestStartedCondition(QUEST_SLOT),
+						new QuestNotInStateCondition(QUEST_SLOT, "seen_naked")),
+				ConversationStates.ATTENDING, 
+				null,
+				new SayTextWithPlayerNameAction("Hi again, [name]."));
 
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES, new NakedCondition(),
 				ConversationStates.IDLE,

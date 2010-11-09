@@ -24,10 +24,12 @@ import games.stendhal.server.entity.item.token.Token;
 import games.stendhal.server.entity.mapstuff.portal.OnePlayerRoomDoor;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
-import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Collections;
@@ -333,17 +335,21 @@ public class ReverseArrow extends AbstractQuest implements
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						if (player.isQuestCompleted(QUEST_SLOT)) {
-							raiser.say("Hi again "
-								+ player.getTitle()
-								+ ". I remember that you solved this problem already. You can do it again, of course.");
-						} else {
-							raiser.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
-						}
-					}
-				});
+				
+				add(ConversationStates.IDLE, 
+						ConversationPhrases.GREETING_MESSAGES,
+						new QuestCompletedCondition(QUEST_SLOT), 
+						ConversationStates.ATTENDING, 
+						null,
+						new SayTextWithPlayerNameAction("Hi again, [name]. I remember that you solved this problem already. You can do it again, of course."));
+				
+				add(ConversationStates.IDLE, 
+						ConversationPhrases.GREETING_MESSAGES,
+						new QuestNotCompletedCondition(QUEST_SLOT), 
+						ConversationStates.ATTENDING, 
+						"Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.",
+						null);
+				
 				addHelp("You have to stand next to a token in order to move it.");
 				addJob("I am the supervisor for this task.");
 				addGoodbye("It was nice to meet you.");

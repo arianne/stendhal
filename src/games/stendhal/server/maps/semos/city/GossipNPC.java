@@ -4,13 +4,13 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -35,26 +35,24 @@ public class GossipNPC implements ZoneConfigurator {
 			
 			@Override
 			public void createDialog() {
-				add(ConversationStates.IDLE,
+				
+				// A little trick to make NPC remember if it has met
+		        // player before and react accordingly
+		        // NPC_name quest doesn't exist anywhere else neither is
+		        // used for any other purpose
+				add(ConversationStates.IDLE, 
 						ConversationPhrases.GREETING_MESSAGES,
+						new QuestCompletedCondition("Nomyr"), 
+						ConversationStates.ATTENDING, 
 						null,
-				        ConversationStates.ATTENDING,
-				        null,
-				        new ChatAction() {
-					        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						        // A little trick to make NPC remember if it has met
-						        // player before anc react accordingly
-						        // NPC_name quest doesn't exist anywhere else neither is
-						        // used for any other purpose
-						        if (player.isQuestCompleted("Nomyr")) {
-							        npc.say("Hi again, " + player.getTitle()
-							                + ". How can I #help you this time?");
-						        } else {
-							        npc.say("Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?");
-							        player.setQuest("Nomyr", "done");
-						        }
-					        }
-				        });
+						new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
+				
+				add(ConversationStates.IDLE, 
+						ConversationPhrases.GREETING_MESSAGES,
+						new QuestNotCompletedCondition("Nomyr"), 
+						ConversationStates.INFORMATION_1, 
+						"Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?",
+						new SetQuestAction("Nomyr", "done"));
 
 				add(ConversationStates.ATTENDING,
 						ConversationPhrases.YES_MESSAGES,
