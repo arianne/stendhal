@@ -306,7 +306,7 @@ public class PassiveEntityRespawnPointFactory {
 			break;
 
 		case 1:
-			passiveEntityrespawnPoint = new GrainField("cane", Arrays.asList("scythe"));
+			passiveEntityrespawnPoint = new GrainField("cane", Arrays.asList("sickle"));
 			break;
 		default:
 			passiveEntityrespawnPoint = null;
