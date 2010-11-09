@@ -67,6 +67,8 @@ import marauroa.common.game.RPObjectNotFoundException;
 
 public class FishermansLicenseQuiz extends AbstractQuest {
 	static final String QUEST_SLOT = "fishermans_license1";
+	
+	// TODO: use standard conditions and actions
 
 	private final List<String> speciesList = Arrays.asList("trout", "perch",
 			"mackerel", "cod", "roach", "char", "clownfish", "surgeonfish");
@@ -96,7 +98,6 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		return res;
 	}
 
-	// TODO: run this when the NPC says goodbye
 	public void cleanUpTable() {
 		if (fishOnTable != null) {
 			try {
@@ -226,6 +227,16 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 						}
 					}
 				});
+
+		fisherman.add(ConversationStates.ANY, ConversationPhrases.GOODBYE_MESSAGES,
+				ConversationStates.IDLE, "Goodbye.", new ChatAction() {
+			
+		    // this should be put into a custom ChatAction for this quest when the quest is refactored
+			public void fire(final Player player, final Sentence sentence,
+					final EventRaiser npc) {
+				cleanUpTable();
+			}
+		});
 	}
 
 	@Override
