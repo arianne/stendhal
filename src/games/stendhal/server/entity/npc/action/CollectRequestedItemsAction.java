@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
-import java.util.List;
-
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -21,6 +19,12 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
+
+import java.util.List;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * This {@link ChatAction} handles item lists a player has to bring for a quest
  * 
@@ -36,6 +40,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	private final ChatAction toExecuteOnCompletion;
 	private final String questSlot;
 	private final ConversationStates stateAfterCompletion;
+	
 	/**
 	 * create a new {@link CollectRequestedItemsAction}
 	 * @param quest the quest to deal with
@@ -144,4 +149,21 @@ public final class CollectRequestedItemsAction implements ChatAction {
 
 		return missingItems;
 	}
+
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				CollectRequestedItemsAction.class);
+	}
+
+	@Override
+	public String toString() {
+		return "CollectRequestedItemsAction < state on completion: "+stateAfterCompletion.toString()+", execute on completion: "+toExecuteOnCompletion.toString()+">";
+	}
+	
 }
