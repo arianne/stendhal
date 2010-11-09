@@ -270,7 +270,9 @@ public class ElfPrincess extends AbstractQuest {
 		return new QuestInStateCondition(QUEST_SLOT,0,"flower_brought").fire(player,null, null);
 	}
 	
-    // TODO: think about this one.
+	// The quest may have been completed a few times already and then re-opened as it's repeatable
+	// since this method is used to separate open quests from completed quests, we'll say that being completed
+	// means it's done and not re-opened
 	@Override
 	public boolean isCompleted(final Player player) {
 		return new QuestInStateCondition(QUEST_SLOT,0,"flower_brought").fire(player,null, null);
