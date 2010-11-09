@@ -9,7 +9,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
-import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 
 import java.util.LinkedList;
@@ -36,17 +35,12 @@ public class GossipNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				
+				addGreeting(null,new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
+				
 				// A little trick to make NPC remember if it has met
 		        // player before and react accordingly
 		        // NPC_name quest doesn't exist anywhere else neither is
 		        // used for any other purpose
-				add(ConversationStates.IDLE, 
-						ConversationPhrases.GREETING_MESSAGES,
-						new QuestCompletedCondition("Nomyr"), 
-						ConversationStates.ATTENDING, 
-						null,
-						new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
-				
 				add(ConversationStates.IDLE, 
 						ConversationPhrases.GREETING_MESSAGES,
 						new QuestNotCompletedCondition("Nomyr"), 

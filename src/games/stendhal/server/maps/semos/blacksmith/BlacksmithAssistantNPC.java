@@ -22,7 +22,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -63,6 +62,11 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 			
 			@Override
 			public void createDialog() {
+				
+				// A little trick to make NPC remember if it has met
+		        // player before and react accordingly
+		        // NPC_name quest doesn't exist anywhere else neither is
+		        // used for any other purpose
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new QuestNotStartedCondition("meet_hackim"),
@@ -70,12 +74,7 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 				        "Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?",
 				        new SetQuestAction("meet_hackim","start"));
 				
-				add(ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new QuestStartedCondition("meet_hackim"),
-				        ConversationStates.ATTENDING,
-				        null,
-				        new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
+				addGreeting(null, new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
 				
 				addHelp("I'm the blacksmith's assistant. Tell me... Have you come here to buy weapons?");
 				addJob("I help Xoderos the blacksmith to make weapons for Deniran's army. I mostly only bring the coal for the fire and put the weapons up on the shelves. Sometimes, when Xoderos isn't looking, I like to use one of the swords to pretend I'm a famous adventurer!");
