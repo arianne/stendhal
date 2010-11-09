@@ -185,7 +185,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 								new QuestCompletedCondition(QUEST_SLOT)),
 					    ConversationStates.ATTENDING,
 					    null,
-					    new SayTextWithPlayerNameAction("Welcome to the Wizard's Bank, [name].  Do you wish to pay to access your chest again?"));
+					    new SayTextWithPlayerNameAction("Welcome to the Wizard's Bank, [name]. Do you wish to pay to access your chest again?"));
 				
 				// never started quest
 				add(ConversationStates.IDLE,
