@@ -18,6 +18,8 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.action.*;
+import games.stendhal.server.entity.npc.condition.*;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -173,40 +175,66 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence,
-							final EventRaiser raiser) {
-						if (player.isQuestCompleted(GRAFINDLE_QUEST_SLOT)
-								&& player.isQuestCompleted(ZARA_QUEST_SLOT)) {
-							String reply;
-							if (player.isQuestCompleted(QUEST_SLOT)) {
-								reply = " Do you wish to pay to access your chest again?";
-							} else if (!player.hasQuest(QUEST_SLOT)) {
-								reply = "";
-							} else {
-								reply = " You may #leave sooner, if required.";
-							}
-							raiser.say("Welcome to the Wizard's Bank, "
-									+ player.getTitle() + "." + reply);
-						} else {
-							raiser.say("You may not use this bank if you have not gained the right to use the chests at Nalwor, nor if you have not earned the trust of a certain young woman. Goodbye!");
-							raiser.setCurrentState(ConversationStates.IDLE);
-						}
-					}
-				});
-
-				addReply(Arrays.asList("fee", "enter"), null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						if (player.isQuestCompleted(QUEST_SLOT)
-								|| !player.hasQuest(QUEST_SLOT)) {
-							raiser.say("The fee is " + COST
-									+ " money. Do you want to pay?");
-						} else {
-							raiser.say("As you already know, the fee is "
-									+ COST + " money.");
-						}
-					}
-				});
+				
+				// has been here before
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new AndCondition(
+								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
+								new QuestCompletedCondition(ZARA_QUEST_SLOT),
+								new QuestCompletedCondition(QUEST_SLOT)),
+					    ConversationStates.ATTENDING,
+					    null,
+					    new SayTextWithPlayerNameAction("Welcome to the Wizard's Bank, [name].  Do you wish to pay to access your chest again?"));
+				
+				// never started quest
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new AndCondition(
+								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
+								new QuestCompletedCondition(ZARA_QUEST_SLOT),
+								new QuestNotStartedCondition(QUEST_SLOT)),
+					    ConversationStates.ATTENDING,
+					    null,
+					    new SayTextWithPlayerNameAction("Welcome to the Wizard's Bank, [name]."));
+				
+				// currently in bank
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new AndCondition(
+								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
+								new QuestCompletedCondition(ZARA_QUEST_SLOT),
+								new QuestActiveCondition(QUEST_SLOT)),
+					    ConversationStates.ATTENDING,
+					    null,
+					    new SayTextWithPlayerNameAction("Welcome to the Wizard's Bank, [name]. You may #leave sooner, if required."));
+				
+				// hasn't got access to all banks yet
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new OrCondition(
+								new QuestNotCompletedCondition(GRAFINDLE_QUEST_SLOT), 
+								new QuestNotCompletedCondition(ZARA_QUEST_SLOT)),
+						ConversationStates.IDLE,
+						"You may not use this bank if you have not gained the right to use the chests at Nalwor, nor if you have not earned the trust of a certain young woman. Goodbye!",
+						null);
+				
+				add(ConversationStates.ATTENDING,
+						Arrays.asList("fee", "enter"),
+						new QuestNotActiveCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING,
+						"The fee is " + COST
+						+ " money. Do you want to pay?",
+						null);
+				
+				add(ConversationStates.ATTENDING,
+						Arrays.asList("fee", "enter"),
+						new QuestActiveCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING,
+						"As you already know, the fee is "
+						+ COST + " money.",
+						null);
+				
 
 				addReply(ConversationPhrases.YES_MESSAGES, null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
