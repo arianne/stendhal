@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="17" height="10" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="17" height="10" tilewidth="32" tileheight="32">
  <tileset name="Unbenannt" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_2.png"/>
  </tileset>
@@ -40,6 +39,9 @@
  <tileset name="Unbenannt" firstgid="119" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="126" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/wood_fire.png"/>
+ </tileset>
  <layer name="0_floor" width="17" height="10">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNkYGBgHMWjeJBjAPv/WVaoAgAA
@@ -47,7 +49,7 @@
  </layer>
  <layer name="1_terrain" width="17" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONjYGBgIQKnAXE6FnFeIGYDYjkgliKAs4A4G01MFohZgZgLiCUYyAPiQMwJdQclZrDiMSMAiAORcBAUB0P5IUSYQQ13kGIGtcJUBoi1gFgbiHWAWJJILA11Bw8QMwOxARAbArERlE8s5gZiAB75HJCoAgAA
+   H4sIAAAAAAAAAK3QSQqDQBCF4QaNoIlujWY4gLrQnMTpDAaSOzjc3H9RgouI3ZKCD7p68XhUoJSyNXR4//j34eCJeMcHX3n3GPDACR6uymxGTAjhSg/TjGVC6bGVUaJaqUUje6uR8Y8eJhlHbrrOWG56R4IUGSJNN+lxgYUcBV6y6zpjBtAZnPmoAgAA
   </data>
  </layer>
  <layer name="2_object" width="17" height="10">
@@ -70,7 +72,7 @@
    H4sIAAAAAAAAAGNgGAWjgDhQPYB2AwBvAZ41qAIAAA==
   </data>
  </layer>
- <layer name="collision" width="17" height="10" opacity="0.41">
+ <layer name="collision" width="17" height="10" visible="0" opacity="0.41">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAACtjYGAoG0SYAY1NDKC1GQPtF1IBLcygVpiQiwE7v44wqAIAAA==
   </data>
