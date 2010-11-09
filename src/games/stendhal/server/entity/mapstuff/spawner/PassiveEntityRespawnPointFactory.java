@@ -94,6 +94,8 @@ public class PassiveEntityRespawnPointFactory {
 		switch (type) {
 		case 0:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("egg", 25800);
+			passiveEntityrespawnPoint
+					.setDescription("If you were a hen, you'd like to drop a egg in this spot once in a while.");
 			break;
 		default:
 			passiveEntityrespawnPoint = null;
