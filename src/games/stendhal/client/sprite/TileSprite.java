@@ -138,17 +138,6 @@ public class TileSprite implements Sprite {
 	//
 	// Sprite
 	//
-
-	/**
-	 * Copy the sprite. This does not do a deep copy, so the underlying sprite
-	 * it is made of are shared.
-	 * 
-	 * @return A new copy of the sprite.
-	 */
-	public Sprite copy() {
-		return new TileSprite(getSprite(), x, y, width, height);
-	}
-
 	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>

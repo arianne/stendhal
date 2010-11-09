@@ -23,13 +23,6 @@ import java.awt.Graphics;
  */
 public interface Sprite {
 	/**
-	 * Copy the sprite.
-	 * 
-	 * @return A new copy of the sprite.
-	 */
-	Sprite copy();
-
-	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>
 	 * 

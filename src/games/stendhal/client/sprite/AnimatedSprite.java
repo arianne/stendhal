@@ -241,62 +241,6 @@ public class AnimatedSprite implements Sprite {
 	}
 
 	/**
-	 * Get the minimum delays for each frame.
-	 * 
-	 * <strong>NOTE: The array of delays returned is not copied, and must not be
-	 * modified.</strong>
-	 * 
-	 * @return The minimum delays for each frame (in ms).
-	 */
-	private int[] getDelays() {
-		return delays;
-	}
-
-	/**
-	 * Get the frames that make up this animation.
-	 * 
-	 * <strong>NOTE: The array of frames returned is not copied, and must not be
-	 * modified.</strong>
-	 * 
-	 * @return The frames.
-	 */
-	private Sprite[] getFrames() {
-		return frames;
-	}
-
-	/**
-	 * Get the current frame index.
-	 * 
-	 * @return The current frame index.
-	 */
-	private int getIndex() {
-		return index;
-	}
-
-	/**
-	 * Determine if the sprite is currently animated, or paused.
-	 * 
-	 * @return <code>true</code> if animating.
-	 * 
-	 * @see #start()
-	 * @see #stop()
-	 */
-	private boolean isAnimating() {
-		return animating;
-	}
-
-	/**
-	 * Determine if the animation loops.
-	 * 
-	 * @return <code>true</code> if animation loops.
-	 * 
-	 * @see #setLoop(boolean)
-	 */
-	private boolean isLoop() {
-		return loop;
-	}
-
-	/**
 	 * Reset the animation back to it's initial frame, and reset the next frame
 	 * time.
 	 */
@@ -335,16 +279,6 @@ public class AnimatedSprite implements Sprite {
 	}
 
 	/**
-	 * Set the animation loop state.
-	 * 
-	 * @param loop
-	 *            <code>true</code> if animation loops.
-	 */
-	private void setLoop(final boolean loop) {
-		this.loop = loop;
-	}
-
-	/**
 	 * Start the sprite animating.
 	 * 
 	 * @see #stop()
@@ -374,23 +308,6 @@ public class AnimatedSprite implements Sprite {
 	//
 	// Sprite
 	//
-
-	/**
-	 * Copy the sprite. This does not do a deep copy, so the frames it is made
-	 * of are shared.
-	 * 
-	 * @return A new copy of the sprite.
-	 */
-	public Sprite copy() {
-		final AnimatedSprite spriteCopy = new AnimatedSprite(getFrames(),
-				getDelays(), isAnimating(), getReference());
-
-		spriteCopy.setLoop(isLoop());
-		spriteCopy.setIndex(getIndex());
-
-		return spriteCopy;
-	}
-
 	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>

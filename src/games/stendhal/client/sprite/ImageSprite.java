@@ -106,16 +106,6 @@ public class ImageSprite implements Sprite {
 	//
 	// Sprite
 	//
-
-	/**
-	 * Copy the sprite.
-	 * 
-	 * @return A new copy of the sprite.
-	 */
-	public Sprite copy() {
-		return new ImageSprite(this);
-	}
-
 	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>
