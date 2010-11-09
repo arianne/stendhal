@@ -4,7 +4,7 @@
 
   <item name="cherry">
     <type class="food" subclass="cherry" tileid="-1"/>
-    <description>You see a cherry.  It tangy taste revives you a little.</description>
+    <description>You see a cherry. Its tangy taste revives you a little.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="10"/>
       <frequency value="10"/>
@@ -12,6 +12,25 @@
       <regen value="2"/>
     </attributes>
     <weight value="0.1"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="butter">
+    <type class="food" subclass="butter" tileid="-1"/>
+    <description>You see some butter. It is an ingredient or can be eaten if you like.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="25"/>
+      <frequency value="12"/>
+      <quantity value="1"/>
+      <regen value="1"/>
+    </attributes>
+    <weight value="1.0"/>
     <value value="1"/>
     <equipable>
       <slot name="lhand"/>
@@ -695,6 +714,25 @@
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="50"/>
       <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="5"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="5"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="crepes suzette">
+    <type class="food" subclass="crepesuzette" tileid="-1"/>
+    <description>You see a crepes suzette topped with hot chocolate sauce.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="100"/>
+      <frequency value="5"/>
       <quantity value="1"/>
       <regen value="5"/>
     </attributes>
