@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="20" height="16" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="20" height="16" tilewidth="32" tileheight="32">
  <tileset name="floor" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
@@ -43,6 +42,12 @@
  <tileset name="sack" firstgid="113" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/sacks.png"/>
  </tileset>
+ <tileset name="table" firstgid="115" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
+ </tileset>
+ <tileset name="chair" firstgid="121" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/wooden_pale.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNmYGBgHgI4CIhDsNDEqAnCYh4x6nCpQbeXFu4jBpPiPkrCmFz3jeJRPNgxAIq3w1cABQAA
@@ -55,12 +60,12 @@
  </layer>
  <layer name="2_object" width="20" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA0wJkKNLRD7QbE9ENtB2f5Y1JpgEYtG4zsCsRMUOyOx3YlzMtHAZgial0GBeQ5UNi+LDuZRAjIHuXnUBuj5CB2kAnEaFKcDcSEQF0Hl8oG4AE3MiAZupBUAAIU2cxAABQAA
+   H4sIAAAAAAAAAGNgoA0wJkKNLRD7QbE9ENtB2f5Y1JpgEYtG4zsCsRMUJyKx3YlzMtHAZgial0GBeQ5EmFeJRz+6XBYR5pECsJkHA9VAXAzEJUBcCsQ1RMhlErCvDIjLgbiCSDlC5oFAFZly1ADo+QgdpAJxGhSnA3EhEBdB5fKBuABNzIgGbqQVAADNdVooAAUAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFgQCcRRQJwE5acAcQSSfAqZ5iZS4qhRMApGwYgAAJKylmQABQAA
+   H4sIAAAAAAAAAGNgGFgQCcRRQJwE5acAcQSSfArdXTQKBhoUA3EJEJeSKDcKRgGpAAAjBRQgAAUAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="16">
@@ -75,7 +80,7 @@
  </layer>
  <layer name="collision" width="20" height="16" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADNkYGAwHADMQKYeZIAuRolZpIChaB4lZg5F8ygBg908bGZS0yxi8xUudwxEeUIuBgD4H4TEAAUAAA==
+   H4sIAAAAAAAAADNkYGAwHADMQKYeZIAuRolZpIChaB4lZtLbPEJxjk89Nn2D3TxyAD3THyl5GJ/6wYgBTnS27gAFAAA=
   </data>
  </layer>
  <layer name="protection" width="20" height="16">
