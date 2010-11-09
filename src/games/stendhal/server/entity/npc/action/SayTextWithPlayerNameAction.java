@@ -27,6 +27,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * States the name of the player amid a message
  * 
+ * @author kymara
  */
 public class SayTextWithPlayerNameAction implements ChatAction {
 
@@ -35,8 +36,6 @@ public class SayTextWithPlayerNameAction implements ChatAction {
 	/**
 	 * Creates a new SayTextWithPlayerNameAction
 	 * 
-	 * @param questname
-	 *            name of quest-slot to check
 	 * @param message
 	 *            message with substitution [name] for the player name
 	 *            
