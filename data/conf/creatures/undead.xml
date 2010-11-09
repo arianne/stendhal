@@ -482,7 +482,7 @@
 
   <creature name="lich">
     <type class="undead" subclass="lich" tileid="undead_fallen.png:7"/>
-    <description></description>
+    <description>You see a dark desolate creature which has been doomed to wander in endless turmoil, feeding on the souls of the righteous.</description>
     <attributes>
       <atk value="468"/>
       <def value="53"/>
