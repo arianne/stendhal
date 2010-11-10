@@ -86,7 +86,7 @@ public class GhostModeAction extends AdministrationAction {
 	 *
 	 * @param player the admin
 	 */
-	private void activateGhostmode(final Player player) {
+	public static void activateGhostmode(final Player player) {
 		player.setInvisible(true);
 		new GameEvent(player.getName(), INVISIBLE, "on").raise();
 

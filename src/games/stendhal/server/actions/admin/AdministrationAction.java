@@ -51,6 +51,7 @@ public abstract class AdministrationAction implements ActionListener {
 		InvisibleAction.register();
 		JailAction.register();
 		JailReportAction.register();
+		RemoteViewAction.register();
 		SummonAction.register();
 		SummonAtAction.register();
 		SupportAnswerAction.register();
