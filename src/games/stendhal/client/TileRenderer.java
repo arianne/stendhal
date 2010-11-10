@@ -32,7 +32,7 @@ public class TileRenderer extends LayerRenderer {
 
 	private int[] map;
 
-	private Sprite[] spriteMap;
+	protected Sprite[] spriteMap;
 
 	public TileRenderer() {
 		map = null;
