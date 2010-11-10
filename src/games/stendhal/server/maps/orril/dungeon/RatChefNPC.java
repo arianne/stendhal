@@ -29,7 +29,7 @@ import java.util.TreeMap;
 /**
  * Provides a Ratman chef running the Rat City bakery.
  *
- * @author omero
+ * @author omero 
  */
 public class RatChefNPC implements ZoneConfigurator {
 	/**
@@ -91,7 +91,7 @@ public class RatChefNPC implements ZoneConfigurator {
 				        requiredResources, 5 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hi there. Have you come to try my #crepes suzette au chocolate? I can #bake some for you.");
+				        "Hi there. I bet you've come to taste my #crepes suzette au chocolate! I can #bake some for you if you like.");
 			}
 		};
 
