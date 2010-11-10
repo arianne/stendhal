@@ -20,6 +20,8 @@ import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -293,6 +295,35 @@ public class StaticGameLayers {
 		if (lr != null) {
 			lr.draw(g, x, y, width, height);
 		}
+	}
+	
+	/**
+	 * Get a composite representation of multiple tile layers.
+	 * 
+	 * @param area area name
+	 * @param compositeName name to be used for the composite for caching
+	 * @param layers names of the layers making up the composite starting from
+	 * 	the bottom
+	 * @return layer corresponding to all sub layers or <code>null</code> if
+	 * 	they can not be merged
+	 */
+	public LayerRenderer getMerged(String area, String compositeName, String ... layers) {
+		LayerRenderer r = getLayer(area, compositeName);
+		if (r == null) {
+			List<TileRenderer> subLayers = new ArrayList<TileRenderer>(layers.length);
+			for (int i = 0; i < layers.length; i++) {
+				LayerRenderer subLayer = getLayer(area, layers[i]);
+				if (subLayer instanceof TileRenderer) {
+					subLayers.add((TileRenderer) subLayer);
+				} else {
+					// Can't merge
+					return null;
+				}
+			}
+			r = new CompositeLayerRenderer(subLayers);
+			this.layers.put(getLayerKey(area, compositeName), r);
+		}
+		return r;
 	}
 
 	/**

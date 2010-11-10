@@ -531,10 +531,16 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		
-
-		gameLayers.draw(graphics, set, "0_floor", startTileX, startTileY, layerWidth, layerHeight);
-		gameLayers.draw(graphics, set, "1_terrain", startTileX, startTileY, layerWidth, layerHeight);
-		gameLayers.draw(graphics, set, "2_object", startTileX, startTileY, layerWidth, layerHeight);
+		LayerRenderer r = gameLayers.getMerged(set, "floor_bundle", "0_floor", "1_terrain", "2_object");
+		if (r != null) {
+			r.draw(graphics, startTileX, startTileY, layerWidth, layerHeight);
+		} else {
+			// Fall back to individual layers in case the layers can't be
+			// merged. (Is that even possible?)
+			gameLayers.draw(graphics, set, "0_floor", startTileX, startTileY, layerWidth, layerHeight);
+			gameLayers.draw(graphics, set, "1_terrain", startTileX, startTileY, layerWidth, layerHeight);
+			gameLayers.draw(graphics, set, "2_object", startTileX, startTileY, layerWidth, layerHeight);
+		}
 		
 		drawEntities(graphics);
 
