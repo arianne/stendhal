@@ -15,9 +15,18 @@ package games.stendhal.server.maps.semos.townhall;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -44,22 +53,33 @@ public class BoyNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-
-						if (player.hasQuest("introduce_players")) {
-							if (player.isQuestCompleted("introduce_players")) {
-							raiser.say("Hi again " + player.getTitle() + "! Thanks again, I'm feeling much better now.");
-							} else {
-							raiser.say("*sniff* *sniff* I still feel ill, please hurry with that #favour for me.");
-							}
-						} else {
-							if (!player.isGhost()) {
-								raiser.say("Ssshh! Come here, " + player.getTitle() + "! I have a #task for you.");
-							}
-						}
-					}
-				});
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new AndCondition(
+								new QuestNotStartedCondition("introduce_players"),
+								new ChatCondition() {
+									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+										return !player.isGhost();
+									}
+								}),
+				        ConversationStates.ATTENDING,
+				        null,
+				        new SayTextWithPlayerNameAction("Ssshh! Come here, [name]! I have a #task for you."));
+				
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new QuestActiveCondition("introduce_players"),
+				        ConversationStates.ATTENDING,
+				        "*sniff* *sniff* I still feel ill, please hurry with that #favour for me.",
+				        null);
+				
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new QuestCompletedCondition("introduce_players"),
+				        ConversationStates.ATTENDING,
+				        null,
+				        new SayTextWithPlayerNameAction("Hi again, [name]! Thanks again, I'm feeling much better now."));
+				
 				addGoodbye();
 			}
 
