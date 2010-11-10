@@ -390,7 +390,7 @@
       <amount value="3500"/>
       <frequency value="8"/>
       <quantity value="1"/>
-      <regen value="25"/>
+      <regen value="50"/>
       <persistent value="1"/>
     </attributes>
     <weight value="1.0"/>
