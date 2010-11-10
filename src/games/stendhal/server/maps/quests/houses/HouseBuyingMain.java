@@ -12,9 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.houses;
 
+import java.util.LinkedList;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * Controls house buying.
@@ -55,6 +58,19 @@ public class HouseBuyingMain {
 	public void createAthorNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new AthorHouseSeller("Cyk", "athor", houseTax);
 		zone.add(npc);
+	}
+	
+	public LinkedList<String> getHistory(final Player player) {
+		LinkedList<String> hist = new LinkedList<String>();
+		if(player.hasQuest("house")) {
+			hist.add("I have buyed house ##"+player.getQuest("house")+".");			
+		} else {
+			hist.add("I have no buyed houses now.");
+			if(player.getAge()<0) {
+				//hist.add("My age is not enough to buy any house.");
+			}
+		}
+		return(hist);
 	}
 
 	public void addToWorld() {

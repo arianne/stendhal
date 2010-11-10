@@ -12,11 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.LinkedList;
+
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.houses.HouseBuyingMain;
 
 public class HouseBuying extends AbstractQuest {
 	private static final String QUEST_SLOT = "house";
-
+	private HouseBuyingMain quest;
 
 	@Override
 	public String getSlotName() {
@@ -27,9 +30,14 @@ public class HouseBuying extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
-		HouseBuyingMain quest = new HouseBuyingMain();
+		quest = new HouseBuyingMain();
 		quest.addToWorld();
 	}
+	
+	public LinkedList<String> getHistory(final Player player) {
+		return quest.getHistory(player);
+	}
+	
 	@Override
 	public String getName() {
 		return "HouseBuying";
