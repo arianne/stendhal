@@ -607,8 +607,8 @@ public class j2DClient implements UserInterface {
 					}
 				}
 
-				// Shows a offline icon if no messages are received in 120 seconds.
-				if ((refreshTime - lastMessageHandle > 120000L)
+				// Shows a offline icon if no messages are received in 20 seconds.
+				if ((refreshTime - lastMessageHandle > 20000L)
 						|| !client.getConnectionState()) {
 					setOffline(true);
 				} else {
@@ -1085,7 +1085,7 @@ public class j2DClient implements UserInterface {
 
 
 	public void requestQuit() {
-		if (client.getConnectionState()) {
+		if (client.getConnectionState() || !screen.getOffline()) {
 			quitDialog.requestQuit();
 		} else {
 			System.exit(0);

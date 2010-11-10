@@ -1100,4 +1100,13 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		// Just pass it to the ground container
 		ground.dropEntity(entity, amount, point);
 	}
+
+	/**
+	 * is the connection offline
+	 *
+	 * @return offline?
+	 */
+	public boolean getOffline() {
+		return offline;
+	}
 }
