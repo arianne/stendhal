@@ -146,7 +146,7 @@ public class ImageSprite implements Sprite {
 
 		draw(imageTemp.getGraphics(), 0, 0, x, y, width, height);
 
-		return new ImageSprite(imageTemp, reference);
+		return new ImageSprite(imageTemp, ref);
 	}
 
 	/**
