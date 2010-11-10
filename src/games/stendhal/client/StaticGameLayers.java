@@ -320,6 +320,10 @@ public class StaticGameLayers {
 					return null;
 				}
 			}
+			// Make sure the sub layers have their tiles defined before passing
+			// them to CompositeLayerRenderer
+			validate();
+			
 			r = new CompositeLayerRenderer(subLayers);
 			this.layers.put(getLayerKey(area, compositeName), r);
 		}
