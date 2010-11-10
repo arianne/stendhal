@@ -50,7 +50,7 @@ public class CompositeLayerRenderer extends TileRenderer {
 	private void createComposites(List<TileRenderer> renderers) {
 		int size = width * height;
 		spriteMap = new Sprite[size];
-		SpriteCache cache = new SpriteCache();
+		SpriteCache cache = SpriteCache.get();
 		int layers = renderers.size();
 		
 		List<Sprite> slaves = new ArrayList<Sprite>(layers);
