@@ -122,7 +122,14 @@ public class TilesetAnimationMap {
 			frames[i] = tileset.getSprite(frameIndexes[i]);
 		}
 
-		return new AnimatedSprite(frames, frameDelays, true, null);
+		// Use the reference of the first frame as the reference for the whole
+		// group
+		Object ref = null;
+		Sprite first = frames[0];
+		if (first != null) {
+			ref = first.getReference();
+		}
+		return new AnimatedSprite(frames, frameDelays, true, ref);
 	}
 
 	//
