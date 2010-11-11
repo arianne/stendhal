@@ -12,7 +12,9 @@ Changelog
 - Eheneumniranin, a half-elf that lost his memories. He's sickleing the grain field in ados forest farm area.
 - Gertha and Martha in Kalavan city gardens, they'll bake delicious apple and cherry pies
 - Wrviliza, a kobold barmaid in Wo'fol bar, she also provides new drinks (mild and strong koboldish torcibud)
+- Kormic, a kobold regular in Wo'fol bar
 - Uncle Dag in Ados market, he runs a distillery stand there and produces fierywater
+- Gaston, a Rat chef in Rat City bakery that will prepare the best crepes suzette au chocolate in town
 - quest in Wo'fol (the reward is V.S.O.P. koboldish torcibud)
 - quest for Ortiv Milquetoast in Kirdneh River House
 - artichoke, garlic, mandragora (a magical herb) and zantedeschia (a flower) are growing, and cane fields
@@ -24,6 +26,8 @@ Changelog
 - ados swamp and surroundings has a new landscape
 - Bobby, a small boy in Fado, waits for some visitors
 - scrying orbs around the deathmatch arena
+- refined edges of the water upstream of the Nalwor river waterfall 
+- dead gnarled and twisted trees and bushes in the Orcs pit
 
 *code*
 - fixed calculation of player ages (it assumed that a second was 3*300ms)
