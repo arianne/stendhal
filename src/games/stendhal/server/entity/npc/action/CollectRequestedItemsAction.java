@@ -58,8 +58,14 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	}
 	
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-	    final String item = sentence.getTriggerExpression().getNormalized();
-	    ItemCollection missingItems = getMissingItems(player);
+		String item = sentence.getTriggerExpression().getNormalized();
+
+		// TODO: fix this hack
+		if (item.equals("pestle")) {
+			item = "pestle and mortar";
+		}
+
+		ItemCollection missingItems = getMissingItems(player);
 		final Integer missingCount = missingItems.get(item);
 
 		if ((missingCount != null) && (missingCount > 0)) {
@@ -92,7 +98,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	boolean dropItems(final Player player, final String itemName, int itemCount) {
 		boolean result = false;
 
-		 // parse the quest state into a list of still missing items
+		// parse the quest state into a list of still missing items
 		final ItemCollection itemsTodo = new ItemCollection();
 
 		itemsTodo.addFromQuestStateString(player.getQuest(questSlot));
