@@ -24,7 +24,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -66,9 +65,10 @@ public class BoyNPC implements ZoneConfigurator {
 				        null,
 				        new SayTextWithPlayerNameAction("Ssshh! Come here, [name]! I have a #task for you."));
 				
+				// this is the condition for any other case while the quest is active, not covered by the quest.
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new QuestActiveCondition("introduce_players"),
+						null,
 				        ConversationStates.ATTENDING,
 				        "*sniff* *sniff* I still feel ill, please hurry with that #favour for me.",
 				        null);
