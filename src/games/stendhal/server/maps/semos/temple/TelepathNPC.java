@@ -17,11 +17,19 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -65,28 +73,46 @@ public class TelepathNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.ATTENDING,
-				        null, new ChatAction() {
-
-					        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						        if (player.hasQuest("meet_io")) {
-									if (player.isBadBoy()) {
-										// notice pk icon 
-										raiser.say("Hi again, " + player.getTitle() + ". I sense you have been branded with the mark of a killer. Do you wish to have it removed?");
-										raiser.setCurrentState(ConversationStates.QUESTION_1);
-									} else {
-										raiser.say("Hi again, " + player.getTitle()
-							                + ". How can I #help you this time? Not that I don't already know...");
+				
+				// player has met io before and has a pk skull
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new AndCondition(
+								new QuestStartedCondition("meet_io"),
+								new ChatCondition() {
+									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+										return player.isBadBoy() ;
 									}
-						        } else {
-							        raiser
-							                .say("I awaited you, "
-							                        + player.getTitle()
-							                        + ". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
-							        player.setQuest("meet_io", "start");
-						        }
-					        }
-				        });
+								}),
+				        ConversationStates.QUESTION_1,
+				        null,
+				        new SayTextWithPlayerNameAction("Hi again, [name]. I sense you have been branded with the mark of a killer. Do you wish to have it removed?"));
+				
+				// player has met io before and has not got a pk skull
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new AndCondition(
+								new QuestStartedCondition("meet_io"),
+								new ChatCondition() {
+									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+										return !player.isBadBoy() ;
+									}
+								}),
+				        ConversationStates.ATTENDING,
+				        null,
+				        new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time? Not that I don't already know..."));
+				
+				// first meeting with player
+				add(ConversationStates.IDLE, 
+						ConversationPhrases.GREETING_MESSAGES, 
+						new QuestNotStartedCondition("meet_io"),
+						ConversationStates.ATTENDING,
+				        null, 
+				        new MultipleActions(
+				        		new SayTextWithPlayerNameAction("I awaited you, [name]. How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?"),
+				        		new SetQuestAction("meet_io", "start")));
+	
+				
 				add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,
 				        null, new ChatAction() {
 
