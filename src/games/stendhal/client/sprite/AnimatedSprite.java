@@ -122,7 +122,7 @@ public class AnimatedSprite implements Sprite {
 	 */
 	public AnimatedSprite(final Sprite[] frames, final int delay,
 			final boolean animating) {
-		this(frames, delay, true, null);
+		this(frames, delay, animating, null);
 	}
 
 	/**
