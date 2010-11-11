@@ -463,7 +463,32 @@ West: Semos
      <attribute name="name">deathmatch spikes</attribute>
    </entity>
 
+   <!-- Scrying orbs -->
    <entity x="86" y="95">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+       <parameter name="x">100</parameter>
+       <parameter name="y">86</parameter>
+     </implementation>
+   </entity>
+   <entity x="86" y="75">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+       <parameter name="x">100</parameter>
+       <parameter name="y">86</parameter>
+     </implementation>
+   </entity>
+   <entity x="100" y="95">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+       <parameter name="x">100</parameter>
+       <parameter name="y">86</parameter>
+     </implementation>
+   </entity>
+   <entity x="114" y="75">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+       <parameter name="x">100</parameter>
+       <parameter name="y">86</parameter>
+     </implementation>
+   </entity>
+   <entity x="114" y="95">
      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
        <parameter name="x">100</parameter>
        <parameter name="y">86</parameter>
