@@ -293,6 +293,8 @@ tileset/ground/water/dungeon_water.png	27	27:28:29:28
 tileset/ground/water/dungeon_water.png	28	28:29:28:27
 tileset/ground/water/dungeon_water.png	29	29:28:27:28
 
+tileset/item/scrying_orb.png	*@400	0:1:2:3:4:5:6:7
+
 tileset/item/banners/flag.png	*@300	0:1:2
 tileset/item/banners/flag.png   *@300   3:4:5
 tileset/item/banners/flag.png   *@300   6:7:8
