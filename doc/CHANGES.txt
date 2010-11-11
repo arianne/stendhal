@@ -5,28 +5,27 @@ Changelog
 *features*
 - quantity selector for control-drop
 - corpses have resistance
-- scrolls can be labelled with /mark command
+- scrolls can be labelled with /markscroll command
 - cancel client download if the user closes the progress bar window and confirms the dialog
 
 *world*
-- Eheneumniranin, a half-elf that lost his memories. He's sickleing the grain field in ados forest farm area.
+- Eheneumniranin, a half-elf that lost his memories. He harvests the grain field in ados forest farm area
 - Gertha and Martha in Kalavan city gardens, they'll bake delicious apple and cherry pies
-- Wrviliza, a kobold barmaid in Wo'fol bar, she also provides new drinks (mild and strong koboldish torcibud)
+- Wrviliza, a kobold barmaid in Wo'fol bar, she also provide new drinks (mild and strong koboldish torcibud)
 - Kormic, a kobold regular in Wo'fol bar
 - Uncle Dag in Ados market, he runs a distillery stand there and produces fierywater
 - Gaston, a Rat chef in Rat City bakery that will prepare the best crepes suzette au chocolate in town
 - quest in Wo'fol (the reward is V.S.O.P. koboldish torcibud)
 - quest for Ortiv Milquetoast in Kirdneh River House
-- artichoke, garlic, mandragora (a magical herb) and zantedeschia (a flower) are growing, and cane fields
+- artichoke, garlic, mandragora (a magical herb) and zantedeschia (a flower) and cane fields are growing in Faiumoni
 - hen nests spawn eggs
 - new types of empty bottles
-- sickles can be used to harvest canes
+- sickles can be used to harvest sugar cane
 - a new fish-source on Amazon island
 - red lionfish can be sold on the Athor ferry
 - ados swamp and surroundings has a new landscape
 - Bobby, a small boy in Fado, waits for some visitors
 - scrying orbs around the deathmatch arena
-- refined edges of the water upstream of the Nalwor river waterfall 
 - dead gnarled and twisted trees and bushes in the Orcs pit
 
 *code*
