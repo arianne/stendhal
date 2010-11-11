@@ -23,11 +23,13 @@ Changelog
 - red lionfish can be sold on the Athor ferry
 - ados swamp and surroundings has a new landscape
 - Bobby, a small boy in Fado, waits for some visitors
+- scrying orbs around the deathmatch arena
 
 *code*
 - fixed calculation of player ages (it assumed that a second was 3*300ms)
 - all NPCs defined with a zone configurator (standardisation across code)
 - old style quests refactored to use standard conditions and actions
+- drawing of the ground layers sped up
 
 0.88
 
