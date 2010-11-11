@@ -215,7 +215,17 @@ public class AnimatedSprite implements Sprite {
 		}
 
 		cycleTime = 0;
-		lastUpdate = System.currentTimeMillis();
+
+		long now = System.currentTimeMillis();
+		if (loop) {
+			/*
+			 * Make all looped animations look like they were started at time 0.
+			 * Keeps the map sprites nicely in sync.
+			 */
+			lastUpdate = now - (now % duration);
+		} else {
+			lastUpdate = now;
+		}
 	}
 
 	//
