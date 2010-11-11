@@ -36,6 +36,7 @@ public class ViewChangeEntity extends UseableEntity {
 	public ViewChangeEntity(int x, int y) {
 		this.x = x;
 		this.y = y;
+		setResistance(0);
 	}
 	
 	@Override
