@@ -607,8 +607,8 @@ public class j2DClient implements UserInterface {
 					}
 				}
 
-				// Shows a offline icon if no messages are received in 20 seconds.
-				if ((refreshTime - lastMessageHandle > 20000L)
+				// Shows a offline icon if no messages are received in 30 seconds.
+				if ((refreshTime - lastMessageHandle > 30000L)
 						|| !client.getConnectionState()) {
 					setOffline(true);
 				} else {
@@ -641,9 +641,9 @@ public class j2DClient implements UserInterface {
 					try {
 						/*
 						 * We request server permision to logout. Server can deny
-						 * it.
+						 * it, unless we are already offline.
 						 */
-						if (client.logout()) {
+						if (screen.getOffline() || client.logout()) {
 							canExit = true;
 						} else {
 							logger.warn("You can't logout now.");
