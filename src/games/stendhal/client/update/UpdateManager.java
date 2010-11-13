@@ -241,7 +241,7 @@ public class UpdateManager {
 	 * @return true on success, false otherwise
 	 */
 	private boolean downloadFiles(final List<String> files, final int size) {
-		updateProgressBar = new UpdateProgressBar(size);
+		updateProgressBar = new UpdateProgressBar(size, null, null);
 		updateProgressBar.setVisible(true);
 		for (final String file : files) {
 			boolean res = downloadFile(file);

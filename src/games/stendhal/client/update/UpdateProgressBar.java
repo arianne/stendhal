@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.update;
 
+import java.io.IOException;
 import java.net.URL;
 import java.security.AccessControlException;
 
@@ -19,6 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,24 +35,37 @@ public class UpdateProgressBar extends JFrame implements
 
 	private int max = 100;
 
+	/** the version the update is based on, <code>null</code> for a initial download */
+	private String fromVersion = null;
+
+	/** the version the download is leading to */
+	private String toVersion = null;
+
 	private int sizeOfLastFiles;
 
 	private JPanel contentPane;
 
 	private JProgressBar progressBar;
 
+	private JEditorPane browser;
+
+
 	/**
 	 * Creates update progress bar.
 	 * 
-	 * @param max
-	 *            max file size
+	 * @param max max file size
+	 * @param fromVersion the version the update is based on, may be <code>null</code>
+	 * @param toVersion the version the download leads to
 	 */
-	public UpdateProgressBar(final int max) {
+	public UpdateProgressBar(final int max, final String fromVersion, final String toVersion) {
 		super("Downloading...");
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new UpdateProgressBarWindowListener());
 
 		this.max = max;
+		this.fromVersion = fromVersion;
+		this.toVersion = toVersion;
+
 		try {
 			final URL url = this.getClass().getClassLoader().getResource(
 					ClientGameConfiguration.get("GAME_ICON"));
@@ -82,6 +97,23 @@ public class UpdateProgressBar extends JFrame implements
 		progressBar.setStringPainted(false);
 		progressBar.setValue(0);
 		contentPane.add(progressBar);
+
+		if (toVersion != null) {
+			// Set up page display.
+			browser = new JEditorPane();
+			browser.setContentType("text/html");
+			browser.setEditable(false);
+			// TODO: browser.addHyperlinkListener(this), but open in normal browser
+			// TODO: scrollbars if necessary
+			// TODO: 640x440 window size?
+			// TODO: load page async?
+			try {
+				browser.setPage("http://arianne.sourceforge.net/stendhal/greeting/" + fromVersion + "/" + toVersion + ".html");
+				contentPane.add(browser);
+			} catch (IOException e) {
+				System.out.println(e);
+			}
+		}
 	}
 
 	public void onDownloading(final int downloadedBytes) {
@@ -93,4 +125,8 @@ public class UpdateProgressBar extends JFrame implements
 		progressBar.setValue(sizeOfLastFiles);
 	}
 
+	public static void main(String[] args) {
+		UpdateProgressBar updateProgressBar = new UpdateProgressBar(100, "0.80", "0.88");
+		updateProgressBar.setVisible(true);
+	}
 }
