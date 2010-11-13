@@ -39,7 +39,6 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     protected SentenceType sentenceType = SentenceType.UNDEFINED;
 
     List<Expression> expressions = new ArrayList<Expression>();
-    
   
 
     /**
@@ -173,12 +172,37 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return trigger string
      */
     public Expression getTriggerExpression() {
-        // just return the first expression
-        if (expressions.size() > 0) {
-            return expressions.get(0);
-        } else {
+        // Return an empty expression for an empty senctence.
+        if (expressions.isEmpty()) {
             return Expression.EMPTY_EXPRESSION;
         }
+
+        if (expressions.size() > 1) {
+	        // Test for a list of items
+			StringBuffer objects = new StringBuffer();
+			int simpleObjects = 0;
+	
+			for(Expression e : expressions) {
+				if (e.isObject() && e.getAmount()==1) {
+					if (simpleObjects > 0)
+						objects.append(" and ");
+	
+					objects.append(e.getNormalized());
+	
+					++simpleObjects;
+				} else {
+					break;
+				}
+			}
+	
+			// If the sentence constists only of a list of single objects (amount=1),
+			// return it as "A and B and C and ..."
+			if (simpleObjects == expressions.size())
+				return new Expression(objects.toString(), ExpressionType.OBJECT);
+        }
+
+        // otherwise just return the first expression
+    	return expressions.get(0);
     }
 
     /**

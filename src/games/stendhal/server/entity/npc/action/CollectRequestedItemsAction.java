@@ -60,11 +60,6 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String item = sentence.getTriggerExpression().getNormalized();
 
-		// TODO: fix this hack
-		if (item.equals("pestle")) {
-			item = "pestle and mortar";
-		}
-
 		ItemCollection missingItems = getMissingItems(player);
 		final Integer missingCount = missingItems.get(item);
 
@@ -85,7 +80,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 			raiser.say(alreadyBrought);
 		}
 	}
-	
+
 	/**
 	 * Drop specified amount of given item. If player doesn't have enough items,
 	 * all carried ones will be dropped and number of missing items is updated.
