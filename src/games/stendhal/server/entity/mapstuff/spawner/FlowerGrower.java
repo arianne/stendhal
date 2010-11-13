@@ -35,7 +35,7 @@ import marauroa.common.game.RPObject;
 public class FlowerGrower extends VegetableGrower {
 	/** 5 hours for one growing step */
 	private static final int GROW_TIME_TURNS = 60000;
-	private static final String ITEM_NAME = "lilia";
+	private static final String GROWER_NAME = "lilia";
     /** The description depends upon the ripeness of the flower grower */
 	private final String[] description = {
 			"You see a seed which has just been planted.",
@@ -47,7 +47,7 @@ public class FlowerGrower extends VegetableGrower {
 					+ ", ready to pull from the ground." };
 
 	/**
-	 * Constructor for loading Flowergrower from the stored zone used by
+	 * Constructor for loading FlowerGrower from the stored zone used by
 	 * StendhalRPObjectFactory.
 	 * 
 	 * @see StendhalRPObjectFactory
@@ -67,23 +67,21 @@ public class FlowerGrower extends VegetableGrower {
 	/**
 	 * Constructor.
 	 * 
-	 * Default Flowergrower produces lilia.
+	 * Default FlowerGrower produces lilia.
 	 */
 	public FlowerGrower() {
-		this(ITEM_NAME);
-
+		this(GROWER_NAME);
 		store();
 	}
 
 	/**
-	 * Constructor of a Flowergrower growing an item with the name specified in
+	 * Constructor of a FlowerGrower growing an item with the name specified in
 	 * infostring.
 	 * 
 	 * @param infoString
 	 *            the name of the item to produce
 	 * 
 	 */
-
 	public FlowerGrower(final String infoString) {
 		super(infoString);
 		setMaxRipeness(4);
@@ -128,7 +126,6 @@ public class FlowerGrower extends VegetableGrower {
 		if (this.getZone() == null) {
 			return false;
 		} else {
-			
 			final StendhalRPZone zone = this.getZone();
 			boolean passes = false; 
 			for (Entity entity : zone.getEntitiesAt(getX(), getY())) {
@@ -143,7 +140,6 @@ public class FlowerGrower extends VegetableGrower {
 					}
 				}
 			}
-			
 			return passes;
 		}
 	}
@@ -158,5 +154,4 @@ public class FlowerGrower extends VegetableGrower {
 			}
 		}
 	}
-
 }
