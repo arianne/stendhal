@@ -6,7 +6,6 @@ Changelog
 - quantity selector for control-drop
 - corpses have resistance
 - scrolls can be labelled with /markscroll command
-- cancel client download if the user closes the progress bar window and confirms the dialog
 
 *world*
 - Eheneumniranin, a half-elf that lost his memories. He harvests the grain field in ados forest farm area
@@ -23,7 +22,7 @@ Changelog
 - sickles can be used to harvest sugar cane
 - a new fish-source on Amazon island
 - red lionfish can be sold on the Athor ferry
-- ados swamp and surroundings has a new landscape
+- ados swamp and surroundings have a new landscape
 - Bobby, a small boy in Fado, waits for some visitors
 - scrying orbs around the deathmatch arena
 - dead gnarled and twisted trees and bushes in the Orcs pit
@@ -33,6 +32,8 @@ Changelog
 - all NPCs defined with a zone configurator (standardisation across code)
 - old style quests refactored to use standard conditions and actions
 - drawing of the ground layers sped up
+
+
 
 0.88
 
