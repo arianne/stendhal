@@ -55,6 +55,9 @@ public class User extends Player {
 		return instance;
 	}
 
+	/**
+	 * creates a User object
+	 */
 	public User() {
 		instance = this;
 	}
@@ -271,7 +274,7 @@ public class User extends Player {
 			RPObject ign = diff.getSlot("!ignore").getFirst();
 			if (ign != null) {
 				removeIgnore(ign);
-			}			
+			}
 		}
 	}
 
@@ -351,6 +354,12 @@ public class User extends Player {
 		return User.get().ignore.contains(name);
 	}
 
+	/**
+	 * is the specified charname a buddy of us?
+	 *
+	 * @param name charname to test
+	 * @return true, if it is a buddy, false if it is not a buddy or the user object is unknown.
+	 */
 	public static boolean hasBuddy(String name) {
 		if (User.isNull()) {
 			return false;
@@ -360,13 +369,29 @@ public class User extends Player {
 		return rpobject.has("buddies", name);
 	}
 
+	/**
+	 * gets the server release version
+	 *
+	 * @return server release version or <code>null</code>
+	 */
 	public static String getServerRelease() {
 		if (User.isNull()) {
 			return null;
 		}
-		
-		
+
 		return User.get().rpObject.get("release");
+	}
+
+	/**
+	 * gets the name of the player's character
+	 *
+	 * @return charname or <code>null</code>
+	 */
+	public static String getCharacterName() {
+		if (User.isNull()) {
+			return null;
+		}
+		return User.get().getName();
 	}
 
 	/**
@@ -396,4 +421,5 @@ public class User extends Player {
 			}
 		}
 	}
+
 }
