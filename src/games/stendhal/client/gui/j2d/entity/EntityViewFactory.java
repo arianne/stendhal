@@ -217,6 +217,7 @@ public class EntityViewFactory {
 		
 		register("item", "club", "wizard_staff",  UseableItem2DView.class);
         register("item", "misc", "seed", UseableItem2DView.class);
+        register("item", "misc", "bulb", UseableItem2DView.class);
 
 		register("item", "scroll", null,  UseableItem2DView.class);
 
