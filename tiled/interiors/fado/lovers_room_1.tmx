@@ -64,7 +64,7 @@
  <tileset name="vegetable.png" firstgid="151" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <tileset name="sofa chair" firstgid="162" tilewidth="32" tileheight="32">
+ <tileset name="sofa chair" firstgid="164" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_chair_grey.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -74,12 +74,12 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2SWwoCMQxFsxJR/1TcgoLOAvop+HYfugU3IbhNMzBCCLk2Q5vBC4dJn2dKOyKicSATZkr5PAGezJyOO/MwvjUdN0BNR0mkY8Nsgx1RGdrRGOONQPejtl7jcfQd0+0oh+wrceTWIIf+B3QfOQe6j6j0dbxAXeLYqfYb1NbcBByJ6iQJpEP2oxyYY8fJ4SHynWMv6jNz6bga41b+8V1FOPRb+RU0d8hzrJh15b2/e7aOObMIZMl8AKrGDofECQAA
+   H4sIAAAAAAAAAM2SWwoCMQxFsxJR/1TcgoLOAvop+HYfugV3IbhLMzBCCLk2Q5vBC4dJn2dKOyKicSATZkr5PAGezJyOO/MwvjUdN0BNR0mkY8Nsgx1RGdrRGOONQPejtl7jcfQd0+0oh+wrceTWIIf+B3QfOQe6j6j0dbxAXeLYqfYb1NbcBByJ6iQJpEP2oxyYY8fJ4SHynWMv6jNz6bga41b+8V1FOPRb+RU0d8hzrJh15b2/e7aOObMIZMl8AIKi3RXECQAA
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQIA8IM6H4gIk8VogrsNCI4NeIO5jIAwKgbgIiouRxBcB8WIsNDYwEYgnAPEkKJtYEA/ECWg4EYfaqUA8GUpPIcGOUTAKRsEoGAX0A5FI7C4g7gHibiDuxCI/CkbBcAMA5AMf8MQJAAA=
+   H4sIAAAAAAAAAGNgQIA8IM6H4gIk8VogrsNCI4NeIO5jIAwKgbgIiouRxJcA8VIsNDYwEYgnAPEkKJtYEA/ECWg4EYfaqUA8GUpPIcGOUTAKRsEoGAX0A5FI7C4g7gHibiDuxCI/CkbBcAMA5FLNk8QJAAA=
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">

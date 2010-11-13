@@ -103,12 +103,12 @@
  <tileset name="vegetable.png" firstgid="495" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <tileset name="carpets.png" firstgid="506" tilewidth="32" tileheight="32">
+ <tileset name="carpets.png" firstgid="508" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAy4sWBqAGzmottBqX3k2kGKnYTswBZu5PgLpF6ZEbucOiN288kJO2L9wIBDjBgzQFgVCyYlLMkxnxR7iPEHNeyQIoDx2UFILymY1uZTG/9jpB4etWPUjlE7Bqcdoxg/BgAuGxWqxAkAAA==
+   H4sIAAAAAAAAAO2QOQrAMAwEpbT5QdoQ/P8fBrVho8syuJBgGh87rIjsOQEVg3K/jllf1hFxWg60t0wveX8zvhuM8zO783agnzNPhvAAIrvM5Ec8nh4VjstAc1h/I6zOr4aOOtrRjnbs6Wh0Xh98qh7ECQAA
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">

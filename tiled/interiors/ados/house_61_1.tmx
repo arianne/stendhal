@@ -31,51 +31,51 @@
  <tileset name="veg" firstgid="273" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <tileset name="sheepfood" firstgid="284" tilewidth="32" tileheight="32">
+ <tileset name="sheepfood" firstgid="286" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset name="green" firstgid="285" tilewidth="32" tileheight="32">
+ <tileset name="green" firstgid="287" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
- <tileset name="white bed" firstgid="289" tilewidth="32" tileheight="32">
+ <tileset name="white bed" firstgid="291" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_white2.png"/>
  </tileset>
- <tileset name="sheet" firstgid="295" tilewidth="32" tileheight="32">
+ <tileset name="sheet" firstgid="297" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_white2_top_sheet.png"/>
  </tileset>
- <tileset name="whirlpool" firstgid="297" tilewidth="32" tileheight="32">
+ <tileset name="whirlpool" firstgid="299" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/whirlpool.png"/>
  </tileset>
- <tileset name="water" firstgid="305" tilewidth="32" tileheight="32">
+ <tileset name="water" firstgid="307" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/dungeon_water.png"/>
  </tileset>
- <tileset name="pebbles" firstgid="335" tilewidth="32" tileheight="32">
+ <tileset name="pebbles" firstgid="337" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png"/>
  </tileset>
- <tileset name="rocks" firstgid="338" tilewidth="32" tileheight="32">
+ <tileset name="rocks" firstgid="340" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks.png"/>
  </tileset>
- <tileset name="../../tileset/ground/grass_2.png" firstgid="342" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/ground/grass_2.png" firstgid="344" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEtjYGBIB2JmEnEWEGcDcQEQFwJxERALE4mLgbgEiEuBOJZxFFMT2wKxPZQmR78dEGtCaXL0w+wm1/5RTF8MAKZmJIUABAAA
+   H4sIAAAAAAAAAEtjYGBIB2JmEnEWEGcDcQEQFwJxERALE4mLgbgEiEuBOJ5xFFMT2wOxI5QmR78DEGtDaXL0w+wm1/5RTF8MALnKemgABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKXPuQ4BQRyA8Zmo3BLxAM530YlO67YaZ+XoHJWzIaHzhs7SJ2YT1lqWf/LLZGb328kWhRAlOGzSUEUNdTQQxB4HHNVq3N/WJlpoI40OuuI+J5xxUevjXv9WD32EVJ8U1hOWQkTk87dSNvoobUw+n9np47SJP3rj7Cz6LPfkkJemqfBy7pOvfVa9X1Br6U3v5zxg0utT5lkF2pten3/+36x3cp/rw51WvZvW82M/wNDi3Z1hP8JY9RNMMUPmS3MssMQKa+Rt2mCLK+EuLCAABAAA
+   H4sIAAAAAAAAAKXPtwrCQByA8Tuc7IL4BNZXcRM392iwDNbJslkm66KgW97QOvqJF9AYo9E//Djuki9HSkIIHR6XKqiijgaaiGKPA45qte5vawttdJBHFz1xnxPOuKj1cW9+q48BYqrPCueJSyES8vlbORd9kjYln8/c9GnazB+9dQyHXuOeIkrSNhVBzkPytdfU+7pay2/6MOcRm96cCs+qqL3pzfnn/+16L/f5Ptzp1PtpAz/2Q4wc3jUs+zEmqp9ihjkKX1pgiRXW2EBzaYsdrr83xjsABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA4+A/EXIP6KQ54Q+AbE34H4B9Scz1BMjv7vaHxcbpJnJGwuNf2FD9zBIf6PTHsJgSUU6g+Chl0glCbXnQGMELOCYXFBRJwgg7t45HZC6bVY5C4isW+QZiVOwIbF7Y+B+BIePTvwyN2j0D20AAD1cv2WAAQAAA==
+   H4sIAAAAAAAAAGNgwA4+A/EXIP6KQ54Q+AbE34H4B9Scz1BMjv7vaHxcblJkJGwuNf2FD9zBIf6PTHsJgSUU6g+Bhl0wlCbXnUGMELNCYXFBRJwgg7t45HZC6bVY5C4isW+QZiVOwIbF7Y+B+BIePTvwyN2j0D20AACsTPu+AAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA34DMRfgPgrFcwgF3wD4u9A/AONTSpQZ2Rg0GBE8BdhUYNNDBdYTKTYQAFdRsJqBhvgBLqZC4e7SYkbbGAwxQ21AQABIAWiAAQAAA==
+   H4sIAAAAAAAAAGNgoA34DMRfgPgrFcwgF3wD4u9A/AONTSrQZGRg0GJE8BdhUYNNDBdYTKTYQAF9RsJqBhvgBLqZC4e7SYkbbGAwxQ21AQCBuQwiAAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -85,7 +85,7 @@
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAX0BkKMA+2CUUAukBlmcQcA4ObRpAAEAAA=
+   H4sIAAAAAAAAAGNgGAX0BkKMA+2CUUAukBtmcQcAflyGdAAEAAA=
   </data>
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">

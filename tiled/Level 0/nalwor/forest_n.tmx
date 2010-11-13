@@ -19,7 +19,7 @@
  <tileset name="../../tileset/plant/tree/tree_darkgreen.png" firstgid="66" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_darkgreen.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="146" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="154" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -49,7 +49,7 @@
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.29">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SMQ6DUBBDQe5fcuIoZUokorewY2laxNr/PI7jXER+U+9h/zb1HvZvU+9h/zb1HhNsTt39BJtTdz/B5tTdT3Slu6en7nqiafnnP9VdT7Qpdddv9ZTUPb3VU1L39FZPSd3TJhNTd7LJxNSdbDIxdSe0b6O+G/vTpb6b9h3U93Lv/le/Ud/LvftfTX0v7Ruob8X+2J/mTdR3YX/sT/Me6juwP/aneQ/1f2N/7A8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXx+gyl95AAABAA==
+   H4sIAAAAAAAAAO3SQQqDUBBEQe9/BE8bssxSMLzRqYbaitP9z+M4zkXkN/Ue9m9T72H/NvUe9m9T7zHB5tTdT7A5dfcTbE7d/URXunt66q4nmpZ//lPd9USbUnf9Vk9J3dNbPSV1T2/1lNQ9bTIxdSebTEzdySYTU3dC+zbqu7E/Xeq7ad9BfS/37n/1G/W93Lv/1dT30r6B+lbsj/1p3kR9F/bH/jTvob4D+2N/mvdQ/zf2x/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8PUB6Q4MpwAAAQA=
   </data>
  </layer>
  <layer name="protection" width="128" height="128">

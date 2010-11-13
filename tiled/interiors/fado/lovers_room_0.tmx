@@ -112,20 +112,20 @@
  <tileset name="vegetable.png" firstgid="183" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <tileset name="blue carpet" firstgid="194" tilewidth="32" tileheight="32">
+ <tileset name="blue carpet" firstgid="196" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/royalblue.png"/>
  </tileset>
- <tileset name="square table" firstgid="203" tilewidth="32" tileheight="32">
+ <tileset name="square table" firstgid="205" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA9gpyEeCXYcAuIjRJhBSB0+O44C8XEi7CCkDp8dJ4D4FBF2EFI30PExaseoHbSwA5R/D5OIseV3fHaA8u8xEvHxUTtG7SBgB6jMPkkixlbG47NjKOZzYoEAGiYWAAAG/YKmxAkAAA==
+   H4sIAAAAAAAAAGNgoA9gpyEeCXYcAeJjRJhBSB0+O44D8Uki7CCkDp8dp4D4DBF2EFI30PExaseoHbSwA5R/j5KIseV3fHYcB+ITJGJs+X3UjlE7kDGozD5NIsZWxuOzYyjmc2KBABomFgAAfusvVsQJAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2VS4rCQBRFawuNOlNxA+J3ZquBFmldgUNxqOCn/dutTsR2pEMX5aa8wRQ8iuRVRSrigUMyePUOCYF8CCFiERqHCfGgIIJpBsgh9yVJo+gz1/CuXdhR7CkzKnIfbXBwDR2mjbAs4QquI2xs4AH+kUYWlryrrcav0nApW9ovG+pz2GYLd3AfsuHAPhx49xxH+A9PIRvPIhs5RhO487JxYzSBO//Kd/WqRkUz68Bv2IJtof+25L53eVfqf2Xhyc1IzoYN+l8ZwhEcw0nADOXi03A0vR84hTM418xKaOMTVg3PhYE2arAeccPly/L+K2nkLe+muI0UTEdoBt4BYNucEMQJAAA=
+   H4sIAAAAAAAAAM2VS4rCQBRFawuNOlNxA+J3ZquBFmldgUNxqOCn/dutTsR2pENX5Z68wRQ8iuRVRSrigUMyePUOCYF8CCFiERqHCfGgIIJpBsgh9yVJo+gz1/CuXdhR7CkzKnIfbXBwDR2mjbAs4QquI2xs4AH+kUYWlryrrcav0nApW9ovG+pz2GYLd3AfsuHAPhx49xxH+A9PIRvPIhs5RhO487JxYzSBO//Kd/WqRkUz68Bv2IJtof+25L53eVfqf2Xhyc1IzoYN+l8ZwhEcw0nADOXi03A0vR84hTM418xKaOMTVg3PhYE2arAeccPly/L+K2nkLe+muI0UTEdoBt4B33P7hcQJAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
