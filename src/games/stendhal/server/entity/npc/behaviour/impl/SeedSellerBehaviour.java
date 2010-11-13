@@ -23,9 +23,12 @@ public class SeedSellerBehaviour extends SellerBehaviour {
 
 	private static Map<String, Integer> pricelist = new HashMap<String, Integer>();
 	static {
+        /*
+         * flower names should be one word, no blank charactes
+         */
 		pricelist.put("lilia seed", 10);
 		pricelist.put("daisies seed", 20);
-		pricelist.put("zantedeschia seed", 15);
+		pricelist.put("zantedeschia bulb", 15);
 		pricelist.put("pansy seed", 10);
 	}
 	
@@ -43,7 +46,7 @@ public class SeedSellerBehaviour extends SellerBehaviour {
 	@Override
 	protected Item getAskedItem(final String askedItem) {
 		final String[] tokens = askedItem.split(" ");
-		final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("seed");
+		final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem(tokens[1]);
 		item.setInfoString(tokens[0]);
 		return item;
 
