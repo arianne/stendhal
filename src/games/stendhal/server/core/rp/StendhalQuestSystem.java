@@ -206,7 +206,7 @@ public class StendhalQuestSystem {
 		loadQuest(new MeetSanta());
 		loadQuest(new MeetZynn());
 		loadQuest(new MithrilCloak());
-		loadQuest(new MixtureForOrtiv());
+//		loadQuest(new MixtureForOrtiv());
 		loadQuest(new NewsFromHackim());
 		loadQuest(new ObsidianKnife());
 		loadQuest(new PizzaDelivery());

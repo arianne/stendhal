@@ -16,7 +16,6 @@ Changelog
 - Uncle Dag in Ados market, he runs a distillery stand there and produces fierywater
 - Gaston, a Rat chef in Rat City bakery that will prepare the best crepes suzette au chocolate in town
 - quest in Wo'fol (the reward is V.S.O.P. koboldish torcibud)
-- quest for Ortiv Milquetoast in Kirdneh River House
 - artichoke, garlic, mandragora (a magical herb) and zantedeschia (a flower) and cane fields are growing in Faiumoni
 - hen nests spawn eggs
 - new types of empty bottles
