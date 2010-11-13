@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
+
+  <item name="bulb">
+    <type class="misc" subclass="bulb" tileid="-1"/>
+    <description>You see a bulb. It can be planted anywhere, but it will only thrive on fertile ground.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Bulb"/> 
+	 <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="seed">
     <type class="misc" subclass="seed" tileid="-1"/>
     <description>You see a seed. It can be planted anywhere, but it will only thrive on fertile ground.</description>
