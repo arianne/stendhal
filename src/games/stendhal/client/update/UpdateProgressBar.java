@@ -35,7 +35,11 @@ public class UpdateProgressBar extends JFrame implements
 		HttpClient.ProgressListener {
 	private static final long serialVersionUID = -1607102841664745919L;
 
+	/** highest value of progress bar */
 	private int max = 100;
+
+	/** base url for the browser */
+	private String urlBase = null;
 
 	/** the version the update is based on, <code>null</code> for a initial download */
 	private String fromVersion = null;
@@ -43,12 +47,16 @@ public class UpdateProgressBar extends JFrame implements
 	/** the version the download is leading to */
 	private String toVersion = null;
 
+	/** the size of the downloaded files */
 	private int sizeOfLastFiles;
 
+	/** content pane which manages the components */
 	private JPanel contentPane;
 
+	/** bar showing the download progress */
 	private JProgressBar progressBar;
 
+	/** browser window */
 	private JEditorPane browser;
 
 
@@ -56,15 +64,17 @@ public class UpdateProgressBar extends JFrame implements
 	 * Creates update progress bar.
 	 * 
 	 * @param max max file size
+	 * @param urlBase base url for the browser
 	 * @param fromVersion the version the update is based on, may be <code>null</code>
 	 * @param toVersion the version the download leads to
 	 */
-	public UpdateProgressBar(final int max, final String fromVersion, final String toVersion) {
+	public UpdateProgressBar(final int max, final String urlBase, final String fromVersion, final String toVersion) {
 		super("Downloading...");
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new UpdateProgressBarWindowListener());
 
 		this.max = max;
+		this.urlBase = urlBase;
 		this.fromVersion = fromVersion;
 		this.toVersion = toVersion;
 
@@ -96,7 +106,7 @@ public class UpdateProgressBar extends JFrame implements
 		contentPane.add(progressBar);
 		contentPane.add(Box.createVerticalStrut(5));
 
-		if (toVersion != null) {
+		if (urlBase != null) {
 			// Set up page display.
 			browser = new JEditorPane();
 			browser.setContentType("text/html");
@@ -109,7 +119,7 @@ public class UpdateProgressBar extends JFrame implements
 			setPreferredSize(windowSize);
 			// TODO: load page async?
 			try {
-				browser.setPage("http://arianne.sourceforge.net/stendhal/greeting/" + fromVersion + "/" + toVersion + ".html");
+				browser.setPage(urlBase + fromVersion + "/" + toVersion + ".html");
 			} catch (IOException e) {
 				System.out.println(e);
 			}
@@ -144,7 +154,7 @@ public class UpdateProgressBar extends JFrame implements
 	 * @param args ignored
 	 */
 	public static void main(String[] args) {
-		UpdateProgressBar updateProgressBar = new UpdateProgressBar(100, null, "0.88");
+		UpdateProgressBar updateProgressBar = new UpdateProgressBar(100, "http://arianne.sourceforge.net/stendhal/greeting/", null, "0.88");
 		updateProgressBar.onDownloading(50);
 		updateProgressBar.setVisible(true);
 	}

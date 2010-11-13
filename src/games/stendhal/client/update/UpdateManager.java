@@ -73,8 +73,8 @@ public class UpdateManager {
 	 * @param initialDownload
 	 *            true, if only the small starter.jar is available
 	 */
-	public void process(final String jarFolder, final Properties bootProp,
-			final Boolean initialDownload) {
+	public void process(final String jarFolder, final Properties bootProp, final Boolean initialDownload) {
+
 		if (!Boolean.parseBoolean(ClientGameConfiguration.get("UPDATE_ENABLE_AUTO_UPDATE"))) {
 			System.out.println("Automatic Update disabled");
 			return;
@@ -257,7 +257,7 @@ public class UpdateManager {
 	 * @return true on success, false otherwise
 	 */
 	private boolean downloadFiles(final List<String> files, final int size) {
-		updateProgressBar = new UpdateProgressBar(size, fromVersion, toVersion);
+		updateProgressBar = new UpdateProgressBar(size, updateProp.getProperty("greetingUrl"), fromVersion, toVersion);
 		updateProgressBar.setVisible(true);
 		for (final String file : files) {
 			boolean res = downloadFile(file);
