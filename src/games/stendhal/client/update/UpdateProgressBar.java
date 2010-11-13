@@ -97,7 +97,11 @@ public class UpdateProgressBar extends JFrame implements
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
 		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-		contentPane.add(new JLabel("Downloading..."));
+		if (fromVersion == null) {
+			contentPane.add(new JLabel("Please wait while Stendhal is downloaded..."));
+		} else {
+			contentPane.add(new JLabel("Downloading update..."));
+		}
 		contentPane.add(Box.createVerticalStrut(5));
 
 		progressBar = new JProgressBar(0, max);
