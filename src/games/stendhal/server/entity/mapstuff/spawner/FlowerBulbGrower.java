@@ -33,7 +33,8 @@ import marauroa.common.game.RPObject;
  */
 public class FlowerBulbGrower extends VegetableGrower {
 	/** 5 hours for one growing step */
-	private static final int GROW_TIME_TURNS = 100;
+	private static final int GROW_TIME_TURNS = 60000;
+    /** the default flower grown by a bulb */
 	private static final String GROWER_NAME = "zantedeschia";
     /** The description depends upon the ripeness of the flower grower */
 	private final String[] description = {
