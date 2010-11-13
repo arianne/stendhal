@@ -100,7 +100,7 @@ public class UpdateProgressBar extends JFrame implements
 		if (fromVersion == null) {
 			contentPane.add(new JLabel("Please wait while Stendhal is downloaded..."));
 		} else {
-			contentPane.add(new JLabel("Downloading update..."));
+			contentPane.add(new JLabel("Downloading updates..."));
 		}
 		contentPane.add(Box.createVerticalStrut(5));
 
@@ -117,6 +117,7 @@ public class UpdateProgressBar extends JFrame implements
 			browser.setEditable(false);
 			Dimension dim = new Dimension(600, 440);
 			browser.setPreferredSize(dim);
+			browser.addPropertyChangeListener("page", new UpdateProgressBarMetaRefreshSupport());
 			browser.addHyperlinkListener(new UpdateProgressBarHyperLinkListener());
 			
 			Dimension windowSize = new Dimension(640, 480);
@@ -127,6 +128,7 @@ public class UpdateProgressBar extends JFrame implements
 			} catch (IOException e) {
 				System.out.println(e);
 			}
+
 			// Gige the page scroll bars if it needs them
 			final JScrollPane scrollPane = new JScrollPane(browser);
 			contentPane.add(scrollPane);
