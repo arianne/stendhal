@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * @author Martin Fuchs
  */
 public final class Expression {
-	  /** Instance of an empty Expression. */
+	/** Instance of an empty Expression. */
     public static final Expression EMPTY_EXPRESSION = new Expression("", "");
 
     /** JOKER is a joker String used in pattern matches. */
@@ -49,7 +49,6 @@ public final class Expression {
 
     /** Expression matcher for comparing expressions in various modes. */
     private ExpressionMatcher matcher = null;
-
   
 
     /**
@@ -169,8 +168,7 @@ public final class Expression {
 
     /**
      * @return amount as integer value, default to 1.
-     *
-     */
+      */
     public int getAmount() {
 		if (amount == null) {
 			return 1;
@@ -217,7 +215,7 @@ public final class Expression {
 
     /**
      *
-     * @return  the original, un-normalized string expression.
+     * @return the original, un-normalized string expression.
      */
     public String getOriginal() {
         return original;
@@ -234,8 +232,8 @@ public final class Expression {
     }
 
     /**
-     *
-     * @return the normalized form of the Expression.
+     * Return the normalized form of the Expression.
+     * @return normalized form
      */
     public String getNormalized() {
         return normalized;
