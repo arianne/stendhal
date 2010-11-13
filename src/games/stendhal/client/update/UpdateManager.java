@@ -1,3 +1,15 @@
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.update;
 
 import java.io.File;
@@ -26,10 +38,15 @@ public class UpdateManager {
 
 	private UpdateProgressBar updateProgressBar;
 
+	private String fromVersion;
+
+	private String toVersion;
+
 	/**
 	 * Connects to the server and loads a Property object which contains
 	 * information about the files available for update.
-	 * @param initialDownload 
+	 *
+	 * @param initialDownload true, if an initial download is required
 	 */
 	private void init(final boolean initialDownload) {
 		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER")
@@ -77,9 +94,11 @@ public class UpdateManager {
 		VersionState versionState = null;
 		if (initialDownload.booleanValue()) {
 			versionState = VersionState.INITIAL_DOWNLOAD;
+			fromVersion = null;
 		} else {
+			fromVersion = Version.getVersion();
 			final String versionStateString = updateProp.getProperty("version."
-					+ Version.getVersion());
+					+ fromVersion);
 			versionState = VersionState.getFromString(versionStateString);
 		}
 
@@ -203,6 +222,7 @@ public class UpdateManager {
 			res.addAll(Arrays.asList(list.split(",")));
 			version = updateProp.getProperty("version.destination." + version);
 		}
+		toVersion = version;
 
 		while (res.contains("")) {
 			res.remove("");
@@ -241,7 +261,7 @@ public class UpdateManager {
 	 * @return true on success, false otherwise
 	 */
 	private boolean downloadFiles(final List<String> files, final int size) {
-		updateProgressBar = new UpdateProgressBar(size, null, null);
+		updateProgressBar = new UpdateProgressBar(size, fromVersion, toVersion);
 		updateProgressBar.setVisible(true);
 		for (final String file : files) {
 			boolean res = downloadFile(file);
