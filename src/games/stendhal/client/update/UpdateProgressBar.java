@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.update;
 
+import java.awt.Dimension;
 import java.io.IOException;
 import java.net.URL;
 import java.security.AccessControlException;
@@ -103,7 +104,9 @@ public class UpdateProgressBar extends JFrame implements
 			browser = new JEditorPane();
 			browser.setContentType("text/html");
 			browser.setEditable(false);
-			// TODO: browser.addHyperlinkListener(this), but open in normal browser
+			Dimension dim = new Dimension(600, 440);
+			setSize(dim);
+			browser.addHyperlinkListener(new UpdateProgressBarHyperLinkListener());
 			// TODO: scrollbars if necessary
 			// TODO: 640x440 window size?
 			// TODO: load page async?
@@ -126,7 +129,8 @@ public class UpdateProgressBar extends JFrame implements
 	}
 
 	public static void main(String[] args) {
-		UpdateProgressBar updateProgressBar = new UpdateProgressBar(100, "0.80", "0.88");
+		UpdateProgressBar updateProgressBar = new UpdateProgressBar(100, null, "0.88");
+		updateProgressBar.onDownloading(50);
 		updateProgressBar.setVisible(true);
 	}
 }
