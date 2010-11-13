@@ -18,6 +18,7 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.InternalWindow;
 import games.stendhal.client.gui.SlotWindow;
 import games.stendhal.client.gui.InternalWindow.CloseListener;
@@ -234,16 +235,21 @@ class Corpse2DView extends Entity2DView {
 	@Override
 	public StendhalCursor getCursor() {
 		StendhalCursor cursor = super.getCursor();
+		Corpse corpse = (Corpse) entity;
 
-		// compatibility code
-		if (cursor != StendhalCursor.UNKNOWN) {
+		// server override?
+		if ((cursor != StendhalCursor.UNKNOWN) || (corpse == null)) {
 			return cursor;
 		}
-		Corpse corpse = (Corpse) entity;
-		if ((corpse != null) && corpse.getContent().iterator().hasNext()) {
-			return StendhalCursor.BAG;
-		} else {
+
+		// empty?
+		if (corpse.getContent().size() == 0) {
 			return StendhalCursor.EMPTY_BAG;
 		}
+
+		if ((corpse.getCorpseOwner() == null) || corpse.getCorpseOwner().equals(User.getCharacterName())) {
+			return StendhalCursor.BAG;
+		}
+		return StendhalCursor.LOCKED_BAG;
 	}
 }

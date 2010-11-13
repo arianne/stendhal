@@ -21,6 +21,7 @@ import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.LootableSlot;
 
 import java.awt.geom.Rectangle2D;
@@ -33,8 +34,11 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-public class Corpse extends PassiveEntity implements 
-		EquipListener {
+/**
+ * A corpse created when a creature or player is killed. It may contain items
+ */
+public class Corpse extends PassiveEntity implements EquipListener {
+
 	/**
 	 * TurnListener to degradate a corpse
 	 *   
@@ -54,7 +58,7 @@ public class Corpse extends PassiveEntity implements
 	 */
 	private final class CorpseReleaseRewardingForEveryoneTurnListener implements TurnListener {
 		public void onTurnReached(final int currentTurn) {
-			Corpse.this.everyoneRewardableForLootedItems = true;
+			setCorpseOwner(null);
 		}
 	}
 
@@ -73,6 +77,12 @@ public class Corpse extends PassiveEntity implements
 	 */
 	private static final String ATTR_IMAGE = "image";
 
+	
+	/**
+	 * The owner of the corpse
+	 */
+	private static final String ATTR_CORPSE_OWNER = "corpse_owner";
+
 	private static final Logger logger = Logger.getLogger(Corpse.class);
 
 	/** Time (in seconds) until a corpse disappears. */
@@ -82,19 +92,18 @@ public class Corpse extends PassiveEntity implements
 	private static final int MAX_STAGE = 5; 
 
 	/** time between two degradation steps */
-	private static final int DEGRADATION_STEP_TIMEOUT = DEGRADATION_TIMEOUT
-			/ MAX_STAGE;
+	private static final int DEGRADATION_STEP_TIMEOUT = DEGRADATION_TIMEOUT / MAX_STAGE;
 	
 	/** Minimum resistance of a single corpse */
 	private static final int MIN_RESISTANCE = 5;
 	/** Theoretical resistance of a single corpse */
 	private static final int MAX_RESISTANCE = 70;
 	
-	/** Time (in seconds) before everone can be awarded on removal of an item from this corpse */
-	private static final int MIN_HOLDING_TIME_FOR_ITEMS = 5;
+	/** Time (in seconds) until everyone may loot this corpse */
+	private static final int PROTECTION_TIME = 5;
 	
-	/** Can everyone be rewarded for looting items from this corpse?*/
-	private boolean everyoneRewardableForLootedItems = false;
+	/** Who can loot this corpse?*/
+	private String corpseOwner = null;
 	
 	private int stage;
 
@@ -117,6 +126,7 @@ public class Corpse extends PassiveEntity implements
 		entity.addAttribute(ATTR_NAME, Type.STRING);
 		entity.addAttribute(ATTR_KILLER, Type.STRING);
 		entity.addAttribute(ATTR_IMAGE, Type.STRING);
+		entity.addAttribute(ATTR_CORPSE_OWNER, Type.STRING);
 
 		entity.addRPSlot("content", 4);
 	}
@@ -184,7 +194,11 @@ public class Corpse extends PassiveEntity implements
 				(int) (rect.getY() + ((rect.getHeight() - getHeight()) / 2.0)));
 
 		SingletonRepository.getTurnNotifier().notifyInSeconds(getDegradationStepTimeout(), this.corpseDegradator);
-		SingletonRepository.getTurnNotifier().notifyInSeconds(MIN_HOLDING_TIME_FOR_ITEMS, this.itemForRewardsReleaser);
+
+		if (victim.isAttacking()) {
+			setCorpseOwner(victim.getAttackTarget().getName());
+			SingletonRepository.getTurnNotifier().notifyInSeconds(PROTECTION_TIME, this.itemForRewardsReleaser);
+		}
 		
 		stage = 0;
 		put("stage", stage);
@@ -192,6 +206,32 @@ public class Corpse extends PassiveEntity implements
 
 		final RPSlot slot = new LootableSlot(this);
 		addSlot(slot);
+	}
+
+	/**
+	 * sets the owner of the corpse, while set only this person may loot.
+	 *
+	 * @param owner name of owner
+	 */
+	private void setCorpseOwner(String owner) {
+		this.corpseOwner = owner;
+		if (owner != null) {
+			put(ATTR_CORPSE_OWNER, owner);
+		} else {
+			remove(ATTR_CORPSE_OWNER);
+		}
+		modify();
+	}
+
+	/**
+	 * Get the name of the owner of this corpse (the player who's 
+	 * deemend worthy to access the items within).
+	 *  
+	 * @return the name of the owner or <code>null</code> if anyone
+	 * may use the items
+	 */
+	public String getCorpseOwner() {
+		return corpseOwner;
 	}
 
 	/**
@@ -273,7 +313,9 @@ public class Corpse extends PassiveEntity implements
 	}
 
 	/**
-	 * degradate this corpse and remove it if it is completely rotten
+	 * degradates this corpse and remove it if it is completely rotten
+	 *
+	 * @param currentTurn ignored
 	 */
 	public void onTurnReached(final int currentTurn) {
 		degradateCorpse();
@@ -298,11 +340,21 @@ public class Corpse extends PassiveEntity implements
 		}
 	}
 
+	/**
+	 * adds content to this corpse
+	 *
+	 * @param entity PassiveEntity to add
+	 */
 	public void add(final PassiveEntity entity) {
 		final RPSlot content = getSlot("content");
 		content.add(entity);
 	}
 
+	/**
+	 * is the corpse full so that there is no more room for additinal items?
+	 *
+	 * @return true if the corpse is full, false otherwise
+	 */
 	public boolean isFull() {
 		return getSlot("content").isFull();
 	}
@@ -312,6 +364,11 @@ public class Corpse extends PassiveEntity implements
 		return getSlot("content").size();
 	}
 
+	/**
+	 * gets an iterator over the content
+	 *
+	 * @return Iterator
+	 */
 	public Iterator<RPObject> getContent() {
 		final RPSlot content = getSlot("content");
 		return content.iterator();
@@ -388,20 +445,36 @@ public class Corpse extends PassiveEntity implements
 			return super.getTitle();
 		}
 	}
-	
+
+	/**
+	 * The length of a degradation step
+	 *
+	 * @return in seconds
+	 */
 	protected int getDegradationStepTimeout() {
 		return DEGRADATION_STEP_TIMEOUT;
 	}
+
 	
 	/**
-	 * Checks if the items from this corpse are deserved by everyone for rewarding (i.e. for achievements)
+	 * Check if a player may access the slots of this corpse
 	 * 
-	 * @return true if everyone should be rewarded
+	 * @param player the player trying to use the items in the corpse
+	 * @return true iff the player may access the items in the slots 
 	 */
-	public boolean isItemLootingRewardableForEveryone() {
-		return everyoneRewardableForLootedItems && !get("class").equals("player");
+	public boolean mayUse(Player player) {
+		return (corpseOwner == null || corpseOwner.equals(player.getName()) || get("class").equals("player"));
 	}
-	
+
+	/**
+	 * Checks if looting this corpse will be rewarded (i.e. for achievements).
+	 * 
+	 * @return true if looting should be rewarded
+	 */
+	public boolean isItemLootingRewardable() {
+		return !get("class").equals("player");
+	}
+
 	/**
 	 * gets the killer of this corpse
 	 * 

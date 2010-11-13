@@ -113,10 +113,10 @@ class SourceObject extends MoveableObject {
 			return invalidSource;
 		}
 		
-		if (parent instanceof RaidCreatureCorpse) {
-			RaidCreatureCorpse corpse = (RaidCreatureCorpse) parent;
+		if (parent instanceof Corpse) {
+			Corpse corpse = (Corpse) parent;
 			if (!corpse.mayUse(player)) {
-				logger.debug(player.getName() + " tried to access RaidCreatureCorpse owned by " + corpse.getCorpseOwner());
+				logger.debug(player.getName() + " tried to access eCorpse owned by " + corpse.getCorpseOwner());
 				player.sendPrivateText("Only " + corpse.getCorpseOwner() + " may access the corpse for now.");
 				return invalidSource;
 			}
@@ -378,7 +378,7 @@ class SourceObject extends MoveableObject {
 	 */
 	private static void checkIfPlayerDeservesLogging(Player player, Corpse corpse, SourceObject source, Item item) {
 		if (item.isFromCorpse()) {
-			if (corpse.isItemLootingRewardableForEveryone()) {
+			if (corpse.isItemLootingRewardable()) {
 				source.canLootingBeLogged = true;
 			} else {
 				if (player.getName().equals(corpse.getKiller())) {

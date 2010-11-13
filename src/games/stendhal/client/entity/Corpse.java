@@ -40,6 +40,18 @@ public class Corpse extends Entity {
 		return content;
 	}
 
+	/**
+	 * gets the owner of the corpse who may loot.
+	 *
+	 * @return owner or <code>null</code>
+	 */
+	public String getCorpseOwner() {
+		if (rpObject.has("corpse_owner")) {
+			return rpObject.get("corpse_owner");
+		}
+		return null;
+	}
+
 	//
 	// Entity
 	//
@@ -63,25 +75,4 @@ public class Corpse extends Entity {
 		}
 	}
 
-	//
-	// RPObjectChangeListener
-	//
-
-	/**
-	 * The object added/changed attribute(s).
-	 * 
-	 * @param object
-	 *            The base object.
-	 * @param changes
-	 *            The changes.
-	 */
-	/*
-	@Override
-	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		super.onChangedAdded(object, changes);
-		if (changes.hasSlot("content")) {
-			fireChange(PROP_CONTENT);
-		}
-	}
-*/
 }
