@@ -220,7 +220,6 @@ public final class ConversationParser extends ErrorBuffer {
                     return matcher.parseSentence(text, ctx);
                 }
             }
-
         } else {
             text = "";
         }       
@@ -261,6 +260,7 @@ public final class ConversationParser extends ErrorBuffer {
             sentence.setError(e.getMessage());
             e.printStackTrace();
         }
+        //mf: overwriting originalText disables the private chat filter for messages beginning with "_" (see ConversationParser constructor) -> OK?
         sentence.originalText = ot;
         return sentence;
     }
