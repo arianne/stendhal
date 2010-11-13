@@ -15,7 +15,6 @@ package games.stendhal.client.update;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.net.URL;
-import java.security.AccessControlException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -78,11 +77,6 @@ public class UpdateProgressBar extends JFrame implements
 		initializeComponents();
 
 		this.pack();
-		try {
-			this.setAlwaysOnTop(true);
-		} catch (final AccessControlException e) {
-			// ignore it
-		}
 	}
 
 	private void initializeComponents() {
@@ -128,6 +122,11 @@ public class UpdateProgressBar extends JFrame implements
 		progressBar.setValue(sizeOfLastFiles);
 	}
 
+	/**
+	 * main entrance point for testing
+	 *
+	 * @param args ignored
+	 */
 	public static void main(String[] args) {
 		UpdateProgressBar updateProgressBar = new UpdateProgressBar(100, null, "0.88");
 		updateProgressBar.onDownloading(50);
