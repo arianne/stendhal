@@ -25,6 +25,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 
 /**
  * A progress bar for the download progress.
@@ -92,6 +94,7 @@ public class UpdateProgressBar extends JFrame implements
 		progressBar.setStringPainted(false);
 		progressBar.setValue(0);
 		contentPane.add(progressBar);
+		contentPane.add(Box.createVerticalStrut(5));
 
 		if (toVersion != null) {
 			// Set up page display.
@@ -99,27 +102,40 @@ public class UpdateProgressBar extends JFrame implements
 			browser.setContentType("text/html");
 			browser.setEditable(false);
 			Dimension dim = new Dimension(600, 440);
-			setSize(dim);
+			browser.setPreferredSize(dim);
 			browser.addHyperlinkListener(new UpdateProgressBarHyperLinkListener());
-			// TODO: scrollbars if necessary
-			// TODO: 640x440 window size?
+			
+			Dimension windowSize = new Dimension(640, 480);
+			setPreferredSize(windowSize);
 			// TODO: load page async?
 			try {
 				browser.setPage("http://arianne.sourceforge.net/stendhal/greeting/" + fromVersion + "/" + toVersion + ".html");
-				contentPane.add(browser);
 			} catch (IOException e) {
 				System.out.println(e);
 			}
+			// Gige the page scroll bars if it needs them
+			final JScrollPane scrollPane = new JScrollPane(browser);
+			contentPane.add(scrollPane);
 		}
 	}
 
 	public void onDownloading(final int downloadedBytes) {
-		progressBar.setValue(sizeOfLastFiles + downloadedBytes);
+		// The updater will not be running in EDT
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				progressBar.setValue(sizeOfLastFiles + downloadedBytes);
+			}
+		});
 	}
 
 	public void onDownloadCompleted(final int byteCounter) {
 		sizeOfLastFiles = sizeOfLastFiles + byteCounter;
-		progressBar.setValue(sizeOfLastFiles);
+		// The updater will not be running in EDT
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				progressBar.setValue(sizeOfLastFiles);
+			}
+		});
 	}
 
 	/**
