@@ -19,7 +19,7 @@ public class UpdateProgressBarWindowListener implements WindowListener {
 	 */
 	public void windowClosing(WindowEvent e) {
 		int result = JOptionPane.showConfirmDialog(e.getWindow(),
-				"Are you sure you want to cancel download?", "Confirmation",
+				"Are you sure you want to cancel the download?", "Confirmation",
 				JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.YES_OPTION) {
 			e.getWindow().dispose();
