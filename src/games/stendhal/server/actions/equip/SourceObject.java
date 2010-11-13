@@ -44,7 +44,7 @@ class SourceObject extends MoveableObject {
 
 	private int quantity;
 	
-	private boolean canLootingBeLogged = false;
+	private boolean isLootingRewardable = false;
 
 	public static SourceObject createSourceObject(final RPAction action, final Player player) {
 
@@ -127,7 +127,7 @@ class SourceObject extends MoveableObject {
 		// handle logging of looting items
 		if (parent instanceof Corpse) {
 			Corpse corpse = (Corpse) parent;
-			checkIfPlayerDeservesLogging(player, corpse, source, (Item) entity);
+			checkIfLootingIsRewardable(player, corpse, source, (Item) entity);
 		}
 		
 		return source;
@@ -360,12 +360,12 @@ class SourceObject extends MoveableObject {
 	}
 
 	/**
-	 * Checks if the equipped item can be logged as looted item for the looting player
+	 * Checks if looting the item is rewardable as looted item
 	 * 
 	 * @return true iff the player deserves it
 	 */
-	public boolean canLootingBeLogged() {
-		return canLootingBeLogged;
+	public boolean isLootingRewardable() {
+		return isLootingRewardable;
 	}
 	
 	/**
@@ -376,13 +376,13 @@ class SourceObject extends MoveableObject {
 	 * @param source
 	 * @param item
 	 */
-	private static void checkIfPlayerDeservesLogging(Player player, Corpse corpse, SourceObject source, Item item) {
+	private static void checkIfLootingIsRewardable(Player player, Corpse corpse, SourceObject source, Item item) {
 		if (item.isFromCorpse()) {
 			if (corpse.isItemLootingRewardable()) {
-				source.canLootingBeLogged = true;
+				source.isLootingRewardable = true;
 			} else {
 				if (player.getName().equals(corpse.getKiller())) {
-					source.canLootingBeLogged = true;
+					source.isLootingRewardable = true;
 				}
 			}
 		}

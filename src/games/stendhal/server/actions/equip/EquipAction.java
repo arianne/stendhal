@@ -79,7 +79,7 @@ public class EquipAction extends EquipmentAction {
 							+ Grammar.quantityplnounWithHash(amount,entity.getTitle()) + " into a corpse next to you.");
 			}
 			
-			if(source.canLootingBeLogged()) {
+			if(source.isLootingRewardable()) {
 				if(entity instanceof Item) {
 					((Item) entity).setFromCorpse(false);
 				}
