@@ -900,6 +900,7 @@ mohiko	SUB
 monk	SUB
 monkey	SUB	monkeys
 monster	SUB
+mortar	OBJ
 mother	SUB
 mummy	SUB	mummies
 mutant	SUB
@@ -920,6 +921,7 @@ pawn	SUB
 peasant	SUB
 penguin	SUB-ANI	penguins
 people	SUB
+pestle	OBJ
 peter	SUB-NAM
 phantom	SUB
 pigeon	SUB-ANI

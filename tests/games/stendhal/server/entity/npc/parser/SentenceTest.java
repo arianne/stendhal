@@ -25,6 +25,9 @@ import org.junit.Test;
  */
 public class SentenceTest {
 
+	/**
+	 * Grammar tests.
+	 */
 	@Test
 	public final void testGrammar() {
 		final ConversationContext ctx = new ConversationContext();
@@ -276,4 +279,20 @@ public class SentenceTest {
 		assertTrue(sentence.matchesFull(sentence));
 	}
 
+	/**
+	 * Test for the answer "pestle and mortar" in response to
+	 * "Wonderful! Did you bring anything else with you?" (Ortiv Milquetoast).
+	 */
+	@Test
+	public final void testPestleMortar() {
+		Sentence sentence = ConversationParser.parse("pestle and mortar");
+		assertFalse(sentence.hasError());
+
+		assertEquals("pestle/OBJ, mortar/OBJ", sentence.toString());
+		assertEquals(Sentence.SentenceType.UNDEFINED, sentence.getType());
+		assertEquals("pestle", sentence.getObject(0).getNormalized());
+		assertEquals("mortar", sentence.getObject(1).getNormalized());
+
+		assertEquals("pestle and mortar", sentence.getTriggerExpression().getNormalized());
+	}
 }
