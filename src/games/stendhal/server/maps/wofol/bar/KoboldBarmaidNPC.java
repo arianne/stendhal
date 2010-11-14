@@ -102,13 +102,13 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 								seller.say("Wrauff! I can only sell you "
 									+ Grammar.plnoun(getAmount(), getChosenItemName())
 									+ " if you meet the price of " + price + " and have " + amount + " empty "
-									+ Grammar.plnoun(getAmount(), requiredContainer));
+									+ Grammar.plnoun(getAmount(), requiredContainer) + ".");
 							        return false;
 							}
 						} else if (!player.isEquipped("money", price)) {
 								seller.say("Wruff! I can only sell you "
 									+ Grammar.plnoun(getAmount(), getChosenItemName())
-									+ " when you will have enough money");
+									+ " if you have enough money.");
 						        return false;
 						}
 						
@@ -149,7 +149,7 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 					"Wroff! Welcome into the Kobold's Den bar wanderer!"
 						+ " I'm Wrviliza, wife of #Wrvil."
 						+ " If you want me to #offer you some beverages, just say so!");
-				addJob("Wroff! I offer wine, beer and my famous #mild or #strong koboldish #torcibud");
+				addJob("Wroff! I offer wine, beer and my famous #mild or #strong koboldish #torcibud.");
 				addHelp("Wruff... If you are thirsty I can #offer you some beverage. If you didn't notice, this is a bar!");
 				addGoodbye("Wroff... Goodbye and good luck!");
 
