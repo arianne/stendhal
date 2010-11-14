@@ -60,7 +60,7 @@
 
   <item name="eared bottle">
     <type class="container" subclass="bottle_eared" tileid="-1"/>
-    <description>You see a eared bottle. It is empty, someone drank the contents.</description>
+    <description>You see an eared bottle. It is empty, someone drank the contents.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
