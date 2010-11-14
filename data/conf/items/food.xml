@@ -119,7 +119,7 @@
 
   <item name="artichoke">
     <type class="food" subclass="artichoke" tileid="-1"/>
-    <description>You see a artichoke.  It can be an ingredient, or you can eat it.</description>
+    <description>You see an artichoke.  It can be an ingredient, or you can eat it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="40"/>
       <frequency value="20"/>
