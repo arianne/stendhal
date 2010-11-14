@@ -51,12 +51,12 @@ public class FierywaterDistillerNPC implements ZoneConfigurator {
                 addJob("I can #brew #fierywater for you, if you bring to me enough #canes and #wood!");
                 addOffer("If you need #fierywater, just ask me to #brew some for you!");
                 addReply("fierywater",
-                    "That's my specialty! Mix that with other ingredients and you'll have an execellent beverage."
+                    "That's my speciality! Mix that with other ingredients and you'll have an excellent beverage."
                     +   " Gulp that down 100% pure and most likely you will not survive to tell the experience!");
                 addReply(Arrays.asList("cane", "canes"),
-                    "I get all my canes imported directly from Athor island.");
+                    "I get all my sugar cane imported directly from Athor island.");
                 addReply("wood",
-                    "You find plenty of wood logs near trees and forests are the best place to look for those!");
+                    "You find plenty of wood logs near trees, and forests are the best place to look for those!");
                 addGoodbye("Enjoy the market!");
             }
 
