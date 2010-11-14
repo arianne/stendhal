@@ -65,10 +65,10 @@ public class ConfectionerCherryPieNPC implements ZoneConfigurator {
 				addReply("cherry",
 					"Mmm... Those are sometimes hard to get. Did you already ask in some tavern if they can offer any?");
 
-				addHelp("If that can help, I could #bake a cherry pie for you!");
+				addHelp("If it would help, I could #bake a cherry pie for you!");
 				addOffer("I'd be happy to #bake a cherry pie for you. Why don't you just ask me?!");
 
-				addQuest("I'd love to try and bake a strawberry pie once in a while... But Alas! Strawberries are nowhere to be found...");
+				addQuest("I'd love to try and bake a strawberry pie once in a while... But alas! Strawberries are nowhere to be found...");
 
 				addGoodbye("Take care!");
 
@@ -84,7 +84,7 @@ public class ConfectionerCherryPieNPC implements ZoneConfigurator {
 				        requiredResources, 15 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hello! Did you come for tasting one my fabulous cherry pies? I could #bake one for you happily!");
+				        "Hello! Did you come to taste one of my fabulous cherry pies? I could #bake one for you happily!");
 			}
 		};
 
@@ -92,8 +92,7 @@ public class ConfectionerCherryPieNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.DOWN);
 		npc.setPosition(10, 6);
 		npc.initHP(100);
-		npc.setDescription("You see Gertha");
+		npc.setDescription("You see Gertha. She loves baking cherry pies for her guests.");
 		zone.add(npc);
 	}
-
 }

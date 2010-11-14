@@ -58,7 +58,7 @@ public class ConfectionerApplePieNPC implements ZoneConfigurator {
 				addReply("gertha",
 					"She's my twin sister and we live here together... Like me, she also likes to #bake fruit pies!");
 				addReply("honey",
-					"You should look for the local beekeper somewhat north and then west of here...");
+					"You should look for the local beekeeper a little north and then west of here...");
 				addReply("milk",
 					"Perhaps you should visit some farm where you see they have cows...");
 				addReply("flour",
@@ -66,16 +66,17 @@ public class ConfectionerApplePieNPC implements ZoneConfigurator {
 				addReply("egg",
 					"Find some hens and you'll easily find some eggs too!");
 				addReply("apple",
-					"Mmm... When once in a while I travel from Semos to Ados, I always stop at the orchard near one farm along the road...");
+					"Mmm... When once in a while I travel from Semos to Ados, I always stop at the orchard near a farm along the road...");
 
 
-				addHelp("If that can help, I could #bake an apple pie for you!");
+				addHelp("If it would help, I could #bake an apple pie for you!");
 
 				addOffer("I'd love to #bake a delicious apple pie for you. Just ask me!");
 
-				addQuest("You can bring me all the recipes you can find on baking pies with exotic fruits!");
+                /** this is a teaser for a quest not yet available */
+				addQuest("Right now I'm perfecting my apple pie recipe. But in future I might want to try something new - I'll let you know.");
 
-				addGoodbye("Be carefull out there!");
+				addGoodbye("Be careful out there!");
 
 				// (uses sorted TreeMap instead of HashMap)
 				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
@@ -89,7 +90,7 @@ public class ConfectionerApplePieNPC implements ZoneConfigurator {
 				        requiredResources, 15 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hello! Did you come for tasting one my delicious apple pies? I could #bake one right away!");
+				        "Hello! Did you come to taste one my delicious apple pies? I could #bake one for you right away!");
 			}
 		};
 
@@ -97,8 +98,7 @@ public class ConfectionerApplePieNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.DOWN);
 		npc.setPosition(4, 3);
 		npc.initHP(100);
-		npc.setDescription("You see Martha");
+		npc.setDescription("You see Martha. She loves to bake apple pies for her guests.");
 		zone.add(npc);
 	}
-
 }
