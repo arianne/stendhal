@@ -18,10 +18,11 @@ package games.stendhal.server.maps.fado.city;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.Outfit;
 
+import java.util.Arrays;
 import java.util.Map;
 
 
@@ -64,6 +65,9 @@ public class SmallBoyNPC implements ZoneConfigurator {
 						+ " then I can get my own :)");
 				addHelp("I wonder if a #balloon could fly high enough to touch the clouds");
 				addJob("A Job? Is that something you can eat?");
+				addReply("balloon", "One day, i will have enough balloons to fly away!");
+				addReply(Arrays.asList("xkcd", "tables", "sql", "student", "drop", "table"), 
+						"Yes, it's true, my full name is Robert'); DROP TABLE students;-- but you can call me Bobby.");
 				addGoodbye("Good bye.");
 			}
 
