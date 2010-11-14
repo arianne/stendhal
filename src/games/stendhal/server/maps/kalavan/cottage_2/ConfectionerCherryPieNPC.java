@@ -65,10 +65,10 @@ public class ConfectionerCherryPieNPC implements ZoneConfigurator {
 				addReply("cherry",
 					"Mmm... Those are sometimes hard to get. Did you already ask in some tavern if they can offer any?");
 
-				addHelp("If that can help, I could #bake a cherry pie for you!");
+				addHelp("If it would help, I could #bake a cherry pie for you!");
 				addOffer("I'd be happy to #bake a cherry pie for you. Why don't you just ask me?!");
 
-				addQuest("I'd love to try and bake a strawberry pie once in a while... But Alas! Strawberries are nowhere to be found...");
+				addQuest("I'd love to try and bake a strawberry pie once in a while... But alas! Strawberries are nowhere to be found...");
 
 				addGoodbye("Take care!");
 

@@ -66,17 +66,17 @@ public class ConfectionerApplePieNPC implements ZoneConfigurator {
 				addReply("egg",
 					"Find some hens and you'll easily find some eggs too!");
 				addReply("apple",
-					"Mmm... When once in a while I travel from Semos to Ados, I always stop at the orchard near one farm along the road...");
+					"Mmm... When once in a while I travel from Semos to Ados, I always stop at the orchard near a farm along the road...");
 
 
-				addHelp("If that can help, I could #bake an apple pie for you!");
+				addHelp("If it would help, I could #bake an apple pie for you!");
 
 				addOffer("I'd love to #bake a delicious apple pie for you. Just ask me!");
 
                 /** this is a teaser for a quest not yet available */
-				addQuest("You can bring me all the recipes you can find on baking pies with exotic fruits!");
+				addQuest("Right now I'm perfecting my apple pie recipe. But in future I might want to try something new - I'll let you know.");
 
-				addGoodbye("Be carefull out there!");
+				addGoodbye("Be careful out there!");
 
 				// (uses sorted TreeMap instead of HashMap)
 				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
