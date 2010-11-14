@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -323,7 +324,7 @@ public class CrownForTheWannaBeKingTest {
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
-			assertEquals("You don't have " + playerSays + " with you!", getReply(npc));
+			assertEquals("You don't have " + Grammar.a_noun(playerSays) + " with you!", getReply(npc));
 		}
 
 		for (final String playerSays : triggers) {

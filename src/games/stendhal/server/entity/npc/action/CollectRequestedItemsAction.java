@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -74,7 +75,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 					raiser.setCurrentState(this.stateAfterCompletion);
 				}
 			} else {
-				raiser.say("You don't have " + item + " with you!");
+				raiser.say("You don't have " + Grammar.a_noun(item) + " with you!");
 			}
 		} else {
 			raiser.say(alreadyBrought);
