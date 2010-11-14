@@ -84,7 +84,7 @@ public class ConfectionerCherryPieNPC implements ZoneConfigurator {
 				        requiredResources, 15 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hello! Did you come for tasting one my fabulous cherry pies? I could #bake one for you happily!");
+				        "Hello! Did you come to taste one of my fabulous cherry pies? I could #bake one for you happily!");
 			}
 		};
 
@@ -92,8 +92,7 @@ public class ConfectionerCherryPieNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.DOWN);
 		npc.setPosition(10, 6);
 		npc.initHP(100);
-		npc.setDescription("You see Gertha");
+		npc.setDescription("You see Gertha. She loves baking cherry pies for her guests.");
 		zone.add(npc);
 	}
-
 }
