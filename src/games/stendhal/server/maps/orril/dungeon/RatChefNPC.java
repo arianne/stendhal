@@ -28,7 +28,7 @@ import java.util.TreeMap;
 
 /**
  * Provides a Ratman chef running the Rat City bakery.
- * NOTE: this revision has the producing code inhibited because
+ * NOTE: the producing code inhibited because
  * one required ingredient for crepes suzette au chocolate
  * is 'sugar' which is not available unless summoned.
  *
