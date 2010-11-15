@@ -77,7 +77,6 @@ import games.stendhal.server.maps.quests.MeetMonogenes;
 import games.stendhal.server.maps.quests.MeetSanta;
 import games.stendhal.server.maps.quests.MeetZynn;
 import games.stendhal.server.maps.quests.MithrilCloak;
-import games.stendhal.server.maps.quests.MixtureForOrtiv;
 import games.stendhal.server.maps.quests.NewsFromHackim;
 import games.stendhal.server.maps.quests.ObsidianKnife;
 import games.stendhal.server.maps.quests.PaperChase;
