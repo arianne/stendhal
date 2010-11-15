@@ -2069,6 +2069,7 @@ Holy mackerel! These chips are tasty.
 	<zone name="int_semos_bakery" file="interiors/semos/bakery.tmx">
 	    <configurator class-name="games.stendhal.server.maps.semos.bakery.ChefNPC" />
 	    <configurator class-name="games.stendhal.server.maps.semos.bakery.ShopAssistantNPC" />
+	    <configurator class-name="games.stendhal.server.maps.semos.bakery.ItemsOnTable" />
 		<portal x="26" y="14" ref="entrance">
 			<destination zone="0_semos_city" ref="bakery_entrance" />
 		</portal>
@@ -2733,6 +2734,7 @@ Mature sheep wanted: please speak to Sato
 	</zone>
 
 	<zone name="int_wofol_bar" file="interiors/wofol/bar.tmx">
+		<configurator class-name="games.stendhal.server.maps.wofol.bar.KoboldBarRegularNPC" />
 		<configurator class-name="games.stendhal.server.maps.wofol.bar.KoboldBarmaidNPC" />
 		<portal x="3" y="8" ref="entrance">
 			<destination zone="-1_semos_mine_nw" ref="bar_entrance" />
