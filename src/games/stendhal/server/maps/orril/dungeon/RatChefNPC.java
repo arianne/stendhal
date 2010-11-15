@@ -28,6 +28,9 @@ import java.util.TreeMap;
 
 /**
  * Provides a Ratman chef running the Rat City bakery.
+ * NOTE: this revision has the producing code inhibited because
+ * one required ingredient for crepes suzette au chocolate
+ * is 'sugar' which is not available unless summoned.
  *
  * @author omero 
  */
@@ -61,7 +64,10 @@ public class RatChefNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addJob("I'm the best #crepes suzette au chocolate chef in town. Ask me to #bake one for you!");
+                addGreeting("Hi there. I hope you haven't come to taste my #crepes suzette au chocolate because I'm still setting up my bakery for that!");
+				//addJob("I'm the best #crepes suzette au chocolate chef in town. Ask me to #bake one for you!");
+				addJob("I'm busy with the preparations for opening this bakery."
+                    + "Soon you may taste the finest #crepes suzette au chocolate in town!");
 				addReply("crepes",
                     "Ah le dessert for a prince... A taste of which, I really believe, would reform a cannibal into a civilized gentleman");
 				addReply(Arrays.asList("chocolate","chocolate bar"),
@@ -74,10 +80,16 @@ public class RatChefNPC implements ZoneConfigurator {
                     "A farm would be a good place where one could find that ingredient.");
                 addReply("sugar",
                     "That comes by grinding sugar canes, wich you could harvest yourself in cane fields.");
-				addOffer("I will serve you crepes suzette au chocolate if you ask me to #bake one!");
-				addHelp("Ask me to #bake you my special #chocolate #crepes suzette, that's what I offer.");
+				//addOffer("I will serve you crepes suzette au chocolate if you ask me to #bake one!");
+				addOffer("Alas, this bakery shop still needs some finishing touches before I can offer you my #crepes suzette au chocolate!");
+				//addHelp("Ask me to #bake you my special #chocolate #crepes suzette, that's what I offer.");
+				addHelp("My apologies but I'm rather busy making this bakery shop ready, so I cannot be very helpfull to you at the moment.");
 				addGoodbye("Au revoire voyageur... And come back visiting me anytime you like!");
 
+                /*
+                 * the sugar ingredient cannot be obtained at the moment
+                 * the producer code is therefore disabled untill sugar is made available to players
+                 *
 				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("flour", 1);
 				requiredResources.put("egg", 1);
@@ -92,6 +104,7 @@ public class RatChefNPC implements ZoneConfigurator {
 
 				new ProducerAdder().addProducer(this, behaviour,
 				        "Hi there. I bet you've come to taste my #crepes suzette au chocolate! I can #bake some for you if you like.");
+                */
 			}
 		};
 
