@@ -76,6 +76,7 @@ public class PassiveEntityRespawnPointFactory {
 
 		} else if (clazz.contains("meat_and_fish")) {
 			passiveEntityrespawnPoint = createMeatAndFish(type);
+
 		} else if (clazz.contains("dairy")) {
 			passiveEntityrespawnPoint = createDairy(type);
 		}
@@ -93,7 +94,7 @@ public class PassiveEntityRespawnPointFactory {
 		PassiveEntityRespawnPoint passiveEntityrespawnPoint;
 		switch (type) {
 		case 0:
-			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("egg", 25800);
+			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("egg", 900);
 			passiveEntityrespawnPoint
 					.setDescription("If you were a hen, you'd like to drop a egg in this spot once in a while.");
 			break;
@@ -308,7 +309,7 @@ public class PassiveEntityRespawnPointFactory {
 			break;
 
 		case 1:
-			passiveEntityrespawnPoint = new GrainField("cane", Arrays.asList("sickle"));
+			passiveEntityrespawnPoint = new GrainField("sugar cane", Arrays.asList("sickle"));
 			break;
 		default:
 			passiveEntityrespawnPoint = null;
