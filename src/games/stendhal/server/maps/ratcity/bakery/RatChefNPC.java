@@ -63,7 +63,7 @@ public class RatChefNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addJob("I'm the best #crepes suzette au chocolate chef in town. Ask me to #bake one for you!");
 				addReply("crepes",
-                    "Ah le dessert for a prince... A taste of which, I really believe, would reform a cannibal into a civilized gentleman");
+                    "Ah le dessert for a prince... A taste of which, I really believe, would reform a cannibal into a civilized gentleman.");
 				addReply(Arrays.asList("chocolate","chocolate bar"),
                     "A rarity. It seems only very nasty and murderous folks carry some in their pockets.");
 				addReply("flour",
@@ -73,10 +73,10 @@ public class RatChefNPC implements ZoneConfigurator {
 				addReply(Arrays.asList("butter","milk"),
                     "A farm would be a good place where one could find that ingredient.");
                 addReply("sugar",
-                    "That comes by grinding sugar canes, wich you could harvest yourself in cane fields.");
+                    "That comes from grinding sugar canes, which you could harvest yourself in cane fields.");
 				addOffer("I will serve you crepes suzette au chocolate if you ask me to #bake one!");
 				addHelp("Ask me to #bake you my special #chocolate #crepes suzette, that's what I offer.");
-				addGoodbye("Au revoire voyageur... And come back visiting me anytime you like!");
+				addGoodbye("Au revoire voyageur... And come back to visit me anytime you like!");
 
 				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("flour", 1);
