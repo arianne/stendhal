@@ -48,10 +48,10 @@ public class FoodMill extends Item implements UseListener {
                          * the player needs to equip at least a sugar cane in his other hand
                          * and have an empty sack in his inventory
                          */
-                        if ("cane".equals(first.get("name"))) {
+                        if ("sugar cane".equals(first.get("name"))) {
                             if (user.isEquipped("empty sack")) {
                                 final Item item = SingletonRepository.getEntityManager().getItem("sugar");
-                                user.drop("cane");
+                                user.drop("sugar cane");
                                 user.drop("empty sack");
                                 user.equipOrPutOnGround(item);
                             } else {
@@ -62,7 +62,7 @@ public class FoodMill extends Item implements UseListener {
                         }
                     } else {
                         /**
-                         * the player needs to equip at least a sugar cane in his other hand
+                         * the player needs to equip at least an apple in his other hand
                          * and have an empty flask in his inventory
                          */
                         if ("apple".equals(first.get("name"))) {
