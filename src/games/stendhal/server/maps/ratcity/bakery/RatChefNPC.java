@@ -67,7 +67,7 @@ public class RatChefNPC implements ZoneConfigurator {
                 addGreeting("Hi there. I hope you haven't come to taste my #crepes suzette au chocolate because I'm still setting up my bakery for that!");
 				//addJob("I'm the best #crepes suzette au chocolate chef in town. Ask me to #bake one for you!");
 				addJob("I'm busy with the preparations for opening this bakery."
-                    + "Soon you may taste the finest #crepes suzette au chocolate in town!");
+                    + " Soon you may taste the finest #crepes suzette au chocolate in town!");
 				addReply("crepes",
                     "Ah le dessert for a prince... A taste of which, I really believe, would reform a cannibal into a civilized gentleman");
 				addReply(Arrays.asList("chocolate","chocolate bar"),
