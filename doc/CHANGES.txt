@@ -14,7 +14,7 @@ Changelog
 - Wrviliza, a kobold barmaid in Wo'fol bar, she also provide new drinks (mild and strong koboldish torcibud)
 - Kormic, a kobold regular in Wo'fol bar
 - Uncle Dag in Ados market, he runs a distillery stand there and produces fierywater
-- Gaston, a Rat chef in Rat City bakery that will prepare the best crepes suzette au chocolate in town
+- Gaston, a Rat chef in Rat City bakery 
 - quest in Wo'fol (the reward is V.S.O.P. koboldish torcibud)
 - artichoke, garlic, mandragora (a magical herb) and zantedeschia (a flower) and cane fields are growing in Faiumoni
 - hen nests spawn eggs
