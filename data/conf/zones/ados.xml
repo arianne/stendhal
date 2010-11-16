@@ -979,6 +979,7 @@ Under new management. Chests to the right are still held by Semos Bank Merchants
 
    <zone name="int_ados_bakery" file="interiors/ados/bakery.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.bakery.BakerNPC" />
+    <configurator class-name="games.stendhal.server.maps.ados.bakery.ItemsOnTable" />
 
     <portal x="26" y="14" ref="0">
      <destination zone="0_ados_city_n" ref="10"/>
@@ -1031,6 +1032,7 @@ in roaches.
    <zone name="int_ados_tavern_0" file="interiors/ados/tavern_0.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.tavern.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.tavern.BarmanNPC" />
+    <configurator class-name="games.stendhal.server.maps.ados.tavern.ItemsOnTable" />
     <portal x="12" y="17" ref="entrance_left">
      <destination zone="0_ados_city_n" ref="tavern_entrance_left"/>
     </portal>
@@ -1307,6 +1309,7 @@ in roaches.
    <zone name="int_ados_bar" file="interiors/ados/bar.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.bar.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.StichardRallmanNPC" />
+    <configurator class-name="games.stendhal.server.maps.ados.bar.ItemsOnTable" />
 
      <portal x="15" y="30" ref="bar_entrance">
     <destination zone="0_ados_city" ref="bar"/>
@@ -1321,10 +1324,11 @@ in roaches.
 
 
    <zone name="int_ados_bar_1" file="interiors/ados/bar_1.tmx">
+    <configurator class-name="games.stendhal.server.maps.ados.bar.ItemsOnTableUpstairs" />
      <portal x="28" y="2" ref="downstair">
-    <destination zone="int_ados_bar" ref="upstair_left"/>
+      <destination zone="int_ados_bar" ref="upstair_left"/>
      </portal>
-    </zone>
+   </zone>
    
    <zone name="int_ados_town_hall" file="interiors/ados/buraucrazy_0.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.townhall.TaxmanNPC" />

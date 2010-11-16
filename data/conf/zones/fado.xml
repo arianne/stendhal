@@ -149,6 +149,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
          
          <zone name="int_fado_tavern" file="interiors/fado/tavern.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.tavern.MaidNPC"/>
+           <configurator class-name="games.stendhal.server.maps.fado.tavern.ItemsOnTable"/>
            
            <portal x="16" y="30" ref="entrance_left">
              <destination zone="0_fado_city" ref="tavern_entrance_left"/>
@@ -727,6 +728,7 @@ For example say:  11  if you want the room called Water of Love.
  </zone>
 <zone name="0_fado_forest_s" level="0" x="499744" y="500640" file="Level 0/fado/forest_s.tmx">
  <configurator class-name="games.stendhal.server.maps.fado.forest.BeeKeeperNPC" />
+ <configurator class-name="games.stendhal.server.maps.fado.forest.ItemsOnTable" />
 </zone>
 <zone name="0_fado_forest_se" level="0" x="499872" y="500640" file="Level 0/fado/forest_se.tmx">
 </zone>
