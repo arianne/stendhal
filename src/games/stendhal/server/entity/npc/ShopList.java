@@ -17,6 +17,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 
 /**
@@ -465,6 +466,10 @@ public class ShopList {
 
 	public Map<String, Integer> get(final String name) {
 		return contents.get(name);
+	}
+	
+	public Set<String> getShops() {
+		return contents.keySet();
 	}
 
 	public String toString(final String name, final String header) {
