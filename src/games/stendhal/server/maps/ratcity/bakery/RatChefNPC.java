@@ -17,14 +17,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Provides a Ratman chef running the Rat City bakery.
@@ -69,7 +66,7 @@ public class RatChefNPC implements ZoneConfigurator {
 				addJob("I'm busy with the preparations for opening this bakery."
                     + " Soon you may taste the finest #crepes suzette au chocolate in town!");
 				addReply("crepes",
-                    "Ah le dessert for a prince... A taste of which, I really believe, would reform a cannibal into a civilized gentleman");
+                    "Ah le dessert for a prince... A taste of which, I really believe, would reform a cannibal into a civilized gentleman.");
 				addReply(Arrays.asList("chocolate","chocolate bar"),
                     "A rarity. It seems only very nasty and murderous folks carry some in their pockets.");
 				addReply("flour",
@@ -79,16 +76,16 @@ public class RatChefNPC implements ZoneConfigurator {
 				addReply(Arrays.asList("butter","milk"),
                     "A farm would be a good place where one could find that ingredient.");
                 addReply("sugar",
-                    "That comes by grinding sugar canes, wich you could harvest yourself in cane fields.");
+                    "That comes from grinding sugar canes, which you could harvest yourself in cane fields.");
 				//addOffer("I will serve you crepes suzette au chocolate if you ask me to #bake one!");
 				addOffer("Alas, this bakery shop still needs some finishing touches before I can offer you my #crepes suzette au chocolate!");
 				//addHelp("Ask me to #bake you my special #chocolate #crepes suzette, that's what I offer.");
-				addHelp("My apologies but I'm rather busy making this bakery shop ready, so I cannot be very helpfull to you at the moment.");
-				addGoodbye("Au revoire voyageur... And come back visiting me anytime you like!");
+				addHelp("My apologies but I'm rather busy making this bakery shop ready, so I cannot be very helpful to you at the moment.");
+				addGoodbye("Au revoire voyageur... And come back to visit me anytime you like!");
 
                 /*
                  * the sugar ingredient cannot be obtained at the moment
-                 * the producer code is therefore disabled untill sugar is made available to players
+                 * the producer code is therefore disabled until sugar is made available to players
                  *
 				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("flour", 1);
