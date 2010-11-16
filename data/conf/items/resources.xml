@@ -17,8 +17,8 @@
     </equipable>
   </item>
 
-  <item name="cane">
-    <type class="resource" subclass="cane" tileid="-1"/>
+  <item name="sugar cane">
+    <type class="resource" subclass="sugarcane" tileid="-1"/>
     <description>You see a sugar cane. You can grind it for raw sugar.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
