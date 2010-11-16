@@ -29,14 +29,14 @@ public class ItemsOnTable implements ZoneConfigurator {
 
 		final PassiveEntityRespawnPoint bottleGrower1 = new PassiveEntityRespawnPoint("slim bottle", 100);
 		bottleGrower1.setPosition(48, 28);
-		bottleGrower1.setDescription("A spot where a bottle could be standing.");
+		bottleGrower1.setDescription("This seems a likely spot where a bottle could be found.");
 		zone.add(bottleGrower1);
 
 		bottleGrower1.setToFullGrowth();
 
 		final PassiveEntityRespawnPoint bottleGrower2 = new PassiveEntityRespawnPoint("eared bottle", 100);
 		bottleGrower2.setPosition(49, 31);
-		bottleGrower2.setDescription("A spot where a bottle could be standing.");
+		bottleGrower2.setDescription("This seems a likely spot where a bottle could be found.");
 		zone.add(bottleGrower2);
 
 		bottleGrower2.setToFullGrowth();
