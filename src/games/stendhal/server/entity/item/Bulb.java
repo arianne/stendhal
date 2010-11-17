@@ -11,9 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.actions.PlantBulbAction;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.mapstuff.spawner.FlowerBulbGrower;
 
 import java.util.Map;
 
@@ -41,11 +42,33 @@ public class Bulb extends StackableItem implements UseListener {
 	}
 
 	public boolean onUsed(final RPEntity user) {
-		
-		final PlantBulbAction plantAction = new PlantBulbAction();
-		plantAction.setUser(user);
-		plantAction.setBulb(this);
-		return plantAction.execute();
+		if (!this.isContained()) {
+			// the bulb is on the ground, but not next to the player
+			if (!this.nextTo(user)) {
+				user.sendPrivateText("The bulb is too far away");
+				return false;
+			}
+			// the infostring of the bulb stores what it should grow
+			final String infostring = this.getInfoString();
+			FlowerBulbGrower flowerGrower;
+			// choose the default flower grower if there is none set
+			if (infostring == null) {
+				flowerGrower = new FlowerBulbGrower();
+			} else {
+				flowerGrower = new FlowerBulbGrower(this.getInfoString());
+			}
+			user.getZone().add(flowerGrower);
+			// add the FlowerBulbGrower where the bulb was on the ground
+			flowerGrower.setPosition(this.getX(), this.getY());
+			// The first stage of growth happens almost immediately        
+			TurnNotifier.get().notifyInTurns(3, flowerGrower);
+			// remove the bulb now that it is planted
+			this.removeOne();
+			return true;
+		}
+		// the bulb was 'contained' in a slot and so it cannot be planted
+		user.sendPrivateText("Alas, This bulb will not thrive in your pockets! Try putting it on fertile ground to plant it.");
+		return false;
 	}
 
 

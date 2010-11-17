@@ -12,9 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.actions.PlantAction;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 
 import java.util.Map;
 
@@ -42,11 +43,34 @@ public class Seed extends StackableItem implements UseListener {
 	}
 
 	public boolean onUsed(final RPEntity user) {
-		
-		final PlantAction plantAction = new PlantAction();
-		plantAction.setUser(user);
-		plantAction.setSeed(this);
-		return plantAction.execute();
+		if (!this.isContained()) {
+			// the seed is on the ground, but not next to the player
+			if (!this.nextTo(user)) {
+				user.sendPrivateText("The seed is too far away");
+				return false;
+			}
+			
+			// the infostring of the seed stores what it should grow
+			final String infostring = this.getInfoString();
+			FlowerGrower flowerGrower;
+			// choose the default flower grower if there is none set
+			if (infostring == null) {
+				flowerGrower = new FlowerGrower();
+			} else {
+				flowerGrower = new FlowerGrower(this.getInfoString());
+			}
+			user.getZone().add(flowerGrower);
+			// add the FlowerGrower where the seed was on the ground
+			flowerGrower.setPosition(this.getX(), this.getY());
+			// The first stage of growth happens almost immediately        
+			TurnNotifier.get().notifyInTurns(3, flowerGrower);
+			// remove the seed now that it is planted
+			this.removeOne();
+			return true;
+		}
+		// the seed was 'contained' in a slot and so it cannot be planted
+		user.sendPrivateText("You have to put the seed on the ground to plant it, silly!");
+		return false;
 	}
 
 

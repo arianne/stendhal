@@ -14,9 +14,13 @@ package games.stendhal.server.entity.item;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -33,20 +37,113 @@ public class SeedTest {
 		GrowingPassiveEntityRespawnPointTestHelper.generateRPClasses();
 	}
 
+
+
 	/**
-	 * Tests for onUsed.
+	 * Tests for execute.
 	 */
 	@Test
-	public void testOnUsed() {
+	public void testExecute() {
 		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
-		assertNotNull(seed);
-		assertFalse(seed.onUsed(null));
 		final Player player = PlayerTestHelper.createPlayer("bob");
+		assertNotNull(player);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
+		SingletonRepository.getRPWorld().addRPZone(zone);
 		zone.add(player);
+
+		assertNotNull(seed);
 		zone.add(seed);
+		seed.setPosition(1, 0);
+
 		assertTrue(seed.onUsed(player));
+
+		assertNotNull(player.getZone().getEntityAt(1, 0));
+		assertTrue(player.getZone().getEntityAt(1, 0) instanceof FlowerGrower);
+
+	}
+	
+
+	/**
+	 * Tests for executeSeedInBag.
+	 */
+	@Test
+	public void testExecuteSeedInBag() {
+		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		assertNotNull(player);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		SingletonRepository.getRPWorld().addRPZone(zone);
+		zone.add(player);
 		
+		assertNotNull(seed);
+		player.equip("bag", seed);
+		
+		assertFalse(seed.onUsed(player));
 	}
 
+	/**
+	 * Tests for executeNonameSeed.
+	 */
+	@Test
+	public void testExecuteNonameSeed() {
+		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		assertNotNull(player);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		SingletonRepository.getRPWorld().addRPZone(zone);
+		zone.add(player);
+
+		assertNotNull(seed);
+		zone.add(seed);
+		seed.setPosition(1, 0);
+
+		assertTrue(seed.onUsed(player));
+
+		final Entity entity = player.getZone().getEntityAt(1, 0);
+		assertNotNull(entity);
+		if (entity instanceof FlowerGrower) {
+			final FlowerGrower flg = (FlowerGrower) entity;
+			flg.setToFullGrowth();
+			flg.onUsed(player);
+			assertNull(player.getZone().getEntityAt(1, 0));
+			assertTrue(player.isEquipped("lilia"));
+		} else {
+			fail("seed produced non flowergrower");
+		}
+		
+
+	}
+	
+	/**
+	 * Tests for executeDaisiesSeed.
+	 */
+	@Test
+	public void testExecuteDaisiesSeed() {
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		assertNotNull(player);
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		SingletonRepository.getRPWorld().addRPZone(zone);
+		zone.add(player);
+
+		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		assertNotNull(seed);
+		seed.setInfoString("daisies");
+		zone.add(seed);
+		seed.setPosition(1, 0);
+
+		assertTrue(seed.onUsed(player));
+
+		final Entity entity = player.getZone().getEntityAt(1, 0);
+		assertNotNull(entity);
+		if (entity instanceof FlowerGrower) {
+			final FlowerGrower flg = (FlowerGrower) entity;
+			flg.setToFullGrowth();
+			flg.onUsed(player);
+			assertNull(player.getZone().getEntityAt(1, 0));
+			assertTrue("player has daisies", player.isEquipped("daisies"));
+		} else {
+			fail("seed produced non flowergrower");
+		}
+		
+	}
 }
