@@ -22,7 +22,6 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.RaidCreatureCorpse;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
