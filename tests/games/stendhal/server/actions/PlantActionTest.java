@@ -42,18 +42,6 @@ public class PlantActionTest {
 		GrowingPassiveEntityRespawnPointTestHelper.generateRPClasses();
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	/**
 	 * Tests for executeWithNUllValues.
 	 */
@@ -194,6 +182,6 @@ public class PlantActionTest {
 			fail("seed produced non flowergrower");
 		}
 		
-
 	}
+
 }
