@@ -69,7 +69,7 @@
 
   <item name="pansy">
     <type class="flower" subclass="pansy" tileid="-1"/>
-    <description>You see a pansy, so colorfull and beautifull.</description>
+    <description>You see a pansy, so colorful and beautiful.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
      <quantity value="1"/>
