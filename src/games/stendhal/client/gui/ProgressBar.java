@@ -140,7 +140,9 @@ public class ProgressBar extends JFrame {
 		m_stepCounter = 20; 
 		m_stepSizeMultiplier = 2;
 		m_sleepTime = 15;
+		cancel();
 	}
+
 	/**
 	 * Exits quickly.
 	 */
