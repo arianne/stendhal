@@ -61,7 +61,7 @@
 
   <item name="vsop koboldish torcibud">
     <type class="drink" subclass="koboldish_torcibud_vsop" tileid="-1"/>
-    <description>You see a bottle of VSOP koboldish torcibud, expecially aged in oak kegs wrapped by the darkness of a dungeon cellar. It will help you recover when you're all bruised and battered.</description>
+    <description>You see a bottle of VSOP koboldish torcibud, specially aged in oak casks wrapped by the darkness of a dungeon cellar. It will help you recover when you're all bruised and battered.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
        <amount value="270"/>
       <frequency value="8"/>
@@ -80,7 +80,7 @@
 
   <item name="apple juice">
     <type class="drink" subclass="red_juice" tileid="-1"/>
-    <description>You see apple juice.  On a hot summer day, it would taste great.</description>
+    <description>You see apple juice. On a hot summer day, it would taste great.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
        <amount value="30"/>
       <frequency value="12"/>
@@ -99,7 +99,7 @@
 	
   <item name="beer">
     <type class="drink" subclass="beer" tileid="-1"/>
-    <description>You see a beer.  On a hot summer day, it would taste great.</description>
+    <description>You see a beer. On a hot summer day, it would taste great.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="6"/>
       <frequency value="5"/>
@@ -118,7 +118,7 @@
 
   <item name="wine">
     <type class="drink" subclass="wine" tileid="-1"/>
-    <description>You see a glass of red wine.  It will quench your thirst.</description>
+    <description>You see a glass of red wine. It will quench your thirst.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="10"/>
       <frequency value="5"/>
@@ -137,7 +137,7 @@
 
   <item name="pina colada">
     <type class="drink" subclass="pina_colada" tileid="-1"/>
-    <description>You see a pina colada.  It looks delicious but tastes dangerously strong!.</description>
+    <description>You see a pina colada. It looks delicious but tastes dangerously strong!.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="28"/>
       <frequency value="3"/>
@@ -443,7 +443,7 @@
 
   <item name="mega potion">
     <type class="drink" subclass="mega_potion" tileid="-1"/>
-    <description>You see a mega potion.  It strengthens greatly.</description>
+    <description>You see a mega potion. It strengthens greatly.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="800"/>
       <frequency value="1"/>
