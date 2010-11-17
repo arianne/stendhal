@@ -63,7 +63,7 @@ public class PlantBulbAction {
 			return true;
 		}
 		// the bulb was 'contained' in a slot and so it cannot be planted
-		user.sendPrivateText("Alas, This bulb will will not thrive in your pockets! Try putting it on fertile ground to plant it.");
+		user.sendPrivateText("Alas, This bulb will not thrive in your pockets! Try putting it on fertile ground to plant it.");
 		return false;
 	}
 }
