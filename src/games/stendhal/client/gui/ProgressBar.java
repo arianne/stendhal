@@ -22,13 +22,13 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 
-public class ProgressBar extends JFrame {
+public class ProgressBar extends JDialog {
 
 	private static final long serialVersionUID = 6241161656154797719L;
 
@@ -52,8 +52,8 @@ public class ProgressBar extends JFrame {
 	// continue while true
 	private boolean m_con = true; 
 
-	public ProgressBar(final Window w) {
-		super("Connecting...");
+	public ProgressBar(final JDialog w) {
+		super(w, "Connecting...", true);
 		final URL url = this.getClass().getClassLoader().getResource(
 				ClientGameConfiguration.get("GAME_ICON"));
 		setIconImage(new ImageIcon(url).getImage());
@@ -140,6 +140,7 @@ public class ProgressBar extends JFrame {
 		m_stepCounter = 20; 
 		m_stepSizeMultiplier = 2;
 		m_sleepTime = 15;
+		this.cancel();
 	}
 	/**
 	 * Exits quickly.
