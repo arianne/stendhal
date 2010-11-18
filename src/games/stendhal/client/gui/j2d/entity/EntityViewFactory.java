@@ -201,6 +201,7 @@ public class EntityViewFactory {
 		register("sign", null, null, Sign2DView.class);
 		register("blackboard", null, null, Sign2DView.class);
 		register("shop_sign", null, null, ShopSign2DView.class);
+		register("rented_sign", null, null, Sign2DView.class);
 		register("tradecentersign", null, null, TradeCenterSign2DView.class);
 		
 		register("item", "jewellery", null,  StackableItem2DView.class);
