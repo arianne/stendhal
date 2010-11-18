@@ -432,6 +432,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, true);
 
 			}
+			updatePlayerNameListForPlayersOnLogin(player);
 			String[] params = {};
 
 			new GameEvent(player.getName(), "login", params).raise();
@@ -504,7 +505,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			if (!player.isGhost()) {
 				notifyOnlineStatus(false, player);
 			}
-
+			updatePlayerNameListForPlayersOnLogout(player);
+			
 			Player.destroy(player);
 			getOnlinePlayers().remove(player);
 
@@ -608,8 +610,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(final Player player) {
 						player.notifyOnline(playerToNotifyAbout.getName());
-						player.addEvent(new PlayerLoggedOnEvent(playerToNotifyAbout.getName()));
-						playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
 					}
 				});
 
@@ -617,11 +617,46 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(final Player player) {
 						player.notifyOffline(playerToNotifyAbout.getName());
-						player.addEvent(new PlayerLoggedOutEvent(playerToNotifyAbout.getName()));
 					}
 				});
 			}
 		}
+	}
+	
+	/**
+	 * Update all player's lists of online player names on login of a new player
+	 * 
+	 * @param playerToNotifyAbout
+	 */
+	private void updatePlayerNameListForPlayersOnLogin(final Player playerToNotifyAbout) {
+		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
+			public void execute(final Player player) {
+				if(playerToNotifyAbout.isGhost()) {
+					playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
+					if (player.isGhost()) {
+						player.addEvent(new PlayerLoggedOnEvent(playerToNotifyAbout.getName()));
+					}
+				} else {
+					player.addEvent(new PlayerLoggedOnEvent(playerToNotifyAbout.getName()));
+					if (!player.isGhost()) {
+						playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
+					}
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Update all player's lists of online player names on login of a new player
+	 * 
+	 * @param playerToNotifyAbout
+	 */
+	private void updatePlayerNameListForPlayersOnLogout(final Player playerToNotifyAbout) {
+		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
+			public void execute(final Player player) {
+				player.addEvent(new PlayerLoggedOutEvent(playerToNotifyAbout.getName()));
+			}
+		});
 	}
 
 	/**
