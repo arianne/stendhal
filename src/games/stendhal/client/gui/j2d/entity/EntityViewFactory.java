@@ -104,7 +104,8 @@ public class EntityViewFactory {
 			
 			final Class< ? extends EntityView> entityClass = getViewClass(type, eclass, subClass);
 			if (entityClass == null) {
-					return null;
+				LOGGER.warn("No view for this entity. type: " + type + " class: " + eclass + " subclass: " + subClass);
+				return null;
 			}
 
 			final EntityView en = (EntityView) entityClass.newInstance();
@@ -200,6 +201,7 @@ public class EntityViewFactory {
 		
 		register("sign", null, null, Sign2DView.class);
 		register("blackboard", null, null, Sign2DView.class);
+		register("rented_sign", null, null, Sign2DView.class);
 		register("shop_sign", null, null, ShopSign2DView.class);
 		register("tradecentersign", null, null, TradeCenterSign2DView.class);
 		
