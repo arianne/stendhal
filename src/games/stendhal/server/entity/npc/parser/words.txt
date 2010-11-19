@@ -503,6 +503,7 @@ kokuda	OBJ	kokudas
 kotoch	OBJ-NAM	kotoches
 lag	OBJ	lags
 language	OBJ	languages
+lamb	OBJ-ANI
 larva	OBJ	larvae
 leek	OBJ-FOO	leeks
 leg	OBJ	legs
