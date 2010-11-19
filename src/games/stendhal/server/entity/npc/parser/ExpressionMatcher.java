@@ -200,6 +200,7 @@ public class ExpressionMatcher {
             return ConversationParser.parse(text, ctx);
         }
 
+        // Trim white space from beginning and end.
         text = text.trim();
 
         final Sentence sentence = new SentenceImplementation(ctx, text);

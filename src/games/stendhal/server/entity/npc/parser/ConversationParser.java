@@ -37,8 +37,6 @@ public final class ConversationParser extends ErrorBuffer {
     private static Map<String, Sentence> matchingSentenceCache = new HashMap<String, Sentence>();
 
 
-	final String originalText;
-
     private final StringTokenizer tokenizer;
 
 
@@ -46,28 +44,23 @@ public final class ConversationParser extends ErrorBuffer {
      * Create a new conversation parser and initialize with the given text string.
      *
      * @param text the text to parse
+     * @param sentence 
      */
-    public ConversationParser(final String text) {
+    protected ConversationParser(SentenceImplementation sentence) {
+    	String text = sentence.getOriginalText();
+
 		if (text == null) {
-			originalText = "";
+			text = "";
 		} else if (text.startsWith("_")) {
 			// ignore sentences starting with "_", so players can talk
 			// without triggering NPCs
-			originalText = "";
-		} else {
-			originalText = text;
+			text = "";
 		}
 
-        // initialize a new tokenizer with the given text
-		tokenizer = new StringTokenizer(originalText);
-    }
+		String textWithoutPunctation = detectSentenceType(text, sentence);
 
-    
-    /**
-     * @return the original parsed text.
-     */
-    public String getOriginalText() {
-        return originalText;
+        // initialize a new tokenizer with the given text
+		tokenizer = new StringTokenizer(textWithoutPunctation);
     }
 
     /**
@@ -226,29 +219,28 @@ public final class ConversationParser extends ErrorBuffer {
         final SentenceImplementation sentence = new SentenceImplementation(ctx, text);
 
         try {
-            // 1.) determine sentence type from trailing punctuation
-            text = detectSentenceType(text, sentence);
-
-            // 2.) feed the separated words into the sentence object
-            final ConversationParser parser = new ConversationParser(text);
+            // 1.) create ConversationParser
+            // This determines the sentence type from trailing punctuation
+        	// and feeds the separated words into the sentence object.
+            final ConversationParser parser = new ConversationParser(sentence);
 
             sentence.parse(parser);
 
-            // 3.) classify word types and normalize words
+            // 2.) classify word types and normalize words
             sentence.classifyWords(parser);
 
             if ((ctx != null) && ctx.getMergeExpressions()) {
-                // 4.) evaluate sentence type from word order
+                // 3.) evaluate sentence type from word order
                 sentence.evaluateSentenceType();
 
-                // 5.) merge words to form a simpler sentence structure
+                // 4.) merge words to form a simpler sentence structure
                 sentence.mergeWords();
 
                 if (!ctx.isForMatching()) {
-                    // 6.) standardize sentence type
+                    // 5.) standardize sentence type
                     sentence.standardizeSentenceType();
 
-                    // 7.) replace grammatical constructs with simpler ones
+                    // 6.) replace grammatical constructs with simpler ones
                     sentence.performaAliasing();
                 }
             }
