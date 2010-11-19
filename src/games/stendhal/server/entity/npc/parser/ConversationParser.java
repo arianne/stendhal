@@ -219,11 +219,15 @@ public final class ConversationParser extends ErrorBuffer {
             text = "";
         }       
 
+        // Trim white space from beginning and end.
+        text = text.trim();
+
+        // Create a Sentence object and initialize its originalText.
         final SentenceImplementation sentence = new SentenceImplementation(ctx, text);
 
         try {
             // 1.) determine sentence type from trailing punctuation
-            text = detectSentenceType(text.trim(), sentence);
+            text = detectSentenceType(text, sentence);
 
             // 2.) feed the separated words into the sentence object
             final ConversationParser parser = new ConversationParser(text);
