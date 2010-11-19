@@ -305,13 +305,13 @@ public class ConversationParserTest {
 	 */
 	@Test
 	public final void testOriginalText() {
-		// test the return of getOriginalText() and a lot more other ConversationParser/Sentence functions.
+		// test the return values of getOriginalText() and some more ConversationParser/Sentence functions.
 		Sentence sentence = ConversationParser.parse("Mary had a little lamb.");
 		assertFalse(sentence.hasError());
 		assertEquals("mary/SUB-NAM have/VER 1/NUM little/ lamb/OBJ-ANI.", sentence.toString());
+		assertEquals(5, sentence.getExpressions().size());
 		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
 		assertEquals("have", sentence.getVerbString());
-		assertEquals("mary", sentence.getTriggerExpression().getNormalized());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("lamb", sentence.getObject(0).getNormalized());
 		assertEquals("Mary had a little lamb.", sentence.getOriginalText());
@@ -440,6 +440,19 @@ public class ConversationParserTest {
 		assertNull(sentence.getObject(0));
 		assertNull(sentence.getObjectName());
 		assertFalse(sentence.hasError());
+	}
+
+	/**
+	 * Tests for ignoring chat messages starting with underscores.
+	 */
+	@Test
+	public final void testChatting() {
+		final Sentence sentence = ConversationParser.parse("_Hi, how are you?");
+		assertFalse(sentence.hasError());
+		assertEquals(0, sentence.getExpressions().size());
+		assertEquals("_Hi, how are you?", sentence.getOriginalText());
+		assertEquals("", sentence.getTrimmedText());
+		assertEquals("", sentence.getNormalized());
 	}
 
 	/**
