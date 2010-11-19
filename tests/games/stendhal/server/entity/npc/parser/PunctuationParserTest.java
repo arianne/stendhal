@@ -35,15 +35,15 @@ public class PunctuationParserTest {
 		assertEquals("", p.getPrecedingPunctuation());
 		assertEquals("!", p.getTrailingPunctuation());
 	}
+
 	@Test
 	public final void tesNullEntry() {
 		final PunctuationParser p = new PunctuationParser(null);
 		assertEquals(null, p.getText());
 		assertEquals("", p.getPrecedingPunctuation());
 		assertEquals("", p.getTrailingPunctuation());
-	
-		
 	}
+
 	/**
 	 * Tests for onlyPunctuation.
 	 */
@@ -65,9 +65,8 @@ public class PunctuationParserTest {
 		assertEquals("", p.getText());
 		assertEquals("", p.getPrecedingPunctuation());
 		assertEquals("", p.getTrailingPunctuation());
-	
-		
 	}
+
 	/**
 	 * Tests for onlyspacePunctuation.
 	 */
@@ -81,8 +80,6 @@ public class PunctuationParserTest {
 		assertEquals(" ", p.getText());
 		assertEquals("", p.getPrecedingPunctuation());
 		assertEquals(".,?!", p.getTrailingPunctuation());
-	
-		
 	}
 
 }

@@ -84,7 +84,7 @@ public class SolveRiddles extends AbstractQuest {
 		}
 
 		/**
-		 * Check if an answer mathces the riddle.
+		 * Check if an answer matches the riddle.
 		 * 
 		 * @param riddle The riddle to be answered
 		 * @param answer The answer given by the player
