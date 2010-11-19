@@ -29,9 +29,11 @@ import org.apache.log4j.Logger;
 public class TileRenderer extends LayerRenderer {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(TileRenderer.class);
-
-	private int[] map;
-
+	/** Tileset used for the map data */
+	protected Tileset tileset;
+	/** Raw map data. Indices of tiles in the tileset. */
+	protected int[] map;
+	/** The map data converted to tile references */ 
 	protected Sprite[] spriteMap;
 
 	public TileRenderer() {
@@ -65,25 +67,37 @@ public class TileRenderer extends LayerRenderer {
 	 */
 	@Override
 	public void setTileset(final Tileset tileset) {
-		if (tileset != null) {
-			/*
-			 * Cache sprites
-			 */
-			spriteMap = new Sprite[map.length];
+		this.tileset = tileset;
+	}
+	
+	/**
+	 * Initialize the sprite map from the tileset and the map data.
+	 * 
+	 * @return true if the map is ready to be used, false otherwise.
+	 */
+	private boolean initSpriteMap() {
+		if (spriteMap == null) {
+			if (tileset != null) {
+				/*
+				 * Cache sprites
+				 */
+				spriteMap = new Sprite[map.length];
 
-			int i = spriteMap.length;
+				int i = spriteMap.length;
 
-			while (i-- != 0) {
-				spriteMap[i] = tileset.getSprite(map[i]);
+				while (i-- != 0) {
+					spriteMap[i] = tileset.getSprite(map[i]);
+				}
+			} else {
+				return false;
 			}
-		} else {
-			spriteMap = null;
 		}
+		return true;
 	}
 	
 	@Override
 	public void draw(Graphics g, int x, int y, final int w, final int h) {
-		if (spriteMap == null) {
+		if (!initSpriteMap()) {
 			return;
 		}
 

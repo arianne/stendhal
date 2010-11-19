@@ -36,8 +36,8 @@ public class CompositeLayerRenderer extends TileRenderer {
 		Sprite maps[][] = new Sprite[layerRenderers.size()][];
 		int i = 0;
 		for (LayerRenderer layer : layerRenderers) {
-				maps[i] = ((TileRenderer) layer).spriteMap;
-				i++;				
+			maps[i] = ((TileRenderer) layer).spriteMap;
+			i++;				
 		}
 		createComposites(layerRenderers);
 	}
@@ -53,14 +53,24 @@ public class CompositeLayerRenderer extends TileRenderer {
 		SpriteCache cache = SpriteCache.get();
 		int layers = renderers.size();
 		
-		List<Sprite> slaves = new ArrayList<Sprite>(layers);
+		List<Sprite> slaveSprites = new ArrayList<Sprite>(layers);
 		
 		for (int i = 0; i < size; i++) {
 			for (TileRenderer r : renderers) {
-				slaves.add(r.spriteMap[i]);
+				slaveSprites.add(r.tileset.getSprite(r.map[i]));
 			}
-			spriteMap[i] = CompositeSprite.getComposite(cache, slaves);
-			slaves.clear();
+			spriteMap[i] = CompositeSprite.getComposite(cache, slaveSprites);
+			slaveSprites.clear();
+		}
+		
+		// Wipe out unneeded data from the slaves. Assumes their draw() method
+		// will not be called from anywhere. The renderers will be useless by
+		// themselves after this, so if the assumption changes, this needs code
+		// will need to be revisited
+		for (TileRenderer r : renderers) {
+			r.map = null;
+			r.spriteMap = null;
+			r.tileset = null;
 		}
 	}
 }
