@@ -29,24 +29,19 @@ import org.apache.log4j.Logger;
 public final class ConversationParser extends ErrorBuffer {
 	 
 	private static final Logger LOGGER = Logger.getLogger(ConversationParser.class);
-	   /** A cache to hold pre-parsed trigger Expressions. */
+
+	/** A cache to hold pre-parsed trigger Expressions. */
     private static Map<String, Expression> triggerExpressionsCache = new HashMap<String, Expression>();
 
-    /**
-     *  A cache to hold pre-parsed matching Sentences.
-     */
+    /** A cache to hold pre-parsed matching Sentences. */
     private static Map<String, Sentence> matchingSentenceCache = new HashMap<String, Sentence>();
 
-    
+
 	final String originalText;
-	
-    
+
     private final StringTokenizer tokenizer;
 
-  
 
-
-   
     /**
      * Create a new conversation parser and initialize with the given text string.
      *
@@ -223,12 +218,12 @@ public final class ConversationParser extends ErrorBuffer {
         } else {
             text = "";
         }       
-    	final String ot = text;
-        final SentenceImplementation sentence = new SentenceImplementation(ctx);
+
+        final SentenceImplementation sentence = new SentenceImplementation(ctx, text);
 
         try {
             // 1.) determine sentence type from trailing punctuation
-            text = getSentenceType(text.trim(), sentence);
+            text = detectSentenceType(text.trim(), sentence);
 
             // 2.) feed the separated words into the sentence object
             final ConversationParser parser = new ConversationParser(text);
@@ -260,8 +255,7 @@ public final class ConversationParser extends ErrorBuffer {
             sentence.setError(e.getMessage());
             e.printStackTrace();
         }
-        //mf: overwriting originalText disables the private chat filter for messages beginning with "_" (see ConversationParser constructor) -> OK?
-        sentence.originalText = ot;
+
         return sentence;
     }
 
@@ -281,17 +275,15 @@ public final class ConversationParser extends ErrorBuffer {
     /**
      * Evaluates and sets sentence type by looking at the trailing punctuation characters.
      * 
-     *
      * @param text	the text to evaluate
      * @param sentence where the type is to be set
      * @return text without trailing or leading punctuation
      */
-    public static String getSentenceType(final String text, final Sentence sentence) {
+    public static String detectSentenceType(final String text, final Sentence sentence) {
         final PunctuationParser punct = new PunctuationParser(text);
 
         final String trailing = punct.getTrailingPunctuation();
-        
-        
+
         if (trailing.contains("?")) {
             sentence.setType(Sentence.SentenceType.QUESTION);
             return punct.getText();

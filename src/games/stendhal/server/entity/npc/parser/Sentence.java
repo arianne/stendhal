@@ -403,8 +403,9 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
-     * Return the original parsed text of the sentence. 
-     * There should be only as less code places as possible
+     * Return the original parsed text of the sentence.
+     * 
+     * deprecate: There should be only as less code places as possible
      * to rely on this method.
      *
      * @return string

@@ -29,17 +29,20 @@ public final class SentenceImplementation extends Sentence {
     private static final Logger logger = Logger.getLogger(SentenceImplementation.class);
 
     /**
-     * Create a SentenceImplementation object.
+     * Create a SentenceImplementation object in preparation to parse a text phrase.
      *
      * @param ctx
      */
-    SentenceImplementation(final ConversationContext ctx) {
+    SentenceImplementation(final ConversationContext ctx, String text) {
         super(ctx);
+
+        originalText = text;
     }
 
     /**
      * Create a SentenceImplementation object for testing purposes.
-     *
+     * note: This constructor does not set originalText.
+     * 
      * @param exprs
      */
     public SentenceImplementation(final Expression... exprs) {

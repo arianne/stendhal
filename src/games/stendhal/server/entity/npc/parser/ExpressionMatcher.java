@@ -200,10 +200,12 @@ public class ExpressionMatcher {
             return ConversationParser.parse(text, ctx);
         }
 
-        final Sentence sentence = new SentenceImplementation(ctx);
+        text = text.trim();
+
+        final Sentence sentence = new SentenceImplementation(ctx, text);
 
         // determine sentence type from trailing punctuation
-        text = ConversationParser.getSentenceType(text.trim(), sentence);
+        text = ConversationParser.detectSentenceType(text, sentence);
 
         if (typeMatching) {
             readTypeMatchExpressions(text, ctx, sentence);

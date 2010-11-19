@@ -33,8 +33,9 @@ public class SentenceTest {
 		final ConversationContext ctx = new ConversationContext();
 		ctx.setPersistNewWords(false);
 
-		SentenceImplementation sentence = new SentenceImplementation(ctx);
-		final String text = ConversationParser.getSentenceType("The quick brown fox jumps over the lazy dog.", sentence);
+		String text = "The quick brown fox jumps over the lazy dog.";
+		SentenceImplementation sentence = new SentenceImplementation(ctx, text);
+		text = ConversationParser.detectSentenceType(text, sentence);
 		ConversationParser parser = new ConversationParser(text);
 		sentence.parse(parser);
 		sentence.classifyWords(parser);
@@ -46,8 +47,8 @@ public class SentenceTest {
 		assertEquals("quick brown fox/SUB-ANI-COL jump/VER over/PRE lazy dog/SUB-ANI.", sentence.toString());
 		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
 
-		sentence = new SentenceImplementation(ctx);
 		parser = new ConversationParser("does it fit");
+		sentence = new SentenceImplementation(ctx, parser.getOriginalText());
 		sentence.parse(parser);
 		sentence.classifyWords(parser);
 		assertFalse(sentence.hasError());
