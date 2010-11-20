@@ -328,6 +328,7 @@ public class ConversationParserTest {
 		assertEquals("mary have 1 little little lamb!", sentence.getNormalized());
 
 		// test for white space preserving
+		// Note: Leading and trailing white space is trimmed always.
 		sentence = ConversationParser.parse("  Mary  has  a  little  lamb  . ");
 		assertFalse(sentence.hasError());
 		assertEquals("mary/SUB-NAM have/VER 1/NUM little/ lamb/OBJ-ANI.", sentence.toString());
@@ -343,6 +344,24 @@ public class ConversationParserTest {
 		assertEquals("Has Mary a little lamb?", sentence.getOriginalText());
 		assertEquals("Has Mary a little lamb?", sentence.getTrimmedText());
 		assertEquals("have mary 1 little lamb?", sentence.getNormalized());
+
+		// test for understanding question grammar
+		sentence = ConversationParser.parse("Does Mary have a little lamb?");
+		assertFalse(sentence.hasError());
+		assertEquals(Sentence.SentenceType.QUESTION, sentence.getType());
+		assertEquals("mary/SUB-NAM have/VER 1/NUM little/ lamb/OBJ-ANI?", sentence.toString());
+		assertEquals("Does Mary have a little lamb?", sentence.getOriginalText());
+		assertEquals("Mary have a little lamb?", sentence.getTrimmedText());
+		assertEquals("mary have 1 little lamb?", sentence.getNormalized());
+
+		// test for understanding question grammar
+		sentence = ConversationParser.parse("Doesn't Mary have a little lamb?");
+		assertFalse(sentence.hasError());
+		assertEquals(Sentence.SentenceType.QUESTION, sentence.getType());
+		assertEquals("do/VER-NEG mary/SUB-NAM have/VER 1/NUM little/ lamb/OBJ-ANI?", sentence.toString());
+		assertEquals("Doesn't Mary have a little lamb?", sentence.getOriginalText());
+		assertEquals("Doesn't Mary have a little lamb?", sentence.getTrimmedText());
+		assertEquals("don't mary have 1 little lamb?", sentence.getNormalized());
 	}
 
 	/**
