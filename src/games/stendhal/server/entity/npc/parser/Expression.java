@@ -98,6 +98,18 @@ public final class Expression {
     }
 
     /**
+     * Merge the given preceding Expression into this Expression while leaving
+     * mainWord unchanged.The members normalized and original are only touched
+     * when negating the expression.
+     *
+     * @param other
+     */
+    public void mergeSimple(final Expression other) {
+        mergeType(other.getType());
+        setAmount(mergeAmount(other.amount, amount));
+    }
+
+    /**
      * Merge the given preceding Expression into this Expression, while leaving mainWord unchanged.
      *
      * @param other
@@ -363,6 +375,10 @@ public final class Expression {
         if (type != null) {
             if (otherType != null) {
                 type = type.merge(otherType);
+
+                if (otherType.isNegated()) {
+                	negateStrings();
+                }
             }
         } else {
             type = otherType;
@@ -516,6 +532,30 @@ public final class Expression {
             return Pattern.compile(matchString.replace(JOKER, ".*")).matcher(str).find();
         }
     }
+
+	/**
+	 * Negate the expression.
+	 * This is used in SentenceImplementation to normalize sentences containing "don't" expressions.
+	 */
+	public void negate() {
+		type = getType().negate();
+
+		negateStrings();
+	}
+
+	/**
+	 * Negate original and normalized string, while leaving
+	 * type untouched.
+	 */
+	private void negateStrings() {
+		if (type.isNegated()) {
+			original = original + " not";
+			normalized = normalized + " not";
+		} else {
+			original = original.replaceFirst(" not", "");
+			normalized = normalized.replaceFirst(" not", "");
+		}
+	}
 
     /**
      * Check for equality of two Expression objects.

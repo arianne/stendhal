@@ -339,14 +339,16 @@ public final class SentenceImplementation extends Sentence {
     }
 
     /**
-     * Evaluate the sentence type from word order.
+     * Evaluate the sentence type from word order and
+     * remove do/don't expressions from questions.
      *
      * @return SentenceType
      */
     SentenceType evaluateSentenceType() {
         final Iterator<Expression> it = expressions.iterator();
         SentenceType type = SentenceType.UNDEFINED;
-
+        boolean negate = false;
+        
         // As words are not yet merged together at this stage, we have to use Expression.nextValid()
         // in this function to jump over words to ignore.
         Expression first = nextValid(it);
@@ -379,7 +381,17 @@ public final class SentenceImplementation extends Sentence {
                         type = SentenceType.QUESTION;
                     }
 
-                    expressions.remove(first);
+                    // Remove all verbs meaning "do" from the expression list,
+                    // since they don't change the sentence meaning.
+                    if (first.isNegated()) {
+                    	// If the question uses a "don't" expression and there is another verb in the
+                    	// sentence, negate this and drop the "don't".
+                    	if (getVerbCount() > 1) {
+                    		negate = true;
+                    		expressions.remove(first);
+                    	}
+                    } else
+                    	expressions.remove(first);
                 } else if (first.getNormalized().equals("it") && second.getNormalized().equals("is")
                         && ((third != null) && (third.getType() != null) && third.getType().isGerund())) {
                     // statement begins with "it is <VER-GER>"
@@ -391,6 +403,15 @@ public final class SentenceImplementation extends Sentence {
                     expressions.remove(second);
                 }
             }
+        }
+
+        if (negate) {
+        	// negate the first verb if the sentence did contain a "don't" expression
+        	Expression firstVerb = getVerb(0);
+
+        	if (firstVerb != null) {
+        		firstVerb.negate();
+        	}
         }
 
         if ((type != SentenceType.UNDEFINED) && (sentenceType == SentenceType.UNDEFINED)) {
@@ -444,6 +465,7 @@ public final class SentenceImplementation extends Sentence {
 
             if (it.hasNext()) {
                 Expression next = it.next();
+//				Expression prev = null;
 
                 // loop over all words of the sentence starting from left
                 while (it.hasNext()) {
@@ -493,9 +515,17 @@ public final class SentenceImplementation extends Sentence {
                             changed = true;
                             break;
                         }
-                        // left-merge "would like", preserving only the main verb
+                        // check consecutive verbs
                         else if (curType.isVerb() && nextType.isVerb()) {
-                            if (prevConditional) {
+                            // merge "do" and "don't" expressions with the following verb
+                            if (curr.getNormalized().equals("do")) {
+                            	next.mergeSimple(curr);
+                                expressions.remove(curr);
+                                changed = true;
+                                break;
+                            }
+                            // left-merge "would like", preserving only the main verb
+                            else if (prevConditional) {
                                 next.mergeLeft(curr, false);
                                 expressions.remove(curr);
                                 changed = true;
@@ -511,14 +541,14 @@ public final class SentenceImplementation extends Sentence {
                             break;
                         }
                         // left-merge question words with following verbs and adjectives,
-                        // dropping question words from normalized form
+                        // dropping question words from the normalized form
                         else if (curType.isQuestion() && (nextType.isVerb() || nextType.isAdjective())) {
                             next.mergeLeft(curr, false);
                             expressions.remove(curr);
                             changed = true;
                             break;
                         }
-                    }
+                     }
 
                     // left-merge words to ignore
                     if (context.getIgnoreIgnorable()) {
@@ -530,7 +560,7 @@ public final class SentenceImplementation extends Sentence {
                         }
                     }
 
-                    // manage precedingVerb flag to detect compound verb/noun constructs
+                    // manage the precedingVerb flag to detect compound verb/noun constructs
                     if (curr.getBreakFlag()) {
                         precedingVerb = false;
                     } else if (curType != null) {
@@ -540,6 +570,8 @@ public final class SentenceImplementation extends Sentence {
                             precedingVerb = false;
                         }
                     }
+
+//                  prev = curr;
                 }
             }
 
@@ -561,16 +593,16 @@ public final class SentenceImplementation extends Sentence {
      */
     private static boolean isCompoundNoun(final ExpressionType curType, final ExpressionType nextType,
             final boolean precedingVerb) {
-        // check the next expression type for concrete subject or object names (no pronouns)
-        final boolean nextIsName = nextType.isObject() || (nextType.isSubject() && !nextType.isPronoun());
+        // check the next expression type for concrete subject or object expressions (no pronouns)
+        final boolean nextIsSubjObjName = nextType.isObject() || (nextType.isSubject() && !nextType.isPronoun());
 
         // left-merge composite nouns and nouns with preceding adjectives or verbs
-        if (nextIsName) {
-            // check the current expression type for concrete subject or object names (no pronouns)
-            final boolean currIsName = curType.isObject() || (curType.isSubject() && !curType.isPronoun());
+        if (nextIsSubjObjName) {
+            // check the current expression type for concrete subject or object expressions (no pronouns), excluding subject names
+            final boolean currIsSubjObj = curType.isObject() || (curType.isSubject() && !curType.isPronoun() && !curType.isName());
 
             // handle compound words like "fire sword"
-            if (currIsName) {
+            if (currIsSubjObj) {
                 return true;
             }
 

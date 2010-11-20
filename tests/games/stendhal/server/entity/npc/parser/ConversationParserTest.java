@@ -308,60 +308,83 @@ public class ConversationParserTest {
 		// test the return values of getOriginalText() and some more ConversationParser/Sentence functions.
 		Sentence sentence = ConversationParser.parse("Mary had a little lamb.");
 		assertFalse(sentence.hasError());
-		assertEquals("mary/SUB-NAM have/VER 1/NUM little/ lamb/OBJ-ANI.", sentence.toString());
-		assertEquals(5, sentence.getExpressions().size());
+		assertEquals("mary/SUB-NAM have/VER little lamb/OBJ-ANI.", sentence.toString());
+		assertEquals(3, sentence.getExpressions().size());
 		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
 		assertEquals("have", sentence.getVerbString());
 		assertEquals(1, sentence.getObject(0).getAmount());
-		assertEquals("lamb", sentence.getObject(0).getNormalized());
+		assertEquals("little lamb", sentence.getObject(0).getNormalized());
 		assertEquals("Mary had a little lamb.", sentence.getOriginalText());
 		assertEquals("Mary had a little lamb.", sentence.getTrimmedText());
-		assertEquals("mary have 1 little lamb.", sentence.getNormalized());
+		assertEquals("mary have little lamb.", sentence.getNormalized());
 
 		// test for preserving punctation
 		sentence = ConversationParser.parse("Mary has a little, little lamb!");
 		assertFalse(sentence.hasError());
 		assertEquals(Sentence.SentenceType.IMPERATIVE, sentence.getType());
-		assertEquals("mary/SUB-NAM have/VER 1/NUM little/, little/ lamb/OBJ-ANI!", sentence.toString());
+		assertEquals("mary/SUB-NAM have/VER little little lamb/OBJ-ANI!", sentence.toString());
 		assertEquals("Mary has a little, little lamb!", sentence.getOriginalText());
 		assertEquals("Mary has a little little lamb!", sentence.getTrimmedText());
-		assertEquals("mary have 1 little little lamb!", sentence.getNormalized());
+		assertEquals("mary have little little lamb!", sentence.getNormalized());
 
 		// test for white space preserving
 		// Note: Leading and trailing white space is trimmed always.
 		sentence = ConversationParser.parse("  Mary  has  a  little  lamb  . ");
 		assertFalse(sentence.hasError());
-		assertEquals("mary/SUB-NAM have/VER 1/NUM little/ lamb/OBJ-ANI.", sentence.toString());
+		assertEquals("mary/SUB-NAM have/VER little lamb/OBJ-ANI.", sentence.toString());
 		assertEquals("Mary  has  a  little  lamb  .", sentence.getOriginalText());
 		assertEquals("Mary has a little lamb.", sentence.getTrimmedText());
-		assertEquals("mary have 1 little lamb.", sentence.getNormalized());
+		assertEquals("mary have little lamb.", sentence.getNormalized());
 
 		// test for preserving sentence type
 		sentence = ConversationParser.parse("Has Mary a little lamb?");
 		assertFalse(sentence.hasError());
 		assertEquals(Sentence.SentenceType.QUESTION, sentence.getType());
-		assertEquals("have/VER mary/SUB-NAM 1/NUM little/ lamb/OBJ-ANI?", sentence.toString());
+		assertEquals("have/VER mary/SUB-NAM little lamb/OBJ-ANI?", sentence.toString());
 		assertEquals("Has Mary a little lamb?", sentence.getOriginalText());
 		assertEquals("Has Mary a little lamb?", sentence.getTrimmedText());
-		assertEquals("have mary 1 little lamb?", sentence.getNormalized());
+		assertEquals("have mary little lamb?", sentence.getNormalized());
+	}
 
+	/**
+	 * Test grammer parsing.
+	 */
+	@Test
+	public final void testGrammar()
+	{
 		// test for understanding question grammar
-		sentence = ConversationParser.parse("Does Mary have a little lamb?");
+		Sentence sentence = ConversationParser.parse("Does Mary have a little lamb?");
 		assertFalse(sentence.hasError());
 		assertEquals(Sentence.SentenceType.QUESTION, sentence.getType());
-		assertEquals("mary/SUB-NAM have/VER 1/NUM little/ lamb/OBJ-ANI?", sentence.toString());
+		assertEquals("mary/SUB-NAM have/VER little lamb/OBJ-ANI?", sentence.toString());
 		assertEquals("Does Mary have a little lamb?", sentence.getOriginalText());
 		assertEquals("Mary have a little lamb?", sentence.getTrimmedText());
-		assertEquals("mary have 1 little lamb?", sentence.getNormalized());
+		assertEquals("mary have little lamb?", sentence.getNormalized());
 
 		// test for understanding question grammar
 		sentence = ConversationParser.parse("Doesn't Mary have a little lamb?");
 		assertFalse(sentence.hasError());
 		assertEquals(Sentence.SentenceType.QUESTION, sentence.getType());
-		assertEquals("do/VER-NEG mary/SUB-NAM have/VER 1/NUM little/ lamb/OBJ-ANI?", sentence.toString());
+		assertEquals("mary/SUB-NAM have not/VER-NEG little lamb/OBJ-ANI?", sentence.toString());
 		assertEquals("Doesn't Mary have a little lamb?", sentence.getOriginalText());
-		assertEquals("Doesn't Mary have a little lamb?", sentence.getTrimmedText());
-		assertEquals("don't mary have 1 little lamb?", sentence.getNormalized());
+		assertEquals("Mary have not a little lamb?", sentence.getTrimmedText());
+		assertEquals("mary have not little lamb?", sentence.getNormalized());
+
+		// test for a negative statement without punctation
+		sentence = ConversationParser.parse("Mary doesn't have a little lamb");
+		assertFalse(sentence.hasError());
+		assertEquals(Sentence.SentenceType.UNDEFINED, sentence.getType());
+		assertEquals("mary/SUB-NAM have not/VER-NEG little lamb/OBJ-ANI", sentence.toString());
+		assertEquals("mary have not little lamb", sentence.getNormalized());
+
+		// test for a negative statement with punctation
+		sentence = ConversationParser.parse("Mary doesn't have a little lamb.");
+		assertFalse(sentence.hasError());
+		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
+		assertEquals("mary/SUB-NAM have not/VER-NEG little lamb/OBJ-ANI.", sentence.toString());
+		assertEquals("Mary doesn't have a little lamb.", sentence.getOriginalText());
+		assertEquals("Mary have not a little lamb.", sentence.getTrimmedText());
+		assertEquals("mary have not little lamb.", sentence.getNormalized());
 	}
 
 	/**
