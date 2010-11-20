@@ -328,7 +328,7 @@ public class ConversationParserTest {
 		assertEquals("mary have 1 little little lamb!", sentence.getNormalized());
 
 		// test for white space preserving
-		sentence = ConversationParser.parse("Mary  has  a  little  lamb  .");
+		sentence = ConversationParser.parse("  Mary  has  a  little  lamb  . ");
 		assertFalse(sentence.hasError());
 		assertEquals("mary/SUB-NAM have/VER 1/NUM little/ lamb/OBJ-ANI.", sentence.toString());
 		assertEquals("Mary  has  a  little  lamb  .", sentence.getOriginalText());
