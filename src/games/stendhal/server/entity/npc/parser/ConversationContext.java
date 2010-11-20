@@ -13,14 +13,14 @@
 package games.stendhal.server.entity.npc.parser;
 
 /**
- * NPC conversation context holder. TODO mf - manage conversation state in the NPC conversation engine
+ * NPC conversation context holder.
+ * TODO mf - manage conversation state in the NPC conversation engine
  *
  * @author Martin Fuchs
  */
 public class ConversationContext {
 
-	
-    // conversation context states
+	// conversation context states
 	
 	/** no current conversation context. */
     static final int CCS_NONE = 0; 
@@ -30,7 +30,6 @@ public class ConversationContext {
     
     /** Conversation Context wait for a named object. */
     static final int CCS_WAIT_FOR_OBJECT = 2; 
-
   
 
     /** Flag for sentences to be used for matching. */
@@ -47,6 +46,7 @@ public class ConversationContext {
     
     /** stores current Conversation state. */
     private int state = CCS_NONE; 
+
 
     public void setState(final int state) {
         this.state = state;

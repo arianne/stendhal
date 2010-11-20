@@ -15,9 +15,19 @@ package games.stendhal.server.entity.npc.parser;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * An ExpressionType defines the type of an Expresion object.
+ * It uses a human readable string representation like "VER" (verb)
+ * or "OBJ" (object). Derived types like negative verbs are
+ * written in a concatenated form like "VER-NEG".
+ * ExpressionType objects are immutable. To alter expression types,
+ * there is always created a new ExpressionType object (similar
+ * to the immutable Java String class).
+ * 
+ * @author Martin Fuchs
+ */
 public final class ExpressionType {
 
-    
     // Expression type string constants
     
     /** String constant representing verb form. */
@@ -371,6 +381,20 @@ public final class ExpressionType {
         } else {
             return this;
         }
+    }
+
+    /**
+     * Negate the type.
+     * This are the two typical cases:
+     * VER -> VER-NEG
+     * VER-NEG -> VER
+     */
+    public ExpressionType negate()
+    {
+    	if (isNegated())
+    		return new ExpressionType(typeString.replace(SUFFIX_NEGATED, ""));
+    	else
+    		return new ExpressionType(typeString + SUFFIX_NEGATED);
     }
 
     @Override
