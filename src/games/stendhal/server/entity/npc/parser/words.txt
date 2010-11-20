@@ -1080,6 +1080,7 @@ l	ADJ
 lazy	ADJ
 leather	ADJ
 lessthan	ADJ
+little	ADJ
 local	ADJ
 low	ADJ
 lower	ADJ
