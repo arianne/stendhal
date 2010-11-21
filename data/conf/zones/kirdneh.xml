@@ -22,6 +22,8 @@
 
  <zone name="0_kirdneh_city" level="0" x="500000" y="500512" file="Level 0/kirdneh/city.tmx">
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.GossipNPC"/>
+  <configurator class-name="games.stendhal.server.maps.kirdneh.city.MummyNPC"/>
+  <configurator class-name="games.stendhal.server.maps.kirdneh.city.LittleGirlNPC"/>
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.FlowerSellerNPC"/>
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehArmorGuyNPC"/>
   <entity x="65" y="94">
