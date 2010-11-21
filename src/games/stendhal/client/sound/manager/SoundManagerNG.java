@@ -163,7 +163,14 @@ public class SoundManagerNG
         {
             if(mAutoRepeat.get())
             {
-                mSound.file.get().restart();
+            	try {
+            		mSound.file.get().restart();
+            	} catch (NullPointerException e) {
+            		logger.error(e, e);
+            		logger.error("mSound: " + mSound);
+            		logger.error("mSound.file: " + mSound.file);
+            		logger.error("mSound.file.get: " + mSound.file.get());
+            	}
             }
             else
             {
