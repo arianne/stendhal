@@ -104,7 +104,7 @@ public class EntityViewFactory {
 			
 			final Class< ? extends EntityView> entityClass = getViewClass(type, eclass, subClass);
 			if (entityClass == null) {
-				LOGGER.warn("No view for this entity. type: " + type + " class: " + eclass + " subclass: " + subClass);
+				LOGGER.debug("No view for this entity. type: " + type + " class: " + eclass + " subclass: " + subClass);
 				return null;
 			}
 
