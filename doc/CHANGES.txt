@@ -5,6 +5,8 @@ Changelog
 *world*
 - quest for Ortiv Milquetoast in Kirdneh River House
 - Gaston, a Rat chef in Rat City bakery that will prepare the best crepes suzette au chocolate in town
+- Elisabeth and her mother Carey found their way to Kirdneh
+- quest Chocolate For Elisabeth on Kirdneh playground
 
 
 0.89
