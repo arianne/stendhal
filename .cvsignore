@@ -38,3 +38,4 @@ statserver_stats.xml
 .stendhal-postman*.xml
 bak
 textclient-private.sh
+.pmd
