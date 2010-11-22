@@ -37,7 +37,7 @@ public final class ConversationParser extends ErrorBuffer {
     private static Map<String, Sentence> matchingSentenceCache = new HashMap<String, Sentence>();
 
 
-    private final StringTokenizer tokenizer;
+    private final transient StringTokenizer tokenizer;
 
 
     /**
@@ -45,7 +45,7 @@ public final class ConversationParser extends ErrorBuffer {
      *
      * @param sentence 
      */
-    protected ConversationParser(SentenceImplementation sentence) {
+    protected ConversationParser(final SentenceImplementation sentence) {
     	String text = sentence.getOriginalText();
 
 		if (text == null) {
@@ -56,7 +56,7 @@ public final class ConversationParser extends ErrorBuffer {
 			text = "";
 		}
 
-		String textWithoutPunctation = detectSentenceType(text, sentence);
+		final String textWithoutPunctation = detectSentenceType(text, sentence);
 
         // initialize a new tokenizer with the given text
 		tokenizer = new StringTokenizer(textWithoutPunctation);
@@ -80,13 +80,12 @@ public final class ConversationParser extends ErrorBuffer {
      */
     public static Expression createTriggerExpression(final String text) {
         Expression expr = triggerExpressionsCache.get(text);
-        if (expr != null) {
-            return expr;
+
+        if (expr == null) {
+        	expr = createTriggerExpression(text, null);
+
+        	triggerExpressionsCache.put(text, expr);
         }
-
-        expr = createTriggerExpression(text, null);
-
-        triggerExpressionsCache.put(text, expr);
 
         return expr;
     }
@@ -105,10 +104,10 @@ public final class ConversationParser extends ErrorBuffer {
         // don't ignore words with type "IGN" if specified in trigger expressions
         ctx.setIgnoreIgnorable(false);
 
-        if (matcher != null) {
-            return matcher.parseSentence(text, ctx).getTriggerExpression();
-        } else {
-            final Expression expr = parse(text, ctx).getTriggerExpression();
+        Expression expr;
+
+        if (matcher == null) {
+            expr = parse(text, ctx).getTriggerExpression();
 
             if ((expr.getMatcher() == null) && !expr.getNormalized().equals(expr.getOriginal())) {
                 final WordEntry norm = WordList.getInstance().find(expr.getNormalized());
@@ -116,14 +115,16 @@ public final class ConversationParser extends ErrorBuffer {
                 // If the trigger type string is not the same as that of the normalized form,
                 // associate an ExpressionMatcher in typeMatching mode.
                 if ((norm != null) && !expr.getTypeString().equals(norm.getTypeString())) {
-                    ExpressionMatcher newMatcher = new ExpressionMatcher();
+                    final ExpressionMatcher newMatcher = new ExpressionMatcher();
                     newMatcher.setTypeMatching(true);
                     expr.setMatcher(newMatcher);
                 }
             }
-
-            return expr;
+        } else {
+            expr = matcher.parseSentence(text, ctx).getTriggerExpression();
         }
+
+        return expr;
     }
 
     /**
@@ -144,16 +145,15 @@ public final class ConversationParser extends ErrorBuffer {
      * @return Sentence
      */
     public static Sentence parseForMatching(final String text) {
-        Sentence s = matchingSentenceCache.get(text);
-        if (s != null) {
-            return s;
+        Sentence sentence = matchingSentenceCache.get(text);
+
+        if (sentence == null) {
+        	sentence = parse(text, new ConvCtxForMatcher());
+
+        	matchingSentenceCache.put(text, sentence);
         }
 
-        s = parse(text, new ConvCtxForMatcher());
-
-        matchingSentenceCache.put(text, s);
-
-        return s;
+        return sentence;
     }
 
     /**
@@ -164,11 +164,15 @@ public final class ConversationParser extends ErrorBuffer {
      * @return Sentence result
      */
     public static Sentence parse(final String text, final ExpressionMatcher matcher) {
-        if (matcher != null) {
-            return matcher.parseSentence(text, new ConvCtxForMatcher());
+    	Sentence sentence;
+
+        if (matcher == null) {
+            sentence = parse(text, new ConversationContext());
         } else {
-            return parse(text, new ConversationContext());
+            sentence = matcher.parseSentence(text, new ConvCtxForMatcher());
         }
+
+        return sentence;
     }
 
     /**
@@ -180,11 +184,15 @@ public final class ConversationParser extends ErrorBuffer {
      * @return Sentence result
      */
     public static Sentence parse(final String text, final ConversationContext ctx, final ExpressionMatcher matcher) {
-        if (matcher != null) {
-            return matcher.parseSentence(text, ctx);
+    	Sentence sentence;
+
+        if (matcher == null) {
+        	sentence = parse(text, ctx);
         } else {
-            return parse(text, ctx);
+            sentence = matcher.parseSentence(text, ctx);
         }
+
+        return sentence;
     }
 
     /**
@@ -194,28 +202,32 @@ public final class ConversationParser extends ErrorBuffer {
      * @param ctx
      * @return Sentence
      */
-    public static Sentence parse(String text, final ConversationContext ctx) {
-        if (text != null) {
+    public static Sentence parse(final String text, final ConversationContext ctx) {
+    	String txt;
+
+        if (text == null) {
+        	txt = "";
+        } else {
         	if ((ctx != null) && ctx.isForMatching()) {
                 final ExpressionMatcher matcher = new ExpressionMatcher();
 
                 // If the text begins with matching flags, skip normal sentence parsing and read in
                 // the expressions from the given string in prepared form.
-                text = matcher.readMatchingFlags(text);
+                txt = matcher.readMatchingFlags(text);
 
                 if (matcher.isAnyFlagSet()) {
-                    return matcher.parseSentence(text, ctx);
+                    return matcher.parseSentence(txt, ctx);
                 }
+            } else {
+            	txt = text;
             }
-        } else {
-            text = "";
         }       
 
         // Trim white space from beginning and end.
-        text = text.trim();
+        txt = txt.trim();
 
         // Create a Sentence object and initialize its originalText.
-        final SentenceImplementation sentence = new SentenceImplementation(ctx, text);
+        final SentenceImplementation sentence = new SentenceImplementation(ctx, txt);
 
         try {
             // 1.) create ConversationParser
@@ -263,7 +275,7 @@ public final class ConversationParser extends ErrorBuffer {
         if (tokenizer.hasMoreTokens()) {
             return tokenizer.nextToken();
         } else {
-            return null;
+        	return null;
         }
     }
 
@@ -276,21 +288,24 @@ public final class ConversationParser extends ErrorBuffer {
      */
     public static String detectSentenceType(final String text, final Sentence sentence) {
         final PunctuationParser punct = new PunctuationParser(text);
-
         final String trailing = punct.getTrailingPunctuation();
+
+        String newText;
 
         if (trailing.contains("?")) {
             sentence.setType(Sentence.SentenceType.QUESTION);
-            return punct.getText();
+            newText = punct.getText();
         } else if (trailing.contains("!")) {
             sentence.setType(Sentence.SentenceType.IMPERATIVE);
-            return punct.getText();
+            newText = punct.getText();
         } else if (trailing.contains(".")) {
             sentence.setType(Sentence.SentenceType.STATEMENT);
-            return punct.getText();
+            newText = punct.getText();
+        } else {
+        	newText = text;
         }
 
-        return text;
+        return newText;
     }
 
 }
