@@ -50,6 +50,24 @@ public class ConversationParserTest {
 		assertEquals("buy", sentence.getTriggerExpression().getNormalized());
 		assertEquals(150, sentence.getObject(0).getAmount());
 		assertEquals("cookie", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy ten cookies");
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals(10, sentence.getObject(0).getAmount());
+		assertEquals("cookie", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy five ten cookies"); // five times ten
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals(50, sentence.getObject(0).getAmount());
+		assertEquals("cookie", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy ten five cookies"); // ten plus five
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals(15, sentence.getObject(0).getAmount());
+		assertEquals("cookie", sentence.getObjectName());
 	}
 
 	/**
