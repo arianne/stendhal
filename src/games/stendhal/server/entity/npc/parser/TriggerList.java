@@ -15,13 +15,14 @@ package games.stendhal.server.entity.npc.parser;
 import java.util.LinkedList;
 import java.util.List;
 
-@SuppressWarnings("serial")
 /**
  * TriggerList can be used to create a list of Expressions from Strings and search for Expressions in this list.
  */
 public class TriggerList extends LinkedList<Expression> {
 
-    /**
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Create a list of normalized trigger Words from a String list.
      *
      * @param strings String list
