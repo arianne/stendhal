@@ -80,6 +80,8 @@ public class ConversationParserTest {
 		assertEquals("buy No Bread", sentence.getOriginalText());
 		assertEquals("buy No Bread", sentence.getTrimmedText());
 		assertEquals("buy bread", sentence.getNormalized());
+
+		assertEquals("buy bread", ConversationParser.normalize("buy any Bread"));
 	}
 
 	/**
