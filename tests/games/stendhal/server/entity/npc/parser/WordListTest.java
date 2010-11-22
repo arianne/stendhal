@@ -12,10 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.parser;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import org.junit.Test;
 
 /**
@@ -177,4 +182,24 @@ public class WordListTest {
 		assertThat(WordList.trimWord(word), is("b\'l\'a\'b\'l\'a"));
 	}
 
+	/**
+	 * Tests for WordEntry.print().
+	 */
+	@Test
+	public final void testPrintWord() {
+		final WordList wl = WordList.getInstance();
+
+		assertEquals("blue\tADJ-COL", printWord(wl, "blue"));
+		assertEquals("with\tPRE", printWord(wl, "with"));
+		assertEquals("mary\tSUB-NAM", printWord(wl, "mary"));
+	}
+
+	private String printWord(final WordList wl, String word) {
+		WordEntry w = wl.find(word);
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		w.print(pw, word);
+
+		return sw.toString();
+	}
 }
