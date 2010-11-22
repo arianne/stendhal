@@ -115,9 +115,7 @@ public final class ConversationParser extends ErrorBuffer {
                 // If the trigger type string is not the same as that of the normalized form,
                 // associate an ExpressionMatcher in typeMatching mode.
                 if ((norm != null) && !expr.getTypeString().equals(norm.getTypeString())) {
-                    final ExpressionMatcher newMatcher = new ExpressionMatcher();
-                    newMatcher.setTypeMatching(true);
-                    expr.setMatcher(newMatcher);
+                     expr.setMatcher(new TypeExprMatcher());
                 }
             }
         } else {
