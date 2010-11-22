@@ -482,6 +482,19 @@ public class ConversationParserTest {
 		assertNull(sentence.getObject(0));
 		assertNull(sentence.getObjectName());
 		assertFalse(sentence.hasError());
+
+		SentenceImplementation impl = new SentenceImplementation(null, null);
+		ConversationParser parser = new ConversationParser(impl);
+		impl.parse(parser);
+		assertNotNull(impl);
+		assertEquals(0, impl.getSubjectCount());
+		assertNull(impl.getSubject(0));
+		assertEquals(0, impl.getVerbCount());
+		assertNull(impl.getVerb(0));
+		assertEquals(0, impl.getObjectCount());
+		assertNull(impl.getObject(0));
+		assertNull(impl.getObjectName());
+		assertFalse(impl.hasError());
 	}
 
 	/**
