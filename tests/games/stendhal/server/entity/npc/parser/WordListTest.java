@@ -17,6 +17,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -38,24 +39,35 @@ public class WordListTest {
 		assertNotNull(w);
 		assertTrue(w.getType().isObject());
 		assertEquals(ExpressionType.OBJECT, w.getTypeString());
+		assertFalse(w.isPlural());
 		assertEquals("houses", w.getPlurSing());
 
 		w = wl.find("man");
 		assertNotNull(w);
 		assertTrue(w.getType().isSubject());
 		assertEquals(ExpressionType.SUBJECT, w.getTypeString());
+		assertFalse(w.isPlural());
 		assertEquals("men", w.getPlurSing());
+
+		w = wl.find("men");
+		assertNotNull(w);
+		assertTrue(w.getType().isSubject());
+		assertEquals(ExpressionType.SUBJECT+ExpressionType.SUFFIX+ExpressionType.PLURAL, w.getTypeString());
+		assertTrue(w.isPlural());
+		assertEquals("man", w.getPlurSing());
 
 		w = wl.find("carrot");
 		assertNotNull(w);
 		assertTrue(w.getType().isObject());
 		assertEquals(ExpressionType.OBJECT + ExpressionType.SUFFIX_FOOD, w.getTypeString());
+		assertFalse(w.isPlural());
 		assertEquals("carrots", w.getPlurSing());
 
 		w = wl.find("carrots");
 		assertNotNull(w);
 		assertTrue(w.getType().isObject());
 		assertEquals(ExpressionType.OBJECT + ExpressionType.SUFFIX_FOOD + ExpressionType.SUFFIX_PLURAL, w.getTypeString());
+		assertTrue(w.isPlural());
 		assertEquals("carrot", w.getPlurSing());
 
 		w = wl.find("water");
