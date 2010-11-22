@@ -41,9 +41,8 @@ public final class ConversationParser extends ErrorBuffer {
 
 
     /**
-     * Create a new conversation parser and initialize with the given text string.
+     * Create a new conversation parser and initialize with the given sentence.
      *
-     * @param text the text to parse
      * @param sentence 
      */
     protected ConversationParser(SentenceImplementation sentence) {
