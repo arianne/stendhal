@@ -27,14 +27,17 @@ public class WordEntryTest {
 	public final void testWordEntry() {
 		final WordEntry w = new WordEntry();
 		assertEquals("/", w.getNormalizedWithTypeString());
+		assertEquals("/", w.toString());
 
 		w.setNormalized("norm");
 		w.setPlurSing("plur");
 		assertEquals("norm/", w.getNormalizedWithTypeString());
+		assertEquals("norm/", w.toString());
 
 		w.setType(new ExpressionType("TYP"));
 		w.setValue(4711);
 		assertEquals("norm/TYP", w.getNormalizedWithTypeString());
+		assertEquals("norm/TYP", w.toString());
 	}
 
 }
