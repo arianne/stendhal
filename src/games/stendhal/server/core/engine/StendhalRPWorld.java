@@ -16,7 +16,7 @@ import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
-import games.stendhal.server.entity.npc.parser.WordList;
+import games.stendhal.server.entity.npc.parser.DBWordList;
 
 import java.net.URI;
 import java.util.Collection;
@@ -139,7 +139,8 @@ public class StendhalRPWorld extends RPWorld {
 		try {
 			super.onInit();
 
-			WordList.attachDatabase();
+			// Create the NPC parser word list and attach it to the database.
+			new DBWordList();
 
 			// create the pathfinder thread and start it
 			// pathfinderThread = new PathfinderThread(this);

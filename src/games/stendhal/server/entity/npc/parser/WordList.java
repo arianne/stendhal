@@ -21,10 +21,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -34,8 +30,6 @@ import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import marauroa.common.Log4J;
-import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
 
 import org.apache.log4j.Logger;
 
@@ -47,7 +41,7 @@ import org.apache.log4j.Logger;
  * @author Martin Fuchs
  */
 
-public final class WordList {
+public class WordList {
 
 	private static final Logger logger = Logger.getLogger(WordList.class);
 
@@ -61,15 +55,28 @@ public final class WordList {
 
 	static final String HASH_KEYWORD = "@Hash";
 
-	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
+	protected Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
 	Set<Sentence> compoundNames = new HashSet<Sentence>();
 
-	private String hash = "";
+	protected String hash = "";
 
-	private static boolean enableDatabaseAccess = false;
+	protected static WordList instance;
 
-	private static WordList instance;
+	// We keep house holding the usage of registered subject names (see registerSubjectName).
+	private Map<String, Integer> subjectRefCount = new HashMap<String, Integer>();
+
+	/**
+	 * Take over the content of the other WordList object.
+	 * @param other
+	 */
+	protected void takeOver(WordList other)
+	{
+		words = instance.words;
+		compoundNames = instance.compoundNames;
+		hash = instance.hash;
+		subjectRefCount = other.subjectRefCount;
+	}
 
 	// initialize the word list by querying the database or reading from the
 	// input file "words.txt" in the class path
@@ -87,39 +94,6 @@ public final class WordList {
 		instance = new WordList();
 
 		instance.readFromResources();
-	}
-
-	/**
-	 * Attach WordList to database and enable persistence. WordList is per
-	 * default only using the pre-configured Resource word list and does not
-	 * store new words into the database to enable JUint tests without database
-	 * access. A call to <code>attachDatabase()</code> reads the word list from
-	 * the database and enables further write access to it.
-	 */
-	public static void attachDatabase() {
-		enableDatabaseAccess = true;
-
-		// read word list from database
-		final WordList dbWordList = new WordList();
-
-		final int ret = dbWordList.readFromDB();
-
-		final String dbHash = dbWordList.hash;
-
-		// At this point instance already contains the word list of "words.txt",
-		// so let's use this to compare the version number against the database
-		// content.
-
-		// If the database is still empty, store the default entries into it.
-		// If not, check the version number of the word list between database
-		// and "words.txt". If not equal, re-initialize the DB word list.
-		if ((ret == 0) || !instance.hash.equals(dbHash)) {
-			// store the new word list into the DB
-			instance.writeToDB();
-		} else {
-			// switch instance to the database word list
-			instance = dbWordList;
-		}
 	}
 
 	/**
@@ -288,16 +262,14 @@ public final class WordList {
 			final String normalized = entry.getNormalized();
 
 			if (Character.isLowerCase(entry.getTypeString().charAt(0))) {
-				// Type identifiers are always upper case, so a word in lower
-				// case
-				// must be a plural.
+				// Type identifiers are always upper case, so a word in
+				// lower case must be a plural.
 				entry.setType(new ExpressionType(ExpressionType.OBJECT));
 				entry.setPlurSing(trimWord(entry.getTypeString()));
 			} else if ((entry.getPlurSing() == null)
 					&& entry.getType().isObject()) {
 				// complete missing plural expressions using the
-				// Grammar.plural()
-				// function
+				// Grammar.plural() function
 				final String plural = Grammar.plural(normalized);
 
 				// only store single word plurals
@@ -337,7 +309,7 @@ public final class WordList {
 	 * @param key
 	 * @param entry
 	 */
-	private void addEntry(final String key, final WordEntry entry) {
+	protected void addEntry(final String key, final WordEntry entry) {
 		words.put(trimWord(key), entry);
 
 		// store plural and associate with singular form
@@ -531,9 +503,6 @@ public final class WordList {
 		}
 	}
 
-	// We keep house holding the usage of registered subject names.
-	private final Map<String, Integer> subjectRefCount = new HashMap<String, Integer>();
-
 	/**
 	 * Register a name to be recognized by the conversation parser.
 	 * 
@@ -544,8 +513,8 @@ public final class WordList {
 
 		Integer usageCount = subjectRefCount.get(key);
 		if ((usageCount != null) && (usageCount > 0)) {
-			// For already known names, we have only to increment the usage
-			// counter.
+			// For already known names, we only have to increment the
+			// usage counter.
 			subjectRefCount.put(key, ++usageCount);
 			return;
 		}
@@ -696,11 +665,9 @@ public final class WordList {
 			newEntry.setType(new ExpressionType(VERB_DYNAMIC));
 
 			words.put(key, newEntry);
-			// } else if (!checkNameCompatibleLastType(entry.getType(),
-			// ExpressionType.VERB)) {
-			// logger.warn("verb name already registered with incompatible expression type: "
-			// +
-			// entry.getNormalizedWithTypeString());
+//		} else if (!checkNameCompatibleLastType(entry.getType(), ExpressionType.VERB)) {
+//	 		logger.warn("verb name already registered with incompatible expression type: " +
+//			entry.getNormalizedWithTypeString());
 		}
 	}
 
@@ -723,11 +690,8 @@ public final class WordList {
 			entry.setNormalized(key);
 			words.put(key, entry);
 
-			if (persist && enableDatabaseAccess) {
-				// save the new word into the database
-				final Set<String> keys = new HashSet<String>();
-				keys.add(key);
-				insertIntoDB(keys);
+			if (persist) {
+				persistNewWord(key, entry);
 			}
 		} else {
 			logger.warn("word already known: " + str + " -> "
@@ -738,202 +702,14 @@ public final class WordList {
 	}
 
 	/**
-	 * Store current word list into the database table "words".
-	 */
-	public void writeToDB() {
-		if (!enableDatabaseAccess) {
-			return;
-		}
-
-		DBTransaction transaction = TransactionPool.get().beginWork();
-
-		try {
-			// empty table "words"
-			transaction.execute("truncate table words", null);
-			insertIntoDB(transaction, words.keySet());
-
-			String query = "INSERT INTO words(normalized, type, plural)"
-					+ " VALUES ('[normalized]', '[type]', '[plural]')";
-
-			Map<String, Object> params = new HashMap<String, Object>();
-			params.put("normalized", HASH_KEYWORD);
-			params.put("type", HASH_KEYWORD);
-			params.put("plural", hash);
-
-			transaction.execute(query, params);
-			TransactionPool.get().commit(transaction);
-		} catch (final SQLException e) {
-			logger.error("error closing DB accessor", e);
-			TransactionPool.get().rollback(transaction);
-		}
-	}
-
-	/**
-	 * Insert a number of word entries into the database.
-	 * 
-	 * @param keys
+	 * Store the new word in the database. This base class implementation does
+	 * nothing, it is overriden by the DBWordList method.
+	 * @param key
+	 * @param entry
 	 * @return success flag
 	 */
-	private boolean insertIntoDB(final Set<String> keys) {
-		if (!enableDatabaseAccess) {
-			return false;
-		}
-
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		try {
-			insertIntoDB(transaction, keys);
-			TransactionPool.get().commit(transaction);
-		} catch (final SQLException e) {
-			logger.error("error while inserting new word into DB", e);
-			TransactionPool.get().rollback(transaction);
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Insert a number of word entries into the database, using the given
-	 * Transaction object.
-	 * 
-	 * @param transaction
-	 * @param keys
-	 * @return success flag
-	 * @throws SQLException in cvase of an SQL error
-	 */
-	private boolean insertIntoDB(final DBTransaction transaction,
-			final Set<String> keys) throws SQLException {
-		PreparedStatement stmt = transaction.prepareStatement(
-				"insert into words(normalized, type, plural, value)\n"
-						+ "values(?, ?, ?, ?)", null);
-
-		int count = 0;
-
-		try {
-			for (final String key : keys) {
-				final WordEntry entry = words.get(key);
-
-				// We ignore all plural entries, they are already present as
-				// attribute of the singular form.
-				if ((entry.getType() == null) || !entry.getType().isPlural()) {
-					stmt.setString(1, key);
-					stmt.setString(2, entry.getTypeString());
-					stmt.setString(3, entry.getPlurSing());
-
-					final Integer value = entry.getValue();
-					if (value != null) {
-						stmt.setInt(4, value);
-					} else {
-						stmt.setNull(4, Types.INTEGER);
-					}
-
-					stmt.execute();
-
-					entry.setId(transaction.getLastInsertId("words", "id"));
-					count++;
-				}
-			}
-		} finally {
-			stmt.close();
-		}
-
-		stmt = transaction.prepareStatement(
-				"update words set alias_id = ? where id = ?", null);
-
-		try {
-			for (final String key : keys) {
-				final WordEntry entry = words.get(key);
-				final String normalized = entry.getNormalized();
-
-				// Now we store the alias_id for alias entries.
-				if (!normalized.equals(key)) {
-					final WordEntry alias = words.get(normalized);
-
-					if (alias != null) {
-						stmt.setInt(1, alias.getId());
-						stmt.setInt(2, entry.getId());
-
-						stmt.execute();
-					} else {
-						logger.error("word alias not found: " + key + " -> "
-								+ normalized);
-						return false;
-					}
-				}
-			}
-
-			logger.debug("wrote " + count + " words into database");
-
-			return true;
-		} finally {
-			stmt.close();
-		}
-	}
-
-	/**
-	 * Read word entries from the database.
-	 * 
-	 * @return the amount read or -1 on error
-	 */
-	private int readFromDB() {
-		if (!enableDatabaseAccess) {
-			return 0;
-		}
-
-		DBTransaction transaction = TransactionPool.get().beginWork();
-
-		try {
-			String query = "select	w.id, w.normalized, w.type, w.plural, w.value,"
-					+ "	s.normalized from words w left outer join words s on s.id = w.alias_id";
-			final ResultSet res = transaction.query(query, null);
-
-			int count = 0;
-
-			while (res.next()) {
-				final WordEntry entry = new WordEntry();
-
-				entry.setId(res.getInt(1));
-
-				final String key = res.getString(2);
-				entry.setNormalized(key);
-
-				entry.setType(new ExpressionType(res.getString(3)));
-
-				entry.setPlurSing(res.getString(4));
-
-				final int value = res.getInt(5);
-				if (!res.wasNull()) {
-					entry.setValue(value);
-				}
-
-				final String singular = res.getString(6);
-				if (singular != null) {
-					entry.setNormalized(singular);
-				}
-
-				addEntry(key, entry);
-				++count;
-			}
-
-			final WordEntry versionEntry = find(HASH_KEYWORD);
-
-			if (versionEntry != null) {
-				hash = versionEntry.getPlurSing();
-				words.remove(versionEntry.getNormalized());
-				--count;
-			} else {
-				hash = "";
-			}
-
-			logger.debug("read " + count + " word entries from database");
-			res.close();
-			TransactionPool.get().commit(transaction);
-			return count;
-		} catch (final SQLException e) {
-			logger.error("error while reading from DB table words", e);
-			TransactionPool.get().rollback(transaction);
-
-			return -1;
-		}
+	protected boolean persistNewWord(final String key, final WordEntry entry) {
+		return false;
 	}
 
 }

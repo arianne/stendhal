@@ -34,9 +34,7 @@ public final class WordListUpdate {
 
     public static void run() {
         try {
-            WordList.attachDatabase();
-
-            final WordList wl = new WordList();
+            final DBWordList wl = new DBWordList();
 
             // read in the current word list including comment lines
             final InputStream str = WordList.class.getResourceAsStream(WordList.WORDS_FILENAME);
@@ -71,7 +69,7 @@ public final class WordListUpdate {
             System.out.println("The updated word list has been written to the file '" + outputPath + "'.");
 
             // update database entries
-            wl.writeToDB();
+            DBWordList.writeToDB(wl);
             System.out.println("The word list has been stored into the database.");
         } catch (final IOException e) {
             e.printStackTrace();
