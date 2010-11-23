@@ -50,7 +50,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	 * @param object
 	 *            object to read from
 	 */
-	private void update(RPObject object) {
+	private void update(final RPObject object) {
 
 		boolean streaming = false;
 
@@ -61,14 +61,17 @@ public class LoopedSoundSource extends InvisibleEntity {
 			volume = Numeric.intToFloat(object.getInt("volume"), 100.0f);
 		}
 		if (object.has("layer")) {
-			int idx = object.getInt("layer");
-			SoundLayer layer = null;
+			final int idx = object.getInt("layer");
+			SoundLayer layer;
 
 			if (idx < SoundLayer.values().length) {
 				layer = SoundLayer.values()[idx];
+				group = ClientSingletonRepository.getSound().getGroup(layer.groupName);
+			} else {
+				layer = null;
+				group = null;
 			}
 
-			group = ClientSingletonRepository.getSound().getGroup(layer.groupName);
 			fadingDuration.set(100, Time.Unit.MILLI);
 
 			if (layer == SoundLayer.BACKGROUND_MUSIC) {
