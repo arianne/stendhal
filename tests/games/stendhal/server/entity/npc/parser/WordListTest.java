@@ -204,6 +204,9 @@ public class WordListTest {
 		assertEquals("blue\tADJ-COL", printWord(wl, "blue"));
 		assertEquals("with\tPRE", printWord(wl, "with"));
 		assertEquals("mary\tSUB-NAM", printWord(wl, "mary"));
+		assertEquals("doesn't\tVER-NEG	=do", printWord(wl, "doesn't"));
+		assertEquals("three\tNUM\t3", printWord(wl, "three"));
+		assertEquals("houses\tOBJ-PLU\thouse", printWord(wl, "houses"));
 	}
 
 	private String printWord(final WordList wl, String word) {
