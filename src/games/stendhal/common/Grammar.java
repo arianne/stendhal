@@ -335,117 +335,157 @@ public class Grammar {
 	}
 
 	/**
-	 * Removes a prefix, if present.
-	 * 
-	 * @param prefix
-	 * @param noun
-	 * @return object name without prefix, or same object as given if the prefix was not found
+	 * PrefixProcessor is used to process prefix texts in a text string.
 	 */
-	private static String removePrefix(final String noun, final String prefix) {
-		if (noun.startsWith(prefix)) {
-			return noun.substring(prefix.length());
-		} else {
-			return noun;
+	private static class PrefixExtractor {
+
+		private String txt;
+
+		public PrefixExtractor(final String text) {
+			txt = text;
 		}
-	}
 
-	/**
-	 * Extracts noun from a string, that may be prefixed with a singular
-	 * expression like "piece of", ...
-	 * 
-	 * @param expr
-	 * @return extracted noun, or same object as given if no matching prefix was found
-	 */
-	private static String extractNounSingular(final String expr) {
-		String result;
+		public String toString() {
+			return txt;
+		}
 
-		result = removePrefix(expr, "piece of ");
-		result = removePrefix(result, "nugget of ");
-		result = removePrefix(result, "sack of ");
-		result = removePrefix(result, "sheaf of ");
-		result = removePrefix(result, "loaf of ");
-		result = removePrefix(result, "stick of ");
-		result = removePrefix(result, "bottle of ");
-		result = removePrefix(result, "jar of ");
-		result = removePrefix(result, "sprig of ");
-		result = removePrefix(result, "root of ");
-		result = removePrefix(result, "suit of ");
-		result = removePrefix(result, "pair of ");
-		result = removePrefix(result, "glas of ");
-		result = removePrefix(result, "cup of ");
+		/**
+		 * Removes a prefix, if present.
+		 * If the prefix was found at the beginning of the object name, it is removed.
+		 * Otherwise txt remaines unchanged.
+		 * 
+		 * @param prefix
+		 * @return true if a prefix was removed
+		 */
+		public boolean removePrefix(final String prefix) {
+			boolean changed;
 
-		return result;
-	}
+			if (txt.startsWith(prefix)) {
+				txt = txt.substring(prefix.length());
+				changed = true;
+			} else {
+				changed = false;
+			}
 
-	/**
-	 * Extracts noun from a string, that may be prefixed with a plural expression
-	 * like "piece of", ...
-	 * 
-	 * @param expr
-	 * @return extracted noun, or same object as given if no matching prefix was found
-	 */
-	private static String extractNounPlural(final String expr) {
-		String result;
+			return changed;
+		}
 
-		result = removePrefix(expr, "pieces of ");
-		result = removePrefix(result, "nuggets of ");
-		result = removePrefix(result, "sacks of ");
-		result = removePrefix(result, "sheaves of ");
-		result = removePrefix(result, "loaves of ");
-		result = removePrefix(result, "sticks of ");
-		result = removePrefix(result, "bottles of ");
-		result = removePrefix(result, "jars of ");
-		result = removePrefix(result, "sprigs of ");
-		result = removePrefix(result, "roots of ");
-		result = removePrefix(result, "suits of ");
-		result = removePrefix(result, "pairs of ");
-		result = removePrefix(result, "glasses of ");
-		result = removePrefix(result, "cups of ");
-		return result;
+		/**
+		 * Extracts noun from a string, that may be prefixed with a singular
+		 * expression like "piece of", ...
+		 * The result is stored in txt.
+		 * 
+		 * @return true on any change of txt
+		 */
+		private boolean extractNounSingular() {
+			boolean changed = false;
+
+			if (removePrefix("piece of ")) {changed = true;}
+			if (removePrefix("nugget of ")) {changed = true;}
+			if (removePrefix("sack of ")) {changed = true;}
+			if (removePrefix("sheaf of ")) {changed = true;}
+			if (removePrefix("loaf of ")) {changed = true;}
+			if (removePrefix("stick of ")) {changed = true;}
+			if (removePrefix("bottle of ")) {changed = true;}
+			if (removePrefix("jar of ")) {changed = true;}
+			if (removePrefix("sprig of ")) {changed = true;}
+			if (removePrefix("root of ")) {changed = true;}
+			if (removePrefix("suit of ")) {changed = true;}
+			if (removePrefix("pair of ")) {changed = true;}
+			if (removePrefix("glas of ")) {changed = true;}
+			if (removePrefix("cup of ")) {changed = true;}
+
+			return changed;
+		}
+
+		/**
+		 * Extracts noun from a string, that may be prefixed with a plural expression
+		 * like "piece of", ...
+		 * The result is stored in txt.
+		 * 
+		 * @return true on any change of txt
+		 */
+		private boolean extractNounPlural() {
+			boolean changed = false;
+
+			if (removePrefix("pieces of ")) {changed = true;}
+			if (removePrefix("nuggets of ")) {changed = true;}
+			if (removePrefix("sacks of ")) {changed = true;}
+			if (removePrefix("sheaves of ")) {changed = true;}
+			if (removePrefix("loaves of ")) {changed = true;}
+			if (removePrefix("sticks of ")) {changed = true;}
+			if (removePrefix("bottles of ")) {changed = true;}
+			if (removePrefix("jars of ")) {changed = true;}
+			if (removePrefix("sprigs of ")) {changed = true;}
+			if (removePrefix("roots of ")) {changed = true;}
+			if (removePrefix("suits of ")) {changed = true;}
+			if (removePrefix("pairs of ")) {changed = true;}
+			if (removePrefix("glasses of ")) {changed = true;}
+			if (removePrefix("cups of ")) {changed = true;}
+
+			return changed;
+		}
 	}
 
 	/**
 	 * Extracts noun from a string, that may be prefixed with a plural expression
 	 * like "piece of", ... So this function is just the counter part to fullForm().
 	 * 
-	 * @param expr
+	 * @param text
 	 * @return the extracted noun
 	 */
-	public static String extractNoun(final String expr) {
-		if (expr == null) {
-			return expr;
+	public static String extractNoun(final String text) {
+		String result;
+
+		if (text == null) {
+			result = text;
+		} else {
+			final PrefixExtractor proc = new PrefixExtractor(text);
+			boolean changed;
+
+			// loop until all prefix strings are removed
+			do {
+				changed = false;
+
+				if (proc.extractNounSingular()) {
+					changed = true;
+				}
+
+				if (proc.extractNounPlural()) {
+					changed = true;
+				}
+			} while(changed);
+
+			result = proc.toString();
 		}
-
-		String lastExpr;
-		String result = expr;
-
-		// loop until all prefix strings are removed
-		do {
-			// remember original expression
-			lastExpr = result;
-
-			result = extractNounSingular(result);
-			result = extractNounPlural(result);
-		}
-		// As the extract...() functions return the original object if no change occurred,
-		// we can just use a comparison without equals() here.
-		while (result != lastExpr);
 
 		return result;
 	}
 
 	/**
 	 * Check if an expression is normalized.
+	 * equivalent to: {return extractNoun(text) == text}
 	 * 
-	 * @param expr
+	 * @param text
 	 * @return true if the expression is already normalized
 	 */
-	public static boolean isNormalized(final String expr) {
-        final String normalizedExpr = extractNoun(expr);
+	public static boolean isNormalized(final String text) {
+		boolean ret;
 
-  		// As the extract...() functions return the original object if no change occurred,
-		// we can just use a comparison without equals() here.
-        return normalizedExpr == expr;
+		if (text == null) {
+			ret = true;
+		} else {
+			final PrefixExtractor proc = new PrefixExtractor(text);
+
+			// If there is detected any prefix, the reviewed text was not normalized.
+			if (proc.extractNounSingular() || proc.extractNounPlural()) {
+				ret = false;
+			} else {
+				ret = true;
+			}
+		}
+
+		return ret;
 	}
 
 	/**
