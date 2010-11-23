@@ -24,7 +24,7 @@ import java.util.Map.Entry;
  * Singleton class that contains inventory and prices of NPC stores.
  * 
  */
-public class ShopList {
+public final class ShopList {
 
 	static {
 		final ShopList shops = SingletonRepository.getShopList();
