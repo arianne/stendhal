@@ -275,7 +275,7 @@ public class Grammar {
 		} else if (result.endsWith(" ore")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "nugget of ",
 					"nuggets of ");
-		} else if (result.equals("flour")) {
+		} else if (result.equals("flour") || result.equals("sugar")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "sack of ",
 					"sacks of ");
 		} else if (result.equals("grain")) {
@@ -292,6 +292,9 @@ public class Grammar {
 				|| result.endsWith("antidote")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "bottle of ",
 					"bottles of ");
+		} else if (result.equals("butter")) {
+			result = addPrefixIfNotAlreadyThere(lowString, "stick of ",
+					"sticks of ");
 		} else if (result.equals("honey")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "jar of ",
 					"jars of ");
@@ -361,6 +364,7 @@ public class Grammar {
 		result = removePrefix(result, "sack of ");
 		result = removePrefix(result, "sheaf of ");
 		result = removePrefix(result, "loaf of ");
+		result = removePrefix(result, "stick of ");
 		result = removePrefix(result, "bottle of ");
 		result = removePrefix(result, "jar of ");
 		result = removePrefix(result, "sprig of ");
@@ -388,6 +392,7 @@ public class Grammar {
 		result = removePrefix(result, "sacks of ");
 		result = removePrefix(result, "sheaves of ");
 		result = removePrefix(result, "loaves of ");
+		result = removePrefix(result, "sticks of ");
 		result = removePrefix(result, "bottles of ");
 		result = removePrefix(result, "jars of ");
 		result = removePrefix(result, "sprigs of ");
