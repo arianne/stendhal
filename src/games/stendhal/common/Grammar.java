@@ -401,8 +401,7 @@ public class Grammar {
 
 	/**
 	 * Extracts noun from a string, that may be prefixed with a plural expression
-	 * like "piece of", ... So this function is just the recursive counter part
-	 * to fullForm().
+	 * like "piece of", ... So this function is just the counter part to fullForm().
 	 * 
 	 * @param expr
 	 * @return the extracted noun
@@ -423,11 +422,25 @@ public class Grammar {
 			result = extractNounSingular(result);
 			result = extractNounPlural(result);
 		}
-		// As the extract...() functions return the original object, if no change occurred,
-		// we can just use an comparison without equals() here.
+		// As the extract...() functions return the original object if no change occurred,
+		// we can just use a comparison without equals() here.
 		while (result != lastExpr);
 
 		return result;
+	}
+
+	/**
+	 * Check if an expression is normalized.
+	 * 
+	 * @param expr
+	 * @return true if the expression is already normalized
+	 */
+	public static boolean isNormalized(final String expr) {
+        final String normalizedExpr = extractNoun(expr);
+
+  		// As the extract...() functions return the original object if no change occurred,
+		// we can just use a comparison without equals() here.
+        return normalizedExpr == expr;
 	}
 
 	/**

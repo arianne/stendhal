@@ -667,10 +667,9 @@ public final class SentenceImplementation extends Sentence {
                         // only the main word as merged normalized expression
                         if (first.isObject() && second.getNormalized().equals("of") && third.isObject()) {
                             final String expr = first.getNormalized() + " of " + third.getNormalized();
-                            final String normalizedExpr = Grammar.extractNoun(expr);
 
                             // see if the expression has been normalized
-                            if (normalizedExpr != expr) {
+                            if (!Grammar.isNormalized(expr)) {
                                 first.mergeRight(second, false);
                                 expressions.remove(second);
                                 third.mergeLeft(first, false);
