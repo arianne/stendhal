@@ -214,7 +214,7 @@ public class SoundSystemNG extends Thread
 		
 		void setBuffer(float[] buffer, int numSamples)
 		{
-			assert numSamples <= buffer.length;
+			assert (buffer == null) || (numSamples <= buffer.length);
 			assert (numSamples % getNumChannels()) == 0;
 
 			mAudioBuffer = buffer;
