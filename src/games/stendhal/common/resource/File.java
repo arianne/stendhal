@@ -63,21 +63,25 @@ public class File implements Resource
 
 	public boolean exists()
 	{
-		if(mFile != null)
-			return mFile.exists();
+		boolean exists;
 
-		InputStream stream = this.getClass().getResourceAsStream("/" + mPath);
+		if (mFile == null) {
+			final InputStream stream = this.getClass().getResourceAsStream("/" + mPath);
 
-		try
-		{
-			stream.close();
+			try
+			{
+				stream.close();
+				exists = true;
+			}
+			catch(IOException exception)
+			{
+				assert false: exception;
+				exists = false;
+			}
+		} else {
+			exists = mFile.exists();
 		}
-		catch(IOException exception)
-		{
-			assert false: exception;
-			stream = null;
-		}
 
-		return stream != null;
+		return exists;
 	}
 }
