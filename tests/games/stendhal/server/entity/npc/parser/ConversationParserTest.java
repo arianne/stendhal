@@ -124,6 +124,7 @@ public class ConversationParserTest {
 		assertEquals("sell", sentence.getTriggerExpression().getNormalized());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("house", sentence.getObjectName());
+		assertEquals("house", sentence.getObject(0).getMainWord());
 		assertEquals("sell house", sentence.getNormalized());
 	}
 
@@ -136,6 +137,7 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerbString());
 		assertEquals("fresh fish", sentence.getObjectName());
+		assertEquals("fish", sentence.getObject(0).getMainWord());
 	}
 
 	/**
@@ -279,6 +281,7 @@ public class ConversationParserTest {
 		assertEquals("buy", sentence.getVerbString());
 		assertNull(sentence.getSubject(1));
 		assertEquals(4, sentence.getObject(0).getAmount());
+		assertEquals("fish", sentence.getObject(0).getMainWord());
 		assertEquals("fish", sentence.getObjectName());
 		assertEquals("buy fish!", sentence.getNormalized());
 
@@ -288,6 +291,7 @@ public class ConversationParserTest {
 		assertEquals("buy", sentence.getVerbString());
 		assertNull(sentence.getSubject(1));
 		assertEquals(1, sentence.getObject(0).getAmount());
+		assertEquals("ice", sentence.getObject(0).getMainWord());
 		assertEquals("ice cream", sentence.getObjectName());
 		assertEquals("i buy ice cream!", sentence.getNormalized());
 		assertEquals("i/SUB-PRO buy/VER-CON ice cream/OBJ!", sentence.toString());
@@ -298,6 +302,7 @@ public class ConversationParserTest {
 		assertEquals("buy", sentence.getVerbString());
 		assertNull(sentence.getSubject(1));
 		assertEquals(1, sentence.getObject(0).getAmount());
+		assertEquals("ice", sentence.getObject(0).getMainWord());
 		assertEquals("ice cream", sentence.getObjectName());
 		assertEquals("you buy ice cream!", sentence.getNormalized());
 		assertEquals("you/SUB-PRO buy/VER-CON ice cream/OBJ!", sentence.toString());
