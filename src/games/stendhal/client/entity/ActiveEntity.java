@@ -20,6 +20,8 @@ import marauroa.common.game.RPObject;
  * An entity that has movement and direction.
  */
 public abstract class ActiveEntity extends Entity {
+	/** Epsilon value used for coordinate change checks. */
+	private static final double EPSILON = 0.001;
 	/**
 	 * Direction property.
 	 */
@@ -163,8 +165,15 @@ public abstract class ActiveEntity extends Entity {
 			this.y = y;
 		}
 
-		// Call onPosition only if the entity actually moved
-		if (!compareDouble(this.x, oldx, 0.001) || !compareDouble(this.y, oldy, 0.001)) {
+		// Call onPosition only if the entity actually moved. Also always call
+		// on partial coordinates - those are always predicted rather than real
+		// and thus should always be a result of prediction. However, the
+		// client collision detection does not always agree with that of the
+		// server, so relying on just the coordinate change checks can miss
+		// entities stopping when they collide with each other.
+		if (!compareDouble(this.x, oldx, EPSILON) || !compareDouble(this.y, oldy, EPSILON)
+				|| !compareDouble(oldx, (int) oldx, EPSILON)
+				|| !compareDouble(oldy, (int) oldy, EPSILON)) {
 			onPosition(x, y);
 		}
 	}
