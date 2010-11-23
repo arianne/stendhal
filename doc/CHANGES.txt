@@ -14,7 +14,7 @@ Changelog
 - quantity selector for control-drop
 - corpses have resistance
 - scrolls can be labelled with /markscroll command
-- corpses have loot protection to anyone but the defender of the hits for a short tme after death
+- corpses have loot protection to anyone but the defender of the hits for a short time after death
 
 *world*
 - Eheneumniranin, a half-elf that lost his memories. He harvests the grain field in ados forest farm area
