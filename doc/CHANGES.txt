@@ -8,13 +8,13 @@ Changelog
 - Elisabeth and her mother Carey found their way to Kirdneh
 - quest Chocolate For Elisabeth on Kirdneh playground
 
-
 0.89
 
 *features*
 - quantity selector for control-drop
 - corpses have resistance
 - scrolls can be labelled with /markscroll command
+- corpses have loot protection to anyone but the defender of the hits for a short tme after death
 
 *world*
 - Eheneumniranin, a half-elf that lost his memories. He harvests the grain field in ados forest farm area
