@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
 /**
  * Database access for WordList.
  */
+// TODO: convert this class into a StendhalWordListDAO
 public final class DBWordList extends WordList {
 
 	private static final Logger logger = Logger.getLogger(DBWordList.class);
