@@ -502,8 +502,7 @@ public class StendhalRPAction {
 			 * Move and re-add removed dependents
 			 */
 			if (sheep != null) {
-				// shift the sheep a bit, so that it does not end up exactly in fron of the player
-				if (placeat(zone, sheep, x + 1, y + 1)) {
+				if (placePet(zone, player, sheep)) {
 					player.setSheep(sheep);
 					sheep.setOwner(player);
 				} else {
@@ -513,8 +512,7 @@ public class StendhalRPAction {
 			}
 
 			if (pet != null) {
-				// shift the pet a bit, so that it does not end up exactly in fron of the player
-				if (placeat(zone, pet, x + 1, y + 1)) {
+				if (placePet(zone, player, pet)) {
 					player.setPet(pet);
 					pet.setOwner(player);
 				} else {
@@ -682,6 +680,36 @@ public class StendhalRPAction {
 				return true;		
 			}
 		}
+		return false;
+	}
+	
+	/**
+	 * Place a pet near player in such a way that it likely does not block the
+	 * player at normal zone switch. The pet will be placed so that it has a
+	 * path to the player.
+	 * 
+	 * @param zone
+	 * @param player
+	 * @param pet
+	 * @return <code>true</code> if the pet could be placed properly, false
+	 * 	otherwise
+	 */
+	private static boolean placePet(final StendhalRPZone zone, final Player player, 
+			final Entity pet) {
+		// Shift the pet a bit, so that it does not usually end up exactly in
+		// front of the player.
+		if (placeat(zone, pet, player.getX() + 1, player.getY() + 1)) {
+			if (!Path.searchPath(pet, player, 20).isEmpty()) {
+				return true;
+			}
+		}
+		// Failed to find a path from the new location. Just try to find
+		// some location with a path to the player
+		Point p = findLocation(zone, pet, null, player.getX(), player.getY(), true);
+		if (p != null) {
+			return placeat(zone, pet, p.x, p.y);
+		}
+		
 		return false;
 	}
 }
