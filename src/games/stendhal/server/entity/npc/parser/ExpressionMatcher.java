@@ -195,29 +195,29 @@ public class ExpressionMatcher {
      * @param ctx
      * @return parsed Sentence
      */
-    Sentence parseSentence(String text, final ConversationContext ctx) {
+    Sentence parseSentence(final String text, final ConversationContext ctx) {
         if (isEmpty()) {
             return ConversationParser.parse(text, ctx);
         }
 
         // Trim white space from beginning and end.
-        text = text.trim();
+        String txt = text.trim();
 
-        final Sentence sentence = new SentenceImplementation(ctx, text);
+        final Sentence sentence = new SentenceImplementation(ctx, txt);
 
         // determine sentence type from trailing punctuation
-        text = ConversationParser.detectSentenceType(text, sentence);
+        txt = ConversationParser.detectSentenceType(txt, sentence);
 
         if (typeMatching) {
-            readTypeMatchExpressions(text, ctx, sentence);
+            readTypeMatchExpressions(txt, ctx, sentence);
         } else if (exactMatching) {
-            readSimpleExpressions(text, ctx, sentence);
+            readSimpleExpressions(txt, ctx, sentence);
         } else if (similarMatching) {
-            readSimpleExpressions(text, ctx, sentence);
+            readSimpleExpressions(txt, ctx, sentence);
         } else if (jokerMatching) {
-            readJokerExpressions(text, ctx, sentence);
+            readJokerExpressions(txt, ctx, sentence);
         } else if (caseInsensitive) {
-            readSimpleExpressions(text, ctx, sentence);
+            readSimpleExpressions(txt, ctx, sentence);
         }
 
         return sentence;
