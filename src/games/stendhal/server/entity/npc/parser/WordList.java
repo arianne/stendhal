@@ -126,16 +126,23 @@ public final class WordList {
 	 * Reads the word list from the resource file "words.txt".
 	 */
 	private void readFromResources() {
-		final InputStream str = WordList.class
-				.getResourceAsStream(WORDS_FILENAME);
-		final BufferedReader reader = new BufferedReader(new InputStreamReader(
-				str));
+		final InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
 
 		try {
-			read(reader, null);
-			reader.close();
-		} catch (final IOException e) {
-			logger.error("error while reading resource file 'words.txt'", e);
+			final BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+
+			try {
+				read(reader, null);
+				reader.close();
+			} catch (final IOException e) {
+				logger.error("error while reading resource file 'words.txt'", e);
+			}
+		} finally {
+			try {
+				str.close();
+			} catch (IOException e) {
+				logger.warn("exception on closing resource stream", e);
+			}
 		}
 	}
 
