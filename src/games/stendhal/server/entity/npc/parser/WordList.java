@@ -61,7 +61,8 @@ public class WordList {
 
 	protected String hash = "";
 
-	protected static WordList instance;
+	/** instance variable, with package protection because of FindBugs hint */
+	static /*protected*/ WordList instance;
 
 	// We keep house holding the usage of registered subject names (see registerSubjectName).
 	private Map<String, Integer> subjectRefCount = new HashMap<String, Integer>();
