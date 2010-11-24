@@ -200,7 +200,7 @@ public class SoundManagerNG
 			for(Device device: devices)
 				logger.info("available device: " + device.getName() + " - " + device.getDescription() + " (" + device.getRating() + ")");
 		}
-		
+
 		if(mute || devices == null || devices.size() == 0)
 		{
 			mSoundSystem = new SoundSystemNG(mAudioFormat, BUFFER_DURATION);
@@ -212,9 +212,16 @@ public class SoundManagerNG
 			mMute        = false;
 		}
 
+		// start the sound system thread in a separate method to take derived classes into account
+		// (not yet needed, but just in case - and to avoid the FindBugs warning)
+		startSoundsystem();
+    }
+
+	protected void startSoundsystem()
+	{
 		mSoundSystem.setDaemon(true);
 		mSoundSystem.start();
-    }
+	}
 	
 	public synchronized Sound openSound(Resource resource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
     {
