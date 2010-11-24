@@ -26,7 +26,7 @@ public class HealedEventTest {
     @Test
     public void testHealedEvent() {
         HealedEvent event = new HealedEvent(1);
-        assertThat(new Integer(event.getInt("amount")), is(new Integer(1)));
+        assertThat(Integer.valueOf(event.getInt("amount")), is(Integer.valueOf(1)));
     }
     
 	/**
@@ -38,7 +38,7 @@ public class HealedEventTest {
         HealedEvent event = new HealedEvent(1);
         event.put("amount", "boo boo");
         assertThat(event.get("amount"), is("boo boo"));
-        assertThat(new Integer(event.getInt("amount")), is(new Integer(0)));
+        assertThat(Integer.valueOf(event.getInt("amount")), is(Integer.valueOf(0)));
     }
 
 }
