@@ -729,7 +729,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		if (sx < 0) {
 			sx = 0;
 		} else {
-			final int max = getScreenWidth() - sprite.getWidth();
+			final int max = getWidth() - sprite.getWidth();
 
 			if (sx > max) {
 				sx = max;
@@ -739,7 +739,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		if (sy < 0) {
 			sy = 0;
 		} else {
-			final int max = getScreenHeight() - sprite.getHeight();
+			final int max = getHeight() - sprite.getHeight();
 
 			if (sy > max) {
 				sy = max;
@@ -995,24 +995,6 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 */
 	public Point2D convertScreenViewToWorld(final int x, final int y) {
 		return convertScreenToWorld(x + getScreenViewX(), y + getScreenViewY());
-	}
-
-	/**
-	 * Get the full screen height in pixels.
-	 *
-	 * @return The height.
-	 */
-	private int getScreenHeight() {
-		return convertWorldToScreen(wh);
-	}
-
-	/**
-	 * Get the full screen width in pixels.
-	 *
-	 * @return The width.
-	 */
-	private int getScreenWidth() {
-		return convertWorldToScreen(ww);
 	}
 
 	/**
