@@ -46,9 +46,6 @@ public final class TurnNotifier {
 	 */
 	private final Map<Integer, Set<TurnListener>> register = new HashMap<Integer, Set<TurnListener>>();
 
-	/** Used for multi-threading synchronization. * */
-	private final Object sync = new Object();
-
 	private TurnNotifier() {
 		// singleton
 	}
@@ -79,7 +76,7 @@ public final class TurnNotifier {
 
 		// get and remove the set for this turn
 		Set<TurnListener> set = null;
-		synchronized (sync) {
+		synchronized(this) {
 			set = register.remove(Integer.valueOf(currentTurn));
 		}
 
@@ -163,7 +160,7 @@ public final class TurnNotifier {
 			return;
 		}
 
-		synchronized (sync) {
+		synchronized(this) {
 			// do we have other events for this turn?
 			final Integer turnInt = Integer.valueOf(turn);
 			Set<TurnListener> set = register.get(turnInt);
