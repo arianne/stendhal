@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
  *
  * @author silvio
  */
-public class SoundManager
+public final class SoundManager
 {
     private final static Logger              logger                   = Logger.getLogger(SoundManager.class);
     private final static int                 OUTPUT_NUM_SAMPLES       = 256;

@@ -56,7 +56,7 @@ import org.apache.log4j.Logger;
 /**
  * A dialog for selecting from the available characters of a user account.
  */
-public class CharacterDialog extends JDialog implements Runnable {
+public final class CharacterDialog extends JDialog implements Runnable {
 	private static final long serialVersionUID = -8827654641088132946L;
 
 	private static Logger logger = Logger.getLogger(CharacterDialog.class);
