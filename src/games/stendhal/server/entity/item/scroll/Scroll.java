@@ -111,15 +111,4 @@ public class Scroll extends StackableItem implements UseListener {
 		return false;
 	}
 
-	@Override
-	public String describe() {
-		String text = super.describe();
-
-		final String infostring = getInfoString();
-
-		if (infostring != null) {
-			text += " Upon it is written: " + infostring;
-		}
-		return (text);
-	}
 }

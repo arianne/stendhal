@@ -109,4 +109,16 @@ public class MarkedScroll extends TeleportScroll {
 		// if something goes wrong.
 		return player.teleport(zone, x, y, null, player);
 	}
+	
+	@Override
+	public String describe() {
+		String text = super.describe();
+
+		final String infostring = getInfoString();
+
+		if (infostring != null) {
+			text += " Upon it is written: " + infostring;
+		}
+		return (text);
+	}
 }

@@ -124,4 +124,16 @@ public class SummonScroll extends Scroll {
 
 		return true;
 	}
+	
+	@Override
+	public String describe() {
+		String text = super.describe();
+
+		final String infostring = getInfoString();
+
+		if (infostring != null) {
+			text += " It will summon a " + infostring  + ".";
+		}
+		return (text);
+	}
 }

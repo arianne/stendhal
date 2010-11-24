@@ -3,7 +3,6 @@
  */
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -250,17 +249,6 @@ public class TimedTeleportScroll extends TeleportScroll {
 		}
 	}
 
-	@Override
-	public String describe() {
-		String result;
-		if (hasDescription()) {
-			result = getDescription();
-		} else {
-			result = "You see " + Grammar.a_noun(getTitle()) + ".";
-		}
-		return result;
-	}
-
 	/**
 	 * override this to show a message before teleporting the player back.
 	 * 
@@ -323,6 +311,5 @@ public class TimedTeleportScroll extends TeleportScroll {
 			}
 		}
 	}
-	
 	
 }
