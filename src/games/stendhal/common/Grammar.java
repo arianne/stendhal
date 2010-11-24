@@ -263,9 +263,9 @@ public class Grammar {
 	 * @return noun with prefix
 	 */
 	public static String fullForm(final String noun) {
-		String result;
 		final String lowString = noun.toLowerCase(Locale.ENGLISH);
-		result = lowString.replace("#", "");
+		String result = lowString.replace("#", "");
+
 		if (result.equals("meat") || result.equals("ham")
 				|| result.equals("cheese") || result.equals("wood")
 				|| result.equals("paper") || result.equals("iron")
@@ -380,20 +380,20 @@ public class Grammar {
 		private boolean extractNounSingular() {
 			boolean changed = false;
 
-			if (removePrefix("piece of ")) {changed = true;}
-			if (removePrefix("nugget of ")) {changed = true;}
-			if (removePrefix("sack of ")) {changed = true;}
-			if (removePrefix("sheaf of ")) {changed = true;}
-			if (removePrefix("loaf of ")) {changed = true;}
-			if (removePrefix("stick of ")) {changed = true;}
-			if (removePrefix("bottle of ")) {changed = true;}
-			if (removePrefix("jar of ")) {changed = true;}
-			if (removePrefix("sprig of ")) {changed = true;}
-			if (removePrefix("root of ")) {changed = true;}
-			if (removePrefix("suit of ")) {changed = true;}
-			if (removePrefix("pair of ")) {changed = true;}
-			if (removePrefix("glas of ")) {changed = true;}
-			if (removePrefix("cup of ")) {changed = true;}
+			changed |= removePrefix("piece of ");
+			changed |= removePrefix("nugget of ");
+			changed |= removePrefix("sack of ");
+			changed |= removePrefix("sheaf of ");
+			changed |= removePrefix("loaf of ");
+			changed |= removePrefix("stick of ");
+			changed |= removePrefix("bottle of ");
+			changed |= removePrefix("jar of ");
+			changed |= removePrefix("sprig of ");
+			changed |= removePrefix("root of ");
+			changed |= removePrefix("suit of ");
+			changed |= removePrefix("pair of ");
+			changed |= removePrefix("glas of ");
+			changed |= removePrefix("cup of ");
 
 			return changed;
 		}
@@ -408,20 +408,20 @@ public class Grammar {
 		private boolean extractNounPlural() {
 			boolean changed = false;
 
-			if (removePrefix("pieces of ")) {changed = true;}
-			if (removePrefix("nuggets of ")) {changed = true;}
-			if (removePrefix("sacks of ")) {changed = true;}
-			if (removePrefix("sheaves of ")) {changed = true;}
-			if (removePrefix("loaves of ")) {changed = true;}
-			if (removePrefix("sticks of ")) {changed = true;}
-			if (removePrefix("bottles of ")) {changed = true;}
-			if (removePrefix("jars of ")) {changed = true;}
-			if (removePrefix("sprigs of ")) {changed = true;}
-			if (removePrefix("roots of ")) {changed = true;}
-			if (removePrefix("suits of ")) {changed = true;}
-			if (removePrefix("pairs of ")) {changed = true;}
-			if (removePrefix("glasses of ")) {changed = true;}
-			if (removePrefix("cups of ")) {changed = true;}
+			changed |= removePrefix("pieces of ");
+			changed |= removePrefix("nuggets of ");
+			changed |= removePrefix("sacks of ");
+			changed |= removePrefix("sheaves of ");
+			changed |= removePrefix("loaves of ");
+			changed |= removePrefix("sticks of ");
+			changed |= removePrefix("bottles of ");
+			changed |= removePrefix("jars of ");
+			changed |= removePrefix("sprigs of ");
+			changed |= removePrefix("roots of ");
+			changed |= removePrefix("suits of ");
+			changed |= removePrefix("pairs of ");
+			changed |= removePrefix("glasses of ");
+			changed |= removePrefix("cups of ");
 
 			return changed;
 		}
@@ -514,6 +514,8 @@ public class Grammar {
 		return noun + "'s";
 	}
 
+	private static final String of = " of ";
+
 	/**
 	 * Returns the plural form of the given noun if not already given in plural
 	 * form.
@@ -542,9 +544,9 @@ public class Grammar {
 		}
 
 		// in "of"-phrases pluralize only the first part
-		if (enoun.indexOf(" of ") > -1) {
-			return plural(enoun.substring(0, enoun.indexOf(" of ")))
-					+ enoun.substring(enoun.indexOf(" of ")) + postfix;
+		if (enoun.indexOf(of) > -1) {
+			return plural(enoun.substring(0, enoun.indexOf(of)))
+					+ enoun.substring(enoun.indexOf(of)) + postfix;
 
 			// first of all handle words which do not change
 		} else if (enoun.endsWith("money") || enoun.endsWith("dice")
@@ -645,9 +647,9 @@ public class Grammar {
 		}
 
 		// in "of"-phrases build only the singular of the first part
-		if (enoun.indexOf(" of ") > -1) {
-			return singular(enoun.substring(0, enoun.indexOf(" of ")))
-					+ enoun.substring(enoun.indexOf(" of ")) + postfix;
+		if (enoun.indexOf(of) > -1) {
+			return singular(enoun.substring(0, enoun.indexOf(of)))
+					+ enoun.substring(enoun.indexOf(of)) + postfix;
 
 			// first of all handle words which do not change
 		} else if (enoun.endsWith("money") || enoun.endsWith("dice")
@@ -765,7 +767,7 @@ public class Grammar {
 	 *         appropriate
 	 */
 	public static String quantityplnoun(final int quantity, final String noun) {
-		String end = plnoun(quantity, noun);
+		final String end = plnoun(quantity, noun);
 		return Integer.toString(quantity) + " " + end;	
 	}
 
@@ -784,7 +786,7 @@ public class Grammar {
 	 *         appropriate
 	 */
 	public static String quantityplnoun(final int quantity, final String noun, final String one) {
-		String end = plnoun(quantity, noun);
+		final String end = plnoun(quantity, noun);
 		if (quantity == 1) {
 			if (one.equals("a")) {
 				return a_noun(end);
@@ -812,7 +814,7 @@ public class Grammar {
 	 *         appropriate
 	 */
 	public static String quantityplnounWithHash(final int quantity, final String noun) {
-		String fullNoun = plnoun(quantity, noun);
+		final String fullNoun = plnoun(quantity, noun);
 		String prefix;
 		if (quantity == 1) {
 			prefix = a_an(fullNoun);
@@ -821,11 +823,11 @@ public class Grammar {
 		}
 		final StringBuilder sb = new StringBuilder(prefix);
 
-		if (fullNoun.indexOf(' ') != -1) {
-			sb.append("#'" + fullNoun + "'");
-		} else {
+		if (fullNoun.indexOf(' ') == -1) {
 			sb.append("#");
 			sb.append(fullNoun);
+		} else {
+			sb.append("#'" + fullNoun + "'");
 		}
 
 		return sb.toString();
@@ -978,44 +980,31 @@ public class Grammar {
 	public static Integer number(final String text) {
 		if (text.equals("no") || text.equals("zero")) {
 			return 0;
-		}
-		if (text.equals("a") || text.equals("an")) {
+		} else if (text.equals("a") || text.equals("an")) {
 			return 1;
-		}
-		if (text.equals("one")) {
+		} else if (text.equals("one")) {
 			return 1;
-		}
-		if (text.equals("two")) {
+		} else if (text.equals("two")) {
 			return 2;
-		}
-		if (text.equals("three")) {
+		} else if (text.equals("three")) {
 			return 3;
-		}
-		if (text.equals("four")) {
+		} else if (text.equals("four")) {
 			return 4;
-		}
-		if (text.equals("five")) {
+		} else if (text.equals("five")) {
 			return 5;
-		}
-		if (text.equals("six")) {
+		} else if (text.equals("six")) {
 			return 6;
-		}
-		if (text.equals("seven")) {
+		} else if (text.equals("seven")) {
 			return 7;
-		}
-		if (text.equals("eight")) {
+		} else if (text.equals("eight")) {
 			return 8;
-		}
-		if (text.equals("nine")) {
+		} else if (text.equals("nine")) {
 			return 9;
-		}
-		if (text.equals("ten")) {
+		} else if (text.equals("ten")) {
 			return 10;
-		}
-		if (text.equals("eleven")) {
+		} else if (text.equals("eleven")) {
 			return 11;
-		}
-		if (text.equals("twelve")) {
+		} else if (text.equals("twelve")) {
 			return 12;
 		} else {
 			// also handle "a dozen", ...
