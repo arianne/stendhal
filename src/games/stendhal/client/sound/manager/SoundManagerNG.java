@@ -40,7 +40,7 @@ import org.apache.log4j.Logger;
  *
  * @author silvio
  */
-public final class SoundManagerNG
+public class SoundManagerNG
 {
     private final static Logger              logger                   = Logger.getLogger(SoundManagerNG.class);
 	private final static int                 SOUND_CHANNEL_LIMIT      = 50;

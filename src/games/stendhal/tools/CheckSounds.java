@@ -51,10 +51,13 @@ public class CheckSounds {
 	}
 
 	private static String getString(String s, final int width, final char c) {
+		StringBuilder sb = new StringBuilder(s);
+
 		while (s.length() < width) {
-			s += c;
+			sb.append(c);
 		}
-		return s;
+
+		return sb.toString();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -64,7 +67,7 @@ public class CheckSounds {
 
 		final Map<String, AudioFormat> formatMap = new TreeMap<String, AudioFormat>();
 		final Map<String, String> fileFormatMap = new TreeMap<String, String>();
-		final Mixer defaultMixer = AudioSystem.getMixer(null);
+		final Mixer defaultMixer = TESTPLAY_SAMPLES? AudioSystem.getMixer(null): null;
 
 		// get sound library filepath
 		final String soundBase = prop.getProperty("soundbase", "data/sounds");
@@ -89,8 +92,7 @@ public class CheckSounds {
 
 					if (TESTPLAY_SAMPLES) {
 						// testplay the sound
-						final DataLine.Info info = new DataLine.Info(Clip.class,
-								format);
+						final DataLine.Info info = new DataLine.Info(Clip.class, format);
 						if (defaultMixer.isLineSupported(info)) {
 							AudioInputStream playStream = ais;
 							final AudioFormat defaultFormat = new AudioFormat(
@@ -157,9 +159,9 @@ public class CheckSounds {
 		}
 		System.out.println("---------------------");
 
-		for (final String key : formatMap.keySet()) {
-			final DataLine.Info info = new DataLine.Info(Clip.class,
-					formatMap.get(key));
+		for (final Map.Entry<String, AudioFormat> it_FM : formatMap.entrySet()) {
+			String key = it_FM.getKey();
+			final DataLine.Info info = new DataLine.Info(Clip.class, it_FM.getValue());
 			for (int i = 0; i < mixerList.length; i++) {
 				final Mixer mixer = AudioSystem.getMixer(mixerList[i]);
 				final boolean supported = mixer.isLineSupported(info);
@@ -178,13 +180,13 @@ public class CheckSounds {
 
 			System.out.print(key);
 			// line not supported by any mixer
-			String files = "";
-			for (final String file : fileFormatMap.keySet()) {
-				if (key.equals(fileFormatMap.get(file))) {
-					files += " " + file;
+			StringBuilder files = new StringBuilder();
+			for (final Map.Entry<String, String> itFFM : fileFormatMap.entrySet()) {
+				if (key.equals(itFFM.getValue())) {
+					files.append(" ").append(itFFM.getValue());
 				}
 			}
-			System.out.print(" (files: " + files + ")");
+			System.out.print(" (files: " + files.toString() + ")");
 
 			System.out.println();
 		}

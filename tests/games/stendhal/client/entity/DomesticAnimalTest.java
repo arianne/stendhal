@@ -21,7 +21,7 @@ import org.junit.Test;
 
 public class DomesticAnimalTest {
 
-	private final class DomesticAnimalExtension extends DomesticAnimal {
+	private static final class DomesticAnimalExtension extends DomesticAnimal {
 		private int chanceset;
 
 		public int getChanceset() {

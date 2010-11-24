@@ -62,7 +62,7 @@ public class CollectionFilterTest {
 		assertThat(list.size(), is(5));
 	}
 
-	class Adminfilter implements FilterCriteria<Player> {
+	private static class Adminfilter implements FilterCriteria<Player> {
 
 		public boolean passes(final Player o) {
 			return o.getAdminLevel() == 0;
@@ -70,7 +70,7 @@ public class CollectionFilterTest {
 
 	}
 
-	class NoAdminfilter implements FilterCriteria<Player> {
+	private static class NoAdminfilter implements FilterCriteria<Player> {
 
 		public boolean passes(final Player o) {
 			return o.getAdminLevel() > 0;

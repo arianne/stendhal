@@ -47,8 +47,7 @@ import org.junit.Test;
 
 public class EntityFactoryTest {
 
-	private class MockRPObject extends RPObject {
-
+	private static class MockRPObject extends RPObject {
 
 		MockRPObject(final String type, final String eclass) {
 			super.put("type", type);

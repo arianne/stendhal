@@ -28,7 +28,8 @@ public class DumpTurnListenerEvents extends ScriptImpl {
 		final int currentTurn = turnNotifier.getCurrentTurnForDebugging();
 		final Map<Integer, Set<TurnListener>> events = turnNotifier.getEventListForDebugging();
 
-		for (final Integer turn : events.keySet()) {
+		for (final Map.Entry<Integer, Set<TurnListener>> it : events.entrySet()) {
+			final Integer turn = it.getKey();
 
 			// count outdated
 			if (turn.intValue() < currentTurn) {
@@ -36,7 +37,7 @@ public class DumpTurnListenerEvents extends ScriptImpl {
 			}
 
 			// count classes
-			for (final TurnListener event : events.get(turn)) {
+			for (final TurnListener event : it.getValue()) {
 				counter.add(event.getClass());
 			}
 		}

@@ -153,7 +153,7 @@ public class EntityTest {
 
 	}
 
-	private class MockEntity extends Entity {
+	private static class MockEntity extends Entity {
 		private int count;
 
 		public MockEntity() {

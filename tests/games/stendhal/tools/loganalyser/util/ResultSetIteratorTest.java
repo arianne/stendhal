@@ -200,14 +200,13 @@ public class ResultSetIteratorTest {
 	 * Returns null for createObject().
 	 * 
 	 */
-	private class ResultSetIterImplentation extends ResultSetIterator<String> {
-		private ResultSetIterImplentation(final Statement statement, final ResultSet resultSet) {
+	private static class ResultSetIterImplementation extends ResultSetIterator<String> {
+		private ResultSetIterImplementation(final Statement statement, final ResultSet resultSet) {
 			super(statement, resultSet);
 		}
 
 		@Override
 		protected String createObject() {
-
 			return null;
 		}
 	}
@@ -218,7 +217,7 @@ public class ResultSetIteratorTest {
 	@Test
 	public void testResultSetIterator() {
 		
-		new ResultSetIterImplentation(new StatementImplementation(), resultSet);
+		new ResultSetIterImplementation(new StatementImplementation(), resultSet);
 		
 	}
 
@@ -227,7 +226,7 @@ public class ResultSetIteratorTest {
 	 */
 	@Test
 	public void testCreateObject() {
-		final ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),
+		final ResultSetIterator<String> iter = new ResultSetIterImplementation(new StatementImplementation(),
 																		resultSet) {
 			@Override
 			protected String createObject() {
@@ -252,7 +251,7 @@ public class ResultSetIteratorTest {
 		resulthasnext.close();
 		
 		replay(resulthasnext);
-		ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),
+		ResultSetIterator<String> iter = new ResultSetIterImplementation(new StatementImplementation(),
 				resulthasnext);
 		
 		assertFalse(iter.hasNext());
@@ -267,10 +266,10 @@ public class ResultSetIteratorTest {
 		resultNothasnext.close();
 		replay(resultNothasnext);
 		
-		iter = new ResultSetIterImplentation(new StatementImplementation(), resultNothasnext);
+		iter = new ResultSetIterImplementation(new StatementImplementation(), resultNothasnext);
 		assertTrue(iter.hasNext());
 		assertTrue(iter.hasNext());
-		iter = new ResultSetIterImplentation(new StatementImplementation(), resulthasnext);
+		iter = new ResultSetIterImplementation(new StatementImplementation(), resulthasnext);
 		assertFalse(iter.hasNext());
 		assertFalse(iter.hasNext());
 	}
@@ -284,7 +283,7 @@ public class ResultSetIteratorTest {
 		expect(localResultSet.next()).andReturn(true).times(2);
 		
 		replay(localResultSet);
-		final ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),
+		final ResultSetIterator<String> iter = new ResultSetIterImplementation(new StatementImplementation(),
 																		localResultSet) {
 			protected String object = "";
 
@@ -303,7 +302,6 @@ public class ResultSetIteratorTest {
 		assertThat(iter.next(), is("a"));
 		assertTrue(iter.hasNext());
 		assertThat(iter.next(), is("aa"));
-
 	}
 
 
@@ -321,11 +319,10 @@ public class ResultSetIteratorTest {
 		replay(resultSetClose);
 		replay(statement);
 		
-		final ResultSetIterator<String> iter = new ResultSetIterImplentation(statement, resultSetClose);
+		final ResultSetIterator<String> iter = new ResultSetIterImplementation(statement, resultSetClose);
 		iter.next();
 		verify(resultSetClose);
 		verify(statement);
-
 	}
 
 	/**
@@ -337,7 +334,7 @@ public class ResultSetIteratorTest {
 		resultsetdelteThrowsException.deleteRow();
 		expectLastCall().andThrow(new SQLException());
 		replay(resultsetdelteThrowsException);
-		final ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),
+		final ResultSetIterator<String> iter = new ResultSetIterImplementation(new StatementImplementation(),
 				resultsetdelteThrowsException);
 		iter.remove();
 		assertTrue("no exception thrown", true);
@@ -349,10 +346,9 @@ public class ResultSetIteratorTest {
 	 */
 	@Test
 	public void testIterator() {
-		final ResultSetIterator<String> iter = new ResultSetIterImplentation(new StatementImplementation(),
+		final ResultSetIterator<String> iter = new ResultSetIterImplementation(new StatementImplementation(),
 																		resultSet);
 		assertSame(iter, iter.iterator());
-
 	}
 
 }

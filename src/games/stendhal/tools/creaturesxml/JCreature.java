@@ -20,7 +20,6 @@ package games.stendhal.tools.creaturesxml;
 
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.server.core.config.ItemsXMLLoader;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.creature.impl.DropItem;
@@ -35,8 +34,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -52,7 +49,9 @@ import org.xml.sax.SAXException;
  *
  * @author miguel
  */
+@SuppressWarnings("serial")
 public class JCreature extends javax.swing.JFrame {
+
 	boolean justUpdateCreature;
 
 	private List<DefaultCreature> filteredCreatures;
@@ -139,17 +138,17 @@ public class JCreature extends javax.swing.JFrame {
 		amountOfCreatures.setText(Integer.toString(xml.getCreatures().size()));
 	}
 
-	private List<DefaultItem> loadItemsList(String ref) throws SAXException {
-		ItemsXMLLoader itemsLoader = new ItemsXMLLoader();
-
-		try {
-			List<DefaultItem> items = itemsLoader.load(new URI(ref));
-
-			return items;
-		} catch (URISyntaxException e) {
-			throw new SAXException(e);
-		}
-	}
+//	private List<DefaultItem> loadItemsList(String ref) throws SAXException {
+//		ItemsXMLLoader itemsLoader = new ItemsXMLLoader();
+//
+//		try {
+//			List<DefaultItem> items = itemsLoader.load(new URI(ref));
+//
+//			return items;
+//		} catch (URISyntaxException e) {
+//			throw new SAXException(e);
+//		}
+//	}
 
 	private void clean(Graphics g) {
 		g.setColor(Color.WHITE);
@@ -250,9 +249,9 @@ public class JCreature extends javax.swing.JFrame {
 		os = new StringBuilder("");
 		
 		HashMap<String, LinkedList<String>> noises = actual.getNoiseLines();
-		for (String profile : noises.keySet()) {
-			for (String line : noises.get(profile)) {
-				os.append("says[" + profile + "]: " + line + "\n");
+		for (Map.Entry<String, LinkedList<String>> it : noises.entrySet()) {
+			for (String line : it.getValue()) {
+				os.append("says[" + it.getKey() + "]: " + line + "\n");
 			}
 		}
 
@@ -1167,18 +1166,18 @@ public class JCreature extends javax.swing.JFrame {
 		}
 	} // GEN-LAST:event_updateGFXButtonActionPerformed
 
-	private int suggestedXPValue(int level) {
-		int base = (int) Math.pow(10, level / 100 + 1);
-		int xp = ((level * level * level / 100 + level * 10) / base) * base;
-		return xp;
-	}
-
-	private int suggestedRespawnValue(int level) {
-		int base = (int) Math.pow(10, level / 100 + 1);
-		int respawn = ((900 + (level * level) / 10 + (level * level * level) / 400) / base)
-				* base;
-		return respawn;
-	}
+//	private int suggestedXPValue(int level) {
+//		int base = (int) Math.pow(10, level / 100 + 1);
+//		int xp = ((level * level * level / 100 + level * 10) / base) * base;
+//		return xp;
+//	}
+//
+//	private int suggestedRespawnValue(int level) {
+//		int base = (int) Math.pow(10, level / 100 + 1);
+//		int respawn = ((900 + (level * level) / 10 + (level * level * level) / 400) / base)
+//				* base;
+//		return respawn;
+//	}
 
 	private void SuggestAttributeButtonActionPerformed(
 			java.awt.event.ActionEvent evt) { // GEN-FIRST:event_SuggestAttributeButtonActionPerformed
@@ -1197,8 +1196,8 @@ public class JCreature extends javax.swing.JFrame {
 		int respawn = ((900 + (level * level) / 10 + (level * level * level) / 400) / base)
 				* base;
 
-		int pos = creatureList.getSelectedIndex();
-		DefaultCreature actual = (DefaultCreature) filteredCreatures.get(pos);
+//		int pos = creatureList.getSelectedIndex();
+//		DefaultCreature actual = (DefaultCreature) filteredCreatures.get(pos);
 
 		if (justUpdateCreature) {
 			creatureATK.setText(Integer.toString(atk));
