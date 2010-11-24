@@ -42,6 +42,7 @@ public class AchievementNotifier {
 	private static final Logger logger = Logger.getLogger(AchievementNotifier.class);
 	
 	private static AchievementNotifier instance;
+	private static final Object sync = new Object();
 	
 	private Map<Category, List<Achievement>> achievements;
 	
@@ -58,9 +59,11 @@ public class AchievementNotifier {
 	 * @return the AchievementNotifier
 	 */
 	public static AchievementNotifier get() {
-		if(instance == null) {
-			instance = new AchievementNotifier();
-		}
+    	synchronized(sync) {
+			if(instance == null) {
+				instance = new AchievementNotifier();
+			}
+    	}
 		return instance;
 	}
 	
@@ -81,14 +84,15 @@ public class AchievementNotifier {
 		Map<String, Integer> allIdentifiersInDatabase = collectAllIdentifiersFromDatabase();
 		//update stored data with configured achievements
 		identifiersToIds.putAll(allIdentifiersInDatabase);
-		for(String identifier : allIdentifiersInDatabase.keySet()) {
+		for(Map.Entry<String, Integer> it : allIdentifiersInDatabase.entrySet()) {
+			String identifier = it.getKey();
 			Achievement achievement = allAchievements.get(identifier);
 			try {
 				// this happens if an achievement is not configured anymore but already in the database
 				// in that case we should keep it as players could have reached it
 				// useful to stop checking for a certain achievement but keep results
 				if(achievement != null) {
-					DAORegister.get().get(AchievementDAO.class).updateAchievement(allIdentifiersInDatabase.get(identifier), achievement);
+					DAORegister.get().get(AchievementDAO.class).updateAchievement(it.getValue(), achievement);
 				} 
 			} catch (SQLException e) {
 				logger.error("Error while updating exisiting achievement "+achievement.getTitle(), e);
