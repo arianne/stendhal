@@ -51,13 +51,13 @@ public class Plague extends ScriptImpl {
 		
 		// concatenate torn words into one
 		
-		String creatureClass = "";
+		StringBuilder sb = new StringBuilder();
 		final List <String>  templist = args.subList(startArgIndex, args.size());
 		for (final String part : templist) {
-			creatureClass = creatureClass + part + " "; 
+			sb.append(part).append(' '); 
 		}
 		
-		creatureClass  = creatureClass.trim();
+		String creatureClass  = sb.toString().trim();
 
 		final Creature tempCreature = sandbox.getCreature(creatureClass);
 		

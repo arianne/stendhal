@@ -325,7 +325,7 @@ public class CreatureInfo {
 					}
 				}
 			}
-			String direction = "";
+			StringBuilder sb = new StringBuilder();
 			final String[] directions = new String[] { ".+_n\\d?e\\d?($|_).*",
 					"north east ", "_n\\d?e\\d?($|_)", "_",
 					".+_n\\d?w\\d?($|_).*", "north west ", "_n\\d?w\\d?($|_)",
@@ -338,11 +338,12 @@ public class CreatureInfo {
 					"_e\\d?($|_)", "_", };
 			for (int i = 0; i < directions.length; i += 4) {
 				if (remainder.matches(directions[i])) {
-					direction += directions[i + 1];
+					sb.append(directions[i + 1]);
 					remainder = remainder.replaceAll(directions[i + 2],
 							directions[i + 3]);
 				}
 			}
+			String direction = sb.toString();
 			if (direction.length() > 0) {
 				result += direction + "of ";
 			}

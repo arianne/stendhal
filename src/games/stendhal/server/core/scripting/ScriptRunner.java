@@ -296,10 +296,12 @@ public class ScriptRunner extends StendhalServerExtension implements
 				if (scp < parts.size()) {
 					script = parts.get(scp);
 				}
+				StringBuilder sb = new StringBuilder(cmd);
 				// concatenating script arguments
 				for (int i = scp+1; i<parts.size(); i++) {
-					 cmd = cmd + " " + parts.get(i);				
+					 sb.append(' ').append(parts.get(i));				
 				}
+				cmd = sb.toString();
 				// for list mode we dont have script name
 				if ("list".equals(mode)) {
 					 cmd = script + " " + cmd;

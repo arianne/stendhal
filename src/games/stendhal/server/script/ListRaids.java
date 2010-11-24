@@ -28,16 +28,14 @@ import org.apache.log4j.Logger;
 public class ListRaids extends ScriptImpl {
 	private static Logger logger = Logger.getLogger(ListRaids.class);
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void execute(final Player admin, final List<String> args) {
-		String textToSend = "Known RaidScripts:\n";
-		ArrayList<Class> dir;
+		StringBuilder textToSend = new StringBuilder("Known RaidScripts:\n");
 		try {
-			dir = getClasses("games.stendhal.server.script");
-			for (final Class clazz : dir) {
+			ArrayList<Class<?>> dir = getClasses("games.stendhal.server.script");
+			for (final Class<?> clazz : dir) {
 				if (CreateRaid.class.isAssignableFrom(clazz)) {
-					textToSend += clazz.getSimpleName() + "\n";
+					textToSend.append(clazz.getSimpleName()).append("\n");
 				}
 			}
 
@@ -46,13 +44,12 @@ public class ListRaids extends ScriptImpl {
 		} catch (final SecurityException e) {
 			logger.error(e, e);
 		}
-		admin.sendPrivateText(textToSend);
+		admin.sendPrivateText(textToSend.toString());
 	}
 
-	@SuppressWarnings("unchecked")
-	private static ArrayList<Class> getClasses(final String pckgname)
+	private static ArrayList<Class<?>> getClasses(final String pckgname)
 			throws ClassNotFoundException {
-		final ArrayList<Class> classes = new ArrayList<Class>();
+		final ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
 
 		// Get a File object for the package
 		File directory = null;
