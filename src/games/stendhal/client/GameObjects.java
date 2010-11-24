@@ -51,13 +51,20 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	private static GameObjects instance;
 
 	/**
+	 * Synchronisation for access to instance.
+	 */
+	private static Object sync = new Object();
+
+	/**
 	 * @param collisionMap
 	 *            =layers that make floor and building
 	 * @return singleton instance of GameOjects
 	 */
 	public static GameObjects createInstance(final StaticGameLayers collisionMap) {
-		if (instance == null) {
-			instance = new GameObjects(collisionMap);
+		synchronized(sync) {
+			if (instance == null) {
+				instance = new GameObjects(collisionMap);
+			}
 		}
 		return instance;
 	}
@@ -121,10 +128,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	public boolean collides(final IEntity entity) {
 		if (entity instanceof Player) {
 			final Player player = (Player) entity;
+
 			if (player.isGhostMode()) {
 				return false;
 			}
 		}
+
 		final Rectangle2D area = entity.getArea();
 
 		if (collisionMap.collides(area)) {
@@ -188,15 +197,15 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 
 		final IEntity entity = add(object);
 
-		if (entity != null) {
+		if (entity == null) {
+			logger.error("No entity for: " + object);
+		} else {
 			if (entity.isOnGround()) {
 				GameScreen.get().addEntity(entity);
 				MapPanelController.get().addEntity(entity);
 			}
 
 			logger.debug("added " + entity);
-		} else {
-			logger.error("No entity for: " + object);
 		}
 	}
 
@@ -212,7 +221,8 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 		final IEntity iEntity = objects.get(FQID.create(object));
 
 		if (iEntity instanceof Entity) {
-			Entity entity = (Entity) iEntity;
+			final Entity entity = (Entity) iEntity;
+
 			entity.onChangedAdded(object, changes);
 
 			EventDispatcher.dispatchEvents(changes, entity);
@@ -353,11 +363,13 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 
 		/**
 		 * Create a fully qualified ID.
+		 * marked as private because of security reasons to avoid
+		 * storing an array of externally mutable objects
 		 * 
 		 * @param path
 		 *            An identification path.
 		 */
-		public FQID(final Object[] path) {
+		private FQID(final Object[] path) { // NOPMD by martin on 24.11.10
 			this.path = path;
 		}
 
@@ -395,11 +407,13 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 
 		/**
 		 * Get the tree path of object identifiers.
+		 * marked as private because of security reasons to avoid
+		 * exposing an array of mutable objects
 		 * 
 		 * @return The identifier path.
 		 */
-		public Object[] getPath() {
-			return path;
+		private Object[] getPath() {
+			return path; // NOPMD by martin on 24.11.10
 		}
 
 		//
@@ -414,11 +428,15 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 		 */
 		@Override
 		public boolean equals(final Object obj) {
-			if (!(obj instanceof FQID)) {
-				return false;
+			boolean ret;
+
+			if (obj instanceof FQID) {
+				ret = Arrays.equals(getPath(), ((FQID) obj).getPath());
+			} else {
+				ret = false;
 			}
 
-			return Arrays.equals(getPath(), ((FQID) obj).getPath());
+			return ret;
 		}
 
 		/**
