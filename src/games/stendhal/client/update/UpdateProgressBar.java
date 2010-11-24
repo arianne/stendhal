@@ -82,7 +82,7 @@ public class UpdateProgressBar extends JFrame implements
 			final URL url = this.getClass().getClassLoader().getResource(
 					ClientGameConfiguration.get("GAME_ICON"));
 			setIconImage(new ImageIcon(url).getImage());
-		} catch (final Exception e) {
+		} catch (final RuntimeException e) {
 			// in case that resource is not available
 		}
 
