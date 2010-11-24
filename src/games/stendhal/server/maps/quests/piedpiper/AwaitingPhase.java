@@ -58,7 +58,7 @@ public class AwaitingPhase extends TPPQuest {
 	 * class for make one npc follower of other.
 	 * @author yoriy
 	 */
-	class NPCFollowing implements Observer {
+	private static final class NPCFollowing implements Observer {
 		SpeakerNPC follower;
 		SpeakerNPC leader;
 		Observer chatting;
@@ -115,15 +115,13 @@ public class AwaitingPhase extends TPPQuest {
 	 * chatting between 2 npcs
 	 * @author yoriy
 	 */
-	class NPCChatting implements Observer, TurnListener {
+	private static final class NPCChatting implements Observer, TurnListener {
 		protected SpeakerNPC mayor;
 		protected SpeakerNPC piper;
 		protected ITPPQuest phase;
 		protected int count=0;
 		protected final LinkedList<String> conversations = new LinkedList<String>(); 
 
-
-		
 		private void fillConversations() {
 			//piper
 			conversations.add("Good day, Mayor Chalmers. What did you call me here for?");

@@ -90,7 +90,7 @@ public class AdventureIsland extends StendhalRPZone {
 		return numCreatures;
 	}
 
-	private final class ChallengeMovementListener implements
+	private static final class ChallengeMovementListener implements
 													  MovementListener {
 		public Rectangle2D getArea() {
 			return new Rectangle2D.Double(0, 0, 100, 100);

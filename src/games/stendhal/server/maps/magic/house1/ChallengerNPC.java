@@ -60,7 +60,7 @@ public class ChallengerNPC implements ZoneConfigurator  {
 
 	private static final Logger logger = Logger.getLogger(ChallengerNPC.class);
 
-	private final class ChallengeChatAction implements ChatAction {
+	private static final class ChallengeChatAction implements ChatAction {
 
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			int cost = COST_FACTOR * player.getLevel();
@@ -229,7 +229,7 @@ public class ChallengerNPC implements ZoneConfigurator  {
 	}
 
 	// Not made as an entity.npc.condition. file because the zone name depends on player here. 
-	class AdventureZoneExistsCondition implements ChatCondition {
+	private static final class AdventureZoneExistsCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 			final String zoneName = player.getName() + "_adventure_island";
 			final IRPZone.ID zoneid = new IRPZone.ID(zoneName);

@@ -101,6 +101,7 @@ public class HttpClientTest {
 		client.fetchFile(file.getAbsolutePath());
 		assertTrue(file.length() > 10000);
 
-		file.delete();
+		if (!file.delete())
+			;
 	}
 }

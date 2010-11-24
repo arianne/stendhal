@@ -25,7 +25,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 public class AbstractQuestTest {
-	private final class Mockquest extends AbstractQuest {
+	private static final class Mockquest extends AbstractQuest {
 		@Override
 		public String getSlotName() {
 			return QUESTSlotSTRING;

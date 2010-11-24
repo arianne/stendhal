@@ -33,7 +33,7 @@ import java.util.Map;
  */
 public class CustomerAdvisorNPC implements ZoneConfigurator {
 
-	private final class VaultChatAction implements ChatAction {
+	private static final class VaultChatAction implements ChatAction {
 		
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			final StendhalRPZone vaultzone = (StendhalRPZone) SingletonRepository

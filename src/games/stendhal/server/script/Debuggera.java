@@ -49,7 +49,7 @@ public class Debuggera extends ScriptImpl {
 
 	// boolean debuggeraEnabled;
 
-	class DebuggeraEnablerAction implements ChatAction {
+	private static final class DebuggeraEnablerAction implements ChatAction {
 		boolean enabled;
 
 		public DebuggeraEnablerAction(final boolean enable) {
@@ -66,7 +66,7 @@ public class Debuggera extends ScriptImpl {
 		}
 	}
 
-	class QuestsAction implements ChatAction {
+	private static final class QuestsAction implements ChatAction {
 		ScriptingSandbox sandbox;
 
 		public QuestsAction(final ScriptingSandbox sandbox) {
@@ -101,7 +101,7 @@ public class Debuggera extends ScriptImpl {
 		}
 	}
 
-	class TeleportNPCAction implements ChatAction {
+	private static final class TeleportNPCAction implements ChatAction {
 		ScriptingSandbox sandbox;
 
 		public TeleportNPCAction(final ScriptingSandbox sandbox) {

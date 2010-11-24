@@ -72,7 +72,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		npc.setDescription("You see the stinky orc Tor'Koom. His stomach is making loud noises!");
 	}
 	
-	class SheepBuyerBehaviour extends BuyerBehaviour {
+	private static final class SheepBuyerBehaviour extends BuyerBehaviour {
 		SheepBuyerBehaviour(final Map<String, Integer> items) {
 			super(items);
 		}

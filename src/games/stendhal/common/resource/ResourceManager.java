@@ -53,7 +53,7 @@ public class ResourceManager extends ResourceLocator
 		boolean     isLocatable  (URI uri);
 	}
 
-	private class CPSchemeLocator implements Locator, SchemeLocator
+	private static final class CPSchemeLocator implements Locator, SchemeLocator
 	{
 		final ArrayList<String> mPaths = new ArrayList<String>();
 

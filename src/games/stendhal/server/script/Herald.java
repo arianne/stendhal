@@ -72,7 +72,8 @@ public class Herald extends ScriptImpl {
     /**
      * class for herald announcements. 
      */
-    class HeraldNews {
+    private final static class HeraldNews {
+
     private String news;
     private int interval;
     private int limit;
@@ -327,7 +328,7 @@ public class Herald extends ScriptImpl {
 			 */
 			class RemoveNewsAction implements ChatAction {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc){
-					String s= new String(sentence.getOriginalText());					
+					String s = sentence.getOriginalText();					
 					final String args = s.trim();
 					final String[] starr = args.split(" ");	
 					if(starr.length<2){

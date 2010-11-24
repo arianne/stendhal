@@ -140,7 +140,7 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		assertEquals("setRejectMessage", player.events().get(0).get("text"));
 	}
 
-	class MockAccessCheckingPortal extends AccessCheckingPortal {
+	private static final class MockAccessCheckingPortal extends AccessCheckingPortal {
 
 		public MockAccessCheckingPortal() {
 			super("rejected");

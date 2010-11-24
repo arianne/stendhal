@@ -27,7 +27,7 @@ public class Maria extends ScriptImpl {
 
 	private static Logger logger = Logger.getLogger(Maria.class);
 
-	class MargaretCouponAction implements ChatAction {
+	private static final class MargaretCouponAction implements ChatAction {
 
 		private final ScriptingSandbox sandbox;
 

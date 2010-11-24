@@ -32,7 +32,7 @@ import utilities.SpeakerNPCTestHelper;
 
 public class NotConditionTest {
 
-	private final class AlwaysFalseCondition implements ChatCondition {
+	private static final class AlwaysFalseCondition implements ChatCondition {
 		public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 			return false;
 		}
