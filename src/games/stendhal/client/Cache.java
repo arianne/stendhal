@@ -100,6 +100,8 @@ public class Cache {
 			cleanCacheOnUpdate();
 			cacheManager.set(VERSION_KEY, stendhal.VERSION);
 		} catch (final IOException e) {
+			logger.error("cannot create StendhalClient - IO exception", e);
+		} catch (final RuntimeException e) {
 			logger.error("cannot create StendhalClient", e);
 		}
 	}
