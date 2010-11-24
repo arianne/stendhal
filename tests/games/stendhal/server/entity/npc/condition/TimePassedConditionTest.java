@@ -31,7 +31,7 @@ import utilities.SpeakerNPCTestHelper;
 public class TimePassedConditionTest {
 	
 	private static final String QUEST_SLOT = "questname";
-	private final int delay = 10;
+	private static final int delay = 10;
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {

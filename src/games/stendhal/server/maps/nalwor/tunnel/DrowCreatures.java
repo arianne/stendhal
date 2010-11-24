@@ -34,7 +34,7 @@ import org.apache.log4j.Logger;
  * Then it should give an amulet that is bound to the player.
  */
 public class DrowCreatures implements ZoneConfigurator {
-	private final String QUEST_SLOT="kill_dark_elves";
+	private static final String QUEST_SLOT="kill_dark_elves";
 	// at the beginning places there must be creatures from DarkElvesCreatures.class
 	private final List<String> creatures = 
 		Arrays.asList("dark elf captain",

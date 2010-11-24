@@ -42,7 +42,7 @@ import java.util.Map;
  * @see games.stendhal.server.maps.quests.MeetHayunn
  */
 public class RetiredAdventurerNPC implements ZoneConfigurator {
-	private final String QUEST_SLOT="meet_hayunn";
+	private static final String QUEST_SLOT="meet_hayunn";
 	
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {

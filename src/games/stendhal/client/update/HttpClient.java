@@ -28,7 +28,7 @@ public class HttpClient {
 	private ProgressListener progressListener;
 
 	// 1.5 seconds
-	private final int timeout = 1500; 
+	private final static int timeout = 1500; 
 
 	private boolean tryVeryHard;
 

@@ -56,7 +56,6 @@ public class CommandCenter {
 		if (actionsMap == null) {
 			actionsMap = new ConcurrentHashMap<String, ActionListener>();
 			registerActions();
-
 		}
 		return actionsMap;
 	}

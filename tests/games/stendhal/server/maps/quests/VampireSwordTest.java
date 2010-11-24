@@ -40,7 +40,7 @@ import utilities.QuestHelper;
 
 public class VampireSwordTest {
 	private static String questSlot;
-	private final String sickySlotName = "sicky_fill_goblet";
+	private static final String sickySlotName = "sicky_fill_goblet";
 	private static VampireSword vs;
 		
 	private static final String DWARF_NPC = "Hogart";
