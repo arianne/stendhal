@@ -9,41 +9,44 @@ import java.util.Properties;
  * 
  * @author hendrik
  */
-public class ClientGameConfiguration {
+public final class ClientGameConfiguration {
 
 	private static ClientGameConfiguration instance;
 
-	private Properties gameConfig = getGameProperties();
+	private final Properties gameConfig = getGameProperties();
 
 	private ClientGameConfiguration() {
-		instance = this;
 	}
 
 	private Properties getGameProperties() {
+		Properties ret = null;
+
 		try {
-			InputStream is =  ClientGameConfiguration.class
-					.getResourceAsStream("game.properties");
+			InputStream is =  ClientGameConfiguration.class.getResourceAsStream("game.properties");
 			if (is == null) {
-				is = ClientGameConfiguration.class
-				.getResourceAsStream("game-default.properties");
+				is = ClientGameConfiguration.class.getResourceAsStream("game-default.properties");
 			}
 			if (is == null) {
 				throw new FileNotFoundException("Cannot read either game.properties or game-default.properties from classpath.");
 			}
-			
-			Properties config = new Properties();
+
+			final Properties config = new Properties();
 			config.load(is);
 			is.close();
-			return config;
+
+			ret = config;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+
+		return ret;
 	}
 
 	private static void init() {
-		if (instance == null) {
-			instance = new ClientGameConfiguration();
+		synchronized(ClientGameConfiguration.class) {
+			if (instance == null) {
+				instance = new ClientGameConfiguration();
+			}
 		}
 	}
 

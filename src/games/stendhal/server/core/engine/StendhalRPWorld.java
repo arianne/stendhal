@@ -35,37 +35,36 @@ public class StendhalRPWorld extends RPWorld {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPWorld.class);
 
-	static {
-		MAPS_FOLDER = "data/maps/";
+	public final static String MAPS_FOLDER;
 
+	static {
 		if (StendhalRPWorld.class.getClassLoader().getResource(
-				"tiled/tileset/README") != null) {
+				"tiled/tileset/README") == null) {
+			MAPS_FOLDER = "data/maps/";
+		} else {
 			logger.warn("Developing mode, loading maps from tiled/ instead of data/maps");
 			MAPS_FOLDER = "tiled/";
 		}
 	}
-
-	public static String MAPS_FOLDER;
 
 	/**
 	 * A common place for milliseconds per turn.
 	 */
 	public static final int MILLISECONDS_PER_TURN = 300;
 	
-	RPClassGenerator genRPClass = new RPClassGenerator();
+	private final RPClassGenerator genRPClass = new RPClassGenerator();
 
 	/** The Singleton instance. */
 	protected static StendhalRPWorld instance;
 
 	// /** The pathfinder thread. */
 	// private PathfinderThread pathfinderThread;
-	
+
 	private final Map<String, Set<StendhalRPZone>> regionMap = new HashMap<String, Set<StendhalRPZone>>();
 
-	
+
 	protected StendhalRPWorld() {
 		super();
-		instance = this;
 	}
 
 	@Override
@@ -86,12 +85,14 @@ public class StendhalRPWorld extends RPWorld {
 			logger.error(e, e);
 		}
 	}
-	
-	
+
+
 	public static StendhalRPWorld get() {
-		if (instance == null) {
-			instance = new StendhalRPWorld();
-			instance.initialize();
+		synchronized(StendhalRPWorld.class) {
+			if (instance == null) {
+				instance = new StendhalRPWorld();
+				instance.initialize();
+			}
 		}
 
 		return instance;
@@ -321,7 +322,7 @@ public class StendhalRPWorld extends RPWorld {
 	 * @param exterior if true only exterior zones stay in the set
 	 */
 	private void filterOutInteriorOrExteriorZones(final Set<StendhalRPZone> zonesInRegion, final Boolean exterior) {
-		Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
+		final Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
 		for (StendhalRPZone zone : zonesInRegion) {
 			if(exterior) {
 				if(zone.isInterior()) {
@@ -343,7 +344,7 @@ public class StendhalRPWorld extends RPWorld {
 	 * @param aboveGround
 	 */
 	private void filterOutAboveOrBelowGround(final Set<StendhalRPZone> zonesInRegion, final Boolean aboveGround) {
-		Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
+		final Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
 		for (StendhalRPZone zone : zonesInRegion) {
 			if(aboveGround.booleanValue()) {
 				if(zone.getLevel() < 0) {
@@ -359,7 +360,7 @@ public class StendhalRPWorld extends RPWorld {
 	}
 
 	private void filterByAccessibility(final Set<StendhalRPZone> zonesInRegion, final Boolean accessible) {
-		Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
+		final Set<StendhalRPZone> removals = new HashSet<StendhalRPZone>();
 		for (StendhalRPZone zone : zonesInRegion) {
 			boolean addToRemovals = false;
 			if(accessible.booleanValue()) {

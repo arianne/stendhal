@@ -29,7 +29,6 @@ public class GuildPermissionList {
     public static final String GUILD_ZONE = GuildList.GUILD_ZONE;
     
     private static GuildPermissionList instance;
-    private static final Object sync = new Object();
     
     private StendhalRPZone zone;
     private List<GuildPermission> perms;
@@ -40,7 +39,7 @@ public class GuildPermissionList {
     }
     
     public static GuildPermissionList get() {
-    	synchronized(sync) {
+    	synchronized(GuildPermissionList.class) {
 	        if (instance == null) {
 	            instance = new GuildPermissionList();
 	        }

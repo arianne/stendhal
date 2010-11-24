@@ -40,9 +40,8 @@ import org.apache.log4j.Logger;
 public class AchievementNotifier {
 	
 	private static final Logger logger = Logger.getLogger(AchievementNotifier.class);
-	
+
 	private static AchievementNotifier instance;
-	private static final Object sync = new Object();
 	
 	private Map<Category, List<Achievement>> achievements;
 	
@@ -59,7 +58,7 @@ public class AchievementNotifier {
 	 * @return the AchievementNotifier
 	 */
 	public static AchievementNotifier get() {
-    	synchronized(sync) {
+    	synchronized(AchievementNotifier.class) {
 			if(instance == null) {
 				instance = new AchievementNotifier();
 			}

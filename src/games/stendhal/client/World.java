@@ -14,26 +14,26 @@ package games.stendhal.client;
 
 public final class World {
 
-	private static World instance;
-	
+	private static World instance = new World();
+
+	private World() {}
+
 	public static World get() {
-		if(instance == null) {
-			instance = new World();
-		}
 		return instance;
 	}
 	
-	private PlayerList playerList = new PlayerList();
+	private final PlayerList playerList = new PlayerList();
 
 	public PlayerList getPlayerList() {
 		return playerList;
 	}
 	
-	public void removePlayerLoggingOut(String player) {
+	public void removePlayerLoggingOut(final String player) {
 		playerList.removePlayer(player);
 	}
 	
-	public void addPlayerLoggingOn(String player) {
+	public void addPlayerLoggingOn(final String player) {
 		playerList.addPlayer(player);
 	}
+
 }

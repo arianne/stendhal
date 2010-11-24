@@ -51,17 +51,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	private static GameObjects instance;
 
 	/**
-	 * Synchronisation for access to instance.
-	 */
-	private static Object sync = new Object();
-
-	/**
 	 * @param collisionMap
 	 *            =layers that make floor and building
 	 * @return singleton instance of GameOjects
 	 */
 	public static GameObjects createInstance(final StaticGameLayers collisionMap) {
-		synchronized(sync) {
+		synchronized(GameObjects.class) {
 			if (instance == null) {
 				instance = new GameObjects(collisionMap);
 			}
