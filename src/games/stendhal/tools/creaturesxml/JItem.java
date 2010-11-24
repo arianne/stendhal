@@ -50,6 +50,7 @@ import org.xml.sax.SAXException;
  *
  * @author miguel
  */
+@SuppressWarnings("serial")
 public class JItem extends javax.swing.JFrame {
 	boolean justUpdateItem;
 

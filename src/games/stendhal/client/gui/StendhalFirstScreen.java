@@ -43,6 +43,7 @@ import javax.swing.JOptionPane;
  * Summary description for LoginGUI.
  * 
  */
+@SuppressWarnings("serial")
 public class StendhalFirstScreen extends JFrame {
 	private static final long serialVersionUID = -7825572598938892220L;
 	private static final int BUTTON_WIDTH = 160;

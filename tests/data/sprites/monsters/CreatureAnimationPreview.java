@@ -38,6 +38,7 @@ public class CreatureAnimationPreview {
 	 * 
 	 * @return javax.swing.JPanel
 	 */
+	@SuppressWarnings("serial")
 	private JPanel getJPanel() {
 		if (jPanel == null) {
 			jPanel = new JPanel();

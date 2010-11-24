@@ -74,7 +74,7 @@ public class CheckSounds {
 
 		// read all load-permitted sounds listed in properties
 		// from soundfile into cache map
-		for (final Entry<String, String> entry : ((Map<String, String>) (Map) prop).entrySet()) {
+		for (final Entry<String, String> entry : ((Map<String, String>) (Map<?,?>) prop).entrySet()) {
 			if (isValidEntry(entry.getKey(), entry.getValue())) {
 				final String name = entry.getKey().substring(4);
 				String filename = entry.getValue();

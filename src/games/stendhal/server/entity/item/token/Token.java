@@ -25,7 +25,7 @@ import java.util.Map;
  */
 public class Token extends Item {
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private TokenMoveListener tokenMoveListener;
 
 	/**

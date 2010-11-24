@@ -254,6 +254,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 		}
 
 		@Override
+		@SuppressWarnings("serial")
 		protected void onMouseRightClick(Point point) {
 			if (view != null) {
 				if (popupMenu == null) {

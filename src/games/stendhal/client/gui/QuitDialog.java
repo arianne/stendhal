@@ -27,6 +27,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
+@SuppressWarnings("serial")
 public class QuitDialog {
 	private static final int PADDING = 12;
 	InternalManagedWindow quitDialog;

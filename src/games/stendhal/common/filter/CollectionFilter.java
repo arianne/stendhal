@@ -118,14 +118,13 @@ public class CollectionFilter<T> {
 	 * @param object
 	 * @return a new Instance of the same type as object passed
 	 */
-	@SuppressWarnings("unchecked")
 	public Object createObjectSameClass(final Object object) {
 
-		final Class[] NO_ARGS = new Class[0];
+		final Class<?>[] NO_ARGS = new Class[0];
 		Object sameClassObject = null;
 		try {
 			if (object != null) {
-				final Constructor constructor = object.getClass().getConstructor(NO_ARGS);
+				final Constructor<?> constructor = object.getClass().getConstructor(NO_ARGS);
 				sameClassObject = constructor.newInstance();
 			}
 		} catch (final IllegalAccessException e) {
