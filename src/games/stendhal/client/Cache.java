@@ -99,8 +99,7 @@ public class Cache {
 			initCacheManager();
 			cleanCacheOnUpdate();
 			cacheManager.set(VERSION_KEY, stendhal.VERSION);
-
-		} catch (final Exception e) {
+		} catch (final IOException e) {
 			logger.error("cannot create StendhalClient", e);
 		}
 	}
@@ -128,15 +127,17 @@ public class Cache {
 	 * @throws IOException
 	 *             in case the cache folder is not readable
 	 */
-	private void initCacheManager() throws IOException {
+	private boolean initCacheManager() throws IOException {
 		final String cacheFile = System.getProperty("user.home")
 				+ stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
 
 		// create a new cache file if doesn't exist already
-		new File(cacheFile).createNewFile();
+		boolean ret = new File(cacheFile).createNewFile();
 
 		cacheManager = new Configuration(new ConfigurationParams(
 				true, stendhal.STENDHAL_FOLDER, "cache/stendhal.cache"));
+
+		return ret;
 	}
 
 	/**
@@ -151,7 +152,10 @@ public class Cache {
 		if (cacheDir.isDirectory()) {
 			final File[] files = cacheDir.listFiles();
 			for (final File file : files) {
-				file.delete();
+				if (!file.delete()) {
+					logger.debug("File was not deleted while cleaning cache:" +
+								 file.getAbsolutePath());
+				}
 			}
 		}
 	}
