@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class StendhalMapStructure {
 	/** TMX Filename that contains this map. */
-	String filename;
+	String filename; //TODO use filename
 
 	/** Width of the map. */
 	int width;

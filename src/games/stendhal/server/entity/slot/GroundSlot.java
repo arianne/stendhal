@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class GroundSlot extends EntitySlot {
 	private StendhalRPZone zone;
-	private int itemid;
+//	private int itemid;
 	private Item item;
 	private int x;
 	private int y;
