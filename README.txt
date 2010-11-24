@@ -60,15 +60,7 @@ Help from the client main menu too.
 How to create a server
 ----------------------
 
-You need to create the server.ini file by running 
-
-  java -cp marauroa.jar:stendhal-server-X.XX.jar games.stendhal.server.core.engine.GenerateINI
-
-(Please use ; instead of : on Microsoft Windows).
-  
-It will create server.ini file that will work correctly with Marauroa 3.0 and above  
-
-For more details please see http://stendhalgame.org/wiki/Host_a_Stendhal_Server
+Please see http://stendhalgame.org/wiki/Host_a_Stendhal_Server
 
 
 How to compile Stendhal
@@ -89,7 +81,7 @@ Legal
 -----
 
 Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005-2008
-arianne_rpg at users dot sourceforge dot net
+arianne_rpg at users dot sourceforge dot net and others
 
 Stendhal(c) is copyright of the Arianne Project, 2006-2010
 arianne-general at lists dot sourceforge dot net
