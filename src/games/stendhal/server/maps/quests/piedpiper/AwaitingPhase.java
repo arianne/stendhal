@@ -33,18 +33,18 @@ import java.util.Observer;
 import marauroa.common.Pair;
 
 public class AwaitingPhase extends TPPQuest {
-	private SpeakerNPC piedpiper = new SpeakerNPC("Pied Piper");	
-	private int minPhaseChangeTime;
+	private final SpeakerNPC piedpiper = new SpeakerNPC("Pied Piper");	
+	private final int minPhaseChangeTime;
 	private int maxPhaseChangeTime;
-	private LinkedList<Pair<StendhalRPZone, LinkedList<Node>>> fullpath = 
-		new LinkedList<Pair<StendhalRPZone, LinkedList<Node>>>();
+	private List<Pair<StendhalRPZone, List<Node>>> fullpath = 
+		new LinkedList<Pair<StendhalRPZone, List<Node>>>();
 
 	/**
 	 * constructor
 	 * @param timings 
 	 * - a pair of time parameters for phase timeout
 	 */
-	public AwaitingPhase(Map<String, Integer> timings) {
+	public AwaitingPhase(final Map<String, Integer> timings) {
 		super(timings);
 		minPhaseChangeTime = timings.get(AWAITING_TIME_MIN);
 		maxPhaseChangeTime = timings.get(AWAITING_TIME_MAX);
@@ -59,16 +59,16 @@ public class AwaitingPhase extends TPPQuest {
 	 * @author yoriy
 	 */
 	private static final class NPCFollowing implements Observer {
-		SpeakerNPC follower;
-		SpeakerNPC leader;
-		Observer chatting;
+		final private SpeakerNPC follower;
+		final private SpeakerNPC leader;
+		final private Observer chatting;
 		
 		/**
 		 * constructor
 		 * @param leader - NPC for follow him.
 		 * @param follower - follower of leader.
 		 */
-		public NPCFollowing(SpeakerNPC leader, SpeakerNPC follower, Observer chatting) {
+		public NPCFollowing(final SpeakerNPC leader, final SpeakerNPC follower, final Observer chatting) {
 			this.leader=leader;
 			this.follower=follower;
 			this.chatting=chatting;
@@ -86,19 +86,18 @@ public class AwaitingPhase extends TPPQuest {
 		 * @return - a part of path
 		 */
 		public FixedPath getOneThirdOfPath(FixedPath path) {
-			LinkedList<Node> templ = new LinkedList<Node>();
+			final LinkedList<Node> templ = new LinkedList<Node>();
 			for(int i=0; i<path.getNodeList().size()/2; i++) {
 				templ.add(path.getNodeList().get(i));
-			};
-			FixedPath temp= new FixedPath(templ, false);
-			return(temp);
+			}
+			return new FixedPath(templ, false);
 		}
 		
 		/**
 		 * move follower close to leader.
 		 */
 		private void moveToProperDistance() {
-			double dist=leader.squaredDistance(follower); 
+			final double dist=leader.squaredDistance(follower); 
 			if (dist>6) {			
 				follower.setMovement(leader, 0, 5, dist*1.5);
 				follower.setPath(getOneThirdOfPath(follower.getPath()));
@@ -116,11 +115,11 @@ public class AwaitingPhase extends TPPQuest {
 	 * @author yoriy
 	 */
 	private static final class NPCChatting implements Observer, TurnListener {
-		protected SpeakerNPC mayor;
-		protected SpeakerNPC piper;
-		protected ITPPQuest phase;
-		protected int count=0;
-		protected final LinkedList<String> conversations = new LinkedList<String>(); 
+		private final SpeakerNPC mayor;
+		private final SpeakerNPC piper;
+		private ITPPQuest phase;
+		private int count=0;
+		private final List<String> conversations = new LinkedList<String>(); 
 
 		private void fillConversations() {
 			//piper
@@ -168,7 +167,7 @@ public class AwaitingPhase extends TPPQuest {
 						" but I see that our city's savoiur is here. I have to speak with him quickly."+
 						" Please speak with me again after we finish talking.");
 				mayor.setCurrentState(ConversationStates.IDLE);
-			};
+			}
 			mayor.setCurrentState(ConversationStates.ATTENDING);
 			mayor.setAttending(piper);
 			mayor.stop();
@@ -191,7 +190,7 @@ public class AwaitingPhase extends TPPQuest {
 				piper.say(conversations.get(count));
 			} else {
 				mayor.say(conversations.get(count));
-			};
+			}
 			count++;
 			if(count==conversations.size()) {
 				TurnNotifier.get().dontNotify(this);
@@ -201,7 +200,7 @@ public class AwaitingPhase extends TPPQuest {
 						ThePiedPiper.getNextPhaseClass(ThePiedPiper.getPhase()), 
 						Arrays.asList("normal switching"));
 				return;
-			};
+			}
 			TurnNotifier.get().dontNotify(this);
 			TurnNotifier.get().notifyInSeconds(8, this);
 		}
@@ -212,8 +211,8 @@ public class AwaitingPhase extends TPPQuest {
 	 */
 	private void leadNPC() {
 		final StendhalRPZone zone = fullpath.get(0).first();
-		int x=fullpath.get(0).second().get(0).getX();
-		int y=fullpath.get(0).second().get(0).getY();
+		final int x=fullpath.get(0).second().get(0).getX();
+		final int y=fullpath.get(0).second().get(0).getY();
 		piedpiper.setPosition(x, y);
 		piedpiper.pathnotifier.setObserver(
 				new MultiZonesFixedPath(piedpiper, fullpath, 

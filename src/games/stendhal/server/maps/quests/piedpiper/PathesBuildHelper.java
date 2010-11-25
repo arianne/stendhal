@@ -15,12 +15,15 @@ package games.stendhal.server.maps.quests.piedpiper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.Node;
+
 import java.util.LinkedList;
+import java.util.List;
+
 import marauroa.common.Pair;
 
 public class PathesBuildHelper {
 	
-	public static StendhalRPZone getZone(String name) {
+	public static StendhalRPZone getZone(final String name) {
 		return SingletonRepository.getRPWorld().getZone(name);
 	}
 
@@ -28,11 +31,11 @@ public class PathesBuildHelper {
 	 * route for pied piper incoming
 	 * @return - incoming path
 	 */
-	public static LinkedList<Pair<StendhalRPZone, LinkedList<Node>>> getAwaitingPhasePath() {
-		LinkedList<Pair<StendhalRPZone, LinkedList<Node>>> fullPath = 
-			new LinkedList<Pair<StendhalRPZone, LinkedList<Node>>>();
+	public static List<Pair<StendhalRPZone, List<Node>>> getAwaitingPhasePath() {
+		final List<Pair<StendhalRPZone, List<Node>>> fullPath = 
+			new LinkedList<Pair<StendhalRPZone, List<Node>>>();
 		
-		LinkedList<Node> localroute = new LinkedList<Node>();
+		final List<Node> localroute = new LinkedList<Node>();
 		
 		// from house
 		localroute.add(new Node(74,17));
@@ -54,7 +57,7 @@ public class PathesBuildHelper {
 		localroute.add(new Node(115,52));
 		localroute.add(new Node(115,43));
 		localroute.add(new Node(127,43));
-		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
 				getZone("0_ados_wall_n2"), new LinkedList<Node>(localroute)));
 		
 		// market
@@ -66,7 +69,7 @@ public class PathesBuildHelper {
 		localroute.add(new Node(41,107));
 		localroute.add(new Node(35,107));
 		localroute.add(new Node(35,127));
-		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
 				getZone("0_ados_city_n2"), new LinkedList<Node>(localroute)));
 		
 		// city north part
@@ -108,7 +111,7 @@ public class PathesBuildHelper {
 		localroute.add(new Node(49,125));	
 		localroute.add(new Node(52,125));	
 		localroute.add(new Node(52,127));
-		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
 				getZone("0_ados_city_n"), new LinkedList<Node>(localroute)));
 
 		// city central
@@ -125,7 +128,7 @@ public class PathesBuildHelper {
 		localroute.add(new Node(55,97));	
 		localroute.add(new Node(42,97));	
 		localroute.add(new Node(42,94));	
-		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
 				getZone("0_ados_city"), new LinkedList<Node>(localroute)));
 		
 		// town hall 
@@ -135,7 +138,7 @@ public class PathesBuildHelper {
 		localroute.add(new Node(9,8));
 		localroute.add(new Node(9,4));
 		localroute.add(new Node(5,4));
-		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
 				getZone("int_ados_town_hall"), new LinkedList<Node>(localroute)));
 		
 		// 1 floor
@@ -147,7 +150,7 @@ public class PathesBuildHelper {
 		localroute.add(new Node(6,15));
 		localroute.add(new Node(37,15));
 		localroute.add(new Node(37,3));
-		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
 				getZone("int_ados_town_hall_1"), new LinkedList<Node>(localroute)));
 		
 		// 2 floor
@@ -157,7 +160,7 @@ public class PathesBuildHelper {
 		localroute.add(new Node(26,14));
 		//localroute.add(new Node(26,14)); // very left point
 		//localroute.add(new Node(32,14)); // very right point
-		fullPath.add(new Pair<StendhalRPZone, LinkedList<Node>>(
+		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
 				getZone("int_ados_town_hall_2"), new LinkedList<Node>(localroute)));	
 		
 		return fullPath;		

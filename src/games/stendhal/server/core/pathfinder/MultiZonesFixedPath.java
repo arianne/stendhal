@@ -16,7 +16,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.GuidedEntity;
 import games.stendhal.server.entity.Registrator;
 
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -28,10 +28,10 @@ import marauroa.common.Pair;
  */
 public class MultiZonesFixedPath implements Observer {
 		private final GuidedEntity ent;
-		private final LinkedList<Pair<StendhalRPZone, LinkedList<Node>>> route;
+		private final List<Pair<StendhalRPZone, List<Node>>> route;
 		private Integer count;
 		private StendhalRPZone zone;
-		private Registrator finishnotifier = new Registrator();
+		private final Registrator finishnotifier = new Registrator();
 	
 	/**
 	 * constructor
@@ -39,7 +39,7 @@ public class MultiZonesFixedPath implements Observer {
 	 */
 	public MultiZonesFixedPath(
 			final GuidedEntity entity, 
-			final LinkedList<Pair<StendhalRPZone, LinkedList<Node>>> rt, 
+			final List<Pair<StendhalRPZone, List<Node>>> rt, 
 			final Observer o) {
 		ent=entity;
 		count=0;
