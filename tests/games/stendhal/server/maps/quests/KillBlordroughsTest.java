@@ -98,7 +98,7 @@ public class KillBlordroughsTest {
 			player.setHP(10000);
 			if(player.isPoisoned()) {
 				player.healPoison();
-			};
+			}
 			player.teleport(blr.getZone(), blr.getX(), blr.getY(), null, player);
 			player.setTarget(blr);
 			MockStendlRPWorld.get().nextTurn();

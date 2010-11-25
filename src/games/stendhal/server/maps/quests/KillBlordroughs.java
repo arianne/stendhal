@@ -169,7 +169,7 @@ import org.apache.log4j.Logger;
 				recsolo = 0;
 			} else {
 				recsolo = Integer.parseInt(temp);
-			};
+			}
 			temp = player.getQuest(QUEST_SLOT, 2+i*2);
 			if (temp == null) {
 				recshared = 0;
@@ -182,14 +182,14 @@ import org.apache.log4j.Logger;
 				solo = 0;
 			} else {
 				solo = Integer.parseInt(temp);
-			};
+			}
 			
 			temp = player.getKeyedSlot("!kills", "shared."+tempName);
 			if (temp==null) {
 				shared = 0;
 			} else {
 				shared = Integer.parseInt(temp);
-			};
+			}
 
 			count = count + solo - recsolo + shared - recshared;
 		}
@@ -213,14 +213,14 @@ import org.apache.log4j.Logger;
 				solo = 0;
 			} else {
 				solo = Integer.parseInt(temp);
-			};
+			}
 			
 			temp = player.getKeyedSlot("!kills", "shared."+sortedcreatures.get(i).getName());
 			if (temp==null) {
 				shared = 0;
 			} else {
 				shared = Integer.parseInt(temp);
-			};
+			}
 				
 			sb.append(";"+solo);
 			sb.append(";"+shared);			
@@ -282,8 +282,7 @@ import org.apache.log4j.Logger;
 				} else {
 					npc.say(getNPCTextReply(player, currtime));
 				}
-				
-			};
+			}
 		}
 	}
 	

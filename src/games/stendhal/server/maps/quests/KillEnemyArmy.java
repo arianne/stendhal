@@ -290,7 +290,7 @@ import org.apache.log4j.Logger;
 				recsolo = 0;
 			} else {
 				recsolo = Integer.parseInt(temp);
-			};
+			}
 			temp = monsters.get(i*5+4);
 			if (temp == null) {
 				recshared = 0;
@@ -303,14 +303,14 @@ import org.apache.log4j.Logger;
 				solo = 0;
 			} else {
 				solo = Integer.parseInt(temp);
-			};
+			}
 
 			temp = player.getKeyedSlot("!kills", "shared."+tempName);
 			if (temp==null) {
 				shared = 0;
 			} else {
 				shared = Integer.parseInt(temp);
-			};
+			}
 
 			count = count + solo - recsolo + shared - recshared;
 		}
@@ -366,7 +366,7 @@ import org.apache.log4j.Logger;
 			player.equipOrPutOnGround(money);
 			player.addKarma(karmabonus);
 			player.addXP(100000);			
-		};
+		}
 	}
 
 
@@ -474,7 +474,7 @@ import org.apache.log4j.Logger;
 		    		  null,
 		    		  new ExplainAction());
 
-		};
+		}
 	}
 
 	/**
@@ -528,7 +528,7 @@ import org.apache.log4j.Logger;
 			String kn = Integer.valueOf(killedNumber).toString();
 			if(killedNumber == 0) {
 				kn="no";
-			};
+			}
 			history.add("Currently I have killed "+
 					kn+" "+
 					Grammar.plnoun(killedNumber, givenEnemies));
@@ -537,8 +537,7 @@ import org.apache.log4j.Logger;
 			} else {
 				history.add((givenNumber-killedNumber)+" "+
 						Grammar.plnoun(givenNumber-killedNumber, givenEnemies)+" left to kill.");				
-			};
-
+			}
 		}
 		
 		if(player.getQuest(QUEST_SLOT, 0).equals("done")) {

@@ -182,7 +182,7 @@ public class KillDarkElves extends AbstractQuest {
 		for(int i=0;i<creatures.size();i++) {
 			sb.append(";");
 			sb.append(creatures.get(i));
-		};
+		}
 		final String completedQuestState = sb.toString();
 		
 		// the player returns to Maerion after having started the quest.
@@ -274,11 +274,11 @@ public class KillDarkElves extends AbstractQuest {
 		if ("rejected".equals(questState)) {
 			history.add("I do not want to help Maerion.");
 			return history;
-		};
+		}
 		if ("done".equals(questState)) {
 			history.add("I completed Maerion's quest and got an emerald ring of life!");
 			return history;
-		};	
+		}
 
 		// we can be here only if player accepted this quest.
 		history.add("I agreed to help Maerion.");
@@ -293,19 +293,19 @@ public class KillDarkElves extends AbstractQuest {
 				ak = ak & sp;
 				if(!sp) {
 					history.add("I have not yet killed the "+creatures.get(i)+" in the secret room.");
-				};
+				}
 			}		
 			for(int i = 0; i<creatures.size();i++) {
 				final boolean sp = creatures.get(i).equals(player.getQuest(QUEST_SLOT, i+1));
 				if(sp) {
 					history.add("I have killed the "+creatures.get(i)+" in the secret room.");
-				};		
+				}		
 			}
 
 		// all killed
 		if (ak) {
 			history.add("I have killed all required creatures.");
-		};
+		}
 		
 		}
 		
@@ -318,30 +318,30 @@ public class KillDarkElves extends AbstractQuest {
 			// first add killed creatures
 			if (osp1) {
 				history.add("I have killed the dark elf captain in the secret room.");				
-			};			
+			}		
 			if (osp2) {
 				history.add("I have killed the dark elf archer in the secret room.");				
-			};			
+			}
 			if (osp3) {
 				history.add("I have killed the thing.");				
-			};
+			}
 			
 			// now add non-killed
 			if (!osp1) {
 				history.add("I have not yet killed the dark elf captain in the secret room.");				
-			};			
+			}	
 			if (!osp2) {
 				history.add("I have not yet killed the dark elf archer in the secret room.");				
-			};			
+			}		
 			if (!osp3) {
 				history.add("I have not yet killed the thing.");				
-			};
+			}
 			
 			// all killed
 			if (osp1 && osp2 && osp3) {
 				history.add("I have killed all required creatures.");
 				ak=true;
-			};		
+			}	
 		}
 		
 		// for both old- and new-style quests

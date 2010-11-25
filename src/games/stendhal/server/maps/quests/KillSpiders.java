@@ -212,11 +212,11 @@ public class KillSpiders extends AbstractQuest {
 		if ("rejected".equals(questState)) {
 			history.add("I do not agree to help Morgrin.");
 			return history;
-		};
+		}
 		if ("killed".equals(questState)) {
 			history.add("I have killed all spiders in magic school basement and got a mythical egg.");
 			return history;
-		};
+		}
 
 		// we can be here only if player accepted this quest.
 		history.add("I do agree to help Morgrin.");
@@ -227,16 +227,16 @@ public class KillSpiders extends AbstractQuest {
 		final boolean sp = "start".equals(player.getQuest(QUEST_SLOT, 0));
 		if (sp1) {
 			history.add("I have killed a spider in the basement.");
-		};
+		}
 		if (sp2) {
 			history.add("I have killed a poisonous spider in the basement.");
-		};					
+		}			
 		if (sp3) {
 			history.add("I have killed a giant spider in the basement.");
-		};	
+		}
 		if (sp1 && sp2 && sp3) {
 			history.add("I have killed all 3 spiders in the basement. Now I go back to Morgrin to fetch my reward.");
-		};
+		}
 		
 		// here is support for old-style quest
 		if (sp) {
@@ -245,16 +245,16 @@ public class KillSpiders extends AbstractQuest {
 			final boolean osp3 = player.hasKilled("giant spider");
 			if (osp1) {
 				history.add("I have killed a spider in the basement.");				
-			};
+			}
 			if (osp2) {
 				history.add("I have killed a poisonous spider in the basement.");				
-			};
+			}
 			if (osp3) {
 				history.add("I have killed a giant spider in the basement.");				
-			};
+			}
 			if (osp1 && osp2 && osp3) {
 				history.add("I have killed all 3 spiders in the basement. Now I go back to Morgrin to fetch my reward.");				
-			};		
+			}
 		}
 		
 		return history;		

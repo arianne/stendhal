@@ -137,7 +137,7 @@ import org.apache.log4j.Logger;
     	int pos=getPhaseIndex(ph);
     	if(pos!=(getPhases().size()-1)) {
 		   return (getPhases().get(pos+1).getPhase());
-    	};
+    	}
     	return(getDefaultPhaseClass().getPhase());
     }
     
@@ -208,7 +208,7 @@ import org.apache.log4j.Logger;
 		    	if(quantity==0) {
 		    		mayor.say("You didn't kill any rats which invaded the city, so you don't deserve a reward.");
 		    		return;
-		    	};
+		    	}
 		    	player.addKarma(5);
 		    	final StackableItem moneys = (StackableItem) SingletonRepository.getEntityManager()
 		    				.getItem("money");
@@ -229,7 +229,7 @@ import org.apache.log4j.Logger;
 						  "To get a #reward you have to kill at least "+
 						  "one rat at that time.");
 				return;
-			};
+			}
 			final StringBuilder sb = new StringBuilder("Well, from the last reward, you killed ");
 			long moneys = 0;
 			int kills = 0;
@@ -240,11 +240,11 @@ import org.apache.log4j.Logger;
 					// Have no records about this creature in player's slot.
 					// Treat it as he never killed this creature.
 					kills=0;
-				};
+				}
 				// must add 'and' word before last creature in list
 				if(i==(RAT_TYPES.size()-1)) {
 					sb.append("and ");
-				};
+				}
 
 				sb.append(Grammar.quantityplnoun(kills, RAT_TYPES.get(i), "a"));
 				sb.append(", ");
@@ -279,12 +279,11 @@ import org.apache.log4j.Logger;
 			} catch (NumberFormatException nfe) {
 				// player's quest slot don't contain valid number
 				// so he didn't killed such creatures.
-			};
+			}
 			moneys = moneys + kills*RAT_REWARDS.get(i);
-		};
+		}
 		return(moneys);
 	}
-
 
 
 	/**

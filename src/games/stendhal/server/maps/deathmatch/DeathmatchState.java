@@ -31,7 +31,7 @@ public class DeathmatchState {
 
 	protected DeathmatchState() {
 		// hide constructor
-	};
+	}
 
 	/**
 	 * Creates a start state.

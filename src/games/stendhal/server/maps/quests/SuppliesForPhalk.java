@@ -218,7 +218,7 @@ import java.util.List;
 				cloak.setPersistent(true);
 				cloak.setBoundTo(player.getName());
 				player.equipOrPutOnGround(cloak);
-			};
+			}
 		});
 		// the extra parts in the quest state are for wrvil and mrotho not to give them cloaks and armor twice
 		actions.add(new SetQuestAction(QUEST_SLOT, 1, "cloak"));
@@ -283,7 +283,7 @@ import java.util.List;
 				armor.setPersistent(true);
 				armor.setBoundTo(player.getName());
 				player.equipOrPutOnGround(armor);
-			};
+			}
 		});
 		// the extra parts in the quest state are for wrvil and mrotho not to give them cloaks and armor twice
 		actions.add(new SetQuestAction(QUEST_SLOT, 2, "armor"));

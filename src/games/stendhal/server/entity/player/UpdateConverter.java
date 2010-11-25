@@ -428,7 +428,7 @@ public abstract class UpdateConverter {
 				StringBuilder sb=new StringBuilder("");
 				for(int i=0; i<creatures.size(); i++) {
 					sb.append(creatures.get(i)+",0,1,0,0,");
-				};
+				}
 				final String result = sb.toString();
 				player.setQuest(questSlot, 
 						KILL_QUEST_NAMES.get(questSlot).first(),

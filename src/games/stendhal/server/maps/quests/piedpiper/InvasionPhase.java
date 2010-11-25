@@ -85,7 +85,7 @@ public class InvasionPhase extends TPPQuest {
 				int tc=Rand.randGaussian(0,RAT_TYPES.size());
 				if ((tc>(RAT_TYPES.size()-1)) || (tc<0)) {
 					tc=0;
-				};
+				}
 				// checking if EntityManager knows about this creature type.
 				final Creature tempCreature = new Creature((Creature) manager.getEntity(RAT_TYPES.get(tc)));
 				final Creature rat = new Creature(tempCreature.getNewInstance());
@@ -122,12 +122,12 @@ public class InvasionPhase extends TPPQuest {
 					lhm.put("fight", ll);
 					lhm.put("follow", ll);
 					rat.setNoises(lhm);
-				};
+				}
 				
 				StendhalRPAction.placeat(zone, rat, x, y);
 				rats.add(rat);
-			};
-		};
+			}
+		}
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public class InvasionPhase extends TPPQuest {
 		if (rats.size()==0) {
 			phaseToDefaultPhase(
 					new LinkedList<String>(Arrays.asList("pied piper")));
-		};
+		}
     }
 	
 	/**
@@ -190,7 +190,7 @@ public class InvasionPhase extends TPPQuest {
 				logger.error("removeAllRats IndexOutOfBoundException at "+
 						Integer.toString(i)+" position. Total "+
 						Integer.toString(sz)+" elements.", ioobe);
-			};
+			}
 		}
 	}
 	
@@ -235,8 +235,8 @@ public class InvasionPhase extends TPPQuest {
 	        		killsRecorder(player, circs.getVictim());
 	        	}
 	        	notifyDead(circs.getVictim());
-	        	};
-	        };
+	        	}
+	        }
 	    }
 	}	
 	
@@ -258,21 +258,21 @@ public class InvasionPhase extends TPPQuest {
 			logger.warn("Unknown creature killed: "+
 					    victim.getName());
 			return;
-		};
+		}
 
 		if((player.getQuest(QUEST_SLOT)==null)||
 		   (player.getQuest(QUEST_SLOT).equals("done")||
 		   (player.getQuest(QUEST_SLOT).equals("")))){
 			// player just killed his first creature.
 		    player.setQuest(QUEST_SLOT, "rats;0;0;0;0;0;0");
-		};
+		}
 
 		// we using here and after "i+1" because player's quest index 0
 		// is occupied by quest stage description.
 		if(player.getQuest(QUEST_SLOT,i+1)==""){
 			// something really wrong, will correct this...
 			player.setQuest(QUEST_SLOT,"rats;0;0;0;0;0;0");
-		};
+		}
 		int kills;
 		try {
 			kills = Integer.parseInt(player.getQuest(QUEST_SLOT, i+1))+1;
@@ -280,7 +280,7 @@ public class InvasionPhase extends TPPQuest {
 			// have no records about this creature in player's slot.
 			// treat it as he never killed this creature before.
 			kills=1;
-		};
+		}
 		player.setQuest(QUEST_SLOT, i+1, Integer.toString(kills));
 	}
 	

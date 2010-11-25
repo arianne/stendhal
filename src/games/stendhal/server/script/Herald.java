@@ -132,7 +132,7 @@ public class Herald extends ScriptImpl {
     	 */
     	public void onTurnReached(int currentTurn) {
     		workWithCounters(id);
-    		};
+    		}
     		/**
     		 * tnl constructor.
     		 * @param i - id of news
@@ -363,7 +363,7 @@ public class Herald extends ScriptImpl {
 						logger.error("RemoveNewsAction: cant remove "+number+" speech.", nfe);
 						npc.say(DontUnderstand);
 						return;
-					};
+					}
 				}
 			}		
 			

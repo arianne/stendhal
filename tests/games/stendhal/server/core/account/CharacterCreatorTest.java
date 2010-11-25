@@ -53,7 +53,7 @@ public class CharacterCreatorTest {
 	}
 
 	private void cleanDB() throws SQLException {
-		final DBTransaction transaction = TransactionPool.get().beginWork();;
+		final DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
 			transaction.execute("DELETE FROM character_stats where name='player';", null);
 			transaction.execute("DELETE FROM rpobject WHERE object_id IN (SELECT object_id FROM characters WHERE characters.charname = 'player');", null);

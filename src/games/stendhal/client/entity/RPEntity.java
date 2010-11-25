@@ -95,7 +95,7 @@ public abstract class RPEntity extends ActiveEntity {
 		HIT,
 		BLOCKED,
 		MISSED;
-	};
+	}
 	
 	
 

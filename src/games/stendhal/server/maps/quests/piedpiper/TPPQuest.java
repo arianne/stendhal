@@ -130,7 +130,7 @@ public class TPPQuest implements ITPPQuest {
 		shoutMessage(getSwitchingToNextPhaseMessage());
 		if(!comments.isEmpty()) {
 			new GameEvent(null, "raid", comments.toString()).raise();
-		};
+		}
 		logger.info("ThePiedPiper quest: switch phase to ("+nextPhase.getPhase().name()+").");
 		ThePiedPiper.setPhase(nextPhase.getPhase());
 		stopShouts();

@@ -84,7 +84,7 @@ public class KillEnemyArmyTest {
 				player.setSoloKill(monsters.get(Rand.rand((monsters.size()-1))));
 			} else {
 				player.setSharedKill(monsters.get(Rand.rand((monsters.size()-1))));
-			};
+			}
 		}
 		logger.debug("killed "+ numb + " creatures.");
 	}

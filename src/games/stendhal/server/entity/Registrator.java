@@ -29,7 +29,7 @@ public class Registrator extends Observable {
 	 */
 	public void setChanges() {
 		setChanged();
-	};
+	}
 	
 	/**
 	 * registers observer for notifying
@@ -43,7 +43,7 @@ public class Registrator extends Observable {
 			// log it.
 			final Logger logger = Logger.getLogger(Registrator.class);
 			logger.error("null observer was not added.", new Throwable());
-		};
+		}
 	}
 
 	/**

@@ -94,7 +94,7 @@ public class SummonAction extends AdministrationAction {
 				}
 			} 
 	    }
-	};
+	}
 
 	@Override
 	public void perform(final Player player, final RPAction action) {

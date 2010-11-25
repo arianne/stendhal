@@ -42,7 +42,7 @@ public class CommandCenterTest {
 		final ActionListener listener = new ActionListener() {
 			public void onAction(final Player player, final RPAction action) {
 				player.put("success", "true");
-			};
+			}
 		};
 		final RPAction action = new RPAction();
 		action.put("type", "action");

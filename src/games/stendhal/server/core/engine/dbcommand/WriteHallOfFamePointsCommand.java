@@ -51,7 +51,7 @@ public class WriteHallOfFamePointsCommand extends AbstractDBCommand {
 		StendhalHallOfFameDAO dao = DAORegister.get().get(StendhalHallOfFameDAO.class);
 		int base = 0;
 		if (add) {
-			base = dao.getHallOfFamePoints(transaction, playername, fametype);;
+			base = dao.getHallOfFamePoints(transaction, playername, fametype);
 		}
 		dao.setHallOfFamePoints(transaction, playername, fametype, base + points);
 	}

@@ -66,7 +66,7 @@ public class StyledPopupMenuUI extends BasicPopupMenuUI {
 		}
 		
 		return popup;
-	};
+	}
 	
 	@Override
 	public void installUI(JComponent component) {

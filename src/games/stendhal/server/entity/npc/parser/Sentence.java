@@ -30,7 +30,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
     public enum SentenceType {
         UNDEFINED, STATEMENT, IMPERATIVE, QUESTION
-    };
+    }
 
     protected String originalText;
     
@@ -538,7 +538,8 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @param other
      * @return difference String
      */
-    public String diffNormalized(final Sentence other) {
+    @SuppressWarnings("null")
+	public String diffNormalized(final Sentence other) {
         final SentenceBuilder ret = new SentenceBuilder();
 
         // loop over all expressions and match them between both sides

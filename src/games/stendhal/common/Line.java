@@ -34,7 +34,7 @@ public class Line {
 			@Override
 			public void fire(final int x, final int y) {
 				points.add(new Point(x, y));
-			};
+			}
 		});
 
 		return points;

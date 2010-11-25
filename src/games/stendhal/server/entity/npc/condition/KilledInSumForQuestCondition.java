@@ -74,7 +74,7 @@ public class KilledInSumForQuestCondition implements ChatCondition {
 					"]");
 			//npc.say("something wrong with you, i dont see how much monsters you killed.");
 			return false;
-		};
+		}
 		int sum=0;
 		for(int i=0; i<tokens.size()/5; i++) {
 			final String creatureName=tokens.get(i*5);
@@ -88,14 +88,14 @@ public class KilledInSumForQuestCondition implements ChatCondition {
 						" of player "+player.getName()
 						+" , creature " + i*5);
 				return false;
-			};
+			}
 			final int diffSolo = player.getSoloKill(creatureName) - killedSolo;
 			final int diffShared = player.getSharedKill(creatureName) - killedShared;
 			sum=sum+diffSolo+diffShared;
 		}
 		if(sum<killsSum) {
 			return false;
-		};
+		}
 		return true;
 	}
 

@@ -79,11 +79,9 @@ public class ChatTextController {
 				if (keypressed == KeyEvent.VK_F1) {
 					SlashActionRepository.get("manual").execute(null, null);
 				}
-		};		
-
-		
-		
+		}
 	}
+
 	class ParserHandler implements ActionListener {
 
 		public void actionPerformed(final ActionEvent e) {

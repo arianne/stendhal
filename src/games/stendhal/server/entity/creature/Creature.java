@@ -461,12 +461,12 @@ public class Creature extends NPC {
 	@Override
 	public int getCorpseWidth() {
 		return corpseWidth;
-	};
+	}
 	
 	@Override
 	public int getCorpseHeight() {
 		return corpseHeight;
-	};
+	}
 
 	/**
 	 * clears the list of predefined dropItems and creates an empty list

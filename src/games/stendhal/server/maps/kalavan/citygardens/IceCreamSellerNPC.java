@@ -75,7 +75,7 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 					new ChatAction() {
 						public void fire(final Player player,final Sentence sentence, final EventRaiser npc) {
 							((SpeakerNPC) npc.getEntity()).getEngine().step(player, "buy icecream");
-							};
+							}
 						} );
 
 				final Map<String, Integer> offers = new HashMap<String, Integer>();

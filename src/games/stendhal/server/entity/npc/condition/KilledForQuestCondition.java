@@ -68,7 +68,7 @@ public class KilledForQuestCondition implements ChatCondition {
 					" quest slot ("+QUEST_SLOT+") : ["+player.getQuest(QUEST_SLOT)+"]");
 			//npc.say("something wrong with you, i dont see how much monsters you killed.");
 			return false;
-		};
+		}
 		
 		for(int i=0; i<tokens.size()/5; i++) {
 			final String creatureName=tokens.get(i*5);
@@ -86,17 +86,17 @@ public class KilledForQuestCondition implements ChatCondition {
 						" of player "+player.getName()
 						+" , creature " + i*5);
 				return false;
-			};
+			}
 			final int diffSolo = player.getSoloKill(creatureName) - killedSolo - toKillSolo;
 			final int diffShared = player.getSharedKill(creatureName) - killedShared - toKillShared;
 			// if solo kills less then required, return false
 			if(diffSolo<0) {
 				return false;
-			};
+			}
 			// if player killed solo less then required for shared, return false
 			if((diffSolo+diffShared)<0) {
 				return false;
-			};
+			}
 		}
 		return true;
 	}

@@ -43,7 +43,7 @@ public class ThePiedPiperTest implements ITPPQuestConstants {
 		for(int i=0; i<sz; i++) {
 			ThePiedPiper.switchToNextPhase();
 			logger.info("current phase: "+ThePiedPiper.getPhase().name());
-		};
+		}
 		assertEquals(TPP_Phase.TPP_INACTIVE, ThePiedPiper.getPhase());
 	}
 	

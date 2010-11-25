@@ -148,7 +148,7 @@ public class AchievementDAO {
 	 */
 	public Map<String, Integer> loadIdentifierIdPairs() throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();
-		Map<String, Integer> map = loadIdentifierIdPairs(transaction);;
+		Map<String, Integer> map = loadIdentifierIdPairs(transaction);
 		TransactionPool.get().commit(transaction);
 		return map;
 	}

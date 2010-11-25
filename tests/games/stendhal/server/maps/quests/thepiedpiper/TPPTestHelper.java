@@ -91,7 +91,7 @@ public class TPPTestHelper implements ITPPQuestConstants {
 			player.setHP(10000);
 			if(player.isPoisoned()) {
 				player.healPoison();
-			};
+			}
 			player.teleport(rat.getZone(), rat.getX()+1, rat.getY(), null, player);
 			player.setTarget(rat);
 			//player.attack();
@@ -136,7 +136,7 @@ public class TPPTestHelper implements ITPPQuestConstants {
 			// must add 'and' word before last creature in list
 			if(i==(RAT_TYPES.size()-1)) {
 				sb.append("and ");
-			};
+			}
 
 			sb.append(Grammar.quantityplnoun(kills, RAT_TYPES.get(i), "a"));
 			sb.append(", ");
