@@ -65,64 +65,64 @@ public class OutfitDialog extends JDialog {
 	private static final int PLAYER_HEIGHT = 64;
 
 	// to keep the sprites to show
-	private final Sprite[] hairs;
+	private transient final Sprite[] hairs;
 
-	private final Sprite[] heads;
+	private transient final Sprite[] heads;
 
-	private final Sprite[] bodies;
+	private transient final Sprite[] bodies;
 
-	private final Sprite[] clothes;
+	private transient final Sprite[] clothes;
 
 	// current selected parts index
-	private int hairs_index = 1;
+	private transient int hairsIndex = 1;
 
-	private int heads_index;
+	private transient int headsIndex;
 
-	private int bodies_index;
+	private transient int bodiesIndex;
 
-	private int clothes_index;
+	private transient int clothesIndex;
 
 	// to handle the draws update
-	private final Timer timer;
+	private transient final Timer timer;
 
 	// 0 for direction UP, 1 RIGHT, 2 DOWN and 3 LEFT
-	private int direction = 2;
+	private transient int direction = 2;
 
-	private final StendhalClient client;
+	private transient final StendhalClient client;
 
-	private final SpriteStore store = SpriteStore.get();
+	private transient final SpriteStore store = SpriteStore.get();
 
-	private final OutfitStore ostore = OutfitStore.get();
+	private transient final OutfitStore ostore = OutfitStore.get();
 	
-	private JButton jbtLeftBodies;
+	private transient JButton jbtLeftBodies;
 
-	private JButton jbtLeftClothes;
+	private transient JButton jbtLeftClothes;
 
-	private JButton jbtLeftHairs;
+	private transient JButton jbtLeftHairs;
 
-	private JButton jbtLeftHeads;
+	private transient JButton jbtLeftHeads;
 
-	private JButton jbtOK;
+	private transient JButton jbtOK;
 
-	private JButton jbtRightBodies;
+	private transient JButton jbtRightBodies;
 
-	private JButton jbtRightClothes;
+	private transient JButton jbtRightClothes;
 
-	private JButton jbtRightHairs;
+	private transient JButton jbtRightHairs;
 
-	private JButton jbtRightHeads;
+	private transient JButton jbtRightHeads;
 
-	private JLabel jlblBodies;
+	private transient JLabel jlblBodies;
 
-	private JLabel jlblClothes;
+	private transient JLabel jlblClothes;
 
-	private JLabel jlblFinalResult;
+	private transient JLabel jlblFinalResult;
 
-	private JLabel jlblHairs;
+	private transient JLabel jlblHairs;
 
-	private JLabel jlblHeads;
+	private transient JLabel jlblHeads;
 
-	private JSlider jsliderDirection;
+	private transient JSlider jsliderDirection;
 
 	public OutfitDialog(final Frame parent, final String title, final int outfit) {
 		this(parent, title, outfit, Outfits.HAIR_OUTFITS, Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,
@@ -169,26 +169,26 @@ public class OutfitDialog extends JDialog {
 		timer.schedule(new AnimationTask(), 1000, 2500);
 
 		// analyse current outfit
-		bodies_index = outfit % 100;
+		bodiesIndex = outfit % 100;
 		outfit = outfit / 100;
-		clothes_index = outfit % 100;
+		clothesIndex = outfit % 100;
 		outfit = outfit / 100;
-		heads_index = outfit % 100;
+		headsIndex = outfit % 100;
 		outfit = outfit / 100;
-		hairs_index = outfit % 100;
+		hairsIndex = outfit % 100;
 
 		// reset special outfits
-		if (hairs_index >= hairs.length) {
-			hairs_index = 0;
+		if (hairsIndex >= hairs.length) {
+			hairsIndex = 0;
 		}
-		if (heads_index >= heads.length) {
-			heads_index = 0;
+		if (headsIndex >= heads.length) {
+			headsIndex = 0;
 		}
-		if (bodies_index >= bodies.length) {
-			bodies_index = 0;
+		if (bodiesIndex >= bodies.length) {
+			bodiesIndex = 0;
 		}
-		if (clothes_index >= clothes.length) {
-			clothes_index = 0;
+		if (clothesIndex >= clothes.length) {
+			clothesIndex = 0;
 		}
 	}
 
@@ -320,10 +320,10 @@ public class OutfitDialog extends JDialog {
 	 * @param g
 	 */
 	private void drawFinalPlayer(final Graphics g) {
-		drawBase(bodies_index, g);
-		drawDress(clothes_index, g);
-		drawHead(heads_index, g);
-		drawHair(hairs_index, g);
+		drawBase(bodiesIndex, g);
+		drawDress(clothesIndex, g);
+		drawHead(headsIndex, g);
+		drawHair(hairsIndex, g);
 	}
 
 	private void initComponents() {
@@ -508,10 +508,10 @@ public class OutfitDialog extends JDialog {
 		direction = jsliderDirection.getValue();
 
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
-		redrawHair(hairs_index, jlblHairs.getGraphics());
-		redrawHead(heads_index, jlblHeads.getGraphics());
-		redrawBase(bodies_index, jlblBodies.getGraphics());
-		redrawDress(clothes_index, jlblClothes.getGraphics());
+		redrawHair(hairsIndex, jlblHairs.getGraphics());
+		redrawHead(headsIndex, jlblHeads.getGraphics());
+		redrawBase(bodiesIndex, jlblBodies.getGraphics());
+		redrawDress(clothesIndex, jlblClothes.getGraphics());
 	}
 
 	/** when user closes this window.
@@ -524,104 +524,104 @@ public class OutfitDialog extends JDialog {
 	/** Clothes Right button.
 	 * @param evt */
 	private void jbtRightClothesActionPerformed(final ActionEvent evt) {
-		if (clothes_index < clothes.length - 1) {
-			clothes_index++;
+		if (clothesIndex < clothes.length - 1) {
+			clothesIndex++;
 		} else {
-			clothes_index = 0;
+			clothesIndex = 0;
 		}
 
-		redrawDress(clothes_index, jlblClothes.getGraphics());
+		redrawDress(clothesIndex, jlblClothes.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	}
 
 	/** Clothes Left button.
 	 * @param evt */
 	private void jbtLeftClothesActionPerformed(final ActionEvent evt) {
-		if (clothes_index > 0) {
-			clothes_index--;
+		if (clothesIndex > 0) {
+			clothesIndex--;
 		} else {
-			clothes_index = clothes.length - 1;
+			clothesIndex = clothes.length - 1;
 		}
 
-		redrawDress(clothes_index, jlblClothes.getGraphics());
+		redrawDress(clothesIndex, jlblClothes.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	}
 
 	/** Bodies Right button.
 	 * @param evt */
 	private void jbtRightBodiesActionPerformed(final ActionEvent evt) {
-		if (bodies_index < bodies.length - 1) {
-			bodies_index++;
+		if (bodiesIndex < bodies.length - 1) {
+			bodiesIndex++;
 		} else {
-			bodies_index = 0;
+			bodiesIndex = 0;
 		}
 
-		redrawBase(bodies_index, jlblBodies.getGraphics());
+		redrawBase(bodiesIndex, jlblBodies.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	}
 
 	/** Bodies Left button.
 	 * @param evt */
 	private void jbtLeftBodiesActionPerformed(final ActionEvent evt) { 
-		if (bodies_index > 0) {
-			bodies_index--;
+		if (bodiesIndex > 0) {
+			bodiesIndex--;
 		} else {
-			bodies_index = bodies.length - 1;
+			bodiesIndex = bodies.length - 1;
 		}
 
-		redrawBase(bodies_index, jlblBodies.getGraphics());
+		redrawBase(bodiesIndex, jlblBodies.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	}
 
 	/** Heads Right button.
 	 * @param evt */
 	private void jbtRightHeadsActionPerformed(final ActionEvent evt) { 
-		if (heads_index < heads.length - 1) {
-			heads_index++;
+		if (headsIndex < heads.length - 1) {
+			headsIndex++;
 		} else {
-			heads_index = 0;
+			headsIndex = 0;
 		}
 
-		redrawHead(heads_index, jlblHeads.getGraphics());
+		redrawHead(headsIndex, jlblHeads.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	}
 
 	/** Heads Left button.
 	 * @param evt */
 	private void jbtLeftHeadsActionPerformed(final ActionEvent evt) { 
-		if (heads_index > 0) {
-			heads_index--;
+		if (headsIndex > 0) {
+			headsIndex--;
 		} else {
-			heads_index = heads.length - 1;
+			headsIndex = heads.length - 1;
 		}
 
-		redrawHead(heads_index, jlblHeads.getGraphics());
+		redrawHead(headsIndex, jlblHeads.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	} 
 
 	/** Hairs Right button.
 	 * @param evt */
 	private void jbtRightHairsActionPerformed(final ActionEvent evt) { 
-		if (hairs_index < hairs.length - 1) {
-			hairs_index++;
+		if (hairsIndex < hairs.length - 1) {
+			hairsIndex++;
 		} else {
-			hairs_index = 0;
+			hairsIndex = 0;
 		}
 
-		redrawHair(hairs_index, jlblHairs.getGraphics());
+		redrawHair(hairsIndex, jlblHairs.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	} 
 
 	/** Hairs Left button.
 	 * @param evt */
 	private void jbtLeftHairsActionPerformed(final ActionEvent evt) { 
-		if (hairs_index > 0) {
-			hairs_index--;
+		if (hairsIndex > 0) {
+			hairsIndex--;
 		} else {
-			hairs_index = hairs.length - 1;
+			hairsIndex = hairs.length - 1;
 		}
 
-		redrawHair(hairs_index, jlblHairs.getGraphics());
+		redrawHair(hairsIndex, jlblHairs.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	}
 
@@ -638,15 +638,15 @@ public class OutfitDialog extends JDialog {
 		if (client == null) {
 			/** If running standalone, just print the outfit */
 			System.out.println("OUTFIT is: "
-					+ (bodies_index + clothes_index * 100 + heads_index * 100
-							* 100 + hairs_index * 100 * 100 * 100));
+					+ (bodiesIndex + clothesIndex * 100 + headsIndex * 100
+							* 100 + hairsIndex * 100 * 100 * 100));
 			return;
 		}
 
 		final RPAction rpaction = new RPAction();
 		rpaction.put("type", "outfit");
-		rpaction.put("value", bodies_index + clothes_index * 100 + heads_index
-				* 100 * 100 + hairs_index * 100 * 100 * 100);
+		rpaction.put("value", bodiesIndex + clothesIndex * 100 + headsIndex
+				* 100 * 100 + hairsIndex * 100 * 100 * 100);
 		client.send(rpaction);
 	}
 
@@ -661,10 +661,10 @@ public class OutfitDialog extends JDialog {
 		@Override
 		public void run() {
 			// draws single parts
-			redrawHair(hairs_index, jlblHairs.getGraphics());
-			redrawHead(heads_index, jlblHeads.getGraphics());
-			redrawBase(bodies_index, jlblBodies.getGraphics());
-			redrawDress(clothes_index, jlblClothes.getGraphics());
+			redrawHair(hairsIndex, jlblHairs.getGraphics());
+			redrawHead(headsIndex, jlblHeads.getGraphics());
+			redrawBase(bodiesIndex, jlblBodies.getGraphics());
+			redrawDress(clothesIndex, jlblClothes.getGraphics());
 
 			redrawFinalPlayer(jlblFinalResult.getGraphics());
 		}
@@ -673,13 +673,13 @@ public class OutfitDialog extends JDialog {
 
 	private void generateAllOutfits(final String baseDir) {
 		/** TEST METHOD: DON'T NO USE */
-		for (bodies_index = 0; bodies_index < bodies.length; bodies_index++) {
-			for (clothes_index = 0; clothes_index < clothes.length; clothes_index++) {
-				for (heads_index = 0; heads_index < heads.length; heads_index++) {
-					for (hairs_index = 0; hairs_index < hairs.length; hairs_index++) {
-						final String name = Integer.toString(bodies_index
-								+ clothes_index * 100 + heads_index * 100 * 100
-								+ hairs_index * 100 * 100 * 100);
+		for (bodiesIndex = 0; bodiesIndex < bodies.length; bodiesIndex++) {
+			for (clothesIndex = 0; clothesIndex < clothes.length; clothesIndex++) {
+				for (headsIndex = 0; headsIndex < heads.length; headsIndex++) {
+					for (hairsIndex = 0; hairsIndex < hairs.length; hairsIndex++) {
+						final String name = Integer.toString(bodiesIndex
+								+ clothesIndex * 100 + headsIndex * 100 * 100
+								+ hairsIndex * 100 * 100 * 100);
 						final File file = new File(baseDir + "outfits/" + name
 								+ ".png");
 
