@@ -9,13 +9,14 @@ import java.util.Properties;
  * 
  * @author hendrik
  */
-public final class ClientGameConfiguration {
+public class ClientGameConfiguration {
 
 	private static ClientGameConfiguration instance;
 
-	private final Properties gameConfig = getGameProperties();
+	private Properties gameConfig = getGameProperties();
 
 	private ClientGameConfiguration() {
+		instance = this;
 	}
 
 	private Properties getGameProperties() {
@@ -30,7 +31,7 @@ public final class ClientGameConfiguration {
 				throw new FileNotFoundException("Cannot read either game.properties or game-default.properties from classpath.");
 			}
 			
-			final Properties config = new Properties();
+			Properties config = new Properties();
 			config.load(is);
 			is.close();
 			return config;
@@ -41,10 +42,8 @@ public final class ClientGameConfiguration {
 	}
 
 	private static void init() {
-		synchronized(ClientGameConfiguration.class) {
-			if (instance == null) {
-				instance = new ClientGameConfiguration();
-			}
+		if (instance == null) {
+			instance = new ClientGameConfiguration();
 		}
 	}
 
