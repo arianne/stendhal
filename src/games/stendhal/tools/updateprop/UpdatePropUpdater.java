@@ -32,7 +32,7 @@ public class UpdatePropUpdater {
 	private String newFile;
 	private String oldVersion;
 	private String newVersion;
-	private String folder;
+	private String folder; //TODO use folder
 	private String legacy;
 	private Properties prop;
 	
