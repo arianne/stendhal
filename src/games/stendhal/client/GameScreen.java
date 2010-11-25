@@ -726,25 +726,11 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		 * Try to keep the text on screen. This could mess up the "talk" origin
 		 * positioning.
 		 */
-		if (sx < 0) {
-			sx = 0;
-		} else {
-			final int max = getWidth() - sprite.getWidth();
+		sx = Math.max(sx, 0);
+		sx = Math.min(sx, getWidth() - sprite.getWidth() + svx);
 
-			if (sx > max) {
-				sx = max;
-			}
-		}
-
-		if (sy < 0) {
-			sy = 0;
-		} else {
-			final int max = getHeight() - sprite.getHeight();
-
-			if (sy > max) {
-				sy = max;
-			}
-		}
+		sy = Math.max(sy, 0);
+		sy = Math.min(sy, getHeight() - sprite.getHeight() + svy);
 
 		boolean found = true;
 
