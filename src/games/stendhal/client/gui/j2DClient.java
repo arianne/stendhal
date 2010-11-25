@@ -649,7 +649,7 @@ public class j2DClient implements UserInterface {
 							logger.warn("You can't logout now.");
 							gameRunning = true;
 						}
-					} catch (final Exception e) {
+					} catch (final Exception e) { // catch InvalidVersionException, TimeoutException and BannedAddressException
 						/*
 						 * If we get a timeout exception we accept exit request.
 						 */
