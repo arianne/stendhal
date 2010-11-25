@@ -88,9 +88,6 @@ public class InvasionPhase extends TPPQuest {
 				};
 				// checking if EntityManager knows about this creature type.
 				final Creature tempCreature = new Creature((Creature) manager.getEntity(RAT_TYPES.get(tc)));
-//				if (tempCreature == null) {
-//					continue;
-//				};
 				final Creature rat = new Creature(tempCreature.getNewInstance());
 
 				// chosen place is occupied
