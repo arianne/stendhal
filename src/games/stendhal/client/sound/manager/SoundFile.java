@@ -84,8 +84,9 @@ public class SoundFile extends SignalProcessor implements Cloneable
             mRecorder = new Recorder();
             mRecorder.connectTo(decoder, false);
 
-            while(mRecorder.request())
-                /* pass */;
+            while(mRecorder.request()) {
+                /* pass */
+            }
 
             mRecorder.disconnect();
             mRecorder.trim();
