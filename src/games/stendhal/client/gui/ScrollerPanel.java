@@ -28,6 +28,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -44,7 +45,7 @@ public class ScrollerPanel extends JPanel {
 
 	private static final Logger logger = Logger.getLogger(ScrollerPanel.class);
 
-	private final String[] text;
+	private final List<String> text;
 
 	private final Font font;
 
@@ -65,14 +66,14 @@ public class ScrollerPanel extends JPanel {
 	private boolean scrollingStarted;
 
 	/**
-	 * creates an ScrollerPane wich scrolls the given text and using defaults
+	 * creates an ScrollerPane which scrolls the given text and using defaults
 	 * for the other attributes.
 	 * 
 	 * @param text
-	 *            the text araay whis should be scrolled - one string per line
+	 *            the text array which should be scrolled - one string per line
 	 *            is scrolled
 	 */
-	public ScrollerPanel(final String[] text) {
+	public ScrollerPanel(final List<String> text) {
 		this(text, new Font("SansSerif", Font.BOLD, 12), 0, Color.GRAY,
 				Color.WHITE, 20);
 	}
@@ -95,8 +96,9 @@ public class ScrollerPanel extends JPanel {
 	 * @param scrollSpeed
 	 *            defines the scroller speed (pixel per second);
 	 */
-	public ScrollerPanel(final String[] text, final Font font, final int lineSpacing,
+	public ScrollerPanel(final List<String> text, final Font font, final int lineSpacing,
 			final Color textColor, final Color backgroundColor, final int scrollSpeed) {
+		super();
 		this.text = text;
 		this.font = font;
 		this.lineSpacing = lineSpacing;
@@ -104,14 +106,13 @@ public class ScrollerPanel extends JPanel {
 		this.backgroundColor = backgroundColor;
 		this.t = new Timer((int) (1.0 / scrollSpeed * 1000.0),
 				new ActionListener() {
-
 					public void actionPerformed(final ActionEvent e) {
 						moveText();
 					}
 				});
 		logger.debug("Created a new scrolling panel");
 		calculateSizes();
-		// seting up event handling
+		// setting up event handling
 		eventHandling();
 	}
 
@@ -148,10 +149,12 @@ public class ScrollerPanel extends JPanel {
 			g2d.setPaint(gp);
 			g2d.setFont(font);
 			final FontMetrics metrics = g2d.getFontMetrics();
-			for (int i = 0, n = text.length; i < n; i++) {
-				width = metrics.stringWidth(text[i]);
-				g2d.drawString(text[i], this.getWidth() / 2 - width / 2,
+			int i = 0;
+			for (String s : text) {
+				width = metrics.stringWidth(s);
+				g2d.drawString(s, this.getWidth() / 2 - width / 2,
 						textPos + ((metrics.getHeight() + lineSpacing) * i));
+				++i;
 			}
 		}
 	}
@@ -160,7 +163,7 @@ public class ScrollerPanel extends JPanel {
 	 * Calculates the new position of text.
 	 */
 	private void moveText() {
-		if (textPos >= -((lineHeight + lineSpacing) * text.length)) {
+		if (textPos >= -((lineHeight + lineSpacing) * text.size())) {
 			textPos--;
 		} else {
 			resetTextPos();
@@ -196,9 +199,9 @@ public class ScrollerPanel extends JPanel {
 		final FontMetrics metrics = g2d.getFontMetrics();
 		this.lineHeight = metrics.getHeight();
 		this.prefferedSize.height = this.lineHeight * 8;
-		for (int i = 0, n = text.length; i < n; i++) {
+		for (String s : text) {
 			prefferedSize.width = Math.max(prefferedSize.width,
-					metrics.stringWidth(text[i]));
+					metrics.stringWidth(s));
 		}
 		this.prefferedSize.width = prefferedSize.width + 6
 				* metrics.stringWidth(" ");

@@ -98,8 +98,7 @@ public class CreditsDialog extends JDialog {
 		// read the credits from an external file because code format gets it
 		// unreadable if inlined
 		final List<String> creditsList = readCredits();
-		final String[] credits = creditsList.toArray(new String[creditsList.size()]);
-		sp = new ScrollerPanel(credits, textFont, 0, textColor,
+		sp = new ScrollerPanel(creditsList, textFont, 0, textColor,
 				backgroundColor, 20);
 
 		buttonPane.setOpaque(false);
@@ -121,12 +120,15 @@ public class CreditsDialog extends JDialog {
 		try {
 			final BufferedReader br = new BufferedReader(new InputStreamReader(
 					url.openStream()));
-			String line = br.readLine();
-			while (line != null) {
-				res.add(line);
-				line = br.readLine();
+			try {
+				String line = br.readLine();
+				while (line != null) {
+					res.add(line);
+					line = br.readLine();
+				}
+			} finally {
+				br.close();
 			}
-			br.close();
 		} catch (final IOException e) {
 			res.add(0, "credits.txt not found");
 		}
