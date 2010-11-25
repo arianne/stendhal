@@ -108,9 +108,14 @@ public class WordList {
 
 			try {
 				read(reader, null);
-				reader.close();
 			} catch (final IOException e) {
 				logger.error("error while reading resource file 'words.txt'", e);
+			} finally {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					logger.error("error while closing reader stream for 'words.txt'", e);
+				}
 			}
 		} finally {
 			try {

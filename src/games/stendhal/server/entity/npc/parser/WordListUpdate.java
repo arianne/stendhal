@@ -39,10 +39,13 @@ public final class WordListUpdate {
             // read in the current word list including comment lines
             final InputStream str = WordList.class.getResourceAsStream(WordList.WORDS_FILENAME);
             final BufferedReader reader = new BufferedReader(new InputStreamReader(str));
-
             final List<String> comments = new ArrayList<String>();
-            wl.read(reader, comments);
-            reader.close();
+
+            try {
+	            wl.read(reader, comments);
+            } finally {
+            	reader.close();
+            }
 
             // update the hash value
             wl.calculateHash();
