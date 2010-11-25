@@ -81,7 +81,9 @@ public class HttpClientTest {
 		HttpClient client = new HttpClient("http://sf.net/projects/arianne");
 		client.fetchFile(file.getAbsolutePath());
 		assertTrue(file.length() > 100);
-		file.delete();
+		if (!file.delete()) {
+			System.err.println("file not deleted: " + file.getAbsolutePath());
+		}
 
 		file = File.createTempFile("test", ".txt");
 		file.deleteOnExit();
@@ -101,7 +103,8 @@ public class HttpClientTest {
 		client.fetchFile(file.getAbsolutePath());
 		assertTrue(file.length() > 10000);
 
-		if (!file.delete())
-			;
+		if (!file.delete()) {
+			System.err.println("file not deleted: " + file.getAbsolutePath());
+		}
 	}
 }
