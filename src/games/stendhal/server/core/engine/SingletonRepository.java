@@ -16,8 +16,6 @@ import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.achievements.AchievementNotifier;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
-import games.stendhal.server.core.rp.guilds.GuildList;
-import games.stendhal.server.core.rp.guilds.GuildPermissionList;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.npc.NPCList;
@@ -130,19 +128,11 @@ public class SingletonRepository {
 		return TransactionPool.get();
 	}
 
-	public static GuildPermissionList getGuildPermissionList() {
-		return GuildPermissionList.get();
-	}
-
 	/**
 	 * @return the actual ShopList instance
 	 */
 	public static ShopList getShopList() {
 		return ShopList.get();
-	}
-
-	public static GuildList getGuildList() {
-		return GuildList.get();
 	}
 
 	/**

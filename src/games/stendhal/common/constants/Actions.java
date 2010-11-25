@@ -51,20 +51,9 @@ public final class Actions {
 	//outfit
 	public static final String OUTFIT = "outfit";
 
-	
-	//guild (if not removed at least be looked at while refactoring)
-	public static final String INVITE_GUILD = "inviteGuild";
-	public static final String GUILD = "guild";
-	public static final String GUILDNAME = "guildname";
-	public static final String PLAYERNAME = "playername";
-	public static final String CREATEGUILD = "createguild";
-	public static final String REMOVE_FROM_GUILD = "removeFromGuild";
-	public static final String GUILDREMOVE = "guildremove";
-
-	
-	//teleclickmode
-	
 	public static final String MOVETO = "moveto";
+
+	//teleclickmode
 	public static final String TELECLICKMODE = "teleclickmode";
 
 	//tellall

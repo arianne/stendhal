@@ -62,7 +62,6 @@ public class SlashActionRepository {
 		actions.put("invisible", new InvisibleAction());
 
 		actions.put("jail", new JailAction());
-		actions.put("joinguild", new CreateGuildAction());
 
 		actions.put("listproducers", new ListProducersAction());
 		

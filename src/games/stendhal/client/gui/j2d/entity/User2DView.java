@@ -67,7 +67,6 @@ class User2DView extends Player2DView {
 
 		list.add(ActionType.SET_OUTFIT.getRepresentation());
 		list.add(ActionType.WHERE.getRepresentation());
-		// list.add(ActionType.JOIN_GUILD.getRepresentation());
 
 		User user = (User) entity;
 		if (user != null) {

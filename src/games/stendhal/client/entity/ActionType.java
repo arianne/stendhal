@@ -102,7 +102,6 @@ public enum ActionType {
 	},
 	ADMIN_VIEW_NPC_TRANSITIONS("npctransitions", "(*)View Transitions"),
 	KNOCK("knock", "Knock");
-	// JOIN_GUILD("guild", "Manage Guilds");
 
 	/**
 	 * the String send to the server, if so.

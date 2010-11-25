@@ -138,8 +138,6 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private boolean ghostmode;
 
-	private String guild;
-
 	private String titleType;
 
 	
@@ -248,10 +246,6 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	public int getDefXp() {
 		return defXp;
-	}
-
-	public String getGuild() {
-		return guild;
 	}
 
 	public int getHP() {
@@ -1020,11 +1014,6 @@ public abstract class RPEntity extends ActiveEntity {
 			ghostmode = true;
 			fireChange(PROP_GHOSTMODE);
 		}
-
-		if (changes.has("guild")) {
-			guild = changes.get("guild");
-		}
-
 
 		if (changes.has("xp")) {
 			int newXp = changes.getInt("xp"); 
