@@ -109,10 +109,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @return StendhalRPRuleProcessor
 	 */
 	public static StendhalRPRuleProcessor get() {
-		if (instance == null) {
-			StendhalRPRuleProcessor instance = new StendhalRPRuleProcessor();
-			instance.init();
-			StendhalRPRuleProcessor.instance = instance;
+		synchronized(StendhalRPRuleProcessor.class) {
+			if (instance == null) {
+				StendhalRPRuleProcessor instance = new StendhalRPRuleProcessor();
+				instance.init();
+				StendhalRPRuleProcessor.instance = instance;
+			}
 		}
 		return instance;
 	}
@@ -131,12 +133,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/*
 			 * Print version information.
 			 */
-			String preRelease = "";
-			if (Debug.PRE_RELEASE_VERSION != null) {
-				preRelease = " - " + preRelease;
-			}
+//			String preRelease = "";
+//			if (Debug.PRE_RELEASE_VERSION != null) {
+//				preRelease = " - " + preRelease;
+//			}
 			logger.info("Running Stendhal server VERSION " + Debug.VERSION);
-			
+
 			this.rpman = rpman;
 			StendhalRPAction.initialize(rpman);
 			
@@ -360,42 +362,44 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param player
 	 *            Player to check for super admin status.
 	 */
-	static void readAdminsFromFile(final Player player) {
-		if (adminNames == null) {
-			Map<String, String> tempAdminNames = new HashMap<String, String>();
+	private static void readAdminsFromFile(final Player player) {
+		synchronized(StendhalRPRuleProcessor.class) {
+			if (adminNames == null) {
+				Map<String, String> tempAdminNames = new HashMap<String, String>();
 
-			String adminFilename = "data/conf/admins.txt";
-			
-			try {
-				InputStream is = player.getClass().getClassLoader().getResourceAsStream(
-						adminFilename);
+				String adminFilename = "data/conf/admins.txt";
 
-				if (is == null) {
-					logger.info(adminFilename + " does not exist.");
-					return;
-				}
-
-				final BufferedReader in = new BufferedReader(
-						new UnicodeSupportingInputStreamReader(is));
 				try {
-					String line;
-					while ((line = in.readLine()) != null) {
-						String[] tokens = line.split("=");
-						if (tokens.length >= 2) {
-							tempAdminNames.put(tokens[0].trim(), tokens[1].trim());
-						} else {
-							tempAdminNames.put(tokens[0].trim(), Integer.toString(AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER));
-						}
+					InputStream is = player.getClass().getClassLoader().getResourceAsStream(
+							adminFilename);
+	
+					if (is == null) {
+						logger.info(adminFilename + " does not exist.");
+						return;
 					}
-				} catch (final Exception e) {
-					logger.error("Error loading admin names from: "+ adminFilename, e);
-				} finally {
-					in.close();
-				}
 
-				adminNames = tempAdminNames;
-			} catch (final Exception e) {
-				logger.error("Error loading admin names from: " + adminFilename, e);
+					final BufferedReader in = new BufferedReader(
+							new UnicodeSupportingInputStreamReader(is));
+					try {
+						String line;
+						while ((line = in.readLine()) != null) {
+							String[] tokens = line.split("=");
+							if (tokens.length >= 2) {
+								tempAdminNames.put(tokens[0].trim(), tokens[1].trim());
+							} else {
+								tempAdminNames.put(tokens[0].trim(), Integer.toString(AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER));
+							}
+						}
+					} catch (final Exception e) {
+						logger.error("Error loading admin names from: "+ adminFilename, e);
+					} finally {
+						in.close();
+					}
+
+					adminNames = tempAdminNames;
+				} catch (final IOException e) {
+					logger.error("Error loading admin names from: " + adminFilename, e);
+				}
 			}
 		}
 
@@ -482,7 +486,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
                     }
 				}
 			}
-		} catch (final Exception e) {
+		} catch (final IOException e) {
 			if (firstWelcomeException) {
 				logger.warn("Can't read server_welcome from marauroa.ini", e);
 				firstWelcomeException = false;
@@ -492,6 +496,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			player.sendPrivateText(msg);
 		}
 	}
+
 	public synchronized boolean onExit(final RPObject object) {
 		try {
 			final Player player = (Player) object;
@@ -673,7 +678,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 *
 	 * @param msg welcome message
 	 */
-	public void setWelcomeMessage(String msg) {
+	public static void setWelcomeMessage(String msg) {
 		StendhalRPRuleProcessor.welcomeMessage = msg;
 	}
 }

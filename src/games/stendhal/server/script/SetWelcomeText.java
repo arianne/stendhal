@@ -38,9 +38,8 @@ public class SetWelcomeText extends ScriptImpl {
 			return;
 		}
 
-		StendhalRPRuleProcessor.get().setWelcomeMessage(args.get(0));
+		StendhalRPRuleProcessor.setWelcomeMessage(args.get(0));
 		admin.sendPrivateText("Set welcome text to: " + args.get(0));
 	}
 
-	
 }
