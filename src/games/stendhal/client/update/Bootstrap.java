@@ -115,8 +115,7 @@ public class Bootstrap {
 				+ pathSep + "jar" + pathSep;
 		final File folder = new File(jarFolder);
 		if (!folder.exists()) {
-			if (!folder.mkdirs())
-				System.out.println("folder was not created: " + folder.getAbsolutePath());
+			folder.mkdirs();
 		}
 		System.setProperty("log4j.ignoreTCL", "true");
 	}
