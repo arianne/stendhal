@@ -17,6 +17,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
@@ -29,6 +30,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 /**
   * Provides Wrviliza, the kobold barmaid in Wo'fol.
   * She's Wrvil's wife.
@@ -38,6 +41,8 @@ import java.util.Map;
   * @author omero
   */
 public class KoboldBarmaidNPC implements ZoneConfigurator {
+
+    private static final Logger logger = Logger.getLogger(KoboldBarmaidNPC.class);
 
 	/**
 	 * Configure a zone.
@@ -92,16 +97,15 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 						}
 
 						int price = getCharge(player);
-						
 						if (player.isBadBoy()) {
 						        price = (int) (BAD_BOY_BUYING_PENALTY * price);
 						}
 						
 						if ("slim bottle".equals(requiredContainer) || "eared bottle".equals(requiredContainer)) {
-							if (!player.isEquipped(requiredContainer, amount) || !player.isEquipped("money", price)) {
+							if (!player.isEquipped(requiredContainer, getAmount()) || !player.isEquipped("money", price)) {
 								seller.say("Wrauff! I can only sell you "
 									+ Grammar.plnoun(getAmount(), getChosenItemName())
-									+ " if you meet the price of " + price + " and have " + amount + " empty "
+									+ " if you meet the price of " + price + " and have " + getAmount() + " empty "
 									+ Grammar.plnoun(getAmount(), requiredContainer) + ".");
 							        return false;
 							}
@@ -111,24 +115,32 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 									+ " if you have enough money.");
 						        return false;
 						}
+
+                        /**
+                         * If the user tries to buy several of a non-stackable item,
+                         * he is forced to buy only one.
+                         */
+                        if (item instanceof StackableItem) {
+                            ((StackableItem) item).setQuantity(getAmount());
+                        } else {
+                            setAmount(1);
+                        }
 						
 						if (player.equipToInventoryOnly(item)) {
 							player.drop("money", price);
-							if (requiredContainer != "") {
-						               	player.drop(requiredContainer, amount);
+							if (!"".equals(requiredContainer)) {
+						               	player.drop(requiredContainer, getAmount());
 							}
-						
 							seller.say("Wroff! Here "
 									+ Grammar.isare(getAmount()) + " your "
 									+ Grammar.plnoun(getAmount(), getChosenItemName()) + "!");
 							return true;
-
-					        } else {
-					                seller.say("Wruff.. You cannot carry any "
-					                                + Grammar.plnoun(getAmount(), getChosenItemName())
+                        } else {
+                            seller.say("Wruff.. You cannot carry any "
+                                    + Grammar.plnoun(getAmount(), getChosenItemName())
 									+ " in your bag now.");
-					                return false;
-					        }
+                            return false;
+                        }
 					}
 				}
 
