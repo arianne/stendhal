@@ -189,10 +189,13 @@ public class KoboldishTorcibud extends AbstractQuest {
             "torcibud",
             new QuestNotStartedCondition(QUEST_SLOT),
             ConversationStates.QUEST_OFFERED,
-            "Wruff. I will make more when I have enough #stuff!",
+            "Wruff. I will make more when I have enough #stuff! Are you going to help?",
             null);
 
         // player is curious about stuff, ingredients or supplies when offered the quest
+        // note that the answer given by the NPC does not contain any trigger words on pourpose
+        // as it should only hint what's kind of things are needed.
+        // some details about the required items are given only once the quest has been accepted.
         npc.add(ConversationStates.QUEST_OFFERED,
             Arrays.asList("stuff","ingredients","supplies"),
             new OrCondition(
@@ -258,6 +261,43 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wrof! Welcome back. Did you gather any #stuff for me?",
             null);
 
+        // player is curious about artichokes
+        npc.add(ConversationStates.ATTENDING,
+            Arrays.asList("artichoke","artichokes"),
+            new QuestActiveCondition(QUEST_SLOT),
+            ConversationStates.ATTENDING,
+            "Wrof! Not so common vegetables,"
+                + " but I know that there are some being grown outside a farm"
+                + " near Semos city.",
+            null);
+
+        // player is curious about fierywater
+        npc.add(ConversationStates.ATTENDING,
+            Arrays.asList("fierywater"),
+            new QuestActiveCondition(QUEST_SLOT),
+            ConversationStates.ATTENDING,
+            "Wroof! Powerfull fluid, that is."
+                + " I buy mine in Ados market whenever I got the time to make a trip there.",
+            null);
+
+        // player is curious about herbs
+        npc.add(ConversationStates.ATTENDING,
+            Arrays.asList("arandula","sclaria","kekik"),
+            new QuestActiveCondition(QUEST_SLOT),
+            ConversationStates.ATTENDING,
+            "Wrof! Common herb that grow outside in the plains or woods... Easy to spot!",
+            null);
+
+        // player is curious about mandragora
+        npc.add(ConversationStates.ATTENDING,
+            Arrays.asList("mandragora"),
+            new QuestActiveCondition(QUEST_SLOT),
+            ConversationStates.ATTENDING,
+            "Wrof! All I know is that it is rare root that grows better outside in the woods,"
+                + " expecially near places soaked with magic..."
+                + " Not easy to spot either!",
+            null);
+
         // player says stuff to be reminded of what is still missing
         npc.add(ConversationStates.QUESTION_1,
             "stuff", null,
@@ -277,7 +317,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             ConversationPhrases.NO_MESSAGES,
             new QuestNotCompletedCondition(QUEST_SLOT),
             ConversationStates.ATTENDING,
-            "Wruf! Take your time... no hurry! What matters bring you down here then?",
+            "Wruf! Take your time... No hurry!",
             null);
 
         // create the ChatAction to reward the player
