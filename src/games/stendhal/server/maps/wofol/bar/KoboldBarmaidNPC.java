@@ -181,6 +181,10 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 						"Wrof! A large bottle with handles on the neck that resemble ears... It cannot be you have never seen one!");
 				addReply("slim bottle",
 						"Wrof! A bottle narrower at bottom and a bit wider at the shoulders ... I'm sure you've seen one already!");
+
+                /**
+                 * Additional behaviour code is in games.stendhal.server.maps.quests.KoboldishTorcibud
+                 */
 			}
 		};
 
