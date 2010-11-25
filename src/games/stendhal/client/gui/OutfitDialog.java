@@ -65,64 +65,64 @@ public class OutfitDialog extends JDialog {
 	private static final int PLAYER_HEIGHT = 64;
 
 	// to keep the sprites to show
-	private transient final Sprite[] hairs;
+	private final Sprite[] hairs;
 
-	private transient final Sprite[] heads;
+	private final Sprite[] heads;
 
-	private transient final Sprite[] bodies;
+	private final Sprite[] bodies;
 
-	private transient final Sprite[] clothes;
+	private final Sprite[] clothes;
 
 	// current selected parts index
-	private transient int hairsIndex = 1;
+	private int hairsIndex = 1;
 
-	private transient int headsIndex;
+	private int headsIndex;
 
-	private transient int bodiesIndex;
+	private int bodiesIndex;
 
-	private transient int clothesIndex;
+	private int clothesIndex;
 
 	// to handle the draws update
-	private transient final Timer timer;
+	private final Timer timer;
 
 	// 0 for direction UP, 1 RIGHT, 2 DOWN and 3 LEFT
-	private transient int direction = 2;
+	private int direction = 2;
 
-	private transient final StendhalClient client;
+	private final StendhalClient client;
 
-	private transient final SpriteStore store = SpriteStore.get();
+	private final SpriteStore store = SpriteStore.get();
 
-	private transient final OutfitStore ostore = OutfitStore.get();
+	private final OutfitStore ostore = OutfitStore.get();
 	
-	private transient JButton jbtLeftBodies;
+	private JButton jbtLeftBodies;
 
-	private transient JButton jbtLeftClothes;
+	private JButton jbtLeftClothes;
 
-	private transient JButton jbtLeftHairs;
+	private JButton jbtLeftHairs;
 
-	private transient JButton jbtLeftHeads;
+	private JButton jbtLeftHeads;
 
-	private transient JButton jbtOK;
+	private JButton jbtOK;
 
-	private transient JButton jbtRightBodies;
+	private JButton jbtRightBodies;
 
-	private transient JButton jbtRightClothes;
+	private JButton jbtRightClothes;
 
-	private transient JButton jbtRightHairs;
+	private JButton jbtRightHairs;
 
-	private transient JButton jbtRightHeads;
+	private JButton jbtRightHeads;
 
-	private transient JLabel jlblBodies;
+	private JLabel jlblBodies;
 
-	private transient JLabel jlblClothes;
+	private JLabel jlblClothes;
 
-	private transient JLabel jlblFinalResult;
+	private JLabel jlblFinalResult;
 
-	private transient JLabel jlblHairs;
+	private JLabel jlblHairs;
 
-	private transient JLabel jlblHeads;
+	private JLabel jlblHeads;
 
-	private transient JSlider jsliderDirection;
+	private JSlider jsliderDirection;
 
 	public OutfitDialog(final Frame parent, final String title, final int outfit) {
 		this(parent, title, outfit, Outfits.HAIR_OUTFITS, Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,
