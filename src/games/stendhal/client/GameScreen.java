@@ -91,8 +91,9 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 */
 	protected Map<IEntity, EntityView> entities;
 
-	/** Actual size of the world in world units. */
+	/** Actual width of the world in world units. */
 	protected int ww;
+	/** Actual height of the world in world units. */
 	protected int wh;
 
 	/**
@@ -727,10 +728,12 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		 * positioning.
 		 */
 		sx = Math.max(sx, 0);
-		sx = Math.min(sx, getWidth() - sprite.getWidth() + svx);
+		// Allow placing beyond the map, but only if the area is on the screen
+		sx = Math.min(sx, Math.max(getWidth() + svx, convertWorldToScreen(ww)) - sprite.getWidth());
 
 		sy = Math.max(sy, 0);
-		sy = Math.min(sy, getHeight() - sprite.getHeight() + svy);
+		// Allow placing beyond the map, but only if the area is on the screen
+		sy = Math.min(sy, Math.max(getHeight() + svy, convertWorldToScreen(wh)) - sprite.getHeight());
 
 		boolean found = true;
 
