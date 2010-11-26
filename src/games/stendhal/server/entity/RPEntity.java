@@ -1397,6 +1397,7 @@ public abstract class RPEntity extends GuidedEntity {
 					for (final RPObject object : rpslot) {
 						if (object instanceof Stackable<?>) {
 							// found another stackable
+							@SuppressWarnings("rawtypes")
 							final Stackable other = (Stackable<?>) object;
 							if (other.isStackable(stackEntity)) {
 								return slotName;

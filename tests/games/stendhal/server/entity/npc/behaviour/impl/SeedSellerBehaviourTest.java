@@ -61,7 +61,7 @@ public class SeedSellerBehaviourTest {
 		final Item seed = bob.getFirstEquipped("seed");
 		assertNotNull(seed);
 		assertEquals("lilia", seed.getInfoString());
-		assertEquals(90, ((Stackable) bob.getFirstEquipped("money")).getQuantity());
+		assertEquals(90, ((Stackable<?>) bob.getFirstEquipped("money")).getQuantity());
 	}
 
 	/**
