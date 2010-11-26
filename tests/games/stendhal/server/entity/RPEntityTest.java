@@ -362,6 +362,7 @@ public class RPEntityTest {
 	/**
 	 * Tests for attackCanHitreturnTruedamageZero.
 	 */
+	@SuppressWarnings("null")
 	@Test
 	public void testAttackCanHitreturnTruedamageZero() {
 		MockStendlRPWorld.get();
@@ -390,6 +391,7 @@ public class RPEntityTest {
 
 			}
 		};
+
 		final RPEntity defender = new RPEntity() {
 
 			@Override
@@ -436,6 +438,7 @@ public class RPEntityTest {
 	/**
 	 * Tests for attackCanHitreturnTruedamage30.
 	 */
+	@SuppressWarnings("null")
 	@Test
 	public void testAttackCanHitreturnTruedamage30() {
 		MockStendlRPWorld.get();
@@ -464,6 +467,7 @@ public class RPEntityTest {
 
 			}
 		};
+
 		final RPEntity defender = new RPEntity() {
 
 			@Override
