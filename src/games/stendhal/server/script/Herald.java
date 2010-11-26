@@ -98,7 +98,7 @@ public class Herald extends ScriptImpl {
     public HeraldListener getTNL(){
     	return(tnl);
     }
-    public void SetCounter(int count){
+    public void setCounter(int count){
     	this.counter=count;
     }
     
@@ -150,14 +150,15 @@ public class Herald extends ScriptImpl {
 	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 		if (admin==null) {
 			logger.error("herald called by null admin", new Throwable());
+		} else {
+			if (sandbox.getZone(admin).collides(admin.getX()+1, admin.getY())) {
+				logger.info("Spot for placing herald is occupied.");
+				admin.sendPrivateText("Spot (right) near you is occupied, can't place herald here.");
+				return;
+			}
+			sandbox.setZone(admin.getZone());
+			sandbox.add(getHerald(sandbox.getZone(admin), admin.getX() + 1, admin.getY()));
 		}
-		if (sandbox.getZone(admin).collides(admin.getX()+1, admin.getY())) {
-			logger.info("Spot for placing herald is occupied.");
-			admin.sendPrivateText("Spot (right) near you is occupied, can't place herald here.");
-			return;
-		}
-		sandbox.setZone(admin.getZone());
-		sandbox.add(GetHerald(sandbox.getZone(admin), admin.getX() + 1, admin.getY()));
 	}
 
 	/**
@@ -185,7 +186,7 @@ public class Herald extends ScriptImpl {
 		counter++;
 		turnNotifier.dontNotify(tnl);
 		if(interval*counter<limit){
-			heraldNews.get(index).SetCounter(counter);
+			heraldNews.get(index).setCounter(counter);
 			turnNotifier.notifyInSeconds(interval, tnl);
 		} else {
 			// it was last announce.
@@ -205,7 +206,7 @@ public class Herald extends ScriptImpl {
 	 * @param y - y coord in zone
 	 * @return herald NPC :-)
 	 */
-	private SpeakerNPC GetHerald(StendhalRPZone zone, int x, int y) {
+	private SpeakerNPC getHerald(StendhalRPZone zone, int x, int y) {
 		final SpeakerNPC npc = new SpeakerNPC(HeraldName) {
 			
 			/**
@@ -299,7 +300,7 @@ public class Herald extends ScriptImpl {
 							return;
 						}
 						try {
-							String text = args.toString().trim().
+							String text = args.trim().
 								          substring(starr[0].length()).trim().
 								          substring(starr[1].length()).trim().
 								          substring(starr[2].length()).trim();
