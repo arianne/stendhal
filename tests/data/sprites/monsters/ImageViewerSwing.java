@@ -85,12 +85,12 @@ public class ImageViewerSwing extends JComponent {
 			} catch (final InterruptedException e) {
 				//load completed
 			}
+			setPreferredSize(new Dimension(image.getWidth(this), image.getHeight(this)));
 		}
-		setPreferredSize(new Dimension(image.getWidth(this), image.getHeight(this)));
+
 		revalidate();
 		// image is now ready, let's paint it
 		repaint();
-
 	}
 
 	/**
