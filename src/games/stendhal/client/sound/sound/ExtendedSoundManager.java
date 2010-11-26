@@ -61,7 +61,7 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 
 		private boolean mEnabled = true;
 		private float mVolume = 1.0f;
-		private final MemoryCache<String, Sound> mSounds = new MemoryCache<String, Sound>();
+		private final MemoryCache<String, Sound> mGroupSounds = new MemoryCache<String, Sound>();
 		private boolean streaming = false;
 
 		public boolean loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
@@ -76,7 +76,7 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 				}
 	
 				if (sound != null)
-					mSounds.put(name, sound);
+					mGroupSounds.put(name, sound);
 	
 				return sound != null;
 			} catch (RuntimeException e) {
@@ -119,10 +119,10 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 			try {
 				
 				if (mEnabled) {
-					Sound sound = mSounds.get(soundName);
+					Sound sound = mGroupSounds.get(soundName);
 					if (sound == null) {
 						loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, this.streaming);
-						sound = mSounds.get(soundName);
+						sound = mGroupSounds.get(soundName);
 					}
 
 					if (sound != null) {
