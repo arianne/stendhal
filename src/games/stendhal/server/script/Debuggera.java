@@ -83,19 +83,16 @@ public class Debuggera extends ScriptImpl {
 
 			// change quest
 			String quest = sentence.getOriginalText();
-			int pos;
-			if (quest == null) {
-				pos = -1;
-			} else {
-				pos = quest.indexOf("=");
-			}
-			if (pos > -1) {
-				final String value = quest.substring(pos + 1);
-				quest = quest.substring(0, pos);
-				sb.append("\r\n\r\nSet \"" + quest + "\" to \"" + value + "\"");
-				sandbox.addGameEvent(player.getName(), "alter_quest",
-						Arrays.asList(player.getName(), quest, value));
-				player.setQuest(quest.trim(), value.trim());
+			if (quest != null) {
+				int pos = quest.indexOf("=");
+				if (pos > -1) {
+					final String value = quest.substring(pos + 1);
+					quest = quest.substring(0, pos);
+					sb.append("\r\n\r\nSet \"" + quest + "\" to \"" + value + "\"");
+					sandbox.addGameEvent(player.getName(), "alter_quest",
+							Arrays.asList(player.getName(), quest, value));
+					player.setQuest(quest.trim(), value.trim());
+				}
 			}
 			raiser.say(sb.toString());
 		}
