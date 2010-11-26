@@ -30,7 +30,7 @@ import org.apache.log4j.Logger;
  */
 public class Box extends Item implements UseListener {
 
-	private final Logger logger = Logger.getLogger(Box.class);
+	private final static Logger logger = Logger.getLogger(Box.class);
 
 	/**
 	 * Creates a new box.
