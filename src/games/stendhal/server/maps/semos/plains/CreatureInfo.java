@@ -156,34 +156,33 @@ public class CreatureInfo {
 					creature.getCreatureName(), maxLocations);
 		}
 		String respawnInfo;
-		if (!respawn) {
-			respawnInfo = "";
-		} else {
+		if (respawn) {
 			respawnInfo = getRespawnInfo(creature);
+		} else {
+			respawnInfo = "";
 		}
-		String result = getCreatureBasicInfo(player, creature);
+		StringBuilder result = new StringBuilder(getCreatureBasicInfo(player, creature));
 		if (respawn) {
 			if (respawnInfo != null && respawnInfo.length() > 0) {
-				result += getRandomString(respawnTexts, respawnInfo) + " ";
+				result.append(getRandomString(respawnTexts, respawnInfo)).append(' ');
 			}
 		}
 		if (maxDrops > 0) {
 			if (dropInfo != null && dropInfo.length() > 0) {
-				result += getRandomString(carryTexts, dropInfo) + " ";
+				result.append(getRandomString(carryTexts, dropInfo)).append(' ');
 			} else {
-				result += getRandomString(carryNothingTexts) + " ";
+				result.append(getRandomString(carryNothingTexts)).append(' ');
 			}
 		}
 		if (maxLocations > 0) {
 			if (locationInfo != null && locationInfo.length() > 0) {
-				result += getRandomString(locationTexts, locationInfo) + " ";
+				result.append(getRandomString(locationTexts, locationInfo)).append(' ');
 			} else {
-				result += getRandomString(locationUnknownTexts,
-						Grammar.a_noun(creature.getCreatureName()))
-						+ " ";
+				result.append(getRandomString(locationUnknownTexts,
+						Grammar.a_noun(creature.getCreatureName()))).append(' ');
 			}
 		}
-		return result;
+		return result.toString();
 	}
 
 	/**
@@ -221,7 +220,7 @@ public class CreatureInfo {
 				}
 			}
 		}
-		if (places.size() == 0) {
+		if (places.isEmpty()) {
 			return "";
 		} else {
 			return prefix + "at "
@@ -325,7 +324,7 @@ public class CreatureInfo {
 					}
 				}
 			}
-			StringBuilder sb = new StringBuilder();
+			final StringBuilder sb = new StringBuilder();
 			final String[] directions = new String[] { ".+_n\\d?e\\d?($|_).*",
 					"north east ", "_n\\d?e\\d?($|_)", "_",
 					".+_n\\d?w\\d?($|_).*", "north west ", "_n\\d?w\\d?($|_)",
@@ -448,10 +447,10 @@ public class CreatureInfo {
 				break;
 			}
 		}
+
 		if (result.length() > 0) {
 			result.append(", ");
 		} 
-
 		if (prevProbability != null) {
 			result.append(prevProbability.replaceAll("%s",
 					Grammar.enumerateCollection(items)));
