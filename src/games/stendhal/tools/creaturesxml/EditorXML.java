@@ -93,7 +93,7 @@ public class EditorXML {
 		itemFrame.setLists();
 	}
 
-	public void updateCreaturesFromFile(String ref) throws SAXException {
+	public void updateCreaturesFromFile(String ref) {
 		creaturesList = loadCreaturesList(ref);
 		updateFrameContents();
 	}
@@ -103,8 +103,7 @@ public class EditorXML {
 		updateFrameContents();
 	}
 
-	private List<DefaultCreature> loadCreaturesList(String ref)
-			throws SAXException {
+	private List<DefaultCreature> loadCreaturesList(String ref) {
 		CreatureGroupsXMLLoader loader = new CreatureGroupsXMLLoader(ref);
 		List<DefaultCreature> creatures = loader.load();
 		sortCreatures(creatures);

@@ -1141,12 +1141,8 @@ public class JCreature extends javax.swing.JFrame {
 			return;
 		}
 
-		try {
-			xml.updateCreaturesFromFile(cdata);
-			xml.creaturesChangeClear();
-		} catch (SAXException ex) {
-			ex.printStackTrace();
-		}
+		xml.updateCreaturesFromFile(cdata);
+		xml.creaturesChangeClear();
 	} // GEN-LAST:event_jLoadFromFileActionPerformed
 
 	private void updateGFXButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_updateGFXButtonActionPerformed
