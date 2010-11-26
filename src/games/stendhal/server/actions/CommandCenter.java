@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.actions.admin.BanAction;
@@ -147,23 +146,6 @@ public class CommandCenter {
 			return UNKNOWN_ACTION;
 		} else {
 			return action;
-		}
-	}
-
-	private static class UnknownAction implements ActionListener {
-		@SuppressWarnings("hiding")
-		private static Logger logger = Logger.getLogger(UnknownAction.class);
-
-		public void onAction(final Player player, final RPAction action) {
-			String type = "null";
-			if (action != null) {
-				type = action.get("type");
-			}
-			logger.warn(player + " tried to execute unknown action " + type);
-			if (player != null) {
-				player.sendPrivateText(NotificationType.ERROR,
-						"Unknown command " + type + ". Please type /help to get a list.");
-			}
 		}
 	}
 
