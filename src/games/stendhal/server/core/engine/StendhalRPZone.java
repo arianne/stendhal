@@ -1185,6 +1185,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	
 
 	@Override
+	@SuppressWarnings("unused")
 	public void nextTurn() {
 		super.nextTurn();
 
