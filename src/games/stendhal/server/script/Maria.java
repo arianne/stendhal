@@ -27,25 +27,25 @@ public class Maria extends ScriptImpl {
 
 	private static Logger logger = Logger.getLogger(Maria.class);
 
-	private static final class MargaretCouponAction implements ChatAction {
-
-		private final ScriptingSandbox sandbox;
-
-		public MargaretCouponAction(final ScriptingSandbox sandbox) {
-			this.sandbox = sandbox;
-		}
-
-		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-			if (player.drop("coupon")) {
-				final Item beer = sandbox.getItem("beer");
-				player.equipOrPutOnGround(beer);
-				raiser.say("Here is your free beer.");
-				player.setQuest("MariaCoupon", "done");
-			} else {
-				raiser.say("Sorry, you don't have a coupon. You can get one from Maria.");
-			}
-		}
-	}
+//	private static final class MargaretCouponAction implements ChatAction {
+//
+//		private final ScriptingSandbox sandbox;
+//
+//		public MargaretCouponAction(final ScriptingSandbox sandbox) {
+//			this.sandbox = sandbox;
+//		}
+//
+//		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+//			if (player.drop("coupon")) {
+//				final Item beer = sandbox.getItem("beer");
+//				player.equipOrPutOnGround(beer);
+//				raiser.say("Here is your free beer.");
+//				player.setQuest("MariaCoupon", "done");
+//			} else {
+//				raiser.say("Sorry, you don't have a coupon. You can get one from Maria.");
+//			}
+//		}
+//	}
 
 	@Override
 	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {

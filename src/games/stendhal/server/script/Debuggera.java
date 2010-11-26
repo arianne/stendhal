@@ -49,22 +49,22 @@ public class Debuggera extends ScriptImpl {
 
 	// boolean debuggeraEnabled;
 
-	private static final class DebuggeraEnablerAction implements ChatAction {
-		boolean enabled;
-
-		public DebuggeraEnablerAction(final boolean enable) {
-			this.enabled = enable;
-		}
-
-		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-			// TODO debuggeraEnabled = enabled;
-			if (enabled) {
-				raiser.say("Thanks.");
-			} else {
-				raiser.say("OK, I will not talk to strangers");
-			}
-		}
-	}
+//	private static final class DebuggeraEnablerAction implements ChatAction {
+//		boolean enabled;
+//
+//		public DebuggeraEnablerAction(final boolean enable) {
+//			this.enabled = enable;
+//		}
+//
+//		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+//			// TODO debuggeraEnabled = enabled;
+//			if (enabled) {
+//				raiser.say("Thanks.");
+//			} else {
+//				raiser.say("OK, I will not talk to strangers");
+//			}
+//		}
+//	}
 
 	private static final class QuestsAction implements ChatAction {
 		ScriptingSandbox sandbox;

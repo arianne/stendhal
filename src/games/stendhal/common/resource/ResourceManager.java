@@ -101,53 +101,53 @@ public class ResourceManager extends ResourceLocator
 		}
 	}
 
-	private class FSSchemeLocator implements Locator, SchemeLocator
-	{
-		final ArrayList<File> mDirectories = new ArrayList<File>();
-
-		public void addSearchPath(String path)
-		{
-			File directory = new File(mRootDirectory, path);
-
-			if(directory.isDirectory())
-				mDirectories.add(directory);
-		}
-
-		public File locateFile(URI uri)
-		{
-			for(File directory: mDirectories)
-			{
-				File file = new File(directory, uri.getPath());
-				
-				if(file.isFile())
-					return file;
-			}
-
-			return null;
-		}
-		
-		public InputStream locate(URI uri)
-		{
-			File file = locateFile(uri);
-
-			try
-			{
-				if(file != null)
-					return new FileInputStream(file);
-			}
-			catch(FileNotFoundException ex) { }
-
-			return null;
-		}
-
-		public boolean isLocatable(URI uri)
-		{
-			return locateFile(uri) != null;
-		}
-	}
+//	private class FSSchemeLocator implements Locator, SchemeLocator
+//	{
+//		final ArrayList<File> mDirectories = new ArrayList<File>();
+//
+//		public void addSearchPath(String path)
+//		{
+//			File directory = new File(mRootDirectory, path);
+//
+//			if(directory.isDirectory())
+//				mDirectories.add(directory);
+//		}
+//
+//		public File locateFile(URI uri)
+//		{
+//			for(File directory: mDirectories)
+//			{
+//				File file = new File(directory, uri.getPath());
+//				
+//				if(file.isFile())
+//					return file;
+//			}
+//
+//			return null;
+//		}
+//		
+//		public InputStream locate(URI uri)
+//		{
+//			File file = locateFile(uri);
+//
+//			try
+//			{
+//				if(file != null)
+//					return new FileInputStream(file);
+//			}
+//			catch(FileNotFoundException ex) { }
+//
+//			return null;
+//		}
+//
+//		public boolean isLocatable(URI uri)
+//		{
+//			return locateFile(uri) != null;
+//		}
+//	}
 
 	private final HashMap<String,SchemeLocator> mSchemeLocators = new HashMap<String,SchemeLocator>();
-	private File                                mRootDirectory  = null;
+//	private File                                mRootDirectory  = null;
 
 	public void addScheme(String name, String ...searchPaths)
 	{
@@ -176,18 +176,18 @@ public class ResourceManager extends ResourceLocator
 		locator.addSearchPath(path);
 	}
 
-	public void setRootDirectory(String path)
-	{
-		if(path == null)
-		{
-			mRootDirectory = null;
-		}
-		else
-		{
-			File file = new File(path);
-			
-			if(file.isDirectory())
-				mRootDirectory = file;
-		}
-	}
+//	public void setRootDirectory(String path)
+//	{
+//		if(path == null)
+//		{
+//			mRootDirectory = null;
+//		}
+//		else
+//		{
+//			File file = new File(path);
+//			
+//			if(file.isDirectory())
+//				mRootDirectory = file;
+//		}
+//	}
 }
