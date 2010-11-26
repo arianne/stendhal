@@ -22,6 +22,10 @@
 	</Match>
 
 	<Match>
+		<Bug pattern="DM_CONVERT_CASE" />
+	</Match>
+
+	<Match>
 		<Or>
 			<Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE" />
 			<Bug pattern="DM_EXIT" />
@@ -42,3 +46,4 @@
 		<Class name="games.stendhal.common.math" />
 	</Match>
 </FindBugsFilter>
+ 
