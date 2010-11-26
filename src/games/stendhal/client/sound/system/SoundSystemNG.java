@@ -53,7 +53,7 @@ public class SoundSystemNG extends Thread
 		}
 
 		boolean isReady             () { return mLine.isOpen() && mLine.isRunning();       }
-		int     getNumSamples       () { return mNumSamples;                               }
+//		int     getNumSamples       () { return mNumSamples;                               }
 		int     getNumChannels      () { return mFormat.getChannels();                     }
 		int     getSampleRate       () { return (int)mFormat.getSampleRate();              }
 		int     getNumBytesPerSample() { return mFormat.getSampleSizeInBits() / 8;         }

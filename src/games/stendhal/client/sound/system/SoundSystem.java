@@ -66,8 +66,8 @@ public class SoundSystem extends Thread
         boolean     receivedData        () { return mNumSamples    > 0;                }
         boolean     isConverted         () { return mPCMBufferSize > 0;                }
 		AudioFormat getAudioFormat      () { return mFormat;                           }
-		float[]     getBuffer           () { return mAudioBuffer;                      }
-		int         getNumSamples       () { return mNumSamples;                       }
+//		float[]     getBuffer           () { return mAudioBuffer;                      }
+//		int         getNumSamples       () { return mNumSamples;                       }
 		int         getNumChannels      () { return mFormat.getChannels();             }
 		int         getSampleRate       () { return (int)mFormat.getSampleRate();      }
 		int         getNumBytesPerSample() { return mFormat.getSampleSizeInBits() / 8; }
