@@ -94,7 +94,11 @@ public class AchievementNotifier {
 					DAORegister.get().get(AchievementDAO.class).updateAchievement(it.getValue(), achievement);
 				} 
 			} catch (SQLException e) {
-				logger.error("Error while updating exisiting achievement "+achievement.getTitle(), e);
+				String msg = "Error while updating existing achievement ";
+				if (achievement != null) {
+					msg += achievement.getTitle();
+				}
+				logger.error(msg, e);
 			}
 		}
 		// remove already stored achievements before saving them
