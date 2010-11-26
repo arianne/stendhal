@@ -100,7 +100,7 @@ public class UpdatePropUpdater {
 	 * updates the init statement
 	 */
 	private void updateInit() {
-		// TODO: generate automatically instead of hardcoding it.
+		// TODO: generate automatically instead of hard coding it.
 		prop.put("init.file-list", NON_STENDHAL_FILES + ",stendhal-data-" + newVersion + ".jar,stendhal-" + newVersion + ".jar");
 		prop.put("init.version", newVersion);
 
@@ -110,7 +110,7 @@ public class UpdatePropUpdater {
 	 * updates the update-file-list
 	 */
 	private void updateUpdateFileList() {
-		// TODO: generate automatically instead of hardcoding it.
+		// TODO: generate automatically instead of hard coding it.
 		prop.put("update-file-list." + oldVersion, NON_STENDHAL_FILES + ",stendhal" + legacy + "-data-diff-" + oldVersion + "-" + newVersion + ".jar,stendhal" + legacy + "-diff-" + oldVersion + "-" + newVersion + ".jar");
 	}
 
@@ -118,7 +118,7 @@ public class UpdatePropUpdater {
 	 * update the file size section
 	 */
 	private void updateFileSize() {
-		// TODO: implement me
+		// TODO: implement updateFileSize()
 	}
 
 	/**
