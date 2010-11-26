@@ -135,6 +135,7 @@ class DestinationObject extends MoveableObject {
 						
 						if (object instanceof Stackable<?>) {
 							// found another stackable
+							@SuppressWarnings("rawtypes")
 							final Stackable other = (Stackable<?>) object;
 							if (other.isStackable(stackEntity)) {
 								// other is the same type...merge them
