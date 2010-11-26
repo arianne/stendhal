@@ -1,20 +1,39 @@
 <FindBugsFilter>
 	<Match> 
 		<Bug pattern="EQ_UNUSUAL" />
-		<Package name="~games\.stendhal\.server\.entity\.npc\.action.*" />
+		<Or>
+			<Package name="games.stendhal.server.entity.npc.action" />
+			<Package name="games.stendhal.server.entity.npc.condition" />
+			<Package name="games.stendhal.server.entity.trade" />
+		</Or>
 	</Match>
-	<Match> 
-		<Bug pattern="EQ_UNUSUAL" />
-		<Package name="~games\.stendhal\.server\.entity\.npc\.condition.*" />
-	</Match>
+
 	<Match> 
 		<Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
 		<Package name="~games\.stendhal\.server\.entity.*" />
 	</Match>
+
 	<Match> 
 		<Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
 	</Match>
+
 	<Match> 
 		<Bug pattern="SE_BAD_FIELD" />
+	</Match>
+
+	<Match>
+		<Or>
+			<Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE" />
+			<Bug pattern="DM_EXIT" />
+		</Or>
+		<Or>
+			<Package name="~games\.stendhal\.client\.*" />
+			<Package name="games.stendhal.server.actions" />
+		</Or>
+	</Match>
+
+	<Match>
+		<Bug pattern="NM_METHOD_NAMING_CONVENTION" />
+		<Class name="games.stendhal.common.Grammar" />
 	</Match>
 </FindBugsFilter>
