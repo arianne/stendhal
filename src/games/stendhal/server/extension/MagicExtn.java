@@ -81,83 +81,86 @@ public class MagicExtn extends StendhalServerExtension implements
 			player.sendPrivateText("You can not cast this spell.");
 			return;
 		}
-		
+
 		// Checks to see if the list of spells available to the player contains
 		// the spell they tried to cast
-		if (availableSpells.contains(castSpell)) {
+		if (castSpell != null && availableSpells.contains(castSpell)) {
 			canCastSpell = true;
 		} else {
 			player.sendPrivateText("You can not cast this spell.");
 		}
 
 		if (canCastSpell) {
-			// put spells and actions here
-			if (castSpell.contains("heal")) {
-				if (player.getMana() > 15) {
-					player.heal();
-
-					final String mana = player.get("mana");
-					final int mana_a = Integer.parseInt(mana);
-					final int newmana = mana_a - 15;
-					player.put("mana", newmana);
-					player.sendPrivateText("You have been healed.");
-					player.update();
-					player.notifyWorldAboutChanges();
-				} else {
-					player.sendPrivateText("You do not have enough available mana to use this spell.");
-				}
-
-			} else if (castSpell.contains("raise stats")) {
-				if (player.getMana() > 100) {
-					/**
-					 * Raises the level of a player along with the atk/def
-					 */
-
-					// gets old stats
-					int oldLevel = player.getLevel();
-					final int oldXP = player.getXP();
-					final int oldDefXP = player.getDEFXP();
-					int oldDef = player.getDEF();
-					int oldAtk = player.getATK();
-					final int oldAtkXP = player.getATKXP();
-
-					// gets new stats
-					final int newLevel = oldLevel++;
-					final int newXP = oldXP + 44900;
-					final int newDefXP = oldDefXP + 24700;
-					final int newDef = oldDef++;
-					final int newAtkXP = oldAtkXP + 24700;
-					final int newAtk = oldAtk++;
-
-					// sets new stats
-					player.setXP(newXP);
-					player.setLevel(newLevel);
-					player.setDEFXP(newDefXP);
-					player.setDEF(newDef);
-					player.setATK(newAtk);
-					player.setATKXP(newAtkXP);
-
-					// saves changes
-					player.update();
-					player.notifyWorldAboutChanges();
-
-					// takes away mana
-					// player.put("mana", player.getMana() - 110);
-					final String mana = player.get("mana");
-					final int mana_a = Integer.parseInt(mana);
-					final int newmana = mana_a - 110;
-					player.put("mana", newmana);
-
-					player.sendPrivateText("Your stats have been raised.");
-				} else {
-					player.sendPrivateText("You do not have enough mana to cast this spell.");
-				}
-			} else {
-				player.sendPrivateText("The spell you tried to cast doesn't exist!");
-			}
+			castSpell(player, castSpell);
 		}
 
 		player.sendPrivateText(text);
+	}
+
+	private void castSpell(final Player player, String spell) {
+		// put spells and actions here
+		if (spell.contains("heal")) {
+			if (player.getMana() > 15) {
+				player.heal();
+
+				final String mana = player.get("mana");
+				final int mana_a = Integer.parseInt(mana);
+				final int newmana = mana_a - 15;
+				player.put("mana", newmana);
+				player.sendPrivateText("You have been healed.");
+				player.update();
+				player.notifyWorldAboutChanges();
+			} else {
+				player.sendPrivateText("You do not have enough available mana to use this spell.");
+			}
+		} else if (spell.contains("raise stats")) {
+			if (player.getMana() > 100) {
+				/**
+				 * Raises the level of a player along with the atk/def
+				 */
+
+				// gets old stats
+				int oldLevel = player.getLevel();
+				final int oldXP = player.getXP();
+				final int oldDefXP = player.getDEFXP();
+				int oldDef = player.getDEF();
+				int oldAtk = player.getATK();
+				final int oldAtkXP = player.getATKXP();
+
+				// gets new stats
+				final int newLevel = oldLevel++;
+				final int newXP = oldXP + 44900;
+				final int newDefXP = oldDefXP + 24700;
+				final int newDef = oldDef++;
+				final int newAtkXP = oldAtkXP + 24700;
+				final int newAtk = oldAtk++;
+
+				// sets new stats
+				player.setXP(newXP);
+				player.setLevel(newLevel);
+				player.setDEFXP(newDefXP);
+				player.setDEF(newDef);
+				player.setATK(newAtk);
+				player.setATKXP(newAtkXP);
+
+				// saves changes
+				player.update();
+				player.notifyWorldAboutChanges();
+
+				// takes away mana
+				// player.put("mana", player.getMana() - 110);
+				final String mana = player.get("mana");
+				final int mana_a = Integer.parseInt(mana);
+				final int newmana = mana_a - 110;
+				player.put("mana", newmana);
+
+				player.sendPrivateText("Your stats have been raised.");
+			} else {
+				player.sendPrivateText("You do not have enough mana to cast this spell.");
+			}
+		} else {
+			player.sendPrivateText("The spell you tried to cast doesn't exist!");
+		}
 	}
 
 }
