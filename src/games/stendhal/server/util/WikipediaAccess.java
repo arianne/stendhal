@@ -159,7 +159,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 			// finished
 			finished = true;
-		} catch (final Exception e) {
+		} catch (final Exception e) { // SAXException, IOException
 			finished = true;
 			error = e.toString();
 			throw e;
