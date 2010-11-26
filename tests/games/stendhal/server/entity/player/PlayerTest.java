@@ -104,9 +104,9 @@ public class PlayerTest {
 	/**
 	 * Tests for onAdded.
 	 */
+	@SuppressWarnings("null")
 	@Test
 	public void testOnAdded() {
-		
 		player.onAdded(new StendhalRPZone("playertest"));
 		RPObject object = KeyedSlotUtil.getKeyedSlotObject(player, "!visited");
 		if (object == null) {
