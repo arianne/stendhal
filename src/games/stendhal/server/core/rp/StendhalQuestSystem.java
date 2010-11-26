@@ -24,6 +24,7 @@ import games.stendhal.server.maps.quests.BeerForHayunn;
 import games.stendhal.server.maps.quests.Blackjack;
 import games.stendhal.server.maps.quests.BowsForOuchit;
 import games.stendhal.server.maps.quests.Campfire;
+import games.stendhal.server.maps.quests.ChocolateForElisabeth;
 import games.stendhal.server.maps.quests.CleanStorageSpace;
 import games.stendhal.server.maps.quests.CloakCollector;
 import games.stendhal.server.maps.quests.CloakCollector2;
@@ -153,6 +154,7 @@ public class StendhalQuestSystem {
 		loadQuest(new Blackjack());
 		loadQuest(new BowsForOuchit());
 		loadQuest(new Campfire());
+		loadQuest(new ChocolateForElisabeth());
 		loadQuest(new CleanStorageSpace());
 		loadQuest(new CloakCollector());
 		loadQuest(new CloakCollector2());
