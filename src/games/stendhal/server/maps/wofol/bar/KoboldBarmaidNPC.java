@@ -30,8 +30,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 /**
   * Provides Wrviliza, the kobold barmaid in Wo'fol.
   * She's Wrvil's wife.
@@ -42,7 +40,7 @@ import org.apache.log4j.Logger;
   */
 public class KoboldBarmaidNPC implements ZoneConfigurator {
 
-    private static final Logger logger = Logger.getLogger(KoboldBarmaidNPC.class);
+//	private static final Logger logger = Logger.getLogger(KoboldBarmaidNPC.class);
 
 	/**
 	 * Configure a zone.
