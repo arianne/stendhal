@@ -133,11 +133,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/*
 			 * Print version information.
 			 */
-//			String preRelease = "";
-//			if (Debug.PRE_RELEASE_VERSION != null) {
-//				preRelease = " - " + preRelease;
-//			}
-			logger.info("Running Stendhal server VERSION " + Debug.VERSION);
+			String preRelease = "";
+			if (Debug.PRE_RELEASE_VERSION != null) {
+				preRelease = " - " + preRelease;
+			}
+			logger.info("Running Stendhal server VERSION " + Debug.VERSION + preRelease);
 
 			this.rpman = rpman;
 			StendhalRPAction.initialize(rpman);
