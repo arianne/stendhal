@@ -36,4 +36,9 @@
 		<Bug pattern="NM_METHOD_NAMING_CONVENTION" />
 		<Class name="games.stendhal.common.Grammar" />
 	</Match>
+
+	<Match>
+		<Bug pattern="PZLA_PREFER_ZERO_LENGTH_ARRAYS" />
+		<Class name="games.stendhal.common.math" />
+	</Match>
 </FindBugsFilter>
