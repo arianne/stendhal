@@ -56,9 +56,11 @@ public class DwarfBuyerGuyNPC implements ZoneConfigurator  {
 				addJob("I buy odds and ends. Somebody has to do it.");
 				addHelp("Look at me! I am reduced to buying trinkets! How can I help YOU?");
 				addOffer("Don't bother me unless you have something I want! Check the blackboard for prices.");
-				addQuest("Unless you want to #buy this place, you cannot do anything for me.");
+				addQuest("Unless you want to #own this place, you cannot do anything for me.");
 				addGoodbye("Be off with you!");
-			    addReply("buy", "What? Why you couldn't even begin to come up with enough money for that!");
+			    addReply("own", "What? Why you couldn't even begin to come up with enough money for that!");
+			    // see games.stendhal.server.maps.quests.mithrilcloak.GettingTools for further behaviour
+			    addReply("buy", "I don't sell anything but you can look at my blackboard for what I buy. Or ask about #specials.");
 			    addReply("YOU", "Yes, I am talking to YOU! Who else would I be talking to!");
 
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyoddsandends")), false);			    
