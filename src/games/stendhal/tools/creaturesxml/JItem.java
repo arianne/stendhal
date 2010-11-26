@@ -61,7 +61,7 @@ public class JItem extends javax.swing.JFrame {
 	private List<Pair<DefaultCreature, DropItem>> usedAt;
 
 	/** Creates new form JItem. */
-	public JItem(EditorXML xml) throws SAXException {
+	public JItem(EditorXML xml) {
 		this.xml = xml;
 		initComponents();
 		loadData();
@@ -69,7 +69,7 @@ public class JItem extends javax.swing.JFrame {
 		justUpdateItem = false;
 	}
 
-	private void loadData() throws SAXException {
+	private void loadData() {
 		filteredItems = xml.getItems();
 		setLists();
 		itemList.setSelectedIndex(0);
