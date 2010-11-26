@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.net.SocketException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +44,7 @@ public class textClient extends Thread {
 	private final PerceptionHandler handler;
 
 	public textClient(final String h, final String u, final String p, final String c, final String P,
-			final boolean t) throws SocketException {
+			final boolean t) {
 		host = h;
 		username = u;
 		password = p;

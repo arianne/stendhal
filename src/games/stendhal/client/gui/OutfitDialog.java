@@ -650,7 +650,6 @@ public class OutfitDialog extends JDialog {
 		client.send(rpaction);
 	}
 
-	
 
 
 	/**
@@ -717,7 +716,7 @@ public class OutfitDialog extends JDialog {
 		}
 	}
 
-	public static void main(final String[] args) throws InterruptedException {
+	public static void main(final String[] args) {
 		String baseDir = "";
 		if (args.length > 0) {
 			baseDir = args[0] + "/";
