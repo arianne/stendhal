@@ -86,18 +86,17 @@ public class DeviceEvaluator
 
 	public void setRating(Pattern namePattern, Pattern descriptionPattern, int rating)
 	{
-		for(Device device: mDevices)
-		{
-			if(namePattern != null && namePattern.matcher(device.mName).matches())
-			{
-				device.mRating = rating;
-				continue;
-			}
+		for(Device device: mDevices) {
+			if (namePattern != null) {
+				if (namePattern.matcher(device.mName).matches()) {
+					device.mRating = rating;
+					continue;
+				}
 
-			if(descriptionPattern != null && namePattern.matcher(device.mDescription).matches())
-			{
-				device.mRating = rating;
-				continue;
+				if (descriptionPattern != null && namePattern.matcher(device.mDescription).matches()) {
+					device.mRating = rating;
+					continue;
+				}
 			}
 		}
 	}
