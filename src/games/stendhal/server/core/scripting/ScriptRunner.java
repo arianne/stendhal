@@ -153,7 +153,11 @@ public class ScriptRunner extends StendhalServerExtension implements
 			}
 
 			if ("execute".equals(mode) && !ignoreExecute) {
-				ret = script.execute(player, args);
+				if (script != null) {
+					ret = script.execute(player, args);
+				} else {
+					logger.error("Script not executed: " + trimmedName);
+				}
 			}
 		}
 
