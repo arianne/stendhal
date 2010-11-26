@@ -207,6 +207,7 @@ public class StatsPanel extends JPanel {
 		});
 	}
 		
+	@SuppressWarnings("null")
 	protected void addMoney(String slot, RPObject object) {
 		HashMap<String, RPObject> set = money.get(slot);
 		String id = object.get("id"); 
@@ -226,7 +227,7 @@ public class StatsPanel extends JPanel {
 			// Then the quantity has arrived in previous event
 			add = true;
 		}
-		
+	
 		if (add) {
 			set.put(object.get("id"), object);
 			updateMoney();
