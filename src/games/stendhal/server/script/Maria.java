@@ -5,11 +5,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.ShopList;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
