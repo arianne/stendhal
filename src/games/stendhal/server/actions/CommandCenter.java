@@ -151,6 +151,7 @@ public class CommandCenter {
 	}
 
 	private static class UnknownAction implements ActionListener {
+		@SuppressWarnings("hiding")
 		private static Logger logger = Logger.getLogger(UnknownAction.class);
 
 		public void onAction(final Player player, final RPAction action) {

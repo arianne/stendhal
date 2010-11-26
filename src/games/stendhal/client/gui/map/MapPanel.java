@@ -69,8 +69,10 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	
 	
 	/** width of the minimap. */
+	@SuppressWarnings("hiding") // from ImageObserver
 	private static final int WIDTH = 128;
 	/** height of the minimap. */
+	@SuppressWarnings("hiding")
 	private static final int HEIGHT = 128;
 	/** height of the title */
 	private static final int TITLE_HEIGHT = 15;

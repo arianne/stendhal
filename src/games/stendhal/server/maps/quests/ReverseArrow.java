@@ -183,10 +183,10 @@ public class ReverseArrow extends AbstractQuest implements
 	protected class FinishNotifier implements TurnListener {
 		private final boolean reset;
 
-		private final Player player;
+		private final Player finishPlayer;
 
 		public FinishNotifier(final boolean reset, final Player player) {
-			this.player = player;
+			this.finishPlayer = player;
 			this.reset = reset;
 		}
 
@@ -195,7 +195,7 @@ public class ReverseArrow extends AbstractQuest implements
 		 * @param currentTurn on which it is invoked
 		 */
 		public void onTurnReached(final int currentTurn) {
-			finish(reset, player);
+			finish(reset, finishPlayer);
 		}
 	}
 
