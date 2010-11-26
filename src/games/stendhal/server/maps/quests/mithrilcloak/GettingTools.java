@@ -378,6 +378,14 @@ class GettingTools {
 				ConversationStates.ATTENDING,
 				"Ok, no pressure, no pressure. Maybe you'll like some of my other #offers.",
 				null);
+		
+		// specials response for if the queststate condition is not met
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("needle", "magical", "magical needle", "ida", "cloak", "mithril cloak", "specials"),
+				null, 
+				ConversationStates.ATTENDING,
+				"The time will come when you will need my specials, but that time is not now.",
+				null);
 
 	}
 
