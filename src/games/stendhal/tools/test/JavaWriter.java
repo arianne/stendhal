@@ -52,6 +52,8 @@ class JavaWriter {
 		out.println("\tprivate SpeakerNPC npc = null;");
 		out.println("\tprivate Engine en = null;");
 		out.println();
+		out.println("\tprivate String questSlot;");
+		out.println();
 		out.println("\t@BeforeClass");
 		out.println("\tpublic static void setUpBeforeClass() throws Exception {");
 		out.println("\t\tQuestHelper.setUpBeforeClass();");
@@ -65,6 +67,8 @@ class JavaWriter {
 		out.println();
 		out.println("\t\tAbstractQuest quest = new TODO_Quest();");
 		out.println("\t\tquest.addToWorld();");
+		out.println();
+		out.println("\t\tquestSlot = quest.getSlotName();");
 		out.println();
 		out.println("\t\tplayer = PlayerTestHelper.createPlayer(\"bob\");");
 		out.println("\t}");
