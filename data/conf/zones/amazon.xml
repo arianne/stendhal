@@ -44,13 +44,13 @@
 	
 	<entity x="43" y="90">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">red_lionfish</parameter>
+     	<parameter name="species">red lionfish</parameter>
     	</implementation>
   	 </entity>
   	 
   	 <entity x="93" y="19">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">red_lionfish</parameter>
+     	<parameter name="species">red lionfish</parameter>
     	</implementation>
   	 </entity>
 
@@ -71,7 +71,7 @@
   
   	 <entity x="5" y="94">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">red_lionfish</parameter>
+     	<parameter name="species">red lionfish</parameter>
     	</implementation>
   	 </entity>
   	 
@@ -84,7 +84,7 @@
   
   	 <entity x="13" y="38">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">red_lionfish</parameter>
+     	<parameter name="species">red lionfish</parameter>
     	</implementation>
   	 </entity>
   
@@ -97,7 +97,7 @@
  	
  	 <entity x="62" y="109">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">red_lionfish</parameter>
+     	<parameter name="species">red lionfish</parameter>
     	</implementation>
   	 </entity>
  
