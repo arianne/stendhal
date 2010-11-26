@@ -59,14 +59,16 @@ public class Analyser {
 					itemid = entry.getItemid();
 				}
 	
-				// check consistency
-				final boolean res = itemLocation.check(entry.getEvent(), entry.getParam1(), entry.getParam2());
-				if (!res) {
-					logger.error("Inconsistency: exspected location \t" + itemLocation + "\t but log entry said \t" + entry);
+				if (itemLocation != null) {
+					// check consistency
+					final boolean res = itemLocation.check(entry.getEvent(), entry.getParam1(), entry.getParam2());
+					if (!res) {
+						logger.error("Inconsistency: expected location \t" + itemLocation + "\t but log entry said \t" + entry);
+					}
+
+					// update item location
+					itemLocation.update(entry.getEvent(), entry.getParam3(), entry.getParam4());
 				}
-	
-				// update item location
-				itemLocation.update(entry.getEvent(), entry.getParam3(), entry.getParam4());
 			}
 			TransactionPool.get().commit(transaction);
 		} catch (Exception e) {
