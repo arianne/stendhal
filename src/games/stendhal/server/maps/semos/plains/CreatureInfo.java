@@ -424,8 +424,8 @@ public class CreatureInfo {
 		int counter = 0;
 		String prefix = "";
 		for (final DropItem item : dropItems) {
-			final String probability = getLiteral(probabilityLiterals,
-					item.probability, 0.0);
+			final String probability = getLiteral(probabilityLiterals, item.probability, 0.0);
+
 			if (prevProbability != null && !probability.equals(prevProbability)) {
 				if (result.length() > 0) {
 					result.append(", ");
@@ -451,9 +451,12 @@ public class CreatureInfo {
 		if (result.length() > 0) {
 			result.append(", ");
 		} 
-		
-		result.append(prevProbability.replaceAll("%s",
-				Grammar.enumerateCollection(items)));
+
+		if (prevProbability != null) {
+			result.append(prevProbability.replaceAll("%s",
+					Grammar.enumerateCollection(items)));
+		}
+
 		return (prefix + result.toString()).replaceAll("_", " ");
 	}
 
