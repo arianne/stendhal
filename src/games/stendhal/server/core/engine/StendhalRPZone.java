@@ -450,7 +450,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 				
 				case ENTRY_POINT: 
 				case ZONE_CHANGE: 
-					
 					setEntryPoint(x, y);
 					break;
 
@@ -459,11 +458,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 				case PORTAL_STAIRS_DOWN: 
 					createLevelPortalAt(type, x, y);
 					break;
+
 				case PORTAL:
 					break;
 				
 				case DOOR: 
 					break;
+
 				default:
 					logger.error("Unknown Portal (class/type: " + clazz + ":"
 							+ type + ") at (" + x + "," + y + ") of " + getID()

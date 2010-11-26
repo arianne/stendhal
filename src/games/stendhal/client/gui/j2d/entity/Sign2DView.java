@@ -130,8 +130,6 @@ class Sign2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case LOOK_CLOSELY:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
-			break;
 		case READ:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;

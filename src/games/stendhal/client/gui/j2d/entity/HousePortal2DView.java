@@ -44,7 +44,6 @@ class HousePortal2DView extends InvisibleEntity2DView {
 		super.buildActions(list);
 		list.add(ActionType.USE.getRepresentation());
 		list.add(ActionType.KNOCK.getRepresentation());
-			
 	}
 
 	//
@@ -71,12 +70,7 @@ class HousePortal2DView extends InvisibleEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case USE:
-
-			at.send(at.fillTargetInfo(entity.getRPObject()));
-			break;
-
 		case KNOCK:
-			
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 

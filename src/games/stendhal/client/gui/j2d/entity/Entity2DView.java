@@ -739,13 +739,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 		switch (at) {
 		case LOOK:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
-			break;
-
 		case ADMIN_INSPECT:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
-			break;
-
 		case ADMIN_DESTROY:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;

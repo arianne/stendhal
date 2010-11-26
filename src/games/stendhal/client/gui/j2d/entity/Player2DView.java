@@ -223,17 +223,8 @@ class Player2DView extends RPEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case ADD_BUDDY:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
-			break;
-			
 		case IGNORE:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
-			break;
-
 		case UNIGNORE:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
-			break;
-			
 		case TRADE:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;

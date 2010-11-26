@@ -892,10 +892,10 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		RPAction rpaction;
 
 		switch (at) {
+		case PUSH:
 		case ATTACK:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
-
 
 		case STOP_ATTACK:
 			rpaction = new RPAction();
@@ -905,11 +905,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 			at.send(rpaction);
 			break;
-
-		case PUSH:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
-			break;
-
 
 		default:
 			super.onAction(at);
