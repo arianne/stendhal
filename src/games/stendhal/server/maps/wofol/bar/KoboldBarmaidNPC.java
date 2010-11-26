@@ -17,6 +17,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
@@ -76,10 +77,10 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 					}
 
 					/**
-					  * Wrviliza will sell her mild or strong koboldish torcibud
-					  * only when the player can afford the price and carries as many empty bottles
-					  * as the requested amount in his inventory.
-					  */
+					 * Wrviliza will sell her mild or strong koboldish torcibud
+					 * only when the player can afford the price and carries as many empty bottles
+					 * as the requested amount in his inventory.
+					 */
 					@Override
 					public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
 						final Item item = getAskedItem(chosenItemName);
@@ -92,43 +93,54 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 						}
 
 						int price = getCharge(player);
-						
+
 						if (player.isBadBoy()) {
-						        price = (int) (BAD_BOY_BUYING_PENALTY * price);
+							price = (int) (BAD_BOY_BUYING_PENALTY * price);
 						}
-						
+
 						if ("slim bottle".equals(requiredContainer) || "eared bottle".equals(requiredContainer)) {
-							if (!player.isEquipped(requiredContainer, amount) || !player.isEquipped("money", price)) {
+							if (!player.isEquipped(requiredContainer, getAmount()) || !player.isEquipped("money", price)) {
 								seller.say("Wrauff! I can only sell you "
-									+ Grammar.plnoun(getAmount(), getChosenItemName())
-									+ " if you meet the price of " + price + " and have " + amount + " empty "
-									+ Grammar.plnoun(getAmount(), requiredContainer) + ".");
-							        return false;
+										+ Grammar.plnoun(getAmount(), getChosenItemName())
+										+ " if you meet the price of " + price + " and have " + getAmount() + " empty "
+										+ Grammar.plnoun(getAmount(), requiredContainer) + ".");
+								return false;
 							}
 						} else if (!player.isEquipped("money", price)) {
-								seller.say("Wruff! I can only sell you "
+							seller.say("Wruff! I can only sell you "
 									+ Grammar.plnoun(getAmount(), getChosenItemName())
 									+ " if you have enough money.");
-						        return false;
+							return false;
 						}
-						
+
+						/**
+						 * If the user tries to buy several of a non-stackable item,
+						 * he is forced to buy only one.
+						 */
+						if (item instanceof StackableItem) {
+							((StackableItem) item).setQuantity(getAmount());
+						} else {
+							setAmount(1);
+						}
+
 						if (player.equipToInventoryOnly(item)) {
 							player.drop("money", price);
-							if (requiredContainer != "") {
-						               	player.drop(requiredContainer, amount);
+							if (!"".equals(requiredContainer)) {
+								player.drop(requiredContainer, amount);
 							}
-						
+
+
 							seller.say("Wroff! Here "
 									+ Grammar.isare(getAmount()) + " your "
 									+ Grammar.plnoun(getAmount(), getChosenItemName()) + "!");
 							return true;
 
-					        } else {
-					                seller.say("Wruff.. You cannot carry any "
-					                                + Grammar.plnoun(getAmount(), getChosenItemName())
+						} else {
+							seller.say("Wruff.. You cannot carry any "
+									+ Grammar.plnoun(getAmount(), getChosenItemName())
 									+ " in your bag now.");
-					                return false;
-					        }
+							return false;
+						}
 					}
 				}
 
