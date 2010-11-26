@@ -72,9 +72,9 @@ public class ChocolateForElisabeth extends AbstractQuest {
 				"I can't remember when I smelt the good taste of #chocolate the last time...",
 				null);
 		
-		npc.addReply("chocolate", "My mom told me, that chocolate can be find in an assassin school which is quite #dangerous and someone sells it in Ados...");
+		npc.addReply("chocolate", "My mom told me, that chocolate can be found in an assassin school, which is quite #dangerous. She said also that someone sells it in Ados...");
 		
-		npc.addReply("dangerous", "Some bandits wait on the road to the school and assassins are guarding the way up there so mom and I have to stay in Kirdneh because it's save here...");
+		npc.addReply("dangerous", "Some bandits wait on the road to the school and assassins guard the way there, so mom and I have to stay in Kirdneh because it's safe here...");
 		
 		// player is supposed to speak to mummy now
 		npc.add(ConversationStates.IDLE, 
@@ -231,7 +231,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 					ConversationPhrases.GREETING_MESSAGES, 
 					new QuestInStateCondition(QUEST_SLOT, "start"),
 					ConversationStates.ATTENDING, 
-					"Oh you met my daughter Elisabeth already. I hope she wasn't too demanding. You seem like a nice person so it would be really gentle, if you can bring her a chocolate bar because I'm not #strong enough for that.",
+					"Oh you met my daughter Elisabeth already. I hope she wasn't too demanding. You seem like a nice person so it would be really kind, if you can bring her a chocolate bar because I'm not #strong enough for that.",
 					new SetQuestAction(QUEST_SLOT, "mummy"));
 
 		mummyNPC.addReply("strong", "I tried to get some chocolate for Elisabeth a few times, but I couldn't make my way through the assassins and bandits running around #there.");
@@ -275,7 +275,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 			res.add("I found a tasty chocolate bar for Elisabeth.");
 		}
         if ("mummy".equals(questState) || isCompleted(player)) {
-            res.add("I spoke to Carey, Elisabeths mom and she agreed I could give a chocolate bar to her daughter.");        
+            res.add("I spoke to Carey, Elisabeth's mom and she agreed I could give a chocolate bar to her daughter.");        
         }
         if (isCompleted(player)) {
             if (isRepeatable(player)) {

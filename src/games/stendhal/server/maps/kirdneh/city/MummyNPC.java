@@ -56,7 +56,7 @@ public class MummyNPC implements ZoneConfigurator {
 				addHelp("I've heard that some of the #houses around the town are still for sale.");
 				addReply("houses", "They are huge! A friend of mine owns one and invited me a few times.");
 				addOffer("Oh I have no #offers for you, sorry.");
-				addReply("offers", "Did you visit the Kirdneh market already? It's smelling nice there");
+				addReply("offers", "Did you visit the Kirdneh market already? It smells nice there.");
 				addQuest("I don't have a quest for you but my daughter #Elisabeth searches for chocolate.");
 				addReply("Elisabeth", "She is such a lovely child, I will always care of her!");
 				addGoodbye("Thank you for meeting us here.");
