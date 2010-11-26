@@ -74,78 +74,78 @@ public class Herald extends ScriptImpl {
      */
     private final static class HeraldNews {
 
-    private String news;
-    private int interval;
-    private int limit;
-    private int counter;
-    private int id;
-    private HeraldListener tnl;  
-    public String getNews(){
-    	return(news);
-    }
-    public int getInterval(){
-    	return(interval);
-    }
-    public int getLimit(){
-    	return(limit);
-    }
-    public int getCounter(){
-    	return(counter);
-    }
-    public int getid(){
-    	return(id);
-    }
-    public HeraldListener getTNL(){
-    	return(tnl);
-    }
-    public void setCounter(int count){
-    	this.counter=count;
-    }
-    
-    /**
-     * constructor for news
-     * @param news - text to speech
-     * @param interval - interval between speeches in seconds.
-     * @param limit - time limit in seconds.
-     * @param counter - counter of speeches
-     * @param tnl - listener object
-     * @param id - unique number to internal works with news.
-     */
-    public HeraldNews(String news, int interval, int limit, int counter, 
-    		HeraldListener tnl, int id){
-    	this.news=news;
-    	this.interval=interval;
-    	this.limit=limit;
-    	this.counter=counter;
-    	this.tnl=tnl;
-    	this.id=id;
-    }
-    }
-    
-    /**
-     * herald turn listener object. 
-     */
-    class HeraldListener implements TurnListener{
-    	private int id;
-    	/**
-    	 * function invokes by TurnNotifier each time when herald have to speech.
-    	 */
-    	public void onTurnReached(int currentTurn) {
-    		workWithCounters(id);
-    		}
-    		/**
-    		 * tnl constructor.
-    		 * @param i - id of news
-    		 */
-    	public HeraldListener(int i) {
-    		id=i;
-    	}
-    }
-    
-    /**
-     * invokes by /script -load Herald.class,
-     * placing herald near calling admin.
-     */
+		private String news;
+		private int interval;
+		private int limit;
+		private int counter;
+		private int id;
+		private HeraldListener tnl;  
+		public String getNews(){
+			return(news);
+		}
+		public int getInterval(){
+			return(interval);
+		}
+		public int getLimit(){
+			return(limit);
+		}
+		public int getCounter(){
+			return(counter);
+		}
+		public int getid(){
+			return(id);
+		}
+		public HeraldListener getTNL(){
+			return(tnl);
+		}
+		public void setCounter(int count){
+			this.counter=count;
+		}
+		
+		/**
+		 * constructor for news
+		 * @param news - text to speech
+		 * @param interval - interval between speeches in seconds.
+		 * @param limit - time limit in seconds.
+		 * @param counter - counter of speeches
+		 * @param tnl - listener object
+		 * @param id - unique number to internal works with news.
+		 */
+		public HeraldNews(String news, int interval, int limit, int counter, 
+				HeraldListener tnl, int id){
+			this.news=news;
+			this.interval=interval;
+			this.limit=limit;
+			this.counter=counter;
+			this.tnl=tnl;
+			this.id=id;
+		}
+	}
+
+	/**
+	 * herald turn listener object. 
+	 */
+	class HeraldListener implements TurnListener{
+		private int id;
+		/**
+		 * function invokes by TurnNotifier each time when herald have to speech.
+		 */
+		public void onTurnReached(int currentTurn) {
+			workWithCounters(id);
+			}
+			/**
+			 * tnl constructor.
+			 * @param i - id of news
+			 */
+		public HeraldListener(int i) {
+			id=i;
+		}
+	}
+
+	/**
+	 * invokes by /script -load Herald.class,
+	 * placing herald near calling admin.
+	 */
 	@Override
 	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 		if (admin==null) {
@@ -176,22 +176,22 @@ public class Herald extends ScriptImpl {
 			logger.info("workWithCounters: id not found. ");
 		}
 		try {
-		final int interval = heraldNews.get(index).getInterval();
-		final int limit = heraldNews.get(index).getLimit();
-		final String text = heraldNews.get(index).getNews();
-		int counter = heraldNews.get(index).getCounter();
-		HeraldListener tnl = heraldNews.get(index).getTNL();
-		final SpeakerNPC npc = SingletonRepository.getNPCList().get(HeraldName);
-		npc.say(text);
-		counter++;
-		turnNotifier.dontNotify(tnl);
-		if(interval*counter<limit){
-			heraldNews.get(index).setCounter(counter);
-			turnNotifier.notifyInSeconds(interval, tnl);
-		} else {
-			// it was last announce.
-			heraldNews.remove(index);
-		}
+			final int interval = heraldNews.get(index).getInterval();
+			final int limit = heraldNews.get(index).getLimit();
+			final String text = heraldNews.get(index).getNews();
+			int counter = heraldNews.get(index).getCounter();
+			HeraldListener tnl = heraldNews.get(index).getTNL();
+			final SpeakerNPC npc = SingletonRepository.getNPCList().get(HeraldName);
+			npc.say(text);
+			counter++;
+			turnNotifier.dontNotify(tnl);
+			if(interval*counter<limit){
+				heraldNews.get(index).setCounter(counter);
+				turnNotifier.notifyInSeconds(interval, tnl);
+			} else {
+				// it was last announce.
+				heraldNews.remove(index);
+			}
 		} catch (IndexOutOfBoundsException ioobe) {
 			logger.error("workWithCounters: index is out of bounds: "+Integer.toString(index)+
 					     ", size "+Integer.toString(heraldNews.size())+
