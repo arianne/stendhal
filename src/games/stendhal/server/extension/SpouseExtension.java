@@ -74,6 +74,7 @@ public class SpouseExtension extends StendhalServerExtension implements
 		}
 	}
 
+	@SuppressWarnings("null")
 	private void onMarry(final Player player, final RPAction action) {
 		final String usage = "Usage: #/marry #<player1> #<player2>";
 		String text = "";
@@ -95,7 +96,6 @@ public class SpouseExtension extends StendhalServerExtension implements
 			if (player1 == null) {
 				canMarry = false;
 				text += "Player \"" + name1 + "\" not found. ";
-				canMarry = false;
 			}
 		} else {
 			canMarry = false;
@@ -108,7 +108,6 @@ public class SpouseExtension extends StendhalServerExtension implements
 			if (player2 == null) {
 				canMarry = false;
 				text += "Player \"" + name2 + "\" not found. ";
-				canMarry = false;
 			}
 		} else {
 			canMarry = false;
