@@ -27,12 +27,14 @@ import java.awt.event.KeyListener;
 import javax.swing.JTextField;
 
 public class ChatTextController {
+
 	private static final String CHAT_LOG_FILE = System.getProperty("user.home")
-	+ "/" + stendhal.STENDHAL_FOLDER + "chat.log";
+		+ "/" + stendhal.STENDHAL_FOLDER + "chat.log";
+
 	private final JTextField playerChatText;
 	
 	{
-			playerChatText = new JTextField("");
+		playerChatText = new JTextField("");
 	}
 	
 	private ChatCache cache;

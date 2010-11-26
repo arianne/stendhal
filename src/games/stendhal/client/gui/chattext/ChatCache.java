@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.LinkedList;
@@ -26,7 +27,8 @@ import org.apache.log4j.Logger;
 
 public class ChatCache {
 
-	private final Logger logger = Logger.getLogger(ChatCache.class);
+	private final static Logger logger = Logger.getLogger(ChatCache.class);
+
 	private final String chatCacheFile;
 	private int current;
 	
@@ -47,18 +49,20 @@ public class ChatCache {
 	
 			if (chatfile.exists()) {
 				final FileInputStream fis = new FileInputStream(chatfile);
-				final BufferedReader br = new BufferedReader(new InputStreamReader(
-						fis));
+				final BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 	
-				String line = null;
-				while (null != (line = br.readLine())) {
-					lines.add(line);
+				try {
+					String line = null;
+					while (null != (line = br.readLine())) {
+						lines.add(line);
+					}
+				} finally {
+					br.close();
 				}
-				br.close();
 				fis.close();
 			}
 			setCurrent(lines.size());
-		} catch (final Exception e) {
+		} catch (final IOException e) {
 			logger.error(e, e);
 		}
 	}
@@ -82,7 +86,7 @@ public class ChatCache {
 			}
 			ps.close();
 			fo.close();
-		} catch (final Exception ex) {
+		} catch (final IOException ex) {
 			logger.error(ex, ex);
 		}
 	}
@@ -136,7 +140,6 @@ public class ChatCache {
 			current++;
 			return current();
 		} catch (final IndexOutOfBoundsException e) {
-			
 			current--;
 			throw new NoSuchElementException();
 		}
