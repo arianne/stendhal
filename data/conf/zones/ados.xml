@@ -3514,7 +3514,7 @@ Southeast: Docks
     <entity x="35" y="31">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyoddsandends</parameter>
-      <parameter name="title">Ritati Dragontracker</parameter>
+      <parameter name="title">Odds and ends bought here from anyone who will sell.</parameter>
       <parameter name="seller">false</parameter>
      </implementation>
      <attribute name="class">blackboard</attribute>
