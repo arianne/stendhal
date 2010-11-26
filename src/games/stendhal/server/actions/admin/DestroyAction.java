@@ -64,14 +64,14 @@ class DestroyAction extends AdministrationAction {
 			new GameEvent(player.getName(), "removed", name + " " + clazz, slot.getID().toString(), Integer.toString(inspected.getX()), Integer.toString(inspected.getY())).raise();
 			// items should be added to itemlog as well, to help tracing problems
 			if (inspected instanceof Item) {
-				String slotName = null;
-				if (inspected.getContainerSlot() != null) {
-					slotName = inspected.getContainerSlot().getName(); 
-				}
-				String quantity = inspected.get("quantity");
-				if (quantity == null) {
-					quantity = "1";
-				}
+//				String slotName = null;
+//				if (inspected.getContainerSlot() != null) {
+//					slotName = inspected.getContainerSlot().getName();
+//				}
+//				String quantity = inspected.get("quantity");
+//				if (quantity == null) {
+//					quantity = "1";
+//				}
 				new ItemLogger().destroy(player, inspected.getContainerSlot(), inspected, "admin");
 			}
 
