@@ -15,7 +15,7 @@ package games.stendhal.client.sound.system;
 
 /**
  * Every class that either wants to modify or generate a stream of
- * pcm audio data should derive from this class
+ * PCM audio data should derive from this class
  * <p>
  * Each SignalProcessor is a chain link in a doubly linked list, a processing chain.
  * The first SignalProcessor in such a chain should always generate audio data
@@ -144,7 +144,7 @@ public abstract class SignalProcessor
     }
 
     /**
-     * Removes this SignalProcessor fom the processing chain
+     * Removes this SignalProcessor from the processing chain
 	 * leaving adjacent SignalProcessors disconnected
      */
     public final void disconnect()
@@ -197,10 +197,10 @@ public abstract class SignalProcessor
     
     /**
      * This function should be overwritten by all classes that want to
-     * modify an pcm audio stream. The audio data is uniform and interleaved
+     * modify an PCM audio stream. The audio data is uniform and interleaved
      * uniform:     Each sample has a value between -1.0 and 1.0
-     * interleaved: The channels are not sepperated. They are bundled in frames
-     *              e.g. if we stereo pcm data:
+     * interleaved: The channels are not separated. They are bundled in frames
+     *              e.g. if we stereo PCM data:
      *              data[0] and data[1] are the left and right channels of sample 0
      *              data[2] and data[3] are the left and right channels of sample 1
      *              data[4] and data[5] are the left and right channels of sample 2
@@ -220,7 +220,7 @@ public abstract class SignalProcessor
 
     /**
      * This function should be overwritten by all classes that want to
-     * generate an pcm audio stream e.g. a mp3 decoder, a frequency generator, ...
+     * generate an PCM audio stream e.g. a mp3 decoder, a frequency generator, ...
      */
     protected boolean generate() { return false; }
 
