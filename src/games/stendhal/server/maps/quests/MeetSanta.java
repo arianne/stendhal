@@ -20,10 +20,12 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -50,6 +52,8 @@ import java.util.List;
 public class MeetSanta extends AbstractQuest implements LoginListener {
 	private static final String QUEST_SLOT = "meet_santa_10";
 
+	public static final String QUEST_NAME = "MeetSanta";
+
 	/** the Santa NPC. */
 	protected SpeakerNPC santa;
 
@@ -62,7 +66,6 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		return QUEST_SLOT;
 	}
 	
-	@SuppressWarnings("unused")
 	private SpeakerNPC createSanta() {
 		santa = new SpeakerNPC("Santa") {
 			@Override
@@ -143,18 +146,46 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		}
 	}
 
+	/**
+	 * removes an NPC from the world and NPC list
+	 *
+	 * @param name name of NPC
+	 */
+	private void removeNPC(String name) {
+		SpeakerNPC npc = NPCList.get().get(name);
+		if (npc == null) {
+			return;
+		}
+		npc.getZone().remove(npc);
+	}
+	
 	@Override
 	public void addToWorld() {
+		System.setProperty("stendhal.santa", "true");
 		super.addToWorld();
 		fillQuestInfo(
 				"Meet Santa",
 				"Jingle bells, jingle bells, jingle all the way... Ho Ho Ho! Be fast and find Santa Claus around Faiumoni! If you were nice, you might get a present...",
 				false);
 		SingletonRepository.getLoginNotifier().addListener(this);
-		/* activate santa here in 2010
+		
+		// activate santa here
 		createSanta();
 		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!", false);
-		*/
+
+	}
+	
+	/**
+	 * removes a quest from the world.
+	 *
+	 * @return true, if the quest could be removed; false otherwise.
+	 */
+	@Override
+	public boolean removeFromWorld() {
+		System.getProperties().remove("stendhal.santa");
+		removeNPC("Santa");
+		// TODO: remove the turn notifiers left from the TeleporterBehaviour
+		return true;
 	}
 
 	@Override
