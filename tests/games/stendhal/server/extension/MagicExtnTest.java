@@ -126,6 +126,41 @@ public class MagicExtnTest {
 	}
 
 	/**
+	 * Tests for "heal" spell.
+	 */
+	@Test
+	public final void testHealSpell() {
+		final Player pl = PlayerTestHelper.createPlayer("player");
+		pl.setQuest("spells", "heal");
+		pl.setHP(35); // decrease heal points
+
+		RPAction action = new RPAction();
+		action.put("type", "spell");
+		action.put("target", "heal");
+		assertTrue(CommandCenter.execute(pl, action));
+		assertEquals(2, pl.events().size());
+		int idx = 0;
+		assertEquals("Trying to cast a spell...", pl.events().get(idx++).get("text"));
+		assertEquals("You do not have enough available mana to use this spell.", pl.events().get(idx++).get("text"));
+		pl.clearEvents();
+		assertEquals(35, pl.getHP());
+
+		// increase Mana value to enable the player casting the raise stats spell
+		pl.setMana(20);
+		action = new RPAction();
+		action.put("type", "spell");
+		action.put("target", "heal");
+		assertTrue(CommandCenter.execute(pl, action));
+		assertEquals(2, pl.events().size());
+		idx = 0;
+		assertEquals("Trying to cast a spell...", pl.events().get(idx++).get("text"));
+		assertEquals("You have been healed.", pl.events().get(idx++).get("text"));
+		pl.clearEvents();
+		assertEquals(100, pl.getHP()); // check health
+		assertEquals(5, pl.getMana());
+	}
+
+	/**
 	 * Tests for "raise stats" spell.
 	 */
 	@Test
@@ -154,7 +189,7 @@ public class MagicExtnTest {
 		assertEquals(10, pl.getATK());
 
 		// increase Mana value to enable the player casting the raise stats spell
-		pl.setMana(101);
+		pl.setMana(120);
 		action = new RPAction();
 		action.put("type", "spell");
 		action.put("target", "raise stats");
@@ -169,5 +204,6 @@ public class MagicExtnTest {
 		assertEquals(24, pl.getDEF());
 		assertEquals(24720, pl.getATKXP());
 		assertEquals(24, pl.getATK());
+		assertEquals(10, pl.getMana());
 	}
 }
