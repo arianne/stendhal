@@ -71,6 +71,20 @@ public class MagicExtnTest {
 	}
 
 	/**
+	 * Tests for wrong action.
+	 */
+	@Test
+	public final void testWrongAction() {
+		final Player pl = PlayerTestHelper.createPlayer("player");
+
+		RPAction action = new RPAction();
+		action.put("type", "anotheraction");
+		action.put("target", "spell");
+		new MagicExtn().onAction(pl, action);
+		assertEquals(0, pl.events().size());
+	}
+
+	/**
 	 * Tests for missing quest.
 	 */
 	@Test
