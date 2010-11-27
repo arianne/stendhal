@@ -147,34 +147,23 @@ public class SoundSystem extends Thread
 		@Override
         protected void modify(float[] buffer, int frames, int channels, int rate)
         {
-            if(buffer != null && frames > 0 && channels > 0 && rate > 0)
+            if (buffer != null && frames > 0 && channels > 0 && rate > 0)
             {
                 assert (frames * channels) <= buffer.length;
 				buffer = Dsp.convertChannels(buffer, frames, channels, getNumChannels());
 
-                if(buffer != null)
-                {
-					setBuffer(buffer, (frames * getNumChannels()));
-                }
-				else
-				{
-					setBuffer(null, 0);
-					//assert false: "could not convert channels";
-				}
+				setBuffer(buffer, (frames * getNumChannels()));
 
 				buffer = Dsp.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
 
-				if(buffer != null)
-				{
-					float ratio = (float)frames / (float)rate;
-					setBuffer(buffer, (int)(ratio * getSampleRate() * channels));
-				}
-				else
-				{
-					setBuffer(null, 0);
-					//assert false: "could not convert sample rate";
-				}
+				float ratio = (float)frames / (float)rate;
+				setBuffer(buffer, (int)(ratio * getSampleRate() * channels));
             }
+			else
+			{
+				setBuffer(null, 0);
+				//assert false: "could not convert sample rate";
+			}
         }
 	}
 
@@ -242,34 +231,23 @@ public class SoundSystem extends Thread
 		@Override
         protected void modify(float[] buffer, int frames, int channels, int rate)
         {
-            if(buffer != null && frames > 0 && channels > 0 && rate > 0)
+            if (buffer != null && frames > 0 && channels > 0 && rate > 0)
             {
                 assert (frames * channels) <= buffer.length;
 				buffer = Dsp.convertChannels(buffer, frames, channels, getNumChannels());
 
-                if(buffer != null)
-                {
-					setBuffer(buffer, (frames * getNumChannels()));
-                }
-				else
-				{
-					setBuffer(null, 0);
-					//assert false: "could not convert channels";
-				}
+				setBuffer(buffer, (frames * getNumChannels()));
 
 				buffer = Dsp.convertSampleRate(buffer, (frames * channels), channels, rate, getSampleRate());
 
-				if(buffer != null)
-				{
-					float ratio = (float)frames / (float)rate;
-					setBuffer(buffer, (int)(ratio * getSampleRate() * channels));
-				}
-				else
-				{
-					setBuffer(null, 0);
-					//assert false: "could not convert sample rate";
-				}
-            }
+				float ratio = (float)frames / (float)rate;
+				setBuffer(buffer, (int)(ratio * getSampleRate() * channels));
+			}
+			else
+			{
+				setBuffer(null, 0);
+				//assert false: "could not convert sample rate";
+			}
         }
 	}
 
