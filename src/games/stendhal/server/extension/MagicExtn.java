@@ -108,10 +108,9 @@ public class MagicExtn extends StendhalServerExtension implements
 			if (player.getMana() > 15) {
 				player.heal();
 
-				final String mana = player.get("mana");
-				final int mana_a = Integer.parseInt(mana);
-				final int newmana = mana_a - 15;
-				player.put("mana", newmana);
+				final int mana = player.getMana();
+				final int newmana = mana - 15;
+				player.setMana(newmana);
 				player.sendPrivateText("You have been healed.");
 				player.update();
 				player.notifyWorldAboutChanges();
@@ -119,7 +118,7 @@ public class MagicExtn extends StendhalServerExtension implements
 				player.sendPrivateText("You do not have enough available mana to use this spell.");
 			}
 		} else if (spell.contains("raise stats")) {
-			if (player.getMana() > 100) {
+			if (player.getMana() >= 110) {
 				/**
 				 * Raises the level of a player along with the atk/def
 				 */
@@ -153,11 +152,9 @@ public class MagicExtn extends StendhalServerExtension implements
 				player.notifyWorldAboutChanges();
 
 				// takes away mana
-				// player.put("mana", player.getMana() - 110);
-				final String mana = player.get("mana");
-				final int mana_a = Integer.parseInt(mana);
-				final int newmana = mana_a - 110;
-				player.put("mana", newmana);
+				final int mana = player.getMana();
+				final int newmana = mana - 110;
+				player.setMana(newmana);
 
 				player.sendPrivateText("Your stats have been raised.");
 			} else {
