@@ -415,6 +415,10 @@ public class MazeGenerator {
 	 * player to the right place in case she logged out.
 	 */
 	private final class MazeMovementListener implements MovementListener {
+		public MazeMovementListener() {
+			// empty constructor to prevent warning
+		}
+
 		public Rectangle2D getArea() {
 			return new Rectangle2D.Double(0, 0, width, height);
 		}
@@ -463,6 +467,7 @@ public class MazeGenerator {
 
 		player.sendPrivateText("You used " + TimeUtil.timeUntil((int) (timediff / 1000), true)
 				+ " to solve the maze. That was worth " + Grammar.quantityplnoun(points, "point") + ".");
+		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
 		player.addXP(REWARD_XP);
 	}
 	

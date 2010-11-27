@@ -65,9 +65,9 @@ public class Maze extends AbstractQuest {
 	}
 	
 	private void addMazeSign() {
-		sign = new MazeSign();
-		sign.setPosition(10, 7);
-		getNPC().getZone().add(sign);
+		setSign(new MazeSign());
+		getSign().setPosition(10, 7);
+		getNPC().getZone().add(getSign());
 	}
 	
 	private void setupConversation() {
@@ -106,11 +106,24 @@ public class Maze extends AbstractQuest {
 				null);
 	}
 	
+	private void setSign(MazeSign sign) {
+		this.sign = sign;
+	}
+
+	public MazeSign getSign() {
+		return sign;
+	}
+
 	private class SendToMazeChatAction implements ChatAction {
+		
+		public SendToMazeChatAction() {
+			// empty constructor to prevent warning
+		}
+
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			MazeGenerator maze = new MazeGenerator(player.getName() + "_maze", 128, 128);
 			maze.setReturnLocation(player.getZone().getName(), player.getX(), player.getY());
-			maze.setSign(sign);
+			maze.setSign(getSign());
 			StendhalRPZone zone = maze.getZone();
 			SingletonRepository.getRPWorld().addRPZone(zone);
 			player.setQuest(getSlotName(), Long.toString(System.currentTimeMillis()));

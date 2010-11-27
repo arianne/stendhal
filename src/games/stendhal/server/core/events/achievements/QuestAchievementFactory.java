@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.events.achievements;
 
+import games.stendhal.server.entity.npc.condition.PlayerHallOfFameScoreGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 
@@ -59,6 +60,11 @@ public class QuestAchievementFactory extends AchievementFactory {
 		//ultimate collector quest achievement
 		questAchievements.add(createAchievement("quest.special.collector", "Ultimate Collector", "Finish ultimate collector quest", 
 												Achievement.HARD_BASE_SCORE, new QuestCompletedCondition("ultimate_collector")));
+		//Maze
+		//using the hall of fame score condition as quest is never set to done but finishing the quest once makes player's score greater
+		//than 0.
+		questAchievements.add(createAchievement("quest.special.maze", "Pathfinder", "Finish the maze", 
+												Achievement.EASY_BASE_SCORE, new PlayerHallOfFameScoreGreaterThanCondition("M", 0)));
 		return questAchievements;
 	}
 
