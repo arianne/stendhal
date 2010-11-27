@@ -33,6 +33,7 @@ public abstract class SignalProcessor
      * (it is inserted in the processing chain before nextProcessor)
      *
      * @param processor nextProcessor
+     * @param before flag to insert processor before this object
      */
     public final synchronized void insert(SignalProcessor processor, boolean before)
     {
@@ -209,7 +210,7 @@ public abstract class SignalProcessor
 	 * The number of samples can be calculated by: frames * channels
 	 * 
      * @param data     the audio data
-     * @param frames   the number of frames contained in "data"
+     * @param frames   the number of sample frames contained in "data"
      * @param channels number of channels
      * @param rate     the sample rate
      */

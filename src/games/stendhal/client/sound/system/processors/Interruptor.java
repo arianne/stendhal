@@ -68,15 +68,15 @@ public class Interruptor extends SignalProcessor
     }
 
     @Override
-    protected void modify(float[] data, int samples, int channels, int rate)
+    protected void modify(float[] data, int frames, int channels, int rate)
     {
         if(mState.get() != PLAY)
         {
             //Time delay        = new Time(mDelay.get(), Time.Unit.NANO);
-            Time delaySegment = new Time(samples, rate);
+            Time delaySegment = new Time(frames, rate);
             mDelay.addAndGet(-delaySegment.getInNanoSeconds());
         }
 
-        super.propagate(data, samples, channels, rate);
+        super.propagate(data, frames, channels, rate);
     }
 }

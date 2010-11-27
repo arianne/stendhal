@@ -89,9 +89,9 @@ public class VolumeAdjustor extends SignalProcessor
     }
     
     @Override
-    protected void modify(float[] data, int samples, int channels, int rate)
+    protected void modify(float[] data, int frames, int channels, int rate)
     {
-        assert data.length >= (samples * channels);
+        assert data.length >= (frames * channels);
 
         if(mFadingDuration.get() <= 0)
         {
@@ -103,7 +103,7 @@ public class VolumeAdjustor extends SignalProcessor
 
             if(!Algebra.isEqual_Scalf(volume, 1.0f))
             {
-                for(int i=0; i<(samples*channels); ++i)
+                for(int i=0; i<(frames*channels); ++i)
                     data[i] *= volume;
             }
 
@@ -112,9 +112,9 @@ public class VolumeAdjustor extends SignalProcessor
         else
         {
             Time fadingDuration  = new Time(mFadingDuration.get(), Time.Unit.NANO);
-            Time segmentDuration = new Time(samples, rate);
+            Time segmentDuration = new Time(frames, rate);
 
-            int   numSamples    = samples;
+            int   numSamples    = frames;
             float volume        = intToFloat(mCurrentVolume.get());
             float volumeSegment = intToFloat(mTargetVolume.get()) - intToFloat(mCurrentVolume.get());
 
@@ -132,14 +132,14 @@ public class VolumeAdjustor extends SignalProcessor
                     data[index + c] *= vol;
             }
 
-            for(int i=(numSamples * channels); i<(samples * channels); ++i)
+            for(int i=(numSamples * channels); i<(frames * channels); ++i)
                 data[i] *= volume + volumeSegment;
 
             mCurrentVolume.addAndGet(floatToInt(volumeSegment));
             mFadingDuration.addAndGet(-segmentDuration.getInNanoSeconds());
         }
 
-        super.propagate(data, samples, channels, rate);
+        super.propagate(data, frames, channels, rate);
     }
 
     private static int   floatToInt(float v) { return Numeric.floatToInt(v, 10000000.0f); }

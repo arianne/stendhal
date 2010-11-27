@@ -21,11 +21,11 @@ import games.stendhal.client.sound.system.SignalProcessor;
 public class MonoMixer extends SignalProcessor
 {
     @Override
-    protected void modify(float[] data, int samples, int channels, int rate)
+    protected void modify(float[] data, int frames, int channels, int rate)
     {
-        assert data.length >= (samples * channels);
+        assert data.length >= (frames * channels);
 
-        for(int i=0; i<samples; ++i)
+        for(int i=0; i<frames; ++i)
         {
             float value = 0;
 
@@ -36,7 +36,7 @@ public class MonoMixer extends SignalProcessor
             data[i] = value;
         }
 
-        super.propagate(data, samples, 1, rate);
+        super.propagate(data, frames, 1, rate);
         /*
         for(int i=0; i<samples; ++i)
         {

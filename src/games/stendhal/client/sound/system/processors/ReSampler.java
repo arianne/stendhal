@@ -47,18 +47,18 @@ public class ReSampler extends SignalProcessor
      * Modify the PCM audio stream. The audio data is uniform and interleaved.
 	 * 
      * @param data     the audio data
-     * @param frames   the number of frames contained in "data"
+     * @param frames   the number of sample frames contained in "data"
      * @param channels number of channels
      * @param rate     the sample rate
      */
     @Override
-    protected void modify(float[] data, int samples, int channels, int rate)
+    protected void modify(float[] data, int frames, int channels, int rate)
     {
 
-    	//TODO implement using a pre-allocated buffer to avoid repeated memory allocation
+    	//TODO implement using a pre-allocated buffer to avoid repeated memory allocation and use the delay given in the constructor
 
-    	data = Dsp.convertSampleRate(data, samples, channels, mSampleRate, rate);
+    	data = Dsp.convertSampleRate(data, frames, channels, mSampleRate, rate);
 
-        super.propagate(data, samples, channels, rate);
+        super.propagate(data, data.length, channels, rate);
     }
 }

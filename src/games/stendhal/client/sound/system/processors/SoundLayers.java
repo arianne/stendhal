@@ -64,7 +64,7 @@ public class SoundLayers
         }
         
         @Override
-        protected void modify(float[] data, int samples, int channels, int rate)
+        protected void modify(float[] data, int frames, int channels, int rate)
         {
             synchronized(SoundLayers.this)
             {
@@ -81,11 +81,11 @@ public class SoundLayers
             // if volume is 1 we propagate the unmodified audio data
             if(!Algebra.isEqual_Scalf(volume, 1.0f))
             {
-                for(int i=0; i<(samples*channels); ++i)
+                for(int i=0; i<(frames*channels); ++i)
                     data[i] *= volume;
             }
 
-            super.propagate(data, samples, channels, rate);
+            super.propagate(data, frames, channels, rate);
         }
     }
 
@@ -106,7 +106,6 @@ public class SoundLayers
             return b.compareTo(a);
         }
     });
-    
 
     public synchronized VolumeAdjustor createVolumeAdjustor(int layerLevel)
     {

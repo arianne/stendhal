@@ -41,12 +41,13 @@ public class SoundFile extends SignalProcessor implements Cloneable
 	private final boolean         mEnableStreaming;
     private final int             mOutputNumSamples;
     private final Type            mFileType;
+
 	private final SignalProcessor mPropagator = new SignalProcessor()
 	{
 		@Override
-		protected void modify(float[] data, int samples, int channels, int rate)
+		protected void modify(float[] data, int frames, int channels, int rate)
 		{
-			SoundFile.this.propagate(data, samples, channels, rate);
+			SoundFile.this.propagate(data, frames, channels, rate);
 		}
 
 		@Override

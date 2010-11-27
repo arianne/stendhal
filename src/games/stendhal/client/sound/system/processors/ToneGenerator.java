@@ -40,11 +40,11 @@ public class ToneGenerator extends SignalProcessor
     private float[]               mSamples;
     private final ArrayList<Tone> mTones = new ArrayList<Tone>();
 
-    public ToneGenerator(int channels, int rate, int numSamplesToBuffer)
+    public ToneGenerator(int channels, int rate, int numFramesToBuffer)
     {
         mNumChannels = channels;
         mSampleRate  = rate;
-        mSamples     = new float[numSamplesToBuffer * mNumChannels];
+        mSamples     = new float[numFramesToBuffer * mNumChannels];
     }
 
     public synchronized void addTone(Tone tone)
@@ -91,7 +91,7 @@ public class ToneGenerator extends SignalProcessor
                 value *= tone.mVolume;
 
                 for(int c=0; c<channels; ++c)
-                    data[index + c] = data[index + c] + value - data[index + c] * value;
+                    data[index + c] = data[index + c] + value - data[index + c] * value;	//MF: mix using amplitude modulation between the generated tones?
                 
                 ++tone.mPosition;
             }
