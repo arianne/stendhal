@@ -99,13 +99,19 @@ public class WtWindowManager {
 		try {
 			final OutputStream os = Persistence.get().getOutputStream(true,
 					"stendhal", FILE_NAME);
-			final OutputStreamWriter writer = new OutputStreamWriter(os);
-			writer.append(buf.toString());
-			writer.close();
+			try {
+				final OutputStreamWriter writer = new OutputStreamWriter(os);
+				try {
+					writer.append(buf.toString());
+				} finally {
+					writer.close();
+				}
+			} finally {
+				os.close();
+			}
 		} catch (final IOException e) {
 			// ignore exception
-			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME,
-					e);
+			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME, e);
 		}
 	}
 
@@ -206,7 +212,7 @@ public class WtWindowManager {
 		int width = 0;
 		int height = 0;
 		
-		final int xDiff = stendhal.screenSize.width - config.x - width;
+		final int xDiff = stendhal.getScreenSize().width - config.x - width;
 		/*
 		 * -30 is a fudge factor to move only windows that are clearly
 		 * outside the screen. Some windows (EntityContainer) resize
@@ -217,7 +223,7 @@ public class WtWindowManager {
 			config.x += xDiff;
 		}
 		
-		final int yDiff = stendhal.screenSize.height - config.y - height;
+		final int yDiff = stendhal.getScreenSize().height - config.y - height;
 		if (yDiff < 0) {
 			config.y += yDiff;
 		}
