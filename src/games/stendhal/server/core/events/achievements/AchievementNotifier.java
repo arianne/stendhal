@@ -32,24 +32,23 @@ import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
+
 /**
  * Checks for reached achievements and marks them as reached for a player if he has fullfilled them
  *  
  * @author madmetzger
  */
-public class AchievementNotifier {
+public final class AchievementNotifier {
 	
 	private static final Logger logger = Logger.getLogger(AchievementNotifier.class);
 
 	private static AchievementNotifier instance;
 	
-	private Map<Category, List<Achievement>> achievements;
+	final private Map<Category, List<Achievement>> achievements = new HashMap<Category, List<Achievement>>();
 	
-	private Map<String, Integer> identifiersToIds;
+	final private Map<String, Integer> identifiersToIds = new HashMap<String, Integer>();
 	
 	private AchievementNotifier() {
-		achievements = new HashMap<Category, List<Achievement>>();
-		identifiersToIds = new HashMap<String, Integer>();
 	}
 	
 	/**
@@ -72,7 +71,7 @@ public class AchievementNotifier {
 	 */
 	public void initialize() {
 		//read all configured achievements and put them into the categorized map
-		Map<String, Achievement> allAchievements = createAchievements();
+		final Map<String, Achievement> allAchievements = createAchievements();
 		for(Achievement a : allAchievements.values()) {
 			if(!achievements.containsKey(a.getCategory())) {
 				achievements.put(a.getCategory(), new LinkedList<Achievement>());
@@ -80,26 +79,22 @@ public class AchievementNotifier {
 			achievements.get(a.getCategory()).add(a);
 		}
 		//collect all identifiers from database
-		Map<String, Integer> allIdentifiersInDatabase = collectAllIdentifiersFromDatabase();
+		final Map<String, Integer> allIdentifiersInDatabase = collectAllIdentifiersFromDatabase();
 		//update stored data with configured achievements
 		identifiersToIds.putAll(allIdentifiersInDatabase);
 		for(Map.Entry<String, Integer> it : allIdentifiersInDatabase.entrySet()) {
-			String identifier = it.getKey();
-			Achievement achievement = allAchievements.get(identifier);
-			try {
-				// this happens if an achievement is not configured anymore but already in the database
-				// in that case we should keep it as players could have reached it
-				// useful to stop checking for a certain achievement but keep results
-				if(achievement != null) {
+			final String identifier = it.getKey();
+			final Achievement achievement = allAchievements.get(identifier);
+			// this happens if an achievement is not configured anymore but already in the database
+			// in that case we should keep it as players could have reached it
+			// useful to stop checking for a certain achievement but keep results
+			if (achievement != null) {
+				try {
 					DAORegister.get().get(AchievementDAO.class).updateAchievement(it.getValue(), achievement);
-				} 
-			} catch (SQLException e) {
-				String msg = "Error while updating existing achievement ";
-				if (achievement != null) {
-					msg += achievement.getTitle();
+				} catch (SQLException e) {
+					logger.error("Error while updating existing achievement " + achievement.getTitle(), e);
 				}
-				logger.error(msg, e);
-			}
+			} 
 		}
 		// remove already stored achievements before saving them
 		for(String identifier : allIdentifiersInDatabase.keySet()) {
@@ -107,9 +102,8 @@ public class AchievementNotifier {
 		}
 		//save new achievements and add their identifier and id to the identifierToId map
 		for (Achievement a : allAchievements.values()) {
-			Integer id;
 			try {
-				id = DAORegister.get().get(AchievementDAO.class).saveAchievement(a);
+				Integer id = DAORegister.get().get(AchievementDAO.class).saveAchievement(a);
 				identifiersToIds.put(a.getIdentifier(), id);
 			} catch (SQLException e) {
 				logger.error("Error while saving new achievement "+a.getTitle(), e);
@@ -198,13 +192,13 @@ public class AchievementNotifier {
 		List<Achievement> toCheck = new ArrayList<Achievement>();
 		//Avoid checking of zone achievements on login to
 		//prevent double check when player is initially placed into a zone
-		HashMap<Category,List<Achievement>> map = new HashMap<Category, List<Achievement>>(achievements);
+		final Map<Category,List<Achievement>> map = new HashMap<Category, List<Achievement>>(achievements);
 		map.remove(Category.ZONE);
 		Collection<List<Achievement>> values = map.values();
 		for (List<Achievement> list : values) {
 			toCheck.addAll(list);
 		}
-		List<Achievement> reached = checkAchievements(player, toCheck);
+		final List<Achievement> reached = checkAchievements(player, toCheck);
 		// only send notice if actually a new added achievement was reached by doing nothing
 		if(!reached.isEmpty()) {
 			StringBuilder sb = new StringBuilder();
