@@ -70,16 +70,16 @@ public class ItemsOnTable implements ZoneConfigurator {
 
 		plantGrower5.setToFullGrowth();
 
-		// grower for an empty eared bottle (24h)
-		final PassiveEntityRespawnPoint bottleGrower1 = new PassiveEntityRespawnPoint("eared bottle", 288000);
+		// grower for an empty eared bottle (30min)
+		final PassiveEntityRespawnPoint bottleGrower1 = new PassiveEntityRespawnPoint("eared bottle", 6000);
 		bottleGrower1.setPosition(91, 90);
 		bottleGrower1.setDescription("Scientists often put bottles down here.");
 		zone.add(bottleGrower1);
 
 		bottleGrower1.setToFullGrowth();
 
-		// grower for an empty slim bottle
-		final PassiveEntityRespawnPoint bottleGrower2 = new PassiveEntityRespawnPoint("slim bottle", 3000);
+		// grower for an empty slim bottle (30min)
+		final PassiveEntityRespawnPoint bottleGrower2 = new PassiveEntityRespawnPoint("slim bottle", 6000);
 		bottleGrower2.setPosition(102, 89);
 		bottleGrower2.setDescription("Scientists often put bottles down here.");
 		zone.add(bottleGrower2);

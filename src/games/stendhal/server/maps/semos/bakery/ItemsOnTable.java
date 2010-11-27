@@ -35,8 +35,8 @@ public class ItemsOnTable implements ZoneConfigurator {
 
 		bottleGrower1.setToFullGrowth();
 
-		// grower for an empty slim bottle (24h)
-		final PassiveEntityRespawnPoint bottleGrower2 = new PassiveEntityRespawnPoint("slim bottle", 288000);
+		// grower for an empty slim bottle (1h)
+		final PassiveEntityRespawnPoint bottleGrower2 = new PassiveEntityRespawnPoint("slim bottle", 12000);
 		bottleGrower2.setPosition(22, 2);
 		bottleGrower2.setDescription("This seems a likely spot where a bottle could be found.");
 		zone.add(bottleGrower2);

@@ -27,16 +27,16 @@ public class ItemsOnTable implements ZoneConfigurator {
 
 	private void buildTavernArea(final StendhalRPZone zone) {
 
-		// grower for an empty eared bottle (24h)
-		final PassiveEntityRespawnPoint bottleGrower1 = new PassiveEntityRespawnPoint("eared bottle", 288000);
+		// grower for an empty eared bottle (1h)
+		final PassiveEntityRespawnPoint bottleGrower1 = new PassiveEntityRespawnPoint("eared bottle", 12000);
 		bottleGrower1.setPosition(9, 10);
 		bottleGrower1.setDescription("This seems a likely spot where a bottle could be found.");
 		zone.add(bottleGrower1);
 
 		bottleGrower1.setToFullGrowth();
 
-		// grower for another empty eared bottle (24h)
-		final PassiveEntityRespawnPoint bottleGrower2 = new PassiveEntityRespawnPoint("eared bottle", 288000);
+		// grower for another empty eared bottle (1h)
+		final PassiveEntityRespawnPoint bottleGrower2 = new PassiveEntityRespawnPoint("eared bottle", 12000);
 		bottleGrower2.setPosition(28, 3);
 		bottleGrower2.setDescription("This seems a likely spot where a bottle could be found.");
 		zone.add(bottleGrower2);

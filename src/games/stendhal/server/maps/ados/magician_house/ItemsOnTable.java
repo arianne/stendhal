@@ -42,8 +42,8 @@ public class ItemsOnTable implements ZoneConfigurator {
 
 		plantGrower.setToFullGrowth();
 
-		// grower for an empty slim bottle (see Koboldish Torcibud quest)
-		final PassiveEntityRespawnPoint bottleGrower1 = new PassiveEntityRespawnPoint("slim bottle", 1500);
+		// grower for an empty slim bottle (see Koboldish Torcibud quest, respawning time 1h)
+		final PassiveEntityRespawnPoint bottleGrower1 = new PassiveEntityRespawnPoint("slim bottle", 12000);
 		bottleGrower1.setPosition(10, 5);
 		bottleGrower1.setDescription("This is a likely spot where a bottle could be found.");
 		zone.add(bottleGrower1);
