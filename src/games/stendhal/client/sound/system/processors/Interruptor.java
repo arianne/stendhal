@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- *
+ * Signal processor stage to pause sound signals.
  * @author silvio
  */
 public class Interruptor extends SignalProcessor

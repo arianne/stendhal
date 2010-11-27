@@ -39,7 +39,7 @@ import org.apache.log4j.Logger;
 
 /**
  * this class is the main interface between the game logic and the low level
- * sound system. it is a refinement of the manager.SoundManager class.
+ * sound system. It is a refinement of the manager.SoundManager class.
  * 
  * @author hendrik, silvio
  */
@@ -179,8 +179,8 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		this.getGroup("music").changeVolume(Numeric.intToFloat(config.getPropertyInt("sound.volume.music", 60), 100.0f));
 	}
 
-	// the initMute method is not needen anymore but preserved
-	// if something goes wrong with the muting again
+	// The initMute() method is not needed anymore, but preserved
+	// if something goes wrong with the muting again.
 	/*
 	private void initMute() {
 		WtWindowManager config = WtWindowManager.getInstance();

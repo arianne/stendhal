@@ -13,7 +13,7 @@
 package games.stendhal.common.math;
 
 /**
- *
+ * Geometry algorithms.
  * @author silvio
  */
 public class Geometry

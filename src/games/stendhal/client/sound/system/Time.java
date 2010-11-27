@@ -16,7 +16,7 @@ package games.stendhal.client.sound.system;
  * A time class that helps converting different time units
  * to and from samples per sample rate
  * <p>
- * internally this class will calculate in nano second resulution only
+ * internally this class will calculate in nanosecond resolution only
  * 
  * @author silvio
  */

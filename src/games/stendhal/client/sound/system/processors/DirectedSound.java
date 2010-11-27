@@ -17,7 +17,7 @@ import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.common.memory.Field;
 
 /**
- *
+ * Signal processor to handle directed sound.
  * @author silvio
  */
 public class DirectedSound extends SignalProcessor

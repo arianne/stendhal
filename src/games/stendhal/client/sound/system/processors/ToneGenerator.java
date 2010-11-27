@@ -16,7 +16,8 @@ import games.stendhal.client.sound.system.SignalProcessor;
 import java.util.ArrayList;
 
 /**
- *
+ * Generates a PCM audio signal consisting of sine waveforms
+ * with specified frequency and volume.
  * @author silvio
  */
 public class ToneGenerator extends SignalProcessor

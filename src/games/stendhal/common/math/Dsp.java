@@ -15,7 +15,7 @@ package games.stendhal.common.math;
 import games.stendhal.common.memory.Field;
 
 /**
- *
+ * Signal processing algorithms.
  * @author silvio
  */
 public class Dsp
@@ -149,7 +149,7 @@ public class Dsp
                  * and a part with its phase inverted to the right channel.
                  */
 
-                // not implemented yet
+                // not yet implemented
                 samples = null;
             }
         }

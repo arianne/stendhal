@@ -197,16 +197,16 @@ public abstract class SignalProcessor
     
     /**
      * This function should be overwritten by all classes that want to
-     * modify an PCM audio stream. The audio data is uniform and interleaved
+     * modify an PCM audio stream. The audio data is uniform and interleaved.
      * uniform:     Each sample has a value between -1.0 and 1.0
      * interleaved: The channels are not separated. They are bundled in frames
-     *              e.g. if we stereo PCM data:
+     *              e.g. if there is stereo PCM data:
      *              data[0] and data[1] are the left and right channels of sample 0
      *              data[2] and data[3] are the left and right channels of sample 1
      *              data[4] and data[5] are the left and right channels of sample 2
      *              and so on ...
      *
-	 * The number of samples can be calculated through: frames * channels
+	 * The number of samples can be calculated by: frames * channels
 	 * 
      * @param data     the audio data
      * @param frames   the number of frames contained in "data"

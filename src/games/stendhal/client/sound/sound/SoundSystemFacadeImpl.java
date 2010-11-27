@@ -26,7 +26,7 @@ import java.util.Collection;
 import org.apache.log4j.Logger;
 
 /**
- * this class is the interface between the game logic and the
+ * This class is the interface between the game logic and the
  * sound system.
  * 
  * @author hendrik, silvio

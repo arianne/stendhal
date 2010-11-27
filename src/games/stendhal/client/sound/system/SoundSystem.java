@@ -33,7 +33,7 @@ import javax.sound.sampled.SourceDataLine;
 import org.apache.log4j.Logger;
 
 /**
- *
+ * Thread to manage sound output.
  * @author silvio
  */
 public class SoundSystem extends Thread

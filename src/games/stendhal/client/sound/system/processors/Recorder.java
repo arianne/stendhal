@@ -16,7 +16,7 @@ import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.common.memory.Field;
 
 /**
- *
+ * Recorder can be used to record sound signals in memory.
  * @author silvio
  */
 public class Recorder extends SignalProcessor
@@ -100,7 +100,7 @@ public class Recorder extends SignalProcessor
     {
         if(data == null || samples == 0)
             return;
-        
+
         if(mData == null)
         {
             mData        = new float[samples * channels * 3];

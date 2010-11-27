@@ -35,7 +35,7 @@ import javax.sound.sampled.AudioFormat;
 import org.apache.log4j.Logger;
 
 /**
- *
+ * Old implementation of the sound manager.
  * @author silvio
  */
 public final class SoundManager

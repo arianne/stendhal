@@ -23,6 +23,10 @@ import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Numeric;
 import marauroa.common.game.RPObject;
 
+/**
+ * LoopedSoundSource is the source of a repeated sound, the player can
+ * hear in a limited area.
+ */
 public class LoopedSoundSource extends InvisibleEntity {
 
 	private String soundName = null;

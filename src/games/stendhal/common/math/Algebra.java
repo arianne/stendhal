@@ -15,7 +15,7 @@ package games.stendhal.common.math;
 import java.util.Arrays;
 
 /**
- *
+ * Algebraic helper functions-
  * @author silvio
  */
 public final class Algebra

@@ -37,7 +37,7 @@ import javax.sound.sampled.SourceDataLine;
 import org.apache.log4j.Logger;
 
 /**
- *
+ * New implementation of the sound manager.
  * @author silvio
  */
 public class SoundManagerNG

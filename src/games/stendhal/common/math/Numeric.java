@@ -13,7 +13,7 @@
 package games.stendhal.common.math;
 
 /**
- *
+ * Convert between float and int values using the given accuracy as multiplier.
  * @author silvio
  */
 public class Numeric

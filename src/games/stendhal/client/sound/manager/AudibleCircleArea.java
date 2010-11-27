@@ -18,7 +18,7 @@ import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Geometry;
 
 /**
- *
+ * AudibleCircleAfrea defines a circular area for audible objects.
  * @author silvio
  */
 public class AudibleCircleArea implements AudibleArea
@@ -62,7 +62,6 @@ public class AudibleCircleArea implements AudibleArea
     {
         Geometry.closestPoint_SpherePointf(result, mCenter, mInnerRadius, hearerPos);
     }
-
 
 	@Override
 	public String toString() {

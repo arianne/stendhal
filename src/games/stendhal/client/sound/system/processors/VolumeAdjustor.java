@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- *
+ * Adjust the volume of a PCM audio signal.
  * @author silvio
  */
 public class VolumeAdjustor extends SignalProcessor
