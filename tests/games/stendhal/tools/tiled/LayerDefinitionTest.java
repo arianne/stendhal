@@ -89,7 +89,7 @@ public class LayerDefinitionTest {
 	 * Tests for serialization.
 	 */
 	@Test
-	public void testSerialization() throws IOException, ClassNotFoundException {
+	public void testSerialization() throws IOException { //, ClassNotFoundException
 		final ByteArrayOutputStream array = new ByteArrayOutputStream();
 		final OutputSerializer out = new OutputSerializer(array);
 
@@ -113,7 +113,6 @@ public class LayerDefinitionTest {
 		final byte[] rawData = layer.exposeRaw();
 		final byte[] serializedData = serializedLayer.exposeRaw();
 		assertArrayEquals(rawData, serializedData);
-		
 	}
 
 }

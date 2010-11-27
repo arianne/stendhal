@@ -53,7 +53,7 @@ public class TileSetDefinitionTest {
 	 * Tests for serialization.
 	 */
 	@Test
-	public void testSerialization() throws IOException, ClassNotFoundException {
+	public void testSerialization() throws IOException { //, ClassNotFoundException
 		final List<TileSetDefinition> tilesets = map.getTilesets();
 
 		final ByteArrayOutputStream array = new ByteArrayOutputStream();
@@ -79,7 +79,6 @@ public class TileSetDefinitionTest {
 		}
 
 		assertEquals(tilesets, serializedTilesets);
-
 	}
 
 }
