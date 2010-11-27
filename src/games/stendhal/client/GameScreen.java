@@ -26,6 +26,7 @@ import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -180,8 +181,9 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		}
 
 		public void componentResized(ComponentEvent e) {
-			sw = Math.min(getWidth(), stendhal.screenSize.width);
-			sh = Math.min(getHeight(), stendhal.screenSize.height);
+			Dimension screenSize = stendhal.getScreenSize();
+			sw = Math.min(getWidth(), screenSize.width);
+			sh = Math.min(getHeight(), screenSize.height);
 			// Reset the view so that the player is in the center
 			calculateView();
 			center();
@@ -199,7 +201,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 *            The client.
 	 */
 	public GameScreen(final StendhalClient client) {
-		setSize(stendhal.screenSize);
+		setSize(stendhal.getScreenSize());
 		addComponentListener(new CanvasResizeListener());
 		
 		gameLayers = client.getStaticGameLayers();
@@ -488,8 +490,9 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		// know about converting the position to screen
 		Graphics2D graphics = (Graphics2D) g2d.create();
 		if (graphics.getClipBounds() == null) {
-			graphics.setClip(0, 0, Math.min(getWidth(), stendhal.screenSize.width),
-					Math.min(getHeight(), stendhal.screenSize.height));
+			Dimension screenSize = stendhal.getScreenSize();
+			graphics.setClip(0, 0, Math.min(getWidth(), screenSize.width),
+					Math.min(getHeight(), screenSize.height));
 		}
 
 		int xAdjust = -getScreenViewX();

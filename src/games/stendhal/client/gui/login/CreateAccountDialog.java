@@ -350,7 +350,7 @@ public class CreateAccountDialog extends JDialog {
 							owner.dispose();
 						}
 
-						stendhal.doLogin = true;
+						stendhal.setDoLogin();
 					}
 				} catch (final TimeoutException e) {
 					progressBar.cancel();

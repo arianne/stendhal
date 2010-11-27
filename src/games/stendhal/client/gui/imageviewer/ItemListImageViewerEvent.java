@@ -71,7 +71,8 @@ public class ItemListImageViewerEvent extends ViewPanel {
 			JScrollPane scrollPane = new JScrollPane();
 			panel.add(label);
 			scrollPane.setViewportView(panel);
-			scrollPane.setPreferredSize(new Dimension(stendhal.screenSize.width - 80, stendhal.screenSize.height - 100));
+			Dimension screenSize = stendhal.getScreenSize();
+			scrollPane.setPreferredSize(new Dimension(screenSize.width - 80, screenSize.height - 100));
 			add(scrollPane, BorderLayout.CENTER);
 		} else {
 			add(label);

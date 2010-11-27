@@ -382,7 +382,7 @@ public class StendhalClient extends ClientFramework {
 		if ((character != null) && (characters.keySet().contains(character))) {
 			try {
 				chooseCharacter(character);
-				stendhal.doLogin = true;
+				stendhal.setDoLogin();
 				if (StendhalFirstScreen.get() != null) {
 					StendhalFirstScreen.get().dispose();
 				}

@@ -210,25 +210,27 @@ public class j2DClient implements UserInterface {
 		buddyPane.setBorder(null);
 		buddyPane.setViewportView(buddies.getComponent());
 				
+		Dimension screenSize = stendhal.getScreenSize();
+
 		/*
 		 * Add a layered pane for the game area, so that we can have
 		 * windows on top of it
 		 */
 		pane = new JLayeredPane();
-		pane.setPreferredSize(stendhal.screenSize);
+		pane.setPreferredSize(screenSize);
 		/*
 		 *  Set the sizes strictly so that the layout manager
 		 *  won't try to resize it
 		 */
-		pane.setMaximumSize(stendhal.screenSize);
-		pane.setMinimumSize(new Dimension(stendhal.screenSize.width, 0));
+		pane.setMaximumSize(screenSize);
+		pane.setMinimumSize(new Dimension(screenSize.width, 0));
 	
 		/*
 		 * Create the main game screen
 		 */
 		screen = new GameScreen(client);
 		GameScreen.setDefaultScreen(screen);
-		screen.setMinimumSize(new Dimension(stendhal.screenSize.width, 0));
+		screen.setMinimumSize(new Dimension(screenSize.width, 0));
 		
 		// ... and put it on the ground layer of the pane
 		pane.add(screen, Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
@@ -278,7 +280,7 @@ public class j2DClient implements UserInterface {
 		// This is a temporary solution until this issue is fixed server side.
 		// I hope that it discourages its use without the risks of unupdateable
 		// clients being distributed
-		if (!stendhal.screenSize.equals(new Dimension(640, 480))) {
+		if (!screenSize.equals(new Dimension(640, 480))) {
 			addEventLine(new HeaderLessEventLine("Using window size cheat: " + getWidth() + "x" + getHeight(), NotificationType.NEGATIVE));
 		}
 
@@ -312,12 +314,12 @@ public class j2DClient implements UserInterface {
 		final JComponent chatBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		// Set maximum size to prevent the entry requesting massive widths, but
 		// force expand if there's extra space anyway 
-		chatText.getPlayerChatText().setMaximumSize(new Dimension(stendhal.screenSize.width, Integer.MAX_VALUE));
+		chatText.getPlayerChatText().setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
 		chatBox.add(chatText.getPlayerChatText(), SBoxLayout.constraint(SLayout.EXPAND_X));
 		
 		chatBox.add(gameLog, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		chatBox.setMinimumSize(chatText.getPlayerChatText().getMinimumSize());
-		chatBox.setMaximumSize(new Dimension(stendhal.screenSize.width, Integer.MAX_VALUE));
+		chatBox.setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
 		
 		// Give the user the ability to make the the game area less tall
 		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
@@ -430,7 +432,7 @@ public class j2DClient implements UserInterface {
 				 * incorrectly unless we explicitly set it. Try to fit it on the
 				 * screen and show a bit of the chat.
 				 */
-				splitPane.setDividerLocation(Math.min(stendhal.screenSize.height,
+				splitPane.setDividerLocation(Math.min(stendhal.getScreenSize().height,
 						maxBounds.height  - 80));
 			}
 		});
@@ -1129,13 +1131,13 @@ public class j2DClient implements UserInterface {
 
 		public void componentResized(ComponentEvent e) {
 			Dimension newSize = e.getComponent().getSize();
-			if (newSize.height > stendhal.screenSize.height) {
+			if (newSize.height > stendhal.getScreenSize().height) {
 				/*
 				 *  There is no proper limit setting for JSplitPane,
 				 *  so return the divider to the maximum allowed height
 				 *  by force.
 				 */
-				splitPane.setDividerLocation(stendhal.screenSize.height
+				splitPane.setDividerLocation(stendhal.getScreenSize().height
 						+ splitPane.getInsets().top);
 			} else {
 				child.setSize(newSize);

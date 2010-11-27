@@ -41,7 +41,7 @@ public class stendhal {
 	private static final Logger logger = Logger.getLogger(stendhal.class);
 	private static final ResourceManager RESOURCE_MANAGER = new ResourceManager();
 
-	public static boolean doLogin;
+	private static boolean doLogin;
 
 	public static final String STENDHAL_FOLDER;
 	public static final String GAME_NAME;
@@ -70,7 +70,7 @@ public class stendhal {
 
 	public static final String VERSION = Version.getVersion();
 
-	public static Dimension screenSize = new Dimension(640, 480);
+	private static Dimension screenSize = new Dimension(640, 480);
 	
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
@@ -79,6 +79,14 @@ public class stendhal {
 	public static final boolean FILTER_ATTACK_MESSAGES = true;
 
 	public static final int FPS_LIMIT = 25;
+
+	public static void setDoLogin()	{
+		doLogin = true;
+	}
+
+	public static Dimension getScreenSize() {
+		return screenSize;
+	}
 
 	/**
 	 * Parses command line arguments.
@@ -100,7 +108,6 @@ public class stendhal {
 		if (size != null) {
 			String[] tempsize = size.split("x");
 			screenSize = new Dimension(Integer.parseInt(tempsize[0]), Integer.parseInt(tempsize[1]));
-			
 		}
 	}
 

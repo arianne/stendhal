@@ -264,7 +264,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 			if (owner != null) {
 				owner.dispose();
 			}
-			stendhal.doLogin = true;
+			stendhal.setDoLogin();
 			dispose();
 		} catch (TimeoutException e) {
 			logger.error(e, e);
