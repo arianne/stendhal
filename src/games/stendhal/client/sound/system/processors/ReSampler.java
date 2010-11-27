@@ -14,35 +14,50 @@ package games.stendhal.client.sound.system.processors;
 
 import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.client.sound.system.Time;
+import games.stendhal.common.math.Dsp;
 
 /**
- *
+ * Sound processor stage to re-sample audio signals using another sample rate.
  * @author silvio
  */
 public class ReSampler extends SignalProcessor
 {
-    private int     mNumChannels;
-    private int     mDelayInSamples;
-    private float[] mBuffer;
-    private boolean mStarted = false;
+//	private final int     mNumChannels;
+    private final int	  mSampleRate;
+//	private final int     mDelayInSamples;
+//	private final float[] mBuffer;
+//	private boolean mStarted = false;
 
     ReSampler(Time delay, int channels, int sampleRate)
     {
         assert delay.getInSamples(sampleRate) < Integer.MAX_VALUE: "delay time is to long";
 
-        mDelayInSamples = (int)delay.getInSamples(sampleRate);
-        mBuffer         = new float[(int)(mDelayInSamples * channels)];
+//		mNumChannels	= channels;
+        mSampleRate		= sampleRate;
+//      mDelayInSamples = (int)delay.getInSamples(sampleRate);
+//		mBuffer         = new float[(int)(mDelayInSamples * channels)];
     }
 
-    public synchronized void start()
-    {
-        mStarted = true;
-    }
+//    public synchronized void start()
+//    {
+//        mStarted = true;
+//    }
     
+    /**
+     * Modify the PCM audio stream. The audio data is uniform and interleaved.
+	 * 
+     * @param data     the audio data
+     * @param frames   the number of frames contained in "data"
+     * @param channels number of channels
+     * @param rate     the sample rate
+     */
     @Override
     protected void modify(float[] data, int samples, int channels, int rate)
     {
-        //TODO implement and use ReSample
+
+    	//TODO implement using a pre-allocated buffer to avoid repeated memory allocation
+
+    	data = Dsp.convertSampleRate(data, samples, channels, mSampleRate, rate);
 
         super.propagate(data, samples, channels, rate);
     }
