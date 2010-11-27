@@ -45,5 +45,12 @@
 		<Bug pattern="PZLA_PREFER_ZERO_LENGTH_ARRAYS" />
 		<Class name="games.stendhal.common.math" />
 	</Match>
+
+	<Match>
+		<!--the class loader is created inside a do privilged block, 
+		    the code was just extracted in into its own method  -->
+		<Bug pattern="DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED" />
+		<Class name="games.stendhal.client.update.Bootstrap" />
+	</Match>
 </FindBugsFilter>
  
