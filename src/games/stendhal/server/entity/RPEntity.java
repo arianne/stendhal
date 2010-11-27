@@ -427,7 +427,7 @@ public abstract class RPEntity extends GuidedEntity {
 			mana = getInt("mana");
 		}
 		if (has("base_mana")) {
-			mana = getInt("base_mana");
+			base_mana = getInt("base_mana");
 		}
 	}
 
