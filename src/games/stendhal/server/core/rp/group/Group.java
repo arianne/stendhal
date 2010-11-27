@@ -12,8 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.group;
 
+import games.stendhal.common.NotificationType;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.entity.player.Player;
+
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A group of players 
@@ -21,8 +28,9 @@ import java.util.Map;
  * @author hendrik
  */
 public class Group {
+	private static long TIMEOUT = 5*60*1000;
 
-	private Map<String, Long> membersAndLastSeen = new HashMap<String, Long>();
+	private HashMap<String, Long> membersAndLastSeen = new HashMap<String, Long>();
 
 	/**
 	 * adds a member to the group
@@ -31,6 +39,7 @@ public class Group {
 	 */
 	public void addMember(String playerName) {
 		membersAndLastSeen.put(playerName, Long.valueOf(System.currentTimeMillis()));
+		sendGroupChangeEvent();
 	}
 
 	/**
@@ -40,7 +49,9 @@ public class Group {
 	 * @return true if the player was a member of this group
 	 */
 	public boolean removeMember(String playerName) {
-		return membersAndLastSeen.remove(playerName) != null;
+		boolean res = membersAndLastSeen.remove(playerName) != null;
+		sendGroupChangeEvent();
+		return res;
 	}
 
 	/**
@@ -51,5 +62,74 @@ public class Group {
 	 */
 	public boolean hasMember(String playerName) {
 		return membersAndLastSeen.get(playerName) != null;
+	}
+
+	/**
+	 * removes players that are offline longer than the timeout,
+	 * destroys the group if there is only one player left
+	 */
+	@SuppressWarnings("unchecked")
+	public void clean() {
+		Set<String> toRemove = new HashSet<String>();
+		StendhalRPRuleProcessor ruleProcessor = SingletonRepository.getRuleProcessor();
+		Long currentTime = Long.valueOf(System.currentTimeMillis() - TIMEOUT);
+		for (Map.Entry<String, Long> entry : ((Map<String, Long>)membersAndLastSeen.clone()).entrySet()) {
+			String playerName = entry.getKey();
+			if (ruleProcessor.getPlayer(playerName) != null) {
+				membersAndLastSeen.put(playerName, currentTime);
+			} else {
+				if (entry.getValue().compareTo(currentTime) < 0) {
+					toRemove.add(playerName);
+				}
+			}
+		}
+
+		membersAndLastSeen.keySet().removeAll(toRemove);
+		if (membersAndLastSeen.size() == 1) {
+			toRemove.add(membersAndLastSeen.keySet().iterator().next());
+			membersAndLastSeen.clear();
+		}
+		// TODO: sendGroupChangeEvent for toRemove
+		sendGroupChangeEvent();
+	}
+
+	/**
+	 * destroys the groups
+	 */
+	public void destory() {
+		membersAndLastSeen.clear();
+		sendGroupChangeEvent();
+	}
+
+	/**
+	 * tell the clients about changes in the group
+	 */
+	private void sendGroupChangeEvent() {
+		// TODO
+	}
+
+	/**
+	 * checks if this group does not have any members
+	 *
+	 * @return true, if it is empty; false if there are members in it
+	 */
+	public boolean isEmpty() {
+		return membersAndLastSeen.isEmpty();
+	}
+
+	/**
+	 * sends a group chat message to all members
+	 *
+	 * @param name   name of sender
+	 * @param text message to send 
+	 */
+	public void sendGroupMessage(String name, String text) {
+		StendhalRPRuleProcessor ruleProcessor = SingletonRepository.getRuleProcessor();
+		for (String playerName : membersAndLastSeen.keySet()) {
+			Player player = ruleProcessor.getPlayer(playerName);
+			if (player != null) {
+				player.sendPrivateText(NotificationType.GROUP, text);
+			}
+		}
 	}
 }

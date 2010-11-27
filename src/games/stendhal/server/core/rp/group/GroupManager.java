@@ -13,6 +13,7 @@
 package games.stendhal.server.core.rp.group;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -57,6 +58,7 @@ public class GroupManager {
 		return group;
 	}
 
+
 	/**
 	 * destroys a group
 	 *
@@ -68,7 +70,23 @@ public class GroupManager {
 		if (group == null) {
 			return false;
 		}
+		group.destory();
 		groups.remove(group);
 		return true;
+	}
+
+
+	/**
+	 * handles timeouts and removes empty groups
+	 */
+	public void clean() {
+		Iterator<Group> itr = groups.iterator();
+		while (itr.hasNext()) {
+			Group group = itr.next();
+			group.clean();
+			if (group.isEmpty()) {
+				itr.remove();
+			}
+		}
 	}
 }
