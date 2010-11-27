@@ -62,39 +62,42 @@ public class MagicExtn extends StendhalServerExtension implements
 
 		if (action.has("target")) {
 			castSpell = action.get("target");
+			if (castSpell.length() == 0) {
+				castSpell = null;
+			}
 			if (castSpell == null) {
 				player.sendPrivateText("You did not enter a spell to cast.");
 				logger.error("User did not enter a spell.");
+			} else {
+				player.sendPrivateText("Trying to cast a spell...");
 			}
-			// if(player1 == null) {
-			// text += "Player \"" + name1 + "\" not found. ";
-			// }
-			player.sendPrivateText("Trying to cast a spell...");
 		} else {
 			text = usage;
 		}
 
-		// the list of spells
-		final String availableSpells = player.getQuest("spells");
-		
-		if (availableSpells == null) {
-			player.sendPrivateText("You can not cast this spell.");
-			return;
-		}
+		if (castSpell != null) {
+			// the list of spells
+			final String availableSpells = player.getQuest("spells");
 
-		// Checks to see if the list of spells available to the player contains
-		// the spell they tried to cast
-		if (castSpell != null && availableSpells.contains(castSpell)) {
-			canCastSpell = true;
-		} else {
-			player.sendPrivateText("You can not cast this spell.");
+			if (availableSpells == null) {
+				player.sendPrivateText("You can not cast this spell.");
+				return;
+			}
+	
+			// Checks to see if the list of spells available to the player contains
+			// the spell they tried to cast
+			if (availableSpells.contains(castSpell)) {
+				canCastSpell = true;
+			} else {
+				player.sendPrivateText("You can not cast this spell.");
+			}
 		}
 
 		if (canCastSpell) {
 			castSpell(player, castSpell);
 		}
 
-		if (!text.isEmpty()) {
+		if (text.length() > 0) {
 			player.sendPrivateText(text);
 		}
 	}
@@ -141,7 +144,7 @@ public class MagicExtn extends StendhalServerExtension implements
 				player.setXP(newXP);
 				player.setLevel(newLevel);	// if not directly, the level will automatically be increased in updateLevel()
 				player.setDEFXP(newDefXP);
-				player.setDEF(newDef);	// if not directly set, the DEF value will automatically be increased in setDEFXP()
+				player.setDEF(newDef);		// if not directly set, the DEF value will automatically be increased in setDEFXP()
 				player.setATK(newAtk);
 				player.setATKXP(newAtkXP);	// if not directly set, the ATK value will automatically be increased in setATKXP()
 

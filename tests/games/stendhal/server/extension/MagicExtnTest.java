@@ -53,12 +53,20 @@ public class MagicExtnTest {
 	public final void testNoSpell() {
 		final Player pl = PlayerTestHelper.createPlayer("player");
 
-		final RPAction action = new RPAction();
+		RPAction action = new RPAction();
 		action.put("type", "spell");
 		// no target
 		assertTrue(CommandCenter.execute(pl, action));
 		assertEquals(1, pl.events().size());
-		assertEquals("You can not cast this spell.", pl.events().get(0).get("text"));
+		assertEquals("Usage: #/spell <spellname>", pl.events().get(0).get("text"));
+		pl.clearEvents();
+
+		action = new RPAction();
+		action.put("type", "spell");
+		action.put("target", "");
+		assertTrue(CommandCenter.execute(pl, action));
+		assertEquals(1, pl.events().size());
+		assertEquals("You did not enter a spell to cast.", pl.events().get(0).get("text"));
 		pl.clearEvents();
 	}
 
