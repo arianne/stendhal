@@ -40,8 +40,6 @@ import java.util.Map;
   */
 public class KoboldBarmaidNPC implements ZoneConfigurator {
 
-//	private static final Logger logger = Logger.getLogger(KoboldBarmaidNPC.class);
-
 	/**
 	 * Configure a zone.
 	 *
