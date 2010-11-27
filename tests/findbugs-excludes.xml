@@ -13,19 +13,22 @@
 		<Package name="~games\.stendhal\.server\.entity.*" />
 	</Match>
 
+	<!-- disable refactoring hint for named static inner classes -->
 	<Match> 
 		<Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
 	</Match>
 
-	<Match>
-		<!-- disable non-transient / non-serializable warnings -->
-		<Bug pattern="~SE_BAD_FIELD.*" />
-	</Match>
+	<!-- disable non-transient / non-serializable warnings -->
+	<Match><Bug pattern="SE_BAD_FIELD"/></Match>
+	<Match><Bug pattern="SE_BAD_FIELD_STORE"/></Match>
+	<Match><Bug pattern="SE_BAD_FIELD_INNER_CLASS"/></Match>
 
+	<!-- don't warn on non-locale string case conversions -->
 	<Match>
 		<Bug pattern="DM_CONVERT_CASE" />
 	</Match>
 
+	<!-- don't warn on checking debug constants -->
 	<Match>
 		<Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE" />
 		<Or>
@@ -35,6 +38,7 @@
 		</Or>
 	</Match>
 
+	<!-- allow to call exit() -->
 	<Match>
 		<Bug pattern="DM_EXIT" />
 		<Or>
@@ -44,6 +48,7 @@
 		</Or>
 	</Match>
 
+	<!-- allow method names starting with an upper case letter -->
 	<Match>
 		<Bug pattern="NM_METHOD_NAMING_CONVENTION" />
 		<Class name="games.stendhal.common.Grammar" />
