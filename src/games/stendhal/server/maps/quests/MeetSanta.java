@@ -59,7 +59,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 
 	private StendhalRPZone zone;
 
-
+	private TeleporterBehaviour teleporterBehaviour;
 
 	@Override
 	public String getSlotName() {
@@ -161,7 +161,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	
 	@Override
 	public void addToWorld() {
-		System.setProperty("stendhal.santa", "true");
+		
 		super.addToWorld();
 		fillQuestInfo(
 				"Meet Santa",
@@ -169,10 +169,11 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				false);
 		SingletonRepository.getLoginNotifier().addListener(this);
 		
-		// activate santa here
-		createSanta();
-		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!", false);
-
+		if (System.getProperty("stendhal.santa") != null) {
+			// activate santa here
+			createSanta();
+			teleporterBehaviour = new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!", false);
+		}
 	}
 	
 	/**
@@ -182,9 +183,9 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	 */
 	@Override
 	public boolean removeFromWorld() {
-		System.getProperties().remove("stendhal.santa");
 		removeNPC("Santa");
-		// TODO: remove the turn notifiers left from the TeleporterBehaviour
+		// remove the turn notifiers left from the TeleporterBehaviour
+		SingletonRepository.getTurnNotifier().dontNotify(teleporterBehaviour);
 		return true;
 	}
 

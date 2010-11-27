@@ -205,6 +205,7 @@ public class StendhalQuestSystem {
 		loadQuest(new MeetIo());
 		loadQuest(new MeetKetteh());
 		loadQuest(new MeetMonogenes());
+		loadQuest(new MeetSanta());
 		loadQuest(new MeetZynn());
 		loadQuest(new MithrilCloak());
 		loadQuest(new MixtureForOrtiv());
@@ -239,10 +240,6 @@ public class StendhalQuestSystem {
 
 		if (System.getProperty("stendhal.minetown") != null) {
 			loadQuest(new SemosMineTownRevivalWeeks());
-		}
-
-		if (System.getProperty("stendhal.santa") != null) {
-			loadQuest(new MeetSanta());
 		}
 		
 		TurnNotifier.get().notifyInTurns(10, new DumpSpeakerNPCtoDB());

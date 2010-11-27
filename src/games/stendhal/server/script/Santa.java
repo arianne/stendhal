@@ -45,10 +45,11 @@ public class Santa extends ScriptImpl {
 	 * starts Christmas.
 	 */
 	private void startChristmas(Player admin) {
-		if (StendhalQuestSystem.get().getQuest(MeetSanta.QUEST_NAME) != null) {
+		if (System.getProperty("stendhal.santa") != null) {
 			admin.sendPrivateText("Santa is already active.");
 			return;
 		}
+		System.setProperty("stendhal.santa", "true");
 		StendhalQuestSystem.get().loadQuest(new MeetSanta());
 	}
 
@@ -56,10 +57,11 @@ public class Santa extends ScriptImpl {
 	 * ends Christmas
 	 */
 	private void stopChristmas(Player admin) {
-		if (StendhalQuestSystem.get().getQuest(MeetSanta.QUEST_NAME) == null) {
+		if (System.getProperty("stendhal.santa") == null) {
 			admin.sendPrivateText("Santa is not active.");
 			return;
 		}
+		System.getProperties().remove("stendhal.santa");
 		StendhalQuestSystem.get().unloadQuest(MeetSanta.QUEST_NAME);
 	}
 
