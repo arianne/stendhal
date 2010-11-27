@@ -16,42 +16,39 @@ import games.stendhal.common.memory.Field;
 
 /**
  * Signal processing algorithms.
+ * 
  * @author silvio
  */
-public class Dsp
-{
-	public static byte[] convertUniformPCM(byte[] pcmBuffer, float[] samples, int numSamples, int numBytesPerSample)
-    {
-        int  numBitsPerSample = numBytesPerSample * 8;
-		long maxValue         = (long)((Math.pow(2, numBitsPerSample) - 1.0) / 2.0);
+public class Dsp {
+	public static byte[] convertUniformPCM(byte[] pcmBuffer, float[] samples, int numSamples, int numBytesPerSample) {
+		int numBitsPerSample = numBytesPerSample * 8;
+		long maxValue = (long) ((Math.pow(2, numBitsPerSample) - 1.0) / 2.0);
 
-		pcmBuffer = Field.expand(pcmBuffer, (numBytesPerSample * numSamples), false);
+		pcmBuffer = Field.expand(pcmBuffer, (numBytesPerSample * numSamples),
+				false);
 
-        for(int i=0; i<numSamples; ++i)
-        {
-            long value = (long)(samples[i] * maxValue);
-            int  index = i * numBytesPerSample;
+		for (int i = 0; i < numSamples; ++i) {
+			long value = (long) (samples[i] * maxValue);
+			int index = i * numBytesPerSample;
 
-            value = (value >  maxValue) ? ( maxValue) : (value);
-            value = (value < -maxValue) ? (-maxValue) : (value);
+			value = (value > maxValue) ? (maxValue) : (value);
+			value = (value < -maxValue) ? (-maxValue) : (value);
 
-            for(int n=0; n<numBytesPerSample; ++n)
-                pcmBuffer[index + n] = (byte)(value >>> (n*8));
-        }
+			for (int n = 0; n < numBytesPerSample; ++n)
+				pcmBuffer[index + n] = (byte) (value >>> (n * 8));
+		}
 
-        return pcmBuffer;
+		return pcmBuffer;
 	}
 
-	public static void mixAudioData(float[] result, int rOffset, float[] samples, int sOffset, int numSamples, float intensity)
-    {
+	public static void mixAudioData(float[] result, int rOffset, float[] samples, int sOffset, int numSamples, float intensity) {
 		int rEnd = rOffset + numSamples;
 
-		while(rOffset < rEnd)
-		{
+		while (rOffset < rEnd) {
 			float A = result[rOffset];
-            float B = samples[sOffset] * intensity;
+			float B = samples[sOffset] * intensity;
 
-            result[rOffset] = A + B - A * B;
+			result[rOffset] = A + B - A * B;
 
 			++rOffset;
 			++sOffset;
@@ -64,26 +61,25 @@ public class Dsp
 
             result[rOffset + i] = A + B - A * B;
         }//*/
-    }
+	}
 
-	public static void blendAudioData(float[] result, int rOffset, float[] samples, int sOffset, int numSamples, float intensity)
-    {
+	public static void blendAudioData(float[] result, int rOffset,
+			float[] samples, int sOffset, int numSamples, float intensity) {
 		int rEnd = rOffset + numSamples;
 
-		while(rOffset < rEnd)
-		{
+		while (rOffset < rEnd) {
 			float A = result[rOffset];
-            float B = samples[sOffset];
+			float B = samples[sOffset];
 
-            result[rOffset] = A + (B - A) * intensity;
+			result[rOffset] = A + (B - A) * intensity;
 
 			++rOffset;
 			++sOffset;
 		}
-    }
+	}
 
-	public static float[] convertChannels(float[] samples, int numFrames, int numChannels, int numRequiredChannels)
-    {
+	public static float[] convertChannels(float[] samples, int numFrames,
+			int numChannels, int numRequiredChannels) {
         /* Assignments for audio channels
          * channel 0: Front left
          * channel 1: Front right
@@ -95,52 +91,44 @@ public class Dsp
          * channel 7: Surround back right - ## NEEDS CONFIRMATION ##
          */
 
-        if(numChannels == numRequiredChannels)
-            return samples;
+		if (numChannels == numRequiredChannels)
+			return samples;
 
-        // we have to reduce the number of channels
-        if(numChannels > numRequiredChannels)
-        {
-            // stereo/multichannel to mono - maybe this won't work properly for more than 2 channels
-            //                             - ## NEEDS CONFIRMATION ##
-            if(numRequiredChannels == 1)
-            {
-                for(int i=0; i<numFrames; ++i)
-                {
-                    int index   = i * numChannels;
-                    float value = 0.0f;
+		// we have to reduce the number of channels
+		if (numChannels > numRequiredChannels) {
+			// stereo/multichannel to mono - maybe this won't work properly for
+			// more than 2 channels
+			// - ## NEEDS CONFIRMATION ##
+			if (numRequiredChannels == 1) {
+				for (int i = 0; i < numFrames; ++i) {
+					int index = i * numChannels;
+					float value = 0.0f;
 
-                    for(int c=0; c<numChannels; ++c)
-                        value += samples[index + c];
+					for (int c = 0; c < numChannels; ++c)
+						value += samples[index + c];
 
-                    samples[i] = value / (float)numChannels;
-                }
-            }
-            else
-            {
-                // not implemented yet
-                samples = null;
-            }
-        }
-        else // we have to increase the number of channels
-        {
-            // mono to stereo/multichannel
-            if(numChannels == 1)
-            {
-                float[] newUniformPCM = new float[numFrames * numRequiredChannels];
+					samples[i] = value / (float) numChannels;
+				}
+			} else {
+				// not implemented yet
+				samples = null;
+			}
+		} else // we have to increase the number of channels
+		{
+			// mono to stereo/multichannel
+			if (numChannels == 1) {
+				float[] newUniformPCM = new float[numFrames
+						* numRequiredChannels];
 
-                for(int i=0; i<numFrames; ++i)
-                {
-                    int index = i * numRequiredChannels;
+				for (int i = 0; i < numFrames; ++i) {
+					int index = i * numRequiredChannels;
 
-                    for(int c=0; c<numRequiredChannels; ++c)
-                        newUniformPCM[index + c] = samples[i];
-                }
+					for (int c = 0; c < numRequiredChannels; ++c)
+						newUniformPCM[index + c] = samples[i];
+				}
 
-                samples = newUniformPCM;
-            }
-            else // stereo/multichannel to multichannel
-            {
+				samples = newUniformPCM;
+			} else { // stereo/multichannel to multichannel
                 /* Stereo widening (from Wikipedia):
                  * Widening of the stereo image can be achieved by manipulating the
                  * relationship of the side signal S and the center signal C
@@ -149,52 +137,53 @@ public class Dsp
                  * and a part with its phase inverted to the right channel.
                  */
 
-                // not yet implemented
-                samples = null;
-            }
-        }
+				// not yet implemented
+				samples = null;
+			}
+		}
 
-        return samples;
-    }
+		return samples;
+	}
 
 	/**
 	 * Convert the sample rate of a multi channel PCM signal.
+	 * 
 	 * @param samples
 	 * @param numFrames
 	 * @param numChannels
 	 * @param sampleRate
 	 * @param targetSampleRate
-	 * @return
+	 * @return converted sample rate
 	 */
-	public static float[] convertSampleRate(float[] samples, int numFrames, int numChannels, int sampleRate, int targetSampleRate)
-    {
-        assert samples.length >= numFrames*numChannels;
-        assert numChannels > 0;
-        assert sampleRate > 0;
-        assert targetSampleRate > 0;
+	public static float[] convertSampleRate(float[] samples, int numFrames,
+			int numChannels, int sampleRate, int targetSampleRate) {
+		assert samples.length >= numFrames * numChannels;
+		assert numChannels > 0;
+		assert sampleRate > 0;
+		assert targetSampleRate > 0;
 
-        float[] buffer;
+		float[] buffer;
 
-        if (sampleRate == targetSampleRate) {
-            buffer = samples;
-        } else {
-	        double conversion = (double) sampleRate / targetSampleRate;
-	        int newFrames = (int)(numFrames / conversion);
-	        int newNumSamples = newFrames * numChannels;
-	
+		if (sampleRate == targetSampleRate) {
+			buffer = samples;
+		} else {
+			double conversion = (double) sampleRate / targetSampleRate;
+			int newFrames = (int) (numFrames / conversion);
+			int newNumSamples = newFrames * numChannels;
+
 			buffer = new float[newNumSamples];
-	
-			int idx = 0;
-			for(int f=0; f<newFrames; ++f) {
-				int sourceFrame = (int)(f * conversion);
 
-				for(int c=0; c<numChannels; ++c) {
-					buffer[idx++] = samples[sourceFrame*numChannels + c];
+			int idx = 0;
+			for (int f = 0; f < newFrames; ++f) {
+				int sourceFrame = (int) (f * conversion);
+
+				for (int c = 0; c < numChannels; ++c) {
+					buffer[idx++] = samples[sourceFrame * numChannels + c];
 				}
 			}
-			assert idx==newNumSamples+numChannels;
-        }
+			assert idx == newNumSamples + numChannels;
+		}
 
-        return buffer;
-    }
+		return buffer;
+	}
 }
