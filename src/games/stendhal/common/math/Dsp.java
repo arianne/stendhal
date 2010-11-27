@@ -141,7 +141,7 @@ public class Dsp
             }
             else // stereo/multichannel to multichannel
             {
-                /* Stereo widening (from wikipedia):
+                /* Stereo widening (from Wikipedia):
                  * Widening of the stereo image can be achieved by manipulating the
                  * relationship of the side signal S and the center signal C
                  * C = (L + R) / 2; S = (L - R) / 2
@@ -157,13 +157,44 @@ public class Dsp
         return samples;
     }
 
-	public static float[] convertSampleRate(float[] samples, int numSamples, int numChannels, int sampleRate, int targetSampleRate)
+	/**
+	 * Convert the sample rate of a multi channel PCM signal.
+	 * @param samples
+	 * @param numFrames
+	 * @param numChannels
+	 * @param sampleRate
+	 * @param targetSampleRate
+	 * @return
+	 */
+	public static float[] convertSampleRate(float[] samples, int numFrames, int numChannels, int sampleRate, int targetSampleRate)
     {
-        if(sampleRate == targetSampleRate)
-            return samples;
+        assert samples.length >= numFrames*numChannels;
+        assert numChannels > 0;
+        assert sampleRate > 0;
+        assert targetSampleRate > 0;
 
-        // not implemented yet
-        //TODO convert sample rate
-        return null;
+        float[] buffer;
+
+        if (sampleRate == targetSampleRate) {
+            buffer = samples;
+        } else {
+	        double conversion = (double) sampleRate / targetSampleRate;
+	        int newFrames = (int)(numFrames / conversion);
+	        int newNumSamples = newFrames * numChannels;
+	
+			buffer = new float[newNumSamples];
+	
+			int idx = 0;
+			for(int f=0; f<newFrames; ++f) {
+				int sourceFrame = (int)(f * conversion);
+
+				for(int c=0; c<numChannels; ++c) {
+					buffer[idx++] = samples[sourceFrame*numChannels + c];
+				}
+			}
+			assert idx==newNumSamples+numChannels;
+        }
+
+        return buffer;
     }
 }
