@@ -24,21 +24,36 @@ import org.junit.Test;
  */
 public class DspTest {
 
+	private final static float[] inputData = new float[] {
+		-0.5f, -0.2f,
+		 0.0f,  0.0f,
+		+0.5f, +0.2f
+	};
+
+	/**
+	 * Call resampling function with unchanged sample rate.
+	 */
+	@Test
+	public final void test0() {
+		// keep sampling rate
+		final float[] buffer = Dsp.convertSampleRate(inputData, inputData.length/2, 2, 44100, 44100);
+
+		assertEquals("check output buffer size", inputData.length, buffer.length);
+
+		for(int i=0; i<buffer.length; ++i) {
+			assertEquals(inputData[i], buffer[i], .0);
+		}
+	}
+
 	/**
 	 * Test simple signal resampling.
 	 */
 	@Test
 	public final void test1() {
-		float[] data = new float[] {
-			-0.5f, -0.2f,
-			 0.0f,  0.0f,
-			+0.5f, +0.2f
-		};
-
 		// convert to a rate of 44100 samples/sec
-		float[] buffer = Dsp.convertSampleRate(data, data.length/2, 2, 11025, 44100);
+		final float[] buffer = Dsp.convertSampleRate(inputData, inputData.length/2, 2, 11025, 44100);
 
-		assertEquals(data.length*4, buffer.length);
+		assertEquals("check output buffer size", inputData.length*4, buffer.length);
 		assertEquals(-0.5, buffer[0], .0001);
 		assertEquals(-0.2, buffer[1], .0001);
 		assertEquals( 0.0, buffer[8], .0001);
@@ -53,16 +68,16 @@ public class DspTest {
 	@Test
 	public final void testGenerated() {
 		// generate a 1 kHz signal
-		ToneGenerator gen = new ToneGenerator(1, 44100, 10*44100);
+		final ToneGenerator gen = new ToneGenerator(1, 44100, 10*44100);
 		gen.addTone(new ToneGenerator.Tone(1.f, 1000.f));
-		ToneGeneratorTest.Receiver rec = new ToneGeneratorTest.Receiver(gen);
+		final ToneGeneratorTest.Receiver rec = new ToneGeneratorTest.Receiver(gen);
 		rec.request();
 
-		assertEquals(10*44100, rec._data.length);
+		assertEquals("check output buffer size", 10*44100, rec._data.length);
 
 		// sample down to 22050 samples/s
-		float[] buffer = Dsp.convertSampleRate(rec._data, rec._frames, rec._channels, rec._rate, 22050);
+		final float[] buffer = Dsp.convertSampleRate(rec._data, rec._frames, rec._channels, rec._rate, 22050);
 
-		assertEquals(220500, buffer.length);
+		assertEquals("check output buffer size", 220500, buffer.length);
 	}
 }

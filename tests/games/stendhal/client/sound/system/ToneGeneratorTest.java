@@ -30,8 +30,8 @@ public class ToneGeneratorTest {
 	@Test
 	public final void testNoSignal() {
 		// generate a signal without adding a Tone
-		ToneGenerator gen = new ToneGenerator(1, 44100, 10*44100);
-		Receiver rec = new Receiver(gen);
+		final ToneGenerator gen = new ToneGenerator(1, 44100, 10*44100);
+		final Receiver rec = new Receiver(gen);
 		rec.request();
 
 		assertEquals(10*44100, rec._data.length);
@@ -51,9 +51,9 @@ public class ToneGeneratorTest {
 	@Test
 	public final void test1Sine1kHz() {
 		// generate a 1 kHz signal
-		ToneGenerator gen = new ToneGenerator(1, 44100, 10*44100);
+		final ToneGenerator gen = new ToneGenerator(1, 44100, 10*44100);
 		gen.addTone(new ToneGenerator.Tone(1.f, 1000.f));
-		Receiver rec = new Receiver(gen);
+		final Receiver rec = new Receiver(gen);
 		rec.request();
 
 		assertEquals(10*44100, rec._data.length);
@@ -78,9 +78,9 @@ public class ToneGeneratorTest {
 	@Test
 	public final void test2Sine1kHz() {
 		// generate a two channel 1 kHz signal
-		ToneGenerator gen = new ToneGenerator(2, 44100, 10*44100);
+		final ToneGenerator gen = new ToneGenerator(2, 44100, 10*44100);
 		gen.addTone(new ToneGenerator.Tone(1.f, 1000.f));
-		Receiver rec = new Receiver(gen);
+		final Receiver rec = new Receiver(gen);
 		rec.request();
 
 		assertEquals(2*10*44100, rec._data.length);
@@ -116,7 +116,7 @@ public class ToneGeneratorTest {
 		public int _channels;
 		public int _rate;
 
-		public Receiver(SignalProcessor sp)
+		public Receiver(final SignalProcessor sp)
 		{
 			// link with the sound source
 			insert(sp, false);
