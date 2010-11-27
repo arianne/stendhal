@@ -94,7 +94,9 @@ public class MagicExtn extends StendhalServerExtension implements
 			castSpell(player, castSpell);
 		}
 
-		player.sendPrivateText(text);
+		if (!text.isEmpty()) {
+			player.sendPrivateText(text);
+		}
 	}
 
 	private void castSpell(final Player player, String spell) {
@@ -128,20 +130,20 @@ public class MagicExtn extends StendhalServerExtension implements
 				final int oldAtkXP = player.getATKXP();
 
 				// gets new stats
-				final int newLevel = oldLevel++;
+				final int newLevel = oldLevel + 1;
 				final int newXP = oldXP + 44900;
 				final int newDefXP = oldDefXP + 24700;
-				final int newDef = oldDef++;
+				final int newDef = oldDef + 1;
 				final int newAtkXP = oldAtkXP + 24700;
-				final int newAtk = oldAtk++;
+				final int newAtk = oldAtk + 1;
 
 				// sets new stats
 				player.setXP(newXP);
-				player.setLevel(newLevel);
+				player.setLevel(newLevel);	// if not directly, the level will automatically be increased in updateLevel()
 				player.setDEFXP(newDefXP);
-				player.setDEF(newDef);
+				player.setDEF(newDef);	// if not directly set, the DEF value will automatically be increased in setDEFXP()
 				player.setATK(newAtk);
-				player.setATKXP(newAtkXP);
+				player.setATKXP(newAtkXP);	// if not directly set, the ATK value will automatically be increased in setATKXP()
 
 				// saves changes
 				player.update();
