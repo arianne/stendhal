@@ -120,12 +120,13 @@ public final class Actions {
 	//destroy
 	public static final String NAME = "name";
 	
-	//chataction
+	//chat actions
+	public static final String ANSWER = "answer";
+	public static final String CHAT = "chat";
+	public static final String EMOTE = "emote";
+	public static final String GROUP_MESSAGE = "group_message";
 	public static final String SUPPORT = "support";
 	public static final String TELL = "tell";
-	public static final String CHAT = "chat";
-	public static final String ANSWER = "answer";
-	public static final String EMOTE = "emote";
 
 	
 	//summon

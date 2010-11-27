@@ -74,6 +74,12 @@ public enum NotificationType {
 			return COLOR_EMOTE;
 		}
 	},
+	GROUP("group") {
+		@Override
+		public Color getColor() {
+			return COLOR_GROUP;
+		}
+	},
 	PRIVMSG("privmsg") {
 		@Override
 		public Color getColor() {
@@ -133,7 +139,9 @@ public enum NotificationType {
 	public static final Color COLOR_NORMAL = Color.black;
 
 	public static final Color COLOR_POSITIVE = Color.green;
-	
+
+	public static final Color COLOR_GROUP = new Color(99, 61, 139);
+
 	// muted purple
 	public static final Color COLOR_EMOTE = new Color(99, 61, 139);
 

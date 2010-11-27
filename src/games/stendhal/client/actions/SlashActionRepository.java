@@ -31,6 +31,7 @@ public class SlashActionRepository {
 		final SlashAction supporta = new SupportAnswerAction();
 		final SlashAction who = new WhoAction();
 		final SlashAction help = new HelpAction();
+		final GroupMessageAction groupMessage = new GroupMessageAction();
 
 		actions.put("/", new RemessageAction());
 		actions.put("add", new AddBuddyAction());
@@ -53,6 +54,8 @@ public class SlashActionRepository {
 
 		actions.put("gag", new GagAction());
 		actions.put("gmhelp", new GMHelpAction());
+		actions.put("group", new GroupManagementAction(groupMessage));
+		actions.put("groupmessage", groupMessage);
 		actions.put("grumpy", new GrumpyAction());
 
 		actions.put("help", help);
@@ -71,6 +74,8 @@ public class SlashActionRepository {
 		
 		actions.put("names", who);
 		
+		actions.put("p", groupMessage);
+
 		actions.put("quit", new QuitAction());
 
 		actions.put("remove", new RemoveBuddyAction());

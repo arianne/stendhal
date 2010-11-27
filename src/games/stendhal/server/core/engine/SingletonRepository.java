@@ -16,6 +16,7 @@ import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.achievements.AchievementNotifier;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
+import games.stendhal.server.core.rp.group.GroupManager;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.npc.NPCList;
@@ -37,10 +38,6 @@ import marauroa.server.db.TransactionPool;
  * 
  * Just one step into getting rid of the singleton hell;
  * 
- * 
- * 
- * 
- * 
  * @author astridEmma
  *
  */
@@ -48,6 +45,7 @@ public class SingletonRepository {
 	
 	private static EntityManager entityManager;
 	private static Jail jailInstance;
+	private static GroupManager groupManager;
 
 	/**
 	 * @return the actual StendhalRPRuleProcessor instance
@@ -167,6 +165,18 @@ public class SingletonRepository {
 	}
 
 	/**
+	 * gets the GroupManager
+	 *
+	 * @return GroupManager
+	 */
+	public static GroupManager getGroupManager() {
+		if (groupManager == null) {
+			groupManager = new GroupManager();
+		}
+		return groupManager;
+	}
+
+	/**
 	 * Sets a new EntityManager 
 	 * @param entityManager
 	 */
@@ -174,8 +184,5 @@ public class SingletonRepository {
 		SingletonRepository.entityManager = entityManager;
 	}
 
-	
-
-	
 
 }
