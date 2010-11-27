@@ -19,6 +19,7 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,8 +30,10 @@ import java.util.Set;
  */
 public class Group {
 	private static long TIMEOUT = 5*60*1000;
+	private static int MAX_MEMBERS = 3;
 
 	private HashMap<String, Long> membersAndLastSeen = new HashMap<String, Long>();
+	private HashMap<String, Long> openInvites = new HashMap<String, Long>();
 
 	/**
 	 * adds a member to the group
@@ -38,6 +41,7 @@ public class Group {
 	 * @param playerName name of player
 	 */
 	public void addMember(String playerName) {
+		openInvites.remove(playerName);
 		membersAndLastSeen.put(playerName, Long.valueOf(System.currentTimeMillis()));
 		sendGroupChangeEvent();
 	}
@@ -73,6 +77,8 @@ public class Group {
 		Set<String> toRemove = new HashSet<String>();
 		StendhalRPRuleProcessor ruleProcessor = SingletonRepository.getRuleProcessor();
 		Long currentTime = Long.valueOf(System.currentTimeMillis() - TIMEOUT);
+
+		// remove offline members and set keep alive timestamp
 		for (Map.Entry<String, Long> entry : ((Map<String, Long>)membersAndLastSeen.clone()).entrySet()) {
 			String playerName = entry.getKey();
 			if (ruleProcessor.getPlayer(playerName) != null) {
@@ -83,9 +89,19 @@ public class Group {
 				}
 			}
 		}
-
 		membersAndLastSeen.keySet().removeAll(toRemove);
-		if (membersAndLastSeen.size() == 1) {
+
+		// expire open invites
+		Iterator<Map.Entry<String, Long>> itr = openInvites.entrySet().iterator();
+		while (itr.hasNext()) {
+			Map.Entry<String, Long> entry = itr.next();
+			if (entry.getValue().compareTo(currentTime) < 0) {
+				itr.remove();
+			}
+		}
+
+		// destroy the group if there is only one person and no open invites left
+		if ((membersAndLastSeen.size() == 1) && openInvites.isEmpty()) {
 			toRemove.add(membersAndLastSeen.keySet().iterator().next());
 			membersAndLastSeen.clear();
 		}
@@ -118,6 +134,15 @@ public class Group {
 	}
 
 	/**
+	 * checks if the group is full.
+	 *
+	 * @return true if the group is full; false otherwise
+	 */
+	public boolean isFull() {
+		return membersAndLastSeen.size() >= MAX_MEMBERS;
+	}
+
+	/**
 	 * sends a group chat message to all members
 	 *
 	 * @param name   name of sender
@@ -128,8 +153,28 @@ public class Group {
 		for (String playerName : membersAndLastSeen.keySet()) {
 			Player player = ruleProcessor.getPlayer(playerName);
 			if (player != null) {
-				player.sendPrivateText(NotificationType.GROUP, text);
+				player.sendPrivateText(NotificationType.GROUP, name + ": " + text);
 			}
 		}
+	}
+
+	/**
+	 * invites a player to join this group.
+	 *
+	 * @param player  player sending the invited
+	 * @param targetPlayer invited player
+	 */
+	public void invite(Player player, Player targetPlayer) {
+		openInvites.put(targetPlayer.getName(), Long.valueOf(System.currentTimeMillis()));
+		targetPlayer.sendPrivateText(NotificationType.INFORMATION, player.getName() + " has invited you to join a group. Type /group join " + player.getName());
+	}
+
+	/**
+	 * check if the player was invited
+	 * @param playerName player to check if it was invited
+	 * @return true, if the player was invited; false otherwise
+	 */
+	public boolean hasBeenInvited(String playerName) {
+		return openInvites.get(playerName) != null;
 	}
 }

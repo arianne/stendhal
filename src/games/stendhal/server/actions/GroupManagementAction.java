@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.common.NotificationType;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.group.Group;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -39,6 +42,8 @@ public class GroupManagementAction implements ActionListener {
 	 * @param action the action to be performed
 	 */
 	public void onAction(final Player player, final RPAction action) {
+
+		// vaidate parameters
 		String actionStr = action.get("action");
 		String params = action.get("params");
 		if ((actionStr == null) || (params == null)) {
@@ -46,41 +51,109 @@ public class GroupManagementAction implements ActionListener {
 			return;
 		}
 
+		// get target player
+		Player targetPlayer = null;
+		if (!actionStr.equals("part")) {
+			targetPlayer = SingletonRepository.getRuleProcessor().getPlayer(params);
+			if (targetPlayer == null) {
+				player.sendPrivateText(NotificationType.ERROR, "Player " + params + " is not online");
+				return;
+			}
+		}
+
+		// 
 		if (actionStr.equals("invite")) {
-			invite(player, params);
+			invite(player, targetPlayer);
 		} else if (actionStr.equals("join")) {
-			join(player, params);
+			join(player, targetPlayer);
 		} else if (actionStr.equals("part")) {
-			part(player, params);
+			part(player);
 		} else if (actionStr.equals("kick")) {
-			kick(player, params);
+			kick(player, targetPlayer);
 		} else {
-			unknown(player, params);
+			unknown(player, actionStr, params);
 		}
 	}
 
-	private void invite(Player player, String params) {
+	/**
+	 * invited a player to join a group
+	 *
+	 * @param player Player who invites
+	 * @param targetPlayer player who is invited
+	 */
+	private void invite(Player player, Player targetPlayer) {
+
+		// check if the target player is already in a group
+		Group group = SingletonRepository.getGroupManager().getGroup(targetPlayer.getName());
+		if (group != null) {
+			player.sendPrivateText(NotificationType.ERROR, targetPlayer.getName() + " is already in a group.");
+			return;
+		}
+
+		// check if there is space left in the group
+		SingletonRepository.getGroupManager().createGroup(player.getName());
+		group = SingletonRepository.getGroupManager().getGroup(player.getName());
+		if (group.isFull()) {
+			player.sendPrivateText(NotificationType.ERROR, "Your group is already full.");
+			return;
+		}
+
+		// invite
+		group.invite(player, targetPlayer);
+	}
+
+	/**
+	 * joins a group
+	 *
+	 * @param player Player who wants to join a group
+	 * @param targetPlayer leader of the group
+	 */
+	private void join(Player player, Player targetPlayer) {
+
+		// check if the target player is already in a group
+		Group group = SingletonRepository.getGroupManager().getGroup(targetPlayer.getName());
+		if ((group == null) || !group.hasBeenInvited(player.getName())) {
+			player.sendPrivateText(NotificationType.ERROR, "You have not been invited into this group or the invite expired.");
+			return;
+		}
+
+		// check if there is space left in the group
+		if (group.isFull()) {
+			player.sendPrivateText(NotificationType.ERROR, "The group is already full.");
+			return;
+		}
+
+		group.addMember(player.getName());
+	}
+
+	/**
+	 * leave the group
+	 *
+	 * @param player player who wants to leave
+	 */
+	private void part(Player player) {
+		Group group = SingletonRepository.getGroupManager().getGroup(player.getName());
+		if (group == null) {
+			player.sendPrivateText(NotificationType.ERROR, "You are not a member of a group.");
+			return;
+		}
+
+		group.removeMember(player.getName());
+	}
+
+	private void kick(Player player, Player targetPlayer) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	private void join(Player player, String params) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void part(Player player, String params) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void kick(Player player, String params) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void unknown(Player player, String params) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * sends an error messages on invalid an actions
+	 * 
+	 * @param player Player who executed the action
+	 * @param action name of action
+	 * @param params params for the action
+	 */
+	private void unknown(Player player, String action, String params) {
+		player.sendPrivateText(NotificationType.ERROR, "Unknown group action: " + action + " with parameters " + params);
 	}
 }
