@@ -17,8 +17,9 @@
 		<Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
 	</Match>
 
-	<Match> 
-		<Bug pattern="SE_BAD_FIELD" />
+	<Match>
+		<!-- disable non-transient / non-serializable warnings -->
+		<Bug pattern="~SE_BAD_FIELD.*" />
 	</Match>
 
 	<Match>
@@ -47,7 +48,7 @@
 	</Match>
 
 	<Match>
-		<!--the class loader is created inside a do privilged block, 
+		<!--the class loader is created inside a do privileged block, 
 		    the code was just extracted in into its own method  -->
 		<Bug pattern="DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED" />
 		<Class name="games.stendhal.client.update.Bootstrap" />
