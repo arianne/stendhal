@@ -29,7 +29,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Was one of theses trigger phrases said exactly ignoring case? (Use with a ""-trigger in npc.add)
+ * Was one of these trigger phrases said exactly ignoring case? (Use with a ""-trigger in npc.add)
  */
 public class TriggerExactlyInListCondition implements ChatCondition {
 	private static final ConversationContext CONVERSION_CONTEXT = new ConvCtxForMatchingSource();

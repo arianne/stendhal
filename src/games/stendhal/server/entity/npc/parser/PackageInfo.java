@@ -21,7 +21,7 @@ final class PackageInfo {
 	To make the conversation between players and NPCs more flexible, the NPC Conversation Parser was invented.
 	Its aim is, to go beyond simple keywords and the very constrained, previous imperative syntax.
 	
-	For more information please see the text in NPCParser.odt
+	For more information please see the text in ConversationParser.odt
 
 */
 
