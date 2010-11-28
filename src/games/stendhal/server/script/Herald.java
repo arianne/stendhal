@@ -278,32 +278,30 @@ public class Herald extends ScriptImpl {
 				}
 			}
 			/**
-			 * npc adds new job to his job list
+			 * NPC adds new job to his job list.
 			 */
 			class WriteNewsAction implements ChatAction {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc){
-					final StringBuilder sb = new StringBuilder(sentence.getOriginalText());
-					logger.info("Original sentence: "+sb.toString());
-					final String args = sb.toString();
-					final String[] starr = args.split(" ");	
-					if(starr.length<2){
+					String text = sentence.getOriginalText();
+					logger.info("Original sentence: " + text);
+					final String[] starr = text.split(" ");	
+					if(starr.length < 2){
 						npc.say("You forget time limit. I am mortal too and somewhat senile, you know.");
 						return;
 					}
 					try {
 						final int interval = Integer.parseInt(starr[1].trim());
 						final int limit = Integer.parseInt(starr[2].trim());
-						if(limit<interval){
+						if(limit < interval){
 							npc.say("I can count to "+Integer.toString(interval)+
 									", and "+Integer.toString(limit)+" is less then " + Integer.toString(interval)+
 									". Repeat please.");
 							return;
 						}
 						try {
-							String text = args.trim().
-								          substring(starr[0].length()).trim().
-								          substring(starr[1].length()).trim().
-								          substring(starr[2].length()).trim();
+							text = text.substring(starr[0].length()).trim().
+										substring(starr[1].length()).trim().
+								        substring(starr[2].length()).trim();
 							final String out="Interval: "+Integer.toString(interval)+", limit: "+
 							Integer.toString(limit)+", text: \""+text+"\"";
 							npc.say("Ok, I have recorded it. "+out);
@@ -317,29 +315,27 @@ public class Herald extends ScriptImpl {
 						    	logger.error("WriteNewsAction: Error while parsing sentence "+sentence.toString(), ioobe);
 						}
 					} catch (NumberFormatException nfe) {
-							 npc.say(DontUnderstand);
-							 logger.info("Error while parsing numbers. Interval and limit is: "+"("+starr[0]+"), ("+starr[1]+")");
-							 return;
+						 npc.say(DontUnderstand);
+						 logger.info("Error while parsing numbers. Interval and limit is: "+"("+starr[0]+"), ("+starr[1]+")");
 					}
 				}
 			}
 	
 			/**
-			 * npc removes one job from his job list
+			 * NPC removes one job from his job list.
 			 */
 			class RemoveNewsAction implements ChatAction {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc){
-					String s = sentence.getOriginalText();					
-					final String args = s.trim();
-					final String[] starr = args.split(" ");	
-					if(starr.length<2){
+					String text = sentence.getOriginalText();					
+					final String[] starr = text.split(" ");	
+					if(starr.length < 2){
 						npc.say("Tell me the number of sentence to remove.");
 						return;
 					}
 					final String number = starr[1];
 					try {
 						final int i = Integer.parseInt(number)-1;
-						if (i<0){
+						if (i < 0){
 							npc.say(BadJoke);
 							return;
 						}
@@ -363,7 +359,6 @@ public class Herald extends ScriptImpl {
 					} catch (NumberFormatException nfe) {
 						logger.error("RemoveNewsAction: cant remove "+number+" speech.", nfe);
 						npc.say(DontUnderstand);
-						return;
 					}
 				}
 			}		
