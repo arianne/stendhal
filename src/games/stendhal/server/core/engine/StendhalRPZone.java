@@ -123,7 +123,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public CollisionDetection protectionMap;
 
 	/** Position of this zone in the world map. */
-	private boolean interior;
+	private boolean interior = true;
 
 	private int level;
 
