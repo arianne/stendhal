@@ -298,6 +298,24 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 		}
 	}
 	
+	@Override
+	public void paintImmediately(int x, int y, int w, int h) {
+		/*
+		 * Try to keep the view screen while the user is switching maps.
+		 * 
+		 * NOTE: Relies on the repaint() requests to eventually come to
+		 * this, so if swing internals change some time in the future,
+		 * a new solution may be needed.
+		 */
+		if (StendhalClient.get().tryAcquireDrawingSemaphore()) {
+			try {
+				super.paintImmediately(x, y, w, h);
+			} finally {
+				StendhalClient.get().releaseDrawingSemaphore();
+			}
+		}
+	}
+	
 	/**
 	 * Update the view pan. This should be done when the map size or player
 	 * position changes.
