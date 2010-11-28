@@ -67,6 +67,7 @@
       <frequency value="8"/>
       <quantity value="1"/>
       <regen value="9"/>
+      <persistent value="1"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
