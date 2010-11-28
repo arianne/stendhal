@@ -70,7 +70,7 @@ public class MultiZonesFixedPath implements Observer {
 		// will run at local path's end; have to change path to another
 		if(count!=(route.size()-1)) {
 			removeFromZone();
-			count++;
+			++count;
 			addToZone();
 		} else {
 			// last route finished
