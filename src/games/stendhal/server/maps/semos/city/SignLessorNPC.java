@@ -92,7 +92,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 					null,
 					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-							text = sentence.getOriginalText().trim().substring(5).trim();
+							text = sentence.getOriginalText().substring(5).trim();
 
 							String reply = "A sign costs " + MONEY + " money for 24 hours. Do you want to rent one?";
 
@@ -218,7 +218,6 @@ public class SignLessorNPC implements ZoneConfigurator {
 		npc.setEntityClass("signguynpc");
 		zone.add(npc);
 		npc.setDescription("You see Gordon. He keeps an eye on the signs close to him.");
-
 	}
 
 }

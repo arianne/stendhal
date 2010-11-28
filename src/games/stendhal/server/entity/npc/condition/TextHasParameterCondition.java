@@ -23,7 +23,7 @@ import games.stendhal.server.entity.player.Player;
 public class TextHasParameterCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-		final String text = sentence.getOriginalText().trim();
+		final String text = sentence.getOriginalText();
 		return text.indexOf(' ') > -1;
 	}
 
