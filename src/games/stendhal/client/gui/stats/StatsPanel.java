@@ -88,8 +88,8 @@ public class StatsPanel extends JPanel {
 			}
 			
 			setHP(user.getHP());
-			setMaxHP(user.getBase_hp());
-			setXP(user.getXp());
+			setMaxHP(user.getBaseHP());
+			setXP(user.getXP());
 			setLevel(user.getLevel());
 			
 			initialized = true;
@@ -100,49 +100,49 @@ public class StatsPanel extends JPanel {
 		this.hp = hp;
 		updateHP();
 	}
-	
+
 	protected void setMaxHP(int hp) {
 		this.maxhp = hp;
 		updateHP();
 	}
-	
-	protected void setATK(int atk) {
+
+	protected void setAtk(int atk) {
 		this.atk = atk;
 		init();
-		updateATK();
+		updateAtk();
 	}
-	
-	protected void setATKXP(int atkxp) {
+
+	protected void setAtkXP(int atkxp) {
 		this.atkxp = atkxp;
-		updateATK();
+		updateAtk();
 	}
-	
+
 	protected void setWeaponAtk(int atk) {
 		this.weaponAtk = atk;
-		updateATK();
+		updateAtk();
 	}
-	
-	protected void setDEF(int def) {
+
+	protected void setDef(int def) {
 		this.def = def;
-		updateDEF();
+		updateDef();
 	}
-	
-	protected void setDEFXP(int defxp) {
+
+	protected void setDefXP(int defxp) {
 		this.defxp = defxp;
-		updateDEF();
+		updateDef();
 	}
-	
+
 	protected void setItemDef(int def) {
 		itemDef = def;
-		updateDEF();
+		updateDef();
 	}
-	
+
 	protected void setXP(int xp) {
 		this.xp = xp;
 		xpLabel.setText("XP: " + xp);
 		updateLevel();
 	}
-	
+
 	/**
 	 * Set player karma.
 	 * 
@@ -253,7 +253,7 @@ public class StatsPanel extends JPanel {
 		});
 	}
 	
-	private void updateATK() {
+	private void updateAtk() {
 		// atk uses 10 levels shifted starting point
 		final int next = Level.getXP(atk - 9) - atkxp;
 		final String text = "ATK: " + atk + "×" + (1 + weaponAtk) + " (" + next + ")";
@@ -265,7 +265,7 @@ public class StatsPanel extends JPanel {
 		});
 	}
 	
-	private void updateDEF() {
+	private void updateDef() {
 		// def uses 10 levels shifted starting point
 		final int next = Level.getXP(def - 9) - defxp;
 		final String text = "DEF: " + def + "×" + (1 + itemDef) + " (" + next + ")";

@@ -126,10 +126,10 @@ public class MagicExtn extends StendhalServerExtension implements
 				// gets old stats
 				int oldLevel = player.getLevel();
 				final int oldXP = player.getXP();
-				final int oldDefXP = player.getDEFXP();
-				int oldDef = player.getDEF();
-				int oldAtk = player.getATK();
-				final int oldAtkXP = player.getATKXP();
+				final int oldDefXP = player.getDefXP();
+				int oldDef = player.getDef();
+				int oldAtk = player.getAtk();
+				final int oldAtkXP = player.getAtkXP();
 
 				// gets new stats
 				final int newLevel = oldLevel + 1;
@@ -142,10 +142,10 @@ public class MagicExtn extends StendhalServerExtension implements
 				// sets new stats
 				player.setXP(newXP);
 				player.setLevel(newLevel);	// if not directly, the level will automatically be increased in updateLevel()
-				player.setDEFXP(newDefXP);
-				player.setDEF(newDef);		// if not directly set, the DEF value will automatically be increased in setDEFXP()
-				player.setATK(newAtk);
-				player.setATKXP(newAtkXP);	// if not directly set, the ATK value will automatically be increased in setATKXP()
+				player.setDefXP(newDefXP);
+				player.setDef(newDef);		// if not directly set, the DEF value will automatically be increased in setDefXP()
+				player.setAtk(newAtk);
+				player.setAtkXP(newAtkXP);	// if not directly set, the ATK value will automatically be increased in setAtkXP()
 
 				// saves changes
 				player.update();

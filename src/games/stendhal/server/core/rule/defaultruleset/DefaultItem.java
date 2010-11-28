@@ -246,11 +246,11 @@ public class DefaultItem {
 	}
 
 	/** @return the subclass. */
-	public String getItemSubClass() {
+	public String getItemSubclass() {
 		return subclazz;
 	}
 
-	public void setItemSubClass(final String val) {
+	public void setItemSubclass(final String val) {
 		subclazz = val;
 	}
 

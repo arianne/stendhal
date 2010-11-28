@@ -42,8 +42,6 @@ public class BabyDragon extends Pet {
 
 	private void setUp() {
 
-		
-
 		HP = 500;
 
 		incHP = 6;
@@ -56,8 +54,8 @@ public class BabyDragon extends Pet {
 
 		baseSpeed = 0.9;
 
-		setATK(ATK);
-		setDEF(DEF);
+		setAtk(ATK);
+		setDef(DEF);
 		setXP(XP);
 		setBaseHP(HP);
 		setHP(HP);

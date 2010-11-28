@@ -192,13 +192,13 @@ public class JCreature extends javax.swing.JFrame {
 		}
 		creatureName.setText(actual.getCreatureName());
 		creatureClass.setSelectedItem(actual.getCreatureClass());
-		creatureSubclass.setText(actual.getCreatureSubClass());
+		creatureSubclass.setText(actual.getCreatureSubclass());
 		creatureSize.setText((int) actual.getWidth() + ","
 				+ (int) actual.getHeight());
 		creatureTileid.setText(actual.getTileId().replace(
 				"../../tileset/logic/creature/", ""));
 		String gfxLocation = "/" + actual.getCreatureClass() + "/"
-				+ actual.getCreatureSubClass() + ".png";
+				+ actual.getCreatureSubclass() + ".png";
 		Sprite spr = SpriteStore.get().getSprite(
 				"stendhal/data/sprites/monsters" + gfxLocation);
 
@@ -207,8 +207,8 @@ public class JCreature extends javax.swing.JFrame {
 		creatureGFXLocation.setText(gfxLocation);
 		creatureDescription.setText(actual.getDescription());
 
-		creatureATK.setText(Integer.toString(actual.getATK()));
-		creatureDEF.setText(Integer.toString(actual.getDEF()));
+		creatureATK.setText(Integer.toString(actual.getAtk()));
+		creatureDEF.setText(Integer.toString(actual.getDef()));
 		creatureHP.setText(Integer.toString(actual.getHP()));
 		creatureSpeed.setText(Double.toString(actual.getSpeed()));
 
@@ -1242,7 +1242,7 @@ public class JCreature extends javax.swing.JFrame {
 
 			actual.setCreatureName(creatureName.getText());
 			actual.setCreatureClass((String) creatureClass.getSelectedItem());
-			actual.setCreatureSubClass(creatureSubclass.getText());
+			actual.setCreatureSubclass(creatureSubclass.getText());
 			String[] sizes = creatureSize.getText().split(",");
 			actual.setSize(Integer.parseInt(sizes[0]),
 					Integer.parseInt(sizes[1]));

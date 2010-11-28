@@ -83,8 +83,8 @@ public class HealerNPCTest {
         
         player.setBaseHP(100);
         player.setHP(50);
-        player.setATKXP(100);
-        player.setDEFXP(100);        
+        player.setAtkXP(100);
+        player.setDefXP(100);        
         PlayerTestHelper.equipWithMoney(player, price);
         
         assertTrue(en.step(player, "heal"));

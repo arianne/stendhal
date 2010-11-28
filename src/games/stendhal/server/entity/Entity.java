@@ -606,7 +606,7 @@ public abstract class Entity extends RPObject {
 	 * @param subclazz
 	 *            The sub-class name.
 	 */
-	public final void setEntitySubClass(final String subclazz) {
+	public final void setEntitySubclass(final String subclazz) {
 		put("subclass", subclazz);
 	}
 

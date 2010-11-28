@@ -328,7 +328,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 			return;
 		}
 		
-		final float hpRatio = rpentity.getHPRatio();
+		final float hpRatio = rpentity.getHpRatio();
 
 		final float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
 		final float g = Math.min(hpRatio * 2.0f, 1.0f);

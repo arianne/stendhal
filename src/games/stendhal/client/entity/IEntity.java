@@ -107,7 +107,7 @@ public interface IEntity {
 	 * 
 	 * @return The entity sub-class.
 	 */
-	String getEntitySubClass();
+	String getEntitySubclass();
 
 	/**
 	 * Get the nicely formatted entity title.

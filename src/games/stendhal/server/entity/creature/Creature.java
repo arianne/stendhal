@@ -85,7 +85,6 @@ public class Creature extends NPC {
 
 	public AttackStrategy strategy;
 
-
 	
 	/**
 	 * This list of item names this creature may drop Note; per default this list
@@ -148,7 +147,7 @@ public class Creature extends NPC {
 		
 		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
-		setAiProfiles(new HashMap<String, String>());
+		setAIProfiles(new HashMap<String, String>());
 		
 		susceptibilities = new EnumMap<Nature, Double>(Nature.class);
 	}
@@ -171,7 +170,7 @@ public class Creature extends NPC {
 		}
 		// this.dropItemInstances is ignored;
 
-		this.setAiProfiles(copy.getAiProfiles());
+		this.setAIProfiles(copy.getAIProfiles());
 		this.noises = copy.noises;
 
 		this.respawnTime = copy.respawnTime;
@@ -179,11 +178,11 @@ public class Creature extends NPC {
 		damageType = copy.damageType;
 
 		setEntityClass(copy.get("class"));
-		setEntitySubClass(copy.get("subclass"));
+		setEntitySubclass(copy.get("subclass"));
 
 		setDescription(copy.getDescription());
-		setATK(copy.getATK());
-		setDEF(copy.getDEF());
+		setAtk(copy.getAtk());
+		setDef(copy.getDef());
 		setXP(copy.getXP());
 		initHP(copy.getBaseHP());
 		setName(copy.getName());
@@ -215,7 +214,7 @@ public class Creature extends NPC {
 		put("title_type", "enemy");
 		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
-		setAiProfiles(new HashMap<String, String>());
+		setAIProfiles(new HashMap<String, String>());
 		
 		susceptibilities = new EnumMap<Nature, Double>(Nature.class);
 	}
@@ -270,20 +269,20 @@ public class Creature extends NPC {
 		}
 		// this.dropItemInstances is ignored;
 
-		this.setAiProfiles(aiProfiles);
+		this.setAIProfiles(aiProfiles);
 		this.noises = new LinkedHashMap<String, LinkedList<String>>();
 		this.noises.putAll(noises);
 		this.respawnTime = respawnTime;
 
 		setEntityClass(clazz);
-		setEntitySubClass(subclass);
+		setEntitySubclass(subclass);
 		setName(name);
 
 		put("x", 0);
 		put("y", 0);
 		setDescription(description);
-		setATK(attack);
-		setDEF(defense);
+		setAtk(attack);
+		setDef(defense);
 		setXP(xp);
 		setBaseHP(hp);
 		setHP(hp);
@@ -408,7 +407,7 @@ public class Creature extends NPC {
 		return getID();
 	}
 
-	public void setAiProfiles(final Map<String, String> aiProfiles) {
+	public void setAIProfiles(final Map<String, String> aiProfiles) {
 		this.aiProfiles = aiProfiles;
 		setHealer(aiProfiles.get("heal"));
 		setAttackStrategy(aiProfiles);
@@ -417,7 +416,7 @@ public class Creature extends NPC {
 		
 	}
 
-	public Map<String, String> getAiProfiles() {
+	public Map<String, String> getAIProfiles() {
 		return aiProfiles;
 	}
 
@@ -557,7 +556,7 @@ public class Creature extends NPC {
 	 * @return list of enemies
 	 */
 	public List<RPEntity> getEnemyList() {
-		if (getAiProfiles().keySet().contains("offensive")) {
+		if (getAIProfiles().keySet().contains("offensive")) {
 			return getZone().getPlayerAndFriends();
 		} else {
 			return getAttackingRPEntities();
@@ -661,7 +660,7 @@ public class Creature extends NPC {
 	 * @return true if the creature is rare, false otherwise
 	 */
 	public boolean isRare() {
-		return getAiProfiles().keySet().contains("rare");
+		return getAIProfiles().keySet().contains("rare");
 	}
 
 	/** need to recalculate the ai when we stop the attack. */
@@ -732,7 +731,7 @@ public class Creature extends NPC {
 
 	@Override
 	public int getMaxRangeForArcher() {
-		if (getAiProfiles().containsKey("archer")) {
+		if (getAIProfiles().containsKey("archer")) {
 			// The creature can shoot, but only if the target is at most
 			// 7 tiles away.
 			return 7;
@@ -748,7 +747,7 @@ public class Creature extends NPC {
 	 * @return value or null if undefined
 	 */
 	public String getAIProfile(final String key) {
-		return getAiProfiles().get(key);
+		return getAIProfiles().get(key);
 	}
 
 	/**

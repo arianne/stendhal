@@ -43,10 +43,10 @@ public class FourthFloorCreatures implements ZoneConfigurator {
 		final Creature creature2 = manager.getCreature("ice giant");
 		final Creature creature3 = manager.getCreature("ice golem");
 
-		creature.setAiProfiles(new HashMap<String, String>());
-		creature1.setAiProfiles(new HashMap<String, String>());
-		creature2.setAiProfiles(new HashMap<String, String>());
-		creature3.setAiProfiles(new HashMap<String, String>());	
+		creature.setAIProfiles(new HashMap<String, String>());
+		creature1.setAIProfiles(new HashMap<String, String>());
+		creature2.setAIProfiles(new HashMap<String, String>());
+		creature3.setAIProfiles(new HashMap<String, String>());	
 
 		creature.clearDropItemList();
 		creature1.clearDropItemList();

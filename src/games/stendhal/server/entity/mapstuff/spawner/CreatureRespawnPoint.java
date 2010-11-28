@@ -255,10 +255,10 @@ public class CreatureRespawnPoint implements TurnListener {
 
 			// A bit of randomization to make Joan and Snaketails a bit happier.
 			// :)
-			newentity.setATK(Rand.randGaussian(newentity.getATK(),
-					newentity.getATK() / 10));
-			newentity.setDEF(Rand.randGaussian(newentity.getDEF(),
-					newentity.getDEF() / 10));
+			newentity.setAtk(Rand.randGaussian(newentity.getAtk(),
+					newentity.getAtk() / 10));
+			newentity.setDef(Rand.randGaussian(newentity.getDef(),
+					newentity.getDef() / 10));
 			
 			newentity.registerObjectsForNotification(observers);
 			

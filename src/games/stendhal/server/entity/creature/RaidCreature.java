@@ -36,10 +36,10 @@ public class RaidCreature extends Creature {
 		super(copy);
 		
 		// Pity newbies taking part in raids
-		if (getAiProfiles().containsKey("attack weakest")) {
-			Map<String, String> profiles = new HashMap<String, String>(getAiProfiles());
+		if (getAIProfiles().containsKey("attack weakest")) {
+			Map<String, String> profiles = new HashMap<String, String>(getAIProfiles());
 			profiles.remove("attack weakest");
-			setAiProfiles(profiles);
+			setAIProfiles(profiles);
 		}
 	}
 

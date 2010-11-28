@@ -51,7 +51,7 @@ public class Gate implements IEntity {
 		return this.rpObject.get("class");
 	}
 
-	public String getEntitySubClass() {
+	public String getEntitySubclass() {
 		if (rpObject == null) {
 			return "";
 		}

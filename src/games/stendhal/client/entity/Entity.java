@@ -203,9 +203,9 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	}
 
 	/* (non-Javadoc)
-	 * @see games.stendhal.client.entity.IEntity#getEntitySubClass()
+	 * @see games.stendhal.client.entity.IEntity#getEntitySubclass()
 	 */
-	public String getEntitySubClass() {
+	public String getEntitySubclass() {
 		return subclazz;
 	}
 

@@ -221,7 +221,7 @@ public class StendhalRPAction {
 		if (!(defender instanceof SpeakerNPC)
 				&& player.getsFightXpFrom(defender)) {
 			// disabled attack xp for attacking NPC's
-			player.incATKXP();
+			player.incAtkXP();
 		}
 
 		// Throw dices to determine if the attacker has missed the defender
@@ -230,7 +230,7 @@ public class StendhalRPAction {
 		if (beaten) {
 			if ((defender instanceof Player)
 					&& defender.getsFightXpFrom(player)) {
-				defender.incDEFXP();
+				defender.incDefXP();
 			}
 
 			int damage = player.damageDone(defender);

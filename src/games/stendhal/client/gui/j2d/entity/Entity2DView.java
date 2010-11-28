@@ -394,7 +394,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		String rpath = entity.getEntityClass();
 
 		if (rpath != null) {
-			final String subclass = entity.getEntitySubClass();
+			final String subclass = entity.getEntitySubclass();
 
 			if (subclass != null) {
 				rpath += "/" + subclass;

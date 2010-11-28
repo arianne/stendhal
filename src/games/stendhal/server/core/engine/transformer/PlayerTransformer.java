@@ -97,8 +97,6 @@ public class PlayerTransformer implements Transformer {
 
 		UpdateConverter.updateQuests(player);
 
-		
-
 		logger.debug("Finally player is :" + player);
 		return player;
 	}

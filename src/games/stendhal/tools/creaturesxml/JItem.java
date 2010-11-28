@@ -185,9 +185,9 @@ public class JItem extends javax.swing.JFrame {
 		itemDescription.setText(actual.getDescription());
 
 		itemClass.setSelectedItem(actual.getItemClass());
-		itemSubclass.setText(actual.getItemSubClass());
+		itemSubclass.setText(actual.getItemSubclass());
 		String gfxLocation = "/" + actual.getItemClass() + "/"
-				+ actual.getItemSubClass() + ".png";
+				+ actual.getItemSubclass() + ".png";
 		Sprite spr = SpriteStore.get().getSprite(
 				"stendhal/data/sprites/items" + gfxLocation);
 
@@ -940,7 +940,7 @@ public class JItem extends javax.swing.JFrame {
 			actual.setImplementation(Class.forName((String) itemImplementation.getSelectedItem()));
 
 			actual.setItemClass((String) itemClass.getSelectedItem());
-			actual.setItemSubClass(itemSubclass.getText());
+			actual.setItemSubclass(itemSubclass.getText());
 			actual.setTileId(-1);
 
 			Map<String, String> attributes = new LinkedHashMap<String, String>();

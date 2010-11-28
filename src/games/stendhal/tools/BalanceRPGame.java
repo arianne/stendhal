@@ -56,27 +56,27 @@ public class BalanceRPGame {
 			float stepSize = leftHP / (float) player.getBaseHP();
 			stepSize = Math.signum(stepSize) * Math.min(Math.abs(stepSize), 0.5f);
 			
-			final int oldAtk = creature.getATK();
-			int newAtk = Math.max(1, Math.round(creature.getATK()
-					+ stepSize * creature.getATK()));
+			final int oldAtk = creature.getAtk();
+			int newAtk = Math.max(1, Math.round(creature.getAtk()
+					+ stepSize * creature.getAtk()));
 			// Always ensure trying to get out of dead area
 			if ((leftHP < 0) && (newAtk == oldAtk)) {
 				newAtk--;
 			}
 			
 			final int level = creature.getLevel();
-			final int oldDef = creature.getDEF();
+			final int oldDef = creature.getDef();
 			int newDef = oldDef;
 			final double preferred = preferredDuration(level);
 			if (!isWithinDurationRange(preferred, rounds)) {
 				// Don't grow it the monster is already stronger than the player
 				if ((leftHP > 0) || (preferred < rounds)) {
-				newDef = Math.max(1, (int) (creature.getDEF()
+				newDef = Math.max(1, (int) (creature.getDef()
 						+ preferred - rounds + 0.5));
 				}
 			} else {
-				newDef = 	Math.max(1, (int) (creature.getDEF() 
-					+ 5 * stepSize * creature.getDEF() + 0.5f));
+				newDef = 	Math.max(1, (int) (creature.getDef() 
+					+ 5 * stepSize * creature.getDef() + 0.5f));
 			}
 			// Don't change too fast
 			if (newDef > 1.1 * oldDef) {
@@ -85,8 +85,8 @@ public class BalanceRPGame {
 				newDef = Math.max(1, Math.min((int) (0.9 * oldDef), oldDef - 1));
 			}
 	
-			creature.setATK(newAtk);
-			creature.setDEF(newDef);
+			creature.setAtk(newAtk);
+			creature.setDef(newDef);
 		}
 	}
 	
@@ -157,8 +157,8 @@ public class BalanceRPGame {
 			
 			player.setLevel(level);
 			player.setBaseHP(100 + 10 * level);
-			player.setATK(atkLevels[level]);
-			player.setDEF(defLevels[level]);
+			player.setAtk(atkLevels[level]);
+			player.setDef(defLevels[level]);
 
 			equip(player, level);
 
@@ -179,9 +179,9 @@ public class BalanceRPGame {
 				creature.setLevel(creature.getLevel(), proposedXPValue);
 				
 				System.out.println("Target ATK: "
-						+ target.getATK()
+						+ target.getAtk()
 							+ "/DEF: "
-							+ target.getDEF()
+							+ target.getDef()
 							+ "/HP: "
 							+ target.getBaseHP()
 							+ "\t Turns: "
@@ -194,8 +194,8 @@ public class BalanceRPGame {
 				} else {		
 					optimizer.step(meanLeftHP, meanTurns);
 
-					System.out.println("New ATK: " + target.getATK()
-							+ "/DEF: " + target.getDEF() + "/HP: "
+					System.out.println("New ATK: " + target.getAtk()
+							+ "/DEF: " + target.getDef() + "/HP: "
 							+ target.getBaseHP());
 				}
 				
@@ -209,11 +209,11 @@ public class BalanceRPGame {
 
 			boolean changed = false;
 
-			if (creature.getATK() != target.getATK()) {
+			if (creature.getAtk() != target.getAtk()) {
 				changed = true;
 			}
 
-			if (creature.getDEF() != target.getDEF()) {
+			if (creature.getDef() != target.getDef()) {
 				changed = true;
 			}
 
@@ -233,9 +233,9 @@ public class BalanceRPGame {
 				stringBuilder.append(" \t");
 			}
 			stringBuilder.append("ATK: ");
-			stringBuilder.append(target.getATK());
+			stringBuilder.append(target.getAtk());
 			stringBuilder.append("\t\tDEF: ");
-			stringBuilder.append(target.getDEF());
+			stringBuilder.append(target.getDef());
 			stringBuilder.append("\t\tHP: ");
 			stringBuilder.append(target.getBaseHP());
 			stringBuilder.append("\t\tXP: ");

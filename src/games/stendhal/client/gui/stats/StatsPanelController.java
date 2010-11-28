@@ -139,9 +139,9 @@ public class StatsPanelController {
 			}
 			
 			if ("atk".equals(event.getPropertyName())) {
-				panel.setATK(Integer.parseInt((String) event.getNewValue()));
+				panel.setAtk(Integer.parseInt((String) event.getNewValue()));
 			} else {
-				panel.setATKXP(Integer.parseInt((String) event.getNewValue()));
+				panel.setAtkXP(Integer.parseInt((String) event.getNewValue()));
 			}
 		}
 	}
@@ -156,9 +156,9 @@ public class StatsPanelController {
 			}
 			
 			if (event.getPropertyName().equals("def")) {
-				panel.setDEF(Integer.parseInt((String) event.getNewValue()));
+				panel.setDef(Integer.parseInt((String) event.getNewValue()));
 			} else {
-				panel.setDEFXP(Integer.parseInt((String) event.getNewValue()));
+				panel.setDefXP(Integer.parseInt((String) event.getNewValue()));
 			}
 		}
 	}

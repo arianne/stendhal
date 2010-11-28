@@ -396,7 +396,7 @@ public class CrownForTheWannaBeKingTest {
         assertEquals("reward", bob.getQuest(QUEST_SLOT));
 
 		final double oldkarma = bob.getKarma();
-		final int oldatk = bob.getATKXP();
+		final int oldatk = bob.getAtkXP();
 		
 		final SpeakerNPC rewardnpc = SingletonRepository.getNPCList().get("Kendra Mattori");
 		final Engine rewardEngine = rewardnpc.getEngine();
@@ -405,7 +405,7 @@ public class CrownForTheWannaBeKingTest {
 		
 		assertThat(bob.isQuestCompleted(QUEST_SLOT), is(true));
 		assertThat(bob.getKarma(), greaterThan(oldkarma));
-		assertThat(bob.getATKXP(), greaterThan(oldatk));
+		assertThat(bob.getAtkXP(), greaterThan(oldatk));
 	}
 
 }

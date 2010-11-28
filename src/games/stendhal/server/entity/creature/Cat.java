@@ -53,8 +53,8 @@ public class Cat extends Pet {
 
 		baseSpeed = 0.9;
 
-		setATK(ATK);
-		setDEF(DEF);
+		setAtk(ATK);
+		setDef(DEF);
 		setXP(XP);
 		setBaseHP(HP);
 		setHP(HP);

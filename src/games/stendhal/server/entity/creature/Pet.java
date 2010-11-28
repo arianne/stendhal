@@ -88,8 +88,8 @@ public abstract class Pet extends DomesticAnimal {
 	public Pet() {
 		super();
 		baseSpeed = 0.5;
-		setATK(ATK);
-		setDEF(DEF);
+		setAtk(ATK);
+		setDef(DEF);
 		setXP(XP);
 		setBaseHP(HP);
 		setHP(HP);

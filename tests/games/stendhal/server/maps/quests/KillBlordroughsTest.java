@@ -77,8 +77,8 @@ public class KillBlordroughsTest {
 		
 		
 		player.setAdminLevel(1000);
-		player.setATKXP(100000000);
-		player.setDEFXP(100000000);
+		player.setAtkXP(100000000);
+		player.setDefXP(100000000);
 		player.setXP(100000000);
 		player.setHP(10000);
 		player.addKarma(10000);

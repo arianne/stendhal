@@ -82,7 +82,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		this();
 
 		setEntityClass(clazz);
-		setEntitySubClass(subclass);
+		setEntitySubclass(subclass);
 
 		put("name", name);
 

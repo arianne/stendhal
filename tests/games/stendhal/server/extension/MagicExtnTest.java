@@ -183,9 +183,9 @@ public class MagicExtnTest {
 		pl.setQuest("spells", "raise stats");
 		pl.setXP(50);
 		pl.setLevel(16);
-		pl.setDEF(23);
-		pl.setATKXP(20);
-		pl.setATK(10);
+		pl.setDef(23);
+		pl.setAtkXP(20);
+		pl.setAtk(10);
 
 		RPAction action = new RPAction();
 		action.put("type", "spell");
@@ -198,9 +198,9 @@ public class MagicExtnTest {
 		pl.clearEvents();
 		assertEquals(50, pl.getXP());
 		assertEquals(16, pl.getLevel());
-		assertEquals(23, pl.getDEF());
-		assertEquals(20, pl.getATKXP());
-		assertEquals(10, pl.getATK());
+		assertEquals(23, pl.getDef());
+		assertEquals(20, pl.getAtkXP());
+		assertEquals(10, pl.getAtk());
 
 		// increase Mana value to enable the player casting the raise stats spell
 		pl.setMana(120);
@@ -215,9 +215,9 @@ public class MagicExtnTest {
 		pl.clearEvents();
 		assertEquals(44950, pl.getXP());
 		assertEquals(17, pl.getLevel());
-		assertEquals(24, pl.getDEF());
-		assertEquals(24720, pl.getATKXP());
-		assertEquals(24, pl.getATK());
+		assertEquals(24, pl.getDef());
+		assertEquals(24720, pl.getAtkXP());
+		assertEquals(24, pl.getAtk());
 		assertEquals(10, pl.getMana());
 	}
 }

@@ -119,11 +119,11 @@ public class PlayerDieer {
 			// (just because we call useKarma(-100.0,100.0) doesn't mean that a player with over 100.0 karma will get 100.0 used. He is just more likely to get 100.0 used.)
 			
 			// Using subXP() instead of using setXP() directly to get the level
-			// checks correctly done. setXP() can not do the magic unlike setATKXP()
+			// checks correctly done. setXP() can not do the magic unlike setAtkXP()
 			// & setDEFXP() because it's used by creatures as well
 			player.subXP((int) Math.round(player.getXP() * (1 - penaltyFactor)));
-			player.setATKXP((int) Math.round(player.getATKXP() * penaltyFactor));
-			player.setDEFXP((int) Math.round(player.getDEFXP() * penaltyFactor));
+			player.setAtkXP((int) Math.round(player.getAtkXP() * penaltyFactor));
+			player.setDefXP((int) Math.round(player.getDefXP() * penaltyFactor));
 			if (killer instanceof Player) {
 								Player playerKiller = (Player) killer;
 								handlePlayerKiller(playerKiller);

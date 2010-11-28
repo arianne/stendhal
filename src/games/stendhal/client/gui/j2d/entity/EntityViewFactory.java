@@ -99,7 +99,7 @@ public class EntityViewFactory {
 			}
 		
 			String eclass = entity.getEntityClass();
-			String subClass = entity.getEntitySubClass();
+			String subClass = entity.getEntitySubclass();
 
 			
 			final Class< ? extends EntityView> entityClass = getViewClass(type, eclass, subClass);

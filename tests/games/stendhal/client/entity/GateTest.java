@@ -99,10 +99,10 @@ public class GateTest {
 	}
 
 	/**
-	 * Tests for getEntitySubClass.
+	 * Tests for getEntitySubclass.
 	 */
 	@Test
-	public void testGetEntitySubClass() {
+	public void testGetEntitySubclass() {
 		Gate g = new Gate();
 		RPObject object = new RPObject();
 		object.put("x", 1);
@@ -110,10 +110,9 @@ public class GateTest {
 		object.put("width", 3);
 		object.put("height", 4);
 		g.initialize(object);
-		assertThat(g.getEntitySubClass(), nullValue());
+		assertThat(g.getEntitySubclass(), nullValue());
 		object.put("subclass", "subclass");
-		assertThat(g.getEntitySubClass(), is("subclass"));
-
+		assertThat(g.getEntitySubclass(), is("subclass"));
 	}
 
 	/**
@@ -129,7 +128,6 @@ public class GateTest {
 		object.put("height", 4);
 		g.initialize(object);
 		assertThat(g.getHeight(), is(4.0));
-		
 	}
 
 	/**

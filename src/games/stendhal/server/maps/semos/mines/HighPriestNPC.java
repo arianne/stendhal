@@ -73,12 +73,12 @@ public class HighPriestNPC implements ZoneConfigurator {
 						&& (player.getLevel() >= 150)) {
 					player.setQuest("AenihataReward", "done");
 
-					player.setATKXP(1000000 + player.getATKXP());
-					player.setDEFXP(10000000 + player.getDEFXP());
+					player.setAtkXP(1000000 + player.getAtkXP());
+					player.setDefXP(10000000 + player.getDefXP());
 					player.addXP(100000);
 
-					player.incATKXP();
-					player.incDEFXP();
+					player.incAtkXP();
+					player.incDefXP();
 				}
 
 				if (!player.hasQuest("AenihataFirstChat")) {

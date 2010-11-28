@@ -530,8 +530,8 @@ public class AdministrationActionTest {
 		CommandCenter.execute(pl, action);
 
 		assertEquals("name", "newname", rat.getName());
-		assertEquals("atk", 5, rat.getATK());
-		assertEquals("def", 6, rat.getDEF());
+		assertEquals("atk", 5, rat.getAtk());
+		assertEquals("def", 6, rat.getDef());
 		assertEquals("hp", 7, rat.getHP());
 		assertEquals("xp", 8, rat.getXP());
 	}

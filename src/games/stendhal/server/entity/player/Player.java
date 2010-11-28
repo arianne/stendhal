@@ -938,7 +938,7 @@ public class Player extends RPEntity {
 	 * @return true if it is a new player, false otherwise
 	 */
 	public boolean isNew() {
-		return (getAge() < 2 * 60) || (getATK() < 15) || (getDEF() < 15)
+		return (getAge() < 2 * 60) || (getAtk() < 15) || (getDef() < 15)
 				|| (getLevel() < 5);
 	}
 
@@ -1868,7 +1868,7 @@ public class Player extends RPEntity {
 	@Override
 	protected void applyDefXP(final RPEntity entity) {
 		if (getsFightXpFrom(entity)) {
-			incDEFXP();
+			incDefXP();
 		}
 	}
 	@Override

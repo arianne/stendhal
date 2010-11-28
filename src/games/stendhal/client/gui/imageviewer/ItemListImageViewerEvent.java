@@ -146,13 +146,13 @@ public class ItemListImageViewerEvent extends ViewPanel {
 	private URL getItemImageURL(RPObject item) {
 		// remove fish images from signs
 		List<String> fishes = Arrays.asList("arctic_char", "clown-fish", "cod", "mackerel", "perch", "roach", "surgeonfish", "trout", "red-lionfish");
-		String itemSubClass = item.get("subclass");
+		String itemSubclass = item.get("subclass");
 		for(String t:fishes) {
-			if(t.equals(itemSubClass)) {
-				itemSubClass = "unknown_fish";
+			if(t.equals(itemSubclass)) {
+				itemSubclass = "unknown_fish";
 			}
 		}
-		String itemName = item.get("class") + "/" + itemSubClass;
+		String itemName = item.get("class") + "/" + itemSubclass;
 		String imagePath = "/data/sprites/items/" + itemName + ".png";
 		URL url = this.getClass().getResource(imagePath);
 		return url;

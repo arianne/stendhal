@@ -84,7 +84,7 @@ public class DamagingArea extends OccupantArea {
 		float score;
 
 		final float armor = entity.getItemDef() + 1.0f;
-		final int def = entity.getDEF();
+		final int def = entity.getDef();
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("defender has " + def + " and uses a armor of "

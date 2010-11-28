@@ -81,8 +81,8 @@ public class KillSpidersTest extends SpidersCreatures {
 		creature.put("subclass", "");
 		creature.setName(name);
 		creature.setHP(1);
-		creature.setATKXP(1);
-		creature.setDEFXP(1);
+		creature.setAtkXP(1);
+		creature.setDefXP(1);
 		final Creature spider = new Creature(creature);
 		spider.registerObjectsForNotification(observer);
 		player.teleport(basement, 5, 5, null, player);

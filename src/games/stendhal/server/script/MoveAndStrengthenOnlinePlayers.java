@@ -85,7 +85,7 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 
 				public void execute(Player player) {
 					equipPlayer(player);
-					player.setDEFXP(999999999);
+					player.setDefXP(999999999);
 					player.addXP(999999999);
 					player.setImmune();
 					StendhalRPZone zone = zones.get(Rand.rand(zones.size()));

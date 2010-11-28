@@ -125,11 +125,11 @@ public class DefaultCreature {
 		return hp;
 	}
 
-	public int getATK() {
+	public int getAtk() {
 		return atk;
 	}
 
-	public int getDEF() {
+	public int getDef() {
 		return def;
 	}
 
@@ -261,7 +261,7 @@ public class DefaultCreature {
 		return clazz;
 	}
 
-	public String getCreatureSubClass() {
+	public String getCreatureSubclass() {
 		return subclass;
 	}
 
@@ -273,7 +273,7 @@ public class DefaultCreature {
 		clazz = val;
 	}
 
-	public void setCreatureSubClass(final String val) {
+	public void setCreatureSubclass(final String val) {
 		subclass = val;
 	}
 

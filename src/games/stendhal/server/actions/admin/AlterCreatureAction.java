@@ -53,8 +53,8 @@ class AlterCreatureAction extends AdministrationAction {
 				new GameEvent(player.getName(), "alter", action.get(TARGET), stat).raise();
 
 				creature.setName(parts[0]);
-				creature.setATK(Integer.parseInt(parts[1]));
-				creature.setDEF(Integer.parseInt(parts[2]));
+				creature.setAtk(Integer.parseInt(parts[1]));
+				creature.setDef(Integer.parseInt(parts[2]));
 				creature.initHP(Integer.parseInt(parts[3]));
 				creature.setXP(Integer.parseInt(parts[4]));
 

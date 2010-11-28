@@ -32,7 +32,7 @@ public class FullItemCreator extends AbstractItemCreator {
 	@Override
 	protected Item createObject() throws IllegalAccessException,
 			InstantiationException, InvocationTargetException {
-		return (Item) construct.newInstance(new Object[] { this.defaultItem.getItemName(), this.defaultItem.getItemClass(), this.defaultItem.getItemSubClass(),
+		return (Item) construct.newInstance(new Object[] { this.defaultItem.getItemName(), this.defaultItem.getItemClass(), this.defaultItem.getItemSubclass(),
 				this.defaultItem.getAttributes() });
 	}
 }

@@ -47,10 +47,10 @@ public class SecondFloorCreatures implements ZoneConfigurator {
 		creature2.setName("djinn windmaster");
 		creature3.setName("incorporeal man");
 
-		creature.setAiProfiles(new HashMap<String, String>());
-		creature1.setAiProfiles(new HashMap<String, String>());
-		creature2.setAiProfiles(new HashMap<String, String>());
-		creature3.setAiProfiles(new HashMap<String, String>());
+		creature.setAIProfiles(new HashMap<String, String>());
+		creature1.setAIProfiles(new HashMap<String, String>());
+		creature2.setAIProfiles(new HashMap<String, String>());
+		creature3.setAIProfiles(new HashMap<String, String>());
 
 		creature.clearDropItemList();
 		creature1.clearDropItemList();

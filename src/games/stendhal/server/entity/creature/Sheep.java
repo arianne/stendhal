@@ -117,8 +117,8 @@ public class Sheep extends DomesticAnimal {
 		setRPClass("sheep");
 		put("type", "sheep");
 
-		setATK(ATK);
-		setDEF(DEF);
+		setAtk(ATK);
+		setDef(DEF);
 		setXP(XP);
 		initHP(HP);
 		baseSpeed = 0.25;

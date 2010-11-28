@@ -49,8 +49,8 @@ public class GenerateBestiaryAndItems {
 		int level = -1;
 
 		for (final DefaultCreature creature : creatures) {
-			System.out.println(creature.getLevel() + ";" + creature.getATK()
-					+ ";" + creature.getDEF() + ";" + creature.getHP() + ";"
+			System.out.println(creature.getLevel() + ";" + creature.getAtk()
+					+ ";" + creature.getDef() + ";" + creature.getHP() + ";"
 					+ creature.getXP());
 		}
 		System.out.println();
@@ -69,8 +69,8 @@ public class GenerateBestiaryAndItems {
 			System.out.println("|name= " + name + "");
 			System.out.println("|image= " + name + "");
 			System.out.println("|hp= " + creature.getHP() + "");
-			System.out.println("|atk= " + creature.getATK() + "");
-			System.out.println("|def= " + creature.getDEF() + "");
+			System.out.println("|atk= " + creature.getAtk() + "");
+			System.out.println("|def= " + creature.getDef() + "");
 			System.out.println("|exp= " + creature.getXP() / 20 + "");
 			System.out.println("|behavior = '''(TODO)'''.");
 			System.out.println("|location = '''(TODO)'''.");

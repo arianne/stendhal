@@ -399,7 +399,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 		if (has("atk_xp")) {
 			atk_xp = getInt("atk_xp");
-			setATKXP(atk_xp);
+			setAtkXP(atk_xp);
 		}
 
 		if (has("def")) {
@@ -407,7 +407,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 		if (has("def_xp")) {
 			def_xp = getInt("def_xp");
-			setDEFXP(def_xp);
+			setDefXP(def_xp);
 		}
 
 		if (has("base_hp")) {
@@ -466,7 +466,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 		// Defending side
 		final double armor = defender.getItemDef();
-		final int targetDef = defender.getDEF();
+		final int targetDef = defender.getDef();
 		// Even strong players are vulnerable without any armor.
 		// Armor def gets much higher with high level players unlike
 		// weapon atk, so it can not be treated similarly. Using geometric
@@ -487,10 +487,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 		// Attacking
 		if (logger.isDebugEnabled()) {
-			logger.debug("attacker has " + getATK() + " and uses a weapon of "
+			logger.debug("attacker has " + getAtk() + " and uses a weapon of "
 					+ getItemAtk());
 		}
-		final int sourceAtk = getATK();
+		final int sourceAtk = getAtk();
 
 		// Make fast weapons efficient against weak enemies, and heavy
 		// better against strong enemies.
@@ -605,12 +605,12 @@ public abstract class RPEntity extends GuidedEntity {
 		return level;
 	}
 
-	public void setATK(final int atk) {
+	public void setAtk(final int atk) {
 		this.atk = atk;
 		put("atk", atk);
 	}
 
-	public int getATK() {
+	public int getAtk() {
 		return atk;
 	}
 
@@ -619,38 +619,38 @@ public abstract class RPEntity extends GuidedEntity {
 	 * 
 	 * @param atk the new value
 	 */
-	public void setATKXP(final int atk) {
+	public void setAtkXP(final int atk) {
 		this.atk_xp = atk;
 		put("atk_xp", atk_xp);
 
 		// Handle level changes
 		final int newLevel = Level.getLevel(atk_xp);
-		final int levels = newLevel - (getATK() - 10);
+		final int levels = newLevel - (getAtk() - 10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
-			setATK(this.atk + (int) Math.signum(levels) * 1);
-			new GameEvent(getName(), "atk", Integer.toString(getATK())).raise();
+			setAtk(this.atk + (int) Math.signum(levels) * 1);
+			new GameEvent(getName(), "atk", Integer.toString(getAtk())).raise();
 		}
 	}
 
-	public int getATKXP() {
+	public int getAtkXP() {
 		return atk_xp;
 	}
 
 	/**
 	 * Increase attack XP by 1.
 	 */
-	public void incATKXP() {
-		setATKXP(atk_xp + 1);
+	public void incAtkXP() {
+		setAtkXP(atk_xp + 1);
 	}
 
-	public void setDEF(final int def) {
+	public void setDef(final int def) {
 		this.def = def;
 		put("def", def);
 	}
 
-	public int getDEF() {
+	public int getDef() {
 		return def;
 	}
 
@@ -659,30 +659,30 @@ public abstract class RPEntity extends GuidedEntity {
 	 * 
 	 * @param def the new value
 	 */
-	public void setDEFXP(final int def) {
+	public void setDefXP(final int def) {
 		this.def_xp = def;
 		put("def_xp", def_xp);
 		
 		// Handle level changes
 		final int newLevel = Level.getLevel(def_xp);
-		final int levels = newLevel - (getDEF() - 10);
+		final int levels = newLevel - (getDef() - 10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
-			setDEF(this.def + (int) Math.signum(levels) * 1);
-			new GameEvent(getName(), "def", Integer.toString(getDEF())).raise();
+			setDef(this.def + (int) Math.signum(levels) * 1);
+			new GameEvent(getName(), "def", Integer.toString(getDef())).raise();
 		}
 	}
 
-	public int getDEFXP() {
+	public int getDefXP() {
 		return def_xp;
 	}
 
 	/**
 	 * Increase defense XP by 1.
 	 */
-	public void incDEFXP() {
-		setDEFXP(def_xp + 1);
+	public void incDefXP() {
+		setDefXP(def_xp + 1);
 	}
 
 	/**
@@ -765,7 +765,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * sets the available mana.
+	 * Sets the available mana.
 	 * 
 	 * @param newMana
 	 *            new amount of mana
@@ -810,7 +810,6 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	public void addXP(final int newxp) {
-
 		if (Integer.MAX_VALUE - this.xp <= newxp) {
 			return;
 		}
@@ -830,7 +829,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 	
 	/**
-	 * Change the level to match the XP, if needed
+	 * Change the level to match the XP, if needed.
 	 */
 	protected void updateLevel() {
 		final int newLevel = Level.getLevel(getXP());
@@ -2215,8 +2214,8 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public boolean canHit(final RPEntity defender) {
 		int roll = Rand.roll1D20();
-		final int defenderDEF = defender.getDEF();
-		final int attackerATK = this.getATK();
+		final int defenderDEF = defender.getDef();
+		final int attackerATK = this.getAtk();
 
 		/*
 		 * Use some karma unless attacker is much stronger than defender, in

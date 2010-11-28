@@ -150,7 +150,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	private Resolution resolution;
 
-	private int atkXp;
+	private int atkXP;
 
 	private int defXp;
 
@@ -209,14 +209,14 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * @return the attack xp
 	 */
-	public int getAtkXp() {
-		return atkXp;
+	public int getAtkXP() {
+		return atkXP;
 	}
 
 	/**
 	 * @return Returns the base_hp.
 	 */
-	public int getBase_hp() {
+	public int getBaseHP() {
 		return base_hp;
 	}
 
@@ -244,7 +244,7 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * @return the defence xp
 	 */
-	public int getDefXp() {
+	public int getDefXP() {
 		return defXp;
 	}
 
@@ -257,7 +257,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 * 
 	 * @return The HP ratio (0.0 - 1.0).
 	 */
-	public float getHPRatio() {
+	public float getHpRatio() {
 		return hp_base_hp;
 	}
 
@@ -376,9 +376,9 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	/**
-	 * @return Returns the xp.
+	 * @return Returns the XP.
 	 */
-	public int getXp() {
+	public int getXP() {
 		return xp;
 	}
 
@@ -987,7 +987,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if (changes.has("atk_xp")) {
-			atkXp = changes.getInt("atk_xp");
+			atkXP = changes.getInt("atk_xp");
 		}
 
 		if (changes.has("def_xp")) {
