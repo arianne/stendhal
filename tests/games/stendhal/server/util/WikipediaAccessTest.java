@@ -40,6 +40,8 @@ public class WikipediaAccessTest {
 				} else {
 					fail("Sorry, could not find information on this topic in Wikipedia.");
 				}
+			} else {
+				fail("Wikipedia query returned without error, but is not yet finished.");
 			}
 		} else {
 			fail("Wikipedia access was not successful: " + access.getError());
@@ -49,7 +51,7 @@ public class WikipediaAccessTest {
 	}
 
 	/**
-	 * Test
+	 * Test Wikipedia access.
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
@@ -63,7 +65,7 @@ public class WikipediaAccessTest {
 	}
 
 	/**
-	 * Test
+	 * Test redirects: GPL -> GNU General Public License.
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
@@ -71,8 +73,8 @@ public class WikipediaAccessTest {
 		final String response = getWikiText("GPL");
 
 		if (response != null) {
-			final Matcher<String> henrimariebeyle = allOf(containsString("free software license"), containsString("GNU"));
-			assertThat("There should be explained the GNU GPL.", response, henrimariebeyle);
+			final Matcher<String> match = allOf(containsString("free software license"), containsString("GNU"));
+			assertThat("There should be explained the GNU GPL.", response, match);
 		}
 	}
 

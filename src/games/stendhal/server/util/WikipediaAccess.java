@@ -23,7 +23,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Gets the first text paragraph from the specified Wikipedia article using the
- * MediaWiki bot api.
+ * MediaWiki bot API.
  * 
  * You can invoke the parser either inline using the method parse() or start it
  * in a new thread.
@@ -64,8 +64,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	}
 
 	@Override
-	public void characters(final char[] ch, final int start, final int length)
-			throws SAXException {
+	public void characters(final char[] ch, final int start, final int length) throws SAXException {
 		if (isContent) {
 			text.append(ch, start, length);
 		}
@@ -96,45 +95,62 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	 */
 	public String getProcessedText() {
 		String content = getText();
+
 		if (content != null) {
-			// remove image links
-			content = content.replaceAll("\\[\\[[iI]mage:[^\\]]*\\]\\]", "");
-			// remove comments
-			// (?s) means that . should also match newlines (DOTALL mode).
-			content = content.replaceAll("(?s)<!--.*?-->", "");
-			// remove ref
-			content = content.replaceAll("(?s)<ref>.*?</ref>", "");
-
-			// remove templates
-			// first for two level deep templates
-			content = content.replaceAll("(?s)\\{\\{([^{}]*?\\{\\{[^{}]*?\\}\\})+[^{}].*?\\}\\}", "");
-			// then handle one level templates (This doesn't work with templates inside templates.)
-			content = content.replaceAll("(?s)\\{\\{.*?\\}\\}", "");
-
-			// remove tables
-			// This doesn't work with templates inside templates.
-			content = content.replaceAll("(?s)\\{\\|.*?\\|\\}", "");
-
-			// remove complex links
-			content = content.replaceAll("\\[\\[[^\\]]*\\|", "");
-			// remove simple links
-			content = content.replaceAll("\\[\\[", "");
-			content = content.replaceAll("\\]\\]", "");
-			// remove tags
-			content = content.replaceAll("(?s)<.*?>", "");
-
-			// ignore leading empty lines and spaces
-			content = content.trim();
-
-			// extract the first paragraph (ignoring very short ones but oposing
-			// a max len)
-			final int size = content.length();
-			int endOfFirstParagraph = content.indexOf("\n", 50);
-			if (endOfFirstParagraph < 0) {
-				endOfFirstParagraph = size;
+			// remove REDIRECT headers
+			if (content.startsWith("#REDIRECT")) {
+				content = content.replaceFirst(".*\n", "");
 			}
-			content = content.substring(0, Math.min(endOfFirstParagraph, 1024));
+
+			content = wikiToText(content);
 		}
+
+		return content;
+	}
+
+	/**
+	 * Extract plain text from Wikipedia article content.
+	 * @param content
+	 * @return
+	 */
+	private String wikiToText(String content) {
+		// remove image links
+		content = content.replaceAll("\\[\\[[iI]mage:[^\\]]*\\]\\]", "");
+		// remove comments
+		// (?s) means that . should also match newlines (DOTALL mode).
+		content = content.replaceAll("(?s)<!--.*?-->", "");
+		// remove ref
+		content = content.replaceAll("(?s)<ref>.*?</ref>", "");
+
+		// remove templates
+		// first for two level deep templates
+		content = content.replaceAll("(?s)\\{\\{([^{}]*?\\{\\{[^{}]*?\\}\\})+[^{}].*?\\}\\}", "");
+		// then handle one level templates (This doesn't work with templates inside templates.)
+		content = content.replaceAll("(?s)\\{\\{.*?\\}\\}", "");
+
+		// remove tables
+		// This doesn't work with templates inside templates.
+		content = content.replaceAll("(?s)\\{\\|.*?\\|\\}", "");
+
+		// remove complex links
+		content = content.replaceAll("\\[\\[[^\\]]*\\|", "");
+		// remove simple links
+		content = content.replaceAll("\\[\\[", "");
+		content = content.replaceAll("\\]\\]", "");
+		// remove tags
+		content = content.replaceAll("(?s)<.*?>", "");
+
+		// ignore leading empty lines and spaces
+		content = content.trim();
+
+		// extract the first paragraph (ignoring very short ones but opposing a max len)
+		final int size = content.length();
+		int endOfFirstParagraph = content.indexOf("\n", 50);
+		if (endOfFirstParagraph < 0) {
+			endOfFirstParagraph = size;
+		}
+		content = content.substring(0, Math.min(endOfFirstParagraph, 1024));
+
 		return content;
 	}
 
@@ -145,25 +161,60 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	 *             in case of an unexpected error
 	 */
 	public void parse() throws Exception {
+		String keyword = title;
+
 		try {
-			// look it up using the Wikipedia API
-			final HttpClient httpClient = new HttpClient(
-					"http://en.wikipedia.org/w/api.php?action=query&titles="
-							+ title.replace(' ', '_').replace("%", "%25")
-							+ "&prop=revisions&rvprop=content&format=xml");
-			final SAXParserFactory factory = SAXParserFactory.newInstance();
+			while(keyword != null) {
+				// look it up using the Wikipedia API
+				final HttpClient httpClient = new HttpClient(
+						"http://en.wikipedia.org/w/api.php?action=query&titles="
+								+ keyword.replace(' ', '_').replace("%", "%25")
+								+ "&prop=revisions&rvprop=content&format=xml");
+				final SAXParserFactory factory = SAXParserFactory.newInstance();
 
-			// Parse the input
-			final SAXParser saxParser = factory.newSAXParser();
-			saxParser.parse(httpClient.getInputStream(), this);
+				// Parse the input
+				final SAXParser saxParser = factory.newSAXParser();
+				saxParser.parse(httpClient.getInputStream(), this);
 
-			// finished
-			finished = true;
+				String response = getText();
+
+				if (response.startsWith("#REDIRECT")) {
+					// extract the new keyword
+					String redirect = wikiToText(response).substring(9);
+
+					// check for new line to detect if we got only a one liner to redirect
+					int pos = redirect.indexOf('\n');
+					if (pos > -1) {
+						// We found the redirected article.
+						keyword = null;
+					} else {
+						if (!keyword.equalsIgnoreCase(redirect)) {
+							reset();
+							keyword = redirect;
+						} else {
+							// stop to avoid an infinite loop
+							keyword = null;
+						}
+					}
+				} else {
+					// finished
+					keyword = null;
+				}
+			}
 		} catch (final Exception e) { // SAXException, IOException
-			finished = true;
 			error = e.toString();
 			throw e;
+		} finally {
+			finished = true;
 		}
+	}
+
+	/**
+	 * Reset internal state to repeat a query.
+	 */
+	private void reset() {
+		isContent = false;
+		finished = false;
 	}
 
 	public void run() {
