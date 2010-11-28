@@ -404,6 +404,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
     /**
      * Return the original parsed text of the sentence.
+     * Leading and trailing white space is already trimmed.
      * 
      * deprecate: There should be only as less code places as possible
      * to rely on this method.
@@ -412,6 +413,16 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      */
     public String getOriginalText() {
         return originalText;
+    }
+
+    /**
+     * Parse the sentence again, using the given conversation context.
+     *
+     * @param ctx
+     * @return parsed Sentence
+     */
+    public Sentence parse(final ConversationContext ctx) {
+    	return ConversationParser.parse(originalText, ctx);
     }
 
     /**

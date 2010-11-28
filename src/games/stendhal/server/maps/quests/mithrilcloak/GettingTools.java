@@ -35,7 +35,6 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
-import games.stendhal.server.entity.npc.parser.ConversationContext;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -293,9 +292,9 @@ class GettingTools {
 							for (int i = 1; i < 9; i++) {
 								String joke = jokes.get(i);
 
-								final ConversationContext ctx = new ConvCtxForMatchingSource();
-								final Sentence answer = ConversationParser.parse(sentence.getOriginalText(), ctx);
+								final Sentence answer = sentence.parse(new ConvCtxForMatchingSource());
 								final Sentence expected = ConversationParser.parse(joke, new SimilarExprMatcher());
+
 								if (answer.matchesFull(expected)) {
 									final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 									if (questslot.length > 2) {

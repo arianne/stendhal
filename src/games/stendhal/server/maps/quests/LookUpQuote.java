@@ -21,7 +21,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
-import games.stendhal.server.entity.npc.parser.ConversationContext;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
@@ -161,8 +160,7 @@ public class LookUpQuote extends AbstractQuest {
 					final String name = player.getQuest(QUEST_SLOT);
 					final String quote = quotes.get(name);
 
-					final ConversationContext ctx = new ConvCtxForMatchingSource();
-					final Sentence answer = ConversationParser.parse(sentence.getOriginalText(), ctx);
+					final Sentence answer = sentence.parse(new ConvCtxForMatchingSource());
 					final Sentence expected = ConversationParser.parse(quote, new SimilarExprMatcher());
 
 					if (answer.matchesFull(expected)) {
