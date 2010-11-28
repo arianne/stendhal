@@ -13,6 +13,7 @@
 package games.stendhal.server.actions.chat;
 
 import static games.stendhal.common.constants.Actions.ANSWER;
+import static games.stendhal.common.constants.Actions.CHAT;
 import static games.stendhal.common.constants.Actions.EMOTE;
 import static games.stendhal.common.constants.Actions.GROUP_MESSAGE;
 import static games.stendhal.common.constants.Actions.SUPPORT;
@@ -30,7 +31,7 @@ public class ChatAction {
 	 */
 	public static void register() {
 		CommandCenter.register(ANSWER, new AnswerAction());
-		CommandCenter.register(TELL, new TellAction());
+		CommandCenter.register(CHAT, new PublicChatAction());
 		CommandCenter.register(EMOTE, new EmoteAction());
 		CommandCenter.register(GROUP_MESSAGE, new GroupMessageAction());
 		CommandCenter.register(SUPPORT, new AskForSupportAction());
