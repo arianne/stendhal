@@ -331,6 +331,7 @@ public class KoboldishTorcibud extends AbstractQuest {
                 koboldish_torcibud_vsop.setQuantity(torcibud_bottles);
                 koboldish_torcibud_vsop.setBoundTo(player.getName());
                 // vsop torcibud will heal up to 75% of the player's base HP he has when getting rewarded
+                // all vsop koboldish torcibud is persistent (set in the xml for this item) so this value will last
                 koboldish_torcibud_vsop.put("amount", player.getBaseHP()*75/100);
 
                 //player.equipOrPutOnGround(koboldish_torcibud_vsop);
