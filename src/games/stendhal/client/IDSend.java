@@ -26,7 +26,7 @@ import marauroa.common.io.Persistence;
 
 import org.apache.log4j.Logger;
 
-public class IDSend {
+public final class IDSend {
 	
 	/** the logger instance. */
 	private static final Logger logger = Logger
@@ -61,24 +61,24 @@ public class IDSend {
 		computerID = generateRandomString();
 	}
 	
+	private final static String CHARS =
+		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$/()@";
 	/**
 	* generates a random string
 	*
 	* @return random string
 	*/
 	private static String generateRandomString() {
-		String chars =
-			"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$/()@";
-		StringBuffer res = new StringBuffer();
-		Random rnd = new SecureRandom();
+		final StringBuffer res = new StringBuffer();
+		final Random rnd = new SecureRandom();
 		for (int i = 0; i < 32; i++) {
-			int pos = (int) (rnd.nextFloat() * chars.length());
-			res.append(chars.charAt(pos));
+			int pos = (int) (rnd.nextFloat() * CHARS.length());
+			res.append(CHARS.charAt(pos));
 		}
 	
 		return res.toString();
 	}
-	
+
 	private static boolean haveID() {
 		if(computerID == null) {
 			return false;
@@ -88,35 +88,39 @@ public class IDSend {
 	
 	private static void readID() {
 		try {
-			final InputStream is = Persistence.get().getInputStream(true, "stendhal",
-					FILE_NAME);
-
-		    BufferedInputStream bis = new BufferedInputStream(is);
-		    ByteArrayOutputStream buf = new ByteArrayOutputStream();
-		    int result = bis.read();
-		    while(result != -1) {
-		      byte b = (byte)result;
-		      buf.write(b);
-		      result = bis.read();
-		    }        
-		    computerID = buf.toString().trim();
-		    
-			is.close();
+			final InputStream is = Persistence.get().getInputStream(true, "stendhal", FILE_NAME);
+		    final BufferedInputStream bis = new BufferedInputStream(is);
+			try {
+			    ByteArrayOutputStream buf = new ByteArrayOutputStream();
+			    int result = bis.read();
+			    while(result != -1) {
+			      byte b = (byte)result;
+			      buf.write(b);
+			      result = bis.read();
+			    }        
+			    computerID = buf.toString().trim();
+			} finally {
+			    bis.close();
+				is.close();
+			}
 		} catch (final IOException e) {
 			// ignore exception
 		}
 	}
+
 	private static void saveID() {
 		try {
 			final OutputStream os = Persistence.get().getOutputStream(true,
 					"stendhal", FILE_NAME);
 			final OutputStreamWriter writer = new OutputStreamWriter(os);
-			writer.write(computerID);
-			writer.close();
+			try {
+				writer.write(computerID);
+			} finally {
+				writer.close();
+			}
 		} catch (final IOException e) {
 			// ignore exception
-			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME,
-					e);
+			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME, e);
 		}
 		
 	}
