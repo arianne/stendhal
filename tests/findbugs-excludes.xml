@@ -32,7 +32,7 @@
 	<Match>
 		<Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE" />
 		<Or>
-			<Package name="~games\.stendhal\.client\.*" />
+			<Package name="~games\.stendhal\.client\..*" />
 			<Package name="games.stendhal.server.actions" />
 			<Package name="games.stendhal.server.core.engine" />
 		</Or>
@@ -42,7 +42,7 @@
 	<Match>
 		<Bug pattern="DM_EXIT" />
 		<Or>
-			<Package name="~games\.stendhal\.client\.*" />
+			<Package name="~games\.stendhal\.client\..*" />
 			<Package name="games.stendhal.server.actions" />
 			<Package name="games.stendhal.server.core.engine" />
 		</Or>
