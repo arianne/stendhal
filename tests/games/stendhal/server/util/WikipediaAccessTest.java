@@ -25,29 +25,54 @@ import org.junit.Test;
  */
 public class WikipediaAccessTest {
 
+	private String getWikiText(final String keyword) {
+		final WikipediaAccess access = new WikipediaAccess(keyword);
+		String response = null;
+
+		access.run();
+
+		if (access.getError() == null) {
+			if (access.isFinished()) {
+				if ((access.getText() != null) && (access.getText().length() > 0)) {
+					response = access.getProcessedText();
+	
+					System.out.println("Wikipedia response to " + keyword + ": " + response);
+				} else {
+					fail("Sorry, could not find information on this topic in Wikipedia.");
+				}
+			}
+		} else {
+			fail("Wikipedia access was not successful: " + access.getError());
+		}
+
+		return response;
+	}
+
 	/**
 	 * Test
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public void test() {
-		final WikipediaAccess access = new WikipediaAccess("Stendhal");
+	public void testStendhal() {
+		final String response = getWikiText("Stendhal");
 
-		access.run();
+		if (response != null) {
+			final Matcher<String> henrimariebeyle = allOf(containsString("Marie"), containsString("Henri"), containsString("Beyle"));
+			assertThat("There should be named the french novelist for the topic Stendhal.", response, henrimariebeyle);
+		}
+	}
 
-		if (access.getError() != null) {
-			fail("Wikipedia access was not successful: " + access.getError());
-		} else if (access.isFinished()) {
-			if ((access.getText() != null) && (access.getText().length() > 0)) {
-				final String result = access.getProcessedText();
+	/**
+	 * Test
+	 */
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testGPL() {
+		final String response = getWikiText("GPL");
 
-				 System.out.println(result);
-
-				final Matcher<String> henrimariebeyle = allOf(containsString("Marie"), containsString("Henri"), containsString("Beyle"));
-				assertThat("There should be named the french novelist for the topic Stendhal.", result, henrimariebeyle);
-			} else {
-				fail("Sorry, could not find information on this topic in Wikipedia.");
-			}
+		if (response != null) {
+			final Matcher<String> henrimariebeyle = allOf(containsString("free software license"), containsString("GNU"));
+			assertThat("There should be explained the GNU GPL.", response, henrimariebeyle);
 		}
 	}
 
