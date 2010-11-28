@@ -1129,7 +1129,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	@Override
 	public String toString() {
-		return "zone " + zoneid + " at (" + x + "," + y + ")";
+		return "zone " + zoneid + " at (" + x + "," + y + ", " + level + ") interior: " + isInterior();
 	}
 
 	/**
