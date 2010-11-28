@@ -102,7 +102,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 				content = content.replaceFirst(".*\n", "");
 			}
 
-			content = wikiToText(content);
+			content = wikiToPlainText(content);
 		}
 
 		return content;
@@ -113,7 +113,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	 * @param content
 	 * @return
 	 */
-	private String wikiToText(String content) {
+	private static String wikiToPlainText(String content) {
 		// remove image links
 		content = content.replaceAll("\\[\\[[iI]mage:[^\\]]*\\]\\]", "");
 		// remove comments
@@ -160,8 +160,9 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	 * @throws Exception
 	 *             in case of an unexpected error
 	 */
-	public void parse() throws Exception {
+	private boolean parse() {
 		String keyword = title;
+		boolean success;
 
 		try {
 			while(keyword != null) {
@@ -176,24 +177,23 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 				final SAXParser saxParser = factory.newSAXParser();
 				saxParser.parse(httpClient.getInputStream(), this);
 
-				String response = getText();
+				final String response = getText();
 
 				if (response.startsWith("#REDIRECT")) {
 					// extract the new keyword
-					String redirect = wikiToText(response).substring(9);
+					final String redirect = wikiToPlainText(response).substring(9);
 
 					// check for new line to detect if we got only a one liner to redirect
-					int pos = redirect.indexOf('\n');
-					if (pos > -1) {
+					if (redirect.indexOf('\n') > -1) {
 						// We found the redirected article.
 						keyword = null;
 					} else {
-						if (!keyword.equalsIgnoreCase(redirect)) {
-							reset();
-							keyword = redirect;
-						} else {
+						if (keyword.equalsIgnoreCase(redirect)) {
 							// stop to avoid an infinite loop
 							keyword = null;
+						} else {
+							reset();
+							keyword = redirect;
 						}
 					}
 				} else {
@@ -201,12 +201,16 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 					keyword = null;
 				}
 			}
+
+			success = true;
 		} catch (final Exception e) { // SAXException, IOException
 			error = e.toString();
-			throw e;
+			success = false;
 		} finally {
 			finished = true;
 		}
+
+		return success;
 	}
 
 	/**
@@ -218,11 +222,9 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	}
 
 	public void run() {
-		try {
-			parse();
-		} catch (final Exception e) {
-			// ignore as they are already logged in the parse()-method itself
-		}
+		parse();
+
+		// ignore failures as they are already logged in the parse()-method itself
 	}
 
 	/**
