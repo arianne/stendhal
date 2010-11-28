@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.group;
 
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
+
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -21,9 +24,16 @@ import java.util.Set;
  *
  * @author hendrik
  */
-public class GroupManager {
+public class GroupManager implements TurnListener {
 
 	private Set<Group> groups = new HashSet<Group>();
+
+	/**
+	 * creates a new GroupManager.
+	 */
+	public GroupManager() {
+		TurnNotifier.get().notifyInSeconds(60, this);
+	}
 
 	/**
 	 * returns the group the specified player is a member of.
@@ -88,5 +98,12 @@ public class GroupManager {
 				itr.remove();
 			}
 		}
+	}
+
+	/**
+	 * cleans up 
+	 */
+	public void onTurnReached(int currentTurn) {
+		clean();
 	}
 }

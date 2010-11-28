@@ -56,6 +56,7 @@ import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.BuddyLoginEvent;
 import games.stendhal.server.events.BuddyLogoutEvent;
 import games.stendhal.server.events.ExamineEvent;
+import games.stendhal.server.events.GroupChangeEvent;
 import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PlayerLoggedOnEvent;
 import games.stendhal.server.events.PlayerLoggedOutEvent;
@@ -234,6 +235,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("text")) {
 			TextEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass(Events.GROUP_CHANGE)) {
+			GroupChangeEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("transition_graph")) {
 			TransitionGraphEvent.generateRPClass();

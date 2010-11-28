@@ -61,7 +61,7 @@ public class GroupManagementAction implements ActionListener {
 			}
 		}
 
-		// 
+		// dispatch sub actions
 		if (actionStr.equals("invite")) {
 			invite(player, targetPlayer);
 		} else if (actionStr.equals("join")) {

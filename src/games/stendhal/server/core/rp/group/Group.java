@@ -16,12 +16,17 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.GroupChangeEvent;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import marauroa.common.game.RPEvent;
 
 /**
  * A group of players 
@@ -54,7 +59,13 @@ public class Group {
 	 */
 	public boolean removeMember(String playerName) {
 		boolean res = membersAndLastSeen.remove(playerName) != null;
-		sendGroupChangeEvent();
+		if (res) {
+			Set<String> toRemove = new HashSet<String>();
+			toRemove.add(playerName);
+			sendLeftGroupEvent(toRemove);
+			sendGroupChangeEvent();
+		}
+		// TODO: destroy group if only one member left
 		return res;
 	}
 
@@ -105,23 +116,49 @@ public class Group {
 			toRemove.add(membersAndLastSeen.keySet().iterator().next());
 			membersAndLastSeen.clear();
 		}
-		// TODO: sendGroupChangeEvent for toRemove
+
+		// tell the clients about the changes
 		sendGroupChangeEvent();
+		sendLeftGroupEvent(toRemove);
 	}
 
 	/**
 	 * destroys the groups
 	 */
 	public void destory() {
+		sendLeftGroupEvent(membersAndLastSeen.keySet());
 		membersAndLastSeen.clear();
-		sendGroupChangeEvent();
 	}
 
 	/**
 	 * tell the clients about changes in the group
 	 */
 	private void sendGroupChangeEvent() {
-		// TODO
+		StendhalRPRuleProcessor ruleProcessor = SingletonRepository.getRuleProcessor();
+		List<String> members = new LinkedList<String>(membersAndLastSeen.keySet());
+		RPEvent event = new GroupChangeEvent(members);
+		for (String playerName : membersAndLastSeen.keySet()) {
+			Player player = ruleProcessor.getPlayer(playerName);
+			if (player != null) {
+				player.addEvent(event);
+			}
+		}
+	}
+
+	/**
+	 * tell players about them being removed from the group
+	 *
+	 * @param toRemove players to remove.
+	 */
+	private void sendLeftGroupEvent(Set<String> toRemove) {
+		StendhalRPRuleProcessor ruleProcessor = SingletonRepository.getRuleProcessor();
+		RPEvent event = new GroupChangeEvent();
+		for (String playerName : membersAndLastSeen.keySet()) {
+			Player player = ruleProcessor.getPlayer(playerName);
+			if (player != null) {
+				player.addEvent(event);
+			}
+		}
 	}
 
 	/**
