@@ -333,29 +333,10 @@ public final class AchievementNotifier {
 	 */
 	private Map<String, Achievement> createAchievements() {
 		Map<String, Achievement> achievementMap = new HashMap<String, Achievement>();
-		for(Achievement a : new ExperienceAchievementFactory().createAchievements()) {
-			achievementMap.put(a.getIdentifier(), a);
-		}
-		for(Achievement a : new FightingAchievementFactory().createAchievements()) {
-			achievementMap.put(a.getIdentifier(), a);
-		}
-		for(Achievement a : new QuestAchievementFactory().createAchievements()) {
-			achievementMap.put(a.getIdentifier(), a);
-		}
-		for(Achievement a : new ZoneAchievementFactory().createAchievements()) {
-			achievementMap.put(a.getIdentifier(), a);
-		}
-		for(Achievement a : new AgeAchievementFactory().createAchievements()) {
-			achievementMap.put(a.getIdentifier(), a);
-		}
-		for(Achievement a : new ItemAchievementFactory().createAchievements()) {
-			achievementMap.put(a.getIdentifier(), a);
-		}
-		for(Achievement a : new MetaAchievementFactory().createAchievements()) {
-			achievementMap.put(a.getIdentifier(), a);
-		}
-		for(Achievement a : new ObtainAchievementsFactory().createAchievements()) {
-			achievementMap.put(a.getIdentifier(), a);
+		for(AbstractAchievementFactory factory : AbstractAchievementFactory.createFactories()) {
+			for(Achievement a : factory.createAchievements()) {
+				achievementMap.put(a.getIdentifier(), a);
+			}
 		}
 		return achievementMap;
 	}
