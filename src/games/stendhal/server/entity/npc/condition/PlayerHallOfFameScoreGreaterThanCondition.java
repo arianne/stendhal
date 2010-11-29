@@ -10,6 +10,8 @@ import java.sql.SQLException;
 
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
+import marauroa.server.db.command.DBCommandQueue;
+import marauroa.server.db.command.ResultHandle;
 
 import org.apache.log4j.Logger;
 /**
@@ -19,11 +21,11 @@ import org.apache.log4j.Logger;
  */
 public class PlayerHallOfFameScoreGreaterThanCondition implements ChatCondition {
 	
-	private static final Logger logger = Logger.getLogger(PlayerHallOfFameScoreGreaterThanCondition.class);
-
 	private final String fametype;
 	
 	private final int score;
+
+	private ResultHandle handle;
 	
 	/**
 	 * Create a new PlayerHallOfFameScoreGreaterThanCondition
@@ -37,13 +39,11 @@ public class PlayerHallOfFameScoreGreaterThanCondition implements ChatCondition 
 	}
 
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
-		ReadHallOfFamePointsCommand command = new ReadHallOfFamePointsCommand(player.getName(), fametype);
-		try {
-			DBTransaction transaction = TransactionPool.get().beginWork();
-			command.execute(transaction);
-			TransactionPool.get().commit(transaction);
-		} catch (SQLException e) {
-			logger.error("Error during read of hall of fame points for chat condition", e);
+		handle = new ResultHandle();
+		DBCommandQueue.get().enqueueAndAwaitResult(new ReadHallOfFamePointsCommand(player.getName(), fametype), handle);
+		ReadHallOfFamePointsCommand command = null;
+		while(command == null) {
+			command = DBCommandQueue.get().getOneResult(ReadHallOfFamePointsCommand.class, handle);
 		}
 		int result = command.getPoints();
 		return result > score;
