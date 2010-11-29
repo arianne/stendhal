@@ -16,6 +16,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Test;
 
 /**
@@ -227,11 +230,39 @@ public class SentenceTest {
 	}
 
 	/**
+	 * Tests for Sentence.parse().
+	 */
+	@Test
+	public final void testParse() {
+		Sentence s1 = ConversationParser.parse("Give me a red ball please.");
+		Sentence m1 = s1.parse(new ConversationContext());
+		assertFalse(s1.hasError());
+		assertFalse(m1.hasError());
+		assertEquals("buy/VER red ball/OBJ-COL!", s1.toString());
+		assertEquals("buy/VER red ball/OBJ-COL!", m1.toString());
+		assertTrue(s1.matchesFull(m1));
+	}
+
+	/**
+	 * Tests for Sentence.parse().
+	 */
+	@Test
+	public final void testParseAsMatchingSource() {
+		Sentence s1 = ConversationParser.parse("I am simple.");
+		Sentence m1 = s1.parseAsMatchingSource();
+		assertFalse(s1.hasError());
+		assertFalse(m1.hasError());
+		assertEquals("i/SUB-PRO am/ simple/ADJ.", s1.toString());
+		assertEquals("i/SUB-PRO am/ simple/ADJ.", m1.toString());
+		assertTrue(s1.matchesFull(m1));
+	}
+
+	/**
 	 * Tests for diff.
 	 */
 	@Test
 	public final void testDiff() {
-		final Sentence s1 = ConversationParser.parse("it is raining cats and dogs");
+		final Sentence s1 = ConversationParser.parse("It is raining cats and dogs.");
 		Sentence s2 = ConversationParser.parse("it is raining cats, dogs");
 		Sentence s3 = ConversationParser.parse("it is raining cats but no dogs");
 		assertFalse(s1.hasError());
@@ -293,5 +324,56 @@ public class SentenceTest {
 		assertEquals("mortar", sentence.getObject(1).getNormalized());
 
 		assertEquals("pestle and mortar", sentence.getTriggerExpression().getNormalized());
+	}
+
+	/**
+	 * Test for findMatchingName().
+	 */
+	@Test
+	public final void testFindMatchingName() {
+		Sentence sentence = ConversationParser.parse("i own two pigs, a cow and a horse.");
+		assertFalse(sentence.hasError());
+		assertEquals("i/SUB-PRO own/VER pig/OBJ-ANI-PLU, cow/OBJ-ANI, horse/SUB-ANI.", sentence.toString());
+
+		Set<String> names = new HashSet<String>();
+		names.add("pestle");
+		names.add("mortar");
+		names.add("cow");
+		names.add("horse");
+		NameSearch found = sentence.findMatchingName(names);
+		assertTrue(found.found());
+		assertEquals(1, found.getAmount());
+		assertEquals("horse", found.getName());
+	}
+
+	/**
+	 * Test for findMatchingName() with plurals.
+	 */
+	@Test
+	public final void testFindMatchingNamePlural() {
+		Sentence sentence = ConversationParser.parse("i own two pigs, a cow and a horse.");
+		assertFalse(sentence.hasError());
+		assertEquals("i/SUB-PRO own/VER pig/OBJ-ANI-PLU, cow/OBJ-ANI, horse/SUB-ANI.", sentence.toString());
+
+		Set<String> names = new HashSet<String>();
+		names.add("horses");
+		NameSearch found = sentence.findMatchingName(names);
+		assertTrue(found.found());
+		assertEquals(1, found.getAmount());
+		assertEquals("horses", found.getName());
+
+		names = new HashSet<String>();
+		names.add("pig");
+		found = sentence.findMatchingName(names);
+		assertTrue(found.found());
+		assertEquals(2, found.getAmount());
+		assertEquals("pig", found.getName());
+
+		names = new HashSet<String>();
+		names.add("pigs");
+		found = sentence.findMatchingName(names);
+		assertTrue(found.found());
+		assertEquals(2, found.getAmount());
+		assertEquals("pigs", found.getName());
 	}
 }

@@ -576,6 +576,7 @@ pearl	OBJ	pearls
 perch	OBJ-ANI	perches
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
+pig	OBJ-ANI	pigs
 piglet	OBJ-ANI	piglets
 pina	OBJ	pinas
 pinacolad	OBJ-FLU	=pinacolada	pinacoladas

@@ -432,7 +432,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     /**
      * Return a parsed sentence object to be used as source in matching.
      *
-     * @return parsed matching source Sentence
+     * @return parsed for matching as source Sentence
      */
     public Sentence parseAsMatchingSource() {
     	return parse(new ConvCtxForMatchingSource());
