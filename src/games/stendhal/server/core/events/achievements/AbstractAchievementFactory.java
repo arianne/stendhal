@@ -15,6 +15,8 @@ package games.stendhal.server.core.events.achievements;
 import games.stendhal.server.entity.npc.ChatCondition;
 
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 /**
  * Factory class for achievements creation with a fixed category
  *  
@@ -45,6 +47,24 @@ public abstract class AbstractAchievementFactory {
 	 */
 	protected Achievement createAchievement(String identifier, String title, String description, int score, ChatCondition condition) {
 		return new Achievement(identifier, title, getCategory(),  description, score, condition);
+	}
+	
+	/**
+	 * Create a list of all known achievement factories
+	 * @return the list of factories
+	 */
+	public static List<AbstractAchievementFactory> createFactories() {
+		List<AbstractAchievementFactory> list = new LinkedList<AbstractAchievementFactory>();
+		//add new created factories here
+		list.add(new AgeAchievementFactory());
+		list.add(new ExperienceAchievementFactory());
+		list.add(new FightingAchievementFactory());
+		list.add(new ItemAchievementFactory());
+		list.add(new MetaAchievementFactory());
+		list.add(new ObtainAchievementsFactory());
+		list.add(new QuestAchievementFactory());
+		list.add(new ZoneAchievementFactory());
+		return list;
 	}
 
 }
