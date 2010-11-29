@@ -6,7 +6,7 @@
  * simple keywords and the very constrained, previous imperative syntax.</p>
  *
  * <p>For more information please see 
- * <a href="doc-files/ConversationParser.odt">ConversationParser.odp</a>.</p>
+ * <a href="doc-files/ConversationParser.odp">ConversationParser.odp</a>.</p>
  */
 package games.stendhal.server.entity.npc.parser;
 
