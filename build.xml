@@ -485,10 +485,8 @@
 		   encoding="UTF-8"
 		   version="true"
 		   use="true"
-		   windowtitle="Stendhal API Documentation Version: ${version}">
-			<fileset dir="${src}">
-				<include name="**/*.java"/>
-			</fileset>
+		   windowtitle="Stendhal API Documentation Version: ${version}"
+		   sourcepath="${src}">
 			<classpath>
 				<pathelement path="${commons_lang_jar}"/>
 				<pathelement path="${groovy_jar}"/>
