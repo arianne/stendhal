@@ -5,7 +5,7 @@
   <item name="bulb">
     <type class="misc" subclass="bulb" tileid="-1"/>
     <description>You see a bulb. It can be planted anywhere, but it will only thrive on fertile ground.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Bulb"/> 
+    <implementation class-name="games.stendhal.server.entity.item.Seed"/> 
 	 <attributes>
       <quantity value="1"/>
     </attributes>
