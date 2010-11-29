@@ -196,11 +196,13 @@ public final class AchievementNotifier {
 		if(!player.hasReachedAchievement(achievementIdentifier)) {
 			boolean found = false;
 			for(List<Achievement> achievementList : this.achievements.values()) {
-				for(Achievement achievement : achievementList) {
-					if (achievement.getIdentifier().equals(achievementIdentifier)) {
-						logReachingOfAnAchievement(player, achievement);
-						notifyPlayerAboutReachedAchievement(player, achievement);
-						found = true;
+				if(!found) {
+					for(Achievement achievement : achievementList) {
+						if (achievement.getIdentifier().equals(achievementIdentifier)) {
+							logReachingOfAnAchievement(player, achievement);
+							notifyPlayerAboutReachedAchievement(player, achievement);
+							found = true;
+						}
 					}
 				}
 			}
