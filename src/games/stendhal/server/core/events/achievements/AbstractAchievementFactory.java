@@ -20,7 +20,7 @@ import java.util.Collection;
  *  
  * @author madmetzger
  */
-public abstract class AchievementFactory {
+public abstract class AbstractAchievementFactory {
 
 	/**
 	 * @return the category the factory should use

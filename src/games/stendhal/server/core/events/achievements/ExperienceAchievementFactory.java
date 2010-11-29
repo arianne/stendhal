@@ -22,7 +22,7 @@ import java.util.List;
  *  
  * @author madmetzger
  */
-public class ExperienceAchievementFactory extends AchievementFactory {
+public class ExperienceAchievementFactory extends AbstractAchievementFactory {
 
 	@Override
 	protected Category getCategory() {

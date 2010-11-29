@@ -23,7 +23,7 @@ import java.util.List;
  *  
  * @author madmetzger
  */
-public class AgeAchievementFactory extends AchievementFactory {
+public class AgeAchievementFactory extends AbstractAchievementFactory {
 	
 	@Override
 	public Collection<Achievement> createAchievements() {

@@ -30,7 +30,7 @@ import java.util.List;
  *  
  * @author madmetzger
  */
-public class QuestAchievementFactory extends AchievementFactory {
+public class QuestAchievementFactory extends AbstractAchievementFactory {
 	
 	@Override
 	public Collection<Achievement> createAchievements() {

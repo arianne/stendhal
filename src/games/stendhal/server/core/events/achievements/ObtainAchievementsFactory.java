@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ObtainAchievementsFactory extends AchievementFactory {
+public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 
 	@Override
 	protected Category getCategory() {

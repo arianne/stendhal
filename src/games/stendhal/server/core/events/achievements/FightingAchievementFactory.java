@@ -23,7 +23,7 @@ import java.util.List;
  *  
  * @author madmetzger
  */
-public class FightingAchievementFactory extends AchievementFactory {
+public class FightingAchievementFactory extends AbstractAchievementFactory {
 	
 	@Override
 	public Collection<Achievement> createAchievements() {

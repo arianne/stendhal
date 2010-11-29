@@ -10,7 +10,7 @@ import java.util.LinkedList;
  *  
  * @author madmetzger
  */
-public class ZoneAchievementFactory extends AchievementFactory {
+public class ZoneAchievementFactory extends AbstractAchievementFactory {
 
 	@Override
 	protected Category getCategory() {
