@@ -354,6 +354,9 @@ public final class AchievementNotifier {
 		for(Achievement a : new MetaAchievementFactory().createAchievements()) {
 			achievementMap.put(a.getIdentifier(), a);
 		}
+		for(Achievement a : new ObtainAchievementsFactory().createAchievements()) {
+			achievementMap.put(a.getIdentifier(), a);
+		}
 		return achievementMap;
 	}
 
