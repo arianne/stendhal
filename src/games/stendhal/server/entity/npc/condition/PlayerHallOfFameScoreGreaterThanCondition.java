@@ -1,3 +1,15 @@
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.server.core.engine.dbcommand.ReadHallOfFamePointsCommand;
@@ -5,15 +17,9 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-
-import java.sql.SQLException;
-
-import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.db.command.ResultHandle;
 
-import org.apache.log4j.Logger;
 /**
  * Check if a player has a minimum hall of fame score for a given fametype
  * 
