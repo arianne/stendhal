@@ -15,6 +15,7 @@ package games.stendhal.server.core.events.achievements;
 import games.stendhal.server.entity.npc.condition.PlayerHallOfFameScoreGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
+import games.stendhal.server.maps.quests.MeetSanta;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -65,6 +66,12 @@ public class QuestAchievementFactory extends AchievementFactory {
 		//than 0.
 		questAchievements.add(createAchievement("quest.special.maze", "Pathfinder", "Finish the maze", 
 												Achievement.EASY_BASE_SCORE, new PlayerHallOfFameScoreGreaterThanCondition("M", 0)));
+		// Meet Santa Claus
+		questAchievements.add(createAchievement("quest.special.santa", "Santa likes me!", "Find Santa Claus",
+												Achievement.EASY_BASE_SCORE, new QuestCompletedCondition("meet_santa_10")));
+		// Meet Easter Bunny
+		questAchievements.add(createAchievement("quest.special.bunny", "Happy Easter, Bunny!", "Find Easter Bunny",
+												Achievement.EASY_BASE_SCORE, new QuestCompletedCondition("meet_bunny_11")));
 		return questAchievements;
 	}
 

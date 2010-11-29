@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -97,6 +98,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 					}
 				    }
 				);
+				reward.add(new ProcessReachedQuestAchievementsAction());
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new QuestNotCompletedCondition(QUEST_SLOT),

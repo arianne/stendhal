@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
@@ -78,6 +79,7 @@ public class MeetBunny extends AbstractQuest {
 				final List<ChatAction> reward = new LinkedList<ChatAction>();
 				reward.add(new EquipItemAction("basket"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+				reward.add(new ProcessReachedQuestAchievementsAction());
 
 				// Give unmet players a basket
 				add(ConversationStates.IDLE,
