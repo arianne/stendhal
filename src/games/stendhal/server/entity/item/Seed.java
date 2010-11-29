@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
@@ -46,7 +47,7 @@ public class Seed extends StackableItem implements UseListener {
 		if (!this.isContained()) {
 			// the seed is on the ground, but not next to the player
 			if (!this.nextTo(user)) {
-				user.sendPrivateText("The seed is too far away");
+				user.sendPrivateText("The " + this.getName() + " is too far away");
 				return false;
 			}
 			
@@ -69,20 +70,19 @@ public class Seed extends StackableItem implements UseListener {
 			return true;
 		}
 		// the seed was 'contained' in a slot and so it cannot be planted
-		user.sendPrivateText("You have to put the seed on the ground to plant it, silly!");
+		user.sendPrivateText("You have to put the " + this.getName() + " on the ground to plant it, silly!");
 		return false;
 	}
-
 
 	@Override
 	public String describe() {
 		final String flowerName = getInfoString();
 
 		if (flowerName != null) {
-			return "You see a " + flowerName + " seed. It can be planted anywhere, but it will only thrive on fertile ground.";
+			return "You see a " + flowerName + " " + this.getName() + "."
+                + "It can be planted anywhere, but it will only thrive on fertile ground.";
 		} else {
 			return "You see a seed. It can be planted anywhere, but it will only thrive on fertile ground.";
 		}
 	}
-	
 }
