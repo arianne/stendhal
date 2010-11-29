@@ -186,6 +186,31 @@ public final class AchievementNotifier {
 	}
 	
 	/**
+	 * Award a player with an achievement that wasn't yet reached by the player
+	 * (used for example in the wishing well)
+	 * 
+	 * @param player the player object to award
+	 * @param achievementIdentifier the identifier of the achievement that should be awarded
+	 */
+	public void awardAchievementIfNotYetReached(Player player, String achievementIdentifier) {
+		if(!player.hasReachedAchievement(achievementIdentifier)) {
+			boolean found = false;
+			for(List<Achievement> achievementList : this.achievements.values()) {
+				for(Achievement achievement : achievementList) {
+					if (achievement.getIdentifier().equals(achievementIdentifier)) {
+						logReachingOfAnAchievement(player, achievement);
+						notifyPlayerAboutReachedAchievement(player, achievement);
+						found = true;
+					}
+				}
+			}
+			if(!found) {
+				logger.warn("Tried to award non existing achievement identifier "+achievementIdentifier+" to "+player.getName());
+			}
+		}
+	}
+	
+	/**
 	 * Checks on login of a player which achievements the player has reached and gives a summarizing message
 	 * 
 	 * @param player
