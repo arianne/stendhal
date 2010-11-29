@@ -38,7 +38,7 @@ public class FlowerGrower extends VegetableGrower {
 	private static final String GROWER_NAME = "lilia";
     /** The description depends upon the ripeness of the flower grower */
 	private final String[] description = {
-			"You see a seed which has just been planted.",
+			"You see something which has just been planted.",
 			"Something is sprouting from the ground.",
 			"A plant is growing here, and you can already see foliage.",
 			"You see a plant growing a " + Grammar.fullForm(getVegetableName())
