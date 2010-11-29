@@ -44,11 +44,13 @@ public final class AchievementNotifier {
 
 	private static AchievementNotifier instance;
 	
-	final private Map<Category, List<Achievement>> achievements = new HashMap<Category, List<Achievement>>();
+	final private Map<Category, List<Achievement>> achievements;
 	
-	final private Map<String, Integer> identifiersToIds = new HashMap<String, Integer>();
+	final private Map<String, Integer> identifiersToIds;
 	
 	private AchievementNotifier() {
+		achievements = new HashMap<Category, List<Achievement>>();
+		identifiersToIds = new HashMap<String, Integer>();
 	}
 	
 	/**
