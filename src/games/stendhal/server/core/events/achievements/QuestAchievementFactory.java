@@ -12,11 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.core.events.achievements;
 
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHallOfFameScoreGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestSmallerThanCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.maps.quests.MeetSanta;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -72,6 +77,10 @@ public class QuestAchievementFactory extends AchievementFactory {
 		// Meet Easter Bunny
 		questAchievements.add(createAchievement("quest.special.bunny", "Happy Easter, Bunny!", "Find Easter Bunny",
 												Achievement.EASY_BASE_SCORE, new QuestCompletedCondition("meet_bunny_11")));
+		// Befriend Susi
+		// Quest is never set to done, therefore we check just if the quest has been started (condition "anyFriends" from FoundGirl.java)
+		questAchievements.add(createAchievement("quest.special.susi", "Susi's friend", "Befriend Susi",
+												Achievement.EASY_BASE_SCORE, new QuestStartedCondition("susi")));
 		return questAchievements;
 	}
 
