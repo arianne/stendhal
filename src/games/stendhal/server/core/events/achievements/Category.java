@@ -24,5 +24,6 @@ public enum Category {
 	META, 
 	ZONE, 
 	AGE, 
-	ITEM;
+	ITEM,
+	OBTAIN;
 }
