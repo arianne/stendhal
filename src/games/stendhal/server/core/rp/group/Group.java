@@ -62,10 +62,15 @@ public class Group {
 		if (res) {
 			Set<String> toRemove = new HashSet<String>();
 			toRemove.add(playerName);
+
+			// destroy the group if there is only one person and no open invites left
+			if ((membersAndLastSeen.size() == 1) && openInvites.isEmpty()) {
+				toRemove.add(membersAndLastSeen.keySet().iterator().next());
+				membersAndLastSeen.clear();
+			}
 			sendLeftGroupEvent(toRemove);
 			sendGroupChangeEvent();
 		}
-		// TODO: destroy group if only one member left
 		return res;
 	}
 
