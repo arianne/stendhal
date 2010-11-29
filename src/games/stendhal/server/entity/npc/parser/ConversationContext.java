@@ -88,4 +88,39 @@ public class ConversationContext {
         return ignoreIgnorable;
     }
 
+    /** Default implementation of hashCode() */
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (forMatching ? 1231 : 1237);
+		result = prime * result + (ignoreIgnorable ? 1231 : 1237);
+		result = prime * result + (mergeExpressions ? 1231 : 1237);
+		result = prime * result + (persistNewWords ? 1231 : 1237);
+		result = prime * result + state;
+		return result;
+	}
+
+    /** Default implementation of equals() */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof ConversationContext))
+			return false;
+		ConversationContext other = (ConversationContext) obj;
+		if (forMatching != other.forMatching)
+			return false;
+		if (ignoreIgnorable != other.ignoreIgnorable)
+			return false;
+		if (mergeExpressions != other.mergeExpressions)
+			return false;
+		if (persistNewWords != other.persistNewWords)
+			return false;
+		if (state != other.state)
+			return false;
+		return true;
+	}
 }
