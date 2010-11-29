@@ -23,7 +23,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
-import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
@@ -90,7 +89,7 @@ public class SolveRiddles extends AbstractQuest {
 		 * @return <code>true</code> iff the answer is correct
 		 */
 		public boolean matches(String riddle, Sentence sentence) {
-			final Sentence answer = sentence.parse(new ConvCtxForMatchingSource());
+			final Sentence answer = sentence.parseAsMatchingSource();
 
 			for (String correct : riddleMap.get(riddle)) {
 				final Sentence expected = ConversationParser.parse(correct, new SimilarExprMatcher());

@@ -422,7 +422,20 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return parsed Sentence
      */
     public Sentence parse(final ConversationContext ctx) {
-    	return ConversationParser.parse(originalText, ctx);
+    	if (context.equals(ctx)) {
+    		return this;
+    	} else {
+    		return ConversationParser.parse(originalText, ctx);
+    	}
+    }
+
+    /**
+     * Return a parsed sentence object to be used as source in matching.
+     *
+     * @return parsed matching source Sentence
+     */
+    public Sentence parseAsMatchingSource() {
+    	return parse(new ConvCtxForMatchingSource());
     }
 
     /**
