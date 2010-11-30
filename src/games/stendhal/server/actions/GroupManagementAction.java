@@ -88,6 +88,8 @@ public class GroupManagementAction implements ActionListener {
 	 */
 	private void invite(Player player, Player targetPlayer) {
 
+		// TODO: check ignore, rate limit, gag
+
 		// check if the target player is already in a group
 		Group group = SingletonRepository.getGroupManager().getGroup(targetPlayer.getName());
 		if (group != null) {
