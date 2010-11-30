@@ -223,6 +223,8 @@ public final class AchievementNotifier {
 		//prevent double check when player is initially placed into a zone
 		final Map<Category,List<Achievement>> map = new HashMap<Category, List<Achievement>>(achievements);
 		map.remove(Category.ZONE);
+		//remove to prevent NPEs on login (there is atm an achievement with no condition)
+		map.remove(Category.OBTAIN);
 		Collection<List<Achievement>> values = map.values();
 		for (List<Achievement> list : values) {
 			toCheck.addAll(list);
