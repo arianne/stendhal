@@ -73,7 +73,7 @@ class PlayerTrade {
 			return false;
 		}
 
-		if ((player.getAwayMessage() != null) 
+		if ((partner.getAwayMessage() != null) 
 			|| (partner.getTradeState() != TradeState.NO_ACTIVE_TRADE)) {
 			player.sendPrivateText("Sorry, " + partner.getName() + " is busy.");
 			return false;
