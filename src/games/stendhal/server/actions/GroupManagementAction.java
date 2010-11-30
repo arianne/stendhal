@@ -66,10 +66,12 @@ public class GroupManagementAction implements ActionListener {
 			invite(player, targetPlayer);
 		} else if (actionStr.equals("join")) {
 			join(player, targetPlayer);
-		} else if (actionStr.equals("part")) {
-			part(player);
+		} else if (actionStr.equals("leader")) {
+			leader(player, targetPlayer);
 		} else if (actionStr.equals("kick")) {
 			kick(player, targetPlayer);
+		} else if (actionStr.equals("part")) {
+			part(player);
 		} else {
 			unknown(player, actionStr, params);
 		}
@@ -90,9 +92,17 @@ public class GroupManagementAction implements ActionListener {
 			return;
 		}
 
-		// check if there is space left in the group
+		// get group, create it, if it does not exist
 		SingletonRepository.getGroupManager().createGroup(player.getName());
 		group = SingletonRepository.getGroupManager().getGroup(player.getName());
+
+		// check leader
+		if (!group.hasLeader(player.getName())) {
+			player.sendPrivateText(NotificationType.ERROR, "Only the group leader may invite people.");
+			return;
+		}
+
+		// check if there is space left in the group
 		if (group.isFull()) {
 			player.sendPrivateText(NotificationType.ERROR, "Your group is already full.");
 			return;
@@ -125,6 +135,40 @@ public class GroupManagementAction implements ActionListener {
 
 		group.addMember(player.getName());
 	}
+
+
+	/**
+	 * changes the leadership of the group
+	 *
+	 * @param player Player who invites
+	 * @param targetPlayer new leader
+	 */
+	private void leader(Player player, Player targetPlayer) {
+
+		// check if the player is already in a group
+		Group group = SingletonRepository.getGroupManager().getGroup(targetPlayer.getName());
+		if (group == null) {
+			player.sendPrivateText(NotificationType.ERROR, "You are not a member of a group.");
+			return;
+		}
+
+		// check leader
+		group = SingletonRepository.getGroupManager().getGroup(player.getName());
+		if (!group.hasLeader(player.getName())) {
+			player.sendPrivateText(NotificationType.ERROR, "Only the group leader may define a new leader.");
+			return;
+		}
+
+		// check if the target player is a member of this group
+		if (group.hasBeenInvited(targetPlayer.getName())) {
+			player.sendPrivateText(NotificationType.ERROR, targetPlayer.getName() + " is not a member of your group.");
+			return;
+		}
+
+		// set leader
+		group.setLeader(targetPlayer.getName());
+	}
+
 
 	/**
 	 * leave the group

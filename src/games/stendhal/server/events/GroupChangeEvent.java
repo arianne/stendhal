@@ -33,6 +33,7 @@ public class GroupChangeEvent extends RPEvent {
 	 */
 	public static void generateRPClass() {
 		final RPClass rpclass = new RPClass(Events.GROUP_CHANGE);
+		rpclass.add(DefinitionClass.ATTRIBUTE, "leader", Type.STRING);
 		rpclass.add(DefinitionClass.ATTRIBUTE, "members", Type.STRING);
 	}
 
@@ -45,11 +46,13 @@ public class GroupChangeEvent extends RPEvent {
 
 	/**
 	 * Creates a new group change event.
-	 * 
+	 *
+	 * @param leader leader of the group
 	 * @param members list of members
 	 */
-	public GroupChangeEvent(List<String> members) {
+	public GroupChangeEvent(String leader, List<String> members) {
 		super(Events.GROUP_CHANGE);
+		put("leader", leader);
 		put("members", members);
 	}
 
