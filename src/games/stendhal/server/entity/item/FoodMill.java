@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
@@ -22,72 +23,96 @@ import marauroa.common.game.RPObject;
 
 public class FoodMill extends Item implements UseListener {
 
+	/** The item to be processed */
+	private String input;
+	/** The required container for processing */
+	private String container;
+	/** The resulting processed item */
+	private String output;
+	
     public FoodMill(final String name, final String clazz,
             final String subclass, final Map<String, String> attributes) {
         super(name, clazz, subclass, attributes);
+        init();
     }
 
     public FoodMill(final FoodMill item) {
         super(item);
+        init();
+    }
+    
+    /** Sets up the input, output and container based on item name */
+    private void init() {
+    	if ("sugar mill".equals(getName())) {
+    		input = "sugar cane";
+    		container = "empty sack";
+    		output = "sugar";
+    	} else {
+    		input = "apple";
+    		container = "bottle";
+    		output = "apple juice";
+    	}
     }
 
     public boolean onUsed(final RPEntity user) {
-        if (isContained()) {
-            final String slotName = getContainerSlot().getName();
-            if (slotName.endsWith("hand")) {
-                String otherhand;
-                if ("rhand".equals(slotName)) {
-                    otherhand = "lhand";
-                } else {
-                    otherhand = "rhand";
-                }
-                final RPObject first = user.getSlot(otherhand).getFirst();
-                if (first != null) {
-                    if ("sugar mill".equals(getName())) {
-                        /**
-                         * the player needs to equip at least a sugar cane in his other hand
-                         * and have an empty sack in his inventory
-                         */
-                        if ("sugar cane".equals(first.get("name"))) {
-                            if (user.isEquipped("empty sack")) {
-                                final Item item = SingletonRepository.getEntityManager().getItem("sugar");
-                                user.drop("sugar cane");
-                                user.drop("empty sack");
-                                user.equipOrPutOnGround(item);
-                            } else {
-                                user.sendPrivateText("You don't have an empty sack with you");
-                            }
-                        } else {
-                            user.sendPrivateText("You need to have at least a sugar cane in your other hand");
-                        }
-                    } else {
-                        /**
-                         * the player needs to equip at least an apple in his other hand
-                         * and have an empty flask in his inventory
-                         */
-                        if ("apple".equals(first.get("name"))) {
-                            if (user.isEquipped("flask")) {
-                                final Item item = SingletonRepository.getEntityManager().getItem("apple juice");
-                                user.drop("apple");
-                                user.drop("flask");
-                                user.equipOrPutOnGround(item);
-                            } else {
-                                user.sendPrivateText("You don't have an empty flask with you");
-                            }
-                        } else {
-                            user.sendPrivateText("You need to have at least an apple in your other hand");
-                        }
-                    }
-                } else {
-                    user.sendPrivateText("Your other hand looks empty.");
-                }
-            } else {
-                user.sendPrivateText("You should first equip the " + getName() + " in either hand in order to use it.");
-            }
-            return true;
+    	/* is the mill equipped at all? */
+    	if (!isContained()) {
+    		user.sendPrivateText("You should be carrying the " + getName() + " in order to use it.");
+    		return false;
+    	}
+
+    	final String slotName = getContainerSlot().getName();
+
+    	/* is it in a hand? */
+    	if (!slotName.endsWith("hand")) {
+    		user.sendPrivateText("You should hold the " + getName() + " in either hand in order to use it.");
+    		return false;
+    	}
+
+    	String otherhand = getOtherHand(slotName);
+
+    	final RPObject first = user.getSlot(otherhand).getFirst();
+
+    	/* is anything in the other hand? */
+    	if (first == null) {
+    		user.sendPrivateText("Your other hand looks empty.");
+    		return false;
+    	}
+
+    	/*
+    	 * the player needs to equip at least the input in his other hand
+    	 * and have the correct container in his inventory
+    	 */
+    	if (!input.equals(first.get("name"))) {
+    		user.sendPrivateText("You need to have at least " + Grammar.a_noun(input) + " in your other hand");
+    		return false;
+    	}
+
+    	if (!user.isEquipped(container)) {
+    		user.sendPrivateText("You don't have " + Grammar.a_noun(container) + " with you");
+    		return false;
+    	}
+
+        /* all is okay, lets process this item */
+    	final Item item = SingletonRepository.getEntityManager().getItem(output);
+    	user.drop(input);
+    	user.drop(container);
+    	user.equipOrPutOnGround(item);
+
+    	return true;
+    } 
+
+    
+    /**
+     * @param handSlot should be rhand or lhand
+     * @return the opposite hand to handSlot 
+     */
+    private String getOtherHand(final String handSlot) {
+        if ("rhand".equals(handSlot)) {
+            return "lhand";
         } else {
-            user.sendPrivateText("You should be carrying the " + getName() + " in order to use it.");
-            return false;
+            return "rhand";
         }
     }
+    
 }
