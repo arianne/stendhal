@@ -16,6 +16,7 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.group.Group;
+import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -88,7 +89,24 @@ public class GroupManagementAction implements ActionListener {
 	 */
 	private void invite(Player player, Player targetPlayer) {
 
-		// TODO: check ignore, rate limit, gag
+		// TODO: make checks reusable, some of these checks are used at many places
+
+		if (targetPlayer.getIgnore(player.getName()) != null) {
+			return;
+		}
+
+		if (targetPlayer.getAwayMessage() != null) {
+			player.sendPrivateText("Sorry, " + targetPlayer.getName() + " is busy.");
+			return;
+		}
+
+		if (!player.getChatBucket().checkAndAdd()) {
+			return;
+		}
+
+		if (GagManager.checkIsGaggedAndInformPlayer(player)) {
+			return;
+		}
 
 		// check if the target player is already in a group
 		Group group = SingletonRepository.getGroupManager().getGroup(targetPlayer.getName());
