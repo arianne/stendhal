@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.events.achievements;
+package games.stendhal.server.core.rp.achievement;
 
 /**
  * categories of achievements

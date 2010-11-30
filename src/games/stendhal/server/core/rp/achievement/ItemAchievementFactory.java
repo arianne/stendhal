@@ -1,4 +1,4 @@
-package games.stendhal.server.core.events.achievements;
+package games.stendhal.server.core.rp.achievement;
 
 import games.stendhal.server.entity.npc.condition.PlayerLootedNumberOfItemsCondition;
 import games.stendhal.server.entity.npc.condition.PlayerProducedNumberOfItemsCondition;

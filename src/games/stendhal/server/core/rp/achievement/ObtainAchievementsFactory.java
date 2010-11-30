@@ -1,4 +1,4 @@
-package games.stendhal.server.core.events.achievements;
+package games.stendhal.server.core.rp.achievement;
 
 import java.util.Collection;
 import java.util.LinkedList;

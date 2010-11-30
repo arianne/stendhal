@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.core.events.achievements.Achievement;
+import games.stendhal.server.core.rp.achievement.Achievement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

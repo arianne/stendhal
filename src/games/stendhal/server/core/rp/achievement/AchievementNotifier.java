@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.events.achievements;
+package games.stendhal.server.core.rp.achievement;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.GameEvent;

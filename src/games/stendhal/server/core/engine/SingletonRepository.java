@@ -14,8 +14,8 @@ package games.stendhal.server.core.engine;
 
 import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.events.achievements.AchievementNotifier;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.core.rp.group.GroupManager;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;

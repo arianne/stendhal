@@ -13,7 +13,7 @@
 package games.stendhal.server.core.engine.dbcommand;
 
 import games.stendhal.server.core.engine.db.AchievementDAO;
-import games.stendhal.server.core.events.achievements.Category;
+import games.stendhal.server.core.rp.achievement.Category;
 
 import java.io.IOException;
 import java.sql.SQLException;
