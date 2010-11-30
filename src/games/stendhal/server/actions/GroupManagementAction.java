@@ -91,20 +91,25 @@ public class GroupManagementAction implements ActionListener {
 
 		// TODO: make checks reusable, some of these checks are used at many places
 
-		if (targetPlayer.getIgnore(player.getName()) != null) {
-			return;
-		}
-
-		if (targetPlayer.getAwayMessage() != null) {
-			player.sendPrivateText("Sorry, " + targetPlayer.getName() + " is busy.");
-			return;
-		}
-
 		if (!player.getChatBucket().checkAndAdd()) {
 			return;
 		}
 
 		if (GagManager.checkIsGaggedAndInformPlayer(player)) {
+			return;
+		}
+
+		if (targetPlayer.getIgnore(player.getName()) != null) {
+			return;
+		}
+
+		if (targetPlayer.getAwayMessage() != null) {
+			player.sendPrivateText("Sorry, " + targetPlayer.getName() + " is away.");
+			return;
+		}
+
+		if (targetPlayer.getGrumpyMessage() != null) {
+			player.sendPrivateText(targetPlayer.getName() + " has a closed mind, and is seeking solitude from all but close friends");
 			return;
 		}
 
@@ -183,7 +188,7 @@ public class GroupManagementAction implements ActionListener {
 		}
 
 		// check if the target player is a member of this group
-		if (group.hasBeenInvited(targetPlayer.getName())) {
+		if (group.hasMember(targetPlayer.getName())) {
 			player.sendPrivateText(NotificationType.ERROR, targetPlayer.getName() + " is not a member of your group.");
 			return;
 		}
