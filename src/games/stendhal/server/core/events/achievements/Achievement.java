@@ -99,8 +99,7 @@ public class Achievement {
 	 * @return true iff this achievement's condtion evalutates to true
 	 */
 	public boolean isFulfilled(Player p) {
-		boolean fullfilled = condition.fire(p, null, null);
-		return fullfilled;
+		return condition.fire(p, null, null);
 	}
 
 	@Override
