@@ -54,8 +54,10 @@ public class HoeingManNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting("Well met, wayfarer!");
-				addJob("You see? I keep freeing the soil from weeds but those grow back every time...");
+				addJob("You see? I keep freeing the soil from weeds with my #hoe but those grow back every time...");
 				addHelp("Take your time and check the area around... There's a mill somewhat north and a really nice farm to the east... Nice and rich country, you could go hunting for food!");
+				addReply("hoe",
+                    "Oh well, there's nothing special about my hoe... If you need some good farming tools like a scythe, it might help visiting the nearby Semos city blacksmith shop!");
 				addGoodbye("Goodbye and may your path be clear of weeds!");
 			}
 	
