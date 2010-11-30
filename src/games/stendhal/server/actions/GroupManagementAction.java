@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.group.Group;
 import games.stendhal.server.entity.player.Player;
@@ -50,6 +51,8 @@ public class GroupManagementAction implements ActionListener {
 			logger.warn("missing action attribute in RPAction " + action);
 			return;
 		}
+
+		new GameEvent(player.getName(), "group", params, actionStr).raise();
 
 		// get target player
 		Player targetPlayer = null;

@@ -13,6 +13,7 @@
 package games.stendhal.server.core.rp.group;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
@@ -97,6 +98,7 @@ public class Group {
 			} else {
 				if (entry.getValue().compareTo(currentTime) < 0) {
 					toRemove.add(playerName);
+					new GameEvent(playerName, "group", playerName, "timeout").raise();
 				}
 			}
 		}
@@ -214,6 +216,7 @@ public class Group {
 		}
 		if ((leader == null) || !membersAndLastSeen.containsKey(leader)) {
 			leader = membersAndLastSeen.keySet().iterator().next();
+			new GameEvent(leader, "group", leader, "leader fixed").raise();
 		}
 	}
 
