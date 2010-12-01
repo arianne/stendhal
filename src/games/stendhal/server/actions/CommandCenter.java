@@ -64,7 +64,7 @@ public class CommandCenter {
 		//		WordList.getInstance().registerVerb(action);
 		if (command != null) {
 			logger.error("not registering " + command.getClass()
-					+ ". it has the same handler: " + action + " as  "
+					+ ". it has the same type " + action + " as  "
 					+ CommandCenter.getAction(action).getClass());
 		}
 	}
