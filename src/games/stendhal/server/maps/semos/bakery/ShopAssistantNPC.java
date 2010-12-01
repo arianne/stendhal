@@ -197,7 +197,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				    null,
 				    new ChatAction(){
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						final String itemName = sentence.getTriggerExpression().toString();
+						final String itemName = sentence.getOriginalText();
 						final Item item =  SingletonRepository.getEntityManager().getItem(itemName);
 						if (item == null) {
 							npc.say("Sorry, something went wrong. Can you say correctly the item, please?");
