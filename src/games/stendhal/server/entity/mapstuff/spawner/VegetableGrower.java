@@ -37,12 +37,27 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
     }
 
 
-	public VegetableGrower(final RPObject object, final String name) {
-		super(object, "items/grower/" + name + "_grower", "items/grower/" + name + " grower", "Pick", 1, 1, 1);
+    /**
+     * Create a VegetableGrower from an RPObject. Used when restoring growers
+     * from the DB.
+     * 
+     * @param object object to be converted
+     * @param name item name
+     * @param maxRipeness maximum ripeness of the object
+     * @param growthRate average time between growth steps 
+     */
+	public VegetableGrower(final RPObject object, final String name,
+			final int maxRipeness, final int growthRate) {
+		super(object, "items/grower/" + name + "_grower", "items/grower/" + name + " grower", "Pick", maxRipeness, growthRate);
 		vegetableName = name;
 		update();
 	}
 
+	/**
+	 * Create a new VegetableGrower for an item.
+	 * 
+	 * @param name item name
+	 */
 	public VegetableGrower(final String name) {
 		super("items/grower/" + name + "_grower", "items/grower/" + name + " grower", "Pick", 1, 1, 1);
 		vegetableName = name;

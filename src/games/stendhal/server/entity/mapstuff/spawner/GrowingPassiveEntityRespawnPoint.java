@@ -69,20 +69,25 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		put("max_ripeness", maxRipeness);
 
 		setSize(width, height);
+		setResistance(30);
 	}
 
 	public GrowingPassiveEntityRespawnPoint(final RPObject object, final String type, final String itemName,
-			final String actionName, final int maxRipeness, final int width, final int height) {
-		super(object, itemName, GROWING_RATE);
-		setResistance(30);
-		init(type, actionName, maxRipeness, width, height);
+			final String actionName, final int maxRipeness, final int growthRate) {
+		super(object, itemName, growthRate);
+		init(type, actionName, maxRipeness, getInt("width"), getInt("height"));
+		ripeness = getInt("ripeness");
+		
 		update();
+		// Start the timer, if needed
+		if (ripeness < maxRipeness) {
+			SingletonRepository.getTurnNotifier().notifyInTurns(getRandomTurnsForRegrow(), this);
+		}
 	}
 
 	public GrowingPassiveEntityRespawnPoint(final String type, final String itemName, final String actionName,
 			final int maxRipeness, final int width, final int height) {
 		super(itemName, GROWING_RATE);
-		setResistance(30);
 		init(type, actionName, maxRipeness, width, height);
 	}
 

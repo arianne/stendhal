@@ -35,6 +35,8 @@ import marauroa.common.game.RPObject;
 public class FlowerGrower extends VegetableGrower {
 	/** 5 hours for one growing step */
 	private static final int GROW_TIME_TURNS = 60000;
+	/** Maximum ripeness of flowers */
+	private static final int MAX_RIPENESS = 4;
 	private static final String GROWER_NAME = "lilia";
     /** The description depends upon the ripeness of the flower grower */
 	private final String[] description = {
@@ -58,9 +60,7 @@ public class FlowerGrower extends VegetableGrower {
 	 *            the item to grow
 	 */
 	public FlowerGrower(final RPObject object, final String itemname) {
-		super(object, itemname);
-		meanTurnsForRegrow = GROW_TIME_TURNS;
-		setMaxRipeness(4);
+		super(object, itemname, MAX_RIPENESS, GROW_TIME_TURNS);
 		store();
 	}
 
@@ -84,7 +84,7 @@ public class FlowerGrower extends VegetableGrower {
 	 */
 	public FlowerGrower(final String infoString) {
 		super(infoString);
-		setMaxRipeness(4);
+		setMaxRipeness(MAX_RIPENESS);
 		meanTurnsForRegrow = GROW_TIME_TURNS;
 		store();
 	}
