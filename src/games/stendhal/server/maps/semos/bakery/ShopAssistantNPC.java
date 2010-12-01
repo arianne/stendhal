@@ -62,8 +62,8 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 
 	private static final int COST = 3000;
 	private static final String QUEST_SLOT = "borrow_kitchen_equipment";
-	// this should be sugar mill, and pestle and mortar, but it doesn't work.
-	private static final List<String> ITEMS = Arrays.asList("scythe", "dagger");
+
+	private static final List<String> ITEMS = Arrays.asList("pestle and mortar", "sugar mill");
 
 			
 	public void configureZone(StendhalRPZone zone,
