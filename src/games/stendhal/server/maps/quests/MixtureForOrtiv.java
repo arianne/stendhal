@@ -174,7 +174,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 			
 			npc.addReply("garlic", "I know, assassins and bandits aren't vampires, but I'll try to use it against them as well. There is a nice gardener in the Kalavan City Gardens who may sell some of her own grown garlic.");
 			
-			npc.addReply(Arrays.asList("pestle","mortar","pestle and mortar"), "I have heard that admins can summon that item for testing at the moment. Maybe you can find one who can help you.");
+			npc.addReply(Arrays.asList("pestle","mortar","pestle and mortar"), "Perhaps some baker or cook would use one of those.");
 	}
 
 	private void prepareBringingStep() {
