@@ -41,7 +41,7 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
-import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
+import games.stendhal.server.entity.npc.condition.TriggerExactlyInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -188,7 +188,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				add(ConversationStates.ATTENDING,
 				    ITEMS,
 				    new AndCondition(
-				    	new TriggerInListCondition(ITEMS),
+				    	new TriggerExactlyInListCondition(ITEMS),
 				        new LevelGreaterThanCondition(5), 
 				        new QuestCompletedCondition("pizza_delivery"),
 				        new QuestNotActiveCondition(QUEST_SLOT)),
@@ -210,7 +210,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				});
 				 
 				// say the item name when not in correct conditions should give some appropriate message - or use null condition for a generic message about the item?
-				addReply(ITEMS,"Sorry, you can't borrow from me right now.");
+				addReply(ITEMS,"Sorry, you can't borrow that from me right now.");
 				
 				// player asks about pay from attending state
 				add(ConversationStates.ATTENDING, "pay", 
