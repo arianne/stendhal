@@ -629,8 +629,32 @@ public class GrammarTest {
 		source.add("third");
 		assertEquals("first, second, and third",
 				Grammar.enumerateCollection(source));
+		source.add("more complicated example");
+		assertEquals("first, second, third, and more complicated example",
+				Grammar.enumerateCollection(source));
 	}
-
+	
+	
+	/**
+	 * Tests for enumerateCollectionWithHash
+	 */
+	@Test
+	public void testEnumerateCollectionWithHash() throws Exception {
+		assertEquals("", Grammar.enumerateCollectionWithHash(null));
+		final Collection<String> source = new LinkedList<String>();
+		assertEquals("", Grammar.enumerateCollectionWithHash(source));
+		source.add("first");
+		assertEquals("#first", Grammar.enumerateCollectionWithHash(source));
+		source.add("second");
+		assertEquals("#first and #second", Grammar.enumerateCollectionWithHash(source));
+		source.add("third");
+		assertEquals("#first, #second, and #third",
+				Grammar.enumerateCollectionWithHash(source));
+		source.add("more complicated example");
+		assertEquals("#first, #second, #third, and #'more complicated example'",
+				Grammar.enumerateCollectionWithHash(source));
+	}		
+	
 	private static void checkNumberString(final int n, final String string) {
 		assertEquals(string, Grammar.numberString(n));
 		assertEquals(Integer.valueOf(n), Grammar.number(string));

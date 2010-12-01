@@ -12,6 +12,8 @@
 package games.stendhal.common;
 
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
@@ -910,6 +912,33 @@ public class Grammar {
 			return sb.toString();
 		}
 	}
+	
+	/**
+	 * Helper function to nicely formulate an enumeration of a collection, 
+	 * with hashes to colour the words.
+	 * <p> 
+	 * For example, for a collection containing the 3 elements x, y, z, returns the
+	 * string "#x, #y, and #z".
+	 * 
+	 * @param collection
+	 *            The collection whose elements should be enumerated
+	 * @return A nice String representation of the collection with hashes
+	 */
+	public static String enumerateCollectionWithHash(final Collection<String> collection) {
+		
+		if (collection == null) {
+			return "";
+		}
+		
+		final List<String> result = new LinkedList<String>();
+		
+		for (String entry : collection) {
+			result.add("#" + entry);
+		}
+		
+		return enumerateCollection(result);
+	}
+	
 
 	/**
 	 * To let the client display compound words like "#battle axe" in blue, we put the whole item name in quotes.
