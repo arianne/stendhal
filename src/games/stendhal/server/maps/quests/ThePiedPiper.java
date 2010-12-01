@@ -50,6 +50,7 @@ import org.apache.log4j.Logger;
  * <li> Anna
  * <li> Jens
  * <li> Susi
+ * <li> Finn Farmer
  * <li> Pied Piper
  * </ul>
  *
