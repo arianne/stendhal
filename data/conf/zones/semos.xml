@@ -1417,7 +1417,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 	</zone>
 
 
-	<zone name="int_semos_tavern_0" file="interiors/semos/tavern_0.tmx">
+	<zone name="int_semos_tavern_0" file="interiors/semos/tavern_0_xmas.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.tavern.BarMaidNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.tavern.TraderNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
