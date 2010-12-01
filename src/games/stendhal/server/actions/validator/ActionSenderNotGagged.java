@@ -12,30 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.actions.validator;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
-
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.game.RPAction;
 
 /**
- * checks the the required attribute are part of the action.
+ * checks that the player is not gagged.
  *
  * @author hendrik
  */
-public class ActionAttributesExist implements ActionValidator {
-	private Collection<String> attributes;
-
-	/**
-	 * creates a new ActionAttributesExist
-	 *
-	 * @param attributes list of required attributes
-	 */
-	public ActionAttributesExist(String... attributes) {
-		this.attributes = new LinkedList<String>(Arrays.asList(attributes));
-	}
+public class ActionSenderNotGagged implements ActionValidator {
 
 	/**
 	 * validates an RPAction.
@@ -45,10 +33,10 @@ public class ActionAttributesExist implements ActionValidator {
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
 	public String validate(Player player, RPAction action) {
-		for (String attribute : attributes) {
-			if (!action.has(attribute)) {
-				return "Internal Error: Action " + action.get("type") + " is missing required attribute " + attribute;
-			}
+		if (GagManager.isGagged(player)) {
+			long timeRemaining = SingletonRepository.getGagManager().getTimeRemaining(player);
+			return "You are gagged, it will expire in "
+					+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L));
 		}
 		return null;
 	}
