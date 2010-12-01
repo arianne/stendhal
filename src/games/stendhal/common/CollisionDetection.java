@@ -156,11 +156,11 @@ public class CollisionDetection {
 		final double w = shape.getWidth();
 		final double h = shape.getHeight();
 
-		if ((x < 0) || (x + w >= width)) {
+		if ((x < 0) || (x + w > width)) {
 			return true;
 		}
 
-		if ((y < 0) || (y + h >= height)) {
+		if ((y < 0) || (y + h > height)) {
 			return true;
 		}
 
