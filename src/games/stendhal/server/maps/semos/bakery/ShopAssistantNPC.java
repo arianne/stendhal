@@ -63,7 +63,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 	private static final int COST = 3000;
 	private static final String QUEST_SLOT = "borrow_kitchen_equipment";
 
-	private static final List<String> ITEMS = Arrays.asList("pestle and mortar", "sugar mill");
+	private static final List<String> ITEMS = Arrays.asList("sugar mill", "pestle and mortar");
 
 			
 	public void configureZone(StendhalRPZone zone,
@@ -127,8 +127,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				        new QuestCompletedCondition("pizza_delivery"),
 				        new QuestNotActiveCondition(QUEST_SLOT)), 
 				    ConversationStates.ATTENDING, 
-				    // TODO: # in front of each item
-				    "I lend out " + Grammar.enumerateCollection(ITEMS) + ". If you're interested, please say which you want.", 
+				    "I lend out " + Grammar.enumerateCollectionWithHash(ITEMS) + ". If you're interested, please say which you want.", 
 				    null);
 				 
 				// player already has borrowed something it didn't return and will pay for it
