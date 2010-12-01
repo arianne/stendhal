@@ -5,8 +5,18 @@ Changelog
 *world*
 - quest for Ortiv Milquetoast in Kirdneh River House
 - Gaston, a Rat chef in Rat City bakery that will prepare the best crepes suzette au chocolate in town
+- Erna lends kitchen equipment
 - Elisabeth and her mother Carey found their way to Kirdneh
 - quest Chocolate For Elisabeth on Kirdneh playground
+- Semos is decorated for Christmas
+- Santa is visiting (and can now be made to leave after Christmas on time)
+
+*fixes*
+- wikipedian follows redirects
+- positioning of entities to fix character position, attacking circles, creature placement errors
+- vaults and adventure island correctly given a one type so players shouldn't land in the wrong zone
+- fixed some fish sources in amazon
+- 50% of findbugs warnings fixed
 
 0.89
 
