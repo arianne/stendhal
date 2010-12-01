@@ -213,7 +213,7 @@ public class PizzaDeliveryTest {
 		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", getReply(npc1));
 		en.step(player, "pizza");
 		assertFalse(player.isEquipped("pizza"));
-		assertFalse(player.hasQuest(questSlot));
+		assertTrue(player.isQuestCompleted(questSlot));
 		assertThat(player.getXP(), greaterThan(xp));
 		// [16:58] kymara earns 5 experience points.
 		assertEquals("It's a shame. Your pizza service can't deliver a hot pizza although the bakery is just around the corner.", getReply(npc1));

@@ -449,7 +449,7 @@ public class PizzaDelivery extends AbstractQuest {
 	 *         time, or if he doesn't have a delivery to do currently.
 	 */
 	private boolean isDeliveryTooLate(final Player player) {
-		if (player.hasQuest(QUEST_SLOT)) {
+		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 			final String[] questData = player.getQuest(QUEST_SLOT).split(";");
 			final String customerName = questData[0];
 			final CustomerData customerData = customerDB.get(customerName);
@@ -473,7 +473,7 @@ public class PizzaDelivery extends AbstractQuest {
 					player.drop(pizza);
 					// Check whether the player was supposed to deliver the
 					// pizza.
-					if (player.hasQuest(QUEST_SLOT)) {
+					if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 						if (isDeliveryTooLate(player)) {
 							if (data.messageOnColdPizza.contains("%s")) {
 								npc.say(String.format(data.messageOnColdPizza, data.flavor));
@@ -495,7 +495,7 @@ public class PizzaDelivery extends AbstractQuest {
 							player.equipOrPutOnGround(money);
 							player.addXP(data.xp);
 						}
-						player.removeQuest(QUEST_SLOT);
+						player.setQuest(QUEST_SLOT, "done");
 						putOffUniform(player);
 					} else {
 						// This should not happen: a player cannot pick up a pizza from the ground 
@@ -529,7 +529,7 @@ public class PizzaDelivery extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					if (player.hasQuest(QUEST_SLOT)) {
+					if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 						final String[] questData = player.getQuest(QUEST_SLOT)
 								.split(";");
 						final String customerName = questData[0];
