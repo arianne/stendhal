@@ -16,9 +16,9 @@ package games.stendhal.server.entity.creature.impl.idle;
 import java.util.Map;
 
 public class IdleBehaviourFactory {
-	private static final Idlebehaviour nothing = new StandOnIdle();
+	private static final IdleBehaviour nothing = new StandOnIdle();
 	
-	public static Idlebehaviour get(final Map<String, String> aiProfiles) {
+	public static IdleBehaviour get(final Map<String, String> aiProfiles) {
 		if (aiProfiles.containsKey("patrolling")) {
 			return new Patroller();
 		}

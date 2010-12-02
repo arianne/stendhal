@@ -32,7 +32,7 @@ import games.stendhal.server.entity.creature.impl.attack.AttackStrategyFactory;
 import games.stendhal.server.entity.creature.impl.heal.HealerBehavior;
 import games.stendhal.server.entity.creature.impl.heal.HealerBehaviourFactory;
 import games.stendhal.server.entity.creature.impl.idle.IdleBehaviourFactory;
-import games.stendhal.server.entity.creature.impl.idle.Idlebehaviour;
+import games.stendhal.server.entity.creature.impl.idle.IdleBehaviour;
 import games.stendhal.server.entity.creature.impl.poison.Attacker;
 import games.stendhal.server.entity.creature.impl.poison.PoisonerFactory;
 import games.stendhal.server.entity.item.Corpse;
@@ -116,7 +116,7 @@ public class Creature extends NPC {
 
 	private Map<String, String> aiProfiles;
 	private Attacker poisoner; 
-	private Idlebehaviour idler; 
+	private IdleBehaviour idler; 
 	
 	private int targetX;
 
