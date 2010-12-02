@@ -12,6 +12,7 @@
 
 package games.stendhal.server.maps.quests;
  
+import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -44,8 +45,11 @@ import games.stendhal.server.entity.npc.condition.TimeReachedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import marauroa.common.game.IRPZone;
@@ -97,8 +101,49 @@ public class KoboldishTorcibud extends AbstractQuest {
     @Override
     public void addToWorld() {
         super.addToWorld();
+        fillQuestInfo(
+            "Koboldish Torcibud",
+            "Wrviliza needs some stuff to prepare her famous Koboldish Torcibud.",
+            true);
         phase_1();
         phase_2();
+    }
+
+    @Override
+    public List<String> getHistory(final Player player) {
+
+        final List<String> res = new ArrayList<String>();
+
+        if (!player.hasQuest(QUEST_SLOT)) {
+            return res;
+        }
+
+        res.add("I made acquaitance with Wrviliza, the kobold barmaid in Wo'fol bar.");
+
+        final String questState = player.getQuest(QUEST_SLOT, 0);
+
+        if ("rejected".equals(questState)) {
+            res.add("She asked me to help her refurbish her stock of supplies for preparing her Koboldish Torcibud, "
+                + " but I had more pressing matters to attend.");
+        } else if ("done".equals(questState)) {
+            long timestamp;
+            try {
+                timestamp = Long.parseLong(player.getQuest(QUEST_SLOT, 1));
+            } catch (final NumberFormatException e) {
+                timestamp = 0;
+            }
+            final long timeRemaining = (timestamp - System.currentTimeMillis());
+            res.add("I helped her refurbish her stock of supplies for preparing her Koboldish Torcibud "
+                + " and she will not need any more stuff before " 
+                + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+        } else {
+            final ItemCollection missingItems = new ItemCollection();
+            missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT, 0));
+            res.add("I'm helping her refurbish her stock of supplies for preparing her Koboldish Torcibud."
+                + " I still have to bring her " + Grammar.enumerateCollection(missingItems.toStringListWithHash()));
+        }
+
+        return res;
     }
  
     @Override
