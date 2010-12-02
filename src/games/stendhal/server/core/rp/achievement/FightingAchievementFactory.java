@@ -37,7 +37,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 		fightingAchievements.add(createAchievement("fight.general.boars", "Boar Hunter", "Kill 20 boar", Achievement.EASY_BASE_SCORE,
 													new PlayerHasKilledNumberOfCreaturesCondition("boar", 20)));
 		fightingAchievements.add(createAchievement("fight.general.bears", "Bear Hunter", "Kill 10 black bears, 10 bears and 10 babybears", Achievement.EASY_BASE_SCORE,
-													new PlayerHasKilledNumberOfCreaturesCondition(10, "bear", "black bear", "baby bear")));
+													new PlayerHasKilledNumberOfCreaturesCondition(10, "bear", "black bear", "babybear")));
 		fightingAchievements.add(createAchievement("fight.general.foxes", "Fox Hunter", "Kill 20 foxes", Achievement.EASY_BASE_SCORE,
 													new PlayerHasKilledNumberOfCreaturesCondition("fox", 20)));
 		fightingAchievements.add(createAchievement("fight.general.safari", "Safari", "Kill 30 tigers, 30 lions and 50 elephants", Achievement.EASY_BASE_SCORE,
