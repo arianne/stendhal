@@ -21,20 +21,27 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class PlayerProducedNumberOfItemsCondition implements ChatCondition {
 	
-	private final PlayerLootedNumberOfItemsCondition condition;
+	private final List<String> itemProducedList;
+	
+	private final int quantity;
 	
 	public PlayerProducedNumberOfItemsCondition(int number, String... items) {
-		List<String> itemProducedList = new ArrayList<String>();
+		itemProducedList = new ArrayList<String>();
 		if(items != null) {
-			for (String string : items) {
-				itemProducedList.add("produced."+string);
+			for(String item : items) {
+				itemProducedList.add(item);
 			}
 		}
-		condition = new PlayerLootedNumberOfItemsCondition(number, itemProducedList.toArray(new String[0]));
+		quantity = number;
 	}
 
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
-		return condition.fire(player, sentence, npc);
+		for(String item : itemProducedList) {
+			if(quantity > player.getQuantityOfProducedItems(item)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	@Override
@@ -50,7 +57,7 @@ public class PlayerProducedNumberOfItemsCondition implements ChatCondition {
 
 	@Override
 	public String toString() {
-		return condition.toString().replace("produced.","").replace("looted", "produced");
+		return "player has produced <"+quantity+" of "+itemProducedList+">";
 	}
 	
 }

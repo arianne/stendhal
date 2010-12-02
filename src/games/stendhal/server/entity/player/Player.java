@@ -2154,11 +2154,22 @@ public class Player extends RPEntity {
 	
 	/**
 	 * Gets the how often this player has looted the given item
+	 * 
 	 * @param item the item name
 	 * @return the number of loots from corpses
 	 */
 	public int getNumberOfLootsForItem(String item) {
 		return itemCounter.getNumberOfLootsForItem(item);
+	}
+	
+	/**
+	 * Gets the amount a player as produced of an item
+	 * 
+	 * @param item the item name
+	 * @return the produced amount
+	 */
+	public int getQuantityOfProducedItems(String item) {
+		return itemCounter.getNumberOfLootsForItem("produced."+item);
 	}
 	
 	/**
@@ -2173,4 +2184,9 @@ public class Player extends RPEntity {
 	public void incProducedCountForItem(String item, int count) {
 		incLootForItem("produced."+item, count);
 	}
+
+	public void incFoundInWellForItem(String name, int quantity) {
+		incLootForItem("found."+name, quantity);
+	}
+	
 }
