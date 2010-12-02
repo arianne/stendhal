@@ -138,7 +138,7 @@ public class KoboldishTorcibud extends AbstractQuest {
                 + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
         } else {
             final ItemCollection missingItems = new ItemCollection();
-            missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT, 0));
+            missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
             res.add("I'm helping her refurbish her stock of supplies for preparing her Koboldish Torcibud."
                 + " I still have to bring her " + Grammar.enumerateCollection(missingItems.toStringListWithHash()));
         }
