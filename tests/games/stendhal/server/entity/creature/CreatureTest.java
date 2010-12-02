@@ -26,9 +26,6 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -41,18 +38,6 @@ public class CreatureTest {
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
 		CreatureTestHelper.generateRPClasses();
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	/**
@@ -84,9 +69,7 @@ public class CreatureTest {
 	
 	private static List<RPEntity> enemies  = new LinkedList<RPEntity>();
 	private static class MockCreature extends Creature {
-		
 
-		
 		@Override
 		public List<RPEntity> getEnemyList() {
 			
