@@ -10,11 +10,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl;
+package games.stendhal.server.entity.creature.impl.poison;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.creature.impl.poison.Poisoner;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;

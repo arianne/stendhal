@@ -10,18 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl;
+package games.stendhal.server.entity.creature.impl.poison;
 
 import games.stendhal.server.entity.RPEntity;
 
-class NonPoisoner implements Attacker {
-
-	public NonPoisoner() {
-		super();
-	}
-
-	public boolean attack(final RPEntity victim) {
-		return false;
-	}
+public interface Attacker {
+	boolean attack(RPEntity victim);
 
 }
