@@ -10,17 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl;
+package games.stendhal.server.entity.creature.impl.idle;
 
-import java.util.Map;
+import games.stendhal.server.entity.creature.Creature;
 
-public class IdleBehaviourFactory {
-	private static final Idlebehaviour nothing = new StandOnIdle();
+public interface Idlebehaviour {
 	
-	public static Idlebehaviour get(final Map<String, String> aiProfiles) {
-		if (aiProfiles.containsKey("patrolling")) {
-			return new Patroller();
-		}
-		return nothing;
-	}
+	void perform(Creature creature);
 }

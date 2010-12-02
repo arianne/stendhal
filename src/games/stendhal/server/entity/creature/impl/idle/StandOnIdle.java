@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl;
+package games.stendhal.server.entity.creature.impl.idle;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
