@@ -51,9 +51,15 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 	
 	public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX, final int newY) {
 		if ((enterMessage != null) && (entity instanceof Player)) {
-			// needs to be delayed to avoid the message appearing before server
-			// welcome on login
-			new DelayedPlayerTextSender((Player) entity, enterMessage, NotificationType.SCENE_SETTING, 1);
+			/*
+			 * Needs to be delayed to avoid the message appearing before server
+			 * welcome on login. Being delayed also means it would be delivered
+			 * even if the player is no longer in the zone after the delay (such
+			 * as logging in at dreamscape), so a special sender is needed. This
+			 * could mean some inadvertently lost messages under certain unusual
+			 * conditions.
+			 */
+			new ConditionalDelayedPlayerTextSender((Player) entity, enterMessage, NotificationType.SCENE_SETTING, 1);
 		}
 	}
 	
@@ -94,5 +100,23 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 	public void onRemoved(final StendhalRPZone zone) {
 		zone.removeMovementListener(this);
 		super.onRemoved(zone);
+	}
+	
+	/**
+	 * A sender for the delayed message that delivers the message only if the
+	 * player is still on the same zone as the MessagingArea. 
+	 */
+	private class ConditionalDelayedPlayerTextSender extends DelayedPlayerTextSender {
+		public ConditionalDelayedPlayerTextSender(Player player,
+				String message, NotificationType type, int seconds) {
+			super(player, message, type, seconds);
+		}
+		
+		@Override
+		public void onTurnReached(final int currentTurn) {
+			if (MessagingArea.this.getZone() == player.getZone()) {
+				super.onTurnReached(currentTurn);
+			}
+		}
 	}
 }
