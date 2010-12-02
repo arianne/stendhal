@@ -321,7 +321,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             Arrays.asList("fierywater"),
             new QuestActiveCondition(QUEST_SLOT),
             ConversationStates.ATTENDING,
-            "Wroof! Powerfull fluid, that is."
+            "Wroof! Powerful fluid, that is."
                 + " I buy mine in Ados market whenever I got the time to make a trip there.",
             null);
 
