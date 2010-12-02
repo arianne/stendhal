@@ -10,12 +10,20 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl;
+package games.stendhal.server.entity.creature.impl.heal;
 
 import games.stendhal.server.entity.creature.Creature;
 
-public interface HealerBehavior {
-	void init(String healingProfile);
-	void heal(Creature creature);
+final class NonHealingBehaviour implements HealerBehavior {
+
+	
+	public void heal(final Creature creature) {
+		// does not heal;
+	}
+
+	public void init(final String healingProfile) {
+		// does not need init
+		
+	}
 
 }

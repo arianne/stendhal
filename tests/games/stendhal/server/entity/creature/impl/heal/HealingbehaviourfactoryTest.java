@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl;
+package games.stendhal.server.entity.creature.impl.heal;
 
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
@@ -18,6 +18,9 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.impl.heal.Healer;
+import games.stendhal.server.entity.creature.impl.heal.Healingbehaviourfactory;
+import games.stendhal.server.entity.creature.impl.heal.NonHealingBehaviour;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
