@@ -24,11 +24,11 @@ import org.junit.Test;
  * 
  * @author Martin Fuchs
  */
-public class CountingMapTest {
+public class UniqueIdentifierMapTest {
 
 	@Test
 	public void test() {
-		final CountingMap<String> a = new CountingMap<String>("prefix");
+		final UniqueIdentifierMap<String> a = new UniqueIdentifierMap<String>("prefix");
 
 		final String key1 = a.add("ABC 123");
 		assertEquals("prefix0", key1);

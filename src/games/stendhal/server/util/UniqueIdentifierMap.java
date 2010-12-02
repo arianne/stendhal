@@ -25,7 +25,7 @@ import java.util.TreeMap;
  * @param <V>
  *            value type
  */
-public class CountingMap<V> implements Serializable,
+public class UniqueIdentifierMap<V> implements Serializable,
 		Iterable<Map.Entry<String, V>> {
 
 	private static final long serialVersionUID = -4142274943695729582L;
@@ -40,7 +40,7 @@ public class CountingMap<V> implements Serializable,
 	 * @param prefix
 	 *            prefix
 	 */
-	public CountingMap(final String prefix) {
+	public UniqueIdentifierMap(final String prefix) {
 		this.prefix = prefix;
 	}
 

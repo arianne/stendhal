@@ -10,7 +10,7 @@ import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TransitionGraphEvent;
-import games.stendhal.server.util.CountingMap;
+import games.stendhal.server.util.UniqueIdentifierMap;
 
 import java.util.List;
 import java.util.Map;
@@ -28,8 +28,8 @@ import org.apache.commons.lang.StringEscapeUtils;
 public class DumpTransitionsEx extends ScriptImpl {
 
 	private StringBuilder dumpedTable;
-	private CountingMap<PreTransitionCondition> conditions;
-	private CountingMap<PostTransitionAction> actions;
+	private UniqueIdentifierMap<PreTransitionCondition> conditions;
+	private UniqueIdentifierMap<PostTransitionAction> actions;
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
@@ -69,8 +69,8 @@ public class DumpTransitionsEx extends ScriptImpl {
 
 	private void dump(final SpeakerNPC npc) {
 		dumpedTable = new StringBuilder();
-		conditions = new CountingMap<PreTransitionCondition>("C");
-		actions = new CountingMap<PostTransitionAction>("A");
+		conditions = new UniqueIdentifierMap<PreTransitionCondition>("C");
+		actions = new UniqueIdentifierMap<PostTransitionAction>("A");
 
 		dumpHeader();
 		dumpNPC(npc);
