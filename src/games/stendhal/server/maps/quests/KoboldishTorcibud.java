@@ -118,7 +118,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             return res;
         }
 
-        res.add("I made acquaitance with Wrviliza, the kobold barmaid in Wo'fol bar.");
+        res.add("I made acquaintance with Wrviliza, the kobold barmaid in Wo'fol bar.");
 
         final String questState = player.getQuest(QUEST_SLOT, 0);
 
