@@ -10,31 +10,27 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl;
+package games.stendhal.server.entity.creature.impl.attack;
 
 import games.stendhal.server.entity.creature.Creature;
 
-public class Gandhi implements AttackStrategy {
-
-	public void attack(final Creature creature) {
-		// do nothing
-
-	}
-
-	public boolean canAttackNow(final Creature creature) {
-		return false;
-	}
-
-	public void findNewTarget(final Creature creature) {
-		//do nothing
-	}
-
+public class Coward extends HandToHand {
+	@Override
 	public void getBetterAttackPosition(final Creature creature) {
-		// do nothing
-	}
 
-	public boolean hasValidTarget(final Creature creature) {
-		return false;
+		if (creature.isAttacked()) {
+			creature.clearPath();
+			creature.faceToward(creature.getAttackSources().get(0));
+			creature.setDirection(creature.getDirection().oppositeDirection());
+			if (creature.getZone().collides(creature, creature.getX() + creature.getDirection().getdx(),
+					creature.getY() + creature.getDirection().getdy(), true)) {
+				creature.setDirection(creature.getDirection().nextDirection());
+			}
+			creature.setSpeed(creature.getBaseSpeed());
+
+		} else {
+			super.getBetterAttackPosition(creature);
+		}
 	}
 
 }

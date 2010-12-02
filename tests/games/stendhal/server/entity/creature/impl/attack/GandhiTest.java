@@ -10,10 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl;
+package games.stendhal.server.entity.creature.impl.attack;
 
 import static org.junit.Assert.assertFalse;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.impl.attack.Gandhi;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.BeforeClass;
