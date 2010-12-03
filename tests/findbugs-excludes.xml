@@ -77,5 +77,11 @@
 	<Match>
 		<Bug pattern="SF_SWITCH_NO_DEFAULT"/>
 	</Match>
+
+	<!-- createBunny() is not yet needed -->
+	<Match>
+		<Bug pattern="UPM_UNCALLED_PRIVATE_METHOD"/>
+		<Class name="games.stendhal.server.maps.quests.MeetBunny"/>
+	</Match>
 </FindBugsFilter>
  
