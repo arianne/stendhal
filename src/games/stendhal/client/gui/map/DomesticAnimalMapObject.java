@@ -12,12 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.gui.map;
 
+import games.stendhal.client.entity.DomesticAnimal;
+import games.stendhal.client.entity.User;
+
 import java.awt.Color;
 import java.awt.Graphics;
-
-import games.stendhal.client.entity.DomesticAnimal;
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.User;
 
 public class DomesticAnimalMapObject extends MovingMapObject {
 	private static final Color COLOR_DOMESTIC_ANIMAL = new Color(255, 150, 0);
@@ -25,9 +24,9 @@ public class DomesticAnimalMapObject extends MovingMapObject {
 	private DomesticAnimal domesticanimal;
 	protected Color drawColor;
 	
-	public DomesticAnimalMapObject(final IEntity entity) {
-		super(entity);
-		this.domesticanimal = (DomesticAnimal) entity;
+	public DomesticAnimalMapObject(final DomesticAnimal domesticanimal) {
+		super(domesticanimal);
+		this.domesticanimal = domesticanimal;
 		drawColor = COLOR_DOMESTIC_ANIMAL;
 	}
 	

@@ -159,7 +159,7 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 			object = new WalkBlockerMapObject(entity);
 		} else if (entity instanceof DomesticAnimal) {
 			// Only own pets and sheep are drawn but this is checked in the map object so the user status is always up to date
-			object = new DomesticAnimalMapObject(entity);
+			object = new DomesticAnimalMapObject((DomesticAnimal)entity);
 		} else if (supermanMode && User.isAdmin()) {
 			if (entity instanceof RPEntity) {
 				object = new RPEntityMapObject(entity);
