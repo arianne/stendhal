@@ -33,7 +33,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class ItemsXMLLoader extends DefaultHandler {
+public final class ItemsXMLLoader extends DefaultHandler {
 
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(ItemsXMLLoader.class);
@@ -78,7 +78,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 			// Parse the input
 			final SAXParser saxParser = factory.newSAXParser();
 
-			final InputStream is = getClass().getResourceAsStream(uri.getPath());
+			final InputStream is = ItemsXMLLoader.class.getResourceAsStream(uri.getPath());
 
 			if (is == null) {
 				throw new FileNotFoundException("cannot find resource '" + uri

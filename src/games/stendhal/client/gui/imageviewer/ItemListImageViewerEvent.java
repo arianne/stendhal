@@ -36,13 +36,13 @@ import marauroa.common.game.RPSlot;
  * 
  * @author hendrik
  */
-public class ItemListImageViewerEvent extends ViewPanel {
+public final class ItemListImageViewerEvent extends ViewPanel {
 	private static final long serialVersionUID = -6114543463410539585L;
 
 	private RPEvent event;
 
 	/**
-	 * creates a new ItemListImageViewerEvent
+	 * Creates a new ItemListImageViewerEvent.
 	 *
 	 * @param event event
 	 */
@@ -51,7 +51,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 	}
 
 	/**
-	 * shows the window
+	 * Shows the window.
 	 */
 	public void view() {
 		new ImageViewWindow(event.get("title"), this);
@@ -103,7 +103,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 	}
 
 	/**
-	 * creates an item row
+	 * Creates an item row.
 	 *
 	 * @param html  out buffer to append to
 	 * @param item  RPObject representing an item to display
@@ -123,7 +123,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 	}
 
 	/**
-	 * formats the price depending on its sign.
+	 * Formats the price depending on its sign.
 	 *
 	 * @param item representing an item to display 
 	 * @return html code to display price
@@ -154,7 +154,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 		}
 		String itemName = item.get("class") + "/" + itemSubclass;
 		String imagePath = "/data/sprites/items/" + itemName + ".png";
-		URL url = this.getClass().getResource(imagePath);
+		URL url = ItemListImageViewerEvent.class.getResource(imagePath);
 		return url;
 	}
 	
@@ -166,7 +166,7 @@ public class ItemListImageViewerEvent extends ViewPanel {
 	private static class CachedPanel extends JPanel implements Cacheable {
 
 		/**
-		 * serial version uid
+		 * serial version UID
 		 */
 		private static final long serialVersionUID = -5591729630898137399L;
 

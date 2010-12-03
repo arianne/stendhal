@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
  * 
  * @author timothyb89
  */
-public class RPEventImageViewer {
+public final class RPEventImageViewer {
 
 	private String path;
 	private String caption;
@@ -54,7 +54,7 @@ public class RPEventImageViewer {
 			if (path.startsWith("http://")) {
 				url = new URL(path);
 			} else {
-				url = getClass().getResource(path);
+				url = RPEventImageViewer.class.getResource(path);
 			}
 			return url;
 		} catch (final Exception e) {

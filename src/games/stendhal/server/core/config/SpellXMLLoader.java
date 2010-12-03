@@ -33,7 +33,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class SpellXMLLoader extends DefaultHandler {
+public final class SpellXMLLoader extends DefaultHandler {
 	
 	private static final Logger logger = Logger.getLogger(SpellXMLLoader.class);
 	
@@ -57,7 +57,7 @@ public class SpellXMLLoader extends DefaultHandler {
 			// Parse the input
 			final SAXParser saxParser = factory.newSAXParser();
 
-			final InputStream is = getClass().getResourceAsStream(uri.getPath());
+			final InputStream is = SpellXMLLoader.class.getResourceAsStream(uri.getPath());
 
 			if (is == null) {
 				throw new FileNotFoundException("cannot find resource '" + uri

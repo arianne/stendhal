@@ -37,7 +37,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class CreaturesXMLLoader extends DefaultHandler {
+public final class CreaturesXMLLoader extends DefaultHandler {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(CreaturesXMLLoader.class);
 
@@ -117,7 +117,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			// Parse the input
 			final SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getResourceAsStream(ref.getPath());
+			InputStream is = CreaturesXMLLoader.class.getResourceAsStream(ref.getPath());
 
 			if (is == null) {
 				throw new FileNotFoundException("cannot find resource '" + ref

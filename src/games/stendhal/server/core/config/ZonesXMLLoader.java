@@ -40,7 +40,7 @@ import org.xml.sax.SAXException;
 /**
  * Load and configure zones via an XML configuration file.
  */
-public class ZonesXMLLoader {
+public final class ZonesXMLLoader {
 	/**
 	 * Logger.
 	 */
@@ -97,7 +97,7 @@ public class ZonesXMLLoader {
 	 *             If the resource was not found.
 	 */
 	public void load() throws SAXException, IOException {
-		final InputStream in = getClass().getResourceAsStream(uri.getPath());
+		final InputStream in = ZonesXMLLoader.class.getResourceAsStream(uri.getPath());
 
 		if (in == null) {
 			throw new FileNotFoundException("Cannot find resource: " + uri);

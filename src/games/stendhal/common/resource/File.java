@@ -21,7 +21,7 @@ import java.io.InputStream;
  *
  * @author silvio
  */
-public class File implements Resource
+public final class File implements Resource
 {
 	java.io.File mFile = null;
 	String       mPath = null;
@@ -43,7 +43,7 @@ public class File implements Resource
 			if(mFile != null)
 				return new FileInputStream(mFile);
 			else
-				return this.getClass().getResourceAsStream("/" + mPath);
+				return File.class.getResourceAsStream("/" + mPath);
 		}
 		catch (FileNotFoundException exception)
 		{
@@ -66,7 +66,7 @@ public class File implements Resource
 		boolean exists;
 
 		if (mFile == null) {
-			final InputStream stream = this.getClass().getResourceAsStream("/" + mPath);
+			final InputStream stream = File.class.getResourceAsStream("/" + mPath);
 
 			try
 			{

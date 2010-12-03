@@ -22,7 +22,7 @@ import java.util.HashMap;
  *
  * @author silvio
  */
-public class ResourceManager extends ResourceLocator
+public final class ResourceManager extends ResourceLocator
 {
 	/*private static class DefaultLocator implements Locator
 	{
@@ -69,7 +69,7 @@ public class ResourceManager extends ResourceLocator
 		{
 			for(String path: mPaths)
 			{
-				InputStream stream = this.getClass().getResourceAsStream(path + uri.getPath());
+				InputStream stream = ResourceManager.class.getResourceAsStream(path + uri.getPath());
 
 				if(stream != null)
 					return stream;
