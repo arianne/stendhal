@@ -22,6 +22,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -77,17 +79,17 @@ public class Maze extends AbstractQuest {
 	
 		npc.add(ConversationStates.ATTENDING,
 				"maze",
-				new TimePassedCondition(getSlotName(), 0, COOLING_TIME),
+				new TimePassedCondition(getSlotName(), 1, COOLING_TIME),
 				ConversationStates.QUEST_OFFERED,
 				"There will be a portal out in the opposite corner of the maze. I'll also add scrolls to the two other corners you can try to get if you are fast enough. Do you want to try?",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
 				"maze",
-				new NotCondition(new TimePassedCondition(getSlotName(), 0, COOLING_TIME)),
+				new NotCondition(new TimePassedCondition(getSlotName(), 1, COOLING_TIME)),
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(getSlotName(), 
+				new SayTimeRemainingAction(getSlotName(), 1, 
 						COOLING_TIME, "I can send you to the maze only once in a day. You can go there again in"));
 		
 		
@@ -126,7 +128,8 @@ public class Maze extends AbstractQuest {
 			maze.setSign(getSign());
 			StendhalRPZone zone = maze.getZone();
 			SingletonRepository.getRPWorld().addRPZone(zone);
-			player.setQuest(getSlotName(), Long.toString(System.currentTimeMillis()));
+			new SetQuestAction(getSlotName(), 0, "start").fire(player, sentence, raiser);
+			new SetQuestToTimeStampAction(getSlotName(), 1).fire(player, sentence, raiser);
 			maze.startTiming();
 			player.teleport(zone, maze.getStartPosition().x, maze.getStartPosition().y, Direction.DOWN, player);
 		}

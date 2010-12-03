@@ -25,6 +25,8 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
 import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -464,7 +466,8 @@ public class MazeGenerator {
 		int points = (int) (DEFAULT_REWARD_POINTS * Math.exp(1 - normalized));
 		
 		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), "M", points, true));
-
+		new SetQuestAction("maze", 0, "done").fire(player, null, null);
+		new IncrementQuestAction("maze", 2, 1).fire(player, null, null);
 		player.sendPrivateText("You used " + TimeUtil.timeUntil((int) (timediff / 1000), true)
 				+ " to solve the maze. That was worth " + Grammar.quantityplnoun(points, "point") + ".");
 		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
