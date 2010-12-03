@@ -20,8 +20,16 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Manages the list of online players.
+ *
+ * @author durkham
+ */
 public class PlayerList {
 
+	/**
+	 * Creates a new PlayerList.
+	 */
 	public PlayerList() {
 		players = new ConcurrentHashMap<String, Player>();
 	}

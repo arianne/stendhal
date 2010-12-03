@@ -12,7 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+/**
+ * a task that can be execute with a parameter (similar to a command in the command-pattern).
+ *
+ * @author durkham
+ * @param <T> type of the parameter of the execute method
+ */
 public interface Task<T> {
-	void execute(T object);
 
+	/**
+	 * execute the task.
+	 *
+	 * @param object a parameter used by the type
+	 */
+	void execute(T object);
 }
