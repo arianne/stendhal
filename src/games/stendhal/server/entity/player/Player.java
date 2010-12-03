@@ -2173,6 +2173,13 @@ public class Player extends RPEntity {
 	}
 	
 	/**
+	 * @return the whole number of items a player has obtained from the well
+	 */
+	public int getQuantityOfObtainedItems() {
+		return itemCounter.getQuantityOfObtainedItems();
+	}
+	
+	/**
 	 * Increases the count of loots for the given item
 	 * @param item the item name
 	 * @param count 
@@ -2181,12 +2188,22 @@ public class Player extends RPEntity {
 		itemCounter.incLootForItem(item, count);
 	}
 	
+	/**
+	 * Increases the count of producings for the given item
+	 * @param item the item name
+	 * @param count 
+	 */
 	public void incProducedCountForItem(String item, int count) {
-		incLootForItem("produced."+item, count);
+		itemCounter.incProducedForItem(item, count);
 	}
 
-	public void incFoundInWellForItem(String name, int quantity) {
-		incLootForItem("found."+name, quantity);
+	/**
+	 * Increases the count of obtains from the well for the given item
+	 * @param item the item name
+	 * @param count 
+	 */
+	public void incObtainedForItem(String name, int quantity) {
+		itemCounter.incObtainedForItem(name, quantity);
 	}
 	
 }
