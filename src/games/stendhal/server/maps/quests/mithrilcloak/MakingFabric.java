@@ -114,7 +114,7 @@ class MakingFabric {
 							+ " "
 							+ getProductName()
 							+ " for you. Please be discreet and come back in "
-							+ TimeUtil.approxTimeUntil((int) (REQUIRED_MINUTES_THREAD * amount * MathHelper.MILLISECONDS_IN_ONE_MINUTE / 1000L)) + ".");
+							+ TimeUtil.approxTimeUntil((int) ((long)REQUIRED_MINUTES_THREAD * amount * MathHelper.MILLISECONDS_IN_ONE_MINUTE / 1000L)) + ".");
 					return true;
 				}
 			}
@@ -138,7 +138,7 @@ class MakingFabric {
 				// String productName = order[1];
 				final long orderTime = Long.parseLong(order[3]);
 				final long timeNow = new Date().getTime();
-				final long timeRemaining = orderTime + (REQUIRED_MINUTES_THREAD * numberOfProductItems * MathHelper.MILLISECONDS_IN_ONE_MINUTE) - timeNow;
+				final long timeRemaining = orderTime + ((long)REQUIRED_MINUTES_THREAD * numberOfProductItems * MathHelper.MILLISECONDS_IN_ONE_MINUTE) - timeNow;
 				if (timeRemaining > 0L) {
 					npc.say("Shhhh, I'm still working on your request to "
 							+ getProductionActivity() + " " + getProductName()
@@ -276,7 +276,7 @@ class MakingFabric {
 						final int numberOfProductItems = Integer.parseInt(order[1]);
 						final long orderTime = Long.parseLong(order[3]);
 						final long timeNow = new Date().getTime();
-						if (timeNow - orderTime < REQUIRED_MINUTES_THREAD * numberOfProductItems * MathHelper.MILLISECONDS_IN_ONE_MINUTE) {
+						if (timeNow - orderTime < (long)REQUIRED_MINUTES_THREAD * numberOfProductItems * MathHelper.MILLISECONDS_IN_ONE_MINUTE) {
 							npc.say("Haaaa heee woooo hoo!");
 						} else {
 							npc.say("The boss gave me these "  

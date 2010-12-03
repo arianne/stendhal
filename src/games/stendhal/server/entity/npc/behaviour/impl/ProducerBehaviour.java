@@ -225,7 +225,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		// String productName = order[1];
 
 		final long finishTime = orderTime
-				+ (getProductionTime(numberOfProductItems) * 1000);
+				+ (getProductionTime(numberOfProductItems) * 1000l);
 		final int remainingSeconds = (int) ((finishTime - timeNow) / 1000);
 		return TimeUtil.approxTimeUntil(remainingSeconds);
 	}
@@ -243,7 +243,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		// String productName = order[1];
 		final long orderTime = Long.parseLong(order[2]);
 		final long timeNow = new Date().getTime();
-		return timeNow - orderTime >= getProductionTime(numberOfProductItems) * 1000;	
+		return timeNow - orderTime >= getProductionTime(numberOfProductItems) * 1000l;	
 	}
 	
 	/**
