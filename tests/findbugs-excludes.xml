@@ -89,4 +89,13 @@
 		<Bug pattern="EI_EXPOSE_REP"/>
 		<Class name="games.stendhal.tools.tiled"/>
 	</Match>	
+
+	<!-- disable warnings for casts to java.awt.Graphics2D -->
+	<Match>
+		<Bug pattern="BC_UNCONFIRMED_CAST"/>
+		<Or>
+			<Class name="games.stendhal.client.gui.DragLayer"/>
+			<Class name="games.stendhal.client.gui.ScrollerPanel"/>
+		</Or>
+	</Match>	
 </FindBugsFilter>
