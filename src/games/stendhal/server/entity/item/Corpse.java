@@ -35,7 +35,7 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 /**
- * A corpse created when a creature or player is killed. It may contain items
+ * A corpse created when a creature or player is killed. It may contain items.
  */
 public class Corpse extends PassiveEntity implements EquipListener {
 
@@ -182,8 +182,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 			put(ATTR_NAME, victim.getTitle());
 			put(ATTR_KILLER, killerName);
 		} else if (has(ATTR_KILLER)) {
-			logger.error("Corpse: (" + victim + ") with null killer: ("
-					+ killerName + ")");
+			logger.error("Corpse: (" + victim + ") with null killer");
 			remove(ATTR_KILLER);
 		}
 
