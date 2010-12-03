@@ -29,14 +29,15 @@ import javax.swing.plaf.basic.BasicButtonUI;
  */
 public class StyledButtonUI extends BasicButtonUI {
 	private final Style style;
+
 	/** <code>true</code> if the mouse is over the button */
 	private boolean mouseOver;
-	
+
 	// Required by UIManager
 	public static ComponentUI createUI(JComponent button) {
 		return new StyledButtonUI(StyleUtil.getStyle());
 	}
-	
+
 	/**
 	 * Create a new StyledButtonUI
 	 * 
@@ -45,18 +46,19 @@ public class StyledButtonUI extends BasicButtonUI {
 	public StyledButtonUI(Style style) {
 		this.style = style;
 	}
-	
+
 	@Override
 	public void paint(Graphics graphics, JComponent button) {
-		AbstractButton btn = (AbstractButton) button;
 		paintBackground(graphics, button);
 		
 		// Restore normal look after pressing ends, if needed
-		if (!btn.getModel().isPressed()) {
-			// Try to avoid switching borders if the buttom has none or custom 
-			// borders
-			if (button.getBorder().equals(style.getBorderDown())) {
-				button.setBorder(style.getBorder());
+		if (button instanceof AbstractButton) {
+			if (!((AbstractButton)button).getModel().isPressed()) {
+				// Try to avoid switching borders if the button has none or custom 
+				// borders
+				if (button.getBorder().equals(style.getBorderDown())) {
+					button.setBorder(style.getBorder());
+				}
 			}
 		}
 
@@ -66,7 +68,7 @@ public class StyledButtonUI extends BasicButtonUI {
 		
 		super.paint(graphics, button);
 	}
-	
+
 	@Override
 	protected void paintButtonPressed(Graphics graphics, AbstractButton button) {
 		// Try to avoid switching borders if the button has none, or custom
