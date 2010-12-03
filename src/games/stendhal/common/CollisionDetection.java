@@ -27,17 +27,25 @@ public class CollisionDetection {
 
 	private int height;
 
+	/**
+	 * Clear the collision map.
+	 */
 	public void clear() {
 		if (map == null) {
 			map = new CollisionMap(width, height);
 		}
 	}
 
+	/**
+	 * Initialize the collision map to desired size.
+	 * 
+	 * @param width width of the map
+	 * @param height height of the map
+	 */
 	public void init(final int width, final int height) {
 		if (this.width != width || this.height != height) {
 			map = null;
 		}
-		
 		
 		this.width = width;
 		this.height = height;
@@ -45,70 +53,29 @@ public class CollisionDetection {
 		clear();
 	}
 
+	/**
+	 * Set a position in the collision map to static collision.
+	 * 
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 */
 	public void setCollide(final int x, final int y) {
-		
 		if ((x < 0) || (x >= width) || (y < 0) || (y >= height)) {
 			return;
 		}
 		map.set(x, y);
 	}
-
-	public void setCollide(final Rectangle2D shape, final boolean value) {
-		final double x = shape.getX();
-		final double y = shape.getY();
-		final double w = shape.getWidth();
-		final double h = shape.getHeight();
 	
-		
-		if ((x < 0) || (x/* +w */ >= width)) {
-			return;
-		}
-
-		if ((y < 0) || (y/* +h */ >= height)) {
-			return;
-		}
-
-		int startx = 0;
-		if ((x >= 0)) {
-			startx = (int) x;
-		} 
-		
-		final int endx;
-		if (x + w < width) {
-			endx = (int) (x + w);
-		} else {
-			endx = width;
-		}
-		int starty = 0;
-		if (y >= 0) {
-			starty = (int) y;
-		}
-		 
-		final int endy;
-		if (y + h < height) {
-			endy = (int) (y + h);
-		} else {
-			endy = height;
-		}
-
-		for (int k = starty; k < endy; k++) {
-			for (int i = startx; i < endx; i++) {
-				if (value) {
-					map.set(i, k);
-				} else {
-					map.unset(i, k);
-				}
-			}
-		}
-	}
-
+	/**
+	 * Fill the collision map from layer data.
+	 * 
+	 * @param collisionLayer
+	 */
 	public void setCollisionData(final LayerDefinition collisionLayer) {
 		/* First we build the int array. */
 		collisionLayer.build();
-
-		width = collisionLayer.getWidth();
-		height = collisionLayer.getHeight();
-		map = new CollisionMap(width, height);
+		init(collisionLayer.getWidth(), collisionLayer.getHeight());
+		
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				/*
@@ -118,17 +85,18 @@ public class CollisionDetection {
 				boolean b = collisionLayer.getTileAt(x, y) != 0;
 				if (b) {
 					map.set(x, y);
-				}
-				
-				
+				}		
 			}
 		}
 	}
 
-	/** Print the area around the (x,y) useful for debugging. 
+	/**
+	 * Print the area around the (x,y) useful for debugging.
+	 *  
 	 * @param x 
 	 * @param y 
-	 * @param size */
+	 * @param size
+	 */
 	public void printaround(final int x, final int y, final int size) {
 		for (int j = y - size; j < y + size; j++) {
 			for (int i = x - size; i < x + size; i++) {
@@ -146,10 +114,13 @@ public class CollisionDetection {
 		}
 	}
 
-	public boolean walkable(final double x, final double y) {
-		return !map.get((int) x, (int) y);
-	}
-
+	/**
+	 * Check if a rectangle is at least partially outside the map.
+	 * 
+	 * @param shape area to be checked
+	 * @return <code>true</code> if shape is at least partially outside the map,
+	 * 	<code>false</code> otherwise
+	 */
 	public boolean leavesZone(final Rectangle2D shape) {
 		final double x = shape.getX();
 		final double y = shape.getY();
@@ -168,9 +139,11 @@ public class CollisionDetection {
 	}
 
 	/**
-	 * @param shape 
-	 * @return true if the shape enters in any of the non trespasable areas of
-	 * the map.
+	 * Check if a rectangle overlaps colliding areas.
+	 * 
+	 * @param shape checked area
+	 * @return <code>true</code> if the shape enters in any of the non
+	 *	trespassable areas of the map, <code>false</code> otherwise
 	 */
 	public boolean collides(final Rectangle2D shape) {
 		final double x = shape.getX();
@@ -211,8 +184,8 @@ public class CollisionDetection {
 		}
 
 		/*
-		 * TODO: the advantages from using bitset in collissionmapare lost here
-		 * the weird behaviour with clientside player when using map.collides (x,y,width, height)
+		 * TODO: the advantages from using bitset in collissionmap are lost here
+		 * the weird behaviour with client side player when using map.collides (x,y,width, height)
 		 * is caused by the delta calculation for 2dviewtiles; 
 		 */
 		
@@ -228,6 +201,14 @@ public class CollisionDetection {
 		return false;
 	}
 
+	/**
+	 * Check if a location is marked with collision.
+	 * 
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 * @return <code>true</code> if the map position is a collision tile,
+	 * 	otherwise <code>false</code> 
+	 */
 	public boolean collides(final int x, final int y) {
 		if ((x < 0) || (x >= width)) {
 			return true;
@@ -239,10 +220,20 @@ public class CollisionDetection {
 		return map.get(x, y);
 	}
 
+	/**
+	 * Get the width of the collision map.
+	 * 
+	 * @return width
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Get the height of the collision map.
+	 * 
+	 * @return height
+	 */
 	public int getHeight() {
 		return height;
 	}
