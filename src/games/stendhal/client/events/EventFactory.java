@@ -37,7 +37,7 @@ public class EventFactory {
 	public static Event<? extends Entity> create(Entity entity, RPEvent rpevent) {
 		Event<? extends Entity> res = null;
 		if (entity instanceof RPEntity) {
-			res = createEventsForRPEntity(entity, rpevent);
+			res = createEventsForRPEntity((RPEntity)entity, rpevent);
 		}
 
 		if (res == null) {
@@ -54,13 +54,13 @@ public class EventFactory {
 	}
 
 	/**
-	 * creates events for normal RPEntities
+	 * Creates events for normal RPEntities.
 	 *
 	 * @param entity  RPEntityEntity
 	 * @param rpevent RPEvent
 	 * @return Event handler
 	 */
-	private static Event<RPEntity> createEventsForRPEntity(Entity entity, RPEvent rpevent) {
+	private static Event<RPEntity> createEventsForRPEntity(RPEntity entity, RPEvent rpevent) {
 		String name = rpevent.getName();
 		Event<RPEntity> event = null;
 		if (name.equals(Events.PUBLIC_TEXT)) {
@@ -74,13 +74,13 @@ public class EventFactory {
 		}
 
 		if (event != null) {
-			event.init((RPEntity) entity, rpevent);
+			event.init(entity, rpevent);
 		}
 		return event;
 	}
 
 	/**
-	 * creates events for normal Entities
+	 * Creates events for normal Entities.
 	 *
 	 * @param entity  Entity
 	 * @param rpevent RPEvent
