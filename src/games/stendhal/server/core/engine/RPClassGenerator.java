@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
-
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Blood;
@@ -61,6 +60,7 @@ import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PlayerLoggedOnEvent;
 import games.stendhal.server.events.PlayerLoggedOutEvent;
 import games.stendhal.server.events.PrivateTextEvent;
+import games.stendhal.server.events.ProgressStatusEvent;
 import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.events.TextEvent;
@@ -71,9 +71,15 @@ import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 
+/**
+ * defines all RPClass
+ */
 public class RPClassGenerator {
 	private static boolean inited = false;
 
+	/**
+	 * creates the RPClass definitions, unless this was already done.
+	 */
 	public void createRPClasses() {
 		if (inited) {
 			return;
@@ -226,6 +232,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("private_text")) {
 			PrivateTextEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass(Events.PROGRESS_STATUS_CHANGE)) {
+			ProgressStatusEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("show_item_list")) {
 			ShowItemListEvent.generateRPClass();

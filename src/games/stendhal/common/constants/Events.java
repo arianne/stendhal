@@ -35,4 +35,6 @@ public final class Events {
 	public static final String VIEW_CHANGE = "view_change";
 
 	public static final String GROUP_CHANGE = "group_change_event";
+
+	public static final String PROGRESS_STATUS_CHANGE = "progress_status_event";
 }
