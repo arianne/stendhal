@@ -38,7 +38,7 @@ public class QuestNotActiveCondition implements ChatCondition {
 	}
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-		return (!player.hasQuest(questname) || player.isQuestInState(questname, "rejected") || player.isQuestCompleted(questname));
+		return (!player.hasQuest(questname) || player.isQuestInState(questname, 0, "rejected") || player.isQuestCompleted(questname));
 	}
 
 	@Override

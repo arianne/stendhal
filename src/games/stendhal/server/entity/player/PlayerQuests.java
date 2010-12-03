@@ -40,13 +40,13 @@ class PlayerQuests {
 	 * @return true iff the quest has been completed by the player
 	 */
 	public boolean isQuestCompleted(final String name) {
-		final String info = player.getKeyedSlot("!quests", name);
+		final String info = getQuest(name, 0);
 
 		if (info == null) {
 			return false;
 		}
 
-		return info.equals("done") || info.startsWith("done;");
+		return info.equals("done");
 	}
 
 	/**
