@@ -1459,11 +1459,11 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return true if the item can be equipped, else false
 	 */
 	public final boolean equip(final String slotName, final Item item) {
-		
 		if (equipIt(slotName, item)) {
 			updateItemAtkDef();
 			return true;
 		}
+
 		return false;
 	}
 
@@ -2420,7 +2420,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param item 
 	 * @return true if successful*/
 	private boolean equipIt(final String slotName, final Item item) {
-		if (!hasSlot(slotName)) {
+		if (!hasSlot(slotName) || (item == null)) {
 			return false;
 		}
 
