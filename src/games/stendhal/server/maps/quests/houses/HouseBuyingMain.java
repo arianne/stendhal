@@ -14,6 +14,8 @@ package games.stendhal.server.maps.quests.houses;
 
 import java.util.LinkedList;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -25,6 +27,10 @@ import games.stendhal.server.entity.player.Player;
  * @author kymara
  */
 public class HouseBuyingMain {
+
+	/** the logger instance. */
+	private static final Logger logger = Logger.getLogger(HouseBuyingMain.class);
+	
 	static HouseTax houseTax = null;
 
 	/** Kalavan house seller Zone name. */
@@ -68,6 +74,7 @@ public class HouseBuyingMain {
 		} else {
 			hist.add("I have no buyed houses now.");
 			if(player.getAge()<0) {
+				logger.warn("player's age is below zero: " + player.getAge());
 				//hist.add("My age is not enough to buy any house.");
 			}
 		}
