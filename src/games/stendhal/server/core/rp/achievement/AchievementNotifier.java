@@ -17,6 +17,7 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.db.AchievementDAO;
 import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementCommand;
+import games.stendhal.server.core.rp.achievement.factory.AbstractAchievementFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
 
