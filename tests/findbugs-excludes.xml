@@ -83,5 +83,10 @@
 		<Bug pattern="UPM_UNCALLED_PRIVATE_METHOD"/>
 		<Class name="games.stendhal.server.maps.quests.MeetBunny"/>
 	</Match>
+
+	<!-- disable warning for exposeRaw() method -->
+	<Match>
+		<Bug pattern="EI_EXPOSE_REP"/>
+		<Class name="games.stendhal.tools.tiled"/>
+	</Match>	
 </FindBugsFilter>
- 
