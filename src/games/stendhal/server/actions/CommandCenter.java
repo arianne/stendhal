@@ -112,16 +112,20 @@ public class CommandCenter {
 
 	public static boolean execute(final RPObject caster, final RPAction action) {
 		try {
-
-			final Player player = (Player) caster;
-			final ActionListener actionListener = getAction(action);
-			final String type = action.get(Actions.TYPE);
-			if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
+			if (caster instanceof Player) {
+				final Player player = (Player) caster;
+				final ActionListener actionListener = getAction(action);
+				final String type = action.get(Actions.TYPE);
+				if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
+					return false;
+				}
+				actionListener.onAction(player, action);
+				return true;
+			} else {
+				logger.error("caster is no Player; cannot execute action " + action +
+					" send by " + caster, new Throwable());
 				return false;
 			}
-			actionListener.onAction(player, action);
-
-			return true;
 		} catch (final Exception e) {
 			logger.error("Cannot execute action " + action + " send by "
 					+ caster, e);
