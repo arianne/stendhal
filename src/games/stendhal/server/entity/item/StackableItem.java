@@ -116,7 +116,6 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 					getName());
 
 			newItem.setQuantity(amountToSplitOff);
-
 		
 			for (final String attribute : ATTRIBUTES_TO_COPY_ON_SPLIT) {
 				if (has(attribute)) {
@@ -148,8 +147,9 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 			}
 
 			return newItem;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	@Override
