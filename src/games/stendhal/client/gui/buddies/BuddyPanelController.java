@@ -24,13 +24,13 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class BuddyPanelControler implements PropertyChangeListener {
+public class BuddyPanelController implements PropertyChangeListener {
 	private static PropertyChangeListener instance;
 	
 	private final JComponent buddyPanel;
 	private final BuddyListModel model;
 
-	public BuddyPanelControler() {
+	public BuddyPanelController() {
 		// The panel is actually just the background
 		buddyPanel = new JPanel();
 		// the default layout manager is too dumb to understand alignment
