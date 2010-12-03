@@ -390,6 +390,30 @@ public abstract class UpdateConverter {
 		// fix DailyMonsterQuest slot
 		fixDailyMonsterQuestSlot(player);
 		
+		// fix Maze
+		fixMazeQuestSlot(player);
+		
+	}
+
+	private static void fixMazeQuestSlot(Player player) {
+		final String QUEST_SLOT = "maze";
+		
+		// if player didnt started quest --> exit
+		if(!player.hasQuest(QUEST_SLOT)) {
+			return;
+		}
+		
+		final String questSlot = player.getQuest(QUEST_SLOT);
+		
+		// if player's quest slot is already updated --> exit
+		if(Arrays.asList(questSlot.split(";")).size()>1) {
+			return;
+		}
+		
+		player.setQuest(QUEST_SLOT, 0, "start");
+		player.setQuest(QUEST_SLOT, 1, questSlot);
+		player.setQuest(QUEST_SLOT, 2, "0");
+		
 	}
 
 	private static void fixDailyMonsterQuestSlot(final Player player) {
