@@ -62,8 +62,9 @@ public class HouseBuyingMain {
 	
 	public LinkedList<String> getHistory(final Player player) {
 		LinkedList<String> hist = new LinkedList<String>();
+
 		if(player.hasQuest("house")) {
-			hist.add("I have buyed house ##"+player.getQuest("house")+".");			
+			hist.add("I have bought house ##"+player.getQuest("house")+".");			
 		} else {
 			hist.add("I have no buyed houses now.");
 			if(player.getAge()<0) {
