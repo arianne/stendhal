@@ -72,5 +72,10 @@
 		<Bug pattern="DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED" />
 		<Class name="games.stendhal.client.update.Bootstrap" />
 	</Match>
+
+	<!-- There is no need for a default case in all switches -->
+	<Match>
+		<Bug pattern="SF_SWITCH_NO_DEFAULT"/>
+	</Match>
 </FindBugsFilter>
  
