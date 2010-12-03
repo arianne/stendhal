@@ -53,6 +53,7 @@ import java.util.List;
 import java.util.Map;
 
 import marauroa.common.game.IRPZone;
+import org.apache.log4j.Logger;
 
 /**
  * QUEST: V.S.O.P. Koboldish Torcibud
@@ -77,6 +78,20 @@ import marauroa.common.game.IRPZone;
  */
 public class KoboldishTorcibud extends AbstractQuest {
  
+    private static Logger logger = Logger.getLogger(KoboldishTorcibud.class);
+
+    /**
+     * QUEST_SLOT will be used to hold the different states of the quest.
+     *
+     * QUEST_SLOT sub slot 0 will hold the main states, which can be:
+     * - rejected, the player refuses to accept the quest
+     * - a semi-colon separated list of item name=amount pairs
+     * - done, the player has completed the quest
+     *
+     * When the quest is completed,
+     * QUEST_SLOT sub slot 1 will hold a timestamp randomly determined to be
+     * from 3 to 6 days in the future.
+     */
     public static final String QUEST_SLOT = "koboldish_torcibud";
 
     // the torcibud quest cannot be repeated before 3 to 6 days
@@ -120,7 +135,7 @@ public class KoboldishTorcibud extends AbstractQuest {
 
         res.add("I made acquaintance with Wrviliza, the kobold barmaid in Wo'fol bar.");
 
-        final String questState = player.getQuest(QUEST_SLOT, 0);
+        final String questState = player.getQuest(QUEST_SLOT);
 
         if ("rejected".equals(questState)) {
             res.add("She asked me to help her refurbish her stock of supplies for preparing her Koboldish Torcibud, "
@@ -138,6 +153,11 @@ public class KoboldishTorcibud extends AbstractQuest {
                 + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
         } else {
             final ItemCollection missingItems = new ItemCollection();
+            /**
+             * NOTE: If we reached this spot, then the quest is running and
+             * QUEST_SLOT sub slot 0 holds a semicolon separated list of item=amount pairs.
+             * Do not use player.getQuest(QUEST_SLOT, 0) as that would only retrieve the first pair.
+             */
             missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
             res.add("I'm helping her refurbish her stock of supplies for preparing her Koboldish Torcibud."
                 + " I still have to bring her " + Grammar.enumerateCollection(missingItems.toStringListWithHash()));
@@ -195,7 +215,7 @@ public class KoboldishTorcibud extends AbstractQuest {
         // player sends his greetings to Wrviliza and has rejected the quest in the past
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
-            new QuestInStateCondition(QUEST_SLOT, 0, "rejected"),
+            new QuestInStateCondition(QUEST_SLOT, "rejected"),
             ConversationStates.QUEST_OFFERED,
             "Wroff! Welcome back wanderer... Are you back to help me gather #stuff to make good #torcibud this time?",
             null);
@@ -245,7 +265,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             Arrays.asList("stuff","ingredients","supplies"),
             new OrCondition(
                 new QuestNotStartedCondition(QUEST_SLOT),
-                new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
+                new QuestInStateCondition(QUEST_SLOT, "rejected")),
             ConversationStates.QUEST_OFFERED,
             "Wrof! Some bottles, artichokes, a few herbs and fierywater... Things like that. So, will you help?",
             null);
@@ -271,11 +291,11 @@ public class KoboldishTorcibud extends AbstractQuest {
             ConversationPhrases.NO_MESSAGES,
             new AndCondition(
                 new QuestNotActiveCondition(QUEST_SLOT),
-                new QuestNotInStateCondition(QUEST_SLOT, 0, "rejected")),
+                new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
             ConversationStates.ATTENDING,
             "Wruff... I guess I will have to ask to someone with a better attitude!",
             new MultipleActions(
-            		new SetQuestAction(QUEST_SLOT, 0, "rejected"),
+            		new SetQuestAction(QUEST_SLOT, "rejected"),
             		new DecreaseKarmaAction(20.0)));
 
         //player is not inclined to comply with the request and he has rejected it last time
@@ -283,11 +303,11 @@ public class KoboldishTorcibud extends AbstractQuest {
         //Wrviliza holds a grudge by turning idle again.
         npc.add(ConversationStates.QUEST_OFFERED,
             ConversationPhrases.NO_MESSAGES,
-            new QuestInStateCondition(QUEST_SLOT, 0, "rejected"),
+            new QuestInStateCondition(QUEST_SLOT, "rejected"),
             ConversationStates.IDLE,
             "Wruff... I guess you will wander around with a dry gulch then...",
             new MultipleActions(
-            		new SetQuestAction(QUEST_SLOT, 0, "rejected"),
+            		new SetQuestAction(QUEST_SLOT, "rejected"),
             		new DecreaseKarmaAction(20.0)));
     }
 
@@ -394,7 +414,7 @@ public class KoboldishTorcibud extends AbstractQuest {
 
         // player collected all the items. grant the XP before handing out the torcibud
         ChatAction completeAction = new MultipleActions(
-            new SetQuestAction(QUEST_SLOT, 0, "done"),
+            new SetQuestAction(QUEST_SLOT, "done"),
             new SetQuestToFutureRandomTimeStampAction(QUEST_SLOT, 1, MIN_DELAY, MAX_DELAY),
             new IncreaseXPAction(XP_REWARD),
             addRewardAction);
