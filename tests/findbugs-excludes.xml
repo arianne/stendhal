@@ -51,11 +51,7 @@
 	<!-- allow lower case class names for the entry point classes -->
 	<Match>
 		<Bug>NM_CLASS_NAMING_CONVENTION</Bug>
-		<Or>
-			<Class name="games.stendhal.client.stendhal" />
-			<Class name="games.stendhal.client.gui.j2DClient" />
-			<Class name="games.stendhal.client.textClient" />
-		</Or>
+		<Package name="games.stendhal.client" />
 	</Match>
 
 	<!-- allow method names starting with an upper case letter -->
