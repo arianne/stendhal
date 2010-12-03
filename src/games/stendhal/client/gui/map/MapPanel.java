@@ -99,7 +99,11 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	
 	/** true iff the map should be repainted */ 
 	private boolean needsRefresh;
-	private Image mapImage; 
+	/**
+	 * Map background. Volatile because it's updated outside the EDT, and the
+	 * map is not necessarily drawn at every screen refresh.
+	 */
+	private volatile Image mapImage; 
 	
 	/** Name of the map */
 	private String title = "";
@@ -379,8 +383,8 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 		height = Math.min(HEIGHT, mapHeight * scale);
 		
 		// create the map image, and fill it with the wanted details
-		mapImage = this.getGraphicsConfiguration().createCompatibleImage(mapWidth * scale, mapHeight * scale);
-		final Graphics g = mapImage.getGraphics();
+		final Image newMapImage  = this.getGraphicsConfiguration().createCompatibleImage(mapWidth * scale, mapHeight * scale);
+		final Graphics g = newMapImage.getGraphics();
 		g.setColor(COLOR_BACKGROUND);
 		g.fillRect(0, 0, mapWidth * scale, mapHeight * scale);
 		
@@ -397,7 +401,9 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 			}
 		}
 		g.dispose();
-		
+		// Swap the image only after the new one is ready
+		mapImage = newMapImage;
+
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				updateSize(new Dimension(WIDTH, height + TITLE_HEIGHT));
@@ -405,7 +411,6 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 		});
 		
 		updateView();
-		
 		repaint();
 	}
 	
