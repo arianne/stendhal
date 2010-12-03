@@ -32,8 +32,8 @@ import games.stendhal.server.entity.creature.impl.attack.AttackStrategy;
 import games.stendhal.server.entity.creature.impl.attack.AttackStrategyFactory;
 import games.stendhal.server.entity.creature.impl.heal.HealerBehavior;
 import games.stendhal.server.entity.creature.impl.heal.HealerBehaviourFactory;
-import games.stendhal.server.entity.creature.impl.idle.IdleBehaviourFactory;
 import games.stendhal.server.entity.creature.impl.idle.IdleBehaviour;
+import games.stendhal.server.entity.creature.impl.idle.IdleBehaviourFactory;
 import games.stendhal.server.entity.creature.impl.poison.Attacker;
 import games.stendhal.server.entity.creature.impl.poison.PoisonerFactory;
 import games.stendhal.server.entity.item.Corpse;
@@ -42,6 +42,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.util.CounterMap;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -53,11 +54,11 @@ import java.util.Map;
 import java.util.Observer;
 
 import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
-import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
@@ -69,8 +70,7 @@ import org.apache.log4j.Logger;
  * <p>
  * Not all creatures have to be hostile, but at the moment the default behavior
  * is to attack the player.
- * <p>
- * The ai
+ *
  */
 public class Creature extends NPC {
 	/** the logger instance. */
@@ -82,9 +82,9 @@ public class Creature extends NPC {
 	 */
 	private static final double SERVER_DROP_GENEROSITY = 1;
 
-	public HealerBehavior healer = HealerBehaviourFactory.get(null);
+	private HealerBehavior healer = HealerBehaviourFactory.get(null);
 
-	public AttackStrategy strategy;
+	private AttackStrategy strategy;
 
 	
 	/**
@@ -136,6 +136,13 @@ public class Creature extends NPC {
 	private CircumstancesOfDeath circumstances;
 	private Registrator registrator = new Registrator();
 
+	private CounterMap<String> hitPlayers;
+
+	/**
+	 * creates a new Creature
+	 *
+	 * @param object serialized creature
+	 */
 	public Creature(final RPObject object) {
 		super(object);
 
@@ -153,6 +160,11 @@ public class Creature extends NPC {
 		susceptibilities = new EnumMap<Nature, Double>(Nature.class);
 	}
 
+	/**
+	 * creates a new Creature
+	 *
+	 * @param copy template to copy
+	 */
 	public Creature(final Creature copy) {
 		this();
 
@@ -198,7 +210,7 @@ public class Creature extends NPC {
 
 		stop();
 		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug(getIDforDebug() + " Created " + get("class") + ":"
+			LOGGER.debug(getID() + " Created " + get("class") + ":"
 					+ this);
 		}
 	}
@@ -299,10 +311,15 @@ public class Creature extends NPC {
 
 		stop();
 		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug(getIDforDebug() + " Created " + clazz + ":" + this);
+			LOGGER.debug(getID() + " Created " + clazz + ":" + this);
 		}
 	}
 
+	/**
+	 * creates a new instance, using this creature as template
+	 *
+	 * @return a new creature
+	 */
 	public Creature getNewInstance() {
 		return new Creature(this);
 	}
@@ -404,10 +421,6 @@ public class Creature extends NPC {
 	}
 
 
-	public RPObject.ID getIDforDebug() {
-		return getID();
-	}
-
 	public void setAIProfiles(final Map<String, String> aiProfiles) {
 		this.aiProfiles = aiProfiles;
 		setHealer(aiProfiles.get("heal"));
@@ -482,6 +495,7 @@ public class Creature extends NPC {
 	 * adds a named item to the List of Items that will be dropped on dead if
 	 * clearDropItemList hasn't been called first, this will change all
 	 * creatures of this kind.
+	 *
 	 * @param name 
 	 * @param probability 
 	 * @param min 
@@ -495,6 +509,7 @@ public class Creature extends NPC {
 	 * adds a named item to the List of Items that will be dropped on dead if
 	 * clearDropItemList hasn't been called first, this will change all
 	 * creatures of this kind.
+	 *
 	 * @param name 
 	 * @param probability 
 	 * @param amount 
