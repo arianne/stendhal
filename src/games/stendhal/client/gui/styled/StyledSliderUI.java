@@ -28,6 +28,7 @@ import javax.swing.plaf.basic.BasicSliderUI;
  * trying to use this for vertical sliders will most likely fail spectacularly. 
  */
 public class StyledSliderUI extends BasicSliderUI {
+
 	private static final int TRACK_HEIGHT = 6;
 	private static final int SLIDER_WIDTH = 8;
 	private final Style style;
@@ -35,7 +36,11 @@ public class StyledSliderUI extends BasicSliderUI {
 	// Required by UIManager
 	public static ComponentUI createUI(JComponent slider) {
 		// SliderUI can not be shared
-		return new StyledSliderUI(StyleUtil.getStyle(), (JSlider) slider);
+		if (slider instanceof JSlider) {
+			return new StyledSliderUI(StyleUtil.getStyle(), (JSlider) slider);
+		} else {
+			return null;
+		}
 	}
 
 	public StyledSliderUI(Style style, JSlider slider) {
@@ -59,7 +64,7 @@ public class StyledSliderUI extends BasicSliderUI {
 			 * Needs to be done like this, because getMousePosition() does
 			 * not necessarily return a non null value in the next call.
 			 */
-			Point point = slider.getMousePosition();
+			final Point point = slider.getMousePosition();
 			if (point != null) {
 				adjust = point.x;
 			}

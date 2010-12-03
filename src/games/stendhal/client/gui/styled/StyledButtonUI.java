@@ -107,10 +107,13 @@ public class StyledButtonUI extends BasicButtonUI {
 		 * effect can be simulated like this.
 		 */
 		Dimension dim = super.getPreferredSize(button);
-		Insets margin = ((AbstractButton) button).getMargin();
-		dim.width += margin.left + margin.right;
-		dim.height += margin.top + margin.bottom;
-		
+
+		if (button instanceof AbstractButton) {
+			Insets margin = ((AbstractButton) button).getMargin();
+			dim.width += margin.left + margin.right;
+			dim.height += margin.top + margin.bottom;
+		}
+
 		return dim;
 	}
 	
