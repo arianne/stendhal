@@ -145,7 +145,7 @@ public class ScrollerPanel extends JPanel {
 			g2d.setBackground(backgroundColor);
 			g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
 			final GradientPaint gp = new GradientPaint(0f, 0f, backgroundColor, 0f,
-					this.getHeight() / 2, textColor, true);
+					this.getHeight() / 2.f, textColor, true);
 			g2d.setPaint(gp);
 			g2d.setFont(font);
 			final FontMetrics metrics = g2d.getFontMetrics();
