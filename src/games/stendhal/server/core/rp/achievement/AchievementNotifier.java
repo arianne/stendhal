@@ -186,6 +186,15 @@ public final class AchievementNotifier {
 	}
 	
 	/**
+	 * check all achievements for a player that belong to the obtain category
+	 * 
+	 * @param player
+	 */
+	public void onObtain(Player player) {
+		getAndCheckAchievementsInCategory(player, Category.OBTAIN);
+	}
+	
+	/**
 	 * Award a player with an achievement that wasn't yet reached by the player
 	 * (used for example in the wishing well)
 	 * 
