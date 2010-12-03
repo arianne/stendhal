@@ -95,7 +95,13 @@ public class NecroStaff extends Item implements UseListener {
 		pickedCreature = possibleCreatures.get(pickedIdx);
 			
 		//		 create it
-		final AttackableCreature creature = new AttackableCreature(pickedCreature);
+		final AttackableCreature creature;
+
+		if (pickedCreature != null) {
+			creature = new AttackableCreature(pickedCreature);
+		} else {
+			creature = null;
+		}
 		
 		return creature;
 	}

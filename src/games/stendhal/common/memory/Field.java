@@ -126,7 +126,7 @@ public class Field
 			@SuppressWarnings("unchecked")
 			T[] newArray = (T[])Array.newInstance(componentType, newSize);
 
-			if(keepData && field != null)
+			if(keepData)
 				System.arraycopy(field, 0, newArray, 0, field.length);
 
 			return newArray;

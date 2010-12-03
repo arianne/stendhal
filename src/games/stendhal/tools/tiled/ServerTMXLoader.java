@@ -256,10 +256,6 @@ public class ServerTMXLoader {
 			is = url.openStream();
 		}
 
-		if (is == null) {
-			return null;
-		}
-
 		// Wrap with GZIP decoder for .tmx.gz files
 		if (filename.endsWith(".gz")) {
 			is = new GZIPInputStream(is);
