@@ -390,10 +390,10 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 		
 		for (int x = 0; x < mapWidth; x++) {
 			for (int y = 0; y < mapHeight; y++) {
-				if (!cd.walkable(x, y)) {
+				if (cd.collides(x, y)) {
 					g.setColor(COLOR_BLOCKED);
 					g.fillRect(x * scale, y * scale, scale, scale);
-				} else if (pd != null && !pd.walkable(x, y)) {
+				} else if (pd != null && pd.collides(x, y)) {
 					// draw protection only if there is no collision to draw
 					g.setColor(COLOR_PROTECTION);
 					g.fillRect(x * scale, y * scale, scale, scale);
