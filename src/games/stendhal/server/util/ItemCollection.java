@@ -28,10 +28,11 @@ import java.util.TreeMap;
  *
  * @author Martin Fuchs
  */
-@SuppressWarnings("serial")
 public class ItemCollection extends TreeMap<String, Integer> {
 
-    /**
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Construct an ItemCollection from a quest state string in
      * the form "item1=n1;item2=n2;...".
      * @param str
