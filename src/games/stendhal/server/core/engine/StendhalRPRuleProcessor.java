@@ -68,7 +68,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private static final Logger logger = Logger.getLogger(StendhalRPRuleProcessor.class);
 	/** list of super admins read from admins.list. */
 	private static Map<String, String> adminNames;
-	/** welcome message unless overwriten by an url */
+	/** welcome message unless overwritten by an URL */
 	private static String welcomeMessage = "Welcome to Stendhal. Need help? #http://stendhalgame.org/wiki/AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
 
 	/** The Singleton instance. */
@@ -415,41 +415,44 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				return false;
 			}
 
-			if (!(object instanceof Player)) {
-				logger.error("onInit: object is not an instance of Player: " + object, new Throwable());
-			}
-			Player player = (Player) object;
+			if (object instanceof Player) {
+				Player player = (Player) object;
 			
-			playersRmText.add(player);
+				playersRmText.add(player);
 
-			// place the player and his pets into the world
-			PlayerTransformer.placePlayerIntoWorldOnLogin(object, player);
-			PlayerTransformer.placeSheepAndPetIntoWorld(player);
-			player.notifyWorldAboutChanges();
-			StendhalRPAction.transferContent(player);
+				// place the player and his pets into the world
+				PlayerTransformer.placePlayerIntoWorldOnLogin(object, player);
+				PlayerTransformer.placeSheepAndPetIntoWorld(player);
+				player.notifyWorldAboutChanges();
+				StendhalRPAction.transferContent(player);
 
+				getOnlinePlayers().add(player);
 
-			getOnlinePlayers().add(player);
+				if (!player.isGhost()) {
+					notifyOnlineStatus(true, player);
+					DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, true);
+	
+				}
+				updatePlayerNameListForPlayersOnLogin(player);
+				String[] params = {};
 
-			if (!player.isGhost()) {
-				notifyOnlineStatus(true, player);
-				DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, true);
+				new GameEvent(player.getName(), "login", params).raise();
+				SingletonRepository.getLoginNotifier().onPlayerLoggedIn(player);
+				TutorialNotifier.login(player);
 
+				readAdminsFromFile(player);
+				welcome(player);
+				return true;
+			} else {
+				logger.error("onInit: object is not an instance of Player: " + object, new Throwable());
+				return false;
 			}
-			updatePlayerNameListForPlayersOnLogin(player);
-			String[] params = {};
-
-			new GameEvent(player.getName(), "login", params).raise();
-			SingletonRepository.getLoginNotifier().onPlayerLoggedIn(player);
-			TutorialNotifier.login(player);
-
-			readAdminsFromFile(player);
-			welcome(player);
-			return true;
 		} catch (final Exception e) {
-			String id = "<object is null>";
+			final String id;
 			if (object != null) {
 				id = object.get("#db_id");
+			} else {
+				 id = "<object is null>";
 			}
 			logger.error("There has been a severe problem loading player " + id, e);
 			return false;
