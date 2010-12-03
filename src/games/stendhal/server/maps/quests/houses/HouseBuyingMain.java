@@ -25,7 +25,7 @@ import games.stendhal.server.entity.player.Player;
  * @author kymara
  */
 public class HouseBuyingMain {
-	static HouseTax houseTax;
+	static HouseTax houseTax = null;
 
 	/** Kalavan house seller Zone name. */
 	private static final String KALAVAN_CITY = "0_kalavan_city";

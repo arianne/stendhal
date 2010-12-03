@@ -36,7 +36,7 @@ import java.util.List;
  * @author hendrik
  */
 public class NineSwitchesGame implements LoadableContent {
-	private StendhalRPZone zone;
+	private StendhalRPZone zone = null;
 	private NineSwitchesGameBoard board;
 	private SpeakerNPC npc;
 

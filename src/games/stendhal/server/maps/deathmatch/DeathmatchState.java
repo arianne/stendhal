@@ -21,13 +21,13 @@ import java.util.Date;
  */
 public class DeathmatchState {
 
-	private DeathmatchLifecycle lifecycleState;
+	private DeathmatchLifecycle lifecycleState = null;
 
 	private int level;
 
 	private long date;
 
-        private int points;
+	private int points;
 
 	protected DeathmatchState() {
 		// hide constructor
@@ -135,6 +135,17 @@ public class DeathmatchState {
 	}
 
 	/**
+	 * Updates the time stamp.
+	 */
+	public void refreshTimestamp() {
+		date = new Date().getTime();
+	}
+
+	public long getStateTime() {
+		return date;
+	}
+
+	/**
 	 * Returns the state as string which can be stored in the quest slot.
 	 *
 	 * @return quest string
@@ -147,16 +158,5 @@ public class DeathmatchState {
 	public String toString() {
 		// use toQuestString() because it is better than Object.toString()
 		return toQuestString();
-	}
-
-	/**
-	 * Updates the time stamp.
-	 */
-	public void refreshTimestamp() {
-		date = new Date().getTime();
-	}
-
-	public long getStateTime() {
-		return date;
 	}
 }

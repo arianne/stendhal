@@ -35,7 +35,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	/**
 	 * The area on which the dice have to be thrown.
 	 */
-	private Area playingArea;
+	private Area playingArea = null;
 
 	/**
 	 * A list where each possible dice sum is the index of the element which is
@@ -43,7 +43,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	 * text that should be said by the NPC, or null if the player doesn't win
 	 * anything for this sum.
 	 */
-	private Map<Integer, Pair<String, String>> prizes;
+	private Map<Integer, Pair<String, String>> prizes = null;
 
 	public CroupierNPC(final String name) {
 		super(name);
@@ -51,6 +51,16 @@ public abstract class CroupierNPC extends SpeakerNPC {
 
 	public void setPrizes(final Map<Integer, Pair<String, String>> prizes) {
 		this.prizes = prizes;
+	}
+
+	/**
+	 * Sets the playing area (a table or something like that).
+	 * 
+	 * @param playingArea
+	 *            shape of the playing area (in the same zone as the NPC)
+	 */
+	public void setTableArea(final Rectangle playingArea) {
+		this.playingArea = new Area(getZone(), playingArea);
 	}
 
 	public void onThrown(final Dice dice, final Player player) {
@@ -85,15 +95,5 @@ public abstract class CroupierNPC extends SpeakerNPC {
 					+ sum
 					+ " points. You haven't won anything. Better luck next time!");
 		}
-	}
-
-	/**
-	 * Sets the playing area (a table or something like that).
-	 * 
-	 * @param playingArea
-	 *            shape of the playing area (in the same zone as the NPC)
-	 */
-	public void setTableArea(final Rectangle playingArea) {
-		this.playingArea = new Area(getZone(), playingArea);
 	}
 }

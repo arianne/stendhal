@@ -31,7 +31,7 @@ public class TileSetDefinition implements Serializable {
 	private String name;
 
 	/** The source image of this tileset. */
-	private String source;
+	private String source = null;
 
 	/** The id where this tileset begins to number tiles. */
 	private int gid;

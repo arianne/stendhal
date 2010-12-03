@@ -70,7 +70,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	private static final int COST = 1000;
 
 	// "static" data
-	private StendhalRPZone zone;
+	private StendhalRPZone zone = null;
 
 	private SpeakerNPC npc;
 

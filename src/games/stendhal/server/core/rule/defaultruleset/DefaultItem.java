@@ -52,15 +52,15 @@ public class DefaultItem {
 	private double weight;
 
 	/** slots where this item can be equipped. */
-	private List<String> slots;
+	private List<String> slots = null;
 
 	/** Map Tile Id. */
 	private int tileid;
 
 	/** Attributes of the item.*/
-	private Map<String, String> attributes;
+	private Map<String, String> attributes = null;
 
-	private Class< ? > implementation;
+	private Class< ? > implementation = null;
 
 	private int value;
 	

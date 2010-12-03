@@ -37,7 +37,7 @@ import marauroa.common.net.Serializable;
  */
 public class LayerDefinition implements Serializable {
 	/** To which map this layer belong. */
-	private StendhalMapStructure map;
+	private StendhalMapStructure map = null;
 
 	/** Width of the layer that SHOULD be the same that the width of the map. */
 	private int width;
@@ -61,7 +61,7 @@ public class LayerDefinition implements Serializable {
 	private String name;
 
 	/** The data encoded as int in a array of size width*height .*/
-	private int[] data;
+	private int[] data = null;
 
 	/**
 	 * The same data in a raw byte array, so we save reencoding it again for
@@ -117,7 +117,6 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * @return the allocated raw array so it can be modified.
-
 	 */
 	public byte[] exposeRaw() {
 		return raw;

@@ -33,7 +33,7 @@ import java.util.Arrays;
  * @author hendrik
  */
 public class TicTacToeGame implements LoadableContent {
-	private StendhalRPZone zone;
+	private StendhalRPZone zone = null;
 	private TicTacToeBoard board;
 	private SpeakerNPC npc;
 
