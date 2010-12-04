@@ -47,6 +47,13 @@ public class CounterMap<T> {
 	}
 
 	/**
+	 * clears the counting and starts at 0 again.
+	 */
+	public void clear() {
+		map.clear();
+	}
+
+	/**
 	 * increments the counter of the specified object
 	 *
 	 * @param object object to count
