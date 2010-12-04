@@ -2199,8 +2199,8 @@ public class Player extends RPEntity {
 
 	/**
 	 * Increases the count of obtains from the well for the given item
-	 * @param item the item name
-	 * @param count 
+	 * @param name the item name
+	 * @param quantity 
 	 */
 	public void incObtainedForItem(String name, int quantity) {
 		itemCounter.incObtainedForItem(name, quantity);
