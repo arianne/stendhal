@@ -23,6 +23,7 @@ import java.util.LinkedList;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
@@ -131,8 +132,10 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Goodbye.", getReply(npc));
 
 		// -----------------------------------------------
-		player.equip(SingletonRepository.getEntityManager().getItem("money"), 100000);
-		
+		final StackableItem money = (StackableItem)SingletonRepository.getEntityManager().getItem("money");
+		money.setQuantity(100000);
+		player.equipToInventoryOnly(money);
+
 		en.step(player, "hi");
 		assertEquals("Hello, player.", getReply(npc));
 		en.step(player, "buy");
@@ -153,11 +156,11 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 			portal.setIdentifier("keep rpzone happy");
 			SingletonRepository.getRPWorld().getRPZone(zone).add(portal);
 		}
-		
+
 		en.step(player, "101");
 		assertEquals("Congratulations, here is your key to athor apartment 101! Make sure you change the locks if you ever lose it. Do you want to buy a spare key, at a price of 1000 money?", getReply(npc));
 		en.step(player, "yes");
-		
+
 		assertTrue(player.isEquipped("player's house key"));
 		
 		Item item = player.getFirstEquipped("player's house key");

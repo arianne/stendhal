@@ -20,6 +20,7 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
@@ -188,7 +189,9 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "50"));
 		assertEquals("You do not have enough money to buy a house!", getReply(npc));
 		
-		player.equip(SingletonRepository.getEntityManager().getItem("money"), 120000);
+		final StackableItem money = (StackableItem)SingletonRepository.getEntityManager().getItem("money");
+		money.setQuantity(120000);
+		player.equipToInventoryOnly(money);
 		
 		// don't answer anything
 		assertFalse(en.step(player, "42"));
