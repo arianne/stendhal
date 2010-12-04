@@ -99,19 +99,21 @@ public class HouseUtilities {
 	 * house by number <code>id</code>
 	 */
 	protected static HousePortal getHousePortal(final int houseNumber) {
-		final List<HousePortal> portals =  getHousePortals();
-		
+		final List<HousePortal> portals = getHousePortals();
+
 		for (final HousePortal houseportal : portals) {
 			final int number = houseportal.getPortalNumber();
 			if (number == houseNumber) {
 				return houseportal;
 			}
 		}
+
 		// if we got this far, we didn't find a match
-		logger.error("getHousePortal was given a number (" + Integer.toString(houseNumber) + ") it couldn't match a house portal for - how did that happen?!");
+		// (triggered by AdosHouseSellerTest.testAdosHouseSellerNoZones)
+		logger.error("getHousePortal was given a number (" + Integer.toString(houseNumber) + ") it couldn't match a house portal for");
 		return null;
 	}
-	
+
 	/**
 	 * Get a list of all house portals available to players.
 	 * 
