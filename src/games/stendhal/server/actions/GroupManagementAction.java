@@ -138,6 +138,7 @@ public class GroupManagementAction implements ActionListener {
 
 		// invite
 		group.invite(player, targetPlayer);
+		player.sendPrivateText("You have invited " + targetPlayer.getName() + " to join your group.");
 	}
 
 	/**
@@ -188,7 +189,7 @@ public class GroupManagementAction implements ActionListener {
 		}
 
 		// check if the target player is a member of this group
-		if (group.hasMember(targetPlayer.getName())) {
+		if (!group.hasMember(targetPlayer.getName())) {
 			player.sendPrivateText(NotificationType.ERROR, targetPlayer.getName() + " is not a member of your group.");
 			return;
 		}
