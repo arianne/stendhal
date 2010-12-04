@@ -71,6 +71,8 @@ public class EventFactory {
 			event = new AttackEvent();
 		} else if (name.equals(Events.TRADE_STATE_CHANGE)) {
 			event = new TradeStateChangeEvent();
+		} else if (name.equals(Events.PROGRESS_STATUS_CHANGE)) {
+			event = new ProgressStatusEvent();
 		}
 
 		if (event != null) {
