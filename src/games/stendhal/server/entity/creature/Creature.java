@@ -961,7 +961,13 @@ public class Creature extends NPC {
 			}
 		}
 
-		// TODO: use player who did the most damage
+		// which player did hurt us most
+		Entity entity = damageReceived.getHighestCountedObject();
+		if ((entity != null) && (entity instanceof Player)) {
+			if (getZone() == entity.getZone()) {
+				return ((Player) entity).getName();
+			}
+		}
 		return null;
 	}
 
