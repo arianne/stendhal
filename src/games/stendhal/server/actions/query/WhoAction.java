@@ -10,10 +10,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.query;
 
 import static games.stendhal.common.constants.Actions.WHO;
 import games.stendhal.common.filter.FilterCriteria;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;

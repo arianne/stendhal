@@ -10,10 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.query;
 
 
 import static org.junit.Assert.assertFalse;
+import games.stendhal.server.actions.query.InfoAction;
 import games.stendhal.server.entity.player.Player;
 
 import org.junit.Test;

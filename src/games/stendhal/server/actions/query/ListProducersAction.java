@@ -10,35 +10,33 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.query;
 
-import games.stendhal.common.Debug;
+import static games.stendhal.common.constants.Actions.LISTPRODUCERS;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import marauroa.common.game.RPAction;
 
 /**
- * Answers with the server time and if this is the test server with the version information.
- * 
- * @author hendrik
+ * Lists the producers with have open tasks for the asking player.
  */
-public class InfoAction implements ActionListener {
+public class ListProducersAction implements ActionListener {
+	
 
-	private static final String DATE_FORMAT_NOW = "dd-MMMM-yyyy HH:mm:ss";
-
-	public void onAction(final Player player, final RPAction action) {
-		player.sendPrivateText("The server time is " + getGametime());
-		if (Debug.PRE_RELEASE_VERSION != null) {
-			player.sendPrivateText("Testserver version " + Debug.VERSION + " - " + Debug.PRE_RELEASE_VERSION);
-		}
+	public static void register() {
+		CommandCenter.register(LISTPRODUCERS, new ListProducersAction());
 	}
 
-	private String getGametime() {
-		final SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
-		return sdf.format(new Date(System.currentTimeMillis()));
+	public void onAction(final Player player, final RPAction action) {
+
+		final StringBuilder st = new StringBuilder();
+		st.append(SingletonRepository.getProducerRegister().listWorkingProducers(player));
+
+		player.sendPrivateText(st.toString());
+		player.notifyWorldAboutChanges();
+
 	}
 
 }

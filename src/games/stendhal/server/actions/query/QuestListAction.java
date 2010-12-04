@@ -10,29 +10,38 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.query;
 
-import static games.stendhal.common.constants.Actions.LISTPRODUCERS;
+import static games.stendhal.common.constants.Actions.LISTQUESTS;
+import static games.stendhal.common.constants.Actions.TARGET;
+import games.stendhal.common.NotificationType;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 /**
- * Lists the producers with have open tasks for the asking player.
+ * list the known quest or gives details on them.
  */
-public class ListProducersAction implements ActionListener {
+public class QuestListAction implements ActionListener {
 	
 
 	public static void register() {
-		CommandCenter.register(LISTPRODUCERS, new ListProducersAction());
+		CommandCenter.register(LISTQUESTS, new QuestListAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {
 
 		final StringBuilder st = new StringBuilder();
-		st.append(SingletonRepository.getProducerRegister().listWorkingProducers(player));
+		if (action.has(TARGET)) {
+			final String which = action.get(TARGET);
+			st.append(SingletonRepository.getStendhalQuestSystem().listQuest(player, which));
 
-		player.sendPrivateText(st.toString());
+		} else {
+			st.append(SingletonRepository.getStendhalQuestSystem().listQuests(player));
+		}
+		player.sendPrivateText(NotificationType.DETAILED, st.toString());
 		player.notifyWorldAboutChanges();
 
 	}

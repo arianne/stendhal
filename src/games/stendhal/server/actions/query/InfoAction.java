@@ -10,38 +10,36 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.query;
 
-import static games.stendhal.common.constants.Actions.LISTQUESTS;
-import static games.stendhal.common.constants.Actions.TARGET;
-import games.stendhal.common.NotificationType;
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.common.Debug;
+import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import marauroa.common.game.RPAction;
 
 /**
- * list the known quest or gives details on them.
+ * Answers with the server time and if this is the test server with the version information.
+ * 
+ * @author hendrik
  */
-public class QuestListAction implements ActionListener {
-	
+public class InfoAction implements ActionListener {
 
-	public static void register() {
-		CommandCenter.register(LISTQUESTS, new QuestListAction());
-	}
+	private static final String DATE_FORMAT_NOW = "dd-MMMM-yyyy HH:mm:ss";
 
 	public void onAction(final Player player, final RPAction action) {
-
-		final StringBuilder st = new StringBuilder();
-		if (action.has(TARGET)) {
-			final String which = action.get(TARGET);
-			st.append(SingletonRepository.getStendhalQuestSystem().listQuest(player, which));
-
-		} else {
-			st.append(SingletonRepository.getStendhalQuestSystem().listQuests(player));
+		player.sendPrivateText("The server time is " + getGametime());
+		if (Debug.PRE_RELEASE_VERSION != null) {
+			player.sendPrivateText("Testserver version " + Debug.VERSION + " - " + Debug.PRE_RELEASE_VERSION);
 		}
-		player.sendPrivateText(NotificationType.DETAILED, st.toString());
-		player.notifyWorldAboutChanges();
+	}
 
+	private String getGametime() {
+		final SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+		return sdf.format(new Date(System.currentTimeMillis()));
 	}
 
 }

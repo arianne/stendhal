@@ -31,6 +31,12 @@ import games.stendhal.server.actions.move.PushAction;
 import games.stendhal.server.actions.pet.ForsakeAction;
 import games.stendhal.server.actions.pet.NameAction;
 import games.stendhal.server.actions.pet.OwnAction;
+import games.stendhal.server.actions.query.InfoAction;
+import games.stendhal.server.actions.query.ListProducersAction;
+import games.stendhal.server.actions.query.LookAction;
+import games.stendhal.server.actions.query.QuestListAction;
+import games.stendhal.server.actions.query.WhereAction;
+import games.stendhal.server.actions.query.WhoAction;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.concurrent.ConcurrentHashMap;

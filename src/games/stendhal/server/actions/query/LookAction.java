@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.query;
 
 import static games.stendhal.common.constants.Actions.LOOK;
 import static games.stendhal.common.constants.Actions.NAME;
@@ -18,6 +18,8 @@ import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TYPE;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Actions;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;

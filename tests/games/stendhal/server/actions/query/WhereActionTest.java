@@ -10,12 +10,13 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.query;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.common.constants.Actions;
+import games.stendhal.server.actions.query.WhereAction;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Pet;
