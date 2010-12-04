@@ -329,7 +329,8 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 
 		final DisplaceAction action = new DisplaceAction();
 		action.onAction(player, displace);
-		assertEquals(0, player.events().size());
+		assertEquals(1, player.events().size());
+		assertEquals("You cannot displace that much money.", player.events().get(0).get("text"));
 		items = localzone.getItemsOnGround().toArray(new StackableItem[0]);
 		assertEquals(1, items.length);
 		assertEquals(10, items[0].getQuantity());
