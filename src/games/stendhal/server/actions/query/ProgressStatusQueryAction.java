@@ -13,7 +13,6 @@
 package games.stendhal.server.actions.query;
 
 import static games.stendhal.common.constants.Actions.PROGRESS_STATUS;
-import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -92,7 +91,10 @@ public class ProgressStatusQueryAction implements ActionListener {
 	 * @param item name of item to get details about
 	 */
 	private void sendDetails(Player player, String progressType, String item) {
-		player.sendPrivateText(NotificationType.ERROR, "Not implemented, yet.");
+		if (progressType.equals("Open Quests") || progressType.equals("Completed Quests")) {
+			player.addEvent(new ProgressStatusEvent(progressType, item, 
+				SingletonRepository.getStendhalQuestSystem().getQuestProgressDetails(player, item)));
+		}
 	}
 
 }

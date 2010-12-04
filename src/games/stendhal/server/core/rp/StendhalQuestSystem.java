@@ -341,7 +341,7 @@ public class StendhalQuestSystem {
 		}
 		return sb.toString();
 	}
-	
+
 	// this is being used for the InspectAction 
 	public String listQuestsStates(final Player player) {
 		final StringBuilder sb = new StringBuilder();
@@ -397,6 +397,30 @@ public class StendhalQuestSystem {
 		}
 		return res;
 	}
+
+	/**
+	 * gets details on the progress of the quest
+	 *
+	 * @param player player to get the details for
+	 * @param questName name of quest
+	 * @return details
+	 */
+	public List<String> getQuestProgressDetails(final Player player, final String questName) {
+		List<String> res = new LinkedList<String>();
+		for (final IQuest quest : quests) {
+			if (quest.getName().equals(questName)) {
+				final QuestInfo questInfo = quest.getQuestInfo(player);
+				res.add(questInfo.getDescription());
+				res.add("");
+				final List<String> history = quest.getHistory(player);
+				for (final String entry : history) {
+					res.add(entry);
+				}
+			}
+		}
+		return null;
+	}
+
 
 	/**
 	 * gets the IQuest object for a named quest.
