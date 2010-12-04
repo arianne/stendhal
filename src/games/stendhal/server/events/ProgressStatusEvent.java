@@ -41,6 +41,16 @@ public class ProgressStatusEvent extends RPEvent {
 	/**
 	 * creates a new ProgressStatusEvent
 	 *
+	 * @param progressTypes list of progressTypes supported
+	 */
+	public ProgressStatusEvent(List<String> progressTypes) {
+		super(Events.PROGRESS_STATUS_CHANGE);
+		put("data", progressTypes);
+	}
+
+	/**
+	 * creates a new ProgressStatusEvent
+	 *
 	 * @param type type of status (open_quests, completed_quests, producing, ...)
 	 * @param items list of items to display
 	 */
@@ -63,4 +73,5 @@ public class ProgressStatusEvent extends RPEvent {
 		put("item", item);
 		put("data", data);
 	}
+
 }

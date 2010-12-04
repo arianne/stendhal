@@ -34,6 +34,7 @@ import games.stendhal.server.actions.pet.OwnAction;
 import games.stendhal.server.actions.query.InfoAction;
 import games.stendhal.server.actions.query.ListProducersAction;
 import games.stendhal.server.actions.query.LookAction;
+import games.stendhal.server.actions.query.ProgressStatusQueryAction;
 import games.stendhal.server.actions.query.QuestListAction;
 import games.stendhal.server.actions.query.WhereAction;
 import games.stendhal.server.actions.query.WhoAction;
@@ -103,6 +104,7 @@ public class CommandCenter {
 		NameAction.register();
 		OutfitAction.register();
 		OwnAction.register();
+		ProgressStatusQueryAction.register();
 		PushAction.register();
 		QuestListAction.register();
 		SentenceAction.register();

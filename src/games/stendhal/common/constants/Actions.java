@@ -40,6 +40,9 @@ public final class Actions {
 	public static final String OWN = "own";
 
 	//list quests	
+	public static final String PROGRESS_STATUS = "progressstatus";
+
+	//list quests	
 	public static final String LISTQUESTS = "listquests";
 	
 	//list producers
