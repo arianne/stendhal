@@ -5,9 +5,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
-
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -17,10 +14,12 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.tools.tiled.LayerDefinition;
+
+import java.io.IOException;
+
 import marauroa.common.game.RPAction;
 import marauroa.server.game.db.DatabaseFactory;
 
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -80,6 +79,34 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 
 		final DisplaceAction action = new DisplaceAction();
 		action.onAction(player, displace);
+		assertEquals(0, player.events().size());
+	}
+
+	/**
+	 * Test for displacing items that are too far away.
+	 */
+	@Test
+	public void testDisplaceNotNearEnough() {
+		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+
+		final Player player = createTestPlayer("bob");
+		player.setPosition(10, 10);
+		localzone.add(player);
+
+		final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+		localzone.add(item);
+
+		final RPAction displace = new RPAction();
+		displace.put("type", "displace");
+		displace.put("baseitem", item.getID().getObjectID());
+		displace.put("quantity", "1");
+		displace.put("x", player.getX());
+		displace.put("y", player.getY() + 1);
+
+		final DisplaceAction action = new DisplaceAction();
+		action.onAction(player, displace);
+		assertEquals(1, player.events().size());
+		assertEquals("You must be next to something you wish to move.", player.events().get(0).get("text"));
 	}
 
 	/**
@@ -113,7 +140,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 		assertTrue(displace.has(EquipActionConsts.BASE_ITEM));
 	
 		action.onAction(player, displace);
-		Assert.assertEquals(0, player.events().size());
+		assertEquals(0, player.events().size());
 		items = localzone.getItemsOnGround().toArray(new StackableItem[0]);
 		assertEquals(2, items.length);
 		assertEquals(0, items[0].getX());
@@ -144,7 +171,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 		displace.put("y", player.getY() + 1);
 
 		new DisplaceAction().onAction(player, displace);
-		Assert.assertEquals(0, player.events().size());
+		assertEquals(0, player.events().size());
 		Item[] items = localzone.getItemsOnGround().toArray(new Item[0]);
 		assertEquals(1, items.length);
 		assertEquals(0, items[0].getX());
@@ -171,7 +198,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 		displace.put("y", player.getY() + 1);
 
 		new DisplaceAction().onAction(player, displace);
-		Assert.assertEquals(0, player.events().size());
+		assertEquals(0, player.events().size());
 		assertNull(localzone.getBlood(0, 0));
 		assertNotNull(localzone.getBlood(0, 1));
 	}
@@ -202,9 +229,9 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 		displace.put("y", 100);
 
 		new DisplaceAction().onAction(player, displace);
-		Assert.assertEquals(1, player.events().size());
-		Assert.assertEquals("You cannot throw that far.", player.events().get(0).get("text"));
-		Assert.assertEquals(1, localzone.getItemsOnGround().size());
+		assertEquals(1, player.events().size());
+		assertEquals("You cannot throw that far.", player.events().get(0).get("text"));
+		assertEquals(1, localzone.getItemsOnGround().size());
 	}
 
 	/**
@@ -243,9 +270,9 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 		displace.put("y", player.getY()+1);
 
 		new DisplaceAction().onAction(player, displace);
-		Assert.assertEquals(1, player.events().size());
-		Assert.assertEquals("There is no space there.", player.events().get(0).get("text"));
-		Assert.assertEquals(1, localzone.getItemsOnGround().size());
+		assertEquals(1, player.events().size());
+		assertEquals("There is no space there.", player.events().get(0).get("text"));
+		assertEquals(1, localzone.getItemsOnGround().size());
 	}
 
 }
