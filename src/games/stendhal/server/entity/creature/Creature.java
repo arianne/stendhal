@@ -18,7 +18,9 @@ import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
@@ -41,6 +43,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.util.CounterMap;
 
@@ -915,5 +918,65 @@ public class Creature extends NPC {
 	
 	public void setDamageType(Nature type) {
 		damageType = type;
+	}
+
+	@Override
+	public boolean attack() {
+		boolean res = super.attack();
+
+		// count hits for corpse protection
+		final RPEntity defender = this.getAttackTarget();
+		if (defender instanceof Player) {
+			if (hitPlayers == null) {
+				hitPlayers = new CounterMap<String>();
+			}
+			hitPlayers.add(defender.getName());
+		}
+
+		return res;
+	}
+
+
+	/**
+	 * gets the name of the player who deserves the corpse
+	 *
+	 * @return name of player who deserves the corpse or <code>null</code>.
+	 */
+	@Override
+	public String getCorpseDeserver() {
+		// which player did we hurt most?
+		if (hitPlayers != null) {
+			String playerName = hitPlayers.getHighestCountedObject();
+			if ((playerName != null) && (hitPlayers.getCount(playerName) > 3)) {
+				if (isPlayerInZone(playerName)) {
+					return playerName;
+				}
+			}
+		}
+
+		// which player did we attack last?
+		RPEntity target = getAttackTarget();
+		if ((target != null) && (target instanceof Player)) {
+			if (getZone() == target.getZone()) {
+				return target.getName();
+			}
+		}
+
+		// TODO: use player who did the most damage
+		return null;
+	}
+
+	/**
+	 * checks if the name player is in the same zone
+	 *
+	 * @param playerName name of player
+	 * @return true if he is online and in the same zone as this creature
+	 */
+	private boolean isPlayerInZone(String playerName) {
+		Player player = StendhalRPRuleProcessor.get().getPlayer(playerName);
+		if (player == null) {
+			return false;
+		}
+		return getZone() == player.getZone();
 	}
 }

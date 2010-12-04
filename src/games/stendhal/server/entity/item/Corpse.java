@@ -194,8 +194,8 @@ public class Corpse extends PassiveEntity implements EquipListener {
 
 		SingletonRepository.getTurnNotifier().notifyInSeconds(getDegradationStepTimeout(), this.corpseDegradator);
 
-		if (victim.isAttacking()) {
-			setCorpseOwner(victim.getAttackTarget().getName());
+		if (victim.getCorpseDeserver() != null) {
+			setCorpseOwner(victim.getCorpseDeserver());
 			SingletonRepository.getTurnNotifier().notifyInSeconds(PROTECTION_TIME, this.itemForRewardsReleaser);
 		}
 		
