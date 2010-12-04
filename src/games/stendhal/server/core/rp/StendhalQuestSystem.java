@@ -367,6 +367,38 @@ public class StendhalQuestSystem {
 	}
 
 	/**
+	 * gets a list of open quests
+	 *
+	 * @param player Player to return the list for
+	 * @return list of open quests
+	 */
+	public List<String> getOpenQuests(Player player) {
+		List<String> res = new LinkedList<String>();
+		for (final IQuest quest : quests) {
+			if (quest.isStarted(player) && !quest.isCompleted(player)) {
+				res.add(quest.getName());
+			}
+		}
+		return res;
+	}
+
+	/**
+	 * gets a list of open quests
+	 *
+	 * @param player Player to return the list for
+	 * @return list of open quests
+	 */
+	public List<String> getCompletedQuests(Player player) {
+		List<String> res = new LinkedList<String>();
+		for (final IQuest quest : quests) {
+			if (quest.isCompleted(player)) {
+				res.add(quest.getName());
+			}
+		}
+		return res;
+	}
+
+	/**
 	 * gets the IQuest object for a named quest.
 	 *
 	 * @param questName name of quest
