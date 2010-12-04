@@ -15,7 +15,6 @@ package games.stendhal.server.actions.equip;
 import static games.stendhal.common.constants.Actions.BASEITEM;
 import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
-import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
@@ -57,6 +56,7 @@ public class DisplaceAction implements ActionListener {
 	 * @param action 
 	 */
 	public void onAction(final Player player, final RPAction action) {
+
 		if (!action.has(BASEITEM) || !action.has(X) || !action.has(Y)) {
 			logger.error("Incomplete DisplaceAction: " + action);
 			return;
@@ -234,28 +234,21 @@ public class DisplaceAction implements ActionListener {
 
 			Item newItem;
 
-			if ((quantity > 0) && (stackableItem != null) && (stackableItem.getQuantity() > 0)) {
-				if (quantity <= stackableItem.getQuantity()) {
-					newItem = removeFromWorld(player, stackableItem, quantity);
-				} else {
-					player.sendPrivateText("You cannot displace that much " + Grammar.plural(entity.getTitle()) + ".");
-					newItem = null;
-				}
+			if ((quantity > 0) && (stackableItem != null) && (quantity < stackableItem.getQuantity())) {
+				newItem = removeFromWorld(player, stackableItem, quantity);
 			} else {
 				item.onRemoveFromGround();
 				newItem = item;
 			}
 
-			if (newItem != null) {
-				newItem.setPosition(x, y);
-				if (newItem != item) {
-					zone.add(newItem);
-				}
-				newItem.notifyWorldAboutChanges();
-				newItem.onPutOnGround(player);
-
-				new ItemLogger().displace(player, newItem, zone, oldX, oldY, x, y);
+			newItem.setPosition(x, y);
+			if (newItem != item) {
+				zone.add(newItem);
 			}
+			newItem.notifyWorldAboutChanges();
+			newItem.onPutOnGround(player);
+
+			new ItemLogger().displace(player, newItem, zone, oldX, oldY, x, y);
 		} else {
 			entity.setPosition(x, y);
 			entity.notifyWorldAboutChanges();
@@ -270,14 +263,8 @@ public class DisplaceAction implements ActionListener {
 	 * @return Entity to place somewhere else in the world
 	 */
 	private Item removeFromWorld(final Player player, final StackableItem stackableItem, final int quantity) {
-		assert quantity>0;
-
 		final StackableItem newItem = stackableItem.splitOff(quantity);
-
-		if (newItem != null) {
-			new ItemLogger().splitOff(player, stackableItem, newItem, quantity);
-		}
-
+		new ItemLogger().splitOff(player, stackableItem, newItem, quantity);
 		return newItem;
 	}
 
