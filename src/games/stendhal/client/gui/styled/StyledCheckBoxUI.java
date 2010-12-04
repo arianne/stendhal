@@ -93,14 +93,16 @@ public class StyledCheckBoxUI extends BasicCheckBoxUI {
 		component.setForeground(style.getForeground());
 		component.setOpaque(false);
 		component.setFont(style.getFont().deriveFont(Font.BOLD));
-		
-		JCheckBox checkBox = (JCheckBox) component;
-		checkBox.setIcon(defaultIcon);
-		checkBox.setSelectedIcon(defaultSelectedIcon);
-		checkBox.setDisabledIcon(disabledIcon);
-		checkBox.setDisabledSelectedIcon(disabledSelectedIcon);
+
+		if (component instanceof JCheckBox) {
+			JCheckBox checkBox = (JCheckBox) component;
+			checkBox.setIcon(defaultIcon);
+			checkBox.setSelectedIcon(defaultSelectedIcon);
+			checkBox.setDisabledIcon(disabledIcon);
+			checkBox.setDisabledSelectedIcon(disabledSelectedIcon);
+		}
 	}
-	
+
 	/**
 	 * Create the icons for all the states.
 	 */
