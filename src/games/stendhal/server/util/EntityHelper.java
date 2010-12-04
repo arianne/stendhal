@@ -35,7 +35,7 @@ public class EntityHelper {
 	private static final String ATTR_BASEITEM = "baseitem";
 
 	/**
-	 * Returns an entity references by an objectId in a zone.
+	 * Returns an entity reference by an objectId in a zone.
 	 *
 	 * @param objectId objectId of this Entity
 	 * @param zone zone
