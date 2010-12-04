@@ -1075,7 +1075,7 @@ public class Player extends RPEntity {
 	 * 
 	 * @param name
 	 *            The quest's name
-	 * @return true iff the player has made any progress in the quest
+	 * @return true if the player has made any progress in the quest
 	 */
 	public boolean hasQuest(final String name) {
 		return quests.hasQuest(name);
@@ -1109,7 +1109,7 @@ public class Player extends RPEntity {
 	 * string may, for instance, be "started", "done", a semicolon- separated
 	 * list of items that need to be brought/NPCs that need to be met, or the
 	 * number of items that still need to be brought. Note that the string
-	 * "done" has a special meaning: see isQuestComplete().
+	 * "done" has a special meaning: see isQuestCompleted().
 	 * 
 	 * @param name
 	 *            The quest's name
