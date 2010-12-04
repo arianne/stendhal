@@ -2,12 +2,10 @@
 package games.stendhal.server.actions.equip;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -74,7 +72,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 
 		final DisplaceAction action = new DisplaceAction();
 		action.onAction(player, displace);
-//		Assert.assertEquals("XXX", player.events().get(0).get("text"));
+//		Assert.assertEquals("Text", player.events().get(0).get("text"));
 	}
 
 	/**
