@@ -137,7 +137,9 @@ public class PlayerRPClass {
 		player.addRPEvent("show_item_list", Definition.PRIVATE);
 		player.addRPEvent(Events.VIEW_CHANGE, Definition.PRIVATE);
 		player.addRPEvent(Events.GROUP_CHANGE, Definition.PRIVATE);
+		player.addRPEvent(Events.PROGRESS_STATUS_CHANGE, Definition.PRIVATE);
 
+		// Maps
 		player.addAttribute("source_usage", Type.MAP, Definition.HIDDEN);
 	}
 
