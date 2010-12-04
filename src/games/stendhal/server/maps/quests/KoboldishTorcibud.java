@@ -136,7 +136,12 @@ public class KoboldishTorcibud extends AbstractQuest {
 
         res.add("I made acquaintance with Wrviliza, the kobold barmaid in Wo'fol bar.");
 
-        final String questState = player.getQuest(QUEST_SLOT);
+        /**
+         * NOTE:
+         * Retrieving QUEST_SLOT without sub slot index 0 will break the if/then logic below.
+         */
+        final String questState = player.getQuest(QUEST_SLOT, 0);
+        logger.warn("Quest state: <" + questState + ">");
 
         if ("rejected".equals(questState)) {
             res.add("She asked me to help her refurbish her stock of supplies for preparing her Koboldish Torcibud, "
@@ -160,9 +165,10 @@ public class KoboldishTorcibud extends AbstractQuest {
         } else {
             final ItemCollection missingItems = new ItemCollection();
             /**
-             * NOTE: If this spot is reached then the quest is running and
-             * QUEST_SLOT sub slot 0 holds a semicolon separated list of item=amount pairs.
-             * Do not use player.getQuest(QUEST_SLOT, 0) as that would only retrieve the first pair.
+             * NOTE:
+             * The quest is running,
+             * QUEST_SLOT sub slot 0 holds a semicolon separated list of key=value token pairs.
+             * Do not use player.getQuest(QUEST_SLOT, 0) as that would only retrieve the first token pair.
              */
             missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
             res.add("I'm helping her refurbish her stock of supplies for preparing her Koboldish Torcibud."
@@ -234,7 +240,7 @@ public class KoboldishTorcibud extends AbstractQuest {
      
         final SpeakerNPC npc = npcs.get("Wrviliza");
 
-        // Player sends his greetings and never asked for a quest handled in NPC class
+        // Player sends his greetings and never asked for a quest is handled in NPC class
 
         // Player sends his greetings to Wrviliza and has rejected the quest in the past
         npc.add(ConversationStates.IDLE,
@@ -282,7 +288,8 @@ public class KoboldishTorcibud extends AbstractQuest {
             null);
 
         // Player is curious about stuff, ingredients or supplies when offered the quest
-        // note that the answer given by the NPC does not contain any trigger words on pourpose
+        // NOTE:
+        // the answer given by the NPC does not contain any trigger words on pourpose
         // as it should only hint what's kind of things are needed.
         // some details about the required items are given only once the quest has been accepted.
         npc.add(ConversationStates.QUEST_OFFERED,
