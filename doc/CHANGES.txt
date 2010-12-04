@@ -10,13 +10,16 @@ Changelog
 - quest Chocolate For Elisabeth on Kirdneh playground
 - Semos is decorated for Christmas
 - Santa is visiting (and can now be made to leave after Christmas on time)
+- changed corpse protection logic to be fairer
 
 *fixes*
 - wikipedian follows redirects
 - positioning of entities to fix character position, attacking circles, creature placement errors
-- vaults and adventure island correctly given a one type so players shouldn't land in the wrong zone
+- vaults and adventure island correctly flagged as interior zones so players shouldn't land in the wrong zone
 - fixed some fish sources in amazon
 - 50% of findbugs warnings fixed
+
+
 
 0.89
 
