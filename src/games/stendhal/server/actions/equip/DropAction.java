@@ -23,7 +23,7 @@ public class DropAction extends EquipmentAction {
 	public static void register() {
 		CommandCenter.register("drop", new DropAction());
 	}
-	
+
 	@Override
 	protected void execute(final Player player, final RPAction action, final SourceObject source) {
 	
@@ -33,33 +33,31 @@ public class DropAction extends EquipmentAction {
 		    player.sendPrivateText("You cannot throw that far.");
 		    return;
 		}
-		
+
 		if (!dest.isValid() || !dest.checkClass(validContainerClassesList)) {
 			logger.warn("destination is invalid. action is: " + action);
 			// destination is not valid
 			return;
 		}
-	
+
 		final Entity entity = source.getEntity();
 		final String itemName = source.getEntityName();
-	
+
 		if (source.moveTo(dest, player)) {
 			if (entity instanceof Item) {
 				final Item item = (Item) entity;
+
 				if (item.isBound()) {
-	
 					player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in "
 							+ (Item.DEGRADATION_TIMEOUT / 60)
 							+ " minutes, as all items do. But in this case there is no way to restore it.");
 				}
 			}
-			
+
 			final int amount = source.getQuantity();
 			new GameEvent(player.getName(), "drop", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount)).raise();
 			player.updateItemAtkDef();
 		}
 	}
-
-	
 
 }
