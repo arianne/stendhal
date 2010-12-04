@@ -51,6 +51,9 @@ public class Group {
 	public void addMember(String playerName) {
 		openInvites.remove(playerName);
 		membersAndLastSeen.put(playerName, Long.valueOf(System.currentTimeMillis()));
+		if (leader == null) {
+			leader = playerName;
+		}
 		sendGroupChangeEvent();
 	}
 
@@ -204,7 +207,7 @@ public class Group {
 	 */
 	public void invite(Player player, Player targetPlayer) {
 		openInvites.put(targetPlayer.getName(), Long.valueOf(System.currentTimeMillis()));
-		targetPlayer.sendPrivateText(NotificationType.INFORMATION, player.getName() + " has invited you to join a group. Type /group join " + player.getName());
+		targetPlayer.sendPrivateText(player.getName() + " has invited you to join a group. Type /group join " + player.getName());
 	}
 
 	/**
