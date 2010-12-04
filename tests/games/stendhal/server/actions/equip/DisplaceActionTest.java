@@ -275,4 +275,34 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 		assertEquals(1, localzone.getItemsOnGround().size());
 	}
 
+	/**
+	 * Test for displacing items below some other player.
+	 */
+	@Test
+	public void testDisplaceOtherPlayer() {
+		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+
+		final Player player = createTestPlayer("bob");
+		player.setPosition(1, 1);
+		localzone.add(player);
+
+		final Player player2 = createTestPlayer("alice");
+		player2.setPosition(0, 0);
+		localzone.add(player2);
+
+		final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+		localzone.add(item);
+
+		final RPAction displace = new RPAction();
+		displace.put("type", "displace");
+		displace.put("baseitem", item.getID().getObjectID());
+		displace.put("quantity", "1");
+		displace.put("x", player.getX());
+		displace.put("y", player.getY() + 1);
+
+		final DisplaceAction action = new DisplaceAction();
+		action.onAction(player, displace);
+		assertEquals(1, player.events().size());
+		assertEquals("You cannot take items which are below other players.", player.events().get(0).get("text"));
+	}
 }
