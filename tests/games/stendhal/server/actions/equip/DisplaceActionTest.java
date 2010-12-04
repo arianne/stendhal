@@ -238,7 +238,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 	 * Test for displacing to an occupied place.
 	 */
 	@Test
-	public void testDisplaceOccupied() {
+	public void testDisplaceOccupied() throws IOException {
 		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		localzone.add(player);
@@ -255,11 +255,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 		collisionLayer.setName("collision");
 		collisionLayer.build();
 		collisionLayer.set(0, 1, 255);
-		try {
-			localzone.addCollisionLayer("collisionlayer", collisionLayer);
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
+		localzone.addCollisionLayer("collisionlayer", collisionLayer);
 
 		// now test the displacement action
 		final RPAction displace = new RPAction();
@@ -304,5 +300,38 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 		action.onAction(player, displace);
 		assertEquals(1, player.events().size());
 		assertEquals("You cannot take items which are below other players.", player.events().get(0).get("text"));
+	}
+
+	/**
+	 * Test for displacing with wrong quantities.
+	 */
+	@Test
+	public void testDisplaceWrongQuantity() {
+		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		localzone.add(player);
+
+		// first put some money on the floor
+		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+		money.setQuantity(10);
+		localzone.add(money);
+		StackableItem[] items = localzone.getItemsOnGround().toArray(new StackableItem[0]);
+		assertEquals(1, items.length);
+		assertEquals(10, items[0].getQuantity());
+
+		// now test the displacement action with a too high quantity
+		final RPAction displace = new RPAction();
+		displace.put("type", "displace");
+		displace.put("baseitem", money.getID().getObjectID());
+		displace.put("quantity", "20");
+		displace.put("x", player.getX());
+		displace.put("y", player.getY() + 1);
+
+		final DisplaceAction action = new DisplaceAction();
+		action.onAction(player, displace);
+		assertEquals(0, player.events().size());
+		items = localzone.getItemsOnGround().toArray(new StackableItem[0]);
+		assertEquals(1, items.length);
+		assertEquals(10, items[0].getQuantity());
 	}
 }
