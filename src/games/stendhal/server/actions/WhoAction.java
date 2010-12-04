@@ -20,6 +20,7 @@ import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Set;
 import java.util.TreeSet;
 
 import marauroa.common.game.RPAction;
@@ -38,7 +39,7 @@ public class WhoAction implements ActionListener {
 
 	public void onAction(final Player player, final RPAction action) {
 		final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
-		final TreeSet<String> treeSet = new TreeSet<String>();
+		final Set<String> players = new TreeSet<String>();
 
 		if (player.getAdminLevel() >= AdministrationAction.getLevelForCommand("ghostmode")) {
 			rules.getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
@@ -50,11 +51,10 @@ public class WhoAction implements ActionListener {
 					} else {
 						text.append("(");
 					}
-
 					text.append(p.getLevel());
-
 					text.append(") ");
-					treeSet.add(text.toString());
+
+					players.add(text.toString());
 				}
 			});
 		} else {
@@ -62,13 +62,11 @@ public class WhoAction implements ActionListener {
 				public void execute(final Player p) {
 					final StringBuilder text = new StringBuilder(p.getTitle());
 					text.append("(");
-
 					text.append(p.getLevel());
 					text.append(") ");
-					treeSet.add(text.toString());
+					players.add(text.toString());
 				}
 			}, new FilterCriteria<Player>() {
-
 				public boolean passes(final Player o) {
 					return !o.isGhost();
 				}
@@ -76,13 +74,12 @@ public class WhoAction implements ActionListener {
 		}
 
 		final StringBuilder online = new StringBuilder();
-		online.append(treeSet.size() + " Players online: ");
-		for (final String text : treeSet) {
-			online.append(text);
+		online.append(players.size() + " Players online: ");
+		for (final String name : players) {
+			online.append(name);
 		}
 		player.sendPrivateText(online.toString());
 		player.notifyWorldAboutChanges();
 	}
-
 
 }
