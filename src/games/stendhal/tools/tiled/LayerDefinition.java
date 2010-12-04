@@ -123,6 +123,13 @@ public class LayerDefinition implements Serializable {
 	}
 
 	/**
+	 * @return the allocated data array of size width*height containing ints.
+	 */
+	public int[] expose() {
+		return data;
+	}
+
+	/**
 	 * Set a tile at the given x,y position.
 	 * 
 	 * @param x
@@ -237,7 +244,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Sets the name of the layer.
-	 * 
+	 *
 	 * @param layerName
 	 *            the name of the layer
 	 */
@@ -266,9 +273,5 @@ public class LayerDefinition implements Serializable {
 		out.write(width);
 		out.write(height);
 		out.write(raw);
-	}
-
-	public int[] expose() {
-		return data;
 	}
 }
