@@ -14,6 +14,7 @@ package games.stendhal.server.util;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 /**
  * counts how often objects are added
@@ -23,6 +24,27 @@ import java.util.Map;
  */
 public class CounterMap<T> {
 	private Map<T, Integer> map = new HashMap<T, Integer>();
+
+	/**
+	 * creates a new counter map.
+	 */
+	public CounterMap() {
+		this(false);
+	}
+
+	/**
+	 * creates a new counter map.
+	 *
+	 * @param weak <code>true</code> to create a weak key map, 
+	 *             <code>false</code> to create a normal map
+	 */
+	public CounterMap(boolean weak) {
+		if (weak) {
+			map = new WeakHashMap<T, Integer>();
+		} else {
+			map = new HashMap<T, Integer>();
+		}
+	}
 
 	/**
 	 * increments the counter of the specified object
