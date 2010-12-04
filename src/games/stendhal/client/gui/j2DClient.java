@@ -79,6 +79,7 @@ import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient implements UserInterface {
+
 	/**
 	 * A shared [singleton] copy.
 	 */
@@ -87,17 +88,16 @@ public class j2DClient implements UserInterface {
 	/**
 	 * Get the default UI.
 	 * @return  the instance
-	 *
-	 *
 	 */
 	public static j2DClient get() {
 		return sharedUI;
 	}
+
 	/**
 	 * Set the shared [singleton] value.
 	 *
 	 * @param sharedUI
-	 *            The stendhal UI.
+	 *            The Stendhal UI.
 	 */
 	public static void setDefault(final j2DClient sharedUI) {
 		j2DClient.sharedUI = sharedUI;
@@ -122,7 +122,6 @@ public class j2DClient implements UserInterface {
 	private ContainerPanel containerPanel;
 
 	private boolean gameRunning;
-
 
 
 	ChatTextController chatText = new ChatTextController();
@@ -162,9 +161,8 @@ public class j2DClient implements UserInterface {
 			logger.debug("Synced with server state.");
 			addEventLine(new HeaderLessEventLine("Synchronized",
 					NotificationType.CLIENT));
-			
 		}
-		
+
 		@Override
 		public void onUnsynced() {
 			times++;
@@ -190,7 +188,6 @@ public class j2DClient implements UserInterface {
 	 * A constructor for JUnit tests.
 	 */
 	public j2DClient() {
-		
 		setDefault(this);
 	}
 
@@ -1095,7 +1092,6 @@ public class j2DClient implements UserInterface {
 	}
 
 	public IPerceptionListener getPerceptionListener() {
-		
 		return perceptionListener;
 	}
 
@@ -1148,7 +1144,6 @@ public class j2DClient implements UserInterface {
 			// do nothing
 		}
 	}
-
 
 	/**
 	 * sets the cursor
