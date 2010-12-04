@@ -37,7 +37,7 @@ class PlayerQuests {
 	 * 
 	 * @param name
 	 *            The quest's name
-	 * @return true iff the quest has been completed by the player
+	 * @return true if the quest has been completed by the player
 	 */
 	public boolean isQuestCompleted(final String name) {
 		final String info = getQuest(name, 0);
