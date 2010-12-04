@@ -1,3 +1,4 @@
+/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
@@ -84,9 +85,9 @@ public class KoboldishTorcibud extends AbstractQuest {
      * QUEST_SLOT will be used to hold the different states of the quest.
      *
      * QUEST_SLOT sub slot 0 will hold the main states, which can be:
-     * - rejected, the player refuses to accept the quest
-     * - a semi-colon separated list of item name=amount pairs
+     * - rejected, the player has refused to undertake the quest
      * - done, the player has completed the quest
+     * - a list of semi-colon separated key=value pairs.
      *
      * When the quest is completed,
      * QUEST_SLOT sub slot 1 will hold a timestamp randomly determined to be
@@ -141,20 +142,25 @@ public class KoboldishTorcibud extends AbstractQuest {
             res.add("She asked me to help her refurbish her stock of supplies for preparing her Koboldish Torcibud, "
                 + " but I had more pressing matters to attend.");
         } else if ("done".equals(questState)) {
-            long timestamp;
-            try {
-                timestamp = Long.parseLong(player.getQuest(QUEST_SLOT, 1));
-            } catch (final NumberFormatException e) {
-                timestamp = 0;
+            res.add("I helped her refurbish her stock of supplies for preparing her Koboldish Torcibud.");
+            if (isRepeatable(player)) {
+                // enough time has passed, inform that the quest can be taken now.
+                res.add("I might ask her again if she needs more stuff for her stock of supplies.");
+            } else {
+                // inform about how much time has to pass before the quest can be taken again.
+                long timestamp;
+                try {
+                    timestamp = Long.parseLong(player.getQuest(QUEST_SLOT, 1));
+                } catch (final NumberFormatException e) {
+                    timestamp = 0;
+                }
+                final long timeRemaining = (timestamp - System.currentTimeMillis());
+                res.add("Her stock of supplies will be fine for " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
             }
-            final long timeRemaining = (timestamp - System.currentTimeMillis());
-            res.add("I helped her refurbish her stock of supplies for preparing her Koboldish Torcibud "
-                + " and she will not need any more stuff before " 
-                + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
         } else {
             final ItemCollection missingItems = new ItemCollection();
             /**
-             * NOTE: If we reached this spot, then the quest is running and
+             * NOTE: If this spot is reached then the quest is running and
              * QUEST_SLOT sub slot 0 holds a semicolon separated list of item=amount pairs.
              * Do not use player.getQuest(QUEST_SLOT, 0) as that would only retrieve the first pair.
              */
@@ -174,6 +180,24 @@ public class KoboldishTorcibud extends AbstractQuest {
     @Override
         public String getName() {
         return "KoboldishTorcibud";
+    }
+
+    // Not for kids but not too hard to undertake either.
+    @Override
+        public int getMinLevel() {
+        return 18;
+    }
+    
+    @Override
+    public boolean isRepeatable(final Player player) {
+        return new AndCondition(
+            new QuestCompletedCondition(QUEST_SLOT),
+            new TimeReachedCondition(QUEST_SLOT, 1)).fire(player,null, null);
+    }
+
+    @Override
+    public boolean isCompleted(final Player player) {
+        return new QuestCompletedCondition(QUEST_SLOT).fire(player, null, null);
     }
 
     /**
@@ -210,9 +234,9 @@ public class KoboldishTorcibud extends AbstractQuest {
      
         final SpeakerNPC npc = npcs.get("Wrviliza");
 
-        // player sends his greetings and never asked for a quest handled in NPC class
+        // Player sends his greetings and never asked for a quest handled in NPC class
 
-        // player sends his greetings to Wrviliza and has rejected the quest in the past
+        // Player sends his greetings to Wrviliza and has rejected the quest in the past
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
             new QuestInStateCondition(QUEST_SLOT, "rejected"),
@@ -220,7 +244,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wroff! Welcome back wanderer... Are you back to help me gather #stuff to make good #torcibud this time?",
             null);
 
-        // player asks for a quest
+        // Player asks for a quest
         npc.add(ConversationStates.ATTENDING,
             ConversationPhrases.QUEST_MESSAGES,
             new QuestNotStartedCondition(QUEST_SLOT),
@@ -229,7 +253,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             null
         );
 
-        // player has done the quest already but not enough time has passed since completing it
+        // Player has done the quest already but not enough time has passed since completing it
         npc.add(ConversationStates.ATTENDING,
             ConversationPhrases.QUEST_MESSAGES,
             new AndCondition(
@@ -239,7 +263,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wroff! Indeed I'd need some #stuff for making some more koboldish #torcibud. Will you help?",
             null);
 
-        // player has done the quest already but it's too early to get another
+        // Player has done the quest already but it's too early to get another
         npc.add(ConversationStates.ATTENDING,
             ConversationPhrases.QUEST_MESSAGES,
             new AndCondition(
@@ -249,7 +273,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             new SayTimeRemainingUntilTimeReachedAction(QUEST_SLOT, 1,
                 "Wrof! Thank you but my stock of supplies for making good #torcibud will be fine for"));
 
-        // player is curious about torcibud when offered the quest
+        // Player is curious about torcibud when offered the quest
         npc.add(ConversationStates.QUEST_OFFERED,
             "torcibud",
             new QuestNotStartedCondition(QUEST_SLOT),
@@ -257,7 +281,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wruff. I will make more when I have enough #stuff! Are you going to help?",
             null);
 
-        // player is curious about stuff, ingredients or supplies when offered the quest
+        // Player is curious about stuff, ingredients or supplies when offered the quest
         // note that the answer given by the NPC does not contain any trigger words on pourpose
         // as it should only hint what's kind of things are needed.
         // some details about the required items are given only once the quest has been accepted.
@@ -270,7 +294,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wrof! Some bottles, artichokes, a few herbs and fierywater... Things like that. So, will you help?",
             null);
 
-        // player accepts the quest and gets to know what Wrviliza needs (switch to phase_2)
+        // Player accepts the quest and gets to know what Wrviliza needs (switch to phase_2)
         npc.add(ConversationStates.QUEST_OFFERED,
             ConversationPhrases.YES_MESSAGES, null,
             ConversationStates.QUESTION_1, null,
@@ -278,15 +302,17 @@ public class KoboldishTorcibud extends AbstractQuest {
             		new ChatAction() {
             			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
             				int pLevel = player.getLevel();
-            				player.setQuest(QUEST_SLOT, 0, getRequiredItemsCollection(pLevel));
+            				player.setQuest(QUEST_SLOT, getRequiredItemsCollection(pLevel));
             			}
             		},
             		new IncreaseKarmaAction(20),
             		// here we have been careful to say the items from the collection only after the quest slot was set, 
             		// because in this quest, the amounts depend on level, above.
-            		new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Wroff! Right now, I need [items]. Do you by chance have anything of that with you already?")));
+            		new SayRequiredItemsFromCollectionAction(
+                        QUEST_SLOT,
+                        "Wroff! Right now, I need [items]. Do you by chance have anything of that with you already?")));
 
-        // player is not inclined to comply with the request and has not already rejected it once
+        // Player is not inclined to comply with the request and has not already rejected it once
         npc.add(ConversationStates.QUEST_OFFERED,
             ConversationPhrases.NO_MESSAGES,
             new AndCondition(
@@ -298,7 +324,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             		new SetQuestAction(QUEST_SLOT, "rejected"),
             		new DecreaseKarmaAction(20.0)));
 
-        //player is not inclined to comply with the request and he has rejected it last time
+        //Player is not inclined to comply with the request and he has rejected it last time
         //If player wants to buy any beverage here, he should really take the quest now
         //Wrviliza holds a grudge by turning idle again.
         npc.add(ConversationStates.QUEST_OFFERED,
@@ -318,7 +344,7 @@ public class KoboldishTorcibud extends AbstractQuest {
 
         final SpeakerNPC npc = npcs.get("Wrviliza");
 
-        // player says his greetings to Wrviliza and the quest is running
+        // Player says his greetings to Wrviliza and the quest is running
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
             new QuestActiveCondition(QUEST_SLOT),
@@ -326,7 +352,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wrof! Welcome back. Did you gather any #stuff for me?",
             null);
 
-        // player is curious about artichokes
+        // Player is curious about artichokes
         npc.add(ConversationStates.ATTENDING,
             Arrays.asList("artichoke","artichokes"),
             new QuestActiveCondition(QUEST_SLOT),
@@ -336,7 +362,7 @@ public class KoboldishTorcibud extends AbstractQuest {
                 + " near Semos city.",
             null);
 
-        // player is curious about fierywater
+        // Player is curious about fierywater
         npc.add(ConversationStates.ATTENDING,
             Arrays.asList("fierywater"),
             new QuestActiveCondition(QUEST_SLOT),
@@ -345,7 +371,7 @@ public class KoboldishTorcibud extends AbstractQuest {
                 + " I buy mine in Ados market whenever I got the time to make a trip there.",
             null);
 
-        // player is curious about herbs
+        // Player is curious about herbs
         npc.add(ConversationStates.ATTENDING,
             Arrays.asList("arandula","sclaria","kekik"),
             new QuestActiveCondition(QUEST_SLOT),
@@ -353,7 +379,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             "Wrof! Common herb that grow outside in the plains or woods... Easy to spot!",
             null);
 
-        // player is curious about mandragora
+        // Player is curious about mandragora
         npc.add(ConversationStates.ATTENDING,
             Arrays.asList("mandragora"),
             new QuestActiveCondition(QUEST_SLOT),
@@ -363,21 +389,23 @@ public class KoboldishTorcibud extends AbstractQuest {
                 + " Not easy to spot either!",
             null);
 
-        // player says stuff to be reminded of what is still missing
+        // Player says stuff to be reminded of what is still missing
         npc.add(ConversationStates.QUESTION_1,
             "stuff", null,
             ConversationStates.QUESTION_1,
             null,
-            new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Wrof! I still need [items]. Did you bring anything of that sort?"));
+            new SayRequiredItemsFromCollectionAction(
+                QUEST_SLOT,
+                "Wrof! I still need [items]. Did you bring anything of that sort?"));
 
-        // player answers yes when asked if he has brought any items
+        // Player answers yes when asked if he has brought any items
         npc.add(ConversationStates.QUESTION_1,
             ConversationPhrases.YES_MESSAGES, null,
             ConversationStates.QUESTION_1,
             "Fine, what did you bring?",
             null);
     
-        // player answers no when asked if he has brought any items
+        // Player answers no when asked if he has brought any items
         npc.add(ConversationStates.QUESTION_1,
             ConversationPhrases.NO_MESSAGES,
             new QuestNotCompletedCondition(QUEST_SLOT),
@@ -412,7 +440,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             }
         };
 
-        // player collected all the items. grant the XP before handing out the torcibud
+        // Player collected all the items. grant the XP before handing out the torcibud
         ChatAction completeAction = new MultipleActions(
             new SetQuestAction(QUEST_SLOT, "done"),
             new SetQuestToFutureRandomTimeStampAction(QUEST_SLOT, 1, MIN_DELAY, MAX_DELAY),
