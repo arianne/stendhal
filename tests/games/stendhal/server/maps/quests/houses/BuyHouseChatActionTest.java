@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
@@ -53,6 +54,7 @@ public class BuyHouseChatActionTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		HouseUtilities.clearCache();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	@Before
@@ -119,7 +121,6 @@ public class BuyHouseChatActionTest {
 		action.fire(player , sentence , raiser);
 		assertThat(getReply(engine), containsString("Congratulation"));
 		assertFalse(player.isEquipped("money"));
-		
 	}
 
 }

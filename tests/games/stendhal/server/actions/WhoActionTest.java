@@ -29,7 +29,6 @@ import utilities.PlayerTestHelper;
 
 public class WhoActionTest {
 
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
@@ -37,7 +36,6 @@ public class WhoActionTest {
 
 	@After
 	public void tearDown() throws Exception {
-
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 

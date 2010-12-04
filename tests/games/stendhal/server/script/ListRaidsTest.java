@@ -15,8 +15,10 @@ package games.stendhal.server.script;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -29,6 +31,10 @@ public class ListRaidsTest {
 		MockStendlRPWorld.get();
 	}
 
+	@After
+	public void tearDown() throws Exception {
+		MockStendhalRPRuleProcessor.get().clearPlayers();
+	}
 
 	/**
 	 * Tests for name.
@@ -39,7 +45,6 @@ public class ListRaidsTest {
 		Player player = PlayerTestHelper.createPlayer("george");
 		script.execute(player, null);
 		assertThat(player.events().get(0).toString(), containsString("CreateRaid"));
-		
 	}
 
 }

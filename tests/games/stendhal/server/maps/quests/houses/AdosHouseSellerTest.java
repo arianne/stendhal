@@ -34,6 +34,7 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
@@ -60,6 +61,7 @@ public class AdosHouseSellerTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		SingletonRepository.getNPCList().clear();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 		HouseUtilities.clearCache();
 	}
 

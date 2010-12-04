@@ -12,27 +12,32 @@
  ***************************************************************************/
 package games.stendhal.server.entity.trade;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.trade.Offer;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
-import static org.hamcrest.CoreMatchers.is;
-
-import static org.junit.Assert.assertThat;
-
 public class OfferTest {
-	
+
 	@BeforeClass
 	public static void setUp() {
 		MockStendlRPWorld.get();
 	}
+
+	@AfterClass
+	public static void tearDownAfterClass() {
+		PlayerTestHelper.removePlayer(offererName);
+	}
+
+	private static final String offererName = "george";
 
 	/**
 	 * Tests for offer.
@@ -41,9 +46,8 @@ public class OfferTest {
 	public void testOffer() throws Exception {
 		Item item = SingletonRepository.getEntityManager().getItem("money");
 		Integer price = Integer.valueOf(1);
-		String offererName = "george";
-		Player george = PlayerTestHelper.createPlayer(offererName);
-		Offer o = new Offer(item, price, george);
+		Player offerer = PlayerTestHelper.createPlayer(offererName);
+		Offer o = new Offer(item, price, offerer);
 		assertThat(o.getOfferer(), is(offererName));
 		assertThat(o.getInt("price"), is(price.intValue()));
 		assertThat((Item) o.getSlot("item").getFirst(), is(item));
@@ -53,4 +57,3 @@ public class OfferTest {
 		assertThat(offerFromRPObject.getItem(), is(item));
 	}
 }
-

@@ -14,13 +14,22 @@ package games.stendhal.client.entity;
 
 import static org.junit.Assert.*;
 
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPObject;
 
+import org.junit.After;
 import org.junit.Test;
 
 public class PlayerTest {
+
+	@After
+	public void tearDown() throws Exception {
+		MockStendhalRPRuleProcessor.get().clearPlayers();
+	}
+
 	/**
 	 * Tests for getHearingArea.
 	 */

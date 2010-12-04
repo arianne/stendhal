@@ -23,6 +23,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.List;
@@ -49,6 +50,7 @@ public class MarketTest {
 	@AfterClass
 	public static void afterClass() {
 		MockStendlRPWorld.reset();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 	
 	@Before

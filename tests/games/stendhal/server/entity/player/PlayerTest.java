@@ -26,6 +26,7 @@ import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.HashMap;
@@ -33,6 +34,7 @@ import java.util.HashMap;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.db.DatabaseFactory;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -49,6 +51,11 @@ public class PlayerTest {
 	public static void setUpBeforeClass() throws Exception {
 		new DatabaseFactory().initializeDatabase();
 		MockStendlRPWorld.get();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	@Before
@@ -305,7 +312,7 @@ public class PlayerTest {
 		assertThat(bob.getHeight(), is(1.0));
 		assertThat(bob.get("height"), is("1"));
 		
-		Player george = Player.createZeroLevelPlayer("george", null);
+		Player george = Player.createZeroLevelPlayer("george2", null);
 		assertThat(george.getWidth(), is(1.0));
 		assertThat(george.get("width"), is("1"));
 		
