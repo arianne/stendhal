@@ -87,7 +87,7 @@
 	<!-- disable warning for exposeRaw() method -->
 	<Match>
 		<Bug pattern="EI_EXPOSE_REP"/>
-		<Class name="games.stendhal.tools.tiled"/>
+		<Class name="games.stendhal.tools.tiled.LayerDefinition"/>
 	</Match>	
 
 	<!-- disable warnings for casts to java.awt.Graphics2D -->
