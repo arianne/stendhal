@@ -79,7 +79,7 @@ public class SoundSystemFacadeImpl implements SoundSystemFacade, WorldListener {
 			if (sound instanceof Sound) {
 				manager.stop((Sound) sound, fadingDuration);
 			} else {
-				logger.error("sound handle not instance of Sound", new Throwable());
+				logger.error("sound handle not instance of Sound but " + sound, new Throwable());
 			}
 		} catch (RuntimeException e) {
 			logger.error(e, e);
