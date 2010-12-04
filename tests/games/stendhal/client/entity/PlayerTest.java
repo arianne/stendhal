@@ -12,8 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import games.stendhal.client.MockClientUI;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 
 import java.awt.geom.Rectangle2D;
@@ -21,9 +23,20 @@ import java.awt.geom.Rectangle2D;
 import marauroa.common.game.RPObject;
 
 import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class PlayerTest {
+
+	/**
+	 * Initialize client UI mockup.
+	 *
+	 * @throws Exception
+	 */
+	@BeforeClass
+	public static void buildWorld() throws Exception {
+		new MockClientUI();
+	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -83,8 +96,7 @@ public class PlayerTest {
 		changes.put("last_player_kill_time", 1);
 		george.onChangedAdded(player, changes);
 		assertTrue(george.isBadBoy());
-		
-		
+
 		george.onChangedRemoved(player, changes);
 		assertFalse(george.isBadBoy());
 	}
