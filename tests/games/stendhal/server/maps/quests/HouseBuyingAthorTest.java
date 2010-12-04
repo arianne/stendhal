@@ -29,6 +29,7 @@ import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.quests.houses.HouseUtilities;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -78,6 +79,7 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		HouseUtilities.clearCache();
 	}
 	
 	/**

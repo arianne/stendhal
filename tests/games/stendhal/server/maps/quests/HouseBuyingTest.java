@@ -75,6 +75,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		HouseUtilities.clearCache();
 	}
 	
 	/**
@@ -161,7 +162,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "cost"));
 		assertEquals("The cost of a new house in Ados is 120000 money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.", getReply(npc));
 		
-		// satisfy the rest of the ados conditions
+		// satisfy the rest of the Ados conditions
 		player.setQuest("daily_item", "done");
 		player.setQuest("toys_collector", "done");
 		player.setQuest("hungry_joshua", "done");
