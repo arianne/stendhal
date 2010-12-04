@@ -36,6 +36,7 @@ import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.events.AttackEvent;
+import games.stendhal.server.util.CounterMap;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -48,11 +49,11 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
-import marauroa.common.game.Definition.Type;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
@@ -126,7 +127,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Maps each attacker to the sum of hitpoint loss it has caused to this
 	 * RPEntity.
 	 */
-	protected Map<Entity, Integer> damageReceived;
+	protected CounterMap<Entity> damageReceived;
 
 	/** list of players which are to reward with xp on killing this creature. */
 	protected Set<String> playersToReward;
@@ -232,7 +233,7 @@ public abstract class RPEntity extends GuidedEntity {
 	public RPEntity(final RPObject object) {
 		super(object);
 		attackSources = new ArrayList<Entity>();
-		damageReceived = new WeakHashMap<Entity, Integer>();
+		damageReceived = new CounterMap<Entity>(true);
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
@@ -241,7 +242,7 @@ public abstract class RPEntity extends GuidedEntity {
 	public RPEntity() {
 		super();
 		attackSources = new ArrayList<Entity>();
-		damageReceived = new WeakHashMap<Entity, Integer>();
+		damageReceived = new CounterMap<Entity>(true);
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
@@ -979,12 +980,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 		// remember the damage done so that the attacker can later be rewarded
 		// XP etc.
-		final Integer oldDamage = damageReceived.get(attacker);
-		if (oldDamage != null) {
-			damageReceived.put(attacker, damage + oldDamage);
-		} else {
-			damageReceived.put(attacker, damage);
-		}
+		damageReceived.add(attacker, damage);
 		addPlayersToReward(attacker);
 
 		if (leftHP > 0) {
@@ -1118,8 +1114,8 @@ public abstract class RPEntity extends GuidedEntity {
 
 			TutorialNotifier.killedSomething(killer);
 
-			final Integer damageDone = damageReceived.get(killer);
-			if (damageDone == null) {
+			final int damageDone = damageReceived.getCount(killer);
+			if (damageDone == 0) {
 				continue;
 			}
 
@@ -1225,6 +1221,9 @@ public abstract class RPEntity extends GuidedEntity {
 			rewardKillers(oldXP);
 		}
 
+		// Add a corpse
+		final Corpse corpse = makeCorpse(killerName);
+
 		damageReceived.clear();
 		playersToReward.clear();
 		totalDamageReceived = 0;
@@ -1236,8 +1235,6 @@ public abstract class RPEntity extends GuidedEntity {
 			stats.add("Killed " + get("type"), 1);
 		}
 
-		// Add a corpse
-		final Corpse corpse = makeCorpse(killerName);
 
 		// Add some reward inside the corpse
 		dropItemsOn(corpse);
@@ -1459,11 +1456,11 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return true if the item can be equipped, else false
 	 */
 	public final boolean equip(final String slotName, final Item item) {
+		
 		if (equipIt(slotName, item)) {
 			updateItemAtkDef();
 			return true;
 		}
-
 		return false;
 	}
 
@@ -2453,5 +2450,14 @@ public abstract class RPEntity extends GuidedEntity {
 			updateItemAtkDef();
 			return true;
 		}
+	}
+
+	/**
+	 * gets the name of the player who deserves the corpse
+	 *
+	 * @return name of player who deserves the corpse or <code>null</code>.
+	 */
+	public String getCorpseDeserver() {
+		return null;
 	}
 }

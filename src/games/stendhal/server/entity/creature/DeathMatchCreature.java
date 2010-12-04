@@ -65,8 +65,8 @@ public class DeathMatchCreature extends Creature {
 				continue;
 			}
 			
-			final Integer damageDone = damageReceived.get(killer);
-			if (damageDone == null) {
+			int damageDone = damageReceived.getCount(killer);
+			if (damageDone == 0) {
 				continue;
 			}
 			// set the DM points score only for the player who started the DM
