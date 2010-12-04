@@ -65,10 +65,8 @@ public class UpdatePlayerEntitiesTest {
 			UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
 			Player changing = updatePlayerEntities.createPlayerFromRPO(loaded);
 			updatePlayerEntities.savePlayer(transaction, changing);
-			
-			
-			
-			
+
+
 			Player secondLoaded = pm.loadPlayer(transaction, "george");
 			assertNotNull(secondLoaded);
 			

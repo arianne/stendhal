@@ -149,7 +149,7 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(destination);
 		chest = new StoredChest();
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(chest);
-		
+
 		for (String zone : CITY_ZONES) {
 			assertNotNull(zone);
 			HousePortal portal = new HousePortal("athor apartment 101");

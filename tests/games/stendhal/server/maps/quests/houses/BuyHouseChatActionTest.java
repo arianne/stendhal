@@ -49,8 +49,10 @@ public class BuyHouseChatActionTest {
 		HousePortal.generateRPClass();
 		MockStendlRPWorld.get();
 	}
+
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		HouseUtilities.clearCache();
 	}
 
 	@Before

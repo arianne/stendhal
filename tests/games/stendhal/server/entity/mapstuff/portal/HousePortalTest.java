@@ -17,7 +17,9 @@ import games.stendhal.server.entity.item.HouseKey;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.quests.houses.HouseUtilities;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -34,7 +36,12 @@ public class HousePortalTest {
 		MockStendlRPWorld.get();
 		HousePortal.generateRPClass();
 	}
-	
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		HouseUtilities.clearCache();
+	}
+
 	/**
 	 * Tests for creation.
 	 */
@@ -80,7 +87,7 @@ public class HousePortalTest {
 		// should not be allowed in without a key
 		assertFalse(portal.isAllowed(player));
 		
-		// or with some strrange key
+		// or with some strange key
 		Item key = SingletonRepository.getEntityManager().getItem("dungeon silver key");
 		player.equipToInventoryOnly(key);
 		assertFalse(portal.isAllowed(player));

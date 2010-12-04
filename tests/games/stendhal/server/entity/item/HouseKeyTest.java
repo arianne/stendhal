@@ -14,7 +14,9 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.quests.houses.HouseUtilities;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -27,6 +29,11 @@ public class HouseKeyTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		HouseUtilities.clearCache();
 	}
 	
 	/**

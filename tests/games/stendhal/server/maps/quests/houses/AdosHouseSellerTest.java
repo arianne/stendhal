@@ -60,8 +60,9 @@ public class AdosHouseSellerTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		SingletonRepository.getNPCList().clear();
+		HouseUtilities.clearCache();
 	}
-	
+
 	/**
 	 * Remove added stored entities.
 	 * <p>
@@ -156,10 +157,9 @@ public class AdosHouseSellerTest {
 		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
 		Engine en = seller.getEngine();
 		en.setCurrentState(QUEST_OFFERED);
-		
-		
+	
 		Player george = PlayerTestHelper.createPlayer("george");
-		
+	
 		en.step(george, "51");
 		assertThat("no zones loaded", getReply(seller), is("Sorry I did not understand you, could you try saying the house number you want again please?"));
 	}
@@ -179,7 +179,6 @@ public class AdosHouseSellerTest {
 		chest = new StoredChest();
 		ados.add(chest);
 		HouseUtilities.clearCache();
-		
 		
 		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
 		Engine en = seller.getEngine();
