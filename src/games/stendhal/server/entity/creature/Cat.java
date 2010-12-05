@@ -91,11 +91,10 @@ public class Cat extends Pet {
 		setRPClass("cat");
 		put("type", "cat");
 
-		if ((owner != null) && (owner instanceof Player)) {
+		if (owner != null) {
 			// add pet to zone and create RPObject.ID to be used in setPet()
-			Player player = (Player) owner;
-			player.getZone().add(this);
-			player.setPet(this);
+			owner.getZone().add(this);
+			owner.setPet(this);
 		}
 
 		update();
