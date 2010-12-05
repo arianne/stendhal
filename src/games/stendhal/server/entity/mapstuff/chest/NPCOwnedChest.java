@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.chest;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -23,6 +25,8 @@ import games.stendhal.server.entity.player.Player;
  * @author hendrik
  */
 public class NPCOwnedChest extends Chest {
+
+	private static Logger logger = Logger.getLogger(NPCOwnedChest.class);
 
 	private final SpeakerNPC npc;
 
@@ -38,12 +42,18 @@ public class NPCOwnedChest extends Chest {
 
 	@Override
 	public boolean onUsed(final RPEntity user) {
-		final Player player = (Player) user;
+		if (user instanceof Player) {
+			final Player player = (Player) user;
 
-		if (player.nextTo(this)) {
-			npc.say("Hey " + user.getTitle() + ", that is my chest.");
-			return true;
+			if (player.nextTo(this)) {
+				npc.say("Hey " + user.getTitle() + ", that is my chest.");
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			logger.error("user is no instance of Player but: " + user, new Throwable());
+			return false;
 		}
-		return false;
 	}
 }

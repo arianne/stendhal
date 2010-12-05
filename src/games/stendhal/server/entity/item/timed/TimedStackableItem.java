@@ -68,24 +68,30 @@ public abstract class TimedStackableItem extends StackableItem implements
 		RPObject base = this;
 		boolean result = false;
 
-		/* Find the top container */
-		while (base.isContained()) {
-			base = base.getContainer();
-		}
+		if (user instanceof Player) {
+			final Player userplayer = (Player) user;
 
-		if (user.nextTo((Entity) base)) {
-			if (useItem((Player) user)) {
-				/* set the timer for the duration */
-				final TurnNotifier notifier = SingletonRepository.getTurnNotifier();
-				notifier.notifyInTurns(getAmount(), this);
-				player = new WeakReference<Player>((Player) user);
-				this.removeOne();
-				user.notifyWorldAboutChanges();
+			/* Find the top container */
+			while (base.isContained()) {
+				base = base.getContainer();
 			}
-			result = true;
+
+			if (user.nextTo((Entity) base)) {
+				if (useItem(userplayer)) {
+					/* set the timer for the duration */
+					final TurnNotifier notifier = SingletonRepository.getTurnNotifier();
+					notifier.notifyInTurns(getAmount(), this);
+					player = new WeakReference<Player>(userplayer);
+					this.removeOne();
+					user.notifyWorldAboutChanges();
+				}
+				result = true;
+			} else {
+				user.sendPrivateText(getTitle() + " is too far away");
+				logger.debug(getTitle() + " is too far away");
+			}
 		} else {
-			user.sendPrivateText(getTitle() + " is too far away");
-			logger.debug(getTitle() + " is too far away");
+			logger.error("user is no instance of Player but: " + user, new Throwable());
 		}
 
 		return result;
@@ -136,4 +142,5 @@ public abstract class TimedStackableItem extends StackableItem implements
 	 * @param player
 	 */
 	public abstract void itemFinished(Player player);
+
 }
