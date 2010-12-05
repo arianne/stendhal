@@ -41,7 +41,6 @@ public class Blood extends PassiveEntity {
 
 		public void onTurnReached(final int currentTurn) {
 			Blood.this.onTurnReached(currentTurn);
-			
 		}
 		
 	};

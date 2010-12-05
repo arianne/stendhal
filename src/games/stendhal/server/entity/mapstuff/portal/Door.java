@@ -112,7 +112,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	}
 
 	/**
-	 * teleport (if the door is now open).
+	 * Teleport (if the door is now open).
 	 */
 	@Override
 	public boolean onUsed(final RPEntity user) {
@@ -141,6 +141,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 				close();
 			}
 		}
+
 		// finally let player use door
 		return couldUse;
 	}

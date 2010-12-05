@@ -318,6 +318,7 @@ public final class ZonesXMLLoader {
 			x = ZoneDesc.UNSET;
 			y = ZoneDesc.UNSET;
 		}
+
 		String region = parseRegionFromZone(name);
 
 		boolean accessible = true;
@@ -338,9 +339,6 @@ public final class ZonesXMLLoader {
 
 			desc.setTitle(XMLUtil.getText(list.get(0)).trim());
 		}
-		
-		
-		
 
 		/*
 		 * Setup elements
@@ -372,7 +370,6 @@ public final class ZonesXMLLoader {
 			}
 		}
 
-		
 		return desc;
 	}
 

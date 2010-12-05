@@ -63,7 +63,6 @@ public class ItemChangeGuardCreature extends Creature {
 
 	@Override
 	public void onDead(final Entity killer, final boolean remove) {
-		
 		if (killer instanceof RPEntity) {
 			final RPEntity killerRPEntity = (RPEntity) killer;
 

@@ -34,12 +34,11 @@ import marauroa.common.game.Definition.Type;
  */
 public class Chest extends Entity implements UseListener {
 	private static final String CHEST_RPCLASS_NAME = "chest";
+
 	/**
 	 * Whether the chest is open.
 	 */
 	private boolean open;
-
-	
 	
 	/**
 	 * Creates a new chest.

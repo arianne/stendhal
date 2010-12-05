@@ -725,19 +725,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private void notifyAdded(final RPObject object) {
 		for (final ZoneEnterExitListener l : zoneListeners) {
-			
 				l.onEntered(object, this);
-			
 		}
-		
 	}
+
 	private void notifyRemoved(final RPObject object) {
 		for (final ZoneEnterExitListener l : zoneListeners) {
-			
 			l.onExited(object, this);
-		
-	}
-		
+		}	
 	}
 
 	@Override

@@ -16,7 +16,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 
 /**
- * Contains statistics for notifications
+ * Contains statistics for notifications.
  */
 public class CircumstancesOfDeath {
 	private RPEntity killer;
@@ -24,19 +24,19 @@ public class CircumstancesOfDeath {
 	private RPEntity victim;
 	private StendhalRPZone zone;
 	
-	public RPEntity getKiller(){
+	public RPEntity getKiller() {
 		return(killer);
 	}
 	
-	public RPEntity getVictim(){
+	public RPEntity getVictim() {
 		return(victim);
 	}
 
-	public StendhalRPZone getZone(){
+	public StendhalRPZone getZone() {
 		return(zone);
 	}
 	
-	public CircumstancesOfDeath(RPEntity killer, RPEntity victim, StendhalRPZone zone){
+	public CircumstancesOfDeath(RPEntity killer, RPEntity victim, StendhalRPZone zone) {
 		this.zone=zone;
 		this.killer=killer;
 		this.victim=victim;

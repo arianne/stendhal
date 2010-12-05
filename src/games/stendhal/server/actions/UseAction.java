@@ -101,7 +101,6 @@ public class UseAction implements ActionListener {
 	}
 
 	private void tryUse(final Player player, final RPObject object) {
-
 		if (!canUse(player, object)) {
 			return;
 		}

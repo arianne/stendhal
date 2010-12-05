@@ -174,8 +174,6 @@ public class Sheep extends DomesticAnimal {
 		super.onDead(killer, remove);
 	}
 
-	
-
 	private void cleanUpSheep() {
 		if (owner != null) {
 			if (owner.hasSheep()) {

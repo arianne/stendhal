@@ -64,7 +64,6 @@ public class SpouseExtensionTest {
 	public final void tearDown() {
 		PlayerTestHelper.removePlayer("player2", ZONE_NAME);
 		PlayerTestHelper.removePlayer("player1", ZONE_NAME);
-		
 	}
 
 	/**
