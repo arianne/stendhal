@@ -42,7 +42,6 @@ import marauroa.server.game.rp.RPServerManager;
 
 import org.apache.log4j.Logger;
 
-
 public class StendhalRPAction {
 
 	/** the logger instance. */
@@ -101,7 +100,7 @@ public class StendhalRPAction {
 			
 			if (victim instanceof Player) {
 				// disable attacking much weaker players, except in
-				// self defence
+				// self defense
 				if ((victim.getAttackTarget() != player) && !victimIsStrongEnough(player, victim)) {
 					player.sendPrivateText("Your conscience would trouble you if you carried out this attack.");
 				
