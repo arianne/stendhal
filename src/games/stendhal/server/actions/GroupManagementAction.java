@@ -57,7 +57,7 @@ public class GroupManagementAction implements ActionListener {
 
 		// get target player
 		Player targetPlayer = null;
-		if (!actionStr.equals("part")) {
+		if (!actionStr.equals("part") && !actionStr.equals("status")) {
 			targetPlayer = SingletonRepository.getRuleProcessor().getPlayer(params);
 			if (targetPlayer == null) {
 				player.sendPrivateText(NotificationType.ERROR, "Player " + params + " is not online");
@@ -76,6 +76,8 @@ public class GroupManagementAction implements ActionListener {
 			kick(player, targetPlayer);
 		} else if (actionStr.equals("part")) {
 			part(player);
+		} else if (actionStr.equals("status")) {
+			status(player);
 		} else {
 			unknown(player, actionStr, params);
 		}
@@ -213,6 +215,23 @@ public class GroupManagementAction implements ActionListener {
 
 		group.removeMember(player.getName());
 	}
+
+
+	/**
+	 * status report about the group
+	 *
+	 * @param player player who wants a status report
+	 */
+	private void status(Player player) {
+		Group group = SingletonRepository.getGroupManager().getGroup(player.getName());
+		if (group == null) {
+			player.sendPrivateText(NotificationType.ERROR, "You are not a member of a group.");
+			return;
+		}
+
+		group.sendGroupChangeEvent(player);
+	}
+
 
 	private void kick(Player player, Player targetPlayer) {
 		// TODO Auto-generated method stub

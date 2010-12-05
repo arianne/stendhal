@@ -257,6 +257,17 @@ public class Group {
 	}
 
 	/**
+	 * tells the player the current status of the group
+	 *
+	 * @param player Player
+	 */
+	public void sendGroupChangeEvent(Player player) {
+		List<String> members = new LinkedList<String>(membersAndLastSeen.keySet());
+		RPEvent event = new GroupChangeEvent(leader, members);
+		player.addEvent(event);
+	}
+
+	/**
 	 * tell players about them being removed from the group
 	 *
 	 * @param toRemove players to remove.
@@ -264,7 +275,7 @@ public class Group {
 	private void sendLeftGroupEvent(Set<String> toRemove) {
 		StendhalRPRuleProcessor ruleProcessor = SingletonRepository.getRuleProcessor();
 		RPEvent event = new GroupChangeEvent();
-		for (String playerName : membersAndLastSeen.keySet()) {
+		for (String playerName : toRemove) {
 			Player player = ruleProcessor.getPlayer(playerName);
 			if (player != null) {
 				player.addEvent(event);
