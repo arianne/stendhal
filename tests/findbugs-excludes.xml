@@ -98,4 +98,11 @@
 			<Class name="games.stendhal.client.gui.ScrollerPanel"/>
 		</Or>
 	</Match>	
+
+	<!-- disable unnecessary warning for cast to DomesticAnimal -->
+	<Match>
+		<Bug pattern="BC_UNCONFIRMED_CAST"/>
+		<Class name="games.stendhal.server.core.rp.StendhalRPAction"/>
+		<Method name="startAttack"/>
+	</Match>	
 </FindBugsFilter>
