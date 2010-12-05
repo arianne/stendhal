@@ -41,6 +41,7 @@ import org.xml.sax.SAXException;
  * Load and configure zones via an XML configuration file.
  */
 public final class ZonesXMLLoader {
+
 	/**
 	 * Logger.
 	 */
@@ -49,37 +50,29 @@ public final class ZonesXMLLoader {
 	/**
 	 * The ConfiguratorDescriptor XML reader.
 	 */
-	protected static final SetupXMLReader configuratorReader = new ConfiguratorXMLReader();
+	private static final SetupXMLReader configuratorReader = new ConfiguratorXMLReader();
 
 	/**
 	 * The EntitySetupDescriptor XML reader.
 	 */
-	protected static final SetupXMLReader entitySetupReader = new EntitySetupXMLReader();
+	private static final SetupXMLReader entitySetupReader = new EntitySetupXMLReader();
 
 	/**
 	 * The PortalSetupDescriptor XML reader.
 	 */
-	protected static final SetupXMLReader portalSetupReader = new PortalSetupXMLReader();
+	private static final SetupXMLReader portalSetupReader = new PortalSetupXMLReader();
 
 	/**
 	 * The zone group file.
 	 */
-	protected URI uri;
-	
-	/**
-	 * the region this zone group file is considered for
-	 */
-	private final String region;
+	private final URI uri;
 
 	/**
-	 * Create an xml based loader of zones.
+	 * Create an XML based loader of zones.
 	 * @param uri the zone group file
 	 */
 	public ZonesXMLLoader(final URI uri) {
 		this.uri = uri;
-		String path = this.uri.getPath();
-		String xmlName = path.substring(path.lastIndexOf("/")+1);
-		region = xmlName.substring(0, xmlName.indexOf("."));
 	}
 
 	//
@@ -121,8 +114,7 @@ public final class ZonesXMLLoader {
 	 * @throws IOException
 	 *             If an I/O error occurred.
 	 */
-	protected void load(final InputStream in) throws SAXException, IOException {
-		
+	protected void load(final InputStream in) throws SAXException, IOException {	
 		final Document doc = XMLUtil.parse(in);
 
 		/*
@@ -274,7 +266,6 @@ public final class ZonesXMLLoader {
 		}
 
 		final String file = element.getAttribute("file");
-		String region = this.region; 
 
 		int level;
 		int x;
@@ -327,7 +318,7 @@ public final class ZonesXMLLoader {
 			x = ZoneDesc.UNSET;
 			y = ZoneDesc.UNSET;
 		}
-		region = parseRegionFromZone(name);
+		String region = parseRegionFromZone(name);
 
 		boolean accessible = true;
 		if (element.hasAttribute("accessible")) {
