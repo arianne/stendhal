@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,15 +23,19 @@ import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
-/*
- * represents everything that can be consumed by RPentity. Including food,
- * poison, antidote ..
+import org.apache.log4j.Logger;
+
+/**
+ * Represents everything that can be consumed by RPentity. Including food,
+ * poison, antidote, ...
  * 
  * Note: this class has a natural ordering that is inconsistent with equals.
- * 
  */
 public class ConsumableItem extends StackableItem implements UseListener,
 		Comparable<ConsumableItem> {
+
+	private final static Logger logger = Logger.getLogger(ConsumableItem.class);
+
 	/** How much of this item has not yet been consumed. */
 	private int left;
 	private final Feeder feeder;
@@ -43,11 +47,9 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	}
 
 	private void checkAmount(final String attribute, final double value) {
-	
 		if ("amount".equals(attribute)) {
 			left = (int) value;
 		}
-		
 	}
 
 	@Override
@@ -62,7 +64,6 @@ public class ConsumableItem extends StackableItem implements UseListener,
 			left = Integer.parseInt(value);
 		}
 		super.put(attribute, value);
-		
 	}
 
 	public ConsumableItem(final String name, final String clazz, final String subclass,
@@ -127,35 +128,40 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	}
 
 	/**
-	 * verifies item is near to player. if so splits one single item of and
-	 * calls consumeItem of the player
+	 * Verifies item is near to player. if so splits one single item of and
+	 * calls consumeItem of the player.
 	 * @param user the eating player
 	 * @return true if consumption can be started
-	 * 
 	 */
 	public boolean onUsed(final RPEntity user) {
-		final Player player = (Player) user;
-		if (isContained()) {
-			// We modify the base container if the object change.
-			RPObject base = getContainer();
+		if (user instanceof Player) {
+			final Player player = (Player) user;
 
-			while (base.isContained()) {
-				base = base.getContainer();
-			}
+			if (isContained()) {
+				// We modify the base container if the object change.
+				RPObject base = getContainer();
 
-			if (!user.nextTo((Entity) base)) {
-				user.sendPrivateText("The consumable item is too far away");
-				return false;
+				while (base.isContained()) {
+					base = base.getContainer();
+				}
+
+				if (!user.nextTo((Entity) base)) {
+					user.sendPrivateText("The consumable item is too far away");
+					return false;
+				}
+			} else {
+				if (!nextTo(user)) {
+					user.sendPrivateText("The consumable item is too far away");
+					return false;
+				}
 			}
+			feeder.feed(this, player);
+			player.notifyWorldAboutChanges();
+			return true;
 		} else {
-			if (!nextTo(user)) {
-				user.sendPrivateText("The consumable item is too far away");
-				return false;
-			}
+			logger.error("user is no instance of Player but: " + user, new Throwable());
+			return false;
 		}
-		feeder.feed(this, player);
-		player.notifyWorldAboutChanges();
-		return true;
 	}
 
 	/*

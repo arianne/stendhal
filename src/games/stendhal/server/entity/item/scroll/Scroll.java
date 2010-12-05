@@ -1,6 +1,6 @@
 /* $Id$
- /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ /**************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -71,7 +71,8 @@ public class Scroll extends StackableItem implements UseListener {
 			Scroll clone = (Scroll) clone();
 			Scroll splitted = (Scroll) splitOff(1);
 			StendhalRPZone zone = getZone();
-			if (useScroll((Player) user)) {
+
+			if (user instanceof Player && useScroll((Player)user)) {
 				user.notifyWorldAboutChanges();
 				return true;
 			} else {
@@ -89,10 +90,11 @@ public class Scroll extends StackableItem implements UseListener {
 						zone.add(clone);
 					}
 				}
+
 				return false;
 			}
 		} else {
-			logger.debug("Scroll is too far away");
+			logger.debug("Scroll is too far away.");
 			return false;
 		}
 	}
