@@ -227,7 +227,12 @@ public class Portal extends Entity implements UseListener {
 	}
 
 	public boolean onUsed(final RPEntity user) {
-		return usePortal((Player) user);
+		if (user instanceof Player) {
+			return usePortal((Player) user);
+		} else {
+			logger.error("user is no instance of Player but: " + user, new Throwable());
+			return false;
+		}
 	}
 
 	/**

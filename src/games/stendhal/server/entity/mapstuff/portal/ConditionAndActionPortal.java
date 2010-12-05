@@ -20,12 +20,17 @@ import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import org.apache.log4j.Logger;
+
 public class ConditionAndActionPortal extends AccessCheckingPortal {
+
+	private static final Logger logger = Logger.getLogger(ConditionAndActionPortal.class);
+
 	private final ChatCondition condition;
 	private final ChatAction action;
 
 	/**
-	 * Creates a ConditionCheckingPortal
+	 * Creates a ConditionCheckingPortal.
 	 *
 	 * @param condition optional condition to check
 	 * @param action optional action to execute
@@ -35,7 +40,7 @@ public class ConditionAndActionPortal extends AccessCheckingPortal {
 	}
 
 	/**
-	 * Creates a ConditionCheckingPortal
+	 * Creates a ConditionCheckingPortal with reject message.
 	 *
 	 * @param condition optional condition to check
 	 * @param rejectMessage message to tell the player in case the condition is not met
@@ -66,13 +71,17 @@ public class ConditionAndActionPortal extends AccessCheckingPortal {
 
 	@Override
 	public boolean onUsed(RPEntity user) {
-		Sentence sentence = ConversationParser.parse(user.get("text"));
 		boolean res = super.onUsed(user);
+
 		if (res && (action != null)) {
-			action.fire((Player) user, sentence, new EventRaiser(this));
+			if (user instanceof Player) {
+				action.fire((Player) user, ConversationParser.parse(user.get("text")), new EventRaiser(this));
+			} else {
+				logger.error("user is no instance of Player but: " + user, new Throwable());
+			}
 		}
+
 		return res;
 	}
-
 	
 }
