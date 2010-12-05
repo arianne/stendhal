@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.ZoneEnterExitListener;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrantList;
 
@@ -45,9 +46,8 @@ import org.apache.log4j.Logger;
  * @author daniel
  */
 public class Jail implements ZoneConfigurator, LoginListener {
-	
+
 	static StendhalRPZone jailzone;
-	
 
 	private static final Logger LOGGER = Logger.getLogger(Jail.class);
 	private static final List<Point> cellEntryPoints = Arrays.asList(
@@ -68,33 +68,29 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			new Rectangle(1, 1, 30, 3),
 			new Rectangle(7, 10, 30, 3)
 		};
-	
+
 	private ArrestWarrantList arrestWarrants;
 
 	private List<Cell> cells = new LinkedList<Cell>();
 	
 	private ZoneEnterExitListener listener = new ZoneEnterExitListener() {
-
 		public void onEntered(final RPObject object, final StendhalRPZone zone) {
 			if (object.getRPClass().subclassOf("player")) {
 				//TODO: could this be a bug ? (durkham)
 				
 			}
-			
 		}
 
 		public void onExited(final RPObject object, final StendhalRPZone zone) {
-			if (object.getRPClass().subclassOf("player")) {
+			if (object instanceof RPEntity && object.getRPClass().subclassOf("player")) {
+				String playerName = ((RPEntity)object).getName();
+
 				for (final Cell cell : cells) {
-					cell.remove(((Player) object).getName());
+					cell.remove(playerName);
 				}
-				
-				
 			}
-			
 		}
 	};
-
 
 
 	private final class Jailer implements TurnListener {
@@ -158,8 +154,6 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			imprison(criminal, policeman, minutes);
 			criminal.sendPrivateText("You have been jailed for " + minutes
 					+ " minutes. Reason: " + reason + ".");
-			
-			
 		}
 		arrestWarrants.add(arrestWarrant);
 	}
