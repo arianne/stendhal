@@ -38,7 +38,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(ItemsXMLLoader.class);
 
-	protected Class< ? > implementation;
+	private Class< ? > implementation;
 	
 	private String name;
 
@@ -67,7 +67,6 @@ public final class ItemsXMLLoader extends DefaultHandler {
 	private String damageType;
 	
 	private Map<String, Double> susceptibilities = new HashMap<String, Double>();
-
 	
 
 	public List<DefaultItem> load(final URI uri) throws SAXException {
