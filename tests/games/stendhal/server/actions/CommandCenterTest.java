@@ -31,7 +31,6 @@ public class CommandCenterTest {
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
 		MockStendhalRPRuleProcessor.get();
-
 	}
 
 	/**

@@ -84,7 +84,6 @@ public class WrapActionTest {
 		assertThat(present.getInfoString(), is("potion"));
 		present.onUsed(player);
 		assertTrue(player.isEquipped("potion"));
-
 	}
 
 	/**
@@ -108,9 +107,7 @@ public class WrapActionTest {
 		assertNotNull(present);
 		assertThat(present.getInfoString(), is("greater potion"));
 		present.onUsed(player);
-		assertTrue(player.isEquipped("greater potion"));
-		
-		
+		assertTrue(player.isEquipped("greater potion"));		
 	}
 
 	/**
@@ -134,7 +131,6 @@ public class WrapActionTest {
 		assertThat(present.getInfoString(), is("mithril shield"));
 		present.onUsed(player);
 		assertTrue(player.isEquipped("mithril shield"));
-
 	}
 
 }

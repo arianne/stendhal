@@ -19,8 +19,10 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -43,6 +45,11 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 
 		final WizardBank wb = new WizardBank();
 		wb.addToWorld();
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	public WizardBankTest() {

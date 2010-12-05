@@ -25,6 +25,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -32,7 +33,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 /**
- * Test server actions.
+ * Test server "look" actions.
  * 
  * @author Martin Fuchs
  */
@@ -43,7 +44,11 @@ public class LookActionTest {
 		MockStendlRPWorld.get();
 		Log4J.init();
 		PlayerTestHelper.generatePlayerRPClasses();
-		
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	@Before
