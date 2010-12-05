@@ -76,8 +76,13 @@ public class Box extends Item implements UseListener {
 				return false;
 			}
 		}
-		final Player player = (Player) user;
-		return useMe(player);
+
+		if (user instanceof Player) {
+			return useMe((Player)user);
+		} else {
+			logger.error("user is not a instance of Player but: " + user, new Throwable());
+			return false;
+		}
 	}
 
 	// this would be overridden in the subclass
