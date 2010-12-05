@@ -17,7 +17,8 @@ Changelog
 - positioning of entities to fix character position, attacking circles, creature placement errors
 - vaults and adventure island correctly flagged as interior zones so players shouldn't land in the wrong zone
 - fixed some fish sources in amazon
-- 50% of findbugs warnings fixed
+- 60% of findbugs warnings and most of all Eclipse warnings fixed
+- all tests now pass using the Eclipse JUnit plugin
 
 
 
