@@ -17,7 +17,11 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
+import org.apache.log4j.Logger;
+
 public class DamageEffect extends AbstractEffect {
+
+	private static final Logger LOGGER = Logger.getLogger(DamageEffect.class);
 
 	public DamageEffect(Nature nature, int amount, int atk, int def,
 			double lifesteal, int rate, int regen) {
@@ -25,11 +29,15 @@ public class DamageEffect extends AbstractEffect {
 	}
 
 	public void act(Player caster, Entity target) {
-		actInternal(caster, (RPEntity) target);
+		if (target instanceof RPEntity) {
+			actInternal(caster, (RPEntity) target);
+		} else {
+			LOGGER.error("target is no instance of RPEntitty but: " + target, new Throwable());
+		}
 	}
 	
 	private void actInternal(Player caster, RPEntity target) {
-		
+		//TODO implement DamageEffect action
 	}
 
 }

@@ -12,15 +12,20 @@
  ***************************************************************************/
 package games.stendhal.server.entity.spell.effect;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
+
 /**
  * Effect for healing a player
  * 
  * @author madmetzger
  */
 public class HealingEffect extends AbstractEffect {
+
+	private static final Logger LOGGER = Logger.getLogger(HealingEffect.class);
 
 	/**
 	 * Creates a new {@link HealingEffect}
@@ -39,7 +44,11 @@ public class HealingEffect extends AbstractEffect {
 	}
 
 	public void act(Player caster, Entity target) {
-		actInternal(caster, (Player) target);
+		if (target instanceof Player) {
+			actInternal(caster, (Player) target);
+		} else {
+			LOGGER.error("target is no instance of Player but: " + target, new Throwable());
+		}
 	}
 
 	private void actInternal(Player caster, Player target) {
