@@ -191,7 +191,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * kills an RPEntity
+	 * Kills an RPEntity.
 	 *
 	 * @param entity
 	 * @param killer
@@ -247,7 +247,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return rpman.getTurn();
 	}
 
-	/** Notify it when a new turn happens . */
+	/** Notify it when a new turn happens. */
 	public synchronized void beginTurn() {
 		final long start = System.nanoTime();
 
@@ -501,32 +501,37 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public synchronized boolean onExit(final RPObject object) {
-		try {
-			final Player player = (Player) object;
+		if (object instanceof Player) {
+			try {
+				final Player player = (Player) object;
 
-			Pair<RPEntity, Entity> entry = removedKilled(player);
-			if (entry != null) {
-				logger.info(object.get("name") + " logged out shortly before death: Killing it now :)");
-				entry.first().onDead(entry.second());
-			}
+				Pair<RPEntity, Entity> entry = removedKilled(player);
+				if (entry != null) {
+					logger.info(object.get("name") + " logged out shortly before death: Killing it now :)");
+					entry.first().onDead(entry.second());
+				}
 
-			if (!player.isGhost()) {
-				notifyOnlineStatus(false, player);
-			}
-			updatePlayerNameListForPlayersOnLogout(player);
+				if (!player.isGhost()) {
+					notifyOnlineStatus(false, player);
+				}
+				updatePlayerNameListForPlayersOnLogout(player);
+				
+				Player.destroy(player);
+				getOnlinePlayers().remove(player);
+
+				DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, false);
+				String[] params = {};
 			
-			Player.destroy(player);
-			getOnlinePlayers().remove(player);
+				new GameEvent(player.getName(), "logout", params).raise();
+				logger.debug("removed player " + player);
 
-			DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, false);
-			String[] params = {};
-			
-			new GameEvent(player.getName(), "logout", params).raise();
-			logger.debug("removed player " + player);
-
-			return true;
-		} catch (final Exception e) {
-			logger.error("error in onExit", e);
+				return true;
+			} catch (final Exception e) {
+				logger.error("error in onExit", e);
+				return true;
+			}
+		} else {
+			logger.error("object is no Player, but: " + object, new Throwable());
 			return true;
 		}
 	}
@@ -560,7 +565,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * sends a message to all supporters.
+	 * Sends a message to all supporters.
 	 * 
 	 * @param message Support message
 	 */
@@ -589,7 +594,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 	
 	/**
-	 * sends a message to all supporters.
+	 * Sends a message to all supporters.
 	 * 
 	 * @param source
 	 *            a player or script name
@@ -607,7 +612,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * notifies buddies about going online/offline
+	 * Notifies buddies about going online/offline.
 	 *
 	 * @param isOnline did the player login?
 	 * @param playerToNotifyAbout name of the player
@@ -668,7 +673,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * removes a zone (like a personalized vault)
+	 * Removes a zone (like a personalized vault).
 	 *
 	 * @param zone StendhalRPZone to remove
 	 */
@@ -677,7 +682,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * sets the welcome message
+	 * Sets the welcome message.
 	 *
 	 * @param msg welcome message
 	 */
