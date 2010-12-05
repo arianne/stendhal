@@ -22,7 +22,7 @@
 	<Match><Bug pattern="SE_BAD_FIELD"/></Match>
 	<Match><Bug pattern="SE_BAD_FIELD_STORE"/></Match>
 	<Match><Bug pattern="SE_BAD_FIELD_INNER_CLASS"/></Match>
-	<Mactch><Bug pattern="SE_COMPARATOR_SHOULD_BE_SERIALIZABLE"/></Mactch>
+	<Match><Bug pattern="SE_COMPARATOR_SHOULD_BE_SERIALIZABLE"/></Match>
 
 	<!-- don't warn on non-locale string case conversions -->
 	<Match>
