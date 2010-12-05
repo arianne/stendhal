@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -540,11 +540,16 @@ public class Creature extends NPC {
 
 	@Override
 	public void onDead(final Entity killer, final boolean remove) {
-		circumstances=new CircumstancesOfDeath((RPEntity)killer, this, this.getZone());
-	    notifyRegisteredObjects();
+		if (killer instanceof RPEntity) {
+			circumstances = new CircumstancesOfDeath((RPEntity)killer, this, this.getZone());
+		}
+
+		notifyRegisteredObjects();
+
 		if (this.point != null) {
 			this.point.notifyDead(this);
 		}
+
 		super.onDead(killer, remove);
 	}
 
