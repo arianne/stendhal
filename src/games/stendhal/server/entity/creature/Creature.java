@@ -958,6 +958,14 @@ public class Creature extends NPC {
 			}
 		}
 
+		// which player did hurt us most
+		Entity entity = damageReceived.getHighestCountedObject();
+		if ((entity != null) && (entity instanceof Player)) {
+			if (getZone() == entity.getZone()) {
+				return ((Player) entity).getName();
+			}
+		}
+
 		// which player did we attack last?
 		RPEntity target = getAttackTarget();
 		if ((target != null) && (target instanceof Player)) {
@@ -966,13 +974,6 @@ public class Creature extends NPC {
 			}
 		}
 
-		// which player did hurt us most
-		Entity entity = damageReceived.getHighestCountedObject();
-		if ((entity != null) && (entity instanceof Player)) {
-			if (getZone() == entity.getZone()) {
-				return ((Player) entity).getName();
-			}
-		}
 		return null;
 	}
 
