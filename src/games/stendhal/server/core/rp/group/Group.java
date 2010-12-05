@@ -42,6 +42,7 @@ public class Group {
 	private HashMap<String, Long> membersAndLastSeen = new LinkedHashMap<String, Long>();
 	private HashMap<String, Long> openInvites = new HashMap<String, Long>();
 	private String leader = null;
+	private String lootmode = "shared";
 
 	/**
 	 * adds a member to the group
@@ -200,6 +201,25 @@ public class Group {
 	}
 
 	/**
+	 * gets the loot mode
+	 *
+	 * @return loot mode
+	 */
+	public String getLootmode() {
+		return lootmode;
+	}
+
+	/**
+	 * sets the loot mode
+	 *
+	 * @param mode "single" or "shared"
+	 */
+	public void setLootmode(String mode) {
+		this.lootmode = mode;
+		sendGroupChangeEvent();
+	}
+
+	/**
 	 * invites a player to join this group.
 	 *
 	 * @param player  player sending the invited
@@ -247,7 +267,7 @@ public class Group {
 	private void sendGroupChangeEvent() {
 		StendhalRPRuleProcessor ruleProcessor = SingletonRepository.getRuleProcessor();
 		List<String> members = new LinkedList<String>(membersAndLastSeen.keySet());
-		RPEvent event = new GroupChangeEvent(leader, members);
+		RPEvent event = new GroupChangeEvent(leader, members, lootmode);
 		for (String playerName : membersAndLastSeen.keySet()) {
 			Player player = ruleProcessor.getPlayer(playerName);
 			if (player != null) {
@@ -263,7 +283,7 @@ public class Group {
 	 */
 	public void sendGroupChangeEvent(Player player) {
 		List<String> members = new LinkedList<String>(membersAndLastSeen.keySet());
-		RPEvent event = new GroupChangeEvent(leader, members);
+		RPEvent event = new GroupChangeEvent(leader, members, lootmode);
 		player.addEvent(event);
 	}
 

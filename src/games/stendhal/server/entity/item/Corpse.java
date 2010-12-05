@@ -19,6 +19,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.rp.group.Group;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
@@ -462,7 +463,21 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	 * @return true iff the player may access the items in the slots 
 	 */
 	public boolean mayUse(Player player) {
-		return (corpseOwner == null || corpseOwner.equals(player.getName()) || get("class").equals("player"));
+
+		// check the simple cases first
+		if (corpseOwner == null || corpseOwner.equals(player.getName()) || get("class").equals("player")) {
+			return true;
+		}
+
+		// okay, now check the group rules
+		Group group = SingletonRepository.getGroupManager().getGroup(player.getName());
+		if (group != null) {
+			if (group.getLootmode().equals("shared") && group.hasMember(corpseOwner)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

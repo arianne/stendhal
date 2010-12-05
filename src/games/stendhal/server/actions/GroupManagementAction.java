@@ -57,7 +57,7 @@ public class GroupManagementAction implements ActionListener {
 
 		// get target player
 		Player targetPlayer = null;
-		if (!actionStr.equals("part") && !actionStr.equals("status")) {
+		if (!actionStr.equals("lootmode") && !actionStr.equals("part") && !actionStr.equals("status")) {
 			targetPlayer = SingletonRepository.getRuleProcessor().getPlayer(params);
 			if (targetPlayer == null) {
 				player.sendPrivateText(NotificationType.ERROR, "Player " + params + " is not online");
@@ -72,6 +72,8 @@ public class GroupManagementAction implements ActionListener {
 			join(player, targetPlayer);
 		} else if (actionStr.equals("leader")) {
 			leader(player, targetPlayer);
+		} else if (actionStr.equals("lootmode")) {
+			lootmode(player, params);
 		} else if (actionStr.equals("kick")) {
 			kick(player, targetPlayer);
 		} else if (actionStr.equals("part")) {
@@ -177,7 +179,7 @@ public class GroupManagementAction implements ActionListener {
 	private void leader(Player player, Player targetPlayer) {
 
 		// check if the player is already in a group
-		Group group = SingletonRepository.getGroupManager().getGroup(targetPlayer.getName());
+		Group group = SingletonRepository.getGroupManager().getGroup(player.getName());
 		if (group == null) {
 			player.sendPrivateText(NotificationType.ERROR, "You are not a member of a group.");
 			return;
@@ -200,6 +202,39 @@ public class GroupManagementAction implements ActionListener {
 		group.setLeader(targetPlayer.getName());
 	}
 
+
+
+	/**
+	 * changes the lootmode
+	 *
+	 * @param player leader
+	 * @param lootmode new lootmode
+	 */
+	private void lootmode(Player player, String lootmode) {
+
+		// check if the player is already in a group
+		Group group = SingletonRepository.getGroupManager().getGroup(player.getName());
+		if (group == null) {
+			player.sendPrivateText(NotificationType.ERROR, "You are not a member of a group.");
+			return;
+		}
+
+		// check leader
+		group = SingletonRepository.getGroupManager().getGroup(player.getName());
+		if (!group.hasLeader(player.getName())) {
+			player.sendPrivateText(NotificationType.ERROR, "Only the group leader may change the lootmode.");
+			return;
+		}
+
+		// check if the loot mode is valid
+		if ((lootmode == null) || (!lootmode.equals("single") && !lootmode.equals("shared"))) {
+			player.sendPrivateText(NotificationType.ERROR, "Valid loot modes are \"single\" and \"shared\".");
+			return;
+		}
+
+		// set leader
+		group.setLootmode(lootmode);
+	}
 
 	/**
 	 * leave the group

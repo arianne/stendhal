@@ -247,7 +247,11 @@ class Corpse2DView extends Entity2DView {
 			return StendhalCursor.EMPTY_BAG;
 		}
 
+		// owner
 		if ((corpse.getCorpseOwner() == null) || corpse.getCorpseOwner().equals(User.getCharacterName())) {
+			return StendhalCursor.BAG;
+		}
+		if (User.isGroupSharingLoot() && User.isPlayerInGroup(corpse.getCorpseOwner())) {
 			return StendhalCursor.BAG;
 		}
 		return StendhalCursor.LOCKED_BAG;

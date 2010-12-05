@@ -22,6 +22,8 @@ import games.stendhal.common.NotificationType;
 
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import marauroa.common.game.RPObject;
 
@@ -33,6 +35,8 @@ import marauroa.common.game.RPObject;
 public class User extends Player {
 
 	private static User instance;
+	private static String groupLootmode;
+	private static Set<String> groupMembers;
 	private HashSet<String> ignore = new HashSet<String>();
 
 	private String serverVersion = null;
@@ -422,4 +426,40 @@ public class User extends Player {
 		}
 	}
 
+	/**
+	 * is the player in a group which shares the loot?
+	 *
+	 * @return true if this player is a group and it uses shared looting
+	 */
+	public static boolean isGroupSharingLoot() {
+		return groupLootmode != null && groupLootmode.equals("shared");
+	}
+
+	/**
+	 * checks if the specified player is in the same group as this player
+	 *
+	 * @param otherPlayer name of the other player
+	 * @return true if the other player is in the same group
+	 */
+	public static boolean isPlayerInGroup(String otherPlayer) {
+		if (groupMembers == null) {
+			return false;
+		}
+		return groupMembers.contains(otherPlayer);
+	}
+
+	/**
+	 * updates the group information
+	 *
+	 * @param members members
+	 * @param lootmode lootmode
+	 */
+	public static void updateGroupStatus(List<String> members, String lootmode) {
+		if (members == null) {
+			User.groupMembers = null;
+		} else {
+			User.groupMembers = new HashSet<String>(members);
+		}
+		User.groupLootmode = lootmode;
+	}
 }

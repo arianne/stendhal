@@ -14,6 +14,7 @@ package games.stendhal.client.events;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.RPEntity;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 
@@ -29,11 +30,23 @@ public class GroupChangeEvent extends Event<RPEntity> {
 	 */
 	@Override
 	public void execute() {
-		String message = "Current group status:  leader: " 
-			+ event.get("leader") 
-			+ "; members: " + event.get("members").replace("\t", ", ");
-		ClientSingletonRepository.getUserInterface().addEventLine(
-			new HeaderLessEventLine(message, NotificationType.CLIENT));
+		if (event.has("members")) {
+
+			User.updateGroupStatus(event.getList("members"), event.get("lootmode"));
+			String message = "Current group status:  leader: " 
+				+ event.get("leader") 
+				+ "; members: " + event.get("members").replace("\t", ", ")
+				+ "; lootmode: " + event.get("lootmode");
+			ClientSingletonRepository.getUserInterface().addEventLine(
+				new HeaderLessEventLine(message, NotificationType.CLIENT));
+
+		} else {
+
+			User.updateGroupStatus(null, null);
+			String message = "You are not a member of a group anymore.";
+			ClientSingletonRepository.getUserInterface().addEventLine(
+				new HeaderLessEventLine(message, NotificationType.CLIENT));
+		}
 	}
 
 }
