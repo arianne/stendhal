@@ -105,4 +105,11 @@
 		<Class name="games.stendhal.server.core.rp.StendhalRPAction"/>
 		<Method name="startAttack"/>
 	</Match>	
+
+	<!-- disable misleading warning to use Random.nextInt() instead of Random.nextDouble() -->
+	<Match>
+		<Bug pattern="DM_NEXTINT_VIA_NEXTDOUBLE"/>
+		<Class name="games.stendhal.common.rand"/>
+		<Method name="randExponential"/>
+	</Match>	
 </FindBugsFilter>
