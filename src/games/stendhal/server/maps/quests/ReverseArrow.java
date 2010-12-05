@@ -39,6 +39,8 @@ import java.util.List;
 
 import marauroa.common.game.IRPZone;
 
+import org.apache.log4j.Logger;
+
 /**
  * A quest where the player has to invert an arrow build out of stones by moving
  * only up to 3 tokens.
@@ -48,6 +50,8 @@ import marauroa.common.game.IRPZone;
 
 public class ReverseArrow extends AbstractQuest implements
 		Token.TokenMoveListener<Token>, LoginListener {
+
+	private static final Logger LOGGER = Logger.getLogger(ReverseArrow.class);
 
 	// constants
 	private static final String QUEST_SLOT = "reverse_arrow";
@@ -255,16 +259,26 @@ public class ReverseArrow extends AbstractQuest implements
 
 		@Override
 		public boolean onUsed(final RPEntity user) {
-			boolean success;
-			success = super.onUsed(user);
-			start((Player) user);
+			boolean success = super.onUsed(user);
+			
+			if (user instanceof Player) {
+				start((Player) user);
+			} else {
+				LOGGER.error("user is no instance of Player but: " + user, new Throwable());
+			}
+
 			return success;
 		}
 
 		@Override
 		public void onUsedBackwards(final RPEntity user) {
 			super.onUsedBackwards(user);
-			finish(true, (Player) user);
+
+			if (user instanceof Player) {
+				finish(true, (Player) user);
+			} else {
+				LOGGER.error("user is no instance of Player but: " + user, new Throwable());
+			}
 		}
 	}
 
@@ -272,6 +286,12 @@ public class ReverseArrow extends AbstractQuest implements
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+
+	@Override
+	public String getName() {
+		return "ReverseArrow";
+	}
+
 	/**
 	 * Creates a token and adds it to the world.
 	 *
@@ -326,43 +346,48 @@ public class ReverseArrow extends AbstractQuest implements
 	}
 
 	private void step1CreateNPC() {
-		npc = new SpeakerNPC("Gamblos") {
-			@Override
-			protected void createPath() {
-				// NPC doesn't move
-				setPath(null);
-			}
-
-			@Override
-			protected void createDialog() {
-				
-				add(ConversationStates.IDLE, 
-						ConversationPhrases.GREETING_MESSAGES,
-						new QuestCompletedCondition(QUEST_SLOT), 
-						ConversationStates.ATTENDING, 
-						null,
-						new SayTextWithPlayerNameAction("Hi again, [name]. I remember that you solved this problem already. You can do it again, of course."));
-				
-				add(ConversationStates.IDLE, 
-						ConversationPhrases.GREETING_MESSAGES,
-						new QuestNotCompletedCondition(QUEST_SLOT), 
-						ConversationStates.ATTENDING, 
-						"Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.",
-						null);
-				
-				addHelp("You have to stand next to a token in order to move it.");
-				addJob("I am the supervisor for this task.");
-				addGoodbye("It was nice to meet you.");
-				addQuest("Your task in this game is to reverse the direction of this arrow moving only 3 tokens within "
-						+ TIME + " seconds.");
-			}
-		};
+		npc = new GamblosSpeakerNPC("Gamblos");
 
 		npc.setEntityClass("oldwizardnpc"); 
 		npc.setPosition(20, 8);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);
+	}
+
+	private static final class GamblosSpeakerNPC extends SpeakerNPC {
+		private GamblosSpeakerNPC(String name) {
+			super(name);
+		}
+
+		@Override
+		protected void createPath() {
+			// NPC doesn't move
+			setPath(null);
+		}
+
+		@Override
+		protected void createDialog() {
+			add(ConversationStates.IDLE, 
+					ConversationPhrases.GREETING_MESSAGES,
+					new QuestCompletedCondition(QUEST_SLOT), 
+					ConversationStates.ATTENDING, 
+					null,
+					new SayTextWithPlayerNameAction("Hi again, [name]. I remember that you solved this problem already. You can do it again, of course."));
+			
+			add(ConversationStates.IDLE, 
+					ConversationPhrases.GREETING_MESSAGES,
+					new QuestNotCompletedCondition(QUEST_SLOT), 
+					ConversationStates.ATTENDING, 
+					"Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.",
+					null);
+			
+			addHelp("You have to stand next to a token in order to move it.");
+			addJob("I am the supervisor for this task.");
+			addGoodbye("It was nice to meet you.");
+			addQuest("Your task in this game is to reverse the direction of this arrow moving only 3 tokens within "
+					+ TIME + " seconds.");
+		}
 	}
 
 	private void step1CreateDoors() {
@@ -477,9 +502,5 @@ public class ReverseArrow extends AbstractQuest implements
 		SingletonRepository.getLoginNotifier().addListener(this);
 
 		step_1();
-	}
-	@Override
-	public String getName() {
-		return "ReverseArrow";
 	}
 }
