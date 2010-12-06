@@ -67,6 +67,7 @@ bribe	VER
 buy	VER
 bye	VER
 can	VER
+cane	OBJ	canes
 care	VER
 cast	VER
 catch	VER
@@ -213,6 +214,7 @@ stand	VER
 start	VER
 stay	VER
 steal	VER
+sugar cane	OBJ	sugar canes
 summon	VER
 summonat	VER
 swap	VER
@@ -672,6 +674,7 @@ star	OBJ	stars
 status	OBJ	stati
 steel	OBJ	steels
 stendhal	OBJ-NAM	stendhals
+stick	OBJ	sticks
 stocking	OBJ	stockings
 stone	OBJ	stones
 storage	OBJ	storages
