@@ -63,6 +63,7 @@ public class FarmersWifeNPC implements ZoneConfigurator {
 				addHelp("I can sell you a bottle of milk from our dairy cows if you like.");
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("milk", 30);
+				offerings.put("butter", 40);
 				new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
 
 				addGoodbye("Tot ziens.");
