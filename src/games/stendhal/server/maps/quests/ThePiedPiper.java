@@ -95,32 +95,32 @@ import org.apache.log4j.Logger;
 			// game timings */
 			timings.put(INACTIVE_TIME_MAX, 60 * 60 * 24 * 14);
 			timings.put(INACTIVE_TIME_MIN, 60 * 60 * 24 * 7);
-			timings.put(INVASION_TIME_MIN, 60 * 60 * 2);
 			timings.put(INVASION_TIME_MAX, 60 * 60 * 2);
-			timings.put(AWAITING_TIME_MIN, 60 * 20);
-			timings.put(AWAITING_TIME_MAX, 60 * 20);
-			timings.put(OUTGOING_TIME_MIN, 60 * 20);
-			timings.put(OUTGOING_TIME_MAX, 60 * 20);
-			timings.put(CHILDRENS_TIME_MIN, 60 * 20);
-			timings.put(CHILDRENS_TIME_MAX, 60 * 20);
-			timings.put(FINAL_TIME_MIN, 60 * 60 * 2);
-			timings.put(FINAL_TIME_MAX, 60 * 60 * 2);
+			timings.put(INVASION_TIME_MIN, 60 * 60 * 2);
+			timings.put(AWAITING_TIME_MAX, 60 * -1);
+			timings.put(AWAITING_TIME_MIN, 60 * -1);
+			timings.put(OUTGOING_TIME_MAX, 60 * -1);
+			timings.put(OUTGOING_TIME_MIN, 60 * -1);
+			timings.put(CHILDRENS_TIME_MAX, 60 * -1);
+			timings.put(CHILDRENS_TIME_MIN, 60 * -1);
+			timings.put(FINAL_TIME_MAX, 60 * 60 * 6);
+			timings.put(FINAL_TIME_MIN, 60 * 60 * 4);
 			timings.put(SHOUT_TIME, 60 * 10);
 			} 
 		else {	
 			// test timings
 			timings.put(INACTIVE_TIME_MAX, 60 * 2);
 			timings.put(INACTIVE_TIME_MIN, 60 * 1);
-			timings.put(INVASION_TIME_MIN, 60 * 20);
 			timings.put(INVASION_TIME_MAX, 60 * 20);
-			timings.put(AWAITING_TIME_MIN, 60 * 20);
-			timings.put(AWAITING_TIME_MAX, 60 * 20);
-			timings.put(OUTGOING_TIME_MIN, 60 * 1);
-			timings.put(OUTGOING_TIME_MAX, 60 * 1);
-			timings.put(CHILDRENS_TIME_MIN, 60 * 1);
-			timings.put(CHILDRENS_TIME_MAX, 60 * 1);
-			timings.put(FINAL_TIME_MIN, 60 * 1);
-			timings.put(FINAL_TIME_MAX, 60 * 1);
+			timings.put(INVASION_TIME_MIN, 60 * 20);
+			timings.put(AWAITING_TIME_MAX, 60 * -1);
+			timings.put(AWAITING_TIME_MIN, 60 * -1);
+			timings.put(OUTGOING_TIME_MAX, 60 * -1);
+			timings.put(OUTGOING_TIME_MIN, 60 * -1);
+			timings.put(CHILDRENS_TIME_MAX, 60 * -1);
+			timings.put(CHILDRENS_TIME_MIN, 60 * -1);
+			timings.put(FINAL_TIME_MAX, 60 * 60 * 6);
+			timings.put(FINAL_TIME_MIN, 60 * 60 * 4);
 			timings.put(SHOUT_TIME, 60 * 2);
 			} 
 	}
