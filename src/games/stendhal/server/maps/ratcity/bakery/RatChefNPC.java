@@ -64,16 +64,27 @@ public class RatChefNPC implements ZoneConfigurator {
 				addJob("I'm the best #crepes suzette au chocolate chef in town. Ask me to #bake one for you!");
 				addReply("crepes",
                     "Ah le dessert for a prince... A taste of which, I really believe, would reform a cannibal into a civilized gentleman.");
-				addReply(Arrays.asList("chocolate","chocolate bar"),
+				addReply(Arrays.asList("chocolate"),
                     "A rarity. It seems only very nasty and murderous folks carry some in their pockets.");
 				addReply("flour",
                     "I stea.. ahem.. get all my supplies of flour from the nearby Semos city.");
 				addReply("egg",
                     "I'd look for one where hens scratch about.");
-				addReply(Arrays.asList("butter","milk"),
+				addReply("milk",
                     "A farm would be a good place where one could find that ingredient.");
+				addReply("butter",
+                    "Where you find milk you will most likely find butter as well!");
+				addReply(Arrays.asList("fierywater"),
+                    "It gets distilled from sugar canes and you could try asking around in Ados market for that.");
                 addReply("sugar",
-                    "That comes from grinding sugar canes, which you could harvest yourself in cane fields.");
+                    "That comes from grinding sugar canes, which you could harvest yourself in #cane #fields."
+                        + " You will need some #kitchen #tool for the grinding part.");
+                addReply("kitchen tool",
+                    "Yes, a sugar mill! Too bad I've lost mine which I borrowed from Erna some time ago... Oh, please avoid mentioning my name to her!");
+                addReply("erna",
+                    "Oh, she's Leander assistant and you always find her in Semos bakery!");
+                addReply(Arrays.asList("cane", "canes", "cane field", "cane fields", "sugar cane", "sugar canes"),
+                    "I have heard that sugar canes need a warm and humid climate to thrive. Maybe you might find some on Athor island");
 				addOffer("I will serve you crepes suzette au chocolate if you ask me to #bake one!");
 				addHelp("Ask me to #bake you my special #chocolate #crepes suzette, that's what I offer.");
 				addGoodbye("Au revoire voyageur... And come back to visit me anytime you like!");
