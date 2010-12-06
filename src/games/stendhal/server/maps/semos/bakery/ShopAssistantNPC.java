@@ -186,7 +186,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				 
 				// saying the item name and storing that item name into the quest slot, and giving the item
 				add(ConversationStates.ATTENDING,
-				    ITEMS,
+				    "",
 				    new AndCondition(
 				    	new TriggerExactlyInListCondition(ITEMS),
 				        new LevelGreaterThanCondition(5), 
@@ -209,8 +209,37 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 					}
 				});
 				 
-				// say the item name when not in correct conditions should give some appropriate message - or use null condition for a generic message about the item?
-				addReply(ITEMS,"Sorry, you can't borrow that from me right now.");
+				// too low level
+				add(ConversationStates.ATTENDING,
+					    ITEMS,
+					    new LevelLessThanCondition(6),
+					    ConversationStates.ATTENDING, 
+					    "Sorry, as you have little experience in this world I can't trust you with my tools.",
+					    null);
+				
+				// currently has borrowed an item
+				add(ConversationStates.ATTENDING,
+					    ITEMS,
+					    new QuestActiveCondition(QUEST_SLOT),
+					    ConversationStates.ATTENDING, 
+					    "You can't borrow from me again till you #return the last tool I lent you.",
+					    null);
+				
+				// haven't done pizza
+				add(ConversationStates.ATTENDING,
+					    ITEMS,
+					    new QuestNotCompletedCondition("pizza_delivery"),
+					    ConversationStates.ATTENDING, 
+					    "Only pizza deliverers can borrow tools, please deliver one for Leander and then ask me again.",
+					    null);
+				
+				// didn't say word exactly (e.g. sugar)
+				add(ConversationStates.ATTENDING,
+					    ITEMS,
+					    new NotCondition(new TriggerExactlyInListCondition(ITEMS)),
+					    ConversationStates.ATTENDING, 
+					    "Please say exactly what you want from " + Grammar.enumerateCollectionWithHash(ITEMS) + ".",
+					    null);
 				
 				// player asks about pay from attending state
 				add(ConversationStates.ATTENDING, "pay", 
