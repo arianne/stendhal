@@ -17,7 +17,10 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -77,6 +80,10 @@ public class FarmerNPC implements ZoneConfigurator {
 						"still live there? You want to go south-east? Well.. you can reach Ados there too, but I think the " +
 						"way is a bit harder.");
 				addQuest("I don't have time for those things, sorry. Working..working..working..");
+				addReply("empty sack","Oh, I got plenty of those to sell. Ask me for an #offer.");
+                final Map<String, Integer> offerings = new HashMap<String, Integer>();
+                offerings.put("empty sack", 10);
+                new SellerAdder().addSeller(this, new SellerBehaviour(offerings));
 				addGoodbye("Bye bye. Be careful on your way.");
 			}
 		};
