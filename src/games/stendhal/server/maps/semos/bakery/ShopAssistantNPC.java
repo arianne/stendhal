@@ -173,7 +173,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				    null,  
 				    ConversationStates.ATTENDING, 
 				    "No problem. Take as long as you need, but you can't borrow other tools till you return the last, or pay for it.",
-				    new MultipleActions(payment));
+				    null);
 				 
 				// don't want to return it now
 				add(ConversationStates.QUESTION_2, 
