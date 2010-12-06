@@ -60,7 +60,7 @@ public class HealerNPC implements ZoneConfigurator {
 				addReply("kiss", "ew sloppy");
 				addReply(":*", "*:");
 				addJob("Wuh? Uhh. Heal. Yeah. tha's it.");
-				addHealer(this, 200);
+				addHealer(this, 250);
 				addHelp("Gimme money for beer. I heal, gis' cash.");
 				addQuest("Bah.");
  				addGoodbye("pffff bye");
