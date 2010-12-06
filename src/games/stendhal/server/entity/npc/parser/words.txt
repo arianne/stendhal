@@ -214,7 +214,6 @@ stand	VER
 start	VER
 stay	VER
 steal	VER
-sugar cane	OBJ	sugar canes
 summon	VER
 summonat	VER
 swap	VER
@@ -309,6 +308,7 @@ buster	OBJ	busters
 button	OBJ	buttons
 caboose	OBJ	cabooses
 cake	OBJ	cakes
+cane    OBJ canes
 car	OBJ	cars
 carbuncle	OBJ	carbuncles
 cards	OBJ	cards
@@ -650,6 +650,7 @@ sheep	OBJ-ANI	sheep
 sheet	OBJ	sheets
 shield	OBJ	shields
 shop	OBJ	shops
+sugar   OBJ sugar
 shuriken	OBJ	shurikens
 sign	OBJ	signs
 silver	OBJ	silvers
