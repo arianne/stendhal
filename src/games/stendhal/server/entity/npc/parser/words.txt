@@ -300,6 +300,7 @@ bronze	OBJ	bronzes
 buckler	OBJ	bucklers
 bug	OBJ	bugs
 building	OBJ	buildings
+bulb   OBJ-ANI bulbs
 bull	OBJ-ANI	bulls
 bureau	OBJ	bureaux
 bus	OBJ	bus
