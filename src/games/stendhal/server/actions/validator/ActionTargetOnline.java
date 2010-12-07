@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.validator;
 
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -43,8 +44,10 @@ public class ActionTargetOnline implements ActionValidator {
 	public String validate(Player player, RPAction action) {
 		String playerName = action.get(targetAttribute);
 		Player targetPlayer = SingletonRepository.getRuleProcessor().getPlayer(playerName);
-		if (targetPlayer == null) {
-			return "No player called " + playerName + " is online.";
+
+		if (targetPlayer == null || (targetPlayer.isGhost() 
+				&& (player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode")))) {
+			return "No player named " + playerName + " is currently active.";
 		}
 		return null;
 	}

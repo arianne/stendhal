@@ -12,29 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.actions.validator;
 
+import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 
 /**
- * validates an RPAction using a list of ActionValidators
+ * checks that the player is not in jail.
  *
  * @author hendrik
  */
-public class ActionValidation implements ActionValidator {
-	private List<ActionValidator> validators = new LinkedList<ActionValidator>();
-
-	/**
-	 * adds an ActionValidator
-	 *
-	 * @param validator ActionValidator
-	 */
-	public void add(ActionValidator validator) {
-		validators.add(validator);
-	}
+public class ActionSenderNotInJail implements ActionValidator {
 
 	/**
 	 * validates an RPAction.
@@ -44,12 +31,10 @@ public class ActionValidation implements ActionValidator {
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
 	public String validate(Player player, RPAction action) {
-		for (ActionValidator validator : validators) {
-			String res = validator.validate(player, action);
-			if (res != null) {
-				return res;
-			}
+		if (Jail.isInJail(player)) {
+			return "The strong security aura prevents you from doing that. Use /support <text> to contact an admin!";
 		}
 		return null;
 	}
+
 }

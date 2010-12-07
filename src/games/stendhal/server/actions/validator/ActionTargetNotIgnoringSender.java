@@ -12,28 +12,26 @@
  ***************************************************************************/
 package games.stendhal.server.actions.validator;
 
+import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 
 /**
- * validates an RPAction using a list of ActionValidators
+ * checks that the target player is not ignoring the action sender.
  *
  * @author hendrik
  */
-public class ActionValidation implements ActionValidator {
-	private List<ActionValidator> validators = new LinkedList<ActionValidator>();
+public class ActionTargetNotIgnoringSender implements ActionValidator {
+	private String targetAttribute;
 
 	/**
-	 * adds an ActionValidator
+	 * creates a new ActionTargetNotIgnoringSender
 	 *
-	 * @param validator ActionValidator
+	 * @param targetAttribute name of attribute containing the target player name
 	 */
-	public void add(ActionValidator validator) {
-		validators.add(validator);
+	public ActionTargetNotIgnoringSender(String targetAttribute) {
+		this.targetAttribute = targetAttribute;
 	}
 
 	/**
@@ -44,12 +42,20 @@ public class ActionValidation implements ActionValidator {
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
 	public String validate(Player player, RPAction action) {
-		for (ActionValidator validator : validators) {
-			String res = validator.validate(player, action);
-			if (res != null) {
-				return res;
-			}
+		String playerName = action.get(targetAttribute);
+		Player targetPlayer = SingletonRepository.getRuleProcessor().getPlayer(playerName);
+
+		// is ignored?
+		final String reply = targetPlayer.getIgnore(player.getName());
+		if (reply == null) {
+			return null;
 		}
-		return null;
+
+		// sender is on ignore list
+		if (reply.length() == 0) {
+			return Grammar.suffix_s(playerName) + " mind is not attuned to yours, so you cannot reach them.";
+		} else {
+			return targetPlayer + " is ignoring you: " + reply;
+		}
 	}
 }

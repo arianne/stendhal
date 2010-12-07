@@ -713,6 +713,7 @@ public class GrammarTest {
 		assertEquals("water", Grammar.extractNoun("bottle of water"));
 		assertEquals("arundula", Grammar.extractNoun("sprigs of arundula"));
 		assertEquals("armor", Grammar.extractNoun("suit of armor"));
+		assertEquals("wine", Grammar.extractNoun("glasses of wine"));
 	}
 
 	/**
