@@ -297,6 +297,9 @@ public class Grammar {
 		} else if (result.equals("butter")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "stick of ",
 					"sticks of ");
+		} else if (result.equals("garlic")) {
+			result = addPrefixIfNotAlreadyThere(lowString, "bulb of ",
+						"bulbs of ");
 		} else if (result.equals("honey")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "jar of ",
 					"jars of ");
@@ -388,13 +391,14 @@ public class Grammar {
 			changed |= removePrefix("sheaf of ");
 			changed |= removePrefix("loaf of ");
 			changed |= removePrefix("stick of ");
+			changed |= removePrefix("bulb of ");
 			changed |= removePrefix("bottle of ");
 			changed |= removePrefix("jar of ");
 			changed |= removePrefix("sprig of ");
 			changed |= removePrefix("root of ");
 			changed |= removePrefix("suit of ");
 			changed |= removePrefix("pair of ");
-			changed |= removePrefix("glas of ");
+			changed |= removePrefix("glass of ");
 			changed |= removePrefix("cup of ");
 
 			return changed;
@@ -417,6 +421,7 @@ public class Grammar {
 			changed |= removePrefix("loaves of ");
 			changed |= removePrefix("sticks of ");
 			changed |= removePrefix("bottles of ");
+			changed |= removePrefix("bulbs of ");
 			changed |= removePrefix("jars of ");
 			changed |= removePrefix("sprigs of ");
 			changed |= removePrefix("roots of ");
