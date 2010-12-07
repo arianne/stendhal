@@ -41,7 +41,6 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
-import games.stendhal.server.entity.npc.condition.TriggerExactlyInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -186,9 +185,8 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				 
 				// saying the item name and storing that item name into the quest slot, and giving the item
 				add(ConversationStates.ATTENDING,
-				    "",
+				    ITEMS,
 				    new AndCondition(
-				    	new TriggerExactlyInListCondition(ITEMS),
 				        new LevelGreaterThanCondition(5), 
 				        new QuestCompletedCondition("pizza_delivery"),
 				        new QuestNotActiveCondition(QUEST_SLOT)),
@@ -197,9 +195,13 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				    new ChatAction(){
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String itemName = sentence.getOriginalText();
+						if("sugar".equals(itemName)) {
+							npc.say("Sorry, I can't lend out sugar, only a #sugar #mill.");
+							return;
+						}
 						final Item item =  SingletonRepository.getEntityManager().getItem(itemName);
 						if (item == null) {
-							npc.say("Sorry, something went wrong. Can you say correctly the item, please?");
+							npc.say("Sorry, something went wrong. Could you say correctly the item, please?");
 							return;
 						}
 						
@@ -231,14 +233,6 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 					    new QuestNotCompletedCondition("pizza_delivery"),
 					    ConversationStates.ATTENDING, 
 					    "Only pizza deliverers can borrow tools, please deliver one for Leander and then ask me again.",
-					    null);
-				
-				// didn't say word exactly (e.g. sugar)
-				add(ConversationStates.ATTENDING,
-					    ITEMS,
-					    new NotCondition(new TriggerExactlyInListCondition(ITEMS)),
-					    ConversationStates.ATTENDING, 
-					    "Please say exactly what you want from " + Grammar.enumerateCollectionWithHash(ITEMS) + ".",
 					    null);
 				
 				// player asks about pay from attending state
