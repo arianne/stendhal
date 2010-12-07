@@ -543,6 +543,7 @@ moment	OBJ	moments
 money	OBJ	money
 moose	OBJ	moose
 morning	OBJ	mornings
+mortar OBJ mortars
 mountain	OBJ	mountains
 mouse	OBJ	mice
 mouth	OBJ	mouths
@@ -576,6 +577,7 @@ patch	OBJ	patches
 path	OBJ	paths
 pearl	OBJ	pearls
 perch	OBJ-ANI	perches
+pestle  OBJ pestles
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
 pig	OBJ-ANI	pigs
