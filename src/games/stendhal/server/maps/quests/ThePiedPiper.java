@@ -306,8 +306,10 @@ import org.apache.log4j.Logger;
 	 */
 	public static void setNewNotificationTime(int max, int min) {
 		TurnNotifier.get().dontNotify(questTimer);
-		TurnNotifier.get().notifyInSeconds(
-				Rand.randUniform(max, min),	questTimer);
+		if((max >= 0) && (min >= 0)) {
+			TurnNotifier.get().notifyInSeconds(
+					Rand.randUniform(max, min),	questTimer);			
+		}
 	}
 
 	/**
