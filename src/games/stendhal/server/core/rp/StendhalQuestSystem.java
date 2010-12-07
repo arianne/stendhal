@@ -418,7 +418,7 @@ public class StendhalQuestSystem {
 				}
 			}
 		}
-		return null;
+		return res;
 	}
 
 
