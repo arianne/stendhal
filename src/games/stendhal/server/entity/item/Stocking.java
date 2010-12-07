@@ -20,14 +20,14 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Map;
 
 /**
- * a basket which can be unwrapped.
+ * a stocking which can be opened
  * 
  * @author kymara
  */
 public class Stocking extends Box {
 
-	private static final String[] ITEMS = { "mega potion", "fish pie",
-			"lucky charm", "diamond", "gold bar", "empty scroll" };
+	private static final String[] ITEMS = { "mega potion", "love potion", "cherry pie",
+			"fish soup", "mithril nugget", "coal", "empty scroll" , "chocolate bar"};
 
 	/**
 	 * Creates a new Stocking.
