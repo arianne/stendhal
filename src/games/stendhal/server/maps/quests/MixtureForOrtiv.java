@@ -170,7 +170,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 
 			npc.addReply("licorice", "There is a nice little bar in magic city in which a young girl sells this lovely tasting sweet.");
 			
-			npc.addReply("glasses of wine", "Mhhhmm there isn't anything better than mixing stuff together while enjoying a glass of red wine *cough* but I need it of course for my mixture as well... I bet, you can buy wine somewhere, maybe in a tavern or a bar...");
+			npc.addReply("wine", "Mhhhmm there isn't anything better than mixing stuff together while enjoying a glass of red wine *cough* but I need it of course for my mixture as well... I bet, you can buy wine somewhere, maybe in a tavern or a bar...");
 			
 			npc.addReply("garlic", "I know, assassins and bandits aren't vampires, but I'll try to use it against them as well. There is a nice gardener in the Kalavan City Gardens who may sell some of her own grown garlic.");
 			
