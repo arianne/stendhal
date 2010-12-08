@@ -105,5 +105,6 @@ public class GroupManager implements TurnListener {
 	 */
 	public void onTurnReached(int currentTurn) {
 		clean();
+		TurnNotifier.get().notifyInSeconds(60, this);
 	}
 }
