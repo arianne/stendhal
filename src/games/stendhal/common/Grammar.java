@@ -171,6 +171,32 @@ public class Grammar {
 	public static String ThatThose(final int quantity) {
 		return makeUpperCaseWord(thatthose(quantity));
 	}
+	
+	/**
+	 * "this" or "these", depending on the quantity.
+	 * 
+	 * @param quantity
+	 *            The quantity to examine
+	 * @return Either "this" or "these" as appropriate
+	 */
+	public static String thisthese(final int quantity) {
+		if (quantity == 1) {
+			return "this";
+		} else {
+			return "these";
+		}
+	}
+
+	/**
+	 * "This or "These", depending on the quantity.
+	 * 
+	 * @param quantity
+	 *            The quantity to examine
+	 * @return Either "This" or "These" as appropriate
+	 */
+	public static String ThisThese(final int quantity) {
+		return makeUpperCaseWord(thisthese(quantity));
+	}
 
 	/**
 	 * Prefixes a noun with an article.
