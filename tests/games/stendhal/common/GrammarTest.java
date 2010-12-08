@@ -615,6 +615,47 @@ public class GrammarTest {
 	}
 
 	/**
+	 * Tests for quantityplnoun().
+	 */
+	@Test
+	public void testQuantityPlNoun() {
+		int cnt = 0;
+		assertEquals("these 0 grilled steaks", Grammar.thisthese(cnt) + " " +
+				Grammar.quantityplnoun(cnt, "grilled steak", ""));
+		++cnt;
+		assertEquals("this grilled steak", Grammar.thisthese(cnt) + " " +
+				Grammar.quantityplnoun(cnt, "grilled steak", ""));
+		++cnt;
+		assertEquals("these 2 grilled steaks", Grammar.thisthese(cnt) + " " +
+				Grammar.quantityplnoun(cnt, "grilled steak", ""));
+	}
+
+	/**
+	 * Tests for quantityNumberStrNoun().
+	 */
+	@Test
+	public void testQuantityNumberStrNoun() {
+		int cnt = 0;
+		assertEquals("these 0 grilled steaks", Grammar.thisthese(cnt) + " " +
+				Grammar.quantityNumberStrNoun(cnt, "grilled steak"));
+		++cnt;
+		assertEquals("this grilled steak", Grammar.thisthese(cnt) + " " +
+				Grammar.quantityNumberStrNoun(cnt, "grilled steak"));
+		++cnt;
+		assertEquals("these two grilled steaks", Grammar.thisthese(cnt) + " " +
+				Grammar.quantityNumberStrNoun(cnt, "grilled steak"));
+		++cnt;
+		assertEquals("these three grilled steaks", Grammar.thisthese(cnt) + " " +
+				Grammar.quantityNumberStrNoun(cnt, "grilled steak"));
+		cnt = 12;
+		assertEquals("these twelve grilled steaks", Grammar.thisthese(cnt) + " " +
+				Grammar.quantityNumberStrNoun(cnt, "grilled steak"));
+		cnt = 13;
+		assertEquals("these 13 grilled steaks", Grammar.thisthese(cnt) + " " +
+				Grammar.quantityNumberStrNoun(cnt, "grilled steak"));
+	}
+
+	/**
 	 * Tests for enumerateCollectionCollection.
 	 */
 	@Test
@@ -654,7 +695,8 @@ public class GrammarTest {
 		assertEquals("#first, #second, #third, and #'more complicated example'",
 				Grammar.enumerateCollectionWithHash(source));
 	}		
-	
+
+
 	private static void checkNumberString(final int n, final String string) {
 		assertEquals(string, Grammar.numberString(n));
 		assertEquals(Integer.valueOf(n), Grammar.number(string));
