@@ -53,6 +53,11 @@ public abstract class RPEntity extends ActiveEntity {
 	public static final Property PROP_GHOSTMODE = new Property();
 
 	/**
+	 * group membership.
+	 */
+	public static final Property PROP_GROUP_MEMBERSHIP = new Property();
+
+	/**
 	 * Indicator text property. Fired if they are added or removed.
 	 */
 	public static final Property PROP_TEXT_INDICATORS = new Property();
@@ -73,6 +78,7 @@ public abstract class RPEntity extends ActiveEntity {
 	public static final int OUTFIT_UNSET = -1;
 	
 	private static final Logger LOGGER = Logger.getLogger(RPEntity.class);
+
 
 	/**
 	 * Entity we are attacking. (need to reconsile this with 'attacking')

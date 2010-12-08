@@ -13,6 +13,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.GameObjects;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
@@ -455,11 +456,23 @@ public class User extends Player {
 	 * @param lootmode lootmode
 	 */
 	public static void updateGroupStatus(List<String> members, String lootmode) {
+		Set<String> oldGroupMembers = User.groupMembers;
+
 		if (members == null) {
 			User.groupMembers = null;
 		} else {
 			User.groupMembers = new HashSet<String>(members);
 		}
 		User.groupLootmode = lootmode;
+
+		// fire change event to color of player object on minimap
+		for (IEntity entity : GameObjects.getInstance()) {
+			if (entity instanceof Player) {
+				if (((oldGroupMembers != null) && oldGroupMembers.contains(entity.getName()))
+						|| ((User.groupMembers != null) && User.groupMembers.contains(entity.getName()))) {
+					((Player) entity).fireChange(RPEntity.PROP_GROUP_MEMBERSHIP);
+				}
+			}
+		}
 	}
 }

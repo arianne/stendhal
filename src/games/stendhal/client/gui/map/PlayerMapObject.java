@@ -33,6 +33,10 @@ public class PlayerMapObject extends RPEntityMapObject {
 	/**
 	 * The color of ghostmode players, if visible (white).
 	 */
+	private static final Color COLOR_GROUP = new Color(99, 61, 139);
+	/**
+	 * The color of ghostmode players, if visible (white).
+	 */
 	private static final Color COLOR_GHOST = Color.GRAY;
 	
 	public PlayerMapObject(final IEntity entity) {
@@ -41,13 +45,13 @@ public class PlayerMapObject extends RPEntityMapObject {
 		if (entity instanceof User) {
 			drawColor = COLOR_USER;
 		} else if (entity instanceof Player) {
-			choosePlayerColor(entity);
+			choosePlayerColor((Player) entity);
 			
 			// Follow the ghost mode changes of other players
 			entity.addChangeListener(new EntityChangeListener() {
 				public void entityChanged(final IEntity entity, final Object property) {
-					if (property == RPEntity.PROP_GHOSTMODE) {
-						choosePlayerColor(entity);
+					if ((property == RPEntity.PROP_GHOSTMODE) || (property == RPEntity.PROP_GROUP_MEMBERSHIP)) {
+						choosePlayerColor((Player) entity);
 					}
 				}
 			});
@@ -67,11 +71,15 @@ public class PlayerMapObject extends RPEntityMapObject {
 	 * 
 	 * @param player
 	 */
-	private void choosePlayerColor(final IEntity player) {
-		if (!((Player) player).isGhostMode()) {
-			drawColor = COLOR_PLAYER;
-		} else {
+	private void choosePlayerColor(final Player player) {
+		if (player.isGhostMode()) {
 			drawColor = COLOR_GHOST;
+		} else {
+			if (User.isPlayerInGroup(player.getName())) {
+				drawColor = COLOR_GROUP;
+			} else {
+				drawColor = COLOR_PLAYER;
+			}
 		}
 	}
 	
