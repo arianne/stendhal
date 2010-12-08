@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -144,12 +145,12 @@ npc.add(ConversationStates.ATTENDING,
 									final EventRaiser npc) {
 								int pieAmount = Rand.roll1D6() + 1;
 								new EquipItemAction("fish pie", pieAmount, true).fire(player, sentence, npc);
-								npc.say("Thank you!! Take these "
-												+ pieAmount
-												+ " fish pies from my cook, and this kiss, from me.");
+								npc.say("Thank you!! Take " +
+										Grammar.thisthese(pieAmount) + " " +
+										Grammar.quantityplnoun(pieAmount, "fish pie", "") + 
+										" from my cook, and this kiss, from me.");
 								new SetQuestAndModifyKarmaAction(getSlotName(), "drinking;" 
 																 + System.currentTimeMillis(), 15.0).fire(player, sentence, npc);
-
 							}
 						}));
 

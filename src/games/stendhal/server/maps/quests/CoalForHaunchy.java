@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -160,12 +161,10 @@ public class CoalForHaunchy extends AbstractQuest {
 									final EventRaiser npc) {
 								int grilledsteakAmount = Rand.rand(4) + 1;
 								new EquipItemAction("grilled steak", grilledsteakAmount, true).fire(player, sentence, npc);
-								npc.say("Thank you!! Take these "
-										+ grilledsteakAmount
-										+ " grilled steaks from my grill!");
+								npc.say("Thank you!! Take " + Grammar.thisthese(grilledsteakAmount) + " " +
+										Grammar.quantityNumberStrNoun(grilledsteakAmount, "grilled steak") + " from my grill!");
 								new SetQuestAndModifyKarmaAction(getSlotName(), "waiting;" 
 										+ System.currentTimeMillis(), 10.0).fire(player, sentence, npc);
-
 							}
 						}));
 
@@ -183,7 +182,6 @@ public class CoalForHaunchy extends AbstractQuest {
 				new QuestNotInStateCondition(QUEST_SLOT,"start"),
 				ConversationStates.ATTENDING,
 				"Sometime you could do me a #favour ...", null);
-
 	}
 
 	@Override
