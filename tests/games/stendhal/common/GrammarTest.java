@@ -768,7 +768,6 @@ public class GrammarTest {
 		assertEquals("nomad", Grammar.normalizeDerivedAdjective("nomadic"));
 	}
 	
-	
 	/**
 	 * Tests for leatherLegs.
 	 */
@@ -776,4 +775,25 @@ public class GrammarTest {
 	public void testLeatherLegs() throws Exception {
 		assertEquals("leather legs", Grammar.singular("leather legs"));
 	}
+
+	/**
+	 * Tests for thisthese().
+	 */
+	@Test
+	public void testthisthese() {
+		assertEquals("this", Grammar.thisthese(1));
+		assertEquals("these", Grammar.thisthese(2));
+		assertEquals("these", Grammar.thisthese(0));
+	}
+
+	/**
+	 * Tests for ThisThese().
+	 */
+	@Test
+	public void testThisThese() {
+		assertEquals("This", Grammar.ThisThese(1));
+		assertEquals("These", Grammar.ThisThese(2));
+		assertEquals("These", Grammar.ThisThese(0));
+	}
+
 }
