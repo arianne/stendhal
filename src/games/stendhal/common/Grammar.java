@@ -867,6 +867,39 @@ public class Grammar {
 	}
 
 	/**
+	 * Returns either the plural or singular form of the given noun, depending
+	 * on the quantity; also prefixes the quantity as number string, if appropriate.
+	 * 
+	 * @param quantity
+	 *            The quantity to examine
+	 * @param noun
+	 *            The noun to examine
+	 * @return Either "[quantity string] [noun]" or "[quantity string]" + plural("[noun]") as
+	 *         appropriate
+	 */
+	public static String quantityNumberStrNoun(final int quantity, final String noun) {
+		StringBuilder sb = new StringBuilder();
+
+		switch(quantity) {
+			case 0:
+				sb.append("0 ");
+				break;
+
+			case 1:
+				// skip quantity string
+				break;
+
+			default:
+				sb.append(numberString(quantity)).append(' ');
+				break;
+		}
+
+		sb.append(plnoun(quantity, noun));
+
+		return sb.toString();
+	}
+
+	/**
 	 * Is the character a vowel?
 	 * 
 	 * @param c
@@ -1025,7 +1058,6 @@ public class Grammar {
 		case 12:
 			return "twelve";
 		default:
-			logger.error("Grammar.ordered not implemented for: " + n);
 			return Integer.toString(n);
 		}
 	}
