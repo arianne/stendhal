@@ -92,7 +92,8 @@ public class Group {
 	public void clean() {
 		Set<String> toRemove = new HashSet<String>();
 		StendhalRPRuleProcessor ruleProcessor = SingletonRepository.getRuleProcessor();
-		Long currentTime = Long.valueOf(System.currentTimeMillis() - TIMEOUT);
+		Long currentTime = Long.valueOf(System.currentTimeMillis());
+		Long timeoutTime = Long.valueOf(System.currentTimeMillis() - TIMEOUT);
 
 		// remove offline members and set keep alive timestamp
 		for (Map.Entry<String, Long> entry : ((Map<String, Long>)membersAndLastSeen.clone()).entrySet()) {
@@ -100,7 +101,7 @@ public class Group {
 			if (ruleProcessor.getPlayer(playerName) != null) {
 				membersAndLastSeen.put(playerName, currentTime);
 			} else {
-				if (entry.getValue().compareTo(currentTime) < 0) {
+				if (entry.getValue().compareTo(timeoutTime) < 0) {
 					toRemove.add(playerName);
 					new GameEvent(playerName, "group", playerName, "timeout").raise();
 				}
