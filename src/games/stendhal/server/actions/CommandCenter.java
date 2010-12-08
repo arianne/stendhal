@@ -95,7 +95,6 @@ public class CommandCenter {
 		EquipAction.register();
 		FaceAction.register();
 		ForsakeAction.register();
-		GroupManagementAction.register();
 		KnockAction.register();
 		ListProducersAction.register();
 		LookAction.register();
