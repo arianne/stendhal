@@ -126,8 +126,10 @@ public class Group {
 		}
 
 		// tell the clients about the changes
-		sendGroupChangeEvent();
-		sendLeftGroupEvent(toRemove);
+		if (!toRemove.isEmpty()) {
+			sendGroupChangeEvent();
+			sendLeftGroupEvent(toRemove);
+		}
 	}
 
 	/**
