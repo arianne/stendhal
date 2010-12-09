@@ -12,13 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
-import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -36,9 +39,11 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,7 +61,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 	private static final String QUEST_SLOT = "chocolate_for_elisabeth";
 
 	/** The delay between repeating quests. */
-	private static final int REQUIRED_MINUTES = 30;
+	private static final int REQUIRED_MINUTES = 60;
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -81,7 +86,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES, 
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("chocolate bar")),
 				ConversationStates.IDLE, 
-				"My mom said, I have to wait till I can taste that lovely smell again... She said, she waits for someone to help her!",
+				"My mum wants to know who I was asking for chocolate from now :(",
 				null);
 		
 		// player didn't get chocolate, meanie
@@ -183,9 +188,17 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		// Player has got chocolate bar and spoken to mummy
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("chocolate bar"));
-		reward.add(new EquipItemAction("daisies", 2));
-		reward.add(new EquipItemAction("zantedeschia", 2));
-		reward.add(new EquipItemAction("pansy",2));
+		reward.add(new ChatAction() {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				// pick a random flower
+				String rewardClass = Rand.rand(Arrays.asList("daisies","zantedeschia","pansy"));
+				
+				final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
+				reward.setQuantity(1);
+				player.equipOrPutOnGround(reward);
+				player.notifyWorldAboutChanges();
+			}
+		});
 		reward.add(new IncreaseXPAction(500));
 		reward.add(new SetQuestAction(QUEST_SLOT, "eating;"));
 		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT,1));
@@ -195,7 +208,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, 
 				new PlayerHasItemWithHimCondition("chocolate bar"),
 				ConversationStates.ATTENDING, 
-				"Thank you EVER so much! You are very kind. Here, take these fresh flowers as a present.",
+				"Thank you EVER so much! You are very kind. Here, take a fresh flower as a present.",
 				new MultipleActions(reward));
 		
 	
@@ -231,7 +244,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 					ConversationPhrases.GREETING_MESSAGES, 
 					new QuestInStateCondition(QUEST_SLOT, "start"),
 					ConversationStates.ATTENDING, 
-					"Oh you met my daughter Elisabeth already. I hope she wasn't too demanding. You seem like a nice person so it would be really kind, if you can bring her a chocolate bar because I'm not #strong enough for that.",
+					"Oh you met my daughter Elisabeth already. You seem like a nice person so it would be really kind, if you can bring her a chocolate bar because I'm not #strong enough for that.",
 					new SetQuestAction(QUEST_SLOT, "mummy"));
 
 		mummyNPC.addReply("strong", "I tried to get some chocolate for Elisabeth a few times, but I couldn't make my way through the assassins and bandits running around #there.");
