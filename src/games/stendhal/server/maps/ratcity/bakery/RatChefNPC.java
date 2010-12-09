@@ -64,7 +64,11 @@ public class RatChefNPC implements ZoneConfigurator {
 				addJob("I'm the best #crepes suzette au chocolate chef in town. Ask me to #bake one for you!");
 				addReply("crepes",
                     "Ah le dessert for a prince... A taste of which, I really believe, would reform a cannibal into a civilized gentleman.");
-				addReply(Arrays.asList("chocolate"),
+                /**
+                 * chocolate bar is the item, and the parser knows nothing about bar/bars.
+                 * Handle all possibilities explicitly.
+                 */
+				addReply(Arrays.asList("chocolate", "chocolate bar", "chocolate bars"),
                     "A rarity. It seems only very nasty and murderous folks carry some in their pockets.");
 				addReply("flour",
                     "I stea.. ahem.. get all my supplies of flour from the nearby Semos city.");
