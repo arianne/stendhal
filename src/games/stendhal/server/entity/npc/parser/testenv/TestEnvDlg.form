@@ -11,7 +11,7 @@
       <Point value="[200, 200]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[600, 480]"/>
+      <Dimension value="[600, 520]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -33,46 +33,50 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbSentence" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfSentence" pref="397" max="32767" attributes="0"/>
-                      </Group>
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cbMatching" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Component id="btOK" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbSentence" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfSentence" pref="353" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbMatching" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                              <Component id="btOK" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lbNormalized" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfNormalized" alignment="0" pref="560" max="32767" attributes="0"/>
+                          <Component id="lbTrimmed" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfTrimmed" alignment="0" pref="560" max="32767" attributes="0"/>
+                          <Component id="lbToString" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfToString" alignment="1" pref="560" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="lbNormalized" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfNormalized" alignment="0" pref="604" max="32767" attributes="0"/>
-                  <Component id="lbTrimmed" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfTrimmed" alignment="0" pref="604" max="32767" attributes="0"/>
-                  <Component id="lbToString" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfToString" alignment="0" pref="604" max="32767" attributes="0"/>
-                  <Component id="lbTrigger" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfTrigger" alignment="0" pref="604" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbSubject" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbNumeral" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbAnalyzed" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="243" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tfNumeral" max="32767" attributes="1"/>
-                          <Component id="tfSubject" alignment="0" min="-2" pref="225" max="-2" attributes="1"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbSubject" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbVerb" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbNumeral" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbObject" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbTrigger" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfVerb" pref="226" max="32767" attributes="0"/>
-                          <Component id="tfObject" alignment="0" pref="226" max="32767" attributes="0"/>
+                          <Component id="tfTrigger" pref="215" max="32767" attributes="0"/>
+                          <Component id="tfObject" alignment="1" pref="215" max="32767" attributes="0"/>
+                          <Component id="tfVerb" alignment="0" pref="215" max="32767" attributes="0"/>
+                          <Component id="tfNumeral" alignment="1" pref="215" max="32767" attributes="1"/>
+                          <Component id="tfSubject" alignment="1" pref="215" max="32767" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
@@ -82,7 +86,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lbSentence" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -93,35 +97,51 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lbNormalized" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="tfNormalized" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lbTrimmed" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="tfTrimmed" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="lbToString" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="tfToString" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lbTrigger" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="tfTrigger" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbSubject" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfSubject" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfVerb" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbVerb" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="lbAnalyzed" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="126" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfSubject" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbSubject" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfVerb" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbVerb" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfNumeral" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbNumeral" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfObject" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbObject" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfTrigger" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbTrigger" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbNumeral" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfNumeral" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbObject" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfObject" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="269" max="-2" attributes="0"/>
+              <EmptySpace pref="118" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -147,7 +167,7 @@
             <StringItem index="7" value="What is the an answer to life, the universe and everything?"/>
             <StringItem index="8" value="to be or not to be"/>
             <StringItem index="9" value="Take these three grilled steaks and have fun!"/>
-            <StringItem index="10" value="99 red ballons"/>
+            <StringItem index="10" value="99 red balloons"/>
             <StringItem index="11" value="Hi, how are you?"/>
             <StringItem index="12" value="_Hi, how are you?"/>
           </StringArray>
@@ -206,7 +226,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbTrigger">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Trigger text:"/>
+        <Property name="text" type="java.lang.String" value="Trigger:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfTrigger">
@@ -254,5 +274,21 @@
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="lbAnalyzed">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Expressions:"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextPane" name="tpExpressions">
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

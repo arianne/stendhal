@@ -16,6 +16,12 @@ import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 
+import java.io.IOException;
+
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.html.HTMLDocument;
+
 /**
  * Dialog of the NPC Conversation Parser Test Environment.
  * @author M. Fuchs
@@ -32,6 +38,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btOK;
     private javax.swing.JCheckBox cbMatching;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbAnalyzed;
     private javax.swing.JLabel lbNormalized;
     private javax.swing.JLabel lbNumeral;
     private javax.swing.JLabel lbObject;
@@ -50,6 +58,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private javax.swing.JTextField tfTrigger;
     private javax.swing.JTextField tfTrimmed;
     private javax.swing.JTextField tfVerb;
+    private javax.swing.JTextPane tpExpressions;
     // End of variables declaration//GEN-END:variables
 
     /** This method is called from within the constructor to
@@ -81,17 +90,20 @@ public class TestEnvDlg extends javax.swing.JDialog {
         tfObject = new javax.swing.JTextField();
         lbVerb = new javax.swing.JLabel();
         tfVerb = new javax.swing.JTextField();
+        lbAnalyzed = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tpExpressions = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NPC Parser Test Environment");
         setBounds(new java.awt.Rectangle(49, 200, 0, 0));
         setLocation(new java.awt.Point(200, 200));
-        setPreferredSize(new java.awt.Dimension(600, 480));
+        setPreferredSize(new java.awt.Dimension(600, 520));
 
         lbSentence.setText("Please enter a sentence:");
 
         tfSentence.setEditable(true);
-        tfSentence.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "buy 3 cookies", "buy seven bananas", "give a bottle of wine", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red ballons", "Hi, how are you?", "_Hi, how are you?" }));
+        tfSentence.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "buy 3 cookies", "buy seven bananas", "give a bottle of wine", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
         tfSentence.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfSentenceActionPerformed(evt);
@@ -125,7 +137,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         tfToString.setEditable(false);
 
-        lbTrigger.setText("Trigger text:");
+        lbTrigger.setText("Trigger:");
 
         tfTrigger.setEditable(false);
 
@@ -145,46 +157,53 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         tfVerb.setEditable(false);
 
+        lbAnalyzed.setText("Expressions:");
+
+        jScrollPane1.setViewportView(tpExpressions);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lbSentence)
-                            .add(tfSentence, 0, 397, Short.MAX_VALUE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(cbMatching)
-                        .add(4, 4, 4)
-                        .add(btOK)
-                        .add(26, 26, 26))
-                    .add(lbNormalized)
-                    .add(tfNormalized, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
-                    .add(lbTrimmed)
-                    .add(tfTrimmed, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
-                    .add(lbToString)
-                    .add(tfToString, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
-                    .add(lbTrigger)
-                    .add(tfTrigger, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(lbSentence)
+                                    .add(tfSentence, 0, 353, Short.MAX_VALUE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(cbMatching)
+                                .add(4, 4, 4)
+                                .add(btOK)
+                                .add(26, 26, 26))
+                            .add(lbNormalized)
+                            .add(tfNormalized, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                            .add(lbTrimmed)
+                            .add(tfTrimmed, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                            .add(lbToString)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfToString, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(22, 22, 22)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(lbAnalyzed)
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 243, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(25, 25, 25)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(lbSubject)
-                            .add(lbNumeral))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(tfNumeral)
-                            .add(tfSubject, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 225, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(31, 31, 31)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(lbVerb)
-                            .add(lbObject))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(lbNumeral)
+                            .add(lbObject)
+                            .add(lbTrigger))
+                        .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(tfVerb, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                            .add(tfObject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))))
+                            .add(tfTrigger, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfObject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .add(tfVerb, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfNumeral, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfSubject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -199,33 +218,43 @@ public class TestEnvDlg extends javax.swing.JDialog {
                     .add(cbMatching))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lbNormalized)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(tfNormalized, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lbTrimmed)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(tfTrimmed, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lbToString)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(tfToString, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(lbTrigger)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(tfTrigger, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(lbSubject)
-                    .add(tfSubject, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(tfVerb, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(lbVerb))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(lbNumeral)
-                    .add(tfNumeral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(lbObject)
-                    .add(tfObject, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(269, 269, 269))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(lbAnalyzed)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(tfSubject, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lbSubject))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(tfVerb, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lbVerb))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(tfNumeral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lbNumeral))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(tfObject, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lbObject))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(tfTrigger, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lbTrigger))))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         pack();
@@ -259,6 +288,31 @@ public class TestEnvDlg extends javax.swing.JDialog {
 //        });
     }
 
+   
+	private static final String initialHtml = "<html><head>"
+		+ "<title>An example HTMLDocument</title>"
+//		+ "<style type=\"text/css\"> ul {color: red;}</style>"
+		+ "</head>"
+		+ "<body><p></p></body></html>";
+
+	private HTMLDocument initHtml(JTextPane p) {
+		p.setContentType("text/html");
+		p.setText(initialHtml);
+		
+		return (HTMLDocument) tpExpressions.getDocument();
+	}
+
+	private void addHtml(HTMLDocument d, String html) {
+		try {
+			d.insertBeforeEnd(d.getDefaultRootElement(), html);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
 	private void processSentence(String text) {
 		Sentence sentence;
 
@@ -288,5 +342,19 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         String obj = sentence.getObjectName();
         tfObject.setText(obj!=null? obj: "");
+
+
+		HTMLDocument d = initHtml(tpExpressions);
+
+		for(Expression e : sentence) {
+			String style = "";
+
+			if (e.getType().isEmpty())
+				style = " style=\"color:red\"";
+
+			addHtml(d, "<div" + style + ">" + e.getOriginal() + " / " + e.getTypeString() + "</div>");
+		}
+
+		tpExpressions.setDocument(d);
 	}
 }
