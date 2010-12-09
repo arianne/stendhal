@@ -425,6 +425,7 @@ ferry	OBJ	ferries
 figure	OBJ	figures
 finger	OBJ	fingers
 fire	OBJ	fires
+fierywater	OBJ	fierywaters
 fish	OBJ-FOO	fishes
 flail	OBJ	flails
 flask	OBJ	flasks
