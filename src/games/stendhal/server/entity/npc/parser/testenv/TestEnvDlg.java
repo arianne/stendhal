@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc.parser.testenv;
 
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Expression;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.Sentence;
 
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
     public TestEnvDlg() {
         initComponents();
         getRootPane().setDefaultButton(btOK);
+		lbUnknownWarning.setVisible(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -48,6 +50,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private javax.swing.JLabel lbToString;
     private javax.swing.JLabel lbTrigger;
     private javax.swing.JLabel lbTrimmed;
+    private javax.swing.JLabel lbUnknownWarning;
     private javax.swing.JLabel lbVerb;
     private javax.swing.JTextField tfNormalized;
     private javax.swing.JTextField tfNumeral;
@@ -93,6 +96,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
         lbAnalyzed = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tpExpressions = new javax.swing.JTextPane();
+        lbUnknownWarning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NPC Parser Test Environment");
@@ -161,6 +165,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         jScrollPane1.setViewportView(tpExpressions);
 
+        lbUnknownWarning.setText("Please add an entry for all unknown words in RED expressions!");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,18 +179,17 @@ public class TestEnvDlg extends javax.swing.JDialog {
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(lbSentence)
-                                    .add(tfSentence, 0, 353, Short.MAX_VALUE))
+                                    .add(tfSentence, 0, 369, Short.MAX_VALUE))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(cbMatching)
                                 .add(4, 4, 4)
-                                .add(btOK)
-                                .add(26, 26, 26))
+                                .add(btOK))
                             .add(lbNormalized)
-                            .add(tfNormalized, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                            .add(tfNormalized, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
                             .add(lbTrimmed)
-                            .add(tfTrimmed, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                            .add(tfTrimmed, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
                             .add(lbToString)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfToString, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfToString, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(22, 22, 22)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -199,11 +204,14 @@ public class TestEnvDlg extends javax.swing.JDialog {
                             .add(lbTrigger))
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(tfTrigger, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfObject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .add(tfVerb, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfNumeral, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfSubject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))))
+                            .add(tfTrigger, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfObject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .add(tfVerb, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfNumeral, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfSubject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(lbUnknownWarning)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -254,7 +262,9 @@ public class TestEnvDlg extends javax.swing.JDialog {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(tfTrigger, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(lbTrigger))))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(lbUnknownWarning)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -332,29 +342,37 @@ public class TestEnvDlg extends javax.swing.JDialog {
         tfTrigger.setText(sentence.getTriggerExpression().toString());
 
         String subj = sentence.getSubjectName();
-        tfSubject.setText(subj!=null? subj: null);
+        tfSubject.setText(subj!=null? subj: "["+sentence.getSubjectCount()+" subjects]");
 
         String verb = sentence.getVerbString();
-        tfVerb.setText(verb!=null? verb: "");
+        tfVerb.setText(verb!=null? verb: "["+sentence.getVerbCount()+" verbs]");
 
         Expression num = sentence.getNumeral();
-        tfNumeral.setText(num!=null? num.getNormalized(): "");
+        tfNumeral.setText(num!=null? num.getNormalized(): "["+sentence.getNumeralCount()+" numerals]");
 
         String obj = sentence.getObjectName();
-        tfObject.setText(obj!=null? obj: "");
+        tfObject.setText(obj!=null? obj: "["+sentence.getObjectCount()+" objects]");
 
 
 		HTMLDocument d = initHtml(tpExpressions);
 
+		int unknown = 0;
 		for(Expression e : sentence) {
 			String style = "";
+			ExpressionType t = e.getType();
 
-			if (e.getType().isEmpty())
+			if (t.isEmpty()) {
 				style = " style=\"color:red\"";
+				++unknown;
+			}
 
-			addHtml(d, "<div" + style + ">" + e.getOriginal() + " / " + e.getTypeString() + "</div>");
+			String type = " / " + e.getTypeString();
+
+			addHtml(d, "<div" + style + ">" + e.getOriginal() + type + "</div>");
 		}
 
 		tpExpressions.setDocument(d);
+
+		lbUnknownWarning.setVisible(unknown > 0);
 	}
 }
