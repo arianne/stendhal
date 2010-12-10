@@ -153,7 +153,7 @@ public class GoldSource extends PlayerActivityEntity {
 
 			if (item != null) {
 			    player.equipOrPutOnGround(item);
-			    player.incObtainedForItem(item.getName(), item.getQuantity());
+			    player.incMinedForItem(item.getName(), item.getQuantity());
 			    SingletonRepository.getAchievementNotifier().onObtain(player);
 			    player.sendPrivateText("You found "
 					+ Grammar.a_noun(item.getTitle()) + ".");
