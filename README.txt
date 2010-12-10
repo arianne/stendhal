@@ -35,16 +35,16 @@ How to play
 -----------
 
 You need Java which you can download from http://www.java.com/en/download
-Java is included in most Linux Distribution. Both Sun Java and OpenJDK are supported.
+Java is included in most Linux distributions. Both Sun Java and OpenJDK are supported.
 
 Please download Stendhal from http://arianne.sourceforge.net
 Then unzip the client zip into a new folder. 
-You can double click on stendhal-0.89.7.jar and the client will run.
+You can double click on stendhal-0.90.5.jar and the client will run.
 
 If you prefer to run from command line, then just execute this command
 in the stendhal folder:
 
-  java -jar stendhal-0.89.7.jar
+  java -jar stendhal-0.90.5.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
