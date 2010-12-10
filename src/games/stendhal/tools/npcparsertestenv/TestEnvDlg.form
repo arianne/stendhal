@@ -40,7 +40,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lbSentence" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfSentence" pref="369" max="32767" attributes="0"/>
+                                  <Component id="tfSentence" pref="392" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cbMatching" min="-2" max="-2" attributes="0"/>
@@ -48,20 +48,20 @@
                               <Component id="btOK" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="lbNormalized" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNormalized" alignment="0" pref="550" max="32767" attributes="0"/>
+                          <Component id="tfNormalized" alignment="0" pref="573" max="32767" attributes="0"/>
                           <Component id="lbTrimmed" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfTrimmed" alignment="0" pref="550" max="32767" attributes="0"/>
+                          <Component id="tfTrimmed" alignment="0" pref="573" max="32767" attributes="0"/>
                           <Component id="lbToString" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfToString" alignment="1" pref="550" max="32767" attributes="0"/>
+                          <Component id="tfToString" alignment="1" pref="573" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbAnalyzed" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="243" max="-2" attributes="0"/>
+                          <Component id="lbAnalyzed" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lbSubject" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbVerb" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -71,11 +71,11 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfTrigger" pref="205" max="32767" attributes="0"/>
-                          <Component id="tfObject" alignment="1" pref="205" max="32767" attributes="0"/>
-                          <Component id="tfVerb" alignment="0" pref="205" max="32767" attributes="0"/>
-                          <Component id="tfNumeral" alignment="1" pref="205" max="32767" attributes="1"/>
-                          <Component id="tfSubject" alignment="1" pref="205" max="32767" attributes="1"/>
+                          <Component id="tfObject" alignment="1" pref="228" max="32767" attributes="0"/>
+                          <Component id="tfVerb" alignment="0" pref="228" max="32767" attributes="0"/>
+                          <Component id="tfNumeral" alignment="1" pref="228" max="32767" attributes="1"/>
+                          <Component id="tfSubject" alignment="1" pref="228" max="32767" attributes="1"/>
+                          <Component id="tfTrigger" alignment="0" pref="228" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -297,7 +297,10 @@
     </Container>
     <Component class="javax.swing.JLabel" name="lbUnknownWarning">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Please add an entry for all unknown words in RED expressions!"/>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" id="red" palette="1" red="ff" type="palette"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Please add an entry for all UNKNOWN words in red expressions to the NPC parser word list!"/>
       </Properties>
     </Component>
   </SubComponents>
