@@ -62,6 +62,13 @@ public class PlayerLootedItemsHandler {
 		return 0;
 	}
 	
+	public int getQuantityOfProducedItems(String item) {
+		if(produced.containsKey(item)) {
+			return produced.get(item);
+		}
+		return 0;
+	}
+	
 	/**
 	 * Increases the count of loots for the given item for this PlayerLootedItemsHandler's player
 	 * @param item the item name
