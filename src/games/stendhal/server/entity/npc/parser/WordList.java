@@ -614,10 +614,14 @@ public class WordList {
 			final ExpressionType lastType = lastExpr.getType();
 
 			if (!checkNameCompatibleLastType(lastType, typeString)) {
-				logger.warn("last word of name '" + name
-						+ "' has unexpected type: "
-						+ lastExpr.getNormalizedWithTypeString()
-						+ " expected type: " + typeString);
+				 // ugly special case for "mill" as VERB and OBJECT
+				if (!lastType.isVerb() || !typeString.equals(ExpressionType.OBJECT) ||
+					!lastExpr.getNormalized().equals("mill")) {
+						logger.warn("last word of name '" + name
+							+ "' has unexpected type: "
+							+ lastExpr.getNormalizedWithTypeString()
+							+ " expected type: " + typeString);
+					}
 			}
 		}
 
@@ -642,8 +646,7 @@ public class WordList {
 		}
 
 		// Ignore words like "chicken", "cat" and "incorporeal armor", which are
-		// registered as objects,
-		// but also used as subjects.
+		// registered as objects, but also used as subjects.
 		if (lastType.isObject() && typeString.equals(ExpressionType.SUBJECT)) {
 			return true;
 		}
