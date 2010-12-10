@@ -2179,7 +2179,7 @@ public class Player extends RPEntity {
 	 * @return the mined amount
 	 */
 	public int getQuantityOfMinedItems(String item) {
-		return itemCounter.getNumberOfLootsForItem("mined."+item);
+		return itemCounter.getQuantityOfMinedItems(item);
 	}
 	
 	/**
