@@ -2169,7 +2169,7 @@ public class Player extends RPEntity {
 	 * @return the produced amount
 	 */
 	public int getQuantityOfProducedItems(String item) {
-		return itemCounter.getNumberOfLootsForItem("produced."+item);
+		return itemCounter.getQuantityOfProducedItems(item);
 	}
 	
 	/**
