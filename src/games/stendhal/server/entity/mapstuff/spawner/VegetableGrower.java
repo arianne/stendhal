@@ -91,6 +91,10 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 				onFruitPicked(null);
 				final Item grain = SingletonRepository.getEntityManager().getItem(
 						vegetableName);
+				if(entity instanceof Player) {
+					((Player) entity).incHarvestedForItem(vegetableName, 1);
+					SingletonRepository.getAchievementNotifier().onObtain((Player) entity);
+				}
 				entity.equipOrPutOnGround(grain);
 				return true;
 			} else if (entity instanceof Player) {

@@ -156,6 +156,7 @@ public class FishSource extends PlayerActivityEntity {
 					itemName);
 
 			player.equipOrPutOnGround(item);
+			player.incHarvestedForItem(itemName, 1);
 		    SingletonRepository.getAchievementNotifier().onObtain(player);
 			player.sendPrivateText("You caught a fish.");
 		} else {

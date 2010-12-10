@@ -16,6 +16,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -115,6 +116,10 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 		onFruitPicked(null);
 		final Item grain = SingletonRepository.getEntityManager().getItem(grainName);
 		entity.equipOrPutOnGround(grain);
+		if(entity instanceof Player) {
+			((Player) entity).incHarvestedForItem(grainName, 1);
+			SingletonRepository.getAchievementNotifier().onObtain((Player) entity);
+		}
 		return true;
 	}
 
