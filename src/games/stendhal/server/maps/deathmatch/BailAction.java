@@ -15,6 +15,8 @@ package games.stendhal.server.maps.deathmatch;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -38,7 +40,8 @@ public class BailAction implements ChatAction {
 		}
 
 		deathmatchState.setLifecycleState(DeathmatchLifecycle.BAIL);
-		player.setQuest("deathmatch", deathmatchState.toQuestString());
+		new SetQuestAction("deathmatch", 0, deathmatchState.toQuestString()).fire(player, sentence, raiser);
+		new IncrementQuestAction("deathmatch", 3, 1).fire(player, sentence, raiser);
 
 		// TODO: fix race condition until bail is processed in DeathmatchEngine
 		final Item helmet = player.getFirstEquipped("trophy helmet");

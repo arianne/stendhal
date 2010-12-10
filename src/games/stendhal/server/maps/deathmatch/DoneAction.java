@@ -15,10 +15,13 @@ package games.stendhal.server.maps.deathmatch;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.command.DBCommandQueue;
@@ -97,7 +100,9 @@ public class DoneAction implements ChatAction {
 		TurnNotifier.get().notifyInTurns(0, new NotifyPlayerAboutHallOfFamePoints((SpeakerNPC) raiser.getEntity(), player.getName(), "D"));
 		
 		// without the additional information
-		player.setQuest("deathmatch", "done"); 
+		new SetQuestAction("deathmatch", 0, "done");
+		new IncrementQuestAction("deathmatch", 2, 1).fire(player, sentence, raiser);
+		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
 	}
 
 }

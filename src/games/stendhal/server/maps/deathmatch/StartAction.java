@@ -14,6 +14,7 @@ package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -37,6 +38,7 @@ public class StartAction implements ChatAction {
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		raiser.say("Have fun!");
+		new IncrementQuestAction("deathmatch", 1, 1).fire(player, sentence, raiser);
 		deathmatchInfo.startSession(player, raiser);
 	}
 }
