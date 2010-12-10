@@ -20,7 +20,6 @@
 #  VER-PAS		verb in past form
 #
 #  OBJ			object
-#  OBJ-AMO		amount
 #  OBJ-FLU		fluid
 #  OBJ-FOO		food
 #  OBJ-OBS		obsessional word
@@ -490,7 +489,7 @@ invitation	OBJ	invitations
 irc	OBJ	ircs
 iron	OBJ	irons
 island	OBJ	islands
-it	OBJ-PRO	its
+it	OBJ-PRO	they
 item	OBJ	items
 jail	OBJ	jails
 job	OBJ	jobs
@@ -517,7 +516,7 @@ library	OBJ	libraries
 life	OBJ	lives
 limit	OBJ	limits
 list	OBJ	lists
-loaf	OBJ-AMO	loaves
+loaf	OBJ	loaves
 log	OBJ	logs
 longbow	OBJ	longbows
 lotus	OBJ	lotuses
@@ -551,7 +550,7 @@ mouse	OBJ	mice
 mouth	OBJ	mouths
 mumak	OBJ	mumakil
 mushroom	OBJ-FOO	mushrooms
-my	OBJ-OBS	mys
+my	OBJ-OBS	my
 nalwor	OBJ-NAM	nalwors
 name	OBJ	names
 naming	OBJ	namings
@@ -628,7 +627,7 @@ rod	OBJ	rods
 room	OBJ	rooms
 rose	OBJ	roses
 rug	OBJ	rugs
-sack	OBJ-AMO	sacks
+sack	OBJ	sacks
 safety	OBJ	safeties
 salad	OBJ	salads
 sandwich	OBJ-FOO	sandwiches
@@ -649,7 +648,7 @@ sense	OBJ	senses
 server	OBJ	servers
 shadow	OBJ	shadows
 shake	OBJ-FOO	shakes
-sheaf	OBJ-AMO	sheaves
+sheaf	OBJ	sheaves
 sheep	OBJ-ANI	sheep
 sheet	OBJ	sheets
 shield	OBJ	shields
@@ -672,7 +671,7 @@ spear	OBJ	spears
 species	OBJ	species
 speed	OBJ	speeds
 spinach	OBJ-FOO	spinaches
-sprig	OBJ-AMO	sprigs
+sprig	OBJ	sprigs
 sps	OBJ	sps
 staff	OBJ	staffs
 star	OBJ	stars
@@ -686,7 +685,7 @@ storage	OBJ	storages
 story	OBJ	stories
 stuff	OBJ	stuffs
 style	OBJ	styles
-suit	OBJ-AMO	suits
+suit	OBJ	suits
 sun	OBJ	suns
 suntan	OBJ	suntans
 supplie	OBJ	supplies
@@ -757,7 +756,7 @@ xenocium	OBJ	xenocia
 yarn	OBJ	yarns
 yclept	OBJ	yclepts
 youngster	OBJ	youngsters
-your	OBJ-OBS	yours
+your	OBJ-OBS	your
 zone	OBJ	zones
 
 admin	SUB
