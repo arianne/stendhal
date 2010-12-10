@@ -284,7 +284,8 @@ public class WordList {
 				}
 			} else if (entry.getPlurSing() != null) {
 				// check plural strings using the Grammar.plural() function
-				if (!entry.getType().isPronoun() && !normalized.equals("is")) {
+				if (!entry.getType().isPronoun() && !entry.getType().isObsessional() &&
+					!normalized.equals("is")) {
 					String plural = Grammar.plural(key);
 
 					if ((plural.indexOf(' ') == -1)
@@ -597,9 +598,7 @@ public class WordList {
 				expr.setType(type);
 			} else if (expr.isQuestion()) {
 				logger.warn("object name already registered with incompatible expression type while registering name '"
-						+ name
-						+ "': "
-						+ expr.getNormalizedWithTypeString()
+						+ name + "': " + expr.getNormalizedWithTypeString()
 						+ " expected type: " + typeString);
 			}
 
