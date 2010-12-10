@@ -62,6 +62,12 @@ public class PlayerLootedItemsHandler {
 		return 0;
 	}
 	
+	/**
+	 * Retrieve the amount of much an item was produced by a player
+	 * 
+	 * @param item
+	 * @return the produced quantity
+	 */
 	public int getQuantityOfProducedItems(String item) {
 		if(produced.containsKey(item)) {
 			return produced.get(item);
