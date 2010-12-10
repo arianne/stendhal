@@ -15,7 +15,6 @@ package games.stendhal.server.maps.deathmatch;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -27,7 +26,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.command.DBCommandQueue;
 
 /**
- * Handles player claim of victory by giving reward after verifing the winning.
+ * Handles player claim of victory by giving reward after verifying the winning.
  */
 public class DoneAction implements ChatAction {
 
