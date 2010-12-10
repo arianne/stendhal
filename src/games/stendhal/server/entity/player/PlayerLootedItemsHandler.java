@@ -19,6 +19,8 @@ public class PlayerLootedItemsHandler {
 	
 	private final Map<String, Integer> obtained;
 	
+	private final Map<String, Integer> mined;
+	
 	/**
 	 * Create a new PlayerLootedItemsHandler for a player
 	 * 
@@ -29,6 +31,7 @@ public class PlayerLootedItemsHandler {
 		looted = new HashMap<String, Integer>();
 		produced = new HashMap<String, Integer>();
 		obtained = new HashMap<String, Integer>();
+		mined = new HashMap<String, Integer>();
 		if(player.hasMap(LOOTED_ITEMS)) {
 			for(String item : player.getMap(LOOTED_ITEMS).keySet()) {
 				if(item.contains("produced.")) {
@@ -37,7 +40,10 @@ public class PlayerLootedItemsHandler {
 				if(item.contains("obtained.")) {
 					obtained.put(item.replace("obtained.", ""), player.getInt(LOOTED_ITEMS, item));
 				}
-				if(!item.contains("produced.") && !item.contains("obtained.")) {
+				if(item.contains("mined.")) {
+					obtained.put(item.replace("mined.", ""), player.getInt(LOOTED_ITEMS, item));
+				}
+				if(!item.contains("produced.") && !item.contains("obtained.") && !item.contains("mined.")) {
 					looted.put(item, player.getInt(LOOTED_ITEMS, item));
 				}
 			}
@@ -110,6 +116,25 @@ public class PlayerLootedItemsHandler {
 		int increased = current + count;
 		obtained.put(item, increased);
 		player.put(LOOTED_ITEMS, "obtained."+item, increased);
+	}
+	
+	/**
+	 * Increases the quantity an item was mined/obtained from a source like fish, gold, coal
+	 * 
+	 * @param item
+	 * @param count
+	 */
+	public void incMinedForItem(String item, int count) {
+		if(!player.has(LOOTED_ITEMS, "mined."+item)) {
+			player.put(LOOTED_ITEMS, "mined."+item, 0);
+		}
+		if(!mined.containsKey(item)) {
+			mined.put(item, 0);
+		}
+		int current = player.getInt(LOOTED_ITEMS, "mined."+item);
+		int increased = current + count;
+		mined.put(item, increased);
+		player.put(LOOTED_ITEMS, "mined."+item, increased);
 	}
 
 	/**
