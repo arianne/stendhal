@@ -48,7 +48,10 @@ public class PlayerLootedItemsHandler {
 				if(item.contains("mined.")) {
 					mined.put(item.replace("mined.", ""), player.getInt(LOOTED_ITEMS, item));
 				}
-				if(!item.contains("produced.") && !item.contains("obtained.") && !item.contains("mined.")) {
+				if(item.contains("harvested.")) {
+					harvested.put(item.replace("harvested.", ""), player.getInt(LOOTED_ITEMS, item));
+				}
+				if(!item.contains("produced.") && !item.contains("obtained.") && !item.contains("mined.") && !item.contains("harvested.")) {
 					looted.put(item, player.getInt(LOOTED_ITEMS, item));
 				}
 			}
@@ -76,6 +79,19 @@ public class PlayerLootedItemsHandler {
 	public int getQuantityOfProducedItems(String item) {
 		if(produced.containsKey(item)) {
 			return produced.get(item);
+		}
+		return 0;
+	}
+	
+	/**
+	 * Retrieve the amount of much an item was harvested by a player
+	 * 
+	 * @param item
+	 * @return the harvested quantity
+	 */
+	public int getQuantityOfHarvestedItems(String item) {
+		if(harvested.containsKey(item)) {
+			return harvested.get(item);
 		}
 		return 0;
 	}
@@ -150,7 +166,7 @@ public class PlayerLootedItemsHandler {
 	}
 	
 	/**
-	 * Increases the quantity an item was mined/obtained from a source like fish, gold, coal
+	 * Increases the quantity an item was mined from a source like gold, coal
 	 * 
 	 * @param item
 	 * @param count
@@ -166,6 +182,25 @@ public class PlayerLootedItemsHandler {
 		int increased = current + count;
 		mined.put(item, increased);
 		player.put(LOOTED_ITEMS, "mined."+item, increased);
+	}
+	
+	/**
+	 * Increases the quantity an item was harvested
+	 * 
+	 * @param item
+	 * @param count
+	 */
+	public void incHarvestedForItem(String item, int count) {
+		if(!player.has(LOOTED_ITEMS, "harvested."+item)) {
+			player.put(LOOTED_ITEMS, "harvested."+item, 0);
+		}
+		if(!harvested.containsKey(item)) {
+			harvested.put(item, 0);
+		}
+		int current = player.getInt(LOOTED_ITEMS, "harvested."+item);
+		int increased = current + count;
+		harvested.put(item, increased);
+		player.put(LOOTED_ITEMS, "harvested."+item, increased);
 	}
 
 	/**

@@ -2183,6 +2183,16 @@ public class Player extends RPEntity {
 	}
 	
 	/**
+	 * Gets the amount a player as harvested of an item
+	 * 
+	 * @param item the item name
+	 * @return the harvested amount
+	 */
+	public int getQuantityOfHarvestedItems(String item) {
+		return itemCounter.getQuantityOfHarvestedItems(item);
+	}
+	
+	/**
 	 * @return the whole number of items a player has obtained from the well
 	 */
 	public int getQuantityOfObtainedItems() {
@@ -2223,6 +2233,15 @@ public class Player extends RPEntity {
 	 */
 	public void incMinedForItem(String name, int quantity) {
 		itemCounter.incMinedForItem(name, quantity);
+	}
+	
+	/**
+	 * Increases the amount of successful harvestings for the given item
+	 * @param name the item name
+	 * @param quantity 
+	 */
+	public void incHarvestedForItem(String name, int quantity) {
+		itemCounter.incHarvestedForItem(name, quantity);
 	}
 	
 }
