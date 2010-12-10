@@ -46,9 +46,6 @@ public final class ExpressionType {
     /** String constant representing an object (syntax).*/
     public static final String OBJECT = "OBJ"; 
     
-    /** String constant representing an amount. */
-    public static final String AMOUNT = "AMO"; 
-    
     /** String constant representing a fluid. */
     public static final String FLUID = "FLU"; 
     
@@ -118,9 +115,9 @@ public final class ExpressionType {
 
     /** Type string specifiers, which can be used in sentence matching. */
     public static final List<String> TYPESTRINGS = Arrays.asList(
-		VERB, OBJECT, AMOUNT, SUBJECT, ADJECTIVE, NUMERAL,
+		VERB, OBJECT, SUBJECT, ADJECTIVE, NUMERAL,
 		PREPOSITION, QUESTION, IGNORE,
-		
+
 		SUFFIX_GERUND, SUFFIX_COLOR, SUFFIX_CONDITIONAL, SUFFIX_NEGATED, SUFFIX_PRONOUN, SUFFIX_FOOD,
 		SUFFIX_OBSESSIONAL, SUFFIX_FLUID, SUFFIX_ANIMAL, SUFFIX_NAME, SUFFIX_PLURAL
     );
@@ -199,7 +196,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression consists of numeral words.
-     * @return true if typeString start with 'NUM' false otherwise.
+     * @return true if typeString start with 'NUM'; false otherwise.
      */
     public boolean isNumeral() {
         return typeString.startsWith(NUMERAL);
@@ -207,7 +204,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression consists of adjectives or adverbs.
-     * @return true if typeString start with 'ADJ' false otherwise.
+     * @return true if typeString start with 'ADJ'; false otherwise.
      */
     public boolean isAdjective() {
         return typeString.startsWith(ADJECTIVE);
@@ -215,7 +212,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression consists of prepositions.
-     * @return true if typeString start with 'PRE' false otherwise.
+     * @return true if typeString start with 'PRE'; false otherwise.
 
      */
     public boolean isPreposition() {
@@ -224,8 +221,7 @@ public final class ExpressionType {
 
     /**
      * Determine Expressions to ignore.
-     * @return true if typeString start with 'IGN' false otherwise.
-
+     * @return true if typeString start with 'IGN'; false otherwise.
      */
     public boolean isIgnore() {
         return typeString.startsWith(IGNORE);
@@ -233,8 +229,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is in plural form.
-      * @return true if typeString contains '-PLU' false otherwise.
-  
+     * @return true if typeString contains '-PLU'; false otherwise.
      */
     public boolean isPlural() {
         return typeString.contains(SUFFIX_PLURAL);
@@ -242,17 +237,39 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is a creature name.
-      * @return true if typeString contains '-NAM' false otherwise.
-  
+     * @return true if typeString contains '-NAM'; false otherwise.
      */
     public boolean isName() {
         return typeString.contains(SUFFIX_NAME);
     }
 
     /**
-     * Determine if the Expression consists of question words.
-         * @return true if typeString start with 'QUE' false otherwise.
+     * Determine if the Expression is an animal.
+     * @return true if typeString contains '-ANI'; false otherwise.
+     */
+    public boolean isAnimal() {
+        return typeString.contains(SUFFIX_ANIMAL);
+    }
 
+    /**
+     * Determine if the Expression is some food.
+     * @return true if typeString contains '-FOO'; false otherwise.
+     */
+    public boolean isFood() {
+        return typeString.contains(SUFFIX_FOOD);
+    }
+
+    /**
+     * Determine if the Expression is some fluid.
+     * @return true if typeString contains '-FLU'; false otherwise.
+     */
+    public boolean isFluid() {
+        return typeString.contains(SUFFIX_FLUID);
+    }
+
+    /**
+     * Determine if the Expression consists of question words.
+     * @return true if typeString start with 'QUE'; false otherwise.
      */
     public boolean isQuestion() {
         return typeString.startsWith(QUESTION);
@@ -260,16 +277,23 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is a or is merged with a question word.
-   * @return true if typeString contains 'QUE' false otherwise.
+     * @return true if typeString contains 'QUE'; false otherwise.
      */
     public boolean hasQuestion() {
         return typeString.contains(QUESTION);
     }
 
     /**
+     * Determine if the Expression is a obsessional one.
+     * @return true if typeString contains '-OBS'; false otherwise.
+     */
+    public boolean isObsessional() {
+        return typeString.contains(SUFFIX_OBSESSIONAL);
+    }
+
+    /**
      * Determine if the Expression specifies a color.
-      * @return true if typeString contains 'COL' false otherwise.
-  
+     * @return true if typeString contains 'COL'; false otherwise.
      */
     public boolean hasColor() {
         return typeString.contains(COLOR);
@@ -277,8 +301,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is a pronoun.
-      * @return true if typeString contains '-PRO' false otherwise.
-  
+     * @return true if typeString contains '-PRO'; false otherwise.
      */
     public boolean isPronoun() {
         return typeString.contains(SUFFIX_PRONOUN);
@@ -286,8 +309,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is in conditional form.
-      * @return true if typeString contains '-CON' false otherwise.
-  
+     * @return true if typeString contains '-CON'; false otherwise.
      */
     public boolean isConditional() {
         return typeString.contains(SUFFIX_CONDITIONAL);
@@ -295,8 +317,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression is negated.
-     * @return true if typeString contains '-NEG' false otherwise.
-  
+     * @return true if typeString contains '-NEG'; false otherwise.
      */
     public boolean isNegated() {
         return typeString.contains(SUFFIX_NEGATED);
@@ -304,8 +325,7 @@ public final class ExpressionType {
 
     /**
      * Determine if the Expression contains a dynamically defined word.
-      * @return true if typeString contains '-DYN' false otherwise.
-  
+     * @return true if typeString contains '-DYN'; false otherwise.
      */
     public boolean isDynamic() {
         return typeString.contains(SUFFIX_DYNAMIC);
@@ -316,7 +336,7 @@ public final class ExpressionType {
      *
      * @param str
      * 
-     * @return true if first letter is uppercase and contains any of the predefined TYPESTRINGs 
+     * @return true if first letter is upper case and contains any of the predefined TYPESTRINGs 
      * */
     public static boolean isTypeString(final String str) {
         if (str.length() > 0) {
