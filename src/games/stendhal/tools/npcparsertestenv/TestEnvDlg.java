@@ -165,7 +165,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         jScrollPane1.setViewportView(tpExpressions);
 
-        lbUnknownWarning.setText("Please add an entry for all unknown words in RED expressions!");
+        lbUnknownWarning.setForeground(java.awt.Color.red);
+        lbUnknownWarning.setText("Please add an entry for all UNKNOWN words in red expressions!");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,17 +180,17 @@ public class TestEnvDlg extends javax.swing.JDialog {
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(lbSentence)
-                                    .add(tfSentence, 0, 369, Short.MAX_VALUE))
+                                    .add(tfSentence, 0, 379, Short.MAX_VALUE))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(cbMatching)
                                 .add(4, 4, 4)
                                 .add(btOK))
                             .add(lbNormalized)
-                            .add(tfNormalized, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                            .add(tfNormalized, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                             .add(lbTrimmed)
-                            .add(tfTrimmed, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                            .add(tfTrimmed, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                             .add(lbToString)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfToString, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfToString, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(22, 22, 22)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -204,11 +205,11 @@ public class TestEnvDlg extends javax.swing.JDialog {
                             .add(lbTrigger))
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(tfTrigger, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfObject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .add(tfVerb, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfNumeral, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfSubject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+                            .add(tfTrigger, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfObject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .add(tfVerb, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfNumeral, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, tfSubject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)))
                     .add(layout.createSequentialGroup()
                         .addContainerGap()
                         .add(lbUnknownWarning)))
@@ -366,9 +367,73 @@ public class TestEnvDlg extends javax.swing.JDialog {
 				++unknown;
 			}
 
-			String type = " / " + e.getTypeString();
+			StringBuilder type = new StringBuilder();
 
-			addHtml(d, "<div" + style + ">" + e.getOriginal() + type + "</div>");
+			if (t.isEmpty())
+				type.append(" - UNKNOWN");
+			else {
+				if (t.isSubject())
+					type.append(" - subject");
+
+				if (t.isObject())
+					type.append(" - object");
+
+				if (t.isName())
+					type.append(" - name");
+
+				if (t.isAnimal())
+					type.append(" - animal");
+
+				if (t.isFood())
+					type.append(" - food");
+
+				if (t.isFluid())
+					type.append(" - fluid");
+
+				if (t.isVerb())
+					type.append(" - verb");
+
+				if (t.isGerund())
+					type.append(" - gerund");
+
+				if (t.isNumeral())
+					type.append(" - numeral");
+
+				if (t.isAdjective())
+					type.append(" - adjective");
+
+				if (t.isPlural())
+					type.append(" - plural");
+
+				if (t.isIgnore())
+					type.append(" - ignore");
+
+				if (t.isPreposition())
+					type.append(" - preposition");
+
+				if (t.isPronoun())
+					type.append(" - pronoun");
+
+				if (t.hasQuestion())
+					type.append(" - question word");
+
+				if (t.isObsessional())
+					type.append(" - obsessional");
+
+				if (t.hasColor())
+					type.append(" - color");
+
+				if (t.isConditional())
+					type.append(" - conditional");
+
+				if (t.isNegated())
+					type.append(" - negated");
+
+				if (t.isDynamic())
+					type.append(" - DYNAMIC");
+			}
+
+			addHtml(d, "<div" + style + ">" + e.getOriginal() + type.toString() + "</div>");
 		}
 
 		tpExpressions.setDocument(d);
