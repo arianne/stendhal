@@ -76,6 +76,19 @@ public class PlayerLootedItemsHandler {
 	}
 	
 	/**
+	 * Retrieve the amount of much an item was mined by a player
+	 * 
+	 * @param item
+	 * @return the mined quantity
+	 */
+	public int getQuantityOfMinedItems(String item) {
+		if(mined.containsKey(item)) {
+			return mined.get(item);
+		}
+		return 0;
+	}
+	
+	/**
 	 * Increases the count of loots for the given item for this PlayerLootedItemsHandler's player
 	 * @param item the item name
 	 * @param count the amount to increase
