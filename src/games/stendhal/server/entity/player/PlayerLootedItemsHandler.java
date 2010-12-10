@@ -10,7 +10,9 @@ import java.util.Map;
  */
 public class PlayerLootedItemsHandler {
 	
+	/** name of the map where the items and the corresponding numbers are stored */
 	private static final String LOOTED_ITEMS = "looted_items";
+	
 	private final Player player;
 	
 	private final Map<String, Integer> looted;
@@ -20,6 +22,8 @@ public class PlayerLootedItemsHandler {
 	private final Map<String, Integer> obtained;
 	
 	private final Map<String, Integer> mined;
+	
+	private final Map<String, Integer> harvested;
 	
 	/**
 	 * Create a new PlayerLootedItemsHandler for a player
@@ -32,6 +36,7 @@ public class PlayerLootedItemsHandler {
 		produced = new HashMap<String, Integer>();
 		obtained = new HashMap<String, Integer>();
 		mined = new HashMap<String, Integer>();
+		harvested = new HashMap<String, Integer>();
 		if(player.hasMap(LOOTED_ITEMS)) {
 			for(String item : player.getMap(LOOTED_ITEMS).keySet()) {
 				if(item.contains("produced.")) {
@@ -41,7 +46,7 @@ public class PlayerLootedItemsHandler {
 					obtained.put(item.replace("obtained.", ""), player.getInt(LOOTED_ITEMS, item));
 				}
 				if(item.contains("mined.")) {
-					obtained.put(item.replace("mined.", ""), player.getInt(LOOTED_ITEMS, item));
+					mined.put(item.replace("mined.", ""), player.getInt(LOOTED_ITEMS, item));
 				}
 				if(!item.contains("produced.") && !item.contains("obtained.") && !item.contains("mined.")) {
 					looted.put(item, player.getInt(LOOTED_ITEMS, item));
