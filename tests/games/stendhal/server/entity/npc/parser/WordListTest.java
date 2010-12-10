@@ -180,16 +180,16 @@ public class WordListTest {
 		assertThat(word, is("BLABLA"));
 		word = "";
 		assertThat(WordList.trimWord(word), is(""));
-		
+
 		word = "\'";
 		assertThat(WordList.trimWord(word), is(""));
-		
+
 		word = "\'\'";
 		assertThat(WordList.trimWord(word), is(""));
-		
+
 		word = "b\'\'";
 		assertThat(WordList.trimWord(word), is("b"));
-		
+
 		word = "\'\'B\'L\'A\'B\'L\'A\'\'";
 		assertThat(WordList.trimWord(word), is("b\'l\'a\'b\'l\'a"));
 	}
