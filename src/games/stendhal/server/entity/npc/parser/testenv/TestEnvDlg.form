@@ -40,20 +40,19 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lbSentence" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfSentence" pref="353" max="32767" attributes="0"/>
+                                  <Component id="tfSentence" pref="369" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cbMatching" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="btOK" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                           <Component id="lbNormalized" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNormalized" alignment="0" pref="560" max="32767" attributes="0"/>
+                          <Component id="tfNormalized" alignment="0" pref="550" max="32767" attributes="0"/>
                           <Component id="lbTrimmed" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfTrimmed" alignment="0" pref="560" max="32767" attributes="0"/>
+                          <Component id="tfTrimmed" alignment="0" pref="550" max="32767" attributes="0"/>
                           <Component id="lbToString" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfToString" alignment="1" pref="560" max="32767" attributes="0"/>
+                          <Component id="tfToString" alignment="1" pref="550" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -72,12 +71,16 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfTrigger" pref="215" max="32767" attributes="0"/>
-                          <Component id="tfObject" alignment="1" pref="215" max="32767" attributes="0"/>
-                          <Component id="tfVerb" alignment="0" pref="215" max="32767" attributes="0"/>
-                          <Component id="tfNumeral" alignment="1" pref="215" max="32767" attributes="1"/>
-                          <Component id="tfSubject" alignment="1" pref="215" max="32767" attributes="1"/>
+                          <Component id="tfTrigger" pref="205" max="32767" attributes="0"/>
+                          <Component id="tfObject" alignment="1" pref="205" max="32767" attributes="0"/>
+                          <Component id="tfVerb" alignment="0" pref="205" max="32767" attributes="0"/>
+                          <Component id="tfNumeral" alignment="1" pref="205" max="32767" attributes="1"/>
+                          <Component id="tfSubject" alignment="1" pref="205" max="32767" attributes="1"/>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbUnknownWarning" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -141,7 +144,9 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="118" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lbUnknownWarning" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="59" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -290,5 +295,10 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="lbUnknownWarning">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please add an entry for all unknown words in RED expressions!"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
