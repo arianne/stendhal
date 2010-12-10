@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * An ExpressionType defines the type of an Expresion object.
+ * An ExpressionType defines the type of an Expression object.
  * It uses a human readable string representation like "VER" (verb)
  * or "OBJ" (object). Derived types like negative verbs are
  * written in a concatenated form like "VER-NEG".
@@ -95,7 +95,7 @@ public final class ExpressionType {
     /** String constant representing a n expression dynamically defined at runtime. */
     public static final String DYNAMIC = "DYN"; 
 
-    /** String constant representing a typeless expression. */
+    /** String constant representing a type less expression. */
     public static final String UNKNOWN = ""; 
 
     // derived string type constants
@@ -117,11 +117,13 @@ public final class ExpressionType {
     public static final String SUFFIX_DYNAMIC = SUFFIX + DYNAMIC;
 
     /** Type string specifiers, which can be used in sentence matching. */
-    public static final List<String> TYPESTRINGS = Arrays.asList(VERB, OBJECT, AMOUNT, SUBJECT, ADJECTIVE, NUMERAL,
-            PREPOSITION, QUESTION, IGNORE,
-
-            SUFFIX_GERUND, SUFFIX_COLOR, SUFFIX_CONDITIONAL, SUFFIX_NEGATED, SUFFIX_PRONOUN, SUFFIX_FOOD,
-            SUFFIX_OBSESSIONAL, SUFFIX_FLUID, SUFFIX_ANIMAL, SUFFIX_NAME, SUFFIX_PLURAL);
+    public static final List<String> TYPESTRINGS = Arrays.asList(
+		VERB, OBJECT, AMOUNT, SUBJECT, ADJECTIVE, NUMERAL,
+		PREPOSITION, QUESTION, IGNORE,
+		
+		SUFFIX_GERUND, SUFFIX_COLOR, SUFFIX_CONDITIONAL, SUFFIX_NEGATED, SUFFIX_PRONOUN, SUFFIX_FOOD,
+		SUFFIX_OBSESSIONAL, SUFFIX_FLUID, SUFFIX_ANIMAL, SUFFIX_NAME, SUFFIX_PLURAL
+    );
 
     private final String typeString;
 
@@ -314,7 +316,7 @@ public final class ExpressionType {
      *
      * @param str
      * 
-     * @return true if first letter is Uppercase and contains any of the predefined TYPESTRINGs 
+     * @return true if first letter is uppercase and contains any of the predefined TYPESTRINGs 
      * */
     public static boolean isTypeString(final String str) {
         if (str.length() > 0) {

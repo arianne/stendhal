@@ -315,7 +315,7 @@ public final class Expression {
     /**
      * Determine if the Expression represents a person.
      *
-   * @return false if not a subject or null, true otherwise
+     * @return false if not a subject or null, true otherwise
      */
     public boolean isSubject() {
         return (type != null) && type.isSubject();
@@ -333,7 +333,7 @@ public final class Expression {
     /**
      * Determine Expressions to ignore.
      *
-     * @return * @return false if not ignored or null, true otherwise
+     * @return false if not ignored or null, true otherwise
      */
     public boolean isIgnore() {
         return (type != null) && type.isIgnore();
@@ -351,7 +351,7 @@ public final class Expression {
     /**
      * Determine if the Expression consists of prepositions.
      *
-     * @return false if not a prepostion or null, true otherwise
+     * @return false if not a preposition or null, true otherwise
      */
     public boolean isPreposition() {
         return (type != null) && type.isPreposition();
