@@ -88,7 +88,15 @@
 			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
 			replace="STENDHAL_VERSION=&quot;${version}&quot;"
 			byline="true"/>
-
+		<replaceregexp file="README.txt"
+		            match="You can double click on stendhal-.*.jar and the client will run."
+		            replace="You can double click on stendhal-${version}.jar and the client will run."
+		            byline="true"/>
+        <replaceregexp file="README.txt"
+                    match="  java -jar stendhal-.*.jar"
+                    replace="  java -jar stendhal-${version}.jar"
+                    byline="true"/>
+                    	
 		<!-- Update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
 			match="GAME_NAME=.*"
