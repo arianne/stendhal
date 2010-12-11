@@ -31,11 +31,11 @@ public class PlayerMapObject extends RPEntityMapObject {
 	 */
 	private static final Color COLOR_PLAYER = Color.WHITE;
 	/**
-	 * The color of ghostmode players, if visible (white).
+	 * The color of group players, if visible (grayish).
 	 */
 	private static final Color COLOR_GROUP = new Color(99, 61, 139);
 	/**
-	 * The color of ghostmode players, if visible (white).
+	 * The color of ghostmode players, if visible (gray).
 	 */
 	private static final Color COLOR_GHOST = Color.GRAY;
 	
