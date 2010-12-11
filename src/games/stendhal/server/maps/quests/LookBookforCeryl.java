@@ -71,11 +71,8 @@ public class LookBookforCeryl extends AbstractQuest {
 			ConversationStates.ATTENDING, 
 			"I have nothing for you now.", null);
 
-		/** In case quest is completed */
-		npc.add(ConversationStates.ATTENDING, "book",
-			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING,
-			"I already got the book. Thank you!", null);
+		/** Other conditions not met e.g. quest completed */
+		npc.addReply("book","If you want to learn more, chat to my friend Wikipedian in Ados library.", null);
 
 		/** If quest is not started yet, start it. */
 		npc.add(

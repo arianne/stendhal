@@ -302,6 +302,13 @@ public class ObsidianKnife extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Ceryl");
 
 		npc.add(ConversationStates.ATTENDING,
+				"book",
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "seeking_book"), new QuestCompletedCondition("ceryl_book")),
+				ConversationStates.ATTENDING,
+				"Currently the #gem #book is quite popular...",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
 				"gem book",
 				new QuestInStateCondition(QUEST_SLOT, "seeking_book"),
 				ConversationStates.QUESTION_1,
