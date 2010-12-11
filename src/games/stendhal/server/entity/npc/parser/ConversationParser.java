@@ -174,7 +174,8 @@ public final class ConversationParser extends ErrorBuffer {
     }
 
     /**
-     * Parse the given text sentence using an explicit Expression matcher.
+     * Parse the given text sentence using an ConversationContext and an
+     * explicit Expression matcher.
      *
      * @param text
      * @param ctx
