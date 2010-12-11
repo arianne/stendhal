@@ -45,13 +45,15 @@ public class PlayerMapObject extends RPEntityMapObject {
 		if (entity instanceof User) {
 			drawColor = COLOR_USER;
 		} else if (entity instanceof Player) {
-			choosePlayerColor((Player) entity);
+			final Player player = (Player) entity;
+
+			choosePlayerColor(player);
 			
 			// Follow the ghost mode changes of other players
 			entity.addChangeListener(new EntityChangeListener() {
 				public void entityChanged(final IEntity entity, final Object property) {
 					if ((property == RPEntity.PROP_GHOSTMODE) || (property == RPEntity.PROP_GROUP_MEMBERSHIP)) {
-						choosePlayerColor((Player) entity);
+						choosePlayerColor(player);
 					}
 				}
 			});
