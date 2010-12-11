@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.ChatMessage;
 import games.stendhal.server.core.engine.dbcommand.GetPostmanMessagesCommand;
 import games.stendhal.server.core.events.LoginListener;
@@ -73,9 +74,18 @@ public class ReadPostmanMessages implements LoginListener, TurnListener {
 		for (ChatMessage chatmessage : messages) {
 			LOGGER.debug(player.getName() + " got message: " + chatmessage.toString());
 			// set the date to 'unknown' if the message was sent on a specific hard coded date which we will use for the old messages from xml
-			player.sendPrivateText("postman tells you: " + chatmessage.getSource() + " asked me to deliver this message on " + chatmessage.getTimestamp().substring(0,16).replace("2010-07-20 00:00", "an unknown date") + ": \n" + chatmessage.getMessage());
+			player.sendPrivateText(getNotificationType(chatmessage.getMessagetype()), "postman tells you: " + chatmessage.getSource() + " asked me to deliver this message on " + chatmessage.getTimestamp().substring(0,16).replace("2010-07-20 00:00", "an unknown date") + ": \n" + chatmessage.getMessage());
 			// we faked that postman sent a message, better set the last private chatter incase the player now uses /answer
 			player.setLastPrivateChatter("postman");
+		}
+		
+	}
+	
+	private NotificationType getNotificationType(final String messagetype) {
+		if ("S".equals(messagetype)) {
+			return NotificationType.SUPPORT;
+		} else {
+			return NotificationType.PRIVMSG;
 		}
 		
 	}

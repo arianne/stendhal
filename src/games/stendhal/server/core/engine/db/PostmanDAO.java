@@ -86,7 +86,7 @@ public class PostmanDAO {
 	public List<ChatMessage> getChatMessages(DBTransaction transaction, String charname) throws SQLException {
 		try {
 			// we do not yet use the delivered flag but I am being super careful and including the check for it already.
-			String query = "SELECT source, message, timedate FROM postman WHERE target='[charname]' and delivered = 0 ORDER BY timedate FOR UPDATE";
+			String query = "SELECT source, message, timedate, messagetype FROM postman WHERE target='[charname]' and delivered = 0 ORDER BY timedate FOR UPDATE";
 			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("charname", charname);
 			logger.debug("getChatMessages is executing query " + query);
@@ -98,7 +98,8 @@ public class PostmanDAO {
 				String source = chatMessagesSet.getString("source");
 				String message = chatMessagesSet.getString("message");
 				String timedate = chatMessagesSet.getString("timedate");
-				ChatMessage chatmessage = new ChatMessage(source, message, timedate);
+				String messagetype = chatMessagesSet.getString("messagetype");
+				ChatMessage chatmessage = new ChatMessage(source, message, timedate, messagetype);
 				list.add(chatmessage);
 			}
 
