@@ -321,7 +321,7 @@ public class LoginDialog extends JDialog {
 	private void loginButton_actionPerformed(final ActionEvent e) {
 
 		// If this window isn't enabled, we shouldn't act.
-		if (!isEnabled() || (profiles.profiles.size() == 0)) {
+		if (!isEnabled()) {
 			return;
 		}
 		setEnabled(false);
@@ -374,7 +374,7 @@ public class LoginDialog extends JDialog {
 
 	private void removeButton_actionPerformed(final ActionEvent e) {
 		// If this window isn't enabled, we shouldn't act.
-		if (!isEnabled()) {
+		if (!isEnabled() || (profiles.profiles.size() == 0)) {
 			return;
 		}
 		setEnabled(false);
