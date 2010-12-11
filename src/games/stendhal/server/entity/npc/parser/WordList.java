@@ -103,27 +103,31 @@ public class WordList {
 	private void readFromResources() {
 		final InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
 
-		try {
-			final BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+        if (str != null) {
+    		try {
+    			final BufferedReader reader = new BufferedReader(new InputStreamReader(str));
 
-			try {
-				read(reader, null);
-			} catch (final IOException e) {
-				logger.error("error while reading resource file 'words.txt'", e);
-			} finally {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					logger.error("error while closing reader stream for 'words.txt'", e);
-				}
-			}
-		} finally {
-			try {
-				str.close();
-			} catch (IOException e) {
-				logger.warn("exception on closing resource stream", e);
-			}
-		}
+    			try {
+    				read(reader, null);
+    			} catch (final IOException e) {
+    				logger.error("error while reading resource file '"+WORDS_FILENAME+"'", e);
+    			} finally {
+    				try {
+    					reader.close();
+    				} catch (IOException e) {
+    					logger.error("error while closing reader stream for '"+WORDS_FILENAME+"'", e);
+    				}
+    			}
+    		} finally {
+    			try {
+    				str.close();
+    			} catch (IOException e) {
+    				logger.warn("exception on closing resource stream", e);
+    			}
+    		}
+        } else {
+            logger.error("unable to locate resource file '"+WORDS_FILENAME+"'");            
+        }
 	}
 
 	/**
