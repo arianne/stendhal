@@ -7,6 +7,11 @@ Changelog
 - full health bonus when you level up
 - support answers via postman are orange
 
+
+
+0.90.1
+- fixed a bug which prevented logging in without at least one saved profile
+
 0.90
 
 *world*
