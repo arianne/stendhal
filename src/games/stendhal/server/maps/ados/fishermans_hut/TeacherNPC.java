@@ -29,6 +29,10 @@ import java.util.Map;
  * @author dine
  */
 public class TeacherNPC implements ZoneConfigurator {
+	
+	// This is 1 minute at 300 ms per turn.
+	private static final int TIME_OUT = 200;
+	
 	/**
 	 * Configure a zone.
 	 *
@@ -62,7 +66,7 @@ public class TeacherNPC implements ZoneConfigurator {
 				addReply("oil", "You've got the wrong fisherman. Go ask Pequod about oil, he's in the next hut.");
 			}
 		};
-
+		fisherman.setPlayerChatTimeout(TIME_OUT); 
 		fisherman.setEntityClass("fishermannpc");
 		fisherman.setDirection(Direction.DOWN);
 		fisherman.setPosition(3, 3);
