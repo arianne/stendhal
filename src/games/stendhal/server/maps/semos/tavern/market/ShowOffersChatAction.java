@@ -74,6 +74,13 @@ public class ShowOffersChatAction implements ChatAction {
 			wordFilter = getWordFilter(sentence);
 		}
 		
+		//if the wordFilter is "offers" delegate back to ShowOfferItemsChatAction to prevent
+		//the messages saying there are no offers in the market
+		if(wordFilter != null && wordFilter.startsWith("offer")) {
+			new ShowOfferItemsChatAction().fire(player, sentence, npc);
+			return;
+		}
+		
 		// Get the list of offers, and filter out all that we don't need
 		List<Offer> offers = getOffers(offersSlot);
 		if (filterForMine) {
