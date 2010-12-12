@@ -359,7 +359,6 @@ public class Engine {
 	 */
 	private boolean matchesTransition(final MatchType type, final Sentence sentence, final Transition transition) {
 		return type.match(transition, currentState, sentence);
-
 	}
 
 	private void executeTransition(final Player player, final Sentence sentence, final Transition trans) {

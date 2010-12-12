@@ -399,7 +399,7 @@ public final class Expression {
      *
      * @param other
      *            Expression
-     * @return true if 2 expression match false otherwise
+     * @return true if two expression match false otherwise
      */
     public boolean matches(final Expression other) {
         if (other != null) {
@@ -430,7 +430,7 @@ public final class Expression {
      *
      * @param other
      *            Expression
-     * @return true if 2 expression match false otherwise
+     * @return true if two expression match false otherwise
      */
     public boolean matchesNormalized(final Expression other) {
         if (other != null) {
@@ -460,7 +460,7 @@ public final class Expression {
      *
      * @param other
      *            Expression
-     *  @return true if 2 expression match false otherwise
+     * @return true if two expression match false otherwise
      */
     public boolean matchesNormalizedSimilar(final Expression other) {
         if (other != null) {
@@ -489,7 +489,7 @@ public final class Expression {
 	 * depending on which of word and word type string is given.
 	 * 
 	 * @param other
-	 * @return true if 2 expression match false otherwise
+	 * @return true if this expression matches the other, false otherwise
 	 */
     boolean sentenceMatchExpression(final Expression other) {
         final String matchString = other.getNormalized();
@@ -521,7 +521,7 @@ public final class Expression {
      *
      * @param str
      * @param matchString
-     * @return true if 2 expression match false otherwise
+     * @return true if two expression match false otherwise
      */
     public static boolean matchesJokerString(final String str, final String matchString) {
         if (str.equals(JOKER)) {
