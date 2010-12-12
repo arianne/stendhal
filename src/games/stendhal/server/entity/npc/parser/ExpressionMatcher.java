@@ -59,14 +59,14 @@ public class ExpressionMatcher {
      * @param typeMatching
      *            the typeMatching flag to set
      */
-    public void setTypeMatching(final boolean typeMatching) {
+    protected void setTypeMatching(final boolean typeMatching) {
         this.typeMatching = typeMatching;
     }
 
     /**
      * @return the typeMatching flag
      */
-    public boolean getTypeMatching() {
+    protected boolean getTypeMatching() {
         return typeMatching;
     }
 
@@ -126,7 +126,7 @@ public class ExpressionMatcher {
      * @param jokerMatching
      *            the jokerMatching flag to set
      */
-    public void setjokerMatching(final boolean jokerMatching) {
+    public void setJokerMatching(final boolean jokerMatching) {
         this.jokerMatching = jokerMatching;
     }
 

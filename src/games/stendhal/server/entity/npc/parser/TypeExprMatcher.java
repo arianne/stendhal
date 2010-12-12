@@ -17,7 +17,7 @@ package games.stendhal.server.entity.npc.parser;
  *
  * @author Martin Fuchs
  */
-public class TypeExprMatcher extends ExpressionMatcher {
+class TypeExprMatcher extends ExpressionMatcher {
 
     public TypeExprMatcher() {
         typeMatching = true;

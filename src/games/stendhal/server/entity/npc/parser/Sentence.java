@@ -507,12 +507,10 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         String ret = builder.toString();
 
         // prepend the ExpressionMatcher string of the first expression
-        if (expressions.size() > 0) {
-            final Expression first = expressions.get(0);
+        ExpressionMatcher matcher = getMatcher();
 
-            if (first.getMatcher() != null) {
-                ret = first.getMatcher().toString() + ExpressionMatcher.PM_SEPARATOR + ret;
-            }
+        if (matcher != null) {
+            ret = matcher.toString() + ExpressionMatcher.PM_SEPARATOR + ret;
         }
 
         return ret;
@@ -629,7 +627,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return true if it matches.
      */
     public boolean matchesNormalized(final String text) {
-        return matchesFull(ConversationParser.parseForMatching(text));
+        return matchesFull(ConversationParser.parseAsMatcher(text));
     }
 
     /**
@@ -640,7 +638,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return true, if the text matches
      */
     public boolean matchesNormalizedStart(final String text) {
-        return matchesStart(ConversationParser.parseForMatching(text));
+        return matchesStart(ConversationParser.parseAsMatcher(text));
     }
 
     /**

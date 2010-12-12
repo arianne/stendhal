@@ -13,6 +13,7 @@
 package games.stendhal.tools.npcparsertestenv;
 
 import games.stendhal.server.entity.npc.parser.CaseInsensitiveExprMatcher;
+import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.ExactExprMatcher;
 import games.stendhal.server.entity.npc.parser.Expression;
@@ -21,7 +22,6 @@ import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
-import games.stendhal.server.entity.npc.parser.TypeExprMatcher;
 
 import java.awt.Cursor;
 import java.io.IOException;
@@ -58,6 +58,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private javax.swing.JLabel lbNormalized;
     private javax.swing.JLabel lbNumeral;
     private javax.swing.JLabel lbObject;
+    private javax.swing.JLabel lbParsedMatchString;
+    private javax.swing.JLabel lbParsedSentence;
     private javax.swing.JLabel lbSentence;
     private javax.swing.JLabel lbSubject;
     private javax.swing.JLabel lbToString;
@@ -67,10 +69,11 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private javax.swing.JLabel lbVerb;
     private javax.swing.JPanel panelMatch;
     private javax.swing.JPanel panelSentence;
-    private javax.swing.JTextField tfMatchToString;
     private javax.swing.JTextField tfNormalized;
     private javax.swing.JTextField tfNumeral;
     private javax.swing.JTextField tfObject;
+    private javax.swing.JTextField tfParsedMatchString;
+    private javax.swing.JTextField tfParsedSentence;
     private javax.swing.JTextField tfSubject;
     private javax.swing.JTextField tfToString;
     private javax.swing.JTextField tfTrigger;
@@ -116,26 +119,29 @@ public class TestEnvDlg extends javax.swing.JDialog {
         lbUnknownWarning = new javax.swing.JLabel();
         panelMatch = new javax.swing.JPanel();
         lbMatchResult = new javax.swing.JLabel();
-        btMatch = new javax.swing.JButton();
         lbMatching = new javax.swing.JLabel();
         cbMatchType = new javax.swing.JComboBox();
         cbMatchExpr = new javax.swing.JComboBox();
-        tfMatchToString = new javax.swing.JTextField();
+        lbParsedSentence = new javax.swing.JLabel();
+        tfParsedSentence = new javax.swing.JTextField();
+        lbParsedMatchString = new javax.swing.JLabel();
+        tfParsedMatchString = new javax.swing.JTextField();
+        btMatch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NPC Parser Test Environment");
         setBounds(new java.awt.Rectangle(49, 200, 0, 0));
         setLocation(new java.awt.Point(200, 200));
-        setPreferredSize(new java.awt.Dimension(665, 680));
+        setPreferredSize(new java.awt.Dimension(665, 700));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelSentence.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panelSentence.setPreferredSize(new java.awt.Dimension(649, 480));
+        panelSentence.setPreferredSize(new java.awt.Dimension(649, 490));
 
         lbSentence.setText("Please enter a sentence:");
 
         cbSentence.setEditable(true);
-        cbSentence.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "buy 3 cookies", "buy seven bananas", "give a bottle of wine", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
+        cbSentence.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "buy seven bananas", "buy 3 cookies", "give a bottle of wine", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
         cbSentence.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbSentenceActionPerformed(evt);
@@ -202,12 +208,12 @@ public class TestEnvDlg extends javax.swing.JDialog {
                             .add(lbSentence)
                             .add(lbTrimmed)
                             .add(lbToString)
-                            .add(cbSentence, 0, 525, Short.MAX_VALUE))
+                            .add(cbSentence, 0, 493, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(btParse))
-                    .add(tfTrimmed, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
-                    .add(tfNormalized, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
-                    .add(tfToString, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE))
+                    .add(tfTrimmed, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                    .add(tfNormalized, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                    .add(tfToString, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE))
                 .addContainerGap())
             .add(panelSentenceLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(panelSentenceLayout.createSequentialGroup()
@@ -226,11 +232,11 @@ public class TestEnvDlg extends javax.swing.JDialog {
                                 .add(lbTrigger))
                             .add(18, 18, 18)
                             .add(panelSentenceLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(tfSubject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                                .add(tfVerb, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                                .add(tfNumeral, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                                .add(tfObject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                                .add(tfTrigger, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)))
+                                .add(tfSubject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                .add(tfVerb, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                .add(tfNumeral, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                .add(tfObject, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                .add(tfTrigger, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)))
                         .add(lbUnknownWarning))
                     .addContainerGap()))
         );
@@ -302,20 +308,13 @@ public class TestEnvDlg extends javax.swing.JDialog {
         getContentPane().add(panelSentence, gridBagConstraints);
 
         panelMatch.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panelMatch.setPreferredSize(new java.awt.Dimension(653, 100));
+        panelMatch.setPreferredSize(new java.awt.Dimension(653, 160));
 
         lbMatchResult.setText(" ");
 
-        btMatch.setText("test match");
-        btMatch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btMatchActionPerformed(evt);
-            }
-        });
-
         lbMatching.setText("Please select matching type and enter a matching expression:");
 
-        cbMatchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "standard matching", "joker matching", "exact matching", "case insensitive", "similarity matching", "type expression" }));
+        cbMatchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "joker matching", "exact matching", "case insensitive", "similarity matching", "controlled matching", "merged expressions" }));
         cbMatchType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMatchTypeActionPerformed(evt);
@@ -323,14 +322,27 @@ public class TestEnvDlg extends javax.swing.JDialog {
         });
 
         cbMatchExpr.setEditable(true);
-        cbMatchExpr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "buy 3 cookies", "buy seven bananas", "buy bananas", "buy * bananas", "give a bottle of wine", "give *", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
+        cbMatchExpr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "buy seven bananas", "buy bananas", "buy * bananas", "buy * *", "|EXACT|buy seven bananas", "buy 3 cookies", "|JOKER|buy * bananas", "give a bottle of wine", "give *", "give * * * *", "|JOKER|ICASE|give *", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
         cbMatchExpr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMatchExprActionPerformed(evt);
             }
         });
 
-        tfMatchToString.setEditable(false);
+        lbParsedSentence.setText("parsed sentence:");
+
+        tfParsedSentence.setEditable(false);
+
+        lbParsedMatchString.setText("parsed match string:");
+
+        tfParsedMatchString.setEditable(false);
+
+        btMatch.setText("test match");
+        btMatch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMatchActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout panelMatchLayout = new org.jdesktop.layout.GroupLayout(panelMatch);
         panelMatch.setLayout(panelMatchLayout);
@@ -342,18 +354,24 @@ public class TestEnvDlg extends javax.swing.JDialog {
                     .add(panelMatchLayout.createSequentialGroup()
                         .add(cbMatchType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(cbMatchExpr, 0, 432, Short.MAX_VALUE)
+                        .add(cbMatchExpr, 0, 395, Short.MAX_VALUE)
                         .addContainerGap())
                     .add(panelMatchLayout.createSequentialGroup()
-                        .add(tfMatchToString, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-                        .add(8, 8, 8))
-                    .add(panelMatchLayout.createSequentialGroup()
                         .add(lbMatching)
-                        .addContainerGap(241, Short.MAX_VALUE))
+                        .addContainerGap(209, Short.MAX_VALUE))
                     .add(panelMatchLayout.createSequentialGroup()
                         .add(btMatch)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lbMatchResult, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))))
+                        .add(lbMatchResult, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
+                    .add(panelMatchLayout.createSequentialGroup()
+                        .add(panelMatchLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(lbParsedMatchString)
+                            .add(lbParsedSentence))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(panelMatchLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(tfParsedMatchString, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                            .add(tfParsedSentence, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         panelMatchLayout.setVerticalGroup(
             panelMatchLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -364,7 +382,13 @@ public class TestEnvDlg extends javax.swing.JDialog {
                     .add(cbMatchType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(cbMatchExpr, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(tfMatchToString, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(panelMatchLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(tfParsedSentence, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(lbParsedSentence))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(panelMatchLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(tfParsedMatchString, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(lbParsedMatchString))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 11, Short.MAX_VALUE)
                 .add(panelMatchLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btMatch)
@@ -408,7 +432,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		return text;
 	}
 
-	private ExpressionMatcher matcher = new ExpressionMatcher();
+	private ExpressionMatcher selectedMatcher = null;
+	private boolean mergeExpressions = false;
 
 	private void cbMatchExprActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbMatchExprActionPerformed
 		updateMatching();
@@ -424,19 +449,23 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
 	private void updateMatching() {
 		Object sel = cbMatchType.getSelectedItem();
+		mergeExpressions = false;
 
-		if (sel.equals("standard matching")) {
-			matcher = new ExpressionMatcher();
-		} else if (sel.equals("joker matching")) {
-			matcher = new JokerExprMatcher();
+		if (sel.equals("joker matching")) {
+			selectedMatcher = new JokerExprMatcher();
 		} else if (sel.equals("exact matching")) {
-			matcher = new ExactExprMatcher();
+			selectedMatcher = new ExactExprMatcher();
 		} else if (sel.equals("case insensitive")) {
-			matcher = new CaseInsensitiveExprMatcher();
+			selectedMatcher = new CaseInsensitiveExprMatcher();
 		} else if (sel.equals("similarity matching")) {
-			matcher = new SimilarExprMatcher();
-		} else if (sel.equals("type expression")) {
-			matcher = new TypeExprMatcher();
+			selectedMatcher = new SimilarExprMatcher();
+		} else if (sel.equals("controlled matching")) {
+			selectedMatcher = null;
+		} else if (sel.equals("merged expressions")) {
+			selectedMatcher = new ExpressionMatcher();
+			mergeExpressions = true;
+//		} else if (sel.equals("type expression")) {
+//			selectedMatcher = new TypeExprMatcher();
 		}
 
 		String text = updateParsed();
@@ -489,65 +518,66 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		if (t.isEmpty())
 			type.append(" - UNKNOWN");
 		else {
-			if (t.isSubject())
+			if (t.isSubject()) {
 				type.append(" - subject");
-
-			if (t.isObject())
+			}
+			if (t.isObject()) {
 				type.append(" - object");
-
-			if (t.isName())
+			}
+			if (t.isName()) {
 				type.append(" - name");
-
-			if (t.isAnimal())
+			}
+			if (t.isAnimal()) {
 				type.append(" - animal");
-
-			if (t.isFood())
+			}
+			if (t.isFood()) {
 				type.append(" - food");
-
-			if (t.isFluid())
+			}
+			if (t.isFluid()) {
 				type.append(" - fluid");
-
-			if (t.isVerb())
+			}
+			if (t.isVerb()) {
 				type.append(" - verb");
-
-			if (t.isGerund())
+			}
+			if (t.isGerund()) {
 				type.append(" - gerund");
-
-			if (t.isNumeral())
+			}
+			if (t.isNumeral()) {
 				type.append(" - numeral");
-
-			if (t.isAdjective())
+			}
+			if (t.isAdjective()) {
 				type.append(" - adjective");
-
-			if (t.isPlural())
+			}
+			if (t.isPlural()) {
 				type.append(" - plural");
-
-			if (t.isIgnore())
+			}
+			if (t.isIgnore()) {
 				type.append(" - ignore");
-
-			if (t.isPreposition())
+			}
+			if (t.isPreposition()) {
 				type.append(" - preposition");
-
-			if (t.isPronoun())
+			}
+			if (t.isPronoun()) {
 				type.append(" - pronoun");
-
-			if (t.hasQuestion())
+			}
+			if (t.hasQuestion()) {
 				type.append(" - question word");
-
-			if (t.isObsessional())
+			}
+			if (t.isObsessional()) {
 				type.append(" - obsessional");
-
-			if (t.hasColor())
+			}
+			if (t.hasColor()) {
 				type.append(" - color");
-
-			if (t.isConditional())
+			}
+			if (t.isConditional()) {
 				type.append(" - conditional");
-
-			if (t.isNegated())
+			}
+			if (t.isNegated()) {
 				type.append(" - negated");
-
-			if (t.isDynamic())
+			}
+			if (t.isDynamic()) {
 				type.append(" - DYNAMIC");
+			}
 		}
 
 		return type.toString();
@@ -565,20 +595,20 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		tfTrigger.setText(sentence.getTriggerExpression().toString());
 
 		String subj = sentence.getSubjectName();
-		tfSubject.setText(subj != null ? subj : "["
-				+ sentence.getSubjectCount() + " subjects]");
+		tfSubject.setText(subj != null ? subj :
+			"[" + sentence.getSubjectCount() + " subjects]");
 
 		String verb = sentence.getVerbString();
-		tfVerb.setText(verb != null ? verb : "[" + sentence.getVerbCount()
-				+ " verbs]");
+		tfVerb.setText(verb != null ? verb :
+			"[" + sentence.getVerbCount() + " verbs]");
 
 		Expression num = sentence.getNumeral();
-		tfNumeral.setText(num != null ? num.getNormalized() : "["
-				+ sentence.getNumeralCount() + " numerals]");
+		tfNumeral.setText(num != null ? num.getNormalized() :
+			"[" + sentence.getNumeralCount() + " numerals]");
 
 		String obj = sentence.getObjectName();
-		tfObject.setText(obj != null ? obj : "[" + sentence.getObjectCount()
-				+ " objects]");
+		tfObject.setText(obj != null ? obj :
+			"[" + sentence.getObjectCount() + " objects]");
 
 		HTMLDocument d = initHtml(tpExpressions);
 
@@ -603,16 +633,37 @@ public class TestEnvDlg extends javax.swing.JDialog {
 	}
 
 	private void processMatching(String text, String matchText) {
+		Sentence matchSentence, sentence;
+
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-		Sentence matchSentence = ConversationParser.parse(matchText, matcher);
-		tfMatchToString.setText(matchSentence.toString());
+		ExpressionMatcher matcher = selectedMatcher;
 
-		Sentence sentence = ConversationParser.parse(text, matcher);
+		if (mergeExpressions) {
+			matchSentence = ConversationParser.parse(matchText);
+		} else if (matcher == null) {
+			// detect matching mode in "controlled matching" mode from the given matching text
+			matchSentence = ConversationParser.parseAsMatcher(matchText);
+			matcher = matchSentence.getMatcher();
+		} else {
+			matchSentence = ConversationParser.parse(matchText, matcher);
+		}
+
+		tfParsedMatchString.setText(matchSentence.toString());
+
+		if (mergeExpressions) {
+			sentence = ConversationParser.parse(text);
+		} else if (matcher == null) {
+			sentence = ConversationParser.parseAsMatchingSource(text);
+		} else {
+			sentence = ConversationParser.parse(text, new ConvCtxForMatchingSource(), matcher);
+		}
+
+		tfParsedSentence.setText(sentence.toString());
+
 		boolean matches = sentence.matchesFull(matchSentence);
-		lbMatchResult
-				.setText(matches ? "-> The user input MATCHES the match expression!"
-						: "-> User input and match expression don't match.");
+		lbMatchResult.setText(matches? "-> The user input MATCHES the match expression!":
+						"-> User input and match expression don't match.");
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}

@@ -47,7 +47,7 @@ public class JokerExprMatcherTest {
 	 */
 	@Test
 	public final void testSentenceMatching() {
-		final Sentence m1 = ConversationParser.parseForMatching("|JOKER|h*llo");
+		final Sentence m1 = ConversationParser.parseAsMatcher("|JOKER|h*llo");
 		assertFalse(m1.hasError());
 		assertEquals("|JOKER|h*llo", m1.toString());
 

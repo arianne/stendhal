@@ -129,8 +129,8 @@ public class SentenceTest {
 	public final void testMatching() {
 		Sentence s1 = ConversationParser.parse("buy banana");
 		assertFalse(s1.hasError());
-		Sentence m1 = ConversationParser.parseForMatching("buy OBJ");
-		Sentence m2 = ConversationParser.parseForMatching("buy SUB");
+		Sentence m1 = ConversationParser.parseAsMatcher("buy OBJ");
+		Sentence m2 = ConversationParser.parseAsMatcher("buy SUB");
 		assertFalse(m1.hasError());
 		assertFalse(m2.hasError());
 		assertTrue(s1.matchesFull(m1));
@@ -138,42 +138,42 @@ public class SentenceTest {
 
 		s1 = ConversationParser.parse("bake apple pie");
 		assertFalse(s1.hasError());
-		m1 = ConversationParser.parseForMatching("VER *pie");
-		m2 = ConversationParser.parseForMatching("VER *cookie");
+		m1 = ConversationParser.parseAsMatcher("VER *pie");
+		m2 = ConversationParser.parseAsMatcher("VER *cookie");
 		assertFalse(m1.hasError());
 		assertFalse(m2.hasError());
 		assertTrue(s1.matchesFull(m1));
 		assertFalse(s1.matchesFull(m2));
 
 		s1 = ConversationParser.parse("please work");
-		m1 = ConversationParser.parseForMatching("IGN VER");
-		m2 = ConversationParser.parseForMatching("VER");
+		m1 = ConversationParser.parseAsMatcher("IGN VER");
+		m2 = ConversationParser.parseAsMatcher("VER");
 		assertFalse(s1.hasError() || m1.hasError() || m2.hasError());
 		assertTrue(s1.matchesFull(m1));
 		assertTrue(s1.matchesFull(m2));
 
 		s1 = ConversationParser.parse("so i love you");
-		m1 = ConversationParser.parseForMatching("i love you");
+		m1 = ConversationParser.parseAsMatcher("i love you");
 		assertFalse(s1.hasError() || m1.hasError());
 		assertTrue(s1.matchesFull(m1));
 
 		s1 = ConversationParser.parse("but do you love me?");
-		m1 = ConversationParser.parseForMatching("do you love me?");
+		m1 = ConversationParser.parseAsMatcher("do you love me?");
 		assertFalse(s1.hasError() || m1.hasError());
 		assertTrue(s1.matchesFull(m1));
 
 		s1 = ConversationParser.parse("do you know Stendhal?");
 		assertEquals("you know stendhal?", s1.getNormalized());
-		m1 = ConversationParser.parseForMatching("SUB-PRO VER Stendhal?");
+		m1 = ConversationParser.parseAsMatcher("SUB-PRO VER Stendhal?");
 		assertEquals("* * stendhal?", m1.getNormalized());
-		m2 = ConversationParser.parseForMatching("SUB ADJ Stendhal?");
+		m2 = ConversationParser.parseAsMatcher("SUB ADJ Stendhal?");
 		assertEquals("* * stendhal?", m2.getNormalized());
 		assertFalse(s1.hasError() || m1.hasError() || m2.hasError());
 		assertTrue(s1.matchesFull(m1));
 		assertFalse(s1.matchesFull(m2));
 
-		s1 = ConversationParser.parseForMatching("it is raining cats and dogs");
-		m1 = ConversationParser.parseForMatching("it is raining cats");
+		s1 = ConversationParser.parseAsMatcher("it is raining cats and dogs");
+		m1 = ConversationParser.parseAsMatcher("it is raining cats");
 		assertFalse(s1.hasError());
 		assertFalse(m1.hasError());
 		assertFalse(s1.matchesFull(m1));
@@ -213,7 +213,7 @@ public class SentenceTest {
 	public final void testTypeMatching() {
 		Sentence s1 = ConversationParser.parse("no");
 		// "0/NUM" is the normalized form of "no" because of the 0/no ambiguity. 
-		Sentence m1 = ConversationParser.parseForMatching("|TYPE|0/NUM");
+		Sentence m1 = ConversationParser.parseAsMatcher("|TYPE|0/NUM");
 		assertFalse(s1.hasError());
 		assertFalse(m1.hasError());
 		assertEquals("0/NUM", s1.toString());
@@ -221,7 +221,7 @@ public class SentenceTest {
 		assertTrue(s1.matchesFull(m1));
 
 		s1 = ConversationParser.parse("No");
-		m1 = ConversationParser.parseForMatching("|TYPE|0/NUM");
+		m1 = ConversationParser.parseAsMatcher("|TYPE|0/NUM");
 		assertFalse(s1.hasError());
 		assertFalse(m1.hasError());
 		assertEquals("0/NUM", s1.toString());

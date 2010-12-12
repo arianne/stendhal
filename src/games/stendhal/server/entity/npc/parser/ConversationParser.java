@@ -135,14 +135,25 @@ public final class ConversationParser extends ErrorBuffer {
         return parse(text, new ConversationContext());
     }
 
-  
+    /**
+     * Parse the given text sentence to be used as matching source.
+     *
+     * @param text
+     * @return the parsed text
+     */
+    public static Sentence parseAsMatchingSource(final String text) {
+    	Sentence sentence = parse(text, new ConvCtxForMatchingSource());
+
+    	return sentence;
+    }
+
     /**
      * Parse the given text sentence to be used for sentence matching.
      *
      * @param text
      * @return the parsed text
      */
-    public static Sentence parseForMatching(final String text) {
+    public static Sentence parseAsMatcher(final String text) {
         Sentence sentence = matchingSentenceCache.get(text);
 
         if (sentence == null) {

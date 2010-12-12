@@ -96,7 +96,7 @@ public class SimilarExprMatcherTest {
 	 */
 	@Test
 	public final void testSentenceMatching() {
-		final Sentence m1 = ConversationParser.parseForMatching("|SIMILAR|hello");
+		final Sentence m1 = ConversationParser.parseAsMatcher("|SIMILAR|hello");
 		assertFalse(m1.hasError());
 		assertEquals("|SIMILAR|hello", m1.toString());
 
