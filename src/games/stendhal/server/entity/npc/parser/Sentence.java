@@ -416,6 +416,37 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
+     * Return the sentence with all words normalized.
+     *
+     * @return string
+     */
+    public String getNormalized() {
+        final SentenceBuilder builder = new SentenceBuilder();
+
+        for (final Expression w : expressions) {
+            if ((w.getType() == null) || !isIgnorable(w)) {
+                builder.append(w.getNormalized());
+            }
+        }
+
+        appendPunctation(builder);
+
+        return builder.toString();
+    }
+
+    /**
+     * Return the expression matcher of the first expression.
+     * @return expression matcher
+     */
+	public ExpressionMatcher getMatcher() {
+		if (!expressions.isEmpty()) {
+			return expressions.get(0).getMatcher();
+		} else {
+			return null;
+		}
+	}
+
+    /**
      * Parse the sentence again, using the given conversation context.
      *
      * @param ctx
@@ -436,25 +467,6 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      */
     public Sentence parseAsMatchingSource() {
     	return parse(new ConvCtxForMatchingSource());
-    }
-
-    /**
-     * Return the sentence with all words normalized.
-     *
-     * @return string
-     */
-    public String getNormalized() {
-        final SentenceBuilder builder = new SentenceBuilder();
-
-        for (final Expression w : expressions) {
-            if ((w.getType() == null) || !isIgnorable(w)) {
-                builder.append(w.getNormalized());
-            }
-        }
-
-        appendPunctation(builder);
-
-        return builder.toString();
     }
 
     /**
