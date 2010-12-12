@@ -181,7 +181,7 @@ public class Dsp {
 					buffer[idx++] = samples[sourceFrame * numChannels + c];
 				}
 			}
-			assert idx == newNumSamples + numChannels;
+			assert idx == newNumSamples;
 		}
 
 		return buffer;
