@@ -647,7 +647,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * which are compared after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in upper case.
      *
      * @param other
-     * @return true, if the start stentence start matches
+     * @return true, if the start sentence start matches
      */
     public boolean matchesStart(final Sentence other) {
         return matches(other, true);

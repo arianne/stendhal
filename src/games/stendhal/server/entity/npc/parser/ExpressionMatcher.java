@@ -57,14 +57,14 @@ public class ExpressionMatcher {
 
     /**
      * @param typeMatching
-     *            the typeMatching to set
+     *            the typeMatching flag to set
      */
     public void setTypeMatching(final boolean typeMatching) {
         this.typeMatching = typeMatching;
     }
 
     /**
-     * @return the typeMatching
+     * @return the typeMatching flag
      */
     public boolean getTypeMatching() {
         return typeMatching;
@@ -72,14 +72,14 @@ public class ExpressionMatcher {
 
     /**
      * @param exactMatching
-     *            the exactMatching to set
+     *            the exactMatching flag to set
      */
     public void setExactMatching(final boolean exactMatching) {
         this.exactMatching = exactMatching;
     }
 
     /**
-     * @return the exactMatching
+     * @return the exactMatching flag
      */
     public boolean getExactMatching() {
         return exactMatching;
@@ -87,14 +87,14 @@ public class ExpressionMatcher {
 
     /**
      * @param similarMatching
-     *            the similarMatching to set
+     *            the similarMatching flag to set
      */
     public void setSimilarMatching(final boolean similarMatching) {
         this.similarMatching = similarMatching;
     }
 
     /**
-     * @return the similarMatching
+     * @return the similarMatching flag
      */
     public boolean getSimilarMatching() {
         return similarMatching;
@@ -102,21 +102,21 @@ public class ExpressionMatcher {
 
     /**
      * @param caseInsensitive
-     *            the caseInsensitive to set
+     *            the caseInsensitive flag to set
      */
     public void setCaseInsensitive(final boolean caseInsensitive) {
         this.caseInsensitive = caseInsensitive;
     }
 
     /**
-     * @return the caseInsensitive
+     * @return the caseInsensitive flag
      */
     public boolean isCaseInsensitive() {
         return caseInsensitive;
     }
 
     /**
-     * @return the jokerMatching
+     * @return the jokerMatching flag
      */
     public boolean isJokerMatching() {
         return jokerMatching;
@@ -124,14 +124,13 @@ public class ExpressionMatcher {
 
     /**
      * @param jokerMatching
-     *            the jokerMatching to set
+     *            the jokerMatching flag to set
      */
     public void setjokerMatching(final boolean jokerMatching) {
         this.jokerMatching = jokerMatching;
     }
 
     /**
-     *
      * @return true if any of the available matching flags is set.
      */
     public boolean isAnyFlagSet() {
@@ -140,9 +139,7 @@ public class ExpressionMatcher {
 
     /**
      * @return true if none of the available matching flags is set.
-     *
-     * 
-     */
+      */
     public boolean isEmpty() {
         return !isAnyFlagSet();
     }
@@ -304,7 +301,7 @@ public class ExpressionMatcher {
      *
      * @param expr1
      * @param expr2
-     * @return true if 2 expression match 
+     * @return true if two expression match 
      */
     public boolean match(final Expression expr1, final Expression expr2) {
         // In type matching mode, the word type has to match exactly.

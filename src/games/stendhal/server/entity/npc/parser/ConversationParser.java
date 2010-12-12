@@ -140,7 +140,7 @@ public final class ConversationParser extends ErrorBuffer {
      * Parse the given text sentence to be used for sentence matching.
      *
      * @param text
-     * @return Sentence
+     * @return the parsed text
      */
     public static Sentence parseForMatching(final String text) {
         Sentence sentence = matchingSentenceCache.get(text);
@@ -159,7 +159,7 @@ public final class ConversationParser extends ErrorBuffer {
      *
      * @param text
      * @param matcher
-     * @return Sentence result
+     * @return the parsed text
      */
     public static Sentence parse(final String text, final ExpressionMatcher matcher) {
     	Sentence sentence;
@@ -180,7 +180,7 @@ public final class ConversationParser extends ErrorBuffer {
      * @param text
      * @param ctx
      * @param matcher
-     * @return Sentence result
+     * @return the parsed text
      */
     public static Sentence parse(final String text, final ConversationContext ctx, final ExpressionMatcher matcher) {
     	Sentence sentence;
@@ -199,7 +199,7 @@ public final class ConversationParser extends ErrorBuffer {
      *
      * @param text
      * @param ctx
-     * @return Sentence
+     * @return the parsed text
      */
     public static Sentence parse(final String text, final ConversationContext ctx) {
     	String txt;
