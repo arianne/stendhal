@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -201,7 +202,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 					}
 				});
 
-		fisherman.add(ConversationStates.QUESTION_1, "",
+		fisherman.add(ConversationStates.QUESTION_1, "*", new JokerExprMatcher(),
 				new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {

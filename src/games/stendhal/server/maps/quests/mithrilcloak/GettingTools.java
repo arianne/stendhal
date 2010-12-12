@@ -284,7 +284,7 @@ class GettingTools {
 				"Ok, lets hear your joke then. and I hope it's from the book in Nalwor Library, that's my favourite. What joke did you choose?",
 				null);
 	
-		npc.add(ConversationStates.QUESTION_1, "", null,
+		npc.add(ConversationStates.QUESTION_1, "*", new JokerExprMatcher(), null,
 				ConversationStates.QUEST_ITEM_QUESTION, null,
 					new ChatAction() {
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
