@@ -227,7 +227,8 @@ public class EntityViewFactory {
 		register("item", "drink", null,  UseableItem2DView.class);
 		register("item", "tool", "foodmill",  UseableItem2DView.class);
 		register("item", "tool", "sugarmill",  UseableItem2DView.class);
-
+		register("item", "tool", "scrolleraser",  UseableItem2DView.class);
+		
 		register("item", "ring", null, UseableRing2DView.class);
 
 		register("useable_entity", null, null, UseableEntity2DView.class);
