@@ -47,6 +47,10 @@ public class FoodMill extends Item implements UseListener {
     		input = "sugar cane";
     		container = "empty sack";
     		output = "sugar";
+    	} else if ("scroll eraser".equals(getName())) {
+    		input = "marked scroll";
+    		container = "money";
+    		output = "empty scroll";
     	} else {
     		input = "apple";
     		container = "bottle";
