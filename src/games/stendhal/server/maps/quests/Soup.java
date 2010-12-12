@@ -31,7 +31,6 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
-import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
@@ -329,7 +328,7 @@ public class Soup extends AbstractQuest {
 		});
 
 		// player says something which isn't in the needed food list.
-		npc.add(ConversationStates.QUESTION_1, "*", new JokerExprMatcher(),
+		npc.add(ConversationStates.QUESTION_1, "",
 			new NotCondition(new TriggerInListCondition(NEEDED_FOOD)),
 			ConversationStates.QUESTION_1,
 			"I won't put that in your soup.", null);

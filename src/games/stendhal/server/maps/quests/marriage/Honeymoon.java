@@ -132,7 +132,7 @@ class Honeymoon {
 				});
 
 		// player says something which isn't a room number
-//		npc.add(ConversationStates.QUESTION_1, "*", new JokerExprMatcher(),
+//		npc.add(ConversationStates.QUESTION_1, "",
 //			new SpeakerNPC.ChatCondition() {
 //				@Override public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 //					return !ROOMS.contains(text);
