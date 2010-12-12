@@ -138,7 +138,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		final int hairnumber = outfit.getHair();
 		if ((hairnumber >= 50) && (hairnumber < 94)) {
 			final Date now = new Date();
-			final GregorianCalendar notXmas = new GregorianCalendar(2010, Calendar.JANUARY, 6);
+			final GregorianCalendar notXmas = new GregorianCalendar(2011, Calendar.JANUARY, 6);
 			final Date dateNotXmas = notXmas.getTime();
 			if (now.after(dateNotXmas)) {
 				final int newhair = hairnumber - 50;
