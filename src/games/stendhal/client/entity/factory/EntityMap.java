@@ -126,6 +126,7 @@ public final class EntityMap {
 		register("item", "food", null, UseableItem.class);
 		register("item", "tool", "foodmill", UseableItem.class);
 		register("item", "tool", "sugarmill", UseableItem.class);
+		register("item", "tool", "scrolleraser", UseableItem.class);
 		register("item", "herb", null, StackableItem.class);
 		register("item", "misc", null, StackableItem.class);
 		register("item", "money", null, StackableItem.class);
@@ -201,6 +202,7 @@ public final class EntityMap {
 			
 			Logger.getLogger(EntityMap.class).error("no class for " + type + "," + eclass + "," + subClass);
 		}
+		// System.out.println(type + "," + eclass + "," + subClass);
 		return result;
 	}
 }
