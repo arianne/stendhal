@@ -432,9 +432,6 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		return text;
 	}
 
-	private ExpressionMatcher selectedMatcher = null;
-	private boolean mergeExpressions = false;
-
 	private void cbMatchExprActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbMatchExprActionPerformed
 		updateMatching();
 	}// GEN-LAST:event_cbMatchExprActionPerformed
@@ -449,7 +446,9 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
 	private void updateMatching() {
 		Object sel = cbMatchType.getSelectedItem();
-		mergeExpressions = false;
+
+		ExpressionMatcher selectedMatcher = null;
+		boolean mergeExpressions = false;
 
 		if (sel.equals("joker matching")) {
 			selectedMatcher = new JokerExprMatcher();
@@ -473,7 +472,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
 		Object matchSel = cbMatchExpr.getSelectedItem().toString();
-		processMatching(text, matchSel != null ? matchSel.toString() : "");
+		processMatching(text, matchSel != null ? matchSel.toString() : "", selectedMatcher, mergeExpressions);
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
@@ -632,30 +631,34 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		lbUnknownWarning.setVisible(unknown > 0);
 	}
 
-	private void processMatching(String text, String matchText) {
+	private void processMatching(String text, String matchText, ExpressionMatcher matcher, boolean mergeExpressions) {
 		Sentence matchSentence, sentence;
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-		ExpressionMatcher matcher = selectedMatcher;
-
 		if (mergeExpressions) {
+			// standard parsing including expression merging
 			matchSentence = ConversationParser.parse(matchText);
 		} else if (matcher == null) {
-			// detect matching mode in "controlled matching" mode from the given matching text
+			// simple parsing for matching
 			matchSentence = ConversationParser.parseAsMatcher(matchText);
+			// detect matching mode in "controlled matching" mode from the given matching text
 			matcher = matchSentence.getMatcher();
 		} else {
+			// parse with the given matcher object
 			matchSentence = ConversationParser.parse(matchText, matcher);
 		}
 
 		tfParsedMatchString.setText(matchSentence.toString());
 
 		if (mergeExpressions) {
+			// standard parsing including expression merging
 			sentence = ConversationParser.parse(text);
 		} else if (matcher == null) {
+			// simple parsing for matching
 			sentence = ConversationParser.parseAsMatchingSource(text);
 		} else {
+			// parse with the given matcher object
 			sentence = ConversationParser.parse(text, new ConvCtxForMatchingSource(), matcher);
 		}
 
