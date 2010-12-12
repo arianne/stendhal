@@ -114,7 +114,7 @@ public class PerceptionDispatcherTest {
 		dispatch.register(changeListener);
 
 		final RPObject object = new RPObject();
-		assert (object.has(DISPATCHED));
+		assertFalse(object.has(DISPATCHED));
 		dispatch.onAdded(object);
 		assertTrue(object.has(DISPATCHED));
 	}
@@ -145,7 +145,7 @@ public class PerceptionDispatcherTest {
 		dispatch.register(changeListener);
 
 		final RPObject object = new RPObject();
-		assert (object.has(DISPATCHED));
+		assertFalse(object.has(DISPATCHED));
 		dispatch.onDeleted(object);
 		assertTrue(object.has(DISPATCHED));
 	}
@@ -177,10 +177,9 @@ public class PerceptionDispatcherTest {
 		dispatch.register(changeListener);
 
 		final RPObject object = new RPObject();
-		assert (object.has(DISPATCHED));
+		assertFalse(object.has(DISPATCHED));
 		dispatch.onModifiedAdded(object, null);
 		assertTrue(object.has(DISPATCHED));
-
 	}
 
 	/**
@@ -194,7 +193,7 @@ public class PerceptionDispatcherTest {
 		dispatch.register(changeListener);
 
 		final RPObject object = new RPObject();
-		assert (object.has(DISPATCHED));
+		assertFalse(object.has(DISPATCHED));
 		dispatch.onModifiedDeleted(object, null);
 		assertTrue(object.has(DISPATCHED));
 	}
@@ -210,10 +209,9 @@ public class PerceptionDispatcherTest {
 		dispatch.register(changeListener);
 
 		final RPObject object = new RPObject();
-		assert (object.has(DISPATCHED));
+		assertFalse(object.has(DISPATCHED));
 		dispatch.onMyRPObject(object, null);
 		assertTrue(object.has(DISPATCHED));
-
 	}
 
 	/**
@@ -229,7 +227,6 @@ public class PerceptionDispatcherTest {
 		assertEquals(0, changeListener.byteparam);
 		dispatch.onPerceptionBegin((byte) 0, 0);
 		assertEquals(5, changeListener.byteparam);
-
 	}
 
 	/**
@@ -245,7 +242,6 @@ public class PerceptionDispatcherTest {
 		assertEquals(0, changeListener.byteparam);
 		dispatch.onPerceptionEnd((byte) 0, 0);
 		assertEquals(6, changeListener.byteparam);
-
 	}
 
 	/**
@@ -261,7 +257,6 @@ public class PerceptionDispatcherTest {
 		assertEquals(0, changeListener.byteparam);
 		dispatch.onSynced();
 		assertEquals(7, changeListener.byteparam);
-
 	}
 
 	/**
@@ -277,7 +272,6 @@ public class PerceptionDispatcherTest {
 		assertEquals(0, changeListener.byteparam);
 		dispatch.onUnsynced();
 		assertEquals(8, changeListener.byteparam);
-
 	}
 
 	/**
@@ -300,7 +294,6 @@ public class PerceptionDispatcherTest {
 		assertEquals(0, changeListener.byteparam);
 		dispatch.onUnsynced();
 		assertEquals(0, changeListener.byteparam);
-
 	}
 
 }
