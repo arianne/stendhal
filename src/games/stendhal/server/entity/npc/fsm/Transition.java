@@ -192,6 +192,12 @@ public class Transition {
 	 */
 	public boolean matchesSimilar(final ConversationStates state, final Sentence sentence) {
 		if (state == this.state) {
+			// If the trigger is an empty string, match any text.
+			//TODO find a better way to handle unconditional matching; perform JokerMatch comparisons here, so that they can catch all not yet recognized text
+			if (trigger.getNormalized().length() == 0) {
+				return true;
+			}
+
 			if (sentence.getTriggerExpression().matchesNormalizedSimilar(trigger)) {
 				return true;
 			}
