@@ -77,7 +77,7 @@ public class SummonScroll extends Scroll {
 
 		if (zone.getNPCList().size() >= MAX_ZONE_NPCS) {
 			player.sendPrivateText("Mysteriously, the scroll does not function! Perhaps this area is too crowded...");
-			logger.error("too many npcs");
+			logger.info("Too many npcs to summon another creature");
 			return false;
 		}
 
