@@ -44,7 +44,7 @@ public class StackableItem2DView extends Item2DView {
 	@Override
 	public void initialize(final IEntity entity) {
 		super.initialize(entity);
-		quantitySprite = getQuantitySprite();
+		quantitySprite = getQuantitySprite(entity);
 		quantityChanged = false;
 		showQuantity = true;
 	}
@@ -56,10 +56,11 @@ public class StackableItem2DView extends Item2DView {
 	/**
 	 * Get the appropriate quantity sprite.
 	 * 
+	 * @param entity 
 	 * @return A sprite representing the quantity, or <code>null</code> for
 	 *         none.
 	 */
-	protected Sprite getQuantitySprite() {
+	protected Sprite getQuantitySprite(IEntity entity) {
 		int quantity;
 		String label;
 
@@ -144,8 +145,9 @@ public class StackableItem2DView extends Item2DView {
 	protected void update() {
 		super.update();
 
-		if (quantityChanged) {
-			quantitySprite = getQuantitySprite();
+		IEntity entity  = this.entity;
+		if (quantityChanged && (entity != null)) {
+			quantitySprite = getQuantitySprite(entity);
 			quantityChanged = false;
 		}
 	}
