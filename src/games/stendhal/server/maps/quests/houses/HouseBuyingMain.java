@@ -72,7 +72,7 @@ public class HouseBuyingMain {
 		if(player.hasQuest("house")) {
 			hist.add("I have bought house ##"+player.getQuest("house")+".");			
 		} else {
-			hist.add("I have no buyed houses now.");
+			hist.add("I own no houses now.");
 			if(player.getAge()<0) {
 				logger.warn("player's age is below zero: " + player.getAge());
 				//hist.add("My age is not enough to buy any house.");
