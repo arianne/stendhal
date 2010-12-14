@@ -30,7 +30,6 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
-import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
@@ -97,15 +96,17 @@ public class HerbsForCarmen extends AbstractQuest {
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Carmen");
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+		npc.add(ConversationStates.ATTENDING, 
+				ConversationPhrases.QUEST_MESSAGES,
 			new AndCondition(
 					new LevelGreaterThanCondition(2),
 					new QuestNotStartedCondition(QUEST_SLOT),
 					new NotCondition(new QuestInStateCondition(QUEST_SLOT,"rejected"))),
 			ConversationStates.QUESTION_1, 
-			"Hey you! Yes, you! Do you know me?", null);
+			"Hm, Do you know what I do for a living?", null);
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+		npc.add(ConversationStates.ATTENDING, 
+			ConversationPhrases.QUEST_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT,"rejected"),
 			ConversationStates.QUEST_OFFERED, 
 			"Hey, are you going to help me yet?", null);
@@ -190,14 +191,20 @@ public class HerbsForCarmen extends AbstractQuest {
 	
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.QUESTION_2,
-				"Hi again. Did you bring me any #ingredients?",
+				ConversationStates.ATTENDING,
+				"Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!",
 				null);
 
 		/* player asks what exactly is missing (says ingredients) */
-		npc.add(ConversationStates.QUESTION_2, "ingredients", null,
+		npc.add(ConversationStates.ATTENDING, "ingredients", null,
 				ConversationStates.QUESTION_2, null,
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?"));
+		
+		npc.add(ConversationStates.ATTENDING, 
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+			ConversationStates.QUESTION_2, 
+			null, new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?"));
 
 		/* player says he has a required item with him (says yes) */
 		npc.add(ConversationStates.QUESTION_2,
@@ -240,11 +247,13 @@ public class HerbsForCarmen extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Ok, well just let me know if I can #help you with anything else.", null);
 
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
-				"Hi, may I #help?", null);
+		/* says quest and quest can't be started nor is active*/
+		npc.add(ConversationStates.ATTENDING, 
+				ConversationPhrases.QUEST_MESSAGES,
+				null,
+			    ConversationStates.ATTENDING, 
+			    "There's nothing I need right now, thank you.",
+			    null);
 		
 	}
 	

@@ -73,7 +73,9 @@ public class HerbsForCarmenTest {
 
 		// say hello for the first time but don't accept or reject quest
 		en.step(player, "hi");
-		assertEquals("Hey you! Yes, you! Do you know me?", getReply(npc));
+		assertEquals("Hi, if I can #help, just say.", getReply(npc));
+		en.step(player, "quest");
+		assertEquals("Hm, Do you know what I do for a living?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("I am Carmen. I can heal you for free, until your powers become too strong. Many warriors ask for my help. Now my #ingredients are running out and I need to fill up my supplies.", getReply(npc));
 		en.step(player, "ingredients");
@@ -84,7 +86,9 @@ public class HerbsForCarmenTest {
 		// ------------------------------------------------------------------
 		// return, say you know her, and reject quest
 		en.step(player, "hi");
-		assertEquals("Hey you! Yes, you! Do you know me?", getReply(npc));
+		assertEquals("Hi, if I can #help, just say.", getReply(npc));
+		en.step(player, "quest");
+		assertEquals("Hm, Do you know what I do for a living?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Great, so you know my job. My supply of healing #ingredients is running low.", getReply(npc));
 		en.step(player, "ingredients");
@@ -98,6 +102,8 @@ public class HerbsForCarmenTest {
 		// ------------------------------------------------------------------------
 		// return and reject it again (could check karma levels each time it's rejected)
 		en.step(player, "hi");
+		assertEquals("Hi, if I can #help, just say.", getReply(npc));
+		en.step(player, "quest");
 		assertEquals("Hey, are you going to help me yet?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Hargh, thats not good! But ok, its your choice. But remember, I will tell the others that I can't heal them much longer, because YOU didn't want to help me.", getReply(npc));
@@ -107,6 +113,8 @@ public class HerbsForCarmenTest {
 		// ------------------------------------------------------------------------
 		// agree to help and check about each ingredient
 		en.step(player, "hi");
+		assertEquals("Hi, if I can #help, just say.", getReply(npc));
+		en.step(player, "quest");
 		assertEquals("Hey, are you going to help me yet?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Oh how nice. Please bring me those ingredients: 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcini, and 2 #'pieces of wood'.", getReply(npc));
@@ -126,7 +134,7 @@ public class HerbsForCarmenTest {
 		// --------------------------------------------------------------
 		// Return and check what is needed, say you don't have anything
 		en.step(player, "hi");
-		assertEquals("Hi again. Did you bring me any #ingredients?", getReply(npc));
+		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
 		en.step(player, "ingredients");
 		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcini, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
 		en.step(player, "no");
@@ -137,7 +145,9 @@ public class HerbsForCarmenTest {
 		// -----------------------------------------------
 		// lie about having apple
 		en.step(player, "hi");
-		assertEquals("Hi again. Did you bring me any #ingredients?", getReply(npc));
+		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
+		en.step(player, "ingredients");
+		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcini, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Great, what did you bring?", getReply(npc));
 		en.step(player, "apple");
@@ -148,7 +158,7 @@ public class HerbsForCarmenTest {
 		// ---------------------------------------------------
 		// don't take ingredients 
 		en.step(player, "hi");
-		assertEquals("Hi again. Did you bring me any #ingredients?", getReply(npc));
+		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Ok, well just let me know if I can #help you with anything else.", getReply(npc));
 		en.step(player, "bye");
@@ -165,7 +175,9 @@ public class HerbsForCarmenTest {
 		// bring some of the ingredients. try to take one twice
 				
 		en.step(player, "hi");
-		assertEquals("Hi again. Did you bring me any #ingredients?", getReply(npc));
+		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
+		en.step(player, "ingredients");
+		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcini, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
 		en.step(player, "arandula");
 		assertEquals("Good, do you have anything else?", getReply(npc));
 		en.step(player, "apple");
@@ -192,7 +204,7 @@ public class HerbsForCarmenTest {
 		// ----------------------------------------------------------
 		// bring remaining ingredients and check reward
 		en.step(player, "hi");
-		assertEquals("Hi again. Did you bring me any #ingredients?", getReply(npc));
+		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
 		en.step(player, "ingredients");
 		assertEquals("I need 2 #apples, 2 #'sprigs of arandula', a #'button mushroom', and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
 		en.step(player, "apple");
@@ -208,8 +220,11 @@ public class HerbsForCarmenTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		assertTrue(player.isQuestCompleted(questSlot));
+		
 		en.step(player, "hi");
-		assertEquals("Hi, may I #help?", getReply(npc));
+		assertEquals("Hi, if I can #help, just say.", getReply(npc));
+		en.step(player, "quest");
+		assertEquals("There's nothing I need right now, thank you.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		
