@@ -376,7 +376,7 @@ public class StendhalQuestSystem {
 		List<String> res = new LinkedList<String>();
 		for (final IQuest quest : quests) {
 			if (quest.isStarted(player) && !quest.isCompleted(player)) {
-				res.add(quest.getName());
+				res.add(quest.getQuestInfo(player).getName());
 			}
 		}
 		return res;
@@ -392,7 +392,7 @@ public class StendhalQuestSystem {
 		List<String> res = new LinkedList<String>();
 		for (final IQuest quest : quests) {
 			if (quest.isCompleted(player)) {
-				res.add(quest.getName());
+				res.add(quest.getQuestInfo(player).getName());
 			}
 		}
 		return res;
@@ -408,8 +408,8 @@ public class StendhalQuestSystem {
 	public List<String> getQuestProgressDetails(final Player player, final String questName) {
 		List<String> res = new LinkedList<String>();
 		for (final IQuest quest : quests) {
-			if (quest.getName().equals(questName)) {
-				final QuestInfo questInfo = quest.getQuestInfo(player);
+			final QuestInfo questInfo = quest.getQuestInfo(player);
+			if (questInfo.getName().equals(questName)) {
 				res.add(questInfo.getDescription());
 				res.add("");
 				final List<String> history = quest.getHistory(player);
