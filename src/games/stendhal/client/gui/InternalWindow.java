@@ -132,7 +132,10 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	}
 	
 	/**
-	 * Set the content of the window.
+	 * Set the content of the window. The minimum width of the title bar
+	 * is determined at this stage, so usually you should defer setting
+	 * the window contents until the content component has been fully 
+	 * constructed.
 	 * 
 	 * @param content
 	 */
