@@ -12,10 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.events;
 
-import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.RPEntity;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.common.NotificationType;
+import games.stendhal.client.gui.progress.ProgressLogController;
 
 import org.apache.log4j.Logger;
 
@@ -33,20 +31,13 @@ public class ProgressStatusEvent extends Event<RPEntity> {
 	@Override
 	public void execute() {
 		try {
-			String message = "Current group status:  leader: " 
-				+ event.get("leader") 
-				+ "; members: " + event.get("members").replace("\t", ", ");
-			
 			if (!event.has("progress_type")) {
-				message = "Open progress window with pages for " + event.getList("data");
+				ProgressLogController.get().showCategories(event.getList("data"));
 			} else if (!event.has("item")) {
-				message = "Item list for " + event.get("progress_type") + ": " + event.getList("data");
+				ProgressLogController.get().showCategorySummary(event.get("progress_type"), event.getList("data"));
 			} else {
-				message = "Details for item " + event.get("item") + " on page " + event.get("progress_type") + ": " + event.getList("data");
+				ProgressLogController.get().showDescription(event.get("progress_type"), event.get("item"), event.getList("data"));
 			}
-
-			ClientSingletonRepository.getUserInterface().addEventLine(
-				new HeaderLessEventLine(message, NotificationType.CLIENT));
 		} catch (RuntimeException e) {
 			logger.error("Failed to process progress status. Event: " + event, e);
 		}
