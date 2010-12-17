@@ -14,6 +14,7 @@ package games.stendhal.server.actions;
 import static games.stendhal.common.constants.Actions.SENTENCE;
 import static games.stendhal.common.constants.Actions.VALUE;
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.player.Player;
 
 import java.io.UnsupportedEncodingException;
@@ -48,6 +49,7 @@ public class SentenceAction implements ActionListener {
 			logger.error(e, e);
 		}
 
+		new GameEvent(player.getName(), "sentence", Integer.toString(sentence.length()), sentence).raise();
 		player.setSentence(sentence);
 		player.sendPrivateText("Your sentence was updated to: " + action.get(VALUE));
 	}
