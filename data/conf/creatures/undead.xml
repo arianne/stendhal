@@ -68,6 +68,38 @@
     </ai>
   </creature>
  
+  <creature name="ghost hound">
+    <type class="undead" subclass="ghosthound" tileid="undead.png:13"/>
+    <description>As you catch sight of its shaggy shape and gleaming evil eyes, you suddenly remember all the horror stories around the dreaded ghost hound!</description>
+    <attributes>
+      <atk value="320"/>
+      <def value="110"/>
+      <hp value="110"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="45"/>
+    <experience value="1250"/>
+    <respawn value="1690"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="75.0"/>
+      <item value="carbuncle" quantity="[1,1]" probability="3.0"/>
+    </drops>
+    <equips>
+      <slot name="rhand" item="dark dagger" quantity="1"/>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="WooOouuuUuh!"/>
+        <noise state="fight" value="Ghhrr!"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+      <profile name="lifesteal" params="0.05"/>
+    </ai>
+  </creature>
   <creature name="bloody zombie">
     <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
     <description>You see a bloody zombie. Can you see the drops of blood that fall from his body?</description>
