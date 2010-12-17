@@ -65,14 +65,11 @@ public class ProgressLogController {
 	public void showCategories(final List<String> categories) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				progressLog.setContentsAvailable(false);
-				progressLog.setPageCaption("Contents");
-				
 				// Prepare appropriate action for content clicks
 				RequestAction contentAction = new RequestAction();
 				contentAction.setDataKey("progress_type");
 				
-				progressLog.setPageContent(categories, contentAction);
+				progressLog.setPages(categories, contentAction);
 				showWindow();
 			}
 		});
@@ -87,18 +84,12 @@ public class ProgressLogController {
 	public void showCategorySummary(final String category, final List<String> items) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				progressLog.setContentsAvailable(true);
-				
-				// Send a plain query if the user clicks the "Contents" header
-				progressLog.setPageHeader("Contents", new RequestAction());
-				progressLog.setPageCaption(category);
-				
 				// Prepare appropriate action for content clicks
 				RequestAction contentAction = new RequestAction();
 				contentAction.setDataKey("item");
 				contentAction.setProgressType(category);
 				
-				progressLog.setPageContent(items, contentAction);
+				progressLog.setPageIndex(category, items, contentAction);
 				showWindow();
 			}
 		});
@@ -114,14 +105,7 @@ public class ProgressLogController {
 	public void showDescription(final String category, final String item, final List<String> description) { 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				progressLog.setContentsAvailable(true);
-				
-				// Return to category listing when the user clicks the header
-				RequestAction categoryAction = new RequestAction();
-				categoryAction.setDataKey("progress_type");
-				progressLog.setPageHeader(category, categoryAction);
-				progressLog.setPageCaption(item);
-				progressLog.setPageContent(description, null);
+				progressLog.setPageContent(category, item, description);
 				showWindow();
 			}
 		});
@@ -146,7 +130,6 @@ public class ProgressLogController {
 	 */
 	private static class RequestAction implements ProgressStatusQuery {
 		private String progressType;
-		private String item;
 		private String dataKey;
 		
 		/**
@@ -159,9 +142,6 @@ public class ProgressLogController {
 			action.put("type", Actions.PROGRESS_STATUS);
 			if (progressType != null) {
 				action.put("progress_type", progressType);
-			}
-			if (item != null) {
-				action.put("item", item);
 			}
 			if (dataKey != null) {
 				action.put(dataKey, data);
