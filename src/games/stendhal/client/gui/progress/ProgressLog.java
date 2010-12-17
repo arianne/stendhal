@@ -55,6 +55,7 @@ public class ProgressLog {
 	ProgressLog(String handle, String name) {
 		window = new InternalManagedWindow(handle, name);
 		tabs = new JTabbedPane();
+		tabs.setFocusable(false);
 		tabs.setPreferredSize(new Dimension(PAGE_WIDTH, PAGE_HEIGHT));
 		tabs.addChangeListener(new TabChangeListener());
 		
@@ -167,6 +168,7 @@ public class ProgressLog {
 			indexArea = new JEditorPane();
 			indexArea.setContentType("text/html");
 			indexArea.setEditable(false);
+			indexArea.setFocusable(false);
 			indexArea.addHyperlinkListener(this);
 			
 			indexScrollPane = new JScrollPane(indexArea);
@@ -178,6 +180,7 @@ public class ProgressLog {
 			contentArea = new JEditorPane();
 			contentArea.setContentType("text/html");
 			contentArea.setEditable(false);
+			contentArea.setFocusable(false);
 			// Does not need a listener. There should be no links
 			
 			contentScrollPane = new JScrollPane(contentArea);
