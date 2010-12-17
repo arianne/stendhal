@@ -1,0 +1,103 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+package games.stendhal.client.gui.styled;
+
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Rectangle;
+
+import javax.swing.JComponent;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
+
+/**
+ * UI delegate for JTabbedPanes.
+ */
+public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
+	private final Style style;
+	
+	// Required by UIManager
+	public static ComponentUI createUI(JComponent pane) {
+		// BasicTabbedPaneUI can not be shared
+		return new StyledTabbedPaneUI(StyleUtil.getStyle());
+	}
+	
+	/**
+	 * Create a new StyledMenuItemUI.
+	 * 
+	 * @param style pixmap style
+	 */
+	StyledTabbedPaneUI(Style style) {
+		this.style = style;
+	}
+
+	@Override
+	protected void paintContentBorder(Graphics g, int tabPlacement, int selectedIndex) {
+		// Calculate the content area
+		int width = tabPane.getWidth();
+		int height = tabPane.getHeight();
+		Insets insets = tabPane.getInsets();
+		
+		int x = insets.left;
+		int y = insets.top;
+		// Adjust for tabs. Only top position is supported for now.
+		int tabHeight = calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight); 
+		y += tabHeight;
+		height -= tabHeight;
+		
+		// Drawing the background is this method's responsibility, even though
+		// Thats not obvious from the name
+		StyleUtil.fillBackground(style, g, x, y, width, height);
+		// Then the actual border
+		style.getBorder().paintBorder(tabPane, g, x, y, width, height);
+
+		// Paint background over the area between the selected tab and the
+		// content area
+		int selected = tabPane.getSelectedIndex();
+		Rectangle r = getTabBounds(selected, calcRect);
+		r = r.intersection(new Rectangle(x, y, width, height));
+		// Find out the border width 
+		int bwidth = style.getBorder().getBorderInsets(tabPane).left;
+		StyleUtil.fillBackground(style, g, r.x + bwidth, r.y,
+				r.width - 2 * bwidth, r.height);
+	}
+	
+	@Override
+	protected void paintFocusIndicator(Graphics g, int tabPlacement, 
+			Rectangle[] rects, int tabIndex, Rectangle iconRect, 
+			Rectangle textRect, boolean isSelected) {
+		if (tabIndex == getFocusIndex() && tabPane.isFocusOwner()) {
+			g.setColor(focus);
+			g.drawRect(textRect.x, textRect.y, textRect.width, textRect.height);
+		}
+	}
+	
+	@Override
+	protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex,
+			int x, int y, int width, int height, boolean isSelected) {
+		StyleUtil.fillBackground(style, g, x, y, width, height);
+	}
+	
+	@Override
+	protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex,
+			int x, int y, int width, int height, boolean isSelected) {
+		style.getBorder().paintBorder(tabPane, g, x, y, width, height);
+	}
+	
+	@Override
+	public void installUI(JComponent component) {
+		super.installUI(component);
+		component.setFont(style.getFont());
+		component.setForeground(style.getForeground());
+		focus = style.getShadowColor();
+	}
+}
