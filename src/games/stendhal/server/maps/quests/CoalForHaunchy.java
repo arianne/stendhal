@@ -189,7 +189,7 @@ public class CoalForHaunchy extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Coal for Haunchy",
-				"Haunchy Meatoch is afraid of his BBQ grillfire. Will his coal least till the steaks are ready or will he need some more?",
+				"Haunchy Meatoch is afraid of his BBQ grillfire. Will his coal last till the steaks are ready or will he need some more?",
 				true);
 		offerQuestStep();
 		bringCoalStep();

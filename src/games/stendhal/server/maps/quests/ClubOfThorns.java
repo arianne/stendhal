@@ -154,7 +154,7 @@ public class ClubOfThorns extends AbstractQuest {
 		step_3();
 		fillQuestInfo(
 				"Club of Thorns",
-				"Be a mercenary for the Orc Saman to win a dangerous weapon.",
+				"The Orc Saman will give a dangerous weapon to a mercenary who will help him.",
 				false);
 	}
 

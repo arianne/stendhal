@@ -207,7 +207,7 @@ public class ArmorForDagobert extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Armor For Dagobert",
-				"Dagobert, the consultant at the bank of Semos, asked me to find a leather cuirass for him.",
+				"Dagobert, the consultant at the bank of Semos, needs protection.",
 				false);
 		prepareRequestingStep();
 		prepareBringingStep();

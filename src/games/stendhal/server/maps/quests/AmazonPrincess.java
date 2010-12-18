@@ -187,7 +187,7 @@ npc.add(ConversationStates.ATTENDING,
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("Princess Esclara welcomed me in her home on Amazon Island.");
+		res.add("Princess Esclara welcomed me to her home on Amazon Island.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("She asked me to fetch her a drink but I didn't think she should have one.");

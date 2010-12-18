@@ -70,7 +70,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		setupAbstractQuest();
 		fillQuestInfo(
 				"Cloaks Collector",
-				"Josephine wants cloaks of many colours.",
+				"Josephine wants cloaks in many colours.",
 				false);
 	}
 
