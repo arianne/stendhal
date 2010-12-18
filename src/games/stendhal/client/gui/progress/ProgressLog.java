@@ -257,6 +257,7 @@ public class ProgressLog {
 		 * own paragraph.
 		 * 
 		 * @param header page header
+		 * @param description description of the quest
 		 * @param contents content paragraphs
 		 */
 		void setContent(String header, String description, List<String> contents) {
