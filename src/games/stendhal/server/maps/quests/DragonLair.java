@@ -117,7 +117,7 @@ public class DragonLair extends AbstractQuest {
 		step_1();
 		fillQuestInfo(
 				"Dragon Lair",
-				"Wishman, storm trooper extraordinaire from Blordrough's dark legion, guards the remaining dragons.. and will allow you access.",
+				"Wishman, storm trooper extraordinaire from Blordrough's dark legion, guards the remaining dragons... and lets visitors into their lair.",
 				true);
 
 	}

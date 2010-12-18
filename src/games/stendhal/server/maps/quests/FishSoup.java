@@ -382,7 +382,7 @@ public class FishSoup extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Fish soup",
-				"Try to get all ingredients which you need for a healthy and tasty fish soup by Florence Boullabaisse.",
+				"Florence Boullabaisse makes a healthy and tasty fish soup, but it needs rather a lot of ingredients.",
 				false);
 		step_1();
 		step_2();

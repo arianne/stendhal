@@ -245,7 +245,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Fishermans License Quiz",
-				"Santiago the fisherman wants to test my knowledge of fish species.",
+				"Santiago the fisherman will examine fishermen on their knowledge of fish species.",
 				false);
 		createQuizStep();
 	}
