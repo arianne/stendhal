@@ -41,7 +41,7 @@ public class Maze extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Maze",
-				"Everything you need is a good eye...",
+				"Haizen's maze is a great challenge for path finders.",
 				false);
 		addMazeSign();
 		setupConversation();

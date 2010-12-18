@@ -245,7 +245,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Mixture for Ortiv",
-				"Ortiv asks you for some ingredients for a mixture which will help him to keep the assassins and bandits in the cellar.",
+				"Ortiv needs some ingredients for a mixture which will help him to keep the assassins and bandits in the cellar.",
 				true);
 		prepareRequestingStep();
 		prepareBringingStep();

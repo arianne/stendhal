@@ -148,7 +148,7 @@ public class MeetZynn extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Meet Zynn Iwuhos",
-				"Meet Zynn Iwuhos in the Semos library and ask him for some useful information.",
+				"Zynn Iwuhos, in the Semos library, is a great source of useful information.",
 				false);
 		step_1();
 	}

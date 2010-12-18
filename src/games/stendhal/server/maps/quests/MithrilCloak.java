@@ -85,7 +85,7 @@ public class MithrilCloak extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Mithril Cloak",
-				"Are you interested in a shiny and high defensed cloak? You can be someone who is able to bring the needed items for that to Ida in Ados.",
+				"A shiny and high defence cloak is available for those willing to complete a long list of tasks for the seamstress Ida.",
 				false);
 		
 		// login notifier to teleport away players logging into the twilight zone.

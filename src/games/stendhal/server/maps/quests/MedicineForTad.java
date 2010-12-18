@@ -307,7 +307,7 @@ public class MedicineForTad extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		fillQuestInfo(
-				"Helping Tad",
+				"Medicine For Tad",
 				"Tad, a boy in Semos Townhall, needs help to get his medicine.",
 				false);
 		step_1();

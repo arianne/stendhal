@@ -104,7 +104,7 @@ public class McPeglegIOU extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"McPegleg IOU",
-				"Did you find something named IOU up yet? Maybe McPegleg knows what to do with it...",
+				"McPegleg doesn't always have cash to hand, and sometimes passes out IOUs instead.",
 				false);
 
 		step_1();

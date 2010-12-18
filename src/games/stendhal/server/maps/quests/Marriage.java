@@ -65,7 +65,7 @@ public class Marriage extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Marriage",
-				"Did you find the partner with whom you want to spent your life in Faiumoni with? Then make the next bigger step and tie the knots!",
+				"Lucky ones who find a partner they want to share their life with can get married in Fado Church.",
 				false);
 		MarriageQuestChain marriage = new MarriageQuestChain();
 		marriage.addToWorld();

@@ -167,7 +167,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		super.addToWorld();
 		fillQuestInfo(
 				"Meet Santa",
-				"Jingle bells, jingle bells, jingle all the way... Ho Ho Ho! Be fast and find Santa Claus around Faiumoni! If you were nice, you might get a present...",
+				"Jingle bells, jingle bells, jingle all the way... Ho Ho Ho! Santa Claus delivers presents around Christmas time.",
 				false);
 		SingletonRepository.getLoginNotifier().addListener(this);
 		
