@@ -52,7 +52,7 @@ public interface IQuest {
 
 	/**
 	 * Was the quest completed?<!--sic--> Note: A quest can be completed
-	 * without its status beeing "Done" (e. g. rejected, failed).
+	 * without its status being "Done" (e. g. rejected, failed).
 	 *
 	 * @param player
 	 *            Player
@@ -70,8 +70,7 @@ public interface IQuest {
 	boolean isRepeatable(Player player);
 
 	/**
-	 * Gets a list of history item-names. The texts will be looked up in
-	 * quest.xml
+	 * Gets a the quest history for the given player, written in the first person.
 	 *
 	 * @param player
 	 *            Player

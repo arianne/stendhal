@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Static info about quests (read from quest.xml).
- * 
+ * Static info about quests, filled with fillQuestInfo in each quest
+ *  
  * @author hendrik
  */
 public class QuestInfo {
