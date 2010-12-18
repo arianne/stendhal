@@ -27,7 +27,9 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -280,6 +282,26 @@ and ask for horse hair.
 				false);
 	}
 
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		final String questState = player.getQuest(QUEST_SLOT);
+		res.add("Ouchit asked me for help to replenish his stocks of bows and arrows.");
+		if (player.isQuestInState(QUEST_SLOT, "wood", "hair", "done")) {
+			res.add("First I must fetch Ouchit 10 pieces of wood.");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "hair", "done")) {
+			res.add("Next I need to get some horse hairs, which Ouchit uses as bowstrings. I'm told the farmer Karl will help me.");
+		}
+		if (questState.equals("done")) {
+			res.add("Ouchit gave me some new equipment as thanks for helping him.");
+		}
+		return res;
+	}
+	
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
