@@ -99,5 +99,9 @@ abstract class AbstractQuest implements IQuest {
 	}
 
 	public abstract String getName();
+	
+	public boolean isVisibleOnQuestStatus() {
+		return true;
+	}
 
 }

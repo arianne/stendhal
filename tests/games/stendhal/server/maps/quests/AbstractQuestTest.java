@@ -155,5 +155,15 @@ public class AbstractQuestTest {
 		
 		assertEquals(QUESTNAMESTRING, quest.getName());
 	}
+	
+	/**
+	 * Tests for isVisibleOnQuestStatus.
+	 */
+	@Test
+	public final void testIsVisibleOnQuestStatus() {
+		final AbstractQuest quest = new Mockquest();
+		assertTrue("abstract quests are visible by default",
+				quest.isVisibleOnQuestStatus());
+	}
 
 }

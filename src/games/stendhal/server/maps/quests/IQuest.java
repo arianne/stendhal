@@ -111,6 +111,12 @@ public interface IQuest {
 	 * @return slot name
 	 */
 	String getSlotName();
+	
+	/**
+	 * Determines whether the quest should be shown in the Quest Status/Progress log
+	 *
+	 */
+	boolean isVisibleOnQuestStatus();
 
 
 }
