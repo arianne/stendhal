@@ -35,6 +35,7 @@ public class ProgressStatusEvent extends RPEvent {
 		final RPClass rpclass = new RPClass(Events.PROGRESS_STATUS_CHANGE);
 		rpclass.add(DefinitionClass.ATTRIBUTE, "progress_type", Type.STRING);
 		rpclass.add(DefinitionClass.ATTRIBUTE, "item", Type.STRING);
+		rpclass.add(DefinitionClass.ATTRIBUTE, "description", Type.VERY_LONG_STRING);
 		rpclass.add(DefinitionClass.ATTRIBUTE, "data", Type.VERY_LONG_STRING);
 	}
 
@@ -65,12 +66,14 @@ public class ProgressStatusEvent extends RPEvent {
 	 *
 	 * @param type type of status (open_quests, completed_quests, producing, ...)
 	 * @param item the selected item
+	 * @param description description
 	 * @param data details for the selected item
 	 */
-	public ProgressStatusEvent(String type, String item, List<String> data) {
+	public ProgressStatusEvent(String type, String item, String description, List<String> data) {
 		super(Events.PROGRESS_STATUS_CHANGE);
 		put("progress_type", type);
 		put("item", item);
+		put("description", description);
 		put("data", data);
 	}
 

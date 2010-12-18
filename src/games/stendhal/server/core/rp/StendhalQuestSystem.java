@@ -398,6 +398,24 @@ public class StendhalQuestSystem {
 		return res;
 	}
 
+
+	/**
+	 * gets the description of a quest
+	 *
+	 * @param player player to get the details for
+	 * @param questName name of quest
+	 * @return description
+	 */
+	public String getQuestDescription(final Player player, final String questName) {
+		for (final IQuest quest : quests) {
+			final QuestInfo questInfo = quest.getQuestInfo(player);
+			if (questInfo.getName().equals(questName)) {
+				return questInfo.getDescription();
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * gets details on the progress of the quest
 	 *
@@ -410,8 +428,6 @@ public class StendhalQuestSystem {
 		for (final IQuest quest : quests) {
 			final QuestInfo questInfo = quest.getQuestInfo(player);
 			if (questInfo.getName().equals(questName)) {
-				res.add(questInfo.getDescription());
-				res.add("");
 				final List<String> history = quest.getHistory(player);
 				for (final String entry : history) {
 					res.add(entry);

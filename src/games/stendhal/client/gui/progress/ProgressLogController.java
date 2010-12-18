@@ -100,12 +100,13 @@ public class ProgressLogController {
 	 * 
 	 * @param category
 	 * @param item item to be described
-	 * @param description description paragraphs
+	 * @param description description 
+	 * @param details paragraphs
 	 */
-	public void showDescription(final String category, final String item, final List<String> description) { 
+	public void showDescription(final String category, final String item, final String description, final List<String> details) { 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				progressLog.setPageContent(category, item, description);
+				progressLog.setPageContent(category, item, description, details);
 				showWindow();
 			}
 		});

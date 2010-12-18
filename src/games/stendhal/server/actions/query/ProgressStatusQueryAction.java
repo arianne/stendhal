@@ -16,6 +16,7 @@ import static games.stendhal.common.constants.Actions.PROGRESS_STATUS;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ProgressStatusEvent;
 
@@ -91,9 +92,11 @@ public class ProgressStatusQueryAction implements ActionListener {
 	 * @param item name of item to get details about
 	 */
 	private void sendDetails(Player player, String progressType, String item) {
+		StendhalQuestSystem questSystem = SingletonRepository.getStendhalQuestSystem();
 		if (progressType.equals("Open Quests") || progressType.equals("Completed Quests")) {
 			player.addEvent(new ProgressStatusEvent(progressType, item, 
-				SingletonRepository.getStendhalQuestSystem().getQuestProgressDetails(player, item)));
+				questSystem.getQuestDescription(player, item),
+				questSystem.getQuestProgressDetails(player, item)));
 		}
 	}
 

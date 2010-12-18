@@ -36,7 +36,8 @@ public class ProgressStatusEvent extends Event<RPEntity> {
 			} else if (!event.has("item")) {
 				ProgressLogController.get().showCategorySummary(event.get("progress_type"), event.getList("data"));
 			} else {
-				ProgressLogController.get().showDescription(event.get("progress_type"), event.get("item"), event.getList("data"));
+				System.out.println(event.getList("data"));
+				ProgressLogController.get().showDescription(event.get("progress_type"), event.get("item"), event.get("description"), event.getList("data"));
 			}
 		} catch (RuntimeException e) {
 			logger.error("Failed to process progress status. Event: " + event, e);
