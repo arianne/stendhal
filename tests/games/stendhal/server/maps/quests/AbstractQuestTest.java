@@ -93,12 +93,12 @@ public class AbstractQuestTest {
 		pl.setQuest(QUESTSlotSTRING, "rejected");
 		assertTrue(pl.hasQuest(QUESTSlotSTRING));
 		assertFalse(pl.isQuestCompleted(QUESTSlotSTRING));
-		assertTrue(quest.isCompleted(pl));
+		assertFalse(quest.isCompleted(pl));
 
 		pl.setQuest(QUESTSlotSTRING, "failed");
 		assertTrue(pl.hasQuest(QUESTSlotSTRING));
 		assertFalse(pl.isQuestCompleted(QUESTSlotSTRING));
-		assertTrue(quest.isCompleted(pl));
+		assertFalse(quest.isCompleted(pl));
 
 	}
 
