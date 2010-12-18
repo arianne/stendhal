@@ -37,7 +37,7 @@ abstract class AbstractQuest implements IQuest {
 	/**
 	 * fill fields of questInfo object with info about this quest 
 	 * @param name - name of the quest
-	 * @param description - short description of this quest
+	 * @param description - short description of this quest in a neutral tense (not first person)
 	 * @param repeatable - is quest repeatable or not
 	 */
 	public void fillQuestInfo(final String name, final String description, boolean repeatable) {
