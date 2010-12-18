@@ -172,7 +172,7 @@ public class KoboldishTorcibud extends AbstractQuest {
              */
             missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
             res.add("I'm helping her refurbish her stock of supplies for preparing her Koboldish Torcibud."
-                + " I still have to bring her " + Grammar.enumerateCollection(missingItems.toStringListWithHash()));
+                + " I still have to bring her " + Grammar.enumerateCollection(missingItems.toStringList()));
         }
 
         return res;
