@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -82,13 +83,16 @@ public class HerbsForCarmen extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
+		res.add("Carmen asked me to fetch ingredients to help her continue to heal others.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
-			res.add("QUEST_REJECTED");
-		}
-		if ("done".equals(questState)) {
-			res.add("DONE");
+			res.add("I don't want to help Carmen. I guess she'll find someone else to help her.");
+		} else if (!"done".equals(questState)) {
+			final ItemCollection missingItems = new ItemCollection();
+			missingItems.addFromQuestStateString(questState);
+			res.add("I still need to bring Carmen " + Grammar.enumerateCollection(missingItems.toStringList()) + ".");
+		} else {
+			res.add("I helped Carmen and she can now continue her healing work.");
 		}
 		return res;
 	}
