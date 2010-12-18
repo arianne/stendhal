@@ -30,7 +30,9 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -156,6 +158,29 @@ public class ClubOfThorns extends AbstractQuest {
 				"Club of Thorns",
 				"The Orc Saman will give a dangerous weapon to a mercenary who will help him.",
 				false);
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("I met the Orc Saman in Kotoch.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("I do not want to kill anyone for the Orc Saman.");
+		}
+		if (questState.startsWith("start") || questState.equals("done")) {
+			res.add("I like a challenge and want to try kill the captive mountain orc chief. I was given the prison key.");
+		}
+		if ((questState.startsWith("start") && (new KilledForQuestCondition(QUEST_SLOT, 1)).fire(player,null,null)) || questState.equals("done")) {
+			res.add("I killed the mountain orc chief in Kotoch Prison.");
+		}
+		if (questState.equals("done")) {
+			res.add("I told the Orc Saman about the kill and he gave me a powerful Club of Thorns to use.");
+		}
+		return res;
 	}
 
 	@Override
