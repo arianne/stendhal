@@ -141,8 +141,8 @@ public class KoboldishTorcibud extends AbstractQuest {
          * Retrieving QUEST_SLOT without sub slot index 0 will break the if/then logic below.
          */
         final String questState = player.getQuest(QUEST_SLOT, 0);
-        logger.warn("Quest state: <" + questState + ">");
-
+        logger.debug("Quest state: <" + questState + ">");
+        
         if ("rejected".equals(questState)) {
             res.add("She asked me to help her refurbish her stock of supplies for preparing her Koboldish Torcibud, "
                 + " but I had more pressing matters to attend.");
