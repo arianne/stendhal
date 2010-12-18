@@ -386,4 +386,9 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	public String getName() {
 		return "WizardBank";
 	}
+	
+	@Override
+	public boolean isVisibleOnQuestStatus() {
+		return false;
+	}
 }
