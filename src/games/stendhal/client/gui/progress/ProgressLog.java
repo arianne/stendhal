@@ -100,16 +100,17 @@ public class ProgressLog {
 	 * Set the descriptive content for a given page.
 	 *  
 	 * @param page category
-	 * @param header subject header. This will be shown as a html header for the
-	 * 	content paragraphs 
+	 * @param header subject header. This will be shown as a html header for the 
+	 * content paragraph
+	 * @param description a description about the items shown between the header and the list 
 	 * @param contents content paragraphs
 	 */
-	void setPageContent(String page, String header, List<String> contents) {
+	void setPageContent(String page, String header, String description, List<String> contents) {
 		int index = tabs.indexOfTab(page);
 		if (index != -1) {
 			Component comp = tabs.getComponent(index);
 			if (comp instanceof Page) {
-				((Page) comp).setContent(header, contents);
+				((Page) comp).setContent(header, description, contents);
 			}
 		}
 	}
@@ -258,20 +259,42 @@ public class ProgressLog {
 		 * @param header page header
 		 * @param contents content paragraphs
 		 */
-		void setContent(String header, List<String> contents) {
-			StringBuilder text = new StringBuilder("<html>");
+		void setContent(String header, String description, List<String> contents) {
+			StringBuilder text = new StringBuilder("<html><style type=\"text/css\">ul, li {margin-left:10px}</style>");
+
+			// header
 			if (header != null) {
 				text.append("<h2>");
 				text.append(header);
 				text.append("</h2>");
 			}
-			for (String elem : contents) {
-				text.append(elem);
-				text.append("<p>");
+
+			// TODO: remove on 2010-12-19
+			if (description == null && contents.size() > 0) {
+				description = contents.remove(0);
+				if (contents.size() > 0) {
+					contents.remove(0);
+				}
 			}
-			text.append("</html>");
+			// End TO DO.
+
+			// description
+			if (description != null) {
+				text.append("<i>");
+				text.append(description);
+				text.append("</i>");
+			}
+
+			// details
+			text.append("<ul>");
+			for (String elem : contents) {
+				text.append("<li>");
+				text.append(elem);
+				text.append("</li>");
+			}
+			text.append("</ul></html>");
 			contentArea.setText(text.toString());
-			
+
 			/*
 			 * Scroll to top. This needs to be pushed to the even queue, because
 			 * otherwise the scroll event triggered by changing the text would run
