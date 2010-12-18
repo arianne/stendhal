@@ -330,7 +330,7 @@ public class StuffForVulcanus extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Stuff for Vulcanus",
-				"Vulcanus, the son of Zeus itself, will forge the god's sword for you.",
+				"Vulcanus, the son of Zeus himself, will forge the god's sword.",
 				false);
 		step_1();
 		step_2();

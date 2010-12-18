@@ -300,7 +300,7 @@ public class UltimateCollector extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Ultimate Weapon Collector",
-				"Balduin, the hermit who is living on Ados rock, has a new last and ultimate challenge for you.",
+				"Balduin, the hermit who is living on Ados rock, has a last and ultimate challenge for collectors.",
 				true);
 		
 		checkCollectingQuests();

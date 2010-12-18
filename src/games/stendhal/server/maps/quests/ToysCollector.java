@@ -69,7 +69,7 @@ public class ToysCollector extends AbstractQuest implements
 		super.addToWorld();
 		fillQuestInfo(
 				"Toys Collector",
-				"Try to find some toys for Anna and her friends.",
+				"Anna is bored, and searches for toys for her and her friends to play with.",
 				false);
 		setupAbstractQuest();
 		specialStuff();

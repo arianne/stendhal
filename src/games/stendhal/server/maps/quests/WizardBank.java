@@ -373,7 +373,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		super.addToWorld();
 		fillQuestInfo(
 				"The Wizard Bank",
-				"Do you want to take care about all of your chest at one time? Join the Wizard Bank then.",
+				"At the Wizard Bank, one can access many magical chests at once.",
 				false);
 
 		SingletonRepository.getLoginNotifier().addListener(this);

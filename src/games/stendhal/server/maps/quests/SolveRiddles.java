@@ -277,7 +277,7 @@ public class SolveRiddles extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Solve Riddles",
-				"You have to solve riddles to leave the hottest area in Faiumoni.",
+				"The Grim Reapers pose tricky riddles for those who want to leave the hottest place in Fauimoni.",
 				false);
 		setRiddle();
 	}

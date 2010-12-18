@@ -488,7 +488,7 @@ public class StuffForBaldemar extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Stuff for Baldemar",
-				"Talk to Baldemar and he might offer to forge a shiny useful item for you.",
+				"Baldemar, a friendly mithrilbourgh elite wizard, will forge a special shield.",
 				false);
 		step_1();
 		step_2();

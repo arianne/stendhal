@@ -442,7 +442,7 @@ import org.apache.log4j.Logger;
 		questTimer = new QuestTimer();
 		fillQuestInfo(
 				"The Pied Piper",
-				"Ados city has a rats problem periodically.",
+				"Ados City has a rat problem from time to time.",
 				true);
 				
 		prepareNPC();

@@ -391,7 +391,7 @@ public class Soup extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Soup",
-				"Try to get all ingredients which you need for a healthy soup.",
+				"Old Mother Helena makes a wonderful vegetable soup.",
 				false);
 		step_1();
 		step_2();

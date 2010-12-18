@@ -297,7 +297,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Weapon Collector 2",
-				"Balduin, the hermit who is living on Ados rock, has a new exciting challenge for you.",
+				"Balduin, the hermit who is living on Ados rock, has heard of more weapons he can collect.",
 				true);
 		step_1();
 		step_2();

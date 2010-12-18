@@ -326,7 +326,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Kirdneh museum needs help!",
-				"Hazel, the curator of the Kirdneh Museum, wants it to become the greatest in the land and needs your help each week.",
+				"Hazel, the curator of the Kirdneh Museum, wants as many rare exhibits as she can afford.",
 				true);
 		buildItemsMap();
 		

@@ -234,7 +234,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Take gold for Grafindle",
-				"Grafindle in the bank of Nalwor, searches for someone he can take trust in.",
+				"Grafindle in the bank of Nalwor, searches for someone he can trust with gold.",
 				false);
 		step_1();
 		step_2();

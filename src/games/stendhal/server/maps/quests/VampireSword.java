@@ -312,7 +312,7 @@ public class VampireSword extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Vampire Sword",
-				"Hogart can forge a life stealing sword.",
+				"Hogart tells a thrilling story of vampires and betrayal. This inspires the idea of a life stealing sword he can forge.",
 				false);
 		prepareQuestOfferingStep();
 		prepareGobletFillingStep();
