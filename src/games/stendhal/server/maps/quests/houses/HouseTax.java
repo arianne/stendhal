@@ -88,7 +88,7 @@ class HouseTax implements TurnListener {
 	}
 	
 	/**
-	 * Get the number of tax periods the player has neglegted to pay.
+	 * Get the number of tax periods the player has neglected to pay.
 	 * 
 	 * @param player the player to be checked
 	 * @return number of periods
