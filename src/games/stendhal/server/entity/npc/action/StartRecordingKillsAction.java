@@ -40,7 +40,7 @@ public class StartRecordingKillsAction implements ChatAction {
     private final int KILLS_INDEX;
 
 	/**
-	 * Creates a new StartRecodingKillsAction.
+	 * Creates a new StartRecordingKillsAction.
 	 * 
 	 * @param questSlot name of quest slot
 	 * @param index index within questslot
@@ -53,7 +53,7 @@ public class StartRecordingKillsAction implements ChatAction {
 	}
 
 	/**
-	 * Creates a new StartRecodingKillsAction.
+	 * Creates a new StartRecordingKillsAction.
 	 * 
 	 * @param questSlot name of quest slot
 	 * @param index index within questslot
