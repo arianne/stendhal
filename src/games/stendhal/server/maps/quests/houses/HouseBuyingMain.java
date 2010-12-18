@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.houses;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -72,7 +73,12 @@ public class HouseBuyingMain {
 		hist.add("I bought " +  HouseUtilities.getHousePortal(MathHelper.parseInt(player.getQuest("house"))).getDoorId() + ".");	
 		HousePortal playerHousePortal = HouseUtilities.getPlayersHouse(player);
 		if(playerHousePortal!=null) {
-			hist.add("I still own " + playerHousePortal.getDoorId() + ".");
+			int unpaidPeriods = houseTax.getUnpaidTaxPeriods(player);
+			if (unpaidPeriods>0) {
+				hist.add("I owe " + Grammar.quantityplnoun(unpaidPeriods, "month", "one") + " worth of tax.");
+			} else {
+				hist.add("I am up to date with my house tax payments.");
+			}	
 		} else {
 			hist.add("I no longer own that house.");
 		}

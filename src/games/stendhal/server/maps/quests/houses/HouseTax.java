@@ -93,7 +93,7 @@ class HouseTax implements TurnListener {
 	 * @param player the player to be checked
 	 * @return number of periods
 	 */
-	private int getUnpaidTaxPeriods(final Player player) {
+	protected int getUnpaidTaxPeriods(final Player player) {
 		final HousePortal portal = HouseUtilities.getPlayersHouse(player);
 		int payments = 0;
 
