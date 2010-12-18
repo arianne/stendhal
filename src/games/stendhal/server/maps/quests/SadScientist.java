@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -30,6 +31,7 @@ import games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAct
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -46,7 +48,9 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
@@ -98,6 +102,48 @@ public class SadScientist extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("Vasi Elos asked me bring items to make a present for his honey.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if ("rejected".equals(questState)) {
+			res.add("I'm not really interested to help the sad scientist.");
+			return res;
+		} 
+		if ((getConditionForBeingInCollectionPhase()).fire(player,null,null)) {
+			final ItemCollection missingItems = new ItemCollection();
+			missingItems.addFromQuestStateString(questState);
+			res.add(Grammar.enumerateCollection(missingItems.toStringList()) + " are still needed for the jewelled legs.");
+		}
+		if ("legs".equals(questState)) {	
+			res.add("Vasi Elos needs a base to add those gems I brought, to. He asked for shadow legs.");
+		} 
+		if (questState.startsWith("making")) {	
+			res.add("Vasi Elos is making jewelled legs with the gems I brought.");
+		}	
+		if ("find_vera".equals(questState)) {	
+			res.add("Vasi Elos asked me to speak to Mayor Sakhs to find where Vera is.");
+		} 
+		if (questState.startsWith("kill_scientist")) {
+			res.add("Vasi Elos is so sad and angry that Vera is gone. I must kill his own brother and give him a goblet of blood.");
+		}
+		if (questState.startsWith("decorating")) {	
+			res.add("Vasi Elos is really sad. He's decorating the legs he made...with blood.");
+		} 
+        if ("done".equals(questState)){
+			res.add("Vasi Elos had asked me to collect gems to make jewelled legs for his honey, Vera. " +
+					"\nWhen he found out she had somehow become a vampirette, he was devastated. " +
+					"\nHe was determined to transform those legs into a symbol of pain. " +
+					"\nI sadly agreed to help him, by killing his brother and returning a goblet of blood. " +
+					"\nThe new legs, now black legs, were mine.");
+		}
+		return res;
+	}
+	
 	/* (non-Javadoc)
 	 * @see games.stendhal.server.maps.quests.AbstractQuest#addToWorld()
 	 */
@@ -315,7 +361,7 @@ public class SadScientist extends AbstractQuest {
 	
 	private void bringItemsPhase(final SpeakerNPC npc) {
 		//condition for quest being active and in item collection phase
-		ChatCondition itemPhaseCondition = getConditionForNotBeingInCollectionPhase();
+		ChatCondition itemPhaseCondition = getConditionForBeingInCollectionPhase();
 		
 		//player returns during item collection phase
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -371,7 +417,7 @@ public class SadScientist extends AbstractQuest {
 	 * Creates a condition for quest being active and in item collection phase 
 	 * @return the condition
 	 */
-	private AndCondition getConditionForNotBeingInCollectionPhase() {
+	private AndCondition getConditionForBeingInCollectionPhase() {
 		return new AndCondition(
 													new QuestActiveCondition(QUEST_SLOT),
 													new NotCondition(
@@ -483,7 +529,7 @@ public class SadScientist extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"If you change your mind please ask me again..." ,
-				null);
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -10.0));
 	}
 	
 	private void playerReturnsAfterCompletingQuest(final SpeakerNPC npc) {
