@@ -149,7 +149,7 @@ public class NewsFromHackim extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"News from Hackim",
-				"Hackim Easso, the Semos blacksmith assistant, needs help for collecting a message to someone. Will you help him?",
+				"Hackim Easso, the Semos blacksmith assistant, needs help to send a message to someone.",
 				false);
 		step_1();
 		step_2();

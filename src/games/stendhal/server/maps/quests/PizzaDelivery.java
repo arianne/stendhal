@@ -607,7 +607,7 @@ public class PizzaDelivery extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Pizza delivery",
-				"*Yummi!* It smells awesome, it is hot... Hurry up and deliver it!",
+				"Leander's pizza business is doing so well that he now recruits delivery boys and girls.",
 				false);
 		buildCustomerDatabase();
 		prepareBaker();

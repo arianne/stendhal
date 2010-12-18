@@ -496,7 +496,7 @@ public class ReverseArrow extends AbstractQuest implements
 		super.addToWorld();
 		fillQuestInfo(
 				"Reverse Arrow",
-				"Do you think you can solve this little riddle? Be fast, you just have a few seconds time.",
+				"Gamblos has a fun puzzle to solve.",
 				false);
 
 		SingletonRepository.getLoginNotifier().addListener(this);

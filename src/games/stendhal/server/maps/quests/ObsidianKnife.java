@@ -482,7 +482,7 @@ public class ObsidianKnife extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Obsidian Knife",
-				"Alrak needs help but maybe he can help me too.",
+				"A skilled dwarf blacksmith in Wo'fol is getting hungry, and bored...",
 				false);
 		prepareQuestOfferingStep();
 		bringFoodStep();

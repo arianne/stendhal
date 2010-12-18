@@ -172,7 +172,7 @@ public class PlinksToy extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Plinks toy",
-				"Plink wants me to find his teddy.",
+				"Plink is a sweet little boy, and like many little boys is frightened of wolves.",
 				false);
 		step_1();
 		step_2();

@@ -208,7 +208,7 @@ public class SevenCherubs extends AbstractQuest {
 		fillHistoryMap();
 		fillQuestInfo(
 				"Seven Cherubs",
-				"I have to find the seven cherubs about the world.",
+				"Seven cherubs stay on this world, and finding them all is rewarded with a prize.",
 				false);
 		StendhalRPZone zone;
 		SpeakerNPC npc;
