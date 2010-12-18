@@ -249,4 +249,9 @@ public class RainbowBeans extends AbstractQuest {
 		}
 		return MathHelper.parseLongDefault(tokens[3],-1)>0;
 	}
+	
+	@Override
+	public boolean isVisibleOnQuestStatus() {
+		return false;
+	}
 }

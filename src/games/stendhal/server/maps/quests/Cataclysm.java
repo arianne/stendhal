@@ -170,5 +170,10 @@ public class Cataclysm extends AbstractQuest {
 	public int getMinLevel() {
 		return 0;
 	}
-
+	
+	@Override
+	public boolean isVisibleOnQuestStatus() {
+		return false;
+	}
+	
 }

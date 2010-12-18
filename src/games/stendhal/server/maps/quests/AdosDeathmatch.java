@@ -313,4 +313,9 @@ public class AdosDeathmatch extends AbstractQuest {
 		return 20;
 	}
 	
+	@Override
+	public boolean isVisibleOnQuestStatus() {
+		return false;
+	}
+	
 }
