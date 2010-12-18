@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -36,6 +37,8 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -259,6 +262,28 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		player.incAtkXP();
 		player.sendPrivateText(NotificationType.POSITIVE, "You gained " + Integer.toString((int) (player.getXP() * ATK_REWARD_RATE)) + " of attack experience points.");
 	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add(NPC_NAME + " asked me to help him dethrone King Cozart. To be a King he needs a crown.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if ("rejected".equals(questState)) {
+			res.add("I think getting involved in these politics is a bad idea.");
+		} else if (!"done".equals(questState) && !"reward".equals(questState)) {
+			final ItemCollection missingItems = new ItemCollection();
+			missingItems.addFromQuestStateString(questState);
+			res.add(Grammar.enumerateCollection(missingItems.toStringList()) + " are still needed for the crown.");
+		} else if ("reward".equals(questState)) {	
+			res.add("I got the precious gems to make a crown, and " + REWARD_NPC_NAME + " has been instructed to give me my reward.");
+		} else {
+			res.add("I got the precious gems to make a crown, and " + REWARD_NPC_NAME + " rewarded me with a boost to my powers.");
+		}
+		return res;
+	}
 
 	@Override
 	public void addToWorld() {
@@ -268,7 +293,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		step_3();
 		fillQuestInfo(
 				"Crown for the Wannabe King",
-				"Ivan Abe wants to rule Kalavan ... and he needs a crown.",
+				NPC_NAME + " wants to rule Kalavan ... and he needs a crown.",
 				false);
 	}
 
