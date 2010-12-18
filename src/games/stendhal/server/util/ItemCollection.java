@@ -118,7 +118,7 @@ public class ItemCollection extends TreeMap<String, Integer> {
     }
 
     /**
-     * @return a String list containing the items in the format "n xxx".
+     * @return a String list containing the items in the format "n item".
      */
     public List<String> toStringList() {
         final List<String> result = new LinkedList<String>();
@@ -131,7 +131,7 @@ public class ItemCollection extends TreeMap<String, Integer> {
     }
 
     /**
-     * @return a String list containing the items in the format "n #xxx, ...".
+     * @return a String list containing the items in the format "n #item, ...".
      */
     public List<String> toStringListWithHash() {
         final List<String> result = new LinkedList<String>();
