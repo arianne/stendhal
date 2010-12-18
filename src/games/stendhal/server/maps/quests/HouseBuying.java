@@ -32,6 +32,11 @@ public class HouseBuying extends AbstractQuest {
 
 		quest = new HouseBuyingMain();
 		quest.addToWorld();
+		
+		fillQuestInfo(
+				"House Buying",
+				"Houses can be bought across Faiumoni.",
+				false);
 	}
 	
 	public LinkedList<String> getHistory(final Player player) {
@@ -46,5 +51,10 @@ public class HouseBuying extends AbstractQuest {
 	@Override
 	public int getMinLevel() {
 		return 50;
+	}
+	
+	@Override
+	public boolean isCompleted(final Player player) {
+		return quest.isCompleted(player);
 	}
 }

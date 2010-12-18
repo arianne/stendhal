@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.houses;
 
-import java.util.LinkedList;
-
-import org.apache.log4j.Logger;
-
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.LinkedList;
 
 /**
  * Controls house buying.
@@ -27,9 +27,6 @@ import games.stendhal.server.entity.player.Player;
  * @author kymara
  */
 public class HouseBuyingMain {
-
-	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(HouseBuyingMain.class);
 	
 	static HouseTax houseTax = null;
 
@@ -68,15 +65,16 @@ public class HouseBuyingMain {
 	
 	public LinkedList<String> getHistory(final Player player) {
 		LinkedList<String> hist = new LinkedList<String>();
-
-		if(player.hasQuest("house")) {
-			hist.add("I have bought house ##"+player.getQuest("house")+".");			
+		if(!player.hasQuest("house")) {
+			hist.add("I've never bought a house.");
+			return(hist);
+		}
+		hist.add("I bought " +  HouseUtilities.getHousePortal(MathHelper.parseInt(player.getQuest("house"))).getDoorId() + ".");	
+		HousePortal playerHousePortal = HouseUtilities.getPlayersHouse(player);
+		if(playerHousePortal!=null) {
+			hist.add("I still own " + playerHousePortal.getDoorId() + ".");
 		} else {
-			hist.add("I own no houses now.");
-			if(player.getAge()<0) {
-				logger.warn("player's age is below zero: " + player.getAge());
-				//hist.add("My age is not enough to buy any house.");
-			}
+			hist.add("I no longer own that house.");
 		}
 		return(hist);
 	}
@@ -96,5 +94,10 @@ public class HouseBuyingMain {
 
 		zone = SingletonRepository.getRPWorld().getZone(ATHOR_ISLAND);
 		createAthorNPC(zone);
+
+	}
+	
+	public boolean isCompleted(final Player player) {
+		return HouseUtilities.getPlayersHouse(player)!=null;
 	}
 }
