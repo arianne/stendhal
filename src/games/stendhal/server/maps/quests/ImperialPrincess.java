@@ -307,7 +307,7 @@ public class ImperialPrincess extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Gaining citizenship of Kalavan",
-				"If you want to get an official citizenship for Kalavan City, you have to ask for the permission of the King first. Before you can do that, you may talk to his daughter, Princess Ylflia, first...",
+				"To gain official citizenship for Kalavan City, one must first ask for the permission of the King. His daughter, Princess Ylflia, can help gain his ear.",
 				true);
 		step_1();
 		step_2();

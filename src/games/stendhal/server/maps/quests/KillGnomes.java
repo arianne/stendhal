@@ -172,7 +172,7 @@ public class KillGnomes extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Kill Gnomes",
-				"Help! Some gnomes stole carrots from Jenny, the miller! Go into the gnome village and take revenge in her name.",
+				"Jenny isn't happy that gnomes keep stealing her carrots.",
 				false);
 		step_1();
 		step_2();

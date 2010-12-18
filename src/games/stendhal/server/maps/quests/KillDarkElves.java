@@ -237,7 +237,7 @@ public class KillDarkElves extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Kill Dark Elves",
-				"Maerion, leader of Elves, wants to kill dark elves in the secret room and get back his amulet.",
+				"Maerion, leader of Elves, wants to kill dark elves in the secret room to hide his plots and get back his amulet.",
 				false);
 		step_1();
 		step_2();

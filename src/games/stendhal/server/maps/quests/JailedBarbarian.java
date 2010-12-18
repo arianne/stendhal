@@ -290,7 +290,7 @@ import java.util.List;
 		super.addToWorld();
 		fillQuestInfo(
 				"Jailed Barbarian",
-				"Lorenz is a jailed Barbarian on Athor Island. Will you find out, why he has to stay there and if you can help him somehow?",
+				"Lorenz is a jailed Barbarian on Athor Island. It's a mystery why he is jailed there, but perhaps he needs help.",
 				true);
 		step1();
 		step2();

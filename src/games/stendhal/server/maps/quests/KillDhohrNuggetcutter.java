@@ -51,8 +51,8 @@ import marauroa.common.Pair;
  * 
  * STEPS:
  * <ul>
- * <li> Zogfang asks you to kill remainging dwarves from area
- * <li> You go kill Dhohr Nuggetcutter and you get the reward from zogfang
+ * <li> Zogfang asks you to kill remaining dwarves from area
+ * <li> You go kill Dhohr Nuggetcutter and you get the reward from Zogfang
  * </ul>
  * <p>
  * REWARD:
@@ -178,7 +178,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Kill Dhohr Nuggetcutter",
-				"Zogfang, the orc which guards the entrance of Abandonded Keep, wants you to kill the remaining dwarves from the area around.",
+				"Zogfang, the orc who guards the entrance of Abandoned Keep, isn't feeling safe while some dwarves still remain in the Keep.",
 				false);
 		step_1();
 		step_2();

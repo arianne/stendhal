@@ -313,7 +313,7 @@ import org.apache.log4j.Logger;
 		super.addToWorld();
 		fillQuestInfo(
 				"Kill Blordroughs",
-				"Despot Halb Errvl wants you to kill some Blordrough warriors.",
+				"Despot Halb Errvl wants some Blordrough warriors killed.",
 				true);
 		step_1();
 	}

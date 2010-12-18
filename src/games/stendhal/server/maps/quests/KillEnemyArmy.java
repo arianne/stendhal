@@ -486,7 +486,7 @@ import org.apache.log4j.Logger;
 		super.addToWorld();
 		fillQuestInfo(
 				"Kill Enemy Army",
-				"Despot Halb Errvl asked me to kill several of his enemies.",
+				"Despot Halb Errvl has a vendetta against any army who opposes him.",
 				true);
 		step_1();
 	}
