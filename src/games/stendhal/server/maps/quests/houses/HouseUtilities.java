@@ -56,7 +56,7 @@ public class HouseUtilities {
 	 * 
 	 * @param player the player to be examined
 	 * @return portal to the house owned by the player, or <code>null</code>
-	 * if he doesn not own one. 
+	 * if he does not own one. 
 	 */
 	protected static HousePortal getPlayersHouse(final Player player) {
 		if (player.hasQuest(HOUSE_QUEST_SLOT)) {
