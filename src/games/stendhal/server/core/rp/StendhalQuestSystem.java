@@ -18,7 +18,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AdosDeathmatch;
 import games.stendhal.server.maps.quests.AmazonPrincess;
 import games.stendhal.server.maps.quests.ArmorForDagobert;
-import games.stendhal.server.maps.quests.Balloon;
 import games.stendhal.server.maps.quests.BalloonForBobby;
 import games.stendhal.server.maps.quests.BeerForHayunn;
 import games.stendhal.server.maps.quests.Blackjack;
@@ -148,7 +147,6 @@ public class StendhalQuestSystem {
 		loadQuest(new AdosDeathmatch());
 		loadQuest(new AmazonPrincess());
 		loadQuest(new ArmorForDagobert());
-		loadQuest(new Balloon());
 		loadQuest(new BalloonForBobby());
 		loadQuest(new BeerForHayunn());
 		loadQuest(new Blackjack());
