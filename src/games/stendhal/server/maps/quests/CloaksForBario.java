@@ -37,6 +37,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -220,6 +221,26 @@ public class CloaksForBario extends AbstractQuest {
 				"Bario, the freezing dwarf, needs cloaks to keep him warm.",
 				false);
 	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("I met a freezing dwarf hiding below ground in Ados Outside NW. He asked me to bring him 10 blue elf cloaks.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("I do not want to help Bario.");
+		} else if (!questState.equals("done")) {
+			int cloaks = MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT),  REQUIRED_CLOAKS);
+			res.add("I need to bring Bario " + Grammar.quantityplnoun(cloaks, "blue elf cloak", "one") + "." );
+		} else {
+			res.add("Bario gave me a precious golden shield in return for the elf cloaks!");
+		}
+		return res;
+	}
+	
 	@Override
 	public String getName() {
 		return "CloaksForBario";
