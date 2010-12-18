@@ -118,13 +118,13 @@ public class ItemCollection extends TreeMap<String, Integer> {
     }
 
     /**
-     * @return a String list containing the items in the format "xxx=n".
+     * @return a String list containing the items in the format "n xxx".
      */
     public List<String> toStringList() {
         final List<String> result = new LinkedList<String>();
 
         for (final Map.Entry<String, Integer> item : entrySet()) {
-            result.add(item.getKey() + '=' + item.getValue());
+            result.add(Grammar.quantityplnoun(item.getValue(), item.getKey()));
         }
 
         return result;

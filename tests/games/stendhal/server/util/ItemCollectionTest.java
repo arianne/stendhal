@@ -43,7 +43,7 @@ public class ItemCollectionTest {
 
         assertTrue(coll.removeItem("cheese", 1));
         assertEquals("cheese=6;ham=3", coll.toStringForQuestState());
-        assertEquals(Arrays.asList("cheese=6", "ham=3"), coll.toStringList());
+        assertEquals(Arrays.asList("6 pieces of cheese", "3 pieces of ham"), coll.toStringList());
         assertEquals(Arrays.asList("6 #'pieces of cheese'", "3 #'pieces of ham'"), coll.toStringListWithHash());
 
         assertFalse(coll.removeItem("ham", 5));
