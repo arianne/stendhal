@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.entity.item.scroll.RainbowBeansScroll;
@@ -235,5 +236,17 @@ public class RainbowBeans extends AbstractQuest {
 	@Override
 	public int getMinLevel() {
 		return REQUIRED_LEVEL;
+	}
+	
+	@Override
+	public boolean isCompleted(final Player player) {
+		if(!player.hasQuest(QUEST_SLOT)) {
+			return false;
+		}
+		String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+		if (tokens.length < 4) {
+			return false;
+		}
+		return MathHelper.parseLongDefault(tokens[3],-1)>0;
 	}
 }
