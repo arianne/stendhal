@@ -29,7 +29,7 @@ public class CommonPassword implements AccountParameterValidator {
 			"password", "password1", 
 			"passwort", "passwort1", 
 			"arianne", "marauroa",
-			"123123", "123456", "12345678", "1234567890",
+			"112233", "123123", "123456", "12345678", "123456789", "1234567890",
 			"jesus", "love", "game", "letmein", 
 			"qwerty", "qwertz",	"monkey", "test", "master", "killer",
 			"abc123", "fuckyou"
