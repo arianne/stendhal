@@ -844,8 +844,7 @@
 	<target name="run_tests" description="Run tests">
 		<mkdir dir="${build_tests_report}"/>
 		<junit printsummary="yes" fork="no">
-			<!-- Enable JVM assertions -->
-			<jvmarg value="-Djava.awt.headless=true -ea"/>
+			<jvmarg value="-Djava.awt.headless=true"/>
 
 			<classpath>
 				<pathelement path="${build_tests}"/>
@@ -959,8 +958,6 @@
 		<junit printsummary="yes" fork="yes" forkmode="once">
 			<sysproperty key="net.sourceforge.cobertura.datafile"
 			file="${build_cobertura}/cobertura.ser" />
-			<!-- Enable JVM assertions -->
-			<jvmarg value="-ea"/>
 			<classpath>
 				<pathelement path="${build_cobertura}"/>
 				<pathelement path="${build_tests}"/>
