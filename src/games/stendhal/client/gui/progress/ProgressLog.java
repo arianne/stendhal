@@ -301,13 +301,16 @@ public class ProgressLog {
 			}
 
 			// details
-			text.append("<ul>");
-			for (String elem : contents) {
-				text.append("<li>");
-				text.append(elem);
-				text.append("</li>");
+			if (!contents.isEmpty()) {
+				text.append("<ul>");
+				for (String elem : contents) {
+					text.append("<li>");
+					text.append(elem);
+					text.append("</li>");
+				}
+				text.append("</ul>");
 			}
-			text.append("</ul></html>");
+			text.append("</html>");
 			contentArea.setText(text.toString());
 
 			/*
