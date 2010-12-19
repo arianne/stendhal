@@ -20,8 +20,8 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -387,6 +388,22 @@ public class FishSoup extends AbstractQuest {
 		step_1();
 		step_2();
 		step_3();
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			if (!isCompleted(player)) {
+				res.add("I'm collecting ingredients to make fish soup. I still need " + Grammar.enumerateCollection(missingFood(player, false)) + ".");
+			} else if(isRepeatable(player)){
+				res.add("Florence is ready to make soup for me again!");
+			} else {
+				res.add("I made some yummy fish soup and Florence is now washing the dishes.");
+			}
+			return res;
 	}
 
 	@Override
