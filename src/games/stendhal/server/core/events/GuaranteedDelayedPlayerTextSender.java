@@ -35,7 +35,7 @@ public class GuaranteedDelayedPlayerTextSender extends DelayedPlayerTextSender {
 		final String playername = player.getName();
 		final Player playerNow = SingletonRepository.getRuleProcessor().getPlayer(playername);
 		if (playerNow != null) {
-			playerNow.sendPrivateText(source + "tells you:\n" + message);
+			playerNow.sendPrivateText(source + " tells you:\n" + message);
 		} else {
 			DBCommandQueue.get().enqueue(new StoreMessageCommand(source, playername, message, "N"));
 		}
