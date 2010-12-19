@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.logic;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -28,6 +29,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -49,6 +51,21 @@ public class BringListOfItemsQuestLogic {
 		this.concreteQuest = concreteQuest;
 	}
 
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(concreteQuest.getSlotName())) {
+			return res;
+		}
+		final String npcName = concreteQuest.getNPC().getName();
+		final String questState = player.getQuest(concreteQuest.getSlotName());
+		if (!"done".equals(questState)) {
+			res.add("I need to collect " + Grammar.enumerateCollection(getListOfStillMissingItems(player, false)) +  " for " + npcName + ".");
+		} else {
+			res.add("I collected everything that " +  npcName + " needed!");
+		}
+		return res;
+	}
+	
 	/**
 	 * Returns a list of the names of all items that the given player still
 	 * has to bring to fulfill the quest.

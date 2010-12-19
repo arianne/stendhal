@@ -59,8 +59,13 @@ public class WeaponsCollector extends AbstractQuest implements
 			"golden mace", "scimitar", "scythe", "war hammer");
 
 	private static final String QUEST_SLOT = "weapons_collector";
-
-
+	
+	private BringListOfItemsQuestLogic bringItems;
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return bringItems.getHistory(player);
+	}
 
 	@Override
 	public void addToWorld() {
@@ -74,7 +79,7 @@ public class WeaponsCollector extends AbstractQuest implements
 
 	private void setupAbstractQuest() {
 		final BringListOfItemsQuest concreteQuest = this;
-		final BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
+		bringItems = new BringListOfItemsQuestLogic(concreteQuest);
 		bringItems.addToWorld();
 	}
 

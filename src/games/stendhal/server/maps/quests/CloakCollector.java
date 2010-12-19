@@ -56,10 +56,17 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 			"vampire cloak", "blue dragon cloak");
 
 	private static final String QUEST_SLOT = "cloaks_collector";
+	
+	private BringListOfItemsQuestLogic bringItems;
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return bringItems.getHistory(player);
+	}
 
 	private void setupAbstractQuest() {
 		final BringListOfItemsQuest concreteQuest = this;
-		final BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
+		bringItems = new BringListOfItemsQuestLogic(concreteQuest);
 		bringItems.addToWorld();
 	}
 

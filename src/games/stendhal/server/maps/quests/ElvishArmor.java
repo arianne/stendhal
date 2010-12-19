@@ -54,7 +54,8 @@ public class ElvishArmor extends AbstractQuest implements
 		BringListOfItemsQuest {
 
 	private static final String QUEST_SLOT = "elvish_armor";
-
+	
+	private BringListOfItemsQuestLogic bringItems;
 	
 	private static final List<String> NEEDEDITEMS = Arrays.asList(
 			"elvish armor", "elvish legs", "elvish boots", "elvish sword",
@@ -65,11 +66,15 @@ public class ElvishArmor extends AbstractQuest implements
 		return QUEST_SLOT;
 	}
 	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return bringItems.getHistory(player);
+	}
 
 
 	private void setupAbstractQuest() {
 		final BringListOfItemsQuest concreteQuest = this;
-		final BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
+		bringItems = new BringListOfItemsQuestLogic(concreteQuest);
 		bringItems.addToWorld();
 	}
 
