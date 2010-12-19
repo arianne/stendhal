@@ -23,6 +23,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,15 +53,30 @@ public class ToysCollector extends AbstractQuest implements
 
 	private static final String QUEST_SLOT = "toys_collector";
 	
+	private BringListOfItemsQuestLogic bringItems;
+	
 	private static final List<String> neededToys = 
 		Arrays.asList("teddy", "dice", "dress");
 
-	
+	// don't want to use the standard history for this kind of quest for anna as we dont want to say what she needs.
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			final String questState = player.getQuest(QUEST_SLOT);
+			if (!"done".equals(questState)) {
+				res.add("Anna wants some toys and I need to think about what might make a little girl happy!");
+			} else {
+				res.add("I got some fun toys for Anna, Jens and George to play with.");
+			}
+			return res;
+	}
 
 	private void setupAbstractQuest() {
 		final BringListOfItemsQuest concreteQuest = this;
-		final BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(
-				concreteQuest);
+		bringItems = new BringListOfItemsQuestLogic(concreteQuest);
 		bringItems.addToWorld();
 	}
 
