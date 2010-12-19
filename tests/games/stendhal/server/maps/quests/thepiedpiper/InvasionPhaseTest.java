@@ -37,7 +37,7 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		killRats(quest.getRatsCount());
 		// [17:58] Mayor Chalmers shouts: No rats in Ados now, exclude those who always lived in storage and haunted house. Rats hunters are welcome to get their reward.
 		LinkedList<String> questHistory = new LinkedList<String>();
-		questHistory.add("I have killed some rats in Ados city already, and trying to kill more.");
+		questHistory.add("I have killed some rats in Ados city already, and am trying to kill more.");
 		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -55,7 +55,7 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		en.step(player, "reward");
 		assertEquals("Please take "+ rewardMoneys +" money, thank you very much for your help.", getReply(npc));
 		questHistory.clear();
-		questHistory.add("I have killed some rats in Ados city and got reward from Mayor Chalmers!");
+		questHistory.add("I have killed some rats in Ados city and got a reward from Mayor Chalmers!");
 		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));		
@@ -86,7 +86,7 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		assertEquals("Good day to you.", getReply(npc));
 
 		killRats(quest.getRatsCount());
-		questHistory.add("I have killed some rats in Ados city already, and trying to kill more.");
+		questHistory.add("I have killed some rats in Ados city already, and am trying to kill more.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -123,7 +123,7 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		en.step(player, "reward");		
 		assertEquals("Please take "+ rewardMoneys +" money, thank you very much for your help.", getReply(npc));
 		questHistory.clear();
-		questHistory.add("I have killed some rats in Ados city and got reward from Mayor Chalmers!");
+		questHistory.add("I have killed some rats in Ados city and got a reward from Mayor Chalmers!");
 		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
