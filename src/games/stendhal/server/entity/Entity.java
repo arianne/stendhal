@@ -512,7 +512,7 @@ public abstract class Entity extends RPObject {
 	 */
 	public void onRemoved(final StendhalRPZone zone) {
 		if (this.zone != zone) {
-			logger.error("Entity removed from wrong zone: " + this);
+			logger.error("Entity removed from wrong zone " + zone + " but it thinks it is in " + this.zone + ": ", new Throwable());
 		}
 
 		this.zone = null;
