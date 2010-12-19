@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -114,8 +115,11 @@ public class UltimateCollector extends AbstractQuest {
 			return res;
 		}
 		res.add("I accepted his last ultimate quest and promised to bring him a special and rare weapon.");
+		if (!isCompleted(player)) {
+			res.add("Balduin has asked me to bring him " + Grammar.a_noun(questState));
+		}
 		if (isCompleted(player)) {
-			res.add("Yay! I am *the* ultimate weapon collector now!");
+			res.add("Yay! I am *the* ultimate weapon collector now and I can sell black items to Balduin!");
 		}
 		return res;
 	}
