@@ -293,15 +293,6 @@ public class ProgressLog {
 				text.append("</h2>");
 			}
 
-			// TODO: remove on 2010-12-19
-			if (description == null && contents.size() > 0) {
-				description = contents.remove(0);
-				if (contents.size() > 0) {
-					contents.remove(0);
-				}
-			}
-			// End TO DO.
-
 			// description
 			if (description != null) {
 				text.append("<i>");
