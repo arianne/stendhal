@@ -116,7 +116,8 @@ public class UltimateCollector extends AbstractQuest {
 		}
 		res.add("I accepted his last ultimate quest and promised to bring him a special and rare weapon.");
 		if (!isCompleted(player)) {
-			res.add("Balduin has asked me to bring him " + Grammar.a_noun(questState));
+			String item = questState.split("=")[0];
+			res.add("Balduin has asked me to bring him " + Grammar.a_noun(item));
 		}
 		if (isCompleted(player)) {
 			res.add("Yay! I am *the* ultimate weapon collector now and I can sell black items to Balduin!");
