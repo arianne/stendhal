@@ -145,5 +145,10 @@ public class DiceGambling extends AbstractQuest {
 	public String getName() {
 		return "DiceGambling";
 	}
+	
+	@Override
+	public boolean isVisibleOnQuestStatus() {
+		return false;
+	}
 
 }
