@@ -75,6 +75,7 @@ public class SlashActionRepository {
 		actions.put("names", who);
 		
 		actions.put("p", groupMessage);
+		actions.put("questlog", new QuestLogAction());
 
 		actions.put("quit", new QuitAction());
 
