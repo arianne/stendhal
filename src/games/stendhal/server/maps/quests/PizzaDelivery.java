@@ -156,14 +156,28 @@ public class PizzaDelivery extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 	
-	// This could maybe be more precise.
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("QUEST_ACCEPTED");
+		final String questState = player.getQuest(QUEST_SLOT);
+		res.add("I met Leander and agreed to help with pizza delivery.");
+		if (!"done".equals(questState)) {
+			final String[] questData = questState.split(";");
+			final String customerName = questData[0];
+			final CustomerData customerData = customerDB.get(customerName);
+			res.add("Leander gave me a " + customerData.flavor + " for " + customerName + ".");
+			res.add("Leander told me: \"" + customerData.npcDescription + "\"");
+			if (!isDeliveryTooLate(player)) {
+				res.add("If I hurry I might still get there with the pizza hot.");
+			} else {
+				res.add("The pizza has already gone cold.");
+			}
+		} else {
+			res.add("I delivered the last pizza Leander gave me.");
+		}
 		return res;
 	}
 
@@ -606,7 +620,7 @@ public class PizzaDelivery extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		fillQuestInfo(
-				"Pizza delivery",
+				"Pizza Delivery",
 				"Leander's pizza business is doing so well that he now recruits delivery boys and girls.",
 				false);
 		buildCustomerDatabase();
