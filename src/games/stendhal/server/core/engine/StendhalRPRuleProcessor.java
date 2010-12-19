@@ -236,10 +236,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public boolean onActionAdd(final RPObject caster, final RPAction action, final List<RPAction> actionList) {
+		action.put("____zone", caster.getID().getZoneID());
 		return true;
 	}
 
 	public void execute(final RPObject caster, final RPAction action) {
+		if (!action.get("____zone").equals(caster.getID().getZoneID())) {
+			logger.warn("Action for zone " + action.get("____zone") + " processed in zone " + caster.getID().getZoneID());
+		}
 		CommandCenter.execute(caster, action);
 	}
 
