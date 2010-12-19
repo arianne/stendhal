@@ -67,10 +67,10 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 												Achievement.EASY_BASE_SCORE, new QuestStateGreaterThanCondition("maze", 2, 0)));
 		// Meet Santa Claus
 		questAchievements.add(createAchievement("quest.special.santa", "Santa likes me!", "Find Santa Claus",
-												Achievement.EASY_BASE_SCORE, new QuestCompletedCondition("meet_santa_10")));
+												Achievement.EASY_BASE_SCORE, new QuestWithPrefixCompletedCondition("meet_santa_")));
 		// Meet Easter Bunny
 		questAchievements.add(createAchievement("quest.special.bunny", "Happy Easter, Bunny!", "Find Easter Bunny",
-												Achievement.EASY_BASE_SCORE, new QuestCompletedCondition("meet_bunny_11")));
+												Achievement.EASY_BASE_SCORE, new QuestWithPrefixCompletedCondition("meet_bunny_")));
 		// Befriend Susi
 		// Quest is never set to done, therefore we check just if the quest has been started (condition "anyFriends" from FoundGirl.java)
 		questAchievements.add(createAchievement("quest.special.susi", "Susi's friend", "Befriend Susi",
