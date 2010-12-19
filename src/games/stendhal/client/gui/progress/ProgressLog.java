@@ -17,8 +17,12 @@ import games.stendhal.client.gui.layout.SLayout;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollBar;
@@ -164,7 +168,10 @@ public class ProgressLog {
 		 * Create a new page.
 		 */
 		public Page() {
-			this.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING));
+			this.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+			JComponent panels = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
+			add(panels, SBoxLayout.constraint(SLayout.EXPAND_X, 
+					SLayout.EXPAND_Y));
 			
 			indexArea = new JEditorPane();
 			indexArea.setContentType("text/html");
@@ -176,7 +183,7 @@ public class ProgressLog {
 			// Fixed width
 			indexScrollPane.setMaximumSize(new Dimension(INDEX_WIDTH, Integer.MAX_VALUE));
 			indexScrollPane.setMinimumSize(new Dimension(INDEX_WIDTH, 0));
-			add(indexScrollPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
+			panels.add(indexScrollPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
 			
 			contentArea = new JEditorPane();
 			contentArea.setContentType("text/html");
@@ -185,18 +192,34 @@ public class ProgressLog {
 			// Does not need a listener. There should be no links
 			
 			contentScrollPane = new JScrollPane(contentArea);
-			add(contentScrollPane, SBoxLayout.constraint(SLayout.EXPAND_X,
+			panels.add(contentScrollPane, SBoxLayout.constraint(SLayout.EXPAND_X,
 					SLayout.EXPAND_Y));
+			
+			// A button for reloading the page contents
+			JButton refresh = new JButton("Update");
+			refresh.setFocusable(false);
+			refresh.setAlignmentX(Component.RIGHT_ALIGNMENT);
+			refresh.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(SBoxLayout.COMMON_PADDING,
+					SBoxLayout.COMMON_PADDING, SBoxLayout.COMMON_PADDING, 
+					SBoxLayout.COMMON_PADDING), refresh.getBorder()));
+			refresh.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent event) {
+					update();
+				}
+			});
+			add(refresh);
 		}
 		
 		/**
-		 * Update the index area.
+		 * Update the page from the latest data from the server.
 		 */
 		public void update() {
 			if (indexQuery != null) {
 				indexQuery.fire(indexQueryData);
 			}
-			// should we update the content area as well?
+			if (contentQuery != null && (contentQueryData != null)) {
+				contentQuery.fire(contentQueryData);
+			}
 		}
 		
 		/**
@@ -316,7 +339,7 @@ public class ProgressLog {
 				 * to parse it as an URL.
 				 */
 				contentQueryData = event.getDescription();
-				if (contentQuery != null) { 
+				if (contentQuery != null) {
 					contentQuery.fire(contentQueryData);
 				}
 			}
