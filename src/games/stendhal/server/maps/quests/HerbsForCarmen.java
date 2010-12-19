@@ -221,7 +221,7 @@ public class HerbsForCarmen extends AbstractQuest {
 				new SayTextAction("Great! Now I can heal many people for free. Thanks a lot. Take this for your work."),
 				new IncreaseXPAction(50),
 				new IncreaseKarmaAction(5),
-				new EquipItemAction("antidote", 2)
+				new EquipItemAction("minor potion", 5)
 				);
 		/* create the ChatAction used for item triggers */
 		final ChatAction itemsChatAction = new CollectRequestedItemsAction(QUEST_SLOT, "Good, do you have anything else?",

@@ -229,7 +229,7 @@ public class HerbsForCarmenTest {
 		assertEquals("Bye.", getReply(npc));
 		
 			
-		assertTrue(player.isEquipped("antidote"));
+		assertTrue(player.isEquipped("minor potion", 5));
 
 
 	}
