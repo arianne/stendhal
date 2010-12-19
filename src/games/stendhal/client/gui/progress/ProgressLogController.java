@@ -49,15 +49,6 @@ public class ProgressLogController {
 	}
 	
 	/**
-	 * Show the travel log. If will be restored in the previous state
-	 * if the window has been visible before. Otherwise it will be
-	 * opened at the start page.
-	 */
-	public void show() {
-		// unimplemented for now
-	}
-	
-	/**
 	 * Show available progress categories.
 	 * 
 	 * @param categories
