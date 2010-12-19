@@ -48,4 +48,14 @@ public class WriteReachedAchievementCommand extends AbstractDBCommand {
 		dao.saveReachedAchievement(id, playerName, transaction);
 	}
 
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return "WriteReachedAchievementCommand [id=" + id + ", playerName="
+				+ playerName + "]";
+	}
 }

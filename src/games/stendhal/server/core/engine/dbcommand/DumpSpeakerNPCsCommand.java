@@ -30,4 +30,13 @@ public class DumpSpeakerNPCsCommand extends AbstractDBCommand {
 		DAORegister.get().get(StendhalNPCDAO.class).dumpNPCs(transaction);
 	}
 
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return "DumpSpeakerNPCsCommand []";
+	}
 }

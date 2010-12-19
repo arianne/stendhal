@@ -67,4 +67,15 @@ public class GetPostmanMessagesCommand extends AbstractDBCommand {
 	public Player getPlayer() {
 		return player;
 	}
+
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return "GetPostmanMessagesCommand [player=" + player + ", messages="
+				+ messages + "]";
+	}
 }

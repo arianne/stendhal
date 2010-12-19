@@ -95,4 +95,15 @@ public class StoreMessageCommand extends AbstractDBCommand {
 		return message;
 	}
 
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return "StoreMessageCommand [source=" + source + ", target=" + target
+				+ ", message=" + message + ", messagetype=" + messagetype
+				+ ", accountName=" + accountName + "]";
+	}
 }

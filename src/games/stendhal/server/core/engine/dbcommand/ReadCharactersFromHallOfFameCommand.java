@@ -61,4 +61,16 @@ public class ReadCharactersFromHallOfFameCommand extends AbstractDBCommand {
 	public List<String> getNames() {
 		return new LinkedList<String>(characterNames);
 	}
+
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return "ReadCharactersFromHallOfFameCommand [fametype=" + fametype
+				+ ", characterNames=" + characterNames + ", max=" + max
+				+ ", ascending=" + ascending + "]";
+	}
 }

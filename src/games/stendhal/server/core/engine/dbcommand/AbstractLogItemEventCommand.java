@@ -20,6 +20,7 @@ import marauroa.server.db.DBTransaction;
 import marauroa.server.db.StringChecker;
 import marauroa.server.db.command.AbstractDBCommand;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 
 /**
@@ -129,5 +130,15 @@ public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
 		} else {
 			return "null";
 		}
+	}
+
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
 	}
 }

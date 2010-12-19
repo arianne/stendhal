@@ -54,4 +54,15 @@ public class ReadHallOfFamePointsCommand extends AbstractDBCommand {
 	public int getPoints() {
 		return points;
 	}
+
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return "ReadHallOfFamePointsCommand [playername=" + playername
+				+ ", fametype=" + fametype + ", points=" + points + "]";
+	}
 }

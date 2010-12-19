@@ -55,4 +55,16 @@ public class WriteHallOfFamePointsCommand extends AbstractDBCommand {
 		}
 		dao.setHallOfFamePoints(transaction, playername, fametype, base + points);
 	}
+
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return "WriteHallOfFamePointsCommand [playername=" + playername
+				+ ", fametype=" + fametype + ", points=" + points + ", add="
+				+ add + "]";
+	}
 }

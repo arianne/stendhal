@@ -73,4 +73,15 @@ public class CheckCharacterExistsCommand extends AbstractDBCommand {
 	public Player getPlayer() {
 		return player;
 	}
+
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return "CheckCharacterExistsCommand [who=" + who + ", player=" + player
+				+ ", accountName=" + accountName + "]";
+	}
 }

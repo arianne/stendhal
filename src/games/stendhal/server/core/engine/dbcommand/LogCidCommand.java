@@ -45,4 +45,14 @@ public class LogCidCommand extends AbstractDBCommand {
 		DAORegister.get().get(CidDAO.class).log(transaction, playerName, address, cid);
 	}
 
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return "LogCidCommand [cid=" + cid + ", playerName=" + playerName
+				+ ", address=" + address + "]";
+	}
 }
