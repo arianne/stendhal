@@ -284,6 +284,9 @@ public class Unblock extends ScriptImpl implements TurnListener {
 		// bank entrance
 		keepFreeAreas.add(new KeepFreeArea(new Area(world.getZone("0_semos_city"), 17, 23, 3, 2), 23, 25));
 
+		// bank exit
+		keepFreeAreas.add(new KeepFreeArea(new Area(world.getZone("int_semos_bank"), 8, 28, 11, 29), 24, 27));
+
 		// inn entrance
 		keepFreeAreas.add(new KeepFreeArea(new Area(world.getZone("0_semos_city"), 40, 38, 4, 3), 50, 40));
 
