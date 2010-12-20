@@ -36,9 +36,12 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 /**
  * QUEST: Supplies For Phalk
@@ -76,7 +79,8 @@ import java.util.List;
  
  	private static final String QUEST_SLOT = "supplies_for_phalk";
  	
- 
+	private static Logger logger = Logger.getLogger(SuppliesForPhalk.class);
+	
  	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -356,6 +360,38 @@ import java.util.List;
 		getArmor();
 		receiveClothes();
 	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			final String questState = player.getQuest(QUEST_SLOT);
+			res.add("I spoke with Phalk, who guards a pasage in Semos Mines.");
+			res.add("Phalk asked me to bring him 3 sandwiches, 3 bottles of beer and 3 glasses of wine.");
+			if ("rejected".equals(questState)) {
+				res.add("I don't want to help Phalk.");
+				return res;
+			} 
+			if ("start".equals(questState)) {
+				return res;
+			} 
+			res.add("Phalk needs me to collect a cloak from Wrvil and some armor from Mrotho.");
+			if (questState.startsWith("clothes")) {
+				return res;
+			} 
+			res.add("I collected Phalk's equipment and he gave me his dwarvish armor in return!");
+			if (isCompleted(player)) {
+				return res;
+			}
+			// if things have gone wrong and the quest state didn't match any of the above, debug a bit:
+			final List<String> debug = new ArrayList<String>();
+			debug.add("Quest state is: " + questState);
+			logger.error("History doesn't have a matching quest state for " + questState);
+			return debug;
+	}
+	
 	@Override
 	public String getName() {
 		return "SuppliesForPhalk";

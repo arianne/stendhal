@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -502,5 +503,22 @@ public class ReverseArrow extends AbstractQuest implements
 		SingletonRepository.getLoginNotifier().addListener(this);
 
 		step_1();
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			final String questState = player.getQuest(QUEST_SLOT);
+			res.add("Gamblos challenged me with a puzzle.");
+			if ("failed".equals(questState)) {
+				res.add("I couldn't solve the puzzle.");
+			} 
+			if (isCompleted(player)) {
+				res.add("I solved the puzzle!");
+			}
+			return res;
 	}
 }

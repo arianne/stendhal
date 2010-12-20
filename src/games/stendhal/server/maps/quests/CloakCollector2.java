@@ -33,6 +33,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -349,13 +350,29 @@ public class CloakCollector2 extends AbstractQuest {
 				"Josephine wants even more cloaks!",
 				false);
 	}
+	
 	private static void rewardPlayer(final Player player) {
 		player.addKarma(100.0);
 		player.addXP(100000);
       	}
+	
 	@Override
 	public String getName() {
 		return "CloakCollector2";
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			if (!isCompleted(player)) {
+				res.add("I'm collecting more cloaks for Josephine. I still need " + Grammar.enumerateCollection(missingcloaks2(player, false)) + ".");
+			} else {
+				res.add("I got all the other cloaks Josephine wanted and she gave me some fabulous killer boots.");
+			}
+			return res;
 	}
 	
 	// The previous quest likely requires at least this level. 

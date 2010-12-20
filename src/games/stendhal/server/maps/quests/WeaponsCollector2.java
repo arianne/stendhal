@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -303,7 +304,22 @@ public class WeaponsCollector2 extends AbstractQuest {
 		step_2();
 		step_3();
 	}
-
+	
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			if (!isCompleted(player)) {
+				res.add("I'm collecting weapons for Balduin's collection. I still need " + Grammar.enumerateCollection(missingWeapons(player, false)) + ".");
+			} else {
+				res.add("I found all the weapons Balduin asked for and he rewarded me with a pair of handed swords.");
+			}
+			return res;
+	}
+	
 	@Override
 	public String getName() {
 		return "WeaponsCollector2";
