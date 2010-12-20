@@ -292,4 +292,9 @@ public class SolveRiddles extends AbstractQuest {
 	public int getMinLevel() {
 		return 200;
 	}
+	
+	@Override
+	public boolean isVisibleOnQuestStatus() {
+		return false;
+	}
 }
