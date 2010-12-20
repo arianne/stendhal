@@ -308,10 +308,11 @@ public class DailyMonsterQuest extends AbstractQuest {
 		res.add("I want to help Semos.");
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 			final boolean questDone = new KilledForQuestCondition(QUEST_SLOT,0).fire(player, null, null);
+			final String creatureToKill = getCreatureToKillFromPlayer(player);
 			if (!questDone) {
-				res.add("I have been asked to kill a creature to help Semos. I haven't killed it yet.");
+				res.add("I have been asked to kill a "+creatureToKill+" to help Semos. I haven't killed it yet.");
 			} else {
-				res.add("I have killed the creature to help Semos.");
+				res.add("I have killed the "+creatureToKill+" to help Semos.");
 			}
 		}
 		if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -329,6 +330,12 @@ public class DailyMonsterQuest extends AbstractQuest {
 		return res;
 	}
 	
+	private String getCreatureToKillFromPlayer(Player player) {
+		String actualQuestSlot = player.getQuest(QUEST_SLOT, 0);
+		String[] split = actualQuestSlot.split(",");
+		return split[0];
+	}
+
 	/**
 	 * player said "quest"
 	 */
