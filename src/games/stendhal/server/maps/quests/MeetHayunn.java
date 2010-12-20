@@ -33,6 +33,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * QUEST: Speak with Hayunn 
  * <p>
@@ -56,7 +58,7 @@ public class MeetHayunn extends AbstractQuest {
 	//This is 1 minute at 300 ms per turn
 	private static final int TIME_OUT = 200;
 
-
+	private static Logger logger = Logger.getLogger(MeetHayunn.class);
 	
 	@Override
 	public String getSlotName() {
@@ -69,11 +71,31 @@ public class MeetHayunn extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("Hayunn Naratha is the first guy I ever met in this world, and I started to talk with him.");
-		if (isCompleted(player)) {
-			res.add("He told me lots of useful information about how to survive. That increased my experience.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		res.add("Hayunn Naratha is the first guy I ever met in this world, he challenged me to kill a rat.");
+		if ((new KilledForQuestCondition(QUEST_SLOT,1)).fire(player, null, null)) {
+			res.add("I killed that rat, I should go back to tell him!");
 		}
-		return res;
+		if ("start".equals(questState)) {
+			return res;
+		} 
+		res.add("I killed the rat. Hayunn will teach me more about the world now.");
+		if ("killed".equals(questState)) {
+			return res;
+		} 
+		res.add("Hayunn gave me a bit of money and told me to go find Monogenes in Semos City, who will give me a map.");
+		if ("taught".equals(questState)) {
+			return res;
+		} 
+		res.add("Hayunn told me lots of useful information about how to survive, and gave me a studded shield and some money.");
+		if (isCompleted(player)) {
+			return res;
+		}
+		// if things have gone wrong and the quest state didn't match any of the above, debug a bit:
+		final List<String> debug = new ArrayList<String>();
+		debug.add("Quest state is: " + questState);
+		logger.error("History doesn't have a matching quest state for " + questState);
+		return debug;
 	}
 
 	private void prepareHayunn() {
