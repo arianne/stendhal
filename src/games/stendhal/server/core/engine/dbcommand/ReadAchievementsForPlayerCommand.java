@@ -57,7 +57,6 @@ public class ReadAchievementsForPlayerCommand extends AbstractDBCommand {
 	 */
 	@Override
 	public String toString() {
-		return "ReadAchievementsForPlayerCommand [identifiers=" + identifiers
-				+ ", player=" + player + "]";
+		return "ReadAchievementsForPlayerCommand [player=" + player + "]";
 	}
 }
