@@ -31,6 +31,9 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * QUEST: Dragon Lair Access
  * <p>
@@ -120,6 +123,26 @@ public class DragonLair extends AbstractQuest {
 				"Wishman, storm trooper extraordinaire from Blordrough's dark legion, guards the remaining dragons... and lets visitors into their lair.",
 				true);
 
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			final String questState = player.getQuest(QUEST_SLOT);
+			res.add("Wishman offered that I may play with his dragons!");
+			if ("rejected".equals(questState)) {
+				res.add("They look a bit scary to me.");
+				return res;
+			} 
+			if (isRepeatable(player)) {
+				res.add("Those dragons might needs some fun again, I should visit soon.");
+			} else {
+				res.add("The dragons have had plenty of excitement recently, Wishman won't let me back in yet.");
+			}
+			return res;
 	}
 	@Override
 	public String getName() {
