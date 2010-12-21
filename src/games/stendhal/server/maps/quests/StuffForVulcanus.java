@@ -28,7 +28,9 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * QUEST: The immortal sword forging.
@@ -340,6 +342,34 @@ public class StuffForVulcanus extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "StuffForVulcanus";
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			res.add("I met Vulcanus in Kotoch.");
+			res.add("To forge the immortal sword I must bring " + REQUIRED_IRON
+					+ " iron, "
+					+ REQUIRED_WOOD
+					+ " wood logs, "
+					+ REQUIRED_GOLD_BAR
+					+ " gold bars and "
+					+ REQUIRED_GIANT_HEART
+					+ " giant hearts, in that order.");
+			if(!player.hasKilled("giant")){
+				res.add("I must prove my worth and kill a giant, before I am worthy of this prize.");
+			}
+			final String questState = player.getQuest(QUEST_SLOT);
+			if (questState.startsWith("forging")) {
+				res.add("Vulcanus, son of gods himself, now forges my immortal sword.");
+			} 
+			if (isCompleted(player)) {
+				res.add("Gold bars and giant hearts together with the forging from a god's son made me a sword of which I can be proud.");
+			}
+			return res;
 	}
 	
 	// match to the min level of the immortal sword
