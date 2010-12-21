@@ -510,6 +510,9 @@ public class StuffForBaldemar extends AbstractQuest {
 			}
 			res.add("I met Baldemar in the magic theater.");
 			res.add("Baldemar told me: " + I_WILL_NEED_MANY_THINGS);
+			if(!player.hasKilledSolo("black giant")){
+				res.add("I will need to bravely face a black giant alone, before I am worthy of this shield.");
+			}
 			final String questState = player.getQuest(QUEST_SLOT);
 			if (questState.startsWith("forging")) {
 				res.add("Baldemar is forging my mithril shield!");
