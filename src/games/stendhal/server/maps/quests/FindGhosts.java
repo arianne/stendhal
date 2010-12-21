@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -279,6 +280,25 @@ public class FindGhosts extends AbstractQuest {
 		tellingStep();
 	}
 
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			res.add("Carena is lonely and wants to know about other spirits in the world. I must find them all and tell her each name.");
+			if ("rejected".equals(player.getQuest(QUEST_SLOT))) {
+				res.add("Uh, no thanks, ghosts are creepy.");
+				return res;
+			}
+			if (!isCompleted(player)) {
+				res.add("I have " + missingNames(player).size() + " " + Grammar.plnoun(missingNames(player).size(), "ghost") + " left to tell Carena about.");
+			} else {
+				res.add("Carena was comforted to hear the names of other spirits like her. She gave me a boost to my basic health which will last forever, like her.");
+			}
+			return res;
+	}
+	
 	@Override
 	public String getName() {
 		return "FindGhosts";
