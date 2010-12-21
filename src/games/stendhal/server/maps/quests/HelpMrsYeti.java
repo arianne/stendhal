@@ -23,9 +23,9 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -39,9 +39,12 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 /**
  * QUEST: Mrs Yeti Needs Help
@@ -82,10 +85,13 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
  	private static final String QUEST_SLOT = "mrsyeti";
 	private static final int DELAY_IN_MINUTES = 60*24;
  
+	private static Logger logger = Logger.getLogger(HelpMrsYeti.class);
+	
  	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+ 	
 	private void startQuest() {
 		final SpeakerNPC npc = npcs.get("Mrs. Yeti");	
 		
@@ -341,6 +347,67 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 		getReward();
 	}
 
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			final String questState = player.getQuest(QUEST_SLOT);
+			res.add("I met Mrs. Yeti in icy caves below Semos Mountain.");
+			res.add("Mrs. Yeti asked me to go to Salva Mattori for a special love potion for her husband.");
+			if ("rejected".equals(questState)) {
+				res.add("I don't want to help with soppy love stories..");
+				return res;
+			} 
+			if ("start".equals(questState)) {
+				return res;
+			} 
+			res.add("Salva Mattori needs a magic knife from Hackim Easso to make her potion.");
+			if ("hackim".equals(questState)) {
+				return res;
+			} 
+			res.add("Hackim is hungry and wants 5 meat pies before he helps me.");
+			if ("pies".equals(questState)) {
+				return res;
+			} 
+			res.add("Hackim said I should go buy a standard knife like from Xin Blanca!! Apparently he tricked Salva all these years into believing they are magic, I better not let on...");
+			if ("knife".equals(questState)) {
+				return res;
+			} 
+			res.add("The love potion requires 3 lilia flowers, 1 sprig of kokuda, 1 glass of wine and 1 black pearl.");
+			if ("potion".equals(questState)) {
+				return res;
+			} 
+			res.add("I must take the love potion in its heart shaped bottle, to Mrs. Yeti.");
+			if ("gotpotion".equals(questState)) {
+				return res;
+			} 
+			res.add("Mrs. Yeti needs something else to tempt her husband with and has asked me to bring a baby dragon.");
+			if ("dragon".equals(questState)) {
+				return res;
+			} 
+			res.add("Oh my! She killed my dragon to make stew! That wasn't the kind of treat I thought she had in mind!");
+			if (questState.startsWith("reward")) {
+				if (new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES).fire(player, null, null)) {
+					res.add("Mrs. Yeti told me to come back in a day to collect my reward and it's already been long enough.");
+				} else {
+					res.add("Mrs. Yeti told me to come back in a day to collect my reward so I need to wait.");
+				}
+				return res;
+			} 
+			res.add("Mrs. Yeti is really pleased with the outcome of my help and now she'll sell me roach very cheaply.");
+			if (isCompleted(player)) {
+				return res;
+			}
+			
+			// if things have gone wrong and the quest state didn't match any of the above, debug a bit:
+			final List<String> debug = new ArrayList<String>();
+			debug.add("Quest state is: " + questState);
+			logger.error("History doesn't have a matching quest state for " + questState);
+			return debug;
+	}
+	
 	@Override
 	public String getName() {
 		return "HelpMrsYeti";
