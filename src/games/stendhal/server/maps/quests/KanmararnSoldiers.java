@@ -42,6 +42,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -436,6 +437,36 @@ public class KanmararnSoldiers extends AbstractQuest {
 		prepareCowardSoldier();
 		prepareCorpses();
 		prepareSergeant();
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			final String questState = player.getQuest(QUEST_SLOT);
+			res.add("I met a scared soldier in Kanmararn City. He asked me to find his friends, Peter, Charles, and Tom.");
+			if ("rejected".equals(questState)) {
+				res.add("I don't want to help Henry.");
+				return res;
+			} 
+			if ("start".equals(questState)) {
+				return res;
+			} 
+			res.add("Sadly I only I found corpses of Peter, Charles, and Tom. Henry was aghast. He gave me a map and an IOU, but didn't say what I should do with them now.");
+			if ("map".equals(questState)) {
+				return res;
+			} 
+			res.add("I met Sergeant James and gave him the treasure map. He gave me sturdy steel boots in return.");
+			if (isCompleted(player)) {
+				return res;
+			}
+			// if things have gone wrong and the quest state didn't match any of the above, debug a bit:
+			final List<String> debug = new ArrayList<String>();
+			debug.add("Quest state is: " + questState);
+			logger.error("History doesn't have a matching quest state for " + questState);
+			return debug;
 	}
 
 	@Override
