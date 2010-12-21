@@ -28,7 +28,9 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -498,6 +500,24 @@ public class StuffForBaldemar extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "StuffForBaldemar";
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			res.add("I met Baldemar in the magic theater.");
+			res.add("Baldemar told me: " + I_WILL_NEED_MANY_THINGS);
+			final String questState = player.getQuest(QUEST_SLOT);
+			if (questState.startsWith("forging")) {
+				res.add("Baldemar is forging my mithril shield!");
+			} 
+			if (isCompleted(player)) {
+				res.add("I brought Baldemar many items, killed a black giant solo, and he forged me a mithril shield.");
+			}
+			return res;
 	}
 	
 	@Override
