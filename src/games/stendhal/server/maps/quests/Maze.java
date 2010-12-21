@@ -59,7 +59,7 @@ public class Maze extends AbstractQuest {
 	
 	@Override
 	public boolean isRepeatable(Player player) {
-		return true;
+		return new TimePassedCondition(getSlotName(), 1, COOLING_TIME).fire(player, null, null);
 	}
 	
 	private SpeakerNPC getNPC() {
