@@ -28,6 +28,9 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * QUEST: Speak with Ketteh
  * 
@@ -120,10 +123,30 @@ public class MeetKetteh extends AbstractQuest {
 	}
 
 	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("I met Ketteh Wehoh in the old Semos village.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if ("seen_naked".equals(questState)) {
+			res.add("She was shocked and yelled at me that I shouldn't go around naked.");
+		}
+		if ("seen".equals(questState) || "done".equals(questState) || "learnt_manners".equals(questState)) {
+			res.add("She has been very polite and she has taugth me the basics of proper behaviour in Faiumoni.");
+		}
+        if (isCompleted(player)) {
+            res.add("I can meet and have a chat with her again anytime.");
+		}
+		return res;
+	}
+
+	@Override
 	public String getName() {
 		return "MeetKetteh";
 	}
-	
+
 	@Override
 	public boolean isCompleted(final Player player) {
 		return new OrCondition(
@@ -131,4 +154,10 @@ public class MeetKetteh extends AbstractQuest {
             new QuestInStateCondition(QUEST_SLOT,"learnt_manners"),
             new QuestInStateCondition(QUEST_SLOT,"done")).fire(player, null, null);
 	}
+
+    @Override
+    public boolean isRepeatable(final Player player) {
+        return true;
+    }
+
 }
