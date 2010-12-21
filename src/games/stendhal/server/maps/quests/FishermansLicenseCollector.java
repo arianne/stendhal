@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -243,6 +244,22 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		step_3();
 	}
 
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			res.add("The second part of my fishing exam is to take Santiago many species of fish.");
+			if (!isCompleted(player)) {
+				res.add("I still need to bring " + Grammar.enumerateCollection(missingFish(player, false)) + " for Santiago to inspect.");
+			} else {
+				res.add("I brought every fish Santiago wanted and now I'm a real fisherman! I will have more success when I fish.");
+			}
+			return res;
+	}
+	
 	@Override
 	public String getName() {
 		return "FishermansLicenseCollector";
