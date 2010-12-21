@@ -18,6 +18,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NakedCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -125,6 +126,9 @@ public class MeetKetteh extends AbstractQuest {
 	
 	@Override
 	public boolean isCompleted(final Player player) {
-		return new QuestInStateCondition(QUEST_SLOT,"seen").fire(player, null, null);
+		return new OrCondition(
+            new QuestInStateCondition(QUEST_SLOT,"seen"),
+            new QuestInStateCondition(QUEST_SLOT,"learnt_manners"),
+            new QuestInStateCondition(QUEST_SLOT,"done")).fire(player, null, null);
 	}
 }
