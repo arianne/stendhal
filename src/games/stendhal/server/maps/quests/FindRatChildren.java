@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -288,6 +289,25 @@ public class FindRatChildren extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "FindRatChildren";
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			res.add("Agnus is really worried about her children who are missing in the tunnels. I need to find them and speak with them to check they are okay.");
+			if ("rejected".equals(player.getQuest(QUEST_SLOT))) {
+				res.add("I don't want to help.");
+				return res;
+			}
+			if (!isCompleted(player)) {
+				res.add("I have " + missingNames(player).size() + " " + Grammar.plnoun(missingNames(player).size(), "child") + " left to check on and tell Agnus about.");
+			} else {
+				res.add("Agnus was so relieved that I found her kids. Finding them earned me experience.");
+			}
+			return res;
 	}
 
 	@Override
