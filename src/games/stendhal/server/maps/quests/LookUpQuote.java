@@ -84,7 +84,9 @@ public class LookUpQuote extends AbstractQuest {
 			return res;
 		}
 		res.add("I met Pequod in a hut in Ados city and he asked me to look up a quote by a famous fisherman.");
-		if (player.isQuestCompleted(QUEST_SLOT)) {
+		if (!player.isQuestCompleted(QUEST_SLOT)) {
+			res.add("The quote I must find is by " + player.getQuest(QUEST_SLOT) + ".");
+		} else {
 			res.add("I got the quote for Pequod and he gave me a fishing rod.");
 		}
 		return res;
