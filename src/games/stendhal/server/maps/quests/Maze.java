@@ -31,6 +31,9 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.maze.MazeGenerator;
 import games.stendhal.server.maps.quests.maze.MazeSign;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Maze extends AbstractQuest {
 	/** Minimum time between repeats. */
 	private static final int COOLING_TIME = MathHelper.MINUTES_IN_ONE_HOUR * 24;
@@ -45,6 +48,32 @@ public class Maze extends AbstractQuest {
 				false);
 		addMazeSign();
 		setupConversation();
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(getSlotName())) {
+				return res;
+			}
+			res.add("Haizen created a magial maze for me to solve.");
+			final String questState = player.getQuest(getSlotName());
+			final String tokens[] = questState.split(";");
+			if (!isCompleted(player)) {
+				res.add("I couldn't solve the last maze.");
+			} else {
+				res.add("I solved the maze!");
+			}
+			if (isRepeatable(player)) {
+				res.add("I could have another try to solve a maze now.");
+			} else {
+				res.add("Haizen won't make me a new maze yet.");
+			}
+			if(MathHelper.parseIntDefault(tokens[2],0)>1) {
+				res.add("So far I've solved the maze " + tokens[2] + " times already!");
+			}
+
+			return res;
 	}
 	
 	@Override
