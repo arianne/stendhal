@@ -23,6 +23,10 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * QUEST: Jailed Dwarf
@@ -80,6 +84,20 @@ public class JailedDwarf extends AbstractQuest {
 				true);
 		step_1();
 	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			res.add("I need to get a key to unlock Hunel.");
+			if (isCompleted(player)) {
+				res.add("I killed the Duergar King and got the key to unlock Hunel. But now he's too afraid to leave, wanting to buy more and more armor before he feels safe. Poor Hunel.");
+			}
+			return res;
+	}
+	
 	@Override
 	public String getName() {
 		return "JailedDwarf";
