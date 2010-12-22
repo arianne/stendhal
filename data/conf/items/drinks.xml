@@ -7,9 +7,9 @@
     <description>You see a bottle of fierywater. Do not drink it pure, you would evaporate!</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
        <amount value="-1000"/>
-      <frequency value="1"/>
+      <frequency value="90"/>
       <quantity value="1"/>
-      <regen value="-1000"/>
+      <regen value="-1"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
