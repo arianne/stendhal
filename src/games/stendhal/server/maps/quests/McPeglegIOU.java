@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -110,6 +111,20 @@ public class McPeglegIOU extends AbstractQuest {
 		step_1();
 		step_2();
 	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			// only valid if player started the kanmararn soldiers quest
+			if(player.isQuestCompleted("soldier_henry")) {
+				res.add("Henry gave me an IOU with McPegleg's name on it.");
+			}
+			if (isCompleted(player)) {
+				res.add("McPegleg did honour the IOU - I got 250 money!");
+			} 
+			return res;
+	}
+	
 	@Override
 	public String getName() {
 		return "McPeglegIOU";
