@@ -807,6 +807,7 @@ public class Creature extends NPC {
 					this.makeNoiseChance(100, "idle");	
 				}
 			}
+			this.notifyWorldAboutChanges();
 		} else {
 			/*
 			 * Run enough logic to stop attacking, if the zone gets empty.
@@ -817,7 +818,6 @@ public class Creature extends NPC {
 				stopAttack();
 			}
 		}
-		this.notifyWorldAboutChanges();
 	}
 
 	/**
