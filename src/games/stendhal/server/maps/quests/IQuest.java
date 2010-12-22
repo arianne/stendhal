@@ -117,6 +117,13 @@ public interface IQuest {
 	 *
 	 */
 	boolean isVisibleOnQuestStatus();
-
+	
+	/**
+	 * Determine the number of repetitions a player has done with this quest
+	 * 
+	 * @param player the player to determine the number of repetitions for
+	 * @return the number of repetitions for the given player
+	 */
+	int getNumberOfRepetitions(Player player);
 
 }
