@@ -327,6 +327,12 @@ public class DailyMonsterQuest extends AbstractQuest {
 				res.add("I killed the last creature the mayor asked me to kill and now Semos needs my help again.");
 			}
 		}
+		// add to history how often player helped semos so far
+		final int repetitions = getNumberOfRepetitions(player);
+		if(repetitions > 0) {
+			
+			res.add("I helped and saved semos for "+Grammar.plnoun(repetitions, "time")+" so far");
+		}
 		return res;
 	}
 	
@@ -523,4 +529,17 @@ public class DailyMonsterQuest extends AbstractQuest {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
 						 new TimePassedCondition(QUEST_SLOT,1,delay)).fire(player, null, null);
 	}
+
+	@Override
+	public int getNumberOfRepetitions(Player player) {
+		String quest = player.getQuest(QUEST_SLOT, 2);
+		try {
+			return Integer.parseInt(quest);
+		} catch (NumberFormatException e) {
+			logger.error("The player "+ player.getName() + "has a broken quest slot: "+player.getQuest(QUEST_SLOT), e);
+			return 0;
+		}
+	}
+	
+	
 }
