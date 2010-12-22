@@ -328,6 +328,11 @@ public class SpeakerNPC extends NPC {
 	}
 
 	public void preLogic() {
+
+		if (this.getZone().getPlayerAndFriends().isEmpty()) {
+			return;
+		}
+
 		if (has("text")) {
 			remove("text");
 		}
