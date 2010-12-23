@@ -322,6 +322,13 @@ public class WeeklyItemQuest extends AbstractQuest {
 	}
 	
 	@Override
+	public int getNumberOfRepetitions(Player player) {
+		String questState = player.getQuest(QUEST_SLOT);
+		final String[] tokens = (questState + ";0;0;0").split(";");
+		return MathHelper.parseIntDefault(tokens[2], 0);
+	}
+	
+	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		fillQuestInfo(
