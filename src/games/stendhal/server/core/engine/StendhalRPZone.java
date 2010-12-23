@@ -704,7 +704,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else if (object instanceof AttackableCreature) {
 			playersAndFriends.add((AttackableCreature) object);
 		} else if (object instanceof Sheep) {
-			playersAndFriends.add((Sheep) object);
+			if (((Sheep) object).wasOwned()) {
+				playersAndFriends.add((Sheep) object);
+			}
 		} else if (object instanceof SheepFood) {
 			sheepFoods.add((SheepFood) object);
 		} else if (object instanceof BabyDragon) {

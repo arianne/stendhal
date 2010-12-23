@@ -35,6 +35,8 @@ public abstract class DomesticAnimal extends Creature {
 
 	protected int weight;
 
+	protected boolean wasOwned = false;
+
 	/**
 	 * The player who owns the domestic animal, or null if the animal is wild.
 	 */
@@ -75,14 +77,28 @@ public abstract class DomesticAnimal extends Creature {
 	public DomesticAnimal(final RPObject object, final Player owner) {
 		this(object);
 		this.owner = owner;
+		if (owner != null) {
+			wasOwned = true;
+		}
 	}
 
 	public void setOwner(final Player owner) {
 		this.owner = owner;
+		if (owner != null) {
+			wasOwned = true;
+		}
 	}
 
 	public Player getOwner() {
 		return owner;
+	}
+
+	/**
+	 * checks if this domestic animal was owned by a player, 
+	 * regardless of whether it is owned at the moment.
+	 */
+	public boolean wasOwned() {
+		return wasOwned;
 	}
 
 	@Override
