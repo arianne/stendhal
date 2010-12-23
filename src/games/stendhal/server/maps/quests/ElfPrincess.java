@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
@@ -253,6 +254,13 @@ public class ElfPrincess extends AbstractQuest {
             res.add("I took the flower to the Princess and she gave me gold bars. If I want to make her happy again, I can ask her for another task.");
         } 
 		return res;
+	}
+	
+	@Override
+	public int getNumberOfRepetitions(Player player) {
+		String questState = player.getQuest(QUEST_SLOT);
+		final String[] tokens = (questState + ";0;0;0").split(";");
+		return MathHelper.parseIntDefault(tokens[2], 0);
 	}
 
 	@Override

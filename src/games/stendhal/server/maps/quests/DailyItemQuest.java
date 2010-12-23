@@ -333,8 +333,8 @@ public class DailyItemQuest extends AbstractQuest {
 		}		
 		
 		res.add("I want to help Ados.");
-		final String[] tokens = (questState + ";0;0;0").split(";");
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
+			final String[] tokens = (questState + ";0;0;0").split(";");
 			final String[] elements = tokens[0].split("=");
 			String questItem = elements[0];
 			int amount = 1;
@@ -346,6 +346,10 @@ public class DailyItemQuest extends AbstractQuest {
 			} else {
 				res.add(("I have found " +Grammar.quantityplnoun(amount, questItem, "a")+" to help Ados and need to take it."));
 			}
+		}
+		int repetitions = getNumberOfRepetitions(player);
+		if (repetitions > 0) {
+			res.add("I helped ados with supplies for "+Grammar.plnoun(repetitions, "time")+" so far");
 		}
 		if (isCompleted(player)) {
 			if (!isRepeatable(player)) {
