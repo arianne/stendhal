@@ -333,8 +333,8 @@ public class DailyItemQuest extends AbstractQuest {
 		}		
 		
 		res.add("I want to help Ados.");
+		final String[] tokens = (questState + ";0;0;0").split(";");
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
-			final String[] tokens = (questState + ";0;0;0").split(";");
 			final String[] elements = tokens[0].split("=");
 			String questItem = elements[0];
 			int amount = 1;
@@ -357,6 +357,13 @@ public class DailyItemQuest extends AbstractQuest {
 		return res;
 	}
 	
+
+	@Override
+	public int getNumberOfRepetitions(Player player) {
+		String questState = player.getQuest(QUEST_SLOT);
+		final String[] tokens = (questState + ";0;0;0").split(";");
+		return MathHelper.parseIntDefault(tokens[2], 0);
+	}
 
 	@Override
 	public void addToWorld() {
