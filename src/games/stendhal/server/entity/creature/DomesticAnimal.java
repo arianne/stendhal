@@ -86,6 +86,9 @@ public abstract class DomesticAnimal extends Creature {
 		this.owner = owner;
 		if (owner != null) {
 			wasOwned = true;
+			if (getZone() != null) {
+				getZone().addToPlayersAndFriends(this);
+			}
 		}
 	}
 

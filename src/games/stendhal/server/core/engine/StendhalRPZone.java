@@ -725,6 +725,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 		SingletonRepository.getRPWorld().requestSync(object);
 	}
 
+	/**
+	 * adds an RPEntity to the playersAndFriends list.
+	 *
+	 * @param object RPEntity
+	 */
+	public void addToPlayersAndFriends(RPEntity object) {
+		if (!playersAndFriends.contains(object)) {
+			playersAndFriends.add(object);
+		}
+	}
+
 	private void notifyAdded(final RPObject object) {
 		for (final ZoneEnterExitListener l : zoneListeners) {
 				l.onEntered(object, this);
