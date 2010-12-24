@@ -243,7 +243,8 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 		setPreferredSize(dim);
 		// the user may have hidden the component partly or entirely
 		setSize(getWidth(), dim.height);
-				                                
+
+		needsRefresh = true;
 		revalidate();
 	}
 	
