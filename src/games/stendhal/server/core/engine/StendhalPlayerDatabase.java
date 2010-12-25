@@ -32,54 +32,26 @@ import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
+/**
+ * initializes the database by setting up or updating the database structure and defining
+ * the database access objects (DAOs).
+ *
+ * @author hendrik
+ */
 public class StendhalPlayerDatabase {
 	
 	private static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
 
+	/**
+	 * initializes the database by setting up or updating the database structure and defining
+	 * the database access objects (DAOs).
+	 */
 	public void initialize() {
 		final DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
-			new JDBCSQLHelper(transaction).runDBScript("games/stendhal/server/stendhal_init.sql");
 
-			if (!transaction.doesColumnExist("kills", "day")) {
-				transaction.execute("ALTER TABLE kills ADD COLUMN (day DATE);", null);
-			}
-
-			if (!transaction.doesColumnExist("npcs", "image")) {
-				transaction.execute("ALTER TABLE npcs ADD COLUMN (image VARCHAR(255));", null);
-			}
-
-			if (!transaction.doesColumnExist("character_stats", "lastseen")) {
-				transaction.execute("ALTER TABLE character_stats ADD COLUMN (lastseen TIMESTAMP);", null);
-			}
-
-			if (!transaction.doesColumnExist("postman", "messagetype")) {
-				transaction.execute("ALTER TABLE postman ADD COLUMN (messagetype CHAR(1));", null);
-			}
-
-			if (!transaction.doesColumnExist("achievement", "base_score")) {
-				transaction.execute("ALTER TABLE achievement ADD COLUMN (base_score INTEGER);", null);
-			}
-
-			if(transaction.doesColumnExist("achievement", "description")) {
-				if(transaction.getColumnLength("achievement", "description") < 254) {
-					transaction.execute("CREATE TABLE tmp_achievement_description (id INTEGER, description VARCHAR(254));", null);
-					transaction.execute("INSERT INTO tmp_achievement_description (id, description) SELECT id, description FROM achievement;", null);
-					transaction.execute("ALTER TABLE achievement DROP description", null);
-					transaction.execute("ALTER TABLE achievement ADD description VARCHAR(254);", null);
-					transaction.execute("UPDATE achievement SET description=(SELECT tmp_achievement_description.description FROM tmp_achievement_description WHERE achievement.id=tmp_achievement_description.id);", null);
-					transaction.execute("DROP TABLE tmp_achievement_description;", null);
-				}
-			}
-
-			if (!transaction.doesColumnExist("character_stats", "finger")) {
-				transaction.execute("ALTER TABLE character_stats ADD COLUMN (finger VARCHAR(32));", null);
-			}
-
-			// 0.89
-			if (!transaction.doesColumnExist("postman", "deleted")) {
-				transaction.execute("ALTER TABLE postman ADD COLUMN (deleted CHAR(1) DEFAULT 'N');", null);
-			}
+			createTablesUnlessTheyAlreadyExist(transaction);
+			updateExistingTables(transaction);
 
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
@@ -87,7 +59,87 @@ public class StendhalPlayerDatabase {
 			TransactionPool.get().rollback(transaction);
 		}
 
+		registerStendhalDAOs();
+	}
+
+
+	/**
+	 * creates the Stendhal database tables unless they already exist
+	 *
+	 * @param transaction   DBTransaction
+	 * @throws SQLException in case of an unexpected database error
+	 */
+	private void createTablesUnlessTheyAlreadyExist(final DBTransaction transaction) {
+		new JDBCSQLHelper(transaction).runDBScript("games/stendhal/server/stendhal_init.sql");
+	}
+
+
+	/**
+	 * updates existing tables as required
+	 *
+	 * @param transaction   DBTransaction
+	 * @throws SQLException in case of an unexpected database error
+	 */
+	private void updateExistingTables(final DBTransaction transaction) throws SQLException {
+
+		// 0.81: add new day column in table kills
+		if (!transaction.doesColumnExist("kills", "day")) {
+			transaction.execute("ALTER TABLE kills ADD COLUMN (day DATE);", null);
+		}
+
+		// 0.84: add an alternative image for the website
+		if (!transaction.doesColumnExist("npcs", "image")) {
+			transaction.execute("ALTER TABLE npcs ADD COLUMN (image VARCHAR(255));", null);
+		}
+
+		// 0.85: add lastseen table to character stats
+		if (!transaction.doesColumnExist("character_stats", "lastseen")) {
+			transaction.execute("ALTER TABLE character_stats ADD COLUMN (lastseen TIMESTAMP);", null);
+		}
+
+		// 0.86: when marking postman messages delivered, don't delete them, just update the delivered flag
+		if (!transaction.doesColumnExist("postman", "messagetype")) {
+			transaction.execute("ALTER TABLE postman ADD COLUMN (messagetype CHAR(1));", null);
+		}
+
+		// 0.86: add base_score to achievement table
+		if (!transaction.doesColumnExist("achievement", "base_score")) {
+			transaction.execute("ALTER TABLE achievement ADD COLUMN (base_score INTEGER);", null);
+		}
+
+		// 0.87: fix length of description column (using a temp table and drop/create for better cross database support)
+		if (transaction.doesColumnExist("achievement", "description")) {
+			if (transaction.getColumnLength("achievement", "description") < 254) {
+				transaction.execute("CREATE TABLE tmp_achievement_description (id INTEGER, description VARCHAR(254));", null);
+				transaction.execute("INSERT INTO tmp_achievement_description (id, description) SELECT id, description FROM achievement;", null);
+				transaction.execute("ALTER TABLE achievement DROP description", null);
+				transaction.execute("ALTER TABLE achievement ADD description VARCHAR(254);", null);
+				transaction.execute("UPDATE achievement SET description=(SELECT tmp_achievement_description.description FROM tmp_achievement_description WHERE achievement.id=tmp_achievement_description.id);", null);
+				transaction.execute("DROP TABLE tmp_achievement_description;", null);
+			}
+		}
+
+		// 0.87: added new column finger to character_stats
+		if (!transaction.doesColumnExist("character_stats", "finger")) {
+			transaction.execute("ALTER TABLE character_stats ADD COLUMN (finger VARCHAR(32));", null);
+		}
+
+		// 0.90: added column deleted to table postman to support one sided deletions
+		if (!transaction.doesColumnExist("postman", "deleted")) {
+			transaction.execute("ALTER TABLE postman ADD COLUMN (deleted CHAR(1) DEFAULT 'N');", null);
+		}
+	}
+
+
+	/**
+	 * registers the database access objects for Stendhal.
+	 */
+	private void registerStendhalDAOs() {
+
+		// define own version in replacement of marauroa's CharacterDAO
 		DAORegister.get().register(CharacterDAO.class, new StendhalCharacterDAO());
+
+		// define additional DAOs
 		DAORegister.get().register(CidDAO.class, new CidDAO());
 		DAORegister.get().register(PostmanDAO.class, new PostmanDAO());
 		DAORegister.get().register(StendhalBuddyDAO.class, new StendhalBuddyDAO());
