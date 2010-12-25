@@ -283,6 +283,7 @@ public class RPClassGenerator {
 		if (inited) {
 			return;
 		}
+		createRPClassesWithoutBaking();
 		RPClass.bakeAll();
 	}
 
