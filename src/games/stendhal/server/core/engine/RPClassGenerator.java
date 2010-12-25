@@ -80,7 +80,7 @@ public class RPClassGenerator {
 	/**
 	 * creates the RPClass definitions, unless this was already done.
 	 */
-	public void createRPClasses() {
+	public void createRPClassesWithoutBaking() {
 		if (inited) {
 			return;
 		}
@@ -274,8 +274,15 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass("tell")) {
 			createTellActionRPClass();
 		}
-
-
+	}
+	
+	/**
+	 * creates the RPClass definitions, unless this was already done.
+	 */
+	public void createRPClasses() {
+		if (inited) {
+			return;
+		}
 		RPClass.bakeAll();
 	}
 
