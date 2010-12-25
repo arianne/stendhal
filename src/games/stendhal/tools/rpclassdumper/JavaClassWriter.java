@@ -66,4 +66,20 @@ public class JavaClassWriter {
 	public void writeEndOfClass() {
 		out.println("}");
 	}
+
+	/**
+	 * writes an attribute
+	 *
+	 * @param visibility visibility of the attribute
+	 * @param staticFlag static?
+	 * @param type datatype
+	 * @param name name
+	 */
+	public void writeAttribute(String visibility, boolean staticFlag, String type, String name) {
+		out.print("\t" + visibility + " ");
+		if (staticFlag) {
+			out.print("static ");
+		}
+		out.println(type + " " + name + ";");
+	}
 }
