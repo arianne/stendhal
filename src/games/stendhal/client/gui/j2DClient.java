@@ -921,6 +921,15 @@ public class j2DClient implements UserInterface {
 		final OutfitDialog dialog = new OutfitDialog(mainFrame.getMainFrame(), "Set outfit", outfit);
 		dialog.setVisible(true);
 	}
+	
+	/**
+	 * Get the main window component.
+	 * 
+	 * @return main window
+	 */
+	public Frame getMainFrame() {
+		return mainFrame.getMainFrame();
+	}
 
 	/**
 	 * Get the current game screen height.
