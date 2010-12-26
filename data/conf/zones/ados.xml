@@ -83,6 +83,7 @@
     <configurator class-name="games.stendhal.server.maps.ados.market.OldFishermanNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.FishSoupMakerNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.FierywaterDistillerNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.market.FishermansDaugherNPC"/>
     <entity x="78" y="99">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
        <attribute name="text">This is a small boat, anchored at the docks.</attribute>
@@ -233,6 +234,7 @@
                 <parameter name="volume">80</parameter>
             </implementation>
         </entity>
+        
 
  </zone>
 
