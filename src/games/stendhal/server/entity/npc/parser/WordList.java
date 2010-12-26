@@ -715,7 +715,7 @@ public class WordList {
 
 	/**
 	 * Store the new word in the database. This base class implementation does
-	 * nothing, it is overriden by the DBWordList method.
+	 * nothing, it is overridden by the DBWordList method.
 	 * @param key
 	 * @param entry
 	 * @return success flag
@@ -724,4 +724,11 @@ public class WordList {
 		return false;
 	}
 
+	/**
+	 * Return number of word entries.
+	 * @return number of entries
+	 */
+	public int getWordCount() {
+		return words.size();
+	}
 }
