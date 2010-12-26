@@ -33,7 +33,7 @@ public class UpdatePropertiesWriter {
 	 * @param prop properties to write
 	 * @param ps   output stream
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public UpdatePropertiesWriter(final Properties prop, final PrintStream ps) {
 		this.prop = prop;
 		this.ps = ps;
