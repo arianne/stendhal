@@ -241,7 +241,7 @@ public class Player extends RPEntity {
 		directions = new ArrayList<Direction>();
 		awayReplies = new HashMap<String, Long>();
 
-		// Beginner's luck (unless overriden by update)
+		// Beginner's luck (unless overridden by update)
 		karma = 10.0;
 		tradescore = 0;
 		baseSpeed = 1.0;

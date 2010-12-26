@@ -100,7 +100,7 @@ public final class DBWordList extends WordList {
 
 	/**
 	 * Store the new word in the database. This implementation does nothing,
-	 * it is overriden by the DBWordList method.
+	 * it is overridden by the DBWordList method.
 	 * @param key
 	 * @param entry
 	 * @return success flag
