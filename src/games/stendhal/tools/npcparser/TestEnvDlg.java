@@ -507,29 +507,44 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private void btLoadZonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadZonesActionPerformed
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-    	// initialize TransactionPool
-		new DatabaseFactory().initializeDatabase();
-
 		try {
-			// load zone configurations to register creature names
-			new ZoneGroupsXMLLoader(new URI("/data/conf/zones.xml")).load();
-		} catch (Exception e) {
-			logger.warn("unable to load zones", e);
+	    	// initialize TransactionPool
+			new DatabaseFactory().initializeDatabase();
+
+			try {
+				// load zone configurations to register creature names
+				new ZoneGroupsXMLLoader(new URI("/data/conf/zones.xml")).load();
+			} catch (Exception e) {
+				logger.warn("unable to load zones", e);
+			}
+
+			// update word count display
+			updateWordCount();
+
+			btLoadEntities.setEnabled(false);
+			btLoadZones.setEnabled(false);
+		} catch(Exception e) {
+			String msg = "Exception: " + e.getMessage();
+			JOptionPane.showMessageDialog(this, msg);
+		} finally {
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
-
-		// update word count display
-		updateWordCount();
-
-		btLoadEntities.setEnabled(false);
-		btLoadZones.setEnabled(false);
-
-		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_btLoadZonesActionPerformed
 
     private void btWriteWordlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btWriteWordlistActionPerformed
-        String msg = WordListUpdate.run();
+		String msg;
 
-        JOptionPane.showMessageDialog(this, msg);
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+		try {
+			msg = WordListUpdate.updateWordList(WordList.getInstance());
+		} catch(Exception e) {
+			msg = "Exception: " + e.getMessage();
+		} finally {
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		}
+
+		JOptionPane.showMessageDialog(this, msg);
     }//GEN-LAST:event_btWriteWordlistActionPerformed
 
 	private void btParseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btParseActionPerformed
@@ -542,13 +557,19 @@ public class TestEnvDlg extends javax.swing.JDialog {
 	}// GEN-LAST:event_cbSentenceActionPerformed
 
 	private String updateParsed() {
+		String text = "";
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-		Object selected = cbSentence.getSelectedItem().toString();
-		String text = selected != null ? selected.toString() : "";
-		processSentence(text);
-
-		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		try {
+			Object selected = cbSentence.getSelectedItem().toString();
+			text = selected != null ? selected.toString() : "";
+			processSentence(text);
+		} catch(Exception e) {
+			String msg = "Exception: " + e.getMessage();
+			JOptionPane.showMessageDialog(this, msg);
+		} finally {
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		}
 
 		return text;
 	}
@@ -592,10 +613,12 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-		Object matchSel = cbMatchExpr.getSelectedItem().toString();
-		processMatching(text, matchSel != null ? matchSel.toString() : "", selectedMatcher, mergeExpressions);
-
-		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		try {
+			Object matchSel = cbMatchExpr.getSelectedItem().toString();
+			processMatching(text, matchSel != null ? matchSel.toString() : "", selectedMatcher, mergeExpressions);
+		} finally {
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		}
 	}
 
 	/**

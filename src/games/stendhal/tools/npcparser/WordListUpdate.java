@@ -35,20 +35,19 @@ import marauroa.server.game.db.DatabaseFactory;
 public final class WordListUpdate {
 
     public static void main(final String[] args) {
-		String msg = run();
+    	// initialize TransactionPool for DB access
+		new DatabaseFactory().initializeDatabase();
+
+		// load word list from DB and perform the update
+		String msg = updateWordList(new DBWordList());
 		
 		System.out.print(msg);
     }
 
-    public static String run() {
-    	// initialize TransactionPool
-		new DatabaseFactory().initializeDatabase();
-
+    public static String updateWordList(final WordList wl) {
 		StringBuilder log = new StringBuilder();
 
         try {
-            final DBWordList wl = new DBWordList();
-
             // read in the current word list including comment lines
             final InputStream str = WordList.class.getResourceAsStream(WordList.WORDS_FILENAME);
             final BufferedReader reader = new BufferedReader(new InputStreamReader(str));
@@ -84,7 +83,10 @@ public final class WordListUpdate {
 
             log.append("The updated word list has been written to the file '" + outputPath + "'.\n");
 
-            // update database entries
+        	// initialize TransactionPool if not yet ready
+    		new DatabaseFactory().initializeDatabase();
+
+    		// update database entries
             DBWordList.writeToDB(wl);
             log.append("The word list has been stored into the database.\n");
         } catch (final IOException e) {
