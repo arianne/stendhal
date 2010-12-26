@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -105,7 +106,7 @@ public class WordList {
 
         if (str != null) {
     		try {
-    			final BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+    			final BufferedReader reader = new BufferedReader(new InputStreamReader(str, "UTF-8"));
 
     			try {
     				read(reader, null);
@@ -118,7 +119,9 @@ public class WordList {
     					logger.error("error while closing reader stream for '"+WORDS_FILENAME+"'", e);
     				}
     			}
-    		} finally {
+    		} catch (UnsupportedEncodingException e) {
+				logger.error("error while reading resource file '"+WORDS_FILENAME+"'", e);
+			} finally {
     			try {
     				str.close();
     			} catch (IOException e) {

@@ -652,6 +652,9 @@ public class Grammar {
 				|| enoun.endsWith("sh")
 				|| ((enoun.length() > 1) && ("sxz".indexOf(enoun.charAt(enoun.length() - 1)) > -1))) {
 			return enoun + "es" + postfix;
+			// German special case
+		} else if (enoun.equals("glück") || enoun.equals("glücke")) {
+			return "glücke";
 		} else {
 			// no special case matched, so use the boring default plural rule
 			return enoun + "s" + postfix;
@@ -764,6 +767,9 @@ public class Grammar {
 			// no special case matched, so look for the standard "s" plural
 		} else if (enoun.endsWith("s") && !enoun.endsWith("ss")) {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
+			// German special case
+		} else if (enoun.equals("glück") || enoun.equals("glücke")) {
+			return "glück";
 		} else {
 			return enoun + postfix;
 		}

@@ -484,7 +484,7 @@ gland	OBJ	glands
 glas	OBJ	glas
 glass	OBJ	glasses
 glow	OBJ	glows
-glück	OBJ	glücks
+glück	OBJ	glücke
 gnu	OBJ	gnus
 goat	OBJ-ANI	goats
 goblet	OBJ	goblets

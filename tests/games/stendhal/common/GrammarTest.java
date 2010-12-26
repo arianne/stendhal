@@ -458,6 +458,14 @@ public class GrammarTest {
 	}
 
 	/**
+	 * Tests for pluralItem.
+	 */
+	@Test
+	public void testGermanPlural() {
+		testPluralisationAndSingularisation("glücke", "glück");
+	}
+
+	/**
 	 * Tests pluralization of creatures.
 	 */
 	@Test

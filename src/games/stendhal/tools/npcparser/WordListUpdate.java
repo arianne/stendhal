@@ -18,7 +18,6 @@ import games.stendhal.server.entity.npc.parser.WordList;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -50,7 +49,7 @@ public final class WordListUpdate {
         try {
             // read in the current word list including comment lines
             final InputStream str = WordList.class.getResourceAsStream(WordList.WORDS_FILENAME);
-            final BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(str, "UTF-8"));
             final List<String> comments = new ArrayList<String>();
 
             try {
@@ -71,7 +70,7 @@ public final class WordListUpdate {
                 outputPath = WordList.WORDS_FILENAME;
             }
 
-            final PrintWriter writer = new PrintWriter(new FileWriter(outputPath));
+            final PrintWriter writer = new PrintWriter(outputPath, "UTF-8");
 
             for (final String c : comments) {
                 writer.println(c);
