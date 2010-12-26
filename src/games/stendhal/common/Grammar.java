@@ -1105,6 +1105,27 @@ public class Grammar {
 	}
 
 	/**
+	 * Return type for normalizedRegularVerb().
+	 */
+	public static class Verb {
+		public Verb(String normalized) {
+			this.word = normalized;
+			isGerund = false;
+			isPast = false;
+		}
+
+		public Verb(Verb other) {
+			word = other.word;
+			isGerund = other.isGerund;
+			isPast = other.isPast;
+		}
+
+		public String word;
+		public boolean isGerund;
+		public boolean isPast;
+	}
+
+	/**
 	 * Normalize the given regular verb, or return null if not applicable.
 	 * Note: Some words like "close" are returned without the trailing "e"
 	 * character. This is handled in WordList.normalizeVerb().
@@ -1112,20 +1133,27 @@ public class Grammar {
 	 * @param word
 	 * @return normalized string
 	 */
-	public static String normalizeRegularVerb(final String word) {
+	public static Verb normalizeRegularVerb(final String word) {
+		Verb verb = null;
+
 		if ((word.length() > 4) && (word.endsWith("ed") || word.endsWith("es"))) {
 			if (word.charAt(word.length() - 4) == word.charAt(word.length() - 3)) {
-				return word.substring(0, word.length() - 3);
+				verb = new Verb(word.substring(0, word.length() - 3));
 			} else {
-				return word.substring(0, word.length() - 2);
+				verb = new Verb(word.substring(0, word.length() - 2));
+			}
+
+			if (word.endsWith("ed")) {
+				verb.isPast = true;
 			}
 		} else if ((word.length() > 3) && word.endsWith("s")) {
-			return word.substring(0, word.length() - 1);
+			verb = new Verb(word.substring(0, word.length() - 1));
 		} else if (isGerund(word)) {
-			return word.substring(0, word.length() - 3);
-		} else {
-			return null;
+			verb = new Verb(word.substring(0, word.length() - 3));
+			verb.isGerund = true;
 		}
+
+		return verb;
 	}
 
 	/**
@@ -1167,10 +1195,18 @@ public class Grammar {
 	 * or "nomadic".
 	 *
 	 * @param word
-	 * @return true if ends with "al" or "ic"
+	 * @return true if ends with "al", "ic" or "ed"
 	 */
 	public static boolean isDerivedAdjective(final String word) {
-		return ((word.length() > 4) && word.endsWith("al")) || word.endsWith("ic");
+		if (word.length() > 4) {
+			if (word.endsWith("al") || word.endsWith("ic"))
+				return true;
+
+			if (word.endsWith("ed"))
+				return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -1180,11 +1216,24 @@ public class Grammar {
 	 * @return normalized string
 	 */
 	public static String normalizeDerivedAdjective(final String word) {
-		if ((word.length() > 4) && (word.endsWith("al") || word.endsWith("ic"))) {
+		if (isDerivedAdjective(word)) {
 			return word.substring(0, word.length() - 2);
 		} else {
 			return null;
 		}
     }
+
+	/**
+	 * Check for words with ambiguity between noun and verb.
+	 * @param normalizedWord
+	 * @return ambiguity flag
+	 */
+	public static boolean isAmbiguousNounVerb(final String normalizedWord) {
+		if (normalizedWord.equals("mill") || normalizedWord.equals("fish")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

@@ -17,16 +17,12 @@ import games.stendhal.common.Grammar;
 
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
-
 /**
  * SentenceImplementation contains the implementation details of building Sentence objects.
  *
  * @author Martin Fuchs
  */
 public final class SentenceImplementation extends Sentence {
-
-    private static final Logger logger = Logger.getLogger(SentenceImplementation.class);
 
     /**
      * Create a SentenceImplementation object in preparation to parse a text phrase.
@@ -110,7 +106,6 @@ public final class SentenceImplementation extends Sentence {
 
         for (final Expression w : expressions) {
             final String original = w.getOriginal();
-            WordEntry entry = null;
 
             // If the parsed Sentence will be used for matching, look for ExpressionType specifiers.
             if (context.isForMatching()) {
@@ -120,83 +115,97 @@ public final class SentenceImplementation extends Sentence {
                 }
             }
 
-            if (w.getType() == null) {
-                entry = wl.find(original);
+            boolean wordFound = w.getType()!=null;
+            boolean entryMissing = false;
+
+            if (!wordFound) {
+            	WordEntry entry = wl.find(original);
+
+            	if (entry == null) {
+            		entryMissing = true;
+            	} else if (entry.getType() != null) {
+	                w.setType(entry.getType());
+	                wordFound = true;
+
+	                if (entry.getType().isNumeral()) {
+	                    // evaluate numeric expressions
+	                    w.setAmount(entry.getValue());
+	                    w.setNormalized(Integer.toString(w.getAmount()));
+	                } else if (entry.getType().isPlural()) {
+	                    // normalize to the singular form
+	                    // If getPlurSing() is null, there is no unique singular form, so use the original string.
+	                    if (entry.getPlurSing() != null) {
+	                        w.setNormalized(entry.getPlurSing());
+	                    } else {
+	                        w.setNormalized(original);
+	                    }
+	                } else {
+	                    w.setNormalized(entry.getNormalized());
+	                }
+	            }
             }
 
-            if ((entry != null) && (entry.getType() != null)) {
-                w.setType(entry.getType());
-
-                if (entry.getType().isNumeral()) {
-                    // evaluate numeric expressions
-                    w.setAmount(entry.getValue());
-                    w.setNormalized(Integer.toString(w.getAmount()));
-                } else if (entry.getType().isPlural()) {
-                    // normalize to the singular form
-                    // If getPlurSing() is null, there is no unique singular form, so use the original string.
-                    if (entry.getPlurSing() != null) {
-                        w.setNormalized(entry.getPlurSing());
-                    } else {
-                        w.setNormalized(original);
-                    }
-                } else {
-                    w.setNormalized(entry.getNormalized());
-                }
-            } else {
+            if (!wordFound) {
                 // handle numeric expressions
                 if (original.matches("^[+-]?[0-9.,]+")) {
                     w.parseAmount(original, errors);
                     final int amount = w.getAmount();
-
                     if (amount < 0) {
                         errors.setError("negative amount: " + amount);
                     }
+                    wordFound = w.getType()!=null;
                 }
             }
 
             // handle unknown words
-            if (w.getType() == null) {
+            if (!wordFound) {
                 // recognize declined verbs, e.g. "swimming"
-                final WordEntry verb = wl.normalizeVerb(original);
+                final WordList.Verb verb = wl.normalizeVerb(original);
 
                 if (verb != null) {
-                    if (Grammar.isGerund(original)) {
-                        w.setType(new ExpressionType(verb.getTypeString() + ExpressionType.SUFFIX_GERUND));
-                    } else {
-                        w.setType(verb.getType());
+                    if (verb.isGerund) {
+                        w.setType(new ExpressionType(verb.entry.getTypeString() + ExpressionType.SUFFIX_GERUND));
+                        wordFound = true;
+                    } else if (verb.entry.getType().isVerb()) {
+                        w.setType(verb.entry.getType());
+                        wordFound = true;
+                    } else if (!verb.isPast) { // avoid cases like "rounded"
+                    	w.setType(new ExpressionType(ExpressionType.VERB));
+                        wordFound = true;
                     }
 
-                    w.setNormalized(verb.getNormalized());
-                } else {
-                    // recognize derived adjectives, e.g. "magical" or "nomadic"
-                    final WordEntry adjective = wl.normalizeAdjective(original);
-
-                    if (adjective != null) {
-                        if (Grammar.isDerivedAdjective(original)) {
-                            w.setType(new ExpressionType(ExpressionType.ADJECTIVE));
-                        } else {
-                            // If normalizeAdjective() changed the word, it should be a derived adjective.
-                            logger.error("SentenceImplementation.classifyWords(): unexpected normalized adjective '"
-                                    + adjective + "' of original '" + original + "'");
-                            w.setType(adjective.getType());
-                        }
-
-                        w.setNormalized(adjective.getNormalized());
-                    } else {
-                        w.setType(new ExpressionType(""));
-                        w.setNormalized(original.toLowerCase());
-
-                        if (entry == null) {
-                            // Don't persist expressions used for joker matching.
-                            final boolean persist = context.getPersistNewWords()
-                                    && (!context.isForMatching() || !original.contains(Expression.JOKER));
-
-                            // Add the unknown word to the word list.
-                            wl.addNewWord(original, persist);
-                        }
+                    if (wordFound) {
+                    	w.setNormalized(verb.entry.getNormalized());
                     }
                 }
             }
+
+            if (!wordFound) {
+                // recognize derived adjectives, e.g. "magical", "nomadic" or "rounded"
+                final WordEntry adjective = wl.normalizeAdjective(original);
+
+                if (adjective != null) {
+                	w.setType(new ExpressionType(ExpressionType.ADJECTIVE));
+                    w.setNormalized(adjective.getNormalized());
+                    wordFound = true;
+                }
+            }
+
+            if (!wordFound) {
+                w.setType(new ExpressionType(""));
+                w.setNormalized(original.toLowerCase());
+
+                if (entryMissing) {
+                    // Don't persist expressions used for joker matching.
+                    final boolean persist = context.getPersistNewWords()
+                            && (!context.isForMatching() || !original.contains(Expression.JOKER));
+
+                    // Add the unknown word to the word list.
+                    wl.addNewWord(original, persist);
+                }
+            }
+
+            assert w.getType()!=null;
         }
     }
 

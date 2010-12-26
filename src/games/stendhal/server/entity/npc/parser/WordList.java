@@ -354,8 +354,8 @@ public class WordList {
 	 * @param type
 	 */
 	public void printWordType(final PrintWriter writer, final String type) {
-		for (final String key : words.keySet()) {
-			final WordEntry entry = words.get(key);
+		for (Map.Entry<String, WordEntry> it : words.entrySet()) {
+			final WordEntry entry = it.getValue();
 			boolean matches;
 
 			if (type == null) {
@@ -368,7 +368,7 @@ public class WordList {
 			}
 
 			if (matches) {
-				entry.print(writer, key);
+				entry.print(writer, it.getKey());
 
 				writer.println();
 			}
@@ -468,31 +468,45 @@ public class WordList {
 	}
 
 	/**
-	 * Try to normalize the given verb.
+	 * Return type for normalizeVerb().
+	 */
+	static class Verb extends Grammar.Verb {
+		public Verb(Grammar.Verb verb, WordEntry entry) {
+			super(verb);
+			this.entry = entry;
+		}
+
+		public WordEntry entry;
+	}
+
+	/**
+	 * Try to normalize the given word as verb.
 	 * 
 	 * @param word
 	 * 
-	 * @return WordEntry
+	 * @return Verb object with additional information
 	 */
-	WordEntry normalizeVerb(final String word) {
-		String trimmedWord = trimWord(word);
+	Verb normalizeVerb(final String word) {
+		final String trimmedWord = trimWord(word);
 
-		final String normalized = Grammar.normalizeRegularVerb(trimmedWord);
+		final Grammar.Verb verb = Grammar.normalizeRegularVerb(trimmedWord);
 
-		if (normalized != null) {
-			WordEntry entry = words.get(normalized);
+		if (verb != null) {
+			WordEntry entry = words.get(verb.word);
 
 			// try and re-append "e" if it was removed by
 			// normalizeRegularVerb()
 			if ((entry == null) && trimmedWord.endsWith("e")
-					&& !normalized.endsWith("e")) {
-				entry = words.get(normalized + "e");
+					&& !verb.word.endsWith("e")) {
+				entry = words.get(verb.word + "e");
 			}
 
-			return entry;
-		} else {
-			return null;
+			if (entry != null) {
+				return new Verb(verb, entry);
+			}
 		}
+
+		return null;
 	}
 
 	/**
@@ -502,8 +516,9 @@ public class WordList {
 	 * @return WordEntry
 	 */
 	WordEntry normalizeAdjective(final String word) {
-		final String normalized = Grammar
-				.normalizeDerivedAdjective(trimWord(word));
+		final String trimmedWord = trimWord(word);
+
+		final String normalized = Grammar.normalizeDerivedAdjective(trimmedWord);
 
 		if (normalized != null) {
 			final WordEntry entry = words.get(normalized);
@@ -531,22 +546,25 @@ public class WordList {
 		}
 
 		// register the new subject name
-		final WordEntry entry = words.get(key);
-
-		if ((entry == null) || (entry.getType() == null)
-				|| entry.getType().isEmpty()) {
-			final WordEntry newEntry = new WordEntry();
-
-			newEntry.setNormalized(key);
-			newEntry.setType(new ExpressionType(SUBJECT_NAME_DYNAMIC));
-
-			words.put(key, newEntry);
+		if (usageCount == null) {
+			registerName(name, ExpressionType.SUBJECT);
 			subjectRefCount.put(key, 1);
-		} else if (!checkNameCompatibleLastType(entry.getType(),
-				ExpressionType.SUBJECT)) {
-			logger.warn("subject name already registered with incompatible expression type: "
-					+ entry.getNormalizedWithTypeString());
 		}
+//		final WordEntry entry = words.get(key);
+//
+//		if ((entry == null) || (entry.getType() == null)
+//				|| entry.getType().isEmpty()) {
+//			final WordEntry newEntry = new WordEntry();
+//
+//			newEntry.setNormalized(key);
+//			newEntry.setType(new ExpressionType(SUBJECT_NAME_DYNAMIC));
+//
+//			words.put(key, newEntry);
+//			subjectRefCount.put(key, 1);
+//		} else if (!checkNameCompatibleLastType(entry, ExpressionType.SUBJECT)) {
+//			logger.warn("subject name already registered with incompatible expression type: "
+//					+ entry.getNormalizedWithTypeString());
+//		}
 	}
 
 	/**
@@ -585,14 +603,14 @@ public class WordList {
 		// parse item name without merging Expression entries
 		final ConversationContext ctx = new ConversationContext();
 		ctx.setMergeExpressions(false);
-		final Sentence item = ConversationParser.parse(name, ctx);
+		final Sentence parsed = ConversationParser.parse(name, ctx);
 
 		Expression lastExpr = null;
 		boolean prepositionSeen = false;
 
-		for (final Expression expr : item) {
+		for (final Expression expr : parsed) {
 			if ((expr.getType() == null) || expr.getType().isEmpty()) {
-				// register the unknown word as new object entry
+				// register the unknown word as new entry
 				final WordEntry entry = words.get(expr.getNormalized());
 
 				// set the type to the given one with added "DYN" suffix
@@ -601,7 +619,7 @@ public class WordList {
 				entry.setType(type);
 				expr.setType(type);
 			} else if (expr.isQuestion()) {
-				logger.warn("object name already registered with incompatible expression type while registering name '"
+				logger.warn("name already registered with incompatible expression type while registering name '"
 						+ name + "': " + expr.getNormalizedWithTypeString()
 						+ " expected type: " + typeString);
 			}
@@ -614,34 +632,38 @@ public class WordList {
 		}
 
 		if (lastExpr != null) {
-			final ExpressionType lastType = lastExpr.getType();
+			if (!isNameCompatibleLastType(lastExpr, typeString)) {
+				if (typeString.startsWith(ExpressionType.SUBJECT)) {
+					// ignore suspicious NPC names for now
+				} else {
+					logger.warn("last word of name '" + name
+						+ "' has an unexpected type: "
+						+ lastExpr.getNormalizedWithTypeString()
+						+ " expected type: " + typeString);
+				}
 
-			if (!checkNameCompatibleLastType(lastType, typeString)) {
-				 // ugly special case for "mill" as VERB and OBJECT
-				if (!lastType.isVerb() || !typeString.equals(ExpressionType.OBJECT) ||
-					!lastExpr.getNormalized().equals("mill")) {
-						logger.warn("last word of name '" + name
-							+ "' has unexpected type: "
-							+ lastExpr.getNormalizedWithTypeString()
-							+ " expected type: " + typeString);
-					}
+				// The expression type for subject names should be corrected like this
+				// (not here, but when parsing user input):
+				//lastExpr.setType(new ExpressionType(typeString));
 			}
 		}
 
-		// register compound item names to use them later when merging words
-		if (item.getExpressions().size() > 1) {
-			compoundNames.add(item);
+		// register compound item names to use them later when merging words (not yet implemented)
+		if (parsed.getExpressions().size() > 1) {
+			compoundNames.add(parsed);
 		}
 	}
 
 	/**
 	 * Check for compatible types.
-	 * @param lastType type of the last word in an expression
+	 * @param lastExpr last word in an expression
 	 * @param typeString expected type string
 	 * @return
 	 */
-	private static boolean checkNameCompatibleLastType(
-			final ExpressionType lastType, final String typeString) {
+	private static boolean isNameCompatibleLastType(
+			final Expression lastExpr, final String typeString) {
+		final ExpressionType lastType = lastExpr.getType();
+
 		if (lastType.getTypeString().startsWith(typeString)) {
 			return true;
 		}
@@ -667,6 +689,16 @@ public class WordList {
 			return true;
 		}
 
+		// handle ambiguous cases like "mill"
+		if (Grammar.isAmbiguousNounVerb(lastExpr.getNormalized())) {
+			if (lastType.isVerb() && typeString.equals(ExpressionType.OBJECT)) {
+				return true;
+			}
+			if (lastType.isObject() && typeString.equals(ExpressionType.VERB)) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 
@@ -687,7 +719,7 @@ public class WordList {
 			newEntry.setType(new ExpressionType(VERB_DYNAMIC));
 
 			words.put(key, newEntry);
-//		} else if (!checkNameCompatibleLastType(entry.getType(), ExpressionType.VERB)) {
+//		} else if (!checkNameCompatibleLastType(entry, ExpressionType.VERB)) {
 //	 		logger.warn("verb name already registered with incompatible expression type: " +
 //			entry.getNormalizedWithTypeString());
 		}

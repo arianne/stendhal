@@ -764,19 +764,19 @@ public class GrammarTest {
 	@Test
 	public void testNormalizeVerbs() {
 		assertNull(Grammar.normalizeRegularVerb("open"));
-		assertEquals("open", Grammar.normalizeRegularVerb("opened"));
-		assertEquals("open", Grammar.normalizeRegularVerb("opens"));
-		assertEquals("open", Grammar.normalizeRegularVerb("opening"));
+		assertEquals("open", Grammar.normalizeRegularVerb("opened").word);
+		assertEquals("open", Grammar.normalizeRegularVerb("opens").word);
+		assertEquals("open", Grammar.normalizeRegularVerb("opening").word);
 
 		assertNull(Grammar.normalizeRegularVerb("close"));
-		assertEquals("clos", Grammar.normalizeRegularVerb("closed"));
-		assertEquals("clos", Grammar.normalizeRegularVerb("closes"));
-		assertEquals("clos", Grammar.normalizeRegularVerb("closing"));
+		assertEquals("clos", Grammar.normalizeRegularVerb("closed").word);
+		assertEquals("clos", Grammar.normalizeRegularVerb("closes").word);
+		assertEquals("clos", Grammar.normalizeRegularVerb("closing").word);
 
 		assertNull(Grammar.normalizeRegularVerb("to fish"));
-		assertEquals("fish", Grammar.normalizeRegularVerb("fished"));
-		assertEquals("fish", Grammar.normalizeRegularVerb("fishes"));
-		assertEquals("fish", Grammar.normalizeRegularVerb("fishing"));
+		assertEquals("fish", Grammar.normalizeRegularVerb("fished").word);
+		assertEquals("fish", Grammar.normalizeRegularVerb("fishes").word);
+		assertEquals("fish", Grammar.normalizeRegularVerb("fishing").word);
 	}
 
 	/**
