@@ -66,7 +66,6 @@ bribe	VER
 buy	VER
 bye	VER
 can	VER
-cane	OBJ	canes
 care	VER
 cast	VER
 catch	VER
@@ -103,9 +102,9 @@ engage	VER
 exchange	VER
 exhibit	VER
 exit	VER
-explain	VER
 expire	VER
 expired	VER	=expire
+explain	VER
 explore	VER
 farewell	VER
 feed	VER
@@ -299,7 +298,7 @@ bronze	OBJ	bronzes
 buckler	OBJ	bucklers
 bug	OBJ	bugs
 building	OBJ	buildings
-bulb   OBJ bulbs
+bulb	OBJ	bulbs
 bull	OBJ-ANI	bulls
 bureau	OBJ	bureaux
 bus	OBJ	bus
@@ -308,7 +307,7 @@ buster	OBJ	busters
 button	OBJ	buttons
 caboose	OBJ	cabooses
 cake	OBJ	cakes
-cane    OBJ canes
+cane	OBJ	canes
 car	OBJ	cars
 carbuncle	OBJ	carbuncles
 cards	OBJ	cards
@@ -421,10 +420,10 @@ favour	OBJ	favours
 feature	OBJ	features
 fee	OBJ	fees
 ferry	OBJ	ferries
+fierywater	OBJ	fierywaters
 figure	OBJ	figures
 finger	OBJ	fingers
 fire	OBJ	fires
-fierywater	OBJ	fierywaters
 fish	OBJ-FOO	fishes
 flail	OBJ	flails
 flask	OBJ	flasks
@@ -441,7 +440,7 @@ gem	OBJ	gems
 geography	OBJ	geographies
 germany	OBJ	germanies
 glas	OBJ	glas
-glass    OBJ glasses
+glass	OBJ	glasses
 glow	OBJ	glows
 gnu	OBJ	gnus
 goat	OBJ-ANI	goats
@@ -505,8 +504,8 @@ knife	OBJ	knives
 kokuda	OBJ	kokudas
 kotoch	OBJ-NAM	kotoches
 lag	OBJ	lags
+lamb	OBJ-ANI	lambs
 language	OBJ	languages
-lamb	OBJ-ANI
 larva	OBJ	larvae
 leek	OBJ-FOO	leeks
 leg	OBJ	legs
@@ -544,7 +543,7 @@ moment	OBJ	moments
 money	OBJ	money
 moose	OBJ	moose
 morning	OBJ	mornings
-mortar OBJ mortars
+mortar	OBJ	mortars
 mountain	OBJ	mountains
 mouse	OBJ	mice
 mouth	OBJ	mouths
@@ -578,7 +577,7 @@ patch	OBJ	patches
 path	OBJ	paths
 pearl	OBJ	pearls
 perch	OBJ-ANI	perches
-pestle  OBJ pestles
+pestle	OBJ	pestles
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
 pig	OBJ-ANI	pigs
@@ -616,6 +615,7 @@ rate	OBJ	rates
 reputation	OBJ	reputations
 request	OBJ	requests
 restaurant	OBJ	restaurants
+revival	OBJ	revivals
 reward	OBJ	rewards
 rhosyd	OBJ	rhosyds
 riddle	OBJ	riddles
@@ -653,7 +653,6 @@ sheep	OBJ-ANI	sheep
 sheet	OBJ	sheets
 shield	OBJ	shields
 shop	OBJ	shops
-sugar   OBJ sugar
 shuriken	OBJ	shurikens
 sign	OBJ	signs
 silver	OBJ	silvers
@@ -685,6 +684,7 @@ storage	OBJ	storages
 story	OBJ	stories
 stuff	OBJ	stuffs
 style	OBJ	styles
+sugar	OBJ	sugar
 suit	OBJ	suits
 sun	OBJ	suns
 suntan	OBJ	suntans
@@ -741,6 +741,7 @@ water	OBJ-FLU	waters
 way	OBJ	ways
 weapon	OBJ	weapons
 wedding	OBJ	weddings
+week	OBJ	weeks
 whiskey	OBJ-FLU	whiskeys
 wikipedia	OBJ	wikipedias
 window	OBJ	windows
@@ -909,16 +910,15 @@ mohiko	SUB
 monk	SUB
 monkey	SUB	monkeys
 monster	SUB
-mortar	OBJ
 mother	SUB
 mummy	SUB	mummies
 mutant	SUB
 naga	SUB
 necrosophia	SUB
 ninja	SUB
+no-one	SUB
 nomad	SUB
 noone	SUB
-no-one   SUB
 nymph	SUB
 ogre	SUB	ogres
 oni	SUB
@@ -930,7 +930,6 @@ pawn	SUB
 peasant	SUB
 penguin	SUB-ANI	penguins
 people	SUB
-pestle	OBJ
 peter	SUB-NAM
 phantom	SUB
 pigeon	SUB-ANI
@@ -1004,8 +1003,6 @@ you	SUB-PRO	you
 zak	SUB-NAM
 zombie	SUB	zombies
 zynn	SUB-NAM
-revival	OBJ	revivals
-week	OBJ	weeks
 
 another	ADJ
 armed	ADJ
