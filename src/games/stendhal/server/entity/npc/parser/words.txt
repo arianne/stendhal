@@ -54,6 +54,7 @@ annoy	VER
 answer	VER
 appear	VER
 ask	VER	=say
+aye	VER
 bail	VER
 bake	VER
 be	VER
@@ -98,8 +99,12 @@ dressed	VER
 drive	VER
 drop	VER
 eat	VER
+elddir	VER
 embark	VER
 engage	VER
+escape	VER
+evael	VER
+examine	VER
 exchange	VER
 exhibit	VER
 exit	VER
@@ -109,6 +114,7 @@ explain	VER
 explore	VER
 farewell	VER
 feed	VER
+fetch	VER
 fight	VER
 fill	VER
 find	VER
@@ -147,6 +153,7 @@ keep	VER
 kill	VER
 kiss	VER
 know	VER
+ko	VER
 laugh	VER
 learn	VER
 leave	VER
@@ -171,14 +178,17 @@ ok	VER
 open	VER
 overcook	VER
 own	VER
+pay	VER
 play	VER
 prefer	VER
+prolong	VER
 protect	VER
 put	VER
 rain	VER
 recognize	VER
 release	VER
 remember	VER
+remind	VER
 remove	VER
 rent	VER
 report	VER
@@ -196,10 +206,12 @@ seen	VER	=see
 sell	VER
 send	VER
 sew	VER
+sey	VER
 shall	VER
 shoot	VER
 should	VER-CON	=shall
 shout	VER
+show	VER
 sit	VER
 sleep	VER
 smell	VER
@@ -241,6 +253,7 @@ worry	VER
 would	VER-CON	=will
 wouldn't	VER-CON-NEG	=won't
 wrap	VER
+write	VER
 yay	VER	=done
 yep	VER
 yes	VER
@@ -249,6 +262,7 @@ yup	VER	=yep
 ados	OBJ	ados
 air	OBJ	airs
 alga	OBJ	algae
+ammunition	OBJ	ammunitions
 amulet	OBJ	amulets
 analysis	OBJ	analyses
 angle	OBJ	angles
@@ -322,6 +336,7 @@ carbuncle	OBJ	carbuncles
 cards	OBJ	cards
 carrot	OBJ-FOO	carrots
 catacomb	OBJ	catacombs
+catering	OBJ	caterings
 cauliflower	OBJ-FOO	cauliflowers
 cavalry	OBJ	cavalries
 cave	OBJ	caves
@@ -350,6 +365,7 @@ client	OBJ	clients
 cloak	OBJ	cloaks
 clock	OBJ	clocks
 cloth	OBJ	cloths
+cloudburst	OBJ	cloudbursts
 clownfish	OBJ-FOO-ANI	clownfishes
 club	OBJ	clubs
 coal	OBJ
@@ -439,6 +455,7 @@ favour	OBJ	favours
 feature	OBJ	features
 fee	OBJ	fees
 ferry	OBJ	ferries
+field	OBJ	fields
 fierywater	OBJ-FOO-FLU	fierywaters
 figure	OBJ	figures
 figurine	OBJ	figurines
@@ -452,6 +469,7 @@ flower	OBJ	flowers
 food	OBJ-FOO	foods
 foot	OBJ	feet
 forge	OBJ	forges
+frostshade	OBJ-NAM	frostshades
 fun	OBJ	funs
 future	OBJ	futures
 gambling	OBJ	gamblings
@@ -466,6 +484,7 @@ gland	OBJ	glands
 glas	OBJ	glas
 glass	OBJ	glasses
 glow	OBJ	glows
+glück	OBJ	glücks
 gnu	OBJ	gnus
 goat	OBJ-ANI	goats
 goblet	OBJ	goblets
@@ -495,6 +514,7 @@ hen	OBJ-ANI	hens
 herb	OBJ	herbs
 hint	OBJ	hints
 history	OBJ	histories
+hoe	OBJ	hoes
 home	OBJ	homes
 honey	OBJ-FOO	honeys
 honeymoon	OBJ	honeymoons
@@ -529,6 +549,7 @@ kekik	OBJ	kekiks
 key	OBJ	keys
 kingdom	OBJ	kingdoms
 kirdneh	OBJ-NAM	kirdnehs
+kitchen	OBJ	kitchens
 knife	OBJ	knives
 kokuda	OBJ	kokudas
 kotoch	OBJ-NAM	kotoches
@@ -536,6 +557,7 @@ lag	OBJ	lags
 lamb	OBJ-ANI	lambs
 language	OBJ	languages
 larva	OBJ	larvae
+lavitae	OBJ-NAM	lavitaes
 leek	OBJ-FOO	leeks
 leg	OBJ	legs
 level	OBJ	levels
@@ -551,6 +573,9 @@ loaf	OBJ	loaves
 log	OBJ	logs
 longbow	OBJ	longbows
 lotus	OBJ	lotuses
+luck	OBJ	lucks
+lunch	OBJ	lunches
+lyreade	OBJ-NAM	lyreades
 mace	OBJ	maces
 machine	OBJ	machines
 mackerel	OBJ-FOO	mackerels
@@ -590,6 +615,7 @@ name	OBJ	names
 naming	OBJ	namings
 narwol	OBJ	narwols
 needle	OBJ	needles
+neighborhood	OBJ	neighborhoods
 news	OBJ	news
 night	OBJ	nights
 nihonto	OBJ	nihontos
@@ -605,6 +631,7 @@ obsidian	OBJ	obsidians
 offer	OBJ	offers
 oil	OBJ
 onion	OBJ-FOO	onions
+opposite	OBJ	opposites
 or'ril	OBJ	or'rils
 orange	OBJ-FOO	oranges
 ore	OBJ	ores
@@ -632,7 +659,9 @@ pineapple	OBJ-FOO	pineapples
 pizza	OBJ-FOO	pizzas
 place	OBJ	places
 plan	OBJ	plans
+plant	OBJ	plants
 plate	OBJ	plates
+playground	OBJ	playgrounds
 plural	OBJ	plurals
 point	OBJ	points
 poison	OBJ-FOO-FLU	poisons
@@ -694,6 +723,7 @@ seed	OBJ	seeds
 semos	OBJ	semos
 sense	OBJ	senses
 server	OBJ	servers
+service	OBJ	services
 shadow	OBJ	shadows
 shake	OBJ-FOO	shakes
 sheaf	OBJ	sheaves
@@ -722,6 +752,7 @@ speed	OBJ	speeds
 spinach	OBJ-FOO	spinaches
 sprig	OBJ	sprigs
 sps	OBJ	sps
+sql	OBJ	sqls
 staff	OBJ	staffs
 star	OBJ	stars
 status	OBJ	stati
@@ -732,6 +763,7 @@ stick	OBJ	sticks
 stocking	OBJ	stockings
 stone	OBJ	stones
 storage	OBJ	storages
+store	OBJ	stores
 storm	OBJ	storms
 story	OBJ	stories
 stuff	OBJ	stuffs
@@ -743,6 +775,7 @@ suntan	OBJ	suntans
 supplie	OBJ	supplies
 surgeonfish	OBJ-FOO-ANI	surgeonfishes
 suzette	OBJ-FOO	suzettes
+swamp	OBJ	swamps
 sweatshirt	OBJ	sweatshirts
 swimsuit	OBJ	swimsuits
 sword	OBJ	swords
@@ -753,6 +786,7 @@ tavern	OBJ	taverns
 tea	OBJ-FOO-FLU	teas
 teddy	OBJ	teddies
 temple	OBJ	temples
+test	OBJ	tests
 text	OBJ	texts
 that	OBJ-PRO	=this	those
 this	OBJ-PRO	these
@@ -767,6 +801,7 @@ tooth	OBJ	teeth
 torcibud	OBJ-FOO-FLU	torcibuds
 torture	OBJ	tortures
 tour	OBJ	tours
+tower	OBJ	towers
 town	OBJ	towns
 toy	OBJ	toys
 trade	OBJ	trades
@@ -783,6 +818,7 @@ tunnel	OBJ	tunnels
 twilight	OBJ	twilights
 ugmash	OBJ	ugmashes
 url	OBJ	urls
+vault	OBJ	vaults
 venom	OBJ	venoms
 vertex	OBJ	vertices
 victory	OBJ	victories
@@ -809,13 +845,16 @@ wood	OBJ	woods
 wool	OBJ	wools
 word	OBJ	words
 world	OBJ	worlds
+wraithforge	OBJ-NAM	wraithforges
 x	OBJ	xs
 xeno	OBJ	xenos
 xenocium	OBJ	xenocia
+xkcd	OBJ-NAM	xkcds
 yarn	OBJ	yarns
 yclept	OBJ	yclepts
 youngster	OBJ	youngsters
 your	OBJ-OBS	your
+yrafear	OBJ-NAM	yrafears
 zantedeschia	OBJ	zantedeschias
 zone	OBJ	zones
 
@@ -978,6 +1017,7 @@ me	SUB-PRO	=i	us
 minotaur	SUB
 mistress	SUB
 mohiko	SUB
+mommy	SUB
 monk	SUB
 monkey	SUB	monkeys
 monster	SUB
@@ -1009,6 +1049,7 @@ phantom	SUB
 pigeon	SUB-ANI
 pirate	SUB
 player	SUB	players
+postman	SUB
 priest	SUB
 purist	SUB
 quartermaster	SUB
@@ -1045,6 +1086,8 @@ spearman	SUB
 spider	SUB-ANI
 spirit	SUB	spirits
 stalker	SUB
+storekeeper	SUB
+student	SUB
 superogre	SUB
 susi	SUB-NAM
 swordsman	SUB
@@ -1076,12 +1119,14 @@ woman	SUB	women
 wumpus	SUB	wumpuses
 xin	SUB-NAM
 you	SUB-PRO	you
+yourself	SUB-PRO
 zak	SUB-NAM
 zombie	SUB	zombies
 zynn	SUB-NAM
 
 another	ADJ
 armed	ADJ
+awesome	ADJ
 bad	ADJ
 before	ADJ
 below	ADJ
@@ -1140,6 +1185,7 @@ flying	ADJ
 forward	ADJ
 free	ADJ
 fresh	ADJ
+friendly	ADJ
 full	ADJ
 genius	ADJ
 global	ADJ
@@ -1297,6 +1343,7 @@ two	NUM	2
 zero	NUM	0
 
 about	PRE
+auf	PRE
 by	PRE
 down	PRE
 for	PRE
@@ -1341,4 +1388,3 @@ whatever	IGN
 while	IGN
 yeah	IGN
 yet	IGN
-
