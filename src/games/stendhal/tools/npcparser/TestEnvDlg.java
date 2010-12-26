@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.tools.npcparsertestenv;
+package games.stendhal.tools.npcparser;
 
 import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.core.engine.SingletonRepository;

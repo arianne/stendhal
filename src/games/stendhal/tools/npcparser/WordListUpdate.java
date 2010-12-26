@@ -10,7 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc.parser;
+package games.stendhal.tools.npcparser;
+
+import games.stendhal.server.entity.npc.parser.DBWordList;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
+import games.stendhal.server.entity.npc.parser.WordList;
 
 import java.io.BufferedReader;
 import java.io.File;

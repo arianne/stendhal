@@ -153,7 +153,7 @@ public class WordList {
 	 * 
 	 * @return true on success
 	 */
-	boolean calculateHash() {
+	public boolean calculateHash() {
 		MessageDigest md;
 
 		try {
@@ -353,7 +353,7 @@ public class WordList {
 	 * @param writer
 	 * @param type
 	 */
-	void printWordType(final PrintWriter writer, final String type) {
+	public void printWordType(final PrintWriter writer, final String type) {
 		for (final String key : words.keySet()) {
 			final WordEntry entry = words.get(key);
 			boolean matches;
