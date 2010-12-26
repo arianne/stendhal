@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.tools.npcparsertestenv;
 
+import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.parser.CaseInsensitiveExprMatcher;
 import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
@@ -27,10 +28,15 @@ import games.stendhal.server.entity.npc.parser.WordList;
 
 import java.awt.Cursor;
 import java.io.IOException;
+import java.net.URI;
 
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTMLDocument;
+
+import marauroa.server.game.db.DatabaseFactory;
+
+import org.apache.log4j.Logger;
 
 /**
  * Dialog of the NPC Conversation Parser Test Environment.
@@ -39,6 +45,8 @@ import javax.swing.text.html.HTMLDocument;
  */
 @SuppressWarnings("serial")
 public class TestEnvDlg extends javax.swing.JDialog {
+
+	private static final Logger logger = Logger.getLogger(TestEnvDlg.class);
 
 	/** Creates new form TestEnvDlg */
 	public TestEnvDlg() {
@@ -50,6 +58,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLoadEntities;
+    private javax.swing.JButton btLoadZones;
     private javax.swing.JButton btMatch;
     private javax.swing.JButton btParse;
     private javax.swing.JComboBox cbMatchExpr;
@@ -104,6 +113,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
         lbWordCount = new javax.swing.JLabel();
         tfWordCount = new javax.swing.JTextField();
         btLoadEntities = new javax.swing.JButton();
+        btLoadZones = new javax.swing.JButton();
         panelSentence = new javax.swing.JPanel();
         lbSentence = new javax.swing.JLabel();
         cbSentence = new javax.swing.JComboBox();
@@ -170,8 +180,19 @@ public class TestEnvDlg extends javax.swing.JDialog {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 8, 0);
         panelHeader.add(btLoadEntities, gridBagConstraints);
+
+        btLoadZones.setText("load zones");
+        btLoadZones.setActionCommand("load zones");
+        btLoadZones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLoadZonesActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 8, 0);
+        panelHeader.add(btLoadZones, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -456,7 +477,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private void btLoadEntitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadEntitiesActionPerformed
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-		// initialize DefaultEntityManager to load item and creature names
+		// initialize DefaultEntityManager to load item names
 		SingletonRepository.getEntityManager();
 
 		// update word count display
@@ -466,6 +487,26 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_btLoadEntitiesActionPerformed
+
+    private void btLoadZonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadZonesActionPerformed
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+		// load zone configurations to register creature names
+		try {
+			new DatabaseFactory().initializeDatabase();
+			new ZoneGroupsXMLLoader(new URI("/data/conf/zones.xml")).load();
+		} catch (Exception e) {
+			logger.warn("unable to load zones", e);
+		}
+
+		// update word count display
+		updateWordCount();
+
+		btLoadEntities.setEnabled(false);
+		btLoadZones.setEnabled(false);
+
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_btLoadZonesActionPerformed
 
 	private void btParseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btParseActionPerformed
 		updateParsed();
