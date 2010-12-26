@@ -606,6 +606,7 @@ offer	OBJ	offers
 oil	OBJ
 onion	OBJ-FOO	onions
 or'ril	OBJ	or'rils
+orange	OBJ-FOO	oranges
 ore	OBJ	ores
 other	OBJ-PRO	others
 pair	OBJ	pairs
@@ -1190,7 +1191,6 @@ next	ADJ
 nice	ADJ
 nomadic	ADJ
 old	ADJ
-orange	ADJ-COL
 orcish	ADJ
 patient	ADJ
 pauldroned	ADJ
