@@ -146,6 +146,7 @@ public class ProgressLog {
 	/**
 	 * A page on the window.
 	 */
+	@SuppressWarnings("serial")
 	private static class Page extends JComponent implements HyperlinkListener {
 		/** Html area for the subjects */
 		private final JEditorPane indexArea;
