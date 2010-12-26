@@ -12,7 +12,6 @@
 package games.stendhal.client.gui.progress;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.common.constants.Actions;
 
 import java.awt.Component;
