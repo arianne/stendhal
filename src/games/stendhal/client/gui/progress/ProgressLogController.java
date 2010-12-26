@@ -12,9 +12,10 @@
 package games.stendhal.client.gui.progress;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.gui.InternalManagedWindow;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.common.constants.Actions;
+
+import java.awt.Component;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class ProgressLogController {
 	 * Create a new ProgressLogController.
 	 */
 	private ProgressLogController() {
-		progressLog = new ProgressLog("travel_log", "Travel log");
+		progressLog = new ProgressLog("Travel log");
 	}
 	
 	/**
@@ -104,17 +105,11 @@ public class ProgressLogController {
 	}
 	
 	/**
-	 * Show the window, if it's not already visible. Also make it the
-	 * topmost window.
+	 * Show the window, if it's not already visible.
 	 */
 	private void showWindow() {
-		InternalManagedWindow window = progressLog.getWindow();
-		if (window.getParent() == null) {
-			j2DClient.get().addWindow(window);
-			window.setVisible(true);
-		}
-		window.setMinimized(false);
-		window.raise();
+		Component window = progressLog.getWindow();
+		window.setVisible(true);
 	}
 	
 	/**

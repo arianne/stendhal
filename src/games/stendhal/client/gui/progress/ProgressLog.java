@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.progress;
 
-import games.stendhal.client.gui.InternalManagedWindow;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 
@@ -24,6 +24,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -46,24 +47,25 @@ public class ProgressLog {
 	private static final int INDEX_WIDTH = 150;
 	
 	/** The enclosing window */
-	private final InternalManagedWindow window;
+	JDialog window;
 	/** Category tabs */
 	private final JTabbedPane tabs;
 	
 	/**
 	 * Create a new ProgressLog.
 	 * 
-	 * @param handle window identifier for the window manager
 	 * @param name name of the window
 	 */
-	ProgressLog(String handle, String name) {
-		window = new InternalManagedWindow(handle, name);
+	ProgressLog(String name) {
+		window = new JDialog(j2DClient.get().getMainFrame(), name);
+		
 		tabs = new JTabbedPane();
 		tabs.setFocusable(false);
 		tabs.setPreferredSize(new Dimension(PAGE_WIDTH, PAGE_HEIGHT));
 		tabs.addChangeListener(new TabChangeListener());
 		
-		window.setContent(tabs);
+		window.add(tabs);
+		window.pack();
 	}
 	
 	/**
@@ -124,7 +126,7 @@ public class ProgressLog {
 	 * 
 	 * @return travel log window
 	 */
-	InternalManagedWindow getWindow() {
+	Component getWindow() {
 		return window;
 	}
 	
