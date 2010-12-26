@@ -56,7 +56,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
 		TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 	}
-	
+
 	/**
 	 * Completes handling the buddy action.
 	 * 
@@ -77,8 +77,8 @@ class AddBuddyAction implements ActionListener, TurnListener {
 		if(!characterExists) {
 				player.sendPrivateText(NotificationType.ERROR, "Sorry, " + who + " could not be found.");
 				return;
-		} 
-		
+		}
+
 		final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(who);
 		player.addBuddy(who, (buddy != null) && !buddy.isGhost());
 

@@ -45,6 +45,11 @@ public class CheckCharacterExistsCommand extends AbstractDBCommand {
 	public void execute(DBTransaction transaction) throws SQLException {
 		CharacterDAO dao = DAORegister.get().get(CharacterDAO.class);
 		accountName = dao.getAccountName(who);
+
+		// get the real character name independent from the client character case
+		if (accountName != null) {
+			who = dao.getCanonicalName(who);
+		}
 	}
 
 	/**
