@@ -1004,6 +1004,8 @@ you	SUB-PRO	you
 zak	SUB-NAM
 zombie	SUB	zombies
 zynn	SUB-NAM
+revival	OBJ	revivals
+week	OBJ	weeks
 
 another	ADJ
 armed	ADJ
