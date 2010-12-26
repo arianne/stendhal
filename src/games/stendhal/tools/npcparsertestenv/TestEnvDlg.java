@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.tools.npcparsertestenv;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.parser.CaseInsensitiveExprMatcher;
 import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
@@ -22,6 +23,7 @@ import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
+import games.stendhal.server.entity.npc.parser.WordList;
 
 import java.awt.Cursor;
 import java.io.IOException;
@@ -42,10 +44,12 @@ public class TestEnvDlg extends javax.swing.JDialog {
 	public TestEnvDlg() {
 		initComponents();
 		getRootPane().setDefaultButton(btMatch);
+		updateWordCount();
 		lbUnknownWarning.setVisible(false);
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btLoadEntities;
     private javax.swing.JButton btMatch;
     private javax.swing.JButton btParse;
     private javax.swing.JComboBox cbMatchExpr;
@@ -67,6 +71,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private javax.swing.JLabel lbTrimmed;
     private javax.swing.JLabel lbUnknownWarning;
     private javax.swing.JLabel lbVerb;
+    private javax.swing.JLabel lbWordCount;
+    private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelMatch;
     private javax.swing.JPanel panelSentence;
     private javax.swing.JTextField tfNormalized;
@@ -79,6 +85,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private javax.swing.JTextField tfTrigger;
     private javax.swing.JTextField tfTrimmed;
     private javax.swing.JTextField tfVerb;
+    private javax.swing.JTextField tfWordCount;
     private javax.swing.JTextPane tpExpressions;
     // End of variables declaration//GEN-END:variables
 
@@ -93,6 +100,10 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        panelHeader = new javax.swing.JPanel();
+        lbWordCount = new javax.swing.JLabel();
+        tfWordCount = new javax.swing.JTextField();
+        btLoadEntities = new javax.swing.JButton();
         panelSentence = new javax.swing.JPanel();
         lbSentence = new javax.swing.JLabel();
         cbSentence = new javax.swing.JComboBox();
@@ -132,8 +143,39 @@ public class TestEnvDlg extends javax.swing.JDialog {
         setTitle("NPC Parser Test Environment");
         setBounds(new java.awt.Rectangle(49, 200, 0, 0));
         setLocation(new java.awt.Point(200, 200));
-        setPreferredSize(new java.awt.Dimension(665, 700));
         getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        panelHeader.setLayout(new java.awt.GridBagLayout());
+
+        lbWordCount.setText("Number of currently registered words:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
+        panelHeader.add(lbWordCount, gridBagConstraints);
+
+        tfWordCount.setEditable(false);
+        tfWordCount.setText("0");
+        tfWordCount.setPreferredSize(new java.awt.Dimension(100, 28));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
+        panelHeader.add(tfWordCount, gridBagConstraints);
+
+        btLoadEntities.setText("load entities");
+        btLoadEntities.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLoadEntitiesActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
+        panelHeader.add(btLoadEntities, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(panelHeader, gridBagConstraints);
 
         panelSentence.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelSentence.setPreferredSize(new java.awt.Dimension(649, 490));
@@ -261,7 +303,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
                 .add(lbToString)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(tfToString, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
             .add(panelSentenceLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(panelSentenceLayout.createSequentialGroup()
                     .add(264, 264, 264)
@@ -292,12 +334,12 @@ public class TestEnvDlg extends javax.swing.JDialog {
                                 .add(lbTrigger))))
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(lbUnknownWarning)
-                    .addContainerGap(24, Short.MAX_VALUE)))
+                    .addContainerGap(43, Short.MAX_VALUE)))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 4;
         gridBagConstraints.ipady = 4;
@@ -389,7 +431,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
                 .add(panelMatchLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(tfParsedMatchString, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(lbParsedMatchString))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 30, Short.MAX_VALUE)
                 .add(panelMatchLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btMatch)
                     .add(lbMatchResult))
@@ -398,7 +440,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 4;
         gridBagConstraints.ipady = 4;
@@ -410,6 +452,20 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btLoadEntitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadEntitiesActionPerformed
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+		// initialize DefaultEntityManager to load item and creature names
+		SingletonRepository.getEntityManager();
+
+		// update word count display
+		updateWordCount();
+
+		btLoadEntities.setEnabled(false);
+
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_btLoadEntitiesActionPerformed
 
 	private void btParseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btParseActionPerformed
 		updateParsed();
@@ -482,11 +538,15 @@ public class TestEnvDlg extends javax.swing.JDialog {
 	 *            the command line arguments
 	 */
 	public static void main(String args[]) {
-		// java.awt.EventQueue.invokeLater(new Runnable() {
-		// public void run() {
-		new TestEnvDlg().setVisible(true);
-		// }
-		// });
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				new TestEnvDlg().setVisible(true);
+			}
+		});
+	}
+
+    private void updateWordCount() {
+    	tfWordCount.setText(Integer.toString(WordList.getInstance().getWordCount()));
 	}
 
 	private static final String initialHtml = "<html><head>"
