@@ -26,6 +26,7 @@
 #  OBJ-PRO		pronoun
 #  OBJ-NAM		object name, for example a city name
 #  OBJ-ANI		animal used as item object
+#  OBJ-NAM-PLA	place name TODO
 #
 #  SUB			subject
 #  SUB-ANI		animal
@@ -251,13 +252,15 @@ alga	OBJ	algae
 amulet	OBJ	amulets
 analysis	OBJ	analyses
 angle	OBJ	angles
+ankh	OBJ
 antidote	OBJ	antidotes
 apple	OBJ	apples
 arandula	OBJ
 armor	OBJ	armors
 arrow	OBJ	arrows
+artichoke	OBJ-FOO
 arundula	OBJ	arundulas
-athor	OBJ	athors
+athor	OBJ-NAM
 atmosphere	OBJ	atmospheres
 aventail	OBJ	aventails
 axe	OBJ	axes
