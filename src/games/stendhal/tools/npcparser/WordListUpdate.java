@@ -26,6 +26,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import marauroa.server.game.db.DatabaseFactory;
+
 /**
  * WordListUpdate reads the current word list from predefined resources, writes a new updated, pretty
  * formatted list in the file "words.txt" and updates the database table "words".
@@ -33,7 +35,10 @@ import java.util.List;
 public final class WordListUpdate {
 
     public static void main(final String[] args) {
-        run();
+    	// initialize TransactionPool
+		new DatabaseFactory().initializeDatabase();
+
+		run();
     }
 
     public static void run() {

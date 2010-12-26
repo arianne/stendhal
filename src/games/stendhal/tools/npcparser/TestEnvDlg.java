@@ -491,9 +491,11 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private void btLoadZonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadZonesActionPerformed
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-		// load zone configurations to register creature names
+    	// initialize TransactionPool
+		new DatabaseFactory().initializeDatabase();
+
 		try {
-			new DatabaseFactory().initializeDatabase();
+			// load zone configurations to register creature names
 			new ZoneGroupsXMLLoader(new URI("/data/conf/zones.xml")).load();
 		} catch (Exception e) {
 			logger.warn("unable to load zones", e);

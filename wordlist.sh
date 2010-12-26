@@ -1,6 +1,5 @@
-#!/bin/bash
-STENDHAL_VERSION="0.90.5"
+#!/bin/sh
+ant compile_stendhaltools server_build
 
-LOCALCLASSPATH=.:stendhal-server-$STENDHAL_VERSION.jar:marauroa.jar:mysql-connector.jar:log4j.jar:commons-lang.jar
-
-java -cp "${LOCALCLASSPATH}" games.stendhal.tools.npcparser.TestEnvDlg.WordListUpdate
+LOCALCLASSPATH=build/build_stendhaltools:build/build_server:libs/marauroa.jar:libs/log4j.jar:libs/mysql-connector-java-5.1.5-bin.jar:libs/h2.jar
+java -cp "${LOCALCLASSPATH}" games.stendhal.tools.npcparser.WordListUpdate
