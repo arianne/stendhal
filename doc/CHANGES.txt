@@ -6,6 +6,7 @@ Changelog
 *world*
 - full health bonus when you level up
 - support answers via postman are orange
+- added new NPC Caroline (daughter of Fritz) onto Ados market
 
 
 
