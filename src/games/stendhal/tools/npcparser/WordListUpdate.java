@@ -35,13 +35,17 @@ import marauroa.server.game.db.DatabaseFactory;
 public final class WordListUpdate {
 
     public static void main(final String[] args) {
+		String msg = run();
+		
+		System.out.print(msg);
+    }
+
+    public static String run() {
     	// initialize TransactionPool
 		new DatabaseFactory().initializeDatabase();
 
-		run();
-    }
+		StringBuilder log = new StringBuilder();
 
-    public static void run() {
         try {
             final DBWordList wl = new DBWordList();
 
@@ -78,14 +82,17 @@ public final class WordListUpdate {
 
             writer.close();
 
-            System.out.println("The updated word list has been written to the file '" + outputPath + "'.");
+            log.append("The updated word list has been written to the file '" + outputPath + "'.\n");
 
             // update database entries
             DBWordList.writeToDB(wl);
-            System.out.println("The word list has been stored into the database.");
+            log.append("The word list has been stored into the database.\n");
         } catch (final IOException e) {
+        	log.append("Exception: " + e.getMessage() + "\n");
             e.printStackTrace();
         }
+
+        return log.toString();
     }
 
     /**

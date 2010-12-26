@@ -30,6 +30,7 @@ import java.awt.Cursor;
 import java.io.IOException;
 import java.net.URI;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTMLDocument;
@@ -61,6 +62,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private javax.swing.JButton btLoadZones;
     private javax.swing.JButton btMatch;
     private javax.swing.JButton btParse;
+    private javax.swing.JButton btWriteWordlist;
     private javax.swing.JComboBox cbMatchExpr;
     private javax.swing.JComboBox cbMatchType;
     private javax.swing.JComboBox cbSentence;
@@ -114,6 +116,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
         tfWordCount = new javax.swing.JTextField();
         btLoadEntities = new javax.swing.JButton();
         btLoadZones = new javax.swing.JButton();
+        btWriteWordlist = new javax.swing.JButton();
         panelSentence = new javax.swing.JPanel();
         lbSentence = new javax.swing.JLabel();
         cbSentence = new javax.swing.JComboBox();
@@ -157,7 +160,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         panelHeader.setLayout(new java.awt.GridBagLayout());
 
-        lbWordCount.setText("Number of currently registered words:");
+        lbWordCount.setText("Registered words:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -166,6 +169,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         tfWordCount.setEditable(false);
         tfWordCount.setText("0");
+        tfWordCount.setMinimumSize(new java.awt.Dimension(50, 28));
         tfWordCount.setPreferredSize(new java.awt.Dimension(100, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -174,6 +178,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
         panelHeader.add(tfWordCount, gridBagConstraints);
 
         btLoadEntities.setText("load entities");
+        btLoadEntities.setToolTipText("Load entities into word list.");
         btLoadEntities.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLoadEntitiesActionPerformed(evt);
@@ -184,7 +189,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
         panelHeader.add(btLoadEntities, gridBagConstraints);
 
         btLoadZones.setText("load zones");
-        btLoadZones.setActionCommand("load zones");
+        btLoadZones.setToolTipText("Load zone configurations to complete the word list like in the Stendhal server.");
         btLoadZones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLoadZonesActionPerformed(evt);
@@ -193,6 +198,17 @@ public class TestEnvDlg extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(8, 0, 8, 0);
         panelHeader.add(btLoadZones, gridBagConstraints);
+
+        btWriteWordlist.setText("write WL");
+        btWriteWordlist.setToolTipText("Update word list in database and source code.");
+        btWriteWordlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btWriteWordlistActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 8, 0);
+        panelHeader.add(btWriteWordlist, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -509,6 +525,12 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_btLoadZonesActionPerformed
+
+    private void btWriteWordlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btWriteWordlistActionPerformed
+        String msg = WordListUpdate.run();
+
+        JOptionPane.showMessageDialog(this, msg);
+    }//GEN-LAST:event_btWriteWordlistActionPerformed
 
 	private void btParseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btParseActionPerformed
 		updateParsed();
