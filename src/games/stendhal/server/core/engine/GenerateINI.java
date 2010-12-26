@@ -22,10 +22,16 @@ import java.util.Date;
 
 import marauroa.common.crypto.RSAKey;
 
+
+/**
+ * generates a server.ini for Stendhal
+ *
+ * @author hendrik
+ */
 public class GenerateINI {
 
 	/** The name of the output file. */
-	static final String FILENAME = "server.ini";
+	private static String filename = "server.ini";
 
 	
 	/** Where data is read from. */
@@ -128,6 +134,25 @@ public class GenerateINI {
 	}
 
 
+	/**
+	 * generates a server.ini for Stendhal
+	 *
+	 * @param args command line parameters
+	 * @param serverIni name of server.ini to write
+	 * @throws FileNotFoundException in case the file cannot be written
+	 */
+	public static void main(String[] args, String serverIni) throws FileNotFoundException {
+		filename = serverIni;
+		main(args);
+	}
+
+
+	/**
+	 * generates a server.ini for Stendhal
+	 *
+	 * @param args command line parameters
+	 * @throws FileNotFoundException in case the file cannot be written
+	 */
 	public static void main(final String[] args) throws FileNotFoundException {
 		gameName = "stendhal";
 
@@ -169,18 +194,18 @@ public class GenerateINI {
 		System.out.println("Using key of " + keySize + " bits.");
 		System.out.println("Please wait while the key is generated.");
 		rsakey = RSAKey.generateKey(Integer.valueOf(keySize));
-		final PrintWriter out = new PrintWriter(new FileOutputStream(FILENAME));
+		final PrintWriter out = new PrintWriter(new FileOutputStream(filename));
 		write(out);
 		out.close();
 
-		System.out.println(FILENAME + " has been generated.");
+		System.out.println(filename + " has been generated.");
 	}
 
 	private static String getDatabaseSystem() {
 		String temp = "";
 		do {
 			System.out.println("Which database system do you want to use? \"h2\" is an integrated database that ");
-			System.out.println("works out of the box, \"mysql\" requires a MySQL server. If in doubt, say \"h2\" [h2]: ");
+			System.out.print("works out of the box, \"mysql\" requires a MySQL server. If in doubt, say \"h2\" [h2]: ");
 			temp = getStringWithDefault(in, "h2").toLowerCase().trim();
 		} while (!temp.equals("h2") && !temp.equals("mysql"));
 		return temp;
