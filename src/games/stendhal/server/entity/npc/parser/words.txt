@@ -306,6 +306,7 @@ bug	OBJ	bugs
 building	OBJ	buildings
 bulb	OBJ	bulbs
 bull	OBJ-ANI	bulls
+bunny	OBJ-ANI	bunnies
 bureau	OBJ	bureaux
 bus	OBJ	bus
 bush	OBJ	bushes
@@ -403,6 +404,7 @@ doll	OBJ	dolls
 donkey	OBJ-ANI	donkeys
 dress	OBJ	dresses
 drink	OBJ-FOO-FLU	drinks
+dungarees	OBJ	dungarees
 dungeon	OBJ	dungeons
 durin	OBJ	durins
 earth	OBJ	earths
@@ -459,6 +461,7 @@ gate	OBJ	gates
 gem	OBJ	gems
 geography	OBJ	geographies
 germany	OBJ	germanies
+gingerbread	OBJ-FOO	gingerbreads
 gland	OBJ	glands
 glas	OBJ	glas
 glass	OBJ	glasses
@@ -517,6 +520,7 @@ item	OBJ	items
 jail	OBJ	jails
 job	OBJ	jobs
 juice	OBJ-FOO-FLU	juices
+jumpsuit	OBJ	jumpsuits
 kalavan	OBJ-NAM	kalavans
 kanmararn	OBJ	kanmararns
 karma	OBJ	karmas
@@ -603,6 +607,7 @@ oil	OBJ
 onion	OBJ-FOO	onions
 or'ril	OBJ	or'rils
 ore	OBJ	ores
+other	OBJ-PRO	others
 pair	OBJ	pairs
 pan	OBJ	pans
 pansy	OBJ	pansies
@@ -1185,6 +1190,7 @@ next	ADJ
 nice	ADJ
 nomadic	ADJ
 old	ADJ
+orange	ADJ-COL
 orcish	ADJ
 patient	ADJ
 pauldroned	ADJ
@@ -1194,6 +1200,7 @@ poisonous	ADJ
 pretty	ADJ
 private	ADJ
 properly	ADJ
+purple	ADJ-COL
 quick	ADJ
 r	ADJ
 random	ADJ
@@ -1334,3 +1341,4 @@ whatever	IGN
 while	IGN
 yeah	IGN
 yet	IGN
+
