@@ -111,7 +111,15 @@ public class DefaultEntityManager implements EntityManager {
 
 				classToItem.put(clazz, item);
 
-				WordList.getInstance().registerName(item.getItemName(), ExpressionType.OBJECT);
+				String typeString = ExpressionType.OBJECT;
+
+				if (item.getItemClass().equals("food")) {
+					typeString += ExpressionType.SUFFIX_FOOD;
+				} else if (item.getItemClass().equals("drink")) {
+					typeString += ExpressionType.SUFFIX_FLUID;
+				}
+
+				WordList.getInstance().registerName(item.getItemName(), typeString);
 			}
 		} catch (final Exception e) {
 			LOGGER.error("items.xml could not be loaded", e);
