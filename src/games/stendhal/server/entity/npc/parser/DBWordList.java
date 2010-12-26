@@ -225,8 +225,9 @@ public final class DBWordList extends WordList {
 		final DBTransaction transaction = TransactionPool.get().beginWork();
 
 		try {
-			final String query = "select	w.id, w.normalized, w.type, w.plural, w.value,"
-					+ "	s.normalized from words w left outer join words s on s.id = w.alias_id";
+			final String query =
+				"select	w.id, w.normalized, w.type, w.plural, w.value," +
+					"	s.normalized from words w left outer join words s on s.id = w.alias_id";
 
 			final ResultSet res = transaction.query(query, null);
 
