@@ -850,6 +850,7 @@ x	OBJ	xs
 xeno	OBJ	xenos
 xenocium	OBJ	xenocia
 xkcd	OBJ-NAM	xkcds
+xp	OBJ	xps
 yarn	OBJ	yarns
 yclept	OBJ	yclepts
 youngster	OBJ	youngsters
@@ -858,103 +859,188 @@ yrafear	OBJ-NAM	yrafears
 zantedeschia	OBJ	zantedeschias
 zone	OBJ	zones
 
+abe	SUB-NAM
 admin	SUB
 admiral	SUB
+aenihata	SUB-NAM
+agnus	SUB-NAM
+ahba	SUB-NAM
 ahouga	SUB
 albino	SUB
+aldrin	SUB-NAM
+alexander	SUB-NAM
+alice	SUB-NAM
 alien	SUB
+alrak	SUB-NAM
 amazoness	SUB
+andy	SUB-NAM
 angel	SUB
+anna	SUB-NAM
+annie	SUB-NAM
 apprentice	SUB
 arachne	SUB-ANI
 archangel	SUB
 archer	SUB	archers
+archlich	SUB-NAM
 archmage	SUB	archmages
 archrat	SUB-ANI	archrats
+arlindo	SUB-NAM
 aruthon	SUB
-assassin	SUB
+assassin	SUB	assassins
+avalon	SUB-NAM
 avenger	SUB
 axeman	SUB
+azira	SUB-NAM
 baby	SUB	babies
 babybear	SUB-ANI
+baldemar	SUB-NAM
+balduin	SUB-NAM
 balrog	SUB
 bandit	SUB
+baos	SUB-NAM
 barbarian	SUB
+barbarus	SUB-NAM
+bario	SUB-NAM
 bat	SUB-ANI	bats
 bear	SUB-ANI	bears
 beholder	SUB	beholders
 ben	SUB-NAM
+benedicta	SUB-NAM
+beth	SUB-NAM
+bill	SUB-NAM
 bishop	SUB
+blacksheep	SUB-NAM
 blacksmith	SUB
 blader	SUB
+blanca	SUB-NAM
 blordrough	SUB
 blurble	SUB
+bmud	SUB-NAM
 boar	SUB-ANI	boars
 bob	SUB-NAM
+bobby	SUB-NAM
 bodyguard	SUB
+borak	SUB-NAM
+boris	SUB-NAM
 boss	SUB	bosses
+boullabaisse	SUB-NAM
 boy	SUB	boys
 bride	SUB
 brother	SUB
+brui	SUB-NAM
 caiman	SUB-ANI
 cannibal	SUB
 captain	SUB
+carena	SUB-NAM
+carey	SUB-NAM
+carmen	SUB-NAM
+caroline	SUB-NAM
+cassandra	SUB-NAM
 cat	SUB-ANI	cats
 cavalryman	SUB
 caverat	SUB-ANI	caverats
 centaur	SUB-ANI
 ceryl	SUB-NAM
+chalmers	SUB-NAM
 chaman	SUB
 charles	SUB-NAM
 chick	SUB
 chief	SUB	chiefs
 child	SUB	children
 citizen	SUB
+cloudwalker	SUB-NAM
 clurichaun	SUB
 coastguard	SUB
 cobra	SUB-ANI	cobras
+cody	SUB-NAM
 colonel	SUB
 commander	SUB	commanders
+conual	SUB-NAM
+coralia	SUB-NAM
 corporal	SUB
+covester	SUB-NAM
 cowboy	SUB
+cozart	SUB-NAM
 crab	SUB-ANI	crabs
 crocodile	SUB-ANI
 cyclops	SUB	cyclopses
+dag	SUB-NAM
+dagobert	SUB-NAM
+dale	SUB-NAM
 dalmung	SUB
 darkmonk	SUB
 daughter	SUB
 daugther	SUB
+david	SUB-NAM
 death	SUB	deaths
 deer	SUB-ANI
 defender	SUB
 demon	SUB	demons
 deniran	SUB-NAM
+despot	SUB
 deus	SUB	dei
 devil	SUB
 dhohr	SUB-NAM
+diehelm	SUB-NAM
+diogenes	SUB-NAM
 disciple	SUB
+dishwasher	SUB
 djinni	SUB	djinn
 dog	SUB-ANI	dogs
+dorinel	SUB-NAM
+dr	SUB
 dragon	SUB-ANI	dragons
 dragonrider	SUB
+dragontracker	SUB-NAM
+drilenun	SUB-NAM
 duergar	SUB
 dwarf	SUB	dwarves
+easso	SUB-NAM
 efreeti	SUB	efreet
+eheneumniranin	SUB-NAM
+elana	SUB-NAM
 elemental	SUB	elementals
 elephant	SUB-ANI	elephants
 elf	SUB	elves
+elisabeth	SUB-NAM
+eliza	SUB-NAM
+elodrin	SUB-NAM
+elos	SUB-NAM
 emperor	SUB
+enrique	SUB-NAM
 ent	SUB
 entwife	SUB
+eonna	SUB-NAM
+erastus	SUB-NAM
+erna	SUB-NAM
+erodel	SUB-NAM
+errvl	SUB-NAM
+esclara	SUB-NAM
+esolte	SUB-NAM
 exhibits	SUB
 falatheen	SUB
+farmer	SUB
+fatale	SUB-NAM
+feelgood	SUB-NAM
 felina	SUB-NAM
+femme	SUB-NAM
+fidorea	SUB-NAM
+finn	SUB-NAM
+fishmonger	SUB
+fleur	SUB-NAM
+florence	SUB-NAM
+flotto	SUB-NAM
 fox	SUB-ANI	foxes
 friend	SUB
+fritz	SUB-NAM
 frogman	SUB
+garbiddle	SUB-NAM
 gargoyle	SUB	gargoyles
 gashadokuro	SUB
+gaston	SUB-NAM
 general	SUB
+george	SUB-NAM
+gertha	SUB-NAM
 ghost	SUB	ghosts
 giant	SUB
 giantrat	SUB-ANI	giantrats
@@ -967,114 +1053,246 @@ golem	SUB	golems
 googon	SUB
 goose	SUB-ANI	geese
 goran	SUB-NAM
+gordon	SUB-NAM
+grafindle	SUB-NAM
+graham	SUB-NAM
+granny	SUB-NAM
+grim	SUB-NAM
 guard	SUB
 guardian	SUB	guardians
+gulimo	SUB-NAM
 guy	SUB
+haastaja	SUB-NAM
+hackim	SUB-NAM
+hagnurk	SUB-NAM
+haizen	SUB-NAM
+halb	SUB-NAM
+harold	SUB-NAM
+harry	SUB-NAM
+haunchy	SUB-NAM
 hayunn	SUB-NAM
+hazel	SUB-NAM
 he	SUB-PRO	they
 healer	SUB
+helena	SUB-NAM
+henry	SUB-NAM
 hero	SUB	heros
+hogart	SUB-NAM
 horse	SUB-ANI
 hound	SUB-ANI
 housewife	SUB
+huckle	SUB-NAM
 hugo	SUB-NAM
 human	SUB	humans
+hunel	SUB-NAM
 hunter	SUB	hunters
 i	SUB-PRO	we
+ida	SUB-NAM
 idea	SUB
+ilisa	SUB-NAM
 imp	SUB
 imperator	SUB
 io	SUB-NAM
 iou	SUB-NAM
+ivan	SUB-NAM
+iwuhos	SUB-NAM
+jackie	SUB-NAM
+jaer	SUB-NAM
+james	SUB-NAM
+jane	SUB-NAM
 javier	SUB-NAM
+jef	SUB-NAM
+jenny	SUB-NAM
+jens	SUB-NAM
+jessica	SUB-NAM
+jingo	SUB-NAM
+joe	SUB-NAM
+john	SUB-NAM
+johnnnny	SUB-NAM
+jones	SUB-NAM
+josephine	SUB-NAM
+joshua	SUB-NAM
+julius	SUB-NAM
 jynath	SUB-NAM
+kampusch	SUB-NAM
+karl	SUB-NAM
+karlova	SUB-NAM
 kasarkutominubat	SUB
+katerina	SUB-NAM
 katinka	SUB-NAM
+kelicia	SUB-NAM
+kendra	SUB-NAM
+ketteh	SUB-NAM
 killer	SUB
 king	SUB
+klaas	SUB-NAM
 knight	SUB	knights
 kobold	SUB	kobolds
+kormic	SUB-NAM
+kroip	SUB-NAM
 lady	SUB
+laura	SUB-NAM
+lawrence	SUB-NAM
+lda	SUB-NAM
 leader	SUB	leaders
+leander	SUB-NAM
+leigh	SUB-NAM
 leprechaun	SUB
 lich	SUB	liches
 lieutenant	SUB
 lifeguard	SUB
+lil	SUB-NAM
+liliana	SUB-NAM
+linda	SUB-NAM
+linzo	SUB-NAM
 lion	SUB-ANI	lions
 littlefairy	SUB
 littlewitch	SUB
 littlewizard	SUB
 lord	SUB
+lorenz	SUB-NAM
+loretta	SUB-NAM
+lorithien	SUB-NAM
+lukas	SUB-NAM
+lupos	SUB-NAM
+maerion	SUB-NAM
 mage	SUB	mages
 magician	SUB
+malleus	SUB-NAM
 man	SUB	men
+marcus	SUB-NAM
 margaret	SUB-NAM
+mariel	SUB-NAM
 mark	SUB-NAM
+markovich	SUB-NAM
+marla	SUB-NAM
+martha	SUB-NAM
+martin	SUB-NAM
 mary	SUB-NAM
 master	SUB
 matronmother	SUB
+mattori	SUB-NAM
+mayor	SUB-NAM
+mcpegleg	SUB-NAM
 me	SUB-PRO	=i	us
+meatoch	SUB-NAM
+merenwen	SUB-NAM
+mick	SUB-NAM
+milquetoast	SUB-NAM
 minotaur	SUB
+mirg	SUB-NAM
+miss	SUB
 mistress	SUB
 mohiko	SUB
 mommy	SUB
 monk	SUB
 monkey	SUB	monkeys
+monogenes	SUB-NAM
 monster	SUB
+morgrin	SUB-NAM
 mother	SUB
+mr	SUB
+mrotho	SUB-NAM
+mrs	SUB
 mummy	SUB	mummies
 mutant	SUB
 naga	SUB
-necromancer	SUB
+naratha	SUB-NAM
+necromancer	SUB	necromancers
 necrosophia	SUB
+nicklesworth	SUB-NAM
 ninja	SUB
+nishiya	SUB-NAM
+nnyddion	SUB-NAM
 no-one	SUB
 nomad	SUB
+nomyr	SUB-NAM
 noone	SUB
 nuggetcutter	SUB-NAM
 nymph	SUB
+ognir	SUB-NAM
 ogre	SUB	ogres
 oni	SUB
+opal	SUB-NAM
 orc	SUB	orcs
+orchiwald	SUB-NAM
+ortiv	SUB-NAM
+ouchit	SUB-NAM
 overlord	SUB
+pam	SUB-NAM
 panda	SUB-ANI
+parillaud	SUB-NAM
 parrot	SUB-ANI
 pawn	SUB
+pdiddi	SUB-NAM
 peasant	SUB
+pedinghaus	SUB-NAM
+pedro	SUB-NAM
 pegasus	SUB-ANI
 penguin	SUB-ANI	penguins
 people	SUB
+pequod	SUB-NAM
 peter	SUB-NAM
+phalk	SUB-NAM
 phantom	SUB
+philomena	SUB-NAM
 pigeon	SUB-ANI
 pirate	SUB
+pjotr	SUB-NAM
 player	SUB	players
+plink	SUB-NAM
 postman	SUB
 priest	SUB
 purist	SUB
 quartermaster	SUB
 queen	SUB
+radish	SUB-NAM
+rallman	SUB-NAM
 ranger	SUB
 rat	SUB-ANI	rats
 ratman	SUB	ratmen
 ratwoman	SUB	ratwomen
+ravashack	SUB-NAM
 razorrat	SUB-ANI	razorrats
+reaper	SUB-NAM
+repaer	SUB-NAM
 reptile	SUB-ANI
+revi	SUB-NAM
+ricardo	SUB-NAM
+richard	SUB-NAM
+ritati	SUB-NAM
 robot	SUB
+rohn	SUB-NAM
 roohako	SUB
 rook	SUB
+ross	SUB-NAM
+ruarhi	SUB-NAM
 sacerdotist	SUB	sacerdotists
+sakhs	SUB-NAM
 sally	SUB-NAME
+salva	SUB-NAM
+sam	SUB-NAM
+saman	SUB-NAM
 samurai	SUB
+santiago	SUB-NAM
+sara	SUB-NAM
+sarzina	SUB-NAM
+saskia	SUB-NAM
+sato	SUB-NAM
+savanka	SUB-NAM
 scientist	SUB
 sergeant	SUB
+sergej	SUB-NAM
 servant	SUB
 she	SUB-PRO	they
 sheepman	SUB
 siandra	SUB-NAM
+silvanus	SUB-NAM
+simon	SUB-NAM
 sister	SUB
 skeleton	SUB	skeletons
 skelly	SUB
+skye	SUB-NAM
 slime	SUB	slimes
 snake	SUB-ANI
 snarfkin	SUB
@@ -1086,41 +1304,90 @@ spearman	SUB
 spider	SUB-ANI
 spirit	SUB	spirits
 stalker	SUB
+starkad	SUB-NAM
+sten	SUB-NAM
+stichard	SUB-NAM
 storekeeper	SUB
 student	SUB
+sue	SUB-NAM
 superogre	SUB
 susi	SUB-NAM
 swordsman	SUB
+tad	SUB-NAM
+tamara	SUB-NAM
+tanquilos	SUB-NAM
+taxman	SUB
+taylor	SUB-NAM
+tendertwig	SUB-NAM
+terry	SUB-NAM
+thanatos	SUB-NAM
 them	SUB
 thing	SUB
 thonatus	SUB-NAM
 thug	SUB
 tiger	SUB-ANI	tigers
+timothy	SUB-NAM
 tom	SUB-NAM
+tomi	SUB-NAM
+tor'koom	SUB-NAM
+trainer	SUB
+trillium	SUB-NAM
 troll	SUB	trolls
 trooper	SUB
 twin	SUB
+tywysoga	SUB-NAM
+uncle	SUB
 unicorn	SUB-ANI	unicorns
+valo	SUB-NAM
 vampire	SUB
 vampirette	SUB
+vasi	SUB-NAM
 vegetarian	SUB	vegetarians
 venomrat	SUB-ANI	venomrats
 veteran	SUB	veterans
 viceroy	SUB
+vietta	SUB-NAM
 viking	SUB	vikings
+vincento	SUB-NAM
+vonda	SUB-NAM
+vulcanus	SUB-NAM
+waerryna	SUB-NAM
 warrior	SUB	warriors
+wehoh	SUB-NAM
 werewolf	SUB-ANI
+whiggins	SUB-NAM
+wikipedian	SUB-NAM
+wilfred	SUB-NAM
+windmaster	SUB-NAM
 windwalker	SUB
 wisewoman	SUB
+wishman	SUB-NAM
 witch	SUB
 wizard	SUB
 wolf	SUB-ANI	wolves
 woman	SUB	women
+woody	SUB-NAM
+wrvil	SUB-NAM
+wrviliza	SUB-NAM
 wumpus	SUB	wumpuses
+xaruhwaiyz	SUB-NAM
+xeoilia	SUB-NAM
+xhiphin	SUB-NAM
 xin	SUB-NAM
+xoderos	SUB-NAM
+yan	SUB-NAM
+yance	SUB-NAM
+yearl	SUB-NAM
+yeti	SUB-ANI
+ylflia	SUB-NAM
+yorphin	SUB-NAM
 you	SUB-PRO	you
 yourself	SUB-PRO
 zak	SUB-NAM
+zara	SUB-NAM
+zekiel	SUB-NAM
+zogfang	SUB-NAM
+zohos	SUB-NAM
 zombie	SUB	zombies
 zynn	SUB-NAM
 
@@ -1202,6 +1469,7 @@ headless	ADJ
 high	ADJ
 holy	ADJ
 horned	ADJ
+humble	ADJ
 immortal	ADJ
 imperial	ADJ
 incorporeal	ADJ
