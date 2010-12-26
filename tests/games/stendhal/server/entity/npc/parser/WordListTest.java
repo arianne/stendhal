@@ -73,7 +73,7 @@ public class WordListTest {
 		w = wl.find("water");
 		assertNotNull(w);
 		assertTrue(w.getType().isObject());
-		assertEquals(ExpressionType.OBJECT + ExpressionType.SUFFIX_FLUID, w.getTypeString());
+		assertEquals(ExpressionType.OBJECT + ExpressionType.SUFFIX_FOOD + ExpressionType.SUFFIX_FLUID, w.getTypeString());
 		assertEquals("waters", w.getPlurSing());
 
 		w = wl.find("she");

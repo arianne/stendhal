@@ -634,9 +634,19 @@ public class WordList {
 		}
 	}
 
+	/**
+	 * Check for compatible types.
+	 * @param lastType type of the last word in an expression
+	 * @param typeString expected type string
+	 * @return
+	 */
 	private static boolean checkNameCompatibleLastType(
 			final ExpressionType lastType, final String typeString) {
 		if (lastType.getTypeString().startsWith(typeString)) {
+			return true;
+		}
+
+		if (typeString.startsWith(lastType.getTypeString())) {
 			return true;
 		}
 
@@ -650,10 +660,10 @@ public class WordList {
 
 		// Ignore words like "chicken", "cat" and "incorporeal armor", which are
 		// registered as objects, but also used as subjects.
-		if (lastType.isObject() && typeString.equals(ExpressionType.SUBJECT)) {
+		if (lastType.isObject() && typeString.startsWith(ExpressionType.SUBJECT)) {
 			return true;
 		}
-		if (lastType.isSubject() && typeString.equals(ExpressionType.OBJECT)) {
+		if (lastType.isSubject() && typeString.startsWith(ExpressionType.OBJECT)) {
 			return true;
 		}
 

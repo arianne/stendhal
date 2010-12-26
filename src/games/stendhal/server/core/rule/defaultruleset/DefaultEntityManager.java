@@ -116,6 +116,7 @@ public class DefaultEntityManager implements EntityManager {
 				if (item.getItemClass().equals("food")) {
 					typeString += ExpressionType.SUFFIX_FOOD;
 				} else if (item.getItemClass().equals("drink")) {
+					typeString += ExpressionType.SUFFIX_FOOD;
 					typeString += ExpressionType.SUFFIX_FLUID;
 				}
 

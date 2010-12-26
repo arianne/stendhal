@@ -221,7 +221,7 @@ public class ConversationParserTest {
 		assertEquals(10, sentence.getObject(0).getAmount());
 		assertEquals("poison", sentence.getObject(0).getNormalized());
 		assertEquals("sell poison", sentence.getNormalized());
-		assertEquals("sell/VER poison/OBJ-FLU", sentence.toString());
+		assertEquals("sell/VER poison/OBJ-FOO-FLU", sentence.toString());
 
 		sentence = ConversationParser.parse("sell 10 bottles of mega poison");
 		assertFalse(sentence.hasError());
@@ -229,7 +229,7 @@ public class ConversationParserTest {
 		assertEquals(10, sentence.getObject(0).getAmount());
 		assertEquals("mega poison", sentence.getObject(0).getNormalized());
 		assertEquals("sell mega poison", sentence.getNormalized());
-		assertEquals("sell/VER mega poison/OBJ-FLU", sentence.toString());
+		assertEquals("sell/VER mega poison/OBJ-FOO-FLU", sentence.toString());
 	}
 
 	/**
