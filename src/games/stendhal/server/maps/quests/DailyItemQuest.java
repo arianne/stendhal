@@ -261,7 +261,7 @@ public class DailyItemQuest extends AbstractQuest {
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new DropRecordedItemAction(QUEST_SLOT,0));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
-		actions.add(new IncrementQuestAction(QUEST_SLOT,2,1));
+		actions.add(new IncrementQuestAction(QUEST_SLOT, 2, 1));
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		actions.add(new IncreaseXPDependentOnLevelAction(8, 90.0));
 		actions.add(new IncreaseKarmaAction(10.0));
@@ -330,26 +330,29 @@ public class DailyItemQuest extends AbstractQuest {
 		if ("rejected".equals(questState)) {
 			res.add("I do not want to help Ados.");
 			return res;
-		}		
-		
+		}
+
 		res.add("I want to help Ados.");
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 			final String[] tokens = (questState + ";0;0;0").split(";");
 			final String[] elements = tokens[0].split("=");
 			String questItem = elements[0];
 			int amount = 1;
-			if(elements.length > 1) {
-				amount=MathHelper.parseIntDefault(elements[1], 1);
+			if (elements.length > 1) {
+				amount = MathHelper.parseIntDefault(elements[1], 1);
 			}
 			if (!player.isEquipped(questItem, amount)) {
-				res.add(("I have been asked to fetch " +Grammar.quantityplnoun(amount, questItem, "a") +" to help Ados. I haven't got it yet."));
+				res.add(("I have been asked to fetch "
+						+ Grammar.quantityplnoun(amount, questItem, "a") + " to help Ados. I haven't got it yet."));
 			} else {
-				res.add(("I have found " +Grammar.quantityplnoun(amount, questItem, "a")+" to help Ados and need to take it."));
+				res.add(("I have found "
+						+ Grammar.quantityplnoun(amount, questItem, "a") + " to help Ados and need to take it."));
 			}
 		}
 		int repetitions = getNumberOfRepetitions(player);
 		if (repetitions > 0) {
-			res.add("I helped ados with supplies for "+Grammar.plnoun(repetitions, "time")+" so far");
+			res.add("I helped ados with supplies for "
+					+ Grammar.plnoun(repetitions, "time") + " so far");
 		}
 		if (isCompleted(player)) {
 			if (!isRepeatable(player)) {
@@ -364,9 +367,8 @@ public class DailyItemQuest extends AbstractQuest {
 
 	@Override
 	public int getNumberOfRepetitions(Player player) {
-		String questState = player.getQuest(QUEST_SLOT);
-		final String[] tokens = (questState + ";0;0;0").split(";");
-		return MathHelper.parseIntDefault(tokens[2], 0);
+		String questState = player.getQuest(QUEST_SLOT, 2);
+		return MathHelper.parseIntDefault(questState, 0);
 	}
 
 	@Override
