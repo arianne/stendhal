@@ -17,9 +17,15 @@ import games.stendhal.client.gui.layout.SLayout;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -36,6 +42,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
+import org.apache.log4j.Logger;
+
 /**
  * Progress status window. For displaying quest information.
  */
@@ -48,11 +56,17 @@ public class ProgressLog {
 	private static final int INDEX_WIDTH = 180;
 	/** Image used for the log background */
 	private static final String BACKGROUND_IMAGE = "data/gui/scroll_background.png";
+	/** Name of the font used for the html areas. Should match the file name without .ttf */
+	private static final String FONT_NAME = "BlackChancery";
+	/** Font used for the html areas */
+	private static final String FONT = "data/gui/" + FONT_NAME + ".ttf";
 	/**
 	 * StyleSheet for the scroll html areas. Margins are needed to avoid
 	 * drawing over the scroll borders.
 	 */
-	private static final String STYLE_SHEET = "<style type=\"text/css\">body {margin:12px} p {margin:4px 0px} a {color:#a00000} li, ul {margin-left:10px}</style>";
+	private static final String STYLE_SHEET = "<style type=\"text/css\">body {font-family:"
+		+ FONT_NAME +
+		"; margin:12px} p {margin:4px 0px} a {color:#a00000} li, ul {margin-left:10px}</style>";
 	
 	/** The enclosing window */
 	JDialog window;
@@ -351,6 +365,31 @@ public class ProgressLog {
 	private static class PrettyEditorPane extends JEditorPane {
 		private final BackgroundPainter background;
 		
+		// load an atmospheric font for the text
+		static {
+			Logger logger = Logger.getLogger(PrettyEditorPane.class);
+			try {
+			     GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			     // Call via reflection to keep supporting java 1.5
+			     Method m = ge.getClass().getMethod("registerFont", Font.class);
+			     m.invoke(ge, Font.createFont(Font.TRUETYPE_FONT, PrettyEditorPane.class.getClassLoader().getResourceAsStream(FONT)));
+			} catch (IOException e) {
+				logger.error("Error loading custom font", e);
+			} catch (FontFormatException e) {
+				logger.error("Error loading custom font", e);
+			} catch (SecurityException e) {
+				logger.error("Error loading custom font", e);
+			} catch (NoSuchMethodException e) {
+				logger.error("Error loading custom font. Java version 6 or later is required for that to work.");
+			} catch (IllegalArgumentException e) {
+				logger.error("Error loading custom font", e);
+			} catch (IllegalAccessException e) {
+				logger.error("Error loading custom font", e);
+			} catch (InvocationTargetException e) {
+				logger.error("Error loading custom font", e);
+			}
+		}
+
 		/**
 		 * Create a new PrettyEditorPane.
 		 */
