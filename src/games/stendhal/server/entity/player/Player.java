@@ -2001,9 +2001,10 @@ public class Player extends RPEntity {
 	 * removes a buddy to the player's buddy list
 	 * 
 	 * @param name the name of the buddy
+	 * @return true if a buddy was removed
 	 */
-	public void removeBuddy(String name) {
-		remove("buddies", name);
+	public boolean removeBuddy(String name) {
+		return remove("buddies", name) != null;
 	}
 
 	@Override

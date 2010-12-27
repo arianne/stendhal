@@ -24,12 +24,15 @@ class RemoveBuddyAction implements ActionListener {
 		if (action.has(TARGET)) {
 			final String who = action.get(TARGET);
 
-			player.removeBuddy(who);
+			if (player.removeBuddy(who)) {
+				new GameEvent(player.getName(), "buddy", "remove", who).raise();
+				player.sendPrivateText(who + " was removed from your buddy list.");
 
-			new GameEvent(player.getName(), "buddy", "remove", who).raise();
-			player.sendPrivateText(who + " was removed from your buddy list.");
-			// TEMP! Supreceeded by /unignore
-			player.removeIgnore(who);
+				// TEMP! superseded by /unignore
+				player.removeIgnore(who);
+			} else {
+				player.sendPrivateText("There is no \"" + who + "\" in your buddy list.");
+			}
 		}
 	}
 
