@@ -8,6 +8,9 @@ Changelog
 - support answers via postman are orange
 - added new NPC Caroline (daughter of Fritz) onto Ados market
 
+*fixes*
+- add buddies only once to the buddy list and display their canonical name
+- display the count of completed daily monster and daily item quests in the quest history
 
 
 0.90.1
