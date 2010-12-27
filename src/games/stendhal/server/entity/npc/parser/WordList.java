@@ -17,9 +17,7 @@ import games.stendhal.common.Grammar;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -31,6 +29,7 @@ import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import marauroa.common.Log4J;
+import marauroa.common.io.UnicodeSupportingInputStreamReader;
 
 import org.apache.log4j.Logger;
 
@@ -106,7 +105,7 @@ public class WordList {
 
         if (str != null) {
     		try {
-    			final BufferedReader reader = new BufferedReader(new InputStreamReader(str, "UTF-8"));
+    			final BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(str, "UTF-8"));
 
     			try {
     				read(reader, null);
@@ -119,8 +118,6 @@ public class WordList {
     					logger.error("error while closing reader stream for '"+WORDS_FILENAME+"'", e);
     				}
     			}
-    		} catch (UnsupportedEncodingException e) {
-				logger.error("error while reading resource file '"+WORDS_FILENAME+"'", e);
 			} finally {
     			try {
     				str.close();

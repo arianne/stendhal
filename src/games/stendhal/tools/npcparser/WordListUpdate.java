@@ -20,11 +20,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import marauroa.common.io.UnicodeSupportingInputStreamReader;
 import marauroa.server.game.db.DatabaseFactory;
 
 /**
@@ -49,7 +49,7 @@ public final class WordListUpdate {
         try {
             // read in the current word list including comment lines
             final InputStream str = WordList.class.getResourceAsStream(WordList.WORDS_FILENAME);
-            final BufferedReader reader = new BufferedReader(new InputStreamReader(str, "UTF-8"));
+            final BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(str, "UTF-8"));
             final List<String> comments = new ArrayList<String>();
 
             try {
