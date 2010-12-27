@@ -114,11 +114,7 @@ public class DailyMonsterQuestTest {
 		assertTrue(bob.hasQuest("daily"));
 		assertTrue(en.step(bob, "complete"));
 		assertTrue(bob.events().isEmpty());
-		
 	}
-	
-	
-	
 	
 	/**
 	 * Tests for pickIdealCreature.

@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -304,22 +305,25 @@ public class DailyMonsterQuest extends AbstractQuest {
 			res.add("I do not want to help Semos.");
 			return res;
 		}
-		
+
 		res.add("I want to help Semos.");
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
-			final boolean questDone = new KilledForQuestCondition(QUEST_SLOT,0).fire(player, null, null);
+			final boolean questDone = new KilledForQuestCondition(QUEST_SLOT, 0)
+					.fire(player, null, null);
 			final String creatureToKill = getCreatureToKillFromPlayer(player);
 			if (!questDone) {
-				res.add("I have been asked to kill a "+creatureToKill+" to help Semos. I haven't killed it yet.");
+				res.add("I have been asked to kill a " + creatureToKill
+						+ " to help Semos. I haven't killed it yet.");
 			} else {
-				res.add("I have killed the "+creatureToKill+" to help Semos.");
+				res.add("I have killed the " + creatureToKill
+						+ " to help Semos.");
 			}
 		}
 		if (player.isQuestCompleted(QUEST_SLOT)) {
 			final String[] tokens = (questState + ";0;0;0").split(";");
 			final String questLast = tokens[1];
 			final long timeRemaining = (Long.parseLong(questLast) + MathHelper.MILLISECONDS_IN_ONE_DAY)
-			- System.currentTimeMillis();
+					- System.currentTimeMillis();
 
 			if (timeRemaining > 0L) {
 				res.add("I killed the last creature the mayor asked me to kill and claimed my reward within the last 24 hours.");
@@ -329,8 +333,9 @@ public class DailyMonsterQuest extends AbstractQuest {
 		}
 		// add to history how often player helped Semos so far
 		final int repetitions = getNumberOfRepetitions(player);
-		if(repetitions > 0) {
-			res.add("I helped and saved semos for "+Grammar.plnoun(repetitions, "time")+" so far");
+		if (repetitions > 0) {
+			res.add("I helped and saved semos for "
+					+ Grammar.quantityNumberStrNoun(repetitions, "time") + " so far");
 		}
 		return res;
 	}
@@ -429,7 +434,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				"I'm afraid I didn't send you on a #quest yet.",
 				null);
-		
+
 		// player already completed this quest
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,
@@ -437,8 +442,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				"You already completed the last quest I had given to you.",
 				null);
-		
-		// player didnt killed creature 
+
+		// player didn't killed creature 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,
 				new AndCondition(
@@ -455,7 +460,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 									+ " yet. Go and do it and say #complete only after you're done.");							
 					}
 				});
-		
+
 		// player killed creature
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,
@@ -465,8 +470,12 @@ public class DailyMonsterQuest extends AbstractQuest {
 				        new KilledForQuestCondition(QUEST_SLOT, 0)),
 				ConversationStates.ATTENDING, 
 				null,
-				new MultipleActions(new DailyQuestCompleteAction(), new ProcessReachedQuestAchievementsAction()));
-		}
+				new MultipleActions(
+						new DailyQuestCompleteAction(),
+						new ProcessReachedQuestAchievementsAction(),
+						new IncrementQuestAction(QUEST_SLOT, 2, 1)
+		));
+	}
 
 	/**
 	 * player said "another"
@@ -531,19 +540,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	@Override
 	public int getNumberOfRepetitions(Player player) {
-		String quest = player.getQuest(QUEST_SLOT, 2);
-
-		if (quest==null || quest.equals("null")) {
-			return 0;
-		} else {
-			try {
-				return Integer.parseInt(quest);
-			} catch (NumberFormatException e) {
-				logger.error("The player "+ player.getName() + "has a broken quest slot: "+player.getQuest(QUEST_SLOT), e);
-				return 0;
-			}
-		}
+		String questState = player.getQuest(QUEST_SLOT, 2);
+		return MathHelper.parseIntDefault(questState, 0);
 	}
-	
 	
 }
