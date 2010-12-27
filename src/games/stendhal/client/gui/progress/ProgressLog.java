@@ -362,6 +362,7 @@ public class ProgressLog {
 	/**
 	 * A HTML JEditorPane with a background image.
 	 */
+	@SuppressWarnings("serial")
 	private static class PrettyEditorPane extends JEditorPane {
 		private final BackgroundPainter background;
 		
