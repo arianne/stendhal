@@ -17,6 +17,7 @@ import games.stendhal.client.gui.layout.SLayout;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -40,11 +41,18 @@ import javax.swing.event.HyperlinkListener;
  */
 public class ProgressLog {
 	/** Width of the window content */ 
-	private static final int PAGE_WIDTH = 400;
+	private static final int PAGE_WIDTH = 450;
 	/** Height of the window content */
 	private static final int PAGE_HEIGHT = 300;
 	/** Width of the index area of a page */
-	private static final int INDEX_WIDTH = 150;
+	private static final int INDEX_WIDTH = 180;
+	/** Image used for the log background */
+	private static final String BACKGROUND_IMAGE = "data/gui/scroll_background.png";
+	/**
+	 * StyleSheet for the scroll html areas. Margins are needed to avoid
+	 * drawing over the scroll borders.
+	 */
+	private static final String STYLE_SHEET = "<style type=\"text/css\">body {margin:12px} p {margin:4px 0px} li, ul {margin-left:10px}</style>";
 	
 	/** The enclosing window */
 	JDialog window;
@@ -60,7 +68,6 @@ public class ProgressLog {
 		window = new JDialog(j2DClient.get().getMainFrame(), name);
 		
 		tabs = new JTabbedPane();
-		tabs.setFocusable(false);
 		tabs.setPreferredSize(new Dimension(PAGE_WIDTH, PAGE_HEIGHT));
 		tabs.addChangeListener(new TabChangeListener());
 		
@@ -176,10 +183,7 @@ public class ProgressLog {
 			add(panels, SBoxLayout.constraint(SLayout.EXPAND_X, 
 					SLayout.EXPAND_Y));
 			
-			indexArea = new JEditorPane();
-			indexArea.setContentType("text/html");
-			indexArea.setEditable(false);
-			indexArea.setFocusable(false);
+			indexArea = new PrettyEditorPane();
 			indexArea.addHyperlinkListener(this);
 			
 			indexScrollPane = new JScrollPane(indexArea);
@@ -188,10 +192,7 @@ public class ProgressLog {
 			indexScrollPane.setMinimumSize(new Dimension(INDEX_WIDTH, 0));
 			panels.add(indexScrollPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
 			
-			contentArea = new JEditorPane();
-			contentArea.setContentType("text/html");
-			contentArea.setEditable(false);
-			contentArea.setFocusable(false);
+			contentArea = new PrettyEditorPane();
 			// Does not need a listener. There should be no links
 			
 			contentScrollPane = new JScrollPane(contentArea);
@@ -200,7 +201,6 @@ public class ProgressLog {
 			
 			// A button for reloading the page contents
 			JButton refresh = new JButton("Update");
-			refresh.setFocusable(false);
 			refresh.setAlignmentX(Component.RIGHT_ALIGNMENT);
 			refresh.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(SBoxLayout.COMMON_PADDING,
 					SBoxLayout.COMMON_PADDING, SBoxLayout.COMMON_PADDING, 
@@ -245,7 +245,9 @@ public class ProgressLog {
 		 */
 		public void setIndex(List<String> subjects, ProgressStatusQuery onClick) {
 			StringBuilder text = new StringBuilder("<html>");
+			text.append(STYLE_SHEET);
 			for (String elem : subjects) {
+				text.append("<p>");
 				// Make the elements clickable only if we have a handler for the
 				// clicks
 				if (onClick != null) {
@@ -257,7 +259,6 @@ public class ProgressLog {
 				} else {
 					text.append(elem);
 				}
-				text.append("<p>");
 			}
 			text.append("</html>");
 			indexArea.setText(text.toString());
@@ -287,7 +288,8 @@ public class ProgressLog {
 		 * @param contents content paragraphs
 		 */
 		void setContent(String header, String description, List<String> contents) {
-			StringBuilder text = new StringBuilder("<html><style type=\"text/css\">ul, li {margin-left:10px}</style>");
+			StringBuilder text = new StringBuilder("<html>");
+			text.append(STYLE_SHEET);
 
 			// header
 			if (header != null) {
@@ -340,6 +342,29 @@ public class ProgressLog {
 					contentQuery.fire(contentQueryData);
 				}
 			}
+		}
+	}
+	
+	/**
+	 * A HTML JEditorPane with a background image.
+	 */
+	private static class PrettyEditorPane extends JEditorPane {
+		private final BackgroundPainter background;
+		
+		/**
+		 * Create a new PrettyEditorPane.
+		 */
+		public PrettyEditorPane() {
+			background = new BackgroundPainter(BACKGROUND_IMAGE);
+			setOpaque(false);
+			setContentType("text/html");
+			setEditable(false);
+		}
+		
+		@Override
+		protected void paintComponent(Graphics g) {
+			background.paint(g, getWidth(), getHeight());
+			super.paintComponent(g);
 		}
 	}
 }
