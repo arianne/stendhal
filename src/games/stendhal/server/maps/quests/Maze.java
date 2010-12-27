@@ -57,8 +57,6 @@ public class Maze extends AbstractQuest {
 				return res;
 			}
 			res.add("Haizen created a magial maze for me to solve.");
-			final String questState = player.getQuest(getSlotName());
-			final String tokens[] = questState.split(";");
 			if (!isCompleted(player)) {
 				res.add("I couldn't solve the last maze.");
 			} else {
