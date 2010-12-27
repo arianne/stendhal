@@ -102,6 +102,7 @@ eat	VER
 elddir	VER
 embark	VER
 engage	VER
+enter	VER
 escape	VER
 evael	VER
 examine	VER
@@ -118,6 +119,7 @@ fetch	VER
 fight	VER
 fill	VER
 find	VER
+finish	VER
 fit	VER
 fix	VER
 flee	VER
@@ -183,6 +185,7 @@ play	VER
 prefer	VER
 prolong	VER
 protect	VER
+purchase	VER
 put	VER
 rain	VER
 recognize	VER
@@ -192,6 +195,7 @@ remind	VER
 remove	VER
 rent	VER
 report	VER
+resell	VER
 reserve	VER
 reset	VER
 return	VER
@@ -231,6 +235,7 @@ swap	VER
 take	VER
 talk	VER
 tease	VER
+teleport	VER
 tell	VER
 thank	VER
 there's	VER
@@ -268,6 +273,8 @@ analysis	OBJ	analyses
 angle	OBJ	angles
 ankh	OBJ	ankhs
 antidote	OBJ-FOO-FLU	antidotes
+apartment	OBJ	apartments
+apology	OBJ	apologies
 apple	OBJ-FOO	apples
 arandula	OBJ
 armor	OBJ	armors
@@ -409,6 +416,7 @@ deal	OBJ	deals
 deathmatch	OBJ	deathmatches
 department	OBJ	departments
 description	OBJ	descriptions
+detail	OBJ	details
 diamond	OBJ	diamonds
 dice	OBJ	dice
 difference	OBJ	differences
@@ -471,6 +479,7 @@ foot	OBJ	feet
 forge	OBJ	forges
 frostshade	OBJ-NAM	frostshades
 fun	OBJ	funs
+fuse	OBJ	fuses
 future	OBJ	futures
 gambling	OBJ	gamblings
 game	OBJ	games
@@ -539,6 +548,7 @@ it	OBJ-PRO	they
 item	OBJ	items
 jail	OBJ	jails
 job	OBJ	jobs
+joke	OBJ	jokes
 juice	OBJ-FOO-FLU	juices
 jumpsuit	OBJ	jumpsuits
 kalavan	OBJ-NAM	kalavans
@@ -560,6 +570,7 @@ larva	OBJ	larvae
 lavitae	OBJ-NAM	lavitaes
 leek	OBJ-FOO	leeks
 leg	OBJ	legs
+letter	OBJ	letters
 level	OBJ	levels
 liberty	OBJ	liberties
 library	OBJ	libraries
@@ -583,11 +594,13 @@ madaram	OBJ	madarams
 magic	OBJ	magics
 mainio	OBJ	mainios
 mandragora	OBJ
+manner	OBJ	manners
 map	OBJ	maps
 marble	OBJ	marbles
 mask	OBJ	masks
 match	OBJ	matches
 matrix	OBJ	matrices
+maze	OBJ	mazes
 meat	OBJ-FOO	meats
 medicine	OBJ	medicines
 militia	OBJ	militias
@@ -619,6 +632,7 @@ neighborhood	OBJ	neighborhoods
 news	OBJ	news
 night	OBJ	nights
 nihonto	OBJ	nihontos
+none	OBJ-PRO	nones
 noose	OBJ	nooses
 nose	OBJ	noses
 note	OBJ	notes
@@ -643,6 +657,7 @@ paper	OBJ	papers
 park	OBJ	parks
 patch	OBJ	patches
 path	OBJ	paths
+payment	OBJ	payments
 pearl	OBJ	pearls
 perch	OBJ-FOO-ANI	perches
 pestle	OBJ	pestles
@@ -684,6 +699,7 @@ rainbow	OBJ	rainbows
 ram	OBJ-ANI	rams
 ranch	OBJ	ranches
 rate	OBJ	rates
+regard	OBJ	regards
 reputation	OBJ	reputations
 request	OBJ	requests
 restaurant	OBJ	restaurants
@@ -779,10 +795,12 @@ swamp	OBJ	swamps
 sweatshirt	OBJ	sweatshirts
 swimsuit	OBJ	swimsuits
 sword	OBJ	swords
+symbol	OBJ	symbols
 table	OBJ	tables
 task	OBJ	tasks
 taste	OBJ	tastes
 tavern	OBJ	taverns
+tax	OBJ	taxes
 tea	OBJ-FOO-FLU	teas
 teddy	OBJ	teddies
 temple	OBJ	temples
@@ -833,6 +851,7 @@ wardrobe	OBJ	wardrobes
 water	OBJ-FOO-FLU	waters
 way	OBJ	ways
 weapon	OBJ	weapons
+weave	OBJ	weaves
 wedding	OBJ	weddings
 week	OBJ	weeks
 whiskey	OBJ-FOO-FLU	whiskeys
@@ -890,6 +909,7 @@ assassin	SUB	assassins
 avalon	SUB-NAM
 avenger	SUB
 axeman	SUB
+azazel	SUB-NAM
 azira	SUB-NAM
 baby	SUB	babies
 babybear	SUB-ANI
@@ -901,6 +921,7 @@ baos	SUB-NAM
 barbarian	SUB
 barbarus	SUB-NAM
 bario	SUB-NAM
+barrett	SUB-NAM
 bat	SUB-ANI	bats
 bear	SUB-ANI	bears
 beholder	SUB	beholders
@@ -944,6 +965,7 @@ ceryl	SUB-NAM
 chalmers	SUB-NAM
 chaman	SUB
 charles	SUB-NAM
+cherubiel	SUB-NAM
 chick	SUB
 chief	SUB	chiefs
 child	SUB	children
@@ -964,6 +986,7 @@ cozart	SUB-NAM
 crab	SUB-ANI	crabs
 crocodile	SUB-ANI
 cyclops	SUB	cyclopses
+cyk	SUB-NAM
 dag	SUB-NAM
 dagobert	SUB-NAM
 dale	SUB-NAM
@@ -977,6 +1000,7 @@ deer	SUB-ANI
 defender	SUB
 demon	SUB	demons
 deniran	SUB-NAM
+denson	SUB-NAM
 despot	SUB
 deus	SUB	dei
 devil	SUB
@@ -1007,10 +1031,12 @@ eliza	SUB-NAM
 elodrin	SUB-NAM
 elos	SUB-NAM
 emperor	SUB
+enemy	SUB
 enrique	SUB-NAM
 ent	SUB
 entwife	SUB
 eonna	SUB-NAM
+equal	SUB	equals
 erastus	SUB-NAM
 erna	SUB-NAM
 erodel	SUB-NAM
@@ -1026,14 +1052,18 @@ felina	SUB-NAM
 femme	SUB-NAM
 fidorea	SUB-NAM
 finn	SUB-NAM
+fisherman	SUB
 fishmonger	SUB
 fleur	SUB-NAM
 florence	SUB-NAM
 flotto	SUB-NAM
 fox	SUB-ANI	foxes
+frampton	SUB-NAM
 friend	SUB
 fritz	SUB-NAM
 frogman	SUB
+gabriel	SUB-NAM
+gamblos	SUB-NAM
 garbiddle	SUB-NAM
 gargoyle	SUB	gargoyles
 gashadokuro	SUB
@@ -1078,6 +1108,7 @@ helena	SUB-NAM
 henry	SUB-NAM
 hero	SUB	heros
 hogart	SUB-NAM
+holmes	SUB-NAM
 horse	SUB-ANI
 hound	SUB-ANI
 housewife	SUB
@@ -1214,6 +1245,7 @@ ognir	SUB-NAM
 ogre	SUB	ogres
 oni	SUB
 opal	SUB-NAM
+ophaniel	SUB-NAM
 orc	SUB	orcs
 orchiwald	SUB-NAM
 ortiv	SUB-NAM
@@ -1237,6 +1269,7 @@ phalk	SUB-NAM
 phantom	SUB
 philomena	SUB-NAM
 pigeon	SUB-ANI
+piper	SUB
 pirate	SUB
 pjotr	SUB-NAM
 player	SUB	players
@@ -1250,12 +1283,14 @@ radish	SUB-NAM
 rallman	SUB-NAM
 ramon	SUB-NAM
 ranger	SUB
+raphael	SUB-NAM
 rat	SUB-ANI	rats
 ratman	SUB	ratmen
 ratwoman	SUB	ratwomen
 ravashack	SUB-NAM
 razorrat	SUB-ANI	razorrats
 reaper	SUB-NAM
+reg	SUB-NAM
 repaer	SUB-NAM
 reptile	SUB-ANI
 revi	SUB-NAM
@@ -1263,6 +1298,7 @@ ricardo	SUB-NAM
 richard	SUB-NAM
 ritati	SUB-NAM
 robot	SUB
+roger	SUB-NAM
 rohn	SUB-NAM
 roohako	SUB
 rook	SUB
@@ -1339,12 +1375,14 @@ twin	SUB
 tywysoga	SUB-NAM
 uncle	SUB
 unicorn	SUB-ANI	unicorns
+uriel	SUB-NAM
 valo	SUB-NAM
 vampire	SUB
 vampirette	SUB
 vasi	SUB-NAM
 vegetarian	SUB	vegetarians
 venomrat	SUB-ANI	venomrats
+vera	SUB-NAM
 veteran	SUB	veterans
 viceroy	SUB
 vietta	SUB-NAM
@@ -1390,10 +1428,12 @@ zekiel	SUB-NAM
 zogfang	SUB-NAM
 zohos	SUB-NAM
 zombie	SUB	zombies
+zophiel	SUB-NAM
 zynn	SUB-NAM
 
 another	ADJ
 armed	ADJ
+available	ADJ
 awesome	ADJ
 bad	ADJ
 before	ADJ
@@ -1416,6 +1456,7 @@ complete	ADJ
 composite	ADJ
 confused	ADJ
 cool	ADJ
+dangerous	ADJ
 dark	ADJ
 dayly	ADJ
 dead	ADJ
@@ -1450,6 +1491,7 @@ fine	ADJ
 fiscal	ADJ
 fishy	ADJ
 flying	ADJ
+forgiven	ADJ
 forward	ADJ
 free	ADJ
 fresh	ADJ
@@ -1509,6 +1551,7 @@ old	ADJ
 orcish	ADJ
 patient	ADJ
 pauldroned	ADJ
+pied	ADJ
 pink	ADJ-COL
 plenty	ADJ
 poisonous	ADJ
@@ -1556,8 +1599,10 @@ triangular	ADJ
 true	ADJ
 twoside	ADJ
 ugly	ADJ
+unbought	ADJ
 unfair	ADJ
 unsealed	ADJ
+unsold	ADJ
 unused	ADJ
 vanilla	ADJ
 violet	ADJ-COL
@@ -1624,6 +1669,7 @@ off	PRE
 on	PRE
 over	PRE
 somewhere	PRE
+there	PRE
 under	PRE
 up	PRE
 with	PRE

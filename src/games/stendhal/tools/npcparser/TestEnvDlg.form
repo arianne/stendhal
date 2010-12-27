@@ -79,13 +79,13 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btLoadZones">
+        <Component class="javax.swing.JButton" name="btLoadWorld">
           <Properties>
-            <Property name="text" type="java.lang.String" value="load zones"/>
-            <Property name="toolTipText" type="java.lang.String" value="Load zone configurations to complete the word list like in the Stendhal server."/>
+            <Property name="text" type="java.lang.String" value="load world"/>
+            <Property name="toolTipText" type="java.lang.String" value="Load zone configurations and quests to complete the word list like in the Stendhal server."/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLoadZonesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLoadWorldActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

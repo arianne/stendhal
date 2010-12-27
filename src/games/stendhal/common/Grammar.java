@@ -1231,11 +1231,11 @@ public class Grammar {
 
 	/**
 	 * Check for words with ambiguity between noun and verb.
-	 * @param normalizedWord
+	 * @param normalized word in normalized form
 	 * @return ambiguity flag
 	 */
-	public static boolean isAmbiguousNounVerb(final String normalizedWord) {
-		if (normalizedWord.equals("mill") || normalizedWord.equals("fish")) {
+	public static boolean isAmbiguousNounVerb(final String normalized) {
+		if (normalized.equals("mill") || normalized.equals("fish") || normalized.equals("esacpe")) {
 			return true;
 		} else {
 			return false;
