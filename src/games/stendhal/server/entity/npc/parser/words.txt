@@ -1248,6 +1248,7 @@ quartermaster	SUB
 queen	SUB
 radish	SUB-NAM
 rallman	SUB-NAM
+ramon	SUB-NAM
 ranger	SUB
 rat	SUB-ANI	rats
 ratman	SUB	ratmen
