@@ -52,7 +52,7 @@ public class ProgressLog {
 	 * StyleSheet for the scroll html areas. Margins are needed to avoid
 	 * drawing over the scroll borders.
 	 */
-	private static final String STYLE_SHEET = "<style type=\"text/css\">body {margin:12px} p {margin:4px 0px} li, ul {margin-left:10px}</style>";
+	private static final String STYLE_SHEET = "<style type=\"text/css\">body {margin:12px} p {margin:4px 0px} a {color:#a00000} li, ul {margin-left:10px}</style>";
 	
 	/** The enclosing window */
 	JDialog window;
