@@ -23,14 +23,23 @@ class RemoveBuddyAction implements ActionListener {
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
 			final String who = action.get(TARGET);
+			int removed = 0;
 
-			if (player.removeBuddy(who)) {
-				new GameEvent(player.getName(), "buddy", "remove", who).raise();
-				player.sendPrivateText(who + " was removed from your buddy list.");
+			for(String name : player.getBuddies()) {
+				// search for buddy names using case insensitive matching
+				if (name.equalsIgnoreCase(who)) {
+					if (player.removeBuddy(name)) {
+						new GameEvent(player.getName(), "buddy", "remove", name).raise();
+						player.sendPrivateText(name + " was removed from your buddy list.");
+	
+						// TEMP! superseded by /unignore
+						player.removeIgnore(name);
+						++removed;
+					}
+				}
+			}
 
-				// TEMP! superseded by /unignore
-				player.removeIgnore(who);
-			} else {
+			if (removed == 0) {
 				player.sendPrivateText("There is no \"" + who + "\" in your buddy list.");
 			}
 		}
