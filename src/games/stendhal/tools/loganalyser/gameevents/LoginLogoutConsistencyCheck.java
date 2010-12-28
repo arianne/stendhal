@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
 public class LoginLogoutConsistencyCheck {
 	private static Logger logger = Logger.getLogger(LoginLogoutConsistencyCheck.class);
 	private static final String SQL = "SELECT id, timedate, source, "
-		+ "event, param1, param2 FROM gameEvents "
+		+ "event, param1, param2 FROM gameEvents USE INDEX (i_gameEvents_timedate)  "
 		+ " WHERE (event='login' OR event='logout') AND timedate > '[timedate]'"
 		+ " ORDER BY timedate";
 
