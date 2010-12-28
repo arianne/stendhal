@@ -532,16 +532,16 @@ public class WordList {
 	}
 
 	/**
-	 * Register a name to be recognized by the conversation parser.
+	 * Register a subject name to be recognized by the conversation parser.
 	 * 
 	 * @param name
 	 */
 	public void registerSubjectName(final String name) {
-		registerSubjectName(name, ExpressionType.SUBJECT_NAME);
+		registerSubjectName(name, ExpressionType.SUBJECT_NAME + ExpressionType.SUFFIX_DYNAMIC);
 	}
 
 	/**
-	 * Register a name to be recognized by the conversation parser.
+	 * Register a subject name to be recognized by the conversation parser.
 	 * 
 	 * @param name
 	 * @param typeString
@@ -565,7 +565,7 @@ public class WordList {
 	}
 
 	/**
-	 * De-register a subject.
+	 * De-register a subject name.
 	 * 
 	 * @param name
 	 */

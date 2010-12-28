@@ -477,11 +477,10 @@ public final class SentenceImplementation extends Sentence {
 	            			for(int i=1; i<wordsMatched; ++i) {
 	            				Expression next = expressions.get(idx+1);
 
-	                			first.mergeName(next);
+	                			first.mergeName(next, compName.getType());
 	                	        expressions.remove(next);
 	            			}
 
-	            			first.setType(compName.getType());
 	            	        changed = true;
 	                        break;
 	        			}

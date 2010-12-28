@@ -112,18 +112,18 @@ public final class Expression {
     /**
      * Merge the given preceding Expression into this Expression, while leaving mainWord unchanged.
      *
-     * @param other
+     * @param prec
      * @param mergeNormalized
      */
-    public void mergeLeft(final Expression other, final boolean mergeNormalized) {
-        original = other.getOriginal() + ' ' + original;
+    public void mergeLeft(final Expression prec, final boolean mergeNormalized) {
+        original = prec.getOriginal() + ' ' + original;
 
         if (mergeNormalized) {
-            normalized = other.getNormalized() + ' ' + normalized;
+            normalized = prec.getNormalized() + ' ' + normalized;
         }
 
-        mergeType(other.getType());
-        setAmount(mergeAmount(other.amount, amount));
+        mergeType(prec.getType());
+        setAmount(mergeAmount(prec.amount, amount));
     }
 
     /**
@@ -173,12 +173,18 @@ public final class Expression {
      * Merge the given following name component into this Expression.
      *
      * @param next
+     * @param type 
      */
-    public void mergeName(final Expression next) {
-    	original = original + ' ' + next.getOriginal();
-        normalized = original.toLowerCase();
+    public void mergeName(final Expression next, ExpressionType newType) {
+        original = original + ' ' + next.getOriginal();
 
-        mergeType(next.getType());
+        if (newType.isName()) {
+        	setNormalized(original.toLowerCase());
+        } else {
+        	setNormalized(normalized + ' ' + next.getNormalized());
+        }
+
+        setType(newType);
         setAmount(mergeAmount(amount, next.amount));
         breakFlag = next.getBreakFlag();
     }
@@ -194,7 +200,7 @@ public final class Expression {
 
     /**
      * @return amount as integer value, default to 1.
-      */
+     */
     public int getAmount() {
 		if (amount == null) {
 			return 1;

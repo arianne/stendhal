@@ -250,7 +250,7 @@ public class WordListTest {
 		assertEquals("call/VER sherlock holmes/SUB-NAM-DYN", sentence.toString());
 		assertEquals(2, sentence.getExpressions().size());
 		assertEquals("Sherlock Holmes", sentence.getSubject(0).getOriginal());
-		 
+
 		sentence = ConversationParser.parse("call John Watson");
 		assertFalse(sentence.hasError());
 		assertEquals("call/VER john watson/SUB-NAM-DYN", sentence.toString());

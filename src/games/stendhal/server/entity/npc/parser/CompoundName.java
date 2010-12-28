@@ -32,7 +32,7 @@ public class CompoundName extends ArrayList<String> {
 			add(e.getOriginal().toLowerCase());
 		}
 
-		type = new ExpressionType(typeString + ExpressionType.SUFFIX_DYNAMIC);
+		type = new ExpressionType(typeString);
 	}
 
 	/**
