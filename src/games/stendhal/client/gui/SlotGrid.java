@@ -123,7 +123,7 @@ public class SlotGrid extends JComponent implements EntityChangeListener {
 				if (entity == null) {
 					logger.warn("Unable to find entity for: " + object,
 							new Throwable("here"));
-					entity = EntityFactory.createEntity(object);
+					continue;
 				}
 
 				iter.next().setEntity(entity);
