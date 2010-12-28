@@ -173,7 +173,7 @@ public final class Expression {
      * Merge the given following name component into this Expression.
      *
      * @param next
-     * @param type 
+     * @param newType 
      */
     public void mergeName(final Expression next, ExpressionType newType) {
         original = original + ' ' + next.getOriginal();

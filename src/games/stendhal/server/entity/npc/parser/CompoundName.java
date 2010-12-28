@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2010-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,8 +39,7 @@ public class CompoundName extends ArrayList<String> {
 	 * Compare this compound name with the words in the expressions list starting at index idx.
 	 * @param expressions
 	 * @param idx
-	 * @param context
-	 * @return
+	 * @return true for matching between expressions and the compound name
 	 */
 	public boolean matches(AbstractList<Expression> expressions, int idx) {
 		for(int i=0; i<size(); ++idx,++i) {
