@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.tools.npcparser;
 
-import games.stendhal.server.entity.npc.parser.DBWordList;
 import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.WordList;
 
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import marauroa.common.io.UnicodeSupportingInputStreamReader;
-import marauroa.server.game.db.DatabaseFactory;
 
 /**
  * WordListUpdate reads the current word list from predefined resources, writes a new updated, pretty
@@ -34,11 +32,11 @@ import marauroa.server.game.db.DatabaseFactory;
 public final class WordListUpdate {
 
     public static void main(final String[] args) {
-    	// initialize TransactionPool for DB access
-		new DatabaseFactory().initializeDatabase();
+//    	// initialise TransactionPool for DB access
+//		new DatabaseFactory().initializeDatabase();
 
-		// load word list from DB and perform the update
-		String msg = updateWordList(new DBWordList());
+		// load word list and perform the update
+		String msg = updateWordList(new WordList());
 		
 		System.out.print(msg);
     }
@@ -59,7 +57,7 @@ public final class WordListUpdate {
             }
 
             // update the hash value
-            wl.calculateHash();
+//			wl.calculateHash();
 
             // see if we can find the word list source file in the file system
             String outputPath = "src/games/stendhal/server/entity/npc/parser/" + WordList.WORDS_FILENAME;
@@ -82,12 +80,12 @@ public final class WordListUpdate {
 
             log.append("The updated word list has been written to the file '" + outputPath + "'.\n");
 
-        	// initialize TransactionPool if not yet ready
-    		new DatabaseFactory().initializeDatabase();
-
-    		// update database entries
-            DBWordList.writeToDB(wl);
-            log.append("The word list has been stored into the database.\n");
+//        	// initialise TransactionPool if not yet ready
+//    		new DatabaseFactory().initializeDatabase();
+//
+//    		// update database entries
+//          DBWordList.writeToDB(wl);
+//          log.append("The word list has been stored into the database.\n");
         } catch (final IOException e) {
         	log.append("Exception: " + e.getMessage() + "\n");
             e.printStackTrace();

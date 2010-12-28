@@ -492,7 +492,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private void btLoadEntitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadEntitiesActionPerformed
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-		// initialize DefaultEntityManager to load item names
+		// initialise DefaultEntityManager to load item names
 		SingletonRepository.getEntityManager();
 
 		// update word count display
@@ -507,7 +507,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
 		try {
-	    	// initialize TransactionPool
+	    	// initialise TransactionPool
 			new DatabaseFactory().initializeDatabase();
 
 			try {
@@ -517,7 +517,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 				logger.warn("unable to load zones", e);
 			}
 
-			// Initialize quests
+			// Initialise quests
 			SingletonRepository.getStendhalQuestSystem().init();
 
 			// update word count display

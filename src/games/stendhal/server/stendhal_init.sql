@@ -123,19 +123,6 @@ CREATE TABLE IF NOT EXISTS cid
 /*CREATE INDEX i_cid_charname ON cid(charname);*/
 
 
-create table if not exists words (
-  id         INTEGER AUTO_INCREMENT NOT NULL,
-  normalized VARCHAR(64) NOT NULL,
-  type		VARCHAR(64),
-  plural	VARCHAR(64),
-  value		INTEGER NULL,
-  alias_id	INTEGER NULL,
-  PRIMARY KEY (id)
-);
-
-/*CREATE INDEX i_word_normalized ON words(normalized);*/
-
-
 CREATE TABLE IF NOT EXISTS npcs (
   id         INTEGER AUTO_INCREMENT NOT NULL,
   name       VARCHAR(64),

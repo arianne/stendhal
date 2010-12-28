@@ -18,8 +18,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -41,7 +39,7 @@ import org.apache.log4j.Logger;
  * @author Martin Fuchs
  */
 
-public class WordList {
+final public class WordList {
 
 	private static final Logger logger = Logger.getLogger(WordList.class);
 
@@ -54,12 +52,12 @@ public class WordList {
 
 	public static final String WORDS_FILENAME = "words.txt";
 
-	static final String HASH_KEYWORD = "@Hash";
+/*	static final String HASH_KEYWORD = "@Hash";
 
-	/** MD5 Hash code to check for changes */
-	protected String hash = "";
+	** MD5 Hash code to check for changes
+	protected String hash = "";*/
 
-	protected Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
+	private Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
 	private Map<String, Set<CompoundName>> compoundNames = new HashMap<String, Set<CompoundName>>();
 
@@ -67,19 +65,19 @@ public class WordList {
 	private Map<String, Integer> subjectRefCount = new HashMap<String, Integer>();
 
 	/** instance variable with package protection because of FindBugs hint */
-	static /*protected*/ WordList instance;
+	static private WordList instance;
 
-	/**
-	 * Take over the content of the other WordList object.
-	 * @param other
-	 */
-	protected void takeOver(WordList other)
-	{
-		words = instance.words;
-		compoundNames = instance.compoundNames;
-		hash = instance.hash;
-		subjectRefCount = other.subjectRefCount;
-	}
+//	/**
+//	 * Take over the content of the other WordList object.
+//	 * @param other
+//	 */
+//	protected void takeOver(WordList other)
+//	{
+//		words = instance.words;
+//		compoundNames = instance.compoundNames;
+//		hash = instance.hash;
+//		subjectRefCount = other.subjectRefCount;
+//	}
 
 	// Initialise the word list by querying the database or reading from the
 	// input file "words.txt" in the class path.
@@ -141,20 +139,20 @@ public class WordList {
 		return instance;
 	}
 
-	/**
+	/*
 	 * Returns the WordList version number.
 	 * 
 	 * @return MD5 hash code
-	 */
+	 *
 	public String getHash() {
 		return hash;
 	}
 
-	/**
+	 **
 	 * Updates the MD5 hash code.
 	 * 
 	 * @return true on success
-	 */
+	 *
 	public boolean calculateHash() {
 		MessageDigest md;
 
@@ -195,7 +193,7 @@ public class WordList {
 
 		return true;
 	}
-
+*/
 	/**
 	 * Reads word list from reader object.
 	 * 
@@ -203,8 +201,7 @@ public class WordList {
 	 * @param comments
 	 * @throws IOException
 	 */
-	public void read(final BufferedReader reader, final List<String> comments)
-			throws IOException {
+	public void read(final BufferedReader reader, final List<String> comments) throws IOException {
 		while (true) {
 			final String line = reader.readLine();
 			if (line == null) {
@@ -234,7 +231,7 @@ public class WordList {
 		}
 
 		// calculate the hash value from all word entries
-		calculateHash();
+//		calculateHash();
 	}
 
 	/**
@@ -317,12 +314,12 @@ public class WordList {
 	}
 
 	/**
-	 * Add one entry to the word list.
+	 * Add an entry to the word list.
 	 * 
 	 * @param key
 	 * @param entry
 	 */
-	protected void addEntry(final String key, final WordEntry entry) {
+	private void addEntry(final String key, final WordEntry entry) {
 		words.put(trimWord(key), entry);
 
 		// store plural and associate with singular form
@@ -688,7 +685,7 @@ public class WordList {
 						nameSet.remove(compName);
 
 						if (nameSet.isEmpty()) {
-							compoundNames.remove(nameSet);
+							compoundNames.remove(firstWord);
 						}
 
 						break;
@@ -794,9 +791,9 @@ public class WordList {
 			entry.setNormalized(key);
 			words.put(key, entry);
 
-			if (persist) {
-				persistNewWord(key, entry);
-			}
+//			if (persist) {
+//				persistNewWord(key, entry);
+//			}
 		} else {
 			logger.warn("word already known: " + str + " -> "
 					+ entry.getNormalized());
@@ -805,16 +802,16 @@ public class WordList {
 		return entry;
 	}
 
-	/**
-	 * Store the new word in the database. This base class implementation does
-	 * nothing, it is overridden by the DBWordList method.
-	 * @param key
-	 * @param entry
-	 * @return success flag
-	 */
-	protected boolean persistNewWord(final String key, final WordEntry entry) {
-		return false;
-	}
+//	/**
+//	 * Store the new word in the database. This base class implementation does
+//	 * nothing, it is overridden by the DBWordList method.
+//	 * @param key
+//	 * @param entry
+//	 * @return success flag
+//	 */
+//	protected boolean persistNewWord(final String key, final WordEntry entry) {
+//		return false;
+//	}
 
 	/**
 	 * Return number of word entries.
