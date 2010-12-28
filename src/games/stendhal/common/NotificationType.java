@@ -196,7 +196,7 @@ public enum NotificationType {
 	//
 
 	/**
-	 * Get the mapping mnemonic (programatic name).
+	 * Get the mapping mnemonic (programmatic name).
 	 *
 	 * @return The mapping mnemonic.
 	 */

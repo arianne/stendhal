@@ -320,7 +320,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Gets the name of the item.
 	 * 
-	 * @return The programatic item name.
+	 * @return The programmatic item name.
 	 */
 	public String getName() {
 		return get("name");
