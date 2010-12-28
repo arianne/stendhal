@@ -47,9 +47,8 @@ import marauroa.common.net.message.TransferContent;
 import org.apache.log4j.Logger;
 
 /**
- * This class is the glue to Marauroa, it extends ClientFramework and allow us
+ * This class is the glue to Marauroa, it extends ClientFramework and allows us
  * to easily connect to an marauroa server and operate it easily.
- * 
  */
 public class StendhalClient extends ClientFramework {
 
@@ -80,12 +79,7 @@ public class StendhalClient extends ClientFramework {
 
 	private String character = null;
 
-	
-	
 	private final UserContext userContext;
-
-	
-	
 	
 
 	/**
@@ -618,5 +612,5 @@ public class StendhalClient extends ClientFramework {
 		return drawingSemaphore.tryAcquire();
 	}
 
-	
+
 }

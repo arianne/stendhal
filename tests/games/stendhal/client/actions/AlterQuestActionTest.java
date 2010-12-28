@@ -27,7 +27,7 @@ public class AlterQuestActionTest {
 	@Test
 	public void testExecute() {
 
-		new MockStendhalClient("") {
+		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				client = null;
@@ -43,7 +43,7 @@ public class AlterQuestActionTest {
 		assertFalse(action.execute(new String[] { "schnick" }, null));
 		assertTrue(action.execute(new String[] { "schnick", "schnack", "schnuck" }, null));
 
-		new MockStendhalClient("") {
+		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				client = null;

@@ -32,7 +32,7 @@ public class AdminLevelActionTest {
 	 */
 	@Test
 	public void testExecuteOneParam() {
-		new MockStendhalClient("") {
+		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				client = null;
@@ -51,7 +51,7 @@ public class AdminLevelActionTest {
 	@Test
 	public void testExecuteSecondParamNull() {
 
-		new MockStendhalClient("") {
+		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				client = null;
@@ -71,7 +71,7 @@ public class AdminLevelActionTest {
 	@Test
 	public void testExecuteSecondParamValid() {
 
-		new MockStendhalClient("") {
+		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				client = null;

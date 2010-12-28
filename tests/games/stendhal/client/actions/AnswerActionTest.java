@@ -32,7 +32,7 @@ public class AnswerActionTest {
 	 */
 	@Test
 	public void testExecute() {
-		new MockStendhalClient("") {
+		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				client = null;

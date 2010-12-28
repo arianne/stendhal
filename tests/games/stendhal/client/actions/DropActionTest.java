@@ -107,7 +107,7 @@ public class DropActionTest {
 		final MockClientUI clientUI = new MockClientUI();
 
 		// create client
-		new MockStendhalClient("") {
+		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				client = null;
@@ -140,7 +140,7 @@ public class DropActionTest {
 		final MockClientUI clientUI = new MockClientUI();
 
 		// create client
-		new MockStendhalClient("") {
+		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				client = null;
@@ -173,7 +173,7 @@ public class DropActionTest {
 		final MockClientUI clientUI = new MockClientUI();
 
 		// create client
-		new MockStendhalClient("") {
+		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
 				client = null;
