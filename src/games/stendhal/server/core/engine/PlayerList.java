@@ -16,7 +16,6 @@ import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -72,9 +71,8 @@ public class PlayerList {
 	 *            the task to execute
 	 */
 	public void forAllPlayersExecute(final Task<Player> task) {
-		final Iterator<Map.Entry<String, Player>> it = players.entrySet().iterator();
-		while (it.hasNext()) {
-			task.execute(it.next().getValue());
+		for(Player player : players.values()) {
+			task.execute(player);
 		}
 	}
 
@@ -88,12 +86,7 @@ public class PlayerList {
 	 *            the FilterCriteria to pass
 	 */
 	public void forFilteredPlayersExecute(final Task<Player> task, final FilterCriteria<Player> filter) {
-		final Iterator<Map.Entry<String, Player>> it = players.entrySet().iterator();
-
-		while (it.hasNext()) {
-
-			final Player player = it.next().getValue();
-
+		for(Player player : players.values()) {
 			if (filter.passes(player)) {
 				task.execute(player);
 			}
@@ -125,7 +118,7 @@ public class PlayerList {
 		if (playerName != null) {
 			return players.remove(playerName.toLowerCase()) != null;
 		} else {
-			throw new IllegalArgumentException("can't remove player without name:");
+			throw new IllegalArgumentException("can't remove player without name");
 		}
 	}
 	
