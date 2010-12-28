@@ -67,6 +67,7 @@ brew	VER
 bribe	VER
 buy	VER
 bye	VER
+call	VER
 can	VER
 care	VER
 cast	VER
@@ -161,6 +162,7 @@ learn	VER
 leave	VER
 let	VER
 like	VER
+listen	VER
 load	VER
 lol	VER
 look	VER
@@ -1703,3 +1705,4 @@ whatever	IGN
 while	IGN
 yeah	IGN
 yet	IGN
+
