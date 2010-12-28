@@ -16,6 +16,7 @@ import games.stendhal.common.ErrorDrain;
 import games.stendhal.common.Grammar;
 
 import java.util.Iterator;
+import java.util.Set;
 
 /**
  * SentenceImplementation contains the implementation details of building Sentence objects.
@@ -434,9 +435,9 @@ public final class SentenceImplementation extends Sentence {
      * Merge words to form a simpler sentence structure.
      */
     void mergeWords() {
-
-        // TODO mf - use WordList.compoundNames to merge compound names
-
+        // use WordList.compoundNames to merge compound names
+    	mergeCompoundNames();
+ 
         // first merge three word expressions of the form "... of ..."
         mergeThreeWordExpressions();
 
@@ -448,8 +449,58 @@ public final class SentenceImplementation extends Sentence {
     }
 
     /**
+     * Merge compound names.
+     * @return number of merges performed
+     */
+	public int mergeCompoundNames() {
+    	final WordList wl = WordList.getInstance();
+        int changes = 0;
+
+        // loop until no more simplifications can be made
+    	boolean changed;
+        do {
+            changed = false;
+
+            // loop over all words of the sentence starting from left
+            for(int idx=0; idx<expressions.size()-1; ++idx) {
+                Expression first = expressions.get(idx);
+
+                // search for matching compound names
+        		Set<CompoundName> candidates = wl.getCompoundNames().
+        							get(first.getOriginal().toLowerCase());
+
+        		if (candidates != null) {
+	        		for(CompoundName compName : candidates) {
+	        			if (compName.matches(expressions, idx)) {
+	            			int wordsMatched = compName.size();
+
+	            			for(int i=1; i<wordsMatched; ++i) {
+	            				Expression next = expressions.get(idx+1);
+
+	                			first.mergeName(next);
+	                	        expressions.remove(next);
+	            			}
+
+	            			first.setType(compName.getType());
+	            	        changed = true;
+	                        break;
+	        			}
+        			}
+        		}
+        		
+        		if (changed) {
+        			++changes;
+        			break;
+        		}
+            }
+        } while(changed);
+
+        return changes;
+    }
+
+    /**
      * Merge two word expressions into single expressions.
-     * @return number of changes
+     * @return number of merges performed
      */
     private int mergeTwoWordExpressions() {
 
@@ -460,10 +511,10 @@ public final class SentenceImplementation extends Sentence {
          * one, removing the second from the word list.
          */
 
-        boolean changed;
         int changes = 0;
 
-        // loop until no more simplification can be made
+        // loop until no more simplifications can be made
+        boolean changed;
         do {
             changed = false;
 
@@ -631,13 +682,13 @@ public final class SentenceImplementation extends Sentence {
 
     /**
      * Merge three word expressions of the form "... of ..." into single expressions.
-     * @return number of changes
+     * @return number of merges performed
      */
     private int mergeThreeWordExpressions() {
-        boolean changed;
         int changes = 0;
 
-        // loop until no more simplification can be made
+        // loop until no more simplifications can be made
+        boolean changed;
         do {
             final Iterator<Expression> it = expressions.iterator();
 

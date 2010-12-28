@@ -170,6 +170,20 @@ public final class Expression {
     }
 
     /**
+     * Merge the given following name component into this Expression.
+     *
+     * @param next
+     */
+    public void mergeName(final Expression next) {
+    	original = original + ' ' + next.getOriginal();
+        normalized = original.toLowerCase();
+
+        mergeType(next.getType());
+        setAmount(mergeAmount(amount, next.amount));
+        breakFlag = next.getBreakFlag();
+    }
+
+    /**
      * Set item count.
      *
      * @param amount

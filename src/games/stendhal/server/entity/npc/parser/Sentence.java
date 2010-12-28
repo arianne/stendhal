@@ -38,7 +38,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
     protected SentenceType sentenceType = SentenceType.UNDEFINED;
 
-    List<Expression> expressions = new ArrayList<Expression>();
+    ArrayList<Expression> expressions = new ArrayList<Expression>();
   
 
     /**
@@ -74,6 +74,15 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      */
     public List<Expression> getExpressions() {
         return expressions;
+    }
+
+    /**
+     * Return an array of the expressions.
+     *
+     * @return Expression array
+     */
+    protected Expression[] getExpressionsArrayList() {
+        return expressions.toArray(new Expression[0]);
     }
 
     /**

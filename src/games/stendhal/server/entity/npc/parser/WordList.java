@@ -48,6 +48,7 @@ public class WordList {
 	// ExpressionTypes for dynamic registration
 	public static final String SUBJECT_NAME_DYNAMIC = ExpressionType.SUBJECT_NAME
 			+ ExpressionType.SUFFIX_DYNAMIC;
+
 	public static final String VERB_DYNAMIC = ExpressionType.VERB
 			+ ExpressionType.SUFFIX_DYNAMIC;
 
@@ -55,17 +56,18 @@ public class WordList {
 
 	static final String HASH_KEYWORD = "@Hash";
 
-	protected Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
-
-	Set<Sentence> compoundNames = new HashSet<Sentence>();
-
+	/** MD5 Hash code to check for changes */
 	protected String hash = "";
 
-	/** instance variable, with package protection because of FindBugs hint */
-	static /*protected*/ WordList instance;
+	protected Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
+
+	Map<String, Set<CompoundName>> compoundNames = new HashMap<String, Set<CompoundName>>();
 
 	// We keep house holding the usage of registered subject names (see registerSubjectName).
 	private Map<String, Integer> subjectRefCount = new HashMap<String, Integer>();
+
+	/** instance variable with package protection because of FindBugs hint */
+	static /*protected*/ WordList instance;
 
 	/**
 	 * Take over the content of the other WordList object.
@@ -535,6 +537,16 @@ public class WordList {
 	 * @param name
 	 */
 	public void registerSubjectName(final String name) {
+		registerSubjectName(name, ExpressionType.SUBJECT_NAME);
+	}
+
+	/**
+	 * Register a name to be recognized by the conversation parser.
+	 * 
+	 * @param name
+	 * @param typeString
+	 */
+	public void registerSubjectName(final String name, final String typeString) {
 		final String key = trimWord(name);
 
 		Integer usageCount = subjectRefCount.get(key);
@@ -547,24 +559,9 @@ public class WordList {
 
 		// register the new subject name
 		if (usageCount == null) {
-			registerName(name, ExpressionType.SUBJECT);
+			registerName(name, typeString);
 			subjectRefCount.put(key, 1);
 		}
-//		final WordEntry entry = words.get(key);
-//
-//		if ((entry == null) || (entry.getType() == null)
-//				|| entry.getType().isEmpty()) {
-//			final WordEntry newEntry = new WordEntry();
-//
-//			newEntry.setNormalized(key);
-//			newEntry.setType(new ExpressionType(SUBJECT_NAME_DYNAMIC));
-//
-//			words.put(key, newEntry);
-//			subjectRefCount.put(key, 1);
-//		} else if (!checkNameCompatibleLastType(entry, ExpressionType.SUBJECT)) {
-//			logger.warn("subject name already registered with incompatible expression type: "
-//					+ entry.getNormalizedWithTypeString());
-//		}
 	}
 
 	/**
@@ -641,17 +638,27 @@ public class WordList {
 						+ lastExpr.getNormalizedWithTypeString()
 						+ " expected type: " + typeString);
 				}
-
-				// The expression type for subject names should be corrected like this
-				// (not here, but when parsing user input):
-				//lastExpr.setType(new ExpressionType(typeString));
 			}
 		}
 
-		// register compound item names to use them later when merging words (not yet implemented)
+		// register compound item names to use them later when merging words
 		if (parsed.getExpressions().size() > 1) {
-			compoundNames.add(parsed);
+			Expression firstExpr = parsed.expressions.get(0);
+			String firstWord = firstExpr.getOriginal().toLowerCase();
+
+			Set<CompoundName> nameSet = compoundNames.get(firstWord);
+
+			if (nameSet == null) {
+				nameSet = new HashSet<CompoundName>();
+				compoundNames.put(firstWord, nameSet);
+			}
+
+			nameSet.add(new CompoundName(parsed, typeString));
 		}
+	}
+
+	Map<String, Set<CompoundName>> getCompoundNames() {
+		return compoundNames;
 	}
 
 	/**
