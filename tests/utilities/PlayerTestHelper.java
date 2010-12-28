@@ -25,6 +25,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
@@ -166,8 +167,14 @@ public abstract class PlayerTestHelper {
 	 */
 	public static void removePlayer(final Player player) {
 		if (player != null) {
+			String name = player.getName();
+
 			MockStendlRPWorld.get().remove(player.getID());
 			MockStendhalRPRuleProcessor.get().getOnlinePlayers().remove(player);
+
+			if (name != null) {
+				WordList.getInstance().unregisterSubjectName(name);
+			}
 		}
 	}
 
