@@ -61,10 +61,11 @@ class Food2DView extends StateEntity2DView {
 	/**
 	 * Get the current entity state.
 	 * 
+	 * @param entity
 	 * @return The current state.
 	 */
 	@Override
-	protected Object getState() {
+	protected Object getState(IEntity entity) {
 		return Integer.valueOf(((Food) entity).getAmount());
 	}
 
@@ -103,7 +104,7 @@ class Food2DView extends StateEntity2DView {
 		super.entityChanged(entity, property);
 
 		if (property == Food.PROP_AMOUNT) {
-			proceedChangedState();
+			proceedChangedState(entity);
 		}
 	}
 

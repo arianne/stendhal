@@ -544,7 +544,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		Nature damageType = entity.getShownDamageType();
 		
 		if (damageType != null) {			
-			final Sprite sprite = bladeStrikeSprites.get(damageType).get(getState())[frameBladeStrike];
+			final Sprite sprite = bladeStrikeSprites.get(damageType).get(getState(entity))[frameBladeStrike];
 
 			final int spriteWidth = sprite.getWidth();
 			final int spriteHeight = sprite.getHeight();

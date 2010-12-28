@@ -96,10 +96,11 @@ class Chest2DView extends StateEntity2DView {
 	/**
 	 * Get the current entity state.
 	 * 
+	 * @param entity
 	 * @return The current state.
 	 */
 	@Override
-	protected Object getState() {
+	protected Object getState(IEntity entity) {
 		if (((Chest) entity).isOpen()) {
 			return STATE_OPEN;
 		} else {
@@ -198,7 +199,7 @@ class Chest2DView extends StateEntity2DView {
 		super.entityChanged(entity, property);
 
 		if (property == Chest.PROP_OPEN) {
-			proceedChangedState();
+			proceedChangedState(entity);
 			openChanged = true;
 		}
 	}

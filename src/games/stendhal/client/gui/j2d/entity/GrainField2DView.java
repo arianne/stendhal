@@ -105,10 +105,11 @@ class GrainField2DView extends StateEntity2DView {
 	/**
 	 * Get the current entity state.
 	 * 
+	 * @param entity
 	 * @return The current state.
 	 */
 	@Override
-	protected Object getState() {
+	protected Object getState(IEntity entity) {
 		return Integer.valueOf(((GrainField) entity).getRipeness());
 	}
 
@@ -200,7 +201,7 @@ class GrainField2DView extends StateEntity2DView {
 		if (property == IEntity.PROP_CLASS) {
 			representationChanged = true;
 		} else if (property == GrainField.PROP_RIPENESS) {
-			proceedChangedState();
+			proceedChangedState(entity);
 		}
 	}
 

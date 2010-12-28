@@ -49,10 +49,11 @@ abstract class ActiveEntity2DView extends StateEntity2DView {
 	/**
 	 * Get the current model state.
 	 * 
+	 * @param entity
 	 * @return The model state.
 	 */
 	@Override
-	protected Direction getState() {
+	protected Direction getState(IEntity entity) {
 		return getDirectionState(((ActiveEntity) entity).getDirection());
 	}
 
@@ -87,7 +88,7 @@ abstract class ActiveEntity2DView extends StateEntity2DView {
 		super.entityChanged(entity, property);
 
 		if (property == ActiveEntity.PROP_DIRECTION) {
-			proceedChangedState();
+			proceedChangedState(entity);
 		} else if (property == ActiveEntity.PROP_SPEED) {
 			animatedChanged = true;
 		}

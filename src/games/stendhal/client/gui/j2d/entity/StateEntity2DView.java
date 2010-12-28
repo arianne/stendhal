@@ -76,17 +76,19 @@ abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Get the current model state.
 	 * 
+	 * @param entity 
 	 * @return The model state.
 	 */
-	protected abstract Object getState();
+	protected abstract Object getState(IEntity entity);
 
 	/**
 	 * Get the current animated sprite.
 	 * 
+	 * @param entity 
 	 * @return The appropriate sprite for the current state.
 	 */
-	protected Sprite getStateSprite() {
-		final Object state = getState();
+	protected Sprite getStateSprite(IEntity entity) {
+		final Object state = getState(entity);
 		final Sprite sprite = getSprite(state);
 
 		if (sprite == null) {
@@ -109,13 +111,15 @@ abstract class StateEntity2DView extends Entity2DView {
 	protected void buildRepresentation(IEntity entity) {
 		buildAnimations(entity);
 
-		setSprite(getStateSprite());
+		setSprite(getStateSprite(entity));
 	}
 
-	protected void proceedChangedState() {
-
-		setSprite(getStateSprite());
-
+	/**
+	 * Update sprite state of the entity.
+	 * 
+	 * @param entity
+	 */
+	protected void proceedChangedState(IEntity entity) {
+		setSprite(getStateSprite(entity));
 	}
-
 }

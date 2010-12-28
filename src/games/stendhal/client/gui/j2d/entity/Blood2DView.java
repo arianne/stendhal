@@ -55,10 +55,11 @@ class Blood2DView extends StateEntity2DView {
 	/**
 	 * Get the current entity state.
 	 * 
+	 * @param entity
 	 * @return The current state.
 	 */
 	@Override
-	protected Object getState() {
+	protected Object getState(IEntity entity) {
 		return ((Blood) entity).getAmount();
 	}
 
@@ -104,7 +105,7 @@ class Blood2DView extends StateEntity2DView {
 		super.entityChanged(entity, property);
 
 		if (property == Blood.PROP_AMOUNT) {
-			proceedChangedState();
+			proceedChangedState(entity);
 		}
 	}
 

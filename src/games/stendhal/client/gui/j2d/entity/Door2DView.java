@@ -98,10 +98,11 @@ class Door2DView extends StateEntity2DView {
 	/**
 	 * Get the current entity state.
 	 * 
+	 * @param entity
 	 * @return The current state.
 	 */
 	@Override
-	protected Object getState() {
+	protected Object getState(IEntity entity) {
 		if (((Door) entity).isOpen()) {
 			return STATE_OPEN;
 		} else {
@@ -199,7 +200,7 @@ class Door2DView extends StateEntity2DView {
 		if (property == IEntity.PROP_CLASS) {
 			representationChanged = true;
 		} else if (property == Door.PROP_OPEN) {
-			proceedChangedState();
+			proceedChangedState(entity);
 		}
 	}
 
