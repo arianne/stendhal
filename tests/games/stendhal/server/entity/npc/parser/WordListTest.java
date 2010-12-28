@@ -217,4 +217,33 @@ public class WordListTest {
 
 		return sw.toString();
 	}
+
+	/**
+	 * Tests for compound names.
+	 */
+	@Test
+	public final void testCompoundNames() {
+		final WordList wl = WordList.getInstance();
+		wl.registerSubjectName("Sherlock Holmes");
+		wl.registerSubjectName("John Watson");
+		wl.registerSubjectName("Professor Moriarty");
+
+		Sentence sentence = ConversationParser.parse("call Sherlock Holmes");
+		assertFalse(sentence.hasError());
+		assertEquals("call/VER sherlock holmes/SUB-NAM-DYN", sentence.toString());
+		assertEquals(2, sentence.getExpressions().size());
+		assertEquals("Sherlock Holmes", sentence.getSubject(0).getOriginal());
+		 
+		sentence = ConversationParser.parse("call John Watson");
+		assertFalse(sentence.hasError());
+		assertEquals("call/VER john watson/SUB-NAM-DYN", sentence.toString());
+		assertEquals(2, sentence.getExpressions().size());
+		assertEquals("John Watson", sentence.getSubject(0).getOriginal());
+
+		sentence = ConversationParser.parse("call Professor Moriarty");
+		assertFalse(sentence.hasError());
+		assertEquals("call/VER professor moriarty/SUB-NAM-DYN", sentence.toString());
+		assertEquals(2, sentence.getExpressions().size());
+		assertEquals("Professor Moriarty", sentence.getSubject(0).getOriginal());
+	}
 }
