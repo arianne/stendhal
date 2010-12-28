@@ -53,7 +53,7 @@ public class CheckCharacterExistsCommand extends AbstractDBCommand {
 	}
 
 	/**
-	 * checks if account name could be found - which tells if the character existed
+	 * Checks if account name could be found - which tells if the character exists.
 	 *
 	 * @return true if an account was found for that character name
 	 */

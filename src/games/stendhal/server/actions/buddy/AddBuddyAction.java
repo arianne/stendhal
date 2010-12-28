@@ -37,7 +37,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 	
 	
 	/**
-	 * Starts to Handle a Buddy action.
+	 * Starts to handle a buddy action.
 	 * 
 	 * @param player
 	 *            The player.
@@ -49,9 +49,9 @@ class AddBuddyAction implements ActionListener, TurnListener {
 			player.sendPrivateText(NotificationType.ERROR, "Sorry, you have already too many buddies");
 			return;
 		}
-		
+
 		final String who = action.get(TARGET);
-		
+
 		DBCommand command = new CheckCharacterExistsCommand(player, who);
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
 		TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
@@ -64,17 +64,18 @@ class AddBuddyAction implements ActionListener, TurnListener {
 	 */
 	public void onTurnReached(int currentTurn) {
 		CheckCharacterExistsCommand checkcommand = DBCommandQueue.get().getOneResult(CheckCharacterExistsCommand.class, handle);
-		
+
 		if (checkcommand == null) {
 			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 			return;
 		}
 
-		boolean characterExists = checkcommand.exists();
 		Player player = checkcommand.getPlayer();
+
+		boolean characterExists = checkcommand.exists();
 		String who = checkcommand.getWho();
 	
-		if(!characterExists) {
+		if (!characterExists) {
 			player.sendPrivateText(NotificationType.ERROR, "Sorry, " + who + " could not be found.");
 			return;
 		}
@@ -82,12 +83,13 @@ class AddBuddyAction implements ActionListener, TurnListener {
 		final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(who);
 
 		if (player.addBuddy(who, (buddy != null) && !buddy.isGhost())) {
+			new GameEvent(player.getName(), "buddy", "add", who).raise();
 			player.sendPrivateText(who + " was added to your buddy list.");
 		} else {
 			player.sendPrivateText(who + " was already on your buddy list.");
 		}
 
-		new GameEvent(player.getName(), "buddy", "add", who).raise();
+		new BuddyCleanup(player).cleanup();
 	}
 
 	/**

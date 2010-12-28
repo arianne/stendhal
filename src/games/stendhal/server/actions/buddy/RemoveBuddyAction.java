@@ -43,6 +43,8 @@ class RemoveBuddyAction implements ActionListener {
 				player.sendPrivateText("There is no \"" + who + "\" in your buddy list.");
 			}
 		}
+
+		new BuddyCleanup(player).cleanup();
 	}
 
 }

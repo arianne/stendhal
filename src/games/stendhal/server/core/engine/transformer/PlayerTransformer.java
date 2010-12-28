@@ -62,10 +62,9 @@ public class PlayerTransformer implements Transformer {
 	private static final List<String> ITEMS_FOR_ADMINS = Arrays.asList("rod of the gm", "master key");
 
 	public Player create(final RPObject object) {
-		
+
 		removeVolatile(object);
-		
-		
+
 		// add attributes and slots
 		UpdateConverter.updatePlayerRPObject(object);
 
@@ -73,16 +72,13 @@ public class PlayerTransformer implements Transformer {
 		player.stop();
 		player.stopAttack();
 
-
 		loadItemsIntoSlots(player);
 		player.cancelTradeInternally(null);
-		
 
 		// buddy handling with maps
 		if(player.hasBuddies()) {
 			for(String buddyName : player.getBuddies()) {
-				final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(
-						buddyName);
+				final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(buddyName);
 				if ((buddy != null) && !buddy.isGhost()) {
 					player.setBuddyOnlineStatus(buddyName, true);
 				} else {

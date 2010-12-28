@@ -1033,9 +1033,10 @@ public class Player extends RPEntity {
 	 * @return true iff this player has buddies (considers only map attribute!)
 	 */
 	public boolean hasBuddies() {
-		if(hasMap("buddies")) {
+		if (hasMap("buddies")) {
 			return !getMap("buddies").isEmpty();
 		}
+
 		return false;
 	}
 	
@@ -1043,17 +1044,20 @@ public class Player extends RPEntity {
 	 * @return all buddy names for this player
 	 */
 	public Set<String> getBuddies() {
-		HashSet<String> buddies = new HashSet<String>();
-		if(this.hasMap("buddies")) {
+		Set<String> buddies = new HashSet<String>();
+
+		if (hasMap("buddies")) {
 			buddies.addAll(getMap("buddies").keySet());
 		}
+
 		return buddies;
 	}
 	
 	public int countBuddies() {
-		if(this.hasBuddies()) {
-			return getMap("buddies").values().size();
+		if (this.hasBuddies()) {
+			return getMap("buddies").size();
 		}
+
 		return 0;
 	}
 
@@ -1995,7 +1999,7 @@ public class Player extends RPEntity {
 	 * @return true if the buddy has been added
 	 */
 	public boolean addBuddy(String name, boolean online) {
-		boolean isNew = !getMap("buddies").keySet().contains(name);
+		boolean isNew = !getMap("buddies").containsKey(name);
 
 		put("buddies", name, online);
 
