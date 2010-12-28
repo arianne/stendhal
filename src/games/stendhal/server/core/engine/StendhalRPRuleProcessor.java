@@ -307,10 +307,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	protected void executePlayerLogic() {
-
 		getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 			public void execute(final Player player) {
-
 				try {
 					player.logic();
 				} catch (final Exception e) {
@@ -431,7 +429,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				if (!player.isGhost()) {
 					notifyOnlineStatus(true, player);
 					DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, true);
-	
 				}
 				updatePlayerNameListForPlayersOnLogin(player);
 				String[] params = {};
@@ -577,7 +574,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			public void execute(final Player player) {
 				player.sendPrivateText(NotificationType.SUPPORT, message);
 				player.notifyWorldAboutChanges();
-
 			}
 
 		},
@@ -586,7 +582,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			public boolean passes(final Player p) {
 				return p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT;
-
 			}
 
 		});
@@ -604,7 +599,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public void sendMessageToSupporters(final String source, final String message) {
 		final String text = source + " asks for support to ADMIN: " + message;
 		sendMessageToSupporters(text);
-
 	}
 
 	public static int getAmountOfOnlinePlayers() {
@@ -635,7 +629,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 		}
 	}
-	
+
 	/**
 	 * Update all player's lists of online player names on login of a new player
 	 * 
@@ -658,7 +652,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 		});
 	}
-	
+
 	/**
 	 * Update all player's lists of online player names on login of a new player
 	 * 
