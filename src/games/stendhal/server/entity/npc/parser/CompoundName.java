@@ -20,8 +20,8 @@ import java.util.ArrayList;
  *
  * @author Martin Fuchs
  */
-@SuppressWarnings("serial")
 public class CompoundName extends ArrayList<String> {
+    private static final long serialVersionUID = 1L;
 
 	private ExpressionType	type;
 

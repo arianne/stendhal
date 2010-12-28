@@ -82,7 +82,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return Expression array
      */
     protected Expression[] getExpressionsArrayList() {
-        return expressions.toArray(new Expression[0]);
+        return expressions.toArray(new Expression[expressions.size()]);
     }
 
     /**
