@@ -26,6 +26,42 @@ import org.junit.Test;
 public class ExpressionTest {
 
 	@Test
+	public final void testAmount() {
+		Sentence sentence = ConversationParser.parse("buy 15 bananas");
+		assertFalse(sentence.hasError());
+		Expression verb = sentence.getVerb();
+		assertEquals("buy", verb.getNormalized());
+		Expression object = sentence.getObject(0);
+		assertEquals(15, object.getAmount());
+		assertEquals(15, object.getAmountLong());
+
+		sentence = ConversationParser.parse("sell banana");
+		assertFalse(sentence.hasError());
+		assertEquals("sell", sentence.getVerbString());
+		object = sentence.getObject(0);
+		assertEquals(1, object.getAmount());
+		assertEquals(1, object.getAmountLong());
+	}
+
+	@Test
+	public final void testTypes() {
+		Sentence sentence = ConversationParser.parse("sally, please buy 5 bananas");
+		assertFalse(sentence.hasError());
+
+		Expression verb = sentence.getVerb();
+		assertEquals("buy", verb.getNormalized());
+		assertTrue(verb.isVerb());
+		assertFalse(verb.isObject());
+		assertFalse(verb.isSubject());
+
+		Expression subject = sentence.getSubject(0);
+		assertTrue(subject.isSubject());
+		assertFalse(subject.isVerb());
+		Expression object = sentence.getObject(0);
+		assertTrue(object.isObject());
+	}
+
+	@Test
 	public final void testMatch() {
 		final Expression expr1 = ConversationParser.createTriggerExpression("cloak");
 		final Expression expr2 = ConversationParser.createTriggerExpression("cloaks");
