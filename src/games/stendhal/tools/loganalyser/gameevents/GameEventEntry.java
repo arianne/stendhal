@@ -28,14 +28,12 @@ public class GameEventEntry {
 	/**
 	 * Creates a new GameEventEntry.
 	 *
+	 * @param id itemid id of the item
 	 * @param timestamp timestamp
-	 * @param itemid id of the item
 	 * @param source name of player
 	 * @param event  name of event
 	 * @param param1 additional param1
 	 * @param param2 additional param2
-	 * @param param3 additional param3
-	 * @param param4 additional param4
 	 */
 	public GameEventEntry(final String id, final String timestamp,
 			final String source, final String event, final String param1, final String param2) {
