@@ -73,16 +73,20 @@ class AddBuddyAction implements ActionListener, TurnListener {
 		boolean characterExists = checkcommand.exists();
 		Player player = checkcommand.getPlayer();
 		String who = checkcommand.getWho();
-		
+	
 		if(!characterExists) {
-				player.sendPrivateText(NotificationType.ERROR, "Sorry, " + who + " could not be found.");
-				return;
+			player.sendPrivateText(NotificationType.ERROR, "Sorry, " + who + " could not be found.");
+			return;
 		}
 
 		final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(who);
-		player.addBuddy(who, (buddy != null) && !buddy.isGhost());
 
-		player.sendPrivateText(who + " was added to your buddy list.");
+		if (player.addBuddy(who, (buddy != null) && !buddy.isGhost())) {
+			player.sendPrivateText(who + " was added to your buddy list.");
+		} else {
+			player.sendPrivateText(who + " was already on your buddy list.");
+		}
+
 		new GameEvent(player.getName(), "buddy", "add", who).raise();
 	}
 

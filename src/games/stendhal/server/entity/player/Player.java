@@ -1992,9 +1992,14 @@ public class Player extends RPEntity {
 	 * 
 	 * @param name the name of the buddy
 	 * @param online if the player is online
+	 * @return true if the buddy has been added
 	 */
-	public void addBuddy(String name, boolean online) {
+	public boolean addBuddy(String name, boolean online) {
+		boolean isNew = !getMap("buddies").keySet().contains(name);
+
 		put("buddies", name, online);
+
+		return isNew;
 	}
 	
 	/**
