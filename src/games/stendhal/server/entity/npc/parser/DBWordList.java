@@ -36,7 +36,7 @@ public final class DBWordList extends WordList {
 	/**
 	 * Attach WordList to database and enable persistence. WordList is per
 	 * default only using the pre-configured Resource word list and does not
-	 * store new words into the database to enable JUint tests without database
+	 * store new words into the database to enable JUnit tests without database
 	 * access. Creating a DBWordList object reads the word list from the database
 	 * and enables further write access to it.
 	 */

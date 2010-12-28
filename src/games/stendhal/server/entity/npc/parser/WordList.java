@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
 
 /**
  * WordList stores a list of words recognized by the ConversationParser. Words
- * are categorized by type (noun, verb, adjective, preposition) and optionally
+ * are categorised by type (noun, verb, adjective, preposition) and optionally
  * sub-types (animals, food, fluids, ...).
  * 
  * @author Martin Fuchs
@@ -90,7 +90,7 @@ public class WordList {
 	}
 
 	/**
-	 * Initializes the WordList instance.
+	 * Initialises the WordList instance.
 	 */
 	private static void initInstance() {
 		// read word list from "words.txt"

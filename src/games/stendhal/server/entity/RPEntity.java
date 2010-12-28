@@ -146,7 +146,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * the fighters would mean they need no luck, we only use karma when the
 	 * levels are significantly different.
 	 */
-	
+
 	private static final double IGNORE_KARMA_MULTIPLIER = 0.2;
 
 	/**
@@ -438,8 +438,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param newName
 	 * @param oldName
 	 */
-	private static void registerNewName(final String newName,
-			final String oldName) {
+	private static void registerNewName(final String newName, final String oldName) {
 		if ((oldName != null) && !oldName.equals(newName)) {
 			WordList.getInstance().unregisterSubjectName(oldName);
 		}
@@ -2453,7 +2452,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * gets the name of the player who deserves the corpse
+	 * Gets the name of the player who deserves the corpse.
 	 *
 	 * @return name of player who deserves the corpse or <code>null</code>.
 	 */

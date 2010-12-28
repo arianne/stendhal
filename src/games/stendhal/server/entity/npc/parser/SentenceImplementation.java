@@ -160,7 +160,7 @@ public final class SentenceImplementation extends Sentence {
 
             // handle unknown words
             if (!wordFound) {
-                // recognize declined verbs, e.g. "swimming"
+                // recognise declined verbs, e.g. "swimming"
                 final WordList.Verb verb = wl.normalizeVerb(original);
 
                 if (verb != null) {
@@ -182,7 +182,7 @@ public final class SentenceImplementation extends Sentence {
             }
 
             if (!wordFound) {
-                // recognize derived adjectives, e.g. "magical", "nomadic" or "rounded"
+                // recognise derived adjectives, e.g. "magical", "nomadic" or "rounded"
                 final WordEntry adjective = wl.normalizeAdjective(original);
 
                 if (adjective != null) {
@@ -211,7 +211,7 @@ public final class SentenceImplementation extends Sentence {
     }
 
     /**
-     * Standardize sentence type.
+     * Standardise sentence type.
      */
     void standardizeSentenceType() {
         // Look for a "me" without any preceding other subject.
@@ -234,7 +234,7 @@ public final class SentenceImplementation extends Sentence {
                         // If we already found a verb, we prepend "you" as
                         // first subject and mark the sentence as imperative.
                         if (prevVerb != null) {
-                        	//TODO The following line as an ugly hack to let Gordon recognize statements like "rent Me ...".
+                        	//TODO The following line is an ugly hack to let Gordon recognise statements like "rent Me ...".
                         	// It should be replaced by using sentence matching "[you] rent" in SignLessorNPC.
                         	if (!prevVerb.getNormalized().equals("rent")) {
 	                            final Expression you = new Expression("you", ExpressionType.SUBJECT);
@@ -268,7 +268,7 @@ public final class SentenceImplementation extends Sentence {
             expressions.remove(verb1);
             sentenceType = SentenceType.QUESTION;
         } else if (matchesNormalized("you have OBJ for me")) {
-        	// the Sentence matches "do you have OBJ for me?"?
+        	// the Sentence matches "do you have OBJ for me?"
             // remove "you"
             expressions.remove(subject1);
             // remove "for"
@@ -309,7 +309,7 @@ public final class SentenceImplementation extends Sentence {
      */
     private static boolean isYouGiveMe(final Expression subject1, final Expression verb, final Expression subject2) {
         if ((verb != null) && (subject1 != null) && (subject2 != null)) {
-            // Note: The second subject "me" is replaced by "i" in the WordList normalization.
+            // Note: The second subject "me" is replaced by "i" in the WordList normalisation.
             if (subject1.getNormalized().equals("you") && verb.getNormalized().equals("give")
                     && subject2.getNormalized().equals("i")) {
                 return true;
