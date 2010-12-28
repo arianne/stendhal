@@ -43,6 +43,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.item.Stackable;
+import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.events.PrivateTextEvent;
 
 import java.util.ArrayList;
@@ -199,6 +200,8 @@ public class Player extends RPEntity {
 
 
 	public static void destroy(final Player player) {
+		final String name = player.getName();
+
 		player.getPetOwner().destroy();
 		player.stop();
 		player.stopAttack();
@@ -216,6 +219,10 @@ public class Player extends RPEntity {
 		player.getZone().remove(player);
 
 		player.disconnected = true;
+
+		if (name != null) {
+			WordList.getInstance().unregisterSubjectName(name);
+		}
 	}
 
 	public Player(final RPObject object) {
