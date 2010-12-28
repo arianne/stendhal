@@ -61,7 +61,7 @@ public class WordList {
 
 	protected Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
-	Map<String, Set<CompoundName>> compoundNames = new HashMap<String, Set<CompoundName>>();
+	private Map<String, Set<CompoundName>> compoundNames = new HashMap<String, Set<CompoundName>>();
 
 	// We keep house holding the usage of registered subject names (see registerSubjectName).
 	private Map<String, Integer> subjectRefCount = new HashMap<String, Integer>();
@@ -81,8 +81,8 @@ public class WordList {
 		subjectRefCount = other.subjectRefCount;
 	}
 
-	// initialize the word list by querying the database or reading from the
-	// input file "words.txt" in the class path
+	// Initialise the word list by querying the database or reading from the
+	// input file "words.txt" in the class path.
 	static {
 		Log4J.init();
 
@@ -537,7 +537,7 @@ public class WordList {
 	 * @param name
 	 */
 	public void registerSubjectName(final String name) {
-		registerSubjectName(name, ExpressionType.SUBJECT_NAME + ExpressionType.SUFFIX_DYNAMIC);
+		registerSubjectName(name, ExpressionType.SUBJECT_NAME);
 	}
 
 	/**
@@ -573,8 +573,8 @@ public class WordList {
 		final String key = trimWord(name);
 		final WordEntry entry = words.get(key);
 
-		if ((entry != null)
-				&& entry.getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
+		if (entry != null && entry.getType().isName() &&
+				entry.getType().isDynamic()) {
 			Integer usageCount = subjectRefCount.get(key);
 
 			if (usageCount != null) {
@@ -583,7 +583,7 @@ public class WordList {
 
 				if (usageCount == 0) {
 					subjectRefCount.remove(key);
-					words.remove(key);
+					unregisterName(name);
 				}
 			}
 		}
@@ -641,7 +641,7 @@ public class WordList {
 			}
 		}
 
-		// register compound item names to use them later when merging words
+		// register compound item and subject names to use them when merging expressions
 		if (parsed.getExpressions().size() > 1) {
 			Expression firstExpr = parsed.expressions.get(0);
 			String firstWord = firstExpr.getOriginal().toLowerCase();
@@ -657,8 +657,51 @@ public class WordList {
 		}
 	}
 
+	/**
+	 * Access the compound names map from SentenceImplementation.
+	 * @return
+	 */
 	Map<String, Set<CompoundName>> getCompoundNames() {
 		return compoundNames;
+	}
+
+	/**
+	 * De-register a name after all references have been removed.
+	 * @param name
+	 */
+	private void unregisterName(final String name) {
+		// parse item name without merging Expression entries
+		final ConversationContext ctx = new ConversationContext();
+		ctx.setMergeExpressions(false);
+		final Sentence parsed = ConversationParser.parse(name, ctx);
+
+		// remove compound names
+		if (parsed.expressions.size() > 1) {
+			Expression firstExpr = parsed.expressions.get(0);
+			String firstWord = firstExpr.getOriginal().toLowerCase();
+
+			Set<CompoundName> nameSet = compoundNames.get(firstWord);
+
+			if (nameSet != null) {
+				for(CompoundName compName : nameSet) {
+					if (compName.matches(parsed.expressions, 0)) {
+						nameSet.remove(compName);
+
+						if (nameSet.isEmpty()) {
+							compoundNames.remove(nameSet);
+						}
+
+						break;
+					}
+				}
+			}
+		}
+
+		for(Expression expr : parsed.expressions) {
+			if (expr.getType().isDynamic()) {
+				words.remove(expr.getNormalized());
+			}
+		}
 	}
 
 	/**

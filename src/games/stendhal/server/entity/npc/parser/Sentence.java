@@ -38,8 +38,8 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
     protected SentenceType sentenceType = SentenceType.UNDEFINED;
 
-    ArrayList<Expression> expressions = new ArrayList<Expression>();
-  
+    protected ArrayList<Expression> expressions = new ArrayList<Expression>();
+
 
     /**
      * Create a Sentence object.

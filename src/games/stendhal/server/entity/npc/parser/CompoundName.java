@@ -25,11 +25,20 @@ public class CompoundName extends ArrayList<String> {
 
 	private ExpressionType	type;
 
-	public CompoundName(final Sentence parsed, final String typeString) {
+	public CompoundName(final Sentence parsed, String typeString) {
 		assert(parsed.expressions.size() >= 2);
+		boolean isDynamic = false;
 
 		for(Expression e : parsed.expressions) {
 			add(e.getOriginal().toLowerCase());
+
+			if (e.getType().isDynamic()) {
+				isDynamic = true;
+			}
+		}
+
+		if (isDynamic) {
+			typeString += ExpressionType.SUFFIX_DYNAMIC;
 		}
 
 		type = new ExpressionType(typeString);

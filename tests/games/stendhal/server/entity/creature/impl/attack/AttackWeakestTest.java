@@ -20,14 +20,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.creature.impl.attack.AttackStrategy;
-import games.stendhal.server.entity.creature.impl.attack.AttackWeakest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.server.game.db.DatabaseFactory;
 
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -36,14 +33,16 @@ import utilities.RPClass.CreatureTestHelper;
 
 public class AttackWeakestTest {
 	@BeforeClass
-	public static void setUpbeforeClass() throws Exception {
+	public static void setUpBeforeClass() throws Exception {
 		new DatabaseFactory().initializeDatabase();
 		MockStendlRPWorld.get();
 		CreatureTestHelper.generateRPClasses();
 	}
 
-	@After
-	public void tearDown() throws Exception {
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		PlayerTestHelper.removePlayer("ghost");
+		PlayerTestHelper.removePlayer("elvis");
 	}
 
 	/**
@@ -86,7 +85,7 @@ public class AttackWeakestTest {
 		
 		StendhalRPZone jacuzzi = new StendhalRPZone("jacuzzi");
 		Player player = PlayerTestHelper.createPlayer("elvis");
-		jacuzzi.add(player);
+		PlayerTestHelper.registerPlayer(player, jacuzzi);
 		
 		Creature creature = new Creature();
 		StendhalRPZone arena = new StendhalRPZone("arena");

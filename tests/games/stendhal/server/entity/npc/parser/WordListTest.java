@@ -306,7 +306,7 @@ public class WordListTest {
 
 		sentence = ConversationParser.parse("catch Bugs Bunny");
 		assertFalse(sentence.hasError());
-		assertEquals("catch/VER bugs bunny/SUB-NAM-DYN", sentence.toString());
+		assertEquals("catch/VER bugs bunny/SUB-NAM", sentence.toString());
 		assertEquals(2, sentence.getExpressions().size());
 		assertEquals("Bugs Bunny", sentence.getSubject(0).getOriginal());
 		assertEquals("bugs bunny", sentence.getSubject(0).getNormalized());
