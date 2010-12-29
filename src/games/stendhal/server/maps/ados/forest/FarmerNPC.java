@@ -79,7 +79,7 @@ public class FarmerNPC implements ZoneConfigurator {
 						"you will reach after some time the great city Ados. At the east is a biiig rock. Does Balduin " +
 						"still live there? You want to go south-east? Well.. you can reach Ados there too, but I think the " +
 						"way is a bit harder.");
-				addQuest("I don't have time for those things, sorry. Working..working..working..");
+				addQuest("I don't have time for those things, sorry. Working.. working.. working..");
 				addReply("empty sack","Oh, I got plenty of those to sell. Ask me for an #offer.");
                 final Map<String, Integer> offerings = new HashMap<String, Integer>();
                 offerings.put("empty sack", 10);

@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a npc in a house on Ados market (name:Caroline) who is the daughter of fisherman Fritz
+ * Builds a NPC in a house on Ados market (name:Stefan) who is the daughter of fisherman Fritz
  * 
  * @author Vanessa Julius 
  *

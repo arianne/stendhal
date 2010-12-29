@@ -20,7 +20,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Map;
 
 /**
- * Builds a npc in a house on Ados market (name:Caroline) who is the daughter of fisherman Fritz
+ * Builds a NPC in a house on Ados market (name:Damon) who is the daughter of fisherman Fritz
  * 
  * @author Vanessa Julius 
  *
@@ -36,7 +36,6 @@ public class HotelGuestNPC implements ZoneConfigurator {
 		    
 			protected void createPath() {
 				setPath(null);
-		
 			}
 
 			@Override
@@ -44,15 +43,14 @@ public class HotelGuestNPC implements ZoneConfigurator {
 				addGreeting("Hi, you!");
 				addHelp("Oh I just came to town for visiting my younger brother Stefan. My hometown is Ados but after I stepped into some trouble with my former girlfriend Caroline there, I decided to travel around a bit. I saw a #spooky #castle on my way to Fado...");
 				addReply("spooky castle", "A really spooky one! With skeletons as guards around. Good that I'm not scared of anything! But I bet that something useful is #hidden #inside...");
-				addReply("hidden inside", "Well unfortunetly I promised to my brother to visit him so soon as possible and I straight went to Fado then...too bad.");
-				addQuest("A task for you? Me? Oh no..You got to be #kidding me."); 
+				addReply("hidden inside", "Well unfortunetly I promised to my brother to visit him so soon as possible and I straight went to Fado then... too bad.");
+				addQuest("A task for you? Me? Oh no.. You got to be #kidding me."); 
 				addReply("kidding", "Do I really look like someone who needs help? Well I don't! At least not at the moment.");
 				addJob("Sometimes I'm here, sometimes I'm there. Fast like the #wind and smooth as a tiger.");
 				addReply("wind", "No I'm not the storm #everyone talks about in Ados.");
 				addReply("everyone", "My hysterical girlfriend Caroline and her father saw it somewhere far away on the sea. Well, I didn't even get a breeze of it.");
 				addOffer("Well you don't offer me anything so I don't offer anything to you. That is life.");
 				addGoodbye("Bye bye!");
-				
 			}
 		};
 
