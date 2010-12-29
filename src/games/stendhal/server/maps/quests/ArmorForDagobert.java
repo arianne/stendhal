@@ -90,7 +90,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			res.add("I found a leather cuirass and will take it to Dagobert.");
 		}
 		if ("done".equals(questState)) {
-			res.add("I took the leather cuirass to Dagobert. He thanked me and gave a small reward.");
+			res.add("I took the leather cuirass to Dagobert. As a little thank you, he will allow me to use a private vault.");
 		}
 		return res;
 	}
