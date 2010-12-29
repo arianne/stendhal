@@ -81,7 +81,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new AndCondition(new GreetingMatchesNameCondition(getName()),
+					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 							new QuestCompletedCondition(QUEST_SLOT)),
 					ConversationStates.IDLE,
 					"Hi again! Good bye, and remember to behave if you want a present next year!",
@@ -104,7 +104,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				reward.add(new ProcessReachedQuestAchievementsAction());
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new AndCondition(new GreetingMatchesNameCondition(getName()),
+					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 							new QuestNotCompletedCondition(QUEST_SLOT)),
 					ConversationStates.IDLE,
 					"Merry Christmas! I have a present and a hat for you. Good bye, and remember to behave if you want a present next year!",

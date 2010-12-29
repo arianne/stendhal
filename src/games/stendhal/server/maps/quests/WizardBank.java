@@ -189,7 +189,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				// has been here before
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(new GreetingMatchesNameCondition(getName()),
+						new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestCompletedCondition(QUEST_SLOT)),
@@ -200,7 +200,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				// never started quest
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(new GreetingMatchesNameCondition(getName()),
+						new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestNotStartedCondition(QUEST_SLOT)),
@@ -211,7 +211,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				// currently in bank
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(new GreetingMatchesNameCondition(getName()),
+						new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestActiveCondition(QUEST_SLOT)),
@@ -222,7 +222,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				// hasn't got access to all banks yet
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(new GreetingMatchesNameCondition(getName()),
+						new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 							new OrCondition(
 									new QuestNotCompletedCondition(GRAFINDLE_QUEST_SLOT), 
 									new QuestNotCompletedCondition(ZARA_QUEST_SLOT))),

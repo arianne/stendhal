@@ -74,7 +74,7 @@ public class MeetBunny extends AbstractQuest {
 				// Greet players who have a basket but go straight back to idle to give others a chance
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(new GreetingMatchesNameCondition(getName()),
+						new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 								new QuestCompletedCondition(QUEST_SLOT)),
 						ConversationStates.IDLE,
 						"Hi again! Don't eat too much this Easter!", null);
@@ -87,7 +87,7 @@ public class MeetBunny extends AbstractQuest {
 				// Give unmet players a basket
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new AndCondition(new GreetingMatchesNameCondition(getName()),
+					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 							new QuestNotCompletedCondition(QUEST_SLOT)),
 					ConversationStates.ATTENDING,
 					"Happy Easter! I have an easter basket for you.",
