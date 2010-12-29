@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -183,5 +184,17 @@ public class MeetMonogenes extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "MeetMonogenes";
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest("Monogenes")) {
+				return res;
+			}
+			if (isCompleted(player)) {
+				res.add("I spoke with Monogenes and he offered to give me a map. I can always get that map from him at any time, just by asking.");
+			} 
+			return res;
 	}
 }
