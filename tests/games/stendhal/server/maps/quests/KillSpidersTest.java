@@ -157,7 +157,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getKarma(), greaterThan(karma));
 		assertTrue(player.getQuest(questSlot).startsWith("killed"));
-		questHistory.add("I have killed all spiders in magic school basement and got a mythical egg.");
+		questHistory.add("I have killed all spiders in the magic school basement and got a mythical egg.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
@@ -236,7 +236,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertThat(player.getKarma(), greaterThan(karma));
 		assertTrue(player.getQuest(questSlot).startsWith("killed"));
 		questHistory.clear();
-		questHistory.add("I have killed all spiders in magic school basement and got a mythical egg.");
+		questHistory.add("I have killed all spiders in the magic school basement and got a mythical egg.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));       
