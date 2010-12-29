@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * States the name of the player amid a message
+ * States the name of the player emitting a message
  * 
  * @author kymara
  */
@@ -50,14 +50,11 @@ public class SayTextWithPlayerNameAction implements ChatAction {
 			
 		raiser.say(StringUtils.substitute(message,substitutes));	
 	}
-
-
 	
 	@Override
 	public String toString() {
 		return "SayTextWithPlayerNameAction <" + message + ">";
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -69,7 +66,5 @@ public class SayTextWithPlayerNameAction implements ChatAction {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				SayTextWithPlayerNameAction.class);
 	}
-
-	
 
 }

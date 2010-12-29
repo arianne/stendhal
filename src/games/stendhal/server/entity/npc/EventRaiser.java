@@ -35,7 +35,7 @@ public class EventRaiser {
 	}
 
 	/**
-	 * gets the RPEntity the SpeakerNPC is attenting to
+	 * gets the RPEntity the SpeakerNPC is attending to
 	 *
 	 * @return RPEntity or <code>null</code>
 	 */
@@ -77,7 +77,6 @@ public class EventRaiser {
 		} else {
 			return entity.get("name");
 		}
-		
 	}
 
 	/**
