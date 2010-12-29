@@ -334,7 +334,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		// add to history how often player helped Semos so far
 		final int repetitions = getNumberOfRepetitions(player);
 		if (repetitions > 0) {
-			res.add("I helped and saved semos for "
+			res.add("I helped and saved Semos "
 					+ Grammar.quantityNumberStrNoun(repetitions, "time") + " so far");
 		}
 		return res;
