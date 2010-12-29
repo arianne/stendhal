@@ -2610,6 +2610,8 @@ My fee:
   </zone>
 
   <zone name="int_ados_farm_house_1" file="interiors/ados/farm_house_1.tmx">
+  <configurator class-name="games.stendhal.server.maps.ados.farmhouse.MotherNPC"/>
+  <configurator class-name="games.stendhal.server.maps.ados.farmhouse.BoyNPC"/>
    <portal x="22" y="14" ref="down">
     <destination zone="int_ados_farm_house" ref="up"/>
    </portal>
