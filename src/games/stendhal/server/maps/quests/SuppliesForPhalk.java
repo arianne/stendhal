@@ -368,7 +368,7 @@ import org.apache.log4j.Logger;
 				return res;
 			}
 			final String questState = player.getQuest(QUEST_SLOT);
-			res.add("I spoke with Phalk, who guards a pasage in Semos Mines.");
+			res.add("I spoke with Phalk, who guards a passage in Semos Mines.");
 			res.add("Phalk asked me to bring him 3 sandwiches, 3 bottles of beer and 3 glasses of wine.");
 			if ("rejected".equals(questState)) {
 				res.add("I don't want to help Phalk.");
