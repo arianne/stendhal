@@ -66,17 +66,17 @@ public class PlinksToy extends AbstractQuest {
 		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			if (player.isEquipped("teddy")) {
-				res.add("Plink commented about the bear I have with me");
+				res.add("Plink commented about the bear I have with me.");
 			}
 			return res;
 		}
 		res.add("I have met Plink");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("I do not want to find Plink's toy bear");
+			res.add("I do not want to find Plink's toy bear.");
 			return res;
 		}
-		res.add("I do want to help Plink find his bear");
+		res.add("Plink begged me to look for his teddy in a garden with lots of wolves.");
 		if ((player.isEquipped("teddy")) || isCompleted(player)) {
 			res.add("I have found Plink's toy bear");
 		}
