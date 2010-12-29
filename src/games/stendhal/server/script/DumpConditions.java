@@ -44,7 +44,6 @@ public class DumpConditions extends ScriptImpl {
 		final Set<ConversationStates> states = transitions.getSourceStates();
 
 		for (final ConversationStates state : states) {
-			
 			final Set<Expression> triggers = transitions.getTriggersForState(state);
 			for (final Expression trigger : triggers) {
 				final List<Transition> trans = transitions.getTransitionsForStateAndTrigger(

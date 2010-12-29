@@ -97,7 +97,12 @@ public class DumpTransitionsEx extends ScriptImpl {
 		String transitionName = transition.getTrigger().toString();
 
 		if (transition.getCondition() != null) {
-			final String key = conditions.add(transition.getCondition());
+			String key = conditions.add(transition.getCondition());
+
+			if (!transition.isPreferred()) {
+				key = "-" + key;
+			}
+
 			transitionName = "(" + key + ") " + transitionName;
 		}
 

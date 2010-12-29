@@ -79,6 +79,10 @@ public class DumpTransitions extends ScriptImpl {
 		String transitionName = transition.getTrigger().toString();
 
 		if (transition.getCondition() != null) {
+			if (!transition.isPreferred()) {
+				transitionName = "-" + transitionName;
+			}
+
 			transitionName = "~ " + transitionName;
 		}
 
