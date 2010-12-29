@@ -91,7 +91,7 @@ public class Campfire extends AbstractQuest {
 
 	@Override
 	public boolean isRepeatable(final Player player) {
-		return true;
+		return new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)).fire(player, null, null);
 	}
 
 	@Override
@@ -113,6 +113,9 @@ public class Campfire extends AbstractQuest {
 		if (isCompleted(player)) {
 			res.add("I have given Sally the wood. She gave me some food in return. I also gained 50 xp");
 		}
+		if(isRepeatable(player)){
+			res.add("Sally's fire needs some wood again.");
+		} 
 		return res;
 	}
 

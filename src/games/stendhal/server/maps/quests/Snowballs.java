@@ -83,7 +83,7 @@ public class Snowballs extends AbstractQuest {
 
 	@Override
 	public boolean isRepeatable(final Player player) {
-		return true;
+		return new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)).fire(player, null, null);
 	}
 
 	@Override
@@ -105,6 +105,9 @@ public class Snowballs extends AbstractQuest {
 		if (isCompleted(player)) {
 			res.add("I made Mr. Yeti happy when I gave him the snowballs he wanted.");
 		}
+		if(isRepeatable(player)){
+			res.add("Mr. Yeti needs snowballs again!");
+		} 
 		return res;
 	}
 
