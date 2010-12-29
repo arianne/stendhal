@@ -93,14 +93,15 @@ public class AwaitingPhase extends TPPQuest {
 			}
 			return new FixedPath(templ, false);
 		}
-		
+
 		/**
 		 * move follower close to leader.
 		 */
 		private void moveToProperDistance() {
-			final double dist=leader.squaredDistance(follower); 
-			if (dist>6) {			
-				follower.setMovement(leader, 0, 5, dist*1.5);
+			final double dist = leader.squaredDistance(follower);
+			int range = leader.getPerceptionRange();
+			if (dist > range+1) {
+				follower.setMovement(leader, 0, range, dist*1.5);
 				follower.setPath(getOneThirdOfPath(follower.getPath()));
 				follower.pathnotifier.addObserver(this);
 			} else {
@@ -110,9 +111,9 @@ public class AwaitingPhase extends TPPQuest {
 			}
 		}		
 	}
-	
+
 	/**
-	 * chatting between 2 npcs
+	 * chatting between 2 NPCs
 	 * @author yoriy
 	 */
 	private static final class NPCChatting implements Observer, TurnListener {

@@ -160,6 +160,9 @@ public class Creature extends NPC {
 		setAIProfiles(new HashMap<String, String>());
 		
 		susceptibilities = new EnumMap<Nature, Double>(Nature.class);
+
+		// set the default movement range
+		setMovementRange(20);
 	}
 
 	/**
@@ -630,7 +633,7 @@ public class Creature extends NPC {
 			}
 
 			if (shortestDistance >= 1) {
-				final List<Node> path = Path.searchPath(this, chosen, 20.0);
+				final List<Node> path = Path.searchPath(this, chosen, getMovementRange());
 				if ((path == null) || (path.size() == 0)) {
 					distances.remove(chosen);
 					chosen = null;

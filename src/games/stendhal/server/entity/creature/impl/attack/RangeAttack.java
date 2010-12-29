@@ -38,7 +38,7 @@ public class RangeAttack implements AttackStrategy {
 	}
 
 	public void findNewTarget(final Creature creature) {
-		final RPEntity enemy = creature.getNearestEnemy(7);
+		final RPEntity enemy = creature.getNearestEnemy(creature.getPerceptionRange()+2);
 		if (enemy != null) {
 			creature.setTarget(enemy);
 		}
@@ -48,11 +48,11 @@ public class RangeAttack implements AttackStrategy {
 		final Entity target = creature.getAttackTarget();
 		final double distance = creature.squaredDistance(target);
 		// if too far away from enemy
-		if (distance > 25) {
-			creature.setMovement(target, 0, 1, 20.0);
+		if (distance > creature.getMovementRange()*1.25) {
+			creature.setMovement(target, 0, 1, creature.getMovementRange());
 			creature.faceToward(creature.getAttackTarget());
 		// if too close to enemy
-		} else if (distance < 16) {
+		} else if (distance < creature.getMovementRange()*0.75+1) {
 			// turn creature around
 			creature.faceToward(creature.getAttackTarget());
 			creature.setDirection(creature.getDirection().oppositeDirection());
@@ -60,7 +60,7 @@ public class RangeAttack implements AttackStrategy {
 			if (creature.getZone().collides(creature, creature.getX() + creature.getDirection().getdx(), creature.getY() + creature.getDirection().getdy(), true)) {
 				if (!canAttackNow(creature)) {
 					// go back to enemy
-					creature.setMovement(target, 0, 1, 15.0);
+					creature.setMovement(target, 0, 1, creature.getMovementRange()*0.75);
 					creature.faceToward(creature.getAttackTarget());
 				} else {
 					// will attack from here
@@ -76,7 +76,7 @@ public class RangeAttack implements AttackStrategy {
 		} else {
 			// cant attack enemy, going to him
 			if (!canAttackNow(creature)) {
-				creature.setMovement(target, 0, 1, 20.0);
+				creature.setMovement(target, 0, 1, creature.getMovementRange());
 				creature.faceToward(creature.getAttackTarget());
 			} else {
 				// this is good position to attack enemy
@@ -84,7 +84,6 @@ public class RangeAttack implements AttackStrategy {
 				creature.stop();
 				creature.faceToward(creature.getAttackTarget());
 			}
-
 		}
 	}
 

@@ -43,6 +43,16 @@ public abstract class NPC extends RPEntity {
 	 */
 	private String idea;
 
+	/**
+	 * The range in which the NPC will notice other subjects like players or enemies.
+	 */
+	private int perceptionRange = 5;
+
+	/**
+	 * The range in which the NPC will search for movement paths.
+	 */
+	private int movementRange = 20;
+
 	public static void generateRPClass() {
 		try {
 			final RPClass npc = new RPClass("npc");
@@ -159,6 +169,38 @@ public abstract class NPC extends RPEntity {
 		path.add(new Node(x + dx, y + dy));
 
 		setPath(new FixedPath(path, false));
+	}
+
+	/**
+	 * Query the range in which the NPC will notice other subjects like players or enemies.
+	 * @return perception range
+	 */
+	public int getPerceptionRange() {
+		return perceptionRange;
+	}
+
+	/**
+	 * Set the perception range.
+	 * @param perceptionRange
+	 */
+	public void setPerceptionRange(int perceptionRange) {
+		this.perceptionRange = perceptionRange;
+	}
+
+	/**
+	 * Query the range in which the NPC will search for movement paths.
+	 * @return movement range
+	 */
+	public int getMovementRange() {
+		return movementRange;
+	}
+
+	/**
+	 * Set the movement range.
+	 * @param movementRange
+	 */
+	public void setMovementRange(int movementRange) {
+		this.movementRange = movementRange;
 	}
 
 	//

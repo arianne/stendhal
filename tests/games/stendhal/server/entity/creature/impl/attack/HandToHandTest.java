@@ -288,7 +288,6 @@ public class HandToHandTest {
 		assertTrue("in same zone, not too far away", hth.hasValidTarget(creature));
 		victim.setPosition(13, 0);
 		assertFalse("in same zone, too far away", hth.hasValidTarget(creature));
-
 	}
 
 	/**
@@ -304,6 +303,7 @@ public class HandToHandTest {
 		assertFalse(lonesomeCreature.isAttacking());
 
 		final Creature creature = createMock(Creature.class);
+		expect(creature.getPerceptionRange()).andReturn(5);
 		expect(creature.getNearestEnemy(7)).andReturn(creature);
 		creature.setTarget(creature);
 		replay(creature);

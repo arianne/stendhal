@@ -21,13 +21,11 @@ class HandToHand implements AttackStrategy {
 	private static final int FOLLOW_RADIUS = 12;
 
 	public void attack(final Creature creature) {
-		
 		if (creature.isAttackTurn(SingletonRepository.getRuleProcessor().getTurn())) {
 			creature.attack();
 			creature.tryToPoison();
 		}
 	}
-
 
 	public boolean canAttackNow(final Creature creature) {
 		if (creature.getAttackTarget() != null) {
@@ -38,17 +36,16 @@ class HandToHand implements AttackStrategy {
 	}
 
 	public void findNewTarget(final Creature creature) {
-		final RPEntity enemy = creature.getNearestEnemy(7);
+		final RPEntity enemy = creature.getNearestEnemy(creature.getPerceptionRange()+2);
 		if (enemy != null) {
 			creature.setTarget(enemy);
 		}
 	}
 
 	public void getBetterAttackPosition(final Creature creature) {
-
 		final games.stendhal.server.entity.Entity target = creature.getAttackTarget();
 		if (creature.hasTargetMoved()) {
-			creature.setMovement(target, 0, 1, 20.0);
+			creature.setMovement(target, 0, 1, creature.getMovementRange());
 		}
 		if (!creature.hasPath()) {
 			if ((int) creature.squaredDistance(target) >= 1) {
@@ -57,8 +54,6 @@ class HandToHand implements AttackStrategy {
 			}
 		}
 		creature.faceToward(creature.getAttackTarget());
-		
-
 	}
 
 	public boolean hasValidTarget(final Creature creature) {

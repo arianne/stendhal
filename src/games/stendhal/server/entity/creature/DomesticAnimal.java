@@ -64,6 +64,9 @@ public abstract class DomesticAnimal extends Creature {
 		if (object.has("title_type")) {
 			put("title_type", object.get("title_type"));
 		}
+
+		// set the default range for movements
+		setPerceptionRange(20);
 	}
 
 	/**
@@ -124,12 +127,12 @@ public abstract class DomesticAnimal extends Creature {
 	protected void moveToOwner() {
 		logger.debug("Domestic animal (owner) moves to owner");
 		setIdea("follow");
-		setMovement(owner, 0, 0, 20);
+		setMovement(owner, 0, 0, getMovementRange());
 		// setAsynchonousMovement(owner,0,0);
 	}
 
 	protected void moveRandomly() {
-		setRandomPathFrom(getX(), getY(), 10);
+		setRandomPathFrom(getX(), getY(), getMovementRange()/2);
 	}
 
 	/**

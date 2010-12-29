@@ -52,7 +52,6 @@ public abstract class Pet extends DomesticAnimal {
 
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(Pet.class);
-
 	
 
 	/**
@@ -78,8 +77,6 @@ public abstract class Pet extends DomesticAnimal {
 	protected int XP;
 
 	protected int hunger;
-
-	
 	
 
 	/**
@@ -93,6 +90,12 @@ public abstract class Pet extends DomesticAnimal {
 		setXP(XP);
 		setBaseHP(HP);
 		setHP(HP);
+
+		// set the default perception range
+		setPerceptionRange(20);
+
+		// set the default movement range
+		setMovementRange(20);
 
 		hunger = START_HUNGER_VALUE;
 	}
@@ -201,7 +204,7 @@ public abstract class Pet extends DomesticAnimal {
 		// call super class to perform common tasks like attacking targets
 		super.logic();
 
-		if (!isEnemyNear(20) && (owner == null)) {
+		if (!isEnemyNear(getPerceptionRange()) && (owner == null)) {
 			// if noone near and noone owns us ....
 			stop();
 			notifyWorldAboutChanges();
@@ -231,10 +234,9 @@ public abstract class Pet extends DomesticAnimal {
 				} else {
 					LOGGER.debug("Pet moves to food");
 					setIdea("food");
-					setMovement(food, 0, 0, 20);
+					setMovement(food, 0, 0, getMovementRange());
 					// setAsynchonousMovement(food,0,0);
 				}
-
 			} else if (hunger > HUNGER_STARVATION) {
 				// move crazy if starving
 				moveRandomly();

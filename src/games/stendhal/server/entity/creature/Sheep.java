@@ -105,6 +105,12 @@ public class Sheep extends DomesticAnimal {
 	 */
 	public Sheep() {
 		this(null);
+
+		// set the default perception range for enemy detection
+		setPerceptionRange(20);
+
+		// set the default movement range
+		setMovementRange(20);
 	}
 
 	/**
@@ -282,7 +288,7 @@ public class Sheep extends DomesticAnimal {
 			/*
 			 * Check if player near (creature's enemy)
 			 */
-			if (((turn % 15) == 0) && isEnemyNear(20)) {
+			if (((turn % 15) == 0) && isEnemyNear(getPerceptionRange())) {
 				logger.debug("Sheep (ownerless) moves randomly");
 				setIdea("walk");
 				moveRandomly();
@@ -295,14 +301,14 @@ public class Sheep extends DomesticAnimal {
 			 * An extremely hungry sheep becomes agitated
 			 */
 			setIdea("food");
-			setRandomPathFrom(owner.getX(), owner.getY(), 20);
+			setRandomPathFrom(owner.getX(), owner.getY(), getMovementRange());
 			setSpeed(getBaseSpeed());
 		} else if (!nextTo(owner)) {
 			moveToOwner();
 		} else {
 			if ((turn % 100) == 0) {
 				logger.debug("Sheep is bored");
-				setRandomPathFrom(owner.getX(), owner.getY(), 10);
+				setRandomPathFrom(owner.getX(), owner.getY(), getMovementRange()/2);
 				setSpeed(getBaseSpeed());
 			} else {
 				logger.debug("Sheep has nothing to do");

@@ -174,6 +174,9 @@ public class SpeakerNPC extends NPC {
 		put("title_type", "npc");
 
 		setSize(1, 1);
+
+		// set the default perception range for player chatting
+		setPerceptionRange(5);
 	}
 
 	protected void createPath() {
@@ -380,7 +383,7 @@ public class SpeakerNPC extends NPC {
 		}
 
 		// and finally react on anybody talking to us
-		final List<Player> speakers = getNearbyPlayersThatHaveSpoken(this, 5);
+		final List<Player> speakers = getNearbyPlayersThatHaveSpoken(this, getPerceptionRange());
 		for (final Player speaker : speakers) {
 			tell(speaker, speaker.get("text"));
 		}
@@ -405,8 +408,8 @@ public class SpeakerNPC extends NPC {
 		if (turnToPlayer && (attending != null)) {
 			faceToward(attending);
 		}
-		super.say(text);
 
+		super.say(text);
 	}
 
 	/** Message when NPC is attending another player.
