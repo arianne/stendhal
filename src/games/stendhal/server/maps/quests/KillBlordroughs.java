@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -316,6 +317,12 @@ import org.apache.log4j.Logger;
 				"Despot Halb Errvl wants some Blordrough warriors killed.",
 				true);
 		step_1();
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		// not currently an active quest
+		return new ArrayList<String>();
 	}
 	
 	/**
