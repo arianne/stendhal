@@ -36,6 +36,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -185,6 +186,22 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 		step_1();
 		step_2();
 		step_3();
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			if (!isCompleted(player)) {
+				res.add("I must kill the Dhohr Nuggetcutter and his cronies to satisfy Zogfang.");
+			} else if(isRepeatable(player)){
+				res.add("Zogfang is anxious again and will reward me if I help him.");
+			} else {
+				res.add("My attacks on the dwarves have calmed Zogfang's nerves for the time being.");
+			}
+			return res;
 	}
 
 	@Override

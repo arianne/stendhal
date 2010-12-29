@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -178,6 +179,23 @@ public class KillGnomes extends AbstractQuest {
 		step_2();
 		step_3();
 	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+			final List<String> res = new ArrayList<String>();
+			if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+			}
+			if (!isCompleted(player)) {
+				res.add("I mst kill some gnomes, especially the leader ones, to teach them all a lesson!");
+			} else if(isRepeatable(player)){
+				res.add("Those pesky gnomes have forgotten the lesson I taught them and are stealing again! Jenny needs my help.");
+			} else {
+				res.add("The gnomes are now staying away from Jenny's carrots. Yeah!");
+			}
+			return res;
+	}
+
 
 	@Override
 	public String getName() {
