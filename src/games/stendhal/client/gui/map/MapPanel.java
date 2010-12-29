@@ -105,8 +105,8 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	 */
 	private volatile Image mapImage; 
 	
-	/** Name of the map */
-	private String title = "";
+	/** Name of the map. Volatile because it's updated outside the EDT. */
+	private volatile String title = "";
 	
 	/**
 	 * Create a new MapPanel.
