@@ -48,11 +48,11 @@ public class HealerAdder {
 
 		engine.add(ConversationStates.ATTENDING,
 				ConversationPhrases.OFFER_MESSAGES, null,
-				ConversationStates.ATTENDING, "I can #heal you.", null);
+				false, ConversationStates.ATTENDING, "I can #heal you.", null);
 
 		engine.add(ConversationStates.ATTENDING, "heal", null,
-				ConversationStates.HEAL_OFFERED, null,
-				new ChatAction() {
+				false, ConversationStates.HEAL_OFFERED,
+				null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser raiser) {
 						healerBehaviour.setChosenItemName("heal");
@@ -98,8 +98,8 @@ public class HealerAdder {
 
 		engine.add(ConversationStates.HEAL_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
+				false, ConversationStates.ATTENDING,
+				null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser raiser) {
 						int cost = healerBehaviour.getCharge(player);
@@ -118,8 +118,8 @@ public class HealerAdder {
 
 		engine.add(ConversationStates.HEAL_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING, "OK, how else may I help you?",
-				null);
+				false, ConversationStates.ATTENDING,
+				"OK, how else may I help you?", null);
 	}
 
 }

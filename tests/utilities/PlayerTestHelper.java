@@ -182,7 +182,6 @@ public abstract class PlayerTestHelper {
 	 * Remove all players from world and rule processor.
 	 */
 	public static void removeAllPlayers() {
-		
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 

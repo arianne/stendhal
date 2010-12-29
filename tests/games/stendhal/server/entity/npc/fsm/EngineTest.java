@@ -69,7 +69,7 @@ public class EngineTest {
 				assertEquals("boo", sentence.getTriggerExpression().getNormalized());
 			}
 		};
-		en.add(state, triggers, null, nextState, reply, action);
+		en.add(state, triggers, null, false, nextState, reply, action);
 		final Player pete = PlayerTestHelper.createPlayer("player");
 		en.step(pete, "boo");
 		assertEquals(nextState, en.getCurrentState());
@@ -82,9 +82,9 @@ public class EngineTest {
 	public void testaddBothActionsNull() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		assertTrue(en.getTransitions().isEmpty());
-		en.add(IDLE, null, null, null, IDLE, null, null);
+		en.add(IDLE, null, null, null, false, IDLE, null, null);
 		assertThat(en.getTransitions().size(), is(1));
-		en.add(IDLE, null, null, null, IDLE, null, null);
+		en.add(IDLE, null, null, null, false, IDLE, null, null);
 		assertThat(en.getTransitions().size(), is(1));
 	}
 	
@@ -95,9 +95,9 @@ public class EngineTest {
 	public void testaddExistingActionNull() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		
-		en.add(IDLE, null, null, null, IDLE, null, null);
+		en.add(IDLE, null, null, null, false, IDLE, null, null);
 		assertThat(en.getTransitions().size(), is(1));
-		en.add(IDLE, null, null, null, IDLE, null, new ChatAction() {
+		en.add(IDLE, null, null, null, false, IDLE, null, new ChatAction() {
 
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
@@ -115,14 +115,14 @@ public class EngineTest {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		
 		
-		en.add(IDLE, null, null, null, IDLE, null, new ChatAction() {
+		en.add(IDLE, null, null, null, false, IDLE, null, new ChatAction() {
 
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
 		});
 		assertThat(en.getTransitions().size(), is(1));
-		en.add(IDLE, null, null, null, IDLE, null, null);
+		en.add(IDLE, null, null, null, false, IDLE, null, null);
 		
 		assertThat(en.getTransitions().size(), is(2));
 		
@@ -140,10 +140,10 @@ public class EngineTest {
 				// empty method
 			}
 		};
-		en.add(IDLE, null, null, null, IDLE, null, chatAction);
+		en.add(IDLE, null, null, null, false, IDLE, null, chatAction);
 		assertThat(en.getTransitions().size(), is(1));
 		
-		en.add(IDLE, null, null, null, IDLE, null, chatAction);
+		en.add(IDLE, null, null, null, false, IDLE, null, chatAction);
 		assertThat(en.getTransitions().size(), is(1));
 		
 	}
@@ -166,10 +166,10 @@ public class EngineTest {
 				// empty method
 			}
 		};
-		en.add(IDLE, null, null, null, IDLE, null, chatAction1);
+		en.add(IDLE, null, null, null, false, IDLE, null, chatAction1);
 		assertThat(en.getTransitions().size(), is(1));
 		
-		en.add(IDLE, null, null, null, IDLE, null, chatAction2);
+		en.add(IDLE, null, null, null, false, IDLE, null, chatAction2);
 		assertThat(en.getTransitions().size(), is(2));
 		
 	}
@@ -202,7 +202,7 @@ public class EngineTest {
 				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
 			}
 		};
-		en.add(state, triggers, cc, nextState, reply, action);
+		en.add(state, triggers, cc, false, nextState, reply, action);
 		final Player pete = PlayerTestHelper.createPlayer("player");
 		en.step(pete, triggers);
 		assertEquals(nextState, en.getCurrentState());

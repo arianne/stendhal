@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -55,6 +56,7 @@ public class BoyNPC implements ZoneConfigurator {
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(
+								new GreetingMatchesNameCondition(getName()),
 								new QuestNotStartedCondition("introduce_players"),
 								new ChatCondition() {
 									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
@@ -68,14 +70,15 @@ public class BoyNPC implements ZoneConfigurator {
 				// this is the condition for any other case while the quest is active, not covered by the quest.
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						null,
+						new GreetingMatchesNameCondition(getName()), true,
 				        ConversationStates.ATTENDING,
 				        "*sniff* *sniff* I still feel ill, please hurry with that #favour for me.",
 				        null);
 				
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new QuestCompletedCondition("introduce_players"),
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
+								new QuestCompletedCondition("introduce_players")),
 				        ConversationStates.ATTENDING,
 				        null,
 				        new SayTextWithPlayerNameAction("Hi again, [name]! Thanks again, I'm feeling much better now."));
@@ -90,9 +93,7 @@ public class BoyNPC implements ZoneConfigurator {
 			protected void onGoodbye(Player player) {
 				setDirection(Direction.RIGHT);
 			}
-			
-			
-			
+
 		};
 
 		npc.addInitChatMessage(null, new ChatAction() {

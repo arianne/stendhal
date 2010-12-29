@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -122,6 +123,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		// player returns with iron but no beeswax
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(
+					new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT,"start"),
 					new NotCondition(new PlayerHasItemWithHimCondition("beeswax",REQUIRED_BEESWAX)),
 					new PlayerHasItemWithHimCondition("iron",REQUIRED_IRON)),
@@ -133,6 +135,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		// player returns with beeswax but no iron
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(
+					new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT,"start"),
 					new NotCondition(new PlayerHasItemWithHimCondition("iron",REQUIRED_IRON)),
 					new PlayerHasItemWithHimCondition("beeswax",REQUIRED_BEESWAX)),
@@ -144,6 +147,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		//player returns with beeswax and iron
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(
+					new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT,"start"),
 					new PlayerHasItemWithHimCondition("iron",REQUIRED_IRON),
 					new PlayerHasItemWithHimCondition("beeswax",REQUIRED_BEESWAX)),
@@ -160,6 +164,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		// player returned after climbing the tower partially. reset status to candles done and start again
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new OrCondition(
+					new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT,"first_step"),
 					new QuestInStateCondition(QUEST_SLOT,"second_step"),
 					new QuestInStateCondition(QUEST_SLOT,"third_step"),
@@ -179,7 +184,8 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		// player returns after bringing the candles but hasn't tried to climb tower
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT,"candles_done"),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT,"candles_done")),
 			ConversationStates.ATTENDING, 
 			"Greetings, I suppose you came back to #start with the practical test.",
 			null);
@@ -249,7 +255,8 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		// player got to the last level of the tower
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT,"last_step"),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT,"last_step")),
 			ConversationStates.ATTENDING, 
 			"Very well, adventurer! You have passed the practical test. You can now enter the spire whenever you want.",
 			new MultipleActions(
@@ -265,7 +272,8 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 
 		// player returns having completed the quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestCompletedCondition(QUEST_SLOT),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestCompletedCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING, 
 			"Greetings adventurer, how can I #help you this time?",
 			null);

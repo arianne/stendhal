@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
@@ -127,11 +128,11 @@ public class KillSpiders extends AbstractQuest {
 	}
 
 	private void step_3() {
-
 		final SpeakerNPC npc = npcs.get("Morgrin");
 		// support for old-style quests
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "start"),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start")),
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
@@ -155,7 +156,8 @@ public class KillSpiders extends AbstractQuest {
 		
 		// support for new quests.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, 0, "started"),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, 0, "started")),
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {

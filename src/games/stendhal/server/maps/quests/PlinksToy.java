@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -91,7 +92,9 @@ public class PlinksToy extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT), new NotCondition(new PlayerHasItemWithHimCondition("teddy"))),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestNotCompletedCondition(QUEST_SLOT),
+					new NotCondition(new PlayerHasItemWithHimCondition("teddy"))),
 			ConversationStates.QUEST_OFFERED,
 			"*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?",
 			null);
@@ -147,7 +150,11 @@ public class PlinksToy extends AbstractQuest {
 		reward.add(new IncreaseKarmaAction(10));
 		
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(QUEST_SLOT)), new PlayerHasItemWithHimCondition("teddy")),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+							new OrCondition(
+									new QuestNotStartedCondition(QUEST_SLOT),
+									new QuestNotCompletedCondition(QUEST_SLOT)),
+							new PlayerHasItemWithHimCondition("teddy")),
 			ConversationStates.ATTENDING, 
 			"You found him! *hugs teddy* Thank you, thank you! *smile*",
 			new MultipleActions(reward));

@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
 import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition;
@@ -132,8 +133,9 @@ public class UltimateCollector extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(WEAPONSCOLLECTOR2_QUEST_SLOT),
-					 new QuestNotStartedCondition(QUEST_SLOT)),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestCompletedCondition(WEAPONSCOLLECTOR2_QUEST_SLOT),
+					new QuestNotStartedCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING,
 			"Greetings old friend. I have another collecting #challenge for you.",
 			null);
@@ -243,8 +245,9 @@ public class UltimateCollector extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Balduin");
 		
 		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES, 
-				new QuestActiveCondition(QUEST_SLOT),
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestActiveCondition(QUEST_SLOT)),
 				ConversationStates.QUEST_ITEM_QUESTION, 
 				"Did you bring me that very rare item I asked you for?",
 				null);
@@ -274,8 +277,6 @@ public class UltimateCollector extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new SayRequiredItemAction(QUEST_SLOT, "Very well, come back when you have [the item] with you."));
-		
-		
 	}
 
 	private void offerSteps() {

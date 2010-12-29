@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -120,7 +121,8 @@ public class SevenCherubs extends AbstractQuest {
 		@Override
 		protected void createDialog() {
 			add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				null, ConversationStates.IDLE, null,
+				new GreetingMatchesNameCondition(getName()), true,
+				ConversationStates.IDLE, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (!player.hasQuest(QUEST_SLOT)) {

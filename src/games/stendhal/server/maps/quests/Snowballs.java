@@ -34,6 +34,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -113,31 +114,39 @@ public class Snowballs extends AbstractQuest {
 		// says hi without having started quest before
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestNotStartedCondition(QUEST_SLOT),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				"Greetings stranger! Have you seen my snow sculptures? I need a #favor from someone friendly like you.",
 				null);
 		
 		// says hi - got the snow yeti asked for 
 		npc.add(ConversationStates.IDLE, 
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS)),
-			ConversationStates.QUEST_ITEM_BROUGHT, 
-			"Greetings stranger! I see you have the snow I asked for. Are these snowballs for me?",
-			null);
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS)),
+				ConversationStates.QUEST_ITEM_BROUGHT, 
+				"Greetings stranger! I see you have the snow I asked for. Are these snowballs for me?",
+				null);
 
 		// says hi - didn't get the snow yeti asked for 
 		npc.add(ConversationStates.IDLE, 
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS))),
-			ConversationStates.ATTENDING, 
-			"You're back already? Don't forget that you promised to collect a bunch of snowballs for me!",
-			null);
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new NotCondition(new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS))),
+				ConversationStates.ATTENDING, 
+				"You're back already? Don't forget that you promised to collect a bunch of snowballs for me!",
+				null);
 		
 		// says hi - quest was done before and is now repeatable
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES)),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestStartedCondition(QUEST_SLOT),
+						new QuestNotInStateCondition(QUEST_SLOT, "start"),
+						new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES)),
 				ConversationStates.ATTENDING,
 				"Greetings again! Have you seen my latest snow sculptures? I need a #favor again ...",
 				null);
@@ -145,7 +154,10 @@ public class Snowballs extends AbstractQuest {
 		// says hi - quest was done before and is not yet repeatable
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestStartedCondition(QUEST_SLOT),
+						new QuestNotInStateCondition(QUEST_SLOT, "start"),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, REQUIRED_MINUTES, "I have enough snow for my new sculpture. Thank you for helping! " 
@@ -161,11 +173,11 @@ public class Snowballs extends AbstractQuest {
 		
 		// asks about quest but already on it
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
-			new QuestInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.ATTENDING,
-			"You already promised me to bring some snowballs! Twenty five pieces, remember ...",
-			null);
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestInStateCondition(QUEST_SLOT, "start"),
+				ConversationStates.ATTENDING,
+				"You already promised me to bring some snowballs! Twenty five pieces, remember ...",
+				null);
 		
 		// asks about quest - has done it but it's repeatable now
 		npc.add(ConversationStates.ATTENDING,
@@ -185,19 +197,19 @@ public class Snowballs extends AbstractQuest {
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Fine. You can loot the snowballs from the ice golem in this cavern, but be careful there is something huge nearby! Come back when you get twenty five snowballs.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Fine. You can loot the snowballs from the ice golem in this cavern, but be careful there is something huge nearby! Come back when you get twenty five snowballs.",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"So what are you doing here? Go away!",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"So what are you doing here? Go away!",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 
 	private void prepareBringingStep() {

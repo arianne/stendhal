@@ -18,6 +18,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
 import games.stendhal.server.entity.npc.condition.EmoteCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
@@ -136,7 +137,7 @@ public class SpeakerNPC extends NPC {
 
 	private ChatCondition initChatCondition;
 
-	// Default initChat action when NPC stop chatting with the player
+	// Default initChat action when NPC starts chatting with the player
 	private ChatAction initChatAction;
 
 	/**
@@ -417,7 +418,6 @@ public class SpeakerNPC extends NPC {
 		waitAction = action;
 	}
 
-
 	
 	public void addInitChatMessage(final ChatCondition condition, final ChatAction action) {
 		initChatCondition = condition;
@@ -443,7 +443,7 @@ public class SpeakerNPC extends NPC {
 	 */
 	public void add(final ConversationStates state, final String trigger, final ChatCondition condition,
 			final ConversationStates nextState, final String reply, final ChatAction action) {
-		engine.add(state, trigger, condition, nextState, reply, action);
+		engine.add(state, trigger, condition, false, nextState, reply, action);
 	}
 
 	/**
@@ -459,7 +459,7 @@ public class SpeakerNPC extends NPC {
 	 */
 	public void add(final ConversationStates state, final String trigger, final ExpressionMatcher matcher, final ChatCondition condition,
 			final ConversationStates nextState, final String reply, final ChatAction action) {
-		engine.add(state, trigger, matcher, condition, nextState, reply, action);
+		engine.add(state, trigger, matcher, condition, false, nextState, reply, action);
 	}
 
 	/**
@@ -481,7 +481,31 @@ public class SpeakerNPC extends NPC {
 	 */
 	public void add(final ConversationStates state, final List<String> triggers, final ChatCondition condition,
 			final ConversationStates nextState, final String reply, final ChatAction action) {
-		engine.add(state, triggers, condition, nextState, reply, action);
+		engine.add(state, triggers, condition, false, nextState, reply, action);
+	}
+
+	/**
+	 * Adds a new set of transitions to the FSM.
+	 *
+	 * @param state
+	 *            the starting state of the FSM
+	 * @param triggers
+	 *            a list of inputs for this transition
+	 * @param condition
+	 *            null or condition that has to return true for this transition
+	 *            to be considered
+	 * @param secondary
+	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 * @param nextState
+	 *            the new state of the FSM
+	 * @param reply
+	 *            a simple text reply (may be null for no reply)
+	 * @param action
+	 *            a special action to be taken (may be null)
+	 */
+	public void add(final ConversationStates state, final List<String> triggers, final ChatCondition condition, boolean secondary,
+			final ConversationStates nextState, final String reply, final ChatAction action) {
+		engine.add(state, triggers, condition, secondary, nextState, reply, action);
 	}
 
 	/**
@@ -584,9 +608,6 @@ public class SpeakerNPC extends NPC {
 	 * @param text 
 	 * @return true if step was successfully executed*/
 	private boolean tell(final Player player, final String text) {
-		//TODO mf - The logic to pass spoken text to NPCs should be moved out of the NPC.
-		// This way we can extend the rules to understand prepended NPC/Player names to confine the listening NPCs.
-		// And we can present the Player a list of possible phrases in the client.
 		if (getRidOfPlayerIfAlreadySpeaking(player, text)) {
 			return true;
 		}
@@ -606,16 +627,29 @@ public class SpeakerNPC extends NPC {
 		engine.setCurrentState(state);
 	}
 
+	/**
+	 * Add default greeting transition with optional recognition of the NPC name.
+	 */
 	public void addGreeting() {
 		addGreeting("Greetings! How may I help you?", null);
 	}
 
+	/**
+	 * Add greeting transition with name recognition.
+	 * @param text
+	 */
 	public void addGreeting(final String text) {
 		addGreeting(text, null);
 	}
 
+	/**
+	 * Add greeting transition with name recognition.
+	 * @param text
+	 * @param action
+	 */
 	public void addGreeting(final String text, final ChatAction action) {
 		add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new GreetingMatchesNameCondition(getName()), true,
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new ChatAction() {

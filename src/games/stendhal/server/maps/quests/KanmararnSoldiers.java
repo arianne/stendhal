@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
@@ -249,18 +250,18 @@ public class KanmararnSoldiers extends AbstractQuest {
 			null);
 
         henry.add(
-				  ConversationStates.QUEST_OFFERED,
-				  "treasure",
-				  null,
-				  ConversationStates.QUEST_OFFERED,
-				  "A big treasure is rumored to be #somewhere in this dungeon. Will you help me find my group?",
-				  null);
+				ConversationStates.QUEST_OFFERED,
+				"treasure",
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"A big treasure is rumored to be #somewhere in this dungeon. Will you help me find my group?",
+				null);
 
 		henry.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES, null,
-			ConversationStates.ATTENDING,
-			"OK. I understand. I'm scared of the #dwarves myself.", 
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.ATTENDING,
+				"OK. I understand. I'm scared of the #dwarves myself.", 
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(2500));
@@ -270,18 +271,20 @@ public class KanmararnSoldiers extends AbstractQuest {
 		actions.add(new GiveMapAction(false));
 		
 		henry.add(ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
-					new PlayerHasInfostringItemWithHimCondition("leather legs", "tom"),
-					new PlayerHasInfostringItemWithHimCondition("note", "charles"),
-					new PlayerHasInfostringItemWithHimCondition("scale armor", "peter")),
-			ConversationStates.ATTENDING,
-			"Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.", 
-			new MultipleActions(actions));
-		
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(henry.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new PlayerHasInfostringItemWithHimCondition("leather legs", "tom"),
+						new PlayerHasInfostringItemWithHimCondition("note", "charles"),
+						new PlayerHasInfostringItemWithHimCondition("scale armor", "peter")),
+				ConversationStates.ATTENDING,
+				"Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.", 
+				new MultipleActions(actions));
+
 		henry.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
+				new AndCondition(new GreetingMatchesNameCondition(henry.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"),
 						new NotCondition(
 								new AndCondition(
 										new PlayerHasInfostringItemWithHimCondition("leather legs", "tom"),
@@ -296,23 +299,22 @@ public class KanmararnSoldiers extends AbstractQuest {
 					new	QuestCompletedCondition(QUEST_SLOT), 
 					new AndCondition(new HenryQuestCompletedCondition(),
 					new PlayerOwnsItemIncludingBankCondition("map"))),
-			ConversationStates.ATTENDING,
-			"I'm so sad that most of my friends are dead.", null);
+				ConversationStates.ATTENDING,
+				"I'm so sad that most of my friends are dead.", null);
 
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"), 
-			new AndCondition(
-				new	QuestNotCompletedCondition(QUEST_SLOT), 
-				new HenryQuestCompletedCondition(),
-				new NotCondition(new PlayerOwnsItemIncludingBankCondition("map"))),
-			ConversationStates.ATTENDING,
-			"Luckily I drew a copy of the map, but please don't lose this one.", 
-			new GiveMapAction(true));
-
+				new AndCondition(
+					new	QuestNotCompletedCondition(QUEST_SLOT), 
+					new HenryQuestCompletedCondition(),
+					new NotCondition(new PlayerOwnsItemIncludingBankCondition("map"))),
+				ConversationStates.ATTENDING,
+				"Luckily I drew a copy of the map, but please don't lose this one.", 
+				new GiveMapAction(true));
 
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"),
-			new HenryQuestNotCompletedCondition(),
-			ConversationStates.ATTENDING,
-			"If you find my friends, I will give you the map.", null);
+				new HenryQuestNotCompletedCondition(),
+				ConversationStates.ATTENDING,
+				"If you find my friends, I will give you the map.", null);
 	}
 
 	/**

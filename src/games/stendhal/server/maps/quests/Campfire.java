@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -123,7 +124,8 @@ public class Campfire extends AbstractQuest {
 		// player returns with the promised wood
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD)),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD)),
 			ConversationStates.QUEST_ITEM_BROUGHT, 
 			"Hi again! You've got wood, I see; do you have those 10 pieces of wood I asked about earlier?",
 			null);
@@ -131,7 +133,8 @@ public class Campfire extends AbstractQuest {
 		//player returns without promised wood
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD))),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD))),
 			ConversationStates.ATTENDING, 
 			"You're back already? Don't forget that you promised to collect ten pieces of wood for me!",
 			null);
@@ -139,14 +142,17 @@ public class Campfire extends AbstractQuest {
 		// first chat of player with sally
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestNotStartedCondition(QUEST_SLOT),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestNotStartedCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING, "Hi! I need a little #favor ... ",
 			null);
 
 		// player who is rejected or 'done' but waiting to start again, returns
 		npc.add(ConversationStates.IDLE, 
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT)),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestNotInStateCondition(QUEST_SLOT, "start"),
+					new QuestStartedCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING,
 			"Hi again!", 
 			null);

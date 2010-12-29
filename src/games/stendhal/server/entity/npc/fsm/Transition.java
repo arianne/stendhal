@@ -42,6 +42,9 @@ public class Transition {
 	 */
 	private final PreTransitionCondition condition;
 
+	/** Flag to mark secondary transitions to be taken into account after preferred transitions */
+	private final boolean secondary;
+
 	/** The text that the NPC will say when the transition is triggered.*/
 	private String reply;
 
@@ -57,6 +60,8 @@ public class Transition {
 	 *            input trigger
 	 * @param condition
 	 *            additional precondition
+	 * @param secondary
+	 *			  flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            state after the transition
 	 * @param reply
@@ -65,10 +70,11 @@ public class Transition {
 	 *            additional action after the condition
 	 */
 	public Transition(final ConversationStates currentState, final Expression triggerExpr,
-			final PreTransitionCondition condition, final ConversationStates nextState, final String reply,
-			final PostTransitionAction action) {
+			final PreTransitionCondition condition, final boolean secondary, final ConversationStates nextState,
+			final String reply, final PostTransitionAction action) {
 		this.state = currentState;
 		this.condition = condition;
+		this.secondary = secondary;
 		this.nextState = nextState;
 		this.trigger = triggerExpr;
 		this.reply = reply;
@@ -280,6 +286,20 @@ public class Transition {
 	 */
 	public PreTransitionCondition getCondition() {
 		return condition;
+	}
+
+	/**
+	 * @return true if this transition should be preferred over others,
+	 * which also have a matching condition or no condition at all
+	 */
+	public boolean isPreferred() {
+		if (secondary) {
+			return false;
+		} else if (condition != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**

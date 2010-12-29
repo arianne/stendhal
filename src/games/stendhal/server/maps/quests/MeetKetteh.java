@@ -26,6 +26,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
@@ -51,12 +52,12 @@ public class MeetKetteh extends AbstractQuest {
 	}
 	
 	private void step1() {
-
 		final SpeakerNPC npc = npcs.get("Ketteh Wehoh");
 
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new NakedCondition(), 
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new NakedCondition()), 
 				ConversationStates.ATTENDING,
 				"Who are you? Aiiieeeee!!! You're naked! Quickly, right-click on yourself and choose SET OUTFIT!\nIt's lucky you met me as I teach good #manners. My next lesson for you is that if anyone says a word in #blue it is polite to repeat it back to them. So, repeat after me: #manners.",
 				new SetQuestAction(QUEST_SLOT, "seen_naked"));
@@ -64,7 +65,7 @@ public class MeetKetteh extends AbstractQuest {
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new NotCondition(new NakedCondition()), 
 						new QuestInStateCondition(QUEST_SLOT, "seen_naked")),
 				ConversationStates.ATTENDING, 
@@ -75,7 +76,7 @@ public class MeetKetteh extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new NotCondition(new NakedCondition()), 
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING, 
@@ -86,7 +87,7 @@ public class MeetKetteh extends AbstractQuest {
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new NotCondition(new NakedCondition()), 
 						new QuestStartedCondition(QUEST_SLOT),
 						new QuestNotInStateCondition(QUEST_SLOT, "seen_naked")),

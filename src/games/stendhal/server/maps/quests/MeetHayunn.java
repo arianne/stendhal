@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -123,7 +124,9 @@ public class MeetHayunn extends AbstractQuest {
 		//player returns to Hayunn not having killed a rat
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new NotCondition(new KilledForQuestCondition(QUEST_SLOT,1))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+						new NotCondition(new KilledForQuestCondition(QUEST_SLOT,1))),
 				ConversationStates.ATTENDING,
 				"I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them?",
 				null);
@@ -136,7 +139,9 @@ public class MeetHayunn extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new KilledForQuestCondition(QUEST_SLOT, 1)),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+						new KilledForQuestCondition(QUEST_SLOT, 1)),
 				ConversationStates.INFORMATION_1,
 				"You killed the rat! Now, I guess you want to explore. Do you want to know the way to Semos?",
 				new MultipleActions(actions));
@@ -162,7 +167,8 @@ public class MeetHayunn extends AbstractQuest {
 		// 'little tip' is a pun as he gives some money, that is a tip, too.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "killed"),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "killed")),
 				ConversationStates.INFORMATION_1,
 		        "You ran off pretty fast after coming to tell me you killed that rat! I was about to give you a little tip. Do you want it?",
 				null);
@@ -170,7 +176,8 @@ public class MeetHayunn extends AbstractQuest {
 		// Player has returned to say hi again.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "taught"),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "taught")),
 				ConversationStates.INFORMATION_2,
 		        "Hello again. Have you come to learn more from me?",
 				null);

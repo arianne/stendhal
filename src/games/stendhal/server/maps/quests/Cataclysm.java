@@ -15,7 +15,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 
 import java.util.Arrays;
 
@@ -30,6 +30,7 @@ public class Cataclysm extends AbstractQuest {
 	public String getSlotName() {
 		return "cataclysm";
 	}
+
 	/**
 	 * Makes Carmen tell you that she can sense big changes.
 	 */
@@ -37,7 +38,7 @@ public class Cataclysm extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Carmen");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AlwaysTrueCondition(),
+				new GreetingMatchesNameCondition(npc.getName()),
 				ConversationStates.ATTENDING,
 				"Hello. I can #heal you in these #troubled #times.", null);
 
@@ -56,7 +57,7 @@ public class Cataclysm extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AlwaysTrueCondition(),
+			new GreetingMatchesNameCondition(npc.getName()),
 			ConversationStates.ATTENDING,
 			"Greetings. I expect you are wondering what strange things are happening here?",
 			null);
@@ -75,7 +76,7 @@ public class Cataclysm extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AlwaysTrueCondition(),
+			new GreetingMatchesNameCondition(npc.getName()),
 			ConversationStates.ATTENDING,
 			"Greetings. I'm ashamed to address you while I look #unwell. It's not fitting for my post.",
 			null);
@@ -94,7 +95,7 @@ public class Cataclysm extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AlwaysTrueCondition(),
+			new GreetingMatchesNameCondition(npc.getName()),
 			ConversationStates.ATTENDING,
 			"Hi. *cough* *splutter* The smoke is getting into my lungs. The #fire is spreading.",
 			null);
@@ -117,7 +118,7 @@ public class Cataclysm extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AlwaysTrueCondition(),
+			new GreetingMatchesNameCondition(npc.getName()),
 			ConversationStates.ATTENDING,
 			"Hi. I'm guessing you knew to come to an old gossip, for #information.",
 			null);
@@ -138,7 +139,7 @@ public class Cataclysm extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Sato");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AlwaysTrueCondition(),
+			new GreetingMatchesNameCondition(npc.getName()),
 			ConversationStates.ATTENDING,
 			"Hi. We've fallen on hard #times.", null);
 
@@ -161,6 +162,7 @@ public class Cataclysm extends AbstractQuest {
 		nomyr();
 		sato();
 	}
+
 	@Override
 	public String getName() {
 		return "Cataclysm";

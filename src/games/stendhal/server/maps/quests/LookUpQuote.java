@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -96,7 +97,8 @@ public class LookUpQuote extends AbstractQuest {
 		final SpeakerNPC fisherman = npcs.get("Pequod");
 
 		fisherman.add(ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES, null,
+			ConversationPhrases.GREETING_MESSAGES,
+			new GreetingMatchesNameCondition(fisherman.getName()), true,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {

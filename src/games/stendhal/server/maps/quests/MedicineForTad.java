@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -183,11 +184,13 @@ public class MedicineForTad extends AbstractQuest {
 		processStep.add(new IncreaseXPAction(10));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "ilisa"));
 		
-		// staring the conversation the first time after getting a flask.
+		// starting the conversation the first time after getting a flask.
 		// note Ilisa is spelled with a small i here because I
 		// and l cannot be told apart in game
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("flask")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new PlayerHasItemWithHimCondition("flask")),
 				ConversationStates.ATTENDING, 
 				"Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #ilisa... she'll know what to do next.",
 				new MultipleActions(processStep));
@@ -204,7 +207,9 @@ public class MedicineForTad extends AbstractQuest {
 		// note Ilisa is spelled with a small i here because I
 		// and l cannot be told apart in game
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "ilisa"), new PlayerHasItemWithHimCondition("flask")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "ilisa"),
+						new PlayerHasItemWithHimCondition("flask")),
 				ConversationStates.ATTENDING, 
 				"Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.",
 				null);
@@ -225,7 +230,9 @@ public class MedicineForTad extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Ilisa");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "ilisa"), new NotCondition(new PlayerHasItemWithHimCondition("flask"))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "ilisa"),
+						new NotCondition(new PlayerHasItemWithHimCondition("flask"))),
 				ConversationStates.ATTENDING, 
 				"Medicine for #Tad? Didn't he tell you to bring a flask?", null);
 
@@ -235,7 +242,9 @@ public class MedicineForTad extends AbstractQuest {
 		processStep.add(new SetQuestAction(QUEST_SLOT, "corpse&herbs"));
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "ilisa"), new PlayerHasItemWithHimCondition("flask")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "ilisa"),
+						new PlayerHasItemWithHimCondition("flask")),
 				ConversationStates.ATTENDING, 
 				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?",
 				new MultipleActions(processStep));
@@ -261,7 +270,9 @@ public class MedicineForTad extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Ilisa");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"), new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"),
+						new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
 				ConversationStates.ATTENDING, 
 				"Can you fetch those #herbs for the #medicine?", null);
 
@@ -271,7 +282,9 @@ public class MedicineForTad extends AbstractQuest {
 		processStep.add(new SetQuestAction(QUEST_SLOT, "potion"));
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"), new PlayerHasItemWithHimCondition("arandula")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"),
+						new PlayerHasItemWithHimCondition("arandula")),
 				ConversationStates.ATTENDING, 
 				"Okay! Thank you. Now I will just mix these... a pinch of this... and a few drops... there! Can you ask #Tad to stop by and collect it? I want to see how he's doing.",
 				new MultipleActions(processStep));
@@ -298,7 +311,8 @@ public class MedicineForTad extends AbstractQuest {
 		// note Ilisa is spelled with a small i here because I
 		// and l cannot be told apart in game
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "potion"),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "potion")),
 				ConversationStates.ATTENDING, "Thanks! I will go talk with #ilisa as soon as possible.",
 				new MultipleActions(processStep));
 	}

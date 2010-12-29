@@ -33,6 +33,7 @@ import games.stendhal.server.entity.npc.action.SayTimeRemainingUntilTimeReachedA
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToFutureRandomTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -245,7 +246,8 @@ public class KoboldishTorcibud extends AbstractQuest {
         // Player sends his greetings to Wrviliza and has rejected the quest in the past
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
-            new QuestInStateCondition(QUEST_SLOT, "rejected"),
+            new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+            		new QuestInStateCondition(QUEST_SLOT, "rejected")),
             ConversationStates.QUEST_OFFERED,
             "Wroff! Welcome back wanderer... Are you back to help me gather #stuff to make good #torcibud this time?",
             null);
@@ -354,7 +356,8 @@ public class KoboldishTorcibud extends AbstractQuest {
         // Player says his greetings to Wrviliza and the quest is running
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
-            new QuestActiveCondition(QUEST_SLOT),
+            new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+            		new QuestActiveCondition(QUEST_SLOT)),
             ConversationStates.QUESTION_1,
             "Wrof! Welcome back. Did you gather any #stuff for me?",
             null);

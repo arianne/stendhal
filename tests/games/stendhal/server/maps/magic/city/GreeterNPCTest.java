@@ -52,16 +52,54 @@ public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	/**
-	 * Tests for hiAndBye.
+	 * Tests for hi and bye.
 	 */
 	@Test
-	public void testHiAndBye() {
+	public void testHiAndByeSimple() {
+		final SpeakerNPC npc = getNPC("Erodel Bmud");
+		assertNotNull(npc);
+		final Engine en = npc.getEngine();
+
+		assertTrue(en.step(player, "hi"));
+		String reply = getReply(npc);
+		assertNotNull(reply);
+		assertEquals("Salutations, traveller.", reply);
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Adieu.", getReply(npc));
+	}
+
+	/**
+	 * Tests for hi and bye with NPC sure name.
+	 */
+	@Test
+	public void testHiAndByeSureName() {
 		final SpeakerNPC npc = getNPC("Erodel Bmud");
 		assertNotNull(npc);
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Erodel"));
-		assertEquals("Salutations, traveller.", getReply(npc));
+		String reply = getReply(npc);
+		assertNotNull(reply);
+		assertEquals("Salutations, traveller.", reply);
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Adieu.", getReply(npc));
+	}
+
+	/**
+	 * Tests for hiAndBye with full name.
+	 */
+	@Test
+	public void testHiAndByeFullName() {
+		final SpeakerNPC npc = getNPC("Erodel Bmud");
+		assertNotNull(npc);
+		final Engine en = npc.getEngine();
+
+		assertTrue(en.step(player, "hi Erodel Bmud"));
+		String reply = getReply(npc);
+		assertNotNull(reply);
+		assertEquals("Salutations, traveller.", reply);
 
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Adieu.", getReply(npc));

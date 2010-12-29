@@ -88,7 +88,6 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(en.step(player, "bye"));
 		assertFalse(npc.isTalking());
 		assertEquals(null, getReply(npc));
-
 	}
 
 	/**

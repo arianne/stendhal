@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.KilledCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -146,26 +147,29 @@ public class KillDarkElves extends AbstractQuest {
 		// the player returns to Maerion after having started the quest.
 		// Maerion checks if the player has killed one of enough dark elf types
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
-				   , new NotCondition(new KilledCondition("dark elf archer", "dark elf captain", "thing"))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new NotCondition(new KilledCondition("dark elf archer", "dark elf captain", "thing"))),
 				ConversationStates.QUEST_STARTED, 
 				"Don't you remember promising to sort out my dark elf problem? Kill every dark elf in the #secret room below - especially the snivelling dark elf captain and any evil dark elf archers you find! And bring me the amulet from the mutant thing.",
 				null);
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
-								   , new KilledCondition("dark elf archer", "dark elf captain", "thing")
-								   , new NotCondition(new PlayerHasItemWithHimCondition("amulet")))
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new KilledCondition("dark elf archer", "dark elf captain", "thing"),
+						new NotCondition(new PlayerHasItemWithHimCondition("amulet")))
 				, ConversationStates.QUEST_STARTED
 				, "What happened to the amulet? Remember I need it back!"
 				, null);
 	
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
-								   , new KilledCondition("dark elf archer", "dark elf captain", "thing")
-								   , new PlayerHasItemWithHimCondition("amulet"))
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new KilledCondition("dark elf archer", "dark elf captain", "thing"),
+						new PlayerHasItemWithHimCondition("amulet"))
 				, ConversationStates.ATTENDING
 				, "Many, many thanks. I am relieved to have that back. Here, take this ring. It can revive the powers of the dead.",
 				new MultipleActions(new DropItemAction("amulet"),
@@ -202,7 +206,7 @@ public class KillDarkElves extends AbstractQuest {
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, completedQuestState),
 						new NotCondition(
 								new PlayerHasItemWithHimCondition("amulet")))
@@ -212,7 +216,7 @@ public class KillDarkElves extends AbstractQuest {
 	
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, completedQuestState),								   
 						new PlayerHasItemWithHimCondition("amulet"))
 				, ConversationStates.ATTENDING
@@ -286,7 +290,6 @@ public class KillDarkElves extends AbstractQuest {
 		boolean ak=true;	
 		
 		if("started".equals(player.getQuest(QUEST_SLOT, 0))) {
-			
 			// checking which creatures player killed.		
 			for(int i = 0; i<creatures.size();i++) {
 				final boolean sp = creatures.get(i).equals(player.getQuest(QUEST_SLOT, i+1));
@@ -302,16 +305,14 @@ public class KillDarkElves extends AbstractQuest {
 				}		
 			}
 
-		// all killed
-		if (ak) {
-			history.add("I have killed all required creatures.");
-		}
-		
+			// all killed
+			if (ak) {
+				history.add("I have killed all required creatures.");
+			}
 		}
 		
 		// here is support for old-style quest
 		if ("start".equals(player.getQuest(QUEST_SLOT, 0))) {
-
 			final boolean osp1 = player.hasKilled("dark elf captain");
 			final boolean osp2 = player.hasKilled("dark elf archer");
 			final boolean osp3 = player.hasKilled("thing");
@@ -345,14 +346,14 @@ public class KillDarkElves extends AbstractQuest {
 		}
 		
 		// for both old- and new-style quests
-		final boolean am=player.isEquipped("amulet");
+		final boolean am = player.isEquipped("amulet");
 		if (am) {
 			history.add("I have the amulet with me.");
 		} else {
 			history.add("I have no amulet with me.");
 		}
 		
-		if (am & ak) {
+		if (am && ak) {
 			history.add("It's time to go back to Maerion for a reward.");
 		}
 		

@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.maps.quests.BeerForHayunn;
 
 import java.util.LinkedList;
@@ -65,14 +66,17 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new QuestNotStartedCondition(QUEST_SLOT),
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
+								new QuestNotStartedCondition(QUEST_SLOT)),
 						ConversationStates.ATTENDING,
 				        "Hi. I bet you've been sent here to learn about adventuring from me. First, lets see what you're made of. Go and kill a rat outside, you should be able to find one easily. Do you want to learn how to attack it, before you go?",
 						new MultipleActions(actions));
 
 			   	add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new QuestActiveCondition(BeerForHayunn.QUEST_SLOT))),
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
+								new QuestCompletedCondition(QUEST_SLOT),
+								new NotCondition(new QuestActiveCondition(BeerForHayunn.QUEST_SLOT))),
 						ConversationStates.ATTENDING,
 						"Hi again, how can I #help you this time?",
 						null);
@@ -82,7 +86,6 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 				addGoodbye();
 				// further behaviour is defined in quests.
 			}
-
 
 			@Override
 			protected void createPath() {

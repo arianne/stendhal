@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -230,7 +231,8 @@ class MakingFabric {
 		// player returns and says hi while sacs being made
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;"),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;")),
 			ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
@@ -241,12 +243,13 @@ class MakingFabric {
 		// player returns and doesn't need fabric and sacs not being made
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new NotCondition(
-							 new OrCondition(
-											 new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"),
-											 new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;")
-											 )
-							 ),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new NotCondition(
+							new OrCondition(
+									 new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"),
+									 new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;")
+							)
+					)),
 			ConversationStates.IDLE, "Ha ha he he woo hoo!!!",
 			null);
 
@@ -254,7 +257,8 @@ class MakingFabric {
 		// player returns and needs fabric
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric")),
 			ConversationStates.ATTENDING, "Ha ha he he woo hoo ... ha ... Sorry, I get carried away sometimes. What do you want?",
 			null);
 
@@ -266,7 +270,8 @@ class MakingFabric {
 		// player returns and says hi while sacs being made
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;"),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;")),
 			ConversationStates.IDLE, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
@@ -299,14 +304,14 @@ class MakingFabric {
 		// player returns and doesn't need fabric and sacs not being made
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new NotCondition(new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;")),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new NotCondition(new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;"))),
 			ConversationStates.IDLE, "Ha ha he he woo hoo!!!",
 			null);
 
-	}	
+	}
+
 	private void makeMithrilThreadStep() {
-		
-		
 		final SpeakerNPC npc = npcs.get("Kampusch");
 		
 		npc.addReply("balloon", "Ah! They are dropped by the charming little baby angels who dwell in Kikareukin Islands. I want one for my daughter.");
@@ -345,40 +350,39 @@ class MakingFabric {
 				}
 			});
 
-
 		// player returns while fabric is still being woven, or is ready
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "fusingthread;"),
-			ConversationStates.ATTENDING, null, new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					final String orderString = player.getQuest(mithrilcloak.getQuestSlot());
-					final String[] order = orderString.split(";");
-					final long delay = REQUIRED_HOURS_MITHRIL_THREAD * MathHelper.MILLISECONDS_IN_ONE_HOUR;
-					final long timeRemaining = (Long.parseLong(order[1]) + delay)
-						- System.currentTimeMillis();
-					if (timeRemaining > 0L) {
-						npc.say("Welcome. I'm still working on your request to fuse mithril thread"
-								+ " for you. Come back in "
-								+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
-					} else {
-						final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
-																												  "mithril thread");
-
-						products.setQuantity(40);
-					
-						products.setBoundTo(player.getName());
-						player.equipOrPutOnGround(products);
-						npc.say("Hello again. The magic is completed. Here you have your 40 spools of mithril thread. Now, you must go to #Whiggins to get the #fabric made.");
-						player.setQuest(mithrilcloak.getQuestSlot(), "got_mithril_thread");
-						// give some XP as a little bonus for industrious workers
-						player.addXP(100);
-						player.notifyWorldAboutChanges();	
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "fusingthread;")),
+				ConversationStates.ATTENDING, null, new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+						final String orderString = player.getQuest(mithrilcloak.getQuestSlot());
+						final String[] order = orderString.split(";");
+						final long delay = REQUIRED_HOURS_MITHRIL_THREAD * MathHelper.MILLISECONDS_IN_ONE_HOUR;
+						final long timeRemaining = (Long.parseLong(order[1]) + delay)
+							- System.currentTimeMillis();
+						if (timeRemaining > 0L) {
+							npc.say("Welcome. I'm still working on your request to fuse mithril thread"
+									+ " for you. Come back in "
+									+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+						} else {
+							final StackableItem products = (StackableItem) SingletonRepository.
+										getEntityManager().getItem("mithril thread");
+	
+							products.setQuantity(40);
+						
+							products.setBoundTo(player.getName());
+							player.equipOrPutOnGround(products);
+							npc.say("Hello again. The magic is completed. Here you have your 40 spools of mithril thread. Now, you must go to #Whiggins to get the #fabric made.");
+							player.setQuest(mithrilcloak.getQuestSlot(), "got_mithril_thread");
+							// give some XP as a little bonus for industrious workers
+							player.addXP(100);
+							player.notifyWorldAboutChanges();	
+					}
+				  }
 				}
-			  }
-			}
 		);
-
 
 		// don't fuse thread unless state correct
 		npc.add(
@@ -387,24 +391,24 @@ class MakingFabric {
 				new NotCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_thread")), 
 				ConversationStates.ATTENDING, "I can only create mithril thread when you have got some silk #thread. And remember, I will know if you really need the magic performed or not.", null);
 		
-		
 		// player returns and hasn't got thread yet/got thread already and 
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new NotCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new NotCondition(
 								 new OrCondition(
 												 new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_thread"),
 												 new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "fusingthread;")
 												 )
-								 ),
+						)),
 				ConversationStates.ATTENDING, "Greetings. What an interesting place this is.",
 				null);
 
-		
 		// player needs thread fused
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_thread"),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "got_thread")),
 				ConversationStates.ATTENDING, "Greetings, can I #offer you anything?",
 				null);
 

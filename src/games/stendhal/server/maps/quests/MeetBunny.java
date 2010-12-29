@@ -22,8 +22,10 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -72,7 +74,8 @@ public class MeetBunny extends AbstractQuest {
 				// Greet players who have a basket but go straight back to idle to give others a chance
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new QuestCompletedCondition(QUEST_SLOT),
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
+								new QuestCompletedCondition(QUEST_SLOT)),
 						ConversationStates.IDLE,
 						"Hi again! Don't eat too much this Easter!", null);
 
@@ -84,7 +87,8 @@ public class MeetBunny extends AbstractQuest {
 				// Give unmet players a basket
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new QuestNotCompletedCondition(QUEST_SLOT),
+					new AndCondition(new GreetingMatchesNameCondition(getName()),
+							new QuestNotCompletedCondition(QUEST_SLOT)),
 					ConversationStates.ATTENDING,
 					"Happy Easter! I have an easter basket for you.",
 					new MultipleActions(reward));

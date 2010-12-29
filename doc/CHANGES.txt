@@ -7,6 +7,7 @@ Changelog
 - full health bonus when you level up
 - support answers via postman are orange
 - added new NPC Caroline (daughter of Fritz) onto Ados market
+- greeting of NPCs by name
 
 *fixes*
 - add buddies only once to the buddy list and display their canonical name

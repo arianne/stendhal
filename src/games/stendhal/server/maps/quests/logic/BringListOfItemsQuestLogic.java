@@ -19,6 +19,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -102,7 +104,8 @@ public class BringListOfItemsQuestLogic {
 		concreteQuest.getNPC().add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestNotStartedCondition(concreteQuest.getSlotName()),
+			new AndCondition(new GreetingMatchesNameCondition(concreteQuest.getNPC().getName()),
+					new QuestNotStartedCondition(concreteQuest.getSlotName())),
 			ConversationStates.ATTENDING,
 			concreteQuest.welcomeBeforeStartingQuest(),
 			null);
@@ -311,7 +314,8 @@ public class BringListOfItemsQuestLogic {
 		concreteQuest.getNPC().add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestActiveCondition(concreteQuest.getSlotName()),
+			new AndCondition(new GreetingMatchesNameCondition(concreteQuest.getNPC().getName()),
+					new QuestActiveCondition(concreteQuest.getSlotName())),
 			ConversationStates.ATTENDING,
 			concreteQuest.welcomeDuringActiveQuest(),
 			null);
@@ -324,7 +328,8 @@ public class BringListOfItemsQuestLogic {
 		if (concreteQuest.shouldWelcomeAfterQuestIsCompleted()) {
 			concreteQuest.getNPC().add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestCompletedCondition(concreteQuest.getSlotName()),
+				new AndCondition(new GreetingMatchesNameCondition(concreteQuest.getNPC().getName()),
+						new QuestCompletedCondition(concreteQuest.getSlotName())),
 				ConversationStates.ATTENDING,
 				concreteQuest.welcomeAfterQuestIsCompleted(),
 				null);

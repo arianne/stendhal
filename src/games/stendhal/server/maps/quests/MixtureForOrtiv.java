@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 
@@ -100,7 +101,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Ortiv Milquetoast");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new LevelGreaterThanCondition(2),
 					new QuestNotStartedCondition(QUEST_SLOT),
 					new NotCondition(new QuestInStateCondition(QUEST_SLOT,"rejected"))),
@@ -108,7 +109,8 @@ public class MixtureForOrtiv extends AbstractQuest {
 			"Ohh a stranger found my hidden house, welcome! Maybe you can help me with something?", null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT,"rejected"),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT,"rejected")),
 			ConversationStates.QUEST_OFFERED, 
 			"Hey, did you think about helping me again? Will you do it?", null);
 
@@ -181,7 +183,8 @@ public class MixtureForOrtiv extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Ortiv Milquetoast");
 	
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestActiveCondition(QUEST_SLOT)),
 				ConversationStates.QUESTION_2,
 				"Hello again! I'm glad to see you. Did you bring me any #ingredients for my mixture?",
 				null);
@@ -233,10 +236,10 @@ public class MixtureForOrtiv extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestCompletedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING, 
 				"Thank you so much! I can sleep safely and calm again now! You rescued me!", null);
-		
 	}
 	
 

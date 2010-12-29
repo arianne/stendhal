@@ -28,8 +28,10 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -371,14 +373,16 @@ public class ReverseArrow extends AbstractQuest implements
 		protected void createDialog() {
 			add(ConversationStates.IDLE, 
 					ConversationPhrases.GREETING_MESSAGES,
-					new QuestCompletedCondition(QUEST_SLOT), 
+					new AndCondition(new GreetingMatchesNameCondition(getName()),
+							new QuestCompletedCondition(QUEST_SLOT)), 
 					ConversationStates.ATTENDING, 
 					null,
 					new SayTextWithPlayerNameAction("Hi again, [name]. I remember that you solved this problem already. You can do it again, of course."));
 			
 			add(ConversationStates.IDLE, 
 					ConversationPhrases.GREETING_MESSAGES,
-					new QuestNotCompletedCondition(QUEST_SLOT), 
+					new AndCondition(new GreetingMatchesNameCondition(getName()),
+							new QuestNotCompletedCondition(QUEST_SLOT)), 
 					ConversationStates.ATTENDING, 
 					"Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.",
 					null);

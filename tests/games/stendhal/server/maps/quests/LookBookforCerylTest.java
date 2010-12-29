@@ -176,7 +176,6 @@ public class LookBookforCerylTest {
 		cerylEngine.step(pl, "quest");
 		assertTrue(ceryl.isTalking());
 		assertEquals("I have nothing for you now.", getReply(ceryl));
-
 	}
 
 	/**

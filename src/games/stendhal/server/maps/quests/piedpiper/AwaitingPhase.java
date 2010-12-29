@@ -21,6 +21,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.maps.quests.ThePiedPiper;
 
 import java.util.Arrays;
@@ -270,13 +271,13 @@ public class AwaitingPhase extends TPPQuest {
 		piedpiper.setVisibility(100);
 		piedpiper.add(ConversationStates.IDLE, 
 							ConversationPhrases.GREETING_MESSAGES, 
-							null, 
+							new GreetingMatchesNameCondition(piedpiper.getName()), true, 
 							ConversationStates.IDLE, 
 							"hello", 
 							null);
-		fullpath=PathesBuildHelper.getAwaitingPhasePath();
+		fullpath = PathesBuildHelper.getAwaitingPhasePath();
 		leadNPC();
-		}
+	}
 	
 	/**
 	 * function will remove piped piper npc object

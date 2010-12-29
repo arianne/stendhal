@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -184,22 +185,22 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 			@Override
 			protected void createDialog() {
-				
+
 				// has been here before
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestCompletedCondition(QUEST_SLOT)),
 					    ConversationStates.ATTENDING,
 					    null,
 					    new SayTextWithPlayerNameAction("Welcome to the Wizard's Bank, [name]. Do you wish to pay to access your chest again?"));
-				
+
 				// never started quest
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestNotStartedCondition(QUEST_SLOT)),
@@ -210,7 +211,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				// currently in bank
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestActiveCondition(QUEST_SLOT)),
@@ -221,9 +222,10 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				// hasn't got access to all banks yet
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new OrCondition(
-								new QuestNotCompletedCondition(GRAFINDLE_QUEST_SLOT), 
-								new QuestNotCompletedCondition(ZARA_QUEST_SLOT)),
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
+							new OrCondition(
+									new QuestNotCompletedCondition(GRAFINDLE_QUEST_SLOT), 
+									new QuestNotCompletedCondition(ZARA_QUEST_SLOT))),
 						ConversationStates.IDLE,
 						"You may not use this bank if you have not gained the right to use the chests at Nalwor, nor if you have not earned the trust of a certain young woman. Goodbye!",
 						null);

@@ -21,6 +21,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 
 import java.util.LinkedList;
@@ -69,7 +71,8 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 		        // used for any other purpose
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new QuestNotStartedCondition("meet_hackim"),
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
+								new QuestNotStartedCondition("meet_hackim")),
 				        ConversationStates.ATTENDING,
 				        "Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?",
 				        new SetQuestAction("meet_hackim","start"));

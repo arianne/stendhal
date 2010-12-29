@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -126,18 +127,18 @@ class TwilightZone {
 
 		npc2.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
-								 new NotCondition(new PlayerHasItemWithHimCondition("twilight elixir"))
-								 ),
+				new AndCondition(new GreetingMatchesNameCondition(npc2.getName()),
+						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
+						new NotCondition(new PlayerHasItemWithHimCondition("twilight elixir"))),
 				ConversationStates.IDLE,		
 				"I'm sick .. so sick .. only some powerful medicine will fix me.",				
 				null);
 
 		npc2.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
-								 new PlayerHasItemWithHimCondition("twilight elixir")
-								 ),
+				new AndCondition(new GreetingMatchesNameCondition(npc2.getName()),
+						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
+						new PlayerHasItemWithHimCondition("twilight elixir")),
 				ConversationStates.QUEST_ITEM_QUESTION,		
 				"Is that elixir for me? If #yes I will take it immediately. You must return to see me again in my normal state.",				
 				 null);
@@ -149,11 +150,11 @@ class TwilightZone {
 								 ),
 				ConversationStates.IDLE,		
 				"Thank you!",				
-					new MultipleActions(
-										new DropItemAction("twilight elixir"),
-										new SetQuestAction(mithrilcloak.getQuestSlot(), "taking_striped_cloak"),
-										new TeleportAction("int_ados_sewing_room", 12, 20, Direction.DOWN)
-										)
+				new MultipleActions(
+								new DropItemAction("twilight elixir"),
+								new SetQuestAction(mithrilcloak.getQuestSlot(), "taking_striped_cloak"),
+								new TeleportAction("int_ados_sewing_room", 12, 20, Direction.DOWN)
+								)
 				);
 
 		npc2.add(ConversationStates.QUEST_ITEM_QUESTION, 

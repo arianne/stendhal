@@ -30,6 +30,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.KilledCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -341,7 +342,7 @@ public class ObsidianKnife extends AbstractQuest {
 	private void bringBookStep() {
 		final SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "got_book"), 
 						new PlayerHasItemWithHimCondition("blue book")),
 				ConversationStates.IDLE, 
@@ -354,7 +355,7 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new OrCondition(new QuestInStateCondition(QUEST_SLOT,"seeking_book"), new QuestInStateCondition(QUEST_SLOT, "got_book")), 
 						new NotCondition(new PlayerHasItemWithHimCondition("blue book"))),
 				ConversationStates.ATTENDING,
@@ -363,18 +364,21 @@ public class ObsidianKnife extends AbstractQuest {
 	}
 
 	private void offerKnifeStep() {
-
 		final SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_DAYS * MINUTES_IN_DAYS))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_DAYS * MINUTES_IN_DAYS))),
 				ConversationStates.IDLE, 
 				null, 
 				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_DAYS * MINUTES_IN_DAYS, "I haven't finished reading that book. Maybe I'll be done in"));
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_DAYS * MINUTES_IN_DAYS)),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestStateStartsWithCondition(QUEST_SLOT, "reading;"),
+						new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_DAYS * MINUTES_IN_DAYS)),
 				ConversationStates.QUEST_2_OFFERED, 
 				"I've finished reading! That was really interesting. I learned how to make a special #knife from #obsidian.", 
 				new SetQuestAction(QUEST_SLOT, "book_read"));
@@ -405,7 +409,8 @@ public class ObsidianKnife extends AbstractQuest {
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "book_read"),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "book_read")),
 				ConversationStates.QUEST_2_OFFERED,
 				"Hi! Perhaps you have come to ask about that #knife again ... ",
 				null);
@@ -414,7 +419,7 @@ public class ObsidianKnife extends AbstractQuest {
 		// he's killed a black dragon
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "knife_offered"), 
 						new KilledCondition("black dragon"),
 						new PlayerHasItemWithHimCondition("obsidian"),
@@ -432,7 +437,7 @@ public class ObsidianKnife extends AbstractQuest {
 		// he's not killed a black dragon
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "knife_offered"), 
 						new NotCondition(new KilledCondition("black dragon")),
 						new PlayerHasItemWithHimCondition("obsidian"),
@@ -444,7 +449,7 @@ public class ObsidianKnife extends AbstractQuest {
 		// player says hi to NPC when not equipped with the fish and the gem
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "knife_offered"), 
 						new NotCondition(
 								new AndCondition(
@@ -458,7 +463,9 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 				ConversationStates.IDLE, 
 				null, 
 				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I haven't finished making the knife. Please check back in"));
@@ -470,11 +477,12 @@ public class ObsidianKnife extends AbstractQuest {
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+						new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 				ConversationStates.IDLE, 
 				"The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!",
-				new MultipleActions(reward));
-		
+				new MultipleActions(reward));		
 	}
 
 	@Override

@@ -77,6 +77,8 @@ public class Engine {
 	 *            input trigger
 	 * @param condition
 	 *            additional precondition
+	 * @param secondary
+	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            state after the transition
 	 * @param reply
@@ -85,8 +87,8 @@ public class Engine {
 	 *            additional action after the condition
 	 */
 	public void add(final ConversationStates state, final String triggerString, final ChatCondition condition,
-			final ConversationStates nextState, final String reply, final ChatAction action) {
-		add(state, triggerString, null, condition, nextState, reply, action);
+			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
+		add(state, triggerString, null, condition, secondary, nextState, reply, action);
 	}
 
 	/**
@@ -96,16 +98,15 @@ public class Engine {
 	 * @param triggerString
 	 * @param matcher
 	 * @param condition
+	 * @param secondary
 	 * @param nextState
 	 * @param reply
 	 * @param action
 	 */
 	public void add(final ConversationStates state, final String triggerString, final ExpressionMatcher matcher, final ChatCondition condition,
-			final ConversationStates nextState, final String reply, final ChatAction action) {
-		// normalize trigger expressions using the conversation parser
+			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
+		// normalise trigger expressions using the conversation parser
 		final Expression triggerExpression = ConversationParser.createTriggerExpression(triggerString, matcher);
-
-		
 
 		// look for already existing rule with identical input parameters
 		final Transition existing = get(state, triggerExpression, condition);
@@ -121,18 +122,17 @@ public class Engine {
 				existing.setReply(reply);
 			}
 
-
+			// check for ambiguous state transitions
 			if (((action == null) && (existingAction == null))
 					|| ((action != null) && action.equals(existingAction))) {
-				
-				return;
+				return; // no action or equal to an already existing action
 			} else {
 				logger.warn(speakerNPC.getName() + ": Adding ambiguous state transition: " + existing
 				+ " existingAction='" + existingAction + "' newAction='" + action + "'");
 			}
 		}
 
-		stateTransitionTable.add(new Transition(state, triggerExpression, condition, nextState, reply, action));
+		stateTransitionTable.add(new Transition(state, triggerExpression, condition, secondary, nextState, reply, action));
 	}
 
 	/**
@@ -145,6 +145,8 @@ public class Engine {
 	 * @param condition
 	 *            null or condition that has to return true for this transition
 	 *            to be considered
+	 * @param secondary
+	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
@@ -153,12 +155,12 @@ public class Engine {
 	 *            a special action to be taken (may be null)
 	 */
 	public void add(final ConversationStates state, final List<String> triggers, final ChatCondition condition,
-			final ConversationStates nextState, final String reply, final ChatAction action) {
+			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
 		if (triggers == null) {
 			throw new IllegalArgumentException("triggers list must not be null");
 		}
 		for (final String trigger : triggers) {
-			add(state, trigger, condition, nextState, reply, action);
+			add(state, trigger, condition, secondary, nextState, reply, action);
 		}
 	}
 
@@ -267,7 +269,7 @@ public class Engine {
 	 * List of Transition entries used to merge identical transitions in respect
 	 * to Transitions.matchesNormalizedWithCondition().
 	 */
-	private static class TransitionList extends LinkedList<Transition> {
+	private static class TransitionSet extends LinkedList<Transition> {
         private static final long serialVersionUID = 1L;
 
 		@Override
@@ -292,18 +294,18 @@ public class Engine {
 
 	private boolean matchTransition(final MatchType type, final Player player,
 			final Sentence sentence) {
-		// We are using sets instead of lists to merge identical transitions.
-		final TransitionList conditionTransitions = new TransitionList();
-		final TransitionList conditionlessTransitions = new TransitionList();
+		// We are using sets instead of plain lists to merge identical transitions.
+		final TransitionSet preferredTransitions = new TransitionSet();
+		final TransitionSet secondaryTransitions = new TransitionSet();
 
 		// match with all the registered transitions
 		for (final Transition transition : stateTransitionTable) {
 			if (matchesTransition(type, sentence, transition)) {
 				if (transition.isConditionFulfilled(player, sentence, speakerNPC)) {
-					if (transition.getCondition() == null) {
-						conditionlessTransitions.add(transition);
+					if (transition.isPreferred()) {
+						preferredTransitions.add(transition);
 					} else {
-						conditionTransitions.add(transition);
+						secondaryTransitions.add(transition);
 					}
 				}
 			}
@@ -311,29 +313,29 @@ public class Engine {
 
 		Iterator<Transition> it = null;
 
-		// First we try to use a stateless transition.
-		if (conditionTransitions.size() > 0) {
-			it = conditionTransitions.iterator();
+		// First we try to use one of the a preferred transitions (mainly with existing condition).
+		if (preferredTransitions.size() > 0) {
+			it = preferredTransitions.iterator();
 
-			if (conditionTransitions.size() > 1) {
+			if (preferredTransitions.size() > 1) {
 				logger.info("Choosing random action because of "
-						+ conditionTransitions.size() + " entries in conditionTransitions: "
-						+ conditionTransitions);
+						+ preferredTransitions.size() + " entries in preferredTransitions: "
+						+ preferredTransitions);
 
-				TransitionList.advance(it, Rand.rand(conditionTransitions.size()));
+				TransitionSet.advance(it, Rand.rand(preferredTransitions.size()));
 			}
 		}
 
-		// Then look for transitions without conditions.
-		if ((it == null) && (conditionlessTransitions.size() > 0)) {
-			it = conditionlessTransitions.iterator();
+		// Then look for the remaining transitions.
+		if ((it == null) && (secondaryTransitions.size() > 0)) {
+			it = secondaryTransitions.iterator();
 
-			if (conditionlessTransitions.size() > 1) {
+			if (secondaryTransitions.size() > 1) {
 				logger.warn("Choosing random action because of "
-						+ conditionlessTransitions.size()
-						+ " entries in conditionlessTransitions: " + conditionlessTransitions);
+						+ secondaryTransitions.size()
+						+ " entries in secondaryTransitions: " + secondaryTransitions);
 
-				TransitionList.advance(it, Rand.rand(conditionlessTransitions.size()));
+				TransitionSet.advance(it, Rand.rand(secondaryTransitions.size()));
 			}
 		}
 
@@ -363,6 +365,7 @@ public class Engine {
 
 	private void executeTransition(final Player player, final Sentence sentence, final Transition trans) {
 		final ConversationStates nextState = trans.getNextState();
+
 		if (trans.getReply() != null) {
 			speakerNPC.say(trans.getReply());
 		}

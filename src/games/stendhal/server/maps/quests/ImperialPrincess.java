@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -109,6 +110,7 @@ public class ImperialPrincess extends AbstractQuest {
 		}
 		return res;
 	}
+
 	private void step_1() {
 
 		final SpeakerNPC npc = npcs.get("Princess Ylflia");
@@ -280,7 +282,6 @@ public class ImperialPrincess extends AbstractQuest {
 				"Thanks for the herbs you brought to heal the creatures, I'm glad my father recommended you for " +
 				"being a citizen of Kalavan.",
 				null);
-
 	}
 
 	private void step_3() {
@@ -289,14 +290,16 @@ public class ImperialPrincess extends AbstractQuest {
 
 		/** Complete the quest by speaking to King, who will return right back to idle once he rewards the player*/
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "recommended"), 
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "recommended")), 
 			ConversationStates.IDLE,
 			"Greetings! My wonderful daughter requests that I grant you citizenship of Kalavan City. Consider it done. Now, forgive me while I go back to my meal. Goodbye.",
 			new MultipleActions(new IncreaseXPAction(500), new SetQuestAction(QUEST_SLOT, "done")));
 
 		/** If you aren't in the condition to speak to him (not completed quest, or already spoke) the King will dismiss you */
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestNotInStateCondition(QUEST_SLOT, "recommended"), 
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestNotInStateCondition(QUEST_SLOT, "recommended")), 
 			ConversationStates.IDLE, 
 			"Leave me! Can't you see I am trying to eat?",
 			null);

@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -61,7 +62,8 @@ public class TicTacToeGame implements LoadableContent {
 			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE, 
-						ConversationPhrases.GREETING_MESSAGES, 
+						ConversationPhrases.GREETING_MESSAGES,
+						new GreetingMatchesNameCondition(getName()), true,
 						ConversationStates.IDLE,
 						"Hi, welcome to our small game of Tic Tac Toe. Your task is to fill a row "
 						+ "(vertical, horizontal, diagonal) with the same type of tokens. "

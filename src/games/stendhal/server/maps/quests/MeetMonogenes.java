@@ -18,6 +18,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
@@ -59,7 +61,9 @@ public class MeetMonogenes extends AbstractQuest {
         // used for any other purpose
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestNotCompletedCondition("Monogenes"), 
+				new AndCondition(
+						new GreetingMatchesNameCondition(npc.getName()),
+						new QuestNotCompletedCondition("Monogenes")), 
 				ConversationStates.INFORMATION_1, 
 				"Hello there, stranger! Don't be too intimidated if people are quiet and reserved... " +
 				"the fear of Blordrough and his forces has spread all over the country, and we're all " +

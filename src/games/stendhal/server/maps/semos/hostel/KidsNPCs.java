@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 
 import java.util.Map;
 
@@ -55,6 +56,7 @@ public class KidsNPCs implements ZoneConfigurator {
 					add(
 			     		ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
+						new GreetingMatchesNameCondition(getName()), true,
 						ConversationStates.IDLE,
 						"ZZzzzz ... ",
 						null);

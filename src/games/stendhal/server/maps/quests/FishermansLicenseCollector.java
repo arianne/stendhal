@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -111,7 +112,9 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(FishermansLicenseQuiz.QUEST_SLOT), new QuestNotStartedCondition(QUEST_SLOT)),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestCompletedCondition(FishermansLicenseQuiz.QUEST_SLOT),
+					new QuestNotStartedCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING,
 			"Hello again! The second part of your #exam is waiting for you!",
 			null);
@@ -217,7 +220,8 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestActiveCondition(QUEST_SLOT),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestActiveCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING,
 			"Welcome back. I hope you were not lazy and that you brought me some other fish #species.",
 			null);
@@ -226,7 +230,8 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestCompletedCondition(QUEST_SLOT),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestCompletedCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING,
 			"Welcome fisherman! Nice to see you again. I wish you luck for fishing.",
 			null);

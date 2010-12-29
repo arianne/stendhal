@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -154,12 +155,16 @@ public class BeerForHayunn extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestActiveCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("beer")),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestActiveCondition(QUEST_SLOT),
+					new PlayerHasItemWithHimCondition("beer")),
 			ConversationStates.QUEST_ITEM_BROUGHT, 
 			"Hey! Is that beer for me?", null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestActiveCondition(QUEST_SLOT), new NotCondition(new PlayerHasItemWithHimCondition("beer"))),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestActiveCondition(QUEST_SLOT),
+					new NotCondition(new PlayerHasItemWithHimCondition("beer"))),
 			ConversationStates.ATTENDING, 
 			"Hey, I'm still waiting for that beer, remember? Anyway, what can I do for you?",
 			null);

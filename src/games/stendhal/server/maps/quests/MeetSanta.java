@@ -27,8 +27,10 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
+import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -79,29 +81,31 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new QuestCompletedCondition(QUEST_SLOT),
+					new AndCondition(new GreetingMatchesNameCondition(getName()),
+							new QuestCompletedCondition(QUEST_SLOT)),
 					ConversationStates.IDLE,
 					"Hi again! Good bye, and remember to behave if you want a present next year!",
 				    new ChatAction() {
 					    public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) { 
-						addHat(player);	    
+					    	addHat(player);	    
 					    }
 					}
-				    );
+				);
 
 				final List<ChatAction> reward = new LinkedList<ChatAction>();
 				reward.add(new EquipItemAction("stocking"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 				reward.add(new ChatAction() {
 				        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					    addHat(player);
-					}
+						    addHat(player);
+						}
 				    }
 				);
 				reward.add(new ProcessReachedQuestAchievementsAction());
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new QuestNotCompletedCondition(QUEST_SLOT),
+					new AndCondition(new GreetingMatchesNameCondition(getName()),
+							new QuestNotCompletedCondition(QUEST_SLOT)),
 					ConversationStates.IDLE,
 					"Merry Christmas! I have a present and a hat for you. Good bye, and remember to behave if you want a present next year!",
 					new MultipleActions(reward));

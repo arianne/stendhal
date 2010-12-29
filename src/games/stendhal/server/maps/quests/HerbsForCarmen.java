@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -194,7 +195,8 @@ public class HerbsForCarmen extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Carmen");
 	
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestActiveCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				"Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!",
 				null);

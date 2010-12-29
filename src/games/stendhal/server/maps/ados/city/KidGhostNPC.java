@@ -21,6 +21,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -67,11 +68,12 @@ public class KidGhostNPC implements ZoneConfigurator {
 				nodes.add(new Node(34, 112));
 				setPath(new FixedPath(nodes, true));
 			}
+
 			@Override
 		    protected void createDialog() {
 			    add(ConversationStates.IDLE,
 			    	ConversationPhrases.GREETING_MESSAGES,
-			    	null,
+			    	new GreetingMatchesNameCondition(getName()), true,
 			    	ConversationStates.IDLE,
 			    	null,
 			    	new ChatAction() {
@@ -107,8 +109,8 @@ public class KidGhostNPC implements ZoneConfigurator {
 						}
 					});
 			}
-
 		};
+
 		ghost.setDescription("You see a ghostly figure of a small boy.");
 		ghost.setResistance(0);
 		ghost.setEntityClass("kid7npc");

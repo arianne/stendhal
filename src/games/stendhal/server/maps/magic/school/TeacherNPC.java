@@ -19,6 +19,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -56,7 +57,9 @@ public class TeacherNPC implements ZoneConfigurator {
 
 			@Override
 			    protected void createDialog() {
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.IDLE, "Sit down, shut up, and watch me!", null);
+				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+						new GreetingMatchesNameCondition(getName()), true,
+						ConversationStates.IDLE, "Sit down, shut up, and watch me!", null);
 	 	     }
 		    
 		};

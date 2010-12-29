@@ -50,29 +50,29 @@ public class SellerAdder {
 					ConversationStates.ATTENDING,
 					ConversationPhrases.OFFER_MESSAGES,
 					null,
-					ConversationStates.ATTENDING,
-					"I sell "
-							+ Grammar.enumerateCollection(behaviour.dealtItems())
-							+ ".", null);
+					false,
+					ConversationStates.ATTENDING, "I sell "
+									+ Grammar.enumerateCollection(behaviour.dealtItems())
+									+ ".", null);
 		}
 
 		engine.add(ConversationStates.ATTENDING, "buy", new SentenceHasErrorCondition(),
-				ConversationStates.ATTENDING, null,
-				new ComplainAboutSentenceErrorAction());
+				false, ConversationStates.ATTENDING,
+				null, new ComplainAboutSentenceErrorAction());
 
 		ChatCondition condition = new AndCondition(
 			new NotCondition(new SentenceHasErrorCondition()),
 			new NotCondition(behaviour.getTransactionCondition()));
 		engine.add(ConversationStates.ATTENDING, "buy", condition,
-			ConversationStates.ATTENDING, null,
-			behaviour.getRejectedTransactionAction());
+			false, ConversationStates.ATTENDING,
+			null, behaviour.getRejectedTransactionAction());
 
 		condition = new AndCondition(
 			new NotCondition(new SentenceHasErrorCondition()),
 			behaviour.getTransactionCondition());
 		engine.add(ConversationStates.ATTENDING, "buy", condition,
-				ConversationStates.BUY_PRICE_OFFERED, null,
-				new ChatAction() {
+				false, ConversationStates.BUY_PRICE_OFFERED,
+				null, new ChatAction() {
 
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser raiser) {
@@ -131,8 +131,8 @@ public class SellerAdder {
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
+				false, ConversationStates.ATTENDING,
+				null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final String itemName = behaviour.getChosenItemName();
 						logger.debug("Selling a " + itemName + " to player " + player.getName());
@@ -146,8 +146,8 @@ public class SellerAdder {
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING, "Ok, how else may I help you?",
-				null);
+				false, ConversationStates.ATTENDING,
+				"Ok, how else may I help you?", null);
 	}
 
 }

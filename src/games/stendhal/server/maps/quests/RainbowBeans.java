@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -91,7 +92,8 @@ public class RainbowBeans extends AbstractQuest {
 
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestNotStartedCondition(QUEST_SLOT),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestNotStartedCondition(QUEST_SLOT)),
 			ConversationStates.INFORMATION_1,
 			"SHHH! Don't want all n' sundry knowin' wot I #deal in.", null);
 
@@ -100,7 +102,9 @@ public class RainbowBeans extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), 
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestStartedCondition(QUEST_SLOT),
+					new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), 
 			ConversationStates.QUEST_OFFERED,
 			"Oi, you. Back for more rainbow beans?", null);
 
@@ -109,7 +113,9 @@ public class RainbowBeans extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))), 
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestStartedCondition(QUEST_SLOT),
+					new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))), 
 			ConversationStates.ATTENDING, 
 			null,
 			new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "Alright? I hope you don't want more beans. You can't take more of that stuff for at least another"));

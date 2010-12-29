@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -133,13 +134,17 @@ public class HatForMonogenes extends AbstractQuest {
 
 		monogenes.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("leather helmet")),
+			new AndCondition(new GreetingMatchesNameCondition(monogenes.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "start"),
+					new PlayerHasItemWithHimCondition("leather helmet")),
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Hey! Is that leather hat for me?", null);
 
 		monogenes.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("leather helmet"))),
+			new AndCondition(new GreetingMatchesNameCondition(monogenes.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "start"),
+					new NotCondition(new PlayerHasItemWithHimCondition("leather helmet"))),
 			ConversationStates.ATTENDING,
 			"Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...",
 			null);

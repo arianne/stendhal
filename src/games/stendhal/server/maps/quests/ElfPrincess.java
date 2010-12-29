@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerCanEquipItemCondition;
@@ -143,7 +144,8 @@ public class ElfPrincess extends AbstractQuest {
         // give the flower if it's at least 5 minutes since the flower was last given, and set the time slot again
 		rose.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+			new AndCondition(new GreetingMatchesNameCondition(rose.getName()),
+							 new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 							 new PlayerCanEquipItemCondition("rhosyd"),
                              new TimePassedCondition(QUEST_SLOT, 1, DELAY)),
 			ConversationStates.IDLE, 
@@ -155,7 +157,8 @@ public class ElfPrincess extends AbstractQuest {
 		// don't put the flower on the ground - if player has no space, tell them
 		rose.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+				new AndCondition(new GreetingMatchesNameCondition(rose.getName()),
+								 new QuestInStateCondition(QUEST_SLOT, 0, "start"),
                                  new TimePassedCondition(QUEST_SLOT, 1, DELAY),
 								 new NotCondition(new PlayerCanEquipItemCondition("rhosyd"))),
 				ConversationStates.IDLE, 
@@ -165,7 +168,8 @@ public class ElfPrincess extends AbstractQuest {
         // don't give the flower if one was given within the last 5 minutes
         rose.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+				new AndCondition(new GreetingMatchesNameCondition(rose.getName()),
+								 new QuestInStateCondition(QUEST_SLOT, 0, "start"),
                                  new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
 				ConversationStates.IDLE, 
 				"I gave you a flower not five minutes past! Her Royal Highness can enjoy that one for a while.",
@@ -176,7 +180,8 @@ public class ElfPrincess extends AbstractQuest {
         // trouble is old slots don't have a timestamp and so TimePassed will return true	
 	    rose.add(ConversationStates.IDLE,
 		    	ConversationPhrases.GREETING_MESSAGES,
-		    	new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
+		    	new AndCondition(new GreetingMatchesNameCondition(rose.getName()),
+		    					 new QuestNotInStateCondition(QUEST_SLOT, 0, "start")),
 		    	ConversationStates.IDLE,
 		    	"I've got nothing for you today, sorry dearie. I'll be on my way now, bye.", 
 		    	null);

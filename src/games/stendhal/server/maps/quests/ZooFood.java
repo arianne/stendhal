@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition;
@@ -114,24 +115,27 @@ public class ZooFood extends AbstractQuest {
 
         // Player has never done the zoo quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, "Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?",
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestNotStartedCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING,
+				"Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?",
 				null
 		);
 
         // Player returns within one week of completing quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
-                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
-				ConversationStates.ATTENDING, "Welcome back to the Ados Wildlife Refuge! Thanks again for rescuing "
-                                                + "our animals!",
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestCompletedCondition(QUEST_SLOT), 
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
+				ConversationStates.ATTENDING, "Welcome back to the Ados Wildlife Refuge! Thanks again for rescuing our animals!",
 				null
 		);
 
         // Player returns and longer than a week has passed, ask to help again
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
-                                 new TimePassedCondition(QUEST_SLOT, 1, DELAY)),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestCompletedCondition(QUEST_SLOT), 
+						new TimePassedCondition(QUEST_SLOT, 1, DELAY)),
 				ConversationStates.QUEST_OFFERED, "Welcome back to the Ados Wildlife "
                 + "Refuge! Our animals are hungry again, can you bring some more food please?",
                 null);
@@ -191,21 +195,21 @@ public class ZooFood extends AbstractQuest {
 		// compatibility with old quests:
 		// player returns while initial quest is still active, set it to match the new way
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "start"),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start")),
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				"Welcome back! Have you brought the "
 						+ Grammar.quantityplnoun(REQUIRED_HAM, "ham", "") + "?",
 			new SetQuestAction(QUEST_SLOT,"start;ham=10"));
-		
-		
+
 		// player returns while quest is active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestStateStartsWithCondition(QUEST_SLOT, "start;"),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestStateStartsWithCondition(QUEST_SLOT, "start;")),
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				null,
 				new SayRequiredItemAction(QUEST_SLOT, 1, "Welcome back! Have you brought the [item]?"));
-				
-		
+
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new DropRecordedItemAction(QUEST_SLOT,1));
 		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done;1", 5.0));
@@ -235,16 +239,18 @@ public class ZooFood extends AbstractQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), 
-					 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestCompletedCondition(QUEST_SLOT), 
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
 			ConversationStates.ATTENDING, "Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?",
 				null
 		);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new OrCondition(new QuestNotCompletedCondition(QUEST_SLOT),
-					new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-							 new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new OrCondition(new QuestNotCompletedCondition(QUEST_SLOT),
+								new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, DELAY))
+						)),
 				ConversationStates.IDLE, "Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
 				null
 		);

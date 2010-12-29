@@ -19,6 +19,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -51,28 +52,33 @@ public class JailedDwarf extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Hunel");
-		
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
-				 ConversationStates.ATTENDING,
-				 "Hi. As you see, I am still too nervous to leave ...",
-				 null);
-		
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT), new NotCondition(new PlayerHasItemWithHimCondition("kanmararn prison key"))),
-				 ConversationStates.IDLE,
-				 "Help! The duergars have raided the prison and locked me up! I'm supposed to be the Guard! It's a shambles.",
-				 new SetQuestAction(QUEST_SLOT, "start"));
-		
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("kanmararn prison key")),
-				 ConversationStates.ATTENDING,
-				 "You got the key to unlock me! *mumble*  Errrr ... it doesn't look too safe out there for me ... I think I'll just stay here ... perhaps someone could #offer me some good equipment ... ",
-				 new MultipleActions(new SetQuestAction(QUEST_SLOT, "done"),
-						 			 new IncreaseXPAction(2000)));
 
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestCompletedCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING,
+				"Hi. As you see, I am still too nervous to leave ...",
+				null);
+
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestNotCompletedCondition(QUEST_SLOT),
+						new NotCondition(new PlayerHasItemWithHimCondition("kanmararn prison key"))),
+				ConversationStates.IDLE,
+				"Help! The duergars have raided the prison and locked me up! I'm supposed to be the Guard! It's a shambles.",
+				new SetQuestAction(QUEST_SLOT, "start"));
+
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestNotCompletedCondition(QUEST_SLOT),
+						new PlayerHasItemWithHimCondition("kanmararn prison key")),
+				ConversationStates.ATTENDING,
+				"You got the key to unlock me! *mumble*  Errrr ... it doesn't look too safe out there for me ... I think I'll just stay here ... perhaps someone could #offer me some good equipment ... ",
+				new MultipleActions(new SetQuestAction(QUEST_SLOT, "done"),
+						 			 new IncreaseXPAction(2000)));
 	}
 
 	@Override

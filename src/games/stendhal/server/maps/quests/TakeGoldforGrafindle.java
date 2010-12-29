@@ -30,6 +30,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -176,7 +177,8 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "start"),
+			new AndCondition(new GreetingMatchesNameCondition(getName()),
+					new QuestInStateCondition(QUEST_SLOT, "start")),
 			ConversationStates.ATTENDING,
 			"I'm so glad you're here! I'll be much happier when this gold is safely in the bank.",
 			new MultipleActions(givegold));
@@ -185,7 +187,8 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "lorithien"),
+			new AndCondition(new GreetingMatchesNameCondition(getName()),
+					new QuestInStateCondition(QUEST_SLOT, "lorithien")),
 			ConversationStates.ATTENDING,
 			"Oh, please take that gold back to #Grafindle before it gets lost!",
 			null);
@@ -217,13 +220,17 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		reward.add(new IncreaseKarmaAction(10));
 		
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "lorithien"), new PlayerHasItemWithHimCondition("gold bar", GOLD_AMOUNT)),
-			ConversationStates.ATTENDING,
-			"Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.",
-			new MultipleActions(reward));
+				new AndCondition(new GreetingMatchesNameCondition(getName()),
+						new QuestInStateCondition(QUEST_SLOT, "lorithien"),
+						new PlayerHasItemWithHimCondition("gold bar", GOLD_AMOUNT)),
+				ConversationStates.ATTENDING,
+				"Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.",
+				new MultipleActions(reward));
 		
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "lorithien"), new NotCondition(new PlayerHasItemWithHimCondition("gold bar", GOLD_AMOUNT))),
+				new AndCondition(new GreetingMatchesNameCondition(getName()),
+						new QuestInStateCondition(QUEST_SLOT, "lorithien"),
+						new NotCondition(new PlayerHasItemWithHimCondition("gold bar", GOLD_AMOUNT))),
 				ConversationStates.ATTENDING,
 				"Haven't you got the gold bars from #Lorithien yet? Please go get them, quickly!",
 				null);

@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -180,7 +181,7 @@ public class SadScientist extends AbstractQuest {
 
 	private void playerReturnsToFetchReward(SpeakerNPC npc) {
 		// time has passed
-		final ChatCondition condition = new AndCondition(
+		final ChatCondition condition = new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestStateStartsWithCondition(QUEST_SLOT,"decorating"),
 						new TimePassedCondition(QUEST_SLOT, 1, 5)
 					);
@@ -199,7 +200,7 @@ public class SadScientist extends AbstractQuest {
 				action);
 		
 		// time has not yet passed
-		final ChatCondition notCondition = new AndCondition(
+		final ChatCondition notCondition = new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 				new QuestStateStartsWithCondition(QUEST_SLOT,"decorating"),
 				new NotCondition( new TimePassedCondition(QUEST_SLOT, 1, 5))
 			);
@@ -213,8 +214,7 @@ public class SadScientist extends AbstractQuest {
 				reply);
 	}
 	
-	private void playerReturnsAfterKillingTheImperialScientist(
-			SpeakerNPC npc) {
+	private void playerReturnsAfterKillingTheImperialScientist(SpeakerNPC npc) {
 		final ChatCondition condition = new AndCondition(
 				new QuestStateStartsWithCondition(QUEST_SLOT, "kill_scientist"),
 				new KilledForQuestCondition(QUEST_SLOT, 1),
@@ -226,7 +226,8 @@ public class SadScientist extends AbstractQuest {
 										new DropItemAction("goblet",1)
 										);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				condition, ConversationStates.ATTENDING, 
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()), condition),
+				ConversationStates.ATTENDING, 
 				"Ha, ha, ha! I will cover those jewelled legs with this blood and they will transform " +
 				"into a #symbol of pain.", 
 				null);
@@ -241,6 +242,7 @@ public class SadScientist extends AbstractQuest {
 	private void playerReturnsWithoutKillingTheImperialScientistOrWithoutGoblet(
 			SpeakerNPC npc) {
 		final ChatCondition condition = new AndCondition(
+				new GreetingMatchesNameCondition(npc.getName()),
 				new QuestStateStartsWithCondition(QUEST_SLOT, "kill_scientist"),
 				new NotCondition( 
 						new AndCondition( 
@@ -265,7 +267,7 @@ public class SadScientist extends AbstractQuest {
 					new DropItemAction("note")
 				);
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				condition,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()), condition),
 				ConversationStates.INFORMATION_2,
 				"Hello! Do you have anything for me?",
 				null);
@@ -286,7 +288,7 @@ public class SadScientist extends AbstractQuest {
 	}
 	
 	private void playerReturnsWithoutLetter(final SpeakerNPC npc) {
-		final ChatCondition condition = new AndCondition(
+		final ChatCondition condition = new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 				new QuestStateStartsWithCondition(QUEST_SLOT, "find_vera"),
 				new NotCondition(new PlayerHasItemWithHimCondition("note"))
 			);
@@ -326,7 +328,7 @@ public class SadScientist extends AbstractQuest {
 			);
 		final ChatAction action = new SetQuestAction(QUEST_SLOT,"find_vera");
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				condition,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()), condition),
 				ConversationStates.INFORMATION_1, 
 				"I finished the legs. But I cannot trust you. Before I give the" +
 				" jewelled legs to you, I need a message from my darling. Ask Mayor" +
@@ -347,7 +349,7 @@ public class SadScientist extends AbstractQuest {
 	}
 
 	private void playerReturnsAfterGivingTooEarly(final SpeakerNPC npc) {
-		final ChatCondition condition = new AndCondition(
+		final ChatCondition condition = new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 				new QuestStateStartsWithCondition(QUEST_SLOT, "making;"),
 				new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))
 			);
@@ -365,7 +367,8 @@ public class SadScientist extends AbstractQuest {
 		
 		//player returns during item collection phase
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				itemPhaseCondition,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						itemPhaseCondition),
 				ConversationStates.QUESTION_1, 
 				"Hello. Do you have any #items I need for the jewelled legs?",
 				null);
@@ -440,7 +443,7 @@ public class SadScientist extends AbstractQuest {
 	
 	private void playerReturnsAfterRequestForLegs(final SpeakerNPC npc) {
 	//player returns without legs
-	final AndCondition nolegscondition = new AndCondition(
+	final AndCondition nolegscondition = new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 									new QuestInStateCondition(QUEST_SLOT, "legs"),
 									new NotCondition(new PlayerHasItemWithHimCondition("shadow legs"))
 									);
@@ -451,7 +454,7 @@ public class SadScientist extends AbstractQuest {
 			null);		
 		
 	//player returns with legs
-	final AndCondition legscondition = new AndCondition(
+	final AndCondition legscondition = new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 								new QuestInStateCondition(QUEST_SLOT, "legs"),
 								new PlayerHasItemWithHimCondition("shadow legs")
 								);
@@ -470,7 +473,8 @@ public class SadScientist extends AbstractQuest {
 	private void startOfQuest(final SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES, 
-				new QuestNotStartedCondition(QUEST_SLOT),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				"Go away!",null);
 
@@ -536,7 +540,8 @@ public class SadScientist extends AbstractQuest {
 		// after finishing the quest, just tell them to go away, and mean it.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES, 
-				new QuestCompletedCondition(QUEST_SLOT),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestCompletedCondition(QUEST_SLOT)),
 				ConversationStates.IDLE,
 				"Go away!",null);
 	}

@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -145,7 +146,8 @@ public class ArmorForDagobert extends AbstractQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), 
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+				new QuestInStateCondition(QUEST_SLOT, "start"),
 				new OrCondition(
 					new PlayerHasItemWithHimCondition("leather cuirass"),
 					new PlayerHasItemWithHimCondition("pauldroned leather cuirass"))),
@@ -154,7 +156,8 @@ public class ArmorForDagobert extends AbstractQuest {
 			null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), 
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+				new QuestInStateCondition(QUEST_SLOT, "start"), 
 				new NotCondition(new OrCondition(
 					new PlayerHasItemWithHimCondition("leather cuirass"),
 					new PlayerHasItemWithHimCondition("pauldroned leather cuirass")))),

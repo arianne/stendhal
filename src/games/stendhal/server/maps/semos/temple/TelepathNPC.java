@@ -30,6 +30,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -77,7 +78,7 @@ public class TelepathNPC implements ZoneConfigurator {
 				// player has met io before and has a pk skull
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestStartedCondition("meet_io"),
 								new ChatCondition() {
 									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
@@ -91,7 +92,7 @@ public class TelepathNPC implements ZoneConfigurator {
 				// player has met io before and has not got a pk skull
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new AndCondition(
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestStartedCondition("meet_io"),
 								new ChatCondition() {
 									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
@@ -105,14 +106,14 @@ public class TelepathNPC implements ZoneConfigurator {
 				// first meeting with player
 				add(ConversationStates.IDLE, 
 						ConversationPhrases.GREETING_MESSAGES, 
-						new QuestNotStartedCondition("meet_io"),
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
+								new QuestNotStartedCondition("meet_io")),
 						ConversationStates.ATTENDING,
 				        null, 
 				        new MultipleActions(
 				        		new SayTextWithPlayerNameAction("I awaited you, [name]. How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?"),
 				        		new SetQuestAction("meet_io", "start")));
-	
-				
+
 				add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,
 				        null, new ChatAction() {
 

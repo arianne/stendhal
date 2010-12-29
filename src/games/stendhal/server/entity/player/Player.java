@@ -197,8 +197,6 @@ public class Player extends RPEntity {
 		return player;
 	}
 
-
-
 	public static void destroy(final Player player) {
 		final String name = player.getName();
 

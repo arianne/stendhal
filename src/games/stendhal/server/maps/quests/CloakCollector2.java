@@ -26,6 +26,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
@@ -106,11 +108,12 @@ public class CloakCollector2 extends AbstractQuest {
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-						return !player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(OLD_QUEST);
-					}
-				},
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new ChatCondition() {
+						public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+							return !player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(OLD_QUEST);
+						}
+					}),
 				ConversationStates.QUEST_2_OFFERED,
 				"Hi again! I hear there's some new cloaks out, and I'm regretting not asking you about the ones I didn't like before. It feels like my #collection isn't complete...",
 				null);
@@ -219,7 +222,8 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestActiveCondition(QUEST_SLOT)),
 				ConversationStates.QUESTION_2,
 				"Welcome back! Have you brought any #cloaks with you?", null);
 		// player asks what exactly is missing
@@ -325,7 +329,8 @@ public class CloakCollector2 extends AbstractQuest {
 		// player returns after finishing the quest but not rewarded
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "done"), 
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "done")), 
 				ConversationStates.ATTENDING,
 				"Oh! I didn't reward you for helping me again! Here, take these boots. I think they're gorgeous but they don't fit me :(", 
 				new MultipleActions(new EquipItemAction("killer boots", 1, true), new SetQuestAction(QUEST_SLOT, "done;rewarded")));
@@ -333,7 +338,8 @@ public class CloakCollector2 extends AbstractQuest {
 		//		 player returns after finishing the quest and was rewarded
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "done;rewarded"), 
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "done;rewarded")), 
 				ConversationStates.ATTENDING,
 				"Thanks again for helping me! The cloaks look great!",
 				null);

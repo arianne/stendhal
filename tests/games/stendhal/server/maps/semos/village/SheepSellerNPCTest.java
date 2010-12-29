@@ -40,7 +40,6 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		
 		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new SheepSellerNPC());

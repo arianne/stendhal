@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -128,7 +129,8 @@ public class FishSoup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestNotStartedCondition(QUEST_SLOT),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestNotStartedCondition(QUEST_SLOT)),
 			ConversationStates.INFORMATION_1,
 			"Hello and welcome on Ados market! I have something really tasty and know what would #revive you.",
 			null);
@@ -138,7 +140,9 @@ public class FishSoup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), 
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestCompletedCondition(QUEST_SLOT),
+					new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), 
 			ConversationStates.QUEST_OFFERED,
 			"Hello again. Have you returned for more of my special fish soup?",
 			null);
@@ -147,7 +151,9 @@ public class FishSoup extends AbstractQuest {
 		// the time as finished
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))), 
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestCompletedCondition(QUEST_SLOT),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))), 
 				ConversationStates.ATTENDING, 
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES , "Oh I am sorry, I have to wash my cooking pots first before making more soup for you. Please come back in")
@@ -239,7 +245,9 @@ public class FishSoup extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestStartedCondition(QUEST_SLOT),
+					new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
 			ConversationStates.QUESTION_1,
 			"Welcome back! I hope you collected some #ingredients for the fish soup, or #everything.",
 			null);

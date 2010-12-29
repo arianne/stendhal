@@ -21,6 +21,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 
 import java.util.Arrays;
@@ -29,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 public class HistorianGeographerNPC implements ZoneConfigurator {
+
 	/**
 	 * Configure a zone.
 	 *
@@ -62,7 +65,6 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				
 				addGreeting(null, new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
 				
 				// A little trick to make NPC remember if it has met
@@ -71,7 +73,8 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 		        // used for any other purpose
 				add(ConversationStates.IDLE, 
 						ConversationPhrases.GREETING_MESSAGES,
-						new QuestNotCompletedCondition("Zynn"), 
+						new AndCondition(new GreetingMatchesNameCondition(getName()),
+								new QuestNotCompletedCondition("Zynn")), 
 						ConversationStates.INFORMATION_1, 
 						"Hi, potential reader! Here you can find records of the history of Semos, and lots of interesting facts about this island of Faiumoni. If you like, I can give you a quick introduction to its #geography and #history! I also keep up with the #news, so feel free to ask me about that.",
 						new SetQuestAction("Zynn", "done"));

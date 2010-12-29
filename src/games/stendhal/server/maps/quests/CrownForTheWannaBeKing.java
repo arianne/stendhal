@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -118,7 +119,8 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* player says hi before starting the quest */
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestNotStartedCondition(QUEST_SLOT),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				"Greetings. Be quick with your matters, I have a lot of work to do."
 					+ " And next time clean your boots, you are lucky that I'm not the king...yet!",
@@ -162,7 +164,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* player returns while quest is still active */
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestActiveCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "reward")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestActiveCondition(QUEST_SLOT),
+						new QuestNotInStateCondition(QUEST_SLOT, "reward")),
 				ConversationStates.QUESTION_1,
 				"Oh it's you again. Did you bring me any #items for my new crown?",
 				null);
@@ -225,7 +229,10 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		 */
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new OrCondition(new QuestCompletedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, "reward")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new OrCondition(
+								new QuestCompletedCondition(QUEST_SLOT),
+								new QuestInStateCondition(QUEST_SLOT, "reward"))),
 				ConversationStates.IDLE,
 				"My new crown will be ready soon and I will dethrone the king! Mwahahaha!",
 				null);

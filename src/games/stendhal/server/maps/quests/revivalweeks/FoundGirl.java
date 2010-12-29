@@ -30,6 +30,8 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestToYearAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -53,7 +55,9 @@ public class FoundGirl implements LoadableContent {
 	private void buildConditions() {
 		noFriends = new QuestNotStartedCondition("susi");
 		anyFriends = new QuestStartedCondition("susi");
-		oldFriends = new OrCondition(new QuestInStateCondition("susi", "friends"), new QuestSmallerThanCondition("susi", Calendar.getInstance().get(Calendar.YEAR)));
+		oldFriends = new OrCondition(
+				new QuestInStateCondition("susi", "friends"),
+				new QuestSmallerThanCondition("susi", Calendar.getInstance().get(Calendar.YEAR)));
 		currentFriends = new QuestInStateCondition("susi", Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
 	}
 
@@ -132,12 +136,16 @@ public class FoundGirl implements LoadableContent {
 
 
 	private void addGreetingDependingOnQuestState() {
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
-				noFriends, ConversationStates.ATTENDING,
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						noFriends),
+				ConversationStates.ATTENDING,
 				"Guess what, we are having another #Semos #Mine #Town #Revival #Weeks.", null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
-				anyFriends, ConversationStates.ATTENDING,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						anyFriends),
+				ConversationStates.ATTENDING,
 				null, new SayTextWithPlayerNameAction("Hello [name], nice to meet you again. "
 						+ "Guess what, we are having another #Semos #Mine #Town #Revival #Weeks."));
 		// TODO: Tell old friends about renewal

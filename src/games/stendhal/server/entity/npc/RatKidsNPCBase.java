@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -42,7 +43,8 @@ public abstract class RatKidsNPCBase extends SpeakerNPC {
 	@Override
 	protected void createDialog() {
 		add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				null, ConversationStates.IDLE, null, new RatKidGreetingAction());
+				new GreetingMatchesNameCondition(getName()), true,
+				ConversationStates.IDLE, null, new RatKidGreetingAction());
 	}
 
 	/**

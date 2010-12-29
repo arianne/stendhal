@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.TriggerList;
@@ -123,7 +124,9 @@ public class WeaponsCollector2 extends AbstractQuest {
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestCompletedCondition("weapons_collector"), new QuestNotStartedCondition(QUEST_SLOT)),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestCompletedCondition("weapons_collector"),
+						new QuestNotStartedCondition(QUEST_SLOT)),
 			    ConversationStates.ATTENDING,
 			    "Greetings, old friend. If you are willing, I have another #quest for you.",
 			    null);
@@ -278,7 +281,8 @@ public class WeaponsCollector2 extends AbstractQuest {
 	private void playerReturnsWhileQuestIsActive(final SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestActiveCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				"Welcome back. I hope you have come to help me with my latest #list of weapons.",
 				null);
@@ -287,7 +291,8 @@ public class WeaponsCollector2 extends AbstractQuest {
 /*	private void playerReturnsAfterFinishingQuest(final SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
+				new AndCondition(new SubjectOptMatchCondition(getName()),
+						new QuestCompletedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				"Welcome! Thanks again for extending my collection.",
 				null);

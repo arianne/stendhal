@@ -4,6 +4,7 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.*;
 import games.stendhal.server.entity.npc.action.*;
 import games.stendhal.server.entity.npc.condition.*;
+
 import java.util.*;
 
 /**
@@ -67,6 +68,7 @@ public class BalloonForBobby extends AbstractQuest {
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
+						new GreetingMatchesNameCondition(npc.getName()),
 						new NotCondition(
 								new SystemPropertyCondition("stendhal.minetown")),
 						new OrCondition(

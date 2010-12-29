@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -166,14 +167,18 @@ public class SuntanCreamForZara extends AbstractQuest {
 
 		zara.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("suntan cream")),
+			new AndCondition(new GreetingMatchesNameCondition(zara.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "start"),
+					new PlayerHasItemWithHimCondition("suntan cream")),
 			ConversationStates.QUEST_ITEM_BROUGHT, 
 			"Great! You got the suntan cream! Is it for me?",
 			null);
 		
 		zara.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("suntan cream"))),
+				new AndCondition(new GreetingMatchesNameCondition(zara.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new NotCondition(new PlayerHasItemWithHimCondition("suntan cream"))),
 				ConversationStates.ATTENDING, 
 				"I know that the #'suntan cream' is hard to get, but I hope that you didn't forget my painful problem...",
 				null);

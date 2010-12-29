@@ -22,6 +22,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 
 import java.util.LinkedList;
@@ -47,7 +49,6 @@ public class GossipNPC implements ZoneConfigurator {
             
             @Override
             public void createDialog() {
-                
                 addGreeting(null,new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
                 
                 // A little trick to make NPC remember if it has met
@@ -56,7 +57,8 @@ public class GossipNPC implements ZoneConfigurator {
                 // used for any other purpose
                 add(ConversationStates.IDLE, 
                     ConversationPhrases.GREETING_MESSAGES,
-                    new QuestNotCompletedCondition("Nomyr"), 
+                    new AndCondition(new GreetingMatchesNameCondition(getName()),
+                    		new QuestNotCompletedCondition("Nomyr")), 
                     ConversationStates.INFORMATION_1, 
                     "Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?",
                     new SetQuestAction("Nomyr", "done"));

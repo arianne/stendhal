@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -131,16 +132,18 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "start"),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "start")),
 			ConversationStates.ATTENDING,
 			"Oh, Ceryl's looking for that book back? My goodness! I completely forgot about it... here you go!",
 			new MultipleActions(new EquipItemAction("black book", 1, true), new SetQuestAction(QUEST_SLOT, "jynath")));
 
-		/** If player keep asking for book, just tell him to hurry up */
+		/** If player keeps asking for the book, just tell him to hurry up */
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "jynath"),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "jynath")),
 			ConversationStates.ATTENDING,
 			"You'd better take that book back to #Ceryl quickly... he'll be waiting for you.",
 			null);
@@ -173,7 +176,9 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "jynath"), new PlayerHasItemWithHimCondition("black book")),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "jynath"),
+					new PlayerHasItemWithHimCondition("black book")),
 			ConversationStates.ATTENDING,
 			"Oh, you got the book back! Phew, thanks!",
 			new MultipleActions(reward));
@@ -186,7 +191,9 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "jynath"), new NotCondition(new PlayerHasItemWithHimCondition("black book"))),
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "jynath"),
+					new NotCondition(new PlayerHasItemWithHimCondition("black book"))),
 			ConversationStates.ATTENDING, 
 			"Haven't you got that #book back from #Jynath? Please go look for it, quickly!",
 			new SetQuestAction(QUEST_SLOT, "start"));

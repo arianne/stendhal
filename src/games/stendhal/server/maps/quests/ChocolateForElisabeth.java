@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -72,7 +73,8 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		// first conversation with Elisabeth.
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
-				new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestNotStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
 				ConversationStates.ATTENDING, 
 				"I can't remember when I smelt the good taste of #chocolate the last time...",
 				null);
@@ -84,7 +86,8 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		// player is supposed to speak to mummy now
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("chocolate bar")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("chocolate bar")),
 				ConversationStates.IDLE, 
 				"My mum wants to know who I was asking for chocolate from now :(",
 				null);
@@ -92,7 +95,8 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		// player didn't get chocolate, meanie
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar"))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar"))),
 				ConversationStates.ATTENDING, 
 				"I hope that someone will bring me some chocolate soon...:(",
 				null);
@@ -100,7 +104,8 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		// player got chocolate and spoke to mummy
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "mummy"), new PlayerHasItemWithHimCondition("chocolate bar")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "mummy"), new PlayerHasItemWithHimCondition("chocolate bar")),
 				ConversationStates.QUESTION_1, 
 				"Awesome! Is that chocolate for me?",
 				null);
@@ -108,7 +113,8 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		// player spoke to mummy and hasn't got chocolate
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "mummy"), new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar"))),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "mummy"), new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar"))),
 				ConversationStates.ATTENDING, 
 				"I hope that someone will bring me some chocolate soon...:(",
 				null);
@@ -116,15 +122,17 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		// player is in another state like eating 
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
-				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestNotInStateCondition(QUEST_SLOT, "mummy")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestNotInStateCondition(QUEST_SLOT, "mummy")),
 				ConversationStates.ATTENDING, 
 				"Hello.",
 				null);
 		
 		// player rejected quest
 		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES, 
-				new QuestInStateCondition(QUEST_SLOT, "rejected"),
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, "rejected")),
 				ConversationStates.ATTENDING, 
 				"Hello.",
 				null);
@@ -235,14 +243,16 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		// player speaks to mummy before Elisabeth
 		mummyNPC.add(ConversationStates.IDLE, 
 					ConversationPhrases.GREETING_MESSAGES,
-					new QuestNotStartedCondition(QUEST_SLOT),
+					new AndCondition(new GreetingMatchesNameCondition(mummyNPC.getName()),
+							new QuestNotStartedCondition(QUEST_SLOT)),
 					ConversationStates.ATTENDING, "Hello, nice to meet you.",
 					null);
 
 		// player is supposed to begetting chocolate
 		mummyNPC.add(ConversationStates.IDLE, 
-					ConversationPhrases.GREETING_MESSAGES, 
-					new QuestInStateCondition(QUEST_SLOT, "start"),
+					ConversationPhrases.GREETING_MESSAGES,
+					new AndCondition(new GreetingMatchesNameCondition(mummyNPC.getName()),
+							new QuestInStateCondition(QUEST_SLOT, "start")),
 					ConversationStates.ATTENDING, 
 					"Oh you met my daughter Elisabeth already. You seem like a nice person so it would be really kind, if you can bring her a chocolate bar because I'm not #strong enough for that.",
 					new SetQuestAction(QUEST_SLOT, "mummy"));
@@ -255,7 +265,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		
 		// any other state
 		mummyNPC.add(ConversationStates.IDLE, 
-					ConversationPhrases.GREETING_MESSAGES, null,
+					ConversationPhrases.GREETING_MESSAGES, new GreetingMatchesNameCondition(mummyNPC.getName()), true,
 					ConversationStates.ATTENDING, "Hello again.", null);
 	}
 	@Override

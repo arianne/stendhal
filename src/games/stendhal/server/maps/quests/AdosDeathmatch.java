@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -116,7 +117,8 @@ public class AdosDeathmatch extends AbstractQuest {
 				add(
 						ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new NotCondition(new PlayerInAreaCondition(arena)),
+						new AndCondition(new GreetingMatchesNameCondition(name),
+								new NotCondition(new PlayerInAreaCondition(arena))),
 						ConversationStates.INFORMATION_1,
 						"Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join.",
 						null);
@@ -164,7 +166,8 @@ public class AdosDeathmatch extends AbstractQuest {
 				// player is inside
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new PlayerInAreaCondition(arena),
+						new AndCondition(new GreetingMatchesNameCondition(name),
+								new PlayerInAreaCondition(arena)),
 						ConversationStates.ATTENDING,
 						"Welcome to Ados Deathmatch! Do you need #help?", null);
 				addJob("I'm the deathmatch assistant. Tell me, if you need #help on that.");
@@ -224,7 +227,7 @@ public class AdosDeathmatch extends AbstractQuest {
 
 	private void recruiterInformation() {
 		final SpeakerNPC npc2 = npcs.get("Thonatus");
-		
+
 		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status"), 
 				 new NotCondition(new DeathMatchEmptyCondition()), ConversationStates.ATTENDING,
 				 null,

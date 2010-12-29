@@ -71,6 +71,7 @@ public class OutfitChangerAdder {
 					ConversationStates.ATTENDING,
 					ConversationPhrases.OFFER_MESSAGES,
 					null,
+					false,
 					ConversationStates.ATTENDING,
 					"You can #"
 							+ command
@@ -80,8 +81,8 @@ public class OutfitChangerAdder {
 		}
 
 		engine.add(ConversationStates.ATTENDING, command, null,
-				ConversationStates.BUY_PRICE_OFFERED, null,
-				new ChatAction() {
+				false, ConversationStates.BUY_PRICE_OFFERED,
+				null, new ChatAction() {
 
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser raiser) {
@@ -126,8 +127,8 @@ public class OutfitChangerAdder {
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
+				false, ConversationStates.ATTENDING,
+				null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						final String itemName = behaviour.getChosenItemName();
@@ -150,13 +151,13 @@ public class OutfitChangerAdder {
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING, "Ok, how else may I help you?",
-				null);
+				false, ConversationStates.ATTENDING,
+				"Ok, how else may I help you?", null);
 
 		if (canReturn) {
 			engine.add(ConversationStates.ATTENDING, "return", null,
-					ConversationStates.ATTENDING, null,
-					new ChatAction() {
+					false, ConversationStates.ATTENDING,
+					null, new ChatAction() {
 						public void fire(final Player player, final Sentence sentence,
 								final EventRaiser npc) {
 							if (behaviour.returnToOriginalOutfit(player)) {

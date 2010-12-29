@@ -36,12 +36,12 @@ public final class ConversationParser extends ErrorBuffer {
     /** A cache to hold pre-parsed matching Sentences. */
     private static Map<String, Sentence> matchingSentenceCache = new HashMap<String, Sentence>();
 
-
+    /** Tokenizer to split a sentence into words */
     private final transient StringTokenizer tokenizer;
 
 
     /**
-     * Create a new conversation parser and initialize with the given sentence.
+     * Create a new conversation parser and initialise with the given sentence.
      *
      * @param sentence 
      */
@@ -58,7 +58,7 @@ public final class ConversationParser extends ErrorBuffer {
 
 		final String textWithoutPunctation = detectSentenceType(text, sentence);
 
-        // initialize a new tokenizer with the given text
+        // initialise a new tokenizer with the given text
 		tokenizer = new StringTokenizer(textWithoutPunctation);
     }
 
@@ -236,7 +236,7 @@ public final class ConversationParser extends ErrorBuffer {
         // Trim white space from beginning and end.
         txt = txt.trim();
 
-        // Create a Sentence object and initialize its originalText.
+        // Create a Sentence object and initialise its originalText.
         final SentenceImplementation sentence = new SentenceImplementation(ctx, txt);
 
         try {
@@ -247,7 +247,7 @@ public final class ConversationParser extends ErrorBuffer {
 
             sentence.parse(parser);
 
-            // 2.) classify word types and normalize words
+            // 2.) classify word types and normalise words
             sentence.classifyWords(parser);
 
             if ((ctx != null) && ctx.getMergeExpressions()) {
@@ -258,7 +258,7 @@ public final class ConversationParser extends ErrorBuffer {
                 sentence.mergeWords();
 
                 if (!ctx.isForMatching()) {
-                    // 5.) standardize sentence type
+                    // 5.) standardise sentence type
                     sentence.standardizeSentenceType();
 
                     // 6.) replace grammatical constructs with simpler ones

@@ -82,16 +82,16 @@ public class HealerNPC implements ZoneConfigurator {
 		engine.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.OFFER_MESSAGES, 
 				null, 
+				false, 
 				ConversationStates.ATTENDING, 
-				"Gimme money for beer. I heal, gis' cash.", 
-				null);
+				"Gimme money for beer. I heal, gis' cash.", null);
 
 		engine.add(ConversationStates.ATTENDING, 
 				"heal", 
 				null, 
-				ConversationStates.HEAL_OFFERED, 
-				null,
-		        new ChatAction() {
+				false, 
+				ConversationStates.HEAL_OFFERED,
+		        null, new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
                         healerBehaviour.setChosenItemName("heal");
                         healerBehaviour.setAmount(1);
@@ -106,9 +106,9 @@ public class HealerNPC implements ZoneConfigurator {
 		engine.add(ConversationStates.HEAL_OFFERED, 
 				ConversationPhrases.YES_MESSAGES, 
 				null,
-		        ConversationStates.ATTENDING, 
-		        null,
-		        new ChatAction() {
+		        false, 
+		        ConversationStates.ATTENDING,
+		        null, new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				        if (player.drop("money", healerBehaviour.getCharge(player))) {
 					        healerBehaviour.heal(player);
@@ -122,9 +122,9 @@ public class HealerNPC implements ZoneConfigurator {
 		engine.add(ConversationStates.HEAL_OFFERED, 
 				ConversationPhrases.NO_MESSAGES, 
 				null,
+		        false, 
 		        ConversationStates.ATTENDING, 
-		        "Wha you want then?", 
-		        null);
+		        "Wha you want then?", null);
 	}
 
 }
