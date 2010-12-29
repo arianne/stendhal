@@ -36,7 +36,7 @@ public final class WordListUpdate {
 //		new DatabaseFactory().initializeDatabase();
 
 		// load word list and perform the update
-		String msg = updateWordList(new WordList());
+		String msg = updateWordList(WordList.getInstance());
 		
 		System.out.print(msg);
     }

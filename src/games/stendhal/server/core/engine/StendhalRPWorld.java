@@ -141,7 +141,7 @@ public class StendhalRPWorld extends RPWorld {
 			super.onInit();
 
 			// Create the NPC parser word list.
-			new WordList();
+			WordList.getInstance();
 
 			// create the pathfinder thread and start it
 			// pathfinderThread = new PathfinderThread(this);
