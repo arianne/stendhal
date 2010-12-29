@@ -29,7 +29,7 @@ import java.util.Map;
  * @author Vanessa Julius 
  *
  */
-public class HotelchefNPC implements ZoneConfigurator {
+public class HotelChefNPC implements ZoneConfigurator {
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
