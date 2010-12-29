@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds an NPC to buy previously un bought armor.
+ * Builds an NPC to buy previously unbought armor.
  *
  * @author kymara
  */

@@ -38,7 +38,7 @@ public class PassiveEntityRespawnPointFactory {
 	 *            x
 	 * @param y
 	 *            y
-	 * @return PassiveEntityRespawnPoint or null in case some error occured
+	 * @return PassiveEntityRespawnPoint or null in case some error occurred
 	 */
 	public static PassiveEntityRespawnPoint create(final String clazz,
 			final int type, final ID id, final int x, final int y) {
