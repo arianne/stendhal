@@ -36,6 +36,7 @@ import games.stendhal.server.entity.npc.condition.SystemPropertyCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -256,5 +257,15 @@ public class PaperChase extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "PaperChase";
+	}
+	
+	@Override
+	public boolean isVisibleOnQuestStatus() {
+		return false;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return new ArrayList<String>();
 	}
 }

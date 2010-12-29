@@ -1,11 +1,25 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.Outfit;
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.entity.npc.action.*;
-import games.stendhal.server.entity.npc.condition.*;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.ChangePlayerOutfitAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerIsWearingOutfitCondition;
+import games.stendhal.server.entity.npc.condition.SystemPropertyCondition;
+import games.stendhal.server.entity.player.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * QUEST: Balloon for Bobby
@@ -164,6 +178,15 @@ public class BalloonForBobby extends AbstractQuest {
 
 	}
 
+	@Override
+	public boolean isVisibleOnQuestStatus() {
+		return false;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return new ArrayList<String>();
+	}
 
 	@Override
 	public String getName() {

@@ -28,12 +28,13 @@ import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAc
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -199,4 +200,15 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	public String getName() {
 		return "MeetSanta";
 	}
+	
+	@Override
+	public boolean isVisibleOnQuestStatus() {
+		return false;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return new ArrayList<String>();
+	}
+	
 }
