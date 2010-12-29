@@ -12,7 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.marriage.MarriageQuestChain;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * QUEST: Marriage
@@ -71,6 +75,12 @@ public class Marriage extends AbstractQuest {
 		marriage.addToWorld();
 	}
 
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		res.add("History missing! Feel free to add suggestions at https://sourceforge.net/tracker/?func=add&group_id=1111&atid=351111");
+		return res;
+	}
 
 	@Override
 	public String getName() {

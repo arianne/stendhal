@@ -29,7 +29,9 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -301,6 +303,14 @@ import java.util.List;
 		step7();
 		step8();
 	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		res.add("History missing! Feel free to add suggestions at https://sourceforge.net/tracker/?func=add&group_id=1111&atid=351111");
+		return res;
+	}
+	
 	@Override
 	public String getName() {
 		return "JailedBarbarian";
