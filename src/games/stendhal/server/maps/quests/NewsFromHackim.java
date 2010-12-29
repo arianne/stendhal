@@ -66,7 +66,7 @@ public class NewsFromHackim extends AbstractQuest {
 		}
 		res.add("It can't be that bad to just collect a message to Xin Blanca. What will happen? I'll do it.");
 		if (isCompleted(player)) {
-			res.add("I brought Xin Blanca the message by Hackim. That brought me some nice experience points.");
+			res.add("I brought Xin Blanca the message by Hackim. That brought me some nice leather legs.");
 		}
 		return res;
 	}
