@@ -30,9 +30,11 @@ import games.stendhal.server.entity.player.Player;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.SAXParser;
@@ -297,4 +299,10 @@ public class SolveRiddles extends AbstractQuest {
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return new ArrayList<String>();
+	}
+	
 }

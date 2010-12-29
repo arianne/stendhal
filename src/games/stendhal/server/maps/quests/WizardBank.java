@@ -42,7 +42,9 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import marauroa.common.game.IRPZone;
 
@@ -392,5 +394,10 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return new ArrayList<String>();
 	}
 }

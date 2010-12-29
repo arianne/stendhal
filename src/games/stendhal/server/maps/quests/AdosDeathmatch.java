@@ -43,6 +43,7 @@ import games.stendhal.server.maps.deathmatch.StartAction;
 import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -319,6 +320,11 @@ public class AdosDeathmatch extends AbstractQuest {
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return new ArrayList<String>();
 	}
 	
 }

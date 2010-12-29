@@ -26,7 +26,9 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import marauroa.common.Pair;
@@ -149,6 +151,11 @@ public class DiceGambling extends AbstractQuest {
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return new ArrayList<String>();
 	}
 
 }

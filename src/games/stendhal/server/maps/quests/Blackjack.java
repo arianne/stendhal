@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -429,5 +430,10 @@ public class Blackjack extends AbstractQuest {
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return new ArrayList<String>();
 	}
 }
