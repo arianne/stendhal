@@ -190,8 +190,15 @@ public class Portal extends Entity implements UseListener {
 		if (!nextTo(player)) {
 			// Too far to use the portal from here, but walk to it
 			// The pathfinder will do the rest of the work and make the player pass through the portal
-			final List<Node> path = Path.searchPath(player, this.getX(), this.getY());
-			player.setPath(new FixedPath(path, false));
+			// Check that mouse movement is allowed first
+			if (!player.getZone().isMoveToAllowed()) {
+				player.sendPrivateText("Mouse movement is not possible here. Use your keyboard.");
+			} else if (player.isPoisoned()) {
+				player.sendPrivateText("Poison has disoriented you and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
+			} else {
+				final List<Node> path = Path.searchPath(player, this.getX(), this.getY());
+				player.setPath(new FixedPath(path, false));
+			}
 			return false;
 		}
 
