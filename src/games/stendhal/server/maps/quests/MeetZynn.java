@@ -16,6 +16,10 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
+import games.stendhal.server.entity.player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * QUEST: Speak with Zynn PARTICIPANTS: - Zynn
@@ -152,8 +156,21 @@ public class MeetZynn extends AbstractQuest {
 				false);
 		step_1();
 	}
+	
 	@Override
 	public String getName() {
 		return "MeetZynn";
+	}
+	
+	// no quest slots ever get set so making it visible seems silly
+	// however, there is an entry for another quest slot in the games.stendhal.server.maps.semos.library.HistorianGeographerNPC file 
+	@Override
+	public boolean isVisibleOnQuestStatus() {
+		return false;
+	}
+	
+	@Override
+	public List<String> getHistory(final Player player) {
+		return new ArrayList<String>();
 	}
 }
