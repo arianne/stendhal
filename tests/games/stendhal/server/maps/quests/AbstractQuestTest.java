@@ -18,6 +18,9 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -34,6 +37,11 @@ public class AbstractQuestTest {
 		@Override
 		public String getName() {
 			return null;
+		}
+		
+		@Override
+		public List<String> getHistory(final Player player) {
+			return new ArrayList<String>();
 		}
 	}
 	@BeforeClass
@@ -149,6 +157,11 @@ public class AbstractQuestTest {
 			@Override
 			public String getName() {
 				return QUESTNAMESTRING;
+			}
+			
+			@Override
+			public List<String> getHistory(final Player player) {
+				return new ArrayList<String>();
 			}
 		};
 

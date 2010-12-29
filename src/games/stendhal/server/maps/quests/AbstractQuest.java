@@ -80,10 +80,7 @@ abstract class AbstractQuest implements IQuest {
 		return 0;
 	}
 	
-	public List<String> getHistory(final Player player) {
-		// TODO this method should be abstract after all quests are converted
-		return EMPTY_LIST;
-	}
+	public abstract List<String> getHistory(final Player player);
 
 	public boolean isCompleted(final Player player) {
 		return player.hasQuest(getSlotName())
