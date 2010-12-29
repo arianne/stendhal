@@ -49,6 +49,7 @@ public class SlashActionRepository {
 		actions.put("clickmode", new ClickModeAction());
 		actions.put("clientinfo", new ClientInfoAction());
 		actions.put("commands", help);
+		actions.put("config", new ConfigAction());
 
 		actions.put("drop", new DropAction());
 
