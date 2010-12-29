@@ -70,19 +70,18 @@ public class CleanStorageSpace extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("I have met Eonna at her house");
-		final String questState = player.getQuest(QUEST_SLOT);
+		res.add("I have met Eonna at her house in Semos next to the bakery.");
+		final String questState = player.getQuest(QUEST_SLOT, 0);
 		if ("rejected".equals(questState)) {
 			res.add("I do not want to clear her storage space of creatures.");
+			return res;
 		}
-		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("I do want to help Eonna kill the rats and snakes.");
-		}
-		if (("start".equals(questState) && player.hasKilled("rat") && player.hasKilled("cave rat") && player.hasKilled("snake")) || "done".equals(questState)) {
+		res.add("I promised Eonna to kill the rats and snakes in her basement.");
+		if (("start".equals(questState) && player.hasKilled("rat") && player.hasKilled("caverat") && player.hasKilled("snake")) || "done".equals(questState)) {
 			res.add("I have cleaned out Eonna's storage space.");
 		}
 		if ("done".equals(questState)) {
-			res.add("Eonna thanked me and called me her hero.");
+			res.add("Wow, Eonna thinks I am her hero. *blush*");
 		}
 		return res;
 	}
