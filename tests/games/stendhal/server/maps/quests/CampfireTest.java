@@ -181,7 +181,14 @@ public class CampfireTest {
 	 */
 	@Test
 	public void testIsRepeatable() throws Exception {
-		assertTrue(new Campfire().isRepeatable(null));
+		player.setQuest(CAMPFIRE, "start");
+		assertFalse(new Campfire().isRepeatable(player));
+		player.setQuest(CAMPFIRE, "rejected");
+		assertFalse(new Campfire().isRepeatable(player));
+		player.setQuest(CAMPFIRE, System.currentTimeMillis() + "");
+		assertFalse(new Campfire().isRepeatable(player));
+		player.setQuest(CAMPFIRE, "1");
+		assertTrue(new Campfire().isRepeatable(player));
 	}
 
 	/**
