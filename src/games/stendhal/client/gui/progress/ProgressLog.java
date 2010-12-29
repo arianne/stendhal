@@ -14,6 +14,7 @@ package games.stendhal.client.gui.progress;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -60,13 +61,6 @@ public class ProgressLog {
 	private static final String FONT_NAME = "BlackChancery";
 	/** Font used for the html areas */
 	private static final String FONT = "data/gui/" + FONT_NAME + ".ttf";
-	/**
-	 * StyleSheet for the scroll html areas. Margins are needed to avoid
-	 * drawing over the scroll borders.
-	 */
-	private static final String STYLE_SHEET = "<style type=\"text/css\">body {font-family:"
-		+ FONT_NAME +
-		"; margin:12px} p {margin:4px 0px} a {color:#a00000} li, ul {margin-left:10px}</style>";
 	
 	/** The enclosing window */
 	JDialog window;
@@ -259,7 +253,7 @@ public class ProgressLog {
 		 */
 		public void setIndex(List<String> subjects, ProgressStatusQuery onClick) {
 			StringBuilder text = new StringBuilder("<html>");
-			text.append(STYLE_SHEET);
+			text.append(createStyleDefinition());
 			for (String elem : subjects) {
 				text.append("<p>");
 				// Make the elements clickable only if we have a handler for the
@@ -294,6 +288,17 @@ public class ProgressLog {
 		}
 		
 		/**
+		 * StyleSheet for the scroll html areas. Margins are needed to avoid
+		 * drawing over the scroll borders.
+		 */
+		private String createStyleDefinition() {
+			return "<style type=\"text/css\">body {font-family:"
+				+  WtWindowManager.getInstance().getProperty("ui.logfont", FONT_NAME) +
+				"; margin:12px} p {margin:4px 0px} a {color:#a00000} li, ul {margin-left:10px}</style>";
+
+		}
+
+		/**
 		 * Set the page contents. Each of the content strings is shown as its
 		 * own paragraph.
 		 * 
@@ -303,7 +308,7 @@ public class ProgressLog {
 		 */
 		void setContent(String header, String description, List<String> contents) {
 			StringBuilder text = new StringBuilder("<html>");
-			text.append(STYLE_SHEET);
+			text.append(createStyleDefinition());
 
 			// header
 			if (header != null) {
