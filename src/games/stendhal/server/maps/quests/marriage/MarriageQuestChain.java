@@ -12,6 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.marriage;
 
+import games.stendhal.common.Rand;
+import games.stendhal.server.entity.player.Player;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 
 /**
  * QUEST: Marriage
@@ -52,6 +61,7 @@ package games.stendhal.server.maps.quests.marriage;
 public class MarriageQuestChain  {
 	private static MarriageQuestInfo marriage = new MarriageQuestInfo();
 
+	private static Logger logger = Logger.getLogger(MarriageQuestChain.class);
 
 
 	public void addToWorld() {
@@ -61,6 +71,51 @@ public class MarriageQuestChain  {
 		new Marriage(marriage).addToWorld();
 		new Honeymoon(marriage).addToWorld();
 		new Divorce(marriage).addToWorld();
+	}
+
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(marriage.getQuestSlot())) {
+			return res;
+		}
+		final String questState = player.getQuest(marriage.getQuestSlot());
+		res.add("Me and " + getSpouseOrNickname(player) + " met Sister Benedicta and confirmed our engagement to marry.");
+		res.add("We must each make a wedding ring to give the other, which Ognir will help with.");
+		if ("engaged".equals(questState)) {
+			return res;
+		} 
+		res.add("Ognir took the gold I had collected and agreed to forge a wedding ring that I can give to " + getSpouseOrNickname(player)  + ".");
+		if (questState.startsWith("forging")) {
+			return res;
+		} 
+		res.add("I collected my ring from Ognir. He hinted we could get special outfits from Timothy and Tamara in Fado Hotel.");
+		if ("engaged_with_ring".equals(questState)) {
+	        res.add("Now I just have to make sure that " + getSpouseOrNickname(player) + " makes a ring, and then we can go to church together.");
+			return res;
+		} 
+		res.add("I married " + getSpouseOrNickname(player) + " in a lovely ceremony in Fado Church.");
+		if ("just_married".equals(questState)) {
+			res.add("We have not yet taken our honeymoon, we should ask Linda about that.");
+			return res;
+		} 
+		res.add(getSpouseOrNickname(player) + " and I had a great honeymoon in Fado Hotel, helped by Linda.");
+		if ("done".equals(questState)) {
+			return res;
+		}
+		// if things have gone wrong and the quest state didn't match any of the above, debug a bit:
+		final List<String> debug = new ArrayList<String>();
+		debug.add("Quest state is: " + questState);
+		logger.error("History doesn't have a matching quest state for player " + player.getTitle() + " in quest state " + questState);
+		return debug;
+	}
+	
+	private String getSpouseOrNickname(final Player player) {
+		String spouse = player.getQuest(marriage.getSpouseQuestSlot());
+		if(spouse == null) {
+			// probably just engaged so we didn't get a spouse yet, just set this to something generic and sickly sweet
+			spouse = Rand.rand(Arrays.asList("my dearest", "my love", "my honeypie", "the one I love"));
+		}
+		return spouse;
 	}
 
 }

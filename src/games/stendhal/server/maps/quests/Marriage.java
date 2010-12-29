@@ -15,7 +15,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.marriage.MarriageQuestChain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,6 +55,7 @@ import java.util.List;
  */
 public class Marriage extends AbstractQuest {
 	private static final String QUEST_SLOT = "marriage";
+	private MarriageQuestChain marriage;
 
 
 	@Override
@@ -71,15 +71,13 @@ public class Marriage extends AbstractQuest {
 				"Marriage",
 				"Lucky ones who find a partner they want to share their life with can get married in Fado Church.",
 				false);
-		MarriageQuestChain marriage = new MarriageQuestChain();
+		marriage = new MarriageQuestChain();
 		marriage.addToWorld();
 	}
 
 	@Override
 	public List<String> getHistory(final Player player) {
-		final List<String> res = new ArrayList<String>();
-		res.add("History missing! Feel free to add suggestions at https://sourceforge.net/tracker/?func=add&group_id=1111&atid=351111");
-		return res;
+		return marriage.getHistory(player);
 	}
 
 	@Override
