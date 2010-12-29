@@ -59,7 +59,6 @@ public class Gate implements IEntity {
 	}
 
 	public double getHeight() {
-
 		return height;
 	}
 
@@ -93,7 +92,6 @@ public class Gate implements IEntity {
 	}
 
 	public RPSlot getSlot(final String name) {
-		
 		return null;
 	}
 
@@ -112,17 +110,14 @@ public class Gate implements IEntity {
 	}
 
 	public int getVisibility() {
-		
 		return 100;
 	}
 
 	public double getWidth() {
-		
 		return width;
 	}
 
 	public double getX() {
-		
 		return x;
 	}
 
@@ -152,7 +147,6 @@ public class Gate implements IEntity {
 
 	public void release() {
 		// do nothing
-		
 	}
 
 	public void removeChangeListener(final EntityChangeListener listener) {
@@ -160,8 +154,7 @@ public class Gate implements IEntity {
 	}
 
 	public void setAudibleRange(final double range) {
-		radius = range;
-		
+		radius = range;	
 	}
 
 	public void update(final int delta) {
