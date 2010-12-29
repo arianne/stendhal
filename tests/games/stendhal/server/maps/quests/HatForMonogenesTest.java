@@ -206,7 +206,7 @@ public class HatForMonogenesTest {
 
 		assertEquals(history, quest.getHistory(player));
 		player.setQuest("hat_monogenes", "done");
-		history.add("I have given the hat to Monogenes, and he rewarded me 10 xp.");
+		history.add("I gave the hat to Monogenes to keep his bald head warm.");
 
 		assertEquals(history, quest.getHistory(player));
 

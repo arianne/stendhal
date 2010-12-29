@@ -159,7 +159,7 @@ public class ArmorForDagobertTest {
 				getReply(npc));
 		final int xpBeforeReward = player.getXP();
 		en.step(player, "yes");
-		questHistory.add("I took the leather cuirass to Dagobert. He thanked me and gave a small reward.");
+		questHistory.add("I took the leather cuirass to Dagobert. As a little thank you, he will allow me to use a private vault.");
 		assertEquals(questHistory, quest.getHistory(player));
 		assertEquals("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere. Now that you have proven yourself a trusted customer, you may have access to your own private banking #vault any time you like.", getReply(npc));
 		assertEquals(xpBeforeReward + 50, player.getXP());
