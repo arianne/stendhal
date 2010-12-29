@@ -207,10 +207,6 @@ public class SpeakerNPC extends NPC {
 	 * squares away horizontally and less than <i>range</i> squares away
 	 * vertically.
 	 *
-	 * Why is range a double, not an int? Maybe someone wanted to implement a
-	 * circle instead of the rectangle we're having now. -- mort
-	 * (DHerding@gmx.de)
-	 *
 	 * @param npc
 	 * @param range
 	 * @return A list of nearby players who have recently talked.
@@ -225,9 +221,14 @@ public class SpeakerNPC extends NPC {
 			final int px = player.getX();
 			final int py = player.getY();
 
-			if (player.has("text") && (Math.abs(px - x) < range)
-					&& (Math.abs(py - y) < range)) {
-				players.add(player);
+			if (player.has("text")) {
+				int dx = px - x;
+				int dy = py - y;
+
+				if (Math.abs(dx)<range && Math.abs(dy)<range) { // check rectangular area
+//				if (dx*dx + dy*dy < range*range) { // optionally we could check a circular area
+					players.add(player);
+				}
 			}
 		}
 
@@ -258,14 +259,16 @@ public class SpeakerNPC extends NPC {
 			final int py = player.getY();
 
 			if ((Math.abs(px - x) < range) && (Math.abs(py - y) < range)) {
-				final int squaredDistanceOfThisPlayer = (px - x) * (px - x)
-						+ (py - y) * (py - y);
+				final int squaredDistanceOfThisPlayer =
+						(px - x) * (px - x) + (py - y) * (py - y);
+
 				if (squaredDistanceOfThisPlayer < squaredDistanceOfNearestPlayer) {
 					squaredDistanceOfNearestPlayer = squaredDistanceOfThisPlayer;
 					nearest = player;
 				}
 			}
 		}
+
 		return nearest;
 	}
 
