@@ -8,6 +8,7 @@ Changelog
 - support answers via postman are orange
 - added new NPC Caroline (daughter of Fritz) onto Ados market
 - greeting of NPCs by name
+- added new NPC Stefan and Damon into the Fado hotel
 
 *fixes*
 - add buddies only once to the buddy list and display their canonical name
