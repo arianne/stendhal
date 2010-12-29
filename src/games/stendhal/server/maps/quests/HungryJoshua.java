@@ -88,7 +88,7 @@ public class HungryJoshua extends AbstractQuest {
 			res.add("I do not want to help Xoderos and Joshua.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "joshua", "done")) {
-			res.add("I agreed to take 5 sandwiches to Joshua and tell him that I have his #food.");
+			res.add("I agreed to take 5 sandwiches to Joshua and tell him that I have his food.");
 		}
 		if ((questState.equals("start") && player.isEquipped("sandwich",
 				FOOD_AMOUNT))
@@ -96,7 +96,7 @@ public class HungryJoshua extends AbstractQuest {
 			res.add("I got five sandwiches to take Joshua.");
 		}
 		if (questState.equals("joshua") || questState.equals("done")) {
-			res.add("I took the food to Joshua and he asked me to tell his brother Xoderos that he is ok, by saying #Joshua.");
+			res.add("I took the food to Joshua and he asked me to tell his brother Xoderos that he is ok, by saying \"Joshua\".");
 		}
 		if (questState.equals("done")) {
 			res.add("I passed the message to Xoderos and he has fixed my keyring for me.");
