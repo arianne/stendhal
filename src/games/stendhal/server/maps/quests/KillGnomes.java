@@ -187,7 +187,7 @@ public class KillGnomes extends AbstractQuest {
 				return res;
 			}
 			if (!isCompleted(player)) {
-				res.add("I mst kill some gnomes, especially the leader ones, to teach them all a lesson!");
+				res.add("I must kill some gnomes, especially the leader ones, to teach them all a lesson!");
 			} else if(isRepeatable(player)){
 				res.add("Those pesky gnomes have forgotten the lesson I taught them and are stealing again! Jenny needs my help.");
 			} else {
