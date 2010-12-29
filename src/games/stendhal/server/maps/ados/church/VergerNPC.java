@@ -22,7 +22,6 @@ public class VergerNPC implements ZoneConfigurator {
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final String[] text = {"... You are not alone because there are so many people to become friends with...", "... Don't worry! Everybody has a bad day sometimes...", "... Ah, just think more positive and life will be much easier...", "... Always keep in mind: Everything is going fine...", "Thanks for being here and sharing your time with me.", "Take care of the bad, give hope to the sad..."};
 		new MonologueBehaviour(buildNPC(zone), text, 3);
-	
 	}
 	
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
@@ -45,10 +44,8 @@ public class VergerNPC implements ZoneConfigurator {
 			protected void onGoodbye(Player player) {
 				setDirection(Direction.UP);
 			}
-			
-			
-			
 		};
+
 		npc.setEntityClass("vergernpc");
 		npc.setDescription("You see Simon. He has closed his eyes and is praying silently, but sometimes you can hear him mumble a prayer...");
 		npc.setPosition(29, 14);
