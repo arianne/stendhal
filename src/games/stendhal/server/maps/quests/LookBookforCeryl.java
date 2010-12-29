@@ -212,7 +212,7 @@ public class LookBookforCeryl extends AbstractQuest {
 			res.add("I do not want to find the book.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "jynath", "done")) {
-			res.add("I do want to find the black book.");
+			res.add("I promised to fetch the black book from Jynath.");
 		}
 		if ((questState.equals("jynath") && player.isEquipped("black book"))
 				|| questState.equals("done")) {
@@ -222,7 +222,7 @@ public class LookBookforCeryl extends AbstractQuest {
 			res.add("I do not have the black book Jynath has.");
 		}
 		if (questState.equals("done")) {
-			res.add("I have returned the book to Ceryl and got 50 gold and 100 xp.");
+			res.add("I have returned the book to Ceryl and got a little reward.");
 		}
 		return res;
 	}

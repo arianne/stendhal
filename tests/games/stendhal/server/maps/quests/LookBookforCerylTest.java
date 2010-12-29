@@ -218,7 +218,7 @@ public class LookBookforCerylTest {
 		assertEquals(3, quest.getHistory(pl).size());
 		assertEquals(Arrays.asList(
 					"I have met Ceryl at the library, he's the librarian there.", 
-					"I do want to find the black book.", 
+					"I promised to fetch the black book from Jynath.", 
 					"I do not have the black book Jynath has."),
 				quest.getHistory(pl));
 
@@ -230,7 +230,7 @@ public class LookBookforCerylTest {
 		assertEquals(3, quest.getHistory(pl).size());
 		assertEquals(Arrays.asList(
 					"I have met Ceryl at the library, he's the librarian there.", 
-					"I do want to find the black book.", 
+					"I promised to fetch the black book from Jynath.", 
 					"I have talked to Jynath, and have the book."),
 				quest.getHistory(pl));
 
@@ -238,9 +238,9 @@ public class LookBookforCerylTest {
 		assertEquals(4, quest.getHistory(pl).size());
 		assertEquals(Arrays.asList(
 					"I have met Ceryl at the library, he's the librarian there.", 
-					"I do want to find the black book.",
+					"I promised to fetch the black book from Jynath.",
 					"I have talked to Jynath, and have the book.", 
-					"I have returned the book to Ceryl and got 50 gold and 100 xp."), 
+					"I have returned the book to Ceryl and got a little reward."), 
 				quest.getHistory(pl));
 	}
 
