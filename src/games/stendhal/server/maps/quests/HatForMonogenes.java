@@ -82,7 +82,7 @@ public class HatForMonogenes extends AbstractQuest {
 			res.add("I have found a hat.");
 		}
 		if (player.isQuestCompleted(QUEST_SLOT)) {
-			res.add("I have given the hat to Monogenes, and he rewarded me 10 xp.");
+			res.add("I gave the hat to Monogenes to keep his bald head warm.");
 		}
 		return res;
 	}
