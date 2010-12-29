@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc.parser;
 
 import games.stendhal.common.ErrorBuffer;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -38,7 +39,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
     protected SentenceType sentenceType = SentenceType.UNDEFINED;
 
-    protected ArrayList<Expression> expressions = new ArrayList<Expression>();
+    protected AbstractList<Expression> expressions = new ArrayList<Expression>();
 
 
     /**
@@ -239,11 +240,24 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return normalized verb string
      */
     public Expression getVerb() {
-        if (getVerbCount() == 1) {
-            return getVerb(0);
-        } else {
-            return null;
+//        if (getVerbCount() == 1) {
+//            return getVerb(0);
+//        } else {
+//            return null;
+//        }
+    	Expression verb = null;
+
+        for(final Expression w : expressions) {
+            if (w.isVerb()) {
+                if (verb == null) {
+                	verb = w;
+                } else {
+                	return null; // more than one verb present
+                }
+            }
         }
+
+        return verb;
     }
 
     /**
@@ -252,11 +266,24 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return normalized verb string
      */
     public String getVerbString() {
-        if (getVerbCount() == 1) {
-            return getVerb(0).getNormalized();
-        } else {
-            return null;
+//        if (getVerbCount() == 1) {
+//            return getVerb(0).getNormalized();
+//        } else {
+//            return null;
+//        }
+        String verb = null;
+
+        for(final Expression w : expressions) {
+            if (w.isVerb()) {
+                if (verb == null) {
+                	verb = w.getNormalized();
+                } else {
+                	return null; // more than one verb present
+                }
+            }
         }
+
+        return verb;
     }
 
     /**
@@ -284,11 +311,24 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return normalized subject string
      */
     public String getSubjectName() {
-        if (getSubjectCount() == 1) {
-            return getSubject(0).getNormalized();
-        } else {
-            return null;
+//        if (getSubjectCount() == 1) {
+//            return getSubject(0).getNormalized();
+//        } else {
+//            return null;
+//        }
+        String name = null;
+
+        for(final Expression w : expressions) {
+            if (w.isSubject()) {
+                if (name == null) {
+                	name = w.getNormalized();
+                } else {
+                	return null; // more than one subject present
+                }
+            }
         }
+
+        return name;
     }
 
     /**
@@ -316,11 +356,24 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return normalized object name
      */
     public String getObjectName() {
-        if (getObjectCount() == 1) {
-            return getObject(0).getNormalized();
-        } else {
-            return null;
+//        if (getObjectCount() == 1) {
+//            return getObject(0).getNormalized();
+//        } else {
+//            return null;
+//        }
+        String name = null;
+
+        for(final Expression w : expressions) {
+            if (w.isObject()) {
+                if (name == null) {
+                	name = w.getNormalized();
+                } else {
+                	return null; // more than one object present
+                }
+            }
         }
+
+        return name;
     }
 
     /**
@@ -377,11 +430,24 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return numeral
      */
     public Expression getNumeral() {
-        if (getNumeralCount() == 1) {
-            return getNumeral(0);
-        } else {
-            return null;
+//        if (getNumeralCount() == 1) {
+//            return getNumeral(0);
+//        } else {
+//            return null;
+//        }
+    	Expression num = null;
+
+        for(final Expression w : expressions) {
+            if (w.isNumeral()) {
+                if (num == null) {
+                	num = w;
+                } else {
+                	return null; // more than one numeral present
+                }
+            }
         }
+
+        return num;
     }
 
     /**
