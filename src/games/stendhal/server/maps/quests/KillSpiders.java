@@ -216,7 +216,7 @@ public class KillSpiders extends AbstractQuest {
 			return history;
 		}
 		if ("killed".equals(questState)) {
-			history.add("I have killed all spiders in magic school basement and got a mythical egg.");
+			history.add("I have killed all spiders in the magic school basement and got a mythical egg.");
 			return history;
 		}
 
