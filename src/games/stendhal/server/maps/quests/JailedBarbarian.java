@@ -36,6 +36,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * QUEST: The Jailed Barbarian
  *
@@ -72,7 +74,8 @@ import java.util.List;
  public class JailedBarbarian extends AbstractQuest {
  	private static final String QUEST_SLOT = "jailedbarb";
  	
- 
+	private static Logger logger = Logger.getLogger(JailedBarbarian.class);
+
  	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -307,8 +310,52 @@ import java.util.List;
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
-		res.add("History missing! Feel free to add suggestions at https://sourceforge.net/tracker/?func=add&group_id=1111&atid=351111");
-		return res;
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		final String questState = player.getQuest(QUEST_SLOT);
+		res.add("I found my way into Lorenz's hut.");
+		res.add("Lorenz wants a scythe, and not an old one, to cut down the flowers he finds ugly.");
+		if ("rejected".equals(questState)) {
+			res.add("I don't want to help Lorenz cut down flowers. Whatever he's jailed for, I bet he deserves it.");
+			return res;
+		} 
+		if ("start".equals(questState)) {
+			return res;
+		} 
+		res.add("Lorenz wants me to ask Princess Esclara why he's captured. I must say his name to remind her.");
+		if ("capture".equals(questState)) {
+			return res;
+		} 
+		res.add("The Princess told me Lorenz is jailed for digging that tunnel! So I should tell him, it was the tunnel.");
+		if ("princess".equals(questState)) {
+			return res;
+		}
+		res.add("Lorenz suddenly got hungry and demanded I bring him an egg. He's really bad tempered.");
+		if ("egg".equals(questState)) {
+			return res;
+		}
+		res.add("Now I have to tell Princess Ylflia, why Lorenz wasn't in touch ... I'm not even sure why he knows her! But anyway, I must say his name to her.");
+		if ("jailed".equals(questState)) {
+			return res;
+		}
+		res.add("Princess Ylflia begged me to send that barbarian her greetings.");
+		if ("spoken".equals(questState)) {
+			return res;
+		}
+		res.add("Lorenz finally resolved to try to break free and I need to get him a barbarian armor for that.");
+		if ("armor".equals(questState)) {
+			return res;
+		}
+		res.add("I brought Lorenz the armor! He gave me gold he'd stolen from the Princess and I earned a lot of experience.");
+		if (isCompleted(player)) {
+			return res;
+		}
+		// if things have gone wrong and the quest state didn't match any of the above, debug a bit:
+		final List<String> debug = new ArrayList<String>();
+		debug.add("Quest state is: " + questState);
+		logger.error("History doesn't have a matching quest state for " + questState);
+		return debug;
 	}
 	
 	@Override
