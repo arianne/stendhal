@@ -353,8 +353,8 @@ If the bride is called Helen, you should say 'marry Helen'
          
          <zone name="int_fado_hotel_0" file="interiors/fado/hotel_0.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.hotel.GreeterNPC"/>    
-           <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelchefNPC"/>
-           <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelguestNPC"/>
+           <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelChefNPC"/>
+           <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelGuestNPC"/>
            
            
            <portal x="8" y="63" ref="entrance">
