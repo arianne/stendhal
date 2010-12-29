@@ -13,8 +13,15 @@
 package games.stendhal.server.maps.ados.farmhouse;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
@@ -45,7 +52,16 @@ public class BoyNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				// says nothing at all
+				// boy says nothing at all
+				// mother gets stressed
+				addGreeting(null,new ChatAction(){
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						final NPCList npcs = SingletonRepository.getNPCList();
+						final SpeakerNPC npc = npcs.get("Anastasia");
+						npc.say("Sh! Please don't wake him!");
+						raiser.setCurrentState(ConversationStates.IDLE);
+					}
+				});
 			}
 		};
 		npc.setEntityClass("kid8npc");
