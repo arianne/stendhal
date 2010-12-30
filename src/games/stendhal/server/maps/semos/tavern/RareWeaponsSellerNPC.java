@@ -65,7 +65,7 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 				addHelp("Not sure if I can trust you .... a #pirate with a bandy #leg has got to keep his #eye on new people.");
 				addQuest("Perhaps if you find some #rare #armor or #weapon ...");
 				addGoodbye("I see you!");
-				add(ConversationStates.ATTENDING, Arrays.asList("weapon", "armor", "rare"),
+				add(ConversationStates.ATTENDING, Arrays.asList("weapon", "armor", "rare", "rare armor"),
 				        ConversationStates.ATTENDING,
 				        "Ssshh! I'm occasionally buying rare weapons and armor. Got any? Ask for my #offer", null);
 				addOffer("Have a look at the blackboard on the wall to see my offers.");
