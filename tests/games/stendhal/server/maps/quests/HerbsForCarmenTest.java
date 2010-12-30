@@ -180,7 +180,7 @@ public class HerbsForCarmenTest {
 		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcini, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
 		en.step(player, "wood");
 		assertEquals("You don't have a piece of wood with you!", getReply(npc));
-		en.step(player, "woos");
+		en.step(player, "woos"); // misspelled "wood"
 		assertEquals("You don't have a piece of wood with you!", getReply(npc));
 		en.step(player, "arandula");
 		assertEquals("Good, do you have anything else?", getReply(npc));
@@ -189,6 +189,8 @@ public class HerbsForCarmenTest {
 		en.step(player, "porcini");
 		assertEquals("Good, do you have anything else?", getReply(npc));
 		en.step(player, "porcini");
+		assertEquals("You have already brought porcini for me but thank you anyway.", getReply(npc));
+		en.step(player, "pircini"); // misspelled "porcini"
 		assertEquals("You have already brought porcini for me but thank you anyway.", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Ok, well just let me know if I can #help you with anything else.", getReply(npc));
