@@ -12,10 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TextHasParameterCondition;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Offer;
 
 import java.util.HashMap;
@@ -34,6 +36,11 @@ public final class MarketManagerNPC extends SpeakerNPC {
 	@Override
 	protected void createPath() {
 		// npcs is lazy and does not move
+	}
+	
+	@Override
+	protected void onGoodbye(Player player) {
+		setDirection(Direction.DOWN);
 	}
 
 	@Override
