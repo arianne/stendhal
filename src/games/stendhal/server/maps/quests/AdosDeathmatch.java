@@ -101,6 +101,13 @@ public class AdosDeathmatch extends AbstractQuest {
 		zone.add(helmet, false);
 	}
 
+	/**
+	 * Create the Deathmatch assistant.
+	 * 
+	 * @param name name of the assistant
+	 * @param x x coordinate of the assistant
+	 * @param y y coordinate of the assistant
+	 */
 	public void createNPC(final String name, final int x, final int y) {
 
 		// We create an NPC
@@ -215,6 +222,9 @@ public class AdosDeathmatch extends AbstractQuest {
 		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
+		// The assistant is near the spikes, so give him better ears for the
+		// safety of the players
+		npc.setPerceptionRange(7);
 		zone.add(npc);
 	}
 
