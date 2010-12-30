@@ -35,7 +35,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  */
 public final class CollectRequestedItemsAction implements ChatAction {
-	
+
+	private final String itemName;
 	private final String questionForMore;
 	private final String alreadyBrought;
 	private final ChatAction toExecuteOnCompletion;
@@ -44,13 +45,15 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	
 	/**
 	 * create a new {@link CollectRequestedItemsAction}
+	 * @param itemName name of the item to process
 	 * @param quest the quest to deal with
 	 * @param questionForMore How shall the affected NPC ask for more brought items?
 	 * @param alreadyBrought What shall the affected NPC say about an already brought item?
 	 * @param completionAction action to execute after the complete list was brought
 	 * @param stateAfterCompletion state to change to after completion
 	 */
-	public CollectRequestedItemsAction(String quest, String questionForMore, String alreadyBrought, ChatAction completionAction, ConversationStates stateAfterCompletion) {
+	public CollectRequestedItemsAction(String itemName, String quest, String questionForMore, String alreadyBrought, ChatAction completionAction, ConversationStates stateAfterCompletion) {
+		this.itemName = itemName;
 		this.questSlot = quest;
 		this.questionForMore = questionForMore;
 		this.alreadyBrought = alreadyBrought;
@@ -59,13 +62,11 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	}
 	
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		String item = sentence.getTriggerExpression().getNormalized();
-
 		ItemCollection missingItems = getMissingItems(player);
-		final Integer missingCount = missingItems.get(item);
+		final Integer missingCount = missingItems.get(itemName);
 
 		if ((missingCount != null) && (missingCount > 0)) {
-			if (dropItems(player, item, missingCount)) {
+			if (dropItems(player, itemName, missingCount)) {
 				missingItems = getMissingItems(player);
 
 				if (missingItems.size() > 0) {
@@ -75,7 +76,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 					raiser.setCurrentState(this.stateAfterCompletion);
 				}
 			} else {
-				raiser.say("You don't have " + Grammar.a_noun(item) + " with you!");
+				raiser.say("You don't have " + Grammar.a_noun(itemName) + " with you!");
 			}
 		} else {
 			raiser.say(alreadyBrought);

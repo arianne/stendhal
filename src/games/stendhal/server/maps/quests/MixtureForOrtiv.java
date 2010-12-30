@@ -207,17 +207,16 @@ public class MixtureForOrtiv extends AbstractQuest {
 				new IncreaseKarmaAction(25),
 				new EquipItemAction("assassin dagger", 1 ,true)
 				);
-		/* create the ChatAction used for item triggers */
-		final ChatAction itemsChatAction = new CollectRequestedItemsAction(QUEST_SLOT, "Wonderful! Did you bring anything else with you?",
-											"You brought me that ingredient already.", completeAction,
-											ConversationStates.ATTENDING);
-
 		/* add triggers for the item names */
 		final ItemCollection items = new ItemCollection();
 		items.addFromQuestStateString(NEEDED_ITEMS);
 		for (final Map.Entry<String, Integer> item : items.entrySet()) {
 			npc.add(ConversationStates.QUESTION_2, item.getKey(), null,
-					ConversationStates.QUESTION_2, null, itemsChatAction);
+					ConversationStates.QUESTION_2, null,
+					new CollectRequestedItemsAction(
+							item.getKey(), QUEST_SLOT,
+							"Wonderful! Did you bring anything else with you?", "You brought me that ingredient already.",
+							completeAction, ConversationStates.ATTENDING));
 		}
 
 		/* player says he didn't bring any items (says no) */

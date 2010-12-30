@@ -457,14 +457,6 @@ public class KoboldishTorcibud extends AbstractQuest {
             new IncreaseXPAction(XP_REWARD),
             addRewardAction);
 
-        // create the ChatAction used for item triggers
-        final ChatAction itemsChatAction = new CollectRequestedItemsAction(
-            QUEST_SLOT,
-            "Wroff! do you have anything else?",
-            "Wruff! You have already brought that to me!",
-            completeAction,
-            ConversationStates.ATTENDING);
-        
         // add triggers for the item names
         final ItemCollection items = new ItemCollection();
         items.addFromQuestStateString(REQUIRED_ITEMS_TEMPLATE);
@@ -472,7 +464,12 @@ public class KoboldishTorcibud extends AbstractQuest {
             npc.add(ConversationStates.QUESTION_1,
                 item.getKey(), null,
                 ConversationStates.QUESTION_1, null,
-                itemsChatAction);
+                new CollectRequestedItemsAction(
+                		item.getKey(),
+                        QUEST_SLOT,
+                        "Wroff! do you have anything else?",
+                        "Wruff! You have already brought that to me!",
+                        completeAction, ConversationStates.ATTENDING));
         }
     }
 }

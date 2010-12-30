@@ -190,17 +190,16 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 											+ " Go to see "+ REWARD_NPC_NAME+ " in the Wizard City to get your #reward."),
 											new IncreaseXPAction(XP_REWARD)
 											);
-		/* create the ChatAction used for item triggers */
-		final ChatAction itemsChatAction = new CollectRequestedItemsAction(QUEST_SLOT, "Good, do you have anything else?",
-																		"You have already brought that!", completeAction,
-																		ConversationStates.ATTENDING);
-		
 		/* add triggers for the item names */
 		final ItemCollection items = new ItemCollection();
 		items.addFromQuestStateString(NEEDED_ITEMS);
 		for (final Map.Entry<String, Integer> item : items.entrySet()) {
 			npc.add(ConversationStates.QUESTION_1, item.getKey(), null,
-					ConversationStates.QUESTION_1, null, itemsChatAction);
+					ConversationStates.QUESTION_1, null,
+					new CollectRequestedItemsAction(
+							item.getKey(), QUEST_SLOT,
+							"Good, do you have anything else?", "You have already brought that!",
+							completeAction, ConversationStates.ATTENDING));
 		}
 
 		/* player says he didn't bring any items (says no) */

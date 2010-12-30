@@ -395,22 +395,20 @@ public class SadScientist extends AbstractQuest {
 				null);
 		
 		//add transition for each item
-		final ChatAction itemsChatAction = new CollectRequestedItemsAction(
-														QUEST_SLOT, "Good, do you have anything else?",
-														"You have already brought that!",
-														new MultipleActions(
-																new SetQuestAction(QUEST_SLOT,"legs"),
-																new SayTextAction("I am a stupid fool too much in love with my wife Vera to remember, of course these legs also need a base to add " +
-																		"the jewels to. Please return with a pair of shadow legs. Bye.")),
-														ConversationStates.IDLE
-														);
-		
-		/* add triggers for the item names */
 		final ItemCollection items = new ItemCollection();
 		items.addFromQuestStateString(NEEDED_ITEMS);
 		for (final Map.Entry<String, Integer> item : items.entrySet()) {
 			npc.add(ConversationStates.QUESTION_1, item.getKey(), null,
-					ConversationStates.QUESTION_1, null, itemsChatAction);
+					ConversationStates.QUESTION_1, null,
+					new CollectRequestedItemsAction(
+							item.getKey(), QUEST_SLOT,
+							"Good, do you have anything else?",
+							"You have already brought that!",
+							new MultipleActions(
+									new SetQuestAction(QUEST_SLOT,"legs"),
+									new SayTextAction("I am a stupid fool too much in love with my wife Vera to remember, of course these legs also need a base to add " +
+											"the jewels to. Please return with a pair of shadow legs. Bye.")), ConversationStates.IDLE
+							));
 		}
 	}
 	

@@ -225,18 +225,17 @@ public class HerbsForCarmen extends AbstractQuest {
 				new IncreaseKarmaAction(5),
 				new EquipItemAction("minor potion", 5)
 				);
-		/* create the ChatAction used for item triggers */
-		final ChatAction itemsChatAction = new CollectRequestedItemsAction(QUEST_SLOT, "Good, do you have anything else?",
-											"You have already brought that for me but thank you anyway.", completeAction,
-											ConversationStates.ATTENDING);
-
 
 		/* add triggers for the item names */
 		final ItemCollection items = new ItemCollection();
 		items.addFromQuestStateString(NEEDED_ITEMS);
 		for (final Map.Entry<String, Integer> item : items.entrySet()) {
 			npc.add(ConversationStates.QUESTION_2, item.getKey(), null,
-					ConversationStates.QUESTION_2, null, itemsChatAction);
+					ConversationStates.QUESTION_2, null,
+					new CollectRequestedItemsAction(
+							item.getKey(), QUEST_SLOT,
+							"Good, do you have anything else?", "You have already brought " + item.getKey()  + " for me but thank you anyway.",
+							completeAction, ConversationStates.ATTENDING));
 		}
 
 		/* player says he didn't bring any items (says no) */
@@ -260,7 +259,6 @@ public class HerbsForCarmen extends AbstractQuest {
 			    ConversationStates.ATTENDING, 
 			    "There's nothing I need right now, thank you.",
 			    null);
-		
 	}
 	
 	@Override
