@@ -456,7 +456,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			if ("start".equals(questState)) {
 				return res;
 			} 
-			res.add("Sadly I only I found corpses of Peter, Charles, and Tom. Henry was aghast. He gave me a map and an IOU, but didn't say what I should do with them now.");
+			res.add("Sadly I only found corpses of Peter, Charles, and Tom. Henry was aghast. He gave me a map and an IOU, but didn't say what I should do with them now.");
 			if ("map".equals(questState)) {
 				return res;
 			} 
