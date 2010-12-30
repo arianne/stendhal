@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -51,6 +52,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 /**
  * QUEST: The Obsidian Knife.
@@ -110,7 +113,7 @@ public class ObsidianKnife extends AbstractQuest {
 
 	private static final String NAME = "Alrak";
 
-
+	private static Logger logger = Logger.getLogger(ObsidianKnife.class);
 	
 	@Override
 	public String getSlotName() {
@@ -127,40 +130,58 @@ public class ObsidianKnife extends AbstractQuest {
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("I do not want to help Alrak.");
-		} else {
-			res.add("Alrak asked me to bring him some food. I must say the food name when I return.");
+			return res;
+		} 
+		res.add("Alrak asked me to bring him some food.");
+		if (player.isQuestInState(QUEST_SLOT, "ham", "meat", "cheese")) {
+			res.add("I must fetch " + Grammar.quantityplnoun(REQUIRED_FOOD, questState) + ", and say " + questState + " when I return.");
+			return res;
 		}
-		if ((questState.equals("seeking_book"))
-				|| questState.equals("done")) {
-			res.add("I need to ask in a library about a gem_book for Alrak.");
+		res.add("I took Alrak the food!");
+		if (questState.equals("food_brought")) {
+			return res;
 		}
-		if ((questState.equals("got_book"))
-				|| questState.equals("done")) {
-			res.add("I got the gem book Alrak wanted.");
+		res.add("I need to ask in a library about a gem_book for Alrak.");
+		if (questState.equals("seeking_book")) {
+			return res;
 		}
+		res.add("I got the gem book Alrak wanted.");
+		if (questState.equals("got_book")) {
+			return res;
+		}
+		res.add("Alrak is reading the gem book I brought him.");
 		if (questState.startsWith("reading")) {
-			res.add("Alrak is reading the gem book I brought him.");
+			return res;
 		}
-		if ((questState.equals("knife_offered")
-		&& !player.hasKilled("black dragon")) || questState.equals("done")) {
-			res.add("Alrak says if I kill a black dragon and find a cod and an obsidian he will make me a knife.");
+		res.add("Alrak says if I kill a black dragon and find a cod and an obsidian he will make me a knife.");
+		if (questState.equals("knife_offered")
+		&& !player.hasKilled("black dragon")) {
+			return res;
 		}
-		if ((questState.equals("knife_offered")
-				&& player.hasKilled("black dragon")) || questState.equals("done")) {
-			res.add("I have killed a black dragon.");
+		res.add("I have killed a black dragon.");
+		if (questState.equals("knife_offered")
+				&& player.hasKilled("black dragon")) {
+			return res;
 		}
-		if ((questState.equals("knife_offered")
+		res.add("I have got the cod and obsidian.");
+		if (questState.equals("knife_offered")
 				&& player.isEquipped("obsidian")
-				&& player.isEquipped(FISH)) || questState.equals("done")) {
-			res.add("I have got the cod and obsidian.");
+				&& player.isEquipped(FISH))  {
+			return res;
 		}
+		res.add("I took the cod and obsidian to Alrak. Now he's forging my knife.");
 		if (questState.startsWith("forging")) {
-			res.add("I took the cod and obsidian to Alrak. Now he's forging my knife.");
+			return res;
 		}
+		res.add("I have my obsidian knife! It is awesome!");
 		if (questState.equals("done")) {
-			res.add("I have my obsidian knife! It is awesome!");
+			return res;
 		}
-		return res;
+		// if things have gone wrong and the quest state didn't match any of the above, debug a bit:
+		final List<String> debug = new ArrayList<String>();
+		debug.add("Quest state is: " + questState);
+		logger.error("History doesn't have a matching quest state for " + questState);
+		return debug;
 	}
 	
 	private void prepareQuestOfferingStep() {
