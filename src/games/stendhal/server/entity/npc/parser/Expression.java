@@ -57,7 +57,7 @@ public final class Expression {
      *
      * @param str
      */
-    public Expression(final String str) {
+    /*protected*/ Expression(final String str) {
         original = str;
     }
 
