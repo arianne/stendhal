@@ -367,7 +367,7 @@ public class DailyItemQuest extends AbstractQuest {
 
 	@Override
 	public int getNumberOfRepetitions(Player player) {
-		String questState = player.getQuest(QUEST_SLOT, 2);
+		String questState = player.getQuest(getSlotName(), 2);
 		return MathHelper.parseIntDefault(questState, 0);
 	}
 
