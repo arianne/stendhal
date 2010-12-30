@@ -65,7 +65,6 @@ public class BowsForOuchitTest {
 
 	@Test
 	public void testGetWood() {
-
 		npc = SingletonRepository.getNPCList().get("Ouchit");
 		en = npc.getEngine();
 
@@ -136,7 +135,6 @@ public class BowsForOuchitTest {
 
 	@Test
 	public void testGetHairs() {
-		
 		npc = SingletonRepository.getNPCList().get("Karl");
 		en = npc.getEngine();
 		
@@ -151,7 +149,7 @@ public class BowsForOuchitTest {
 
 		assertEquals("In the north is a cave with bears and other creatures. If you go to the north-east you will reach after some time the great city Ados. At the east is a biiig rock. Does Balduin still live there? You want to go south-east? Well.. you can reach Ados there too, but I think the way is a bit harder.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I don't have time for those things, sorry. Working..working..working..", getReply(npc));
+		assertEquals("I don't have time for those things, sorry. Working.. working.. working..", getReply(npc));
 		
 		// he doesn't seem to reply to horse hairs 
 		en.step(player, "horse hairs");
@@ -165,11 +163,10 @@ public class BowsForOuchitTest {
 		// check quest slot and item
 		assertTrue(player.isEquipped("horse hair"));
 		assertEquals(player.getQuest(QUEST_SLOT),"hair");
-
 	}
+
 	@Test
 	public void testBringHairs() {
-		
 		npc = SingletonRepository.getNPCList().get("Ouchit");
 		en = npc.getEngine();
 		
@@ -208,7 +205,6 @@ public class BowsForOuchitTest {
 		en.step(player, "offer");
 		assertEquals("I sell wooden bow and wooden arrow.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));
-		
+		assertEquals("Bye.", getReply(npc));	
 	}
 }
