@@ -41,7 +41,8 @@ public class BailAction implements ChatAction {
 
 		deathmatchState.setLifecycleState(DeathmatchLifecycle.BAIL);
 		new SetQuestAction("deathmatch", 0, deathmatchState.toQuestString()).fire(player, sentence, raiser);
-		new IncrementQuestAction("deathmatch", 3, 1).fire(player, sentence, raiser);
+		// Track the number of bails.
+		new IncrementQuestAction("deathmatch", 7, 1).fire(player, sentence, raiser);
 
 		// TODO: fix race condition until bail is processed in DeathmatchEngine
 		final Item helmet = player.getFirstEquipped("trophy helmet");

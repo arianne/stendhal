@@ -38,7 +38,9 @@ public class StartAction implements ChatAction {
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		raiser.say("Have fun!");
-		new IncrementQuestAction("deathmatch", 1, 1).fire(player, sentence, raiser);
+		// Track starts. The three first numbers are reserved for level,
+		// time stamp and points (first is the state)
+		new IncrementQuestAction("deathmatch", 5, 1).fire(player, sentence, raiser);
 		deathmatchInfo.startSession(player, raiser);
 	}
 }
