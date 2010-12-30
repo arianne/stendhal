@@ -57,9 +57,9 @@ public class MeetHackim extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("I talked with Hackim, the very nice Semos blacksmith assistant.");
+		res.add("I talked with Hackim, the very nice Semos blacksmith assistant. He wants to help me with how to buy weapon so I should ask him about that help.");
 		if (isCompleted(player)) {
-			res.add("I listened to his really useful information about Xin Blanca, a guy in Semos tavern.");
+			res.add("I listened to his really useful information about how to deal with traders like Xin Blanca, a guy in Semos tavern.");
 		}
 		return res;
 	}
