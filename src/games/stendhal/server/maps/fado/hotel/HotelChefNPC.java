@@ -61,11 +61,11 @@ public class HotelChefNPC implements ZoneConfigurator {
 				addReply("stressed", "It's high season at the moment! We get lots of reservations which means more #guests and more work for everyone.");
 				addReply("guests", "Most of them visit Fado for #getting #married. I can understand their choice of Fado. It's a beautiful city.");
 				addReply("getting married", "Didn't you know, that Fado is the most known wedding town in whole Faiumoni? You have to visit our church, it's so lovely!");
-				addQuest("I'm so busy at the moment thinking about what I can do for getting help #somewhere..."); 
+				addQuest("I'm so busy at the moment thinking about what I can do to get some help #somewhere..."); 
 				addReply("somewhere", "Yes, somewhere... I doubt that the problem can be solved in my kitchen alone... It's tiny!");
 				addJob("Some weeks ago, I got the job offer to become the hotel chef here. What I didn't know: I'm the only #cook at the moment!");
-				addReply("cook", "Being a cook is awesome! I love all kind of food and experimenting around with different dishes is just fun for me.");
-				addOffer("The kitchen isn't opened at the moment and before it can be, I have to think about a solution for my #problem in here...");
+				addReply("cook", "Being a cook is awesome! I love all kind of food and experiment around with different dishes is just fun for me.");
+				addOffer("The kitchen isn't open at the moment and before it can be opened, I have to think about a solution for my #problem in here...");
 				addReply("problem", "Being alone in a hotel kitchen can't work at all!");
 				addGoodbye("Goodbye! Have a nice stay in Fado!");
 			}

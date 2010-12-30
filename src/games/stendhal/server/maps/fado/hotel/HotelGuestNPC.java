@@ -41,7 +41,7 @@ public class HotelGuestNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hi, you!");
-				addHelp("Oh I just came to town for visiting my younger brother Stefan. My hometown is Ados but after I stepped into some trouble with my former girlfriend Caroline there, I decided to travel around a bit. I saw a #spooky #castle on my way to Fado...");
+				addHelp("Oh I just came to town to visit my younger brother Stefan. My hometown is Ados but after I stepped into some trouble with my former girlfriend Caroline there, I decided to travel around a bit. I saw a #spooky #castle on my way to Fado...");
 				addReply("spooky castle", "A really spooky one! With skeletons as guards around. Good that I'm not scared of anything! But I bet that something useful is #hidden #inside...");
 				addReply("hidden inside", "Well unfortunetly I promised to my brother to visit him so soon as possible and I straight went to Fado then... too bad.");
 				addQuest("A task for you? Me? Oh no.. You got to be #kidding me."); 
