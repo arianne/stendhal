@@ -327,7 +327,7 @@ class GettingTools {
 									 }
 								}
 							}
-							if (sentence.getTriggerExpression().getNormalized().equals("bye")) {
+							if (ConversationPhrases.GOODBYE_MESSAGES.contains(sentence.getTriggerExpression().getNormalized())) {
 									npc.say("Ok, bye then.");
 									npc.setCurrentState(ConversationStates.IDLE);
 							} else if (sentence.getTriggerExpression().getNormalized().equals("none")) {

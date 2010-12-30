@@ -18,6 +18,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -251,6 +252,7 @@ public class SolveRiddles extends AbstractQuest {
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String riddle = player.getQuest(QUEST_SLOT);
+					final String triggerText = sentence.getTriggerExpression().getNormalized();
 
 					if (riddles.matches(riddle, sentence)) {
 						final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_afterlife");
@@ -260,10 +262,10 @@ public class SolveRiddles extends AbstractQuest {
 						player.sendPrivateText(NotificationType.POSITIVE, "You solved the riddle correctly and earned " + xpreward + " XP.");
 						player.addXP(xpreward);
 						player.notifyWorldAboutChanges();
-					} else if (sentence.getTriggerExpression().getNormalized().equals("bye")) {
+					} else if (ConversationPhrases.GOODBYE_MESSAGES.contains(triggerText)) {
 						npc.say("The old order of things has passed away ... ");
 						npc.setCurrentState(ConversationStates.IDLE);
-					} else if (sentence.getTriggerExpression().getNormalized().equals("leave") || sentence.getTriggerExpression().getNormalized().equals("riddle")) {
+					} else if (triggerText.equals("leave") || triggerText.equals("riddle")) {
 						// player didn't answer riddle but tried saying riddle/leave again (to get another maybe?)
 						npc.say("You can ask my mirror to let you leave, or you must solve the riddle which I previously set you: " + riddle);
 					} else {

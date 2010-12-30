@@ -175,7 +175,7 @@ public class LookUpQuote extends AbstractQuest {
 						player.addXP(750);
 						player.setQuest(QUEST_SLOT, "done");
 						player.notifyWorldAboutChanges();
-					} else if (sentence.getTriggerExpression().getNormalized().equals("bye")) {
+					} else if (ConversationPhrases.GOODBYE_MESSAGES.contains(sentence.getTriggerExpression().getNormalized())) {
 						npc.say("Good bye - see you next time!");
 						npc.setCurrentState(ConversationStates.IDLE);
 					} else {
