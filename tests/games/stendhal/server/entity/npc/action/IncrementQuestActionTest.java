@@ -23,6 +23,9 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
+/**
+ * Tests for IncrementQuestAction
+ */
 public class IncrementQuestActionTest {
 	
 	private static String questSlot = "test_slot";
@@ -34,6 +37,10 @@ public class IncrementQuestActionTest {
 		new DatabaseFactory().initializeDatabase();
 	}
 
+	/**
+	 * Test incrementing a plain number quest slot. The quest has a previous
+	 * value.
+	 */
 	@Test
 	public void testIncrement() {
 		Player player = PlayerTestHelper.createPlayer("bob");
@@ -44,6 +51,9 @@ public class IncrementQuestActionTest {
 		assertEquals("2", player.getQuest(questSlot));
 	}
 	
+	/**
+	 * Test incrementing a quest state part. The quest has a previous value.
+	 */
 	@Test
 	public void testIncrementIndex() {
 		Player player = PlayerTestHelper.createPlayer("bob");
@@ -54,4 +64,27 @@ public class IncrementQuestActionTest {
 		assertEquals("test;15", player.getQuest(questSlot));
 	}
 
+	/**
+	 * Test incrementing a quest state that has no previous value
+	 */
+	@Test
+	public void testIncrementInitial() {
+		Player player = PlayerTestHelper.createPlayer("bob");
+		assertEquals(null, player.getQuest(questSlot));
+		IncrementQuestAction action = new IncrementQuestAction(questSlot,1);
+		action.fire(player, null, null);
+		assertEquals("1", player.getQuest(questSlot));
+	}
+	
+	/**
+	 * Test incrementing a quest state part, when there's no previous value
+	 */
+	@Test
+	public void testIncrementIndexInitial() {
+		Player player = PlayerTestHelper.createPlayer("bob");
+		assertEquals(null, player.getQuest(questSlot));
+		IncrementQuestAction action = new IncrementQuestAction(questSlot, 1, 42);
+		action.fire(player, null, null);
+		assertEquals(";42", player.getQuest(questSlot));
+	}
 }

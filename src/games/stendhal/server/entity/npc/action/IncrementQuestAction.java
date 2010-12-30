@@ -63,7 +63,7 @@ public class IncrementQuestAction implements ChatAction {
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String substate = player.getQuest(questname,index);
 		int questcount;
-		if (substate.equals("null")) {
+		if (substate == null) {
 			questcount = increment;
 		} else {
 			questcount = MathHelper.parseIntDefault(substate,0) + increment;
