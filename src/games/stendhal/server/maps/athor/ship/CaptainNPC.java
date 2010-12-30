@@ -15,6 +15,7 @@ package games.stendhal.server.maps.athor.ship;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -62,7 +63,7 @@ public class CaptainNPC implements ZoneConfigurator  {
 			}
 
 			@Override
-			protected void onGoodbye(final Player player) {
+			protected void onGoodbye(final RPEntity player) {
 				// Turn back to the wheel
 				setDirection(Direction.DOWN);
 			}	

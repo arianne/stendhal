@@ -16,6 +16,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -72,7 +73,7 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 			}
 
 			@Override
-			protected void onGoodbye(Player player) {
+			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
 			

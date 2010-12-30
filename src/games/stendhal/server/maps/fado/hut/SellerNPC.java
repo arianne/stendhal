@@ -16,10 +16,10 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
@@ -44,11 +44,12 @@ public class SellerNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 
-			/* (non-Javadoc)
-			 * @see games.stendhal.server.entity.npc.SpeakerNPC#onGoodbye(games.stendhal.server.entity.player.Player)
+			/*
+			 * (non-Javadoc)
+			 * @see games.stendhal.server.entity.npc.SpeakerNPC#onGoodbye(games.stendhal.server.entity.RPEntity)
 			 */
 			@Override
-			protected void onGoodbye(Player player) {
+			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
 			

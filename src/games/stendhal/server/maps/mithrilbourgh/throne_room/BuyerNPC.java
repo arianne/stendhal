@@ -16,12 +16,12 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
@@ -66,7 +66,7 @@ public class BuyerNPC implements ZoneConfigurator {
 			}
 			
 			@Override
-			protected void onGoodbye(Player player) {
+			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
 			

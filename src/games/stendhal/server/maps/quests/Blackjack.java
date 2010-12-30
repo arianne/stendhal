@@ -312,7 +312,7 @@ public class Blackjack extends AbstractQuest {
 			}
 
 			@Override
-			protected void onGoodbye(final Player player) {
+			protected void onGoodbye(final RPEntity player) {
 				// remove the cards when the player stops playing.
 				cleanUpTable();
 			}

@@ -15,10 +15,10 @@ package games.stendhal.server.maps.orril.river;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -73,7 +73,7 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 			}
 
 			@Override
-			protected void onGoodbye(Player player) {
+			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
 			

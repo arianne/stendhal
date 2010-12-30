@@ -195,11 +195,6 @@ public class SpeakerNPC extends NPC {
 	protected void onGoodbye(final RPEntity attending2) {
 		// do nothing
 	}
-	
-	protected void onGoodbye(final Player attending2) {
-		// do nothing
-		onGoodbye((RPEntity) attending2);
-	}
 
 	/**
 	 * Gets all players that have recently (this turn?) talked and are standing
