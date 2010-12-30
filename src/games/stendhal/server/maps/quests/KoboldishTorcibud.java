@@ -172,7 +172,7 @@ public class KoboldishTorcibud extends AbstractQuest {
              * Do not use player.getQuest(QUEST_SLOT, 0) as that would only retrieve the first token pair.
              */
             missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
-            res.add("I'm helping her refurbish her stock of supplies for preparing her Koboldish Torcibud."
+            res.add("I'm helping her replenish her stock of supplies for preparing her Koboldish Torcibud."
                 + " I still have to bring her " + Grammar.enumerateCollection(missingItems.toStringList()));
         }
 
