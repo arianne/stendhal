@@ -263,9 +263,8 @@ public class ElfPrincess extends AbstractQuest {
 	
 	@Override
 	public int getNumberOfRepetitions(Player player) {
-		String questState = player.getQuest(QUEST_SLOT);
-		final String[] tokens = (questState + ";0;0;0").split(";");
-		return MathHelper.parseIntDefault(tokens[2], 0);
+		String questState = player.getQuest(getSlotName(), 2);
+		return MathHelper.parseIntDefault(questState, 0);
 	}
 
 	@Override
