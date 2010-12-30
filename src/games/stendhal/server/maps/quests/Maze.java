@@ -57,23 +57,29 @@ public class Maze extends AbstractQuest {
 				return res;
 			}
 			res.add("Haizen created a magial maze for me to solve.");
-			if (!isCompleted(player)) {
-				res.add("I couldn't solve the last maze.");
+
+			if (player.getZone().getName().endsWith("_maze")) {
+				res.add("I am currently trapped in the maze.");
 			} else {
-				res.add("I solved the maze!");
+				if (!isCompleted(player)) {
+					res.add("I couldn't solve the last maze.");
+				} else {
+					res.add("I solved the maze!");
+				}
+				if (isRepeatable(player)) {
+					res.add("I could have another try to solve a maze now.");
+				} else {
+					res.add("Haizen won't make me a new maze yet.");
+				}
 			}
-			if (isRepeatable(player)) {
-				res.add("I could have another try to solve a maze now.");
-			} else {
-				res.add("Haizen won't make me a new maze yet.");
-			}
-			if(getNumberOfRepetitions(player)>1) {
+
+			if (getNumberOfRepetitions(player) > 1) {
 				res.add("So far I've solved the maze " + getNumberOfRepetitions(player) + " times already!");
 			}
 
 			return res;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Maze";
@@ -91,9 +97,8 @@ public class Maze extends AbstractQuest {
 	
 	@Override
 	public int getNumberOfRepetitions(Player player) {
-		String questState = player.getQuest(getSlotName());
-		final String tokens[] = questState.split(";");
-		return MathHelper.parseIntDefault(tokens[2],0);
+		String questState = player.getQuest(getSlotName(), 2);
+		return MathHelper.parseIntDefault(questState, 0);
 	}
 
 	private SpeakerNPC getNPC() {
@@ -125,8 +130,7 @@ public class Maze extends AbstractQuest {
 				null,
 				new SayTimeRemainingAction(getSlotName(), 1, 
 						COOLING_TIME, "I can send you to the maze only once in a day. You can go there again in"));
-		
-		
+
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
