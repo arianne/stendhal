@@ -6,14 +6,19 @@ Changelog
 *world*
 - full health bonus when you level up
 - support answers via postman are orange
-- added new NPC Caroline (daughter of Fritz) onto Ados market
+- Caroline (daughter of Fritz) is at Ados market
 - greeting of NPCs by name
-- added new NPC Stefan and Damon into the Fado hotel
+- NPCs can hear at different distances (e.g. you need to get clsoer to Harold but you can be further from the DM assistant)
+- Stefan and Damon attend the Fado hotel
+- progress log which opens in a separate window, giving detailed information about open and closed quests
+- quest to help Anastasia's sick son
 
 *fixes*
 - add buddies only once to the buddy list and display their canonical name
-- display the count of completed daily monster and daily item quests in the quest history
-
+- removing buddies who weren't on your list gives correct message
+- Herbs for Carmen quest simplified
+- word list improvements
+- npc text matching improvements
 
 0.90.1
 - fixed a bug which prevented logging in without at least one saved profile
