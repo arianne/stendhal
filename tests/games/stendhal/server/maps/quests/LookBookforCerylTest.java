@@ -211,7 +211,7 @@ public class LookBookforCerylTest {
 		assertEquals(2, quest.getHistory(pl).size());
 		assertEquals(Arrays.asList(
 					"I have met Ceryl at the library, he's the librarian there.", 
-					"I do want to find the black book."),
+					"I promised to fetch the black book from Jynath."),
 				quest.getHistory(pl));
 
 		pl.setQuest(CERYL_BOOK, "jynath");
