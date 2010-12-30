@@ -300,6 +300,59 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	/**
+	 * Tests for borrowing sugar.
+	 */
+	@Test
+	public void testBorrowSugar() {
+		final SpeakerNPC npc = getNPC("Erna");
+		final Engine en = npc.getEngine();
+		
+		en.step(player, "hi");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.",
+				getReply(npc));
+
+		en.step(player, "borrow");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"Oh sorry, I don't lend equipment to people with so little experience as you.",
+				getReply(npc));
+
+		// level up
+		player.setLevel(10);
+		en.step(player, "borrow");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"You'll have to speak to Leander and ask if you can help with the pizza before I'm allowed to lend you anything.",
+				getReply(npc));
+
+		player.setQuest("pizza_delivery", "done");
+		en.step(player, "borrow");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"I lend out #'sugar mill' and #'pestle and mortar'. If you're interested, please say which you want.",
+				getReply(npc));
+
+		en.step(player, "sugar");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"Sorry, I can't lend out sugar, only a #sugar #mill.",
+				getReply(npc));
+
+		en.step(player, "bye");
+		assertFalse(npc.isTalking());
+		player.setQuest(QUEST2, ";");
+
+		assertEquals(0, player.getNumberOfEquipped("sugar mill"));
+
+		en.step(player, "hi");
+		assertEquals(
+				"Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.",
+				getReply(npc));
+	}
+
+	/**
 	 * Tests for borrowing pestle and mortar.
 	 */
 	@Test
@@ -335,6 +388,62 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 				getReply(npc));
 
 		en.step(player, "pestle and mortar");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"Here you are! Don't forget to #return it or you have to pay!",
+				getReply(npc));
+		final String[] questStatus = player.getQuest(QUEST2).split(";");
+		assertEquals("pestle and mortar", questStatus[0]);
+
+		en.step(player, "bye");
+		assertFalse(npc.isTalking());
+		player.setQuest(QUEST2, ";");
+
+		assertEquals(1, player.getNumberOfEquipped("pestle and mortar"));
+
+		en.step(player, "hi");
+		assertEquals(
+				"Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.",
+				getReply(npc));
+	}
+
+
+	/**
+	 * Tests for borrowing pestle and mortar with additional space.
+	 */
+	@Test
+	public void testBorrowPestleAndMortarWithSpace() {
+		final SpeakerNPC npc = getNPC("Erna");
+		final Engine en = npc.getEngine();
+		
+		en.step(player, "hi");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.",
+				getReply(npc));
+
+		en.step(player, "borrow");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"Oh sorry, I don't lend equipment to people with so little experience as you.",
+				getReply(npc));
+
+		// level up
+		player.setLevel(10);
+		en.step(player, "borrow");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"You'll have to speak to Leander and ask if you can help with the pizza before I'm allowed to lend you anything.",
+				getReply(npc));
+
+		player.setQuest("pizza_delivery", "done");
+		en.step(player, "borrow");
+		assertTrue(npc.isTalking());
+		assertEquals(
+				"I lend out #'sugar mill' and #'pestle and mortar'. If you're interested, please say which you want.",
+				getReply(npc));
+
+		en.step(player, "pestle and  mortar");
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"Here you are! Don't forget to #return it or you have to pay!",
