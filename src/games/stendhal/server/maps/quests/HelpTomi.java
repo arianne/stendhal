@@ -82,7 +82,7 @@ public class HelpTomi extends AbstractQuest {
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.startsWith("done")) {
 			res.add("Tomi asked for \"ice\" and took the ice sword I was carrying!");
-			// provided quest isn't in 'old version' we should be able to check how many tiems it was done
+			// provided quest isn't in 'old version' we should be able to check how many times it was done
 			if (!"done".equals(questState)) {
 				String[] parts = questState.split(";");
 				if (MathHelper.parseIntDefault(parts[1],0)>1) {
