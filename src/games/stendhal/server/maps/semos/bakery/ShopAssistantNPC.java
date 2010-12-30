@@ -119,7 +119,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				    ConversationStates.ATTENDING, 
 				    "You'll have to speak to Leander and ask if you can help with the pizza before I'm allowed to lend you anything.",
 				    null);
-				 
+
 				add(ConversationStates.ATTENDING, "borrow", 
 				    new AndCondition(
 				        new LevelGreaterThanCondition(5), 
@@ -128,7 +128,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				    ConversationStates.ATTENDING, 
 				    "I lend out " + Grammar.enumerateCollectionWithHash(ITEMS) + ". If you're interested, please say which you want.", 
 				    null);
-				 
+
 				// player already has borrowed something it didn't return and will pay for it
 				add(ConversationStates.ATTENDING, "borrow", 
 				    new AndCondition(new QuestActiveCondition(QUEST_SLOT), new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),  
@@ -184,33 +184,44 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				 
 				 
 				// saying the item name and storing that item name into the quest slot, and giving the item
+				for(final String itemName : ITEMS) {
+					add(ConversationStates.ATTENDING,
+					    itemName,
+					    new AndCondition(
+					        new LevelGreaterThanCondition(5), 
+					        new QuestCompletedCondition("pizza_delivery"),
+					        new QuestNotActiveCondition(QUEST_SLOT)),
+					    ConversationStates.ATTENDING, 
+					    null,
+					    new ChatAction() {
+							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+								final Item item =  SingletonRepository.getEntityManager().getItem(itemName);
+								if (item == null) {
+									npc.say("Sorry, something went wrong. Could you say correctly the item, please?");
+								} else {
+									player.equipOrPutOnGround(item);
+									player.setQuest(QUEST_SLOT, itemName);
+									npc.say("Here you are! Don't forget to #return it or you have to pay!");
+								}
+							}
+						});
+				}
+
+				// additionally add "sugar" as trigger word
 				add(ConversationStates.ATTENDING,
-				    ITEMS,
-				    new AndCondition(
-				        new LevelGreaterThanCondition(5), 
-				        new QuestCompletedCondition("pizza_delivery"),
-				        new QuestNotActiveCondition(QUEST_SLOT)),
-				    ConversationStates.ATTENDING, 
-				    null,
-				    new ChatAction(){
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						final String itemName = sentence.getOriginalText();
-						if("sugar".equals(itemName)) {
-							npc.say("Sorry, I can't lend out sugar, only a #sugar #mill.");
-							return;
-						}
-						final Item item =  SingletonRepository.getEntityManager().getItem(itemName);
-						if (item == null) {
-							npc.say("Sorry, something went wrong. Could you say correctly the item, please?");
-							return;
-						}
-						
-						player.equipOrPutOnGround(item);
-						player.setQuest(QUEST_SLOT,itemName);
-						npc.say("Here you are! Don't forget to #return it or you have to pay!");
-					}
+					    "sugar",
+					    new AndCondition(
+					        new LevelGreaterThanCondition(5), 
+					        new QuestCompletedCondition("pizza_delivery"),
+					        new QuestNotActiveCondition(QUEST_SLOT)),
+					    ConversationStates.ATTENDING, 
+					    null,
+					    new ChatAction() {
+							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+								npc.say("Sorry, I can't lend out sugar, only a #sugar #mill.");
+							}
 				});
-				 
+
 				// too low level
 				add(ConversationStates.ATTENDING,
 					    ITEMS,
