@@ -290,6 +290,8 @@ public class ProgressLog {
 		/**
 		 * StyleSheet for the scroll html areas. Margins are needed to avoid
 		 * drawing over the scroll borders.
+		 * 
+		 * @return style sheet
 		 */
 		private String createStyleDefinition() {
 			return "<style type=\"text/css\">body {font-family:"
