@@ -8,7 +8,7 @@ Changelog
 - support answers via postman are orange
 - Caroline (daughter of Fritz) is at Ados market
 - greeting of NPCs by name
-- NPCs can hear at different distances (e.g. you need to get clsoer to Harold but you can be further from the DM assistant)
+- NPCs can hear at different distances (e.g. you need to get closer to Harold but you can be further from the DM assistant)
 - Stefan and Damon attend the Fado hotel
 - progress log which opens in a separate window, giving detailed information about open and closed quests
 - quest to help Anastasia's sick son
@@ -18,7 +18,7 @@ Changelog
 - removing buddies who weren't on your list gives correct message
 - Herbs for Carmen quest simplified
 - word list improvements
-- npc text matching improvements
+- NPC text matching improvements
 
 0.90.1
 - fixed a bug which prevented logging in without at least one saved profile
