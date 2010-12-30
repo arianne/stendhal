@@ -178,6 +178,10 @@ public class HerbsForCarmenTest {
 		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
 		en.step(player, "ingredients");
 		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcini, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
+		en.step(player, "wood");
+		assertEquals("You don't have a piece of wood with you!", getReply(npc));
+		en.step(player, "woos");
+		assertEquals("You don't have a piece of wood with you!", getReply(npc));
 		en.step(player, "arandula");
 		assertEquals("Good, do you have anything else?", getReply(npc));
 		en.step(player, "apple");
@@ -185,7 +189,7 @@ public class HerbsForCarmenTest {
 		en.step(player, "porcini");
 		assertEquals("Good, do you have anything else?", getReply(npc));
 		en.step(player, "porcini");
-		assertEquals("You have already brought that for me but thank you anyway.", getReply(npc));
+		assertEquals("You have already brought porcini for me but thank you anyway.", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Ok, well just let me know if I can #help you with anything else.", getReply(npc));
 		en.step(player, "bye");
@@ -228,9 +232,6 @@ public class HerbsForCarmenTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		
-			
 		assertTrue(player.isEquipped("minor potion", 5));
-
-
 	}
 }
