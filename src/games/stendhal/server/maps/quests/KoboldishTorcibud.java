@@ -148,7 +148,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             res.add("She asked me to help her replenish her stock of supplies for preparing her Koboldish Torcibud, "
                 + " but I had more pressing matters to attend.");
         } else if ("done".equals(questState)) {
-            res.add("I helped her refurbish her stock of supplies for preparing her Koboldish Torcibud.");
+            res.add("I helped her replenish her stock of supplies for preparing her Koboldish Torcibud.");
             if (isRepeatable(player)) {
                 // enough time has passed, inform that the quest can be taken now.
                 res.add("I might ask her again if she needs more stuff for her stock of supplies.");
