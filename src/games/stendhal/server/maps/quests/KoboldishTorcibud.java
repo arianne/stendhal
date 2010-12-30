@@ -145,7 +145,7 @@ public class KoboldishTorcibud extends AbstractQuest {
         logger.debug("Quest state: <" + questState + ">");
         
         if ("rejected".equals(questState)) {
-            res.add("She asked me to help her refurbish her stock of supplies for preparing her Koboldish Torcibud, "
+            res.add("She asked me to help her replenish her stock of supplies for preparing her Koboldish Torcibud, "
                 + " but I had more pressing matters to attend.");
         } else if ("done".equals(questState)) {
             res.add("I helped her refurbish her stock of supplies for preparing her Koboldish Torcibud.");
