@@ -55,7 +55,7 @@ import java.util.List;
  */
 public class Marriage extends AbstractQuest {
 	private static final String QUEST_SLOT = "marriage";
-	private MarriageQuestChain marriage;
+	private MarriageQuestChain marriage = null;
 
 
 	@Override
