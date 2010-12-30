@@ -89,16 +89,16 @@ public class ZooFood extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("I have met Katinka at the zoo");
+		res.add("I have met Katinka at the zoo.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
-			res.add("I do not have the time for smelly animals and their food issues");
+			res.add("I do not have the time for smelly animals and their food issues.");
 			return res;
 		}
 		res.add("I don't want to see those poor animals die! I'll help get the food!");
 		if (questState.startsWith("start;") && 
 				(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,1)).fire(player, null, null)) {
-			res.add("I have got the food required");
+			res.add("I have got the food required.");
 		}
 		if (isCompleted(player)) {
 			if(new TimePassedCondition(QUEST_SLOT, 1, DELAY).fire(player, null, null)) {
