@@ -354,7 +354,12 @@ public class StuffForVulcanus extends AbstractQuest {
 			if (!player.hasQuest(QUEST_SLOT)) {
 				return res;
 			}
+			final String questState = player.getQuest(QUEST_SLOT);
 			res.add("I met Vulcanus in Kotoch.");
+			if (questState.equals("rejected")) {
+				res.add("I don't want an immortal sword.");
+				return res;
+			} 
 			res.add("To forge the immortal sword I must bring " + REQUIRED_IRON
 					+ " iron, "
 					+ REQUIRED_WOOD
@@ -363,10 +368,15 @@ public class StuffForVulcanus extends AbstractQuest {
 					+ " gold bars and "
 					+ REQUIRED_GIANT_HEART
 					+ " giant hearts, in that order.");
-			if(!player.hasKilled("giant")){
+			if(questState.startsWith("start")){
+				res.add("I haven't brought everything yet. Vulcanus will tell me what I need to take next.");
+			} else {
+				res.add("I took all the special items to Vulcanus.");
+			}
+			if(!questState.startsWith("start") && !player.hasKilled("giant")){
 				res.add("I must prove my worth and kill a giant, before I am worthy of this prize.");
 			}
-			final String questState = player.getQuest(QUEST_SLOT);
+
 			if (questState.startsWith("forging")) {
 				res.add("Vulcanus, son of gods himself, now forges my immortal sword.");
 			} 
