@@ -40,7 +40,15 @@ public class ResetSlot extends ScriptImpl {
 
 		// find the player and slot
 		final Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
+		if (player == null) {
+			admin.sendPrivateText("No such player: " + args.get(0));
+			return;
+		}
 		final RPSlot slot = player.getSlot(args.get(1));
+		if (slot == null) {
+			admin.sendPrivateText("No such slot: " + args.get(1));
+			return;
+		}
 
 		// remove old store object
 		final RPObject rpObject = slot.iterator().next();
