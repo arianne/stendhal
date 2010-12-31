@@ -368,15 +368,15 @@ public class StuffForVulcanus extends AbstractQuest {
 					+ " gold bars and "
 					+ REQUIRED_GIANT_HEART
 					+ " giant hearts, in that order.");
-			if(questState.startsWith("start")){
+			// yes, yes. this is the most horrible quest code and so you get a horrible quest history. 
+			if(questState.startsWith("start") && !"start;15;26;12;6".equals(questState)){
 				res.add("I haven't brought everything yet. Vulcanus will tell me what I need to take next.");
-			} else {
+			} else if ("start;15;26;12;6".equals(questState) || !questState.startsWith("start")) {
 				res.add("I took all the special items to Vulcanus.");
 			}
-			if(!questState.startsWith("start") && !player.hasKilled("giant")){
+			if("start;15;26;12;6".equals(questState) && !player.hasKilled("giant")){
 				res.add("I must prove my worth and kill a giant, before I am worthy of this prize.");
-			}
-
+			} 
 			if (questState.startsWith("forging")) {
 				res.add("Vulcanus, son of gods himself, now forges my immortal sword.");
 			} 
