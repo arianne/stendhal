@@ -163,15 +163,15 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 
 		// player returned after climbing the tower partially. reset status to candles done and start again
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new OrCondition(
-					new GreetingMatchesNameCondition(npc.getName()),
-					new QuestInStateCondition(QUEST_SLOT,"first_step"),
-					new QuestInStateCondition(QUEST_SLOT,"second_step"),
-					new QuestInStateCondition(QUEST_SLOT,"third_step"),
-					new QuestInStateCondition(QUEST_SLOT,"fourth_step"),
-					new QuestInStateCondition(QUEST_SLOT,"fifth_step"),
-					new QuestInStateCondition(QUEST_SLOT,"sixth_step"),
-					new QuestInStateCondition(QUEST_SLOT,"last_step")),
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new OrCondition(
+								new QuestInStateCondition(QUEST_SLOT,"first_step"),
+								new QuestInStateCondition(QUEST_SLOT,"second_step"),
+								new QuestInStateCondition(QUEST_SLOT,"third_step"),
+								new QuestInStateCondition(QUEST_SLOT,"fourth_step"),
+								new QuestInStateCondition(QUEST_SLOT,"fifth_step"),
+								new QuestInStateCondition(QUEST_SLOT,"sixth_step"),
+								new QuestInStateCondition(QUEST_SLOT,"last_step"))),
 			ConversationStates.ATTENDING, 
 			"Greetings! You have so far failed the practical test. Tell me, if you want me to #send you on it again " +
 			"right now, or if there is anything you want to #learn about it first.",
@@ -335,10 +335,10 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		history.add("I entered the Wizards Circle tower. Zekiel the guardian asked me for items to make magic candles.");
 		if ((questState.equals("start") && player.isEquipped("beeswax", REQUIRED_BEESWAX) && player.isEquipped("iron", REQUIRED_IRON))
 				|| questState.equals("candles_done") || questState.endsWith("_step") || questState.equals("done")) {
-			history.add("I collected beeswax and iron for the magic candles.");
+			history.add("I collected beeswax and iron for the magic candles which I will find on the next steps, if I pass each test.");
 		}
 		if (questState.endsWith("_step")) {
-			history.add("I have reached the " + questState.replace("_", " ") + " of the Wizards Circle Tower.");
+			history.add("I have reached the " + questState.replace("_", " ") + " of the Wizards Circle Tower. Zekiel will teach me what I have to do here.");
 		}
 		if (questState.equals("done")) {
 			history.add("I completed the Practical Test and can enter the spire or visit the store.");
