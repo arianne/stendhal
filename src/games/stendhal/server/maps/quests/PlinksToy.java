@@ -66,7 +66,7 @@ public class PlinksToy extends AbstractQuest {
 		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			if (player.isEquipped("teddy")) {
-				res.add("Plink commented about the bear I have with me.");
+				res.add("I found a bear which might belong to someone else.");
 			}
 			return res;
 		}
