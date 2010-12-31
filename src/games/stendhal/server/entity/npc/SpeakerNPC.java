@@ -331,9 +331,10 @@ public class SpeakerNPC extends NPC {
 
 	public void preLogic() {
 
+		/* TODO: see http://sourceforge.net/support/tracker.php?aid=3148386
 		if (this.getZone().getPlayerAndFriends().isEmpty()) {
 			return;
-		}
+		}*/
 
 		if (has("text")) {
 			remove("text");
@@ -374,7 +375,7 @@ public class SpeakerNPC extends NPC {
 				if ((initChatCondition == null)
 						|| initChatCondition.fire(nearest, null, this)) {
 					// Note: The sentence parameter is left as null, so be
-					// carefull not to use it in the fire() handler.
+					// careful not to use it in the fire() handler.
 					initChatAction.fire(nearest, null, new EventRaiser(this));
 				}
 			}
