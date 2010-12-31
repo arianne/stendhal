@@ -510,13 +510,23 @@ public class StuffForBaldemar extends AbstractQuest {
 			final List<String> res = new ArrayList<String>();
 			if (!player.hasQuest(QUEST_SLOT)) {
 				return res;
-			}
+			}			
+			final String questState = player.getQuest(QUEST_SLOT);
 			res.add("I met Baldemar in the magic theater.");
+			if (questState.equals("rejected")) {
+				res.add("I'm not interested in his ideas about shields made from mithril.");
+				return res;
+			} 
 			res.add("Baldemar told me: " + I_WILL_NEED_MANY_THINGS);
-			if(!player.hasKilledSolo("black giant")){
+			// yes, yes. this is the most horrible quest code and so you get a horrible quest history. 
+			if(questState.startsWith("start") && !"start;20;1;1;5;10;10;1;1;10;20;10;20;15;1".equals(questState)){
+				res.add("I haven't brought everything yet. Baldemar will tell me what I need to take next.");
+			} else if ("start;20;1;1;5;10;10;1;1;10;20;10;20;15;1".equals(questState) || !questState.startsWith("start")) {
+				res.add("I took all the special items to Baldemar.");
+			}
+			if("start;20;1;1;5;10;10;1;1;10;20;10;20;15;1".equals(questState) && !player.hasKilledSolo("black giant")){
 				res.add("I will need to bravely face a black giant alone, before I am worthy of this shield.");
 			}
-			final String questState = player.getQuest(QUEST_SLOT);
 			if (questState.startsWith("forging")) {
 				res.add("Baldemar is forging my mithril shield!");
 			} 
