@@ -131,7 +131,7 @@ public class MithrilCloak extends AbstractQuest {
 		if (questState.equals("fixed_machine")) {
 			return res;
 		}
-		res.add("My cloak needs mithril fabric, and Kampusch will help me.");
+		res.add("My cloak needs mithril fabric, and Kampusch will help me with how to get that. He'd know what items I need.");
 		if (questState.equals("need_fabric")) {
 			return res;
 		}
