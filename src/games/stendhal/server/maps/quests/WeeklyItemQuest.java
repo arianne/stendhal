@@ -318,6 +318,13 @@ public class WeeklyItemQuest extends AbstractQuest {
 				res.add("I took the valuable item to Hazel and the museum can now afford to send me to find another.");
 			}
 		}
+		// add to history how often player helped Hazel so far
+		final int repetitions = getNumberOfRepetitions(player);
+		if (repetitions > 0) {
+			res.add("I've brought exhibits for the museum on "
+					+ Grammar.quantityplnoun(repetitions, "occasion") + " so far.");
+		}
+
 		return res;
 	}
 	
