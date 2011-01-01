@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -26,13 +27,13 @@ import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 
@@ -90,8 +91,11 @@ public class MixtureForOrtiv extends AbstractQuest {
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("I don't want to help Ortiv at the moment. He should go out and take the ingredients by himself.");
-		}
-		if ("done".equals(questState)) {
+		} else if (!"done".equals(questState)) {
+			final ItemCollection missingItems = new ItemCollection();
+			missingItems.addFromQuestStateString(questState);
+			res.add("I still need to bring Ortiv " + Grammar.enumerateCollection(missingItems.toStringList()) + ".");
+		} else {
 			res.add("I helped Ortiv. Now he can sleep safe again in his bed. He rewarded me with some XP and an assassin dagger for my use.");
 		}
 		return res;
