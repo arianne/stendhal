@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -252,6 +253,12 @@ public class ProgressLog {
 		 *	Subject name will be used as the query parameter
 		 */
 		public void setIndex(List<String> subjects, ProgressStatusQuery onClick) {
+			/*
+			 * Order the quests alphabetically. The server provides them ordered
+			 * by internal name (and does not really guarantee even that), not
+			 * by the human readable name.
+			 */
+			Collections.sort(subjects);
 			StringBuilder text = new StringBuilder("<html>");
 			text.append(createStyleDefinition());
 			for (String elem : subjects) {
