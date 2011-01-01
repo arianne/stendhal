@@ -117,7 +117,10 @@ public class MithrilCloak extends AbstractQuest {
 		}
 		final String questState = player.getQuest(QUEST_SLOT);
 		res.add("I met Ida in her sewing room in Ados.");
-		
+		if (questState.equals("rejected")) {
+			res.add("I am not interested in helping Ida.");
+			return res;
+		}
 		res.add("Ida's sewing machine is broken and she has asked me to find the missing part.");
 		if (questState.startsWith("machine")) {
 			// optionally could fetch item name from quest slot
