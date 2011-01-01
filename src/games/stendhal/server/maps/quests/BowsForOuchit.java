@@ -293,10 +293,16 @@ and ask for horse hair.
 		if (player.isQuestInState(QUEST_SLOT, "wood", "hair", "done")) {
 			res.add("First I must fetch Ouchit 10 pieces of wood.");
 		}
-		if (player.isQuestInState(QUEST_SLOT, "hair", "done")) {
+		if(player.isEquipped("wood", 10) && "wood".equals(questState)) {
+			res.add("I've got the wood to take to Ouchit.");
+		}
+		if(player.isQuestInState(QUEST_SLOT, "hair", "done")) {
 			res.add("Next I need to get some horse hairs, which Ouchit uses as bowstrings. I'm told the farmer Karl will help me.");
 		}
-		if (questState.equals("done")) {
+		if((player.isEquipped("horse hair") && "hair".equals(questState)) || isCompleted(player)) {
+			res.add("Karl was kind and gave me some horse hairs.");
+		}
+		if (isCompleted(player)) {
 			res.add("Ouchit gave me some new equipment as thanks for helping him.");
 		}
 		return res;
