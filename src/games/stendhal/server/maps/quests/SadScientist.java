@@ -54,6 +54,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 
 /**
  * QUEST: The Sad Scientist.
@@ -88,6 +90,8 @@ import java.util.Map;
  */
 public class SadScientist extends AbstractQuest {
 
+	private static Logger logger = Logger.getLogger(SadScientist.class);
+
 	private static final String LETTER_DESCRIPTION = "You see a letter for Vasi Elos.";
 	private static final String QUEST_SLOT = "sad_scientist";
 	private static final int REQUIRED_MINUTES = 20;
@@ -109,40 +113,57 @@ public class SadScientist extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("Vasi Elos asked me bring items to make a present for his honey.");
 		final String questState = player.getQuest(QUEST_SLOT);
+		// it might have been rejected before Vasi even explained what he wanted.
 		if ("rejected".equals(questState)) {
-			res.add("I'm not really interested to help the sad scientist.");
+			res.add("Vasi Elos asked me for help, but I'm not really interested to help the scientist.");
 			return res;
 		} 
+		res.add("Vasi Elos asked me bring gems, gold and mithril to make a present of jewelled legs for his honey, Vera.");
 		if ((getConditionForBeingInCollectionPhase()).fire(player,null,null)) {
 			final ItemCollection missingItems = new ItemCollection();
 			missingItems.addFromQuestStateString(questState);
-			res.add(Grammar.enumerateCollection(missingItems.toStringList()) + " are still needed for the jewelled legs.");
+			res.add("The jewelled legs still need " + Grammar.enumerateCollection(missingItems.toStringList()) + ".");
+			return res;
 		}
+		res.add("Vasi Elos needs a base to add those gems I brought, to. He asked for shadow legs.");
 		if ("legs".equals(questState)) {	
-			res.add("Vasi Elos needs a base to add those gems I brought, to. He asked for shadow legs.");
+			return res;
 		} 
+		res.add("Vasi Elos is making jewelled legs with the gems I brought.");
 		if (questState.startsWith("making")) {	
-			res.add("Vasi Elos is making jewelled legs with the gems I brought.");
+			return res;
 		}	
-		if ("find_vera".equals(questState)) {	
-			res.add("Vasi Elos asked me to speak to Mayor Sakhs to find where Vera is.");
+		res.add("Vasi Elos asked me to speak to Mayor Sakhs to find out where Vera is.");
+		if ("find_vera".equals(questState) && !player.isEquipped("note")) {	
+			return res;
 		} 
-		if (questState.startsWith("kill_scientist")) {
-			res.add("Vasi Elos is so sad and angry that Vera is gone. I must kill his own brother and give him a goblet of blood.");
+		res.add("I have a note with some terrible news on it to give Vasi.");
+		if ("find_vera".equals(questState) && player.isEquipped("note")) {	
+			return res;
+		} 
+		res.add("Vasi Elos is so sad and angry that Vera is gone. I must kill his own brother and give him a goblet of blood.");
+		if (questState.startsWith("kill_scientist") && !new KilledForQuestCondition(QUEST_SLOT, 1).fire(player, null, null)) {
+			return res;
 		}
+		res.add("I killed the Imperial Scientist Sergej Elos and must take the goblet of his blood as proof.");
+		if (questState.startsWith("kill_scientist") && new KilledForQuestCondition(QUEST_SLOT, 1).fire(player, null, null)) {
+			return res;
+		}
+		res.add("Vasi Elos is really sad. He's decorating the legs he made...with blood.");
 		if (questState.startsWith("decorating")) {	
-			res.add("Vasi Elos is really sad. He's decorating the legs he made...with blood.");
+			return res;
 		} 
+		res.add("The new legs, now black legs, darkened with blood and evil, are mine. " +
+				"But at what cost?");
         if ("done".equals(questState)){
-			res.add("Vasi Elos had asked me to collect gems to make jewelled legs for his honey, Vera. " +
-					"\nWhen he found out she had somehow become a vampirette, he was devastated. " +
-					"\nHe was determined to transform those legs into a symbol of pain. " +
-					"\nI sadly agreed to help him, by killing his brother and returning a goblet of blood. " +
-					"\nThe new legs, now black legs, were mine.");
+        	return res;
 		}
-		return res;
+        // if things have gone wrong and the quest state didn't match any of the above, debug a bit:
+		final List<String> debug = new ArrayList<String>();
+		debug.add("Quest state is: " + questState);
+		logger.error("History doesn't have a matching quest state for " + questState);
+		return debug;
 	}
 	
 	/* (non-Javadoc)
@@ -523,7 +544,7 @@ public class SadScientist extends AbstractQuest {
 				null,
 				ConversationStates.QUEST_STARTED,
 				"Go away before I kill you!" ,
-				null);
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -10.0));
 		
 		//reject the quest
 		npc.add(ConversationStates.QUEST_OFFERED,
