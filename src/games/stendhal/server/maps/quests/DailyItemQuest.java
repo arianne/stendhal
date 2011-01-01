@@ -352,7 +352,7 @@ public class DailyItemQuest extends AbstractQuest {
 		int repetitions = getNumberOfRepetitions(player);
 		if (repetitions > 0) {
 			res.add("I helped Ados with supplies "
-					+ Grammar.quantityNumberStrNoun(repetitions, "time") + " so far");
+					+ Grammar.quantityNumberStrNoun(repetitions, "time") + " so far.");
 		}
 		if (isCompleted(player)) {
 			if (!isRepeatable(player)) {
