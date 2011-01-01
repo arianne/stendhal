@@ -299,7 +299,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("I have met Mayor Sakhs in Semos Townhall");
+		res.add("I have met Mayor Sakhs in Semos Townhall.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("I do not want to help Semos.");
