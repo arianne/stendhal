@@ -333,7 +333,7 @@ public class VampireSword extends AbstractQuest {
 		}
 		if ((questState.equals("start") && player.isEquipped("goblet"))
 				|| questState.equals("done")) {
-			res.add("I took the full goblet to Hogart and now I need to collect 10 iron bars");
+			res.add("I have filled the goblet and now I need to bring Hogart the materials he needs.");
 		}
 		if (player.getQuest(QUEST_SLOT).startsWith("forging;")) {
 			res.add("I took 10 iron and the goblet to Hogart. Now he's forging my sword.");
