@@ -375,10 +375,25 @@ import org.apache.log4j.Logger;
 				return res;
 			} 
 			if ("start".equals(questState)) {
+				if(player.isEquipped("sandwich",3)) {
+					res.add("I have the sandwiches!");
+				}
+				if(player.isEquipped("beer",3)) {
+					res.add("I have the beer!");
+				}
+				if(player.isEquipped("wine",3)) {
+					res.add("I have the wine!");
+				}
 				return res;
 			} 
-			res.add("Phalk needs me to collect a cloak from Wrvil and some armor from Mrotho.");
+			res.add("Now Phalk needs me to collect a cloak from Wrvil and some armor from Mrotho.");
 			if (questState.startsWith("clothes")) {
+				if(new QuestInStateCondition(QUEST_SLOT, 1, "cloak").fire(player,null, null)){
+					res.add("I have collected the cloak and had to pay for it!");
+				}
+				if(new QuestInStateCondition(QUEST_SLOT, 2, "armor").fire(player,null, null)){
+					res.add("Mrotho gave me Phalk's golden armor but I had to cover his debt.");
+				}
 				return res;
 			} 
 			res.add("I collected Phalk's equipment and he gave me his dwarvish armor in return!");
