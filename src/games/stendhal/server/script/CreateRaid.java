@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.creature.RaidCreature;
@@ -20,8 +21,14 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 import java.util.Map;
 
+/** 
+ * Base class for creating small raids of creatures from other lists
+ * Picks randomly from the list and summons raid creatures within a radius of the admin.
+ */
 public abstract class CreateRaid extends ScriptImpl {
 
+	private final int RADIUS = 10;
+	
 	protected abstract Map<String, Integer> createArmy();
 
 	@Override
@@ -42,15 +49,16 @@ public abstract class CreateRaid extends ScriptImpl {
 			final RaidCreature creature = new RaidCreature(sandbox.getCreature(entry.getKey()));
 
 			for (int i = 0; i < entry.getValue(); i++) {
-				sandbox.add(creature, x
-						+ games.stendhal.common.Rand.randUniform(-20, 20), y
-						+ games.stendhal.common.Rand.randUniform(-20, 20));
+				if(Rand.roll1D6()==1) {
+					sandbox.add(creature, x + games.stendhal.common.Rand.randUniform(-RADIUS, RADIUS), 
+							              y + games.stendhal.common.Rand.randUniform(-RADIUS, RADIUS));
+				}
 			}
 		}
 	}
 
 	/**
-	 * contains info to help raid makers decide if this special raidscript is applicable for the given users or other usefull info.
+	 * contains info to help raid makers decide if this special raid script is applicable for the given users or other usefull info.
 	 *
 	 * @return the info to simplify life of raid maker
 	 */
