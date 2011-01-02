@@ -21,11 +21,11 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 /**
- * Summon a raid creature which has some default altered values
+ * Summons and enchants a raid creature which has some default altered values
  * 
  * @author kymara
  */
-public class Summon extends ScriptImpl {
+public class Enchant extends ScriptImpl {
 
 	private final int LOW_ATK = 100;
 	private final int HIGH_HP = 3000;
@@ -35,7 +35,7 @@ public class Summon extends ScriptImpl {
 		super.execute(admin, args);
 
 		if (args.size() == 0) {
-			admin.sendPrivateText("Usage: /script Summon.class creature");
+			admin.sendPrivateText("Usage: /script Enchant.class creature");
 			return;
 		} 
 		
