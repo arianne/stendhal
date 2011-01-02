@@ -26,9 +26,7 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -70,7 +68,7 @@ public class BringListOfItemsQuestLogic {
 	
 	/**
 	 * Returns a list of the names of all items that the given player still
-	 * has to bring to fulfill the quest.
+	 * has to bring to fulfil the quest.
 	 *
 	 * @param player The player doing the quest
 	 * @param hash If true, sets a # character in front of every name and puts it in quotes
@@ -236,22 +234,14 @@ public class BringListOfItemsQuestLogic {
 	 * Player offers an item.
 	 */
 	protected void offerItem() {
-		final TriggerList triggerWords = new TriggerList(concreteQuest.getNeededItems());
+		for(final String itemName : concreteQuest.getNeededItems()) {
+			concreteQuest.getNPC().add(ConversationStates.QUESTION_1, itemName, null,
+				ConversationStates.QUESTION_1, null,
+				new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						List<String> missing = getListOfStillMissingItems(player, false);
 
-		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, concreteQuest.getNeededItems(), null,
-			ConversationStates.QUESTION_1, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					// We can't use Sentence.getObjectName() here because of the case where "one" is used as trigger word.
-					final Expression item = sentence.getTriggerExpression();
-					// strange check to do since we only took needed items an input.
-					final Expression found = triggerWords.find(item);
-					if (found != null) {
-						final String itemName = found.getOriginal();
-
-						TriggerList missing = new TriggerList(getListOfStillMissingItems(player, false));
-
-						if (missing.contains(item)) {
+						if (missing.contains(itemName)) {
 						    if (!player.drop(itemName)) {
         						raiser.say(concreteQuest.respondToOfferOfNotExistingItem(itemName));
         						return;
@@ -262,9 +252,9 @@ public class BringListOfItemsQuestLogic {
 						    player.setQuest(concreteQuest.getSlotName(), doneText + ";" + itemName);
 
 						    // check if the player has brought all items
-						    missing = new TriggerList(getListOfStillMissingItems(player, false));
+						    missing = getListOfStillMissingItems(player, false);
 
-						    if (missing.size() > 0) {
+						    if (!missing.isEmpty()) {
         						raiser.say(concreteQuest.respondToItemBrought());
 						    } else {
         						concreteQuest.rewardPlayer(player);
@@ -277,14 +267,14 @@ public class BringListOfItemsQuestLogic {
 						    raiser.say(concreteQuest.respondToOfferOfNotMissingItem());
 						}
 					}
-				}
 
-			    @Override
-				public String toString() {
-				return "accept or reject offered item";
-			    }
-			}
-		);
+				    @Override
+					public String toString() {
+				    	return "accept or reject offered item";
+				    }
+				}
+			);
+		}
 	}
 
     /**

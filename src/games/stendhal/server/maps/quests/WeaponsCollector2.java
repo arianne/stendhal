@@ -21,13 +21,11 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -212,30 +210,26 @@ public class WeaponsCollector2 extends AbstractQuest {
 				"What did you find?", 
 				null);
 
-		npc.add(ConversationStates.QUESTION_2, 
-				neededWeapons, 
+		for(final String itemName : neededWeapons) {
+			npc.add(ConversationStates.QUESTION_2, 
+				itemName, 
 				null,
 				ConversationStates.QUESTION_2, 
 				null, 
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						final Expression item = sentence.getTriggerExpression();
+						List<String> missing = missingWeapons(player, false);
 
-						TriggerList missing = new TriggerList(missingWeapons(player, false));
-
-						final Expression found = missing.find(item);
-						if (found != null) {
-							final String itemName = found.getOriginal();
-
+						if (missing.contains(itemName)) {
 							if (player.drop(itemName)) {
 								// register weapon as done
 								final String doneText = player.getQuest(QUEST_SLOT);
 								player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
 
 								// check if the player has brought all weapons
-								missing = new TriggerList(missingWeapons(player, true));
+								missing = missingWeapons(player, true);
 
-								if (missing.size() > 0) {
+								if (!missing.isEmpty()) {
 									raiser.say("Thank you very much! Do you have anything more for me?");
 								} else {
 									final Item lhandsword = SingletonRepository.getEntityManager().getItem(
@@ -262,6 +256,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 						}
 					}
 				});
+		}
 	}
 
 	private void step_2() {

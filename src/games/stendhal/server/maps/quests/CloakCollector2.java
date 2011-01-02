@@ -30,9 +30,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -183,14 +181,14 @@ public class CloakCollector2 extends AbstractQuest {
 		// rather than say for elf cloak she'd said 'It's a white cloak, so will you find them all?'
 		// it will still work for red (red_spotted is the subclass), black dragon (black), 
 		// golden, mainio (primary coloured), chaos (multicoloured).
-		npc.add(ConversationStates.QUEST_2_OFFERED, 
-				NEEDEDCLOAKS2, 
+		for(final String itemName : NEEDEDCLOAKS2) {
+			npc.add(ConversationStates.QUEST_2_OFFERED, 
+				itemName, 
 				null,
 				ConversationStates.QUEST_2_OFFERED, 
 				null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
-						final String itemName = sentence.getTriggerExpression().getNormalized();
 						final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 						StringBuilder stringBuilder = new StringBuilder();
 						stringBuilder.append("You haven't seen one before? Well, it's a ");
@@ -208,7 +206,8 @@ public class CloakCollector2 extends AbstractQuest {
 					public String toString() {
 						return "describe item";
 					}
-		});
+			});
+		}
 	}
 
 	private void step_2() {
@@ -255,27 +254,24 @@ public class CloakCollector2 extends AbstractQuest {
 				"Woo! What #cloaks did you bring?", 
 				null);
 
-		npc.add(ConversationStates.QUESTION_2, 
-				NEEDEDCLOAKS2, 
+		for(final String itemName : NEEDEDCLOAKS2) {
+			npc.add(ConversationStates.QUESTION_2,
+				itemName,
 				null,
-				ConversationStates.QUESTION_2, 
+				ConversationStates.QUESTION_2,
 				null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
-						TriggerList missing = new TriggerList(missingcloaks2(player, false));
-						final Expression item = sentence.getTriggerExpression();
+						List<String> missing = missingcloaks2(player, false);
 
-						final Expression found = missing.find(item);
-						if (found != null) {
-							final String itemName = found.getOriginal();
-
+						if (missing.contains(itemName)) {
 							if (player.drop(itemName)) {
 								// register cloak as done
 								final String doneText = player.getQuest(QUEST_SLOT);
 								player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
 
 								// check if the player has brought all cloaks
-								missing = new TriggerList(missingcloaks2(player, true));
+								missing = missingcloaks2(player, true);
 
 								if (missing.isEmpty()) {
 									rewardPlayer(player);
@@ -303,7 +299,8 @@ public class CloakCollector2 extends AbstractQuest {
 					public String toString() {
 						return "answer neededcloaks2";
 					}
-		});
+			});
+		}
 
 		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.NO_MESSAGES,

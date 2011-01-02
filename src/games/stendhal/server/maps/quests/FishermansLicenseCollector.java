@@ -24,9 +24,7 @@ import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -165,48 +163,45 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			ConversationStates.QUESTION_2, "Which fish did you catch?",
 			null);
 
-		npc.add(ConversationStates.QUESTION_2, neededFish, null,
-			ConversationStates.QUESTION_2, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					final Expression item = sentence.getTriggerExpression();
+		for(final String itemName : neededFish) {
+			npc.add(ConversationStates.QUESTION_2, neededFish, null,
+				ConversationStates.QUESTION_2, null,
+				new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						List<String> missing = missingFish(player, false);
 
-					TriggerList missing = new TriggerList(missingFish(player, false));
+						if (missing.contains(itemName)) {
+							if (player.drop(itemName)) {
+								// register fish as done
+								final String doneText = player.getQuest(QUEST_SLOT);
+								player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
 
-					final Expression found = missing.find(item);
-					if (found != null) {
-						final String itemName = found.getOriginal();
+								// check if the player has brought all fish
+								missing = missingFish(player, true);
 
-						if (player.drop(itemName)) {
-							// register fish as done
-							final String doneText = player.getQuest(QUEST_SLOT);
-							player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
-
-							// check if the player has brought all fish
-							missing = new TriggerList(missingFish(player, true));
-
-							if (missing.size() > 0) {
-								raiser.say("This fish is looking very good! Do you have another one for me?");
+								if (!missing.isEmpty()) {
+									raiser.say("This fish is looking very good! Do you have another one for me?");
+								} else {
+									player.addXP(2000);
+									raiser.say("You did a great job! Now you are a real fisherman and you will be much more successful when you catch fish!");
+									player.setQuest(QUEST_SLOT, "done");
+									// once there are other ways to increase your
+									// fishing skills, increase the old skills
+									// instead of just setting to 0.2.
+									player.setSkill("fishing", Double.toString(0.2));
+									player.notifyWorldAboutChanges();
+								}
 							} else {
-								player.addXP(2000);
-								raiser.say("You did a great job! Now you are a real fisherman and you will be much more successful when you catch fish!");
-								player.setQuest(QUEST_SLOT, "done");
-								// once there are other ways to increase your
-								// fishing skills, increase the old skills
-								// instead of just setting to 0.2.
-								player.setSkill("fishing", Double.toString(0.2));
-								player.notifyWorldAboutChanges();
+								raiser.say("Don't try to cheat! I know that you don't have "
+										+ Grammar.a_noun(itemName)
+										+ ". What do you really have for me?");
 							}
 						} else {
-							raiser.say("Don't try to cheat! I know that you don't have "
-									+ Grammar.a_noun(itemName)
-									+ ". What do you really have for me?");
+							raiser.say("You cannot cheat in this exam! I know that you already gave this fish to me. Do you have other fish for me?");
 						}
-					} else {
-						raiser.say("You cannot cheat in this exam! I know that you already gave this fish to me. Do you have other fish for me?");
 					}
-				}
-			});
+				});
+		}
 	}
 
 	private void step_2() {

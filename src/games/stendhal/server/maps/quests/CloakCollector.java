@@ -85,21 +85,21 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		final SpeakerNPC npc = npcs.get("Josephine");
 
 		// player asks about an individual cloak before accepting the quest
-		npc.add(ConversationStates.QUEST_OFFERED, NEEDED_CLOAKS, null,
+		for(final String itemName : NEEDED_CLOAKS) {
+			npc.add(ConversationStates.QUEST_OFFERED, itemName, null,
 				ConversationStates.QUEST_OFFERED, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						final String itemName = sentence.getTriggerExpression().getNormalized();
 						final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 						StringBuilder stringBuilder = new StringBuilder();
 						stringBuilder.append("You haven't seen one before? Well, it's a ");
-						
+
 						if (item == null) {
 							stringBuilder.append(itemName);
 						} else {
 							stringBuilder.append(ItemTools.itemNameToDisplayName(item.getItemSubclass()));
 						}
-						
+
 						stringBuilder.append(". So, will you find them all?");
 						raiser.say(stringBuilder.toString());
 					}
@@ -108,7 +108,8 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 					public String toString() {
 						return "describe item";
 					}
-		});
+			});
+		}
 	}
 
 	public List<String> getAdditionalTriggerPhraseForQuest() {

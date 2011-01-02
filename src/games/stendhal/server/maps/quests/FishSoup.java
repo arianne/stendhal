@@ -31,9 +31,7 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -272,50 +270,47 @@ public class FishSoup extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.QUESTION_1, "What did you bring?", null);
 
-		npc.add(ConversationStates.QUESTION_1, NEEDED_FOOD, null,
-			ConversationStates.QUESTION_1, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					final Expression item = sentence.getTriggerExpression();
+		for(final String itemName : NEEDED_FOOD) {
+			npc.add(ConversationStates.QUESTION_1, itemName, null,
+				ConversationStates.QUESTION_1, null,
+				new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+						List<String> missing = missingFood(player, false);
 
-					TriggerList missing = new TriggerList(missingFood(player, false));
+						if (missing.contains(itemName)) {
+							if (player.drop(itemName)) {
+								// register ingredient as done
+								final String doneText = player.getQuest(QUEST_SLOT);
+								player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
 
-					final Expression found = missing.find(item);
-					if (found != null) {
-						final String itemName = found.getOriginal();
+								// check if the player has brought all Food
+								missing = missingFood(player, true);
 
-						if (player.drop(itemName)) {
-							// register ingredient as done
-							final String doneText = player.getQuest(QUEST_SLOT);
-							player.setQuest(QUEST_SLOT, doneText + ";" + itemName);
-
-							// check if the player has brought all Food
-							missing = new TriggerList(missingFood(player, true));
-
-							if (missing.size() > 0) {
-								npc.say("Thank you very much! What else did you bring?");
+								if (!missing.isEmpty()) {
+									npc.say("Thank you very much! What else did you bring?");
+								} else {
+									player.addKarma(10.0);
+									player.addXP(50);
+									placeSoupFor(player);
+									player.healPoison();
+									npc.say("The soup's on the market table for you. It will heal you. "
+											+ "My magical method in making the soup has given you a little karma too.");
+									player.setQuest(QUEST_SLOT, "done;"
+											+ System.currentTimeMillis());
+									player.notifyWorldAboutChanges();
+									npc.setCurrentState(ConversationStates.ATTENDING);
+								}
 							} else {
-								player.addKarma(10.0);
-								player.addXP(50);
-								placeSoupFor(player);
-								player.healPoison();
-								npc.say("The soup's on the market table for you. It will heal you. "
-										+ "My magical method in making the soup has given you a little karma too.");
-								player.setQuest(QUEST_SLOT, "done;"
-										+ System.currentTimeMillis());
-								player.notifyWorldAboutChanges();
-								npc.setCurrentState(ConversationStates.ATTENDING);
+								npc.say("Oh come on, I don't have time for jokes! You don't have "
+									+ Grammar.a_noun(itemName)
+									+ " with you.");
 							}
 						} else {
-							npc.say("Oh come on, I don't have time for jokes! You don't have "
-								+ Grammar.a_noun(itemName)
-								+ " with you.");
+							npc.say("You brought me that ingredient already.");
 						}
-					} else {
-						npc.say("You brought me that ingredient already.");
 					}
-				}
-			});
+				});
+		}
 		
 		// Perhaps player wants to give all the ingredients at once
 		npc.add(ConversationStates.QUESTION_1, "everything",

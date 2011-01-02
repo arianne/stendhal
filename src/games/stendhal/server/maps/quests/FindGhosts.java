@@ -28,9 +28,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -98,9 +96,9 @@ public class FindGhosts extends AbstractQuest {
 		    final String[] done = doneAndFound[1].split(";");
 		    final List<String> doneList = Arrays.asList(done);
 		    for (final String name : NEEDED_SPIRITS) {
-			if (!doneList.contains(name)) {
-			    result.add(name);
-			}
+				if (!doneList.contains(name)) {
+				    result.add(name);
+				}
 		    }
 		}
 		return result;
@@ -171,74 +169,74 @@ public class FindGhosts extends AbstractQuest {
 			ConversationStates.QUESTION_1,
 			"If you found any #spirits, please tell me their name.", null);
 
-		npc.add(ConversationStates.QUESTION_1, NEEDED_SPIRITS, null,
-			ConversationStates.QUESTION_1, null,
-			new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					final Expression item = sentence.getTriggerExpression();
-					
-					// although all names our stored as lower case from now on, 
-					// older versions did not,
-					// so we have to be compatible with them
-					final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
-					final String[] npcDoneText = npcQuestText.split(":");
-	    			final String lookingStr;
-	    			final String saidStr;
-					if (npcDoneText.length > 1) {
-						lookingStr = npcDoneText[0];
-						saidStr = npcDoneText[1];
-					} else {
-						// compatibility with broken quests
-						logger.warn("Player " + player.getTitle() + " found with find_ghosts quest slot in state " + player.getQuest(QUEST_SLOT) + " - now setting this to done.");
-						player.setQuest(QUEST_SLOT, "done");
-						npc.say("Sorry, it looks like you have already found them after all. I got confused");
-						player.notifyWorldAboutChanges();
-						npc.setCurrentState(ConversationStates.ATTENDING);
-						return;
-					}
-	    			
-					final TriggerList looking = new TriggerList(Arrays.asList(lookingStr.split(";")));
-					final TriggerList said = new TriggerList(Arrays.asList(saidStr.split(";")));
-					String reply = "";
-					String itemName = "initialized";
-					TriggerList missing = new TriggerList(missingNames(player));
-					final Expression found = missing.find(item);
-					if (found != null) {
-						itemName = found.getOriginal().toLowerCase();
-					}
+		for(final String spiritName : NEEDED_SPIRITS) {
+			npc.add(ConversationStates.QUESTION_1, spiritName, null,
+				ConversationStates.QUESTION_1, null,
+				new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+						final String name = spiritName;
 
-					if ((found != null) && looking.contains(item) && !said.contains(item)) {
-						// we haven't said the name yet so we add it to the list
-						player.setQuest(QUEST_SLOT, lookingStr
-								+ ":" + saidStr + ";" + itemName);
-						reply = "Thank you.";
-					} else if (!looking.contains(item)) {
-						// we have said it was a valid name but haven't met them
-						reply = "I don't believe you've spoken with any spirit of that name.";
-					} else if ((found == null) && said.contains(item)) {
-						// we have said the name so we are stupid!
-						reply = "You've told me that name already, thanks.";
-					}
+						// although all names are stored as lower case from now on, 
+						// older versions did not,
+						// so we have to be compatible with them
+						final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
+						final String[] npcDoneText = npcQuestText.split(":");
+		    			final String lookingStr;
+		    			final String saidStr;
+						if (npcDoneText.length > 1) {
+							lookingStr = npcDoneText[0];
+							saidStr = npcDoneText[1];
+						} else {
+							// compatibility with broken quests
+							logger.warn("Player " + player.getTitle() + " found with find_ghosts quest slot in state " + player.getQuest(QUEST_SLOT) + " - now setting this to done.");
+							player.setQuest(QUEST_SLOT, "done");
+							npc.say("Sorry, it looks like you have already found them after all. I got confused");
+							player.notifyWorldAboutChanges();
+							npc.setCurrentState(ConversationStates.ATTENDING);
+							return;
+						}
 
-					// we may have changed the missing list
-					missing = new TriggerList(missingNames(player));
+						final List<String> looking = Arrays.asList(lookingStr.split(";"));
+						final List<String> said = Arrays.asList(saidStr.split(";"));
+						String reply = "";
+						List<String> missing = missingNames(player);
+						final boolean isMissing = missing.contains(name);
 
-					if (missing.size() > 0) {
-						reply += " If you met any other spirits, please tell me their name.";
-						npc.say(reply);
-					} else {
-						player.setBaseHP(50 + player.getBaseHP());
-						player.heal(50, true);
-						player.addXP(5000);
-						player.addKarma(15);
-						reply += " Now that I know those 4 names, perhaps I can even reach the spirits with my mind. I can't give you anything of material value, but I have given you a boost to your basic wellbeing, which will last forever. May you live long, and prosper.";
-						npc.say(reply);
-						player.setQuest(QUEST_SLOT, "done");
-						player.notifyWorldAboutChanges();
-						npc.setCurrentState(ConversationStates.ATTENDING);
+						if (isMissing && looking.contains(name) && !said.contains(name)) {
+							// we haven't said the name yet so we add it to the list
+							player.setQuest(QUEST_SLOT, lookingStr
+									+ ":" + saidStr + ";" + name);
+							reply = "Thank you.";
+						} else if (!looking.contains(name)) {
+							// we have said it was a valid name but haven't met them
+							reply = "I don't believe you've spoken with any spirit of that name.";
+						} else if (!isMissing && said.contains(name)) {
+							// we have said the name so we are stupid!
+							reply = "You've told me that name already, thanks.";
+						} else {
+							assert false;
+						}
+
+						// we may have changed the missing list
+						missing = missingNames(player);
+
+						if (!missing.isEmpty()) {
+							reply += " If you met any other spirits, please tell me their name.";
+							npc.say(reply);
+						} else {
+							player.setBaseHP(50 + player.getBaseHP());
+							player.heal(50, true);
+							player.addXP(5000);
+							player.addKarma(15);
+							reply += " Now that I know those 4 names, perhaps I can even reach the spirits with my mind. I can't give you anything of material value, but I have given you a boost to your basic wellbeing, which will last forever. May you live long, and prosper.";
+							npc.say(reply);
+							player.setQuest(QUEST_SLOT, "done");
+							player.notifyWorldAboutChanges();
+							npc.setCurrentState(ConversationStates.ATTENDING);
+						}
 					}
-				}
-			});
+				});
+		}
 
 		final List<String> triggers = new ArrayList<String>();
 		triggers.add(ConversationPhrases.NO_EXPRESSION);

@@ -271,32 +271,32 @@ public class ObsidianKnife extends AbstractQuest {
 	private void bringFoodStep() {
 		final SpeakerNPC npc = npcs.get("Alrak");
 
-		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new ChatAction() {
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					final String item = sentence.getTriggerExpression().getNormalized();
-					if (player.drop(item, REQUIRED_FOOD)) {
-						npc.say("Great! You brought the " + item + "!");
-					}
-				} });
-		reward.add(new IncreaseXPAction(1000));
-		reward.add(new IncreaseKarmaAction(35.0));
-		reward.add(new SetQuestAction(QUEST_SLOT, "food_brought"));
-
 		/** If player has quest and has brought the food, and says so, take it */
-		npc.add(ConversationStates.ATTENDING, 
-				FOOD_LIST,
+		for(final String itemName : FOOD_LIST) {
+			final List<ChatAction> reward = new LinkedList<ChatAction>();
+			reward.add(new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+						if (player.drop(itemName, REQUIRED_FOOD)) {
+							npc.say("Great! You brought the " + itemName + "!");
+						}
+					} });
+			reward.add(new IncreaseXPAction(1000));
+			reward.add(new IncreaseKarmaAction(35.0));
+			reward.add(new SetQuestAction(QUEST_SLOT, "food_brought"));
+
+			npc.add(ConversationStates.ATTENDING, 
+				itemName,
 				new ChatCondition() {
 					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-						final String item = sentence.getTriggerExpression().getNormalized();
 						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals(item)
-								&& player.isEquipped(item, REQUIRED_FOOD);
+								&& player.getQuest(QUEST_SLOT).equals(itemName)
+								&& player.isEquipped(itemName, REQUIRED_FOOD);
 					}
 				}, 
 				ConversationStates.ATTENDING, 
 				null,
 				new MultipleActions(reward));
+		}
 	}
 
 	private void requestBookStep() {
