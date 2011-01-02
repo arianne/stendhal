@@ -89,10 +89,19 @@ public abstract class DomesticAnimal extends Creature {
 		this.owner = owner;
 		if (owner != null) {
 			wasOwned = true;
-			if (getZone() != null) {
+			if (takesPartInCombat() && getZone() != null) {
 				getZone().addToPlayersAndFriends(this);
 			}
 		}
+	}
+
+	/**
+	 * Does this domestic animal take part in combat?
+	 *
+	 * @return true, if it can be attacked by creatures, false otherwise
+	 */
+	protected boolean takesPartInCombat() {
+		return true;
 	}
 
 	public Player getOwner() {
