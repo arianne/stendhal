@@ -524,8 +524,8 @@ public class AdministrationActionTest {
 		action = new RPAction();
 		action.put("type", "altercreature");
 		action.put("target", "#2");
-		// must be of type "name/atk/def/hp/xp",
-		action.put("text", "newname/5/6/7/8");
+		// must be of type "name;atk;def;hp;xp",
+		action.put("text", "newname;5;6;7;8");
 
 		CommandCenter.execute(pl, action);
 
@@ -534,6 +534,16 @@ public class AdministrationActionTest {
 		assertEquals("def", 6, rat.getDef());
 		assertEquals("hp", 7, rat.getHP());
 		assertEquals("xp", 8, rat.getXP());
+		
+		action.put("text", "-;-;-;100;100");
+		
+		CommandCenter.execute(pl, action);
+		
+		assertEquals("name", "newname", rat.getName());
+		assertEquals("atk", 5, rat.getAtk());
+		assertEquals("def", 6, rat.getDef());
+		assertEquals("hp", 100, rat.getHP());
+		assertEquals("xp", 100, rat.getXP());
 	}
 
 	/**

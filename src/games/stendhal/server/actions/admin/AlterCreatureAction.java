@@ -15,6 +15,7 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.common.constants.Actions.ALTERCREATURE;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TEXT;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
@@ -42,25 +43,44 @@ class AlterCreatureAction extends AdministrationAction {
 			}
 
 			/*
-			 * It will contain a string like: name/atk/def/hp/xp
+			 * It will contain a string like: name;atk;def;hp;xp
 			 */
 			final String stat = action.get(TEXT);
 
-			final String[] parts = stat.split("/");
-
+			final String[] parts = stat.split(";");
+			if (!(changed instanceof Creature)) {
+				logger.debug("Target " + changed.getTitle() + " was not a creature.");
+				player.sendPrivateText("Target " + changed.getTitle() + " was not a creature.");
+				return;
+			}
+			
+			if (parts.length != 5) {
+				logger.debug("Incorrect stats string for creature.");
+				player.sendPrivateText("/altercreature <id> name;atk;def;hp;xp - Use a - as a placeholder to keep default value.");
+				return;
+			}
+			
 			if ((changed instanceof Creature) && (parts.length == 5)) {
 				final Creature creature = (Creature) changed;
 				new GameEvent(player.getName(), "alter", action.get(TARGET), stat).raise();
 
-				creature.setName(parts[0]);
-				creature.setAtk(Integer.parseInt(parts[1]));
-				creature.setDef(Integer.parseInt(parts[2]));
-				creature.initHP(Integer.parseInt(parts[3]));
-				creature.setXP(Integer.parseInt(parts[4]));
+				final int newatk = MathHelper.parseIntDefault(parts[1], creature.getAtk());
+				final int newdef = MathHelper.parseIntDefault(parts[2], creature.getDef());
+				final int newHP = MathHelper.parseIntDefault(parts[3], creature.getBaseHP());
+				final int newXP = MathHelper.parseIntDefault(parts[4], creature.getXP());
+				
+				if(!"-".equals(parts[0])) {
+					creature.setName(parts[0]);
+				}
+				creature.setAtk(newatk);
+				creature.setDef(newdef);
+				creature.initHP(newHP);
+				creature.setXP(newXP);
 
 				creature.update();
 				creature.notifyWorldAboutChanges();
-			}
+			} 
+			
 		}
 	}
 
