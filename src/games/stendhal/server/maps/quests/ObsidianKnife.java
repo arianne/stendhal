@@ -153,7 +153,11 @@ public class ObsidianKnife extends AbstractQuest {
 		if (questState.startsWith("reading")) {
 			return res;
 		}
-		res.add("Alrak says if I kill a black dragon and find a cod and an obsidian he will make me a knife.");
+		res.add("Alrak said that the book had taught him how to make a knife, it sounded pretty good.");
+		if (questState.equals("book_read")) {
+			return res;
+		}
+		res.add("Alrak says if I kill a black dragon and find a cod and an obsidian he will make me the knife.");
 		if (questState.equals("knife_offered")
 		&& !player.hasKilled("black dragon")) {
 			return res;
