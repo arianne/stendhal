@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 
 import java.util.Arrays;
@@ -68,13 +69,12 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 		
 		// handle house numbers 26 to 49
 		add(ConversationStates.QUEST_OFFERED,
-				 // match for all numbers as trigger expression
-				 "NUM", new JokerExprMatcher(),
-				 new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
-				 ConversationStates.ATTENDING, 
-				 null,
-				 new BuyHouseChatAction(getCost(), QUEST_SLOT));
-		
+				// match for all numbers as trigger expression
+				ExpressionType.NUMERAL, new JokerExprMatcher(),
+				new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
+				ConversationStates.ATTENDING, 
+				null,
+				new BuyHouseChatAction(getCost(), QUEST_SLOT));
 
 		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://stendhalgame.org/wiki/StendhalHouses.");
 		addReply("reputation", "I will ask Hazel about you. Provided you've finished any task she asked you to do for her recently, and haven't left anything unfinished, she will like you.");

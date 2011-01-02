@@ -12,6 +12,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 
 import java.util.Arrays;
@@ -70,11 +71,11 @@ final class AthorHouseSeller extends HouseSellerNPCBase {
 		// handle house numbers 101 to 108
 		add(ConversationStates.QUEST_OFFERED,
 				 // match for all numbers as trigger expression
-				 "NUM", new JokerExprMatcher(),
-				 new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
-				 ConversationStates.ATTENDING, 
-				 null,
-				 new BuyHouseChatAction(getCost(), QUEST_SLOT));
+				ExpressionType.NUMERAL, new JokerExprMatcher(),
+				new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
+				ConversationStates.ATTENDING, 
+				null,
+				new BuyHouseChatAction(getCost(), QUEST_SLOT));
 		
 
 		addJob("Well, I'm actually trying to sunbathe here. But, since you ask, I sell apartments here on Athor. Our brochure is at #http://stendhalgame.org/wiki/StendhalHouses.");

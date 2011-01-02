@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -73,7 +74,7 @@ class TwilightZone {
 		// responding to question of how many they want, with a number
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				// match for all numbers as trigger expression
-				"NUM", new JokerExprMatcher(),
+				ExpressionType.NUMERAL, new JokerExprMatcher(),
 				new TextHasNumberCondition(1, 5000),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {

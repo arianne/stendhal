@@ -239,7 +239,7 @@ public class ExpressionMatcher {
                 // remove the leading slash from the type string
                 typeStr = tok.nextToken(" \t\n\r\f").substring(1);
             } catch (final NoSuchElementException e) {
-                typeStr = "*";
+                typeStr = Expression.JOKER;
             }
 
             final Expression expr = new Expression(str, typeStr);

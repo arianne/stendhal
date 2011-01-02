@@ -12,6 +12,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 
 import java.util.Arrays;
@@ -92,11 +93,11 @@ final class AdosHouseSeller extends HouseSellerNPCBase {
 		// handle house numbers getLowestHouseNumber() - getHighestHouseNumber()
 		add(ConversationStates.QUEST_OFFERED,
 				 // match for all numbers as trigger expression
-					"NUM", new JokerExprMatcher(),
-				 new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
-				 ConversationStates.ATTENDING, 
-				 null,
-				 new BuyHouseChatAction(getCost(), QUEST_SLOT));
+				ExpressionType.NUMERAL, new JokerExprMatcher(),
+				new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
+				ConversationStates.ATTENDING, 
+				null,
+				new BuyHouseChatAction(getCost(), QUEST_SLOT));
 		
 		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://stendhalgame.org/wiki/StendhalHouses.");
 		addReply("citizen", "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opinion.");

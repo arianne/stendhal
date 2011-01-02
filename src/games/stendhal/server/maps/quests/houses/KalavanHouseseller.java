@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 
 import java.util.Arrays;
@@ -84,7 +85,7 @@ add(ConversationStates.ATTENDING,
 // handle house numbers 1 to 25
 add(ConversationStates.QUEST_OFFERED,
 		// match for all numbers as trigger expression
-			"NUM", new JokerExprMatcher(),
+		ExpressionType.NUMERAL, new JokerExprMatcher(),
 		new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
 		ConversationStates.ATTENDING,
 		null,

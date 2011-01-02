@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -82,7 +83,7 @@ class Honeymoon {
 		// player says room number
 		linda.add(ConversationStates.QUESTION_1,
 				// match for all numbers as trigger expression
-				"NUM", new JokerExprMatcher(),
+				ExpressionType.NUMERAL, new JokerExprMatcher(),
 				new TextHasNumberCondition(1, 15),
 				ConversationStates.IDLE, null,
 				new ChatAction() {
