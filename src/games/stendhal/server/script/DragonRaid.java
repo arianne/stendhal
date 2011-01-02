@@ -28,7 +28,7 @@ public class DragonRaid extends CreateRaid {
 		attackArmy.put("red dragon", 2);
 		attackArmy.put("green dragon", 2);
 		attackArmy.put("bone dragon", 3);
-		attackArmy.put("twinheaded dragon", 2);
+		attackArmy.put("twin headed dragon", 2);
 		attackArmy.put("blue dragon", 3);
 		attackArmy.put("chaos red dragonrider", 2);
 		attackArmy.put("chaos green dragonrider", 2);
