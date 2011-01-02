@@ -2004,7 +2004,7 @@ public class Player extends RPEntity {
 	 * @return true if the buddy has been added
 	 */
 	public boolean addBuddy(String name, boolean online) {
-		boolean isNew = !getMap("buddies").containsKey(name);
+		boolean isNew = !hasMap("buddies") || !getMap("buddies").containsKey(name);
 
 		put("buddies", name, online);
 
