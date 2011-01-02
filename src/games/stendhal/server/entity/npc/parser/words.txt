@@ -8,7 +8,7 @@
 #
 # WORD is the word in lower case.
 # NORMALIZED is used to specify the the base form.
-# PLURAL is the pluralized form of the word for nouns and verbs.
+# PLURAL is the pluralised form of the word for nouns and verbs.
 # VALUE is used to specify the numeric equivalent of numeric expressions.
 #
 # TYPE is one of the following constants:
@@ -128,6 +128,7 @@ fly	VER
 follow	VER
 gamble	VER
 get	VER
+getting	VER-GER
 give	VER
 go	VER
 gone	VER	=go
@@ -153,6 +154,7 @@ include	VER
 is	VER	are
 jump	VER
 keep	VER
+kidding	VER-GER
 kill	VER
 kiss	VER
 know	VER
@@ -344,6 +346,7 @@ car	OBJ	cars
 carbuncle	OBJ	carbuncles
 cards	OBJ	cards
 carrot	OBJ-FOO	carrots
+castle	OBJ	castles
 catacomb	OBJ	catacombs
 catering	OBJ	caterings
 cauliflower	OBJ-FOO	cauliflowers
@@ -858,6 +861,7 @@ wedding	OBJ	weddings
 week	OBJ	weeks
 whiskey	OBJ-FOO-FLU	whiskeys
 wikipedia	OBJ	wikipedias
+wind	OBJ	winds
 window	OBJ	windows
 wine	OBJ-FOO-FLU
 wish	OBJ	wishes
@@ -894,6 +898,7 @@ alice	SUB-NAM
 alien	SUB
 alrak	SUB-NAM
 amazoness	SUB
+anastasia	SUB-NAM
 andy	SUB-NAM
 angel	SUB
 anna	SUB-NAM
@@ -980,6 +985,7 @@ cody	SUB-NAM
 colonel	SUB
 commander	SUB	commanders
 conual	SUB-NAM
+cook	SUB
 coralia	SUB-NAM
 corporal	SUB
 covester	SUB-NAM
@@ -993,6 +999,7 @@ dag	SUB-NAM
 dagobert	SUB-NAM
 dale	SUB-NAM
 dalmung	SUB
+damon	SUB-NAM
 darkmonk	SUB
 daughter	SUB
 daugther	SUB
@@ -1045,6 +1052,7 @@ erodel	SUB-NAM
 errvl	SUB-NAM
 esclara	SUB-NAM
 esolte	SUB-NAM
+everyone	SUB-PRO
 exhibits	SUB
 falatheen	SUB
 farmer	SUB
@@ -1092,6 +1100,7 @@ granny	SUB-NAM
 grim	SUB-NAM
 guard	SUB
 guardian	SUB	guardians
+guest	SUB	guests
 gulimo	SUB-NAM
 guy	SUB
 haastaja	SUB-NAM
@@ -1115,6 +1124,7 @@ horse	SUB-ANI
 hound	SUB-ANI
 housewife	SUB
 huckle	SUB-NAM
+hughie	SUB-NAM
 hugo	SUB-NAM
 human	SUB	humans
 hunel	SUB-NAM
@@ -1344,6 +1354,7 @@ spider	SUB-ANI
 spirit	SUB	spirits
 stalker	SUB
 starkad	SUB-NAM
+stefan	SUB-NAM
 sten	SUB-NAM
 stichard	SUB-NAM
 storekeeper	SUB
@@ -1511,6 +1522,7 @@ green	ADJ-COL
 grilled	ADJ
 headed	ADJ
 headless	ADJ
+hidden	ADJ
 high	ADJ
 holy	ADJ
 horned	ADJ
@@ -1584,8 +1596,10 @@ small	ADJ
 snug	ADJ
 spare	ADJ
 special	ADJ
+spooky	ADJ
 spotted	ADJ
 squared	ADJ
+stressed	ADJ
 striped	ADJ
 strong	ADJ
 studded	ADJ
@@ -1665,6 +1679,7 @@ down	PRE
 for	PRE
 from	PRE
 in	PRE
+inside	PRE
 into	PRE
 of	PRE
 off	PRE
