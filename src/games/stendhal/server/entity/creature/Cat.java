@@ -125,4 +125,16 @@ public class Cat extends Pet {
 		return Arrays.asList("chicken", "trout", "cod", "mackerel", "char",
 				"perch", "roach", "surgeonfish", "clownfish");
 	}
+
+	/**
+	 * Does this domestic animal take part in combat?
+	 *
+	 * @return true, if it can be attacked by creatures, false otherwise
+	 */
+	@Override
+	protected boolean takesPartInCombat() {
+		return false;
+	}
+
+	
 }
