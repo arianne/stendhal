@@ -53,34 +53,34 @@ class AlterCreatureAction extends AdministrationAction {
 				player.sendPrivateText("Target " + changed.getTitle() + " was not a creature.");
 				return;
 			}
-			
+
 			if (parts.length != 5) {
 				logger.debug("Incorrect stats string for creature.");
 				player.sendPrivateText("/altercreature <id> name;atk;def;hp;xp - Use a - as a placeholder to keep default value.");
 				return;
 			}
-			
-			if ((changed instanceof Creature) && (parts.length == 5)) {
-				final Creature creature = (Creature) changed;
-				new GameEvent(player.getName(), "alter", action.get(TARGET), stat).raise();
 
-				final int newatk = MathHelper.parseIntDefault(parts[1], creature.getAtk());
-				final int newdef = MathHelper.parseIntDefault(parts[2], creature.getDef());
-				final int newHP = MathHelper.parseIntDefault(parts[3], creature.getBaseHP());
-				final int newXP = MathHelper.parseIntDefault(parts[4], creature.getXP());
-				
-				if(!"-".equals(parts[0])) {
-					creature.setName(parts[0]);
-				}
-				creature.setAtk(newatk);
-				creature.setDef(newdef);
-				creature.initHP(newHP);
-				creature.setXP(newXP);
 
-				creature.update();
-				creature.notifyWorldAboutChanges();
-			} 
-			
+			final Creature creature = (Creature) changed;
+			new GameEvent(player.getName(), "alter", action.get(TARGET), stat).raise();
+
+			final int newatk = MathHelper.parseIntDefault(parts[1], creature.getAtk());
+			final int newdef = MathHelper.parseIntDefault(parts[2], creature.getDef());
+			final int newHP = MathHelper.parseIntDefault(parts[3], creature.getBaseHP());
+			final int newXP = MathHelper.parseIntDefault(parts[4], creature.getXP());
+
+			if(!"-".equals(parts[0])) {
+				creature.setName(parts[0]);
+			}
+			creature.setAtk(newatk);
+			creature.setDef(newdef);
+			creature.initHP(newHP);
+			creature.setXP(newXP);
+
+			creature.update();
+			creature.notifyWorldAboutChanges();
+
+
 		}
 	}
 
