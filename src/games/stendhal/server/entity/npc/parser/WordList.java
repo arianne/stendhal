@@ -787,6 +787,7 @@ final public class WordList {
 
 		if (entry == null) {
 			entry = new WordEntry();
+			entry.setType(new ExpressionType(""));
 
 			// add the new entry
 			entry.setNormalized(key);
