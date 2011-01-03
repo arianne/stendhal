@@ -59,7 +59,7 @@ public class HotelChefNPC implements ZoneConfigurator {
 				addGreeting("Welcome in the Fado hotel kitchen, stranger!");
 				addHelp("I'm really #stressed up here with my work. Sorry, but I can't give you any advice at the moment.");
 				addReply("stressed", "It's high season at the moment! We get lots of reservations which means more #guests and more work for everyone.");
-				addReply("guests", "Most of them visit Fado for #getting #married. I can understand their choice of Fado. It's a beautiful city.");
+				addReply("guest", "Most of them visit Fado for #getting #married. I can understand their choice of Fado. It's a beautiful city.");
 				addReply("getting married", "Didn't you know, that Fado is the most known wedding town in whole Faiumoni? You have to visit our church, it's so lovely!");
 				addQuest("I'm so busy at the moment thinking about what I can do to get some help #somewhere..."); 
 				addReply("somewhere", "Yes, somewhere... I doubt that the problem can be solved in my kitchen alone... It's tiny!");
