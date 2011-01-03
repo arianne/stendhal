@@ -295,7 +295,7 @@ import org.apache.log4j.Logger;
 		super.addToWorld();
 		fillQuestInfo(
 				"Jailed Barbarian",
-				"Lorenz is a jailed Barbarian on Athor Island. It's a mystery why he is jailed there, but perhaps he needs help.",
+				"Lorenz is a jailed Barbarian on Amazon Island. It's a mystery why he is jailed there, but perhaps he needs help.",
 				true);
 		step1();
 		step2();
