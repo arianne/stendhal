@@ -66,7 +66,7 @@ public class Sheep extends DomesticAnimal {
 	/**
 	 * The weight at which the sheep will stop eating.
 	 */
-	public final int MAX_WEIGHT = 100;
+	public static final int MAX_WEIGHT = 100;
 
 	private static final int HP = 30;
 
