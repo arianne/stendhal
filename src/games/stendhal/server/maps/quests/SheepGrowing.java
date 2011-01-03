@@ -54,14 +54,14 @@ import java.util.List;
  */
 public class SheepGrowing extends AbstractQuest {
 
-	private final String QUEST_SLOT = "sheep_growing";
-	private final String title = "Sheep Growing for Nishiya";
+	private static final String QUEST_SLOT = "sheep_growing";
+	private static final String TITLE = "Sheep Growing for Nishiya";
 
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		fillQuestInfo(
-				title,
+				TITLE,
 				"Nishiya, the sheep seller, promised Sato a sheep. " +
 					"Because he is very busy he needs somebody to take care of " +
 					"one of his sheep and hand it over to Sato.",
@@ -102,7 +102,7 @@ public class SheepGrowing extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return title;
+		return TITLE;
 	}
 	/**
 	 * The step where the player speaks with Nishiya about quests and gets the sheep.
