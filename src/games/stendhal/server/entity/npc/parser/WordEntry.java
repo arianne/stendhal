@@ -15,16 +15,16 @@ package games.stendhal.server.entity.npc.parser;
 import java.io.PrintWriter;
 
 /**
- * Word list entry, used to categorize words. Nouns and verbs can be associated with their plural form.
+ * Word list entry, used to categorise words. Nouns and verbs can be associated with their plural form.
  *
  * @author Martin Fuchs
  */
 public final class WordEntry {
 
-    // normalized word
+    // normalised word
     private String normalized = "";
 
-    // pluralized word (or singular for entries of type ...-PLU
+    // pluralised word (or singular for entries of type ...-PLU
     private String plurSing;
 
     // Expression type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ...
@@ -101,6 +101,38 @@ public final class WordEntry {
     public boolean isPlural() {
         return (type != null) && type.isPlural();
     }
+
+    public boolean isVerb() {
+        return (type != null) && type.isVerb();
+    }
+
+    public boolean isObject() {
+        return (type != null) && type.isObject();
+    }
+
+    public boolean isSubject() {
+        return (type != null) && type.isSubject();
+    }
+
+	public boolean isName() {
+        return (type != null) && type.isName();
+	}
+
+	public boolean isNumeral() {
+        return (type != null) && type.isNumeral();
+	}
+
+    public boolean isDynamic() {
+        return (type != null) && type.isDynamic();
+    }
+
+	public boolean isPronoun() {
+        return (type != null) && type.isPronoun();
+	}
+
+	public boolean isObsessional() {
+        return (type != null) && type.isObsessional();
+	}
 
     void setValue(final Integer value) {
         this.value = value;

@@ -125,15 +125,17 @@ public final class SentenceImplementation extends Sentence {
             	if (entry == null) {
             		entryMissing = true;
             	} else if (entry.getType() != null) {
-	                w.setType(entry.getType());
+            		ExpressionType type = entry.getType();
+
+	                w.setType(type);
 	                wordFound = true;
 
-	                if (entry.getType().isNumeral()) {
+	                if (type.isNumeral()) {
 	                    // evaluate numeric expressions
 	                    w.setAmount(entry.getValue());
 	                    w.setNormalized(Integer.toString(w.getAmount()));
-	                } else if (entry.getType().isPlural()) {
-	                    // normalize to the singular form
+	                } else if (type.isPlural()) {
+	                    // normalise to the singular form
 	                    // If getPlurSing() is null, there is no unique singular form, so use the original string.
 	                    if (entry.getPlurSing() != null) {
 	                        w.setNormalized(entry.getPlurSing());

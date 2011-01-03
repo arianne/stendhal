@@ -32,7 +32,7 @@ public class CompoundName extends ArrayList<String> {
 		for(Expression e : parsed.expressions) {
 			add(e.getOriginal().toLowerCase());
 
-			if (e.getType().isDynamic()) {
+			if (e.isDynamic()) {
 				isDynamic = true;
 			}
 		}

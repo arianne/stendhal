@@ -380,11 +380,20 @@ public final class Expression {
     /**
      * Determine if the Expression consists of numeral words.
      *
-    * @return false if not a numeral or null, true otherwise
+     * @return false if not a numeral or null, true otherwise
      */
     public boolean isNumeral() {
         return (type != null) && type.isNumeral();
     }
+
+    /**
+     * Determine if the Expression contains a dynamically defined word.
+     *
+     * @return true dynamically created
+     */
+	public boolean isDynamic() {
+        return (type != null) && type.isDynamic();
+	}
 
     /**
      * Merge Expression type with another one while handling null values.

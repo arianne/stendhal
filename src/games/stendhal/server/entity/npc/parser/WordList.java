@@ -260,7 +260,7 @@ final public class WordList {
 				}
 
 				if (s != null) {
-					if (entry.getType().isNumeral()) {
+					if (entry.isNumeral()) {
 						entry.setValue(Integer.valueOf(s));
 					} else {
 						entry.setPlurSing(s);
@@ -276,7 +276,7 @@ final public class WordList {
 				entry.setType(new ExpressionType(ExpressionType.OBJECT));
 				entry.setPlurSing(trimWord(entry.getTypeString()));
 			} else if ((entry.getPlurSing() == null)
-					&& entry.getType().isObject()) {
+					&& entry.isObject()) {
 				// complete missing plural expressions using the
 				// Grammar.plural() function
 				final String plural = Grammar.plural(normalized);
@@ -287,7 +287,7 @@ final public class WordList {
 				}
 			} else if (entry.getPlurSing() != null) {
 				// check plural strings using the Grammar.plural() function
-				if (!entry.getType().isPronoun() && !entry.getType().isObsessional() &&
+				if (!entry.isPronoun() && !entry.isObsessional() &&
 					!normalized.equals("is")) {
 					String plural = Grammar.plural(key);
 
@@ -453,7 +453,7 @@ final public class WordList {
 		final WordEntry entry = words.get(trimWord(word));
 
 		if (entry != null) {
-			if ((entry.getType() != null) && entry.getType().isPlural()) {
+			if (entry.isPlural()) {
 				// return the associated singular from the word list
 				return entry.getPlurSing();
 			} else {
@@ -472,14 +472,16 @@ final public class WordList {
 	static class Verb extends Grammar.Verb {
 		public Verb(Grammar.Verb verb, WordEntry entry) {
 			super(verb);
+
+			assert entry != null;
 			this.entry = entry;
 		}
 
-		public WordEntry entry;
+		public WordEntry entry; // is never null
 	}
 
 	/**
-	 * Try to normalize the given word as verb.
+	 * Try to normalise the given word as verb.
 	 * 
 	 * @param word
 	 * 
@@ -570,8 +572,7 @@ final public class WordList {
 		final String key = trimWord(name);
 		final WordEntry entry = words.get(key);
 
-		if (entry != null && entry.getType().isName() &&
-				entry.getType().isDynamic()) {
+		if (entry != null && entry.isName() && entry.isDynamic()) {
 			Integer usageCount = subjectRefCount.get(key);
 
 			if (usageCount != null) {
@@ -695,7 +696,7 @@ final public class WordList {
 		}
 
 		for(Expression expr : parsed.expressions) {
-			if (expr.getType().isDynamic()) {
+			if (expr.isDynamic()) {
 				words.remove(expr.getNormalized());
 			}
 		}
