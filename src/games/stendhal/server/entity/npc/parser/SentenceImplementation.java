@@ -167,7 +167,7 @@ public final class SentenceImplementation extends Sentence {
                     if (verb.isGerund) {
                         w.setType(new ExpressionType(verb.entry.getTypeString() + ExpressionType.SUFFIX_GERUND));
                         wordFound = true;
-                    } else if (verb.entry.getType().isVerb()) {
+                    } else if ((verb.entry.getType() != null) && verb.entry.getType().isVerb()) {
                         w.setType(verb.entry.getType());
                         wordFound = true;
                     } else if (!verb.isPast) { // avoid cases like "rounded"
