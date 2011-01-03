@@ -164,7 +164,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			null);
 
 		for(final String itemName : neededFish) {
-			npc.add(ConversationStates.QUESTION_2, neededFish, null,
+			npc.add(ConversationStates.QUESTION_2, itemName, null,
 				ConversationStates.QUESTION_2, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
