@@ -22,6 +22,7 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -115,6 +116,17 @@ public class SummonScroll extends Scroll {
 		// create it
 		final AttackableCreature creature = new AttackableCreature(pickedCreature);
 
+		// remove cowardly profiles as the creature is supposed to fight on behalf of the player
+		Map<String, String> profiles = new HashMap<String, String>(creature.getAIProfiles());
+		if (profiles.containsKey("coward")) {
+			profiles.remove("coward");
+			creature.setAIProfiles(profiles);
+		}
+		if (profiles.containsKey("stupid coward")) {
+			profiles.remove("stupid coward");
+			creature.setAIProfiles(profiles);
+		}
+	
 		StendhalRPAction.placeat(zone, creature, x, y);
 
 		creature.init();
