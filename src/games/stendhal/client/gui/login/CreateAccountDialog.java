@@ -15,12 +15,12 @@ package games.stendhal.client.gui.login;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.ProgressBar;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Frame;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +31,7 @@ import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -86,7 +87,7 @@ public class CreateAccountDialog extends JDialog {
 		this.setVisible(true);
 	}
 
-	public CreateAccountDialog() {
+	CreateAccountDialog() {
 		super();
 		initializeComponent();
 	}
@@ -140,99 +141,55 @@ public class CreateAccountDialog extends JDialog {
 		//
 		// contentPane
 		//
+		int padding = SBoxLayout.COMMON_PADDING;
 		contentPane = (JPanel) this.getContentPane();
-		contentPane.setLayout(new GridBagLayout());
-		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		final GridBagConstraints c = new GridBagConstraints();
+		contentPane.setLayout(new SBoxLayout(SBoxLayout.VERTICAL, padding));
+		contentPane.setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
+		
+		JComponent grid = new JComponent() {};
+		grid.setLayout(new GridLayout(6, 2, padding, padding));
+		contentPane.add(grid, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 
 		// row 0
-		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(4, 4, 4, 4);
-		// column
-		c.gridx = 0; 
-		// row
-		c.gridy = 0; 
-		c.fill = GridBagConstraints.NONE;
-		contentPane.add(serverLabel, c);
-		c.gridx = 1;
-		c.gridy = 0;
-		c.fill = GridBagConstraints.BOTH;
-		contentPane.add(serverField, c);
+		grid.add(serverLabel);
+		grid.add(serverField);
 
 		// row 1
-		c.insets = new Insets(4, 4, 4, 4);
-		c.gridx = 0;
-		c.gridy = 1;
-		c.fill = GridBagConstraints.NONE;
-		contentPane.add(serverPortLabel, c);
-		c.gridx = 1;
-		c.gridy = 1;
-		c.insets = new Insets(4, 4, 4, 4);
-		c.fill = GridBagConstraints.BOTH;
-		contentPane.add(serverPortField, c);
+		grid.add(serverPortLabel);
+		grid.add(serverPortField);
 
 		// row 2
-		c.insets = new Insets(4, 4, 4, 4);
-		c.gridx = 0;
-		c.gridy = 2;
-		contentPane.add(usernameLabel, c);
-		c.gridx = 1;
-		c.gridy = 2;
-		c.fill = GridBagConstraints.BOTH;
-		contentPane.add(usernameField, c);
+		grid.add(usernameLabel);
+		grid.add(usernameField);
 	
 		// row 3
-		c.gridx = 0;
-		c.gridy = 3;
-		c.fill = GridBagConstraints.NONE;
-		contentPane.add(passwordLabel, c);
-		c.gridx = 1;
-		c.gridy = 3;
-		c.fill = GridBagConstraints.BOTH;
-		contentPane.add(passwordField, c);
+		grid.add(passwordLabel);
+		grid.add(passwordField);
 
 		// row 4
-		c.gridx = 0;
-		c.gridy = 4;
-		c.fill = GridBagConstraints.NONE;
-		contentPane.add(passwordretypeLabel, c);
-		c.gridx = 1;
-		c.gridy = 4;
-		c.fill = GridBagConstraints.BOTH;
-		contentPane.add(passwordretypeField, c);
+		grid.add(passwordretypeLabel);
+		grid.add(passwordretypeField);
 
 		// row 5
-		c.gridx = 0;
-		c.gridy = 5;
-		c.fill = GridBagConstraints.NONE;
-		contentPane.add(emailLabel, c);
-		c.gridx = 1;
-		c.gridy = 5;
-		c.fill = GridBagConstraints.BOTH;
-		contentPane.add(emailField, c);
+		grid.add(emailLabel);
+		grid.add(emailField);
 
-		// row 6
-		c.gridx = 1;
-		c.gridy = 6;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(15, 4, 4, 4);
-		contentPane.add(createAccountButton, c);
-
-		// row 7
+		// Warning label
 		JLabel logLabel = new JLabel("<html><body><p><font size=\"-2\">On login information which identifies your computer on <br>the internet will be logged to prevent abuse (like many <br>attempts to guess a password in order to hack an <br>account or creation of many accounts to cause trouble). <br>Furthermore all events and actions that happen within <br>the game-world (like solving quests, attacking monsters) <br>are logged. This information is used to analyse bugs and <br>in rare cases for abuse handling.</font></p></body></html>");
-		c.gridx = 0;
-		c.gridy = 7;
-		c.fill = GridBagConstraints.VERTICAL;
-		c.anchor = GridBagConstraints.CENTER;
-		c.gridwidth = 2;
-		contentPane.add(logLabel, c);
+		// Add a bit more empty space around it
+		logLabel.setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
+		logLabel.setAlignmentX(CENTER_ALIGNMENT);
+		contentPane.add(logLabel, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
+		
+		createAccountButton.setAlignmentX(RIGHT_ALIGNMENT);
+		contentPane.add(createAccountButton);
 		
 		// CreateAccountDialog
 		this.setTitle("Create New Account");
 		this.setResizable(false);
 		// required on Compiz
 		this.pack(); 
-		this.setLocationRelativeTo(owner);
+
 		usernameField.requestFocusInWindow();
 		if (owner != null) {
 			owner.setEnabled(false);
