@@ -85,7 +85,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		}
 
 		private int getValue(final Sheep sheep) {
-			return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+			return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) Sheep.MAX_WEIGHT));
 		}
 
 		@Override
