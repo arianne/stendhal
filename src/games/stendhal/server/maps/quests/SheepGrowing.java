@@ -82,7 +82,7 @@ public class SheepGrowing extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("Nishiya asked me if I could grow a sheep for him.");
+		res.add("Nishiya asked me if I could raise a sheep for him.");
 		
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
@@ -156,8 +156,8 @@ public class SheepGrowing extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				ConversationStates.IDLE,
 				"Thanks! *smiles* Here is your fluffy fosterling. Be careful with her. " +
-				"If she dies or if you leave her behind you have to #buy the next sheep on your own." +
-				"Oh... and don't accidentially sell the sheep to Sato. Just talk to him when the sheep has grown up.",
+				"If she dies or if you leave her behind you have to buy the next sheep on your own. " +
+				"Oh... and don't accidentally sell the sheep to Sato. Just talk to him when the sheep has grown up.",
 				new MultipleActions(sheepActions));
 	}
 	/**
@@ -177,7 +177,7 @@ public class SheepGrowing extends AbstractQuest {
 					sheep.getZone().remove(sheep);
 				} else {
 					// should not happen
-					npc.say("What? What sheep? Missed I something?");
+					npc.say("What? What sheep? Did I miss something?");
 					npc.setCurrentState(ConversationStates.IDLE);
 					return;
 				}
@@ -226,7 +226,7 @@ public class SheepGrowing extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES,
 				playerHasFullWeightSheep,
 				ConversationStates.IDLE,
-				"Oh... hmm... ok. Well, I buy sheeps you know? And I am waiting for one from Nishiya. " +
+				"Oh... hmm... ok. Well, I buy sheep you know? And I am waiting for one from Nishiya. " +
 				"He wanted to send me one a while ago...",
 				null);
 	}
