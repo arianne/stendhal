@@ -91,6 +91,7 @@ import games.stendhal.server.maps.quests.RingMaker;
 import games.stendhal.server.maps.quests.SadScientist;
 import games.stendhal.server.maps.quests.SemosMineTownRevivalWeeks;
 import games.stendhal.server.maps.quests.SevenCherubs;
+import games.stendhal.server.maps.quests.SheepGrowing;
 import games.stendhal.server.maps.quests.Snowballs;
 import games.stendhal.server.maps.quests.SolveRiddles;
 import games.stendhal.server.maps.quests.Soup;
@@ -218,6 +219,7 @@ public class StendhalQuestSystem {
 		loadQuest(new RingMaker());
 		loadQuest(new SadScientist());
 		loadQuest(new PaperChase()); // needs to be loaded before SemosMineTownRevivalWeeks
+		loadQuest(new SheepGrowing());
 		loadQuest(new SolveRiddles());
 		loadQuest(new SevenCherubs());
 		loadQuest(new Snowballs());
