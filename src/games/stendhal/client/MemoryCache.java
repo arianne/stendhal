@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,22 +12,23 @@
 package games.stendhal.client;
 
 import java.lang.ref.Reference;
+import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 
-import org.apache.log4j.Logger;
-
 /**
  * A Map like cache that uses SoftReferences to store the cached items to allow
- * the garbage collector to reclaim the memory in need.
+ * the garbage collector to reclaim the memory in need. Unlike WeakHashMap, the
+ * entries are retained by value rather than by key.
  *
  * @param <K> key type
  * @param <V> value type
  */
 public class MemoryCache<K, V> {
-	private static final Logger logger = Logger.getLogger(MemoryCache.class);
 	/** The actual map to store things */
-	private HashMap<K, Reference<V>> map = new HashMap<K, Reference<V>>();
+	private final HashMap<K, Reference<V>> map = new HashMap<K, Reference<V>>();
+	/** Queue for the collected references. */
+	private final ReferenceQueue<V> queue = new ReferenceQueue<V>();
 
 	/**
 	 * Get an object from the cache.
@@ -37,19 +38,10 @@ public class MemoryCache<K, V> {
 	 * 	for the key in the cache
 	 */
 	public V get(K key) {
+		pruneMap();
 		Reference<V> ref = map.get(key);
 		if (ref != null) {
-			V obj = ref.get();
-			/*
-			 * Keys won't be reclaimed normally, but for any sane usage the
-			 * memory use of the keys is insignificant compared to that of the
-			 * value objects.
-			 */
-			if (obj == null) {
-				logger.debug("cache cleared: " + key);
-				map.remove(key);
-			}
-			return obj;
+			return ref.get();
 		}
 		return null;
 	}
@@ -61,11 +53,52 @@ public class MemoryCache<K, V> {
 	 * @param value the object to be stored
 	 */
 	public void put(K key, V value) {
+		pruneMap();
 		// Disallow storing null keys
 		if (key == null) {
 			return;
 		}
-		Reference<V> ref = new SoftReference<V>(value);
+		Reference<V> ref = new Entry<K, V>(key, value, queue);
 		map.put(key, ref);
+	}
+	
+	/**
+	 * Discard the collected entries.
+	 */
+	private void pruneMap() {
+		Reference<? extends V> ref = queue.poll();
+		while (ref != null) {
+			/* 
+			 * The cast is guaranteed to be correct as we allow only Entries to
+			 * the queue. This would not be needed if ReferenceQueue was typed
+			 * according to the reference instead of according to the type of
+			 * the referred object.
+			 */
+			map.remove(((Entry) ref).key);
+			ref = queue.poll();
+		}
+	}
+	
+	/**
+	 * A container for values that remembers the used key to help cleaning
+	 * unused keys from the map.
+	 * 
+	 * @param <K> key type
+	 * @param <V> value type
+	 */
+	static class Entry<K, V> extends SoftReference<V> {
+		K key;
+		/**
+		 * Create a new Entry.
+		 * 
+		 * @param key key used for storing the value
+		 * @param value stored value
+		 * @param queue queue for the garbage collector to place the entry when
+		 *	it has been claimed
+		 */
+		Entry(K key, V value, ReferenceQueue<? super V> queue) {
+			super(value, queue);
+			this.key = key;
+		}
 	}
 }
