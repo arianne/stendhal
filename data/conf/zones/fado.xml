@@ -731,6 +731,7 @@ For example say:  11  if you want the room called Water of Love.
  </zone>
 <zone name="0_fado_forest_s" level="0" x="499744" y="500640" file="Level 0/fado/forest_s.tmx">
  <configurator class-name="games.stendhal.server.maps.fado.forest.BeeKeeperNPC" />
+ <configurator class-name="games.stendhal.server.maps.fado.forest.OldWomanNPC" />
  <configurator class-name="games.stendhal.server.maps.fado.forest.ItemsOnTable" />
 </zone>
 <zone name="0_fado_forest_se" level="0" x="499872" y="500640" file="Level 0/fado/forest_se.tmx">
