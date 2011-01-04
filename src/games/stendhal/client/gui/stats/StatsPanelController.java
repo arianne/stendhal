@@ -216,7 +216,10 @@ public class StatsPanelController {
 	 */
 	private class EatingChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
+			// Deleted attribute can raise a null event
 			if (event == null) {
+				panel.setEating(false);
+				panel.setChoking(false);
 				return;
 			}
 			
@@ -234,11 +237,13 @@ public class StatsPanelController {
 	 */
 	private class PoisonedChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
-			if (event == null) {
-				return;
+			// Deleted attribute can raise a null event
+			Object value = null;
+			if (event != null) {
+				value = event.getNewValue();
 			}
 			
-			panel.setPoisoned(event.getNewValue() != null);
+			panel.setPoisoned(value != null);
 		}
 	}
 	
@@ -247,11 +252,13 @@ public class StatsPanelController {
 	 */
 	private class AwayChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
-			if (event == null) {
-				return;
+			// Deleted attribute can raise a null event
+			Object value = null;
+			if (event != null) {
+				value = event.getNewValue();
 			}
 			
-			panel.setAway(event.getNewValue() != null);
+			panel.setAway(value != null);
 		}
 	}
 	
@@ -278,11 +285,13 @@ public class StatsPanelController {
 	 */
 	private class GrumpyChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
-			if (event == null) {
-				return;
+			// Deleted attribute can raise a null event
+			Object value = null;
+			if (event != null) {
+				value = event.getNewValue();
 			}
 			
-			panel.setGrumpy(event.getNewValue() != null);
+			panel.setGrumpy(value != null);
 		}
 	}
 	
