@@ -22,11 +22,14 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.IncrementQuestAction;
-import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -241,30 +244,6 @@ public class DailyMonsterQuest extends AbstractQuest {
 		*/
 	}	
 
-	static class DailyQuestCompleteAction implements ChatAction {
-		
-		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-			final String questInfo = player.getQuest(QUEST_SLOT);
-			String questCount = null;
-			String questLast = null;
-			
-			//logger.info("Inside DailyQuestCompleteAction");
-			final String[] tokens = (questInfo + ";0;0").split(";");
-			//questLast = tokens[1];
-			questCount = tokens[2];
-			if (questCount.equals("null")) {
-				questCount = "0";
-			}
-
-			new IncreaseXPDependentOnLevelAction(5, 95.0).fire(player, sentence, raiser);			
-			raiser.say("Good work! Let me thank you in the name of the people of Semos!");
-			player.addKarma(5.0);
-			questCount = "" + (Integer.valueOf(questCount) + 1);
-			questLast = "" + (new Date()).getTime();
-			player.setQuest(QUEST_SLOT, "done" + ";" + questLast + ";"	+ questCount);
-		}
-	}
-
 	static class DailyQuestAbortAction implements ChatAction {
 
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
@@ -469,11 +448,14 @@ public class DailyMonsterQuest extends AbstractQuest {
 						new QuestNotCompletedCondition(QUEST_SLOT),
 				        new KilledForQuestCondition(QUEST_SLOT, 0)),
 				ConversationStates.ATTENDING, 
-				null,
+				"Good work! Let me thank you in the name of the people of Semos!",
 				new MultipleActions(
-						new DailyQuestCompleteAction(),
+						new IncreaseXPDependentOnLevelAction(5, 95.0),
+						new IncreaseKarmaAction(5.0),
 						new ProcessReachedQuestAchievementsAction(),
-						new IncrementQuestAction(QUEST_SLOT, 2, 1)
+						new IncrementQuestAction(QUEST_SLOT, 2, 1),
+						new SetQuestToTimeStampAction(QUEST_SLOT,1),
+						new SetQuestAction(QUEST_SLOT,0,"done")
 		));
 	}
 
