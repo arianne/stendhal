@@ -166,6 +166,11 @@ public class PlayerTransformer implements Transformer {
 		}
 	}
 	
+	/**
+	 * Transforms the RPObjects in the spells slots to the real spell objects
+	 * 
+	 * @param player
+	 */
 	private void loadSpellsIntoSlots(Player player) {
 		// load spells
 		// use list of slot names to make code easily extendable in case spell can be put into
@@ -178,6 +183,7 @@ public class PlayerTransformer implements Transformer {
 			for (final RPObject objectInSlot : slot) {
 				objects.add(objectInSlot);
 			}
+			// clear the slot
 			slot.clear();
 			SpellTransformer transformer = new SpellTransformer();
 			//transform rpobjects in slot to spell
