@@ -1,4 +1,4 @@
-	package games.stendhal.server.maps.semos.city;
+package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -46,57 +46,10 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 	/** The area covering the sheep pen in Semos */
 	private Area pen;
 
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
-		final SpeakerNPC npc = new SpeakerNPC("Sato") {
-			@Override
-			public void createDialog() {
-				addGreeting();
-				addJob("I buy sheep here in Semos, then I send them up to Ados where they are exported.");
-				addHelp("I purchase sheep, at what I think is a fairly reasonable price. Just say if you want to #sell #sheep, and I will set up a deal!");
-				addGoodbye();
-			}
+	public class SheepBuyerSpeakerNPC extends SpeakerNPC {
 
-			@Override
-			protected void createPath() {
-				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(40, 45));
-				nodes.add(new Node(58, 45));
-				nodes.add(new Node(58, 22));
-				nodes.add(new Node(39, 22));
-				nodes.add(new Node(39, 15));
-				nodes.add(new Node(23, 15));
-				nodes.add(new Node(23, 45));
-				setPath(new FixedPath(nodes, true));
-			}
-		};
-		final Map<String, Integer> buyitems = new HashMap<String, Integer>();
-		buyitems.put("sheep", 150);
-		new BuyerAdder().add(npc, new SheepBuyerBehaviour(buyitems), true);
-		npc.setPosition(40, 45);
-		npc.setEntityClass("buyernpc");
-		zone.add(npc);
-		npc.setDescription("You see Sato. He loves sheep.");
-	}
-
-	class SheepBuyerBehaviour extends BuyerBehaviour {
-		SheepBuyerBehaviour(final Map<String, Integer> items) {
-			super(items);
-		}
-
-		private int getValue(final Sheep sheep) {
-			return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) Sheep.MAX_WEIGHT));
-		}
-
-		@Override
-		public int getCharge(final Player player) {
-			if (player.hasSheep()) {
-				final Sheep sheep = player.getSheep();
-				return getValue(sheep);
-			} else {
-				// npc's answer was moved to BuyerAdder. 
-				return 0;
-			}
+		public SheepBuyerSpeakerNPC(String name) {
+			super(name);
 		}
 		
 		/**
@@ -165,7 +118,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		 * 
 		 * @param sheep the sheep to be moved
 		 */
-		private void moveSheep(Sheep sheep) {
+		public void moveSheep(Sheep sheep) {
 			// The area of the sheed den.
 			int x = Rand.randUniform(SHEEP_PEN_X, SHEEP_PEN_X + SHEEP_PEN_WIDTH - 1);
 			int y = Rand.randUniform(SHEEP_PEN_Y, SHEEP_PEN_Y + SHEEP_PEN_HEIGHT - 1);
@@ -188,6 +141,60 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 				sheep.getZone().remove(sheep);  
 			}
 		}
+	}
+	
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		final SpeakerNPC npc = new SheepBuyerSpeakerNPC("Sato") {
+			@Override
+			public void createDialog() {
+				addGreeting();
+				addJob("I buy sheep here in Semos, then I send them up to Ados where they are exported.");
+				addHelp("I purchase sheep, at what I think is a fairly reasonable price. Just say if you want to #sell #sheep, and I will set up a deal!");
+				addGoodbye();
+			}
+
+			@Override
+			protected void createPath() {
+				final List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(40, 45));
+				nodes.add(new Node(58, 45));
+				nodes.add(new Node(58, 22));
+				nodes.add(new Node(39, 22));
+				nodes.add(new Node(39, 15));
+				nodes.add(new Node(23, 15));
+				nodes.add(new Node(23, 45));
+				setPath(new FixedPath(nodes, true));
+			}
+		};
+		final Map<String, Integer> buyitems = new HashMap<String, Integer>();
+		buyitems.put("sheep", 150);
+		new BuyerAdder().add(npc, new SheepBuyerBehaviour(buyitems), true);
+		npc.setPosition(40, 45);
+		npc.setEntityClass("buyernpc");
+		zone.add(npc);
+		npc.setDescription("You see Sato. He loves sheep.");
+	}
+
+	class SheepBuyerBehaviour extends BuyerBehaviour {
+		SheepBuyerBehaviour(final Map<String, Integer> items) {
+			super(items);
+		}
+
+		private int getValue(final Sheep sheep) {
+			return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) Sheep.MAX_WEIGHT));
+		}
+
+		@Override
+		public int getCharge(final Player player) {
+			if (player.hasSheep()) {
+				final Sheep sheep = player.getSheep();
+				return getValue(sheep);
+			} else {
+				// npc's answer was moved to BuyerAdder. 
+				return 0;
+			}
+		}
 
 		@Override
 		public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
@@ -207,7 +214,12 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 					player.removeSheep(sheep);
 
 					player.notifyWorldAboutChanges();
-					moveSheep(sheep);
+					if(seller.getEntity() instanceof SheepBuyerSpeakerNPC) {
+						((SheepBuyerSpeakerNPC)seller.getEntity()).moveSheep(sheep);
+					} else {
+						// only to prevent that an error occurs and the sheep does not disappear
+						sheep.getZone().remove(sheep);
+					}
 
 					return true;
 				}

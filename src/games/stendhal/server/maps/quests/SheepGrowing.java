@@ -16,10 +16,12 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.semos.city.SheepBuyerNPC.SheepBuyerSpeakerNPC;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -110,11 +112,19 @@ public class SheepGrowing extends AbstractQuest {
 	private void preparePlayerGetsSheepStep() {
 		final SpeakerNPC npc = npcs.get("Nishiya");
 		
-		// If quest is not done or started yet ask player for help
+		// If quest is not done or started yet ask player for help (if he does not have a sheep already)
+		ChatCondition playerHasNoSheep = new ChatCondition() {
+			public boolean fire(Player player, Sentence sentence, Entity npc) {
+				return !player.hasSheep();
+			}
+		};
 		npc.add(
 				ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestNotActiveCondition(QUEST_SLOT),
+				new AndCondition(playerHasNoSheep, 
+						new QuestNotInStateCondition(QUEST_SLOT, "start"), 
+						new QuestNotInStateCondition(QUEST_SLOT, "handed_over"),
+						new QuestNotInStateCondition(QUEST_SLOT, "done")),
 				ConversationStates.QUEST_OFFERED,
 				"Lately I am very busy with all my sheep. " +
 				"Would you be willing to take care of one of my sheep and hand it over to #Sato? " +
@@ -136,6 +146,7 @@ public class SheepGrowing extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 					new QuestActiveCondition(QUEST_SLOT),
+					new NotCondition(new QuestInStateCondition(QUEST_SLOT, "asked")),
 					new NotCondition(new QuestInStateCondition(QUEST_SLOT, "handed_over"))),
 				ConversationStates.ATTENDING,
 				"I already gave you one of my sheep. " +
@@ -170,11 +181,15 @@ public class SheepGrowing extends AbstractQuest {
 			public void fire(Player player, Sentence sentence, EventRaiser npc) {
 				// remove sheep
 				final Sheep sheep = player.getSheep();
-				// TODO Here the moveSheep method should be called if possible.
 				if(sheep != null) {
 					player.removeSheep(sheep);
 					player.notifyWorldAboutChanges();
-					sheep.getZone().remove(sheep);
+					if(npc.getEntity() instanceof SheepBuyerSpeakerNPC) {
+						((SheepBuyerSpeakerNPC)npc.getEntity()).moveSheep(sheep);
+					} else {
+						// only to prevent that an error occurs and the sheep does not disappear
+						sheep.getZone().remove(sheep);
+					}
 				} else {
 					// should not happen
 					npc.say("What? What sheep? Did I miss something?");
@@ -204,7 +219,10 @@ public class SheepGrowing extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(playerHasFullWeightSheep,sheepIsNearEnough),
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT,"start"),
+						playerHasFullWeightSheep,
+						sheepIsNearEnough),
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				"Hello. What a nice and healthy sheep is following you there! Is that one for me?",
 				null);
@@ -274,6 +292,14 @@ public class SheepGrowing extends AbstractQuest {
 				new QuestInStateCondition(QUEST_SLOT, "handed_over"),
 				ConversationStates.IDLE,
 				"Well... ok. But don't forget it. Sato needs the sheep very soon.",
+				null);
+		
+		// Player asks for quest after solving the quest
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Sorry. I have nothing to do for you at the moment. But thank you again for your help.",
 				null);
 	}
 }
