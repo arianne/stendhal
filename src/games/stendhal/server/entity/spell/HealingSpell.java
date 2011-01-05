@@ -18,6 +18,7 @@
 
 package games.stendhal.server.entity.spell;
 
+import marauroa.common.game.RPObject;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -36,6 +37,10 @@ public class HealingSpell extends Spell {
 			final int rate, final int regen) {
 		super(name, nature, amount, atk, cooldown, def, lifesteal, mana, minimumlevel, range,
 				rate, regen);
+	}
+	
+	public HealingSpell(RPObject object) {
+		super(object);
 	}
 
 	@Override

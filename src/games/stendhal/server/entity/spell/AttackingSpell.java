@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.spell;
 
+import marauroa.common.game.RPObject;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -25,6 +26,10 @@ public class AttackingSpell extends Spell {
 			int minimumlevel, int range, int rate, int regen) {
 		super(name, nature, amount, atk, cooldown, def, lifesteal, mana, minimumlevel,
 				range, rate, regen);
+	}
+	
+	public AttackingSpell(RPObject object) {
+		super(object);
 	}
 
 	@Override
