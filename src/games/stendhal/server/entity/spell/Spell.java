@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
  */
 public abstract class Spell extends PassiveEntity implements EquipListener, Dateable {
 	
-	private static final String RPCLASS_SPELL = "spell";
+	public static final String RPCLASS_SPELL = "spell";
 
 	/**The spell name attribute name.*/
 	private static final String ATTR_NAME = "name";

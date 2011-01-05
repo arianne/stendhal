@@ -20,10 +20,12 @@ import games.stendhal.server.core.engine.transformer.MarketTransformer;
 import games.stendhal.server.core.engine.transformer.OfferTransformer;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.core.engine.transformer.RentedSignTransformer;
+import games.stendhal.server.core.engine.transformer.SpellTransformer;
 import games.stendhal.server.core.engine.transformer.StoredChestTransformer;
 import games.stendhal.server.core.engine.transformer.Transformer;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
+import games.stendhal.server.entity.spell.Spell;
 import games.stendhal.server.entity.trade.Earning;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
@@ -60,6 +62,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		transformerMap.put(Earning.EARNING_RPCLASS_NAME, new EarningTransformer());
 		transformerMap.put(Market.MARKET_RPCLASS_NAME, new MarketTransformer());
 		transformerMap.put("player", new PlayerTransformer());
+		transformerMap.put(Spell.RPCLASS_SPELL, new SpellTransformer());
 	}
 	
 	private void fixRPClass(final RPObject object) {
@@ -89,10 +92,8 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		if (trafo == null) {
 
 			return super.transform(object);
-		} else {
-			return trafo.transform(object);
-		}
-
+		} 
+		return trafo.transform(object);
 	}
 
 
