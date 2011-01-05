@@ -552,6 +552,7 @@ island	OBJ	islands
 it	OBJ-PRO	they
 item	OBJ	items
 jail	OBJ	jails
+jar	OBJ	jars
 job	OBJ	jobs
 joke	OBJ	jokes
 juice	OBJ-FOO-FLU	juices
