@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.player.Player;
@@ -32,10 +33,9 @@ public class SellerBehaviourTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		PlayerTestHelper.generatePlayerRPClasses();
-		PlayerTestHelper.generateNPCRPClasses();
+		new RPClassGenerator().createRPClassesWithoutBaking(); // for Player, NPC and TradeStateChangeEvent RPClasses
 	}
-	
+
 	/**
 	 * Tests for sellerBehaviour.
 	 */
@@ -99,6 +99,39 @@ public class SellerBehaviourTest {
 
 	    npc.getEngine().step(player, "buy 1 bottle of wine");
 		assertEquals("Sorry, I don't sell glasses of wine.", getReply(npc));
+	}
+	
+	/**
+	 * Tests for scrolls.
+	 */
+	@Test
+	public void testScrolls() {
+		final Map<String, Integer> pricelist = new HashMap<String, Integer>();
+		pricelist.put("fado city scroll", 1000);
+		pricelist.put("empty scroll", 3000);
+		final SellerBehaviour sb = new SellerBehaviour(pricelist);
+		final SpeakerNPC npc = new SpeakerNPC("npc");
+		npc.addGreeting("Hello!");
+		new SellerAdder().addSeller(npc, sb);
+	    final Player player = PlayerTestHelper.createPlayer("bob");
+
+	    npc.getEngine().step(player, "hi");
+		assertEquals("Hello!", getReply(npc));
+
+	    npc.getEngine().step(player, "buy fado city scroll");
+		assertEquals("A fado city scroll will cost 1000. Do you want to buy it?", getReply(npc));
+	    npc.getEngine().step(player, "no");
+
+	    npc.getEngine().step(player, "buy two empty scrolls");
+		assertEquals("2 empty scrolls will cost 6000. Do you want to buy them?", getReply(npc));
+	    npc.getEngine().step(player, "no");
+		assertEquals("Ok, how else may I help you?", getReply(npc));
+
+	    npc.getEngine().step(player, "buy scroll");
+		assertEquals("Please specify which sort of scroll you want to buy.", getReply(npc));
+
+	    npc.getEngine().step(player, "buy anything-else");
+		assertEquals("Sorry, I don't sell anything-else", getReply(npc));
 	}
 
 }
