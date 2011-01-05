@@ -50,6 +50,7 @@ public class StoredChest extends Chest {
 	public void open() {
 		chestListener = new ChestListener();
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, chestListener);
+		logger.info("Opening chest in zone " + getZone().getName() + " with " + getSlot("content").size() + " items.");
 		super.open();
 	}
 
@@ -58,6 +59,7 @@ public class StoredChest extends Chest {
 		super.close();
 		StendhalRPZone zone = this.getZone();
 		if (zone != null) {
+			logger.info("Storing chest in zone " + zone.getName() + " with " + getSlot("content").size() + " items.");
 			zone.storeToDatabase();
 		}
 	}
