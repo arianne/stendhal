@@ -17,6 +17,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import java.util.Date;
+
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 
@@ -36,6 +39,8 @@ import utilities.ZonePlayerAndNPCTestImpl;
 public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "0_kalavan_city_gardens";
+
+	private static final String QUEST_SLOT = "granny_brew_tea";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -124,11 +129,30 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("OK, I will brew a cup of tea for you, but that will take some time. Please come back in 3 minutes.", getReply(npc));
 		assertFalse(player.isEquipped("tea"));
 
-// wait 3 minutes
-		
-//		assertTrue(player.isEquipped("tea", 1));
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Bye now.", getReply(npc));
+
+		// wait one minute
+		long newOrderTime = new Date().getTime() - 1*60*1000;
+		player.setQuest(QUEST_SLOT, 2, Long.toString(newOrderTime));
+
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Welcome back! I'm still busy with your order to brew a cup of tea for you. Come back in 2 minutes to get it.", getReply(npc));
 
 		assertTrue(en.step(player, "bye"));
+		assertEquals("Bye now.", getReply(npc));
+
+		// wait three minutes
+		newOrderTime = new Date().getTime() - 3*60*1000;
+		player.setQuest(QUEST_SLOT, 2, Long.toString(newOrderTime));
+
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Welcome back! I'm done with your order. Here you have the cup of tea.", getReply(npc));
+
+		assertTrue(player.isEquipped("tea", 1));
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Bye now.", getReply(npc));
 	}
 
 	/**
@@ -142,8 +166,11 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "hi Granny Graham"));
 		assertEquals("Hello, dear.", getReply(npc));
 
-		// Currently there are no response to sell sentences for Granny Graham.
+		// Currently there are no response to buy sentences for Granny Graham.
 		assertFalse(en.step(player, "buy"));
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Bye now.", getReply(npc));
 	}
 
 	/**
@@ -159,6 +186,9 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		// Currently there are no response to sell sentences for Granny Graham.
 		assertFalse(en.step(player, "sell"));
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Bye now.", getReply(npc));
 	}
 
 }
