@@ -18,7 +18,11 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.effect.DamageEffect;
-
+/**
+ * A spell to attack an entity
+ * 
+ * @author madmetzger
+ */
 public class AttackingSpell extends Spell {
 
 	public AttackingSpell(String name, Nature nature, int amount, int atk,
