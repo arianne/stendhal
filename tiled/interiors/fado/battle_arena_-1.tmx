@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <tileset name="bricked paving" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/bricked_paving.png"/>
  </tileset>
@@ -45,7 +44,7 @@
  </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2bzU7EIBCAiQ/pYY1768GDj2hMb27WN/GgjyDGblJrGeaHoTDD4QvZpJkw81HKUnoKITwC3HcOlNs5MkWeAY7uvxQot6fIy+r33U57dP9L5L+X1y3/KXPN0f2Xkspr+Mf5h+YPCR8LWvFvSP1D84eEzwWt+Gsk/q22FP9WW45/7pjjjlnpGM/5n4QxNHKvVYP1+C+de204/cP6twLHvzUo/q1B8W8NyfxvBc/+tzXA+LfGmP9x/q0z7n+f/jH3v1Uwz3+rcP7/WcWj/9Q42Nv/sY7n+X+b5/D/d//XC8P///w94Hn9N/z79k/Z/7PGWP/vO/biPzUOoPe/VoHWf15y97j+S83/0PkPa2je/63XTOP530LOmD5oPv9bumegPnDe//aQO+W9Hef9X6vnfTh9pfpvYUxTa0GpF+b8nxVae/6/Hph7Df/XDJfI18IFcf21I/9z5BR5CL9n0FPt9gw8dP058Peqa/ufBX1NId2r5/jn1kBjX1ESs6R/TE00/HNjQnlR/WPHQy3/uX7mWsn3HxRX2DUkdF0qJrel+KfWAuOKGlvjWx2NmFquWvZfo669xOzZfynmUH7+14j5k/9bwK29KbwrxNWK+Q17k0SyAEAAAA==
+   H4sIAAAAAAAAAO2bvW7DIBCAUR+yQ6pm89Chj9jBW6PkTTq0j1CqOpLrmuN+OAx3DJ9QJOvE3YcxwfgUQngGeOwcKLdzZIq8AhzdfylQbi+Rt9Xvh5326P6XyH8vr3v+U+aao/svJZXX8I/zD80fEj4WtOLfkfqH5g8Jnwta8ddI/FttKf6tthz/3DHHHbPSMZ7zPwljaOReqwbr8V8699pw+of1bwWOf2tQ/FuD4t8akvnfCp79b2uA8W+NMf/j/Ftn3P8+/WPuf6tgnv9W4fz/s4pH/6lxsLf/Yx3P8/82z+H/7/6vF4b///l7wPP6b/j37Z+y/2eNsf7fd+zFf2ocQO9/rQKt/7zk7nH9l5r/ofMf1tC8/1uvmcbzv4WcMX3QfP63dM9AfeC8/+0hd8p7O877v1bP+3D6SvXfwpim1oJSL8z5Pyt4fv5D87+W/2uGS+Rr4YK4/tqR/zlyijyF3zPoqXZ7Bh66/hz4e9W1/c+CvqaQ7tVz/HNroLGvKIlZ0j+mJhr+uTGhvKj+seOhlv9cP3Ot5PsPiivsGhK6LhWT21L8U2uBcUWNrfGtjkZMLVct+69R115i9uy/FHMoP/9rxPzJ/z3g1t4UbgpxtWJ+A836NZAAQAAA
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="64">
