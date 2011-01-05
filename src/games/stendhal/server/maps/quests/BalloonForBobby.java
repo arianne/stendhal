@@ -77,7 +77,7 @@ public class BalloonForBobby extends AbstractQuest {
 		// get a reference to Bobby
 		SpeakerNPC npc = npcs.get("Bobby");
 
-		// Add conversation states for all 4 different kinds of balloons
+		// Add conditions for all 4 different kinds of balloons
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
@@ -116,6 +116,7 @@ public class BalloonForBobby extends AbstractQuest {
 				ConversationStates.QUEST_ITEM_QUESTION,
 				"Is that balloon for me?",
 				null);
+
 		npc.add(
 				ConversationStates.ATTENDING,
 				"balloon",
