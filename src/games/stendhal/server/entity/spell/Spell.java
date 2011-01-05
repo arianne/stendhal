@@ -196,6 +196,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		put(ATTR_MINIMUMLEVEL, minimumlevel);
 		put(ATTR_RANGE, range);
 		put(ATTR_RATE, rate);
+		put(ATTR_REGEN, regen);
 		put(ATTR_NATURE, nature.name());
 		put("type", "spell");
 	}
