@@ -33,6 +33,7 @@ import games.stendhal.server.entity.slot.Banks;
 import games.stendhal.server.entity.slot.PlayerKeyringSlot;
 import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.entity.slot.PlayerTradeSlot;
+import games.stendhal.server.entity.spell.Spell;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -73,6 +74,7 @@ public class PlayerTransformer implements Transformer {
 		player.stopAttack();
 
 		loadItemsIntoSlots(player);
+		loadSpellsIntoSlots(player);
 		player.cancelTradeInternally(null);
 
 		// buddy handling with maps
@@ -163,6 +165,32 @@ public class PlayerTransformer implements Transformer {
 			logger.error("cannot create player", e);
 		}
 	}
+	
+	private void loadSpellsIntoSlots(Player player) {
+		// load spells
+		// use list of slot names to make code easily extendable in case spell can be put into
+		// different slots
+		final List<String> slotsSpells = Arrays.asList("spells");
+		for(String slotName : slotsSpells) {
+			RPSlot slot = player.getSlot(slotName);
+			List<RPObject> objects = new LinkedList<RPObject>();
+			// collect objects from slot before clearing and transforming
+			for (final RPObject objectInSlot : slot) {
+				objects.add(objectInSlot);
+			}
+			slot.clear();
+			SpellTransformer transformer = new SpellTransformer();
+			//transform rpobjects in slot to spell
+			for(RPObject o : objects) {
+				Spell s = (Spell) transformer.transform(o);
+				//only add to slot if transforming was successful
+				if(s != null) {
+					slot.add(s);
+				}
+			}
+		}
+	}
+	
 	private static Logger logger = Logger.getLogger(PlayerTransformer.class);
 	
 	/**
