@@ -68,8 +68,8 @@ public class Gate2DView extends Entity2DView {
 
 	@Override
 	public void onAction(final ActionType at) {
-		if (entity == null) {
-			Logger.getLogger(Entity2DView.class).error(
+		if (isReleased()) {
+			Logger.getLogger(Entity2DView.class).debug(
 					"View already released - action not processed: " + at);
 			return;
 		}

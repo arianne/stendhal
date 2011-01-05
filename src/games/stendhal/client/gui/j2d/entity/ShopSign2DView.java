@@ -58,6 +58,9 @@ class ShopSign2DView extends Sign2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case LOOK_CLOSELY:
 			at.send(at.fillTargetInfo(entity.getRPObject()));

@@ -128,6 +128,9 @@ class Sign2DView extends Entity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case LOOK_CLOSELY:
 		case READ:

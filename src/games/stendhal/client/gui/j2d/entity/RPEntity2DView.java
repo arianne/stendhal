@@ -324,9 +324,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		final int by = y - 3;
 
 		RPEntity rpentity = (RPEntity) entity;
-		if (rpentity == null) {
-			return;
-		}
 		
 		final float hpRatio = rpentity.getHpRatio();
 
@@ -398,9 +395,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void drawIdeas(final Graphics2D g2d, final int x,
 			final int y, final int height) {
 		RPEntity rpentity = (RPEntity) entity;
-		if (rpentity == null) {
-			return;
-		}
 		
 		if (rpentity.isEating()) {
 			if (rpentity.isChoking()) {
@@ -432,9 +426,6 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void drawCombat(final Graphics2D g2d, final int x,
 							  final int y, final int width, final int height) {
 		RPEntity rpentity = (RPEntity) entity;
-		if (rpentity == null) {
-			return;
-		}
 		
 		Rectangle2D wrect = rpentity.getArea();
 		final Rectangle srect = new Rectangle((int) (wrect.getX() * IGameScreen.SIZE_UNIT_PIXELS),
@@ -505,7 +496,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	private void drawAttack(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		RPEntity rpentity = (RPEntity) entity;
 		
-		if ((rpentity != null) && rpentity.isAttacking() && rpentity.getShownDamageType() != null) {
+		if (rpentity.isAttacking() && rpentity.getShownDamageType() != null) {
 			if (frameBladeStrike < NUM_ATTACK_FRAMES) {
 				RPEntity target = rpentity.getAttackTarget();
 
@@ -702,7 +693,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		super.buildActions(list);
 
 		RPEntity rpentity = (RPEntity) entity;
-		if ((rpentity != null) && rpentity.isAttackedBy(User.get())) {
+		if (rpentity.isAttackedBy(User.get())) {
 			list.add(ActionType.STOP_ATTACK.getRepresentation());
 		} else {
 			list.add(ActionType.ATTACK.getRepresentation());
@@ -889,6 +880,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		RPAction rpaction;
 
 		switch (at) {

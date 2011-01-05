@@ -124,6 +124,9 @@ class Spell2DView extends Entity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case USE:
 			at.send(at.fillTargetInfo(entity.getRPObject()));

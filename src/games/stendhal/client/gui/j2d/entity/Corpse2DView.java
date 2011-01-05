@@ -28,6 +28,8 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
 /**
  * The 2D view of a corpse.
  */
@@ -52,7 +54,7 @@ class Corpse2DView extends Entity2DView {
 	/**
 	 * The current content inspector.
 	 */
-	private SlotWindow slotWindow;
+	private volatile SlotWindow slotWindow;
 
 	/**
 	 * Create a 2D view of an entity.
@@ -194,22 +196,37 @@ class Corpse2DView extends Entity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case INSPECT:
-			boolean addListener = slotWindow == null;
+			boolean addListener = slotWindow == null; 
 			slotWindow = inspector.inspectMe(entity,
 					((Corpse) entity).getContent(), slotWindow, 2, 2);
+			SlotWindow window = slotWindow;
 			/*
 			 * Register a listener for window closing so that we can
 			 * drop the reference to the closed window and let the
 			 * garbage collector claim it.
 			 */
-			if (addListener && (slotWindow != null)) {
-				slotWindow.addCloseListener(new CloseListener() {
+			if (addListener && (window != null)) {
+				window.addCloseListener(new CloseListener() {
 					public void windowClosed(InternalWindow window) {
 						slotWindow = null;
 					}
 				});
+			}
+			/*
+			 * In case the view got released while the window was created and
+			 * added, and before the main thread was aware that there's a window
+			 * to be closed, close it now. (onAction is called from the event
+			 * dispatch thread).
+			 */
+			if (isReleased()) {
+				if (window != null) {
+					window.close();
+				}
 			}
 			break;
 
@@ -225,8 +242,13 @@ class Corpse2DView extends Entity2DView {
 	 */
 	@Override
 	public void release() {
-		if (slotWindow != null) {
-			slotWindow.close();
+		final SlotWindow window = slotWindow;
+		if (window != null) {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					window.close();
+				}
+			});
 		}
 
 		super.release();

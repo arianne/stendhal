@@ -149,7 +149,15 @@ class Item2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case USE:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			/*
+			 * Send use action even for released items, if they are in a slot.
+			 * Those get released when the slot contents change, and a new view
+			 * is created. Users expect to be able to use multiple double clicks
+			 * or using a menu created previously for the item.
+			 */
+			if (!isReleased() || !entity.isOnGround()) {
+				at.send(at.fillTargetInfo(entity.getRPObject()));
+			}
 			break;
 
 		default:

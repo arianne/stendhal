@@ -60,6 +60,10 @@ class CarrotGrower2DView extends GrainField2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
+			
 		switch (at) {
 		case PICK:
 			at.send(at.fillTargetInfo(entity.getRPObject()));

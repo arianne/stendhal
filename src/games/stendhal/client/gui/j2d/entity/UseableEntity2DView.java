@@ -162,6 +162,9 @@ class UseableEntity2DView extends Entity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		if (at == this.action) {
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 		} else {

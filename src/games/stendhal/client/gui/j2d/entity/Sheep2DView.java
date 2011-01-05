@@ -81,6 +81,9 @@ class Sheep2DView extends DomesticAnimal2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case LEAVE_SHEEP:
 			at.send(at.fillTargetInfo(entity.getRPObject()));

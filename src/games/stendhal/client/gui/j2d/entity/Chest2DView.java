@@ -28,6 +28,8 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.SwingUtilities;
+
 /**
  * The 2D view of a chest.
  */
@@ -216,6 +218,9 @@ class Chest2DView extends StateEntity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case INSPECT:
 			showWindow();
@@ -247,8 +252,13 @@ class Chest2DView extends StateEntity2DView {
 	 */
 	@Override
 	public void release() {
-		if (slotWindow != null) {
-			slotWindow.close();
+		SlotWindow window = slotWindow;
+		if (window != null) {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					slotWindow.close();
+				}
+			});
 		}
 
 		super.release();

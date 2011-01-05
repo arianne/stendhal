@@ -107,6 +107,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Some model value changed.
 	 */
 	private boolean changed;
+	
+	/**
+	 * Flag for detecting that the view has been released <code>true</code> if
+	 * the view has been released, <code>false</code> otherwise.
+	 */
+	private volatile boolean released = false;
 
 	public void initialize(final IEntity entity) {
 		if (entity == null) {
@@ -270,11 +276,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			g2d.drawRect(x, y, width, height);
 
 			g2d.setColor(Color.green);
-			// Another thread can remove entity
-			IEntity tmp = entity;
-			if (tmp != null) {
-				g2d.draw(tmp.getArea());
-			}
+			g2d.draw(entity.getArea());
 		}
 	}
 
@@ -729,8 +731,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	public void onAction(final ActionType at) {
 		IEntity entity = this.entity;
 		// return prematurely if view has already been released
-		if (entity == null) {
-			Logger.getLogger(Entity2DView.class).warn(
+		if (isReleased()) {
+			Logger.getLogger(Entity2DView.class).debug(
 					"View " + this + " already released - action not processed: " + at);
 			return;
 		}
@@ -770,7 +772,22 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	public void release() {
 		entity.removeChangeListener(this);
-		entity = null;
+		released = true;
+	}
+	
+	/**
+	 * Check if the view has been released. Usually a released view should not
+	 * be used anymore, but in certain situations it may be preferable to send
+	 * an action for a deleted entity to the server anyway. That can happen for
+	 * example with items in bag, where a new view gets created after an item
+	 * has changed, but the new view represents the same item stack as the old
+	 * one.
+	 * 
+	 * @return <code>true<code> if the view has been released, 
+	 * 	<code>false</code> otherwise 
+	 */
+	protected boolean isReleased() {
+		return released;
 	}
 
 	/**

@@ -263,6 +263,9 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case OWN:
 			at.send(at.fillTargetInfo(entity.getRPObject()));

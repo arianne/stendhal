@@ -62,9 +62,13 @@ class Box2DView extends Item2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
+		
 		switch (at) {
 		case OPEN:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+				at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
 		default:

@@ -68,9 +68,11 @@ class Portal2DView extends InvisibleEntity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case USE:
-
 			at.send(at.fillTargetInfo(((Portal) entity).getRPObject()));
 			break;
 

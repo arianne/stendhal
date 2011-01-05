@@ -216,10 +216,12 @@ class Door2DView extends StateEntity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case OPEN:
 		case CLOSE:
-			
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 

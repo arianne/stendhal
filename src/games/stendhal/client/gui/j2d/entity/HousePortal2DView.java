@@ -68,6 +68,9 @@ class HousePortal2DView extends InvisibleEntity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case USE:
 		case KNOCK:

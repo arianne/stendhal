@@ -79,6 +79,9 @@ class Pet2DView extends DomesticAnimal2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case LEAVE_PET:
 			at.send(at.fillTargetInfo(entity.getRPObject()));

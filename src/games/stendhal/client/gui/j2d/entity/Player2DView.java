@@ -118,7 +118,7 @@ class Player2DView extends RPEntity2DView {
 	protected AlphaComposite getComposite() {
 		// Check for ghostmode to avoid ignored ghostmode admins becoming visible
 		RPEntity rpentity = (RPEntity) entity;
-		if ((rpentity != null) && User.isIgnoring(rpentity.getName()) && !rpentity.isGhostMode()) {
+		if (User.isIgnoring(rpentity.getName()) && !rpentity.isGhostMode()) {
 			return AlphaComposite.DstOut;
 		}
 		return super.getComposite();
@@ -156,7 +156,7 @@ class Player2DView extends RPEntity2DView {
 	@Override
 	protected void buildActions(final List<String> list) {
 		RPEntity player = (RPEntity) entity;
-		if ((player != null) && !player.isGhostMode()) {
+		if (!player.isGhostMode()) {
 			super.buildActions(list);
 			
 			boolean hasBuddy = User.hasBuddy(player.getName());
@@ -185,9 +185,6 @@ class Player2DView extends RPEntity2DView {
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		Player player = (Player) entity;
-		if (player == null) {
-			return;
-		}
 		
 		boolean newIgnoreStatus = User.isIgnoring(player.getName());
 		if (newIgnoreStatus != ignored) {
@@ -221,6 +218,9 @@ class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case ADD_BUDDY:
 		case IGNORE:

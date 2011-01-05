@@ -33,6 +33,9 @@ public class TradeCenterSign2DView extends Sign2DView {
 	 */
 	@Override
 	public void onAction(ActionType at) {
+		if (isReleased()) {
+			return;
+		}
 		switch (at) {
 		case USE:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
