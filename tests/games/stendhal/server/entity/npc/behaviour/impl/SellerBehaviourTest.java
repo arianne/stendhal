@@ -100,9 +100,9 @@ public class SellerBehaviourTest {
 	    npc.getEngine().step(player, "buy 1 bottle of wine");
 		assertEquals("Sorry, I don't sell glasses of wine.", getReply(npc));
 	}
-	
+
 	/**
-	 * Tests for scrolls.
+	 * Tests for selling scrolls.
 	 */
 	@Test
 	public void testScrolls() {
@@ -131,7 +131,7 @@ public class SellerBehaviourTest {
 		assertEquals("Please specify which sort of scroll you want to buy.", getReply(npc));
 
 	    npc.getEngine().step(player, "buy anything-else");
-		assertEquals("Sorry, I don't sell anything-else", getReply(npc));
+		assertEquals("Sorry, I don't sell anything-elses.", getReply(npc));
 	}
 
 }

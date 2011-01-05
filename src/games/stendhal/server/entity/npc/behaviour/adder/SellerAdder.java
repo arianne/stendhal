@@ -77,23 +77,26 @@ public class SellerAdder {
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser raiser) {
 						// find out what the player wants to buy, and how much of it
-						if (behaviour.parseRequest(sentence)) {
+						boolean found = behaviour.parseRequest(sentence);
+						String chosenItemName = behaviour.getChosenItemName();
+
+						if (found) {
 							// find out if the NPC sells this item, and if so,
 							// how much it costs.
 							if (behaviour.getAmount() > 1000) {
 								logger.warn("Refusing to sell very large amount of "
 										+ behaviour.getAmount()
-										+ " " + behaviour.getChosenItemName()
+										+ " " + chosenItemName
 										+ " to player "
 										+ player.getName() + " talking to "
 										+ raiser.getName() + " saying "
 										+ sentence);
 								raiser.say("Sorry, the maximum number of " 
-										+ behaviour.getChosenItemName() 
+										+ chosenItemName 
 										+ " which I can sell at once is 1000.");
 								raiser.setCurrentState(ConversationStates.ATTENDING);
 							} else if (behaviour.getAmount() > 0) {
-								int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
+								int price = behaviour.getUnitPrice(chosenItemName)
 									* behaviour.getAmount();
 
 								StringBuilder builder = new StringBuilder();
@@ -101,9 +104,9 @@ public class SellerAdder {
 									price = (int) (SellerBehaviour.BAD_BOY_BUYING_PENALTY * price);
 
 									builder.append("To friends I charge less, but you seem like you have played unfairly here. So,  ");
-									builder.append(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName(), "a"));
+									builder.append(Grammar.quantityplnoun(behaviour.getAmount(), chosenItemName, "a"));
 								} else {
-									builder.append(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName(), "A"));
+									builder.append(Grammar.quantityplnoun(behaviour.getAmount(), chosenItemName, "A"));
 								}
 								builder.append(" will cost ");
 								builder.append(price);
@@ -112,16 +115,31 @@ public class SellerAdder {
 								builder.append("?");
 								raiser.say(builder.toString());
 							} else {
-								raiser.say("Sorry, how many " + Grammar.plural(behaviour.getChosenItemName()) + " do you want to buy?!");
+								raiser.say("Sorry, how many " + Grammar.plural(chosenItemName) + " do you want to buy?!");
 
 								raiser.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
-							if (behaviour.getChosenItemName() == null) {
+							if (chosenItemName == null) {
 								raiser.say("Please tell me what you want to buy.");
 							} else {
-								raiser.say("Sorry, I don't sell "
-										+ Grammar.plural(behaviour.getChosenItemName()) + ".");
+								boolean sellSortOf = false;
+
+								// search for items to sell with compound names, ending with the given expression
+								for(String itemName : behaviour.getItemNames()) {
+									if (itemName.endsWith(" "+chosenItemName)) {
+										sellSortOf = true;
+										break;
+									}
+								}
+
+								if (sellSortOf) {
+									raiser.say("Please specify which sort of "
+											+ chosenItemName + " you want to buy.");
+								} else {
+									raiser.say("Sorry, I don't sell "
+											+ Grammar.plural(chosenItemName) + ".");
+								}
 							}
 
 							raiser.setCurrentState(ConversationStates.ATTENDING);
