@@ -31,6 +31,7 @@ import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -315,5 +316,18 @@ public abstract class PlayerTestHelper {
 		for (String quest : quests) {
 			logger.info(quest + "=" + player.getQuest(quest));
 		}
+	}
+
+	/**
+	 * Set the (order) time in a quest slot back the specified number of seconds.
+	 * @param player
+	 * @param questSlot
+	 * @param index
+	 * @param time
+	 */
+	public void setPastTime(final Player player, final String questSlot, final int index, final long seconds) {
+		long pastTime = new Date().getTime() - seconds*1000;
+
+		player.setQuest(questSlot, 2, Long.toString(pastTime));
 	}
 }

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.plains;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -22,18 +26,17 @@ import org.junit.Test;
 
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 /**
- * Test for MillerNPC: mill grain.
+ * Test for MillerNPC: mill grain to flour.
  *
  * @author Martin Fuchs
  */
 public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "0_semos_plains_ne";
+
+	private static final String QUEST_SLOT = "jenny_mill_flour";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -90,23 +93,46 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "mill"));
 		assertEquals("I can only mill a sack of flour if you bring me 5 #'sheaves of grain'.", getReply(npc));
 
+		assertTrue(en.step(player, "mill flour"));
+		assertEquals("I can only mill a sack of flour if you bring me 5 #'sheaves of grain'.", getReply(npc));
+
 		assertTrue(en.step(player, "mill two sacks of flour"));
 		assertEquals("I can only mill 2 sacks of flour if you bring me 10 #'sheaves of grain'.", getReply(npc));
 
 		assertTrue(en.step(player, "mill grain"));
-		assertEquals("Sorry, I can only produce flour.", getReply(npc));
+		assertEquals("Sorry, I don't produce sheaves of grain.", getReply(npc));
 
-//TODO mf - complete milling test case
-//		assertTrue(equipWithItem(player, "scythe"));
-//
-//		assertTrue(equipWithItem(player, "chaos legs"));
-//		assertTrue(en.step(player, "sell chaos leg"));
-//		assertEquals("1 pair of chaos legs is worth 8000. Do you want to sell it?", getReply(npc));
-//
-//		assertFalse(player.isEquipped("money", 8000));
-//		assertTrue(en.step(player, "yes"));
-//		assertEquals("Thanks! Here is your money.", getReply(npc));
-//		assertTrue(player.isEquipped("money", 8000));
+		assertTrue(equipWithStackableItem(player, "grain", 10));
+
+		assertTrue(en.step(player, "mill two sacks of flour"));
+		assertEquals("I need you to fetch me 10 #'sheaves of grain' for this job. Do you have it?", getReply(npc));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("OK, I will mill 2 sacks of flour for you, but that will take some time. Please come back in 4 minutes.", getReply(npc));
+
+		assertFalse(player.isEquipped("flour"));
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Bye.", getReply(npc));
+
+		// wait one minute
+		setPastTime(player, QUEST_SLOT, 2, 1*60);
+
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Welcome back! I'm still busy with your order to mill 2 sacks of flour for you. Come back in 3 minutes to get it.", getReply(npc));
+
+		assertFalse(player.isEquipped("flour"));
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Bye.", getReply(npc));
+
+		// wait four minutes
+		setPastTime(player, QUEST_SLOT, 2, 4*60);
+
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Welcome back! I'm done with your order. Here you have 2 sacks of flour.", getReply(npc));
+
+		assertTrue(player.isEquipped("flour", 2));
 
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Bye.", getReply(npc));

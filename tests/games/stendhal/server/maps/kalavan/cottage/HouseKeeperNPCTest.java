@@ -17,9 +17,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-
-import java.util.Date;
-
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 
@@ -133,8 +130,7 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye now.", getReply(npc));
 
 		// wait one minute
-		long newOrderTime = new Date().getTime() - 1*60*1000;
-		player.setQuest(QUEST_SLOT, 2, Long.toString(newOrderTime));
+		setPastTime(player, QUEST_SLOT, 2, 1*60);
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Welcome back! I'm still busy with your order to brew a cup of tea for you. Come back in 2 minutes to get it.", getReply(npc));
@@ -143,8 +139,7 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye now.", getReply(npc));
 
 		// wait three minutes
-		newOrderTime = new Date().getTime() - 3*60*1000;
-		player.setQuest(QUEST_SLOT, 2, Long.toString(newOrderTime));
+		setPastTime(player, QUEST_SLOT, 3, 4*60);
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Welcome back! I'm done with your order. Here you have the cup of tea.", getReply(npc));
