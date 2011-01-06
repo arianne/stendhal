@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,8 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.NameSearch;
@@ -168,4 +170,27 @@ public class Behaviour {
 		return null;
 	}
 
+	/**
+	 * Answer with an error message when the command could not be executed.
+	 * @param chosenItemName
+	 * @param userAction
+	 * @param npcAction
+	 * @param raiser
+	 */
+	public void sayError(final String userAction, final String npcAction,
+			final String chosenItemName, final EventRaiser raiser) {
+		if (chosenItemName == null) {
+			raiser.say("Please tell me what you want to " + userAction + ".");
+		} else if (mayBeItems.size() > 1) {
+			raiser.say("There is more than one " + chosenItemName + ". " +
+					"Please specify which sort of "
+					+ chosenItemName + " you want to " + userAction + ".");
+		} else if (!mayBeItems.isEmpty()) {
+			raiser.say("Please specify which sort of "
+					+ chosenItemName + " you want to " + userAction + ".");
+		} else {
+			raiser.say("Sorry, I don't " + npcAction + " "
+					+ Grammar.plural(chosenItemName) + ".");
+		}
+	}
 }

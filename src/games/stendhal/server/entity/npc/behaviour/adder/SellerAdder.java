@@ -30,14 +30,10 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 
-import java.util.Set;
-
 import org.apache.log4j.Logger;
 
 public class SellerAdder {
 	private static Logger logger = Logger.getLogger(SellerAdder.class);
-	
-
 	
 	public void addSeller(final SpeakerNPC npc, final SellerBehaviour behaviour) {
 		addSeller(npc, behaviour, true);
@@ -122,24 +118,8 @@ public class SellerAdder {
 								raiser.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
-							if (chosenItemName == null) {
-								raiser.say("Please tell me what you want to buy.");
-							} else {
-								Set<String> mayBeItems = behaviour.getMayBeItems();
-	
-								if (mayBeItems.size() > 1) {
-									raiser.say("There is more than one " + chosenItemName + ". " +
-											"Please specify which sort of "
-											+ chosenItemName + " you want to buy.");
-								} else if (!mayBeItems.isEmpty()) {
-									raiser.say("Please specify which sort of "
-											+ chosenItemName + " you want to buy.");
-								} else {
-									raiser.say("Sorry, I don't sell "
-											+ Grammar.plural(chosenItemName) + ".");
-								}
-							}
-	
+							behaviour.sayError("buy", "sell", chosenItemName, raiser);
+
 							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}

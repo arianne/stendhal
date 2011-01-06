@@ -128,7 +128,7 @@ public class SellerBehaviourTest {
 		assertEquals("Ok, how else may I help you?", getReply(npc));
 
 	    npc.getEngine().step(player, "buy scroll");
-		assertEquals("Please specify which sort of scroll you want to buy.", getReply(npc));
+		assertEquals("There is more than one scroll. Please specify which sort of scroll you want to buy.", getReply(npc));
 
 	    npc.getEngine().step(player, "buy anything-else");
 		assertEquals("Sorry, I don't sell anything-elses.", getReply(npc));
