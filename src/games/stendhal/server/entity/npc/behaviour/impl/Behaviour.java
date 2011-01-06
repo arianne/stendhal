@@ -171,14 +171,12 @@ public class Behaviour {
 	}
 
 	/**
-	 * Answer with an error message when the command could not be executed.
-	 * @param chosenItemName
+	 * Answer with an error message in case the request could not be fulfilled.
 	 * @param userAction
 	 * @param npcAction
 	 * @param raiser
 	 */
-	public void sayError(final String userAction, final String npcAction,
-			final String chosenItemName, final EventRaiser raiser) {
+	public void sayError(final String userAction, final String npcAction, final EventRaiser raiser) {
 		if (chosenItemName == null) {
 			raiser.say("Please tell me what you want to " + userAction + ".");
 		} else if (mayBeItems.size() > 1) {

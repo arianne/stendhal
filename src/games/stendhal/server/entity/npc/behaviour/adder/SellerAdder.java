@@ -118,7 +118,7 @@ public class SellerAdder {
 								raiser.say("Sorry, how many " + Grammar.plural(chosenItemName) + " do you want to buy?!");
 							}
 						} else {
-							behaviour.sayError("buy", "sell", chosenItemName, raiser);
+							behaviour.sayError("buy", "sell", raiser);
 						}
 
 						if (!success) {

@@ -66,7 +66,7 @@ class MakingFabric {
 
 	private void makeThreadStep() {
     	final SpeakerNPC npc = npcs.get("Vincento Price");
-		
+
 		npc.addReply("silk", "Keep this quiet, ok? I'll spin silk thread from the silk glands of a giant spider. Just ask me to #make it.");
 		npc.addReply("silk gland", "Like I said, they come from giant spiders.");
 				
@@ -188,11 +188,7 @@ class MakingFabric {
     								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
     							}
     						} else {
-    							if (behaviour.getItemNames().size() == 1) { 
-    								npc.say("Sorry, I can only #make " + behaviour.getItemNames().iterator().next() + ".");
-    							} else {
-    								npc.say("Sorry, I don't understand you.");
-    							}
+    							behaviour.sayError("#make", "produce", npc);
     						}
 						}
 					}
