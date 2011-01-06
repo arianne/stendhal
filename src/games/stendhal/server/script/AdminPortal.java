@@ -1,4 +1,15 @@
 /* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.script;
 
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -15,7 +26,6 @@ import java.util.List;
  */
 public class AdminPortal extends ScriptImpl {
 
-
 	@Override
 	public void execute(final Player admin, final List<String> args) {
 		if (args.size() >= 2 && args.size() != 4) {
@@ -31,8 +41,7 @@ public class AdminPortal extends ScriptImpl {
 					"This script creates portals:\n" + 
 					"/script AdminPortal.class <destination-zone> <destination-ref>\n" + 
 					"/script AdminPortal.class <name> <destination-zone> <destination-ref>\n" + 
-					"/script AdminPortal.class <name> <destination-zone> <destination-ref> level <min-level> <max-level> [<reject-message>]" + 
-					"");
+					"/script AdminPortal.class <name> <destination-zone> <destination-ref> level <min-level> <max-level> [<reject-message>]");
 		}
 	}
 
