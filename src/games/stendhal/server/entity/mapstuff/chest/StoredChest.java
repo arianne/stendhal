@@ -49,7 +49,7 @@ public class StoredChest extends Chest {
 	@Override
 	public void open() {
 		chestListener = new ChestListener();
-		SingletonRepository.getTurnNotifier().notifyInTurns(0, chestListener);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(60, chestListener);
 		logger.info("Opening chest in zone " + getZone().getName() + " with " + getSlot("content").size() + " items.");
 		super.open();
 	}
@@ -151,12 +151,15 @@ public class StoredChest extends Chest {
 		 *            The current turn number.
 		 */
 		public void onTurnReached(final int currentTurn) {
+			StendhalRPZone zone = getZone();
+			if (zone != null) {
+				logger.info("Storing chest in zone " + zone.getName() + " with " + getSlot("content").size() + " items while it's open.");
+				zone.storeToDatabase();
+			}
 			if (chestCloser()) {
-				SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
+				SingletonRepository.getTurnNotifier().notifyInSeconds(60, this);
 			}
 		}
-		
-		
 	}
 
 	@Override
