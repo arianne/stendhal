@@ -75,7 +75,7 @@ public class MemoryCacheTest {
 	@Test
 	public void testEntry() {
 		String val1 = "foo";
-		MemoryCache.Entry entry = new MemoryCache.Entry<String, String>("a", val1, null);
+		MemoryCache.Entry<String, String> entry = new MemoryCache.Entry<String, String>("a", val1, null);
 		assertEquals("Key", "a", entry.key);
 		assertEquals("Value", val1, entry.get());
 	}

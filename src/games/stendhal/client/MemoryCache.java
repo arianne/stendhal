@@ -24,9 +24,10 @@ import java.util.HashMap;
  * @param <K> key type
  * @param <V> value type
  */
-public class MemoryCache<K, V> {
+public final class MemoryCache<K, V> {
 	/** The actual map to store things */
 	private final HashMap<K, Reference<V>> map = new HashMap<K, Reference<V>>();
+
 	/** Queue for the collected references. */
 	private final ReferenceQueue<V> queue = new ReferenceQueue<V>();
 
@@ -61,12 +62,14 @@ public class MemoryCache<K, V> {
 		Reference<V> ref = new Entry<K, V>(key, value, queue);
 		map.put(key, ref);
 	}
-	
+
 	/**
 	 * Discard the collected entries.
 	 */
+	@SuppressWarnings("unchecked")
 	private void pruneMap() {
 		Reference<? extends V> ref = queue.poll();
+
 		while (ref != null) {
 			/* 
 			 * The cast is guaranteed to be correct as we allow only Entries to
@@ -74,11 +77,11 @@ public class MemoryCache<K, V> {
 			 * according to the reference instead of according to the type of
 			 * the referred object.
 			 */
-			map.remove(((Entry) ref).key);
+			map.remove(((Entry<K, V>) ref).key);
 			ref = queue.poll();
 		}
 	}
-	
+
 	/**
 	 * A container for values that remembers the used key to help cleaning
 	 * unused keys from the map.
@@ -88,6 +91,7 @@ public class MemoryCache<K, V> {
 	 */
 	static class Entry<K, V> extends SoftReference<V> {
 		K key;
+
 		/**
 		 * Create a new Entry.
 		 * 
