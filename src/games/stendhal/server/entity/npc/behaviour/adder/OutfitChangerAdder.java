@@ -95,16 +95,6 @@ public class OutfitChangerAdder {
 						boolean found = behaviour.parseRequest(sentence);
 						String chosenItemName = behaviour.getChosenItemName();
 
-						// find out if the NPC sells this item, and if so,
-						// how much it costs.
-						if (!found && (behaviour.dealtItems().size() == 1)) {
-                			// The NPC only offers one type of outfit, so
-                			// it's clear what the player wants.
-							chosenItemName = behaviour.dealtItems().iterator().next();
-							behaviour.setChosenItemName(chosenItemName);
-							found = true;
-						}
-
 						if (found) {
 							// We ignore any amounts.
 							behaviour.setAmount(1);

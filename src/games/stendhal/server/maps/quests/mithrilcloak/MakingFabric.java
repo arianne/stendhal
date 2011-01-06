@@ -168,18 +168,12 @@ class MakingFabric {
 						} else {
 							boolean found = behaviour.parseRequest(sentence);
 
-							if (!found && (behaviour.getChosenItemName()==null) && (behaviour.getItemNames().size()==1)) {
-    							behaviour.setChosenItemName(behaviour.getItemNames().iterator().next());
-    							found = true;
-    						}
-							
     						if (found) {
-    	   						// Find out how much items we shall produce.
+        						// Find out how much items we shall produce.
 								if (behaviour.getAmount() < 40) {
 									npc.say("Do you really want so few? I'm not wasting my time with that! Any decent sized pieces of fabric needs at least 40 spools of thread! You should at least #make #40.");
 									return;
-								}
-    							if (behaviour.getAmount() > 1000) {
+								} else if (behaviour.getAmount() > 1000) {
     								/*logger.warn("Decreasing very large amount of "
 									 *		+ behaviour.getAmount()
 									 *		+ " " + behaviour.getChosenItemName()
@@ -189,7 +183,7 @@ class MakingFabric {
 									 */
     								behaviour.setAmount(40);
     							}
-								
+
     							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
     								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
     							}

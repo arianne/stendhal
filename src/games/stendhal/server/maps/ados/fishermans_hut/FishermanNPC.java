@@ -205,11 +205,6 @@ public class FishermanNPC implements ZoneConfigurator {
 						} else {
 							boolean found = behaviour.parseRequest(sentence);
 
-							if (!found && (behaviour.getChosenItemName()==null) && (behaviour.getItemNames().size()==1)) {
-    							behaviour.setChosenItemName(behaviour.getItemNames().iterator().next());
-    							found = true;
-    						}
-
     						if (found) {
         						// Find out how much items we shall produce.
     							if (behaviour.getAmount() > 1000) {

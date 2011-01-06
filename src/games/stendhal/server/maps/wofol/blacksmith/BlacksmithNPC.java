@@ -165,8 +165,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 									+ " for you. Please return in "
 									+ getApproximateRemainingTime(player) + " to get it. Don't forget to #remind me again ... ");
 						} else {
-							final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
-																														  getProductName());
+							final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(getProductName());
 
 							products.setQuantity(numberOfProductItems);
 
@@ -206,13 +205,8 @@ public class BlacksmithNPC implements ZoneConfigurator {
 						} else {
 							boolean found = behaviour.parseRequest(sentence);
 
-    						// Find out how much items we shall produce.
-    						if (!found && (behaviour.getChosenItemName() == null)) {
-    							behaviour.setChosenItemName(behaviour.getProductName());
-    							found = true;
-    						}
-
     						if (found) {
+        						// Find out how much items we shall produce.
     							if (behaviour.getAmount() > 1000) {
     								logger.warn("Decreasing very large amount of "
     										+ behaviour.getAmount()
