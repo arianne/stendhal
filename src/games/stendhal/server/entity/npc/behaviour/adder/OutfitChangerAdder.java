@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -93,13 +93,15 @@ public class OutfitChangerAdder {
 
 						// find out what the player wants to wear
 						boolean found = behaviour.parseRequest(sentence);
+						String chosenItemName = behaviour.getChosenItemName();
 
 						// find out if the NPC sells this item, and if so,
 						// how much it costs.
 						if (!found && (behaviour.dealtItems().size() == 1)) {
                 			// The NPC only offers one type of outfit, so
                 			// it's clear what the player wants.
-							behaviour.setChosenItemName(behaviour.dealtItems().iterator().next());
+							chosenItemName = behaviour.dealtItems().iterator().next();
+							behaviour.setChosenItemName(chosenItemName);
 							found = true;
 						}
 
@@ -107,19 +109,20 @@ public class OutfitChangerAdder {
 							// We ignore any amounts.
 							behaviour.setAmount(1);
 
-							final int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
+							final int price = behaviour.getUnitPrice(chosenItemName)
 									* behaviour.getAmount();
 
-							raiser.say("To " + command + " a "  + behaviour.getChosenItemName() + " will cost " + price
+							raiser.say("To " + command + " a " + chosenItemName + " will cost " + price
 									+ ". Do you want to " + command + " it?");
 						} else {
-							if (behaviour.getChosenItemName() == null) {
+							if (chosenItemName == null) {
 								raiser.say("Please tell me what you want to "
 										+ command + ".");
 							} else {
 								raiser.say("Sorry, I don't offer "
-										+ Grammar.plural(behaviour.getChosenItemName()) + ".");
+										+ Grammar.plural(chosenItemName) + ".");
 							}
+	
 							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}

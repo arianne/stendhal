@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -85,21 +85,25 @@ public class BuyerAdder {
 							raiser.setCurrentState(ConversationStates.IDLE);
 							return;
 						}
-						if (behaviour.parseRequest(sentence)) {
+
+						boolean found = behaviour.parseRequest(sentence);
+						String chosenItemName = behaviour.getChosenItemName();
+
+						if (found) {
 							if (behaviour.getAmount() > 1000) {
 								logger.warn("Refusing to buy very large amount of "
 										+ behaviour.getAmount()
-										+ " " + behaviour.getChosenItemName()
+										+ " " + chosenItemName
 										+ " from player "
 										+ player.getName() + " talking to "
 										+ raiser.getName() + " saying "
 										+ sentence);
 								raiser.say("Sorry, the maximum number of " 
-										+ behaviour.getChosenItemName() 
+										+ chosenItemName 
 										+ " which I can buy at once is 1000.");
 								raiser.setCurrentState(ConversationStates.ATTENDING);
 							} else if (behaviour.getAmount() > 0) {
-								final String itemName=behaviour.getChosenItemName();
+								final String itemName = chosenItemName;
 								// will check if player have claimed amount of items
 								if(itemName.equals("sheep")) {
 									// player have no sheep...
@@ -108,35 +112,36 @@ public class BuyerAdder {
 										return;
 									}
 								} else {
-									
+									// We don't buy anything else.
 								}
+
 								final int price = behaviour.getCharge(player);
 
 								if (price != 0) {
-	    							raiser.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName(), "A")
+	    							raiser.say(Grammar.quantityplnoun(behaviour.getAmount(), chosenItemName, "A")
 	    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth "
 	    									+ price + ". Do you want to sell "
 	    									+ Grammar.itthem(behaviour.getAmount()) + "?");
 								} else {
 									raiser.say("Sorry, " 
 											+ Grammar.thatthose(behaviour.getAmount()) + " " 
-											+ Grammar.plnoun(behaviour.getAmount(), behaviour.getChosenItemName())
+											+ Grammar.plnoun(behaviour.getAmount(), chosenItemName)
 	    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth nothing.");
 									raiser.setCurrentState(ConversationStates.ATTENDING);
 								}
 							} else {
-								raiser.say("Sorry, how many " + Grammar.plural(behaviour.getChosenItemName()) + " do you want to sell?!");
+								raiser.say("Sorry, how many " + Grammar.plural(chosenItemName) + " do you want to sell?!");
 
     							raiser.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
-							if (behaviour.getChosenItemName() == null) {
+							if (chosenItemName == null) {
 								raiser.say("Please tell me what you want to sell.");
 							} else {
 								raiser.say("Sorry, I don't buy any "
-										+ Grammar.plural(behaviour.getChosenItemName()) + ".");
+										+ Grammar.plural(chosenItemName) + ".");
 							}
-
+	
 							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
