@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -88,7 +88,9 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Mine's a simple life, I don't need a lot.", getReply(npc));
 
 		assertTrue(en.step(player, "buy"));
-		assertEquals("Please tell me what you want to buy.", getReply(npc));
+		assertEquals("An icecream will cost 30. Do you want to buy it?", getReply(npc));
+		assertTrue(en.step(player, "no"));
+		assertEquals("Ok, how else may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "buy dog"));
 		assertEquals("Sorry, I don't sell dogs.", getReply(npc));
@@ -101,6 +103,9 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "buy a bunch of socks"));
 		assertEquals("Sorry, I don't sell bunches of socks.", getReply(npc));
+
+		assertTrue(en.step(player, "buy 0 icecreams"));
+		assertEquals("Sorry, how many icecreams do you want to buy?!", getReply(npc));
 
 		assertTrue(en.step(player, "buy icecream"));
 		assertEquals("An icecream will cost 30. Do you want to buy it?", getReply(npc));

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -91,7 +91,9 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(en.step(player, "quest"));
 
 		assertTrue(en.step(player, "buy"));
-		assertEquals("Please tell me what you want to buy.", getReply(npc));
+		assertEquals("A cat will cost 100. Do you want to buy it?", getReply(npc));
+		assertTrue(en.step(player, "no"));
+		assertEquals("Ok, how else may I help you?", getReply(npc));
 
 		assertTrue(en.step(player, "buy dog"));
 		assertEquals("Sorry, I don't sell dogs.", getReply(npc));
