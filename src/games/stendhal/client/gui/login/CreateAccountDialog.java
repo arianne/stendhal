@@ -146,7 +146,7 @@ public class CreateAccountDialog extends JDialog {
 		contentPane.setLayout(new SBoxLayout(SBoxLayout.VERTICAL, padding));
 		contentPane.setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
 		
-		JComponent grid = new JComponent() {};
+		JComponent grid = new JComponent() {private static final long serialVersionUID = 1L;};
 		grid.setLayout(new GridLayout(6, 2, padding, padding));
 		contentPane.add(grid, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 
