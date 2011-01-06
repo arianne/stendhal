@@ -90,7 +90,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Please tell me what you want to sell.", getReply(npc));
 
 		assertTrue(en.step(player, "sell house"));
-		assertEquals("Sorry, I don't buy any houses.", getReply(npc));
+		assertEquals("Sorry, I don't buy houses.", getReply(npc));
 
 		assertTrue(en.step(player, "sell cheese"));
 		assertEquals("A piece of cheese is worth 5. Do you want to sell it?", getReply(npc));
