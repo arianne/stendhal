@@ -77,10 +77,9 @@ public class SellerBehaviour extends MerchantBehaviour {
 			((StackableItem) item).setQuantity(getAmount());
 		} else {
 			if (getAmount() != 1) {
-				player.sendPrivateText("You can only buy StackableItems in amounts bigger than 1. Setting amount to 1.");
+				player.sendPrivateText("You can only buy one " + chosenItemName + " at a time. Setting amount to 1.");
+				setAmount(1);
 			}
-
-			setAmount(1);
 		}
 
 		if (amount <= 0) {
