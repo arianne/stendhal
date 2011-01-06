@@ -232,6 +232,12 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		addMouseListener(ground);
 		addMouseWheelListener(ground);
 		addMouseMotionListener(ground);
+		/*
+		 * Ignore OS level repaint requests to help systems that create too
+		 * many of those. In game DnD is done within AWT so that is not
+		 * affected.
+		 */
+		setIgnoreRepaint(true);
 	}
 
 	/**
