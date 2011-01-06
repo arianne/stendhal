@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,6 +29,8 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
+
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -123,17 +125,13 @@ public class SellerAdder {
 							if (chosenItemName == null) {
 								raiser.say("Please tell me what you want to buy.");
 							} else {
-								boolean sellSortOf = false;
-
-								// search for items to sell with compound names, ending with the given expression
-								for(String itemName : behaviour.getItemNames()) {
-									if (itemName.endsWith(" "+chosenItemName)) {
-										sellSortOf = true;
-										break;
-									}
-								}
-
-								if (sellSortOf) {
+								Set<String> mayBeItems = behaviour.getMayBeItems();
+	
+								if (mayBeItems.size() > 1) {
+									raiser.say("There is more than one " + chosenItemName + ". " +
+											"Please specify which sort of "
+											+ chosenItemName + " you want to buy.");
+								} else if (!mayBeItems.isEmpty()) {
 									raiser.say("Please specify which sort of "
 											+ chosenItemName + " you want to buy.");
 								} else {
@@ -141,7 +139,7 @@ public class SellerAdder {
 											+ Grammar.plural(chosenItemName) + ".");
 								}
 							}
-
+	
 							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
