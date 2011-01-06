@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -31,10 +31,10 @@ public class SellerBehaviour extends MerchantBehaviour {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(SellerBehaviour.class);
-	
+
 	/** the factor extra that player killers pay for items. should be > 1 always */
 	public static final double BAD_BOY_BUYING_PENALTY = 1.5;
-	
+
 	/**
 	 * Creates a new SellerBehaviour with an empty pricelist.
 	 */
@@ -92,6 +92,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 		if (player.isBadBoy()) {
 			price = (int) (BAD_BOY_BUYING_PENALTY * price);
 		}
+
 		if (player.isEquipped("money", price)) {
 			if (player.equipToInventoryOnly(item)) {
 				player.drop("money", price);

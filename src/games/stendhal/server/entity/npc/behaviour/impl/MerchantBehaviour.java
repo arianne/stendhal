@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -83,15 +83,16 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 */
 	@Override
 	public void setAmount(final int amount) {
-
 		if (amount < 1) {
 			this.amount = 1;
 			logger.warn("Increasing very low amount of " + amount + " to 1.");
 		}
+
 		if (amount > 1000) {
 			logger.warn("Decreasing very large amount of " + amount + " to 1.");
 			this.amount = 1;
 		}
+
 		this.amount = amount;
 	}
 
