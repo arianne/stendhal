@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -194,6 +194,7 @@ public class MarriageTest {
 		assertEquals("Please tell me if you want to #'wear a suit' for your wedding.", getReply(npc));
 		en.step(player, "wear");
 		assertEquals("To wear a suit will cost 50. Do you want to wear it?", getReply(npc));
+		PlayerTestHelper.equipWithMoney(player, 50);
 		en.step(player, "yes");
 		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", getReply(npc));
 		en.step(player2, "bye");
@@ -203,7 +204,6 @@ public class MarriageTest {
 		player.setQuest(QUEST_SLOT, "just_married");
 		en.step(player, "hi");
 		assertEquals("Sorry, I can't help you, I am busy pressing suits.", getReply(npc));
-		
 	}
 
 	/**
@@ -227,12 +227,11 @@ public class MarriageTest {
 		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", getReply(npc));
 		en.step(player2, "bye");
 		assertEquals("Have a lovely time!", getReply(npc));
-		
+
 		// now test that once you are married you cannot get the outfit again
 		player2.setQuest(QUEST_SLOT, "just_married");
 		en.step(player, "hi");
 		assertEquals("Sorry, I can't help you, I am busy getting dresses ready for brides-to-be!", getReply(npc));
-		
 	}
 
 	/**
