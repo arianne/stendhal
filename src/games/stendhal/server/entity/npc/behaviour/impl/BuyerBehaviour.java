@@ -1,5 +1,6 @@
+/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,8 +38,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 *            The player who sells
 	 */
 	protected void payPlayer(final Player player) {
-		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
-				"money");
+		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
 		money.setQuantity(getCharge(player));
 		player.equipOrPutOnGround(money);
 	}
@@ -68,7 +68,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 				} else {
 				stringBuilder.append("that many");
 			}
-			
+
 			stringBuilder.append(" ");
 			stringBuilder.append(Grammar.plnoun(getAmount(), getChosenItemName()));
 			stringBuilder.append(".");
