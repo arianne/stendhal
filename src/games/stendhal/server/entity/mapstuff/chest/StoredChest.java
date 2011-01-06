@@ -61,6 +61,8 @@ public class StoredChest extends Chest {
 		if (zone != null) {
 			logger.info("Storing chest in zone " + zone.getName() + " with " + getSlot("content").size() + " items.");
 			zone.storeToDatabase();
+		} else {
+			logger.error("Closing chest which is in no zone.");
 		}
 	}
 
