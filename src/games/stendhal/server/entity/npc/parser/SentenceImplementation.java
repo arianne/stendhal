@@ -16,7 +16,6 @@ import games.stendhal.common.ErrorDrain;
 import games.stendhal.common.Grammar;
 
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * SentenceImplementation contains the implementation details of building Sentence objects.
@@ -465,29 +464,23 @@ public final class SentenceImplementation extends Sentence {
 
             // loop over all words of the sentence starting from left
             for(int idx=0; idx<expressions.size()-1; ++idx) {
-                Expression first = expressions.get(idx);
-
                 // search for matching compound names
-        		Set<CompoundName> candidates = wl.getCompoundNames().
-        							get(first.getOriginal().toLowerCase());
+                CompoundName compName = wl.searchCompoundName(expressions, idx);
 
-        		if (candidates != null) {
-	        		for(CompoundName compName : candidates) {
-	        			if (compName.matches(expressions, idx)) {
-	            			int wordsMatched = compName.size();
+                if (compName != null) {
+                    Expression first = expressions.get(idx);
 
-	            			for(int i=1; i<wordsMatched; ++i) {
-	            				Expression next = expressions.get(idx+1);
+        			int wordsMatched = compName.size();
+        			for(int i=1; i<wordsMatched; ++i) {
+        				Expression next = expressions.get(idx+1);
 
-	                			first.mergeName(next, compName.getType());
-	                	        expressions.remove(next);
-	            			}
-
-	            	        changed = true;
-	                        break;
-	        			}
+            			first.mergeName(next, compName.getType());
+            	        expressions.remove(next);
         			}
-        		}
+
+        	        changed = true;
+                    break;
+    			}
         		
         		if (changed) {
         			++changes;

@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.AbstractList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -656,11 +657,25 @@ final public class WordList {
 	}
 
 	/**
-	 * Access the compound names map from SentenceImplementation.
+	 * Search for compound names.
+	 * @param expressions list of expressions
+	 * @param idx start index of the expression list
 	 * @return
 	 */
-	Map<String, Set<CompoundName>> getCompoundNames() {
-		return compoundNames;
+	public CompoundName searchCompoundName(AbstractList<Expression> expressions, int idx) {
+        Expression first = expressions.get(idx);
+
+    	Set<CompoundName> candidates = compoundNames.get(first.getOriginal().toLowerCase());
+
+		if (candidates != null) {
+    		for(CompoundName compName : candidates) {
+    			if (compName.matches(expressions, idx)) {
+    				return compName;
+    			}
+    		}
+		}
+
+		return null;
 	}
 
 	/**
