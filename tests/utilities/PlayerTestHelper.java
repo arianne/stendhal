@@ -323,7 +323,7 @@ public abstract class PlayerTestHelper {
 	 * @param player
 	 * @param questSlot
 	 * @param index
-	 * @param time
+	 * @param seconds
 	 */
 	public void setPastTime(final Player player, final String questSlot, final int index, final long seconds) {
 		long pastTime = new Date().getTime() - seconds*1000;
