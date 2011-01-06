@@ -36,6 +36,9 @@ public class Behaviour {
 	/** The item name of the thing requested. */
 	protected String chosenItemName;
 
+	/** The partly matching item names. */
+	protected Set<String> mayBeItems;
+
 	/** The amount of requested items. */
 	protected int amount;
 
@@ -73,6 +76,13 @@ public class Behaviour {
 	    this.chosenItemName = chosenItemName;
     }
 
+	/**
+     * @return the partly matching item names
+     */
+	public Set<String> getMayBeItems() {
+		return mayBeItems;
+	}
+
 	public int getAmount() {
 		return amount;
 	}
@@ -99,14 +109,18 @@ public class Behaviour {
 	 */
 	public boolean parseRequest(final Sentence sentence) {
 		final NameSearch search = sentence.findMatchingName(itemNames);
+		mayBeItems = new HashSet<String>();
+		boolean found;
 
 		if (search.found()) {
 			// Store found item.
     		chosenItemName = search.getName();
     		amount = search.getAmount();
 
-    		return true;
+    		found = true;
 		} else {
+			found = false;
+
 			if ((sentence.getNumeralCount() == 1)
 					&& (sentence.getUnknownTypeCount() == 0)
 					&& (sentence.getObjectCount() == 0)) {
@@ -120,10 +134,19 @@ public class Behaviour {
     			// and set amount to 1.
         		chosenItemName = sentence.getExpressionStringAfterVerb();
         		amount = 1;
-    		}
 
-			return false;
+        		if (chosenItemName != null) {
+        			// search for items to sell with compound names, ending with the given expression
+        			for(String itemName : itemNames) {
+        				if (itemName.endsWith(" "+chosenItemName)) {
+        					mayBeItems.add(itemName);
+        				}
+        			}
+    			}
+    		}
 		}
+
+		return found;
     }
 
 	/**
