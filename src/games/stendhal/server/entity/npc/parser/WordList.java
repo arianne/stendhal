@@ -660,7 +660,7 @@ final public class WordList {
 	 * Search for compound names.
 	 * @param expressions list of expressions
 	 * @param idx start index of the expression list
-	 * @return
+	 * @return compound name or null
 	 */
 	public CompoundName searchCompoundName(AbstractList<Expression> expressions, int idx) {
         Expression first = expressions.get(idx);
