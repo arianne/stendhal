@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,8 +21,8 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * tells the player that the npc did not understand the sentence;
- * use it in combination with SentenceHasErrorCondtion.
+ * Tells the player that the NPC did not understand the sentence;
+ * use it in combination with SentenceHasErrorCondition.
  */
 public class ComplainAboutSentenceErrorAction implements ChatAction {
 
@@ -37,7 +37,6 @@ public class ComplainAboutSentenceErrorAction implements ChatAction {
 	public String toString() {
 		return "complainSentenceError";
 	}
-
 
 	@Override
 	public int hashCode() {
