@@ -18,12 +18,15 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
+import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -70,46 +73,49 @@ public class ProducerAdder {
 						new QuestNotActiveCondition(QUEST_SLOT)),
 				false, ConversationStates.ATTENDING, thisWelcomeMessage, null);
 
+		engine.add(ConversationStates.ATTENDING,
+				behaviour.getProductionActivity(),
+				new SentenceHasErrorCondition(),
+				false, ConversationStates.ATTENDING,
+				null, new ComplainAboutSentenceErrorAction());
+
         /* In the behaviour a production activity is defined, e.g. 'cast' or 'mill' 
         * and this is used as the trigger to start the production,
         * provided that the NPC is not currently producing for player (not started, is rejected, or is complete) */		
         engine.add(
 				ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),
-				new QuestNotActiveCondition(QUEST_SLOT), 
+				new AndCondition(
+					new NotCondition(new SentenceHasErrorCondition()),
+					new QuestNotActiveCondition(QUEST_SLOT)
+				),
                 false, 
                 ConversationStates.ATTENDING,
 				null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-                        // TODO: this can be a part of a separate condition-action block
-						if (sentence.hasError()) {
-							npc.say("Sorry, I did not understand you. "
-									+ sentence.getErrorString());
+						boolean found = behaviour.parseRequest(sentence);
+
+						if (found) {
+    						// Find out how much items we shall produce.
+							if (behaviour.getAmount() > 1000) {
+								logger.warn("Decreasing very large amount of "
+										+ behaviour.getAmount()
+										+ " " + behaviour.getChosenItemName()
+										+ " to 1 for player "
+										+ player.getName() + " talking to "
+										+ npcName + " saying " + sentence);
+								behaviour.setAmount(1);
+							}
+
+							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
+								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+							}
 						} else {
-							boolean found = behaviour.parseRequest(sentence);
-
-    						if (found) {
-        						// Find out how much items we shall produce.
-    							if (behaviour.getAmount() > 1000) {
-    								logger.warn("Decreasing very large amount of "
-    										+ behaviour.getAmount()
-    										+ " " + behaviour.getChosenItemName()
-    										+ " to 1 for player "
-    										+ player.getName() + " talking to "
-    										+ npcName + " saying " + sentence);
-    								behaviour.setAmount(1);
-    							}
-
-    							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
-    								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
-    							}
-    						} else {
-    							if (behaviour.getItemNames().size() == 1) { 
-    								npc.say("Sorry, I can only produce " + behaviour.getItemNames().iterator().next() + ".");
-    							} else {
-    								npc.say("Sorry, I don't understand you.");
-    							}
-    						}
+							if (behaviour.getItemNames().size() == 1) { 
+								npc.say("Sorry, I can only produce " + behaviour.getItemNames().iterator().next() + ".");
+							} else {
+								npc.say("Sorry, I don't understand you.");
+							}
 						}
 					}
 				});
