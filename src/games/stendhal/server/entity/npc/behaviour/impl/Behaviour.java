@@ -109,39 +109,40 @@ public class Behaviour {
 	 */
 	public boolean parseRequest(final Sentence sentence) {
 		final NameSearch search = sentence.findMatchingName(itemNames);
+
+		boolean found = search.found();
+
+		// Store found item.
+		chosenItemName = search.getName();
+		amount = search.getAmount();
 		mayBeItems = new HashSet<String>();
-		boolean found;
 
-		if (search.found()) {
-			// Store found item.
-    		chosenItemName = search.getName();
-    		amount = search.getAmount();
-
-    		found = true;
-		} else {
-			found = false;
-
+		if (!found) {
 			if ((sentence.getNumeralCount() == 1)
 					&& (sentence.getUnknownTypeCount() == 0)
 					&& (sentence.getObjectCount() == 0)) {
 				final Expression number = sentence.getNumeral();
 
     			// If there is given only a number, return this as amount.
-        		chosenItemName = null;
         		amount = number.getAmount();
     		} else {
     			// If there was no match, return the given object name instead
     			// and set amount to 1.
         		chosenItemName = sentence.getExpressionStringAfterVerb();
         		amount = 1;
+    		}
 
-        		if (chosenItemName != null) {
-        			// search for items to sell with compound names, ending with the given expression
-        			for(String itemName : itemNames) {
-        				if (itemName.endsWith(" "+chosenItemName)) {
-        					mayBeItems.add(itemName);
-        				}
-        			}
+			if (chosenItemName == null && itemNames.size() == 1) {
+    			// The NPC only offers one type of ware, so
+    			// it's clear what the player wants.
+				chosenItemName = itemNames.iterator().next();
+				found = true;
+			} else if (chosenItemName != null) {
+    			// search for items to sell with compound names, ending with the given expression
+    			for(String itemName : itemNames) {
+    				if (itemName.endsWith(" "+chosenItemName)) {
+    					mayBeItems.add(itemName);
+    				}
     			}
     		}
 		}

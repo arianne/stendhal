@@ -13,6 +13,10 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import static org.junit.Assert.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 
@@ -61,8 +65,16 @@ public class BehaviourTest {
 		Sentence sentence = ConversationParser.parse("50");
 		assertFalse(sentence.hasError());
 
-		Behaviour beh = new Behaviour("gold");
-		assertFalse(beh.parseRequest(sentence));
+		Set<String> items = new HashSet<String>();
+		items.add("gold");
+		Behaviour beh = new Behaviour(items);
+		assertTrue(beh.parseRequest(sentence)); // only gold, silver -> unambiguous
+		assertEquals(50, beh.getAmount());
+		assertEquals("gold", beh.getChosenItemName());
+
+		items.add("silver");
+		beh = new Behaviour(items);
+		assertFalse(beh.parseRequest(sentence)); // gold, silver -> ambiguous
 		assertEquals(50, beh.getAmount());
 	}
 
