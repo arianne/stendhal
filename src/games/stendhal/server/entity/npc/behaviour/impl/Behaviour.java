@@ -174,20 +174,20 @@ public class Behaviour {
 	 * Answer with an error message in case the request could not be fulfilled.
 	 * @param userAction
 	 * @param npcAction
-	 * @param raiser
+	 * @param npc
 	 */
-	public void sayError(final String userAction, final String npcAction, final EventRaiser raiser) {
+	public void sayError(final String userAction, final String npcAction, final EventRaiser npc) {
 		if (chosenItemName == null) {
-			raiser.say("Please tell me what you want to " + userAction + ".");
+			npc.say("Please tell me what you want to " + userAction + ".");
 		} else if (mayBeItems.size() > 1) {
-			raiser.say("There is more than one " + chosenItemName + ". " +
+			npc.say("There is more than one " + chosenItemName + ". " +
 					"Please specify which sort of "
 					+ chosenItemName + " you want to " + userAction + ".");
 		} else if (!mayBeItems.isEmpty()) {
-			raiser.say("Please specify which sort of "
+			npc.say("Please specify which sort of "
 					+ chosenItemName + " you want to " + userAction + ".");
 		} else {
-			raiser.say("Sorry, I don't " + npcAction + " "
+			npc.say("Sorry, I don't " + npcAction + " "
 					+ Grammar.plural(chosenItemName) + ".");
 		}
 	}

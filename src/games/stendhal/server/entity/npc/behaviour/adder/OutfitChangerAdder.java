@@ -18,6 +18,8 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.BehaviourAction;
+import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -51,7 +53,7 @@ public class OutfitChangerAdder {
 	 * 
 	 * @param npc
 	 *            SpeakerNPC
-	 * @param behaviour
+	 * @param outfitBehaviour
 	 *            The behaviour (which includes a pricelist).
 	 * @param action
 	 *            The action needed to get the outfit, e.g. "buy", "lend".
@@ -62,7 +64,7 @@ public class OutfitChangerAdder {
 	 *            back.
 	 */
 	public void addOutfitChanger(final SpeakerNPC npc,
-			final OutfitChangerBehaviour behaviour, final String action,
+			final OutfitChangerBehaviour outfitBehaviour, final String action,
 			final boolean offer, final boolean canReturn) {
 
 		final Engine engine = npc.getEngine();
@@ -76,49 +78,27 @@ public class OutfitChangerAdder {
 					"You can #"
 							+ action
 							+ " "
-							+ Grammar.enumerateCollection(behaviour.dealtItems())
+							+ Grammar.enumerateCollection(outfitBehaviour.dealtItems())
 							+ ".", null);
 		}
 
-		engine.add(ConversationStates.ATTENDING, action, null,
-				false, ConversationStates.BUY_PRICE_OFFERED,
-				null, new ChatAction() {
-
-					public void fire(final Player player, final Sentence sentence,
-							final EventRaiser raiser) {
-						if (sentence.hasError()) {
-							raiser.say("Sorry, I did not understand you. "
-									+ sentence.getErrorString());
-						}
-
+		engine.add(ConversationStates.ATTENDING, action, null, false,
+				ConversationStates.ATTENDING, null,
+				new BehaviourAction(outfitBehaviour, action, "offer") {
+					@Override
+					public void fireRequestOK(final Behaviour behaviour, Player player, Sentence sentence, EventRaiser raiser) {
 						// find out what the player wants to wear
-						boolean found = behaviour.parseRequest(sentence);
-						String chosenItemName = behaviour.getChosenItemName();
 
-						boolean success = true;
+						// We ignore any amounts.
+						behaviour.setAmount(1);
 
-						if (found) {
-							// We ignore any amounts.
-							behaviour.setAmount(1);
+						final int price = outfitBehaviour.getUnitPrice(behaviour.getChosenItemName())
+								* behaviour.getAmount();
 
-							final int price = behaviour.getUnitPrice(chosenItemName)
-									* behaviour.getAmount();
+						raiser.say("To " + action + " a " + behaviour.getChosenItemName() + " will cost " + price
+								+ ". Do you want to " + action + " it?");
 
-							raiser.say("To " + action + " a " + chosenItemName + " will cost " + price
-									+ ". Do you want to " + action + " it?");
-
-							success = true;
-						} else {
-							if (chosenItemName == null) {
-								raiser.say("Please tell me what you want to " + action + ".");
-							} else {
-								raiser.say("Sorry, I don't offer " + Grammar.plural(chosenItemName) + ".");
-							}
-						}
-
-						if (!success) {
-							raiser.setCurrentState(ConversationStates.ATTENDING);
-						}
+						raiser.setCurrentState(ConversationStates.BUY_PRICE_OFFERED); // success
 					}
 				});
 
@@ -128,17 +108,17 @@ public class OutfitChangerAdder {
 				null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
-						final String itemName = behaviour.getChosenItemName();
+						final String itemName = outfitBehaviour.getChosenItemName();
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 
-						if (behaviour.transactAgreedDeal(npc, player)) {
+						if (outfitBehaviour.transactAgreedDeal(npc, player)) {
 							if (canReturn) {
 								npc.say("Thanks, and please don't forget to #return it when you don't need it anymore!");
 								// -1 is also the public static final int NEVER_WEARS_OFF = -1; 
 								// but it doesn't recognise it here ...
-							} else if (behaviour.endurance != -1) {
-								npc.say("Thanks! This will wear off in " +  TimeUtil.timeUntil((int) (behaviour.endurance * 0.3)) + ".");
+							} else if (outfitBehaviour.endurance != -1) {
+								npc.say("Thanks! This will wear off in " +  TimeUtil.timeUntil((int) (outfitBehaviour.endurance * 0.3)) + ".");
 							} else {
 								npc.say("Thanks!");
 							}
@@ -157,7 +137,7 @@ public class OutfitChangerAdder {
 					null, new ChatAction() {
 						public void fire(final Player player, final Sentence sentence,
 								final EventRaiser npc) {
-							if (behaviour.returnToOriginalOutfit(player)) {
+							if (outfitBehaviour.returnToOriginalOutfit(player)) {
 								npc.say("Thank you!");
 							} else {
 								npc.say("I can't remember that I gave you anything.");

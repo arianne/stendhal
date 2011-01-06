@@ -57,6 +57,7 @@ public class HealerAdder {
 							final EventRaiser raiser) {
 						healerBehaviour.setChosenItemName("heal");
 						healerBehaviour.setAmount(1);
+
 						int cost = healerBehaviour.getCharge(player);
 						if (player.isBadBoy()) {
 							// don't heal player killers at all

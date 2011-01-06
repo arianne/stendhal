@@ -21,10 +21,9 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * checks whether the sentence has an error
+ * Checks whether the sentence has an error.
  */
 public class SentenceHasErrorCondition implements ChatCondition {
-
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return (sentence.hasError());

@@ -20,6 +20,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -82,44 +83,49 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				addQuest("The only favour I need is cold hard cash.");
 				addOffer("Only a #bribe could persuade me to hand over the key to that gate.");
 
-				addReply("bribe", null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-				        if (sentence.hasError()) {
-				        	raiser.say(sentence.getErrorString() + " Are you trying to trick me? Bribe me some number of coins!");
-				        } else {
-				        	final Behaviour behaviour = new Behaviour("money");
+				addReply("bribe", null,
+					new BehaviourAction(new Behaviour("money"), "bribe", "offer") {
+						@Override
+						public void fireSentenceError(Player player, Sentence sentence, EventRaiser raiser) {
+							raiser.say(sentence.getErrorString() + " Are you trying to trick me? Bribe me some number of coins!");
+						}
 
-				        	if (behaviour.parseRequest(sentence) || (behaviour.getChosenItemName() == null)) {
-					        	final int amount = behaviour.getAmount();
+						@Override
+						public void fireRequestOK(final Behaviour behaviour, final Player player, final Sentence sentence, final EventRaiser raiser) {
+				        	final int amount = behaviour.getAmount();
 
-					        	if (sentence.getExpressions().size() == 1) {
-            						// player only said 'bribe'
-            						raiser.say("A bribe of no money is no bribe! Bribe me with some amount!");
-					        	} else {
-					        		if (amount < 300) {
-    									// Less than 300 is not money for him
-    									raiser.say("You think that amount will persuade me?! That's more than my job is worth!");
-    								} else {
-    									if (player.isEquipped("money", amount)) {
-    										player.drop("money", amount);
-    										raiser.say("Ok, I got your money, here's the key.");
-    										final Item key = SingletonRepository.getEntityManager().getItem(
-    												"sedah gate key");
-    										player.equipOrPutOnGround(key);
-    									} else {
-    										// player bribed enough but doesn't have
-    										// the cash
-    										raiser.say("Criminal! You don't have "
-    												+ amount + " money!");
-    									}
-    								}
+				        	if (sentence.getExpressions().size() == 1) {
+        						// player only said 'bribe'
+        						raiser.say("A bribe of no money is no bribe! Bribe me with some amount!");
+				        	} else {
+				        		if (amount < 300) {
+									// Less than 300 is not money for him
+									raiser.say("You think that amount will persuade me?! That's more than my job is worth!");
+								} else {
+									if (player.isEquipped("money", amount)) {
+										player.drop("money", amount);
+										raiser.say("Ok, I got your money, here's the key.");
+										final Item key = SingletonRepository.getEntityManager().getItem(
+												"sedah gate key");
+										player.equipOrPutOnGround(key);
+									} else {
+										// player bribed enough but doesn't have
+										// the cash
+										raiser.say("Criminal! You don't have " + amount + " money!");
+									}
 								}
+							}
+			        	}
+
+						@Override
+						public void fireRequestError(final Behaviour behavior, final Player player, final Sentence sentence, final EventRaiser raiser) {
+							if (behaviour.getChosenItemName() == null) {
+								fireRequestOK(behavior, player, sentence, raiser);
         			        } else {
         						// This bit is just in case the player says 'bribe X potatoes', not money
         						raiser.say("You can't bribe me with anything but money!");
-        					}
-			        	}
-					}
+							}
+						}
 				});
 
 				addGoodbye("Bye. Don't say I didn't warn you!");

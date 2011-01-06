@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.ProducerBehaviourAction;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
@@ -197,32 +198,22 @@ public class FishermanNPC implements ZoneConfigurator {
 				"make",
 				new QuestNotActiveCondition(behaviour.getQuestSlot()),
 				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						if (sentence.hasError()) {
-							npc.say("Sorry, I did not understand you. "
-									+ sentence.getErrorString());
-						} else {
-							boolean found = behaviour.parseRequest(sentence);
+				new ProducerBehaviourAction(behaviour, "produce") {
+					@Override
+					public void fireRequestOK(final ProducerBehaviour behaviour, final Player player, final Sentence sentence, final EventRaiser npc) {
+						// Find out how much items we shall produce.
+						if (behaviour.getAmount() > 1000) {
+							logger.warn("Decreasing very large amount of "
+									+ behaviour.getAmount()
+									+ " " + behaviour.getChosenItemName()
+									+ " to 1 for player "
+									+ player.getName() + " talking to "
+									+ npc.getName() + " saying " + sentence);
+							behaviour.setAmount(1);
+						}
 
-    						if (found) {
-        						// Find out how much items we shall produce.
-    							if (behaviour.getAmount() > 1000) {
-    								logger.warn("Decreasing very large amount of "
-    										+ behaviour.getAmount()
-    										+ " " + behaviour.getChosenItemName()
-    										+ " to 1 for player "
-    										+ player.getName() + " talking to "
-    										+ npc.getName() + " saying " + sentence);
-    								behaviour.setAmount(1);
-    							}
-
-    							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
-    								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
-    							}
-    						} else {
-    							behaviour.sayError("produce", npc);
-    						}
+						if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
+							npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
 						}
 					}
 				});

@@ -26,16 +26,17 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.ProducerBehaviourAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -155,42 +156,36 @@ class MakingFabric {
 		
 		final ProducerBehaviour behaviour = new SpecialProducerBehaviour("make", "silk thread",
 																		 requiredResources, REQUIRED_MINUTES_THREAD);
-		
-		npc.add(
-				ConversationStates.ATTENDING,
+
+		npc.add(ConversationStates.ATTENDING,
 				"make",
 				new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"), ConversationStates.ATTENDING, null,
-				new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						if (sentence.hasError()) {
-							npc.say("Sorry, I did not understand you. "
-									+ sentence.getErrorString());
-						} else {
-							boolean found = behaviour.parseRequest(sentence);
-
-    						if (found) {
-        						// Find out how much items we shall produce.
-								if (behaviour.getAmount() < 40) {
-									npc.say("Do you really want so few? I'm not wasting my time with that! Any decent sized pieces of fabric needs at least 40 spools of thread! You should at least #make #40.");
-									return;
-								} else if (behaviour.getAmount() > 1000) {
-    								/*logger.warn("Decreasing very large amount of "
-									 *		+ behaviour.getAmount()
-									 *		+ " " + behaviour.getChosenItemName()
-									 *		+ " to 40 for player "
-									 *		+ player.getName() + " talking to "
-									 *		+ npc.getName() + " saying " + sentence);
-									 */
-    								behaviour.setAmount(40);
-    							}
-
-    							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
-    								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
-    							}
-    						} else {
-    							behaviour.sayError("#make", "produce", npc);
-    						}
+				new ProducerBehaviourAction(behaviour) {
+					@Override
+					public void fireRequestOK(final ProducerBehaviour behaviour, Player player, Sentence sentence, EventRaiser npc) {
+						// Find out how much items we shall produce.
+						if (behaviour.getAmount() < 40) {
+							npc.say("Do you really want so few? I'm not wasting my time with that! Any decent sized pieces of fabric needs at least 40 spools of thread! You should at least #make #40.");
+							return;
+						} else if (behaviour.getAmount() > 1000) {
+							/*logger.warn("Decreasing very large amount of "
+							 *		+ behaviour.getAmount()
+							 *		+ " " + behaviour.getChosenItemName()
+							 *		+ " to 40 for player "
+							 *		+ player.getName() + " talking to "
+							 *		+ npc.getName() + " saying " + sentence);
+							 */
+							behaviour.setAmount(40);
 						}
+
+						if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
+							npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+						}
+					}
+
+					@Override
+					public void fireRequestError(final ProducerBehaviour behaviour, final Player player, final Sentence sentence, final EventRaiser raiser) {
+						behaviour.sayError("#make", "produce", raiser);
 					}
 				});
 		

@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -353,33 +354,29 @@ public class Blackjack extends AbstractQuest {
 						+ "' pieces of gold. So, how much will you risk?", null);
 
 		ramon.add(ConversationStates.ATTENDING, "stake", null,
-				ConversationStates.ATTENDING, null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				        if (sentence.hasError()) {
-				        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #'stake 50'.");
-				        } else {
-				        	final Behaviour behaviour = new Behaviour();
+				ConversationStates.ATTENDING, null,
+				new BehaviourAction(new Behaviour(), "stake", "offer") {
+					@Override
+					public void fireSentenceError(Player player, Sentence sentence, EventRaiser npc) {
+			        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #'stake 50'.");
+					}
 
-							behaviour.parseRequest(sentence);
+					@Override
+					public void fireRequestOK(final Behaviour behaviour, Player player, Sentence sentence, EventRaiser npc) {
+						stake = behaviour.getAmount();
 
-							stake = behaviour.getAmount();
-
-							if (stake < MIN_STAKE) {
-								npc.say("You must stake at least " + MIN_STAKE
-										+ " pieces of gold.");
-							} else if (stake > MAX_STAKE) {
-								npc.say("You can't stake more than "
-										+ MAX_STAKE + " pieces of gold.");
-							} else {
-								if (player.drop("money", stake)) {
-									startNewGame(player);
-								} else {
-									npc.say("Hey! You don't have enough money!");
-								}
-							}
+						if (stake < MIN_STAKE) {
+							npc.say("You must stake at least " + MIN_STAKE + " pieces of gold.");
+						} else if (stake > MAX_STAKE) {
+							npc.say("You can't stake more than " + MAX_STAKE + " pieces of gold.");
+						} else if (player.drop("money", stake)) {
+							startNewGame(player);
+						} else {
+							npc.say("Hey! You don't have enough money!");
 						}
 					}
 				});
+
 		ramon.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {

@@ -385,9 +385,9 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	/**
 	 * Answer with an error message in case the request could not be fulfilled.
 	 * @param npcAction
-	 * @param raiser
+	 * @param npc
 	 */
-	public void sayError(final String npcAction, final EventRaiser raiser) {
-		sayError(getProductionActivity(), npcAction, raiser);
+	public void sayError(final String npcAction, final EventRaiser npc) {
+		sayError(getProductionActivity(), npcAction, npc);
 	}
 }
