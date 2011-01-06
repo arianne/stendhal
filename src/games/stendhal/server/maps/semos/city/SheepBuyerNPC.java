@@ -176,7 +176,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		npc.setDescription("You see Sato. He loves sheep.");
 	}
 
-	class SheepBuyerBehaviour extends BuyerBehaviour {
+	private static class SheepBuyerBehaviour extends BuyerBehaviour {
 		SheepBuyerBehaviour(final Map<String, Integer> items) {
 			super(items);
 		}
