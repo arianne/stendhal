@@ -53,7 +53,7 @@ public class OutfitChangerAdder {
 	 *            SpeakerNPC
 	 * @param behaviour
 	 *            The behaviour (which includes a pricelist).
-	 * @param command
+	 * @param action
 	 *            The action needed to get the outfit, e.g. "buy", "lend".
 	 * @param offer
 	 *            Defines if the NPC should react to the word "offer".
@@ -62,7 +62,7 @@ public class OutfitChangerAdder {
 	 *            back.
 	 */
 	public void addOutfitChanger(final SpeakerNPC npc,
-			final OutfitChangerBehaviour behaviour, final String command,
+			final OutfitChangerBehaviour behaviour, final String action,
 			final boolean offer, final boolean canReturn) {
 
 		final Engine engine = npc.getEngine();
@@ -74,13 +74,13 @@ public class OutfitChangerAdder {
 					false,
 					ConversationStates.ATTENDING,
 					"You can #"
-							+ command
+							+ action
 							+ " "
 							+ Grammar.enumerateCollection(behaviour.dealtItems())
 							+ ".", null);
 		}
 
-		engine.add(ConversationStates.ATTENDING, command, null,
+		engine.add(ConversationStates.ATTENDING, action, null,
 				false, ConversationStates.BUY_PRICE_OFFERED,
 				null, new ChatAction() {
 
@@ -95,6 +95,8 @@ public class OutfitChangerAdder {
 						boolean found = behaviour.parseRequest(sentence);
 						String chosenItemName = behaviour.getChosenItemName();
 
+						boolean success = true;
+
 						if (found) {
 							// We ignore any amounts.
 							behaviour.setAmount(1);
@@ -102,17 +104,19 @@ public class OutfitChangerAdder {
 							final int price = behaviour.getUnitPrice(chosenItemName)
 									* behaviour.getAmount();
 
-							raiser.say("To " + command + " a " + chosenItemName + " will cost " + price
-									+ ". Do you want to " + command + " it?");
+							raiser.say("To " + action + " a " + chosenItemName + " will cost " + price
+									+ ". Do you want to " + action + " it?");
+
+							success = true;
 						} else {
 							if (chosenItemName == null) {
-								raiser.say("Please tell me what you want to "
-										+ command + ".");
+								raiser.say("Please tell me what you want to " + action + ".");
 							} else {
-								raiser.say("Sorry, I don't offer "
-										+ Grammar.plural(chosenItemName) + ".");
+								raiser.say("Sorry, I don't offer " + Grammar.plural(chosenItemName) + ".");
 							}
-	
+						}
+
+						if (!success) {
 							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}

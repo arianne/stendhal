@@ -78,6 +78,8 @@ public class SellerAdder {
 						boolean found = behaviour.parseRequest(sentence);
 						String chosenItemName = behaviour.getChosenItemName();
 
+						boolean success = false;
+
 						if (found) {
 							// find out if the NPC sells this item, and if so,
 							// how much it costs.
@@ -92,10 +94,8 @@ public class SellerAdder {
 								raiser.say("Sorry, the maximum number of " 
 										+ chosenItemName 
 										+ " which I can sell at once is 1000.");
-								raiser.setCurrentState(ConversationStates.ATTENDING);
 							} else if (behaviour.getAmount() > 0) {
-								int price = behaviour.getUnitPrice(chosenItemName)
-									* behaviour.getAmount();
+								int price = behaviour.getUnitPrice(chosenItemName) * behaviour.getAmount();
 
 								StringBuilder builder = new StringBuilder();
 								if (player.isBadBoy()) {
@@ -112,14 +112,16 @@ public class SellerAdder {
 								builder.append(Grammar.itthem(behaviour.getAmount()));
 								builder.append("?");
 								raiser.say(builder.toString());
+
+								success = true;
 							} else {
 								raiser.say("Sorry, how many " + Grammar.plural(chosenItemName) + " do you want to buy?!");
-
-								raiser.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
 							behaviour.sayError("buy", "sell", chosenItemName, raiser);
+						}
 
+						if (!success) {
 							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}

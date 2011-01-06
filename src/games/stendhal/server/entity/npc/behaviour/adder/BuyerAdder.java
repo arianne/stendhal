@@ -89,6 +89,8 @@ public class BuyerAdder {
 						boolean found = behaviour.parseRequest(sentence);
 						String chosenItemName = behaviour.getChosenItemName();
 
+						boolean success = false;
+
 						if (found) {
 							if (behaviour.getAmount() > 1000) {
 								logger.warn("Refusing to buy very large amount of "
@@ -101,11 +103,10 @@ public class BuyerAdder {
 								raiser.say("Sorry, the maximum number of " 
 										+ chosenItemName 
 										+ " which I can buy at once is 1000.");
-								raiser.setCurrentState(ConversationStates.ATTENDING);
 							} else if (behaviour.getAmount() > 0) {
 								final String itemName = chosenItemName;
 								// will check if player have claimed amount of items
-								if(itemName.equals("sheep")) {
+								if (itemName.equals("sheep")) {
 									// player have no sheep...
 									if (!player.hasSheep()) {
 										raiser.say("You don't have any sheep, " + player.getTitle() + "! What are you trying to pull?");
@@ -122,26 +123,26 @@ public class BuyerAdder {
 	    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth "
 	    									+ price + ". Do you want to sell "
 	    									+ Grammar.itthem(behaviour.getAmount()) + "?");
+
+	    							success = true;
 								} else {
 									raiser.say("Sorry, " 
 											+ Grammar.thatthose(behaviour.getAmount()) + " " 
 											+ Grammar.plnoun(behaviour.getAmount(), chosenItemName)
 	    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth nothing.");
-									raiser.setCurrentState(ConversationStates.ATTENDING);
 								}
 							} else {
 								raiser.say("Sorry, how many " + Grammar.plural(chosenItemName) + " do you want to sell?!");
-
-    							raiser.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
 							if (chosenItemName == null) {
 								raiser.say("Please tell me what you want to sell.");
 							} else {
-								raiser.say("Sorry, I don't buy any "
-										+ Grammar.plural(chosenItemName) + ".");
+								raiser.say("Sorry, I don't buy any " + Grammar.plural(chosenItemName) + ".");
 							}
-	
+						}
+
+						if (!success) {
 							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
