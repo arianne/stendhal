@@ -52,6 +52,10 @@ public class CompoundName extends ArrayList<String> {
 	 */
 	public boolean matches(AbstractList<Expression> expressions, int idx) {
 		for(int i=0; i<size(); ++idx,++i) {
+			if (idx >= expressions.size()) {
+				return false;
+			}
+
 			Expression curr = expressions.get(idx);
 			String word = get(i);
 
