@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -88,13 +88,13 @@ public class ProducerAdder {
 						} else {
 							boolean found = behaviour.parseRequest(sentence);
 
-    						// Find out how much items we shall produce.
-    						if (!found && (behaviour.getChosenItemName() == null)) {
-    							behaviour.setChosenItemName(behaviour.getProductName());
+							if (!found && (behaviour.getChosenItemName()==null) && (behaviour.getItemNames().size()==1)) {
+    							behaviour.setChosenItemName(behaviour.getItemNames().iterator().next());
     							found = true;
     						}
 
     						if (found) {
+        						// Find out how much items we shall produce.
     							if (behaviour.getAmount() > 1000) {
     								logger.warn("Decreasing very large amount of "
     										+ behaviour.getAmount()

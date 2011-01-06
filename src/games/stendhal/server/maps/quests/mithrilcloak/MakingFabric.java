@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -167,14 +167,14 @@ class MakingFabric {
 									+ sentence.getErrorString());
 						} else {
 							boolean found = behaviour.parseRequest(sentence);
-							
-    						// Find out how much items we shall produce.
-    						if (!found && (behaviour.getChosenItemName() == null)) {
-    							behaviour.setChosenItemName(behaviour.getProductName());
+
+							if (!found && (behaviour.getChosenItemName()==null) && (behaviour.getItemNames().size()==1)) {
+    							behaviour.setChosenItemName(behaviour.getItemNames().iterator().next());
     							found = true;
     						}
 							
     						if (found) {
+    	   						// Find out how much items we shall produce.
 								if (behaviour.getAmount() < 40) {
 									npc.say("Do you really want so few? I'm not wasting my time with that! Any decent sized pieces of fabric needs at least 40 spools of thread! You should at least #make #40.");
 									return;
