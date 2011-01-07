@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -61,14 +62,15 @@ import java.util.List;
  * <ul>
  * <li> Jef waits for his mom in Kirdneh for a longer time now and is frightened that something happened to her</li>
  * <li> You go find Amber somewhere in Fado forest</li>
- * <li> You return and tell Jef that his mom is fine</li>
- * <li> Jef checks you have met her, then gives reward</li>
+ * <li> She gives you a flower which you have to bring Jef</li>
+ * <li> You return and give Jef the flower</li>
+ * <li> Jef will reward you well</li>
  * </ul>
  *
  * REWARD:
  * <ul>
- * <li> 1000 XP</li>
- * <li> some fish which Jef caught</li>
+ * <li> 5000 XP</li>
+ * <li> red lionfish which Jef got by someone who made holidays on Amazon island earlier</li>
  * <li> Karma: 15</li>
  * </ul>
  *
@@ -110,6 +112,16 @@ public class FindJefsMom extends AbstractQuest {
 				"It is a long time ago that you told me the last time that my mother is fine. May you watch out for her again please?",
 				null);
 
+		
+		// player asks about quest but time didn't pass yet
+		npc.add(ConversationStates.ATTENDING, 
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1,REQUIRED_MINUTES))), 
+				ConversationStates.ATTENDING,
+				null,
+				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I don't want to disturb my mom from finding herself back in a way so you don't have to find her currently. You can ask me again in"));
+	
+		
 		// player starts quest again
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
