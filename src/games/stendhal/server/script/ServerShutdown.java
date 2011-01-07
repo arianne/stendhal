@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
@@ -34,7 +35,7 @@ public class ServerShutdown extends ScriptImpl {
 		final String text = admin.getTitle()
 				+ " started shutdown of the server.";
 
-		SingletonRepository.getRuleProcessor().tellAllPlayers(text);
+		SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.SUPPORT, text);
 
 		new Thread(
 			new Runnable() {

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
@@ -36,7 +37,7 @@ public class ServerReset extends ScriptImpl {
 		try {
 			final String text = admin.getTitle()
 					+ " started emergency shutdown of the server.";
-			SingletonRepository.getRuleProcessor().tellAllPlayers(text);
+			SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.SUPPORT, text);
 
 		} catch (final Throwable e) {
 			// Yes, i know that you are not supposed to catch Throwable

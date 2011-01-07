@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.entity.player.Player;
 
@@ -53,12 +54,13 @@ public class PlayerList {
 	/**
 	 * Sends a privateText to all players in the list.
 	 * 
-	 * @param message
+	 * @param notificationType type of the notification
+	 * @param message message to tell all online players
 	 */
-	void tellAllOnlinePlayers(final String message) {
+	void tellAllOnlinePlayers(final NotificationType notificationType, final String message) {
 		forAllPlayersExecute(new Task<Player>() {
 			public void execute(final Player player) {
-				player.sendPrivateText(message);
+				player.sendPrivateText(notificationType, message);
 				player.notifyWorldAboutChanges();
 			}
 		});

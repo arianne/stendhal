@@ -12,16 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.piedpiper;
 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.maps.quests.ThePiedPiper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 public class TPPQuest implements ITPPQuest {
 	
@@ -50,7 +51,7 @@ public class TPPQuest implements ITPPQuest {
 	 */
 	public void shoutMessage(final String msg) {
 		if(msg!=null) {
-			SingletonRepository.getRuleProcessor().tellAllPlayers(msg);
+			SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.PRIVMSG, msg);
 		}
 	}
 

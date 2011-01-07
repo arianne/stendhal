@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
@@ -46,7 +47,7 @@ public class NPCShout extends ScriptImpl {
 			}
 			final String text = sb.toString();
 
-			SingletonRepository.getRuleProcessor().tellAllPlayers(text);
+			SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.PRIVMSG, text);
 		}
 	}
 

@@ -553,12 +553,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Tell this message all players.
-	 * 
+	 *
+	 * @param notificationType type of notification message, usually NotificationType.PRIVMSG
 	 * @param message
 	 *            Message to tell all players
 	 */
-	public void tellAllPlayers(final String message) {
-		onlinePlayers.tellAllOnlinePlayers(message);
+	public void tellAllPlayers(NotificationType notificationType, final String message) {
+		onlinePlayers.tellAllOnlinePlayers(notificationType, message);
 	}
 
 	/**

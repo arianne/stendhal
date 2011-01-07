@@ -14,6 +14,7 @@ package games.stendhal.server.actions.admin;
 
 import static games.stendhal.common.constants.Actions.TELLALL;
 import static games.stendhal.common.constants.Actions.TEXT;
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -35,7 +36,7 @@ public class TellAllAction extends AdministrationAction {
 			
 			new GameEvent(player.getName(), TELLALL, action.get(TEXT)).raise();
 
-			SingletonRepository.getRuleProcessor().tellAllPlayers(message);
+			SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.SUPPORT, message);
 		}
 	}
 

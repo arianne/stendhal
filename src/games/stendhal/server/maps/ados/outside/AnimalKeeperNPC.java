@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.outside;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -84,7 +85,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		}
 
 		public void onTurnReached(final int currentTurn) {
-			SingletonRepository.getRuleProcessor().tellAllPlayers(cryForHelp);
+			SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.PRIVMSG, cryForHelp);
 		}
 	}
 
