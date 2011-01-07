@@ -325,7 +325,7 @@ public abstract class PlayerTestHelper {
 	 * @param index
 	 * @param seconds
 	 */
-	public void setPastTime(final Player player, final String questSlot, final int index, final long seconds) {
+	public static void setPastTime(final Player player, final String questSlot, final int index, final long seconds) {
 		long pastTime = new Date().getTime() - seconds*1000;
 
 		player.setQuest(questSlot, 2, Long.toString(pastTime));
