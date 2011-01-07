@@ -14,7 +14,11 @@ package games.stendhal.server.entity.spell.effect;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.Nature;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
@@ -23,10 +27,14 @@ import games.stendhal.server.entity.player.Player;
  * 
  * @author madmetzger
  */
-public class HealingEffect extends AbstractEffect {
+public class HealingEffect extends AbstractEffect implements TurnListener {
 
 	private static final Logger LOGGER = Logger.getLogger(HealingEffect.class);
-
+	
+	private int restAmount;
+	
+	private Player playerToHeal;
+	
 	/**
 	 * Creates a new {@link HealingEffect}
 	 * 
@@ -41,6 +49,7 @@ public class HealingEffect extends AbstractEffect {
 	public HealingEffect(Nature nature, int amount, int atk, int def, double lifesteal, int rate,
 			int regen) {
 		super(nature, amount, atk, def, lifesteal, rate, regen);
+		this.restAmount = amount;
 	}
 
 	public void act(Player caster, Entity target) {
@@ -52,7 +61,17 @@ public class HealingEffect extends AbstractEffect {
 	}
 
 	private void actInternal(Player caster, Player target) {
-		target.heal(getAmount(), true);
+		playerToHeal = target;
+		SingletonRepository.getTurnNotifier().notifyInTurns(0, new TurnListenerDecorator(this));
+	}
+
+	public void onTurnReached(int currentTurn) {
+		if(restAmount > 0) {
+			int toHeal = Math.min(restAmount, getRegen());
+			playerToHeal.heal(toHeal);
+			restAmount = restAmount - toHeal;
+			SingletonRepository.getTurnNotifier().notifyInTurns(getRate(), new TurnListenerDecorator(this));
+		}
 	}
 
 }
