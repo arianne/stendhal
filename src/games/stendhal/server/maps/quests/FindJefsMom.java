@@ -109,7 +109,7 @@ public class FindJefsMom extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES), new QuestStateStartsWithCondition(QUEST_SLOT, "waiting;")),
 				ConversationStates.QUEST_OFFERED,
-				"It is a long time ago that you told me the last time that my mother is fine. May you watch out for her again please?",
+				"It is a long time ago were you told me that my mom is fine. May you watch out for her again please?",
 				null);
 
 		
@@ -119,7 +119,7 @@ public class FindJefsMom extends AbstractQuest {
 				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1,REQUIRED_MINUTES))), 
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I don't want to disturb my mom from finding herself back in a way so you don't have to find her currently. You can ask me again in"));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I don't want to disturb my mom so fast again so you don't have to find her currently. You can ask me again in"));
 	
 		
 		// player starts quest again
@@ -134,7 +134,7 @@ public class FindJefsMom extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
-			"Thank you so much! I hope that my #mom is ok and will return soon! If you have found her and returned to me, I'll maybe have something in return for showing you how thankful I am.",
+			"Thank you so much! I hope that my #mom is ok and will return soon! If you have found her and return to me, I'll maybe have something in return for showing you how thankful I am.",
 			new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, "start"),
 								new IncreaseKarmaAction(10.0)));
 
@@ -180,7 +180,7 @@ public class FindJefsMom extends AbstractQuest {
 	    amber.add(ConversationStates.ATTENDING, "Jef",
 		     	new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start")),
 		    	ConversationStates.IDLE,
-		    	"I don't trust you. Your voice shivered while you told my sons name. I bet he is fine and happy and save.", 
+		    	"I don't trust you. Your voice shivered while you told me my sons name. I bet he is fine and happy and save.", 
 		    	null);
 	    
 	   
@@ -198,7 +198,7 @@ public class FindJefsMom extends AbstractQuest {
 				redlionfishamount = Rand.roll1D6();
 				red_lionfish.setQuantity(redlionfishamount);
 				player.equipOrPutOnGround(red_lionfish);
-				npc.say("Thank you! Take these " + Integer.toString(redlionfishamount) + " red lionfishes, I got some from a guy who visited Amazon island some time ago, maybe you need them.");
+				npc.say("Thank you! Take these " + Integer.toString(redlionfishamount) + " red lionfishes! I got some from a guy who visited Amazon island some time ago, maybe you need them.");
 				
 			}
 		};
