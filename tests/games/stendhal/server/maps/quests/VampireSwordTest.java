@@ -420,23 +420,44 @@ public class VampireSwordTest {
 			final Player player = PlayerTestHelper.createPlayer("me");			
 			final SpeakerNPC npc = vs.npcs.get(VAMPIRE_NPC);
 			final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
-		
-			en.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
-		
-			fillSlots(player);
+
+			en.step(player, "hi");
+			assertEquals("Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty goblet I will #fill it with blood for you in my cauldron.", getReply(npc));
+
+			for(Map.Entry<String, Integer> it : requiredForFilling.entrySet()) {
+				int amount = it.getValue();
+				if (amount > 1) {
+					PlayerTestHelper.equipWithStackableItem(player, it.getKey(), amount);
+				} else {
+					PlayerTestHelper.equipWithItem(player, it.getKey());
+				}
+			}
+
+			en.step(player, "fill");
+			assertEquals("I need you to fetch me 7 #'bat entrails', 7 #'vampirette entrails', a #'skull ring', and an #'empty goblet' for this job. Do you have it?", getReply(npc));
+
 			en.step(player, yes);
-			
-			// the code would allow filling more than 1 too, but that's really
-			// an implementation detail
 			assertEquals("answer to '" + yes + "'", "OK, I will fill a goblet for you, but that will take some time. Please come back in 5 minutes.", getReply(npc));
-			
+
+			en.step(player, "bye");
+			assertEquals("*cough* ... farewell ... *cough*", getReply(npc));
+
+			// wait 5 minutes
+			PlayerTestHelper.setPastTime(player, questSlot, 2, 5*60);
+
+			en.step(player, "hi");
+			assertEquals("Welcome back! I'm still busy with your order to fill a goblet for you. Come back in 5 minutes to get it.", getReply(npc));
+
 			assertFalse(player.isEquipped("goblet"));
-			for (String item : requiredForFilling.keySet()) {
+			for(String item : requiredForFilling.keySet()) {
 				assertFalse("vampire took " + item, player.isEquipped(item));
 			}
-			
+
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 			assertTrue("player has " + sickySlotName + "slot", player.hasQuest(sickySlotName));
+
+			en.step(player, "bye");
+			assertEquals("*cough* ... farewell ... *cough*", getReply(npc));
 		}
 	}
 	
