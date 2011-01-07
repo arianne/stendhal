@@ -21,7 +21,7 @@ import games.stendhal.server.entity.spell.Spell;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 /**
- * Triggered from casting a spell client side
+ * Casts a spell for a player at the given target
  * 
  * @author madmetzger
  */
@@ -32,6 +32,8 @@ public class CastSpellAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
+		//base object is always the player sending the action
+		action.put("baseobject", player.getID().getObjectID());
 		Entity target = EntityHelper.entityFromTargetName(action.get(TARGET), player);
 		Spell spell = (Spell) EntityHelper.entityFromSlot(player, action);
 		spell.cast(player, target);
