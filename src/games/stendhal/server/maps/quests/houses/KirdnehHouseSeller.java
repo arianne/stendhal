@@ -78,7 +78,8 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 
 		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://stendhalgame.org/wiki/StendhalHouses.");
 		addReply("reputation", "I will ask Hazel about you. Provided you've finished any task she asked you to do for her recently, and haven't left anything unfinished, she will like you.");
-		
+		addReply("Amber", "Oh I loved Amber while we were dating. Thought she will be the love of my life but unfortunetly we broke up when we realised, that it can't work out between us. She #left after that.");
+		addReply("left", "Personally I have no idea where she is at the moment. Her son Jef waits for her in town but I heard some people saying, that they saw Amber somewhere around Kalavan and Fado forest.");
 		setDescription("You see a smart looking man.");
 		setEntityClass("man_004_npc");
 		setPosition(31, 4);
