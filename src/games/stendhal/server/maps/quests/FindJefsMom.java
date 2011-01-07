@@ -256,11 +256,13 @@ public class FindJefsMom extends AbstractQuest {
 		if ("found_mom".equals(questState)) {
 			res.add("I found Amber, Jefs mother, while she walked around somewhere in Fado forest. She gave me a flower for her son.");
 		}
-		if ("flower_brought_to_jef".equals(questState)) {
-			if (!isRepeatable(player)) {
-				res.add("Although Jef doesn't want me to look for his mother again earlier, I should ask him again if he had not change his mind yet about it.");
+		if ("flower_brought_to_jef".equals(questState) || isCompleted(player)){
+			res.add("I brought Jef the flower which Amber gave me. Now he knows that she is fine.");
+			
+			if (isRepeatable(player)) {
+				res.add("Jef was really happy when he  heard that his mother Amber is fine. He told me that he is at least happy with that for the next time.");
 			} else {
-				res.add("Jef was really happy when he heard that his mother Amber is fine. He told me that he is at least happy with that for the next time.");
+				res.add("Although Jef doesn't want me to look for his mother again earlier, I should ask him again if he had not change his mind yet about it.");
 			}			
         } 
 		return res;
@@ -280,12 +282,12 @@ public class FindJefsMom extends AbstractQuest {
 	
 	@Override
 	public boolean isRepeatable(final Player player) {
-		return new QuestInStateCondition(QUEST_SLOT,0,"found_mom").fire(player,null, null);
+		return new QuestInStateCondition(QUEST_SLOT,0,"flower_brought_to_jef").fire(player,null, null);
 	}
 	
 
 	@Override
 	public boolean isCompleted(final Player player) {
-		return new QuestInStateCondition(QUEST_SLOT,0,"found_mom").fire(player,null, null);
+		return new QuestInStateCondition(QUEST_SLOT,0,"flower_brought_to_jef").fire(player,null, null);
 	}
 }
