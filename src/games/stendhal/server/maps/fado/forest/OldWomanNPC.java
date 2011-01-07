@@ -117,12 +117,12 @@ public class OldWomanNPC implements ZoneConfigurator {
 				addReply("failed, fail", "I left my poor son alone for such a long time now. I doubt that he will ever talk to me again but there were so many #problems around...");
 				addReply("problem", "I felt in love with a man in Kirdneh called Roger Frampton. Unfortunetly we broke up and I didn't know what to do after so I went out of the city and spent some time on my #own here.");
 				addReply("own", "The trees and animals around became great companions of me although I had to give up my real family somehow. I miss my son #Jef so much");
-				addReply("Jef", "Such a gentle and nice young boy. Hopefully he doesn't wait for my return...");
-				addQuest("Please tell my son Jef that I'm #fine and hopefully back soon when I'll be ready to return to Kirdneh...and to Roger.");
+				addReply("Jef", "Such a gentle and nice young boy. I know that he waits for my return but I'm not ready yet.");
+				addQuest("I don't have any quest for you at the moment.");
 				addHelp("Visit some of my new #friends here. They are so nice and gentle!");
 				addReply("friend", "Aldrin makes really tasty honey and his bees are hard workers for keeping the quality safe.");
 				addOffer("Sorry but I don't have anything to sell.");
-				addGoodbye("Bye and please remember to tell my son that I'm ok!");
+				addGoodbye("Bye and please be gentle to my son.");
 			}
 		};
 
