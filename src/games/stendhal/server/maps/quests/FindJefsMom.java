@@ -152,6 +152,13 @@ public class FindJefsMom extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"My mother Amber left me for buying some food on the market but she didn't return yet. The only thing I know is, that she broke up with her former boyfriend, Roger Frampton before...",
 				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("flower", "zantedeschia", "fine", "amber", "done"),
+				new AndCondition (new QuestInStateCondition(QUEST_SLOT, "found_mom")),
+				ConversationStates.ATTENDING,
+				"Please don't lie to me. You promised me to find my mom and now you can't even prove that you found her earlier. I don't believe in you, sorry.",
+				null);
 	}
 
 	private void findMomStep() {
@@ -163,7 +170,7 @@ public class FindJefsMom extends AbstractQuest {
 							 new PlayerCanEquipItemCondition("zantedeschia")),
                           
 			ConversationStates.IDLE, 
-			"Oh I see :) My son Jef asked you to take a look after me. He is such a nice and gentle boy! Please give him this zantedeschia here. I love them! He will know that I'm fine when you give it to him!",
+			"Oh I see :) My son Jef asked you to take a look after me. He is such a nice and gentle boy! Please give him this zantedeschia here. I love them! He will know that I'm #fine when you give it to him!",
 			new MultipleActions(new EquipItemAction("zantedeschia", 1, true), 
                                 new SetQuestAction(QUEST_SLOT, 0, "found_mom"))); 
                              
@@ -216,7 +223,7 @@ public class FindJefsMom extends AbstractQuest {
 									new SetQuestToTimeStampAction(QUEST_SLOT,1)));
 
 		npc.add(ConversationStates.ATTENDING,
-			Arrays.asList("flower", "zantedeschia", "mom", "mother"),
+			Arrays.asList("flower", "zantedeschia", "fine", "amber", "done"),
 			new NotCondition(new PlayerHasItemWithHimCondition("zantedeschia")),
 			ConversationStates.ATTENDING,
 			"Please don't lie to me. You promised me to find my mom and now you can't even prove that you found her earlier. I don't believe in you, sorry.",
@@ -254,7 +261,7 @@ public class FindJefsMom extends AbstractQuest {
 			res.add("Jef asked me to take a look at his mother Amber who didn't return from the market yet. I hope she will listen to me after I tell her the name of her son.");
 		}
 		if ("found_mom".equals(questState)) {
-			res.add("I found Amber, Jefs mother, while she walked around somewhere in Fado forest. She gave me a flower for her son.");
+			res.add("I found Amber, Jefs mother, while she walked around somewhere in Fado forest. She gave me a flower for her son and told that the flower signals that she is fine.");
 		}
 		if ("flower_brought_to_jef".equals(questState) || isCompleted(player)){
 			res.add("I brought Jef the flower which Amber gave me. Now he knows that she is fine.");
