@@ -412,6 +412,9 @@ public class VampireSwordTest {
 		assertTrue("answer to 'fill'", answer.startsWith("I need you to fetch me "));
 		assertTrue("answer to 'fill'", answer.endsWith("for this job. Do you have it?"));
 		assertEquals(en.getCurrentState(), ConversationStates.PRODUCTION_OFFERED);
+
+		en.step(player, "bye");
+		assertEquals("*cough* ... farewell ... *cough*", getReply(npc));
 	}
 	
 	@Test
