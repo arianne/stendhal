@@ -159,32 +159,23 @@ public class FindJefsMom extends AbstractQuest {
 
         // give the flower if it's at least 5 days since the player activated the quest the last time, and set the time slot again
 		amber.add(ConversationStates.ATTENDING, "Jef",
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
-							 new PlayerCanEquipItemCondition("zantedeschia"),
-                             new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0,"start"),
+							 new PlayerCanEquipItemCondition("zantedeschia")),
+                          
 			ConversationStates.IDLE, 
 			"Oh I see :) My son Jef asked you to take a look after me. He is such a nice and gentle boy! Please give him this zantedeschia here. I love them! He will know that I'm fine when you give it to him!",
 			new MultipleActions(new EquipItemAction("zantedeschia", 1, true), 
-                                new SetQuestAction(QUEST_SLOT, 0, "found_mom"), 
-                                new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
+                                new SetQuestAction(QUEST_SLOT, 0, "found_mom"))); 
+                             
 
 		// don't put the flower on the ground - if player has no space, tell them
 		amber.add(ConversationStates.ATTENDING, "Jef",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
-                                 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES),
 								 new NotCondition(new PlayerCanEquipItemCondition("zantedeschia"))),
 				ConversationStates.IDLE, 
 				"Oh, I wanted to give you a flower for my son to show him that I'm fine but as I see now, you don't have enough space for equipping it. Please return to me when you made some space in your bags!",
 				null);
-		
-        // don't give the flower if one was given within the last 5 days
-        amber.add(ConversationStates.ATTENDING, "Jef",
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
-                                 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
-				ConversationStates.IDLE, 
-				"Oh I don't think that my boy sent you so soon again to me. I take trust in him and doubt that he feels lonely already again.",
-				null);
-	    
+		    
         // don't give the flower if the quest state isn't start
 	    amber.add(ConversationStates.ATTENDING, "Jef",
 		     	new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start")),
@@ -197,6 +188,7 @@ public class FindJefsMom extends AbstractQuest {
 
 	private void bringFlowerToJefStep() {
 		final SpeakerNPC npc = npcs.get("Jef");
+		
 		ChatAction addRandomNumberOfItemsAction = new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				//add random number of red lionfish
@@ -217,9 +209,11 @@ public class FindJefsMom extends AbstractQuest {
 				new MultipleActions(new DropItemAction("zantedeschia"), 
                                     new IncreaseXPAction(5000), 
                                     new IncreaseKarmaAction(15),
+                            		new SetQuestToTimeStampAction(QUEST_SLOT, 1),
 									addRandomNumberOfItemsAction, 
                                     new SetQuestAction(QUEST_SLOT, 0, "flower_brought_to_jef"), 
-									new IncrementQuestAction(QUEST_SLOT, 2, 1)));
+									new IncrementQuestAction(QUEST_SLOT, 2, 1),
+									new SetQuestToTimeStampAction(QUEST_SLOT,1)));
 
 		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("flower", "zantedeschia", "mom", "mother"),
@@ -252,17 +246,18 @@ public class FindJefsMom extends AbstractQuest {
         final String questStateFull = player.getQuest(QUEST_SLOT);
         final String[] parts = questStateFull.split(";");
         final String questState = parts[0];
-		if ("rejected".equals(questState)) {
+        
+        if ("rejected".equals(questState)) {
 			res.add("Finding his mom somewhere costs me too much time at the moment. I don't want to check on her at the moment.");
 		}
-		if ("start".equals(questState) || "found_mom".equals(questState) || isCompleted(player)) {
+		if ("start".equals(questState)) {
 			res.add("Jef asked me to take a look at his mother Amber who didn't return from the market yet. I hope she will listen to me after I tell her the name of her son.");
 		}
-		if ("found_mom".equals(questState) || isCompleted(player)) {
+		if ("found_mom".equals(questState)) {
 			res.add("I found Amber, Jefs mother, while she walked around somewhere in Fado forest. She gave me a flower for her son.");
 		}
-		if (isCompleted(player)) {
-			if (isRepeatable(player)) {
+		if ("flower_brought_to_jef".equals(questState)) {
+			if (!isRepeatable(player)) {
 				res.add("Although Jef doesn't want me to look for his mother again earlier, I should ask him again if he had not change his mind yet about it.");
 			} else {
 				res.add("Jef was really happy when he heard that his mother Amber is fine. He told me that he is at least happy with that for the next time.");
