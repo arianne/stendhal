@@ -6,6 +6,8 @@ Changelog
 
 *world*
 - sheep growing quest from Nishiya
+- Help Jef by finding his mom in a new quest
+- Amber, Jefs mom, showed up somewhere in Faiumoni
 
 0.91 
 
