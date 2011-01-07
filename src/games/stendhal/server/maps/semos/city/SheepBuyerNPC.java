@@ -12,6 +12,7 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.village.SheepSellerNPC;
@@ -181,15 +182,15 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 			super(items);
 		}
 
-		private int getValue(final Sheep sheep) {
-			return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) Sheep.MAX_WEIGHT));
+		private int getValue(BehaviourResult res, final Sheep sheep) {
+			return Math.round(getUnitPrice(res.getChosenItemName()) * ((float) sheep.getWeight() / (float) Sheep.MAX_WEIGHT));
 		}
 
 		@Override
-		public int getCharge(final Player player) {
+		public int getCharge(BehaviourResult res, final Player player) {
 			if (player.hasSheep()) {
 				final Sheep sheep = player.getSheep();
-				return getValue(sheep);
+				return getValue(res, sheep);
 			} else {
 				// npc's answer was moved to BuyerAdder. 
 				return 0;
@@ -197,20 +198,20 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		}
 
 		@Override
-		public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
-			// amount is currently ignored.
+		public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+			// res.getAmount() is currently ignored.
 
 			final Sheep sheep = player.getSheep();
 
 			if (sheep != null) {
 				if (seller.getEntity().squaredDistance(sheep) > 5 * 5) {
 					seller.say("I can't see that sheep from here! Bring it over so I can assess it properly.");
-				} else if (getValue(sheep) < SheepSellerNPC.BUYING_PRICE) {
+				} else if (getValue(res, sheep) < SheepSellerNPC.BUYING_PRICE) {
 					// prevent newbies from selling their sheep too early
 					seller.say("Nah, that sheep looks too skinny. Feed it with red berries, and come back when it has become fatter.");
 				} else {
 					seller.say("Thanks! Here is your money.");
-					payPlayer(player);
+					payPlayer(res, player);
 					player.removeSheep(sheep);
 
 					player.notifyWorldAboutChanges();

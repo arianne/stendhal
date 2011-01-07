@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -91,8 +92,8 @@ public class GateKeeperNPC implements ZoneConfigurator {
 						}
 
 						@Override
-						public void fireRequestOK(final Behaviour behaviour, final Player player, final Sentence sentence, final EventRaiser raiser) {
-				        	final int amount = behaviour.getAmount();
+						public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
+				        	final int amount = res.getAmount();
 
 				        	if (sentence.getExpressions().size() == 1) {
         						// player only said 'bribe'
@@ -118,9 +119,9 @@ public class GateKeeperNPC implements ZoneConfigurator {
 			        	}
 
 						@Override
-						public void fireRequestError(final Behaviour behavior, final Player player, final Sentence sentence, final EventRaiser raiser) {
-							if (behaviour.getChosenItemName() == null) {
-								fireRequestOK(behavior, player, sentence, raiser);
+						public void fireRequestError(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
+							if (res.getChosenItemName() == null) {
+								fireRequestOK(res, player, sentence, raiser);
         			        } else {
         						// This bit is just in case the player says 'bribe X potatoes', not money
         						raiser.say("You can't bribe me with anything but money!");

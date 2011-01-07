@@ -53,11 +53,10 @@ public class SeedSellerBehaviourTest {
 		final SpeakerNPC speakerNPC = new SpeakerNPC("hugo");
 
 		sb = new SeedSellerBehaviour(pricelist);
-		sb.setAmount(1);
-		sb.setChosenItemName("lilia seed");
+		BehaviourResult res = new BehaviourResult(true, "lilia seed",1, null);
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		PlayerTestHelper.equipWithMoney(bob, 100);
-		sb.transactAgreedDeal(new EventRaiser(speakerNPC), bob);
+		sb.transactAgreedDeal(res, new EventRaiser(speakerNPC), bob);
 		final Item seed = bob.getFirstEquipped("seed");
 		assertNotNull(seed);
 		assertEquals("lilia", seed.getInfoString());
@@ -80,7 +79,6 @@ public class SeedSellerBehaviourTest {
 		item = sb.getAskedItem("daisies seed");
 		assertTrue(item instanceof Seed);
 		assertEquals("daisies", item.getInfoString());
-
 	}
 
 }

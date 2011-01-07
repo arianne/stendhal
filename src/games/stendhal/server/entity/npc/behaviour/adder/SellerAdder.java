@@ -22,7 +22,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
-import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -36,6 +36,12 @@ import org.apache.log4j.Logger;
 
 public class SellerAdder {
 	private static Logger logger = Logger.getLogger(SellerAdder.class);
+
+	/**
+	 * Behaviour parse result in the current conversation.
+	 * Remark: There is only one conversation between a player and the NPC at any time.
+	 */
+	private BehaviourResult currentBehavRes;
 	
 	public void addSeller(final SpeakerNPC npc, final SellerBehaviour behaviour) {
 		addSeller(npc, behaviour, true);
@@ -74,14 +80,14 @@ public class SellerAdder {
 				ConversationStates.ATTENDING, null,
 				new BehaviourAction(sellerBehaviour, "buy", "sell") {
 					@Override
-					public void fireRequestOK(final Behaviour behaviour, final Player player, final Sentence sentence, final EventRaiser raiser) {
-						String chosenItemName = behaviour.getChosenItemName();
+					public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
+						String chosenItemName = res.getChosenItemName();
 
 						// find out if the NPC sells this item, and if so,
 						// how much it costs.
-						if (behaviour.getAmount() > 1000) {
+						if (res.getAmount() > 1000) {
 							logger.warn("Refusing to sell very large amount of "
-									+ behaviour.getAmount()
+									+ res.getAmount()
 									+ " " + chosenItemName
 									+ " to player "
 									+ player.getName() + " talking to "
@@ -90,25 +96,26 @@ public class SellerAdder {
 							raiser.say("Sorry, the maximum number of " 
 									+ chosenItemName 
 									+ " which I can sell at once is 1000.");
-						} else if (behaviour.getAmount() > 0) {
-							int price = sellerBehaviour.getUnitPrice(chosenItemName) * behaviour.getAmount();
+						} else if (res.getAmount() > 0) {
+							int price = sellerBehaviour.getUnitPrice(chosenItemName) * res.getAmount();
 
 							StringBuilder builder = new StringBuilder();
 							if (player.isBadBoy()) {
 								price = (int) (SellerBehaviour.BAD_BOY_BUYING_PENALTY * price);
 
 								builder.append("To friends I charge less, but you seem like you have played unfairly here. So,  ");
-								builder.append(Grammar.quantityplnoun(behaviour.getAmount(), chosenItemName, "a"));
+								builder.append(Grammar.quantityplnoun(res.getAmount(), chosenItemName, "a"));
 							} else {
-								builder.append(Grammar.quantityplnoun(behaviour.getAmount(), chosenItemName, "A"));
+								builder.append(Grammar.quantityplnoun(res.getAmount(), chosenItemName, "A"));
 							}
 							builder.append(" will cost ");
 							builder.append(price);
 							builder.append(". Do you want to buy ");
-							builder.append(Grammar.itthem(behaviour.getAmount()));
+							builder.append(Grammar.itthem(res.getAmount()));
 							builder.append("?");
 							raiser.say(builder.toString());
 
+							currentBehavRes = res;
 							npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED); // success
 						} else {
 							raiser.say("Sorry, how many " + Grammar.plural(chosenItemName) + " do you want to buy?!");
@@ -121,13 +128,15 @@ public class SellerAdder {
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						final String itemName = sellerBehaviour.getChosenItemName();
+						final String itemName = currentBehavRes.getChosenItemName();
 						logger.debug("Selling a " + itemName + " to player " + player.getName());
 
-						boolean success = sellerBehaviour.transactAgreedDeal(raiser, player);
+						boolean success = sellerBehaviour.transactAgreedDeal(currentBehavRes, raiser, player);
 						if (success) {
 							raiser.addEvent(new SoundEvent("coins-1", SoundLayer.CREATURE_NOISE));
 						}
+
+						currentBehavRes = null;
 					}
 				});
 

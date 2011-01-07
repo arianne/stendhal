@@ -64,21 +64,24 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 *         was able to equip the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
+	public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+		String chosenItemName = res.getChosenItemName();
+		int amount = res.getAmount();
+
 		final Item item = getAskedItem(chosenItemName);
 		if (item == null) {
-			logger.error("Trying to sell an nonexistent item: " + getChosenItemName());
+			logger.error("Trying to sell an nonexistent item: " + chosenItemName);
 			return false;
 		}
 
 		// When the user tries to buy several of a non-stackable
 		// item, he is forced to buy only one.
 		if (item instanceof StackableItem) {
-			((StackableItem) item).setQuantity(getAmount());
+			((StackableItem) item).setQuantity(amount);
 		} else {
-			if (getAmount() != 1) {
+			if (amount != 1) {
 				player.sendPrivateText("You can only buy one " + chosenItemName + " at a time. Setting amount to 1.");
-				setAmount(1);
+				res.setAmount(1);
 			}
 		}
 
@@ -87,7 +90,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 			return false;
 		}
 		
-		int price = getCharge(player);
+		int price = getCharge(res, player);
 		if (player.isBadBoy()) {
 			price = (int) (BAD_BOY_BUYING_PENALTY * price);
 		}
@@ -96,12 +99,12 @@ public class SellerBehaviour extends MerchantBehaviour {
 			if (player.equipToInventoryOnly(item)) {
 				player.drop("money", price);
 				seller.say("Congratulations! Here "
-						+ Grammar.isare(getAmount()) + " your "
-						+ Grammar.plnoun(getAmount(), getChosenItemName()) + "!");
+						+ Grammar.isare(amount) + " your "
+						+ Grammar.plnoun(amount, chosenItemName) + "!");
 				return true;
 			} else {
 				seller.say("Sorry, but you cannot equip the "
-						+ Grammar.plnoun(getAmount(), getChosenItemName()) + ".");
+						+ Grammar.plnoun(amount, chosenItemName) + ".");
 				return false;
 			}
 		} else {

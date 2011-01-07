@@ -29,7 +29,7 @@ public class BehaviourTest {
 	 */
 	@Test
 	public void testSetAmount() {
-		Behaviour beh = new Behaviour();
+		BehaviourResult beh = new BehaviourResult(true, "X", 1, null);
 		beh.setAmount(0);
 		assertEquals(1, beh.getAmount());
 		beh.setAmount(1001);
@@ -50,11 +50,11 @@ public class BehaviourTest {
 
 		Behaviour horseBeh = new Behaviour("horse");
 		assertEquals(1, horseBeh.getItemNames().size());
-		assertTrue(horseBeh.parseRequest(sentence));
+		assertTrue(horseBeh.parseRequest(sentence).wasFound());
 
 		Behaviour cowBeh = new Behaviour("cow");
 		assertEquals(1, cowBeh.getItemNames().size());
-		assertFalse(cowBeh.parseRequest(sentence));
+		assertFalse(cowBeh.parseRequest(sentence).wasFound());
 	}
 
 	/**
@@ -68,14 +68,16 @@ public class BehaviourTest {
 		Set<String> items = new HashSet<String>();
 		items.add("gold");
 		Behaviour beh = new Behaviour(items);
-		assertTrue(beh.parseRequest(sentence)); // only gold, silver -> unambiguous
-		assertEquals(50, beh.getAmount());
-		assertEquals("gold", beh.getChosenItemName());
+		BehaviourResult res = beh.parseRequest(sentence);
+		assertTrue(res.wasFound()); // only gold, silver -> unambiguous
+		assertEquals(50, res.getAmount());
+		assertEquals("gold", res.getChosenItemName());
 
 		items.add("silver");
 		beh = new Behaviour(items);
-		assertFalse(beh.parseRequest(sentence)); // gold, silver -> ambiguous
-		assertEquals(50, beh.getAmount());
+		res = beh.parseRequest(sentence);
+		assertFalse(res.wasFound()); // gold, silver -> ambiguous
+		assertEquals(50, res.getAmount());
 	}
 
 }

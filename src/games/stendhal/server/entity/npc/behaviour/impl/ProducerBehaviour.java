@@ -255,6 +255,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	public int getNumberOfProductItems(final Player player) {
 		final String orderString = player.getQuest(questSlot);
 		final String[] order = orderString.split(";");
+
 		return Integer.parseInt(order[0]);
 	}
 	
@@ -266,11 +267,13 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 */
 	protected int getMaximalAmount(final Player player) {
 		int maxAmount = Integer.MAX_VALUE;
+
 		for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
 			final int limitationByThisResource = player.getNumberOfEquipped(entry.getKey())
 					/ entry.getValue();
 			maxAmount = Math.min(maxAmount, limitationByThisResource);
 		}
+
 		return maxAmount;
 	}
 
@@ -278,13 +281,15 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 * Tries to take all the resources required to produce <i>amount</i> units
 	 * of the product from the player. If this is possible, asks the user if the
 	 * order should be initiated.
-	 * 
+	 *
+	 * @param res
 	 * @param npc
 	 * @param player
-	 * @param amount
 	 * @return true if all resources can be taken
 	 */
-	public boolean askForResources(final EventRaiser npc, final Player player, final int amount) {
+	public boolean askForResources(final BehaviourResult res, final EventRaiser npc, final Player player) {
+		int amount = res.getAmount();
+
 		if (getMaximalAmount(player) < amount) {
 			npc.say("I can only " + getProductionActivity() + " "
 					+ Grammar.quantityplnoun(amount, getProductName(), "a")
@@ -292,7 +297,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 					+ getRequiredResourceNamesWithHashes(amount) + ".");
 			return false;
 		} else {
-			setAmount(amount);
+			res.setAmount(amount);
 			npc.say("I need you to fetch me "
 					+ getRequiredResourceNamesWithHashes(amount)
 					+ " for this job. Do you have it?");
@@ -310,24 +315,23 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *            the involved player
 	 */
 	@Override
-	public boolean transactAgreedDeal(final EventRaiser npc, final Player player) {
-		if (getMaximalAmount(player) < amount) {
+	public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser npc, final Player player) {
+		if (getMaximalAmount(player) < res.getAmount()) {
 			// The player tried to cheat us by placing the resource
 			// onto the ground after saying "yes"
 			npc.say("Hey! I'm over here! You'd better not be trying to trick me...");
 			return false;
 		} else {
 			for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
-				final int amountToDrop = amount * entry.getValue();
+				final int amountToDrop = res.getAmount() * entry.getValue();
 				player.drop(entry.getKey(), amountToDrop);
 			}
 			final long timeNow = new Date().getTime();
-			player.setQuest(questSlot, amount + ";" + getProductName() + ";"
-					+ timeNow);
+			player.setQuest(questSlot, res.getAmount() + ";" + getProductName() + ";" + timeNow);
 			npc.say("OK, I will "
 					+ getProductionActivity()
 					+ " "
-					+ Grammar.quantityplnoun(amount, getProductName(), "a")
+					+ Grammar.quantityplnoun(res.getAmount(), getProductName(), "a")
 					+ " for you, but that will take some time. Please come back in "
 					+ getApproximateRemainingTime(player) + ".");
 			return true;
@@ -384,10 +388,13 @@ public class ProducerBehaviour extends TransactionBehaviour {
 
 	/**
 	 * Answer with an error message in case the request could not be fulfilled.
+	 *
+	 * @param res
 	 * @param npcAction
 	 * @param npc
 	 */
-	public void sayError(final String npcAction, final EventRaiser npc) {
-		sayError(getProductionActivity(), npcAction, npc);
+	public void sayError(final BehaviourResult res, final String npcAction, final EventRaiser npc) {
+		sayError(res, getProductionActivity(), npcAction, npc);
 	}
+
 }

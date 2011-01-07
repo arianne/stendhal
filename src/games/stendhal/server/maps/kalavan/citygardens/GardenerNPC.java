@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
@@ -94,7 +95,9 @@ public class GardenerNPC implements ZoneConfigurator {
 					}
 
 					@Override
-						public boolean askForResources(final EventRaiser npc, final Player player, final int amount) {
+						public boolean askForResources(BehaviourResult res, final EventRaiser npc, final Player player) {
+						int amount = res.getAmount();
+
 						if (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).startsWith("done;")) {
 							// she is eating. number of lunches is in tokens[1]
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
@@ -119,15 +122,18 @@ public class GardenerNPC implements ZoneConfigurator {
 									+ getRequiredResourceNamesWithHashes(amount) + ".");
 							return false;
 						} else {
-							setAmount(amount);
+							res.setAmount(amount);
 							npc.say("Then I'll want "
 									+ getRequiredResourceNamesWithHashes(amount)
 									+ ". Did you bring that?");
 							return true;
 						}
 					}
+
 					@Override
-						public boolean transactAgreedDeal(final EventRaiser npc, final Player player) {
+					public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser npc, final Player player) {
+						int amount = res.getAmount();
+
 						if (getMaximalAmount(player) < amount) {
 							// The player tried to cheat us by placing the resource
 							// onto the ground after saying "yes"
@@ -147,8 +153,9 @@ public class GardenerNPC implements ZoneConfigurator {
 							return true;
 						}
 					}
+
 					@Override
-						public void giveProduct(final EventRaiser npc, final Player player) {
+					public void giveProduct(final EventRaiser npc, final Player player) {
 						final String orderString = player.getQuest(QUEST_SLOT);
 						final String[] order = orderString.split(";");
 						final int numberOfProductItems = Integer.parseInt(order[0]);

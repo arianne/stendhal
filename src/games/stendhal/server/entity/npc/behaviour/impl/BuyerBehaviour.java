@@ -34,18 +34,19 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 * Gives the money for the deal to the player. If the player can't carry the
 	 * money, puts it on the ground.
 	 *
+	 * @param res
+	 *
 	 * @param player
 	 *            The player who sells
 	 */
-	protected void payPlayer(final Player player) {
+	protected void payPlayer(BehaviourResult res, final Player player) {
 		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
-		money.setQuantity(getCharge(player));
+		money.setQuantity(getCharge(res, player));
 		player.equipOrPutOnGround(money);
 	}
 
 	/**
-	 * Transacts the deal that has been agreed on earlier via setChosenItem()
-	 * and setAmount().
+	 * Transacts the deal that is described in BehaviourResult.
 	 * 
 	 * @param seller
 	 *            The NPC who buys
@@ -55,22 +56,22 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 *         has the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
-		if (player.drop(chosenItemName, getAmount())) {
-			payPlayer(player);
+	public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+		if (player.drop(res.getChosenItemName(), res.getAmount())) {
+			payPlayer(res, player);
 			seller.say("Thanks! Here is your money.");
 			return true;
 		} else {
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append("Sorry! You don't have ");
-			if (getAmount() == 1) {
+			if (res.getAmount() == 1) {
 				stringBuilder.append("any");
 				} else {
 				stringBuilder.append("that many");
 			}
 
 			stringBuilder.append(" ");
-			stringBuilder.append(Grammar.plnoun(getAmount(), getChosenItemName()));
+			stringBuilder.append(Grammar.plnoun(res.getAmount(), res.getChosenItemName()));
 			stringBuilder.append(".");
 			seller.say(stringBuilder.toString());
 			return false;

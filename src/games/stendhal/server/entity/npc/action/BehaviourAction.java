@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -29,8 +30,8 @@ public abstract class BehaviourAction extends AbstractBehaviourAction<Behaviour>
 		super(behaviour, userAction, npcAction);
 	}
 
-	public void fireRequestError(final Behaviour behavior, final Player player, final Sentence sentence, final EventRaiser npc) {
-		behaviour.sayError(userAction, npcAction, npc);
+	public void fireRequestError(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
+		behaviour.sayError(res, userAction, npcAction, npc);
 	}
 
 	@Override
@@ -48,4 +49,5 @@ public abstract class BehaviourAction extends AbstractBehaviourAction<Behaviour>
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				BehaviourAction.class);
 	}
+
 }

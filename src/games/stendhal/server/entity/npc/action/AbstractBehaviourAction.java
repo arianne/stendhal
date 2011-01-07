@@ -15,6 +15,7 @@ package games.stendhal.server.entity.npc.action;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -36,10 +37,14 @@ abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatActio
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		if (sentence.hasError()) {
 			fireSentenceError(player, sentence, npc);
-		} else if (behaviour.parseRequest(sentence)) {
-			fireRequestOK(behaviour, player, sentence, npc);
 		} else {
-			fireRequestError(behaviour, player, sentence, npc);
+			BehaviourResult res = behaviour.parseRequest(sentence);
+
+			if (res.wasFound()) {
+				fireRequestOK(res, player, sentence, npc);
+			} else {
+				fireRequestError(res, player, sentence, npc);
+			}
 		}
 	}
 
@@ -57,21 +62,21 @@ abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatActio
 	/**
 	 * The user input was parsed as a behaviour request.
 	 * fireRequestOK() should check the request and execute an action as appropriate.
-	 * @param behaviour
+	 * @param res
 	 * @param player
 	 * @param sentence
 	 * @param npc
 	 */
-	public abstract void fireRequestOK(B behaviour, Player player, Sentence sentence, EventRaiser npc);
+	public abstract void fireRequestOK(BehaviourResult res, Player player, Sentence sentence, EventRaiser npc);
 
 	/**
 	 * The user input was parsed as valid Sentence, but could not transformed into a Behaviour request.
 	 * fireRequestError() should inform the player about the problem.
-	 * @param behavior
+	 * @param res
 	 * @param player
 	 * @param sentence
 	 * @param npc
 	 */
-	public abstract void fireRequestError(final B behavior, final Player player, final Sentence sentence, final EventRaiser npc);
+	public abstract void fireRequestError(BehaviourResult res, Player player, Sentence sentence, EventRaiser npc);
 
 }

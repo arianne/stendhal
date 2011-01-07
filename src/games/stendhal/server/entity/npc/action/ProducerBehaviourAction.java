@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -34,8 +35,8 @@ public abstract class ProducerBehaviourAction extends AbstractBehaviourAction<Pr
 	}
 
 	@Override
-	public void fireRequestError(final ProducerBehaviour behavior, final Player player, final Sentence sentence, final EventRaiser raiser) {
-		behaviour.sayError(npcAction, raiser);
+	public void fireRequestError(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
+		behaviour.sayError(res, npcAction, raiser);
 	}
 
 	@Override

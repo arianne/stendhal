@@ -19,14 +19,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
-
 /**
  * Represents the behaviour of a NPC who is able to either sell items to a
  * player, or buy items from a player.
  */
 public abstract class MerchantBehaviour extends TransactionBehaviour {
-	private static Logger logger = Logger.getLogger(MerchantBehaviour.class);
 
 	protected Map<String, Integer> priceList;
 
@@ -76,38 +73,19 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	}
 
 	/**
-	 * Sets the amount that the player wants to buy from the NPC.
-	 * 
-	 * @param amount
-	 *            amount
-	 */
-	@Override
-	public void setAmount(final int amount) {
-		if (amount < 1) {
-			this.amount = 1;
-			logger.warn("Increasing very low amount of " + amount + " to 1.");
-		}
-
-		if (amount > 1000) {
-			logger.warn("Decreasing very large amount of " + amount + " to 1.");
-			this.amount = 1;
-		}
-
-		this.amount = amount;
-	}
-
-	/**
 	 * Returns the price of the desired amount of the chosen item.
+	 * @param res
+	 * 
 	 * @param player
 	 *            The player who considers buying/selling
 	 * 
 	 * @return The price; 0 if no item was chosen or if the amount is 0.
 	 */
-	public int getCharge(final Player player) {
-		if (chosenItemName == null) {
+	public int getCharge(BehaviourResult res, final Player player) {
+		if (res.getChosenItemName() == null) {
 			return 0;
 		} else {
-			return amount * getUnitPrice(getChosenItemName());
+			return res.getAmount() * getUnitPrice(res.getChosenItemName());
 		}
 	}
 }

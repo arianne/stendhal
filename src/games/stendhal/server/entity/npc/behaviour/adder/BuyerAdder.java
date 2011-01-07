@@ -21,7 +21,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
-import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -35,6 +35,12 @@ import org.apache.log4j.Logger;
 
 public class BuyerAdder {
 	private static Logger logger = Logger.getLogger(BuyerAdder.class);
+
+	/**
+	 * Behaviour parse result in the current conversation.
+	 * Remark: There is only one conversation between a player and the NPC at any time.
+	 */
+	private BehaviourResult currentBehavRes;
 
 	public void add(final SpeakerNPC npc, final BuyerBehaviour buyerBehaviour, final boolean offer) {
 		final Engine engine = npc.getEngine();
@@ -79,7 +85,7 @@ public class BuyerAdder {
 				null,
 				new BehaviourAction(buyerBehaviour, "sell", "buy") {
 					@Override
-					public void fireRequestOK(final Behaviour behaviour, final Player player, final Sentence sentence, final EventRaiser raiser) {
+					public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isBadBoy()) {
 							// don't buy from player killers at all
 							raiser.say("Sorry, but I just can't trust you. You look too dangerous to deal with. Please go away.");
@@ -87,11 +93,11 @@ public class BuyerAdder {
 							return;
 						}
 
-						String chosenItemName = behaviour.getChosenItemName();
+						String chosenItemName = res.getChosenItemName();
 
-						if (behaviour.getAmount() > 1000) {
+						if (res.getAmount() > 1000) {
 							logger.warn("Refusing to buy very large amount of "
-									+ behaviour.getAmount()
+									+ res.getAmount()
 									+ " " + chosenItemName
 									+ " from player "
 									+ player.getName() + " talking to "
@@ -100,7 +106,7 @@ public class BuyerAdder {
 							raiser.say("Sorry, the maximum number of " 
 									+ chosenItemName 
 									+ " which I can buy at once is 1000.");
-						} else if (behaviour.getAmount() > 0) {
+						} else if (res.getAmount() > 0) {
 							final String itemName = chosenItemName;
 							// will check if player have claimed amount of items
 							if (itemName.equals("sheep")) {
@@ -113,20 +119,21 @@ public class BuyerAdder {
 								// handle other items as appropriate
 							}
 
-							final int price = buyerBehaviour.getCharge(player);
+							final int price = buyerBehaviour.getCharge(res, player);
 
 							if (price != 0) {
-    							raiser.say(Grammar.quantityplnoun(behaviour.getAmount(), chosenItemName, "A")
-    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth "
+    							raiser.say(Grammar.quantityplnoun(res.getAmount(), chosenItemName, "A")
+    									+ " " + Grammar.isare(res.getAmount()) + " worth "
     									+ price + ". Do you want to sell "
-    									+ Grammar.itthem(behaviour.getAmount()) + "?");
+    									+ Grammar.itthem(res.getAmount()) + "?");
 
+    							currentBehavRes = res;
     							npc.setCurrentState(ConversationStates.SELL_PRICE_OFFERED); // success
 							} else {
 								raiser.say("Sorry, " 
-										+ Grammar.thatthose(behaviour.getAmount()) + " " 
-										+ Grammar.plnoun(behaviour.getAmount(), chosenItemName)
-    									+ " " + Grammar.isare(behaviour.getAmount()) + " worth nothing.");
+										+ Grammar.thatthose(res.getAmount()) + " " 
+										+ Grammar.plnoun(res.getAmount(), chosenItemName)
+    									+ " " + Grammar.isare(res.getAmount()) + " worth nothing.");
 							}
 						} else {
 							raiser.say("Sorry, how many " + Grammar.plural(chosenItemName) + " do you want to sell?!");
@@ -141,10 +148,12 @@ public class BuyerAdder {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						logger.debug("Buying something from player " + player.getName());
 
-						boolean success = buyerBehaviour.transactAgreedDeal(raiser, player);
+						boolean success = buyerBehaviour.transactAgreedDeal(currentBehavRes, raiser, player);
 						if (success) {
 							raiser.addEvent(new SoundEvent("coins-1", SoundLayer.CREATURE_NOISE));
 						}
+
+						currentBehavRes = null;
 					}
 				});
 

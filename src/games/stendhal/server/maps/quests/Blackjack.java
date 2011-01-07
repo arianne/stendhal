@@ -26,6 +26,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -362,8 +363,8 @@ public class Blackjack extends AbstractQuest {
 					}
 
 					@Override
-					public void fireRequestOK(final Behaviour behaviour, Player player, Sentence sentence, EventRaiser npc) {
-						stake = behaviour.getAmount();
+					public void fireRequestOK(final BehaviourResult res, Player player, Sentence sentence, EventRaiser npc) {
+						stake = res.getAmount();
 
 						if (stake < MIN_STAKE) {
 							npc.say("You must stake at least " + MIN_STAKE + " pieces of gold.");

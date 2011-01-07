@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -34,6 +35,12 @@ import java.util.Map;
  * @author kymara
  */
 public class HealerNPC implements ZoneConfigurator {
+
+	/**
+	 * Behaviour parse result in the current conversation.
+	 * Remark: There is only one conversation between a player and the NPC at any time.
+	 */
+	private BehaviourResult currentBehavRes;
 
 	/**
 	 * Configure a zone.
@@ -74,9 +81,10 @@ public class HealerNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.add(npc);
 	}
+
     // Don't want to use standard responses for Heal, in fact what to modify them all, so just configure it all here.
     private void addHealer(final SpeakerNPC npc, final int cost) {
-    final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
+	    final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 		final Engine engine = npc.getEngine();
 
 		engine.add(ConversationStates.ATTENDING, 
@@ -93,13 +101,13 @@ public class HealerNPC implements ZoneConfigurator {
 				ConversationStates.HEAL_OFFERED,
 		        null, new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-                        healerBehaviour.setChosenItemName("heal");
-                        healerBehaviour.setAmount(1);
-                        final int cost = healerBehaviour.getCharge(player);
+			        	currentBehavRes = new BehaviourResult(true, "heal", 1, null);
 
-                        if (cost != 0) {
-                        	raiser.say("For " + cost + " cash, ok?");
-                        }
+			        	final int cost = healerBehaviour.getCharge(currentBehavRes, player);
+	
+	                    if (cost != 0) {
+	                    	raiser.say("For " + cost + " cash, ok?");
+	                    }
 			        }
 		        });
 
@@ -110,12 +118,14 @@ public class HealerNPC implements ZoneConfigurator {
 		        ConversationStates.ATTENDING,
 		        null, new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-				        if (player.drop("money", healerBehaviour.getCharge(player))) {
+				        if (player.drop("money", healerBehaviour.getCharge(currentBehavRes, player))) {
 					        healerBehaviour.heal(player);
 					        raiser.say("All better now, everyone better. I love you, I do.");
 				        } else {
 					        raiser.say("Pff, no money, no heal.");
 				        }
+
+						currentBehavRes = null;
 			        }
 		        });
 

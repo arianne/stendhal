@@ -35,15 +35,6 @@ public class Behaviour {
 	/** ItemNames contains all valid item names. */
 	protected Set<String> itemNames;
 
-	/** The item name of the thing requested. */
-	protected String chosenItemName;
-
-	/** The partly matching item names. */
-	protected Set<String> mayBeItems;
-
-	/** The amount of requested items. */
-	protected int amount;
-
 	public Behaviour() {
 	    this.itemNames = new HashSet<String>();
     }
@@ -65,59 +56,20 @@ public class Behaviour {
 	}
 
 	/**
-     * @return the chosenItemName
-     */
-    public String getChosenItemName() {
-	    return chosenItemName;
-    }
-
-	/**
-     * @param chosenItemName the chosenItemName to set
-     */
-    public void setChosenItemName(final String chosenItemName) {
-	    this.chosenItemName = chosenItemName;
-    }
-
-	/**
-     * @return the partly matching item names
-     */
-	public Set<String> getMayBeItems() {
-		return mayBeItems;
-	}
-
-	public int getAmount() {
-		return amount;
-	}
-
-	/**
-	 * Sets the amount that the player wants to transact with the NPC.
-	 * 
-	 * @param amount
-	 *            amount
-	 */
-	public void setAmount(final int amount) {
-		if (amount < 1 || amount > 1000) {
-			this.amount = 1;
-		} else {
-			this.amount = amount;
-		}
-	}
-
-	/**
 	 * Search for a matching item name in the available item names.
 	 *
 	 * @param sentence
-	 * @return true if found match
+	 * @return parsing result
 	 */
-	public boolean parseRequest(final Sentence sentence) {
-		final NameSearch search = sentence.findMatchingName(itemNames);
-
+	public BehaviourResult parseRequest(final Sentence sentence) {
+		NameSearch search = sentence.findMatchingName(itemNames);
+		
 		boolean found = search.found();
 
 		// Store found item.
-		chosenItemName = search.getName();
-		amount = search.getAmount();
-		mayBeItems = new HashSet<String>();
+		String chosenItemName = search.getName();
+		int amount = search.getAmount();
+		Set<String> mayBeItems = new HashSet<String>();
 
 		if (!found) {
 			if ((sentence.getNumeralCount() == 1)
@@ -149,7 +101,7 @@ public class Behaviour {
     		}
 		}
 
-		return found;
+		return new BehaviourResult(found, chosenItemName, amount, mayBeItems);
     }
 
 	/**
@@ -172,11 +124,16 @@ public class Behaviour {
 
 	/**
 	 * Answer with an error message in case the request could not be fulfilled.
+	 *
+	 * @param res
 	 * @param userAction
 	 * @param npcAction
 	 * @param npc
 	 */
-	public void sayError(final String userAction, final String npcAction, final EventRaiser npc) {
+	public void sayError(final BehaviourResult res, final String userAction, final String npcAction, final EventRaiser npc) {
+		String chosenItemName = res.getChosenItemName();
+		Set<String> mayBeItems = res.getMayBeItems();
+
 		if (chosenItemName == null) {
 			npc.say("Please tell me what you want to " + userAction + ".");
 		} else if (mayBeItems.size() > 1) {
@@ -191,4 +148,5 @@ public class Behaviour {
 					+ Grammar.plural(chosenItemName) + ".");
 		}
 	}
+
 }

@@ -20,6 +20,7 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
@@ -78,18 +79,18 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		}
 
 		@Override
-		public int getCharge(final Player player) {
+		public int getCharge(BehaviourResult res, final Player player) {
 			if (player.hasSheep()) {
 				final Sheep sheep = player.getSheep();
-				return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) Sheep.MAX_WEIGHT));
+				return Math.round(getUnitPrice(res.getChosenItemName()) * ((float) sheep.getWeight() / (float) Sheep.MAX_WEIGHT));
 			} else {
 				return 0;
 			}
 		}
 
 		@Override
-		public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
-			// amount is currently ignored.
+		public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+			// res.getAmount() is currently ignored.
 			final Sheep sheep = player.getSheep();
 
 			if (sheep != null) {
@@ -97,7 +98,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 					seller.say("*drool* Sheep flesh! Bring da sheep here!");
 				} else {
 					seller.say("Mmm... Is look yummy! Here, you take dis gold!");
-					payPlayer(player);
+					payPlayer(res, player);
 
 					player.removeSheep(sheep);
 					player.notifyWorldAboutChanges();

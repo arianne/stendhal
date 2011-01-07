@@ -26,6 +26,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ProducerBehaviourAction;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
@@ -50,6 +51,12 @@ public class FishermanNPC implements ZoneConfigurator {
 	private static Logger logger = Logger.getLogger(FishermanNPC.class);
 
 	private static final String QUEST_SLOT = "pequod_make_oil";
+
+	/**
+	 * Behaviour parse result in the current conversation.
+	 * Remark: There is only one conversation between a player and the NPC at any time.
+	 */
+	private BehaviourResult currentBehavRes;
 
 	/**
 	 * Configure a zone.
@@ -103,17 +110,21 @@ public class FishermanNPC implements ZoneConfigurator {
 							  requiredResourcesPerItem, productionTimePerItem, false);
 					}
 
-						/**
-						 * Tries to take all the resources required to produce the agreed amount of
-						 * the product from the player. If this is possible, initiates an order.
-						 * 
-						 * @param npc
-						 *            the involved NPC
-						 * @param player
-						 *            the involved player
-						 */
+					/**
+					 * Tries to take all the resources required to produce the agreed amount of
+					 * the product from the player. If this is possible, initiates an order.
+					 * 
+					 * @param res
+					 *
+					 * @param npc
+					 *            the involved NPC
+					 * @param player
+					 *            the involved player
+					 */
 					@Override
-						public boolean transactAgreedDeal(final EventRaiser npc, final Player player) {
+					public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser npc, final Player player) {
+						int amount = res.getAmount();
+
 						if (getMaximalAmount(player) < amount) {
 							// The player tried to cheat us by placing the resource
 							// onto the ground after saying "yes"
@@ -139,7 +150,7 @@ public class FishermanNPC implements ZoneConfigurator {
 							return true;
 						}
 					}
-					
+
 					/**
 					 * This method is called when the player returns to pick up the finished
 					 * product. It checks if the NPC is already done with the order. If that is
@@ -200,19 +211,20 @@ public class FishermanNPC implements ZoneConfigurator {
 				ConversationStates.ATTENDING, null,
 				new ProducerBehaviourAction(behaviour, "produce") {
 					@Override
-					public void fireRequestOK(final ProducerBehaviour behaviour, final Player player, final Sentence sentence, final EventRaiser npc) {
+					public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
 						// Find out how much items we shall produce.
-						if (behaviour.getAmount() > 1000) {
+						if (res.getAmount() > 1000) {
 							logger.warn("Decreasing very large amount of "
-									+ behaviour.getAmount()
-									+ " " + behaviour.getChosenItemName()
+									+ res.getAmount()
+									+ " " + res.getChosenItemName()
 									+ " to 1 for player "
 									+ player.getName() + " talking to "
 									+ npc.getName() + " saying " + sentence);
-							behaviour.setAmount(1);
+							res.setAmount(1);
 						}
 
-						if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
+						if (behaviour.askForResources(res, npc, player)) {
+							currentBehavRes = res;
 							npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
 						}
 					}
@@ -222,9 +234,10 @@ public class FishermanNPC implements ZoneConfigurator {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence,
-							final EventRaiser npc) {
-					behaviour.transactAgreedDeal(npc, player);
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+						behaviour.transactAgreedDeal(currentBehavRes, npc, player);
+
+						currentBehavRes = null;
 					}
 				});
 

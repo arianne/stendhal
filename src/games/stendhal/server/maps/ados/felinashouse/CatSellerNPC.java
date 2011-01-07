@@ -21,6 +21,7 @@ import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
@@ -70,15 +71,15 @@ public class CatSellerNPC implements ZoneConfigurator {
 					}
 
 					@Override
-					public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
-						if (getAmount() > 1) {
+					public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+						if (res.getAmount() > 1) {
 							seller.say("Hmm... I just don't think you're cut out for taking care of more than one cat at once.");
 							return false;
 						} else if (player.hasPet()) {
 							say("Well, why don't you make sure you can look after that pet you already have first?");
 							return false;
 						} else {
-							if (!player.drop("money", getCharge(player))) {
+							if (!player.drop("money", getCharge(res, player))) {
 								seller.say("You don't seem to have enough money.");
 								return false;
 							}

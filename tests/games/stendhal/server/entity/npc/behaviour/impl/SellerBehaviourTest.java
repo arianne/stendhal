@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.RPClassGenerator;
@@ -43,8 +42,6 @@ public class SellerBehaviourTest {
 	public void testSellerBehaviour() {
 		final SellerBehaviour sb = new SellerBehaviour();
 		assertTrue(sb.dealtItems().isEmpty());
-		assertEquals(sb.amount, 0);
-		assertNull(sb.chosenItemName);
 		assertTrue(sb.itemNames.isEmpty());
 		assertTrue(sb.priceList.isEmpty());
 	}
@@ -58,8 +55,6 @@ public class SellerBehaviourTest {
 		final Map<String, Integer> pricelist = new HashMap<String, Integer>();
 		SellerBehaviour sb = new SellerBehaviour(pricelist);
 		assertTrue(sb.dealtItems().isEmpty());
-		assertEquals(sb.amount, 0);
-		assertNull(sb.chosenItemName);
 		assertTrue(sb.itemNames.isEmpty());
 		assertTrue(sb.priceList.isEmpty());
 
@@ -70,8 +65,6 @@ public class SellerBehaviourTest {
 		assertEquals(sb.dealtItems().size(), 2);
 		assertTrue(sb.dealtItems().contains("item1"));
 		assertTrue(sb.dealtItems().contains("item2"));
-		assertEquals(sb.amount, 0);
-		assertNull(sb.chosenItemName);
 	}
 	
 	/**

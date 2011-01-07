@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.ProducerBehaviourAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
@@ -60,6 +61,12 @@ class MakingFabric {
 	private MithrilCloakQuestInfo mithrilcloak;
 	
 	private final NPCList npcs = SingletonRepository.getNPCList();
+
+	/**
+	 * Behaviour parse result in the current conversation.
+	 * Remark: There is only one conversation between a player and the NPC at any time.
+	 */
+	private BehaviourResult currentBehavRes;
 
 	public MakingFabric(final MithrilCloakQuestInfo mithrilcloak) {
 		this.mithrilcloak = mithrilcloak;
@@ -95,7 +102,9 @@ class MakingFabric {
 			 *            the involved player
 			 */
 			@Override
-				public boolean transactAgreedDeal(final EventRaiser npc, final Player player) {
+				public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser npc, final Player player) {
+				int amount = res.getAmount();
+
 				if (getMaximalAmount(player) < amount) {
 					// The player tried to cheat us by placing the resource
 					// onto the ground after saying "yes"
@@ -162,12 +171,12 @@ class MakingFabric {
 				new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"), ConversationStates.ATTENDING, null,
 				new ProducerBehaviourAction(behaviour) {
 					@Override
-					public void fireRequestOK(final ProducerBehaviour behaviour, Player player, Sentence sentence, EventRaiser npc) {
+					public void fireRequestOK(final BehaviourResult res, Player player, Sentence sentence, EventRaiser npc) {
 						// Find out how much items we shall produce.
-						if (behaviour.getAmount() < 40) {
+						if (res.getAmount() < 40) {
 							npc.say("Do you really want so few? I'm not wasting my time with that! Any decent sized pieces of fabric needs at least 40 spools of thread! You should at least #make #40.");
 							return;
-						} else if (behaviour.getAmount() > 1000) {
+						} else if (res.getAmount() > 1000) {
 							/*logger.warn("Decreasing very large amount of "
 							 *		+ behaviour.getAmount()
 							 *		+ " " + behaviour.getChosenItemName()
@@ -175,17 +184,18 @@ class MakingFabric {
 							 *		+ player.getName() + " talking to "
 							 *		+ npc.getName() + " saying " + sentence);
 							 */
-							behaviour.setAmount(40);
+							res.setAmount(40);
 						}
 
-						if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
+						if (behaviour.askForResources(res, npc, player)) {
+							currentBehavRes = res;
 							npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
 						}
 					}
 
 					@Override
-					public void fireRequestError(final ProducerBehaviour behaviour, final Player player, final Sentence sentence, final EventRaiser raiser) {
-						behaviour.sayError("#make", "produce", raiser);
+					public void fireRequestError(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
+						behaviour.sayError(res, "#make", "produce", raiser);
 					}
 				});
 		
@@ -193,9 +203,10 @@ class MakingFabric {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence,
-							final EventRaiser npc) {
-					behaviour.transactAgreedDeal(npc, player);
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+						behaviour.transactAgreedDeal(currentBehavRes, npc, player);
+
+						currentBehavRes = null;
 					}
 				});
 

@@ -22,7 +22,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * removes all storeable entities from the specified list that
+ * removes all storable entities from the specified list that
  * has the players name as identifier.
  */
 public class RemoveStoreableEntityAction implements ChatAction {

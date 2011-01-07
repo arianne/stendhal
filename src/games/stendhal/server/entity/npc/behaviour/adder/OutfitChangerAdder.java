@@ -19,7 +19,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
-import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -30,6 +30,12 @@ import org.apache.log4j.Logger;
 
 public class OutfitChangerAdder {
 	private static Logger logger = Logger.getLogger(OutfitChangerAdder.class);
+
+	/**
+	 * Behaviour parse result in the current conversation.
+	 * Remark: There is only one conversation between a player and the NPC at any time.
+	 */
+	private BehaviourResult currentBehavRes;
 
 	/**
 	 * Makes this NPC an outfit changer, i.e. someone who can give players
@@ -86,18 +92,18 @@ public class OutfitChangerAdder {
 				ConversationStates.ATTENDING, null,
 				new BehaviourAction(outfitBehaviour, action, "offer") {
 					@Override
-					public void fireRequestOK(final Behaviour behaviour, Player player, Sentence sentence, EventRaiser raiser) {
+					public void fireRequestOK(final BehaviourResult res, Player player, Sentence sentence, EventRaiser raiser) {
 						// find out what the player wants to wear
 
 						// We ignore any amounts.
-						behaviour.setAmount(1);
+						res.setAmount(1);
 
-						final int price = outfitBehaviour.getUnitPrice(behaviour.getChosenItemName())
-								* behaviour.getAmount();
+						final int price = outfitBehaviour.getUnitPrice(res.getChosenItemName()) * res.getAmount();
 
-						raiser.say("To " + action + " a " + behaviour.getChosenItemName() + " will cost " + price
+						raiser.say("To " + action + " a " + res.getChosenItemName() + " will cost " + price
 								+ ". Do you want to " + action + " it?");
 
+						currentBehavRes = res;
 						raiser.setCurrentState(ConversationStates.BUY_PRICE_OFFERED); // success
 					}
 				});
@@ -108,11 +114,10 @@ public class OutfitChangerAdder {
 				null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
-						final String itemName = outfitBehaviour.getChosenItemName();
-						logger.debug("Selling a " + itemName + " to player "
-								+ player.getName());
+						final String itemName = currentBehavRes.getChosenItemName();
+						logger.debug("Selling a " + itemName + " to player " + player.getName());
 
-						if (outfitBehaviour.transactAgreedDeal(npc, player)) {
+						if (outfitBehaviour.transactAgreedDeal(currentBehavRes, npc, player)) {
 							if (canReturn) {
 								npc.say("Thanks, and please don't forget to #return it when you don't need it anymore!");
 								// -1 is also the public static final int NEVER_WEARS_OFF = -1; 
@@ -123,6 +128,8 @@ public class OutfitChangerAdder {
 								npc.say("Thanks!");
 							}
 						}
+
+						currentBehavRes = null;
 					}
 				});
 
@@ -142,6 +149,8 @@ public class OutfitChangerAdder {
 							} else {
 								npc.say("I can't remember that I gave you anything.");
 							}
+
+							currentBehavRes = null;
 						}
 					});
 		}

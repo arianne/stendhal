@@ -21,6 +21,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
@@ -82,8 +83,10 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 					  * as the requested amount in his inventory.
 					  */
 					@Override
-					public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
+					public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+						String chosenItemName = res.getChosenItemName();
 						final Item item = getAskedItem(chosenItemName);
+						int amount = res.getAmount();
 						String requiredContainer = "";
 
 						if ("mild koboldish torcibud".equals(chosenItemName)) {
@@ -92,22 +95,22 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 							requiredContainer = "eared bottle";
 						}
 
-						int price = getCharge(player);
+						int price = getCharge(res, player);
 						if (player.isBadBoy()) {
 						        price = (int) (BAD_BOY_BUYING_PENALTY * price);
 						}
 						
 						if ("slim bottle".equals(requiredContainer) || "eared bottle".equals(requiredContainer)) {
-							if (!player.isEquipped(requiredContainer, getAmount()) || !player.isEquipped("money", price)) {
+							if (!player.isEquipped(requiredContainer, amount) || !player.isEquipped("money", price)) {
 								seller.say("Wrauff! I can only sell you "
-									+ Grammar.plnoun(getAmount(), getChosenItemName())
-									+ " if you meet the price of " + price + " and have " + getAmount() + " empty "
-									+ Grammar.plnoun(getAmount(), requiredContainer) + ".");
+									+ Grammar.plnoun(amount, chosenItemName)
+									+ " if you meet the price of " + price + " and have " + amount + " empty "
+									+ Grammar.plnoun(amount, requiredContainer) + ".");
 							        return false;
 							}
 						} else if (!player.isEquipped("money", price)) {
 								seller.say("Wruff! I can only sell you "
-									+ Grammar.plnoun(getAmount(), getChosenItemName())
+									+ Grammar.plnoun(amount, chosenItemName)
 									+ " if you have enough money.");
 						        return false;
 						}
@@ -117,23 +120,23 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
                          * he is forced to buy only one.
                          */
                         if (item instanceof StackableItem) {
-                            ((StackableItem) item).setQuantity(getAmount());
+                            ((StackableItem) item).setQuantity(amount);
                         } else {
-                            setAmount(1);
+                            res.setAmount(1);
                         }
 						
 						if (player.equipToInventoryOnly(item)) {
 							player.drop("money", price);
 							if (!"".equals(requiredContainer)) {
-						               	player.drop(requiredContainer, getAmount());
+						               	player.drop(requiredContainer, amount);
 							}
 							seller.say("Wroff! Here "
-									+ Grammar.isare(getAmount()) + " your "
-									+ Grammar.plnoun(getAmount(), getChosenItemName()) + "!");
+									+ Grammar.isare(amount) + " your "
+									+ Grammar.plnoun(amount, chosenItemName) + "!");
 							return true;
                         } else {
                             seller.say("Wruff.. You cannot carry any "
-                                    + Grammar.plnoun(getAmount(), getChosenItemName())
+                                    + Grammar.plnoun(amount, chosenItemName)
 									+ " in your bag now.");
                             return false;
                         }

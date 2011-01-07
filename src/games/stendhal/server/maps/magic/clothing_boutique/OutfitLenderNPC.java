@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
@@ -133,10 +134,11 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 					}
 					// override transact agreed deal to only make the player rest to a normal outfit if they want a put on over type.
 					@Override
-						public boolean transactAgreedDeal(final EventRaiser seller, final Player player) {
-						final String outfitType = chosenItemName;
+					public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+						final String outfitType = res.getChosenItemName();
 						final Pair<Outfit, Boolean> outfitPair = outfitTypes.get(outfitType);
 						final boolean type = outfitPair.second();
+
 						if (type) {
 							if (player.getOutfit().getBase() > 80
 									&& player.getOutfit().getBase() < 99) {
@@ -144,8 +146,11 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 								return false;
 							}
 						}
-						if (player.isEquipped("money", getCharge(player))) {
-							player.drop("money", getCharge(player));
+
+						int charge = getCharge(res, player);
+
+						if (player.isEquipped("money", charge)) {
+							player.drop("money", charge);
 							putOnOutfit(player, outfitType);
 							return true;
 						} else {

@@ -28,15 +28,16 @@ public abstract class TransactionBehaviour extends Behaviour {
     }
 
 	/**
-	 * Transacts the deal that has been agreed on earlier via setChosenItem()
-	 * and setAmount().
+	 * Transacts the deal that is described in BehaviourResult.
 	 * 
+	 * @param res
+	 * 			  result of the Behaviour parsing
 	 * @param seller
 	 *            The NPC who sells/buys
 	 * @param player
 	 *            The player who buys/sells
 	 * @return true if the transaction was successful.
 	 */
-	public abstract boolean transactAgreedDeal(EventRaiser seller, Player player);
+	public abstract boolean transactAgreedDeal(BehaviourResult res, EventRaiser seller, Player player);
 
 }

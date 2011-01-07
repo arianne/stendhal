@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
 import games.stendhal.server.entity.npc.action.ProducerBehaviourAction;
+import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -38,7 +39,13 @@ public class ProducerAdder {
 	private static Logger logger = Logger.getLogger(ProducerAdder.class);
 	
     private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
-    
+
+	/**
+	 * Behaviour parse result in the current conversation.
+	 * Remark: There is only one conversation between a player and the NPC at any time.
+	 */
+	private BehaviourResult currentBehavRes;
+
     /** Adds all the dialogue associated with a Producing NPC */
 	public void addProducer(final SpeakerNPC npc, final ProducerBehaviour behaviour,
 			final String welcomeMessage) {
@@ -94,19 +101,20 @@ public class ProducerAdder {
                 ConversationStates.ATTENDING, null,
 				new ProducerBehaviourAction(behaviour) {
 					@Override
-					public void fireRequestOK(final ProducerBehaviour behaviour, final Player player, final Sentence sentence, final EventRaiser npc) {
+					public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
 						// Find out how much items we shall produce.
-						if (behaviour.getAmount() > 1000) {
+						if (res.getAmount() > 1000) {
 							logger.warn("Decreasing very large amount of "
-									+ behaviour.getAmount()
-									+ " " + behaviour.getChosenItemName()
+									+ res.getAmount()
+									+ " " + res.getChosenItemName()
 									+ " to 1 for player "
 									+ player.getName() + " talking to "
 									+ npcName + " saying " + sentence);
-							behaviour.setAmount(1);
+							res.setAmount(1);
 						}
 
-						if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
+						if (behaviour.askForResources(res, npc, player)) {
+							currentBehavRes = res;
 							npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
 						}
 					}
@@ -117,9 +125,10 @@ public class ProducerAdder {
 				ConversationPhrases.YES_MESSAGES, null,
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence,
-							final EventRaiser npc) {
-						behaviour.transactAgreedDeal(npc, player);
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+						behaviour.transactAgreedDeal(currentBehavRes, npc, player);
+
+						currentBehavRes = null;
 					}
 				});
 
