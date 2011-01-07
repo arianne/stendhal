@@ -99,7 +99,7 @@ public class FindJefsMom extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
 			ConversationStates.QUEST_OFFERED,
-			"I miss my #mother so much! She said she wants to go to the market but didn't return yet again :( Can you watch out for her please?",
+			"I miss my #mother! She said she wants to go to the market but didn't return yet again. Can you watch out for her please?",
 			null);
 
 		// player asks about quest which he has done already and he is allowed to repeat it
@@ -107,7 +107,7 @@ public class FindJefsMom extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES), new QuestStateStartsWithCondition(QUEST_SLOT, "waiting;")),
 				ConversationStates.QUEST_OFFERED,
-				"It is a longer time ago now that you met my mother. May you watch out for her again please?",
+				"It is a long time ago that you told me the last time that my mother is fine. May you watch out for her again please?",
 				null);
 
 		// player starts quest again
@@ -115,7 +115,7 @@ public class FindJefsMom extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new OrCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"), new QuestInStateCondition(QUEST_SLOT, 0, "found_mom")),
 			ConversationStates.ATTENDING,
-			"Thank you so much! I hope that my #mom is still ok and will return soon. Please tell her my name to prove to her that I sent you for finding her.",
+			"Thank you so much! I hope that my #mom is still ok and will return soon. Please tell her my name to prove that I sent you to her.",
 			null);
 
 		// Player agrees to find mom
@@ -129,7 +129,7 @@ public class FindJefsMom extends AbstractQuest {
 		// Player says no, they've lost karma.
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
-			"Oh :( I can understand you... You look like a busy hero so I'll not try to convince you of helping me out.",
+			"Oh. Ok. I can understand you... You look like a busy hero so I'll not try to convince you of helping me out.",
 			new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, "rejected"),
 					new DecreaseKarmaAction(10.0)));
 		
@@ -138,7 +138,7 @@ public class FindJefsMom extends AbstractQuest {
 				Arrays.asList("mom", "mother"),
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"My mother, Amber, left me for buying some food on the market but she didn't return yet. The only thing I know is, that she broke up with her former boyfriend, Roger Frampton before...",
+				"My mother Amber left me for buying some food on the market but she didn't return yet. The only thing I know is, that she broke up with her former boyfriend, Roger Frampton before...",
 				null);
 	}
 
@@ -151,7 +151,7 @@ public class FindJefsMom extends AbstractQuest {
 							 new PlayerCanEquipItemCondition("zantedeschia"),
                              new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 			ConversationStates.IDLE, 
-			"Oh I see :) My son Jef asked me to take a look after me, is that correct? He is such a nice and gentle boy! Please give him this zantedeschia here, my most favourite flower kind. He will know that I'm fine then!",
+			"Oh I see :) My son Jef asked you to take a look after me. He is such a nice and gentle boy! Please give him this zantedeschia here. I love them! He will know that I'm fine when you give it to him!",
 			new MultipleActions(new EquipItemAction("zantedeschia", 1, true), 
                                 new SetQuestAction(QUEST_SLOT, 0, "found_mom"), 
                                 new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
@@ -162,7 +162,7 @@ public class FindJefsMom extends AbstractQuest {
                                  new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES),
 								 new NotCondition(new PlayerCanEquipItemCondition("zantedeschia"))),
 				ConversationStates.IDLE, 
-				"Oh I see that you don't have enough space for equipping that lovely flower for my son. Please return to me when you made some space in your bags!",
+				"Oh, I wanted to give you a flower for my son to show him that I'm fine but as I see now, you don't have enough space for equipping it. Please return to me when you made some space in your bags!",
 				null);
 		
         // don't give the flower if one was given within the last 5 days
@@ -213,7 +213,7 @@ public class FindJefsMom extends AbstractQuest {
 			Arrays.asList("flower", "zantedeschia", "mom", "mother"),
 			new NotCondition(new PlayerHasItemWithHimCondition("zantedeschia")),
 			ConversationStates.ATTENDING,
-			"Please don't lie to me :( You promised me to find my mom and now you can't even prove that you found her earlier. I don't believe in you, sorry.",
+			"Please don't lie to me. You promised me to find my mom and now you can't even prove that you found her earlier. I don't believe in you, sorry.",
 			null);
 
 	}
@@ -244,7 +244,7 @@ public class FindJefsMom extends AbstractQuest {
 			res.add("Finding his mom somewhere costs me too much time at the moment. I don't want to check on her at the moment.");
 		}
 		if ("start".equals(questState) || "found_mom".equals(questState) || isCompleted(player)) {
-			res.add("Jef asked me to take a look for his mother Amber who didn't return from the market yet. I have to tell her the name of her son, if I'll find her.");
+			res.add("Jef asked me to take a look at his mother Amber who didn't return from the market yet. I hope she will listen to me after I tell her the name of her son.");
 		}
 		if ("found_mom".equals(questState) || isCompleted(player)) {
 			res.add("I found Amber, Jefs mother, while she walked around somewhere in Fado forest. She gave me a flower for her son.");
