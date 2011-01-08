@@ -67,15 +67,22 @@ public class KTextEdit extends JComponent {
 			if (e.isPopupTrigger()) {
 				final JPopupMenu popup = new JPopupMenu("save");
 
-				JMenuItem menuItem = new JMenuItem("save");
+				JMenuItem menuItem = new JMenuItem("Save");
 				menuItem.addActionListener(new ActionListener() {
-
 					public void actionPerformed(final ActionEvent e) {
 						save();
-
 					}
 				});
 				popup.add(menuItem);
+				
+				menuItem = new JMenuItem("Clear");
+				menuItem.addActionListener(new ActionListener() {
+					public void actionPerformed(final ActionEvent e) {
+						clear();
+					}
+				});
+				popup.add(menuItem);
+				
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		}
@@ -313,12 +320,11 @@ public class KTextEdit extends JComponent {
 		});
 	}
 
-	public void setAutoScrollEnabled(final boolean autoScrollEnabled) {
-	
+	private void setAutoScrollEnabled(final boolean autoScrollEnabled) {
 		this.autoScrollEnabled = autoScrollEnabled;
 	}
 
-	public boolean isAutoScrollEnabled() {
+	private boolean isAutoScrollEnabled() {
 		return autoScrollEnabled;
 	}
 
@@ -327,6 +333,9 @@ public class KTextEdit extends JComponent {
 		
 	}
 	
+	/**
+	 * Clear the context.
+	 */
 	public void clear() {
 		textPane.setText("");
 	}
@@ -343,7 +352,9 @@ public class KTextEdit extends JComponent {
 		}
 	}
 	
-	
+	/**
+	 * Save the contents to {@value #GAME_LOG_FILE}, and inform the user about it.
+	 */
 	public void save() {
 		FileWriter fo;
 		try {
