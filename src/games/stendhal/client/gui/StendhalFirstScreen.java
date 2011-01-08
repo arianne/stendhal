@@ -189,7 +189,6 @@ public class StendhalFirstScreen extends JFrame {
 		setTitle(ClientGameConfiguration.get("GAME_NAME") + " "
 				+ stendhal.VERSION
 				+ " - a multiplayer online game using Arianne");
-		this.setLocation(new Point(100, 100));
 		this.setResizable(false);
 
 		final URL url = this.getClass().getClassLoader().getResource(
