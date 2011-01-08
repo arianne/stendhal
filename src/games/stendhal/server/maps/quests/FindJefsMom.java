@@ -210,7 +210,7 @@ public class FindJefsMom extends AbstractQuest {
 			}
 		};
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("flower", "zantedeschia", "mom", "mother"),
+				Arrays.asList("flower", "zantedeschia", "fine", "amber", "done"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "found_mom"), new PlayerHasItemWithHimCondition("zantedeschia")),
 				ConversationStates.ATTENDING, null,
 				new MultipleActions(new DropItemAction("zantedeschia"), 
