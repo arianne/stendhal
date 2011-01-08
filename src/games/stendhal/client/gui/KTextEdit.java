@@ -403,7 +403,7 @@ public class KTextEdit extends JComponent {
 	}
 	
 	/**
-	 * Save the contents to {@value #GAME_LOG_FILE}, and inform the user about it.
+	 * Save the contents into the log file and inform the user about it.
 	 */
 	public void save() {
 		FileWriter fo;
