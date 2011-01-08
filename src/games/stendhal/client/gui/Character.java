@@ -26,6 +26,7 @@ import java.util.Map.Entry;
 
 import javax.swing.Box;
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -59,7 +60,8 @@ public class Character extends InternalManagedWindow implements EntityChangeList
 	}
 	
 	/**
-	 * sets the player entity.
+	 * Sets the player entity. It is safe to call this method outside the event
+	 * dispatch thread.
 	 * 
 	 * @param userEntity
 	 */
@@ -166,7 +168,15 @@ public class Character extends InternalManagedWindow implements EntityChangeList
 			}
 		}
 
-		setTitle(player.getName());
+		/*
+		 * Refresh gets called from outside the EDT. Either via entityChanged or
+		 * from setUser
+		 */
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				setTitle(player.getName());
+			}
+		});
 	}
 
 	public void entityChanged(IEntity entity, Object property) {
