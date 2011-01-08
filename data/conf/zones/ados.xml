@@ -236,8 +236,12 @@
             </implementation>
         </entity>
         
-
- </zone>
+  <portal x="67" y="78" ref="carolines_house_entrance">
+   <destination zone="int_ados_carolines_house_0" ref="entrance"/>
+  </portal>
+  
+    </zone>
+    
 
  <zone name="0_ados_mountain_n_w2" level="0" x="500384" y="499872" file="Level 0/ados/mountain_n_w2.tmx">
  
@@ -1108,6 +1112,13 @@ in roaches.
     </portal>
    </zone>
 -->   
+
+ <zone name="int_ados_carolines_house_0" file="interiors/ados/carolines_house.tmx">
+   	<portal x="10" y="14" ref="entrance">
+   	<destination zone="0_ados_city_n2" ref="carolines_house_entrance"/>
+  	</portal>
+  
+ </zone>
 
   <zone name="int_ados_felinas_house" file="interiors/ados/felinas_house.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.felinashouse.CatSellerNPC"/>
