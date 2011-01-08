@@ -16,6 +16,8 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.Debug;
 
+import java.awt.GraphicsConfiguration;
+import java.awt.MouseInfo;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -23,9 +25,15 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 public class MainFrame {
+	private final JFrame mainFrame;
 
-	private final JFrame mainFrame = new JFrame();
+	/**
+	 * Create a new MainFrame.
+	 */
 	public MainFrame() {
+		// Open on the screen where the mouse cursor is
+		GraphicsConfiguration gc = MouseInfo.getPointerInfo().getDevice().getDefaultConfiguration();
+		mainFrame =  new JFrame(gc);
 		initialize();
 	}
 
