@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,7 +32,6 @@ public class UpdatePropUpdater {
 	private String newFile;
 	private String oldVersion;
 	private String newVersion;
-	private String folder; //TODO use folder
 	private String legacy;
 	private Properties prop;
 	
@@ -51,7 +50,6 @@ public class UpdatePropUpdater {
 		this.newVersion = newVersion;
 		this.oldFile = oldFile;
 		this.oldVersion = oldVersion;
-		this.folder = folder;
 		this.legacy = legacy;
 	}
 
