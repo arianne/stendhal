@@ -20,6 +20,7 @@ import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.account.AccountCreator;
 import games.stendhal.server.core.account.CharacterCreator;
 import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
+import games.stendhal.server.core.engine.dbcommand.SetOnlineStatusCommand;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -53,6 +54,8 @@ import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.io.UnicodeSupportingInputStreamReader;
+import marauroa.server.db.command.DBCommand;
+import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.rp.IRPRuleProcessor;
@@ -428,7 +431,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 				if (!player.isGhost()) {
 					notifyOnlineStatus(true, player);
-					DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, true);
+					DBCommand command = new SetOnlineStatusCommand(player.getName(), true);
+					DBCommandQueue.get().enqueue(command);
 				}
 				updatePlayerNameListForPlayersOnLogin(player);
 				String[] params = {};
@@ -516,9 +520,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				Player.destroy(player);
 				getOnlinePlayers().remove(player);
 
-				DAORegister.get().get(StendhalWebsiteDAO.class).setOnlineStatus(player, false);
+				DBCommand command = new SetOnlineStatusCommand(player.getName(), false);
+				DBCommandQueue.get().enqueue(command);
+
 				String[] params = {};
-			
 				new GameEvent(player.getName(), "logout", params).raise();
 				logger.debug("removed player " + player);
 

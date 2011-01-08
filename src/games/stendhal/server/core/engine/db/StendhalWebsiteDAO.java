@@ -38,7 +38,7 @@ public class StendhalWebsiteDAO {
 		transaction.execute("UPDATE character_stats SET online=0", null);
 	}
 
-	public void setOnlineStatus(final DBTransaction transaction, final Player player, final boolean online) throws SQLException {
+	public void setOnlineStatus(final DBTransaction transaction, final String playerName, final boolean online) throws SQLException {
 		String onlinestate;
 		if (online) {
 			onlinestate = "1";
@@ -50,7 +50,7 @@ public class StendhalWebsiteDAO {
 			+ " WHERE name='[name]'";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("onlinestate", onlinestate);
-		params.put("name",  player.get("name"));
+		params.put("name", playerName);
 		logger.debug("setOnlineStatus is running: " + query);
 
 		transaction.execute(query, params);
@@ -66,10 +66,10 @@ public class StendhalWebsiteDAO {
 		}
 	}
 
-	public void setOnlineStatus(final Player player, final boolean online) {
+	public void setOnlineStatus(final String playerName, final boolean online) {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
-			setOnlineStatus(transaction, player, online);
+			setOnlineStatus(transaction, playerName, online);
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			TransactionPool.get().rollback(transaction);
