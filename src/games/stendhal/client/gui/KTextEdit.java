@@ -42,16 +42,34 @@ import javax.swing.text.StyleContext;
 
 import org.apache.log4j.Logger;
 
-
+/**
+ * Appendable text component to be used as the chat log.
+ */
 public class KTextEdit extends JComponent {
+	/** Point size of the text */
 	protected static final int TEXT_SIZE = 11;
-
+	/** Color of the time stamp written before the lines */ 
 	protected static final Color HEADER_COLOR = Color.gray;
 
+	/** Location for saving chat log file. */
 	private static final String GAME_LOG_FILE = System.getProperty("user.home") 
 		+ stendhal.STENDHAL_FOLDER + "gamechat.log";
 	
+	private static final long serialVersionUID = -698232821850852452L;
+	private static final Logger logger = Logger.getLogger(KTextEdit.class);
 	
+	/** The actual text component for showing the chat log */
+	protected JTextPane textPane;
+	/** Scroll pane containing the text component */ 
+	private JScrollPane scrollPane;
+	/**
+	 * <code>true</code> if the chat log should automatically scroll to the
+	 * last line when more lines are added, <code>false</code> otherwise.
+	 */
+	private boolean autoScrollEnabled;
+	
+	
+	/** Listener for opening the popup menu when it's requested. */
 	private final class TextPaneMouseListener extends MouseAdapter {
 		@Override
 		public void mousePressed(final MouseEvent e) {
@@ -63,6 +81,12 @@ public class KTextEdit extends JComponent {
 			maybeShowPopup(e);
 		}
 
+		/**
+		 * Show the chat log popup menu at operating system dependent triggers.
+		 * Do nothing if the mouse event is not a popup trigger.
+		 *  
+		 * @param e mouse event that could potentially show the popup
+		 */
 		private void maybeShowPopup(final MouseEvent e) {
 			if (e.isPopupTrigger()) {
 				final JPopupMenu popup = new JPopupMenu("save");
@@ -87,17 +111,7 @@ public class KTextEdit extends JComponent {
 			}
 		}
 	}
-
-	private static final long serialVersionUID = -698232821850852452L;
-	private static final Logger logger = Logger.getLogger(KTextEdit.class);
-
 	
-	protected JTextPane textPane;
-
-	
-	
-	private JScrollPane scrollPane;
-	private boolean autoScrollEnabled;
 
 	/**
 	 * Basic Constructor.
@@ -136,7 +150,7 @@ public class KTextEdit extends JComponent {
 	}
 
 	/**
-	 * Intializes the basic styles.
+	 * Initializes the basic styles.
 	 * @param textPane
 	 *            the active text component
 	 */
@@ -171,20 +185,23 @@ public class KTextEdit extends JComponent {
 	}
 
 	/**
+	 * Get the style corresponding to a description and color.
+	 * 
 	 * @param desiredColor
 	 *            the color with which the text must be colored
 	 * @param styleDescription
 	 *            which style to use (may not be normal)
 	 * @return the colored style
 	 */
-	public Style getStyle(final Color desiredColor, final String styleDescription) {
+	private Style getStyle(final Color desiredColor, final String styleDescription) {
 		final Style s = textPane.getStyle(styleDescription);
 		StyleConstants.setForeground(s, desiredColor);
 		return s;
 	}
 
 	/**
-	 * insert a header.
+	 * Insert a header.
+	 * 
 	 * @param header 
 	 */
 	protected void insertHeader(final String header) {
@@ -199,6 +216,11 @@ public class KTextEdit extends JComponent {
 		}
 	}
 
+	/**
+	 * Insert time stamp.
+	 * 
+	 * @param header time stamp
+	 */
 	protected void insertTimestamp(final String header) {
 		final Document doc = textPane.getDocument();
 		try {
@@ -211,6 +233,12 @@ public class KTextEdit extends JComponent {
 		}
 	}
 
+	/**
+	 * Add text using a style defined for a notification type.
+	 * 
+	 * @param text
+	 * @param type
+	 */
 	protected void insertText(final String text, final NotificationType type) {
 		final Color color = type.getColor();
 		final String styleDescription = type.getStyleDescription();
@@ -235,6 +263,9 @@ public class KTextEdit extends JComponent {
 		}
 	}
 
+	/**
+	 * Start a new line.
+	 */
 	protected void insertNewline() {
 		final Document doc = textPane.getDocument();
 		try {
@@ -244,30 +275,26 @@ public class KTextEdit extends JComponent {
 		}
 	}
 
-	public void addLine(final String line) {
-		addLine("", line);
-	}
-
-	public void addLine(final String header, final String line) {
-		addLine(header, line, NotificationType.NORMAL);
-	}
-
+	/**
+	 * Scroll to the last line.
+	 */
 	private void scrollToBottom() {	
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
 		vbar.setValue(vbar.getMaximum());
 	}
 
 	/**
-	 * The implemented method.
+	 * Add a new line with a specified header and content. The style will be
+	 * chosen according to the type of the message.
 	 *
 	 * @param header
-	 *            a string with the header name
+	 *            a string with the header
 	 * @param line
 	 *            a string representing the line to be printed
 	 * @param type
 	 *            The logical format type.
 	 */
-	public synchronized void addLine(final String header, final String line,
+	private synchronized void addLine(final String header, final String line,
 			final NotificationType type) {
 		// do the whole thing in the event dispatch thread to ensure the generated 
 		// events get handled in the correct order
@@ -286,6 +313,18 @@ public class KTextEdit extends JComponent {
 		}
 	}
 	
+	/**
+	 * Add a new line with a specified header and content. The style will be
+	 * chosen according to the type of the message. Keep the view at the last
+	 * line unless the user has scrolled higher.
+	 *
+	 * @param header
+	 *            a string with the header
+	 * @param line
+	 *            a string representing the line to be printed
+	 * @param type
+	 *            The logical format type.
+	 */
 	private void handleAddLine(final String header, final String line, final NotificationType type) {
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
 		final int currentLocation = vbar.getValue();
@@ -312,25 +351,36 @@ public class KTextEdit extends JComponent {
 					vbar.setValue(currentLocation);
 					setUnreadLinesWarning(true);
 				}
-				// A workaround for swing being otherwise too stupid to do that
-				// in certain conditions.
-				// revalidate() etc do _not_ help
-				textPane.paintImmediately(textPane.getVisibleRect());
 			}
 		});
 	}
 
+	/**
+	 * Set the auto scroll flag.
+	 * 
+	 * @param autoScrollEnabled <code>true</code> if the chat log view keeps
+	 * 	at the last line, <code>false</code> otherwise 
+	 */
 	private void setAutoScrollEnabled(final boolean autoScrollEnabled) {
 		this.autoScrollEnabled = autoScrollEnabled;
 	}
 
+	/**
+	 * Check if the view should keep following the last line.
+	 * 
+	 * @return <code>true</code> if the view should be kept at bottom
+	 */
 	private boolean isAutoScrollEnabled() {
 		return autoScrollEnabled;
 	}
 
+	/**
+	 * Append an event line.
+	 * 
+	 * @param line 
+	 */
 	public void addLine(final EventLine line) {
 		this.addLine(line.getHeader(), line.getText(), line.getType());
-		
 	}
 	
 	/**
@@ -370,5 +420,4 @@ public class KTextEdit extends JComponent {
 			logger.error(ex, ex);
 		}
 	}
-
 }
