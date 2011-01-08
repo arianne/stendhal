@@ -17,7 +17,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Dateable;
-import games.stendhal.server.entity.trade.Earning;
 
 import java.util.Arrays;
 import java.util.List;
