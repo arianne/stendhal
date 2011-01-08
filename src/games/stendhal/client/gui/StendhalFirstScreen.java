@@ -24,8 +24,10 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
 import java.awt.Image;
-import java.awt.Point;
+import java.awt.MouseInfo;
+import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -76,7 +78,7 @@ public class StendhalFirstScreen extends JFrame {
 	 *            StendhalClient
 	 */
 	public StendhalFirstScreen(final StendhalClient client) {
-		super();
+		super(detectScreen());
 		this.client = client;
 		StendhalFirstScreen.instance = this;
 
@@ -88,6 +90,17 @@ public class StendhalFirstScreen extends JFrame {
 		initializeComponent();
 
 		this.setVisible(true);
+	}
+	
+	/**
+	 * Detect the preferred screen by where the mouse is the moment the method
+	 * is called. This is for multi-monitor support.
+	 * 
+	 * @return GraphicsEnvironment of the current screen
+	 */
+	private static GraphicsConfiguration detectScreen() {
+		PointerInfo pointer = MouseInfo.getPointerInfo();
+		return pointer.getDevice().getDefaultConfiguration();
 	}
 
 	/**
