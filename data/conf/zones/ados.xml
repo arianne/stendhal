@@ -83,7 +83,6 @@
     <configurator class-name="games.stendhal.server.maps.ados.market.OldFishermanNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.FishSoupMakerNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.FierywaterDistillerNPC"/>
-    <configurator class-name="games.stendhal.server.maps.ados.market.FishermansDaughterNPC"/>
     
     <entity x="78" y="99">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
@@ -1114,7 +1113,8 @@ in roaches.
 -->   
 
  <zone name="int_ados_carolines_house_0" file="interiors/ados/carolines_house.tmx">
-   	<portal x="10" y="14" ref="entrance">
+ <configurator class-name="games.stendhal.server.maps.ados.market.FishermansDaughterNPC"/>
+    	<portal x="10" y="14" ref="entrance">
    	<destination zone="0_ados_city_n2" ref="carolines_house_entrance"/>
   	</portal>
   

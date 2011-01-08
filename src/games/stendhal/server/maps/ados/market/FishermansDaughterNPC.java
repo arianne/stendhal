@@ -44,10 +44,10 @@ public class FishermansDaughterNPC implements ZoneConfigurator {
 				addHelp("Did you visit the Ados market already? There are so many #nice #people around and some make #awesome #food!");
 				addReply("awesome food", "I tried the fish soup and grilled steaks, they are so delicious!");
 				addReply("nice people", "Florence Boullabaisse is one of my best friends and Haunchy is a really nice guy.");
-				addQuest("I am currently trying to figure out how I can start my own business... I love to cook and might start a #catering #service soon..."); 
+				addQuest("I am currently trying to figure out how I can start my own business... I love to cook and might start a #catering #service soon... Meanwhile I enjoy my new renovated house :)"); 
 				addReply("catering service", "I've heard that some #hotels need some dinner for their guests... their kitchens are too small and they need someone who can easily cook and bring them some food they need.");
 				addReply("hotels", "The huge one in Fado is known to newlyweds. It is a really nice location to celebrate your wedding at.");
-				addJob("My father is #Fritz, the fisherman who walks along there. Right now, I'm thinking about starting up my own business, a #catering #service.");
+				addJob("My father is #Fritz, the fisherman who walks outside infront of our house. Right now, I'm thinking about starting up my own business, a #catering #service.");
 				addReply("storm", "The storm came out of nowhere while my dad, Fritz, was out catching fish. I was so happy when he returned safe!");
 				addReply("Fritz","He is a really lovely dad. He was a fisherman before a huge huge #storm nearly destroyed his boat.");
 				addOffer("I can't offer you anything at the moment, but hopefully soon.");
@@ -57,7 +57,7 @@ public class FishermansDaughterNPC implements ZoneConfigurator {
 
 		npc.setDescription("You see Caroline. She seems to be a punchy nice lady who tries to reach her goals.");
 		npc.setEntityClass("fishermansdaughternpc");
-		npc.setPosition(70, 78);
+		npc.setPosition(8, 3);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);
