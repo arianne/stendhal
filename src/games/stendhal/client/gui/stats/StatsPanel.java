@@ -26,6 +26,10 @@ import javax.swing.SwingUtilities;
 
 import marauroa.common.game.RPObject;
 
+/**
+ * Display panel for status icons and player stats. The methods may be safely
+ * called outside the event dispatch thread.
+ */
 public class StatsPanel extends JPanel {
 
 	/**
@@ -137,9 +141,13 @@ public class StatsPanel extends JPanel {
 		updateDef();
 	}
 
-	protected void setXP(int xp) {
+	void setXP(final int xp) {
 		this.xp = xp;
-		xpLabel.setText("XP: " + xp);
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				xpLabel.setText("XP: " + xp);
+			}
+		});
 		updateLevel();
 	}
 
