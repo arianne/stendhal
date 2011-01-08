@@ -101,8 +101,6 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 		titleBar.add(titleLabel);
 		SBoxLayout.addSpring(titleBar);
 		
-		createIcons();
-		
 		// Add the close and minimize buttons
 		minimizeButton = new JButton(minimizeIcon);
 		minimizeButton.setMargin(new Insets(0, 0, 0, 0));
