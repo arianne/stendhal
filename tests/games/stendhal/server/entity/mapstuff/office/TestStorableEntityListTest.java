@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,7 +24,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestStoreableEntityListTest {
+public class TestStorableEntityListTest {
 
 	private final class EntityExtension extends Entity {
 		@Override
@@ -71,7 +71,7 @@ public class TestStoreableEntityListTest {
 				// do nothing
 			}
 		};
-		final StoreableEntityList<Entity> storelist = new StoreableEntityList<Entity>(zone, Entity.class) {
+		final StorableEntityList<Entity> storelist = new StorableEntityList<Entity>(zone, Entity.class) {
 
 			@Override
 			protected String getName(final Entity entity) {

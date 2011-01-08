@@ -10,11 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc.condition;
+package games.stendhal.server.entity.npc.action;
 
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.mapstuff.office.StoreableEntityList;
-import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.mapstuff.office.StorableEntityList;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -22,23 +22,29 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Is there a storable entity in the specified list that has name
- * of the current player as identifier? 
+ * removes all storable entities from the specified list that
+ * has the players name as identifier.
  */
-public class PlayerHasStoreableEntityCondition implements ChatCondition {
-	private final StoreableEntityList< ? > storeableEntityList;
-	
-	public PlayerHasStoreableEntityCondition(final StoreableEntityList< ? > storeableEntityList) {
+public class RemoveStorableEntityAction implements ChatAction {
+
+	private final StorableEntityList< ? > storeableEntityList;
+
+	/**
+	 * Creates a new RemoveStoreableEntity.
+	 *
+	 * @param storeableEntityList the list to removed entities from
+	 */
+	public RemoveStorableEntityAction(final StorableEntityList< ? > storeableEntityList) {
 		this.storeableEntityList = storeableEntityList;
 	}
 
-	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-		return storeableEntityList.getByName(player.getName()) != null;
+	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+		storeableEntityList.removeByName(player.getName());
 	}
 
 	@Override
 	public String toString() {
-		return "in list <" + storeableEntityList + ">";
+		return "remove entity <" + storeableEntityList + ">";
 	}
 
 	@Override
@@ -48,7 +54,7 @@ public class PlayerHasStoreableEntityCondition implements ChatCondition {
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-			PlayerHasStoreableEntityCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false, 
+			RemoveStorableEntityAction.class);
 	}
 }

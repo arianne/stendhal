@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,14 +25,14 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.RemoveStoreableEntityAction;
+import games.stendhal.server.entity.npc.action.RemoveStorableEntityAction;
 import games.stendhal.server.entity.npc.condition.AdminCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasStoreableEntityCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasStorableEntityCondition;
 import games.stendhal.server.entity.npc.condition.TextHasParameterCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -163,13 +163,13 @@ public class SignLessorNPC implements ZoneConfigurator {
 					"If you change your mind, just talk to me again.", null);
 
 				add(ConversationStates.ATTENDING, "remove", 
-					new PlayerHasStoreableEntityCondition(rentedSignList),
+					new PlayerHasStorableEntityCondition(rentedSignList),
 					ConversationStates.ATTENDING,
 					"Ok, I am going to remove your sign.",
-					new RemoveStoreableEntityAction(rentedSignList));
+					new RemoveStorableEntityAction(rentedSignList));
 
 				add(ConversationStates.ATTENDING, "remove", 
-					new NotCondition(new PlayerHasStoreableEntityCondition(rentedSignList)),
+					new NotCondition(new PlayerHasStorableEntityCondition(rentedSignList)),
 					ConversationStates.ATTENDING,
 					"You did not rent any sign, so I cannot remove one.", null);
 

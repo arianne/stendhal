@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,7 +17,7 @@ package games.stendhal.server.entity.mapstuff.office;
  *
  * @author hendrik
  */
-public interface StoreableEntity {
+public interface StorableEntity {
 
 	/**
 	 * Define this object as storable, but it doesn't in fact store the object.

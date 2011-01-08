@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,13 +25,13 @@ import java.util.List;
 import marauroa.common.game.RPObject;
 
 /**
- * a list of storeable entities that can be accessed by a unique
+ * a list of storable entities that can be accessed by a unique
  * identifier like a name.
  *
  * @author hendrik
- * @param <T> type of the storeable entities to be managed by this list
+ * @param <T> type of the storable entities to be managed by this list
  */
-public abstract class StoreableEntityList<T extends Entity> implements TurnListener {
+public abstract class StorableEntityList<T extends Entity> implements TurnListener {
 	private StendhalRPZone zone;
 	private Class<T> clazz;
 	private Shape shape;
@@ -43,22 +43,20 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
 	 * @param zone  zone to store the entities in
 	 * @param clazz class object of the entities to manage
 	 */
-	// the class object is needed, because generic type variables (T)
-	// cannot be used in instanceof.
-	StoreableEntityList(final StendhalRPZone zone, final Class<T> clazz) {
+	StorableEntityList(final StendhalRPZone zone, final Class<T> clazz) {
 		this.zone = zone;
 		this.clazz = clazz;
 	}
 
-	public StoreableEntityList(final StendhalRPZone zone, final Shape shape, final Class<T> clazz) {
+	public StorableEntityList(final StendhalRPZone zone, final Shape shape, final Class<T> clazz) {
 	    this(zone, clazz);
 	    this.shape = shape;
     }
 
 	/**
-     * Adds a storeable entity.
+     * Adds a storable entity.
      * 
-     * @param entity storeable entity
+     * @param entity storable entity
      * @return true in case the entity was added successfully; 
      * 				false in case no free spot for it was found
      */
@@ -100,10 +98,10 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
     }
 
 	/**
-     * Returns the storeable entity for the specified identifier.
+     * Returns the storable entity for the specified identifier.
      * 
      * @param identifier name of entity
-     * @return storeable entity or <code>null</code> in case there is none
+     * @return storable entity or <code>null</code> in case there is none
      */
     public T getByName(final String identifier) {
     	final List<T> entities = getList();
@@ -116,7 +114,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
     }
 
 	/**
-     * Removes all storeable entities for this identifier.
+     * Removes all storable entities for this identifier.
      * 
      * @param identifier name of entity
 	 * @return if removed successfully
@@ -135,10 +133,10 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
     }
 
 	/**
-     * gets a list of storeable entities from the zone storage. Note: This is only a
+     * gets a list of storable entities from the zone storage. Note: This is only a
      * temporary snapshot, do not save it outside the scope of a method.
      * 
-     * @return List of storeable entities.
+     * @return List of storable entities.
      */
     protected List<T> getList() {
     	final List<T> res = new LinkedList<T>();

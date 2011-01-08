@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,7 +24,7 @@ import marauroa.common.game.Definition.Type;
  *
  * @author hendrik
  */
-public class ArrestWarrant extends Entity implements StoreableEntity {
+public class ArrestWarrant extends Entity implements StorableEntity {
 	public static final String RPCLASS_NAME = "arrest_warrant";
 	private static final String CRIMINAL = "criminal";
 	private static final String POLICE_OFFICER = "police_officer";

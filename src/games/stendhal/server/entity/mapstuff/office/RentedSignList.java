@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,7 +22,7 @@ import java.awt.Shape;
  * 
  * @author hendrik
  */
-public class RentedSignList extends StoreableEntityList<RentedSign> {
+public class RentedSignList extends StorableEntityList<RentedSign> {
 	private static final long EXPIRE_TIMEOUT = MathHelper.MILLISECONDS_IN_ONE_DAY;
 
 	/**

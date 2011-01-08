@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,7 +26,7 @@ import marauroa.common.game.Definition.Type;
  *
  * @author hendrik
  */
-public class RentedSign extends Sign implements StoreableEntity {
+public class RentedSign extends Sign implements StorableEntity {
 	public static final String RPCLASS_NAME = "rented_sign";
 	private static final String RENTER = "renter";
 	private static final String TIMESTAMP = "timestamp";

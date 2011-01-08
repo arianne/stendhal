@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,7 +19,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
  * 
  * @author hendrik
  */
-public class ArrestWarrantList extends StoreableEntityList<ArrestWarrant> {
+public class ArrestWarrantList extends StorableEntityList<ArrestWarrant> {
 
 	private static final long serialVersionUID = 9038872708537070249L;
 
