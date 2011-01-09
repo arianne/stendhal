@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,7 @@ package utilities;
 import marauroa.common.game.RPEvent;
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * Provides convenience methods for SpeakerNPC creation. the Created NPC extends
@@ -34,6 +35,11 @@ public abstract class SpeakerNPCTestHelper {
 		return new SpeakerNPC(name);
 	}
 
+	/**
+	 * Query the events for public visible text messages.
+	 * @param npc
+	 * @return message text
+	 */
 	public static String getReply(SpeakerNPC npc) {
 		String reply = null;
 		
@@ -44,6 +50,25 @@ public abstract class SpeakerNPCTestHelper {
 		}
 		
 		npc.clearEvents();
+		
+		return reply;
+	}
+
+	/**
+	 * Query the player's events for private messages.
+	 * @param player
+	 * @return message text
+	 */
+	public static String getPrivateReply(Player player) {
+		String reply = null;
+		
+		for (RPEvent event : player.events()) {
+			if (event.getName().equals(Events.PRIVATE_TEXT)) {
+				reply = event.get("text");
+			}
+		}
+		
+		player.clearEvents();
 		
 		return reply;
 	}
