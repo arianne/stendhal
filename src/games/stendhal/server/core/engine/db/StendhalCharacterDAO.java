@@ -66,7 +66,7 @@ public class StendhalCharacterDAO extends CharacterDAO {
 				if (count == 0) {
 					DAORegister.get().get(StendhalWebsiteDAO.class).insertIntoCharStats(transaction, instance);
 				}
-				DAORegister.get().get(StendhalBuddyDAO.class).saveBuddyList(character, instance.getBuddies());
+				DAORegister.get().get(StendhalBuddyDAO.class).saveBuddyList(transaction, character, instance.getBuddies());
 			} catch (final SQLException sqle) {
 				logger.warn("error storing character", sqle);
 				throw sqle;
