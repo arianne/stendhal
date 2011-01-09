@@ -31,7 +31,7 @@ import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.Transparency;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
@@ -93,20 +93,41 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 
 	private static final boolean supermanMode = (System.getProperty("stendhal.superman") != null);
 	
+	/** 
+	 * Maximum width of visible part of the map image. This should be accessed
+	 * only in the event dispatch thread.
+	 */
 	private int width;
+	/** 
+	 * Maximum height of visible part of the map image. This should be accessed
+	 * only in the event dispatch thread.
+	 */
 	private int height;
+	/**
+	 * Scaling of the map image. Amount of pixels used for each map tile in each
+	 * dimension. This should be accessed only in the event dispatch thread.
+	 */
 	private int scale;
 	
 	/** true iff the map should be repainted */ 
-	private boolean needsRefresh;
+	private volatile boolean needsRefresh;
 	/**
-	 * Map background. Volatile because it's updated outside the EDT, and the
-	 * map is not necessarily drawn at every screen refresh.
+	 * Map background. This should be accessed only in the event dispatch
+	 * thread.
 	 */
-	private volatile Image mapImage; 
+	private Image mapImage;
 	
-	/** Name of the map. Volatile because it's updated outside the EDT. */
-	private volatile String title = "";
+	/**
+	 * Name of the map. This should be accessed only in the event dispatch
+	 * thread.
+	 */
+	private String title;
+	/**
+	 * Title label of the map, or <code>null</code> if the current map does not
+	 * have a rendered version of the name yet. This should be accessed only in
+	 * the event dispatch thread.
+	 */
+	private Image titleImage;
 	
 	/**
 	 * Create a new MapPanel.
@@ -135,7 +156,7 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	 * 
 	 * @param entity the added entity
 	 */
-	protected void addEntity(final IEntity entity) {
+	void addEntity(final IEntity entity) {
 		MapObject object = null;
 		
 		if (entity instanceof User) {
@@ -195,7 +216,7 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	 * 
 	 * @param entity the entity to be removed
 	 */
-	protected void removeEntity(final IEntity entity) {
+	void removeEntity(final IEntity entity) {
 		if (mapObjects.containsKey(entity)) {
 			mapObjects.remove(entity);
 			needsRefresh = true;
@@ -204,6 +225,8 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	
 	@Override
 	public void paintComponent(final Graphics g) {
+		// Set this first, so that any changes made during the drawing will
+		// flag the map changed
 		needsRefresh = false;
 		
 		g.setColor(getBackground());
@@ -233,7 +256,8 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	}
 	
 	/**
-	 * Set the dimensions of the component.
+	 * Set the dimensions of the component. This must be called from the event
+	 * dispatch thread.
 	 *  
 	 * @param dim the new dimensions
 	 */
@@ -249,7 +273,8 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	}
 	
 	/**
-	 * Draw the map background.
+	 * Draw the map background. This must be called from the event dispatch
+	 * thread.
 	 * 
 	 * @param g The graphics context
 	 */
@@ -258,19 +283,27 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	}
 	
 	/**
-	 * Draw the map title.
+	 * Draw the map title. This must be called from the event dispatch thread.
 	 * 
 	 * @param g The graphics context
 	 */
 	private void drawTitle(final Graphics g) {
-		final Rectangle bounds = g.getClipBounds();
-		
-		// draw only if drawing the title area is requested
-		if (bounds.y + bounds.height > height) {
-			final Rectangle2D rect = g.getFontMetrics().getStringBounds(title, g);
-			g.setColor(Color.white);
-			g.drawString(title, Math.max(0, (width - (int) rect.getWidth()) / 2), height + TITLE_HEIGHT - 3);
+		if (title == null) {
+			return;
 		}
+		if (titleImage == null) {
+			final Rectangle2D rect = g.getFontMetrics().getStringBounds(title, g);
+			int w = (int) rect.getWidth() + 1;
+			titleImage = getGraphicsConfiguration().createCompatibleImage(w, TITLE_HEIGHT, Transparency.OPAQUE);
+			Graphics ig = titleImage.getGraphics();
+			ig.setColor(Color.BLACK);
+			ig.fillRect(0, 0, w, TITLE_HEIGHT);
+			ig.setColor(Color.WHITE);
+			ig.drawString(title, 0, TITLE_HEIGHT - 3);
+			ig.dispose();
+		}
+		int startX = Math.max(0, (width - titleImage.getWidth(null)) / 2);
+		g.drawImage(titleImage, startX, height, null);
 	}
 	
 	/**
@@ -282,16 +315,22 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	 *            The Y coordinate (in world units).
 	 */
 	public void positionChanged(final double x, final double y) {
-		/*
-		 * The client gets occasionally spurious events.
-		 * Suppress repainting unless the position actually changed
-		 */
-		if ((playerX != x) || (playerY != y)) {
-			playerX = x;
-			playerY = y;
+		// The method is always called otside the EDT. Jump to correct thread
+		// for consistent data
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				/*
+				 * The client gets occasionally spurious events.
+				 * Suppress repainting unless the position actually changed
+				 */
+				if ((playerX != x) || (playerY != y)) {
+					playerX = x;
+					playerY = y;
 
-			updateView();
-		}
+					updateView();
+				}
+			}
+		});
 	}
 	
 	/**
@@ -299,7 +338,7 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	 */
 	public void refresh() {
 		if (needsRefresh) {
-			repaint(0, 0, width, height);
+			repaint();
 		}
 	}
 	
@@ -323,7 +362,7 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	
 	/**
 	 * Update the view pan. This should be done when the map size or player
-	 * position changes.
+	 * position changes. This must be called from the event dispatch thread.
 	 */
 	private void updateView() {
 		xOffset = 0;
@@ -374,14 +413,12 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	 */
 	public void update(final CollisionDetection cd, final CollisionDetection pd, final GraphicsConfiguration gc,
 			final String zone) {
-		title = zone;
-
 		// calculate the size and scale of the map
 		final int mapWidth = cd.getWidth();
 		final int mapHeight = cd.getHeight();
-		scale = Math.max(MINIMUM_SCALE, Math.min(HEIGHT / mapHeight, WIDTH / mapWidth));
-		width = Math.min(WIDTH, mapWidth * scale);
-		height = Math.min(HEIGHT, mapHeight * scale);
+		final int scale = Math.max(MINIMUM_SCALE, Math.min(HEIGHT / mapHeight, WIDTH / mapWidth));
+		final int width = Math.min(WIDTH, mapWidth * scale);
+		final int height = Math.min(HEIGHT, mapHeight * scale);
 		
 		// create the map image, and fill it with the wanted details
 		final Image newMapImage  = this.getGraphicsConfiguration().createCompatibleImage(mapWidth * scale, mapHeight * scale);
@@ -402,16 +439,21 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 			}
 		}
 		g.dispose();
-		// Swap the image only after the new one is ready
-		mapImage = newMapImage;
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
+				title = zone;
+				titleImage = null;
+				// Swap the image only after the new one is ready
+				mapImage = newMapImage;
+				// Update the other data
+				MapPanel.this.scale = scale;
+				MapPanel.this.width = width;
+				MapPanel.this.height = height;
 				updateSize(new Dimension(WIDTH, height + TITLE_HEIGHT));
+				updateView();
 			}
 		});
-		
-		updateView();
 		repaint();
 	}
 	
