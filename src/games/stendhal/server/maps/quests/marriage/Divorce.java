@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -106,8 +107,7 @@ class Divorce {
 						  String additional = "";
 						  husband = player;
 						  partnerName = husband.getQuest(marriage.getSpouseQuestSlot());
-						  wife = SingletonRepository.getRuleProcessor().getPlayer(
-																				  partnerName);
+						  wife = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 						  if ((wife != null)
 							  && wife.hasQuest(marriage.getQuestSlot())
 							  && wife.getQuest(marriage.getSpouseQuestSlot()).equals(
@@ -125,10 +125,9 @@ class Divorce {
 		clerk.add(ConversationStates.ATTENDING,
 					"divorce",
 					new ChatCondition() {
-						public boolean fire(final Player player, final Sentence sentence,
-								final Entity npc) {
-							return (player.hasQuest(marriage.getQuestSlot()) && player.getQuest(
-									marriage.getQuestSlot()).equals("just_married"))
+						public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+							return (player.hasQuest(marriage.getQuestSlot())
+									&& player.getQuest(marriage.getQuestSlot()).equals("just_married"))
 									&& player.isEquipped("wedding ring");
 						}
 					},
@@ -138,18 +137,29 @@ class Divorce {
 
 		clerk.add(ConversationStates.ATTENDING,
 				"divorce",
-				new ChatCondition() {
-					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-						return !(player.isQuestCompleted(marriage.getQuestSlot()) || (player.hasQuest(marriage.getQuestSlot()) && player.getQuest(
-								marriage.getQuestSlot()).equals("just_married")));
+				new NotCondition(
+					// isMarriedCondition()
+					new ChatCondition() {
+						public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+							return (player.isQuestCompleted(marriage.getQuestSlot()) ||
+									(player.hasQuest(marriage.getQuestSlot()) && player.getQuest(marriage.getQuestSlot()).equals("just_married")));
+						}
 					}
-				}, ConversationStates.ATTENDING,
+				), ConversationStates.ATTENDING,
 				"You're not even married. Stop wasting my time!",
 				null);
 
 		clerk.add(ConversationStates.ATTENDING,
 				"divorce",
-				new NotCondition(new PlayerHasItemWithHimCondition("wedding ring")),
+				new AndCondition(
+					// isMarriedCondition()
+					new ChatCondition() {
+						public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+							return (player.isQuestCompleted(marriage.getQuestSlot()) ||
+									(player.hasQuest(marriage.getQuestSlot()) && player.getQuest(marriage.getQuestSlot()).equals("just_married")));
+						}
+					},
+					new NotCondition(new PlayerHasItemWithHimCondition("wedding ring"))),
 				ConversationStates.ATTENDING,
 				"I apologise, but I need your wedding ring in order to divorce you. If you have lost yours, you can go to Ognir to make another.",
 				null);
@@ -175,8 +185,7 @@ class Divorce {
 						String partnerName;
 						husband = player;
 						partnerName = husband.getQuest(marriage.getSpouseQuestSlot());
-						wife = SingletonRepository.getRuleProcessor().getPlayer(
-								partnerName);
+						wife = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 						// check wife is online and check that they're still
 						// married to the current husband
 						if ((wife != null)
@@ -194,11 +203,9 @@ class Divorce {
 							}
 							wife.removeQuest(marriage.getQuestSlot());
 							wife.removeQuest(marriage.getSpouseQuestSlot());
-							wife.sendPrivateText(husband.getName()
-									+ " has divorced from you.");
+							wife.sendPrivateText(husband.getName() + " has divorced from you.");
 							npc.say("What a pity...what a pity...and you two were married so happily, too...");
 						} else {
-							
 							DBCommandQueue.get().enqueue(new StoreMessageCommand("Wilfred", partnerName, husband.getName() + " has divorced from you!" , "N"));
 						}
 						if (husband.isEquipped("money", 200*husband.getLevel())) {
@@ -213,7 +220,6 @@ class Divorce {
 						npc.say("What a pity...what a pity...and you two were married so happily, too...");
 					}
 				});
-
 	}
 
 	public void addToWorld() {
