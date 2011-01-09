@@ -57,7 +57,7 @@ public class GroupManagementAction implements ActionListener {
 
 		// get target player
 		Player targetPlayer = null;
-		if (!actionStr.equals("lootmode") && !actionStr.equals("part") && !actionStr.equals("status")) {
+		if (!actionStr.equals("lootmode") && !actionStr.equals("part") && !actionStr.equals("status") && !actionStr.equals("kick")) {
 			targetPlayer = SingletonRepository.getRuleProcessor().getPlayer(params);
 			if (targetPlayer == null) {
 				player.sendPrivateText(NotificationType.ERROR, "Player " + params + " is not online");
@@ -75,7 +75,7 @@ public class GroupManagementAction implements ActionListener {
 		} else if (actionStr.equals("lootmode")) {
 			lootmode(player, params);
 		} else if (actionStr.equals("kick")) {
-			kick(player, targetPlayer);
+			kick(player, params);
 		} else if (actionStr.equals("part")) {
 			part(player);
 		} else if (actionStr.equals("status")) {
@@ -274,10 +274,10 @@ public class GroupManagementAction implements ActionListener {
 	 * @param player the leader doing the kick
 	 * @param targetPlayer the kicked player
 	 */
-	private void kick(Player player, Player targetPlayer) {
+	private void kick(Player player, String targetPlayer) {
 
 		// if someone tries to kick himself, do a normal /part
-		if (player.getName().equals(targetPlayer.getName())) {
+		if (player.getName().equals(targetPlayer)) {
 			part(player);
 			return;
 		}
@@ -296,14 +296,14 @@ public class GroupManagementAction implements ActionListener {
 		}
 
 		// is the target player a member of this group?
-		if (!group.hasMember(targetPlayer.getName())) {
-			player.sendPrivateText(NotificationType.ERROR, targetPlayer.getName() + " is not a member of your group.");
+		if (!group.hasMember(targetPlayer)) {
+			player.sendPrivateText(NotificationType.ERROR, targetPlayer + " is not a member of your group.");
 			return;
 		}
 
 		// tell the members of the kick and remove the target player
-		group.sendGroupMessage("Group", targetPlayer.getName() + " was kicked by " + player.getName());
-		group.removeMember(targetPlayer.getName());
+		group.sendGroupMessage("Group", targetPlayer + " was kicked by " + player.getName());
+		group.removeMember(targetPlayer);
 	}
 
 	/**
