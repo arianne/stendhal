@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2006 - Arianne                       *
+ *                    (C) Copyright 200-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -1189,13 +1189,26 @@ public class Grammar {
 	 * @return gerund form
 	 */
 	public static String gerundForm(final String word) {
-		if (vowel_p(word.charAt(word.length()-1))) {
-			return word.substring(0, word.length() - 1) + "ing";
-		} else {
-			return word + "ing";
+		if (word.length() > 2) {
+			char last = word.charAt(word.length()-1);
+
+			if (last == 'y') {
+				// word finishes with a 'y'
+				return word + "ing";
+			} else if (vowel_p(last)) {
+				// word finishes with a vowel
+				return word.substring(0, word.length() - 1) + "ing";
+			} else if (vowel_p(word.charAt(word.length()-2))) {
+				// word finishes with a single consonant
+				// duplicate the last character
+				return word + word.charAt(word.length()-1) + "ing";
+			}
 		}
+
+		// word is too short or finishes with more than one consonant  (e.g. "st")
+		return word + "ing";
 	}
-	
+
 	/**
 	 * Check the given word for derived adjectives like "magical"
 	 * or "nomadic".

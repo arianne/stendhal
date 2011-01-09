@@ -851,11 +851,14 @@ public class GrammarTest {
 	 */
 	@Test
 	public void testGerundForm() {
+		assertEquals("baking", Grammar.gerundForm("bake"));
+		assertEquals("casting", Grammar.gerundForm("cast"));
 		assertEquals("making", Grammar.gerundForm("make"));
 		assertEquals("milling", Grammar.gerundForm("mill"));
-		assertEquals("baking", Grammar.gerundForm("bake"));
+		assertEquals("sitting", Grammar.gerundForm("sit"));
 		assertEquals("swimming", Grammar.gerundForm("swim"));
 		assertEquals("swapping", Grammar.gerundForm("swap"));
+		assertEquals("studying", Grammar.gerundForm("study"));
 	}
 
 }
