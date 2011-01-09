@@ -331,7 +331,7 @@ public class Engine {
 			it = secondaryTransitions.iterator();
 
 			if (secondaryTransitions.size() > 1) {
-				logger.warn("Choosing random action because of "
+				logger.info("Choosing random action because of "
 						+ secondaryTransitions.size()
 						+ " entries in secondaryTransitions: " + secondaryTransitions);
 
