@@ -112,7 +112,7 @@ public class SellerBehaviourTest {
 	    npc.getEngine().step(player, "buy three daggers");
 		assertEquals("3 daggers will cost 600. Do you want to buy them?", getReply(npc));
 	    npc.getEngine().step(player, "yes");
-		assertEquals("Congratulations! Here are your daggers!", getReply(npc));
+		assertEquals("Congratulations! Here is your dagger!", getReply(npc));
 		assertEquals("You can only buy one dagger at a time. Setting amount to 1.", PlayerTestHelper.getPrivateReply(player));
 		assertEquals(2, player.getTotalNumberOf("dagger"));
 		assertEquals(400, player.getTotalNumberOf("money"));

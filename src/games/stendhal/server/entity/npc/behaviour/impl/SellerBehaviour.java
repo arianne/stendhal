@@ -82,6 +82,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 			if (amount != 1) {
 				player.sendPrivateText("You can only buy one " + chosenItemName + " at a time. Setting amount to 1.");
 				res.setAmount(1);
+				amount = 1;
 			}
 		}
 
