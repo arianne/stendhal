@@ -252,10 +252,10 @@ public class Grammar {
 		if ((initial == 'e') && (second == 'u')) {
 			return "a ";
 		}
-		if (vowel_p(initial)) {
+		if (isVowel(initial)) {
 			return "an ";
 		}
-		if ((initial == 'y') && consonant_p(second)) {
+		if ((initial == 'y') && isConsonant(second)) {
 			return "an ";
 		}
 		
@@ -639,7 +639,7 @@ public class Grammar {
 		} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
 			return enoun.substring(0, enoun.length() - 1) + "i" + postfix;
 		} else if ((enoun.length() > 2) && enoun.endsWith("y")
-				&& consonant_p(enoun.charAt(enoun.length() - 2))) {
+				&& isConsonant(enoun.charAt(enoun.length() - 2))) {
 			return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
 
 			// If the word is already in plural form, return it unchanged.
@@ -761,7 +761,7 @@ public class Grammar {
 				&& !enoun.endsWith("nooses")) {
 			return enoun.substring(0, enoun.length() - 2) + postfix;
 		} else if ((enoun.length() > 4) && enoun.endsWith("ies")
-				&& consonant_p(enoun.charAt(enoun.length() - 4))
+				&& isConsonant(enoun.charAt(enoun.length() - 4))
 				&& !enoun.endsWith("zombies")) {
 			return enoun.substring(0, enoun.length() - 3) + "y" + postfix;
 			// no special case matched, so look for the standard "s" plural
@@ -912,7 +912,7 @@ public class Grammar {
 	 *            The character to examine
 	 * @return true if c is a vowel, false otherwise
 	 */
-	protected static boolean vowel_p(final char c) {
+	protected static boolean isVowel(final char c) {
 		final char l = Character.toLowerCase(c);
 		return ((l == 'a') || (l == 'e') || (l == 'i') || (l == 'o') || (l == 'u'));
 	}
@@ -924,8 +924,8 @@ public class Grammar {
 	 *            The character to examine
 	 * @return true if c is a consonant, false otherwise
 	 */
-	protected static boolean consonant_p(final char c) {
-		return !vowel_p(c);
+	protected static boolean isConsonant(final char c) {
+		return !isVowel(c);
 	}
 
 	/**
@@ -1172,7 +1172,7 @@ public class Grammar {
 		if ((word.length() > 4) && word.endsWith("ing")) {
 			// Is there a vowel in the preceding characters?
 			for (int i = word.length() - 3; --i >= 0;) {
-				if (vowel_p(word.charAt(i))) {
+				if (isVowel(word.charAt(i))) {
 					return true;
 				}
 			}
@@ -1195,10 +1195,10 @@ public class Grammar {
 			if (last == 'y') {
 				// word finishes with a 'y'
 				return word + "ing";
-			} else if (vowel_p(last)) {
+			} else if (isVowel(last)) {
 				// word finishes with a vowel
 				return word.substring(0, word.length() - 1) + "ing";
-			} else if (vowel_p(word.charAt(word.length()-2))) {
+			} else if (isVowel(word.charAt(word.length()-2))) {
 				// word finishes with a single consonant
 				// duplicate the last character
 				return word + word.charAt(word.length()-1) + "ing";
