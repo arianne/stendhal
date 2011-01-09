@@ -38,6 +38,7 @@ import games.stendhal.server.maps.quests.DragonLair;
 import games.stendhal.server.maps.quests.ElfPrincess;
 import games.stendhal.server.maps.quests.ElvishArmor;
 import games.stendhal.server.maps.quests.FindGhosts;
+import games.stendhal.server.maps.quests.FindJefsMom;
 import games.stendhal.server.maps.quests.FindRatChildren;
 import games.stendhal.server.maps.quests.FishSoup;
 import games.stendhal.server.maps.quests.FishSoupForHughie;
@@ -169,6 +170,7 @@ public class StendhalQuestSystem {
 		loadQuest(new ElfPrincess());
 		loadQuest(new ElvishArmor());
 		loadQuest(new FindGhosts());
+		loadQuest(new FindJefsMom());
 		loadQuest(new FindRatChildren());
 		loadQuest(new FishermansLicenseQuiz());
 		loadQuest(new FishermansLicenseCollector());
