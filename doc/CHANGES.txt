@@ -8,6 +8,7 @@ Changelog
 - sheep growing quest from Nishiya
 - Help Jef by finding his mom in a new quest
 - Amber, Jefs mom, showed up somewhere in Faiumoni
+- Caroline moved into her refurbished house in Ados 
 - NPC conversation with improved and unified responses of producers and merchandisers
 
 0.91 
