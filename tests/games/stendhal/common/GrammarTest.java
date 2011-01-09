@@ -846,4 +846,16 @@ public class GrammarTest {
 		assertEquals("These", Grammar.ThisThese(0));
 	}
 
+	/**
+	 * Tests for gerundForm().
+	 */
+	@Test
+	public void testGerundForm() {
+		assertEquals("making", Grammar.gerundForm("make"));
+		assertEquals("milling", Grammar.gerundForm("mill"));
+		assertEquals("baking", Grammar.gerundForm("bake"));
+		assertEquals("swimming", Grammar.gerundForm("swim"));
+		assertEquals("swapping", Grammar.gerundForm("swap"));
+	}
+
 }
