@@ -39,6 +39,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
+import utilities.SpeakerNPCTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
 public class MarriageTest {
@@ -253,7 +254,7 @@ public class MarriageTest {
 		assertTrue(getReply(npc).startsWith("I haven't finished making the wedding ring. Please check back"));
 		en.step(player, "bye");
 
-		// Jump relativly forward in time (by pushing the past events to the beginning of time
+		// Jump relatively forward in time (by pushing the past events to the beginning of time
 		
 		assertTrue(player.getQuest("marriage").startsWith("forging;"));
 		assertTrue(player2.getQuest("marriage").startsWith("forging;"));
@@ -431,7 +432,64 @@ public class MarriageTest {
 
 		assertTrue(en.step(player, "two"));
 
+		assertEquals("Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!", SpeakerNPCTestHelper.getPrivateReply(player));
+		assertEquals("Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!", SpeakerNPCTestHelper.getPrivateReply(player2));
+
 		assertEquals("done", player.getQuest(QUEST_SLOT));
 		assertEquals("done", player2.getQuest(QUEST_SLOT));
 	} 
+
+
+	/**
+	 * Tests for divorcing.
+	 */
+	@Test
+	public void testDivorce() {
+		player.setQuest("marriage", "just_married");
+		player2.setQuest("marriage", "just_married");
+
+		// Both players should carry exactly one wedding ring with them.
+		if (!(player.isEquipped("wedding ring"))) {
+			PlayerTestHelper.equipWithItem(player, "wedding ring");
+		}
+		if (!(player2.isEquipped("wedding ring"))) {
+			PlayerTestHelper.equipWithItem(player2, "wedding ring");
+		}
+
+		npc = SingletonRepository.getNPCList().get("Wilfred");
+		en = npc.getEngine();
+
+		en.step(player, "hi");
+		assertEquals("Hello. If I can help you, just say the word.", getReply(npc));
+
+		en.step(player, "help");
+		assertEquals("I can #divorce people, if they are unhappily married.", getReply(npc));
+
+		en.step(player, "divorce");
+		assertEquals("I see you haven't been on your honeymoon yet. Are you sure you want to divorce so soon?", getReply(npc));
+
+		en.step(player, "no");
+		assertEquals("I hope you have a happy marriage, then.", getReply(npc));
+
+		assertTrue(player.drop("wedding ring"));
+		en.step(player, "divorce");
+		assertEquals("I apologise, but I need your wedding ring in order to divorce you. If you have lost yours, you can go to Ognir to make another.", getReply(npc));
+
+		PlayerTestHelper.equipWithItem(player, "wedding ring");
+		en.step(player, "divorce");
+		assertEquals("I see you haven't been on your honeymoon yet. Are you sure you want to divorce so soon?", getReply(npc));
+
+		en.step(player, "yes");
+		assertEquals("What a pity...what a pity...and you two were married so happily, too...", getReply(npc));
+		assertEquals("player has divorced from you.", SpeakerNPCTestHelper.getPrivateReply(player2));
+		assertFalse(player.isEquipped("wedding ring"));
+		assertFalse(player2.isEquipped("wedding ring"));
+
+		en.step(player, "divorce");
+		assertEquals("You're not even married. Stop wasting my time!", getReply(npc));
+
+		en.step(player, "bye");
+		assertEquals("Good day.", getReply(npc));
+	}
+
 }
