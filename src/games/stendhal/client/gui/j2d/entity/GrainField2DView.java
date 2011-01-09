@@ -225,7 +225,7 @@ class GrainField2DView extends StateEntity2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
-		if (!isReleased()) {
+		if (isReleased()) {
 			return;
 		}
 		switch (at) {
