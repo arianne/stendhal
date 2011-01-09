@@ -13,7 +13,6 @@
 package games.stendhal.server.core.rp.achievement;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.db.AchievementDAO;
@@ -31,7 +30,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.RPEvent;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.db.DAORegister;
 

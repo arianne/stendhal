@@ -6,7 +6,6 @@ import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
-import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 
 public class ReachedAchievementEvent extends RPEvent {
