@@ -37,4 +37,7 @@ public final class Events {
 	public static final String GROUP_CHANGE = "group_change_event";
 
 	public static final String PROGRESS_STATUS_CHANGE = "progress_status_event";
+	
+	public static final String REACHED_ACHIEVEMENT = "reached_achievement";
+	
 }

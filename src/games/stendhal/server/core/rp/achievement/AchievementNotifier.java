@@ -13,6 +13,7 @@
 package games.stendhal.server.core.rp.achievement;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.db.AchievementDAO;
@@ -20,6 +21,7 @@ import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementComman
 import games.stendhal.server.core.rp.achievement.factory.AbstractAchievementFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
+import games.stendhal.server.events.ReachedAchievementEvent;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import marauroa.common.game.RPEvent;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.db.DAORegister;
 
@@ -334,7 +337,7 @@ public final class AchievementNotifier {
 	private void notifyPlayerAboutReachedAchievement(Player player,
 			Achievement achievement) {
 		if (System.getProperty("stendhal.achievement") != null) {
-			player.sendPrivateText("Congratulations! You have reached the "+achievement.getTitle()+" achievement!");
+			player.addEvent(new ReachedAchievementEvent(achievement));
 		}
 	}
 

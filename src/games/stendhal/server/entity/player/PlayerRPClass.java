@@ -40,6 +40,7 @@ public class PlayerRPClass {
 		player.addRPEvent(Events.PLAYER_LOGGED_ON, Definition.PRIVATE);
 		player.addRPEvent(Events.PLAYER_LOGGED_OUT, Definition.PRIVATE);
 		player.addRPEvent(Events.TRADE_STATE_CHANGE, Definition.PRIVATE);
+		player.addRPEvent(Events.REACHED_ACHIEVEMENT, Definition.PRIVATE);
 
 		player.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
 		player.addAttribute("eating", Type.SHORT, Definition.VOLATILE);

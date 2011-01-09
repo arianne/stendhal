@@ -61,6 +61,7 @@ import games.stendhal.server.events.PlayerLoggedOnEvent;
 import games.stendhal.server.events.PlayerLoggedOutEvent;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.ProgressStatusEvent;
+import games.stendhal.server.events.ReachedAchievementEvent;
 import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.events.TextEvent;
@@ -261,6 +262,10 @@ public class RPClassGenerator {
 		
 		if (!RPClass.hasRPClass(Events.PLAYER_LOGGED_OUT)) {
 			PlayerLoggedOutEvent.generateRPClass();
+		}
+		
+		if (!RPClass.hasRPClass(Events.REACHED_ACHIEVEMENT)) {
+			ReachedAchievementEvent.generateRPClass();
 		}
 		
 		if (!RPClass.hasRPClass(Events.VIEW_CHANGE)) {
