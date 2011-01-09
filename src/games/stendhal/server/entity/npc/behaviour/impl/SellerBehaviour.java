@@ -74,23 +74,19 @@ public class SellerBehaviour extends MerchantBehaviour {
 			return false;
 		}
 
-		// When the user tries to buy several of a non-stackable
-		// item, he is forced to buy only one.
+		// set amount of stackable items
 		if (item instanceof StackableItem) {
 			((StackableItem) item).setQuantity(amount);
-		} else {
-			if (amount != 1) {
-				player.sendPrivateText("You can only buy one " + chosenItemName + " at a time. Setting amount to 1.");
-				res.setAmount(1);
-				amount = 1;
-			}
+		} else if (amount > 1) {
+			// Fixing user input with more than one item is already handled in SellerAdder, so this should not happen here at all.
+			logger.error("Trying to sell more than one " + chosenItemName + " in one transaction.");
 		}
 
 		if (amount <= 0) {
 			seller.say("Sorry, you must buy at least one item.");
 			return false;
 		}
-		
+
 		int price = getCharge(res, player);
 		if (player.isBadBoy()) {
 			price = (int) (BAD_BOY_BUYING_PENALTY * price);

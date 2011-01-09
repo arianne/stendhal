@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.RPClassGenerator;
@@ -110,10 +111,10 @@ public class SellerBehaviourTest {
 
 		PlayerTestHelper.equipWithMoney(player, 600);
 	    npc.getEngine().step(player, "buy three daggers");
-		assertEquals("3 daggers will cost 600. Do you want to buy them?", getReply(npc));
+		assertEquals("You can only buy one dagger at a time. A dagger will cost 200. Do you want to buy it?", getReply(npc));
 	    npc.getEngine().step(player, "yes");
 		assertEquals("Congratulations! Here is your dagger!", getReply(npc));
-		assertEquals("You can only buy one dagger at a time. Setting amount to 1.", PlayerTestHelper.getPrivateReply(player));
+		assertNull(PlayerTestHelper.getPrivateReply(player));
 		assertEquals(2, player.getTotalNumberOf("dagger"));
 		assertEquals(400, player.getTotalNumberOf("money"));
 	}

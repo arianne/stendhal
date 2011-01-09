@@ -14,6 +14,9 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -97,9 +100,22 @@ public class SellerAdder {
 									+ chosenItemName 
 									+ " which I can sell at once is 1000.");
 						} else if (res.getAmount() > 0) {
-							int price = sellerBehaviour.getUnitPrice(chosenItemName) * res.getAmount();
-
 							StringBuilder builder = new StringBuilder();
+
+							// When the user tries to buy several of a non-stackable
+							// item, he is forced to buy only one.
+							if (res.getAmount() != 1) {
+								final Item item = SingletonRepository.getEntityManager().getItem(chosenItemName);
+
+								if (item == null) {
+									logger.error("Trying to sell an nonexistent item: " + chosenItemName);
+								} else if (!(item instanceof StackableItem)) {
+									builder.append("You can only buy one " + chosenItemName + " at a time. ");
+									res.setAmount(1);
+								}
+							}
+
+							int price = sellerBehaviour.getUnitPrice(chosenItemName) * res.getAmount();
 							if (player.isBadBoy()) {
 								price = (int) (SellerBehaviour.BAD_BOY_BUYING_PENALTY * price);
 
@@ -108,11 +124,13 @@ public class SellerAdder {
 							} else {
 								builder.append(Grammar.quantityplnoun(res.getAmount(), chosenItemName, "A"));
 							}
+
 							builder.append(" will cost ");
 							builder.append(price);
 							builder.append(". Do you want to buy ");
 							builder.append(Grammar.itthem(res.getAmount()));
 							builder.append("?");
+
 							raiser.say(builder.toString());
 
 							currentBehavRes = res;
