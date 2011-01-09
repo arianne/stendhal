@@ -899,6 +899,7 @@ alice	SUB-NAM
 alien	SUB
 alrak	SUB-NAM
 amazoness	SUB
+amber	SUB-NAM
 anastasia	SUB-NAM
 andy	SUB-NAM
 angel	SUB
