@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,7 @@
  ***************************************************************************/
 package utilities;
 
+import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
@@ -329,5 +330,24 @@ public abstract class PlayerTestHelper {
 		long pastTime = new Date().getTime() - seconds*1000;
 
 		player.setQuest(questSlot, 2, Long.toString(pastTime));
+	}
+
+	/**
+	 * Query the player's events for private messages.
+	 * @param player
+	 * @return message text
+	 */
+	public static String getPrivateReply(Player player) {
+		String reply = null;
+		
+		for (RPEvent event : player.events()) {
+			if (event.getName().equals(Events.PRIVATE_TEXT)) {
+				reply = event.get("text");
+			}
+		}
+		
+		player.clearEvents();
+		
+		return reply;
 	}
 }

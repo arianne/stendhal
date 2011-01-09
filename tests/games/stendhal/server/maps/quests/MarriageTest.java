@@ -39,7 +39,6 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
-import utilities.SpeakerNPCTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
 public class MarriageTest {
@@ -432,8 +431,8 @@ public class MarriageTest {
 
 		assertTrue(en.step(player, "two"));
 
-		assertEquals("Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!", SpeakerNPCTestHelper.getPrivateReply(player));
-		assertEquals("Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!", SpeakerNPCTestHelper.getPrivateReply(player2));
+		assertEquals("Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!", PlayerTestHelper.getPrivateReply(player));
+		assertEquals("Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!", PlayerTestHelper.getPrivateReply(player2));
 
 		assertEquals("done", player.getQuest(QUEST_SLOT));
 		assertEquals("done", player2.getQuest(QUEST_SLOT));
@@ -481,7 +480,7 @@ public class MarriageTest {
 
 		en.step(player, "yes");
 		assertEquals("What a pity...what a pity...and you two were married so happily, too...", getReply(npc));
-		assertEquals("player has divorced from you.", SpeakerNPCTestHelper.getPrivateReply(player2));
+		assertEquals("player has divorced from you.", PlayerTestHelper.getPrivateReply(player2));
 		assertFalse(player.isEquipped("wedding ring"));
 		assertFalse(player2.isEquipped("wedding ring"));
 
