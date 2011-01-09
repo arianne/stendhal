@@ -198,7 +198,7 @@ public class FishSoupForHughie extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Thank you! You can ask Florence Bouillabaisse to make you fish soup. I think she's in Ados market somewhere. ",
+			"Thank you! You can ask Florence Bouillabaisse to make you fish soup. I think she's in Ados market somewhere.",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 2.0));
 
 		// player is not willing to help
