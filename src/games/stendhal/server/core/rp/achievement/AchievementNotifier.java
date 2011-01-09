@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -36,7 +36,7 @@ import marauroa.server.game.db.DAORegister;
 import org.apache.log4j.Logger;
 
 /**
- * Checks for reached achievements and marks them as reached for a player if he has fullfilled them
+ * Checks for reached achievements and marks them as reached for a player if he has fulfilled them
  *  
  * @author madmetzger
  */
