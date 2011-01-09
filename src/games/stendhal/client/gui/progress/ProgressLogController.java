@@ -26,8 +26,11 @@ public class ProgressLogController {
 	/** Controller instance */
 	private static ProgressLogController instance;
 	
-	/** Progress window */
-	private final ProgressLog progressLog;
+	/**
+	 * Progress window. This should be accessed only through getProgressLog(),
+	 * which ensures the window has been created.
+	 */
+	private ProgressLog progressLog;
 	
 	/**
 	 * Get the book controller instance.
@@ -45,7 +48,6 @@ public class ProgressLogController {
 	 * Create a new ProgressLogController.
 	 */
 	private ProgressLogController() {
-		progressLog = new ProgressLog("Travel log");
 	}
 	
 	/**
@@ -60,7 +62,7 @@ public class ProgressLogController {
 				RequestAction contentAction = new RequestAction();
 				contentAction.setDataKey("progress_type");
 				
-				progressLog.setPages(categories, contentAction);
+				getProgressLog().setPages(categories, contentAction);
 				showWindow();
 			}
 		});
@@ -80,7 +82,7 @@ public class ProgressLogController {
 				contentAction.setDataKey("item");
 				contentAction.setProgressType(category);
 				
-				progressLog.setPageIndex(category, items, contentAction);
+				getProgressLog().setPageIndex(category, items, contentAction);
 				showWindow();
 			}
 		});
@@ -97,17 +99,31 @@ public class ProgressLogController {
 	public void showDescription(final String category, final String item, final String description, final List<String> details) { 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				progressLog.setPageContent(category, item, description, details);
+				getProgressLog().setPageContent(category, item, description, details);
 				showWindow();
 			}
 		});
 	}
 	
 	/**
-	 * Show the window, if it's not already visible.
+	 * Get the log window, and create it if it has not been created before.
+	 * This method must be called in the event dispatch thread.
+	 *  
+	 * @return log window
+	 */
+	private ProgressLog getProgressLog() {
+		if (progressLog == null) {
+			progressLog = new ProgressLog("Travel log");
+		}
+		return progressLog;
+	}
+	
+	/**
+	 * Show the window, if it's not already visible. This must not be called
+	 * outside the event dispatch thread. 
 	 */
 	private void showWindow() {
-		Component window = progressLog.getWindow();
+		Component window = getProgressLog().getWindow();
 		window.setVisible(true);
 	}
 	

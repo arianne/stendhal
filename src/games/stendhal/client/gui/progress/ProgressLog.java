@@ -276,7 +276,6 @@ public class ProgressLog {
 				}
 			}
 			text.append("</html>");
-			indexArea.setText(text.toString());
 			contentQuery = onClick;
 
 			/*
@@ -286,6 +285,7 @@ public class ProgressLog {
 			 */
 			final JScrollBar bar = indexScrollPane.getVerticalScrollBar();
 			final int position = bar.getValue();
+			indexArea.setText(text.toString());
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					int newValue = Math.min(position, bar.getMaximum());
