@@ -268,9 +268,42 @@ public class GroupManagementAction implements ActionListener {
 	}
 
 
+	/**
+	 * kicks a player from the group
+	 *
+	 * @param player the leader doing the kick
+	 * @param targetPlayer the kicked player
+	 */
 	private void kick(Player player, Player targetPlayer) {
-		// TODO Auto-generated method stub
-		
+
+		// if someone tries to kick himself, do a normal /part
+		if (player.getName().equals(targetPlayer.getName())) {
+			part(player);
+			return;
+		}
+
+		// check in group
+		Group group = SingletonRepository.getGroupManager().getGroup(player.getName());
+		if (group == null) {
+			player.sendPrivateText(NotificationType.ERROR, "You are not a member of a group.");
+			return;
+		}
+
+		// check leader
+		if (!group.hasLeader(player.getName())) {
+			player.sendPrivateText(NotificationType.ERROR, "Only the group leader may kick members.");
+			return;
+		}
+
+		// is the target player a member of this group?
+		if (!group.hasMember(targetPlayer.getName())) {
+			player.sendPrivateText(NotificationType.ERROR, targetPlayer.getName() + " is not a member of your group.");
+			return;
+		}
+
+		// tell the members of the kick and remove the target player
+		group.sendGroupMessage("Group", targetPlayer.getName() + " was kicked by " + player.getName());
+		group.removeMember(targetPlayer.getName());
 	}
 
 	/**
