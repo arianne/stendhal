@@ -429,8 +429,14 @@ public class LoginDialog extends JDialog {
 		try {
 			client.connect(profile.getHost(), profile.getPort());
 
-			// for each major connection milestone call step()
-			progressBar.step();
+			// for each major connection milestone call step(). progressBar is
+			// created in EDT, so it is not guaranteed non null in the main
+			// thread.
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					progressBar.step();
+				}
+			});
 		} catch (final Exception ex) {
 			// if something goes horribly just cancel the progressbar
 			SwingUtilities.invokeLater(new Runnable() {
