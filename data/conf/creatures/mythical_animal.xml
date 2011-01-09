@@ -82,7 +82,7 @@
   
   <creature name="gashadokuro">
     <type class="mythical_animal" subclass="gashadokuro" tileid="mythical_animal.png:1"/>
-    <description></description>
+    <description>A giant figure made of bone, known only as gashadokuro, towers before you. He is created from the bones of starving humans.</description>
     <attributes>
       <atk value="2000"/>
       <def value="171"/>
