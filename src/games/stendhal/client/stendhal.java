@@ -21,13 +21,14 @@ import games.stendhal.client.gui.styled.StyledLookAndFeel;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.Version;
-
 import games.stendhal.common.Debug;
 import games.stendhal.common.resource.ResourceManager;
+
 import java.awt.Dimension;
 import java.security.AccessControlException;
 import java.util.Locale;
 
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -171,8 +172,8 @@ public class stendhal {
 		parseCommandlineArguments(args);
 		startLogSystem();
 		MarauroaUncaughtExceptionHandler.setup(false);
-		UserContext userContext = new UserContext();
-		PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
+		final UserContext userContext = new UserContext();
+		final PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
 		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
 		
 		try {
@@ -187,20 +188,27 @@ public class stendhal {
 
 		UIManager.getLookAndFeelDefaults().put("ClassLoader", stendhal.class.getClassLoader());
 		
-		Profile profile = Profile.createFromCommandline(args);
-		if (profile.isValid()) {
-			new LoginDialog(null, client).connect(profile);
-		} else {
-			new StendhalFirstScreen(client);
-		}
+		final Profile profile = Profile.createFromCommandline(args);
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				if (profile.isValid()) {
+					new LoginDialog(null, client).connect(profile);
+				} else {
+					new StendhalFirstScreen(client);
+				}
+			}
+		});
 		
 		waitForLogin();
 		IDSend.send();
-		GameScreen gameScreen = GameScreen.get();
 		
-		final j2DClient locclient = new j2DClient(client, gameScreen, userContext);
-		perceptionDispatch.register(locclient.getPerceptionListener());
-		locclient.gameLoop(gameScreen);
-		locclient.cleanup();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				GameScreen gameScreen = GameScreen.get();
+				j2DClient locclient = new j2DClient(client, gameScreen, userContext);
+				perceptionDispatch.register(locclient.getPerceptionListener());
+				locclient.startGameLoop(gameScreen);
+			}
+		});
 	}
 }

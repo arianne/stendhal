@@ -46,6 +46,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -93,7 +94,7 @@ public class LoginDialog extends JDialog {
 
 	private final Frame owner;
 
-
+	private ProgressBar progressBar;
 
 	public LoginDialog(final Frame owner, final StendhalClient client) {
 		super(owner, true);
@@ -319,7 +320,6 @@ public class LoginDialog extends JDialog {
 	}
 
 	private void loginButton_actionPerformed(final ActionEvent e) {
-
 		// If this window isn't enabled, we shouldn't act.
 		if (!isEnabled()) {
 			return;
@@ -416,13 +416,15 @@ public class LoginDialog extends JDialog {
 	 * @param profile 
 	 */
 	public void connect(final Profile profile) {
-		final ProgressBar progressBar = new ProgressBar(this);
-
-		// intialize progress bar
-		progressBar.start();
-
-		// disable this screen when attempting to connect
-		setEnabled(false);
+		// We are not in EDT
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				progressBar = new ProgressBar(LoginDialog.this);
+				progressBar.start();
+				// disable this screen when attempting to connect
+				setEnabled(false);
+			}
+		});
 
 		try {
 			client.connect(profile.getHost(), profile.getPort());
@@ -431,8 +433,12 @@ public class LoginDialog extends JDialog {
 			progressBar.step();
 		} catch (final Exception ex) {
 			// if something goes horribly just cancel the progressbar
-			progressBar.cancel();
-			setEnabled(true);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					progressBar.cancel();
+					setEnabled(true);
+				}
+			});
 			String message = "unable to connect to server";
 			
 			if (profile != null) {
@@ -450,10 +456,13 @@ public class LoginDialog extends JDialog {
 			client.setCharacter(profile.getCharacter());
 			client.login(profile.getUser(), profile.getPassword(), profile.getSeed());
 
-			progressBar.step();
-			progressBar.finish();
-
-			setVisible(false);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					progressBar.step();
+					progressBar.finish();
+					setVisible(false);
+				}
+			});
 		} catch (final InvalidVersionException e) {
 			handleError(progressBar, "You are running an incompatible version of Stendhal. Please update",
 					"Invalid version");
@@ -480,17 +489,21 @@ public class LoginDialog extends JDialog {
 	 * @param errorMessage error message
 	 * @param errorTitle   title of error dialog box
 	 */
-	private void handleError(ProgressBar progressBar, String errorMessage, String errorTitle) {
-		progressBar.cancel();
-		JOptionPane.showMessageDialog(
-				this, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
+	private void handleError(final ProgressBar progressBar, final String errorMessage, final String errorTitle) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				progressBar.cancel();
+				JOptionPane.showMessageDialog(
+						LoginDialog.this, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
 
-		if (isVisible()) {
-			setEnabled(true);
-		} else {
-			// Hack for non interactive login
-			System.exit(1);
-		}
+				if (isVisible()) {
+					setEnabled(true);
+				} else {
+					// Hack for non interactive login
+					System.exit(1);
+				}
+			}
+		});
 	}
 
 	/**
@@ -526,9 +539,6 @@ public class LoginDialog extends JDialog {
 	 * @param profiles 
 	 */
 	protected void populateProfiles(final ProfileList profiles) {
-		
-		
-
 		profilesComboBox.removeAllItems();
 
 		final Iterator< ? > iter = profiles.iterator();

@@ -398,41 +398,38 @@ public class j2DClient implements UserInterface {
 			}
 		});
 		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				mainFrame.getMainFrame().pack();
-				setInitialWindowStates();
-				
-				/*
-				 *  A bit roundabout way to calculate the desired minsize, but
-				 *  different java versions seem to take the window decorations
-				 *  in account in rather random ways.
-				 */
-				final int width = mainFrame.getMainFrame().getWidth() 
-					- minimap.getComponent().getWidth() - containerPanel.getWidth();
-				final int height = mainFrame.getMainFrame().getHeight() - gameLog.getHeight();
-				
-				mainFrame.getMainFrame().setMinimumSize(new Dimension(width, height));
-				mainFrame.getMainFrame().setVisible(true);
-				
-				/*
-				 * For small screens. Setting the maximum window size does
-				 * not help - pack() happily ignores it.
-				 */
-				Rectangle maxBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
-				Dimension current = mainFrame.getMainFrame().getSize();
-				mainFrame.getMainFrame().setSize(Math.min(current.width, maxBounds.width), 
-						Math.min(current.height, maxBounds.height));
-				
-				/*
-				 * Needed for small screens; Sometimes the divider is placed
-				 * incorrectly unless we explicitly set it. Try to fit it on the
-				 * screen and show a bit of the chat.
-				 */
-				splitPane.setDividerLocation(Math.min(stendhal.getScreenSize().height,
-						maxBounds.height  - 80));
-			}
-		});
+		mainFrame.getMainFrame().pack();
+		setInitialWindowStates();
+
+		/*
+		 *  A bit roundabout way to calculate the desired minsize, but
+		 *  different java versions seem to take the window decorations
+		 *  in account in rather random ways.
+		 */
+		final int width = mainFrame.getMainFrame().getWidth() 
+		- minimap.getComponent().getWidth() - containerPanel.getWidth();
+		final int height = mainFrame.getMainFrame().getHeight() - gameLog.getHeight();
+
+		mainFrame.getMainFrame().setMinimumSize(new Dimension(width, height));
+		mainFrame.getMainFrame().setVisible(true);
+
+		/*
+		 * For small screens. Setting the maximum window size does
+		 * not help - pack() happily ignores it.
+		 */
+		Rectangle maxBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+		Dimension current = mainFrame.getMainFrame().getSize();
+		mainFrame.getMainFrame().setSize(Math.min(current.width, maxBounds.width), 
+				Math.min(current.height, maxBounds.height));
+
+		/*
+		 * Needed for small screens; Sometimes the divider is placed
+		 * incorrectly unless we explicitly set it. Try to fit it on the
+		 * screen and show a bit of the chat.
+		 */
+		splitPane.setDividerLocation(Math.min(stendhal.getScreenSize().height,
+				maxBounds.height  - 80));
+
 		directionRelease = null;
 	
 		// register the slash actions in the client side command line parser
@@ -483,7 +480,7 @@ public class j2DClient implements UserInterface {
 		containerPanel.addRepaintable(inventory);
 	}
 
-	public void cleanup() {
+	private void cleanup() {
 		chatText.saveCache();
 		logger.debug("Exit");
 		System.exit(0);
@@ -499,8 +496,23 @@ public class j2DClient implements UserInterface {
 		pane.add(comp, JLayeredPane.PALETTE_LAYER);
 	}
 
+	/**
+	 * Start the game loop thread.
+	 * 
+	 * @param gameScreen
+	 */
+	public void startGameLoop(final GameScreen gameScreen) {
+		Thread loop = new Thread(new Runnable() {
+			public void run() {
+				gameLoop(gameScreen);
+				// gameLoop runs until the client quit 
+				cleanup();
+			}
+		}, "Game loop");
+		loop.start();
+	}
 
-	public void gameLoop(final GameScreen gameScreen) {
+	private void gameLoop(final GameScreen gameScreen) {
 		final int frameLength = (int) (1000.0 / stendhal.FPS_LIMIT);
 		int fps = 0;
 		final GameObjects gameObjects = client.getGameObjects();

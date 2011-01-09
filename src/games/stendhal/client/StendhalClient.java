@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.concurrent.Semaphore;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import marauroa.client.BannedAddressException;
 import marauroa.client.ClientFramework;
@@ -351,7 +352,7 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	@Override
-	protected void onAvailableCharacterDetails(Map<String, RPObject> characters) {
+	protected void onAvailableCharacterDetails(final Map<String, RPObject> characters) {
 
 		// if there are no characters, create one with the specified name automatically
 		if (characters.size() == 0) {
@@ -387,7 +388,11 @@ public class StendhalClient extends ClientFramework {
 		}
 
 		// show character dialog
-		new CharacterDialog(characters, StendhalFirstScreen.get());
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new CharacterDialog(characters, StendhalFirstScreen.get());
+			}
+		});
 	}
 
 	@Override
