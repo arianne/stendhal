@@ -15,17 +15,16 @@ package games.stendhal.server.actions.buddy;
 
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.dbcommand.CheckCharactersExistingCommand;
+import games.stendhal.server.core.engine.dbcommand.QueryCanonicalCharacterNamesCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
@@ -48,8 +47,8 @@ public class BuddyCleanup implements TurnListener {
 		Map<String, String> buddies = player.getMap("buddies");
 
 		if (buddies != null) {
-			Set<String> lowerBuddies = new HashSet<String>();
-			List<String> duplicates = new ArrayList<String>();
+			Collection<String> lowerBuddies = new HashSet<String>();
+			Collection<String> duplicates = new ArrayList<String>();
 
 			// collect all buddy names in lower case and detect duplicates
 			for(String name : buddies.keySet()) {
@@ -65,31 +64,31 @@ public class BuddyCleanup implements TurnListener {
 			}
 
 			// invoke the check for valid character names
-			DBCommand command = new CheckCharactersExistingCommand(player, player.getBuddies());
+			DBCommand command = new QueryCanonicalCharacterNamesCommand(player, player.getBuddies());
 			DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
 			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 		}
 	}
 
 	public void onTurnReached(int currentTurn) {
-		CheckCharactersExistingCommand checkCommand = DBCommandQueue.get().getOneResult(CheckCharactersExistingCommand.class, handle);
+		QueryCanonicalCharacterNamesCommand checkCommand = DBCommandQueue.get().getOneResult(QueryCanonicalCharacterNamesCommand.class, handle);
 
 		if (checkCommand == null) {
 			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 			return;
 		}
 
-		Set<String> queriedNames = checkCommand.getQueriedNames();
-		Set<String> validNames = checkCommand.getValidNames();
+		Collection<String> queriedNames = checkCommand.getQueriedNames();
+		Collection<String> validNames = checkCommand.getValidNames();
 
 		// compute the difference between the two name sets
-		Set<String> oldNames = new HashSet<String>();
+		Collection<String> oldNames = new HashSet<String>();
 		oldNames.addAll(queriedNames);
 		for(String name : validNames) {
 			oldNames.remove(name);
 		}
 
-		Set<String> newNames = new HashSet<String>();
+		Collection<String> newNames = new HashSet<String>();
 		newNames.addAll(validNames);
 		for(String name : queriedNames) {
 			newNames.remove(name);

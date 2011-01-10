@@ -14,8 +14,8 @@ package games.stendhal.server.core.engine.dbcommand;
 import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
@@ -23,22 +23,22 @@ import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
 
 /**
- * Checks if a number of characters exists
+ * Retrieves the canonical name of a number of characters.
  *
- * @author M. Fuchs
+ * @author kymara / M. Fuchs
  */
-public class CheckCharactersExistingCommand extends AbstractDBCommand {
+public class QueryCanonicalCharacterNamesCommand extends AbstractDBCommand {
 	private Player player;
-	private Set<String> namesToCheck;
-	private Set<String> validNames;
+	private Collection<String> namesToCheck;
+	private Collection<String> validNames;
 
 	/**
-	 * Creates a new CheckCharactersExistingCommand.
+	 * Creates a new QueryCanonicalCharacterNamesCommand.
 	 *
 	 * @param player the player the check originated from
 	 * @param namesToCheck the character names to check
 	 */
-	public CheckCharactersExistingCommand(Player player, Set<String> namesToCheck) {
+	public QueryCanonicalCharacterNamesCommand(Player player, Collection<String> namesToCheck) {
 		this.player = player;
 		this.namesToCheck = namesToCheck;
 	}
@@ -61,22 +61,31 @@ public class CheckCharactersExistingCommand extends AbstractDBCommand {
 			}
 		}
 	}
+	
+	/**
+	 * To access the player sending the query
+	 *
+	 * @return player
+	 */
+	public Player getPlayer() {
+		return player;
+	}
 
 	/**.
 	 * Return the character name we queried
 	 *
-	 * @return set of the character names we found to be valid
+	 * @return character names to be checked
 	 */
-	public Set<String> getQueriedNames() {
+	public Collection<String> getQueriedNames() {
 		return namesToCheck;
 	}
 
 	/**
 	 * Return the character name we found to be valid.
 	 *
-	 * @return set of the character names we found to be valid
+	 * @return the unique character names we found to be valid
 	 */
-	public Set<String> getValidNames() {
+	public Collection<String> getValidNames() {
 		return validNames;
 	}
 
@@ -87,7 +96,7 @@ public class CheckCharactersExistingCommand extends AbstractDBCommand {
 	 */
 	@Override
 	public String toString() {
-		return "CheckCharactersExistingCommand [player=" + player + ", who="
+		return "QueryCanonicalCharacterNamesCommand [player=" + player + ", who="
 				+ namesToCheck + ", validNames=" + validNames + "]";
 	}
 }

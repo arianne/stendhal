@@ -17,11 +17,15 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.dbcommand.CheckCharacterExistsCommand;
+import games.stendhal.server.core.engine.dbcommand.QueryCanonicalCharacterNamesCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Arrays;
+import java.util.Collection;
+
 import marauroa.common.game.RPAction;
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
@@ -34,8 +38,7 @@ import marauroa.server.db.command.ResultHandle;
 class AddBuddyAction implements ActionListener, TurnListener {
 	
 	private ResultHandle handle = new ResultHandle();
-	
-	
+
 	/**
 	 * Starts to handle a buddy action.
 	 * 
@@ -52,7 +55,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 
 		final String who = action.get(TARGET);
 
-		DBCommand command = new CheckCharacterExistsCommand(player, who);
+		DBCommand command = new QueryCanonicalCharacterNamesCommand(player, Arrays.asList(who));
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
 		TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 	}
@@ -63,7 +66,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 	 * @param currentTurn ignored
 	 */
 	public void onTurnReached(int currentTurn) {
-		CheckCharacterExistsCommand checkcommand = DBCommandQueue.get().getOneResult(CheckCharacterExistsCommand.class, handle);
+		QueryCanonicalCharacterNamesCommand checkcommand = DBCommandQueue.get().getOneResult(QueryCanonicalCharacterNamesCommand.class, handle);
 
 		if (checkcommand == null) {
 			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
@@ -72,14 +75,17 @@ class AddBuddyAction implements ActionListener, TurnListener {
 
 		Player player = checkcommand.getPlayer();
 
-		boolean characterExists = checkcommand.exists();
-		String who = checkcommand.getWho();
-	
-		if (!characterExists) {
+		Collection<String> queriedNames = checkcommand.getQueriedNames();
+		String who = queriedNames.iterator().next(); // We know, we queried exactly one character.
+
+		Collection<String> validNames = checkcommand.getValidNames();
+		if (validNames.isEmpty()) {
 			player.sendPrivateText(NotificationType.ERROR, "Sorry, " + who + " could not be found.");
 			return;
 		}
 
+		// get the canonical name
+		who = validNames.iterator().next();
 		final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(who);
 
 		if (player.addBuddy(who, (buddy != null) && !buddy.isGhost())) {
