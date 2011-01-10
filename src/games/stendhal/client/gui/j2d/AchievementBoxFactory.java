@@ -27,7 +27,6 @@ public class AchievementBoxFactory {
 	 * @return the drawn sprite
 	 */
 	public Sprite createAchievementBox(String title, String description, String category) {
-		System.out.println("Ich würde jetzt malen, wenn ich wüsste wie...");
 		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 		final Image image = gc.createCompatibleImage(50, 50, Transparency.BITMASK);
 		final Graphics2D g2d = (Graphics2D) image.getGraphics();
