@@ -66,6 +66,7 @@ public class ContainerPanel extends JScrollPane {
 	 * @param child
 	 */
 	public void addRepaintable(JComponent child) {
+		child.setIgnoreRepaint(true);
 		panel.add(child);
 		repaintable.add(child);
 		/*
