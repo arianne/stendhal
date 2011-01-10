@@ -135,6 +135,8 @@ Authors of Stendhal are:
   · Artist (items: coal, some modifications like garlic and fish soup)
   . Ideas (quests, NPCs, features and many, many more ;)
   . Coder (adding sounds, dialogues)
+- retr0virus
+  . Coder (some patches for quests)
   
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
