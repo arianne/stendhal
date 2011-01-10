@@ -228,22 +228,22 @@ public class User extends Player {
 
 		// The first time we ignore it.
 		if (object != null) {
-			if (changes.has("online")) {
-				final String[] players = changes.get("online").split(",");
-				for (final String playerName : players) {
-					ClientSingletonRepository.getUserInterface().addEventLine(
-							new HeaderLessEventLine(
-							playerName + " has joined Stendhal.",
-							NotificationType.INFORMATION));
-				}
-			}
-
 			if (changes.has("offline")) {
 				final String[] players = changes.get("offline").split(",");
 				for (final String playername : players) {
 						ClientSingletonRepository.getUserInterface().addEventLine(
 							new HeaderLessEventLine(
 							playername + " has left Stendhal.",
+							NotificationType.INFORMATION));
+				}
+			}
+
+			if (changes.has("online")) {
+				final String[] players = changes.get("online").split(",");
+				for (final String playerName : players) {
+					ClientSingletonRepository.getUserInterface().addEventLine(
+							new HeaderLessEventLine(
+							playerName + " has joined Stendhal.",
 							NotificationType.INFORMATION));
 				}
 			}
