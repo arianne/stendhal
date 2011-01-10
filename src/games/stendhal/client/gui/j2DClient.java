@@ -34,6 +34,7 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
+import games.stendhal.client.gui.spells.Spells;
 import games.stendhal.client.gui.stats.StatsPanelController;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
@@ -353,7 +354,7 @@ public class j2DClient implements UserInterface {
 		keyring.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(keyring);
 		client.addFeatureChangeListener(keyring);
-
+		
 		// Avoid panel drawing overhead
 		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
 		mainFrame.getMainFrame().setContentPane(windowContent);
@@ -581,7 +582,6 @@ public class j2DClient implements UserInterface {
 						character.setPlayer(user);
 						keyring.setSlot(user, "keyring");
 						inventory.setSlot(user, "bag");
-	
 						lastuser = user;
 					}
 				}
@@ -913,6 +913,17 @@ public class j2DClient implements UserInterface {
 	public void addGameScreenText(final double x, final double y, final String text, final NotificationType type,
 			final boolean isTalking) {
 		screen.addText(x, y, text, type, isTalking);
+	}
+	
+	/**
+	 * Display a box for a reached achievement
+	 * 
+	 * @param title the title of the achievement
+	 * @param description the description of the achievement
+	 * @param category the category of the achievement
+	 */
+	public void addAchievementBox(String title, String description, String category) {
+		screen.addAchievementBox(title, description, category);
 	}
 
 	/**

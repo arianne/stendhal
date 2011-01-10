@@ -132,4 +132,9 @@ public class MockUserInterface implements UserInterface {
 			// do nothing
 		}
 	}
+
+	public void addAchievementBox(String title, String description,
+			String category) {
+		// do nothing
+	}
 }

@@ -20,7 +20,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.gui.j2d.Text;
+import games.stendhal.client.gui.j2d.RemovableSprite;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.styled.cursor.CursorRepository;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
@@ -142,7 +142,7 @@ public class GroundContainer extends MouseHandler implements Inspector,
 		Point2D point2 = screen.convertScreenViewToWorld(point);
 
 		// is the cursor aiming at a text box?
-		final Text text = screen.getTextAt(point2.getX(), point2.getY());
+		final RemovableSprite text = screen.getTextAt(point2.getX(), point2.getY());
 		if (text != null) {
 			return StendhalCursor.NORMAL;
 		}
@@ -184,7 +184,7 @@ public class GroundContainer extends MouseHandler implements Inspector,
 		final Point2D location = screen.convertScreenViewToWorld(point);
 		
 		// for the text pop up....
-		final Text text = screen.getTextAt(location.getX(), location.getY());
+		final RemovableSprite text = screen.getTextAt(location.getX(), location.getY());
 		if (text != null) {
 			screen.removeText(text);
 			return true;

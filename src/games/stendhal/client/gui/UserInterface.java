@@ -42,7 +42,14 @@ public interface UserInterface {
 			final String text, final NotificationType type,
 			final boolean isTalking);
 	
-
+	/**
+	 * Display a box for a reached achievement
+	 * 
+	 * @param title the title of the achievement
+	 * @param description the description of the achievement
+	 * @param category the category of the achievement
+	 */
+	public void addAchievementBox(String title, String description, String category);
 
 	/**
 	 * gets the sound system

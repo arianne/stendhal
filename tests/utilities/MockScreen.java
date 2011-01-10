@@ -14,7 +14,7 @@ package utilities;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.gui.j2d.Text;
+import games.stendhal.client.gui.j2d.RemovableSprite;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.NotificationType;
@@ -114,7 +114,7 @@ public class MockScreen implements IGameScreen {
 		return null;
 	}
 
-	public Text getTextAt(final double x, final double y) {
+	public RemovableSprite getTextAt(final double x, final double y) {
 		return null;
 	}
 
@@ -138,7 +138,7 @@ public class MockScreen implements IGameScreen {
 	public void removeEntity(final IEntity entity) {
 	}
 
-	public void removeText(final Text entity) {
+	public void removeText(final RemovableSprite entity) {
 	}
 
 	public void setMaxWorldSize(final double width, final double height) {

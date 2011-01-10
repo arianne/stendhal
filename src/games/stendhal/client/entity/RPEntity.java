@@ -608,6 +608,10 @@ public abstract class RPEntity extends ActiveEntity {
 	public void onStopAttacked(final IEntity attacker) {
 		attackers.remove(attacker);
 	}
+	
+	public void onReachAchievement(String achievementTitle, String achievementDescription, String achievementCategory) {
+		ClientSingletonRepository.getUserInterface().addAchievementBox(achievementTitle, achievementDescription, achievementCategory);
+	}
 
 	// Called when entity says text
 	public void onTalk(final String text) {

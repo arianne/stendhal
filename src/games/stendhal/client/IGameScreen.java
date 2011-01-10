@@ -13,7 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.gui.j2d.Text;
+import games.stendhal.client.gui.j2d.RemovableSprite;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.common.NotificationType;
 
@@ -91,7 +91,7 @@ public interface IGameScreen {
 	 * Removes a text bubble.
 	 * @param entity The text to be removed.
 	 */
-	void removeText(Text entity);
+	void removeText(RemovableSprite entity);
 
 	/**
 	 * Removes all objects from the screen.
@@ -144,7 +144,7 @@ public interface IGameScreen {
 	 * @return the text bubble at the given coorodinate or <code>null</code> if not found.
 	 *
 	 */
-	Text getTextAt(double x, double y);
+	RemovableSprite getTextAt(double x, double y);
 
 	/**
 	 * Convert world coordinates to screen view coordinates.

@@ -75,6 +75,8 @@ public class EventFactory {
 			event = new GroupChangeEvent();
 		} else if (name.equals(Events.PROGRESS_STATUS_CHANGE)) {
 			event = new ProgressStatusEvent();
+		} else if (name.endsWith(Events.REACHED_ACHIEVEMENT)) {
+			event = new ReachedAchievementEvent();
 		}
 
 		if (event != null) {
@@ -108,7 +110,7 @@ public class EventFactory {
 			event = new PlayerLoggedOutEvent();
 		} else if (name.equals(Events.VIEW_CHANGE)) {
 			event = new ViewChangeEvent();
-		}
+		} 
 
 		if (event != null) {
 			event.init(entity, rpevent);

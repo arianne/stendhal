@@ -17,16 +17,17 @@ import games.stendhal.client.sprite.Sprite;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class Text {
+public class RemovableSprite {
+	
 	public static final long STANDARD_PERSISTENCE_TIME = 5000;
-
+	
 	private final int x;
 
 	private final int y;
 
-	private final Sprite sprite;
+	protected final Sprite sprite;
 
-	private long removeTime;
+	protected long removeTime;
 
 	/**
 	 * Create a new text object.
@@ -37,7 +38,7 @@ public class Text {
 	 * @param persistTime life time of the text object in milliseconds, or
 	 * 	0 for <code>STANDARD_PERSISTENCE_TIME</code>
 	 */
-	public Text(final Sprite sprite, final int x, final int y,
+	public RemovableSprite(final Sprite sprite, final int x, final int y,
 			final long persistTime) {
 		this.sprite = sprite;
 		this.x = x;
@@ -54,15 +55,6 @@ public class Text {
 		sprite.draw(g, x, y);
 	}
 	
-	/**
-	 * Check if the <code>Text</code> is old enough to be removed.
-	 * 
-	 * @return <code>true</code> if the text should be removed
-	 */
-	public boolean shouldBeRemoved() {
-		return (System.currentTimeMillis() >= removeTime);
-	}
-
 	public Rectangle getArea() {
 		return new Rectangle(x, y, sprite.getWidth(), sprite.getHeight());
 	}
@@ -73,5 +65,14 @@ public class Text {
 
 	public int getY() {
 		return y;
+	}
+
+	/**
+	 * Check if the <code>Text</code> is old enough to be removed.
+	 * 
+	 * @return <code>true</code> if the text should be removed
+	 */
+	public boolean shouldBeRemoved() {
+		return (System.currentTimeMillis() >= removeTime);
 	}
 }

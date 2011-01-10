@@ -72,4 +72,9 @@ public class TextUI implements UserInterface {
 		return soundSystemFacade;
 	}
 
+	public void addAchievementBox(String title, String description,
+			String category) {
+		// ignored
+	}
+
 }

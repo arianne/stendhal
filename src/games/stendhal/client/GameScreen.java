@@ -15,7 +15,8 @@ package games.stendhal.client;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.DropTarget;
 import games.stendhal.client.gui.GroundContainer;
-import games.stendhal.client.gui.j2d.Text;
+import games.stendhal.client.gui.j2d.AchievementBoxFactory;
+import games.stendhal.client.gui.j2d.RemovableSprite;
 import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityView;
@@ -107,12 +108,12 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	/**
 	 * The text bubbles.
 	 */
-	private final List<Text> texts;
+	private final List<RemovableSprite> texts;
 
 	/**
 	 * The text bubbles to remove.
 	 */
-	private final List<Text> textsToRemove;
+	private final List<RemovableSprite> textsToRemove;
 
 	
 	
@@ -166,6 +167,8 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	}
 
 	private TextBoxFactory textBoxFactory;
+
+	private AchievementBoxFactory achievementBoxFactory;
 	
 	/**
 	 * The canvas can be resized using a split pane. This is 
@@ -220,8 +223,8 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 
 		// Drawing is done in EDT
 		views = Collections.synchronizedList(new LinkedList<EntityView>());
-		texts = Collections.synchronizedList(new LinkedList<Text>());
-		textsToRemove = new LinkedList<Text>();
+		texts = Collections.synchronizedList(new LinkedList<RemovableSprite>());
+		textsToRemove = new LinkedList<RemovableSprite>();
 		entities = new HashMap<IEntity, EntityView>();
 
 		// create ground
@@ -281,6 +284,13 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		}
 		
 		return textBoxFactory;
+	}
+	
+	private AchievementBoxFactory getAchievementFactory() {
+		if (achievementBoxFactory == null) {
+			achievementBoxFactory = new AchievementBoxFactory((Graphics2D) getGraphics());
+		}
+		return achievementBoxFactory;
 	}
 
 	/*
@@ -625,7 +635,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		g2d.translate(-getScreenViewX(), -getScreenViewY());
 		
 		synchronized (texts) {
-			for (final Text text : texts) {
+			for (final RemovableSprite text : texts) {
 				if (!text.shouldBeRemoved()) {
 					text.draw(g2d);
 				} else {
@@ -750,7 +760,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 			found = false;
 
 			synchronized (texts) {
-				for (final Text item : texts) {
+				for (final RemovableSprite item : texts) {
 					if ((item.getX() == sx) && (item.getY() == sy)) {
 						found = true;
 						sy += (SIZE_UNIT_PIXELS / 2);
@@ -760,9 +770,9 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 			}
 		}
 
-		texts.add(new Text(sprite, sx, sy, Math.max(
-				Text.STANDARD_PERSISTENCE_TIME, text.length()
-						* Text.STANDARD_PERSISTENCE_TIME / 50)));
+		texts.add(new RemovableSprite(sprite, sx, sy, Math.max(
+				RemovableSprite.STANDARD_PERSISTENCE_TIME, text.length()
+						* RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
 	}
 
 	/*
@@ -770,7 +780,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 *
 	 * @see games.stendhal.client.IGameScreen#removeText(games.stendhal.client.gui.j2d.Text)
 	 */
-	public void removeText(final Text entity) {
+	public void removeText(final RemovableSprite entity) {
 		textsToRemove.add(entity);
 	}
 
@@ -792,7 +802,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 */
 	public void clearTexts() {
 		synchronized (texts) {
-			for (final Text text : texts) {
+			for (final RemovableSprite text : texts) {
 				textsToRemove.add(text);
 			}
 		}
@@ -895,16 +905,16 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 *
 	 * @see games.stendhal.client.IGameScreen#getTextAt(double, double)
 	 */
-	public Text getTextAt(final double x, final double y) {
+	public RemovableSprite getTextAt(final double x, final double y) {
 		final int sx = convertWorldToScreen(x);
 		final int sy = convertWorldToScreen(y);
 
 		synchronized (texts) {
-			final ListIterator<Text> it = texts.listIterator(texts.size());
+			final ListIterator<RemovableSprite> it = texts.listIterator(texts.size());
 
 
 			while (it.hasPrevious()) {
-				final Text text = it.previous();
+				final RemovableSprite text = it.previous();
 
 				if (text.getArea().contains(sx, sy)) {
 					return text;
@@ -1088,5 +1098,18 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 */
 	public boolean getOffline() {
 		return offline;
+	}
+
+	/**
+	 * Draw a box for a reached achievement with given title, description and category
+	 * 
+	 * @param title
+	 * @param description
+	 * @param category
+	 */
+	public void addAchievementBox(String title, String description,
+			String category) {
+		final Sprite sprite =  getAchievementFactory().createAchievementBox(title, description, category);
+		texts.add(new RemovableSprite(sprite, 50, 50, RemovableSprite.STANDARD_PERSISTENCE_TIME));
 	}
 }
