@@ -26,7 +26,7 @@ import marauroa.server.game.db.DAORegister;
  */
 public class GetCharacterCreationDateCommand extends AbstractDBCommand { 
 	private String charname;
-	private Date date;
+	private Date date = null;
 
 	/**
 	 * creates a new GetCharacterCreationDateCommand
@@ -42,16 +42,15 @@ public class GetCharacterCreationDateCommand extends AbstractDBCommand {
 		CharacterDAO dao = DAORegister.get().get(CharacterDAO.class);
 		date = dao.getCreationDate(charname);
 	}
-	
+
 	/**
 	 * To access the character creation date we retrieved
 	 *
 	 * @return date of character creation
 	 */
 	public Date getCreationDate() {
-		return date;
+		return (Date) date.clone();
 	}
-	
 
 	/**
 	 * returns a string suitable for debug output of this DBCommand.
