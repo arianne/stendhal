@@ -42,7 +42,7 @@ class SourceObject extends MoveableObject {
 	private Item item;
 
 	private int quantity;
-	
+
 	private boolean isLootingRewardable = false;
 
 	public static SourceObject createSourceObject(final RPAction action, final Player player) {
@@ -69,6 +69,12 @@ class SourceObject extends MoveableObject {
 			source = createSourceForNonContainedItem(action, player);
 
 		}
+
+		if (source.getEntity().hasSlot("content") && source.getEntity().getSlot("content").size() > 0) {
+			player.sendPrivateText("Please empty your " + source.getEntityName() + " before moving it around");
+			return invalidSource;
+		}
+
 		adjustAmountForStackables(action, source);
 		return source;
 	}
@@ -80,7 +86,7 @@ class SourceObject extends MoveableObject {
 		if (!isValidParent(parent, player)) {
 			return invalidSource;
 		}
-		
+
 		final String slotName = action.get(EquipActionConsts.BASE_SLOT);
 
 		if (!parent.hasSlot(slotName)) {
@@ -111,7 +117,7 @@ class SourceObject extends MoveableObject {
 					+ " is not an item and therefore cannot be equipped");
 			return invalidSource;
 		}
-		
+
 		if (parent instanceof Corpse) {
 			Corpse corpse = (Corpse) parent;
 			if (!corpse.mayUse(player)) {
@@ -120,15 +126,15 @@ class SourceObject extends MoveableObject {
 				return invalidSource;
 			}
 		}
-		
+
 		source = new SourceObject(player, parent, slotName, (Item) entity);
-		
+
 		// handle logging of looting items
 		if (parent instanceof Corpse) {
 			Corpse corpse = (Corpse) parent;
 			checkIfLootingIsRewardable(player, corpse, source, (Item) entity);
 		}
-		
+
 		return source;
 	}
 
@@ -165,14 +171,14 @@ class SourceObject extends MoveableObject {
 			if ((entityQuantity < 1) || (source.quantity < 1) || (source.quantity >= entityQuantity)) {
 				// quantity == 0 performs a regular move
 				// of the entire item
-				source.quantity = 0; 
+				source.quantity = 0;
 			}
 		}
 	}
 
 	/**
 	 * Represents the source of a movement of a contained Item as in Drop or Equip.
-	 * 
+	 *
 	 * @param player
 	 *            who want to do action
 	 * @param parent
@@ -181,7 +187,7 @@ class SourceObject extends MoveableObject {
 	 *            where to get it from
 	 * @param entity
 	 *            the item to move
-	 * 
+	 *
 	 */
 	private SourceObject(final Player player, final Entity parent, final String slotName, final Item entity) {
 		super(player);
@@ -227,7 +233,7 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * moves this entity to the destination.
-	 * 
+	 *
 	 * @param dest
 	 *            to move to
 	 * @param player
@@ -287,7 +293,7 @@ class SourceObject extends MoveableObject {
 	 * removes the entity from the world and returns it (so it may be added
 	 * again). In case of splitted StackableItem the only item is reduced and a
 	 * new StackableItem with the splitted off amount is returned.
-	 * 
+	 *
 	 * @return Entity to place somewhere else in the world
 	 */
 	public Item removeFromWorld() {
@@ -303,7 +309,7 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * Gets the entity that should be equipped.
-	 * 
+	 *
 	 * @return entity
 	 */
 	public Entity getEntity() {
@@ -314,7 +320,7 @@ class SourceObject extends MoveableObject {
 	 * @return  the amount of objects.
 	 */
 	public int getQuantity() {
-		
+
 		int temp = quantity;
 		if (quantity == 0) {
 			// everything
@@ -338,10 +344,10 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * Checks whether the item is below <b>another</b> player.
-	 * 
+	 *
 	 * @param sourceItem
 	 *            to check
-	 * 
+	 *
 	 * @return true, if it cannot be taken; false otherwise
 	 */
 	private boolean isItemBelowOtherPlayer(final Item sourceItem) {
@@ -360,16 +366,16 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * Checks if looting the item is rewardable as looted item
-	 * 
+	 *
 	 * @return true iff the player deserves it
 	 */
 	public boolean isLootingRewardable() {
 		return isLootingRewardable;
 	}
-	
+
 	/**
 	 * Determines if looting should be logged for the player
-	 * 
+	 *
 	 * @param player
 	 * @param corpse
 	 * @param source
@@ -429,7 +435,7 @@ class SourceObject extends MoveableObject {
 		}
 
 		/**
-		 * 
+		 *
 		 * @return false
 		 */
 		@Override
