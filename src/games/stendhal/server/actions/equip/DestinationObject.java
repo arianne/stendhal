@@ -44,7 +44,7 @@ class DestinationObject extends MoveableObject {
 	/** true when this object is valid. */
 	private boolean valid;
 
-	
+
 
 	/** x coordinate when dropped on ground. */
 	private int x;
@@ -52,9 +52,9 @@ class DestinationObject extends MoveableObject {
 	/** y coordinate when dropped on ground.*/
 	private int y;
 
-	/** interprets the given action. 
-	 * @param action 
-	 * @param player 
+	/** interprets the given action.
+	 * @param action
+	 * @param player
 	 */
 	public DestinationObject(final RPAction action, final Player player) {
 		super(player);
@@ -105,10 +105,10 @@ class DestinationObject extends MoveableObject {
 		// not valid
 	}
 
-	/** checks if it is possible to add the entity to the world. 
-	 * @param entity 
-	 * @param player 
-	 * @return true if can be added to the world 
+	/** checks if it is possible to add the entity to the world.
+	 * @param entity
+	 * @param player
+	 * @return true if can be added to the world
 	 * */
 	@SuppressWarnings("unchecked")
 	public boolean preCheck(final Entity entity, final Player player) {
@@ -132,7 +132,7 @@ class DestinationObject extends MoveableObject {
 					final Iterator<RPObject> it = rpslot.iterator();
 					while (it.hasNext()) {
 						final RPObject object = it.next();
-						
+
 						if (object instanceof Stackable<?>) {
 							// found another stackable
 							@SuppressWarnings("rawtypes")
@@ -187,7 +187,7 @@ class DestinationObject extends MoveableObject {
 				player.sendPrivateText("That is too far away.");
 				return false;
 			}
-			
+
 			if (!isGamblingZoneAndIsDice(entity, player)) {
 				// and there is a path there
 				final List<Node> path = Path.searchPath(entity, zone,
@@ -202,8 +202,8 @@ class DestinationObject extends MoveableObject {
 
 		return true;
 	}
-	
-	/** 
+
+	/**
 	 * returns true if zone is semos tavern and entity is dice
 	 *
 	 * @param entity the item
@@ -213,7 +213,7 @@ class DestinationObject extends MoveableObject {
 		final StendhalRPZone zone = player.getZone();
 		return "int_semos_tavern_0".equals(zone.getName()) && ("dice").equals(entity.getTitle());
 	}
-	
+
 	/** returns true when this DestinationObject is valid. */
 	@Override
 	public boolean isValid() {
@@ -234,11 +234,25 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/**
+	 * gets the name of the content slot used for the can equipped check
+	 *
+	 * @return name of slot
+	 */
+	public String getContentSlotName() {
+		if (parent != null) {
+			final EntitySlot entitySlot = parent.getEntitySlot(slot);
+			return entitySlot.getContentSlotName();
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * add the entity to the world (specified by the action during construction).
 	 * Note that you should call isValid(), preCheck(..) and checkDistance(..)
 	 * before adding an item to the world
-	 * @param entity 
-	 * @param player 
+	 * @param entity
+	 * @param player
 	 */
 	public void addToWorld(Entity entity, final Player player) {
 		if (parent != null) {
@@ -277,7 +291,7 @@ class DestinationObject extends MoveableObject {
 				// yep, so it is not stacked. simply add it
 				rpslot.add(entity);
 			}
-			SingletonRepository.getRPWorld().modify(parent); 
+			SingletonRepository.getRPWorld().modify(parent);
 		} else {
 			// drop the entity to the ground. Do this always in the player's
 			// zone.

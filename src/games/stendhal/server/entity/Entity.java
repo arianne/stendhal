@@ -17,7 +17,6 @@ import games.stendhal.common.ItemTools;
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.slot.EntitySlot;
-import games.stendhal.server.entity.slot.Slot;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -36,9 +35,9 @@ public abstract class Entity extends RPObject {
 	 */
 	private static final Logger logger = Logger.getLogger(Entity.class);
 
-	
+
 	protected Rectangle2D area = new Rectangle.Double();
-	
+
 	private int x;
 
 	private int y;
@@ -205,7 +204,7 @@ public abstract class Entity extends RPObject {
 		} else {
 			put("description", text);
 		}
-		
+
 	}
 
 	public String getDescription() {
@@ -218,7 +217,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the nicely formatted entity title/name.
-	 * 
+	 *
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	public String getTitle() {
@@ -235,7 +234,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the entity X coordinate.
-	 * 
+	 *
 	 * @return The X coordinate.
 	 */
 	public int getX() {
@@ -244,7 +243,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the entity Y coordinate.
-	 * 
+	 *
 	 * @return The Y coordinate.
 	 */
 	public int getY() {
@@ -253,7 +252,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the zone this entity is in.
-	 * 
+	 *
 	 * @return A zone, or <code>null</code> if not in one.
 	 */
 	public StendhalRPZone getZone() {
@@ -267,7 +266,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Is this entity not moving?
-	 * 
+	 *
 	 * @return true, if it stopped, false if it is moving
 	 */
 	public boolean stopped() {
@@ -276,7 +275,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the resistance this has on other entities (0-100).
-	 * 
+	 *
 	 * @return The amount of resistance, or 0 if in ghostmode.
 	 */
 	public int getResistance() {
@@ -286,7 +285,7 @@ public abstract class Entity extends RPObject {
 	/**
 	 * Get the resistance between this and another entity (0-100).
 	 * @param entity other entity to be evaluated
-	 * 
+	 *
 	 * @return The amount of combined resistance.
 	 */
 	public int getResistance(final Entity entity) {
@@ -296,10 +295,10 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity to check against.
-	 * 
+	 *
 	 * @return <code>true</code> if very high resistance.
 	 */
 	public boolean isObstacle(final Entity entity) {
@@ -313,7 +312,7 @@ public abstract class Entity extends RPObject {
 	 * be expensive. As long as we only need to compare distances, it doesn't
 	 * matter if we compare the distances or the squares of the distances (the
 	 * square operation is strictly monotonous for positive numbers).
-	 * 
+	 *
 	 * @param other
 	 *            the entity to which the distance should be calculated
 	 * @return double representing the squared distance
@@ -326,7 +325,7 @@ public abstract class Entity extends RPObject {
 		final Rectangle2D thisArea = getArea();
 		final double thisMiddleX = thisArea.getCenterX();
 		final double thisMiddleY = thisArea.getCenterY();
-		
+
 		double xDistance = Math.abs(otherMiddleX - thisMiddleX) - (width + other.width) / 2;
 		double yDistance = Math.abs(otherMiddleY - thisMiddleY) - (height + other.height) / 2;
 
@@ -345,7 +344,7 @@ public abstract class Entity extends RPObject {
 	 * expensive. As long as we only need to compare distances, it doesn't
 	 * matter if we compare the distances or the squares of the distances (the
 	 * square operation is strictly monotonous for positive numbers).
-	 * 
+	 *
 	 * @param x
 	 *            The horizontal coordinate of the point
 	 * @param y
@@ -353,18 +352,18 @@ public abstract class Entity extends RPObject {
 	 * @return double representing the squared distance
 	 */
 	public final double squaredDistance(final int x, final int y) {
-		
-		
+
+
 		final double otherMiddleX = x + 0.5;
 		final double otherMiddleY = y + 0.5;
 
 
 		final Rectangle2D thisArea = getArea();
-		
+
 		final double thisMiddleX = thisArea.getCenterX();
 		final double thisMiddleY = thisArea.getCenterY();
-		
-		
+
+
 		double xDistance = Math.abs(otherMiddleX - thisMiddleX) - (width + 1) / 2;
 		double yDistance = Math.abs(otherMiddleY - thisMiddleY) - (height + 1) / 2;
 
@@ -379,7 +378,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Checks whether a certain point is near this entity.
-	 * 
+	 *
 	 * @param x
 	 *            The point's x coordinate
 	 * @param y
@@ -398,10 +397,10 @@ public abstract class Entity extends RPObject {
 	/**
 	 * Checks whether the given entity is directly next to this entity. This
 	 * method may be optimized over using nextTo(entity, 0.25).
-	 * 
+	 *
 	 * @param entity
 	 *            The entity
-	 * 
+	 *
 	 * @return <code>true</code> if the entity is next to this.
 	 */
 	public boolean nextTo(final Entity entity) {
@@ -411,7 +410,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Checks whether the given entity is near this entity.
-	 * 
+	 *
 	 * @param entity
 	 *            the entity
 	 * @param step
@@ -429,13 +428,13 @@ public abstract class Entity extends RPObject {
 		// subtracted from the values of getX() and getY().
 		thisArea.setRect(x - step, y - step, width
 				+ 2 * step, height + 2 * step);
-		
+
 		return thisArea.intersects(entity.getArea());
 	}
 
 	/**
 	 * Get the area this object currently occupies.
-	 * 
+	 *
 	 * @return A rectangular area.
 	 */
 	public Rectangle2D getArea() {
@@ -444,7 +443,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Returns the area used by this entity.
-	 * 
+	 *
 	 * @param ex
 	 *            x
 	 * @param ey
@@ -461,7 +460,7 @@ public abstract class Entity extends RPObject {
 	 * returns the area used by this entity. Note for performance reasons the
 	 * Rectangle is not returned as new object but the one supplied as first
 	 * parameter is modified.
-	 * 
+	 *
 	 * @param rect
 	 *            the area is stored into this parameter
 	 * @param x
@@ -475,7 +474,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Called when this object is added to a zone.
-	 * 
+	 *
 	 * @param zone
 	 *            The zone this was added to.
 	 */
@@ -490,7 +489,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Notification of intra-zone position change.
-	 * 
+	 *
 	 * @param oldX
 	 *            The old X coordinate.
 	 * @param oldY
@@ -506,7 +505,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Called when this object is being removed from a zone.
-	 * 
+	 *
 	 * @param zone
 	 *            The zone this will be removed from.
 	 */
@@ -520,7 +519,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Notifies the StendhalRPWorld that this entity's attributes have changed.
-	 * 
+	 *
 	 */
 	public void notifyWorldAboutChanges() {
 		// Only possible if in a zone
@@ -531,7 +530,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Describes the entity (if a players looks at it).
-	 * 
+	 *
 	 * @return description from the players point of view
 	 */
 	public String describe() {
@@ -545,12 +544,12 @@ public abstract class Entity extends RPObject {
 	/**
 	 * Returns the name or something that can be used to identify the entity for
 	 * the player.
-	 * 
+	 *
 	 * @param definite
 	 *            true for "the" and false for "a/an" in case the entity has no
 	 *            name
-	 * @return name 
-	 * 
+	 * @return name
+	 *
 	 */
 	public String getDescriptionName(final boolean definite) {
 		if (has("subclass")) {
@@ -574,7 +573,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the entity height.
-	 * 
+	 *
 	 * @return The height (in world units).
 	 */
 	public double getHeight() {
@@ -583,7 +582,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the entity width.
-	 * 
+	 *
 	 * @return The width (in world units).
 	 */
 	public double getWidth() {
@@ -592,7 +591,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity class.
-	 * 
+	 *
 	 * @param clazz
 	 *            The class name.
 	 */
@@ -602,7 +601,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity sub-class.
-	 * 
+	 *
 	 * @param subclazz
 	 *            The sub-class name.
 	 */
@@ -612,14 +611,14 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Sets the entity position.
-	 * 
-	 * 
+	 *
+	 *
 	 * <p>
 	 * This calls <code>onMoved()</code>. <strong>Note: When placing during a
 	 * zone change, this call should be done after being removed from the old
 	 * zone, but before adding to the zone to prevent an erroneous position jump
 	 * in the zone.</strong>
-	 * 
+	 *
 	 * @param x
 	 *            The x position (in world units).
 	 * @param y
@@ -649,7 +648,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set resistance this has with other entities.
-	 * 
+	 *
 	 * @param resistance
 	 *            The amount of resistance (0-100).
 	 */
@@ -660,7 +659,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity size.
-	 * 
+	 *
 	 * @param width
 	 *            The width (in world units).
 	 * @param height
@@ -701,7 +700,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity's visibility.
-	 * 
+	 *
 	 * @param visibility
 	 *            The visibility (0-100).
 	 */
@@ -720,7 +719,7 @@ public abstract class Entity extends RPObject {
 			if (other.getZone() == getZone()) {
 				// check distance: 640x480 client screen size for 32x32 pixel tiles
 				// -> makes 20x15 tiles screen size
-				if ((Math.abs(other.getX() - x) <= 20) 
+				if ((Math.abs(other.getX() - x) <= 20)
 						&& (Math.abs(other.getY() - y) <= 15)) {
 					return true;
 				}
@@ -736,7 +735,7 @@ public abstract class Entity extends RPObject {
 	 * @param name name of entity slot
 	 * @return EntitySlot or <code>null</code>
 	 */
-	public Slot getEntitySlot(String name) {
+	public EntitySlot getEntitySlot(String name) {
 		if (!super.hasSlot(name)) {
 			return null;
 		}
@@ -744,6 +743,6 @@ public abstract class Entity extends RPObject {
 		if (!(slot instanceof EntitySlot)) {
 			return null;
 		}
-		return (Slot) slot;
+		return (EntitySlot) slot;
 	}
 }

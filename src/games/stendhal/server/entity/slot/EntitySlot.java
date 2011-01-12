@@ -17,15 +17,16 @@ import marauroa.common.game.RPSlot;
 
 /**
  * Stendhal specific information about this slot.
- * 
+ *
  * @author hendrik
  */
 public class EntitySlot extends RPSlot implements Slot {
 	private String errorMessage;
+	private String contentSlotName;
 
 	/**
 	 * Creates an uninitialized EntitySlot.
-	 * 
+	 *
 	 */
 	public EntitySlot() {
 		super();
@@ -33,12 +34,13 @@ public class EntitySlot extends RPSlot implements Slot {
 
 	/**
 	 * Creates a new EntitySlot.
-	 * 
-	 * @param name
-	 *            name of slot
+	 *
+	 * @param name name of slot
+	 * @param contentSlotName name of slot used by the "item may be put in" check
 	 */
-	public EntitySlot(final String name) {
+	public EntitySlot(final String name, final String contentSlotName) {
 		super(name);
+		this.contentSlotName = contentSlotName;
 	}
 
 	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
@@ -85,6 +87,15 @@ public class EntitySlot extends RPSlot implements Slot {
 	 */
 	public void clearErrorMessage() {
 		errorMessage = null;
+	}
+
+	/**
+	 * gets the slot name for the item check
+	 *
+	 * @return slot name
+	 */
+	public String getContentSlotName() {
+		return contentSlotName;
 	}
 
 	/**
