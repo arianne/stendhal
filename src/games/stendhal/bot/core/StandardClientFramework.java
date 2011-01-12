@@ -23,6 +23,7 @@ import java.util.Map;
 import marauroa.client.ClientFramework;
 import marauroa.client.TimeoutException;
 import marauroa.client.net.PerceptionHandler;
+import marauroa.common.crypto.Hash;
 import marauroa.common.game.AccountResult;
 import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPObject;
@@ -38,7 +39,7 @@ import org.apache.log4j.Logger;
  *
  */
 public abstract class StandardClientFramework extends ClientFramework {
-	private final static Logger logger = Logger.getLogger(StandardClientFramework.class); 
+	private final static Logger logger = Logger.getLogger(StandardClientFramework.class);
 
 	private final String host;
 
@@ -54,11 +55,11 @@ public abstract class StandardClientFramework extends ClientFramework {
 
 	protected Map<RPObject.ID, RPObject> worldObjects;
 
-	private boolean createAccount;
+	protected final boolean createAccount;
 
 	/**
 	 * Creates a ShouterMain.
-	 * 
+	 *
 	 * @param h
 	 *            host
 	 * @param u
@@ -87,6 +88,9 @@ public abstract class StandardClientFramework extends ClientFramework {
 	}
 
 	public void script() {
+		// initialize random number generator to prevent timeouts when hundreds of clients are started.
+		Hash.random(4);
+
 		try {
 			this.connect(host, Integer.parseInt(port));
 			if (createAccount) {
@@ -112,9 +116,11 @@ public abstract class StandardClientFramework extends ClientFramework {
 			// exit with an exit code of 1 on error
 		} catch (final SocketException e) {
 			System.err.println("Socket Exception");
+			e.printStackTrace(System.err);
 			Runtime.getRuntime().halt(1);
 		} catch (final TimeoutException e) {
 			System.err.println("Cannot connect to Stendhal server. Server is down?");
+			e.printStackTrace(System.err);
 			Runtime.getRuntime().halt(1);
 		} catch (final Exception e) {
 			System.out.println(e);

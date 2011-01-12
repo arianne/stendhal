@@ -33,11 +33,11 @@ import marauroa.common.net.message.MessageS2CPerception;
  */
 public class TextClientFramework extends StandardClientFramework {
 
-	private boolean showWorld;
+	private final boolean showWorld;
 
 	/**
 	 * Creates a new TextClientFramework.
-	 * 
+	 *
 	 * @param h
 	 *            host
 	 * @param u
@@ -131,7 +131,9 @@ public class TextClientFramework extends StandardClientFramework {
 	@Override
 	public void execute() throws IOException, InterruptedException {
 		IDSend.send();
-		new LoginScript(this).adminLogin();
+		if (!createAccount) {
+			new LoginScript(this).adminLogin();
+		}
 
 		while (true) {
 			loop(0);
