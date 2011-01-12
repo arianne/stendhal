@@ -30,10 +30,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.common.game.Definition.Type;
 
 /**
  * This is an item.
@@ -44,9 +44,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 
 	// 10 minutes
-	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE; 
+	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
-	
+
 	/** list of possible slots for this item. */
 	private List<String> possibleSlots;
 
@@ -59,15 +59,15 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/** The damage type of weapons */
 	private Nature damageType = Nature.CUT;
-	
+
 	private Map<Nature, Double> susceptibilities;
-	
+
 	private boolean fromCorpse = false;
-	
+
 	/**
-	 * 
+	 *
 	 * Creates a new Item.
-	 * 
+	 *
 	 * @param name
 	 *            name of item
 	 * @param clazz
@@ -106,7 +106,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -184,10 +184,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.addAttribute("logid", Type.INT, Definition.HIDDEN);
 	}
 
-	
+
 	/**
 	 * on which slots may this item be equipped.
-	 * 
+	 *
 	 * @param slots
 	 *            list of allowed slots
 	 */
@@ -199,7 +199,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * If this item is created by a PlantGrower, the item will notify it when
 	 * picked from the ground.
-	 * 
+	 *
 	 * @param plantGrower
 	 *            a plant grower
 	 */
@@ -210,7 +210,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * returns the PlantGrower which created this item or null if no plantgrower
 	 * was involved.
-	 * 
+	 *
 	 * @return PlantGrower or null
 	 */
 	public PassiveEntityRespawnPoint getPlantGrower() {
@@ -220,7 +220,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Returns the attack points of this item. Positive and negative values are
 	 * allowed. If this item doesn't modify the attack it should return '0'.
-	 * 
+	 *
 	 * @return attack points
 	 */
 	public int getAttack() {
@@ -234,7 +234,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Returns the defense points of this item. Positive and negative values are
 	 * allowed. If this item doesn't modify the defense it should return '0'.
-	 * 
+	 *
 	 * @return defense points
 	 */
 	public int getDefense() {
@@ -247,7 +247,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Returns each how many turns this item can attack.
-	 * 
+	 *
 	 * @return each how many turns this item can attack.
 	 */
 	public int getAttackRate() {
@@ -261,7 +261,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Returns if the item is persistent. Persistent items do not update their
 	 * stats from the item database and thus can have individual stats
-	 * 
+	 *
 	 * @return true if item is persistent
 	 */
 	public boolean isPersistent() {
@@ -274,7 +274,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Set the item's persistence.
-	 * 
+	 *
 	 * @param persistent
 	 *            If the item's stats are persistent.
 	 */
@@ -288,7 +288,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Checks if the item is of type <i>type</i> .
-	 * 
+	 *
 	 * @param clazz
 	 *            the class to check
 	 * @return true if the type matches, else false
@@ -319,7 +319,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Gets the name of the item.
-	 * 
+	 *
 	 * @return The programmatic item name.
 	 */
 	public String getName() {
@@ -328,7 +328,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Get item count.
-	 * 
+	 *
 	 * @return 1.
 	 */
 	public int getQuantity() {
@@ -343,13 +343,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Get the player this is bound to. A bound item can only be used by that
 	 * player.
-	 * 
+	 *
 	 * @return The player name, or <code>null</code>.
 	 */
 	public String getBoundTo() {
 			return get("bound");
 	}
-	
+
 	public boolean isBound() {
 		return has("bound");
 	}
@@ -357,7 +357,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Get the item's infoString. The infoString contains context specific
 	 * information that is used by the implementation.
-	 * 
+	 *
 	 * @return The infoString.
 	 */
 	public String getInfoString() {
@@ -370,7 +370,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Bind this item to a player. A bound item can only be used by that player.
-	 * 
+	 *
 	 * @param name
 	 *            The player name, or <code>null</code>.
 	 */
@@ -383,12 +383,12 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * Is the item undroppable. 
-	 * 
+	 * Is the item undroppable.
+	 *
 	 * On player death items carried may be dropped into the players corpse.
 	 * unless this method returns true.
-	 * 
-	 * 
+	 *
+	 *
 	 * @return true if item may not be dropped on death of players.
 	 */
 	public boolean isUndroppableOnDeath() {
@@ -401,7 +401,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Set is the item undroppable when player dies.
-	 * 
+	 *
 	 * @param unDroppableOnDeath
 	 *            If true, the item won't be dropped if the player dies.
 	 */
@@ -416,7 +416,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Set the item's infostring. The infostring contains context specific
 	 * information that is used by the implementation.
-	 * 
+	 *
 	 * @param infostring
 	 *            The item's infostring.
 	 */
@@ -430,26 +430,26 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Get the type of damage inflicted by this item.
-	 * 
+	 *
 	 * @return type of damage
 	 */
 	public Nature getDamageType() {
 		return damageType;
 	}
-	
+
 	/**
 	 * Set the type of damage inflicted by this item
-	 * 
+	 *
 	 * @param type type of damage
 	 */
 	public void setDamageType(Nature type) {
 		damageType = type;
 	}
-	
+
 	/**
 	 * Get this item's contribution to susceptibility to a
 	 * type of damage.
-	 *  
+	 *
 	 * @param type type of damage to be checked
 	 * @return susceptibility to damage of type <code>type</code>
 	 */
@@ -458,16 +458,16 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		if (susceptibilities != null) {
 			Double sus = susceptibilities.get(type);
 			if (sus != null) {
-				value = sus.doubleValue(); 
+				value = sus.doubleValue();
 			}
 		}
-		
+
 		return value;
 	}
-	
+
 	/**
 	 * Set the susceptibility data of this item.
-	 * 
+	 *
 	 * @param susceptibilities susceptibilities to be used
 	 */
 	public void setSusceptibilities(Map<Nature, Double> susceptibilities) {
@@ -478,12 +478,12 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public String toString() {
 		return "Item, " + super.toString();
 	}
-	
+
 	/**
 	 * Is called when the item is moved to the ground.
-	 * 
+	 *
 	 * @param player the player who drops the Item.
-	 * 
+	 *
 	 */
 	public void onPutOnGround(final Player player) {
 		onPutOnGround(true);
@@ -491,10 +491,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Is called when the item is created.
-	 * 
+	 *
 	 * @param expire
 	 * 		Set true if the item should expire normally, false otherwise.
-	 * 		Persistent attribute can override this. 
+	 * 		Persistent attribute can override this.
 	 */
 	public void onPutOnGround(final boolean expire) {
 		if (expire) {
@@ -579,7 +579,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 		String statString = "";
 		if (stats.length() > 0) {
-			statString =  " Stats are (" + stats.toString().trim() + ")."; 
+			statString =  " Stats are (" + stats.toString().trim() + ").";
 		}
 		return (text + levelwarning + statString);
 	}
@@ -594,14 +594,15 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public boolean canBeEquippedIn(final String slot) {
 		if (slot == null) {
 			// ground
-			return true; 
+			return true;
 		}
 
-		// when the slot is called "content", it's a personal chest.
+		// when the slot is called "content", it's a personal chest or corpse
+		// TODO: this should be made explicit in the xml files
 		return possibleSlots.contains(slot) || slot.equals("content");
 	}
 
-	
+
 	public void removeFromWorld() {
 		if (isContained()) {
 			// We modify the base container if the object change.
@@ -627,11 +628,11 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Returns the name or something that can be used to identify the entity for
 	 * the player.
-	 * 
+	 *
 	 * @param definite
 	 *            <code>true</code> for "the", and <code>false</code> for
 	 *            "a/an" in case the entity has no name.
-	 * 
+	 *
 	 * @return The description name.
 	 */
 	@Override
@@ -647,7 +648,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Get the nicely formatted entity title/name.
-	 * 
+	 *
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override
