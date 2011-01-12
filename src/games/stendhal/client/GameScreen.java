@@ -1109,7 +1109,11 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	 */
 	public void addAchievementBox(String title, String description,
 			String category) {
-		final Sprite sprite =  getAchievementFactory().createAchievementBox(title, description, category);
-		texts.add(new RemovableSprite(sprite, 50, 50, RemovableSprite.STANDARD_PERSISTENCE_TIME));
+		final Sprite sprite = getAchievementFactory().createAchievementBox(title, description, category);
+		// Center in X
+		x = svx + (getWidth() - sprite.getWidth()) / 2;
+		// Bottom of screen
+		y = svy + getHeight() - sprite.getHeight();
+		texts.add(new RemovableSprite(sprite, x, y, RemovableSprite.STANDARD_PERSISTENCE_TIME));
 	}
 }
