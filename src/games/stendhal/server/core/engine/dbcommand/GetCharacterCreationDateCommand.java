@@ -49,7 +49,11 @@ public class GetCharacterCreationDateCommand extends AbstractDBCommand {
 	 * @return date of character creation
 	 */
 	public Date getCreationDate() {
-		return (Date) date.clone();
+		if (date == null) {
+			return null;
+		} else {
+			return (Date) date.clone();
+		}
 	}
 
 	/**
