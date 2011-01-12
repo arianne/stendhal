@@ -19,8 +19,8 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.HouseKey;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.KeyedSlot;
+import games.stendhal.server.entity.slot.PlayerSlot;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -70,34 +70,34 @@ public abstract class UpdateConverter {
 	private static final HashMap<String, Pair<Integer, List<String>>> KILL_QUEST_NAMES;
 	static {
 		KILL_QUEST_NAMES = new HashMap<String, Pair<Integer, List<String>>>();
-		KILL_QUEST_NAMES.put("meet_hayunn", 
+		KILL_QUEST_NAMES.put("meet_hayunn",
 				new Pair<Integer, List<String>>(1, Arrays.asList(
 					"rat")));
-			
-		KILL_QUEST_NAMES.put("clean_storage", 
+
+		KILL_QUEST_NAMES.put("clean_storage",
 				new Pair<Integer, List<String>>(1, Arrays.asList(
 					"rat",
 					"caverat","snake")));
-			
-		KILL_QUEST_NAMES.put("club_thorns", 
+
+		KILL_QUEST_NAMES.put("club_thorns",
 				new Pair<Integer, List<String>>(1, Arrays.asList(
 					"mountain orc chief")));
-			
-		KILL_QUEST_NAMES.put("kill_dhohr_nuggetcutter", 
+
+		KILL_QUEST_NAMES.put("kill_dhohr_nuggetcutter",
 				new Pair<Integer, List<String>>(1, Arrays.asList(
-					"Dhohr Nuggetcutter", 
-					"mountain dwarf", 
-					"mountain elder dwarf", 
-					"mountain hero dwarf", 
+					"Dhohr Nuggetcutter",
+					"mountain dwarf",
+					"mountain elder dwarf",
+					"mountain hero dwarf",
 					"mountain leader dwarf")));
-			
-		KILL_QUEST_NAMES.put("kill_gnomes", 
+
+		KILL_QUEST_NAMES.put("kill_gnomes",
 				new Pair<Integer, List<String>>(1, Arrays.asList(
-					"gnome", 
-					"infantry gnome", 
+					"gnome",
+					"infantry gnome",
 					"cavalryman gnome")));
-			
-		KILL_QUEST_NAMES.put("sad_scientist", 
+
+		KILL_QUEST_NAMES.put("sad_scientist",
 				new Pair<Integer, List<String>>(1, Arrays.asList(
 					"Sergej Elos")));
 	}
@@ -174,7 +174,7 @@ public abstract class UpdateConverter {
 
 	/**
      * Updates a player RPObject from an old version of Stendhal.
-     * 
+     *
      * @param object
      *            RPObject representing a player
      */
@@ -183,33 +183,33 @@ public abstract class UpdateConverter {
     			"legs", "feet", "finger", "cloak", "bank", "bank_ados",
     			"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
     			"keyring", "trade" };
-    
+
     	final String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
     			"!visited", "skills", "!tutorial"};
-    
+
     	// Port from 0.03 to 0.10
     	if (!object.has("base_hp")) {
     		object.put("base_hp", "100");
     		object.put("hp", "100");
     	}
-    
+
     	// Port from 0.13 to 0.20
     	if (!object.has("outfit")) {
     		object.put("outfit", new Outfit().getCode());
     	}
-    
+
     	// create slots if they do not exist yet:
-    
+
     	// Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
     	// Port from 0.44 to 0.50: cloak, bank
     	// Port from 0.57 to 0.58: bank_ados, bank_fado
     	// Port from 0.58 to ?: bank_nalwor, keyring, finger
     	for (final String slotName : slotsNormal) {
     		if (!object.hasSlot(slotName)) {
-    			object.addSlot(new EntitySlot(slotName));
+    			object.addSlot(new PlayerSlot(slotName));
     		}
     	}
-    
+
     	// Port from 0.44 to 0.50: !buddy
     	// Port from 0.56 to 0.56.1: !ignore
     	// Port from 0.57 to 0.58: skills
@@ -223,28 +223,28 @@ public abstract class UpdateConverter {
     			slot.add(singleObject);
     		}
     	}
-    
+
     	// Port from 0.30 to 0.35
     	if (!object.has("atk_xp")) {
     		object.put("atk_xp", "0");
     		object.put("def_xp", "0");
     	}
-    
+
     	if (object.has("devel")) {
     		object.remove("devel");
     	}
-    
+
     	// From 0.44 to 0.50
     	if (!object.has("release")) {
     		object.put("release", "0.00");
     		object.put("atk", "10");
     		object.put("def", "10");
     	}
-    
+
     	if (!object.has("age")) {
     		object.put("age", "0");
     	}
-    
+
     	if (!object.has("karma")) {
     		// A little beginner's luck
     		object.put("karma", 10);
@@ -255,19 +255,19 @@ public abstract class UpdateConverter {
     	if (!object.has("base_mana")) {
     		object.put("base_mana", 0);
     	}
-    
+
     	// Renamed to skills
     	if (object.has("!skills")) {
     		object.remove("!skills");
     	}
-    
+
     	if (!object.has("height")) {
     		object.put("height", 2);
     	}
     	if (!object.has("width")) {
     		object.put("width", 1);
     	}
-    
+
     	// port to 0.66
     	transformKillSlot(object);
 
@@ -276,7 +276,7 @@ public abstract class UpdateConverter {
     		logger.warn("Setting hp to 1 for player " + object);
     		object.put("hp", 1);
     	}
-    	
+
     	// port to 0.85 added buddy list as map - copy buddies to map
     	if (object.hasSlot("!buddy")) {
     		for (RPObject buddy : object.getSlot("!buddy")) {
@@ -317,7 +317,7 @@ public abstract class UpdateConverter {
 
 	/**
 	 * Transform kill slot content to the new kill recording system.
-	 * @param object 
+	 * @param object
 	 */
 	static void transformKillSlot(final RPObject object) {
 		final RPObject kills = KeyedSlotUtil.getKeyedSlotObject(object, "!kills");
@@ -360,7 +360,7 @@ public abstract class UpdateConverter {
 		migrateSumTimedQuestSlot(player, "Valo_concoct_potion", "valo_concoct_potion");
 
 		// From 0.66 to 0.67
-		// update quest slot content, 
+		// update quest slot content,
 		// replace "_" with " ", for item/creature names
 		for (final String questSlot : player.getQuests()) {
 
@@ -399,59 +399,61 @@ public abstract class UpdateConverter {
 			}
 		}
 
-		// fix quest slots for kills quests.		
+		// fix quest slots for kills quests.
 		fixKillQuestsSlots(player);
-		
+
 		// fix DailyMonsterQuest slot
 		fixDailyMonsterQuestSlot(player);
-		
+
 		// fix Maze
 		fixMazeQuestSlot(player);
-		
+
 	}
 
 	private static void fixMazeQuestSlot(Player player) {
 		final String QUEST_SLOT = "maze";
-		
+
 		// if player didnt started quest --> exit
 		if(!player.hasQuest(QUEST_SLOT)) {
 			return;
 		}
-		
+
 		final String questSlot = player.getQuest(QUEST_SLOT);
-		
+
 		// if player's quest slot is already updated --> exit
 		if(Arrays.asList(questSlot.split(";")).size()>1) {
 			return;
 		}
-		
+
 		player.setQuest(QUEST_SLOT, 0, "start");
 		player.setQuest(QUEST_SLOT, 1, questSlot);
 		player.setQuest(QUEST_SLOT, 2, "0");
-		
+
 	}
 
 	private static void fixDailyMonsterQuestSlot(final Player player) {
 		final String QUEST_SLOT = "daily";
-		
+
 		// if player didnt started quest, exiting
 		if(!player.hasQuest(QUEST_SLOT)) {
 			return;
 		}
-		
+
 		final String questInfo = player.getQuest(QUEST_SLOT, 0);
-		
+
 		// if player completed quest, exiting
-		if(questInfo.equals("done")) return;
+		if(questInfo.equals("done")) {
+			return;
+		}
 		// if player already updated, exiting
 		if(Arrays.asList(questInfo.split(",")).size()==5) {
 			return;
 		}
-		
+
 		// now fix player's quest slot
 		player.setQuest(QUEST_SLOT, 0, player.getQuest(QUEST_SLOT, 0)+",0,1,0,0");
 	}
-	
+
 	/**
 	 * fix old-style kill quests slots.
 	 * @param player - player which quest slots will fix.
@@ -469,14 +471,14 @@ public abstract class UpdateConverter {
 					sb.append(creatures.get(i)+",0,1,0,0,");
 				}
 				final String result = sb.toString();
-				player.setQuest(questSlot, 
+				player.setQuest(questSlot,
 						KILL_QUEST_NAMES.get(questSlot).first(),
 						// will not record last semicolon.
 						result.substring(0, result.length()-1));
 			}
 		}
 	}
-	
+
 	 // update the name of a quest to the new spelling
 //	private static void renameQuestSlot(Player player, String oldName, String newName) {
 //		String questState = player.getQuest(oldName);
@@ -527,7 +529,7 @@ public abstract class UpdateConverter {
 			player.removeQuest(oldName);
 		}
 	}
-	
-	
+
+
 
 }
