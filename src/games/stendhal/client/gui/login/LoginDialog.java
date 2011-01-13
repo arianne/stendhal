@@ -453,7 +453,7 @@ public class LoginDialog extends JDialog {
 				message = message + ", because profile was null";
 			}
 			Logger.getLogger(LoginDialog.class).error(message, ex);
-			handleError(progressBar, "Unable to connect to server. Did you misspell the server name?", "Connection failed");
+			handleError("Unable to connect to server. Did you misspell the server name?", "Connection failed");
 			return;
 		}
 
@@ -470,18 +470,18 @@ public class LoginDialog extends JDialog {
 				}
 			});
 		} catch (final InvalidVersionException e) {
-			handleError(progressBar, "You are running an incompatible version of Stendhal. Please update",
+			handleError("You are running an incompatible version of Stendhal. Please update",
 					"Invalid version");
 		} catch (final TimeoutException e) {
-			handleError(progressBar, "Server is not available right now. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
+			handleError("Server is not available right now. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
 					"Error Logging In");
 		} catch (final LoginFailedException e) {
-			handleError(progressBar, e.getMessage(), "Login failed");
+			handleError(e.getMessage(), "Login failed");
 			if (e.getReason() == MessageS2CLoginNACK.Reasons.SEED_WRONG) {
 				System.exit(1);
 			}
 		} catch (final BannedAddressException e) {
-			handleError(progressBar, "Your IP is banned. If you think this is not right, please send a Support Request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
+			handleError("Your IP is banned. If you think this is not right, please send a Support Request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
 					"IP Banned");
 		}
 	}
@@ -491,11 +491,10 @@ public class LoginDialog extends JDialog {
 	 * either enabled the login dialog in interactive mode or exits
 	 * the client in non interactive mode.
 	 *
-	 * @param progressBar  ProgressBar to remove
 	 * @param errorMessage error message
 	 * @param errorTitle   title of error dialog box
 	 */
-	private void handleError(final ProgressBar progressBar, final String errorMessage, final String errorTitle) {
+	private void handleError(final String errorMessage, final String errorTitle) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				progressBar.cancel();
