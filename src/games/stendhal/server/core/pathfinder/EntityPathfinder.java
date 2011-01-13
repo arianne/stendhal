@@ -164,7 +164,10 @@ class EntityPathfinder extends games.stendhal.server.core.pathfinder.Pathfinder 
 		/**
 		 * Check if an area is impassable for the entity.
 		 * 
-		 * @param area the area to be checked
+		 * @param x the x coordinate of the upper left corner of the rectangle to be checked
+		 * @param y the y coordinate of the upper left corner of the rectangle to be checked
+		 * @param w the width of the rectangle to be checked
+		 * @param h the height of the rectangle to be checked
 		 * @return <code>true</code> if area can not be occupied, 
 		 * 	<code>false</code> otherwise
 		 */
@@ -214,7 +217,10 @@ class EntityPathfinder extends games.stendhal.server.core.pathfinder.Pathfinder 
 		/**
 		 * Get resistance for placing the entity to an area.
 		 * 
-		 * @param area placing area
+		 * @param x the x coordinate of the upper left corner of the rectangle to be checked
+		 * @param y the y coordinate of the upper left corner of the rectangle to be checked
+		 * @param w the width of the rectangle to be checked
+		 * @param h the height of the rectangle to be checked
 		 * @return resistance
 		 */
 		public int getResistance(final double x, final double y, double w, double h) {
