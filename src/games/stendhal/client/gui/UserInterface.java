@@ -49,7 +49,7 @@ public interface UserInterface {
 	 * @param description the description of the achievement
 	 * @param category the category of the achievement
 	 */
-	public void addAchievementBox(String title, String description, String category);
+	public void addAchievementBox(final String title, final String description, final String category);
 
 	/**
 	 * gets the sound system
