@@ -12,6 +12,7 @@
 package games.stendhal.client.gui.progress;
 
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.j2d.BackgroundPainter;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.wt.core.WtWindowManager;

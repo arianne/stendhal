@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.gui.progress;
+package games.stendhal.client.gui.j2d;
 
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -24,7 +24,7 @@ import java.awt.Graphics;
  * the image should be such that it can tolerate miss tiling at the borders, if
  * the painted area dimensions can not be guaranteed to be multiples of 32.  
  */
-class BackgroundPainter {
+public class BackgroundPainter {
 	private static final int TILE_SIZE = 32;
 	
 	final Sprite[] images;
@@ -34,7 +34,7 @@ class BackgroundPainter {
 	 * 
 	 * @param image image name. The image should be of size 96x96.
 	 */
-	BackgroundPainter(String image) {
+	public BackgroundPainter(String image) {
 		SpriteStore store = SpriteStore.get();
 		Sprite mother = store.getSprite(image);
 		images = new Sprite[9];
