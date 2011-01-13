@@ -96,6 +96,80 @@ public class ProducerRegister {
 		return sb.toString();
 	}
 	
+	public List<String> getWorkingProducerNames(final Player player) {
+		List<String> res = new LinkedList<String>();
+
+		for (final Pair<String, ProducerBehaviour> producer : producers) {
+			String npcName = producer.first();
+			ProducerBehaviour behaviour = producer.second();
+			String questSlot =  behaviour.getQuestSlot();
+			if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
+				if (behaviour.isOrderReady(player)) {
+					// put all completed orders first - player wants to collect these!
+					res.add(0, npcName);
+				} else {
+					res.add(npcName);
+				}
+						
+			}
+		}
+
+		return res;
+	}
+	
+	/**
+	 * gets description of the production
+	 *
+	 * @param player player to get the description for
+	 * @param npcName name of quest
+	 * @return details
+	 */
+	public String getProductionDescription(final Player player, final String npcName) {
+		for (final Pair<String, ProducerBehaviour> producer : producers) {
+			if(npcName.equals(producer.first())) {
+				ProducerBehaviour behaviour = producer.second();
+				String activity =  behaviour.getProductionActivity();
+				String product =  behaviour.getProductName();
+				return npcName + " " + activity + "s " + product + ".";
+			}
+		}
+		return "";
+	}
+				
+	/**
+	 * gets details on the progress of the production
+	 *
+	 * @param player player to get the details for
+	 * @param npcName name of quest
+	 * @return details
+	 */
+	public List<String> getProductionDetails(final Player player, final String npcName) {
+		List<String> res = new LinkedList<String>();
+		for (final Pair<String, ProducerBehaviour> producer : producers) {
+			if(npcName.equals(producer.first())) {
+				ProducerBehaviour behaviour = producer.second();
+				String questSlot =  behaviour.getQuestSlot();
+				String activity =  behaviour.getProductionActivity();
+				String product =  behaviour.getProductName();
+				if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
+					int amount = behaviour.getNumberOfProductItems(player);
+					if (behaviour.isOrderReady(player)) {
+						// put all completed orders first - player wants to collect these!
+						res.add(npcName + " has finished " + Grammar.gerundForm(activity) 
+							+ " your " + Grammar.plnoun(amount,product) + ".");
+					} else {
+						String timeleft = behaviour.getApproximateRemainingTime(player);
+						// put all ongoing orders last
+						res.add("\n" + npcName + " is " + Grammar.gerundForm(activity) 
+							+ " " + Grammar.quantityplnoun(amount, product, "a") + " and will be ready in " + timeleft + ".");
+					}
+						
+				}
+			}
+		}
+		return res;
+	}
+	
 }
 
 

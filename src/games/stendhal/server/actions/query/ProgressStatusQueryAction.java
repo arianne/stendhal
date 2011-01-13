@@ -64,7 +64,7 @@ public class ProgressStatusQueryAction implements ActionListener {
 	 * @param player Player to sent the event to
 	 */
 	private void sendProgressTypes(Player player) {
-		List<String> list = Arrays.asList("Open Quests", "Completed Quests"); //, "Producing");
+		List<String> list = Arrays.asList("Open Quests", "Completed Quests", "Production");
 		player.addEvent(new ProgressStatusEvent(list));
 	}
 
@@ -81,6 +81,9 @@ public class ProgressStatusQueryAction implements ActionListener {
 		} else if (progressType.equals("Completed Quests")) {
 			player.addEvent(new ProgressStatusEvent(progressType, 
 				SingletonRepository.getStendhalQuestSystem().getCompletedQuests(player)));
+		} else if (progressType.equals("Production")) {
+			player.addEvent(new ProgressStatusEvent(progressType, 
+					SingletonRepository.getProducerRegister().getWorkingProducerNames(player)));
 		}
 	}
 
@@ -97,6 +100,10 @@ public class ProgressStatusQueryAction implements ActionListener {
 			player.addEvent(new ProgressStatusEvent(progressType, item, 
 				questSystem.getQuestDescription(player, item),
 				questSystem.getQuestProgressDetails(player, item)));
+		} else if (progressType.equals("Production")) {
+			player.addEvent(new ProgressStatusEvent(progressType, item, 
+					SingletonRepository.getProducerRegister().getProductionDescription(player, item),
+					SingletonRepository.getProducerRegister().getProductionDetails(player, item)));
 		}
 	}
 
