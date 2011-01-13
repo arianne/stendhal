@@ -92,8 +92,8 @@ public class AdventureIsland extends StendhalRPZone {
 
 	private static final class ChallengeMovementListener implements
 													  MovementListener {
-		public Rectangle2D getArea() {
-			return new Rectangle2D.Double(0, 0, 100, 100);
+		public void getArea(Rectangle2D area) {
+			area.setRect(0, 0, 100, 100);
 		}
 		
 			public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,

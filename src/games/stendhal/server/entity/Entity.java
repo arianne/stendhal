@@ -473,6 +473,18 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
+	 * returns the area used by this entity. Note for performance reasons the
+	 * Rectangle is not returned as new object but the one supplied as first
+	 * parameter is modified.
+	 * 
+	 * @param rect
+	 *            the area is stored into this parameter
+	 */
+	public void getArea(final Rectangle2D rect) {
+		rect.setRect(x, y, getWidth(), getHeight());
+	}
+
+	/**
 	 * Called when this object is added to a zone.
 	 *
 	 * @param zone

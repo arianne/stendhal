@@ -104,7 +104,7 @@ class EntityPathfinder extends games.stendhal.server.core.pathfinder.Pathfinder 
 			 * Modify movement cost by resistance 
 			 */
 			if (resistanceMap != null) {
-				int resistance = resistanceMap.getResistance(entity.getArea(x, y));
+				int resistance = resistanceMap.getResistance(x, y , entity.getWidth(), entity.getHeight());
 				cost = 100.0 / (100 - resistance);
 			} else {
 				cost = 1.0;
@@ -128,10 +128,9 @@ class EntityPathfinder extends games.stendhal.server.core.pathfinder.Pathfinder 
 
 		@Override
 		public boolean isValid(int x, int y) {
-			boolean result = !zone.simpleCollides(entity, x, y);
+			boolean result = !zone.simpleCollides(entity, x, y, entity.getWidth(), entity.getHeight());
 			if (checkEntities && result) {
-				final Rectangle2D entityArea = entity.getArea(x, y);
-				result = !resistanceMap.collides(entityArea);
+				result = !resistanceMap.collides(x, y, entity.getWidth(), entity.getHeight());
 			}
 
 			return result;
@@ -169,8 +168,8 @@ class EntityPathfinder extends games.stendhal.server.core.pathfinder.Pathfinder 
 		 * @return <code>true</code> if area can not be occupied, 
 		 * 	<code>false</code> otherwise
 		 */
-		public boolean collides(Rectangle2D area) {
-			return getResistance(area) > COLLIDE_THRESHOLD;
+		public boolean collides(final double x, final double y, double w, double h) {
+			return getResistance(x, y, w, h) > COLLIDE_THRESHOLD;
 		}
 		
 		/**
@@ -218,11 +217,7 @@ class EntityPathfinder extends games.stendhal.server.core.pathfinder.Pathfinder 
 		 * @param area placing area
 		 * @return resistance
 		 */
-		public int getResistance(Rectangle2D area) {
-			final double x = area.getX();
-			final double y = area.getY();
-			double w = area.getWidth();
-			double h = area.getHeight();
+		public int getResistance(final double x, final double y, double w, double h) {
 			if ((x < 0) || (x >= width)) {
 				return COLLISION;
 			}

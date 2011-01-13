@@ -172,7 +172,7 @@ class DestinationObject extends MoveableObject {
 		} else {
 			logger.debug("entity: " + entity + " zone: " + zone);
 			// check if the destination is free
-			if ((zone != null) && zone.simpleCollides(entity, x, y)) {
+			if ((zone != null) && zone.simpleCollides(entity, x, y, entity.getWidth(), entity.getHeight())) {
 				logger.warn("object " + entity + " collides with " + x + "x"
 						+ y);
 				player.sendPrivateText("There is no space on there.");

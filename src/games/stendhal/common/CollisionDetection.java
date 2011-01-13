@@ -150,6 +150,21 @@ public class CollisionDetection {
 		final double y = shape.getY();
 		final double w = shape.getWidth();
 		final double h = shape.getHeight();
+		return collides(x, y, w, h);
+	}
+
+
+	/**
+	 * Check if a rectangle overlaps colliding areas.
+	 * 
+	 * @param x x-position
+	 * @param y y-position
+	 * @param w width
+	 * @param h height
+	 * @return <code>true</code> if the shape enters in any of the non
+	 *	trespassable areas of the map, <code>false</code> otherwise
+	 */
+	public boolean collides(final double x, final double y, final double w, final double h) {
 		if ((x < 0) || (x + w > width)) {
 			return true;
 		}

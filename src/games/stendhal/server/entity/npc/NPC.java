@@ -110,6 +110,7 @@ public abstract class NPC extends RPEntity {
 		final RPEvent rpe = new RPEvent(Events.PUBLIC_TEXT);
 		rpe.put("text", text);
 		this.addEvent(rpe);
+		this.notifyWorldAboutChanges();
 	}
 
 	/**

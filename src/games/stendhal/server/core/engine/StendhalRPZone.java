@@ -619,9 +619,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return collisionMap.leavesZone(area);
 	}
 
-	public boolean simpleCollides(final Entity entity, final double x, final double y) {
-		final Rectangle2D area = entity.getArea(x, y);
-		return collisionMap.collides(area);
+	public boolean simpleCollides(final Entity entity, final double x, final double y, final double w, final double h) {
+		return collisionMap.collides(x, y, w, h);
 	}
 
 	@Override
@@ -913,13 +912,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public synchronized boolean collides(final Entity entity, final double x, final double y,
 			final boolean checkObjects) {
-		final Rectangle2D area = entity.getArea(x, y);
 
-		if (collisionMap.collides(area)) {
+		if (collisionMap.collides(x, y, entity.getWidth(), entity.getHeight())) {
 			return true;
 		}
 
 		if (checkObjects) {
+			Rectangle2D area = entity.getArea(x, y);
 			return collidesObjects(entity, area);
 		}
 
@@ -933,18 +932,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	private Entity getCollidingObject(final Entity entity, final Rectangle2D area) {
-		Rectangle2D otherArea = new Rectangle2D.Double();
 		for (final RPObject other : objects.values()) {
-			/*
-			 * Ignore same object
-			 */
+			// Ignore same object
 			if (entity != other) {
 				final Entity otherEntity = (Entity) other;
 
 				// Check if the objects overlap
-				otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity.getY());
-
-				if (area.intersects(otherArea)) {
+				if (area.intersects(otherEntity.getX(), otherEntity.getY(), otherEntity.getWidth(), otherEntity.getHeight())) {
 					// Check if it's blocking
 					if (otherEntity.isObstacle(entity)) {
 						return otherEntity;
@@ -1023,8 +1017,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		eArea = entity.getArea(newX, newY);
 
+		Rectangle2D area = new Rectangle2D.Double();
 		for (final MovementListener l : movementListeners) {
-			if (l.getArea().intersects(eArea)) {
+			l.getArea(area);
+			if (area.intersects(eArea)) {
 				l.onEntered(entity, this, newX, newY);
 			}
 		}
@@ -1045,8 +1041,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		eArea = entity.getArea(oldX, oldY);
 
+		Rectangle2D area = new Rectangle2D.Double();
 		for (final MovementListener l : movementListeners) {
-			if (l.getArea().intersects(eArea)) {
+			l.getArea(area);
+			if (area.intersects(eArea)) {
 				l.onExited(entity, this, oldX, oldY);
 			}
 		}
@@ -1068,24 +1066,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public void notifyMovement(final ActiveEntity entity, final int oldX, final int oldY,
 			final int newX, final int newY) {
-		Rectangle2D area;
 		Rectangle2D oeArea;
 		Rectangle2D neArea;
 		boolean oldIn;
 		boolean newIn;
 
-		/*
-		 * Not in this zone?
-		 */
-		if (!has(entity.getID())) {
-			return;
-		}
-
 		oeArea = entity.getArea(oldX, oldY);
 		neArea = entity.getArea(newX, newY);
 
+		Rectangle2D area = new Rectangle2D.Double();
 		for (final MovementListener l : movementListeners) {
-			area = l.getArea();
+			l.getArea(area);
 
 			oldIn = area.intersects(oeArea);
 			newIn = area.intersects(neArea);

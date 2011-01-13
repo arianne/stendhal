@@ -421,8 +421,8 @@ public class MazeGenerator {
 			// empty constructor to prevent warning
 		}
 
-		public Rectangle2D getArea() {
-			return new Rectangle2D.Double(0, 0, width, height);
+		public void getArea(Rectangle2D area) {
+			area.setRect(0, 0, width, height);
 		}
 
 		public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,

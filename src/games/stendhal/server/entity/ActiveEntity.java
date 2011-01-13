@@ -93,7 +93,7 @@ public abstract class ActiveEntity extends Entity {
 		final int ny = y + direction.getdy();
 
 		final StendhalRPZone zone = getZone();
-		if (zone.simpleCollides(this, nx, ny)) {
+		if (zone.simpleCollides(this, nx, ny, this.getWidth(), this.getHeight())) {
 			handleSimpleCollision(nx, ny);
 			return;
 		}

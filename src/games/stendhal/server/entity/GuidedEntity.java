@@ -231,12 +231,15 @@ public abstract class GuidedEntity extends ActiveEntity {
 	private int getLocalResistance() {
 		int resistance = 0;
 		double size = getWidth() * getHeight();
-		
+
+		Rectangle2D thisArea = getArea();
+		Rectangle2D otherArea = new Rectangle2D.Double();
+		Rectangle2D intersect = new Rectangle2D.Double();
 		for (final RPObject obj : getZone()) {
 			final Entity entity = (Entity) obj;
 			if (this != entity) {
-				final Rectangle2D otherArea = entity.getArea(entity.getX(), entity.getY());
-				Rectangle2D intersect = getArea().createIntersection(otherArea);
+				entity.getArea(otherArea, entity.getX(), entity.getY());
+				Rectangle2D.intersect(thisArea, otherArea, intersect);
 				// skip entities far away
 				if (!intersect.isEmpty()) {
 					int r = getResistance(entity);
@@ -249,6 +252,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 						 */
 						double part = intersect.getWidth() * intersect.getHeight() / size;
 						r *= part;
+
 						/*
 						 * Add up like probabilities to avoid small resistance
 						 * quickly resulting in a massive slow down.

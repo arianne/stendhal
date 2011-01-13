@@ -12,21 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.outside;
 
-import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.rp.StendhalRPAction;
-import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.creature.AttackableCreature;
-import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Pet;
-import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -43,51 +37,6 @@ import java.util.Map;
 public class AnimalKeeperNPC implements ZoneConfigurator {
 
 	private static final String ZONE_NAME = "int_ados_pet_sanctuary";
-
-	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
-
-
-		private String cryForHelp;
-
-		/**
-		 * An attackable creature that will cause Katinka to shout if it
-		 * is killed by a monster.
-		 *
-		 * @param copy template creature
-		 */
-		public AdosAttackableCreature(final Creature copy) {
-			super(copy);
-		}
-
-		/*
-		 disabled, see https://sourceforge.net/tracker/?func=detail&aid=2806268&group_id=1111&atid=101111
-
-		private static long lastShoutTime;
-		@Override
-		public void onDead(final Entity killer, final boolean remove) {
-			super.onDead(killer, remove);
-
-			if (!(killer instanceof Player)) {
-				final long currentTime = System.currentTimeMillis();
-				if (lastShoutTime + 5 * 60 * 1000 < currentTime) {
-					lastShoutTime = currentTime;
-					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.getTitle()) + " is eating our "
-					        + Grammar.plural(getTitle()) + ".";
-					// HACK: we need to wait a turn because the message is lost otherwise
-					SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
-				}
-			}
-		}*/
-
-		@Override
-		public Creature getNewInstance() {
-			return new AdosAttackableCreature(this);
-		}
-
-		public void onTurnReached(final int currentTurn) {
-			SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.PRIVMSG, cryForHelp);
-		}
-	}
 
 	/**
 	 * Configure a zone.
@@ -185,25 +134,5 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		npc.setDescription("You see Katinka. She takes care of the animals around in the sanctuary.");
 		zone.add(npc);
-
-		// put special RespawnPoints
-		// 65, 34 bear
-		final EntityManager manager = SingletonRepository.getEntityManager();
-		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
-		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 65, 34, creature, 1);
-		zone.add(point);
-
-		// 67, 29 bear
-		point = new CreatureRespawnPoint(zone, 67, 29, creature, 1);
-		zone.add(point);
-
-		// 67, 31 black_bear
-		creature = new AdosAttackableCreature(manager.getCreature("black bear"));
-		point = new CreatureRespawnPoint(zone, 67, 31, creature, 1);
-		zone.add(point);
-
-		// 67, 35 black_bear
-		point = new CreatureRespawnPoint(zone, 67, 35, creature, 1);
-		zone.add(point);
 	}
 }
