@@ -70,7 +70,7 @@ class SourceObject extends MoveableObject {
 
 		}
 
-		if (source.getEntity().hasSlot("content") && source.getEntity().getSlot("content").size() > 0) {
+		if ((source.getEntity() != null) && source.getEntity().hasSlot("content") && source.getEntity().getSlot("content").size() > 0) {
 			player.sendPrivateText("Please empty your " + source.getEntityName() + " before moving it around");
 			return invalidSource;
 		}
