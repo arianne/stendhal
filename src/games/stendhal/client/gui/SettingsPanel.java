@@ -66,7 +66,7 @@ public class SettingsPanel extends JPanel {
 		groupsAndCommands.put("help", new String[] {"Commands", "Manual", "FAQ", "Rules", "Atlas"});
 		groupsAndCommands.put("accountcontrol", new String[] {"Change Password", "Merge", "Login History"});
 		groupsAndCommands.put("settings", new String[] {"Mute", "Clickmode"});
-		groupsAndCommands.put("rp", new String[] {"Who", "Hall Of Fame", "List Producers", "Quest Log"});
+		groupsAndCommands.put("rp", new String[] {"Who", "Hall Of Fame", "Quest Log"});
 	//	groupsAndCommands.put("contribute", new String[] {"Report Bug", "Request Feature", "Chat"});
 		
 		tooltips.put("help", "Help topics");
