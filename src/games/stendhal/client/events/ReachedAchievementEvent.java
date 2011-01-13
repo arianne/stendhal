@@ -1,6 +1,5 @@
 package games.stendhal.client.events;
 
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.RPEntity;
 /**
  * Handling reaching an achievement client side
