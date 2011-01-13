@@ -52,6 +52,8 @@ public class SlashActionRepository {
 		actions.put("config", new ConfigAction());
 
 		actions.put("drop", new DropAction());
+		
+		actions.put("cast", new CastSpellAction());
 
 		actions.put("gag", new GagAction());
 		actions.put("gmhelp", new GMHelpAction());

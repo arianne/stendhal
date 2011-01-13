@@ -38,6 +38,7 @@ import games.stendhal.server.actions.query.ProgressStatusQueryAction;
 import games.stendhal.server.actions.query.QuestListAction;
 import games.stendhal.server.actions.query.WhereAction;
 import games.stendhal.server.actions.query.WhoAction;
+import games.stendhal.server.actions.spell.CastSpellAction;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -88,6 +89,7 @@ public class CommandCenter {
 		AwayAction.register();
 		BanAction.register();
 		BuddyAction.register();
+		CastSpellAction.register();
 		ChatAction.register();
 		CIDSubmitAction.register();
 		DisplaceAction.register();
