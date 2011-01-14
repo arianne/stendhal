@@ -16,9 +16,9 @@ import games.stendhal.common.constants.Actions;
 import marauroa.common.game.RPAction;
 
 /**
- * Request the quest status.
+ * Request the travel (quest and producer) status.
  */
-public class QuestLogAction implements SlashAction {
+public class TravelLogAction implements SlashAction {
 	public boolean execute(String[] params, String remainder) {
 		final RPAction action = new RPAction();
 		action.put("type", Actions.PROGRESS_STATUS);
