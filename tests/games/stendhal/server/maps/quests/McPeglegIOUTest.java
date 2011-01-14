@@ -28,23 +28,30 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
+import utilities.ZonePlayerAndNPCTestImpl;
 
-public class McPeglegIOUTest {
+public class McPeglegIOUTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
 
 	private String questSlot;
+	private static final String ZONE_NAME = "int_semos_tavern_1";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
+		setupZone(ZONE_NAME);
+	}
+
+	public McPeglegIOUTest() {
+		super(ZONE_NAME, "McPegleg");
 	}
 
 	@Before
 	public void setUp() {
-		final StendhalRPZone zone = new StendhalRPZone("admin_test");
+		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		new RareWeaponsSellerNPC().configureZone(zone, null);	
 
 		AbstractQuest quest = new McPeglegIOU();

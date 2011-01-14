@@ -30,8 +30,9 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
+import utilities.ZonePlayerAndNPCTestImpl;
 
-public class MazeTest {
+public class MazeTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player = null;
 	private SpeakerNPC npc = null;
@@ -39,15 +40,21 @@ public class MazeTest {
 
 	private String questSlot;
 	private Maze maze;
+	private static final String ZONE_NAME = "int_ados_magician_house";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
+		setupZone(ZONE_NAME);
+	}
+
+	public MazeTest() {
+		super(ZONE_NAME, "Haizen");
 	}
 
 	@Before
 	public void setUp() {
-		final StendhalRPZone zone = new StendhalRPZone("admin_test");
+		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		new WizardNPC().configureZone(zone, null);	
 
 		maze = new Maze();
