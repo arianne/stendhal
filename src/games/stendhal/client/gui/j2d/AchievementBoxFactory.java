@@ -83,6 +83,7 @@ public class AchievementBoxFactory {
 		g2d.drawString(description, SIDE_MARGIN + SIDE_MARGIN + categoryImage.getWidth(), height - BOTTOM_MARGIN);
 		
 		// Draw the image
+		g2d.setComposite(AlphaComposite.SrcOver);
 		g2d.drawImage(categoryImage, SIDE_MARGIN, TOP_MARGIN, null);
 		
 		g2d.dispose();
