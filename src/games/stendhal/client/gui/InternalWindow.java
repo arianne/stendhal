@@ -239,13 +239,15 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * set with {@link #setHideOnClose}.
 	 */
 	public void close() {
-		Container parent = InternalWindow.this.getParent();
 		if (hideOnClose) {
 			setVisible(false);
 		} else {
-			parent.remove(InternalWindow.this);
-			parent.validate();
-			parent.repaint();
+			Container parent = InternalWindow.this.getParent();
+			if (parent != null) {
+				parent.remove(InternalWindow.this);
+				parent.validate();
+				parent.repaint();
+			}
 		}
 		// notify listeners
 		for (CloseListener listener : closeListeners) {
