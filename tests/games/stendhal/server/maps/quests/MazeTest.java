@@ -97,7 +97,7 @@ public class MazeTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "task");
 		assertEquals("I can send you to a #maze you need to find your way out. I keep the a list of the fast and frequent maze solvers in that blue book on the table.", getReply(npc));
 		en.step(player, "maze");
-		assertEquals("I can send you to the maze only once in a day. You can go there again in 24 hours.", getReply(npc));
+		assertTrue(getReply(npc).matches("I can send you to the maze only once in a day. You can go there again in .*\\."));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 
