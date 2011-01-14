@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.layout.SBoxLayout;
 
 import java.awt.Dimension;
@@ -22,10 +24,12 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import marauroa.common.game.RPSlot;
+
 /**
  * A wrapper container for WtPanels outside the game screen.
  */
-public class ContainerPanel extends JScrollPane {
+public class ContainerPanel extends JScrollPane implements Inspector {
 	/**
 	 * serial version uid
 	 */
@@ -55,6 +59,7 @@ public class ContainerPanel extends JScrollPane {
 	public void add(JComponent child, Object constraints) {
 		child.setAlignmentX(LEFT_ALIGNMENT);
 		panel.add(child, constraints);
+		panel.revalidate();
 	}
 	
 	/**
@@ -69,6 +74,7 @@ public class ContainerPanel extends JScrollPane {
 		child.setIgnoreRepaint(true);
 		panel.add(child);
 		repaintable.add(child);
+		panel.revalidate();
 		/*
 		 * Prevent moving the window. This may provide a nice way for users to
 		 * reorder the windows eventually. The container would just need to
@@ -100,5 +106,31 @@ public class ContainerPanel extends JScrollPane {
 			size.width += scrollBar.getWidth();
 		}
 		return size;
+	}
+
+	/**
+	 * Inspect an entity slot. Show the result within the ContainerPanel.
+	 * 
+	 * @param entity the inspected entity
+	 * @param content slot to be inspected
+	 * @param container previously created slot window for the inspected slot,
+	 * 	or <code>null</code> if there's no such window
+	 * @param width number of slot columns
+	 * @param height number of slot rows
+	 */
+	public SlotWindow inspectMe(IEntity entity, RPSlot content,
+			SlotWindow container, int width, int height) {
+		if ((container != null) && container.isVisible()) {
+			// Nothing to do. 
+			return container;
+		} else {
+			SlotWindow window = new SlotWindow(entity.getName(), width, height);
+			window.setSlot(entity, content.getName());
+			window.setInspector(this);
+			window.setVisible(true);
+			window.setAlignmentX(LEFT_ALIGNMENT);
+			addRepaintable(window);
+			return window;
+		}
 	}
 }

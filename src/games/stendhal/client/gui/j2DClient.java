@@ -477,6 +477,7 @@ public class j2DClient implements UserInterface {
 	private void createAndAddBag() {
 		inventory = new SlotWindow("bag", 3, 4);
 		inventory.setCloseable(false);
+		inventory.setInspector(containerPanel);
 		containerPanel.addRepaintable(inventory);
 	}
 

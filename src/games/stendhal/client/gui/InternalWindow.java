@@ -245,6 +245,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 		} else {
 			parent.remove(InternalWindow.this);
 			parent.validate();
+			parent.repaint();
 		}
 		// notify listeners
 		for (CloseListener listener : closeListeners) {
