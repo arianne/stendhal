@@ -13,6 +13,7 @@
 package games.stendhal.client.entity;
 
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -245,4 +246,11 @@ public interface IEntity {
 	 */
 	String getCursor();
 
+	/**
+	 * Get identifier path for the entity.
+	 * 
+	 * @return List of object identifiers and slot names that make up the
+	 * 	complete path to the entity
+	 */
+	public List<String> getPath();
 }
