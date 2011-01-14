@@ -16,9 +16,20 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.entity.Item;
+import games.stendhal.client.gui.InternalWindow;
+import games.stendhal.client.gui.InternalWindow.CloseListener;
+import games.stendhal.client.gui.SlotWindow;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+
+import java.util.List;
+
+import javax.swing.SwingUtilities;
+
+import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
@@ -31,6 +42,14 @@ class Item2DView extends Entity2DView {
 	 */
 	private static final Logger logger = Logger.getLogger(Item2DView.class);
 
+	/** Window for showing the slot contents, if any */
+	private volatile SlotWindow slotWindow;
+	/** Width of the slot window */
+	private int slotWindowWidth;
+	/** height of the slot window */
+	private int slotWindowHeight;
+	/** The slot content inspector. */
+	private Inspector inspector;
 
 	//
 	// Entity2DView
@@ -62,6 +81,21 @@ class Item2DView extends Entity2DView {
 		}
 
 		setSprite(sprite);
+	}
+	
+	/**
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
+	 * 
+	 * @param list
+	 *            The list to populate.
+	 */
+	@Override
+	protected void buildActions(final List<String> list) {
+		if (getContent() != null) {
+			list.add(ActionType.INSPECT.getRepresentation());
+		}
+		super.buildActions(list);
 	}
 
 	/**
@@ -136,7 +170,22 @@ class Item2DView extends Entity2DView {
 
 	@Override
 	public boolean onHarmlessAction() {
+		if (getContent() != null) {
+			onAction(ActionType.INSPECT);
+			return true;
+		}
 		return false;
+	}
+	
+	/**
+	 * Set the content inspector for this entity.
+	 * 
+	 * @param inspector
+	 *            The inspector.
+	 */
+	@Override
+	public void setInspector(final Inspector inspector) {
+		this.inspector = inspector;
 	}
 
 	/**
@@ -159,16 +208,102 @@ class Item2DView extends Entity2DView {
 				at.send(at.fillTargetInfo(entity.getRPObject()));
 			}
 			break;
+			
+		case INSPECT:
+			inspect();
+			break;
 
 		default:
 			super.onAction(at);
 			break;
 		}
 	}
+	
+
+	/**
+	 * Inspect the item. Show the slot contents.
+	 */
+	private void inspect() {
+		RPSlot slot = getContent();
+		if (slotWindowWidth == 0) {
+			calculateWindowProportions(slot.getCapacity());
+		}
+		
+		boolean addListener = slotWindow == null; 
+		slotWindow = inspector.inspectMe(entity, slot,
+				slotWindow, slotWindowWidth, slotWindowHeight);
+		SlotWindow window = slotWindow;
+		/*
+		 * Register a listener for window closing so that we can
+		 * drop the reference to the closed window and let the
+		 * garbage collector claim it.
+		 */
+		if (addListener && (window != null)) {
+			window.addCloseListener(new CloseListener() {
+				public void windowClosed(InternalWindow window) {
+					slotWindow = null;
+				}
+			});
+		}
+		/*
+		 * In case the view got released while the window was created and
+		 * added, and before the main thread was aware that there's a window
+		 * to be closed, close it now. (onAction is called from the event
+		 * dispatch thread).
+		 */
+		if (isReleased()) {
+			if (window != null) {
+				window.close();
+			}
+		}
+	}
+	
+	/**
+	 * Get the content slot.
+	 * 
+	 * @return Content slot or <code>null</code> if the item has none or it's
+	 * not accessible. 
+	 */
+	private RPSlot getContent() {
+		return ((Item) entity).getContent();
+	}
+
+	/**
+	 * Find out dimensions for a somewhat square slot window.
+	 *  
+	 * @param slots number of slots in the window
+	 */
+	private void calculateWindowProportions(final int slots) {
+		int width = (int) Math.sqrt(slots);
+
+		while (slots % width != 0) {
+			width--;
+			if (width <= 0) {
+				logger.error("Failed to decide dimensions for slot window. slots = " + slots);
+
+				width = 1;
+			}
+		}
+		slotWindowWidth = width;
+		slotWindowHeight = slots / width;
+	}
+	
+	@Override
+	public void release() {
+		final SlotWindow window = slotWindow;
+		if (window != null) {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					window.close();
+				}
+			});
+		}
+
+		super.release();
+	}
 
 	@Override
 	public StendhalCursor getCursor() {
 		return StendhalCursor.NORMAL;
 	}
-
 }
