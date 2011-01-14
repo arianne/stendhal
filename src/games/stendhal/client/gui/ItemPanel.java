@@ -15,6 +15,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
@@ -76,6 +77,8 @@ public class ItemPanel extends JComponent implements DropTarget {
 	 * Fix for bug #3069835.
 	 */
 	private JPopupMenu popupMenu;
+	/** The inspector the included entity should use */
+	private Inspector inspector;
 	
 	/**
 	 * Create a new ItemPanel.
@@ -100,6 +103,15 @@ public class ItemPanel extends JComponent implements DropTarget {
 	}
 	
 	/**
+	 * Set the inspector the contained entity should use.
+	 * 
+	 * @param inspector
+	 */
+	void setInspector(Inspector inspector) {
+		this.inspector = inspector;
+	}
+	
+	/**
 	 * Set the slot entity.
 	 * 
 	 * @param entity The new entity, or <code>null</code>.
@@ -121,6 +133,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 
 			if (view != null) {
 				view.setContained(true);
+				view.setInspector(inspector);
 				if (parent.isUser()) {
 					setCursor(cursorRepository.get(view.getCursor()));
 				} else {

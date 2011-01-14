@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.factory.EntityFactory;
 
 import java.awt.GridLayout;
@@ -86,6 +87,17 @@ public class SlotGrid extends JComponent implements EntityChangeListener {
 	public void entityChanged(IEntity entity, Object property) {
 		if (property == IEntity.PROP_CONTENT) {
 			rescanSlotContent();
+		}
+	}
+	
+	/**
+	 * Set the inspector the contained entities should use.
+	 * 
+	 * @param inspector
+	 */
+	void setInspector(Inspector inspector) {
+		for (ItemPanel panel : panels) {
+			panel.setInspector(inspector);
 		}
 	}
 	

@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.awt.Graphics2D;
@@ -98,4 +99,10 @@ public interface EntityView {
 	 * @return StendhalCursor
 	 */
 	public StendhalCursor getCursor();
+	/**
+	 * Set the inspector the entity view should use.
+	 * 
+	 * @param inspector
+	 */
+	public void setInspector(Inspector inspector);
 }

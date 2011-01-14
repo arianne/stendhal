@@ -13,10 +13,13 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
+
+import marauroa.common.game.RPObject;
 
 /**
  * A window for showing contents of an entity's slot in a grid of ItemPanels
@@ -60,6 +63,15 @@ public class SlotWindow extends InternalManagedWindow {
 		content.setSlot(parent, slot);
 	}
 	
+	/**
+	 * Set the inspector used for the contained entities.
+	 * 
+	 * @param inspector
+	 */
+	public void setInspector(Inspector inspector) {
+		content.setInspector(inspector);
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -98,7 +110,8 @@ public class SlotWindow extends InternalManagedWindow {
 			// after double clicking one
 			// monster and a fast double
 			// click on another monster
-			if (parent.isUser()) {
+			RPObject root = parent.getRPObject().getBaseContainer();
+			if (user.getRPObject().equals(root)) {
 				// We don't want to close our own stuff
 				return true;
 			}
