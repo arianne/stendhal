@@ -212,6 +212,23 @@ public abstract class PlayerTestHelper {
 		return player.equipToInventoryOnly(item);
 	}
 
+
+	/**
+	 * Equip the player with the given item and set the given item string.
+	 * 
+	 * @param player
+	 * @param clazz
+	 * @param info
+	 * @return success flag
+	 */
+	public static boolean equipWithItem(final Player player, final String clazz, final String info) {
+		ItemTestHelper.generateRPClasses();
+		final Item item = SingletonRepository.getEntityManager().getItem(clazz);
+		item.setInfoString(info);
+
+		return player.equipToInventoryOnly(item);
+	}
+
 	/**
 	 * Equip the player with the given amount of items.
 	 * 
