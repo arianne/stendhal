@@ -76,14 +76,13 @@ public class McPeglegIOUTest {
 		en.step(player, "IOU");
 		assertEquals("I can't see that you got a valid IOU with my signature!", getReply(npc));
 		en.step(player, "bye");
-
 		assertEquals("I see you!", getReply(npc));
+
 		// equip with IOU
 		final Item note = SingletonRepository.getEntityManager().getItem("note");
 		note.setDescription("IOU 250 money. (signed) McPegleg");
 		note.setInfoString("charles");
 		player.equipToInventoryOnly(note);
-		en.step(player, "bye");
 
 		en.step(player, "hi");
 		assertEquals("Yo matey! You look like you need #help.", getReply(npc));
@@ -99,5 +98,6 @@ public class McPeglegIOUTest {
 		en.step(player, "IOU");
 		assertEquals("You already got cash for that damned IOU!", getReply(npc));
 		en.step(player, "bye");
+		assertEquals("I see you!", getReply(npc));
 	}
 }
