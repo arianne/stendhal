@@ -16,7 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -85,11 +84,8 @@ public class McPeglegIOUTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "bye");
 		assertEquals("I see you!", getReply(npc));
 
-		// equip with IOU
-		final Item note = SingletonRepository.getEntityManager().getItem("note");
-		note.setDescription("IOU 250 money. (signed) McPegleg");
-		note.setInfoString("charles");
-		player.equipToInventoryOnly(note);
+		// equip with IOU "IOU 250 money. (signed) McPegleg"
+		PlayerTestHelper.equipWithItem(player, "note", "charles");
 
 		en.step(player, "hi");
 		assertEquals("Yo matey! You look like you need #help.", getReply(npc));
