@@ -47,7 +47,6 @@ class HelpAction implements SlashAction {
 				"- /sentence <text> \tWrites the sentence that appears on Website.",
 				"* Items: ",
 				"- /drop [quantity] <item>\tDrop a certain number of an item",
-				"- /listproducers\tFind out what items are being produced for you",
 				"- /markscroll <text> \tMark your empty scroll and add a text label",				
 				"* Buddies and Enemies: ",
 				"- /add <player> \tAdd <player> to your buddy list",
