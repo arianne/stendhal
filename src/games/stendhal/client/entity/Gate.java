@@ -13,6 +13,8 @@
 package games.stendhal.client.entity;
 
 import java.awt.geom.Rectangle2D;
+import java.util.LinkedList;
+import java.util.List;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
@@ -165,4 +167,25 @@ public class Gate implements IEntity {
 		return "ACTIVITY";
 	}
 
+	/**
+	 * Get identifier path for the entity.
+	 * 
+	 * @return List of object identifiers and slot names that make up the
+	 * 	complete path to the entity
+	 */
+	public List<String> getPath() {
+		LinkedList<String> path = new LinkedList<String>();
+		RPObject object = getRPObject();
+		while (object != null) {
+			// Prepend the items; They'll be in a nice container-slot-content
+			// order for the server
+			path.add(0, Integer.toString(object.getID().getObjectID()));
+			RPSlot slot = object.getContainerSlot();
+			if (slot != null) {
+				path.add(0, slot.getName());
+			}
+			object = object.getContainer();
+		}
+		return path;
+	}
 }
