@@ -16,6 +16,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -38,6 +39,7 @@ public class Maze extends AbstractQuest {
 	/** Minimum time between repeats. */
 	private static final int COOLING_TIME = MathHelper.MINUTES_IN_ONE_HOUR * 24;
 	private MazeSign sign;
+	MazeGenerator maze;
 	
 	@Override
 	public void addToWorld() {
@@ -155,13 +157,12 @@ public class Maze extends AbstractQuest {
 	}
 
 	private class SendToMazeChatAction implements ChatAction {
-		
 		public SendToMazeChatAction() {
 			// empty constructor to prevent warning
 		}
 
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-			MazeGenerator maze = new MazeGenerator(player.getName() + "_maze", 128, 128);
+			maze = new MazeGenerator(player.getName() + "_maze", 128, 128);
 			maze.setReturnLocation(player.getZone().getName(), player.getX(), player.getY());
 			maze.setSign(getSign());
 			StendhalRPZone zone = maze.getZone();
@@ -171,5 +172,12 @@ public class Maze extends AbstractQuest {
 			maze.startTiming();
 			player.teleport(zone, maze.getStartPosition().x, maze.getStartPosition().y, Direction.DOWN, player);
 		}
+	}
+
+	/**
+	 * Access the portal from MazeTest.
+	 */
+	protected Portal getPortal() {
+		return maze.getPortal();
 	}
 }

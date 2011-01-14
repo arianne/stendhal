@@ -23,6 +23,7 @@ import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
 import games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
@@ -93,7 +94,9 @@ public class MazeGenerator {
 	/** The time when the player was sent to the maze. */
 	private long timeStamp;
 	private MazeSign sign;
-	
+
+	private Teleporter portal;
+
 	/**
 	 * Create a maze.
 	 * 
@@ -368,7 +371,7 @@ public class MazeGenerator {
 		}
 		
 		// Create the return portal
-		Teleporter portal = new ReturnTeleporter(new Spot(SingletonRepository.getRPWorld().getZone(returnZoneName), returnX, returnY));
+		portal = new ReturnTeleporter(new Spot(SingletonRepository.getRPWorld().getZone(returnZoneName), returnX, returnY));
 		Point pos = getPortalPosition();
 		portal.setPosition(pos.x, pos.y);
 		zone.add(portal);
@@ -488,5 +491,12 @@ public class MazeGenerator {
 			}
 			return success;
 		}
+	}
+
+	/**
+	 * Access the portal from MazeTest.
+	 */
+	public Portal getPortal() {
+		return portal;
 	}
 }
