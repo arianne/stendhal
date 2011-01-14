@@ -33,7 +33,7 @@ import java.util.List;
  *
  * PARTICIPANTS: - a corpse in kanmararn - McPegleg
  *
- * NOTE: The corpse with cointaisn the IOU is created in KanmararnSoldiers.java
+ * NOTE: The corpse with contains the IOU is created in KanmararnSoldiers.java
  * Without it this quest cannot be started (so the player won't notice the
  * problem at all).
  *
@@ -46,7 +46,6 @@ import java.util.List;
 public class McPeglegIOU extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "IOU";
-
 
 	@Override
 	public String getSlotName() {
