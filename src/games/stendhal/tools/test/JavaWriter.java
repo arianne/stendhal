@@ -70,7 +70,6 @@ class JavaWriter {
 		out.println("\tpublic void setUp() {");
 		out.println("\t\tfinal StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);");
 		out.println("\t\tnew TODO_NPC().configureZone(zone, null);	");
-		out.println("\t\t");
 		out.println();
 		out.println("\t\tAbstractQuest quest = new TODO_Quest();");
 		out.println("\t\tquest.addToWorld();");
@@ -82,7 +81,7 @@ class JavaWriter {
 		out.println();
 		out.println("\t@Test");
 		out.println("\tpublic void testQuest() {");
-		out.println("\t\t");
+		out.println();
 		out.println("\t\tnpc = SingletonRepository.getNPCList().get(TODO_NPC_Name);");
 		out.println("\t\ten = npc.getEngine();");
 		out.println();
