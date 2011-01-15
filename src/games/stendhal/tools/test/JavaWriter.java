@@ -29,6 +29,19 @@ class JavaWriter {
 	}
 
 	public void header() {
+		out.println("/* $Id$ */");
+		out.println("/***************************************************************************");
+		out.println(" *                   (C) Copyright 2003-2011 - Stendhal                    *");
+		out.println(" ***************************************************************************");
+		out.println(" ***************************************************************************");
+		out.println(" *                                                                         *");
+		out.println(" *   This program is free software; you can redistribute it and/or modify  *");
+		out.println(" *   it under the terms of the GNU General Public License as published by  *");
+		out.println(" *   the Free Software Foundation; either version 2 of the License, or     *");
+		out.println(" *   (at your option) any later version.                                   *");
+		out.println(" *                                                                         *");
+		out.println(" ***************************************************************************/");
+		out.println("");
 		out.println("package games.stendhal.server.maps.quests;");
 		out.println();
 		out.println("import static org.junit.Assert.assertEquals;");
