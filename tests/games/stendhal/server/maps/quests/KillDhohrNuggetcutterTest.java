@@ -89,8 +89,7 @@ public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Great! Please find them somewhere in this level of the keep and make them pay for their tresspassing!", getReply(npc));
-		assertEquals("start;Dhohr Nuggetcutter,0,1,0,0,mountain hero dwarf,0,2,0,0,mountain elder dwarf,0,2,0,0,"+
-						"mountain leader dwarf,0,2,0,0,mountain dwarf,0,2,0,0", player.getQuest(questSlot));
+		assertEquals("start", player.getQuest(questSlot, 0));
 		en.step(player, "bye");
 		assertEquals("I wish you well on your journeys.", getReply(npc));
 
