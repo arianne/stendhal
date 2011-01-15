@@ -39,7 +39,7 @@ public class Maze extends AbstractQuest {
 	/** Minimum time between repeats. */
 	private static final int COOLING_TIME = MathHelper.MINUTES_IN_ONE_HOUR * 24;
 	private MazeSign sign;
-	MazeGenerator maze;
+	private MazeGenerator maze = null;
 	
 	@Override
 	public void addToWorld() {
