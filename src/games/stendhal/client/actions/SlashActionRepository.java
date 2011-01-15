@@ -85,6 +85,7 @@ public class SlashActionRepository {
 		actions.put("remove", new RemoveBuddyAction());
 
 		actions.put("sentence", new SentenceAction());
+		actions.put("settings", new SettingsAction());
 
 		actions.put("sound", new SoundAction());
 		actions.put("volume", new VolumeAction());

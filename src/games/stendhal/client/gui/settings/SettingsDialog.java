@@ -12,10 +12,13 @@
 package games.stendhal.client.gui.settings;
 
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -47,8 +50,8 @@ public class SettingsDialog extends JDialog {
 		setResizable(false);
 		JButton closeButton = new JButton("Close");
 		closeButton.setAlignmentX(RIGHT_ALIGNMENT);
-		closeButton.setBorder(BorderFactory.createCompoundBorder(closeButton.getBorder(),
-				BorderFactory.createEmptyBorder(pad, pad, pad, pad)));
+		closeButton.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad),
+				closeButton.getBorder()));
 		closeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -70,6 +73,15 @@ public class SettingsDialog extends JDialog {
 		// click mode
 		JCheckBox clickModeToggle = new JCheckBox("Double Click Mode");
 		clickModeToggle.setToolTipText("Move and attack with double click. If not checked, a single click is enough.");
+		boolean selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
+		clickModeToggle.setSelected(selected);
+		
+		clickModeToggle.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				boolean doubleClick = (e.getStateChange() == ItemEvent.SELECTED);
+				WtWindowManager.getInstance().setProperty("ui.doubleclick", Boolean.toString(doubleClick));
+			}
+		});
 		page.add(clickModeToggle);
 	}
 	
