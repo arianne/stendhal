@@ -32,6 +32,10 @@ import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
+/**
+ * JUnit test for the Maze quest.
+ * @author bluelads, M. Fuchs
+ */
 public class MazeTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player = null;

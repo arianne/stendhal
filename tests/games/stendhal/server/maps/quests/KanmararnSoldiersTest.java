@@ -32,6 +32,10 @@ import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
+/**
+ * JUnit test for the KanmararnSoldiers quest.
+ * @author bluelads, M. Fuchs
+ */
 public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player = null;
