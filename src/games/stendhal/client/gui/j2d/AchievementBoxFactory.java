@@ -1,5 +1,6 @@
 package games.stendhal.client.gui.j2d;
 
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 
@@ -22,12 +23,15 @@ import javax.imageio.ImageIO;
 import org.apache.log4j.Logger;
 
 public class AchievementBoxFactory {
+	/** Default font name */
+	private static final String FONT_NAME = "BlackChancery";
+	/** Location of the achievement category icons */
 	private static final String ACHIEVEMENT_IMAGE_FOLDER = "data/sprites/achievements/";
 	/** Background image. */
 	private static final String BACKGROUND = "data/gui/banner_background.png";
 	// These are dependent on the sprite
 	/** Space to leave at the top of the sprite above the text. */
-	private static final int TOP_MARGIN = 5;
+	private static final int TOP_MARGIN = 2;
 	/** Space to leave at the sides of the sprite. */
 	private static final int SIDE_MARGIN = 20;
 	/** Space to leave at the bottom of the sprite below the text */
@@ -59,7 +63,8 @@ public class AchievementBoxFactory {
 			Logger.getLogger(AchievementBoxFactory.class).error("Error loading achievement box image.", e);
 		}
 		// Calculate size for the message box
-		Font font = graphics.getFont();
+		String fontName = WtWindowManager.getInstance().getProperty("ui.logfont", FONT_NAME);
+		Font font = new Font(fontName, Font.PLAIN, 14);
 		Font largeFont = font.deriveFont(20f);
 		Rectangle2D titleRect = largeFont.getStringBounds(title, graphics.getFontRenderContext());
 		Rectangle2D textRect = font.getStringBounds(description, graphics.getFontRenderContext());
