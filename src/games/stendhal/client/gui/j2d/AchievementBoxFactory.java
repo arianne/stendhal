@@ -32,6 +32,8 @@ public class AchievementBoxFactory {
 	private static final int SIDE_MARGIN = 20;
 	/** Space to leave at the bottom of the sprite below the text */
 	private static final int BOTTOM_MARGIN = 25;
+	/** Space to leave between the category image and text */
+	private static final int IMAGE_PAD = 5;
 	
 	private Graphics2D graphics;
 	
@@ -63,7 +65,7 @@ public class AchievementBoxFactory {
 		Rectangle2D textRect = font.getStringBounds(description, graphics.getFontRenderContext());
 		int width = (int) Math.max(titleRect.getWidth(), textRect.getWidth())+categoryImage.getWidth();
 		int height = (int) Math.max(categoryImage.getHeight(), (titleRect.getHeight() + textRect.getHeight()));
-		width += 3 * SIDE_MARGIN;
+		width += 2 * SIDE_MARGIN + IMAGE_PAD;
 		height += TOP_MARGIN + BOTTOM_MARGIN;
 		
 		// Create the background sprite
@@ -77,14 +79,15 @@ public class AchievementBoxFactory {
 		// Draw the texts
 		g2d.setColor(Color.BLACK); 
 		g2d.setFont(largeFont);
-		g2d.drawString(title, SIDE_MARGIN + SIDE_MARGIN + categoryImage.getWidth(), TOP_MARGIN + (int) titleRect.getHeight());
+		g2d.drawString(title, SIDE_MARGIN + IMAGE_PAD + categoryImage.getWidth(), TOP_MARGIN + (int) titleRect.getHeight());
 		
 		g2d.setFont(font);
-		g2d.drawString(description, SIDE_MARGIN + SIDE_MARGIN + categoryImage.getWidth(), height - BOTTOM_MARGIN);
+		g2d.drawString(description, SIDE_MARGIN + IMAGE_PAD + categoryImage.getWidth(), height - BOTTOM_MARGIN);
 		
-		// Draw the image
+		// Draw the image (the usable height starts right from the top)
+		int y = (height - BOTTOM_MARGIN - categoryImage.getHeight()) / 2 + TOP_MARGIN;
 		g2d.setComposite(AlphaComposite.SrcOver);
-		g2d.drawImage(categoryImage, SIDE_MARGIN, TOP_MARGIN, null);
+		g2d.drawImage(categoryImage, SIDE_MARGIN, y, null);
 		
 		g2d.dispose();
 		
