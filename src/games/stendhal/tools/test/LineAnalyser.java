@@ -49,7 +49,7 @@ class LineAnalyser {
 	private void stripComment() {
 		if (line.startsWith("//")) {
 			comment = true;
-			stripped = line.substring(3);
+			stripped = line.substring(2).trim();
 		}
 	}
 
