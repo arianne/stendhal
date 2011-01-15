@@ -73,7 +73,11 @@ public class StyledSliderUI extends BasicSliderUI {
 		adjust -= thumbRect.width / 2;
 		adjust = Math.max(0, adjust);
 		
-		g.setColor(slider.getForeground());
+		if (slider.isEnabled()) {
+			g.setColor(slider.getForeground());
+		} else {
+			g.setColor(slider.getBackground());
+		}
 		g.fillRect(x + adjust, y, trackRect.width - adjust, TRACK_HEIGHT);
 		// Who knows why painBorder has Component as the first parameter?
 		// Anyway, passing it null does not seem to crash it.
@@ -107,5 +111,6 @@ public class StyledSliderUI extends BasicSliderUI {
 		// here
 		slider.setOpaque(false);
 		slider.setForeground(style.getForeground());
+		slider.setBackground(style.getShadowColor());
 	}
 }
