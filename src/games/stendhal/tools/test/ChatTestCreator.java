@@ -27,6 +27,7 @@ import java.io.PrintStream;
 public class ChatTestCreator {
 	private final BufferedReader br;
 	private final JavaWriter writer;
+	private String lastPlayerText = "";
 
 	public ChatTestCreator(final BufferedReader br, final PrintStream out) {
 		this.br = br;
@@ -45,14 +46,20 @@ public class ChatTestCreator {
 
 	private void handleLine(final String line) {
 		final LineAnalyser analyser = new LineAnalyser(line);
+
 		if (analyser.isEmpty()) {
 			writer.emptyLine();
 		} else if (analyser.isComment()) {
 			writer.comment(analyser.getText());
 		} else if (analyser.isPlayerSpeaking()) {
-			writer.player(analyser.getProtagonist(), analyser.getText());
+			lastPlayerText = analyser.getText();
+			writer.player(analyser.getProtagonist(), lastPlayerText);
 		} else if (analyser.isNPCSpeaking()) {
 			writer.npc(analyser.getProtagonist(), analyser.getText());
+
+			if (lastPlayerText.equals("bye")) {
+				writer.emptyLine();
+			}
 		} else {
 			writer.comment(line);
 		}
