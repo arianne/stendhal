@@ -67,7 +67,7 @@ class JavaWriter {
 		out.println("\tprivate Engine en = null;");
 		out.println();
 		out.println("\tprivate String questSlot;");
-		out.println("\tprivate static final String ZONE_NAME = \"admin_test\"");
+		out.println("\tprivate static final String ZONE_NAME = \"admin_test\";");
 		out.println();
 		out.println("\t@BeforeClass");
 		out.println("\tpublic static void setUpBeforeClass() throws Exception {");
