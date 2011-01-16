@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
@@ -110,10 +111,20 @@ public class SlotWindow extends InternalManagedWindow {
 			// after double clicking one
 			// monster and a fast double
 			// click on another monster
+			
+			// Check if the parent is user
 			RPObject root = parent.getRPObject().getBaseContainer();
-			if (user.getRPObject().equals(root)) {
-				// We don't want to close our own stuff
-				return true;
+			// We don't want to close our own stuff
+			// The root entity may have been removed, but still if it was
+			// the user we do not want to close it.
+			// User may have been changed by the main thread, so we can not rely
+			// on user.getRPObject() being equal to root. (bug #3159058)
+			final String type = root.getRPClass().getName();
+			if (type.equals("player") && root.has("name")) {
+				if (StendhalClient.get().getCharacter().equalsIgnoreCase(
+						root.get("name"))) {
+					return true;
+				}
 			}
 
 			return isCloseEnough(user.getX(), user.getY());
