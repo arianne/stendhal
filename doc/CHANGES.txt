@@ -10,6 +10,11 @@ Changelog
 - Amber, Jefs mom, showed up somewhere in Faiumoni
 - Caroline moved into her refurbished house in Ados 
 - NPC conversation with improved and unified responses of producers and merchandisers
+- settings dialog
+- better multi-monitor behaviour
+
+*fixes*
+- numerous small gui code fixes
 
 0.91 
 
