@@ -266,9 +266,9 @@ public class Debuggera extends ScriptImpl {
 				Logger.getLogger(SightseeingAction.class).error(e, e);
 			}
 
-			++counter;
+			counter++;
 
-			if (counter < zones.size()) {
+			if (counter < zones.size() - 1) {
 				SingletonRepository.getTurnNotifier().notifyInTurns(10, this);
 			}
 		}
