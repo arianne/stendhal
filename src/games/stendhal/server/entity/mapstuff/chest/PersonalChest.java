@@ -134,29 +134,18 @@ public class PersonalChest extends Chest {
 			bank.clear();
 
 			for (final RPObject item : getSlot("content")) {
-				bank.addPreservingId(item);
+				try {
+					bank.addPreservingId(cloneItem(item));
+				} catch (final Exception e) {
+					LOGGER.error("Cannot clone item " + item, e);
+				}
 			}
-
-			final RPSlot content = getSlot("content");
-			content.clear();
 
 			// Verify the user is next to the chest
 			if (getZone().has(attending.getID()) && nextTo(attending)) {
-				// A hack to allow client update correctly the
-				// chest...
-				// by clearing the chest and copying the items
-				// back to it from the player's bank slot
-				for (final RPObject item : getBankSlot()) {
-					try {
-						content.addPreservingId(cloneItem(item));
-					} catch (final Exception e) {
-						LOGGER.error("Cannot clone item " + item, e);
-					}
-				}
-
 				return true;
 			} else {
-				// If player is not next to depot, clean it.
+				// If player is not next to depot, close it (also clears it).
 				close();
 				notifyWorldAboutChanges();
 			}
