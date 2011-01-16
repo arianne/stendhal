@@ -69,4 +69,11 @@ public interface Style {
 	 * @return A color.
 	 */
 	Color getShadowColor();
+	
+	/**
+	 * Get a color that roughly represents the background.
+	 * 
+	 * @return plain color
+	 */
+	Color getPlainColor();
 }

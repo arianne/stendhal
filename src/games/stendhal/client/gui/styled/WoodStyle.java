@@ -27,6 +27,7 @@ import javax.swing.border.Border;
 public class WoodStyle implements Style {
 	private static final Color highLightColor = new Color(163, 120, 97);
 	private static final Color shadowColor = new Color(50, 25, 12);
+	private static final Color plainColor = new Color(107, 72, 50);
 
 	/**
 	 * A shared instance.
@@ -137,5 +138,14 @@ public class WoodStyle implements Style {
 
 	public Color getShadowColor() {
 		return shadowColor;
+	}
+	
+	/**
+	 * Get a color that roughly represents the background.
+	 * 
+	 * @return plain color
+	 */
+	public Color getPlainColor() {
+		return plainColor;
 	}
 }
