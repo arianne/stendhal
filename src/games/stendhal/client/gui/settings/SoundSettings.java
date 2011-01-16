@@ -35,7 +35,7 @@ import javax.swing.event.ChangeListener;
 /**
  * Page for the sound settings.
  */
-public class SoundSettings {
+class SoundSettings {
 	private static final String SOUND_PROPERTY = "sound.play";
 	private static final String VOLUME_PROPERTY = "sound.volume.";
 	
@@ -65,11 +65,10 @@ public class SoundSettings {
 	/**
 	 * Create sound settings page.
 	 */
-	public SoundSettings() {
+	SoundSettings() {
 		int pad = SBoxLayout.COMMON_PADDING;
 		page = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
-		page.setName("Sound");
 
 		// click mode
 		muteToggle = new JCheckBox("Play Sounds");
