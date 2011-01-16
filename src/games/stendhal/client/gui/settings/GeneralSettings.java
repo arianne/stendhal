@@ -13,6 +13,8 @@ package games.stendhal.client.gui.settings;
 
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.GraphicsEnvironment;
@@ -85,6 +87,13 @@ class GeneralSettings {
 		JComponent fontBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		fontBox.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),
 				BorderFactory.createEmptyBorder(pad, pad, pad, pad)));
+		
+		// There seems to be no good way to change the default background color
+		// of all components. The color is needed for making the etched border.
+		Style style = StyleUtil.getStyle();
+		if (style != null) {
+			fontBox.setBackground(style.getPlainColor());
+		}
 		
 		JCheckBox fontToggle = new JCheckBox("Custom Decorative Font");
 		fontToggle.setToolTipText("Set a custom font for the travel log and achievements");
