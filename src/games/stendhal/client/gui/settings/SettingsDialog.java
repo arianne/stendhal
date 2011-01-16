@@ -32,11 +32,11 @@ import javax.swing.SwingUtilities;
  * Dialog for game settings.
  */
 public class SettingsDialog extends JDialog {
-	private JTabbedPane tabs;
-	
+	private final JTabbedPane tabs;
+
 	/**
 	 * Create a new SettingsDialog.
-	 * 
+	 *
 	 * @param parent parent window, or <code>null</code>
 	 */
 	public SettingsDialog(Frame parent) {
@@ -60,7 +60,7 @@ public class SettingsDialog extends JDialog {
 		add(closeButton);
 		pack();
 	}
-	
+
 	/**
 	 * Create the contents of the general settings page, and add a tab for it.
 	 */
@@ -69,13 +69,13 @@ public class SettingsDialog extends JDialog {
 		JComponent page = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 		tabs.add("General", page);
-		
+
 		// click mode
-		JCheckBox clickModeToggle = new JCheckBox("Double Click Mode");
+		JCheckBox clickModeToggle = new JCheckBox("Double click mode");
 		clickModeToggle.setToolTipText("Move and attack with double click. If not checked, a single click is enough.");
 		boolean selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
 		clickModeToggle.setSelected(selected);
-		
+
 		clickModeToggle.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				boolean doubleClick = (e.getStateChange() == ItemEvent.SELECTED);
@@ -83,11 +83,25 @@ public class SettingsDialog extends JDialog {
 			}
 		});
 		page.add(clickModeToggle);
+
+		// blood
+		JCheckBox showBloodToggle = new JCheckBox("Show blood and corpse");
+		showBloodToggle.setToolTipText("Show blood spots on hits during fighting and corpse.");
+		selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.blood", "true"));
+		showBloodToggle.setSelected(selected);
+
+		showBloodToggle.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				boolean doubleClick = (e.getStateChange() == ItemEvent.SELECTED);
+				WtWindowManager.getInstance().setProperty("gamescreen.blood", Boolean.toString(doubleClick));
+			}
+		});
+		page.add(showBloodToggle);
 	}
-	
+
 	/**
 	 * Main method to help debugging the dialog.
-	 *  
+	 *
 	 * @param args unused
 	 */
 	public static void main(String[] args) {

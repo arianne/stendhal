@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.Triple;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -84,6 +85,7 @@ public class EntityViewFactory {
 		try {
 			final String type = entity.getType();
 
+			// use User2DView for the active player
 			if (type != null && type.equals("player")
 					&& StendhalClient.get().getCharacter() != null) {
 				if (StendhalClient.get().getCharacter().equalsIgnoreCase(entity.getName())) {
@@ -93,14 +95,22 @@ public class EntityViewFactory {
 				}
 			}
 
+			// lookup class
 			String eclass = entity.getEntityClass();
 			String subClass = entity.getEntitySubclass();
-
 			final Class<? extends EntityView> entityClass = getViewClass(type, eclass, subClass);
 			if (entityClass == null) {
 				LOGGER.debug("No view for this entity. type: " + type + " class: " + eclass
 						+ " subclass: " + subClass);
 				return null;
+			}
+
+			// hack to hide blood
+			if (entityClass == Blood2DView.class) {
+				boolean showBlood = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.blood", "true"));
+				if (!showBlood) {
+					return null;
+				}
 			}
 
 			final EntityView en = entityClass.newInstance();

@@ -20,9 +20,10 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.InternalWindow;
-import games.stendhal.client.gui.SlotWindow;
 import games.stendhal.client.gui.InternalWindow.CloseListener;
+import games.stendhal.client.gui.SlotWindow;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -60,7 +61,7 @@ class Corpse2DView extends Entity2DView {
 	 * Create a 2D view of an entity.
 	 */
 	public Corpse2DView() {
-		
+
 
 		height = IGameScreen.SIZE_UNIT_PIXELS;
 		width = IGameScreen.SIZE_UNIT_PIXELS;
@@ -73,7 +74,7 @@ class Corpse2DView extends Entity2DView {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -86,11 +87,19 @@ class Corpse2DView extends Entity2DView {
 
 	/**
 	 * Build the visual representation of this entity.
+	 *
+	 * @param entity Entity to display
 	 */
 	@Override
 	protected void buildRepresentation(IEntity entity) {
 		final String imageName = entity.getRPObject().get("image");
-		final Sprite sprite = SpriteStore.get().getSprite(translate("corpse/"  + imageName));
+		Sprite sprite = null;
+		boolean showBlood = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.blood", "true"));
+		if (showBlood) {
+			sprite = SpriteStore.get().getSprite(translate("corpse/"  + imageName));
+		} else {
+			sprite = SpriteStore.get().getSprite(translate("corpse/harmless"));
+		}
 
 		width = sprite.getWidth();
 		height = sprite.getHeight();
@@ -102,7 +111,7 @@ class Corpse2DView extends Entity2DView {
 
 	/**
 	 * Get the height.
-	 * 
+	 *
 	 * @return The height (in pixels).
 	 */
 	@Override
@@ -112,7 +121,7 @@ class Corpse2DView extends Entity2DView {
 
 	/**
 	 * Get the width.
-	 * 
+	 *
 	 * @return The width (in pixels).
 	 */
 	@Override
@@ -124,9 +133,9 @@ class Corpse2DView extends Entity2DView {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override
@@ -136,7 +145,7 @@ class Corpse2DView extends Entity2DView {
 
 	/**
 	 * Set the content inspector for this entity.
-	 * 
+	 *
 	 * @param inspector
 	 *            The inspector.
 	 */
@@ -151,7 +160,7 @@ class Corpse2DView extends Entity2DView {
 
 	/**
 	 * An entity was changed.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -172,7 +181,7 @@ class Corpse2DView extends Entity2DView {
 
 	/**
 	 * Determine if this entity can be moved (e.g. via dragging).
-	 * 
+	 *
 	 * @return <code>true</code> if the entity is movable.
 	 */
 	@Override
@@ -190,7 +199,7 @@ class Corpse2DView extends Entity2DView {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */
@@ -201,7 +210,7 @@ class Corpse2DView extends Entity2DView {
 		}
 		switch (at) {
 		case INSPECT:
-			boolean addListener = slotWindow == null; 
+			boolean addListener = slotWindow == null;
 			slotWindow = inspector.inspectMe(entity,
 					((Corpse) entity).getContent(), slotWindow, 2, 2);
 			SlotWindow window = slotWindow;
