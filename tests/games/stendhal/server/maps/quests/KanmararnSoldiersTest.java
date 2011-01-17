@@ -17,10 +17,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.kanmararn.CowardSoldierNPC;
 import games.stendhal.server.maps.semos.kanmararn.SergeantNPC;
 
@@ -38,8 +36,6 @@ import utilities.ZonePlayerAndNPCTestImpl;
  */
 public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 
-	private Player player = null;
-
 	private String questSlot;
 	private static final String ZONE_NAME = "-6_kanmararn_city";
 
@@ -54,8 +50,9 @@ public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Before
-	public void setUp() {
-		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+	public void setUp() throws Exception {
+		super.setUp();
+
 		new CowardSoldierNPC().configureZone(zone, null);
 		new SergeantNPC().configureZone(zone, null);
 
@@ -63,8 +60,6 @@ public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();
-
-		player = PlayerTestHelper.createPlayer("bob");
 	}
 
 	@Test
@@ -191,7 +186,7 @@ public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 		// back to Henry
 		en1.step(player, "hi");
 		assertEquals("Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.", getReply(henry));
-		// bob earns 2500 experience points.
+		// player earns 2500 experience points.
 		assertEquals(2500, player.getXP());
 		// You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.
 		assertTrue(player.isEquipped("map"));
@@ -204,9 +199,9 @@ public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Good day, adventurer!", getReply(james));
 		en2.step(player, "map");
 		assertEquals("The map! Wonderful! Thank you. And here is your reward.", getReply(james));
-		// bob earns 5000 experience points.
+		// player earns 5000 experience points.
 		assertEquals(7500, player.getXP());
-		// You see a pair of steel boots, fit for any soldier. It is a special quest reward for bob, and cannot be used by others. Stats are (DEF: 6).
+		// You see a pair of steel boots, fit for any soldier. It is a special quest reward for player, and cannot be used by others. Stats are (DEF: 6).
 		assertTrue(player.isEquipped("steel boots"));
 		en2.step(player, "bye");
 		assertEquals("Good luck and better watch your back with all those dwarves around!", getReply(james));

@@ -15,10 +15,8 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.tavern.RareWeaponsSellerNPC;
 
 import org.junit.Before;
@@ -35,7 +33,6 @@ import utilities.ZonePlayerAndNPCTestImpl;
  */
 public class McPeglegIOUTest extends ZonePlayerAndNPCTestImpl {
 
-	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
 
@@ -53,16 +50,15 @@ public class McPeglegIOUTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Before
-	public void setUp() {
-		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+	public void setUp() throws Exception {
+		super.setUp();
+
 		new RareWeaponsSellerNPC().configureZone(zone, null);	
 
 		AbstractQuest quest = new McPeglegIOU();
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();
-
-		player = PlayerTestHelper.createPlayer("bob");
 	}
 
 	@Test

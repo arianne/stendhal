@@ -14,21 +14,18 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.abandonedkeep.OrcKillGiantDwarfNPC;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 /**
  * JUnit test for the KillDhohrNuggetcutter quest.
@@ -36,7 +33,6 @@ import static utilities.SpeakerNPCTestHelper.getReply;
  */
 public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 
-	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
 
@@ -54,16 +50,15 @@ public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Before
-	public void setUp() {
-		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+	public void setUp() throws Exception {
+		super.setUp();
+
 		new OrcKillGiantDwarfNPC().configureZone(zone, null);
 
 		AbstractQuest quest = new KillDhohrNuggetcutter();
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();
-
-		player = PlayerTestHelper.createPlayer("bob");
 	}
 
 	@Test

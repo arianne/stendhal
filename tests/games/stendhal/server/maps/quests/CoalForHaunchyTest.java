@@ -16,10 +16,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.market.BBQGrillmasterNPC;
 import games.stendhal.server.maps.semos.mines.MinerNPC;
 
@@ -37,8 +35,6 @@ import utilities.ZonePlayerAndNPCTestImpl;
  */
 public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 
-	private Player player = null;
-
 	private String questSlot;
 	private static final String ZONE_NAME = "0_ados_city_n2";
 
@@ -53,8 +49,9 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Before
-	public void setUp() {
-		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+	public void setUp() throws Exception {
+		super.setUp();
+
 		new BBQGrillmasterNPC().configureZone(zone, null);
 		new MinerNPC().configureZone(zone, null);
 
@@ -62,8 +59,6 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();
-
-		player = PlayerTestHelper.createPlayer("bob");
 	}
 
 	@Test
@@ -129,7 +124,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Hey! Nice day for a BBQ!", getReply(haunchy));
 		haunchyEng.step(player, "task");
 		// We get one or more grilled steaks a reward:
-		// You see a fresh grilled steak. It smells awesome and is really juicy. It is a special quest reward for bob, and cannot be used by others. Stats are (HP: 200).
+		// You see a fresh grilled steak. It smells awesome and is really juicy. It is a special quest reward for player, and cannot be used by others. Stats are (HP: 200).
 		assertTrue(getReply(haunchy).matches("Thank you!! Take .* grilled steaks? from my grill!"));
 		assertTrue(player.isEquipped("grilled steak"));
 		assertEquals("waiting", player.getQuest(questSlot, 0));
