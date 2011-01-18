@@ -10,7 +10,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -23,13 +22,12 @@ import marauroa.server.game.db.DatabaseFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
 /**
  * Test cases for DisplaceAction.
  */
-public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
+public class DisplaceActionTest extends ZoneAndPlayerTestImpl {
 
 	private static final String ZONE_NAME = "0_semos_city";
 
@@ -38,7 +36,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
     }
 
 	/**
-	 * initialize the world.
+	 * Initialise the world.
 	 *
 	 * @throws Exception
 	 */
@@ -49,27 +47,10 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 	}
 
 	/**
-	 * Create player and put it into the world.
-	 * @param name
-	 * @return a Player where the privateTexts are captured
-	 */
-	private Player createTestPlayer(final String name) {
-		final Player player = PlayerTestHelper.createPlayer(name);
-
-		player.setPosition(10, 5);
-		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).assignRPObjectID(player);
-		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(player);
-
-		return player;
-	}
-
-	/**
 	 * Test for displacing non existing items.
 	 */
 	@Test
 	public void testDisplaceNonExistingItem() {
-		final Player player = createTestPlayer("bob");
-
 		final RPAction displace = new RPAction();
 		displace.put("type", "displace");
 		displace.put("baseitem", -1);
@@ -89,7 +70,6 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 	public void testDisplaceNotNearEnough() {
 		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
 
-		final Player player = createTestPlayer("bob");
 		player.setPosition(10, 10);
 		localzone.add(player);
 
@@ -115,7 +95,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 	@Test
 	public void testDisplaceItem() {
 		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
-		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player = createPlayer("bob");
 		localzone.add(player);
 
 		// first put some seeds on the floor
@@ -152,39 +132,12 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 	}
 
 	/**
-	 * Test for dice in gambling zone.
-	 */
-	@Test
-	public void testDisplaceDice() {
-		final StendhalRPZone localzone = new StendhalRPZone("int_semos_tavern_0", 20, 20);
-		final Player player = PlayerTestHelper.createPlayer("bob");
-		localzone.add(player);
-
-		Item item = SingletonRepository.getEntityManager().getItem("dice");
-		localzone.add(item);
-		assertEquals(1, localzone.getItemsOnGround().size());
-
-		final RPAction displace = new RPAction();
-		displace.put("type", "displace");
-		displace.put("baseitem", item.getID().getObjectID());
-		displace.put("x", player.getX());
-		displace.put("y", player.getY() + 1);
-
-		new DisplaceAction().onAction(player, displace);
-		assertEquals(0, player.events().size());
-		Item[] items = localzone.getItemsOnGround().toArray(new Item[0]);
-		assertEquals(1, items.length);
-		assertEquals(0, items[0].getX());
-		assertEquals(1, items[0].getY());
-	}
-
-	/**
 	 * Test for displacing non-item entities.
 	 */
 	@Test
 	public void testDisplaceBlood() {
 		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
-		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player = createPlayer("bob");
 		localzone.add(player);
 
 		Entity entity = new Blood();
@@ -209,7 +162,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 	@Test
 	public void testDisplaceTooFar() {
 		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
-		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player = createPlayer("bob");
 		localzone.add(player);
 
 		// first put some seeds on the floor
@@ -240,7 +193,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 	@Test
 	public void testDisplaceOccupied() throws IOException {
 		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
-		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player = createPlayer("bob");
 		localzone.add(player);
 
 		// first put some seeds on the floor
@@ -278,11 +231,11 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 	public void testDisplaceOtherPlayer() {
 		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
 
-		final Player player = createTestPlayer("bob");
+		final Player player = createPlayer("bob");
 		player.setPosition(1, 1);
 		localzone.add(player);
 
-		final Player player2 = createTestPlayer("alice");
+		final Player player2 = createPlayer("alice");
 		player2.setPosition(0, 0);
 		localzone.add(player2);
 
@@ -308,7 +261,7 @@ public class DisplaceActionTest  extends ZoneAndPlayerTestImpl {
 	@Test
 	public void testDisplaceWrongQuantity() {
 		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
-		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player = createPlayer("bob");
 		localzone.add(player);
 
 		// first put some money on the floor
