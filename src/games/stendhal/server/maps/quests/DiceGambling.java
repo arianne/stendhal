@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -36,12 +36,13 @@ import marauroa.common.Pair;
 public class DiceGambling extends AbstractQuest {
 
 	private static final int STAKE = 100;
+
 	@Override
 	public String getSlotName() {
 		return "dice_gambling";
 	}
+
 	@Override
-	
 	public void addToWorld() {
 
 		final CroupierNPC ricardo = (CroupierNPC) SingletonRepository.getNPCList().get("Ricardo");
@@ -110,8 +111,8 @@ public class DiceGambling extends AbstractQuest {
 				"Dice Gambling",
 				"Try your luck at Semos Tavern's gambling table.",
 				true);
-
 	}
+
 	private Map <Integer, Pair<String, String>> initPrices() {
 		Map<Integer, Pair<String, String>> map = new HashMap<Integer, Pair<String, String>>();
 		map.put(3, new Pair<String, String>("blue shield",
@@ -143,6 +144,7 @@ public class DiceGambling extends AbstractQuest {
 		
 		return map;
 	}
+
 	@Override
 	public String getName() {
 		return "DiceGambling";
