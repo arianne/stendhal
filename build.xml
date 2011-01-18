@@ -248,6 +248,7 @@
 				<attribute name="Class-path" value=". marauroa.jar ${maps_jarname} ${xmlconf_jarname} ${maps_jarname} commons-lang.jar log4j.jar groovy.jar ${mysqldriver_jarname} mysql.jar h2.jar"/>
 			</manifest>
 		</jar>
+		<chmod file="${lib}/${server_jarname}" perm="+x"/>
 
 		<mkdir dir="${build_server_maps}"/>
 
@@ -341,6 +342,8 @@
 			<fileset file="${jorbis_jar}"/>
 		</copy>
 
+		<chmod file="run_clnt/lib/${client_jarname}" perm="+x"/>
+
 		<exec dir="." executable="java">
 			<arg line="-Xmx256m -cp run_clnt -jar run_clnt/${client_jarname}"/>
 		</exec>
@@ -366,6 +369,8 @@
 			<fileset file="libs/log4j.jar"/>
 			<fileset file="libs/${mysqldriver_jarname}"/>
 		</copy>
+
+		<chmod file="run_srvr/${server_jarname}" perm="+x"/>
 
 		<exec dir="." executable="java">
 			<arg line="-Xmx256m -cp run_srvr -jar run_srvr/${server_jarname} -c server.ini -l"/>
@@ -431,6 +436,7 @@
 				<attribute name="Class-path" value="lib/log4j.jar lib/marauroa.jar lib/jorbis.jar lib/${client_data} lib/${client_sound_data} lib/${client_music_data}"/>
 			</manifest>
 		</jar>
+		<chmod file="${lib}/${client_jarname}" perm="+x"/>
 
 		<mkdir dir="${build_client_data}"/>
 
@@ -444,7 +450,7 @@
 		<copy todir="${build_client_data}/data/tileset">
 			<fileset dir="${tiled}/tileset">
 				<exclude name="**/*.xcf" />
-                                <exclude name="**/*.bz2" />
+				<exclude name="**/*.bz2" />
 			</fileset>
 		</copy>
 
@@ -530,6 +536,8 @@
 			<fileset file="${marauroa_jar}"/>
 			<fileset file="${jorbis_jar}"/>
 		</copy>
+		<chmod file="${build_sign}/${client_jarname}" perm="+x" verbose="true"/>
+		<chmod file="${build_sign}/${server_jarname}" perm="+x" verbose="true"/>
 	</target>
 
 	<target name="sign_jars" depends="prepare_sign" unless="exclude.signing">
@@ -584,8 +592,10 @@
 		<copy todir="${buildroot}/stendhal-server-${version}" file="README.txt"/>
 		<mkdir dir="${buildroot}/stendhal-server-${version}/log" />
 		<touch file="${buildroot}/stendhal-server-${version}/log/empty" />
-		<zip destfile="${buildroot}/stendhal-server-${version}.zip"
-			basedir="${buildroot}/stendhal-server-${version}"/>
+		<zip destfile="${buildroot}/stendhal-server-${version}.zip">
+			<zipfileset dir="${buildroot}/stendhal-server-${version}" excludes="${server_jarname}"/>
+			<zipfileset dir="${buildroot}/stendhal-server-${version}" includes="${server_jarname}" filemode="755"/>
+		</zip>
 		<delete dir="${buildroot}/stendhal-server-${version}"/>
 	</target>
 
@@ -614,8 +624,10 @@
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
-		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip"
-			basedir="${buildroot}/stendhal-${version}"/>
+		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip">
+			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="${client_jarname}"/>
+			<zipfileset dir="${buildroot}/stendhal-${version}" includes="${client_jarname}" filemode="755"/>
+		</zip>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
