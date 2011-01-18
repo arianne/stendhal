@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author hendrik
  */
-abstract class AbstractQuest implements IQuest {
+public abstract class AbstractQuest implements IQuest {
 
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
 
