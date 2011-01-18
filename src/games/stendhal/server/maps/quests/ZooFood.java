@@ -96,9 +96,14 @@ public class ZooFood extends AbstractQuest {
 			return res;
 		}
 		res.add("I don't want to see those poor animals die! I'll help get the food!");
-		if (questState.startsWith("start;") && 
-				(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,1)).fire(player, null, null)) {
-			res.add("I have got the food required.");
+		if (questState.startsWith("start;")) {
+			String questItem = player.getRequiredItemName(QUEST_SLOT,1);
+			int amount = player.getRequiredItemQuantity(QUEST_SLOT,1);
+			if (!player.isEquipped(questItem, amount)) {
+				res.add(String.format("I have been asked to fetch " +Grammar.quantityplnoun(amount, questItem, "a") + " for the animals."));
+			} else {
+				res.add(String.format("I have " +Grammar.quantityplnoun(amount, questItem, "a") + " to feed the animals, and need to take it."));
+			}
 		}
 		if (isCompleted(player)) {
 			if(new TimePassedCondition(QUEST_SLOT, 1, DELAY).fire(player, null, null)) {
