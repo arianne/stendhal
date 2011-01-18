@@ -334,13 +334,8 @@ public class DailyItemQuest extends AbstractQuest {
 
 		res.add("I want to help Ados.");
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
-			final String[] tokens = (questState + ";0;0;0").split(";");
-			final String[] elements = tokens[0].split("=");
-			String questItem = elements[0];
-			int amount = 1;
-			if (elements.length > 1) {
-				amount = MathHelper.parseIntDefault(elements[1], 1);
-			}
+			String questItem = player.getRequiredItemName(QUEST_SLOT,0);
+			int amount = player.getRequiredItemQuantity(QUEST_SLOT,0);
 			if (!player.isEquipped(questItem, amount)) {
 				res.add(("I have been asked to fetch "
 						+ Grammar.quantityplnoun(amount, questItem, "a") + " to help Ados. I haven't got it yet."));
@@ -354,12 +349,10 @@ public class DailyItemQuest extends AbstractQuest {
 			res.add("I helped Ados with supplies "
 					+ Grammar.quantityplnoun(repetitions, "time") + " so far.");
 		}
-		if (isCompleted(player)) {
-			if (!isRepeatable(player)) {
-				res.add("I fetched the last item the mayor asked me to find and claimed my reward within the last 24 hours.");
-			} else {
-				res.add("I fetched the last item the mayor asked me to find and now Ados needs supplies again.");
-			}
+		if (isRepeatable(player)) {
+			res.add("I fetched the last item the mayor asked me to find and now Ados needs supplies again.");
+		} else if (isCompleted(player)){
+			res.add("I fetched the last item the mayor asked me to find and claimed my reward within the last 24 hours.");
 		}
 		return res;
 	}

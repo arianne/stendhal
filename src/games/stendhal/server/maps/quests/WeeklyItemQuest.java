@@ -293,30 +293,18 @@ public class WeeklyItemQuest extends AbstractQuest {
 		}
 		res.add("I want to help Kirdneh museum become the greatest in the land.");
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
-			final String[] tokens = (questState + ";0;0;0").split(";");
-			final String[] elements = tokens[0].split("=");
-			String questItem = elements[0];
-			int amount = 1;
-			if(elements.length > 1) {
-				amount=MathHelper.parseIntDefault(elements[1], 1);
-			}
+			String questItem = player.getRequiredItemName(QUEST_SLOT,0);
+			int amount = player.getRequiredItemQuantity(QUEST_SLOT,0);
 			if (!player.isEquipped(questItem, amount)) {
 				res.add(String.format("I have been asked to find " +Grammar.quantityplnoun(amount, questItem, "a") + " for Kirdneh museum."));
 			} else {
 				res.add(String.format("I have " +Grammar.quantityplnoun(amount, questItem, "a") + " for Kirdneh museum and need to take it."));
 			}
 		}
-		if (player.isQuestCompleted(QUEST_SLOT)) {
-			final String[] tokens = (questState + ";0;0;0").split(";");
-			final String questLast = tokens[1];
-			final long timeRemaining = (Long.parseLong(questLast) + MathHelper.MILLISECONDS_IN_ONE_WEEK)
-			- System.currentTimeMillis();
-
-			if (timeRemaining > 0L) {
-				res.add("I took the valuable item to Hazel within the last 7 days.");
-			} else {
-				res.add("I took the valuable item to Hazel and the museum can now afford to send me to find another.");
-			}
+		if (isRepeatable(player)) {
+			res.add("I took the valuable item to Hazel and the museum can now afford to send me to find another.");
+		} else if (isCompleted(player)) {
+			res.add("I took the valuable item to Hazel within the last 7 days.");
 		}
 		// add to history how often player helped Hazel so far
 		final int repetitions = getNumberOfRepetitions(player);
