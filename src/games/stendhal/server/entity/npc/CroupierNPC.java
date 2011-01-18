@@ -96,4 +96,12 @@ public abstract class CroupierNPC extends SpeakerNPC {
 					+ " points. You haven't won anything. Better luck next time!");
 		}
 	}
+
+	/**
+	 * Access the playing area for JUnit tests.
+	 * @return playing area
+	 */
+	public Area getPlayingArea() {
+		return playingArea;
+	}
 }
