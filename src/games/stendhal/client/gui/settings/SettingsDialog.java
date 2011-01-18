@@ -25,6 +25,7 @@ import javax.swing.JTabbedPane;
 /**
  * Dialog for game settings.
  */
+@SuppressWarnings("serial")
 public class SettingsDialog extends JDialog {
 	private JTabbedPane tabs;
 	
