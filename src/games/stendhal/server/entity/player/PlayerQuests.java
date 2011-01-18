@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.GameEvent;
 
 import java.util.LinkedList;
@@ -20,6 +21,8 @@ import java.util.List;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
+import org.apache.log4j.Logger;
+
 /**
  * Accesses the player quest states.
  *
@@ -27,6 +30,9 @@ import marauroa.common.game.RPSlot;
  */
 class PlayerQuests {
 	private final Player player;
+	
+	private static Logger logger = Logger.getLogger(PlayerQuests.class);
+
 	
 	public PlayerQuests(final Player player) {
 		this.player = player;
@@ -224,6 +230,50 @@ class PlayerQuests {
 		}
 
 		return false;
+	}
+	
+	/**
+	 * Gets the recorded item stored in a substate of quest slot 
+	 * 
+	 * @param name
+	 *            The quest's name
+	 * @param index
+	 *            the index of the sub state to get (separated by ";")
+	 * @return the name of the required item (no formatting)
+	 */
+	public String getRequiredItemName(final String name, final int index) {
+		if (!player.hasQuest(name)) {
+			logger.error(player.getName() + " does not have quest " + name);
+			return "";
+		}
+		String questSubString = getQuest(name, index);
+		final String[] elements = questSubString.split("=");
+		String questItem = elements[0];
+		return questItem;		
+	}
+	
+	/**
+	 * Gets the recorded item quantity stored in a substate of quest slot 
+	 * 
+	 * @param name
+	 *            The quest's name
+	 * @param index
+	 *            the index of the sub state to get (separated by ";")
+	 * @return required item quantity
+	 */
+	public int getRequiredItemQuantity(final String name, final int index) {
+		int amount = 1;
+		if (!player.hasQuest(name)) {
+			logger.error(player.getName() + " does not have quest " + name);
+			return amount;
+		}
+		String questSubString = getQuest(name, index);
+		final String[] elements = questSubString.split("=");
+		if(elements.length > 1) {
+			amount=MathHelper.parseIntDefault(elements[1], 1);
+		}
+		return amount;
+		
 	}
 
 }

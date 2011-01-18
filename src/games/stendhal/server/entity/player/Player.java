@@ -2258,5 +2258,31 @@ public class Player extends RPEntity {
 	public void incHarvestedForItem(String name, int quantity) {
 		itemCounter.incHarvestedForItem(name, quantity);
 	}
+
+	/**
+	 * Gets the recorded item stored in a substate of quest slot 
+	 * 
+	 * @param questname
+	 *            The quest's name
+	 * @param index
+	 *            the index of the sub state to get (separated by ";")
+	 * @return the name of the required item (no formatting)
+	 */
+	public String getRequiredItemName(String questname, int index) {
+		return quests.getRequiredItemName(questname, index);
+	}
+
+	/**
+	 * Gets the recorded item quantity stored in a substate of quest slot 
+	 * 
+	 * @param questname
+	 *            The quest's name
+	 * @param index
+	 *            the index of the sub state to get (separated by ";")
+	 * @return required item quantity
+	 */
+	public int getRequiredItemQuantity(String questname, int index) {
+		return quests.getRequiredItemQuantity(questname, index);
+	}
 	
 }
