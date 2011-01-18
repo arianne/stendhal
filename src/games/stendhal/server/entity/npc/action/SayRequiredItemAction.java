@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -79,16 +78,8 @@ public class SayRequiredItemAction implements ChatAction {
 			logger.error(player.getName() + " does not have quest " + questname);
 			return;
 		} else {
-			final String questSubString = player.getQuest(questname, index); 
-			final String[] elements = questSubString.split("=");
-			String itemname = elements[0];
-			int amount = 1;
-			
-			// some older quests may have stored an item name but not the amount
-			// so we use the initial value of 1 if the string can't be split
-			if(elements.length > 1) {
-				amount=MathHelper.parseIntDefault(elements[1], 1);
-			}
+			String itemname = player.getRequiredItemName(questname,index);
+			int amount = player.getRequiredItemQuantity(questname,index);
 
 			Map<String, String> substitutes = new HashMap<String, String>();
 			substitutes.put("item", Grammar.quantityplnoun(amount, itemname, "a"));

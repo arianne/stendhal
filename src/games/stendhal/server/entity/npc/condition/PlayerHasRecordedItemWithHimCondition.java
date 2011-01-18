@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -59,13 +58,8 @@ public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 	}
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-		final String questSubString = player.getQuest(questName, index);
-		final String[] elements = questSubString.split("=");
-		String itemName=elements[0];
-		int amount = 1;
-		if(elements.length > 1) {
-			amount=MathHelper.parseIntDefault(elements[1], 1);
-		} 
+		String itemName=player.getRequiredItemName(questName,index);
+		int amount = player.getRequiredItemQuantity(questName,index);
 		return player.isEquipped(itemName, amount);
 	}
 
