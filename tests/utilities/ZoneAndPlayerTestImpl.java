@@ -63,10 +63,27 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 	 *
 	 * @param zoneName
 	 * @return the new created zone
-	 * 
 	 */
 	protected static StendhalRPZone setupZone(final String zoneName) {
-		final StendhalRPZone zone = new StendhalRPZone(zoneName);
+		return setupZone(zoneName, true);
+    }
+
+	/**
+	 * Creates zone and adds it to RPWorld.
+	 *
+	 * @param zoneName
+	 * @param collisions
+	 * @return the new created zone
+	 */
+	protected static StendhalRPZone setupZone(final String zoneName, boolean collisions) {
+		final StendhalRPZone zone;
+
+		if (collisions) {
+			zone = new StendhalRPZone(zoneName);
+		} else {
+			zone = new StendhalRPZone(zoneName, 1000, 1000); // disable collision detection
+		}
+
 		SingletonRepository.getRPWorld().addRPZone(zone);
 
 		return zone;
