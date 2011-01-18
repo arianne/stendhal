@@ -1215,10 +1215,8 @@ public abstract class RPEntity extends GuidedEntity {
 		final int oldXP = this.getXP();
 
 		// Establish how much xp points your are rewarded
-		if (oldXP > 0) {
-			// give XP to everyone who helped killing this RPEntity
-			rewardKillers(oldXP);
-		}
+		// give XP to everyone who helped killing this RPEntity
+		rewardKillers(oldXP);
 
 		// Add a corpse
 		final Corpse corpse = makeCorpse(killerName);
