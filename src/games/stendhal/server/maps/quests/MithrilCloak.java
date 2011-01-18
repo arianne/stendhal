@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.entity.item.scroll.TwilightMossScroll;
@@ -123,7 +124,7 @@ public class MithrilCloak extends AbstractQuest {
 		}
 		res.add("Ida's sewing machine is broken and she has asked me to find the missing part.");
 		if (questState.startsWith("machine")) {
-			// optionally could fetch item name from quest slot
+			res.add("I need to fetch Ida " + Grammar.a_noun(player.getRequiredItemName(QUEST_SLOT,1)) + ".");
 			return res;
 		}
 		res.add("I brought the part to fix Ida's machine.");
