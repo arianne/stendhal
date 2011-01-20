@@ -46,6 +46,21 @@ public class StoredChest extends Chest {
 		store();
 	}
 
+	/**
+	 * Creates a StoredChest based on an existing RPObject. This is just for
+	 * loading a chest from the database, use the other constructors.
+	 * 
+	 * @param rpobject
+	 */
+	public StoredChest(final RPObject rpobject) {
+		super(rpobject);
+		loadSlotContent();
+		store();
+		if (has("open")) {
+			close();
+		}
+	}
+
 	@Override
 	public void open() {
 		chestListener = new ChestListener();
@@ -64,18 +79,6 @@ public class StoredChest extends Chest {
 		} else {
 			logger.error("Closing chest which is in no zone.");
 		}
-	}
-
-	/**
-	 * Creates a StoredChest based on an existing RPObject. This is just for
-	 * loading a chest from the database, use the other constructors.
-	 * 
-	 * @param rpobject
-	 */
-	public StoredChest(final RPObject rpobject) {
-		super(rpobject);
-		loadSlotContent();
-		store();
 	}
 
 	private void loadSlotContent() {
