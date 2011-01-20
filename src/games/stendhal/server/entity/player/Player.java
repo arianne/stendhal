@@ -251,6 +251,13 @@ public class Player extends RPEntity {
 		tradescore = 0;
 		baseSpeed = 1.0;
 		update();
+		
+		// Ensure that players do not accidentally get stored with zones
+		if (isStorable()) {
+			unstore();
+			logger.error("Player " + getName() + " was marked storable.", new 
+					Throwable());
+		}
 	}
 
 	/**
