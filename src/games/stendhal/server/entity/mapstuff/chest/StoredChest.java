@@ -57,7 +57,7 @@ public class StoredChest extends Chest {
 		loadSlotContent();
 		store();
 		if (has("open")) {
-			close();
+			remove("open");
 		}
 	}
 
