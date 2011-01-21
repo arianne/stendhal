@@ -17,36 +17,41 @@ import games.stendhal.server.entity.player.Player;
 /**
  * An Achievement a player can reach while playing the game.
  * Achievements are given for example for doing a certain number of quests or killing a number of special creatures
- *  
+ *
  * @author madmetzger
  */
 public class Achievement {
-	
+
+	/** base score for easy achievements */
 	public static final int EASY_BASE_SCORE = 10;
-	
+
+	/** base score for achievements of medium difficulty */
 	public static final int MEDIUM_BASE_SCORE = 50;
-	
+
+	/** base score for difficult achievements */
 	public static final int HARD_BASE_SCORE = 1000;
-	
+
 	private final String identifier;
-	
+
 	private final String title;
-	
+
 	private final Category category;
-	
+
 	private final String description;
-	
+
 	private final int baseScore;
-	
+
 	private final ChatCondition condition;
 
-	
+
 	/**
 	 * create a new achievement
-	 * 
+	 *
 	 * @param identifier
 	 * @param title
 	 * @param category
+	 * @param description
+	 * @param baseScore
 	 * @param condition
 	 */
 	public Achievement(String identifier, String title, Category category, String description, int baseScore, ChatCondition condition) {
@@ -85,7 +90,7 @@ public class Achievement {
 	public String getDescription() {
 		return description;
 	}
-	
+
 	/**
 	 * @return the base score for this achievement
 	 */

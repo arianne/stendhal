@@ -42,6 +42,9 @@ import marauroa.server.game.rp.RPServerManager;
 
 import org.apache.log4j.Logger;
 
+/**
+ * fighting and player teleport support
+ */
 public class StendhalRPAction {
 
 	/** the logger instance. */
@@ -50,14 +53,19 @@ public class StendhalRPAction {
 	/** server manager. */
 	private static RPServerManager rpman;
 
-	public static void initialize(final RPServerManager rpman) {
-		StendhalRPAction.rpman = rpman;
+	/**
+	 * initializes the StendhalRPAction
+	 *
+	 * @param rpMan RPServerManager
+	 */
+	public static void initialize(final RPServerManager rpMan) {
+		StendhalRPAction.rpman = rpMan;
 	}
 
-		
+
 	/**
 	 * Do logic for starting an attack on an entity.
-	 * 
+	 *
 	 * @param player
 	 *            The player wanting to attack.
 	 * @param victim
@@ -91,19 +99,19 @@ public class StendhalRPAction {
 				logger.info("REJECTED. " + victim.getName()
 						+ " is in a protection zone");
 
-				final String name = getNiceVictimName(victim);				
+				final String name = getNiceVictimName(victim);
 
 				player.sendPrivateText("The powerful protective aura in this place prevents you from attacking "
 						+ name + ".");
 				return;
 			}
-			
+
 			if (victim instanceof Player) {
 				// disable attacking much weaker players, except in
 				// self defense
 				if ((victim.getAttackTarget() != player) && !victimIsStrongEnough(player, victim)) {
 					player.sendPrivateText("Your conscience would trouble you if you carried out this attack.");
-				
+
 					return;
 				}
 			} else {
@@ -111,7 +119,7 @@ public class StendhalRPAction {
 				final Player owner = ((DomesticAnimal) victim).getOwner();
 				if ((owner != null) && (owner != player)) {
 					player.sendPrivateText("You pity " + getNiceVictimName(victim) + " too much to kill it.");
-					
+
 					return;
 				}
 			}
@@ -127,10 +135,10 @@ public class StendhalRPAction {
 		player.applyClientDirection(false);
 		player.notifyWorldAboutChanges();
 	}
-	
+
 	/**
 	 * Check that the victim has high enough level compared to the attacker.
-	 * 
+	 *
 	 * @param player The player trying to attack
 	 * @param victim The entity being attacked
 	 * @return <code>true</code> if the victim is strong enough to allow
@@ -139,11 +147,11 @@ public class StendhalRPAction {
 	private static boolean victimIsStrongEnough(final Player player, final RPEntity victim) {
 		return victim.getLevel() + 2.0 >= 0.75 * player.getLevel();
 	}
-	
+
 	/**
 	 * Get a nice target description string to be sent to the attacker in case
 	 * the attacking action is forbidden.
-	 * 
+	 *
 	 * @param victim The attacked entity
 	 * @return Description of the attacked pet or player
 	 */
@@ -169,12 +177,12 @@ public class StendhalRPAction {
 
 	/**
 	 * Lets the attacker try to attack the defender.
-	 * @param player 
-	 * 
+	 * @param player
+	 *
 	 * @param defender
 	 *            The defending RPEntity.
 	 * @return true iff the attacker has done damage to the defender.
-	 * 
+	 *
 	 */
 	public static boolean playerAttack(final Player player, final RPEntity defender) {
 		boolean result = false;
@@ -205,7 +213,7 @@ public class StendhalRPAction {
 						defender.getX(), defender.getY())) {
 					return false;
 				}
-				
+
 				missileUsed = true;
 			} else {
 				logger.debug("Attack from " + player + " to " + defender
@@ -250,7 +258,7 @@ public class StendhalRPAction {
 						+ defender.getID() + ": Damage: " + 0);
 			}
 			player.addEvent(new AttackEvent(true, damage, player.getDamageType()));
-		} else { 
+		} else {
 			// Missed
 			logger.debug("attack from " + player.getID() + " to "
 					+ defender.getID() + ": Missed");
@@ -264,15 +272,15 @@ public class StendhalRPAction {
 			 */
 			useMissile(player);
 		}
-		
+
 		player.notifyWorldAboutChanges();
 
 		return result;
 	}
-	
+
 	/**
 	 * Remove an used up missile from an attacking player.
-	 * 
+	 *
 	 * @param player The player to remove the projectile from
 	 */
 	private static void useMissile(Player player) {
@@ -294,7 +302,7 @@ public class StendhalRPAction {
 
 	/**
 	 * send the content of the zone the player is in to the client.
-	 * 
+	 *
 	 * @param player
 	 */
 	public static void transferContent(final Player player) {
@@ -310,7 +318,7 @@ public class StendhalRPAction {
 
 	/**
 	 * Change an entity's zone based on it's global world coordinates.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity changing zones.
 	 * @param x
@@ -352,7 +360,7 @@ public class StendhalRPAction {
 	 * Places an entity at a specified position in a specified zone. If this
 	 * point is occupied the entity is moved slightly. This will remove the
 	 * entity from any existing zone and add it to the target zone if needed.
-	 * 
+	 *
 	 * @param zone
 	 *            zone to place the entity in
 	 * @param entity
@@ -368,9 +376,9 @@ public class StendhalRPAction {
 		return placeat(zone, entity, x, y, null);
 	}
 
-	
+
 	/**
-	 * maximum walking distance from the center, determines the area checked. 
+	 * maximum walking distance from the center, determines the area checked.
 	 * the total area checked is 2n(n+1) + 1
 	 * 36 => 2665 squares
 	 */
@@ -379,7 +387,7 @@ public class StendhalRPAction {
 	 * Places an entity at a specified position in a specified zone. This will
 	 * remove the entity from any existing zone and add it to the target zone if
 	 * needed.
-	 * 
+	 *
 	 * @param zone
 	 *            zone to place the entity in
 	 * @param entity
@@ -397,7 +405,7 @@ public class StendhalRPAction {
 		if (zone == null) {
 			return false;
 		}
-		
+
 		// check in case of players that that they are still in game
 		// because the entity is added to the world again otherwise.
 		if (entity instanceof Player) {
@@ -406,28 +414,28 @@ public class StendhalRPAction {
 				return true;
 			}
 		}
-		
+
 		if (zone.collides(entity, x, y)) {
 			boolean checkPath = true;
 			if (zone.collides(entity, x, y, false) && (entity instanceof Player)) {
-				// Trying to place a player on a spot with a real collision 
-				// (not caused by objects). Can happen with teleport. 
+				// Trying to place a player on a spot with a real collision
+				// (not caused by objects). Can happen with teleport.
 				// Try to put him anywhere possible without checking the path.
 				checkPath = false;
 			}
-			
+
 			final Point newLocation = findLocation(zone, entity, allowedArea, x, y, checkPath);
-			
+
 			if (newLocation == null) {
 				logger.info("Unable to place " + entity.getTitle() + " at "
 						+ zone.getName() + "[" + x + "," + y + "]");
 				return false;
 			}
-			
+
 			x = newLocation.x;
 			y = newLocation.y;
 		}
-		
+
 		final StendhalRPZone oldZone = entity.getZone();
 		final boolean zoneChanged = (oldZone != zone);
 
@@ -545,7 +553,7 @@ public class StendhalRPAction {
 
 		return true;
 	}
-	
+
 	/**
 	 * Finds a new place for entity.
 	 * @param zone zone to place the entity in
@@ -555,10 +563,10 @@ public class StendhalRPAction {
 	 * @param x the x coordinate of the search center
 	 * @param y the y coordinate of the search center
 	 * @param checkPath if true, check that there's a valid path to the center
-	 * 
+	 *
 	 * @return location of the new placement, or null if no suitable place was found
 	 */
-	private static Point findLocation(final StendhalRPZone zone, final Entity entity, 
+	private static Point findLocation(final StendhalRPZone zone, final Entity entity,
 			final Shape allowedArea, final int x, final int y, final boolean checkPath) {
 		/*
 		 * Minimum Euclidean distance within minimum walking distance
@@ -566,7 +574,7 @@ public class StendhalRPAction {
 		for (int totalShift = 1; totalShift <= maxDisplacement; totalShift++) {
 			for (int tilt = (totalShift + 1) / 2; tilt > 0; tilt--) {
 				final int spread = totalShift - tilt;
-				
+
 				int tmpx = x - tilt;
 				int tmpy = y - spread;
 				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
@@ -584,12 +592,12 @@ public class StendhalRPAction {
 				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
 					return new Point(tmpx, tmpy);
 				}
-				
-				// center spots of the equidistance rectangle. 
+
+				// center spots of the equidistance rectangle.
 				if (spread == tilt) {
 					continue;
 				}
-				
+
 				tmpx = x - spread;
 				tmpy = y - tilt;
 				if (isValidPlacement(zone, entity, allowedArea, x, y, tmpx, tmpy, checkPath)) {
@@ -608,7 +616,7 @@ public class StendhalRPAction {
 					return new Point(tmpx, tmpy);
 				}
 			}
-			
+
 			// Do tilt = 0 case here, since it takes only 4 checks
 			int tmpx = x;
 			int tmpy = y - totalShift;
@@ -629,40 +637,40 @@ public class StendhalRPAction {
 				return new Point(tmpx, tmpy);
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Checks if a new placement for an entity is valid.
-	 * 
+	 *
 	 * @param zone the zone where the entity should be placed
 	 * @param entity the entity to place
 	 * @param allowedArea if specified, restrict placement within this area
-	 * @param oldX the x coordinate from where the entity was displaced 
+	 * @param oldX the x coordinate from where the entity was displaced
 	 * @param oldY the y coordinate from where the entity was displaced
 	 * @param newX the x coordinate of the new placement
 	 * @param newY the y coordinate of the new placement
 	 * @param checkPath if true, check that there is a path from <code>(newX, newY)</code>
 	 * to <code>(oldX, oldY)</code>
-	 * 
+	 *
 	 * @return true if placing is possible, false otherwise
 	 */
 	private static boolean isValidPlacement(final StendhalRPZone zone, final Entity entity,
-			final Shape allowedArea, final int oldX, final int oldY, 
+			final Shape allowedArea, final int oldX, final int oldY,
 			final int newX, final int newY, final boolean checkPath) {
 		if (!zone.collides(entity, newX, newY)) {
 			// Check the possibleArea now. This is a
 			// performance
 			// optimization because the pathfinding
-			// is very expensive. 
+			// is very expensive.
 			if ((allowedArea != null) && (!allowedArea.contains(newX, newY))) {
 				return false;
 			}
 			if (!checkPath) {
 				return true;
 			}
-			
+
 			// We verify that there is a walkable path
 			// between the original
 			// spot and the new destination. This is to
@@ -676,24 +684,24 @@ public class StendhalRPAction {
 					400 /* maxDestination * maxDestination */, false);
 			if (!path.isEmpty()) {
 				// We found a place!
-				return true;		
+				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Place a pet near player in such a way that it likely does not block the
 	 * player at normal zone switch. The pet will be placed so that it has a
 	 * path to the player.
-	 * 
+	 *
 	 * @param zone
 	 * @param player
 	 * @param pet
 	 * @return <code>true</code> if the pet could be placed properly, false
 	 * 	otherwise
 	 */
-	private static boolean placePet(final StendhalRPZone zone, final Player player, 
+	private static boolean placePet(final StendhalRPZone zone, final Player player,
 			final Entity pet) {
 		// Shift the pet a bit, so that it does not usually end up exactly in
 		// front of the player.
@@ -708,7 +716,7 @@ public class StendhalRPAction {
 		if (p != null) {
 			return placeat(zone, pet, p.x, p.y);
 		}
-		
+
 		return false;
 	}
 }

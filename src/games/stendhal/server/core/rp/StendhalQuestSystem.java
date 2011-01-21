@@ -125,7 +125,7 @@ public class StendhalQuestSystem {
 
 	private static final StendhalQuestSystem stendhalQuestSystem = new StendhalQuestSystem();
 
-	
+
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalQuestSystem.class);
 
@@ -136,12 +136,16 @@ public class StendhalQuestSystem {
 		// hide constructor, this is a Singleton
 	}
 
-	
+	/**
+	 * gets the singleton instance of the StendhalQuestSystem
+	 *
+	 * @return StendhalQuestSystem
+	 */
 	public static StendhalQuestSystem get() {
 		return stendhalQuestSystem;
 	}
 
-	
+
 	/**
 	 * Initializes the QuestSystem.
 	 */
@@ -245,7 +249,7 @@ public class StendhalQuestSystem {
 		if (System.getProperty("stendhal.minetown") != null) {
 			loadQuest(new SemosMineTownRevivalWeeks());
 		}
-		
+
 		TurnNotifier.get().notifyInTurns(10, new DumpSpeakerNPCtoDB());
 	}
 
@@ -282,7 +286,7 @@ public class StendhalQuestSystem {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param sb - string builder of mother function
 	 * @param quest - show this quest to payer
 	 * @param player - player which quest history need to be shown to himself
@@ -291,18 +295,24 @@ public class StendhalQuestSystem {
 		final QuestInfo questInfo = quest.getQuestInfo(player);
 		sb.append(questInfo.getName() + " : ");
 		sb.append(questInfo.getDescription() + "\r\n");
-		
+
 		final List<String> history = quest.getHistory(player);
 		for (final String entry : history) {
 			sb.append("\t * " + entry + "\r\n");
 		}
-		
+
 		final List<String> hints = quest.getHint(player);
 		for (final String entry : hints) {
 			sb.append("\t - " + entry + "\r\n");
-		}	
+		}
 	}
 
+	/**
+	 * lists all quest the player knows about, including open and completed quests.
+	 *
+	 * @param player Player to create the report for
+	 * @return quest report
+	 */
 	public String listQuests(final Player player) {
 		final StringBuilder sb = new StringBuilder();
 
@@ -335,6 +345,13 @@ public class StendhalQuestSystem {
 		return sb.toString();
 	}
 
+	/**
+	 * creates a report on a specified quest for a specified player
+	 *
+	 * @param player Player
+	 * @param questName name of quest
+	 * @return quest report
+	 */
 	public String listQuest(final Player player, final String questName) {
 		final StringBuilder sb = new StringBuilder();
 		for (final IQuest quest : quests) {
@@ -345,7 +362,12 @@ public class StendhalQuestSystem {
 		return sb.toString();
 	}
 
-	// this is being used for the InspectAction 
+	/**
+	 * dumps the internal quest states for the specified player. This is used for the InspectAction.
+	 *
+	 * @param player Player to create the report for
+	 * @return report
+	 */
 	public String listQuestsStates(final Player player) {
 		final StringBuilder sb = new StringBuilder();
 
@@ -456,6 +478,12 @@ public class StendhalQuestSystem {
 		return null;
 	}
 
+	/**
+	 * unloads a quest and removes the things related to it from the world.
+	 * <p>Note: The quest in question has to support this</p>
+	 *
+	 * @param questName quest to unload
+	 */
 	public void unloadQuest(String questName) {
 		IQuest quest = getQuest(questName);
 		if (quest == null) {
