@@ -14,16 +14,24 @@ package games.stendhal.server.core.rp.achievement;
 
 /**
  * categories of achievements
- * 
+ *
  * @author madmetzger
  */
 public enum Category {
-	EXPERIENCE, 
-	FIGHTING, 
-	QUEST, 
-	META, 
-	ZONE, 
-	AGE, 
+	/** xp points */
+	EXPERIENCE,
+	/** fighting and killing creatures */
+	FIGHTING,
+	/** solving quests */
+	QUEST,
+	/** groups of achievements */
+	META,
+	/** visiting groups of zones */
+	ZONE,
+	/** age of character */
+	AGE,
+	/** looting/getting items */
 	ITEM,
+	/** looting/getting items */
 	OBTAIN;
 }
