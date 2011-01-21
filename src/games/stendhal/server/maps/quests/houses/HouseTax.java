@@ -14,8 +14,9 @@ package games.stendhal.server.maps.quests.houses;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.engine.ChatMessage;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
+import games.stendhal.server.core.engine.db.PostmanDAO;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
@@ -28,9 +29,15 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.List;
 
+import marauroa.server.db.DBTransaction;
+import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.db.command.DBCommandQueue;
+import marauroa.server.game.db.CharacterDAO;
+import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
@@ -127,22 +134,12 @@ class HouseTax implements TurnListener {
 
 		/*
 		 * Decide the time window for notifying the players
-		 * We can not rely on the time to be TAX_CHEKING_PERIOD, since
-		 * there could have been overflows
+		 * We can not rely on the time to be TAX_CHECKING_PERIOD, since
+		 * there could have been overflows. If the server has been restarted,
+		 * all the doors get processed. MaybeStoreMessageCommand will weed out
+		 * the spurious messages.
 		 */
-		final long timeSinceChecked;
-		if (previouslyChecked != 0) {
-			timeSinceChecked = (time - previouslyChecked);
-		} else {
-			/*
-			 * The server has been restarted since the last check, so the exact 
-			 * run time is not known. Use a longer time window for notifications
-			 * than normally.
-			 * That results in duplicated notifications to some players, but
-			 * that's better than not notifying some at all.
-			 */
-			timeSinceChecked = 2 * TAX_CHECKING_PERIOD * 1000;
-		}
+		final long timeSinceChecked = time - previouslyChecked;
 		previouslyChecked = time;
 
 
@@ -196,10 +193,7 @@ class HouseTax implements TurnListener {
 	 * @param message the delivered message
 	 */
 	private void notifyIfNeeded(final String owner, final String message) {
-		logger.info("sending a notice to '" + owner + "': " + message);
-		
-		// there is an npc action to send the message but this is all we want to do here.
-		DBCommandQueue.get().enqueue(new StoreMessageCommand("Mr Taxman", owner, message, "N"));
+		DBCommandQueue.get().enqueue(new MaybeStoreMessageCommand("Mr Taxman", owner, message));
 	}
 	
 	private void setupTaxman() {
@@ -266,5 +260,56 @@ class HouseTax implements TurnListener {
 				   ConversationStates.ATTENDING,
 				   "Very well, but don't delay too long, as the interest on what you owe will increase.",
 				   null);
+	}
+	
+	/**
+	 * Store a postman message if there is not an identical one already.
+	 */
+	private static class MaybeStoreMessageCommand extends AbstractDBCommand {
+		private String source;
+		private String target;
+		private String message;
+		private String accountName;
+		
+		/**
+		 * creates a new MaybeStoreMessageCommand
+		 *
+		 * @param source who left the message
+		 * @param target the player name the message is for
+		 * @param message what the message is
+		 */
+		public MaybeStoreMessageCommand(String source, String target, String message) {
+			this.source = source;
+			this.target = target;
+			this.message = message;
+		}
+		
+		@Override
+		public void execute(DBTransaction transaction) throws SQLException {
+			CharacterDAO characterdao = DAORegister.get().get(CharacterDAO.class);
+			accountName = characterdao.getAccountName(target);
+			// should not really happen with taxman, but check anyway
+			if (accountName != null) {
+				PostmanDAO postmandao = DAORegister.get().get(PostmanDAO.class);
+				List<ChatMessage> oldMessages = postmandao.getChatMessages(target);
+				for (ChatMessage msg : oldMessages) {
+					if (msg.getSource().equals(source) && msg.getMessage().equals(message) && msg.getMessagetype().equals("N")) {
+						/*
+						 * If a player has already an equal undelivered message,
+						 * don't send a new one. It is presumably from a 
+						 * previous check and the new one happened after a
+						 * reboot.
+						 */
+						logger.debug("NOT sending a notice to '" + target + "': " + message);
+						return;
+					}
+				}
+				logger.info("sending a notice to '" + target + "': " + message);
+				postmandao.storeMessage(source, target, message, "N");
+			} else {
+				logger.error("Not sending a Taxman notice to '" + target 
+						+ ", because the account does not exist. Message': " + message);
+			}
+		}
 	}
 }
