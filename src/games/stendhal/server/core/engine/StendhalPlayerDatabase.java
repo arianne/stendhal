@@ -39,7 +39,7 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class StendhalPlayerDatabase {
-	
+
 	private static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
 
 	/**
@@ -128,6 +128,14 @@ public class StendhalPlayerDatabase {
 		if (!transaction.doesColumnExist("postman", "deleted")) {
 			transaction.execute("ALTER TABLE postman ADD COLUMN (deleted CHAR(1) DEFAULT 'N');", null);
 		}
+
+		// 0.92: deleted unwanted achievements
+		transaction.execute("DELETE FROM achievement WHERE identifier in ('age.day.one', "
+			+ "'age.week.one', 'age.month.one', 'age.month.two', 'age.month.three', "
+			+ "'age.month.four', 'age.month.five', 'age.month.six', 'age.month.seven', "
+			+ "'age.month.eight', 'age.month.nine', 'age.month.ten', 'age.month.eleven', "
+			+ "'age.year.one')", null);
+
 	}
 
 
