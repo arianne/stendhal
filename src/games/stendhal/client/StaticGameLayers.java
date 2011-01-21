@@ -21,9 +21,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import marauroa.common.net.InputSerializer;
 
@@ -88,14 +88,10 @@ public class StaticGameLayers {
 	private boolean isValid;
 
 	public StaticGameLayers() {
-		/*
-		 * These can be accesses from the EDT when drawing, or due to user
-		 * interaction.
-		 */
-		collisions = new ConcurrentHashMap<String, CollisionDetection>();
-		protections = new ConcurrentHashMap<String, CollisionDetection>();
-		layers = new ConcurrentHashMap<String, LayerRenderer>();
-		tilesets = new ConcurrentHashMap<String, TileStore>();
+		collisions = new HashMap<String, CollisionDetection>();
+		protections = new HashMap<String, CollisionDetection>();
+		layers = new HashMap<String, LayerRenderer>();
+		tilesets = new HashMap<String, TileStore>();
 
 		height = 0.0;
 		width = 0.0;
