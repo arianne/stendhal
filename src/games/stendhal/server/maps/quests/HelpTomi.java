@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -84,9 +83,9 @@ public class HelpTomi extends AbstractQuest {
 			res.add("Tomi asked for \"ice\" and took the ice sword I was carrying!");
 			// provided quest isn't in 'old version' we should be able to check how many times it was done
 			if (!"done".equals(questState)) {
-				String[] parts = questState.split(";");
-				if (MathHelper.parseIntDefault(parts[1],0)>1) {
-					res.add("I've given " + parts[1] + " ice swords to Tomi so far.");
+				final int repetitions = player.getNumberOfRepetitions(getSlotName(), 1);
+				if (repetitions>1) {
+					res.add("I've given " + repetitions + " ice swords to Tomi so far.");
 				}
 			}
 		}
