@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
@@ -24,6 +25,8 @@ public class BalloonForBobbyTest {
 	private SpeakerNPC npc = null;
 	private Engine en = null;
 
+	private String questSlot = null;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
@@ -37,6 +40,8 @@ public class BalloonForBobbyTest {
 
 		AbstractQuest quest = new BalloonForBobby();
 		quest.addToWorld();
+		
+		questSlot = quest.getSlotName();
 
 		player = PlayerTestHelper.createPlayerWithOutFit("bob");
 	}
@@ -120,6 +125,7 @@ public class BalloonForBobbyTest {
 		en.step(player, "bye");
 		assertEquals("Good bye.", getReply(npc));
 		
+		assertTrue(player.isQuestCompleted(questSlot));
 		
 		// Mine Town weeks are on: it should not matter if player has a balloon or not
 		StendhalQuestSystem.get().loadQuest(new SemosMineTownRevivalWeeks());

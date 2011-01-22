@@ -8,7 +8,9 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ChangePlayerOutfitAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -167,7 +169,9 @@ public class BalloonForBobby extends AbstractQuest {
 		reward.add(new ChangePlayerOutfitAction(balloonList[3], false));
 		reward.add(new IncreaseXPAction(200));
 		reward.add(new IncreaseKarmaAction(50));
-
+		reward.add(new SetQuestAction(QUEST_SLOT,0,"done"));
+		reward.add(new IncrementQuestAction(QUEST_SLOT,1,1));
+		
 		// The player has a balloon and gives it to Bobby
 		npc.add(
 				ConversationStates.QUEST_ITEM_QUESTION,
