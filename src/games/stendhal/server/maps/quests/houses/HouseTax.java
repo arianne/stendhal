@@ -47,56 +47,56 @@ import org.apache.log4j.Logger;
 class HouseTax implements TurnListener {
 	/** The base amount of tax per month. */
 	protected static final int BASE_TAX = 1000;
-	
+
 	private static final Logger logger = Logger.getLogger(HouseTax.class);
-	/** How often the tax should be paid. Time in seconds. */ 
+	/** How often the tax should be paid. Time in seconds. */
 	private static final int TAX_PAYMENT_PERIOD = 30 * MathHelper.SECONDS_IN_ONE_DAY;
 	/** How often the payments should be checked. Time in seconds */
 	private static final int TAX_CHECKING_PERIOD = MathHelper.SECONDS_IN_ONE_DAY;
 	/** How many tax payments can be unpaid. Any more and the house will be confiscated */
 	private static final int MAX_UNPAID_TAXES = 5;
-	
-	
+
+
 	/** Interest rate for unpaid taxes. The taxman does not give free loans. */
 	private static final double INTEREST_RATE = 0.1;
-	
-	
+
+
 	private long previouslyChecked = 0;
 
 	public HouseTax() {
 		setupTaxman();
 		SingletonRepository.getTurnNotifier().notifyInSeconds(TAX_CHECKING_PERIOD, this);
 	}
-	
+
 	/**
 	 * Get the amount of unpaid taxes for a portal.
-	 * 
+	 *
 	 * @param portal the portal to be checked
 	 * @return the amount of taxes to be paid
 	 */
 	protected int getTaxDebt(final HousePortal portal) {
 		return getTaxDebt(getUnpaidTaxPeriods(portal));
 	}
-	
+
 	/**
 	 * Get the amount of money a player owes to the state.
-	 * 
+	 *
 	 * @param periods the number of months the player has to pay at once
 	 * @return the amount of debt
 	 */
 	private int getTaxDebt(final int periods) {
-		int debt = 0; 
-		
+		int debt = 0;
+
 		for (int i = 0; i < periods; i++) {
 			debt += BASE_TAX * Math.pow(1 + INTEREST_RATE, i);
 		}
 		logger.debug(debt + " was the debt for periods " + periods);
 		return debt;
 	}
-	
+
 	/**
 	 * Get the number of tax periods the player has neglected to pay.
-	 * 
+	 *
 	 * @param player the player to be checked
 	 * @return number of periods
 	 */
@@ -109,10 +109,10 @@ class HouseTax implements TurnListener {
 		}
 		return payments;
 	}
-	
+
 	/**
 	 * Get the number of tax periods for a given portal.
-	 * 
+	 *
 	 * @param portal the portal to be checked
 	 * @return number of periods
 	 */
@@ -120,11 +120,11 @@ class HouseTax implements TurnListener {
 		final int timeDiffSeconds = (int) ((System.currentTimeMillis() - portal.getExpireTime()) / 1000);
 		return Math.max(0, timeDiffSeconds / TAX_PAYMENT_PERIOD);
 	}
-	
+
 	private void setTaxesPaid(final Player player, final int periods) {
 		final HousePortal portal = HouseUtilities.getPlayersHouse(player);
-		logger.debug("set portal expire time to " + portal.getExpireTime() + " plus " + ((long) periods * (long) TAX_PAYMENT_PERIOD * (long) 1000));
-		portal.setExpireTime(portal.getExpireTime() +  ((long) periods * (long) TAX_PAYMENT_PERIOD * (long) 1000));
+		logger.debug("set portal expire time to " + portal.getExpireTime() + " plus " + ((long) periods * (long) TAX_PAYMENT_PERIOD * 1000));
+		portal.setExpireTime(portal.getExpireTime() +  ((long) periods * (long) TAX_PAYMENT_PERIOD * 1000));
 	}
 
 	public void onTurnReached(final int turn) {
@@ -146,9 +146,9 @@ class HouseTax implements TurnListener {
 		// Check all houses, and decide if they need any action
 		for (final HousePortal portal : HouseUtilities.getHousePortals()) {
 			final String owner = portal.getOwner();
-			if (owner.length() > 0) {		
+			if (owner.length() > 0) {
 				final int timeDiffSeconds = (int) ((time - portal.getExpireTime()) / 1000);
-				final int payments = (int) timeDiffSeconds / TAX_PAYMENT_PERIOD;
+				final int payments = timeDiffSeconds / TAX_PAYMENT_PERIOD;
 
 				if (payments > MAX_UNPAID_TAXES) {
 					confiscate(portal);
@@ -158,15 +158,15 @@ class HouseTax implements TurnListener {
 					if (payments == MAX_UNPAID_TAXES) {
 						// Give a final warning if appropriate
 						remainder = " This is your final warning, if you do not pay your taxes within a month then "
-							+ "your house will be made available for others to buy, and the locks will be changed. " 
+							+ "your house will be made available for others to buy, and the locks will be changed. "
 							+ "You will be unable to access your house or its chest.";
 
 					} else {
-						remainder = " Pay promptly, as I charge interest on debts owed. And if you fail to pay for " 
-							+ Integer.toString(MAX_UNPAID_TAXES + 1) + " months, your house will be repossessed."; 
+						remainder = " Pay promptly, as I charge interest on debts owed. And if you fail to pay for "
+							+ Integer.toString(MAX_UNPAID_TAXES + 1) + " months, your house will be repossessed.";
 					}
-					notifyIfNeeded(owner, "You owe " +  Integer.toString(getTaxDebt(payments)) + " money in house tax for " 
-							+ Grammar.quantityplnoun(payments, "month", "one") 
+					notifyIfNeeded(owner, "You owe " +  Integer.toString(getTaxDebt(payments)) + " money in house tax for "
+							+ Grammar.quantityplnoun(payments, "month", "one")
 							+ ". You may come to Ados Townhall to pay your debt." + remainder);
 				}
 			}
@@ -175,7 +175,7 @@ class HouseTax implements TurnListener {
 
 	/**
 	 * Confiscate a house, and notify the owner.
-	 * 
+	 *
 	 * @param portal the door of the house to confiscate
 	 */
 	private void confiscate(final HousePortal portal) {
@@ -188,19 +188,19 @@ class HouseTax implements TurnListener {
 
 	/**
 	 * Notifies the owner of a house in the name of Tax Man.
-	 * 
+	 *
 	 * @param owner the player to be notified
 	 * @param message the delivered message
 	 */
 	private void notifyIfNeeded(final String owner, final String message) {
 		DBCommandQueue.get().enqueue(new MaybeStoreMessageCommand("Mr Taxman", owner, message));
 	}
-	
+
 	private void setupTaxman() {
 		final SpeakerNPC taxman = SingletonRepository.getNPCList().get("Mr Taxman");
-		
+
 		taxman.addReply("tax", "All house owners must #pay taxes to the state.");
-		
+
 		taxman.add(ConversationStates.ATTENDING,
 				"pay",
 				new ChatCondition() {
@@ -209,9 +209,9 @@ class HouseTax implements TurnListener {
 					}
 		},
 		ConversationStates.QUESTION_1,
-		"Do you want to pay your taxes now?", 
+		"Do you want to pay your taxes now?",
 		null);
-		
+
 		taxman.add(ConversationStates.ATTENDING,
 				   Arrays.asList("pay", "payment"),
 				   new ChatCondition() {
@@ -221,9 +221,9 @@ class HouseTax implements TurnListener {
 				   },
 				   ConversationStates.ATTENDING,
 				   "According to my records you don't currently owe any tax. House owners will get notified by "
-				   + "myself through the postman as soon as they owe money.", 
+				   + "myself through the postman as soon as they owe money.",
 				   null);
-		
+
 		taxman.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				null,
@@ -248,7 +248,7 @@ class HouseTax implements TurnListener {
 							}
 							npc.say(msg.toString());
 						} else {
-							npc.say("You don't have enough money to pay your taxes. You need at least " 
+							npc.say("You don't have enough money to pay your taxes. You need at least "
 									+ cost + " money. Don't delay or the interest on what you owe will increase.");
 						}
 				}
@@ -261,16 +261,16 @@ class HouseTax implements TurnListener {
 				   "Very well, but don't delay too long, as the interest on what you owe will increase.",
 				   null);
 	}
-	
+
 	/**
 	 * Store a postman message if there is not an identical one already.
 	 */
 	private static class MaybeStoreMessageCommand extends AbstractDBCommand {
-		private String source;
-		private String target;
-		private String message;
+		private final String source;
+		private final String target;
+		private final String message;
 		private String accountName;
-		
+
 		/**
 		 * creates a new MaybeStoreMessageCommand
 		 *
@@ -283,20 +283,20 @@ class HouseTax implements TurnListener {
 			this.target = target;
 			this.message = message;
 		}
-		
+
 		@Override
 		public void execute(DBTransaction transaction) throws SQLException {
 			CharacterDAO characterdao = DAORegister.get().get(CharacterDAO.class);
-			accountName = characterdao.getAccountName(target);
+			accountName = characterdao.getAccountName(transaction, target);
 			// should not really happen with taxman, but check anyway
 			if (accountName != null) {
 				PostmanDAO postmandao = DAORegister.get().get(PostmanDAO.class);
-				List<ChatMessage> oldMessages = postmandao.getChatMessages(target);
+				List<ChatMessage> oldMessages = postmandao.getChatMessages(transaction, target);
 				for (ChatMessage msg : oldMessages) {
 					if (msg.getSource().equals(source) && msg.getMessage().equals(message) && msg.getMessagetype().equals("N")) {
 						/*
 						 * If a player has already an equal undelivered message,
-						 * don't send a new one. It is presumably from a 
+						 * don't send a new one. It is presumably from a
 						 * previous check and the new one happened after a
 						 * reboot.
 						 */
@@ -307,7 +307,7 @@ class HouseTax implements TurnListener {
 				logger.info("sending a notice to '" + target + "': " + message);
 				postmandao.storeMessage(source, target, message, "N");
 			} else {
-				logger.error("Not sending a Taxman notice to '" + target 
+				logger.error("Not sending a Taxman notice to '" + target
 						+ ", because the account does not exist. Message': " + message);
 			}
 		}
