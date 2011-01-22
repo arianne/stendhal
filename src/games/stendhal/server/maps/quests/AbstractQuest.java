@@ -100,12 +100,4 @@ public abstract class AbstractQuest implements IQuest {
 	public boolean isVisibleOnQuestStatus() {
 		return true;
 	}
-
-	public int getNumberOfRepetitions(Player player) {
-		if(isCompleted(player)) {
-			return 1;
-		}
-		return 0;
-	}
-
 }

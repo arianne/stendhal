@@ -74,9 +74,9 @@ public class Maze extends AbstractQuest {
 					res.add("Haizen won't make me a new maze yet.");
 				}
 			}
-
-			if (getNumberOfRepetitions(player) > 1) {
-				res.add("So far I've solved the maze " + getNumberOfRepetitions(player) + " times already!");
+			final int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
+			if (repetitions > 1) {
+				res.add("So far I've solved the maze " + repetitions + " times already!");
 			}
 
 			return res;
@@ -97,12 +97,6 @@ public class Maze extends AbstractQuest {
 		return new TimePassedCondition(getSlotName(), 1, COOLING_TIME).fire(player, null, null);
 	}
 	
-	@Override
-	public int getNumberOfRepetitions(Player player) {
-		String questState = player.getQuest(getSlotName(), 2);
-		return MathHelper.parseIntDefault(questState, 0);
-	}
-
 	private SpeakerNPC getNPC() {
 		return npcs.get("Haizen");
 	}

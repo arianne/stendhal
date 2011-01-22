@@ -311,7 +311,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 		}
 		// add to history how often player helped Semos so far
-		final int repetitions = getNumberOfRepetitions(player);
+		final int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
 		if (repetitions > 0) {
 			res.add("I helped and saved Semos "
 					+ Grammar.quantityplnoun(repetitions, "time") + " so far.");
@@ -520,10 +520,4 @@ public class DailyMonsterQuest extends AbstractQuest {
 						 new TimePassedCondition(QUEST_SLOT,1,delay)).fire(player, null, null);
 	}
 
-	@Override
-	public int getNumberOfRepetitions(Player player) {
-		String questState = player.getQuest(getSlotName(), 2);
-		return MathHelper.parseIntDefault(questState, 0);
-	}
-	
 }

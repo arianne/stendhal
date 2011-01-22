@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
@@ -273,12 +272,6 @@ public class FindJefsMom extends AbstractQuest {
 			}			
         } 
 		return res;
-	}
-	
-	@Override
-	public int getNumberOfRepetitions(Player player) {
-		String questState = player.getQuest(getSlotName(), 2);
-		return MathHelper.parseIntDefault(questState, 0);
 	}
 
 	@Override

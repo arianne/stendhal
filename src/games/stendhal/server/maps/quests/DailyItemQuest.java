@@ -344,7 +344,7 @@ public class DailyItemQuest extends AbstractQuest {
 						+ Grammar.quantityplnoun(amount, questItem, "a") + " to help Ados and need to take it."));
 			}
 		}
-		int repetitions = getNumberOfRepetitions(player);
+		int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
 		if (repetitions > 0) {
 			res.add("I helped Ados with supplies "
 					+ Grammar.quantityplnoun(repetitions, "time") + " so far.");
@@ -355,13 +355,6 @@ public class DailyItemQuest extends AbstractQuest {
 			res.add("I fetched the last item the mayor asked me to find and claimed my reward within the last 24 hours.");
 		}
 		return res;
-	}
-	
-
-	@Override
-	public int getNumberOfRepetitions(Player player) {
-		String questState = player.getQuest(getSlotName(), 2);
-		return MathHelper.parseIntDefault(questState, 0);
 	}
 
 	@Override

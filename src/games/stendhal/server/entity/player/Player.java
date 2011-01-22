@@ -2292,4 +2292,16 @@ public class Player extends RPEntity {
 		return quests.getRequiredItemQuantity(questname, index);
 	}
 	
+	/**
+	 * Gets the number of repetitions in a substate of quest slot 
+	 * 
+	 * @param questname
+	 *            The quest's name
+	 * @param index
+	 *            the index of the sub state to get (separated by ";")
+	 * @return the integer value in the index of the quest slot, used to represent a number of repetitions
+	 */
+	public int getNumberOfRepetitions(final String questname, final int index) {
+		return quests.getNumberOfRepetitions(questname, index);
+	}
 }

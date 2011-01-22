@@ -275,5 +275,22 @@ class PlayerQuests {
 		return amount;
 		
 	}
-
+	
+	/**
+	 * Gets the number of repetitions in a substate of quest slot 
+	 * 
+	 * @param name
+	 *            The quest's name
+	 * @param index
+	 *            the index of the sub state to get (separated by ";")
+	 * @return the integer value in the index of the quest slot, used to represent a number of repetitions
+	 */
+	public int getNumberOfRepetitions(final String name, final int index) {
+		if (!player.hasQuest(name)) {
+			logger.error(player.getName() + " does not have quest " + name);
+			return 0;
+		}
+		String questState = player.getQuest(name, index);
+		return MathHelper.parseIntDefault(questState, 0);
+	}
 }
