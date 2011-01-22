@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
@@ -257,6 +258,10 @@ public class ElfPrincess extends AbstractQuest {
         if (isRepeatable(player)) {
             res.add("I took the flower to the Princess and she gave me gold bars. If I want to make her happy again, I can ask her for another task.");
         } 
+		final int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
+		if (repetitions > 0) {
+			res.add("I've already taken Princess Tywysoga " + Grammar.quantityplnoun(repetitions, "precious flower", "one") + ".");
+		}
 		return res;
 	}
 	
