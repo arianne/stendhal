@@ -64,8 +64,8 @@ public class ChatMessage {
 	/**
 	 * @return string of full ChatMessage details
 	 */
+	@Override
 	public String toString() {
 		return source + " left message: " + message + " on " + timestamp + " with type " + messagetype;
 	}
-	
 }
