@@ -135,8 +135,8 @@ public class StendhalPlayerDatabase {
 			+ "'age.month.four', 'age.month.five', 'age.month.six', 'age.month.seven', "
 			+ "'age.month.eight', 'age.month.nine', 'age.month.ten', 'age.month.eleven', "
 			+ "'age.year.one')", null);
-		transaction.execute("UPDATE achievement SET identifier='xp.level.010' WHERE itentifier='xp.level.10'", null);
-		transaction.execute("UPDATE achievement SET identifier='xp.level.050' WHERE itentifier='xp.level.50'", null);
+		transaction.execute("UPDATE achievement SET identifier='xp.level.010' WHERE identifier='xp.level.10'", null);
+		transaction.execute("UPDATE achievement SET identifier='xp.level.050' WHERE identifier='xp.level.50'", null);
 	}
 
 
