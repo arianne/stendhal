@@ -61,6 +61,7 @@ import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.rp.IRPRuleProcessor;
 import marauroa.server.game.rp.RPServerManager;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
@@ -592,6 +593,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 		});
 
+		logger.log(Level.toLevel(System.getProperty("stendhal.support.loglevel"), Level.DEBUG), message);
 	}
 	
 	/**

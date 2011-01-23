@@ -44,6 +44,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 /**
  * A merchant (original name: Gordon) who rents signs to players.
  *
@@ -119,43 +122,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 					ConversationPhrases.YES_MESSAGES,
 					new PlayerHasItemWithHimCondition("money", MONEY),
 					ConversationStates.IDLE, null,
-					new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-							if (text.length() > 1000) {
-								text = text.substring(0, 1000) + "...";
-							}
-
-							// do not accept all upper case
-							if (StringUtils.countLowerCase(text) < StringUtils.countUpperCase(text) * 2) {
-								text = text.toLowerCase();
-							}
-
-							// put the sign up
-							rentedSignList.removeByName(player.getName());
-							final RentedSign sign = new RentedSign(player, text);
-							final boolean success = rentedSignList.add(sign);
-
-							// confirm, log, tell postman
-							if (success) {
-								player.drop("money", MONEY);
-								npc.say("OK, let me put your sign up.");
-
-								// inform IRC using postman
-								final Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
-								if (postman != null) {
-									postman.sendPrivateText(player.getName() + " rented a sign saying \"" + text + "\"");
-								}
-								new GameEvent(player.getName(), "sign", "rent", text).raise();
-							} else {
-								npc.say("Sorry, there are too many signs at the moment. I do not have a free spot left.");
-							}
-						}
-
-						@Override
-						public String toString() {
-							return "put up sign";
-						}
-				});
+					new RentSignChatAction());
 
 				add(ConversationStates.BUY_PRICE_OFFERED, 
 					ConversationPhrases.NO_MESSAGES, null,
@@ -220,4 +187,46 @@ public class SignLessorNPC implements ZoneConfigurator {
 		npc.setDescription("You see Gordon. He keeps an eye on the signs close to him.");
 	}
 
+	class RentSignChatAction implements ChatAction {
+
+		private final Logger logger = Logger.getLogger(RentSignChatAction.class);
+
+		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+			if (text.length() > 1000) {
+				text = text.substring(0, 1000) + "...";
+			}
+
+			// do not accept all upper case
+			if (StringUtils.countLowerCase(text) < StringUtils.countUpperCase(text) * 2) {
+				text = text.toLowerCase();
+			}
+
+			// put the sign up
+			rentedSignList.removeByName(player.getName());
+			final RentedSign sign = new RentedSign(player, text);
+			final boolean success = rentedSignList.add(sign);
+
+			// confirm, log, tell postman
+			if (success) {
+				player.drop("money", MONEY);
+				npc.say("OK, let me put your sign up.");
+
+				// inform IRC using postman
+				final Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
+				String message = player.getName() + " rented a sign saying \"" + text + "\"";
+				if (postman != null) {
+					postman.sendPrivateText(message);
+				}
+				logger.log(Level.toLevel(System.getProperty("stendhal.support.loglevel"), Level.DEBUG), message);
+				new GameEvent(player.getName(), "sign", "rent", text).raise();
+			} else {
+				npc.say("Sorry, there are too many signs at the moment. I do not have a free spot left.");
+			}
+		}
+
+		@Override
+		public String toString() {
+			return "put up sign";
+		}
+	}
 }
