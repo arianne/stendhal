@@ -3020,7 +3020,7 @@ Southeast: Docks
    </portal>
    </zone>
 
-   <zone name="0_ados_ocean_e" level="0" x="501024" y="500000" file="Level 0/ados/ocean_e.tmx">
+   <zone name="0_ados_ocean_e" level="0" x="501024" y="500000" accessible="false" file="Level 0/ados/ocean_e.tmx">
 <!-- temporarily no teleport in since it is not accessible to players most of the time and if we run a raid there, players shouldn't mark scrolls -->
      <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
    </zone>
