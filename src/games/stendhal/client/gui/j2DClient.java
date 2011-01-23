@@ -36,6 +36,7 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.stats.StatsPanelController;
+import games.stendhal.client.gui.styled.StyledTabbedPaneUI;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
 import games.stendhal.client.sound.SoundGroup;
@@ -73,6 +74,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
+import javax.swing.plaf.TabbedPaneUI;
 
 import marauroa.client.net.IPerceptionListener;
 import marauroa.common.game.RPObject;
@@ -421,6 +423,12 @@ public class j2DClient implements UserInterface {
 		JPanel tabBackground = new JPanel();
 		tabBackground.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		JTabbedPane tabs = new JTabbedPane();
+		// Adjust the Tab Width, if we can. The default is pretty if there's
+		// space, but in the column there are no pixels to waste.
+		TabbedPaneUI ui = tabs.getUI();
+		if (ui instanceof StyledTabbedPaneUI) {
+			((StyledTabbedPaneUI) ui).setTabLabelMargins(1);
+		}
 		tabs.setFocusable(false);
 		tabs.add("Friends", buddyPane);
 		
