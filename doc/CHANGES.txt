@@ -4,17 +4,23 @@ Changelog
 
 0.92
 
+*features*
+- show Production activity in the Travel Log
+- settings dialog
+
 *world*
 - sheep growing quest from Nishiya
 - Help Jef by finding his mom in a new quest
 - Amber, Jefs mom, showed up somewhere in Faiumoni
 - Caroline moved into her refurbished house in Ados 
 - NPC conversation with improved and unified responses of producers and merchandisers
-- settings dialog
 - better multi-monitor behaviour
+- the required item to collect (if chosen from a list) is displayed in more quest histories
 
 *fixes*
 - numerous small gui code fixes
+- all defined achievements can now be reached
+- simplfied chest syncing to remove flicker
 
 0.91 
 
