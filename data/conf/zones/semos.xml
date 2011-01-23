@@ -799,7 +799,7 @@
 	</configurator>
     </zone>
      <!-- Plains of the wizards -->
-    <zone name="malleus_plain" file="interiors/abstract/malleus_plain.tmx">
+    <zone name="malleus_plain" file="interiors/abstract/malleus_plain.tmx" accessible="false">
 <!--        <portal x="7" y="28" ref="portal_to_malleus">
                 <destination zone="int_semos_wizards_tower_8" ref="portal_to_malleus_plain" />
             </portal> -->
@@ -823,7 +823,7 @@
 	</configurator>
     </zone>
 
-    <zone name="bone_pillar" file="interiors/abstract/malleus_plain_bone_pillar.tmx">
+    <zone name="bone_pillar" file="interiors/abstract/malleus_plain_bone_pillar.tmx" accessible="false">
         <configurator class-name="games.stendhal.server.maps.semos.wizardstower.RedDemonLordNPC" />
         <portal x="14" y="30" ref="exit_bone_pillar_1">
                 <destination zone="malleus_plain" ref="entrance_bone_pillar" />
