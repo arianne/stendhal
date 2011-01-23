@@ -196,12 +196,6 @@ public class j2DClient implements UserInterface {
 		this.client = client;
 		this.userContext = userContext;
 		setDefault(this);
-		
-		minimap = new MapPanelController(client);
-		final StatsPanelController stats = StatsPanelController.get();
-		final BuddyPanelController buddies = new BuddyPanelController();
-		final JComponent buddyPane = new ScrolledViewport((JComponent) buddies.getComponent()).getComponent();
-		buddyPane.setBorder(null);
 				
 		Dimension screenSize = stendhal.getScreenSize();
 
@@ -299,17 +293,7 @@ public class j2DClient implements UserInterface {
 		
 		// *** Create the layout ***
 		// left side panel
-		final JComponent leftColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
-		leftColumn.add(minimap.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
-		leftColumn.add(stats.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
-		// Add a background for the tabs. The column itself has none.
-		JPanel tabBackground = new JPanel();
-		tabBackground.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
-		JTabbedPane tabs = new JTabbedPane();
-		tabs.setFocusable(false);
-		tabs.add("Friends", buddyPane);
-		tabBackground.add(tabs, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
-		leftColumn.add(tabBackground, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
+		JComponent leftColumn = createLeftPanel();
 		
 		// Chat entry and chat log
 		final JComponent chatBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
@@ -442,6 +426,34 @@ public class j2DClient implements UserInterface {
 		checkAndComplainAboutJavaImplementation();
 		WorldObjects.addWorldListener(getSoundSystemFacade());
 	} // constructor
+	
+	/**
+	 * Create the left side panel of the client.
+	 * 
+	 * @return A component containing the components left of the game screen
+	 */
+	private JComponent createLeftPanel() {
+		minimap = new MapPanelController(client);
+		final StatsPanelController stats = StatsPanelController.get();
+		final BuddyPanelController buddies = new BuddyPanelController();
+		final JComponent buddyPane = new ScrolledViewport((JComponent) buddies.getComponent()).getComponent();
+		buddyPane.setBorder(null);
+		
+		final JComponent leftColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
+		leftColumn.add(minimap.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
+		leftColumn.add(stats.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
+		
+		// Add a background for the tabs. The column itself has none.
+		JPanel tabBackground = new JPanel();
+		tabBackground.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+		JTabbedPane tabs = new JTabbedPane();
+		tabs.setFocusable(false);
+		tabs.add("Friends", buddyPane);
+		tabBackground.add(tabs, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
+		leftColumn.add(tabBackground, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
+		
+		return leftColumn;
+	}
 	
 	/**
 	 * Modify the states of the on screen windows. The window manager normally
