@@ -76,8 +76,10 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 		questAchievements.add(createAchievement("quest.special.susi", "Susi's friend", "Befriend Susi",
 												Achievement.EASY_BASE_SCORE, new QuestStartedCondition("susi")));
 		// Ados Deathmatch
-		questAchievements.add(createAchievement("quest.special.dm.025", "Gladiator", "Fight 25 Deathmatches",
-				Achievement.HARD_BASE_SCORE, new QuestStateGreaterThanCondition("deathmatch", 1, 24)));
+		// disabled. Currently the wrong index is being checked (it would be index 6) 
+		// and as per bug report https://sourceforge.net/tracker/?func=detail&aid=3148365&group_id=1111&atid=101111 the count is not saved anyway
+		// questAchievements.add(createAchievement("quest.special.dm.025", "Gladiator", "Fight 25 Deathmatches",
+		//		Achievement.HARD_BASE_SCORE, new QuestStateGreaterThanCondition("deathmatch", 1, 24)));
 		return questAchievements;
 	}
 
