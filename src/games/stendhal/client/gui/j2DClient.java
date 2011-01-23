@@ -313,34 +313,7 @@ public class j2DClient implements UserInterface {
 		//splitPane.setContinuousLayout(true);
 		pane.addComponentListener(new SplitPaneResizeListener(screen, splitPane));
 		
-		/*
-		 * Container panel
-		 */
-		containerPanel = new ContainerPanel();
-		containerPanel.setMinimumSize(new Dimension(0, 0));
-		
-		/*
-		 * Contents of the containerPanel
-		 */
-		// The setting bar to the top
-		settings = new SettingsPanel();		
-		settings.add("accountcontrol");
-		settings.add("settings");
-		settings.add("rp");
-		settings.add("help");
-		containerPanel.add(settings, SBoxLayout.constraint(SLayout.EXPAND_X));
-		
-		// Character window
-		character = new Character();
-		character.setAlignmentX(Component.LEFT_ALIGNMENT);
-		containerPanel.addRepaintable(character);
-		
-		createAndAddBag();
-		
-		keyring = new KeyRing();
-		keyring.setAlignmentX(Component.LEFT_ALIGNMENT);
-		containerPanel.addRepaintable(keyring);
-		client.addFeatureChangeListener(keyring);
+		containerPanel = createContainerPanel();
 		
 		// Avoid panel drawing overhead
 		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
@@ -456,6 +429,45 @@ public class j2DClient implements UserInterface {
 	}
 	
 	/**
+	 * Create the container panel (right side panel), and its child components.
+	 * 
+	 * @return container panel
+	 */
+	private ContainerPanel createContainerPanel() {
+		ContainerPanel containerPanel = new ContainerPanel();
+		containerPanel.setMinimumSize(new Dimension(0, 0));
+		
+		/*
+		 * Contents of the containerPanel
+		 */
+		// The setting bar to the top
+		settings = new SettingsPanel();
+		settings.add("accountcontrol");
+		settings.add("settings");
+		settings.add("rp");
+		settings.add("help");
+		containerPanel.add(settings, SBoxLayout.constraint(SLayout.EXPAND_X));
+		
+		// Character window
+		character = new Character();
+		character.setAlignmentX(Component.LEFT_ALIGNMENT);
+		containerPanel.addRepaintable(character);
+		
+		// Create the bag window
+		inventory = new SlotWindow("bag", 3, 4);
+		inventory.setCloseable(false);
+		inventory.setInspector(containerPanel);
+		containerPanel.addRepaintable(inventory);
+		
+		keyring = new KeyRing();
+		keyring.setAlignmentX(Component.LEFT_ALIGNMENT);
+		containerPanel.addRepaintable(keyring);
+		client.addFeatureChangeListener(keyring);
+		
+		return containerPanel;
+	}
+	
+	/**
 	 * Modify the states of the on screen windows. The window manager normally
 	 * restores the state of the window as it was on the previous session. For
 	 * some windows this is not desirable.
@@ -488,13 +500,6 @@ public class j2DClient implements UserInterface {
 				+ " If you have coding experience with your JDK, we are looking for help.";
 			addEventLine(new HeaderLessEventLine(text, NotificationType.ERROR));
 		}
-	}
-
-	private void createAndAddBag() {
-		inventory = new SlotWindow("bag", 3, 4);
-		inventory.setCloseable(false);
-		inventory.setInspector(containerPanel);
-		containerPanel.addRepaintable(inventory);
 	}
 
 	private void cleanup() {
