@@ -30,6 +30,7 @@ import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
+import games.stendhal.client.gui.group.GroupPanelController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
@@ -422,6 +423,9 @@ public class j2DClient implements UserInterface {
 		JTabbedPane tabs = new JTabbedPane();
 		tabs.setFocusable(false);
 		tabs.add("Friends", buddyPane);
+		
+		tabs.add("Group", GroupPanelController.get().getComponent());
+		
 		tabBackground.add(tabs, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		leftColumn.add(tabBackground, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		

@@ -16,6 +16,7 @@ import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.group.GroupPanelController;
 import games.stendhal.common.NotificationType;
 
 /**
@@ -39,13 +40,16 @@ public class GroupChangeEvent extends Event<RPEntity> {
 				+ "; lootmode: " + event.get("lootmode");
 			ClientSingletonRepository.getUserInterface().addEventLine(
 				new HeaderLessEventLine(message, NotificationType.CLIENT));
-
+			
+			GroupPanelController.get().update(event.getList("members"), event.get("leader"), event.get("lootmode"));
 		} else {
 
 			User.updateGroupStatus(null, null);
 			String message = "You are not a member of a group anymore.";
 			ClientSingletonRepository.getUserInterface().addEventLine(
 				new HeaderLessEventLine(message, NotificationType.CLIENT));
+			
+			GroupPanelController.get().update(null, null, null);
 		}
 	}
 
