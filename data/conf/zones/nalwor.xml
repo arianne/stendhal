@@ -26,7 +26,7 @@
 
 	<!--  Level 0 (Ground) -->
 
-	<zone name="0_nalwor_forest_nw" level="0" x="500128" y="500128"
+	<zone name="0_nalwor_forest_nw" level="0" x="500128" y="500128" accessible="false"
 		file="Level 0/nalwor/forest_nw.tmx">
 	</zone>
 
