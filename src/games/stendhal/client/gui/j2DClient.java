@@ -68,8 +68,9 @@ import java.util.Locale;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
-import javax.swing.JScrollPane;
+import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 
 import marauroa.client.net.IPerceptionListener;
@@ -199,13 +200,8 @@ public class j2DClient implements UserInterface {
 		minimap = new MapPanelController(client);
 		final StatsPanelController stats = StatsPanelController.get();
 		final BuddyPanelController buddies = new BuddyPanelController();
-		final JScrollPane buddyPane = new JScrollPane();
-		/*
-		 * A border looks inconsistent with the stats panel when the scroll bar
-		 * is not visible.
-		 */
+		final JComponent buddyPane = new ScrolledViewport((JComponent) buddies.getComponent()).getComponent();
 		buddyPane.setBorder(null);
-		buddyPane.setViewportView(buddies.getComponent());
 				
 		Dimension screenSize = stendhal.getScreenSize();
 
@@ -302,10 +298,18 @@ public class j2DClient implements UserInterface {
 		glassPane.setVisible(true);
 		
 		// *** Create the layout ***
+		// left side panel
 		final JComponent leftColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		leftColumn.add(minimap.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
 		leftColumn.add(stats.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
-		leftColumn.add(buddyPane, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
+		// Add a background for the tabs. The column itself has none.
+		JPanel tabBackground = new JPanel();
+		tabBackground.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+		JTabbedPane tabs = new JTabbedPane();
+		tabs.setFocusable(false);
+		tabs.add("Friends", buddyPane);
+		tabBackground.add(tabs, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
+		leftColumn.add(tabBackground, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		
 		// Chat entry and chat log
 		final JComponent chatBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
