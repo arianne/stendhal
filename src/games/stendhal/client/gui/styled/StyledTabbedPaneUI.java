@@ -99,6 +99,7 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 	 * @param margin margin width in pixels
 	 */
 	public void setTabLabelMargins(int margin) {
+		tabInsets = (Insets) tabInsets.clone();
 		tabInsets.left = margin;
 		tabInsets.right = margin;
 	}
