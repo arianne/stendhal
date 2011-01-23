@@ -32,7 +32,7 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 	}
 	
 	/**
-	 * Create a new StyledMenuItemUI.
+	 * Create a new StyledTabbedPaneUI.
 	 * 
 	 * @param style pixmap style
 	 */
@@ -91,6 +91,16 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 	protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex,
 			int x, int y, int width, int height, boolean isSelected) {
 		style.getBorder().paintBorder(tabPane, g, x, y, width, height);
+	}
+	
+	/**
+	 * Set the empty space at the sides of the tab label.
+	 * 
+	 * @param margin margin width in pixels
+	 */
+	public void setTabLabelMargins(int margin) {
+		tabInsets.left = margin;
+		tabInsets.right = margin;
 	}
 	
 	@Override
