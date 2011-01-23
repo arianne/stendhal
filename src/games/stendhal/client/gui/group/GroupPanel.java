@@ -11,21 +11,26 @@
  ***************************************************************************/
 package games.stendhal.client.gui.group;
 
+import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.gui.layout.SBoxLayout;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
 class GroupPanel {
-	final JComponent pane;
-	final JLabel header;
-	final MemberListModel memberList;
+	private final JComponent pane;
+	private final JLabel header;
+	private final MemberListModel memberList;
+	private final JButton leaveGroupButton;
 	
 	GroupPanel() {
 		pane = SBoxLayout.createContainer(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING);
@@ -44,6 +49,14 @@ class GroupPanel {
 		 */
 		list.setAlignmentX(0.1f);
 		pane.add(list);
+		
+		SBoxLayout.addSpring(pane);
+		leaveGroupButton = new JButton("Leave");
+		leaveGroupButton.setEnabled(false);
+		leaveGroupButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		leaveGroupButton.addActionListener(new LeaveGroupButtonListener());
+		leaveGroupButton.setFocusable(false);
+		pane.add(leaveGroupButton);
 	}
 	
 	/**
@@ -72,6 +85,7 @@ class GroupPanel {
 	 */
 	void setMembers(List<String> members) {
 		memberList.setMembers(members);
+		leaveGroupButton.setEnabled(members != null);
 	}
 	
 	/**
@@ -115,6 +129,16 @@ class GroupPanel {
 			}
 			
 			return label;
+		}
+	}
+	
+	/**
+	 * Listener for clicking the leave group button.
+	 */
+	private static class LeaveGroupButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			String[] args = { "part" };
+			SlashActionRepository.get("group").execute(args, "");
 		}
 	}
 }
