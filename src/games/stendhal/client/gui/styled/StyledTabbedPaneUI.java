@@ -16,6 +16,7 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 
 import javax.swing.JComponent;
+import javax.swing.JTabbedPane;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
@@ -49,9 +50,15 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 		
 		int x = insets.left;
 		int y = insets.top;
-		// Adjust for tabs. Only top position is supported for now.
-		int tabHeight = calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight); 
-		y += tabHeight;
+		// Adjust for tabs. Only top and bottom positions are supported for now.
+		int tabHeight = calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
+		switch (tabPlacement) {
+		case JTabbedPane.TOP:
+			y += tabHeight;
+			break;
+		default:
+			// keep at top
+		} 
 		height -= tabHeight;
 		
 		// Drawing the background is this method's responsibility, even though
