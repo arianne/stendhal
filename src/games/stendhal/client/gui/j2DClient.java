@@ -421,8 +421,9 @@ public class j2DClient implements UserInterface {
 		
 		// Add a background for the tabs. The column itself has none.
 		JPanel tabBackground = new JPanel();
+		tabBackground.setBorder(null);
 		tabBackground.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
-		JTabbedPane tabs = new JTabbedPane();
+		JTabbedPane tabs = new JTabbedPane(JTabbedPane.BOTTOM);
 		// Adjust the Tab Width, if we can. The default is pretty if there's
 		// space, but in the column there are no pixels to waste.
 		TabbedPaneUI ui = tabs.getUI();
