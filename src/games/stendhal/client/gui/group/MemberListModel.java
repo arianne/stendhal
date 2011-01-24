@@ -44,7 +44,7 @@ public class MemberListModel extends AbstractListModel {
 	 * 
 	 * @param name name of the leader 
 	 */
-	public void setLeader(String name) {
+	void setLeader(String name) {
 		Member leader = memberMap.get(name);
 		int index1 = memberList.indexOf(leader);
 		boolean changed = leader.setLeader(true);
@@ -68,7 +68,7 @@ public class MemberListModel extends AbstractListModel {
 	 * 
 	 * @param members
 	 */
-	public void setMembers(List<String> members) {
+	void setMembers(List<String> members) {
 		// Very dumb way to update the list. Adding and removing individual
 		// members as they change would be cleaner
 		
@@ -94,5 +94,16 @@ public class MemberListModel extends AbstractListModel {
 			}
 		}
 		this.fireIntervalAdded(this, 0, members.size() - 1);
+	}
+	
+	/**
+	 * Get data of a specified group member.
+	 *  
+	 * @param name member name
+	 * @return member data, or <code>null</code> if there's no such player in
+	 * 	the group
+	 */
+	Member getMember(String name) {
+		return memberMap.get(name);
 	}
 }
