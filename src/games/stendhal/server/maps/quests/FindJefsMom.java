@@ -104,14 +104,13 @@ public class FindJefsMom extends AbstractQuest {
 			null);
 
 		// player asks about quest which he has done already and he is allowed to repeat it
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES), new QuestStateStartsWithCondition(QUEST_SLOT, "waiting;")),
-				ConversationStates.QUEST_OFFERED,
+				npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "flower_brought_to_jef"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
+				ConversationStates.QUEST_OFFERED, 
 				"It is a long time ago were you told me that my mom is fine. May you watch out for her again please?",
-				null);
-
-		
+				null);	
+			
 		// player asks about quest but time didn't pass yet
 		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.QUEST_MESSAGES,
@@ -154,7 +153,7 @@ public class FindJefsMom extends AbstractQuest {
 		
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("flower", "zantedeschia", "fine", "amber", "done"),
-				new AndCondition (new QuestInStateCondition(QUEST_SLOT, "found_mom")),
+				new NotCondition (new QuestInStateCondition(QUEST_SLOT, "found_mom")),
 				ConversationStates.ATTENDING,
 				"Please don't lie to me. You promised me to find my mom and now you can't even prove that you found her earlier. I don't believe in you, sorry.",
 				null);
