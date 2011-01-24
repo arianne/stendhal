@@ -23,24 +23,38 @@ import javax.swing.JPopupMenu;
  * Popup menu for the member entries in the group listing.
  */
 class MemberPopupMenu extends JPopupMenu {
+	private static final long serialVersionUID = -4373851861705571044L;
+	
+	private final String member;
+
 	MemberPopupMenu(String member) {
-		JMenuItem kick = new JMenuItem("Kick");
-		this.add(kick);
-		kick.addActionListener(new KickAction(member));
+		this.member = member;
+		
+		JMenuItem item = new JMenuItem("Kick");
+		this.add(item);
+		item.addActionListener(new KickAction());
+		
+		item = new JMenuItem("Make Leader");
+		this.add(item);
+		item.addActionListener(new TransferLeadershipAction());
 	}
 	
 	/**
 	 * Listener for activating the kick menu item.
 	 */
-	private static class KickAction implements ActionListener {
-		private final String member;
-		
-		KickAction(String member) {
-			this.member = member;
-		}
-		
-		public void actionPerformed(ActionEvent arg0) {
+	private class KickAction implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
 			String[] args = { "kick" };
+			SlashActionRepository.get("group").execute(args, member);
+		}
+	}
+	
+	/**
+	 * Listener for activating the "Make Leader" menu item.
+	 */
+	private class TransferLeadershipAction implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			String[] args = { "leader" };
 			SlashActionRepository.get("group").execute(args, member);
 		}
 	}
