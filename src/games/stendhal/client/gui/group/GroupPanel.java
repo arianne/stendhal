@@ -14,7 +14,9 @@ package games.stendhal.client.gui.group;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.common.NotificationType;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -42,6 +44,10 @@ class GroupPanel {
 	 * the clicking point.
 	 */
 	private static final int POPUP_OFFSET = 5;
+	/** Tooltip for inviting members for a new group */
+	private static final String START_GROUP_TOOLTIP = "Start a new group";
+	/** Tooptip for inviting members to an existing group */
+	private static final String INVITE_TOOLTIP = "Invite a new member";
 	
 	/** The main containing component. */
 	private final JComponent pane;
@@ -58,6 +64,8 @@ class GroupPanel {
 	private final JButton leaveGroupButton;
 	/** Button for sending a group message. */
 	private final JButton messageButton;
+	/** Button for inviting new members or starting a group */
+	private final JButton inviteButton;
 	
 	/**
 	 * Create a new GroupPanel.
@@ -96,11 +104,17 @@ class GroupPanel {
 		});
 		messageButton.setFocusable(false);
 		messageButton.setToolTipText("Send a message to all group members");
-		buttonBox.add(messageButton);;
+		buttonBox.add(messageButton);
+		
+		inviteButton = new JButton("Invite");
+		inviteButton.setFocusable(false);
+		inviteButton.setToolTipText(START_GROUP_TOOLTIP);
+		inviteButton.addActionListener(new InviteActionListener());
+		buttonBox.add(inviteButton);
 		
 		leaveGroupButton = new JButton("Leave");
 		leaveGroupButton.setEnabled(false);
-		leaveGroupButton.addActionListener(new LeaveGroupButtonListener());
+		leaveGroupButton.addActionListener(new LeaveActionListener());
 		leaveGroupButton.setFocusable(false);
 		leaveGroupButton.setToolTipText("Resign from the group");
 		buttonBox.add(leaveGroupButton);
@@ -109,6 +123,7 @@ class GroupPanel {
 		Insets oldMargin = messageButton.getMargin();
 		Insets margin = new Insets(oldMargin.top, 1, oldMargin.bottom, 1); 
 		messageButton.setMargin(margin);
+		inviteButton.setMargin(margin);
 		leaveGroupButton.setMargin(margin);
 	}
 	
@@ -140,6 +155,12 @@ class GroupPanel {
 		memberList.setMembers(members);
 		leaveGroupButton.setEnabled(members != null);
 		messageButton.setEnabled(members != null);
+		// Disable for now if the user is in a group, and enable it again
+		// if she is the group leader
+		inviteButton.setEnabled(members == null);
+		if (members == null) {
+			inviteButton.setToolTipText(START_GROUP_TOOLTIP);
+		}
 	}
 	
 	/**
@@ -149,6 +170,11 @@ class GroupPanel {
 	 */
 	void setLeader(String name) {
 		memberList.setLeader(name);
+		
+		if (name.equals(User.getCharacterName())) {
+			inviteButton.setEnabled(true);
+			inviteButton.setToolTipText(INVITE_TOOLTIP);
+		}
 	}
 	
 	/**
@@ -189,10 +215,20 @@ class GroupPanel {
 	/**
 	 * Listener for clicking the leave group button.
 	 */
-	private static class LeaveGroupButtonListener implements ActionListener {
+	private static class LeaveActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			String[] args = { "part" };
 			SlashActionRepository.get("group").execute(args, "");
+		}
+	}
+	
+	/**
+	 * Listener for clicking the invite button
+	 */
+	private static class InviteActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			j2DClient.get().setChatLine("/group invite ");
+			j2DClient.get().addEventLine(new HeaderLessEventLine("Fill in the name of the player you want to invite", NotificationType.CLIENT));
 		}
 	}
 	
