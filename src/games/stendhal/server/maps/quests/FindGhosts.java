@@ -71,7 +71,7 @@ public class FindGhosts extends AbstractQuest {
 
 	private static Logger logger = Logger.getLogger(FindGhosts.class);
 
-	private static final String QUEST_SLOT = "find_ghosts";
+	public static final String QUEST_SLOT = "find_ghosts";
 	
 	private static final List<String> NEEDED_SPIRITS = 
 		Arrays.asList("mary", "ben", "zak", "goran");

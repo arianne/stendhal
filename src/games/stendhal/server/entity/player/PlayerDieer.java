@@ -144,7 +144,20 @@ public class PlayerDieer {
 			player.addKarma(100.0);
 		}
 
+		String zoneinfo = player.getZone().describe();
+		int x = player.getZone().getWidth();
+		int y = player.getZone().getHeight();
+		int lastx = player.getX();
+		int lasty = player.getY();
+		String northsouth = (lasty < y/3) ? "north " : ( (lasty > 2*y/3) ? "south " : "");
+		String eastwest = (lastx < x/3) ? "west" : ( (lastx > 2*x/3) ? "east" : "");
+		String pos = (northsouth + eastwest);
+		if(pos.isEmpty()) {
+			pos = "center";
+		}
 		respawnInAfterLife();
+		player.sendPrivateText(NotificationType.INFORMATION,
+				"You died in the "+ pos +" region of "+ zoneinfo +".");
 		if (numberOfDrops > 0) {
 			Collection<String> strings = new LinkedList<String>();
 			for (Item item : this.drops) {

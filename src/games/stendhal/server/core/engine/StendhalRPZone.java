@@ -49,11 +49,15 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
@@ -1393,4 +1397,118 @@ public class StendhalRPZone extends MarauroaRPZone {
 		this.accessible = accessible;
 	}
 	
+	/**
+	 * Mappings for the zone names that would look weird with the dynamic
+	 * translation.
+	 */
+	private static final Map<String, String> zoneNameMappings = new HashMap<String, String>();
+
+	static {
+		zoneNameMappings.put("0_athor_ship_w2", "Athor ferry");
+		zoneNameMappings.put("-1_athor_ship_w2", "Athor ferry");
+		zoneNameMappings.put("-2_athor_ship_w2", "Athor ferry");
+		zoneNameMappings.put("hell", "Hell");
+	}
+	
+	/**
+	 * Translate zone name into a more readable form.
+	 *
+	 * @param zoneName
+	 * @return translated zone name
+	 */
+	private static String translateZoneName(final String zoneName) {
+		if (zoneNameMappings.get(zoneName) != null) {
+			return zoneNameMappings.get(zoneName);
+		}
+		String result = "";
+		final Pattern p = Pattern.compile("^(-?[\\d]|int)_(.+)$");
+		final Matcher m = p.matcher(zoneName);
+		if (m.matches()) {
+			final String level = m.group(1);
+			String remainder = m.group(2);
+			if ("int".equals(level)) {
+				return "inside a building in " + getInteriorName(zoneName);
+			} else if (level.startsWith("-")) {
+				int levelValue;
+				try {
+					levelValue = Integer.parseInt(level);
+				} catch (final NumberFormatException e) {
+					levelValue = 0;
+				}
+				if (levelValue < -2) {
+					result = "deep below ground level at ";
+				} else {
+					result = "below ground level at ";
+				}
+			} else if (level.matches("^\\d")) { 
+				/* positive floor */
+				int levelValue;
+				try {
+					levelValue = Integer.parseInt(level);
+				} catch (final NumberFormatException e) {
+					levelValue = 0; 
+				}
+				if (levelValue != 0) {
+					if (levelValue > 1) {
+						result = "high above the ground level at ";
+					} else {
+						result = "above the ground level at ";
+					}
+				}
+			}
+			final StringBuilder sb = new StringBuilder();
+			final String[] directions = new String[] { ".+_n\\d?e\\d?($|_).*",
+					"north east ", "_n\\d?e\\d?($|_)", "_",
+					".+_n\\d?w\\d?($|_).*", "north west ", "_n\\d?w\\d?($|_)",
+					"_", ".+_s\\d?e\\d?($|_).*", "south east ",
+					"_s\\d?e\\d?($|_)", "_", ".+_s\\d?w\\d?($|_).*",
+					"south west ", "_s\\d?w\\d?($|_)", "_", ".+_n\\d?($|_).*",
+					"north ", "_n\\d?($|_)", "_", ".+_s\\d?($|_).*", "south ",
+					"_s\\d?($|_)", "_", ".+_w\\d?($|_).*", "west ",
+					"_w\\d?($|_)", "_", ".+_e\\d?($|_).*", "east ",
+					"_e\\d?($|_)", "_", };
+			for (int i = 0; i < directions.length; i += 4) {
+				if (remainder.matches(directions[i])) {
+					sb.append(directions[i + 1]);
+					remainder = remainder.replaceAll(directions[i + 2],
+							directions[i + 3]);
+				}
+			}
+			String direction = sb.toString();
+			if (direction.length() > 0) {
+				result += direction + "of ";
+			}
+			result += remainder.replaceAll("_", " ");
+		} else {
+			System.err.println("no match: " + zoneName);
+		}
+		if ("".equals(result)) {
+			return zoneName;
+		} else {
+			return result.trim();
+		}
+	}
+	
+	private static String getInteriorName(final String zoneName) {
+		if (zoneName == null) {
+			throw new IllegalArgumentException("zoneName is null");
+		}
+		final int start = zoneName.indexOf('_') + 1;
+		int end = zoneName.indexOf('_', start);
+		if (end < 0) {
+			end = zoneName.length();
+		}
+		if (start > 0 && end > start) {
+			return zoneName.substring(start, end);
+		} else {
+			return zoneName;
+		}
+	}
+	
+	public static String describe(final String zoneName) {
+		return StendhalRPZone.translateZoneName(zoneName);
+	}
+	public String describe() {
+		return StendhalRPZone.translateZoneName(this.getName());
+	}
 }

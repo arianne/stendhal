@@ -15,6 +15,7 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.FindGhosts;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +31,7 @@ import org.apache.log4j.Logger;
 public abstract class GhostNPCBase extends SpeakerNPC {
 
 	private static Logger logger = Logger.getLogger(GhostNPCBase.class);
-	private static final String QUEST_SLOT = "find_ghosts";
+	private static final String QUEST_SLOT = FindGhosts.QUEST_SLOT;
 
 	public GhostNPCBase(final String name) {
 		super(name);

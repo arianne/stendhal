@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.city.SheepBuyerNPC.SheepBuyerSpeakerNPC;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,7 +46,7 @@ import java.util.List;
  * 
  * REWARD:
  * <ul>
- * <li>XP to level 2</li>
+ * <li>Maximum of (XP to level 2) or (30XP)</li>
  * <li>Karma: 10</li>
  * </ul>
  * 
@@ -58,6 +59,7 @@ public class SheepGrowing extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "sheep_growing";
 	private static final String TITLE = "Sheep Growing for Nishiya";
+	private static final int MIN_XP_GAIN = 30;
 
 	@Override
 	public void addToWorld() {
@@ -68,6 +70,7 @@ public class SheepGrowing extends AbstractQuest {
 					"Because he is very busy he needs somebody to take care of " +
 					"one of his sheep and hand it over to Sato.",
 				true);
+		generalInformationDialogs();
 		preparePlayerGetsSheepStep();
 		preparePlayerHandsOverSheepStep();
 		preparePlayerReturnsStep();
@@ -101,10 +104,31 @@ public class SheepGrowing extends AbstractQuest {
 		}
 		return res;
 	}
-
+	
 	@Override
 	public String getName() {
 		return TITLE;
+	}
+	
+	/**
+	 * General information for the player related to the quest.
+	 */
+	private void generalInformationDialogs() {
+		final SpeakerNPC npc = npcs.get("Nishiya");
+		
+		npc.add(ConversationStates.ATTENDING, "Sato", null, ConversationStates.ATTENDING, "Sato is the sheep buyer of Semos city. " +
+				"You will find him if you follow the path to the east.", null);
+		npc.add(ConversationStates.QUEST_OFFERED, "Sato", null, ConversationStates.QUEST_OFFERED, "Sato is the sheep buyer of Semos city. " +
+				"You will find him if you follow the path to the east.", null);
+		
+		List<String> berryStrings = new ArrayList<String>();
+		berryStrings.add("red berries");
+		berryStrings.add("berries");
+		berryStrings.add("sheepfood");
+		berryStrings.add("sheep food");
+		npc.addReply(berryStrings, "Sheep like to eat the red berries from the aeryberry bushes.");
+		
+		npc.addReply("sheep", "I sell fluffy sheep, it's my #job.");
 	}
 	/**
 	 * The step where the player speaks with Nishiya about quests and gets the sheep.
@@ -136,6 +160,8 @@ public class SheepGrowing extends AbstractQuest {
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
+				new AndCondition(playerHasNoSheep, 
+						new QuestInStateCondition(QUEST_SLOT, "asked")),
 				ConversationStates.IDLE,
 				"Ok... then I have to work twice as hard these days...",
 				new SetQuestAction(QUEST_SLOT, "rejected"));
@@ -153,7 +179,7 @@ public class SheepGrowing extends AbstractQuest {
 				"If you left it on its own I can sell you a new one. Just say #buy #sheep.",
 				null);
 		
-		// If quest is offered and player says yes give a sheep to him.
+		// If quest is offered and player says yes, give a sheep to him.
 		List<ChatAction> sheepActions = new LinkedList<ChatAction>();
 		sheepActions.add(new SetQuestAction(QUEST_SLOT, "start"));
 		sheepActions.add(new ChatAction() {
@@ -165,6 +191,8 @@ public class SheepGrowing extends AbstractQuest {
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
+				new AndCondition(playerHasNoSheep, 
+						new QuestInStateCondition(QUEST_SLOT, "asked")),
 				ConversationStates.IDLE,
 				"Thanks! *smiles* Here is your fluffy fosterling. Be careful with her. " +
 				"If she dies or if you leave her behind you have to buy the next sheep on your own. " +
@@ -231,7 +259,9 @@ public class SheepGrowing extends AbstractQuest {
 		npc.add(
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES,
-				playerHasFullWeightSheep,
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT,"start"),
+						playerHasFullWeightSheep),
 				ConversationStates.IDLE,
 				"I knew it! It is Nishiya's, right? I was already waiting for it. " +
 				"It is a gift for a friend of mine and it would be a shame if I had no birthday present. " +
@@ -242,7 +272,9 @@ public class SheepGrowing extends AbstractQuest {
 		npc.add(
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.NO_MESSAGES,
-				playerHasFullWeightSheep,
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT,"start"),
+						playerHasFullWeightSheep),
 				ConversationStates.IDLE,
 				"Oh... hmm... ok. Well, I buy sheep you know? And I am waiting for one from Nishiya. " +
 				"He wanted to send me one a while ago...",
@@ -258,8 +290,10 @@ public class SheepGrowing extends AbstractQuest {
 			public void fire(Player player, Sentence sentence, EventRaiser npc) {
 				// give XP to level 2
 				int reward = Level.getXP( 2 ) - player.getXP();
-				if(reward > 0) {
+				if(reward > MIN_XP_GAIN) {
 					player.addXP(reward);
+				} else {
+					player.addXP(MIN_XP_GAIN);
 				}
 				player.notifyWorldAboutChanges();
 			}
