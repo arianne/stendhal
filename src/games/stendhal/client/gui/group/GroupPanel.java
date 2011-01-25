@@ -16,6 +16,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Component;
@@ -25,13 +26,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPopupMenu;
+import javax.swing.JTabbedPane;
 import javax.swing.ListCellRenderer;
 
 /**
@@ -67,6 +71,11 @@ class GroupPanel {
 	/** Button for inviting new members or starting a group */
 	private final JButton inviteButton;
 	
+	// Invite handling
+	/** Currently active invites */
+	private final Map<String, JComponent> invites = new HashMap<String, JComponent>();
+	private final JComponent inviteContainer;
+	
 	/**
 	 * Create a new GroupPanel.
 	 */
@@ -88,6 +97,11 @@ class GroupPanel {
 		 */
 		memberListComponent.setAlignmentX(0.1f);
 		pane.add(memberListComponent);
+		
+		// Add a place for the invitation buttons. It will usually be invisible 
+		inviteContainer = SBoxLayout.createContainer(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING);
+		inviteContainer.setAlignmentX(Component.CENTER_ALIGNMENT);
+		pane.add(inviteContainer);
 		
 		// Bottom row action buttons
 		SBoxLayout.addSpring(pane);
@@ -175,6 +189,47 @@ class GroupPanel {
 			inviteButton.setEnabled(true);
 			inviteButton.setToolTipText(INVITE_TOOLTIP);
 		}
+	}
+	
+	/**
+	 * Add a join button for an invite, and switch to the group tab.
+	 * 
+	 * @param name group name
+	 */
+	void receiveInvite(final String name) {
+		Component parent = pane.getParent();
+		if (parent instanceof JTabbedPane) {
+			((JTabbedPane) parent).setSelectedComponent(pane);
+		}
+		if (invites.containsKey(name)) {
+			return;
+		}
+		JButton joinButton = new JButton("Join " + name);
+		joinButton.setToolTipText("Join the group led by " + name);
+		joinButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] args = { "join" };
+				SlashActionRepository.get("group").execute(args, name);
+			}
+		});
+		invites.put(name, joinButton);
+		joinButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		inviteContainer.add(joinButton, SBoxLayout.constraint(SLayout.EXPAND_X));
+		inviteContainer.revalidate();
+	}
+	
+	/**
+	 * Remove the join button of an invite.
+	 * 
+	 * @param name group name
+	 */
+	void expireInvite(final String name) {
+		JComponent button = invites.get(name);
+		if (button != null) {
+			inviteContainer.remove(button);
+			inviteContainer.revalidate();
+		}
+		invites.remove(name);
 	}
 	
 	/**

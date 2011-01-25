@@ -64,6 +64,32 @@ public class GroupPanelController {
 	}
 	
 	/**
+	 * Called when the user receives a group invite.
+	 * 
+	 * @param group name of the group
+	 */
+	public void receiveInvite(final String group) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				panel.receiveInvite(group);
+			}
+		});
+	}
+	
+	/**
+	 * Called when a group invite expires.
+	 * 
+	 * @param group name of the group
+	 */
+	public void expireInvite(final String group) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				panel.expireInvite(group);
+			}
+		});
+	}
+	
+	/**
 	 * Get the GroupPaneController instance.
 	 * 
 	 * @return instance
