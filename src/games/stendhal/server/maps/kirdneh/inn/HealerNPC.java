@@ -104,8 +104,12 @@ public class HealerNPC implements ZoneConfigurator {
 			        	currentBehavRes = new BehaviourResult(true, "heal", 1, null);
 
 			        	final int cost = healerBehaviour.getCharge(currentBehavRes, player);
-	
-	                    if (cost != 0) {
+			        	
+			        	if (player.isBadBoy()) {
+							// don't heal player killers at all
+							raiser.say("I don't heal killers. Go away.");
+							raiser.setCurrentState(ConversationStates.IDLE);
+						} else if (cost != 0) {
 	                    	raiser.say("For " + cost + " cash, ok?");
 	                    }
 			        }
@@ -115,14 +119,14 @@ public class HealerNPC implements ZoneConfigurator {
 				ConversationPhrases.YES_MESSAGES, 
 				null,
 		        false, 
-		        ConversationStates.ATTENDING,
+		        ConversationStates.IDLE,
 		        null, new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				        if (player.drop("money", healerBehaviour.getCharge(currentBehavRes, player))) {
 					        healerBehaviour.heal(player);
-					        raiser.say("All better now, everyone better. I love you, I do.");
+					        raiser.say("All better now, everyone better. I love you, I do. Bye bye.");
 				        } else {
-					        raiser.say("Pff, no money, no heal.");
+					        raiser.say("Pff, no money, no heal. Bye.");
 				        }
 
 						currentBehavRes = null;
@@ -133,8 +137,8 @@ public class HealerNPC implements ZoneConfigurator {
 				ConversationPhrases.NO_MESSAGES, 
 				null,
 		        false, 
-		        ConversationStates.ATTENDING, 
-		        "Wha you want then?", null);
+		        ConversationStates.IDLE, 
+		        "Bye then,", null);
 	}
 
 }
