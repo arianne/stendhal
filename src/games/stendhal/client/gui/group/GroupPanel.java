@@ -13,10 +13,12 @@ package games.stendhal.client.gui.group;
 
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.layout.SBoxLayout;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -30,6 +32,10 @@ import javax.swing.JList;
 import javax.swing.JPopupMenu;
 import javax.swing.ListCellRenderer;
 
+/**
+ * A component for showing the information about the adventurer group the user
+ * belongs to.
+ */
 class GroupPanel {
 	/**
 	 * The amount of pixels that popup menus will be shifted up and left from
@@ -37,12 +43,25 @@ class GroupPanel {
 	 */
 	private static final int POPUP_OFFSET = 5;
 	
+	/** The main containing component. */
 	private final JComponent pane;
+	/**
+	 * Text component showing general information about the group, like the
+	 * loot mode or that the used does not belong to a group.
+	 */
 	private final JLabel header;
+	/** Model of the member list. */
 	private final MemberListModel memberList;
+	/** Component part of the member list. */
 	private final JList memberListComponent;
+	/** Button for leaving the group. */
 	private final JButton leaveGroupButton;
+	/** Button for sending a group message. */
+	private final JButton messageButton;
 	
+	/**
+	 * Create a new GroupPanel.
+	 */
 	GroupPanel() {
 		pane = SBoxLayout.createContainer(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING);
 		header = new JLabel();
@@ -62,13 +81,35 @@ class GroupPanel {
 		memberListComponent.setAlignmentX(0.1f);
 		pane.add(memberListComponent);
 		
+		// Bottom row action buttons
 		SBoxLayout.addSpring(pane);
+		JComponent buttonBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
+		buttonBox.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		pane.add(buttonBox);
+		SBoxLayout.addSpring(buttonBox);
+		messageButton = new JButton("Message");
+		messageButton.setEnabled(false);
+		messageButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				j2DClient.get().setChatLine("/p ");
+			}
+		});
+		messageButton.setFocusable(false);
+		messageButton.setToolTipText("Send a message to all group members");
+		buttonBox.add(messageButton);;
+		
 		leaveGroupButton = new JButton("Leave");
 		leaveGroupButton.setEnabled(false);
-		leaveGroupButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		leaveGroupButton.addActionListener(new LeaveGroupButtonListener());
 		leaveGroupButton.setFocusable(false);
-		pane.add(leaveGroupButton);
+		leaveGroupButton.setToolTipText("Resign from the group");
+		buttonBox.add(leaveGroupButton);
+		
+		// We have no space to waste in the panel
+		Insets oldMargin = messageButton.getMargin();
+		Insets margin = new Insets(oldMargin.top, 1, oldMargin.bottom, 1); 
+		messageButton.setMargin(margin);
+		leaveGroupButton.setMargin(margin);
 	}
 	
 	/**
@@ -98,6 +139,7 @@ class GroupPanel {
 	void setMembers(List<String> members) {
 		memberList.setMembers(members);
 		leaveGroupButton.setEnabled(members != null);
+		messageButton.setEnabled(members != null);
 	}
 	
 	/**
