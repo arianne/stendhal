@@ -152,7 +152,7 @@ public class PlayerDieer {
 		String northsouth = (lasty < y/3) ? "north " : ( (lasty > 2*y/3) ? "south " : "");
 		String eastwest = (lastx < x/3) ? "west" : ( (lastx > 2*x/3) ? "east" : "");
 		String pos = (northsouth + eastwest);
-		if(pos.isEmpty()) {
+		if (pos.equals("")) {
 			pos = "center";
 		}
 		respawnInAfterLife();
