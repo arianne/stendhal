@@ -16,6 +16,7 @@ import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
+import games.stendhal.server.maps.Region;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -64,6 +65,15 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 		// and as per bug report https://sourceforge.net/tracker/?func=detail&aid=3148365&group_id=1111&atid=101111 the count is not saved anyway
 		// questAchievements.add(createAchievement("quest.special.dm.025", "Gladiator", "Fight 25 Deathmatches",
 		//		Achievement.HARD_BASE_SCORE, new QuestStateGreaterThanCondition("deathmatch", 1, 24)));
+		
+		// have completed all quests in Semos City?
+		questAchievements.add(createAchievement("quest.special.semos", "Aide to Semos folk", "Complete all quests in Semos City",
+				Achievement.MEDIUM_BASE_SCORE, new QuestsInRegionCompletedCondition(Region.SEMOS_CITY)));
+		
+		// have completed all quests in Ados City?
+		questAchievements.add(createAchievement("quest.special.ados", "Helper of Ados city dwellers", "Complete all quests in Ados City",
+				Achievement.MEDIUM_BASE_SCORE, new QuestsInRegionCompletedCondition(Region.ADOS_CITY)));
+		
 		return questAchievements;
 	}
 

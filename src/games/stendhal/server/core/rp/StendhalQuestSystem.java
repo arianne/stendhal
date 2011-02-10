@@ -117,7 +117,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * Loads and manages all quests.
  */
@@ -498,5 +497,22 @@ public class StendhalQuestSystem {
 		} else {
 			logger.error(this.getClass() + " cannot be removed from the world");
 		}
+	}
+	
+	/**
+	 * gets a list of incomplete quests in a specified region
+	 *
+	 * @param player Player to return the list for
+	 * @param region Region to check in
+	 * @return list of incomplete quests in the region
+	 */
+	public List<String> getIncompleteQuests(Player player, String region) {
+		List<String> res = new LinkedList<String>();
+		for (final IQuest quest : quests) {
+			if (region.equals(quest.getRegion()) && !quest.isCompleted(player) && quest.isVisibleOnQuestStatus()) {
+				res.add(quest.getQuestInfo(player).getName());
+			}
+		}
+		return res;
 	}
 }
