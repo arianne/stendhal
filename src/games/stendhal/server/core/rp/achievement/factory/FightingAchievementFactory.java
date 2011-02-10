@@ -50,6 +50,11 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 															)));
 		fightingAchievements.add(createAchievement("fight.general.ents", "Wood Cutter", "Kill 10 ents, 10 entwifes and 10 old ents", Achievement.MEDIUM_BASE_SCORE,
 													new PlayerHasKilledNumberOfCreaturesCondition(10, "ent", "entwife", "old ent")));
+		fightingAchievements.add(createAchievement("fight.special.rare", "Poacher", "Kill any rare creature", Achievement.HARD_BASE_SCORE,
+				new KilledRareCreatureCondition()));
+		
+		fightingAchievements.add(createAchievement("fight.special.all", "Legend", "Kill all creatures solo", Achievement.HARD_BASE_SCORE,
+				new KilledSoloAllCreaturesCondition()));
 		return fightingAchievements;
 	}
 
