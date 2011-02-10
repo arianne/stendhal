@@ -1144,7 +1144,7 @@ public abstract class RPEntity extends GuidedEntity {
 			}
 
 			killer.addXP(reward);
-			SingletonRepository.getAchievementNotifier().onKill(killer);
+			
 			// For some quests etc., it is required that the player kills a
 			// certain creature without the help of others.
 			// Find out if the player killed this RPEntity on his own, but
@@ -1160,6 +1160,8 @@ public abstract class RPEntity extends GuidedEntity {
 					killer.setSharedKill(killedName);
 				}
 			}
+			
+			SingletonRepository.getAchievementNotifier().onKill(killer);
 
 			killer.notifyWorldAboutChanges();
 		}
