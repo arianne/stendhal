@@ -61,6 +61,7 @@ public abstract class AbstractAchievementFactory {
 		list.add(new AgeAchievementFactory());
 		list.add(new ExperienceAchievementFactory());
 		list.add(new FightingAchievementFactory());
+		list.add(new FriendAchievementFactory());
 		list.add(new ItemAchievementFactory());
 		list.add(new MetaAchievementFactory());
 		list.add(new ObtainAchievementsFactory());

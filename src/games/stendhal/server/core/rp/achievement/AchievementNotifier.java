@@ -158,6 +158,8 @@ public final class AchievementNotifier {
 	 */
 	public void onFinishQuest(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.QUEST);
+		getAndCheckAchievementsInCategory(player, Category.FRIEND);
+		getAndCheckAchievementsInCategory(player, Category.OBTAIN);
 	}
 	
 	/**

@@ -14,7 +14,6 @@ package games.stendhal.server.core.rp.achievement.factory;
 
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
-import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.maps.Region;
 
@@ -56,10 +55,7 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 		// Meet Easter Bunny
 		questAchievements.add(createAchievement("quest.special.bunny", "Happy Easter, Bunny!", "Find Easter Bunny",
 												Achievement.EASY_BASE_SCORE, new QuestWithPrefixCompletedCondition("meet_bunny_")));
-		// Befriend Susi
-		// Quest is never set to done, therefore we check just if the quest has been started (condition "anyFriends" from FoundGirl.java)
-		questAchievements.add(createAchievement("quest.special.susi", "Susi's friend", "Befriend Susi",
-												Achievement.EASY_BASE_SCORE, new QuestStartedCondition("susi")));
+
 		// Ados Deathmatch
 		// disabled. Currently the wrong index is being checked (it would be index 6) 
 		// and as per bug report https://sourceforge.net/tracker/?func=detail&aid=3148365&group_id=1111&atid=101111 the count is not saved anyway

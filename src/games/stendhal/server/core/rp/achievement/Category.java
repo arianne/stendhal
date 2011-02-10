@@ -35,5 +35,7 @@ public enum Category {
 	/** looting/getting items */
 	ITEM,
 	/** looting/getting items */
-	OBTAIN;
+	OBTAIN, 
+	/** helping others and being friendly */
+	FRIEND;
 }
