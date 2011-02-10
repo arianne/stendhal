@@ -14,6 +14,7 @@ package games.stendhal.server.core.engine;
 
 import games.stendhal.server.core.engine.db.AchievementDAO;
 import games.stendhal.server.core.engine.db.CidDAO;
+import games.stendhal.server.core.engine.db.PendingAchievementDAO;
 import games.stendhal.server.core.engine.db.PostmanDAO;
 import games.stendhal.server.core.engine.db.StendhalBuddyDAO;
 import games.stendhal.server.core.engine.db.StendhalCharacterDAO;
@@ -157,5 +158,6 @@ public class StendhalPlayerDatabase {
 		DAORegister.get().register(StendhalNPCDAO.class, new StendhalNPCDAO());
 		DAORegister.get().register(StendhalWebsiteDAO.class, new StendhalWebsiteDAO());
 		DAORegister.get().register(AchievementDAO.class, new AchievementDAO());
+		DAORegister.get().register(PendingAchievementDAO.class, new PendingAchievementDAO());
 	}
 }

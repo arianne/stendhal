@@ -20,6 +20,7 @@ import games.stendhal.server.core.engine.dbcommand.WriteReachedAchievementComman
 import games.stendhal.server.core.rp.achievement.factory.AbstractAchievementFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
+import games.stendhal.server.entity.player.UpdatePendingAchievementsOnLogin;
 import games.stendhal.server.events.ReachedAchievementEvent;
 
 import java.sql.SQLException;
@@ -113,6 +114,8 @@ public final class AchievementNotifier {
 				logger.error("Error while saving new achievement "+a.getTitle(), e);
 			}
 		}
+		// register the login notifier that checks for each player the pending achievements on login
+		SingletonRepository.getLoginNotifier().addListener(new UpdatePendingAchievementsOnLogin());
 		// register the login notifier that checks for each player the reached achievements on login
 		SingletonRepository.getLoginNotifier().addListener(new ReadAchievementsOnLogin());
 	}
