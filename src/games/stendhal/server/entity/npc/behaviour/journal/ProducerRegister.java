@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.behaviour.journal;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
@@ -165,6 +167,25 @@ public class ProducerRegister {
 					}
 						
 				}
+			}
+		}
+		return res;
+	}
+	
+	/**
+	 * gets names of all items produced, which are of the given item class (i.e. food, drink)
+	 *
+	 * @param clazz Item class to check
+	 * @return list of item names
+	 */
+	public List<String> getProducedItemNames(final String clazz) {
+		List<String> res = new LinkedList<String>();
+		for (final Pair<String, ProducerBehaviour> producer : producers) {
+			final ProducerBehaviour behaviour = producer.second();
+			final String product =  behaviour.getProductName();
+			final Item item = SingletonRepository.getEntityManager().getItem(product);
+			if (item.isOfClass(clazz)) {
+				res.add(product);
 			}
 		}
 		return res;

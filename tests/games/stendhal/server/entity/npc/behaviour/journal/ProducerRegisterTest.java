@@ -25,6 +25,7 @@ import games.stendhal.server.maps.ados.bakery.BakerNPC;
 import games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC;
 import games.stendhal.server.maps.ados.meat_market.BlacksheepBobNPC;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -126,6 +127,31 @@ public class ProducerRegisterTest {
 		// no orders now because they are all collected
 		assertEquals(producerRegister.listWorkingProducers(player),"You have no ongoing or uncollected orders.");
 		
+	}
+	
+	/**
+	 * Tests listing the food items
+	 */
+	@Test
+	public final void testGetProducedItems() {
+		final ProducerRegister producerRegister = new ProducerRegister() {
+		};
+		
+		MockStendlRPWorld.get();
+		
+		final StendhalRPZone zone = new StendhalRPZone("admin_test");
+
+		// call NPC code which will make ProducerAdder add to register
+		new BakerNPC().configureZone(zone, null);
+		new BlacksheepBobNPC().configureZone(zone, null);
+
+		
+		assertFalse(producerRegister.getProducers().isEmpty());
+		
+		assertEquals(producerRegister.getProducedItemNames("food"), Arrays.asList("pie", "sausage"));
+		assertEquals(producerRegister.getProducedItemNames("food").toString(), "[pie, sausage]");
+
+
 	}
 	
 
