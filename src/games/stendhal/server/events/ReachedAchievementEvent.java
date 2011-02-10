@@ -26,7 +26,7 @@ public class ReachedAchievementEvent extends RPEvent {
 	public ReachedAchievementEvent(Achievement achievement) {
 		super(Events.REACHED_ACHIEVEMENT);
 		put("category", achievement.getCategory().toString());
-		put("title", achievement.getDescription());
+		put("title", achievement.getTitle());
 		put("description", achievement.getDescription());
 	}
 
