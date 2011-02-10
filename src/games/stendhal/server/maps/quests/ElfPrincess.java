@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -43,6 +43,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -286,5 +287,10 @@ public class ElfPrincess extends AbstractQuest {
 	@Override
 	public boolean isCompleted(final Player player) {
 		return new QuestInStateCondition(QUEST_SLOT,0,"flower_brought").fire(player,null, null);
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.NALWOR_CITY;
 	}
 }

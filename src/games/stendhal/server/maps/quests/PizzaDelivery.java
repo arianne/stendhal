@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -631,5 +632,10 @@ public class PizzaDelivery extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "PizzaDelivery";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_CITY;
 	}
 }

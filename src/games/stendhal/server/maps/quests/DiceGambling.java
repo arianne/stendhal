@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -158,6 +159,11 @@ public class DiceGambling extends AbstractQuest {
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_CITY;
 	}
 
 }

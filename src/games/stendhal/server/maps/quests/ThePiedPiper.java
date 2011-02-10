@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.piedpiper.AwaitingPhase;
 import games.stendhal.server.maps.quests.piedpiper.ITPPQuest;
 import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
@@ -474,4 +475,8 @@ import org.apache.log4j.Logger;
 		return rats;
 	}
 
+	@Override
+	public String getRegion() {
+		return Region.ADOS_CITY;
+	}
 }

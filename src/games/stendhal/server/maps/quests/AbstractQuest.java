@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -99,5 +99,14 @@ public abstract class AbstractQuest implements IQuest {
 	
 	public boolean isVisibleOnQuestStatus() {
 		return true;
+	}
+	
+	/**
+	 * Returns the region where the quest adventure takes place (or begins), or null for global quests
+	 * 
+	 * @return region, or null for global quests
+	 */
+	public String getRegion() {
+		return null;
 	}
 }

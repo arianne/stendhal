@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -196,5 +197,10 @@ public class MeetMonogenes extends AbstractQuest {
 				res.add("I spoke with Monogenes and he offered to give me a map. I can always get that map from him at any time, just by asking.");
 			} 
 			return res;
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_CITY;
 	}
 }

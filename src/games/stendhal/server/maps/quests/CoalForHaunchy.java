@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -242,5 +243,10 @@ public class CoalForHaunchy extends AbstractQuest {
 	@Override
 	public boolean isCompleted(final Player player) {
 		return new QuestStateStartsWithCondition(QUEST_SLOT,"waiting;").fire(player, null, null);
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.ADOS_CITY;
 	}
 }

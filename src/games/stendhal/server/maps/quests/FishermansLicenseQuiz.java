@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
@@ -256,8 +257,14 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				false);
 		createQuizStep();
 	}
+	
 	@Override
 	public String getName() {
 		return "FishermansLicenseQuiz";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.ADOS_CITY;
 	}
 }

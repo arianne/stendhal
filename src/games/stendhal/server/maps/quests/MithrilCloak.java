@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.entity.item.scroll.TwilightMossScroll;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.mithrilcloak.MithrilCloakQuestChain;
 
 import java.util.ArrayList;
@@ -249,5 +250,11 @@ public class MithrilCloak extends AbstractQuest {
 	@Override
 	public int getMinLevel() {
 		return 100;
+	}
+	
+	// Not sure about this one. it would make an achievement for all quests in ados city, quite hard
+	@Override
+	public String getRegion() {
+		return Region.ADOS_CITY;
 	}
 }

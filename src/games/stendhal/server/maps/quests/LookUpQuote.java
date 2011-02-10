@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -199,5 +200,10 @@ public class LookUpQuote extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "LookUpQuote";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.ADOS_CITY;
 	}
 }

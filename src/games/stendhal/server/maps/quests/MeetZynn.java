@@ -17,6 +17,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -172,5 +173,10 @@ public class MeetZynn extends AbstractQuest {
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_CITY;
 	}
 }

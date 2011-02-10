@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasPetOrSheepCondition;
 import games.stendhal.server.entity.npc.condition.PlayerInAreaCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.deathmatch.BailAction;
 import games.stendhal.server.maps.deathmatch.DeathmatchInfo;
 import games.stendhal.server.maps.deathmatch.DoneAction;
@@ -337,4 +338,8 @@ public class AdosDeathmatch extends AbstractQuest {
 		return new ArrayList<String>();
 	}
 	
+	@Override
+	public String getRegion() {
+		return Region.ADOS_CITY;
+	}
 }

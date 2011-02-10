@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -34,6 +34,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -358,5 +359,10 @@ public class KillDarkElves extends AbstractQuest {
 		}
 		
 		return history;		
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.NALWOR_CITY;
 	}
 }

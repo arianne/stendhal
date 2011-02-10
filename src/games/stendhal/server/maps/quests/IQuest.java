@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -117,5 +117,12 @@ public interface IQuest {
 	 *
 	 */
 	boolean isVisibleOnQuestStatus();
+	
+	/**
+	 * Returns the region where the quest adventure takes place (or begins), or null for global quests
+	 * 
+	 * @return region, or null for global quests
+	 */
+	String getRegion();
 	
 }

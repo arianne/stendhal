@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -41,6 +41,7 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -520,4 +521,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 						 new TimePassedCondition(QUEST_SLOT,1,delay)).fire(player, null, null);
 	}
 
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_CITY;
+	}
 }
