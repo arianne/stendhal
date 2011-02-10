@@ -187,3 +187,14 @@ CREATE TABLE IF NOT EXISTS reached_achievement (
 
 
 /* CREATE INDEX i_reached_achievement_charname ON reached_achievement(charname);*/
+
+CREATE TABLE IF NOT EXISTS pending_achievement (
+    id INTEGER AUTO_INCREMENT NOT NULL,
+    charname VARCHAR(32),
+    achievement_id INTEGER,
+    param VARCHAR(64),
+    cnt INTEGER,
+    PRIMARY KEY(id)
+);
+
+/* CREATE INDEX i_pending_achievement_charname ON pending_achievement(charname);*/
