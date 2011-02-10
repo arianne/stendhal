@@ -86,7 +86,7 @@ public class BakerNPC implements ZoneConfigurator {
 				addReply("tomato", "This grow in glass houses.");
 				addReply("ham", "The pig animal have ham.");
 				addHelp("I have work with #Leander, I #make #pizza.");
-				addReply("Leander", "I was with human, in Semos. The great Leander taught to #make #pizza");
+				addReply("Leander", "I was with human, in Semos. The great Leander taught to #make #pizza.");
 				addQuest("#Leander need pizza send. I #make #pizza, you have ingredients.");
 				addGoodbye("You no take candle!");
 
