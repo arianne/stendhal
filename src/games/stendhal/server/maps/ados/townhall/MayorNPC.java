@@ -75,7 +75,7 @@ public class MayorNPC implements ZoneConfigurator {
 			}
 		};
 
-		mayor.setDescription("You see the respected mayor of Ados");
+		mayor.setDescription("You see the respected mayor of Ados.");
 		mayor.setEntityClass("badmayornpc");
 		mayor.setPosition(3, 9);
 		mayor.initHP(100);
