@@ -160,6 +160,7 @@ public final class AchievementNotifier {
 		getAndCheckAchievementsInCategory(player, Category.QUEST);
 		getAndCheckAchievementsInCategory(player, Category.FRIEND);
 		getAndCheckAchievementsInCategory(player, Category.OBTAIN);
+		getAndCheckAchievementsInCategory(player, Category.PRODUCTION);
 	}
 	
 	/**
@@ -188,6 +189,15 @@ public final class AchievementNotifier {
 	 */
 	public void onItemLoot(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.ITEM);
+	}
+	
+	/**
+	 * check all achievements for a player that belong to the production category
+	 * 
+	 * @param player
+	 */
+	public void onProduction(Player player) {
+		getAndCheckAchievementsInCategory(player, Category.PRODUCTION);
 	}
 	
 	/**

@@ -1,9 +1,19 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.factory;
 
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.npc.condition.PlayerLootedNumberOfItemsCondition;
-import games.stendhal.server.entity.npc.condition.PlayerProducedNumberOfItemsCondition;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -42,9 +52,7 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 		itemAchievements.add(createAchievement("item.set.black", "Come to the dark side", "Loot a complete black equipment set",
 				Achievement.HARD_BASE_SCORE,
 				new PlayerLootedNumberOfItemsCondition(1, "black armor", "black helmet", "black cloak", "black legs", "black boots", "black shield")));
-		itemAchievements.add(createAchievement("item.produce.flour", "Jenny's Assistant", "Produce 1000 flour",
-				Achievement.EASY_BASE_SCORE,
-				new PlayerProducedNumberOfItemsCondition(1000, "flour")));
+
 		return itemAchievements;
 	}
 

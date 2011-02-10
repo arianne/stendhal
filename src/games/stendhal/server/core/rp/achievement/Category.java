@@ -32,10 +32,12 @@ public enum Category {
 	UNDERGROUND_ZONE,
 	/** age of character */
 	AGE,
-	/** looting/getting items */
+	/** looting items */
 	ITEM,
-	/** looting/getting items */
+	/** getting items */
 	OBTAIN, 
 	/** helping others and being friendly */
-	FRIEND;
+	FRIEND, 
+	/** producing items */
+	PRODUCTION;
 }
