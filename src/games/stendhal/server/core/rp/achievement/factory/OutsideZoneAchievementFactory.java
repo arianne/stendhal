@@ -12,11 +12,11 @@ import java.util.LinkedList;
  *  
  * @author madmetzger
  */
-public class ZoneAchievementFactory extends AbstractAchievementFactory {
+public class OutsideZoneAchievementFactory extends AbstractAchievementFactory {
 
 	@Override
 	protected Category getCategory() {
-		return Category.ZONE;
+		return Category.OUTSIDE_ZONE;
 	}
 
 	@Override
@@ -44,19 +44,7 @@ public class ZoneAchievementFactory extends AbstractAchievementFactory {
 		list.add(createAchievement("zone.outside.kikareukin", "Sky Tower", "Visit all outside zones in the Kikareukin region", 
 									Achievement.HARD_BASE_SCORE, 
 									new PlayerVisitedZonesInRegionCondition("kikareukin", Boolean.TRUE, Boolean.TRUE)));
-		//All below ground achievements
-		list.add(createAchievement("zone.underground.semos", "Canary", "Visit all underground zones in the Semos region", 
-									Achievement.MEDIUM_BASE_SCORE, 
-									new PlayerVisitedZonesInRegionCondition("semos", Boolean.TRUE, Boolean.FALSE)));
-		list.add(createAchievement("zone.underground.nalwor", "Fear not drows nor hell", "Visit all underground zones in the Nalwor region", 
-									Achievement.MEDIUM_BASE_SCORE, 
-									new PlayerVisitedZonesInRegionCondition("nalwor", Boolean.TRUE, Boolean.FALSE)));
-		list.add(createAchievement("zone.underground.athor", "Labyrinth Solver", "Visit all underground zones in the Athor region", 
-									Achievement.MEDIUM_BASE_SCORE, 
-									new PlayerVisitedZonesInRegionCondition("athor", Boolean.TRUE, Boolean.FALSE)));
-		list.add(createAchievement("zone.underground.amazon", "Human Mole", "Visit all underground zones in the Amazon region", 
-									Achievement.MEDIUM_BASE_SCORE, 
-									new PlayerVisitedZonesInRegionCondition("amazon", Boolean.TRUE, Boolean.FALSE)));
+	
 		//All interior zone achievements
 		
 		//Special zone achievements

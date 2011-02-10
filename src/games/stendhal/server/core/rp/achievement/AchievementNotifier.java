@@ -166,7 +166,8 @@ public final class AchievementNotifier {
 	 * @param player
 	 */
 	public void onZoneEnter(Player player) {
-		getAndCheckAchievementsInCategory(player, Category.ZONE);
+		getAndCheckAchievementsInCategory(player, Category.OUTSIDE_ZONE);
+		getAndCheckAchievementsInCategory(player, Category.UNDERGROUND_ZONE);
 	}
 	
 	/**
@@ -233,7 +234,8 @@ public final class AchievementNotifier {
 		//Avoid checking of zone achievements on login to
 		//prevent double check when player is initially placed into a zone
 		final Map<Category,List<Achievement>> map = new HashMap<Category, List<Achievement>>(achievements);
-		map.remove(Category.ZONE);
+		map.remove(Category.OUTSIDE_ZONE);
+		map.remove(Category.UNDERGROUND_ZONE);
 		//remove to prevent NPEs on login (there is atm an achievement with no condition)
 		map.remove(Category.OBTAIN);
 		Collection<List<Achievement>> values = map.values();

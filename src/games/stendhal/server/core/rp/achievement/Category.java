@@ -26,8 +26,10 @@ public enum Category {
 	QUEST,
 	/** groups of achievements */
 	META,
-	/** visiting groups of zones */
-	ZONE,
+	/** visiting groups of outside zones */
+	OUTSIDE_ZONE,
+	/** visiting groups of underground zones */
+	UNDERGROUND_ZONE,
 	/** age of character */
 	AGE,
 	/** looting/getting items */
