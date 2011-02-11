@@ -1968,6 +1968,13 @@ public class Player extends RPEntity {
 	
 	@Override
 	public Nature getDamageType() {
+		// Use the damage type of arrows, if the player is shooting with them
+		if (getRangeWeapon() != null) {
+			Item missile = getAmmunition();
+			if (missile != null) {
+				return missile.getDamageType();
+			}
+		}
 		Item weapon = getWeapon();
 		if (weapon != null) {
 			return weapon.getDamageType();
