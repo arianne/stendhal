@@ -21,7 +21,6 @@ import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
-import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.NotificationType;
@@ -50,7 +49,7 @@ import org.apache.log4j.Logger;
 /**
  * The game screen. This manages and renders the visual elements of the game.
  */
-public class GameScreen extends JComponent implements PositionChangeListener, IGameScreen, DropTarget {
+public class GameScreen extends JComponent implements IGameScreen, DropTarget {
 	/**
 	 * serial version uid
 	 */
@@ -224,7 +223,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		// Drawing is done in EDT
 		views = Collections.synchronizedList(new LinkedList<EntityView>());
 		texts = Collections.synchronizedList(new LinkedList<RemovableSprite>());
-		textsToRemove = new LinkedList<RemovableSprite>();
+		textsToRemove = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 		entities = new HashMap<IEntity, EntityView>();
 
 		// create ground
@@ -280,7 +279,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	
 	private TextBoxFactory getTextFactory() {
 		if (textBoxFactory == null) {
-			textBoxFactory = new TextBoxFactory((Graphics2D) getGraphics());
+			textBoxFactory = new TextBoxFactory();
 		}
 		
 		return textBoxFactory;
@@ -288,7 +287,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	
 	private AchievementBoxFactory getAchievementFactory() {
 		if (achievementBoxFactory == null) {
-			achievementBoxFactory = new AchievementBoxFactory((Graphics2D) getGraphics());
+			achievementBoxFactory = new AchievementBoxFactory();
 		}
 		return achievementBoxFactory;
 	}
@@ -465,10 +464,6 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		dvy = 0;
 
 		speed = 0;
-	}	
-
-	public void draw() {
-		repaint();
 	}
 	
 	@Override
@@ -674,8 +669,8 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	public void setMaxWorldSize(final double width, final double height) {
 		ww = (int) width;
 		wh = (int) height;
-
-		calculateView();
+		calculateView(x, y);
+		center();
 	}
 
 	/*
@@ -687,52 +682,33 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		this.offline = offline;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#addText(double, double,
-	 *      java.lang.String, games.stendhal.client.NotificationType, boolean)
-	 */
-	public void addText(final double x, final double y, final String text, final NotificationType type,
-			final boolean isTalking) {
-		addText(x, y, text, type.getColor(), isTalking);
-	}
-
 	/**
-	 * Adds a text bubble at a give position of the specified Color.
+	 * Create a text box with the appropriate text color for a notification
+	 * type.
 	 * 
-	 * @param x The screen X coordinate.
-	 * @param y The screen Y coordinate.
-	 * @param text The textual content
-	 * @param color The color in which the text shall be shown 
-	 * @param isTalking Is it a talking text bubble
-	 * @see games.stendhal.common.NotificationType
-	 * 
-	 */
-	private void addText(final double x, final double y, final String text,
-			final Color color, final boolean isTalking) {
-		addText(convertWorldToScreen(x), convertWorldToScreen(y), text, color,
-				isTalking);
-	}
-
-	/**
-	 * Add a text bubble.
-	 *
-	 * @param sx
-	 *            The screen X coordinate.
-	 * @param sy
-	 *            The screen Y coordinate.
 	 * @param text
-	 *            The text.
-	 * @param color
-	 *            The text color.
-	 * @param isTalking
-	 *            Is it is a talking text bubble.
+	 * @param type
+	 * @param isTalking if <code>true</code> create a text box with a bubble
+	 * 	handle
+	 * @return text sprite
 	 */
-	private void addText(int sx, int sy, final String text, final Color color,
+	public Sprite createTextBox(final String text, final NotificationType type,
 			final boolean isTalking) {
-		final Sprite sprite = getTextFactory().createTextBox(text, 240, color, Color.white, isTalking);
-
+		return getTextFactory().createTextBox(text, 240, type.getColor(), Color.white, isTalking);
+	}
+	
+	/**
+	 * Adds a text bubble at a give position.
+	 * 
+	 * @param sprite 
+	 * @param x 
+	 * @param y 
+	 * @param isTalking 
+	 * @param textLength 
+	 */
+	public void addTextBox(Sprite sprite, double x, double y, boolean isTalking, int textLength) {
+		int sx = convertWorldToScreen(x);
+		int sy = convertWorldToScreen(y);
 		if (isTalking) {
 			// Point alignment: left, bottom
 			sy -= sprite.getHeight();
@@ -771,8 +747,9 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 		}
 
 		texts.add(new RemovableSprite(sprite, sx, sy, Math.max(
-				RemovableSprite.STANDARD_PERSISTENCE_TIME, text.length()
+				RemovableSprite.STANDARD_PERSISTENCE_TIME, textLength
 						* RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
+
 	}
 
 	/*
@@ -1043,7 +1020,7 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 			this.x = ix;
 			this.y = iy;
 
-			calculateView();
+			calculateView(ix, iy);
 		}
 	}
 
@@ -1089,15 +1066,6 @@ public class GameScreen extends JComponent implements PositionChangeListener, IG
 	public void dropEntity(IEntity entity, int amount, Point point) {
 		// Just pass it to the ground container
 		ground.dropEntity(entity, amount, point);
-	}
-
-	/**
-	 * is the connection offline
-	 *
-	 * @return offline?
-	 */
-	public boolean getOffline() {
-		return offline;
 	}
 
 	/**

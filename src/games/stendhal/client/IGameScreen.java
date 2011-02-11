@@ -15,7 +15,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.RemovableSprite;
 import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.common.NotificationType;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -51,11 +50,6 @@ public interface IGameScreen {
 	 void center();
 
 	/**
-	 * Draw the screen.
-	 */
-	void draw();
-
-	/**
 	 * Sets the world size.
 	 *
 	 * @param width
@@ -72,20 +66,6 @@ public interface IGameScreen {
 	 *            <code>true</code> if offline.
 	 */
 	void setOffline(boolean offline);
-
-	/**
-	 * Adds a text bubble at a give position of the specified type.
-	 * 
-	 * @param x The screen X coordinate.
-	 * @param y The screen Y coordinate.
-	 * @param text The textual content
-	 * @param type The notificationType 
-	 * @param isTalking Is it a talking text bubble
-	 * @see games.stendhal.common.NotificationType
-	 * 
-	 */
-	void addText(double x, double y, String text,
-			NotificationType type, boolean isTalking);
 
 	/**
 	 * Removes a text bubble.

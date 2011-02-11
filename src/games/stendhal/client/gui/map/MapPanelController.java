@@ -16,8 +16,6 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.common.CollisionDetection;
 
-import java.awt.GraphicsConfiguration;
-
 public class MapPanelController {
 	private static MapPanelController instance;
 	private MapPanel panel;
@@ -77,13 +75,10 @@ public class MapPanelController {
 	 *            The collision map.
 	 * @param pd  
 	 *      	  The protection map.
-	 * @param gc
-	 *            A graphics configuration.
 	 * @param zone
 	 *            The zone name.
 	 */
-	public void update(final CollisionDetection cd, final CollisionDetection pd, final GraphicsConfiguration gc,
-			final String zone) {
-		panel.update(cd, pd, gc, zone);
+	public void update(final CollisionDetection cd, final CollisionDetection pd, final String zone) {
+		panel.update(cd, pd, zone);
 	}
 }

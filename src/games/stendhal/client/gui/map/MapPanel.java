@@ -28,7 +28,6 @@ import games.stendhal.common.CollisionDetection;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GraphicsConfiguration;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Transparency;
@@ -407,13 +406,10 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 	 *            The collision map.
 	 * @param pd  
 	 *      	  The protection map.
-	 * @param gc
-	 *            A graphics configuration.
 	 * @param zone
 	 *            The zone name.
 	 */
-	public void update(final CollisionDetection cd, final CollisionDetection pd, final GraphicsConfiguration gc,
-			final String zone) {
+	public void update(final CollisionDetection cd, final CollisionDetection pd,	final String zone) {
 		// calculate the size and scale of the map
 		final int mapWidth = cd.getWidth();
 		final int mapHeight = cd.getHeight();

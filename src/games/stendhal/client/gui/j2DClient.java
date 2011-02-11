@@ -118,6 +118,7 @@ public class j2DClient implements UserInterface {
 	private QuitDialog quitDialog;
 
 	private GameScreen screen;
+	private final ScreenController screenController;
 
 	private JLayeredPane pane;
 
@@ -146,6 +147,8 @@ public class j2DClient implements UserInterface {
 	private SlotWindow inventory;
 	
 	private User lastuser;
+	
+	private boolean offline;
 
 
 	private final PositionChangeMulticaster positionChangeListener = new PositionChangeMulticaster();
@@ -193,6 +196,7 @@ public class j2DClient implements UserInterface {
 	 */
 	public j2DClient() {
 		setDefault(this);
+		screenController = null;
 	}
 
 	public j2DClient(final StendhalClient client, final GameScreen gameScreen, final UserContext userContext) {
@@ -219,6 +223,7 @@ public class j2DClient implements UserInterface {
 		 * Create the main game screen
 		 */
 		screen = new GameScreen(client);
+		screenController = new ScreenController(screen);
 		GameScreen.setDefaultScreen(screen);
 		screen.setMinimumSize(new Dimension(screenSize.width, 0));
 		
@@ -226,7 +231,7 @@ public class j2DClient implements UserInterface {
 		pane.add(screen, Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
 
 		client.setScreen(screen);
-		positionChangeListener.add(screen);
+		positionChangeListener.add(screenController);
 
 				
 		final KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.get().getPlayerList().getNamesList());
@@ -575,7 +580,7 @@ public class j2DClient implements UserInterface {
 				// later we can figure out how long we have been doing redrawing
 				// / networking, then we know how long we need to sleep to make
 				// the next flip happen at the right time
-				screen.nextFrame();
+				screenController.nextFrame();
 				final long now = System.currentTimeMillis();
 				final int delta = (int) (now - refreshTime);
 				refreshTime = now;
@@ -588,8 +593,8 @@ public class j2DClient implements UserInterface {
 						/*
 						 * Update the screen
 						 */
-						screen.setMaxWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
-						screen.center();
+						screenController.setWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
+						screenController.center();
 	
 						// [Re]create the map
 		
@@ -597,9 +602,7 @@ public class j2DClient implements UserInterface {
 						final CollisionDetection pd = gameLayers.getProtectionDetection();
 
 						if (cd != null) {
-							minimap.update(cd, pd,
-									screen.getGraphicsConfiguration(),
-									gameLayers.getArea());
+							minimap.update(cd, pd, gameLayers.getArea());
 						} 
 						gameLayers.resetChangedArea();
 					} finally {
@@ -688,7 +691,7 @@ public class j2DClient implements UserInterface {
 						 * We request server permision to logout. Server can deny
 						 * it, unless we are already offline.
 						 */
-						if (screen.getOffline() || client.logout()) {
+						if (offline || client.logout()) {
 							canExit = true;
 						} else {
 							logger.warn("You can't logout now.");
@@ -719,7 +722,7 @@ public class j2DClient implements UserInterface {
 				logger.debug("Draw screen");
 				minimap.refresh();
 				containerPanel.repaintChildren();
-				screen.draw();
+				screen.repaint();
 			}
 		}
     }
@@ -946,7 +949,7 @@ public class j2DClient implements UserInterface {
 	 */
 	public void addGameScreenText(final double x, final double y, final String text, final NotificationType type,
 			final boolean isTalking) {
-		screen.addText(x, y, text, type, isTalking);
+		screenController.addText(x, y, text, type, isTalking);
 	}
 	
 	/**
@@ -1042,7 +1045,8 @@ public class j2DClient implements UserInterface {
 	 *            <code>true</code> if offline.
 	 */
 	public void setOffline(final boolean offline) {
-		screen.setOffline(offline);
+		screenController.setOffline(offline);
+		this.offline = offline;
 	}
 
 	//
@@ -1150,7 +1154,7 @@ public class j2DClient implements UserInterface {
 
 
 	public void requestQuit() {
-		if (client.getConnectionState() || !screen.getOffline()) {
+		if (client.getConnectionState() || !offline) {
 			quitDialog.requestQuit();
 		} else {
 			System.exit(0);
