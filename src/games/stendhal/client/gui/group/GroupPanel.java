@@ -24,6 +24,8 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
@@ -83,6 +85,9 @@ class GroupPanel {
 	private final Map<String, JComponent> invites = new HashMap<String, JComponent>();
 	private final JComponent inviteContainer;
 	
+	/** A flag for detecting if the component has been shown before */
+	private boolean initialized = false;
+	
 	/**
 	 * Create a new GroupPanel.
 	 */
@@ -90,6 +95,18 @@ class GroupPanel {
 		pane = SBoxLayout.createContainer(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING);
 		header = new JLabel();
 		pane.add(header);
+		// Request group status the first time the component is shown (when the
+		// user switches to the group tab)
+		pane.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				if (!initialized) {
+					String[] args = { "status" };
+					SlashActionRepository.get("group").execute(args, "");
+					initialized = true;
+				}
+			}
+		});
 		
 		memberList = new MemberListModel();
 		memberListComponent = new JList(memberList);

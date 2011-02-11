@@ -11,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui.group;
 
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.common.NotificationType;
+
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -23,6 +27,11 @@ public class GroupPanelController {
 	static GroupPanelController instance;
 	
 	final GroupPanel panel;
+	/**
+	 * Grouping status of the player. <code>true</code> if the player is in a
+	 * group <code>false</code> otherwise.
+	 */
+	boolean grouped = false;
 	
 	/**
 	 * Create a new GroupPaneController.
@@ -53,11 +62,18 @@ public class GroupPanelController {
 			public void run() {
 				if (members == null) {
 					panel.showHeader("<html>You are not a member in a group.<html>");
+					if (grouped) {
+						String message = "You are not a member of a group anymore.";
+						ClientSingletonRepository.getUserInterface().addEventLine(
+								new HeaderLessEventLine(message, NotificationType.CLIENT));
+						grouped = false;
+					}
 					panel.setMembers(null);
 				} else {
 					panel.showHeader("<html>Looting: " + lootMode + "<p>Members:</html>");
 					panel.setMembers(members);
 					panel.setLeader(leader);
+					grouped = true;
 				}	
 			}
 		});

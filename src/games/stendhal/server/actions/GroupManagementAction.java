@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.group.Group;
 import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.GroupChangeEvent;
 import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
@@ -260,7 +261,9 @@ public class GroupManagementAction implements ActionListener {
 	private void status(Player player) {
 		Group group = SingletonRepository.getGroupManager().getGroup(player.getName());
 		if (group == null) {
-			player.sendPrivateText(NotificationType.ERROR, "You are not a member of a group.");
+			// Send an empty event if the player is not a group member, and let
+			// the client sort out that it was not about parting from a group.
+			player.addEvent(new GroupChangeEvent());
 			return;
 		}
 

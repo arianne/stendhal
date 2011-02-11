@@ -43,12 +43,7 @@ public class GroupChangeEvent extends Event<RPEntity> {
 			
 			GroupPanelController.get().update(event.getList("members"), event.get("leader"), event.get("lootmode"));
 		} else {
-
 			User.updateGroupStatus(null, null);
-			String message = "You are not a member of a group anymore.";
-			ClientSingletonRepository.getUserInterface().addEventLine(
-				new HeaderLessEventLine(message, NotificationType.CLIENT));
-			
 			GroupPanelController.get().update(null, null, null);
 		}
 	}
