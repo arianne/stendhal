@@ -148,7 +148,10 @@ public class StendhalFirstScreen extends JFrame {
 	 */
 	private static GraphicsConfiguration detectScreen() {
 		PointerInfo pointer = MouseInfo.getPointerInfo();
-		return pointer.getDevice().getDefaultConfiguration();
+		if (pointer != null) {
+			return pointer.getDevice().getDefaultConfiguration();
+		}
+		return null;
 	}
 
 	/**
