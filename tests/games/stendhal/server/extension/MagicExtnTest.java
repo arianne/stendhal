@@ -14,12 +14,18 @@ package games.stendhal.server.extension;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.common.constants.Events;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
+
+import java.util.LinkedList;
+import java.util.List;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPEvent;
 
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -44,6 +50,27 @@ public class MagicExtnTest {
 	@After
 	public void tearDown() {
 		PlayerTestHelper.removePlayer("player");
+	}
+	
+	/**
+	 * Query the player's events for private messages.
+	 * 
+	 * @param player
+	 * @return message text
+	 */
+	private List<String> getAllPrivateReplies(Player player) {
+		
+		List<String> replies = new LinkedList<String>();
+		
+		for (RPEvent event : player.events()) {
+			if (event.getName().equals(Events.PRIVATE_TEXT)) {
+				replies.add(event.get("text"));
+			}
+		}
+		
+		player.clearEvents();
+		
+		return replies;
 	}
 
 	/**
@@ -191,11 +218,11 @@ public class MagicExtnTest {
 		action.put("type", "spell");
 		action.put("target", "raise stats");
 		assertTrue(CommandCenter.execute(pl, action));
-		assertEquals(2, pl.events().size());
-		int idx = 0;
-		assertEquals("Trying to cast a spell...", pl.events().get(idx++).get("text"));
-		assertEquals("You do not have enough mana to cast this spell.", pl.events().get(idx++).get("text"));
-		pl.clearEvents();
+		// One of the events is an achievement sound
+		assertEquals(3, pl.events().size());
+		List<String> replies = getAllPrivateReplies(pl);
+		assertEquals("Trying to cast a spell...", replies.get(0));
+		assertEquals("You do not have enough mana to cast this spell.", replies.get(1));
 		assertEquals(50, pl.getXP());
 		assertEquals(16, pl.getLevel());
 		assertEquals(23, pl.getDef());
@@ -208,10 +235,11 @@ public class MagicExtnTest {
 		action.put("type", "spell");
 		action.put("target", "raise stats");
 		assertTrue(CommandCenter.execute(pl, action));
-		assertEquals(2, pl.events().size());
-		idx = 0;
-		assertEquals("Trying to cast a spell...", pl.events().get(idx++).get("text"));
-		assertEquals("Your stats have been raised.", pl.events().get(idx++).get("text"));
+		// One of the events is an achievement sound
+		assertEquals(3, pl.events().size());
+		replies = getAllPrivateReplies(pl);
+		assertEquals("Trying to cast a spell...", replies.get(0));
+		assertEquals("Your stats have been raised.", replies.get(1));
 		pl.clearEvents();
 		assertEquals(44950, pl.getXP());
 		assertEquals(17, pl.getLevel());

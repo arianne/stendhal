@@ -15,13 +15,13 @@ package games.stendhal.server.core.rp;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static utilities.PlayerTestHelper.getPrivateReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.After;
@@ -137,7 +137,7 @@ public class StendhalRPActionTest {
 			StendhalRPAction.startAttack(hyde, jekyll);
 			assertNull("Attacking player at protected area", hyde.getAttackTarget());
 			assertEquals("message at attacking at protected area", 
-					"The powerful protective aura in this place prevents you from attacking jekyll.", hyde.events().get(0).get("text"));
+					"The powerful protective aura in this place prevents you from attacking jekyll.", getPrivateReply(hyde));
 			hyde.clearEvents();
 		}
 	}
@@ -165,7 +165,7 @@ public class StendhalRPActionTest {
 			StendhalRPAction.startAttack(hyde, jekyll);
 			assertNull("Attacking player at protected area", hyde.getAttackTarget());
 			assertEquals("message at attacking at protected area", 
-					"The powerful protective aura in this place prevents you from attacking jekyll.", hyde.events().get(0).get("text"));
+					"The powerful protective aura in this place prevents you from attacking jekyll.", getPrivateReply(hyde));
 			hyde.clearEvents();
 		}
 	}
@@ -188,7 +188,7 @@ public class StendhalRPActionTest {
 							hyde.getAttackTarget());
 					
 					assertEquals("message at attacking at protected area", 
-							"Your conscience would trouble you if you carried out this attack.", hyde.events().get(0).get("text"));
+							"Your conscience would trouble you if you carried out this attack.", getPrivateReply(hyde));
 					hyde.clearEvents();
 					
 					// check that self defence works
@@ -239,7 +239,7 @@ public class StendhalRPActionTest {
 		assertNull("Attacking a sheep in protected area ", hyde.getAttackTarget());
 		assertEquals("message at attacking a sheep in protected area", 
 				"The powerful protective aura in this place prevents you from attacking that sheep.", 
-				hyde.events().get(0).get("text"));
+				getPrivateReply(hyde));
 		hyde.stopAttack();
 		hyde.clearEvents();
 		
@@ -249,7 +249,7 @@ public class StendhalRPActionTest {
 		assertNull("Attacking a sheep in protected area ", hyde.getAttackTarget());
 		assertEquals("message at attacking a sheep in protected area", 
 				"The powerful protective aura in this place prevents you from attacking hyde's sheep.", 
-				hyde.events().get(0).get("text"));
+				getPrivateReply(hyde));
 		hyde.clearEvents();
 		
 		// ...regarless of the owner
@@ -258,6 +258,6 @@ public class StendhalRPActionTest {
 		assertNull("Attacking a sheep in protected area ", hyde.getAttackTarget());
 		assertEquals("message at attacking a sheep in protected area", 
 				"The powerful protective aura in this place prevents you from attacking jekyll's sheep.", 
-				hyde.events().get(0).get("text"));
+				getPrivateReply(hyde));
 	}
 }
