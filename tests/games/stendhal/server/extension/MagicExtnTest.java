@@ -218,9 +218,8 @@ public class MagicExtnTest {
 		action.put("type", "spell");
 		action.put("target", "raise stats");
 		assertTrue(CommandCenter.execute(pl, action));
-		// One of the events is an achievement sound
-		assertEquals(3, pl.events().size());
 		List<String> replies = getAllPrivateReplies(pl);
+		assertEquals(2, replies.size());
 		assertEquals("Trying to cast a spell...", replies.get(0));
 		assertEquals("You do not have enough mana to cast this spell.", replies.get(1));
 		assertEquals(50, pl.getXP());
@@ -235,9 +234,8 @@ public class MagicExtnTest {
 		action.put("type", "spell");
 		action.put("target", "raise stats");
 		assertTrue(CommandCenter.execute(pl, action));
-		// One of the events is an achievement sound
-		assertEquals(3, pl.events().size());
 		replies = getAllPrivateReplies(pl);
+		assertEquals(2, replies.size());
 		assertEquals("Trying to cast a spell...", replies.get(0));
 		assertEquals("Your stats have been raised.", replies.get(1));
 		pl.clearEvents();
