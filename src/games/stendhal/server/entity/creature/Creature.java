@@ -757,12 +757,11 @@ public class Creature extends NPC {
 
 	@Override
 	public int getMaxRangeForArcher() {
-		if (getAIProfiles().containsKey("archer")) {
-			// The creature can shoot, but only if the target is at most
-			// 7 tiles away.
-			return 7;
+		if (strategy != null) {
+			return strategy.getRange();
+		} else {
+			return 0;
 		}
-		return 0;
 	}
 
 	/**

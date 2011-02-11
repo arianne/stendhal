@@ -12,12 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature.impl.attack;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.Entity;
 
 public class RangeAttack implements AttackStrategy {
+	/** Maximum range at which the archer will consider a target valid, squared. */
+	private static final int MAX_RANGE_SQUARED = 144;
+	/** Archer range, if not specified otherwise. */
+	private static final int DEFAULT_RANGE = 7;
+	private final int range;
+	
+	RangeAttack(String range) {
+		this.range = MathHelper.parseIntDefault(range, DEFAULT_RANGE);
+	}
 
 	public void attack(final Creature creature) {
 
@@ -30,7 +40,7 @@ public class RangeAttack implements AttackStrategy {
 	public boolean canAttackNow(final Creature creature) {
 		if (creature.getAttackTarget() != null) {
 
-			return !((creature.squaredDistance(creature.getAttackTarget()) > 50) || creature.getZone().collidesOnLine(creature.getX(),
+			return !((creature.squaredDistance(creature.getAttackTarget()) > range * range) || creature.getZone().collidesOnLine(creature.getX(),
 					creature.getY(), creature.getAttackTarget().getX(), creature.getAttackTarget().getY()));
 		} else {
 			return false;
@@ -48,11 +58,11 @@ public class RangeAttack implements AttackStrategy {
 		final Entity target = creature.getAttackTarget();
 		final double distance = creature.squaredDistance(target);
 		// if too far away from enemy
-		if (distance > creature.getMovementRange()*1.25) {
+		if (distance > longRangeSquared()) {
 			creature.setMovement(target, 0, 1, creature.getMovementRange());
 			creature.faceToward(creature.getAttackTarget());
 		// if too close to enemy
-		} else if (distance < creature.getMovementRange()*0.75+1) {
+		} else if (distance < shortRangeSquared()) {
 			// turn creature around
 			creature.faceToward(creature.getAttackTarget());
 			creature.setDirection(creature.getDirection().oppositeDirection());
@@ -103,7 +113,32 @@ public class RangeAttack implements AttackStrategy {
 		if (!creature.getZone().has(victim.getID())) {
 			return false;
 		}
-		return creature.squaredDistance(victim) < 144;
+		return creature.squaredDistance(victim) < MAX_RANGE_SQUARED;
 	}
 
+	/**
+	 * Get the shortest range that is considered optimal.
+	 * 
+	 * @return shortest optimal range
+	 */
+	private int shortRangeSquared() {
+		int tmp = range / 2 + (range % 2);
+		
+		return tmp * tmp;
+	}
+	
+	/**
+	 * Get the longest range that is considered optimal.
+	 * 
+	 * @return longest optimal range
+	 */
+	private int longRangeSquared() {
+		int tmp = range / 2 + (range % 2) + 1;
+		
+		return tmp * tmp;
+	}
+	
+	public int getRange() {
+		return range;
+	}
 }

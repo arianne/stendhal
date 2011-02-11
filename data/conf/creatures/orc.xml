@@ -57,7 +57,7 @@
     <ai>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="archer"/>
+      <profile name="archer" params="5"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -282,4 +282,4 @@
     </ai>
   </creature>
    
-</creatures>  
+</creatures>

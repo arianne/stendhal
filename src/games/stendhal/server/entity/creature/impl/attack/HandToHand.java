@@ -75,4 +75,7 @@ class HandToHand implements AttackStrategy {
 		return creature.squaredDistance(victim) < (FOLLOW_RADIUS * FOLLOW_RADIUS);
 	}
 
+	public int getRange() {
+		return 0;
+	}
 }

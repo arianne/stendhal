@@ -16,7 +16,6 @@ import java.util.Map;
 
 public class AttackStrategyFactory {
 	private static final AttackStrategy HAND_TO_HAND = new HandToHand();
-	private static final AttackStrategy ARCHER = new RangeAttack();
 	private static final AttackStrategy COWARD = new Coward();
 	private static final AttackStrategy STUPID_COWARD = new StupidCoward();
 	private static final AttackStrategy GANDHI = new Gandhi();
@@ -26,7 +25,7 @@ public class AttackStrategyFactory {
 	public static AttackStrategy get(final Map<String, String> aiProfiles) {
 		
 		if (aiProfiles.containsKey("archer")) {
-			return ARCHER;
+			return new RangeAttack(aiProfiles.get("archer"));
 		} else if (aiProfiles.containsKey("coward")) {
 			return COWARD;
 		} else if (aiProfiles.containsKey("gandhi")) {

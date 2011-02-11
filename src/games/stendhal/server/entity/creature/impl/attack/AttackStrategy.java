@@ -60,4 +60,10 @@ public interface AttackStrategy {
 	 */
 	public void attack(Creature creature);
 
+	/**
+	 * Get the maximum range of the attacking creature.
+	 * 
+	 * @return maximum range 
+	 */
+	public int getRange();
 }

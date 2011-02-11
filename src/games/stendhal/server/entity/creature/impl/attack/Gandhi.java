@@ -37,4 +37,7 @@ public class Gandhi implements AttackStrategy {
 		return false;
 	}
 
+	public int getRange() {
+		return 0;
+	}
 }
