@@ -202,7 +202,8 @@ public class MapPanel extends JComponent implements PositionChangeListener {
 				entity.addChangeListener(new EntityChangeListener() {
 					public void entityChanged(final IEntity entity, final Object property) {
 						if ((property == IEntity.PROP_POSITION) 
-								|| (property == RPEntity.PROP_GHOSTMODE)) {
+								|| (property == RPEntity.PROP_GHOSTMODE)
+								|| (property == RPEntity.PROP_GROUP_MEMBERSHIP)) {
 							needsRefresh = true;
 						}
 					}
