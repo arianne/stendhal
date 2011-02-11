@@ -594,7 +594,6 @@ public class j2DClient implements UserInterface {
 						 * Update the screen
 						 */
 						screenController.setWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
-						screenController.center();
 	
 						// [Re]create the map
 		

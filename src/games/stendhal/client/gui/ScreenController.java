@@ -92,17 +92,6 @@ class ScreenController implements PositionChangeListener {
 			}
 		});
 	}
-	
-	/**
-	 * Center the screen.
-	 */
-	void center() {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				screen.center();
-			}
-		});
-	}
 
 	public void positionChanged(final double x, final double y) {
 		SwingUtilities.invokeLater(new Runnable() {
