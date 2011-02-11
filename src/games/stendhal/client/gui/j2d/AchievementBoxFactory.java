@@ -50,11 +50,8 @@ public class AchievementBoxFactory {
 	/** Space to leave between the category image and text */
 	private static final int IMAGE_PAD = 5;
 	
-	private Graphics2D graphics;
-	
-	public AchievementBoxFactory(Graphics2D graphics) {
-		this.graphics = graphics;
-	}
+	/** Used for calculating the line metrics */
+	private static final Graphics2D graphics = (new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB)).createGraphics();
 	
 	/**
 	 * Create a sprite for a reached achievement

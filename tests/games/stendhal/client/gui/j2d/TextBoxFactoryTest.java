@@ -13,8 +13,6 @@
 package games.stendhal.client.gui.j2d;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,8 +24,7 @@ public class TextBoxFactoryTest {
 	
 	@BeforeClass
 	public static void setup() {
-		BufferedImage junk = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
-		factory = new TextBoxFactory((Graphics2D) junk.getGraphics());
+		factory = new TextBoxFactory();
 	}
 	
 	/**

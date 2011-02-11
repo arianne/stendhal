@@ -187,7 +187,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget {
 			sw = Math.min(getWidth(), screenSize.width);
 			sh = Math.min(getHeight(), screenSize.height);
 			// Reset the view so that the player is in the center
-			calculateView();
+			calculateView(x, y);
 			center();
 		}
 
@@ -427,10 +427,13 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget {
 	}
 
 	/**
-	 * Updates the view position to center the target position.
+	 * Updates the target position of the view center.
 	 * Prefer top left if the map is smaller than the screen.
+	 * 
+	 * @param x preferred x of center, if the map is large enough
+	 * @param y preferred y of center, if the map is large enough
 	 */
-	private void calculateView() {
+	private void calculateView(int x, int y) {
 		// Coordinates for a screen centered on player
 		int cvx = (x * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sw / 2);
 		int cvy = (y * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sh / 2);
@@ -486,7 +489,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget {
 	
 	@Override
 	protected void paintComponent(final Graphics g) {
-		
 		// sort uses iterators, so it must be wrapped in a synchronized block
 		synchronized (views) {
 			Collections.sort(views, entityViewComparator);
@@ -1079,9 +1081,9 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget {
 			String category) {
 		final Sprite sprite = getAchievementFactory().createAchievementBox(title, description, category);
 		// Center in X
-		x = svx + (getWidth() - sprite.getWidth()) / 2;
+		int x = svx + (getWidth() - sprite.getWidth()) / 2;
 		// Bottom of screen
-		y = svy + getHeight() - sprite.getHeight();
+		int y = svy + getHeight() - sprite.getHeight();
 		texts.add(new RemovableSprite(sprite, x, y, RemovableSprite.STANDARD_PERSISTENCE_TIME));
 	}
 }

@@ -19,14 +19,15 @@ import games.stendhal.client.sprite.Sprite;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
-import java.awt.Image;
 import java.awt.Polygon;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.font.TextAttribute;
+import java.awt.image.BufferedImage;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 import java.text.BreakIterator;
@@ -41,7 +42,8 @@ import org.apache.log4j.Logger;
  * messages used on the screen.
  */
 public class TextBoxFactory {
-	private Graphics2D graphics;
+	/** Used for calculating the line metrics */
+	private static final Graphics graphics = (new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB)).getGraphics();
 	
 	/** space to be left at the beginning and end of line in pixels. */
 	private static final int MARGIN_WIDTH = 3;
@@ -51,16 +53,6 @@ public class TextBoxFactory {
 	private static final int BUBBLE_OFFSET = 10;
 	/** the diameter of the arc of the rounded bubble corners. */
 	private static final int ARC_DIAMETER = 2 * MARGIN_WIDTH + 2;
-	
-	/**
-	 * Create a new TextBoxFactory.
-	 * 
-	 * @param graphics The graphics environment where the text boxes are drawn. 
-	 * 	Used for calculating the line metrics
-	 */
-	public TextBoxFactory(final Graphics2D graphics) {
-		this.graphics = graphics;
-	}
 	
 	/**
 	 * Creates a text box sprite.
@@ -95,9 +87,9 @@ public class TextBoxFactory {
 		
 		final int imageHeight = LINE_HEIGHT * numLines + MARGIN_WIDTH;
 
-		final Image image = gc.createCompatibleImage(imageWidth, imageHeight, Transparency.BITMASK);
+		final BufferedImage image = gc.createCompatibleImage(imageWidth, imageHeight, Transparency.BITMASK);
 
-		final Graphics2D g2d = (Graphics2D) image.getGraphics();
+		final Graphics2D g2d = image.createGraphics();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		if (fillColor != null) {
@@ -173,7 +165,7 @@ public class TextBoxFactory {
 	 * @param normalColor base color used for the text
 	 * @return colored sting
 	 */
-	public AttributedString formatLine(final String line,
+	private AttributedString formatLine(final String line,
 				final Font normalFont, final Color normalColor) {
 		final Font specialFont = normalFont.deriveFont(Font.ITALIC);
 
