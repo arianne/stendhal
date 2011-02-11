@@ -12,7 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
-import java.awt.event.MouseAdapter;
+import games.stendhal.client.gui.MousePopupAdapter;
+
 import java.awt.event.MouseEvent;
 
 import javax.swing.JList;
@@ -50,31 +51,15 @@ class BuddyPanel extends JList {
 	/**
 	 * MouseListener for triggering the buddy list popup menus.
 	 */
-	private class BuddyPanelMouseListener extends MouseAdapter {
+	private class BuddyPanelMouseListener extends MousePopupAdapter {
 		@Override
-		public void mousePressed(final MouseEvent e) {
-			maybeShowPopup(e);
-		}
-
-		@Override
-		public void mouseReleased(final MouseEvent e) {
-			maybeShowPopup(e);
-		}
-
-		/**
-		 * Show the popup if the mouse even is a popup trigger for the platform.
-		 * 
-		 * @param e
-		 */
-		private void maybeShowPopup(final MouseEvent e) {
-			if (e.isPopupTrigger()) {
-				int index = BuddyPanel.this.locationToIndex(e.getPoint());
-				Object obj = BuddyPanel.this.getModel().getElementAt(index);
-				if (obj instanceof Buddy) {
-					Buddy buddy = (Buddy) obj;
-					final JPopupMenu popup = new BuddyLabelPopMenu(buddy.getName(), buddy.isOnline());
-					popup.show(e.getComponent(), e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
-				}
+		protected void showPopup(final MouseEvent e) {
+			int index = BuddyPanel.this.locationToIndex(e.getPoint());
+			Object obj = BuddyPanel.this.getModel().getElementAt(index);
+			if (obj instanceof Buddy) {
+				Buddy buddy = (Buddy) obj;
+				final JPopupMenu popup = new BuddyLabelPopMenu(buddy.getName(), buddy.isOnline());
+				popup.show(e.getComponent(), e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
 			}
 		}
 	}

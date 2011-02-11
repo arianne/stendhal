@@ -13,6 +13,7 @@ package games.stendhal.client.gui.group;
 
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.MousePopupAdapter;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.layout.SBoxLayout;
@@ -26,7 +27,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.List;
@@ -311,38 +311,22 @@ class GroupPanel {
 		}
 	}
 	
-	private class MemberListMouseListener extends MouseAdapter {
+	private class MemberListMouseListener extends MousePopupAdapter {
 		@Override
-		public void mousePressed(final MouseEvent e) {
-			maybeShowPopup(e);
-		}
+		protected void showPopup(final MouseEvent e) {
+			Member me = memberList.getMember(User.getCharacterName());
+			if (!me.isLeader()) {
+				// Only the leader needs the popup menus, at least for now
+				return;
+			}
+			int index = memberListComponent.locationToIndex(e.getPoint());
+			Object obj = memberListComponent.getModel().getElementAt(index);
 
-		@Override
-		public void mouseReleased(final MouseEvent e) {
-			maybeShowPopup(e);
-		}
-
-		/**
-		 * Show the popup if the mouse even is a popup trigger for the platform.
-		 * 
-		 * @param e
-		 */
-		private void maybeShowPopup(final MouseEvent e) {
-			if (e.isPopupTrigger()) {
-				Member me = memberList.getMember(User.getCharacterName());
-				if (!me.isLeader()) {
-					// Only the leader needs the popup menus, at least for now
-					return;
-				}
-				int index = memberListComponent.locationToIndex(e.getPoint());
-				Object obj = memberListComponent.getModel().getElementAt(index);
-				
-				// no menu for the player herself
-				if ((obj instanceof Member) && (obj != me)) {
-					Member member = (Member) obj;
-					final JPopupMenu popup = new MemberPopupMenu(member.getName());
-					popup.show(memberListComponent, e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
-				}
+			// no menu for the player herself
+			if ((obj instanceof Member) && (obj != me)) {
+				Member member = (Member) obj;
+				final JPopupMenu popup = new MemberPopupMenu(member.getName());
+				popup.show(memberListComponent, e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
 			}
 		}
 	}

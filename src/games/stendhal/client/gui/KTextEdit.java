@@ -22,7 +22,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileWriter;
 import java.util.Date;
@@ -70,45 +69,28 @@ public class KTextEdit extends JComponent {
 	
 	
 	/** Listener for opening the popup menu when it's requested. */
-	private final class TextPaneMouseListener extends MouseAdapter {
+	private final class TextPaneMouseListener extends MousePopupAdapter {
 		@Override
-		public void mousePressed(final MouseEvent e) {
-			maybeShowPopup(e);
-		}
+		protected void showPopup(final MouseEvent e) {
+			final JPopupMenu popup = new JPopupMenu("save");
 
-		@Override
-		public void mouseReleased(final MouseEvent e) {
-			maybeShowPopup(e);
-		}
+			JMenuItem menuItem = new JMenuItem("Save");
+			menuItem.addActionListener(new ActionListener() {
+				public void actionPerformed(final ActionEvent e) {
+					save();
+				}
+			});
+			popup.add(menuItem);
 
-		/**
-		 * Show the chat log popup menu at operating system dependent triggers.
-		 * Do nothing if the mouse event is not a popup trigger.
-		 *  
-		 * @param e mouse event that could potentially show the popup
-		 */
-		private void maybeShowPopup(final MouseEvent e) {
-			if (e.isPopupTrigger()) {
-				final JPopupMenu popup = new JPopupMenu("save");
+			menuItem = new JMenuItem("Clear");
+			menuItem.addActionListener(new ActionListener() {
+				public void actionPerformed(final ActionEvent e) {
+					clear();
+				}
+			});
+			popup.add(menuItem);
 
-				JMenuItem menuItem = new JMenuItem("Save");
-				menuItem.addActionListener(new ActionListener() {
-					public void actionPerformed(final ActionEvent e) {
-						save();
-					}
-				});
-				popup.add(menuItem);
-				
-				menuItem = new JMenuItem("Clear");
-				menuItem.addActionListener(new ActionListener() {
-					public void actionPerformed(final ActionEvent e) {
-						clear();
-					}
-				});
-				popup.add(menuItem);
-				
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
+			popup.show(e.getComponent(), e.getX(), e.getY());
 		}
 	}
 	
