@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -52,6 +53,12 @@ class GroupPanel {
 	private static final String START_GROUP_TOOLTIP = "Start a new group";
 	/** Tooptip for inviting members to an existing group */
 	private static final String INVITE_TOOLTIP = "Invite a new member";
+	/** Image used for the group message button */
+	private static final ImageIcon MESSAGE_ICON = new ImageIcon(GroupPanel.class.getClassLoader().getResource("data/gui/chat.png"));
+	/** Image used for the invite button */
+	private static final ImageIcon INVITE_ICON = new ImageIcon(GroupPanel.class.getClassLoader().getResource("data/gui/buddy_online.png"));
+	/** Image used for the leave group button */
+	private static final ImageIcon LEAVE_ICON = new ImageIcon(GroupPanel.class.getClassLoader().getResource("data/gui/buddy_offline.png"));
 	
 	/** The main containing component. */
 	private final JComponent pane;
@@ -109,7 +116,7 @@ class GroupPanel {
 		buttonBox.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		pane.add(buttonBox);
 		SBoxLayout.addSpring(buttonBox);
-		messageButton = new JButton("Message");
+		messageButton = new JButton(MESSAGE_ICON);
 		messageButton.setEnabled(false);
 		messageButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -120,13 +127,13 @@ class GroupPanel {
 		messageButton.setToolTipText("Send a message to all group members");
 		buttonBox.add(messageButton);
 		
-		inviteButton = new JButton("Invite");
+		inviteButton = new JButton(INVITE_ICON);
 		inviteButton.setFocusable(false);
 		inviteButton.setToolTipText(START_GROUP_TOOLTIP);
 		inviteButton.addActionListener(new InviteActionListener());
 		buttonBox.add(inviteButton);
 		
-		leaveGroupButton = new JButton("Leave");
+		leaveGroupButton = new JButton(LEAVE_ICON);
 		leaveGroupButton.setEnabled(false);
 		leaveGroupButton.addActionListener(new LeaveActionListener());
 		leaveGroupButton.setFocusable(false);
