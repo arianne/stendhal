@@ -61,7 +61,7 @@ public class GroupPanelController {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				if (members == null) {
-					panel.showHeader("<html>You are not a member in a group.<html>");
+					panel.showHeader("<html>You are not a member of a group.<html>");
 					if (grouped) {
 						String message = "You are not a member of a group anymore.";
 						ClientSingletonRepository.getUserInterface().addEventLine(
@@ -70,7 +70,7 @@ public class GroupPanelController {
 					}
 					panel.setMembers(null);
 				} else {
-					panel.showHeader("<html>Looting: " + lootMode + "<p>Members:</html>");
+					panel.showHeader("<html>Looting: " + lootMode + "</html>");
 					panel.setMembers(members);
 					panel.setLeader(leader);
 					grouped = true;

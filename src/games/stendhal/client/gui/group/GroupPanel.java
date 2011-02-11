@@ -37,6 +37,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
 import javax.swing.ListCellRenderer;
@@ -66,9 +67,11 @@ class GroupPanel {
 	private final JComponent pane;
 	/**
 	 * Text component showing general information about the group, like the
-	 * loot mode or that the used does not belong to a group.
+	 * loot mode or that the user does not belong to a group.
 	 */
 	private final JLabel header;
+	/** Label showing the text "Members:", if the user belongs to a group */
+	private final JLabel memberLabel;
 	/** Model of the member list. */
 	private final MemberListModel memberList;
 	/** Component part of the member list. */
@@ -94,6 +97,7 @@ class GroupPanel {
 	GroupPanel() {
 		pane = SBoxLayout.createContainer(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING);
 		header = new JLabel();
+		header.addMouseListener(new HeaderMouseListener());
 		pane.add(header);
 		// Request group status the first time the component is shown (when the
 		// user switches to the group tab)
@@ -107,6 +111,11 @@ class GroupPanel {
 				}
 			}
 		});
+		
+		// The optionally shown member label
+		memberLabel = new JLabel("Members:");
+		pane.add(memberLabel);
+		memberLabel.setVisible(false);
 		
 		memberList = new MemberListModel();
 		memberListComponent = new JList(memberList);
@@ -181,7 +190,6 @@ class GroupPanel {
 	 */
 	void showHeader(String text) {
 		header.setText(text);
-		header.setVisible(true);
 	}
 	
 	/**
@@ -191,12 +199,14 @@ class GroupPanel {
 	 */
 	void setMembers(List<String> members) {
 		memberList.setMembers(members);
-		leaveGroupButton.setEnabled(members != null);
-		messageButton.setEnabled(members != null);
+		boolean isInAGroup = members != null;
+		memberLabel.setVisible(isInAGroup);
+		leaveGroupButton.setEnabled(isInAGroup);
+		messageButton.setEnabled(isInAGroup);
 		// Disable for now if the user is in a group, and enable it again
 		// if she is the group leader
-		inviteButton.setEnabled(members == null);
-		if (members == null) {
+		inviteButton.setEnabled(!isInAGroup);
+		if (!isInAGroup) {
 			inviteButton.setToolTipText(START_GROUP_TOOLTIP);
 		}
 	}
@@ -308,6 +318,48 @@ class GroupPanel {
 		public void actionPerformed(ActionEvent e) {
 			j2DClient.get().setChatLine("/group invite ");
 			j2DClient.get().addEventLine(new HeaderLessEventLine("Fill in the name of the player you want to invite", NotificationType.CLIENT));
+		}
+	}
+	
+	/**
+	 * Listener for changing the loot mode.
+	 */
+	private static class LootmodeActionListener implements ActionListener {
+		private final String mode;
+		
+		/**
+		 * Create a LootmodeActionListener for changing to a specified mode.
+		 * 
+		 * @param mode new loot mode
+		 */
+		LootmodeActionListener(String mode) {
+			this.mode = mode;
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			String[] args = { "lootmode" };
+			SlashActionRepository.get("group").execute(args, mode);
+		}
+	}
+	
+	private class HeaderMouseListener extends MousePopupAdapter {
+		@Override
+		protected void showPopup(MouseEvent e) {
+			Member me = memberList.getMember(User.getCharacterName());
+			if (!me.isLeader()) {
+				// Only the leader should have the loot mode menu
+				return;
+			}
+			JPopupMenu popup = new JPopupMenu();
+			JMenuItem item = new JMenuItem("Shared");
+			item.addActionListener(new LootmodeActionListener("shared"));
+			popup.add(item);
+			
+			item = new JMenuItem("Single");
+			item.addActionListener(new LootmodeActionListener("single"));
+			popup.add(item);
+			
+			popup.show(header, e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
 		}
 	}
 	
