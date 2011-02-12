@@ -13,7 +13,6 @@ import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
-import games.stendhal.server.entity.Registrator;
 
 import java.awt.geom.Rectangle2D;
 import java.util.List;
@@ -27,7 +26,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	protected double baseSpeed;
 
 	private final EntityGuide guide = new EntityGuide();
-	
+
 	public Registrator pathnotifier = new Registrator();
 
 	/**
@@ -40,7 +39,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Create a guided entity.
-	 * 
+	 *
 	 * @param object
 	 *            The source object.
 	 */
@@ -57,7 +56,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Get the normal movement speed.
-	 * 
+	 *
 	 * @return The normal speed when moving.
 	 */
 	public final double getBaseSpeed() {
@@ -74,7 +73,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * the entity starts at the first node (so the first node should be its
 	 * position, of course). The speed will be set to the default for the
 	 * entity.
-	 * 
+	 *
 	 * @param path
 	 *            The path.
 	 */
@@ -88,7 +87,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 			guide.clearPath();
 		}
 	}
-	
+
 	/**
 	 * function return current entity's path.
 	 * @return path
@@ -107,7 +106,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Determine if the entity has a path.
-	 * 
+	 *
 	 * @return <code>true</code> if there is a path.
 	 */
 	public boolean hasPath() {
@@ -137,12 +136,12 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Set the path nodes position.
-	 * @param pathPos 
+	 * @param pathPos
 	 */
 	public void setPathPosition(final int pathPos) {
 		guide.pathPosition = pathPos;
 	}
-	
+
 	/**
 	 * Plan a new path to the old destination.
 	 */
@@ -150,14 +149,14 @@ public abstract class GuidedEntity extends ActiveEntity {
 		if (hasPath()) {
 			Node node = guide.path.getDestination();
 			final List<Node> path = Path.searchPath(this, node.getX(), node.getY());
-		
+
 			if (path.size() >= 1) {
 				setPath(new FixedPath(path, false));
 			} else {
 				/*
 				 * It can happen that some other entity goes to occupy the
-				 * target position after the path has been planned. Just 
-				 * stop if that happens and we are next to the goal. 
+				 * target position after the path has been planned. Just
+				 * stop if that happens and we are next to the goal.
 				 */
 				clearPath();
 				stop();
@@ -182,9 +181,9 @@ public abstract class GuidedEntity extends ActiveEntity {
 			super.applyMovement();
 		}
 	}
-	
+
 	/**
-	 * Set facing to next <code>Node</code>, if any 
+	 * Set facing to next <code>Node</code>, if any
 	 */
 	private void faceNext() {
 		guide.faceNext(this);
@@ -197,35 +196,35 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public EntityGuide getGuide() {
 		return guide;
 	}
-	
+
 	@Override
 	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
 		super.onMoved(oldX, oldY, newX, newY);
-		
+
 		/*
 		 * Adjust speed based on the resisting entities at the same coordinate.
 		 */
 		if (getSpeed() > 0) {
 			int resistance = getLocalResistance();
-			
+
 			if ((getSpeed() < baseSpeed) || (resistance != 0)) {
 				setSpeed(baseSpeed * (100 - resistance) / 100.0);
 			}
 		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 */
 	public void onFinishedPath() {
 		pathnotifier.setChanges();
 		pathnotifier.notifyObservers();
 	}
-	
+
 	/**
 	 * Get resistance caused by other entities occupying the same, or part
 	 * of the same space.
-	 * 
+	 *
 	 * @return resistance
 	 */
 	private int getLocalResistance() {
@@ -238,7 +237,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 		for (final RPObject obj : getZone()) {
 			final Entity entity = (Entity) obj;
 			if (this != entity) {
-				entity.getArea(otherArea, entity.getX(), entity.getY());
+				otherArea = entity.getArea();
 				Rectangle2D.intersect(thisArea, otherArea, intersect);
 				// skip entities far away
 				if (!intersect.isEmpty()) {
@@ -262,7 +261,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 				}
 			}
 		}
-		
+
 		return resistance;
 	}
 

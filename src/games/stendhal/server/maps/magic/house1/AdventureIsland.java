@@ -49,7 +49,7 @@ public class AdventureIsland extends StendhalRPZone {
  private static final int ALLOWED_FAILS = 5;
  /** The creatures spawned are between player level * ratio and player level. */
  private static final double LEVEL_RATIO = 0.75;
- 
+
  private int numCreatures;
 
 	public AdventureIsland(final String name, final StendhalRPZone zone,
@@ -68,20 +68,20 @@ public class AdventureIsland extends StendhalRPZone {
 		int count = 0;
 		// max ALLOWED_FAILS fails to place all creatures before we give up
 		while (numCreatures < NUMBER_OF_CREATURES && count < ALLOWED_FAILS) {
-			int level = Rand.randUniform((int) (player.getLevel() * LEVEL_RATIO), player.getLevel()); 
+			int level = Rand.randUniform((int) (player.getLevel() * LEVEL_RATIO), player.getLevel());
 			CreatureSpawner creatureSpawner = new CreatureSpawner();
 			Creature creature = new Creature(creatureSpawner.calculateNextCreature(level));
 				if (StendhalRPAction.placeat(this, creature, Rand.randUniform(MIN_X, MAX_X), Rand.randUniform(MIN_Y, MAX_Y))) {
 					numCreatures++;
 				} else {
 					logger.info(" could not add a creature to adventure island: " + creature);
-					count++;	
+					count++;
 				}
 		}
 		disallowIn();
 		this.addMovementListener(new ChallengeMovementListener());
 	}
-	
+
 	/**
 	 * Get the number of monsters originally created on the zone
 	 * @return number of creatures
@@ -90,26 +90,27 @@ public class AdventureIsland extends StendhalRPZone {
 		return numCreatures;
 	}
 
-	private static final class ChallengeMovementListener implements
-													  MovementListener {
-		public void getArea(Rectangle2D area) {
-			area.setRect(0, 0, 100, 100);
+	private static final class ChallengeMovementListener implements MovementListener {
+		private static final Rectangle2D area = new Rectangle2D.Double(0, 0, 100, 100);
+
+		public Rectangle2D getArea() {
+			return area;
 		}
-		
-			public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
+
+		public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
 								  final int newY) {
 				// ignore
 			}
-		
+
 		public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 							 final int oldY) {
 			if (!(entity instanceof Player)) {
 				return;
 			}
 			if (zone.getPlayers().size() == 1) {
-				// since we are about to destroy the arena, change the player zoneid to house1 so that 
-				// if they are relogging, 
-				// they can enter back to the bank (not the default zone of PlayerRPClass). 
+				// since we are about to destroy the arena, change the player zoneid to house1 so that
+				// if they are relogging,
+				// they can enter back to the bank (not the default zone of PlayerRPClass).
 				// If they are scrolling out or walking out the portal it works as before.
 			    entity.put("zoneid", "int_magic_house1");
 				entity.put("x", "12");
@@ -120,12 +121,12 @@ public class AdventureIsland extends StendhalRPZone {
 
 			}
 		}
-		
+
 		public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 							final int oldY, final int newX, final int newY) {
-			
+
 			// ignore
 		}
-		
+
 	}
 }

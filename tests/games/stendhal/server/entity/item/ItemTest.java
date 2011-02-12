@@ -41,7 +41,7 @@ import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
 public class ItemTest {
-	
+
 	private static final String ZONE_NAME = "ITEMTESTZONE";
 
 	@BeforeClass
@@ -49,7 +49,7 @@ public class ItemTest {
 		Log4J.init();
 		MockStendlRPWorld.get();
 		ItemTestHelper.generateRPClasses();
-		
+
 	}
 
 	/**
@@ -69,11 +69,11 @@ public class ItemTest {
 	public void testGetAreaRectangle2DDoubleDouble() {
 		final Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
-		final Rectangle2D rect = new Rectangle2D.Double();
+		Rectangle2D rect = new Rectangle2D.Double();
 		assertEquals(rect.getCenterX(), 0.0, 0.001);
 		assertEquals(rect.getCenterY(), 0.0, 0.001);
 
-		mo.getArea(rect, 0.0, 0.0);
+		rect = mo.getArea(0.0, 0.0);
 		assertEquals(rect.getMinX(), 0.0, 0.001);
 		assertEquals(rect.getMinY(), 0.0, 0.001);
 		assertEquals(rect.getMaxX(), 1.0, 0.001);
@@ -99,7 +99,7 @@ public class ItemTest {
 		assertEquals("val_2", ((RPObject) it2).get("att_2"));
 
 	}
-	
+
 	/**
 	 * Tests for getDescription.
 	 */
@@ -110,7 +110,7 @@ public class ItemTest {
 		assertEquals("", mo.getDescription());
 	}
 
-	
+
 	/**
 	 * Tests for describe.
 	 */
@@ -131,11 +131,11 @@ public class ItemTest {
 		item.put("lifesteal", 7);
 
 		assertThat(item.describe(), equalTo("Description. It is a special quest reward for hero, and cannot be used by others. It requires level 1 to be used to the full benefit. Stats are (ATK: 2 DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7)."));
-		
+
 		item.setDamageType(Nature.FIRE);
 		assertThat(item.describe(), equalTo("Description. It is a special quest reward for hero, and cannot be used by others. It requires level 1 to be used to the full benefit. Stats are (ATK: 2 [FIRE] DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7)."));
 	}
-	
+
 
 	/**
 	 * Tests for itemStringStringStringMapOfStringString.
@@ -216,7 +216,7 @@ public class ItemTest {
 		mo.put("atk", 2);
 		assertEquals(2, mo.getAttack());
 	}
-	
+
 	/**
 	 * Test getting damage type.
 	 */
@@ -230,12 +230,12 @@ public class ItemTest {
 		assertEquals(Nature.ICE, mo.getDamageType());
 		mo.setDamageType(Nature.FIRE);
 		assertEquals(Nature.FIRE, mo.getDamageType());
-		
+
 		// Check that damage type gets copied
 		Item copy = new Item(mo);
 		assertEquals("Damage type should be copied", Nature.FIRE, copy.getDamageType());
 	}
-	
+
 	/**
 	 * Test getting susceptibility
 	 */
@@ -331,7 +331,7 @@ public class ItemTest {
 				new HashMap<String, String>());
 		assertEquals("defaultquantity", 1, mo.getQuantity());
 	}
-	
+
 	/**
 	 * Tests for getQuantityOneSureness.
 	 */
@@ -415,8 +415,8 @@ public class ItemTest {
 		mo.removeOne();
 		assertNotNull(mo.getZone());
 		assertFalse(zone.has(mo.getID()));
-		
-		
+
+
 	}
 
 	/**
@@ -426,7 +426,7 @@ public class ItemTest {
 	public void testCanBeEquippedIn() {
 		final Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		assertTrue("ground is null", mo.canBeEquippedIn(null));  
+		assertTrue("ground is null", mo.canBeEquippedIn(null));
 		final LinkedList<String> slots = new LinkedList<String>();
 		slots.add("one");
 		slots.add("two");
@@ -450,7 +450,7 @@ public class ItemTest {
 		MockStendlRPWorld.get().addRPZone(zone);
 		zone.add(mo);
 		assertTrue(zone.has(mo.getID()));
-		
+
 		mo.removeFromWorld();
 		assertNotNull(mo.getZone());
 		assertFalse(zone.has(mo.getID()));
@@ -468,7 +468,7 @@ public class ItemTest {
 		assertTrue(mo.isBound());
 		assertTrue(PlayerTestHelper.createPlayer("bob").isBoundTo(mo));
 		assertEquals("bob", mo.getBoundTo());
-		
+
 		mo.setBoundTo(null);
 		assertFalse(mo.isBound());
 		assertFalse(PlayerTestHelper.createPlayer("bob").isBoundTo(mo));

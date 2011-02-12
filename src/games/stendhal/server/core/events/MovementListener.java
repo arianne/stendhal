@@ -20,21 +20,21 @@ import java.awt.geom.Rectangle2D;
 
 /**
  * Objects that monitor being moved over an area in a zone.
- * 
+ *
  * NOTE: This does not currently handle enter/exit situations where an entity
  * does not "walk" (e.g. teleported, signon/off).
  */
 public interface MovementListener {
 	/**
 	 * Get the area that this object occupies.
-	 * 
-	 * @param area A Rectangle2D to be filled by this method.
+	 *
+	 * @return Rectange2D
 	 */
-	void getArea(Rectangle2D area);
+	Rectangle2D getArea();
 
 	/**
 	 * Invoked when an entity enters the object area.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity that moved.
 	 * @param zone
@@ -48,7 +48,7 @@ public interface MovementListener {
 
 	/**
 	 * Invoked when an entity leaves the object area.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity that entered.
 	 * @param zone
@@ -57,13 +57,13 @@ public interface MovementListener {
 	 *            The old X coordinate.
 	 * @param oldY
 	 *            The old Y coordinate.
-	 * 
+	 *
 	 */
 	void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY);
 
 	/**
 	 * Invoked when an entity moves while over the object area.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity that left.
 	 * @param zone

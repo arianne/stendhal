@@ -36,23 +36,12 @@ public abstract class Entity extends RPObject {
 	private static final Logger logger = Logger.getLogger(Entity.class);
 
 
-	protected Rectangle2D area = new Rectangle.Double();
+	protected Rectangle2D.Double area = new Rectangle2D.Double();
 
 	private int x;
 
 	private int y;
 
-	/**
-	 * The width (in world units). Using double instead of int to avoid type
-	 * conversion in getArea().
-	 */
-	private double width;
-
-	/**
-	 * The height (in world units). Using double instead of int to avoid type
-	 * conversion in getArea().
-	 */
-	private double height;
 
 	/**
 	 * Amount of resistance this has with other entities (0-100).
@@ -100,6 +89,7 @@ public abstract class Entity extends RPObject {
 		y = 0;
 
 		setSize(1, 1);
+		area.setRect(x, y, 1, 1);
 
 		setResistance(100);
 		setVisibility(100);
@@ -159,6 +149,7 @@ public abstract class Entity extends RPObject {
 
 		if (has("x")) {
 			x = getInt("x");
+			area.x = x;
 
 			if (x != oldX) {
 				moved = true;
@@ -167,6 +158,7 @@ public abstract class Entity extends RPObject {
 
 		if (has("y")) {
 			y = getInt("y");
+			area.y = y;
 
 			if (y != oldY) {
 				moved = true;
@@ -178,11 +170,11 @@ public abstract class Entity extends RPObject {
 		}
 
 		if (has("height")) {
-			height = getInt("height");
+			area.height = getInt("height");
 		}
 
 		if (has("width")) {
-			width = getInt("width");
+			area.width = getInt("width");
 		}
 
 		if (has("resistance")) {
@@ -326,8 +318,8 @@ public abstract class Entity extends RPObject {
 		final double thisMiddleX = thisArea.getCenterX();
 		final double thisMiddleY = thisArea.getCenterY();
 
-		double xDistance = Math.abs(otherMiddleX - thisMiddleX) - (width + other.width) / 2;
-		double yDistance = Math.abs(otherMiddleY - thisMiddleY) - (height + other.height) / 2;
+		double xDistance = Math.abs(otherMiddleX - thisMiddleX) - (area.getWidth() + other.area.getWidth()) / 2;
+		double yDistance = Math.abs(otherMiddleY - thisMiddleY) - (area.getHeight() + other.area.getHeight()) / 2;
 
 		if (xDistance < 0) {
 			xDistance = 0;
@@ -364,8 +356,8 @@ public abstract class Entity extends RPObject {
 		final double thisMiddleY = thisArea.getCenterY();
 
 
-		double xDistance = Math.abs(otherMiddleX - thisMiddleX) - (width + 1) / 2;
-		double yDistance = Math.abs(otherMiddleY - thisMiddleY) - (height + 1) / 2;
+		double xDistance = Math.abs(otherMiddleX - thisMiddleX) - (area.getWidth() + 1) / 2;
+		double yDistance = Math.abs(otherMiddleY - thisMiddleY) - (area.getHeight() + 1) / 2;
 
 		if (xDistance < 0) {
 			xDistance = 0;
@@ -388,9 +380,8 @@ public abstract class Entity extends RPObject {
 	 * @return true iff the point is at most <i>step</i> steps away
 	 */
 	public boolean nextTo(final int x, final int y, final double step) {
-		final Rectangle2D thisArea = getArea();
-		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
-				thisArea.getWidth() + 2 * step, thisArea.getHeight() + 2 * step);
+		final Rectangle2D thisArea = new Rectangle2D.Double(area.getX() - step, area.getY() - step,
+				area.getWidth() + 2 * step, area.getHeight() + 2 * step);
 		return thisArea.contains(x, y);
 	}
 
@@ -418,7 +409,6 @@ public abstract class Entity extends RPObject {
 	 * @return true iff the entity is at most <i>step</i> steps away
 	 */
 	public boolean nextTo(final Entity entity, final double step) {
-		final Rectangle2D thisArea = getArea();
 		// To check the overlapping between 'this' and the other 'entity'
 		// we create two temporary rectangle objects and initialise them
 		// with the position of the two entities.
@@ -426,8 +416,8 @@ public abstract class Entity extends RPObject {
 		// 'step' distance on both sides of the two rectangles.
 		// As the absolute position is not important, 'step' need not be
 		// subtracted from the values of getX() and getY().
-		thisArea.setRect(x - step, y - step, width
-				+ 2 * step, height + 2 * step);
+		final Rectangle2D thisArea = new Rectangle2D.Double(x - step, y - step, area.getWidth()
+				+ 2 * step, area.getHeight() + 2 * step);
 
 		return thisArea.intersects(entity.getArea());
 	}
@@ -438,7 +428,7 @@ public abstract class Entity extends RPObject {
 	 * @return A rectangular area.
 	 */
 	public Rectangle2D getArea() {
-		return getArea(getX(), getY());
+		return area;
 	}
 
 	/**
@@ -452,36 +442,8 @@ public abstract class Entity extends RPObject {
 	 */
 	public Rectangle2D getArea(final double ex, final double ey) {
 		final Rectangle2D tempRect = new Rectangle.Double();
-		getArea(tempRect, ex, ey);
+		tempRect.setRect(ex, ey, area.getWidth(), area.getHeight());
 		return tempRect;
-	}
-
-	/**
-	 * returns the area used by this entity. Note for performance reasons the
-	 * Rectangle is not returned as new object but the one supplied as first
-	 * parameter is modified.
-	 *
-	 * @param rect
-	 *            the area is stored into this parameter
-	 * @param x
-	 *            x
-	 * @param y
-	 *            y
-	 */
-	public void getArea(final Rectangle2D rect, final double x, final double y) {
-		rect.setRect(x, y, getWidth(), getHeight());
-	}
-
-	/**
-	 * returns the area used by this entity. Note for performance reasons the
-	 * Rectangle is not returned as new object but the one supplied as first
-	 * parameter is modified.
-	 * 
-	 * @param rect
-	 *            the area is stored into this parameter
-	 */
-	public void getArea(final Rectangle2D rect) {
-		rect.setRect(x, y, getWidth(), getHeight());
 	}
 
 	/**
@@ -589,7 +551,7 @@ public abstract class Entity extends RPObject {
 	 * @return The height (in world units).
 	 */
 	public double getHeight() {
-		return height;
+		return area.getHeight();
 	}
 
 	/**
@@ -598,7 +560,7 @@ public abstract class Entity extends RPObject {
 	 * @return The width (in world units).
 	 */
 	public double getWidth() {
-		return width;
+		return area.getWidth();
 	}
 
 	/**
@@ -643,12 +605,14 @@ public abstract class Entity extends RPObject {
 
 		if (x != oldX) {
 			this.x = x;
+			area.x = x;
 			put("x", x);
 			moved = true;
 		}
 
 		if (y != oldY) {
 			this.y = y;
+			area.y = y;
 			put("y", y);
 			moved = true;
 		}
@@ -678,10 +642,10 @@ public abstract class Entity extends RPObject {
 	 *            The height (in world units).
 	 */
 	public final void setSize(final int width, final int height) {
-		this.width = width;
+		this.area.width = width;
 		put("width", width);
 
-		this.height = height;
+		this.area.height = height;
 		put("height", height);
 	}
 

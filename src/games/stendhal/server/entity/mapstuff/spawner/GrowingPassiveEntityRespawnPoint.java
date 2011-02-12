@@ -14,12 +14,9 @@ package games.stendhal.server.entity.mapstuff.spawner;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
-
-import java.awt.geom.Rectangle2D;
-
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
@@ -27,7 +24,7 @@ import org.apache.log4j.Logger;
  * This respwan point has to be "used" to get the item. After that, it will
  * slowly regrow; there are several regrowing steps in which the graphics will
  * change to show the progress.
- * 
+ *
  * @author daniel, hendrik
  */
 public abstract class GrowingPassiveEntityRespawnPoint extends
@@ -46,8 +43,8 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 
 	/**
 	 * Get the maximum ripeness.
-	 * 
-	 * @return the stage at which the grown item is ready for harvesting 
+	 *
+	 * @return the stage at which the grown item is ready for harvesting
 	 */
 	protected final int getMaxRipeness() {
 		return maxRipeness;
@@ -55,7 +52,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 
 	/**
 	 * Set the maximum ripeness, at which the grown item is ready for harvesting.
-	 * 
+	 *
 	 * @param maxRipeness maximum ripeness
 	 */
 	final void setMaxRipeness(final int maxRipeness) {
@@ -77,10 +74,10 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 
 	/**
 	 * Initialize various data for the grower.
-	 * 
+	 *
 	 * @param clazz entity class
-	 * @param actionName name of the use action 
-	 * @param maxRipeness maximum ripeness stage of the grower 
+	 * @param actionName name of the use action
+	 * @param maxRipeness maximum ripeness stage of the grower
 	 * @param width width of the grower entity
 	 * @param height height of the grower entity
 	 */
@@ -100,9 +97,9 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 	/**
 	 * Create a GrowingPassiveEntityRespawnPoint from an RPObject. Used for
 	 * restoring growers stored in the zone.
-	 * 
+	 *
 	 * @param object The RPObject to be converted
-	 * @param type Entity class 
+	 * @param type Entity class
 	 * @param itemName Name of the spawned item
 	 * @param actionName Name of the use action
 	 * @param maxRipeness Maximum ripeness stage of the grower
@@ -113,7 +110,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		super(object, itemName, growthRate);
 		init(type, actionName, maxRipeness, getInt("width"), getInt("height"));
 		ripeness = getInt("ripeness");
-		
+
 		update();
 		// Start the timer, if needed
 		if (ripeness < maxRipeness) {
@@ -123,7 +120,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 
 	/**
 	 * Create a new GrowingPassiveEntityRespawnPoint.
-	 * 
+	 *
 	 * @param type Entity class
 	 * @param itemName Name of the grown entity
 	 * @param actionName Name of the use action
@@ -147,7 +144,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 
 	/**
 	 * Set the current ripeness stage of the grower.
-	 * 
+	 *
 	 * @param ripeness
 	 */
 	protected void setRipeness(final int ripeness) {
@@ -157,7 +154,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 
 	/**
 	 * Get the current ripeness stage of the grower.
-	 * 
+	 *
 	 * @return ripeness
 	 */
 	protected int getRipeness() {
@@ -169,15 +166,10 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		setRipeness(ripeness + 1);
 		logger.debug("Grow " + ripeness + " up to " + maxRipeness);
 		notifyWorldAboutChanges();
-		
+
 		if (ripeness < maxRipeness) {
 			SingletonRepository.getTurnNotifier().notifyInTurns(getRandomTurnsForRegrow(), this);
 		}
-	}
-
-	@Override
-	public void getArea(final Rectangle2D rect, final double x, final double y) {
-		rect.setRect(x, y + getHeight() - 1.0, 1.0, 1.0);
 	}
 
 	@Override
