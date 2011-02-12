@@ -13,16 +13,48 @@
 package games.stendhal.client.gui.map;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.DomesticAnimal;
+import games.stendhal.client.entity.EntityChangeListener;
+import games.stendhal.client.entity.HousePortal;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.Portal;
+import games.stendhal.client.entity.RPEntity;
+import games.stendhal.client.entity.User;
+import games.stendhal.client.entity.WalkBlocker;
 import games.stendhal.common.CollisionDetection;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
+
 public class MapPanelController {
+	private static final boolean supermanMode = (System.getProperty("stendhal.superman") != null);
 	private static MapPanelController instance;
 	private MapPanel panel;
+	final Map<IEntity, MapObject> mapObjects = new ConcurrentHashMap<IEntity, MapObject>();
+	double x, y;
+	
+	/**
+	 * <code>true</code> if the map should be repainted, <code>false</code>
+	 * otherwise.
+	 */ 
+	private volatile boolean needsRefresh;
 	
 	public MapPanelController(final StendhalClient client) {
-		panel = new MapPanel(client);
+		panel = new MapPanel(this, client);
 		instance = this;
+	}
+	
+	/**
+	 * Mark the map contents changed, so that the component should be redrawn.
+	 * 
+	 * @param needed 
+	 */
+	void setNeedsRefresh(boolean needed) {
+		needsRefresh = needed;
 	}
 	
 	/**
@@ -37,20 +69,72 @@ public class MapPanelController {
 	 * Get the map panel component
 	 * @return component
 	 */
-	public MapPanel getComponent() {
+	public JComponent getComponent() {
 		return panel;
 	}
 	
 	/**
-	 * Add an entity to the map entity list.
-	 * The map may ignore entities that it does 
-	 * not need to draw.
-	 *  
-	 * @param entity the entity to be added
+	 * Add an entity to the map, if it should be displayed to the user. This
+	 * method is thread safe.
+	 * 
+	 * @param entity the added entity
 	 */
 	public void addEntity(final IEntity entity) {
-		panel.addEntity(entity);
+		MapObject object = null;
+		
+		if (entity instanceof User) {
+			entity.addChangeListener(new EntityChangeListener() {
+				public void entityChanged(final IEntity entity, final Object property) {
+					if (property == IEntity.PROP_POSITION) {
+						positionChanged(entity.getX(), entity.getY());
+					}
+				}
+			});
+			positionChanged(entity.getX(), entity.getY());
+			
+			object = new PlayerMapObject(entity);
+		} else if (entity instanceof Player) {
+			object = new PlayerMapObject(entity);
+		} else if (entity instanceof Portal) {
+			final Portal portal = (Portal) entity;
+
+			if (!portal.isHidden()) {
+				mapObjects.put(entity, new PortalMapObject(entity));
+			}
+		} else if (entity instanceof HousePortal) {
+			object = new PortalMapObject(entity);
+		} else if (entity instanceof WalkBlocker) {
+			object = new WalkBlockerMapObject(entity);
+		} else if (entity instanceof DomesticAnimal) {
+			// Only own pets and sheep are drawn but this is checked in the map object so the user status is always up to date
+			object = new DomesticAnimalMapObject((DomesticAnimal)entity);
+		} else if (supermanMode && User.isAdmin()) {
+			if (entity instanceof RPEntity) {
+				object = new RPEntityMapObject(entity);
+			} else {
+				object = new MovingMapObject(entity);
+			}
+		}
+		
+		if (object != null) {
+			mapObjects.put(entity, object);
+			
+			// changes to objects that should trigger a refresh
+			if (object instanceof MovingMapObject) {
+				entity.addChangeListener(new EntityChangeListener() {
+					public void entityChanged(final IEntity entity, final Object property) {
+						if ((property == IEntity.PROP_POSITION) 
+								|| (property == RPEntity.PROP_GHOSTMODE)
+								|| (property == RPEntity.PROP_GROUP_MEMBERSHIP)) {
+							needsRefresh = true;
+						}
+					}
+				});
+			}
+			needsRefresh = true;
+		}
 	}
+
 	
 	/**
 	 * Remove an entity from the map entity list.
@@ -58,14 +142,19 @@ public class MapPanelController {
 	 * @param entity the entity to be removed
 	 */
 	public void removeEntity(final IEntity entity) {
-		panel.removeEntity(entity);
+		if (mapObjects.containsKey(entity)) {
+			mapObjects.remove(entity);
+			needsRefresh = true;
+		}
 	}
 	
 	/**
 	 * Request redrawing the map screen if the needed.
 	 */
 	public void refresh() {
-		panel.refresh();
+		if (needsRefresh) {
+			panel.repaint();
+		}
 	}
 	
 	/**
@@ -79,6 +168,31 @@ public class MapPanelController {
 	 *            The zone name.
 	 */
 	public void update(final CollisionDetection cd, final CollisionDetection pd, final String zone) {
+		// Panel will do the relevant part in EDT.
 		panel.update(cd, pd, zone);
+	}
+	
+	/**
+	 * The player's position changed.
+	 * 
+	 * @param x
+	 *            The X coordinate (in world units).
+	 * @param y
+	 *            The Y coordinate (in world units).
+	 */
+	private void positionChanged(final double x, final double y) {
+		/*
+		 * The client gets occasionally spurious events.
+		 * Suppress repainting unless the position actually changed
+		 */
+		if ((this.x != x) || (this.y != y)) {
+			this.x = x;
+			this.y = y;
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					panel.positionChanged(x, y);
+				}
+			});
+		}
 	}
 }
