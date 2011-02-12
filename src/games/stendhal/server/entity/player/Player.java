@@ -2040,10 +2040,12 @@ public class Player extends RPEntity {
 	@Override
 	public void setLevel(int level) {
 		super.setLevel(level);
-		AchievementNotifier.get().onLevelChange(this);
-		// this may also make the happy noise if you drop a level down, I think, is this wished?
-		// currently the 'events lost on zone change' bug in marauroa seems to swalllow this though.
-		addEvent(new SoundEvent("tadaa-1", SoundLayer.USER_INTERFACE));
+
+		// reward players on level up
+		if (super.getLevel() < level) {
+			AchievementNotifier.get().onLevelChange(this);
+			addEvent(new SoundEvent("tadaa-1", SoundLayer.USER_INTERFACE));
+		}
 	}
 	
 	/**
