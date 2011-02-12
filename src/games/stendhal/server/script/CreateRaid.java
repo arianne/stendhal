@@ -27,7 +27,7 @@ import java.util.Map;
  */
 public abstract class CreateRaid extends ScriptImpl {
 
-	private final int RADIUS = 10;
+	private final int RADIUS = 5;
 	
 	protected abstract Map<String, Integer> createArmy();
 
