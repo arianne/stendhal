@@ -253,8 +253,6 @@ public final class AchievementNotifier {
 		final Map<Category,List<Achievement>> map = new HashMap<Category, List<Achievement>>(achievements);
 		map.remove(Category.OUTSIDE_ZONE);
 		map.remove(Category.UNDERGROUND_ZONE);
-		//remove to prevent NPEs on login (there is atm an achievement with no condition)
-		map.remove(Category.OBTAIN);
 		Collection<List<Achievement>> values = map.values();
 		for (List<Achievement> list : values) {
 			toCheck.addAll(list);
