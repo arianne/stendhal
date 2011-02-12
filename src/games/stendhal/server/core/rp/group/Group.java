@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.GroupChangeEvent;
+import games.stendhal.server.events.GroupInviteEvent;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -31,7 +32,7 @@ import java.util.Set;
 import marauroa.common.game.RPEvent;
 
 /**
- * A group of players 
+ * A group of players
  *
  * @author hendrik
  */
@@ -39,8 +40,8 @@ public class Group {
 	private static long TIMEOUT = 5*60*1000;
 	private static int MAX_MEMBERS = 3;
 
-	private HashMap<String, Long> membersAndLastSeen = new LinkedHashMap<String, Long>();
-	private HashMap<String, Long> openInvites = new HashMap<String, Long>();
+	private final HashMap<String, Long> membersAndLastSeen = new LinkedHashMap<String, Long>();
+	private final HashMap<String, Long> openInvites = new HashMap<String, Long>();
 	private String leader = null;
 	private String lootmode = "shared";
 
@@ -113,7 +114,16 @@ public class Group {
 		Iterator<Map.Entry<String, Long>> itr = openInvites.entrySet().iterator();
 		while (itr.hasNext()) {
 			Map.Entry<String, Long> entry = itr.next();
-			if (entry.getValue().compareTo(currentTime) < 0) {
+			if (entry.getValue().compareTo(timeoutTime) < 0) {
+				// TODO: "leader" needs to be the leader at invite time
+				// TODO: alternatively: cancel the old invite and create a new one on leader change
+				//       but the new leader may not agree with the invite, so it may not be a good idea
+				//       to fake it his name.
+				Player invitedPlayer = ruleProcessor.getPlayer(entry.getKey());
+				if (invitedPlayer != null) {
+					invitedPlayer.addEvent(new GroupInviteEvent(leader, true));
+				}
+
 				itr.remove();
 			}
 		}
@@ -230,7 +240,7 @@ public class Group {
 	 */
 	public void invite(Player player, Player targetPlayer) {
 		openInvites.put(targetPlayer.getName(), Long.valueOf(System.currentTimeMillis()));
-		targetPlayer.sendPrivateText(player.getName() + " has invited you to join a group. Type /group join " + player.getName());
+		targetPlayer.addEvent(new GroupInviteEvent(player.getName(), false));
 	}
 
 	/**
@@ -251,7 +261,7 @@ public class Group {
 	 * sends a group chat message to all members
 	 *
 	 * @param name   name of sender
-	 * @param text message to send 
+	 * @param text message to send
 	 */
 	public void sendGroupMessage(String name, String text) {
 		StendhalRPRuleProcessor ruleProcessor = SingletonRepository.getRuleProcessor();

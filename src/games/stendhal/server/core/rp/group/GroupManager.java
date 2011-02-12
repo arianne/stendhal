@@ -12,8 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.group;
 
+import games.stendhal.server.core.events.LoginListener;
+import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -24,15 +27,16 @@ import java.util.Set;
  *
  * @author hendrik
  */
-public class GroupManager implements TurnListener {
+public class GroupManager implements TurnListener, LoginListener {
 
-	private Set<Group> groups = new HashSet<Group>();
+	private final Set<Group> groups = new HashSet<Group>();
 
 	/**
 	 * creates a new GroupManager.
 	 */
 	public GroupManager() {
 		TurnNotifier.get().notifyInSeconds(60, this);
+		LoginNotifier.get().addListener(this);
 	}
 
 	/**
@@ -101,10 +105,20 @@ public class GroupManager implements TurnListener {
 	}
 
 	/**
-	 * cleans up 
+	 * cleans up
 	 */
 	public void onTurnReached(int currentTurn) {
 		clean();
 		TurnNotifier.get().notifyInSeconds(60, this);
+	}
+
+	/**
+	 * tell the reconnecting client if he is in a group
+	 */
+	public void onLoggedIn(Player player) {
+		Group group = getGroup(player.getName());
+		if (group != null) {
+			group.sendGroupChangeEvent(player);
+		}
 	}
 }

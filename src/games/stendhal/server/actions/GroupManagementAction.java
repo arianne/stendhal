@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -40,7 +40,7 @@ public class GroupManagementAction implements ActionListener {
 
 	/**
 	 * processes the requested action.
-	 * 
+	 *
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */
@@ -61,7 +61,11 @@ public class GroupManagementAction implements ActionListener {
 		if (!actionStr.equals("lootmode") && !actionStr.equals("part") && !actionStr.equals("status") && !actionStr.equals("kick")) {
 			targetPlayer = SingletonRepository.getRuleProcessor().getPlayer(params);
 			if (targetPlayer == null) {
-				player.sendPrivateText(NotificationType.ERROR, "Player " + params + " is not online");
+				if (params.trim().equals("")) {
+					player.sendPrivateText(NotificationType.ERROR, "Please include the name of the target player in this command.");
+				} else {
+					player.sendPrivateText(NotificationType.ERROR, "Player " + params + " is not online");
+				}
 				return;
 			}
 		}
@@ -97,6 +101,10 @@ public class GroupManagementAction implements ActionListener {
 		// TODO: make checks reusable, some of these checks are used at many places
 
 		if (!player.getChatBucket().checkAndAdd()) {
+			return;
+		}
+		if (player == targetPlayer) {
+			player.sendPrivateText(NotificationType.ERROR, "You cannot invite yourself into a group.");
 			return;
 		}
 
@@ -153,9 +161,15 @@ public class GroupManagementAction implements ActionListener {
 	 * @param targetPlayer leader of the group
 	 */
 	private void join(Player player, Player targetPlayer) {
+		// check if the player is already in a group
+		Group group = SingletonRepository.getGroupManager().getGroup(player.getName());
+		if (group != null) {
+			player.sendPrivateText(NotificationType.ERROR, "You are already in a group.");
+			return;
+		}
 
-		// check if the target player is already in a group
-		Group group = SingletonRepository.getGroupManager().getGroup(targetPlayer.getName());
+		// check if the target player is in a group and that this group has invited the player
+		group = SingletonRepository.getGroupManager().getGroup(targetPlayer.getName());
 		if ((group == null) || !group.hasBeenInvited(player.getName())) {
 			player.sendPrivateText(NotificationType.ERROR, "You have not been invited into this group or the invite expired.");
 			return;
@@ -179,7 +193,7 @@ public class GroupManagementAction implements ActionListener {
 	 */
 	private void leader(Player player, Player targetPlayer) {
 
-		// check if the player is already in a group
+		// check if the player is in a group
 		Group group = SingletonRepository.getGroupManager().getGroup(player.getName());
 		if (group == null) {
 			player.sendPrivateText(NotificationType.ERROR, "You are not a member of a group.");
@@ -311,10 +325,10 @@ public class GroupManagementAction implements ActionListener {
 
 	/**
 	 * sends an error messages on invalid an actions
-	 * 
+	 *
 	 * @param player Player who executed the action
 	 * @param action name of action
-	 * @param params params for the action
+	 * @param params parameters for the action
 	 */
 	private void unknown(Player player, String action, String params) {
 		player.sendPrivateText(NotificationType.ERROR, "Unknown group action: " + action + " with parameters " + params);
