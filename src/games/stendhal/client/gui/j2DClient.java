@@ -588,25 +588,23 @@ public class j2DClient implements UserInterface {
 				logger.debug("Move objects");
 				gameObjects.update(delta);
 	
-				if (gameLayers.isAreaChanged() && client.tryAcquireDrawingSemaphore()) {
-					try {
-						/*
-						 * Update the screen
-						 */
-						screenController.setWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
-	
-						// [Re]create the map
-		
-						final CollisionDetection cd = gameLayers.getCollisionDetection();
-						final CollisionDetection pd = gameLayers.getProtectionDetection();
+				if (gameLayers.isAreaChanged()) {
+					// Same thread as the ClientFramework loop, so these should
+					// be save
+					/*
+					 * Update the screen
+					 */
+					screenController.setWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
 
-						if (cd != null) {
-							minimap.update(cd, pd, gameLayers.getArea());
-						} 
-						gameLayers.resetChangedArea();
-					} finally {
-						client.releaseDrawingSemaphore();
+					// [Re]create the map.
+
+					final CollisionDetection cd = gameLayers.getCollisionDetection();
+					final CollisionDetection pd = gameLayers.getProtectionDetection();
+
+					if (cd != null) {
+						minimap.update(cd, pd, gameLayers.getArea());
 					}
+					gameLayers.resetChangedArea();
 				}
 
 				final User user = User.get();
