@@ -13,6 +13,7 @@
 package games.stendhal.server.core.rp.achievement;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.db.AchievementDAO;
@@ -22,6 +23,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
 import games.stendhal.server.entity.player.UpdatePendingAchievementsOnLogin;
 import games.stendhal.server.events.ReachedAchievementEvent;
+import games.stendhal.server.events.SoundEvent;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -353,6 +355,7 @@ public final class AchievementNotifier {
 			Achievement achievement) {
 		if (System.getProperty("stendhal.achievement") != null) {
 			player.addEvent(new ReachedAchievementEvent(achievement));
+			player.addEvent(new SoundEvent("yay-1", SoundLayer.USER_INTERFACE));
 		}
 	}
 
