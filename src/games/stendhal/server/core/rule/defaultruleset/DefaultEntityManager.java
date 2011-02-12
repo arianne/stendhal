@@ -84,10 +84,7 @@ public class DefaultEntityManager implements EntityManager {
 			final SpellGroupsXMLLoader loader = new SpellGroupsXMLLoader(new URI("/data/conf/spells.xml"));
 			List<DefaultSpell> loadedDefaultSpells = loader.load();
 			for (DefaultSpell defaultSpell : loadedDefaultSpells) {
-				if(nameToSpell.containsKey(defaultSpell.getName())) {
-					LOGGER.warn("Repeated spell name: "+ defaultSpell.getName());
-				}
-				nameToSpell.put(defaultSpell.getName(), defaultSpell);
+				addSpell(defaultSpell);
 			}
 		} catch (Exception e) {
 			LOGGER.error("spells.xml could not be loaded", e);
@@ -167,7 +164,7 @@ public class DefaultEntityManager implements EntityManager {
 
 		return true;
 	}
-
+	
 	public boolean addCreature(final DefaultCreature creature) {
 		final String id = creature.getTileId();
 		final String clazz = creature.getCreatureName();
@@ -185,6 +182,14 @@ public class DefaultEntityManager implements EntityManager {
 		return true;
 	}
 
+	public boolean addSpell(DefaultSpell spell) {
+		if(nameToSpell.containsKey(spell.getName())) {
+			LOGGER.warn("Repeated spell name: "+ spell.getName());
+		}
+		nameToSpell.put(spell.getName(), spell);
+		return true;
+	}
+	
 	/**
 	 * @return a list of all Creatures that are instantiated.
 	 */

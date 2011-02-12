@@ -2,7 +2,7 @@
 <spells xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../spells.xsd ">
 	<spell name="heal">
-		<implementation class-name="games.stendhal.server.entity.spell.Spell" />
+		<implementation class-name="games.stendhal.server.entity.spell.HealingSpell" />
 		<nature value="light"/>
 		<attributes>
 			<mana value="5" />

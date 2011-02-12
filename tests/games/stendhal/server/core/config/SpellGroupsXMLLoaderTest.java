@@ -12,22 +12,39 @@
  ***************************************************************************/
 package games.stendhal.server.core.config;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 import games.stendhal.common.constants.Nature;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.transformer.SpellTransformer;
 import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
+import games.stendhal.server.entity.spell.Spell;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import marauroa.common.game.RPObject;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
-
 public class SpellGroupsXMLLoaderTest {
+	
+	@Before
+	public void setUp() {
+		MockStendlRPWorld.get();
+	}
+	
+	@After
+	public void tearDown() {
+		MockStendlRPWorld.reset();
+	}
 	
 	@Test
 	public void testLoad() throws URISyntaxException, SAXException, IOException {
@@ -38,7 +55,7 @@ public class SpellGroupsXMLLoaderTest {
 		assertThat(spell.getName(), is("heal"));
 		assertThat(spell.getNature(), is(Nature.LIGHT));
 		assertThat(spell.getImplementationClass(), notNullValue());
-		assertThat(spell.getImplementationClass().getName(), is("games.stendhal.server.entity.spell.Spell"));
+		assertThat(spell.getImplementationClass().getName(), is("games.stendhal.server.entity.spell.HealingSpell"));
 		assertThat(spell.getAmount(),is(Integer.valueOf(100)));
 		assertThat(spell.getAtk(),is(Integer.valueOf(0)));
 		assertThat(spell.getCooldown(),is(Integer.valueOf(3)));
@@ -49,6 +66,24 @@ public class SpellGroupsXMLLoaderTest {
 		assertThat(spell.getRange(),is(Integer.valueOf(10)));
 		assertThat(spell.getRate(),is(Integer.valueOf(1)));
 		assertThat(spell.getRegen(),is(Integer.valueOf(100)));
+		SingletonRepository.getEntityManager().addSpell(spell);
+		Spell entity = SingletonRepository.getEntityManager().getSpell("heal");
+		assertThat(entity, notNullValue());
+		assertThat(entity.getName(), is("heal"));
+		assertThat(entity.getNature(), is(Nature.LIGHT));
+		assertThat(entity.getAmount(),is(Integer.valueOf(100)));
+		assertThat(entity.getAtk(),is(Integer.valueOf(0)));
+		assertThat(entity.getCooldown(),is(Integer.valueOf(3)));
+		assertThat(entity.getDef(),is(Integer.valueOf(0)));
+		assertThat(entity.getLifesteal(),is(Double.valueOf(0.5)));
+		assertThat(entity.getMana(),is(Integer.valueOf(5)));
+		assertThat(entity.getMinimumLevel(),is(Integer.valueOf(0)));
+		assertThat(entity.getRange(),is(Integer.valueOf(10)));
+		assertThat(entity.getRate(),is(Integer.valueOf(1)));
+		assertThat(entity.getRegen(),is(Integer.valueOf(100)));
+		assertThat(entity.getClass().getName(), is("games.stendhal.server.entity.spell.HealingSpell"));
+		RPObject object = new SpellTransformer().transform(entity);
+		assertThat(object, is((RPObject)entity));
 	}
 
 }
