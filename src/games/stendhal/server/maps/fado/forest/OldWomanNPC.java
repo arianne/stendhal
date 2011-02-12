@@ -115,7 +115,7 @@ public class OldWomanNPC implements ZoneConfigurator {
 				addGreeting("Oh someone met me on my way. Hello.");
 				addJob("Actually I don't have any job. I used to be a good mom but I #failed somehow.");
 				addReply("failed, fail", "I left my poor son alone for such a long time now. I doubt that he will ever talk to me again but there were so many #problems around...");
-				addReply("problem", "I felt in love with a man in Kirdneh called Roger Frampton. Unfortunetly we broke up and I didn't know what to do after so I went out of the city and spent some time on my #own here.");
+				addReply("problem", "I fell in love with a man in Kirdneh called Roger Frampton. Unfortunetly we broke up and I didn't know what to do after so I went out of the city and spent some time on my #own here.");
 				addReply("own", "The trees and animals around became great companions of me although I had to give up my real family somehow. I miss my son #Jef so much");
 				addReply("Jef", "Such a gentle and nice young boy. I know that he waits for my return but I'm not ready yet.");
 				addQuest("I don't have any quest for you at the moment.");
