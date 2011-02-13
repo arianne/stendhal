@@ -61,7 +61,7 @@ public class SmallBoyNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hm?");
-				addQuest("Would you get me a #balloon?. Unless the mine town weeks are currently on,"
+				addQuest("Would you get me a #balloon? Unless the mine town weeks are currently on,"
 						+ " then I can get my own :)");
 				addHelp("I wonder if a #balloon could fly high enough to touch the clouds");
 				addJob("A Job? Is that something you can eat?");

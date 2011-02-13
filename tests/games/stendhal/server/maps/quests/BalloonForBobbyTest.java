@@ -72,7 +72,7 @@ public class BalloonForBobbyTest {
 		en.step(player, "balloon");
 		assertEquals("You don't even have a balloon for me :(", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("Would you get me a #balloon?. Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
+		assertEquals("Would you get me a #balloon? Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good bye.", getReply(npc));
 		
@@ -93,7 +93,7 @@ public class BalloonForBobbyTest {
 		en.step(player, "job");
 		assertEquals("A Job? Is that something you can eat?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("Would you get me a #balloon?. Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
+		assertEquals("Would you get me a #balloon? Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good bye.", getReply(npc));
 		
@@ -111,7 +111,7 @@ public class BalloonForBobbyTest {
 		en.step(player, "job");
 		assertEquals("A Job? Is that something you can eat?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("Would you get me a #balloon?. Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
+		assertEquals("Would you get me a #balloon? Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
 		en.step(player, "balloon");
 		assertEquals("Is that balloon for me?", getReply(npc));
 		en.step(player, "no");
@@ -138,7 +138,7 @@ public class BalloonForBobbyTest {
 		en.step(player, "help");
 		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("Would you get me a #balloon?. Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
+		assertEquals("Would you get me a #balloon? Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
 		en.step(player, "balloon");
 		assertEquals("The clouds told me that the mine town weeks are still going - I can get my own balloons. Come back when mine town weeks are over :)", getReply(npc));
 		en.step(player, "bye");
@@ -156,13 +156,12 @@ public class BalloonForBobbyTest {
 		en.step(player, "help");
 		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("Would you get me a #balloon?. Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
+		assertEquals("Would you get me a #balloon? Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
 		en.step(player, "balloon");
 		assertEquals("The clouds told me that the mine town weeks are still going - I can get my own balloons. Come back when mine town weeks are over :)", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good bye.", getReply(npc));
 
 		StendhalQuestSystem.get().unloadQuest(SemosMineTownRevivalWeeks.QUEST_NAME);
-
 	}
 }
