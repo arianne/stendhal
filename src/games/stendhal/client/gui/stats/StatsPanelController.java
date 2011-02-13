@@ -454,12 +454,7 @@ public class StatsPanelController {
 		
 			try {
 				String newKarma = (String) event.getNewValue();
-				final double karma = Double.parseDouble(newKarma);
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						panel.setKarma(karma);
-					}
-				});
+				panel.setKarma(Double.parseDouble(newKarma));
 			} catch (NumberFormatException e) {
 				Logger.getLogger(StatsPanelController.class).error("Invalid karma value", e);
 			}
