@@ -5,22 +5,28 @@ Changelog
 0.92
 
 *features*
+- achievements system with notification in game of reached achievement and website integration
+- group system for sharing loots and chatting, with a GUI to aid group management
 - show Production activity in the Travel Log
 - settings dialog
 
 *world*
 - sheep growing quest from Nishiya
-- Help Jef by finding his mom in a new quest
-- Amber, Jefs mom, showed up somewhere in Faiumoni
+- Help Jef by finding his mom, Amber, in a new quest
 - Caroline moved into her refurbished house in Ados 
 - NPC conversation with improved and unified responses of producers and merchandisers
-- better multi-monitor behaviour
 - the required item to collect (if chosen from a list) is displayed in more quest histories
+- message about where you died, on death
+- sound on level up
+- configurable archer range: orc spearman can throw further
+- damage type of the arrows is used for archer players
 
 *fixes*
 - numerous small gui code fixes
 - all defined achievements can now be reached
 - simplfied chest syncing to remove flicker
+- better multi-monitor behaviour
+
 
 0.91 
 
