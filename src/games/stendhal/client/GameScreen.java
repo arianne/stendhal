@@ -303,6 +303,9 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget {
 		if (view != null) {
 			entities.put(entity, view);
 			addEntityView(view);
+			if (entity.isUser()) {
+				center();
+			}
 		}
 	}
 
