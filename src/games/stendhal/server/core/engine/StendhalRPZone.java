@@ -15,6 +15,7 @@ package games.stendhal.server.core.engine;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Line;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.config.zone.TeleportationRules;
@@ -1412,6 +1413,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return translated zone name
 	 */
 	private static String translateZoneName(final String zoneName) {
+		
 		if (zoneNameMappings.get(zoneName) != null) {
 			return zoneNameMappings.get(zoneName);
 		}
@@ -1422,7 +1424,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			final String level = m.group(1);
 			String remainder = m.group(2);
 			if ("int".equals(level)) {
-				return "inside a building in " + getInteriorName(zoneName);
+				return "inside a building in " + Grammar.makeUpperCaseWord(getInteriorName(zoneName));
 			} else if (level.startsWith("-")) {
 				int levelValue;
 				try {
@@ -1473,7 +1475,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 			if (direction.length() > 0) {
 				result += direction + "of ";
 			}
-			result += remainder.replaceAll("_", " ");
+			// here we need to capitalise the city name
+			result += Grammar.makeUpperCaseWord(remainder.replaceAll("_", " "));
 		} else {
 			System.err.println("no match: " + zoneName);
 		}
