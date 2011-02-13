@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class EventFactory {
-	
+
 	private static final Logger logger = Logger.getLogger(EventFactory.class);
 
 	/**
@@ -73,6 +73,8 @@ public class EventFactory {
 			event = new TradeStateChangeEvent();
 		} else if (name.equals(Events.GROUP_CHANGE)) {
 			event = new GroupChangeEvent();
+		} else if (name.equals(Events.GROUP_INVITE)) {
+			event = new GroupInviteEvent();
 		} else if (name.equals(Events.PROGRESS_STATUS_CHANGE)) {
 			event = new ProgressStatusEvent();
 		} else if (name.endsWith(Events.REACHED_ACHIEVEMENT)) {
@@ -110,7 +112,7 @@ public class EventFactory {
 			event = new PlayerLoggedOutEvent();
 		} else if (name.equals(Events.VIEW_CHANGE)) {
 			event = new ViewChangeEvent();
-		} 
+		}
 
 		if (event != null) {
 			event.init(entity, rpevent);
