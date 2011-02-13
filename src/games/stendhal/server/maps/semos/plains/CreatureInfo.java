@@ -208,7 +208,7 @@ public class CreatureInfo {
 		if (places.isEmpty()) {
 			return "";
 		} else {
-			return prefix + "at "
+			return prefix + " "
 					+ Grammar.enumerateCollection(places);
 		}
 	}
