@@ -12,9 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
+import games.stendhal.common.Level;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.HashMap;
+
+import javax.swing.SwingUtilities;
 
 import org.apache.log4j.Logger;
 
@@ -29,6 +34,25 @@ public class StatsPanelController {
 	private static final String[] MONEY_SLOTS = { "bag", "lhand", "rhand" };
 	private StatsPanel panel;
 	private static	StatsPanelController instance;
+	
+	/**
+	 * The money objects.
+	 * First level keys are the slot name. Second level is the object id.
+	 */
+	private final HashMap<String, HashMap<String, RPObject>> money = new HashMap<String, HashMap<String, RPObject>>();
+	
+	private int level;
+	private int xp;
+	private int hp;
+	private int maxhp;
+	
+	private int atk;
+	private int atkxp;
+	private int weaponAtk;
+	
+	private int def;
+	private int defxp;
+	private int itemDef;
 	
 	/**
 	 * Create a new <code>StatsPanelController</code>. There
@@ -113,6 +137,63 @@ public class StatsPanelController {
 	}
 	
 	/**
+	 * Called when xp or level has changed
+	 */
+	private void updateLevel() {
+		final int next = Level.getXP(level + 1) - xp;
+		// Show "em-dash" for max level players rather than 
+		// a confusing negative required xp.
+		final String nextS = (next < 0) ? "\u2014" : Integer.toString(next);
+			
+		final String text = "Level: " + level + " (" + nextS + ")";
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				panel.setLevel(text);
+			}
+		});
+	}
+	
+	/**
+	 * Called when HP or max HP has changed.
+	 */
+	private void updateHP() {
+		final String text = "HP: " + hp + "/" + maxhp;
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				panel.setHP(text);
+			}
+		});
+	}
+	
+	/**
+	 * Called when atk, atkxp, or weaponAtk changes.
+	 */
+	private void updateAtk() {
+		// atk uses 10 levels shifted starting point
+		final int next = Level.getXP(atk - 9) - atkxp;
+		final String text = "ATK: " + atk + "×" + (1 + weaponAtk) + " (" + next + ")";
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				panel.setAtk(text);
+			}
+		});
+	}
+	
+	/**
+	 * Called when def, defxp, or itemDef changes
+	 */
+	private void updateDef() {
+		// def uses 10 levels shifted starting point
+		final int next = Level.getXP(def - 9) - defxp;
+		final String text = "DEF: " + def + "×" + (1 + itemDef) + " (" + next + ")";
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				panel.setDef(text);
+			}
+		});
+	}
+	
+	/**
 	 * Listener for HP and base_hp changes.
 	 */
 	private class HPChangeListener implements PropertyChangeListener {
@@ -122,11 +203,78 @@ public class StatsPanelController {
 			}
 			
 			if (event.getPropertyName().equals("hp")) {
-				panel.setHP(Integer.parseInt((String) event.getNewValue()));
+				hp = Integer.parseInt((String) event.getNewValue());
 			} else {
-				panel.setMaxHP(Integer.parseInt((String) event.getNewValue()));
+				maxhp = Integer.parseInt((String) event.getNewValue());
+			}
+			updateHP();
+		}
+	}
+	
+	/**
+	 * Called when there are additions to a potential money slot.
+	 * 
+	 * @param slot
+	 * @param object
+	 */
+	private void addMoney(String slot, RPObject object) {
+		HashMap<String, RPObject> set = money.get(slot);
+		String id = object.get("id"); 
+		
+		boolean add = false;
+		if ("money".equals(object.get("class"))) {
+			add = true;
+		}
+		if (set == null) {
+			if (add) {
+				set = new HashMap<String, RPObject>();
+				money.put(slot, set);
+			}
+		} else if (set.containsKey(id) && object.has("quantity")) {
+			// Has been checked to be money before. Add only if there's 
+			// quantity though. Adding to empty slots can create add events without.
+			// Then the quantity has arrived in previous event
+			add = true;
+		}
+	
+		if (add) {
+			set.put(object.get("id"), object);
+			updateMoney();
+		}
+	}
+	
+	/**
+	 * Called when items are removed from a potential money slot.
+	 * 
+	 * @param slot
+	 * @param obj
+	 */
+	private void removeMoney(String slot, RPObject obj) {
+		HashMap<String, RPObject> set = money.get(slot);
+		if (set != null) {
+			if (set.remove(obj.get("id")) != null) {
+				updateMoney();
 			}
 		}
+	}
+	
+	/**
+	 * Count the money, and update the label text.
+	 */
+	private void updateMoney() {
+		int amount = 0;
+		
+		for (HashMap<String, RPObject> stack : money.values()) {
+			for (RPObject obj : stack.values()) {
+				amount += obj.getInt("quantity");
+			}
+		}
+		final String text = "Money: " + amount;
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				panel.setMoney(text);
+			}
+		});
 	}
 	
 	/**
@@ -139,10 +287,11 @@ public class StatsPanelController {
 			}
 			
 			if ("atk".equals(event.getPropertyName())) {
-				panel.setAtk(Integer.parseInt((String) event.getNewValue()));
+				atk = Integer.parseInt((String) event.getNewValue());
 			} else {
-				panel.setAtkXP(Integer.parseInt((String) event.getNewValue()));
+				atkxp = Integer.parseInt((String) event.getNewValue());
 			}
+			updateAtk();
 		}
 	}
 	
@@ -156,10 +305,11 @@ public class StatsPanelController {
 			}
 			
 			if (event.getPropertyName().equals("def")) {
-				panel.setDef(Integer.parseInt((String) event.getNewValue()));
+				def =  Integer.parseInt((String) event.getNewValue());
 			} else {
-				panel.setDefXP(Integer.parseInt((String) event.getNewValue()));
+				defxp = Integer.parseInt((String) event.getNewValue());
 			}
+			updateDef();
 		}
 	}
 	
@@ -171,7 +321,14 @@ public class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			panel.setXP(Integer.parseInt((String) event.getNewValue()));
+			xp = Integer.parseInt((String) event.getNewValue());
+			updateLevel();
+			final String text = "XP: " + xp;
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					panel.setXP(text);
+				}
+			});
 		}
 	}
 	
@@ -183,7 +340,8 @@ public class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			panel.setLevel(Integer.parseInt((String) event.getNewValue()));
+			level = Integer.parseInt((String) event.getNewValue());
+			updateLevel();
 		}
 	}
 	
@@ -195,7 +353,8 @@ public class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			panel.setWeaponAtk(Integer.parseInt((String) event.getNewValue()));
+			weaponAtk = Integer.parseInt((String) event.getNewValue());
+			updateAtk();
 		}
 	}
 	
@@ -207,7 +366,8 @@ public class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			panel.setItemDef(Integer.parseInt((String) event.getNewValue()));
+			itemDef = Integer.parseInt((String) event.getNewValue());
+			updateDef();
 		}
 	}
 	
@@ -218,16 +378,28 @@ public class StatsPanelController {
 		public void propertyChange(final PropertyChangeEvent event) {
 			// Deleted attribute can raise a null event
 			if (event == null) {
-				panel.setEating(false);
-				panel.setChoking(false);
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						panel.setEating(false);
+						panel.setChoking(false);
+					}
+				});
 				return;
 			}
 			
-			boolean newStatus = event.getNewValue() != null;
+			final boolean newStatus = event.getNewValue() != null;
 			if ("eating".equals(event.getPropertyName())) {
-				panel.setEating(newStatus);
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						panel.setEating(newStatus);
+					}
+				});
 			} else {
-				panel.setChoking(newStatus);
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						panel.setChoking(newStatus);
+					}
+				});
 			}
 		}
 	}
@@ -243,7 +415,12 @@ public class StatsPanelController {
 				value = event.getNewValue();
 			}
 			
-			panel.setPoisoned(value != null);
+			final boolean poisoned = value != null;
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					panel.setPoisoned(poisoned);
+				}
+			});
 		}
 	}
 	
@@ -257,8 +434,12 @@ public class StatsPanelController {
 			if (event != null) {
 				value = event.getNewValue();
 			}
-			
-			panel.setAway(value != null);
+			final boolean away = value != null;
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					panel.setAway(away);
+				}
+			});
 		}
 	}
 	
@@ -290,8 +471,12 @@ public class StatsPanelController {
 			if (event != null) {
 				value = event.getNewValue();
 			}
-			
-			panel.setGrumpy(value != null);
+			final boolean grumpy = value != null;
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					panel.setGrumpy(grumpy);
+				}
+			});
 		}
 	}
 	
@@ -309,7 +494,7 @@ public class StatsPanelController {
 			RPSlot slot = (RPSlot) event.getOldValue();
 			if (slot != null) {
 				for (final RPObject object : slot) {
-					panel.removeMoney(slot.getName(), object);
+					removeMoney(slot.getName(), object);
 				}
 			}
 			
@@ -317,7 +502,7 @@ public class StatsPanelController {
 			if (slot != null) {
 				for (final RPObject object : slot) {
 					// add everything. let the panel figure out if it's money
-					panel.addMoney(slot.getName(), object);
+					addMoney(slot.getName(), object);
 				}
 			}
 		}

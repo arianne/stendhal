@@ -68,7 +68,8 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 	}
 
 	/**
-	 * Set the karma value.
+	 * Set the karma value. This method may be called outside the event dispatch
+	 * thread.
 	 * 
 	 * @param karma
 	 */
