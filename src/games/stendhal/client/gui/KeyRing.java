@@ -75,13 +75,13 @@ public class KeyRing extends SlotWindow implements FeatureChangeListener {
 	 */
 	public void featureEnabled(final String name, final String value) {
 		if (name.equals("keyring")) {
-			if(!isVisible()) {
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					if(!isVisible()) {
 						setVisible(true);
 					}
-				});
-			}
+				}
+			});
 		}
 	}
 }
