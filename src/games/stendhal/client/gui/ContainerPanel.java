@@ -16,9 +16,10 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.layout.SBoxLayout;
 
+import java.awt.Component;
 import java.awt.Dimension;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -37,8 +38,12 @@ public class ContainerPanel extends JScrollPane implements Inspector {
 
 	/** The actual content panel. */
 	private final JPanel panel;
-	/** Components that should be repainted in the game loop.  */
-	private final List<JComponent> repaintable = new LinkedList<JComponent>();
+	/**
+	 * Components that should be repainted in the game loop. Uses copy-on-write,
+	 * because modifying the list (not a very common operation) is done in the
+	 * event dispatch thread, but it's iterated over in the game loop.
+	 */
+	private final List<JComponent> repaintable = new CopyOnWriteArrayList<JComponent>();
 
 	/**
 	 * Create a ContainerPanel.
@@ -48,6 +53,12 @@ public class ContainerPanel extends JScrollPane implements Inspector {
 		panel.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		setViewportView(panel);
 		setBorder(null);
+	}
+	
+	@Override
+	public void remove(Component component) {
+		super.remove(component);
+		repaintable.remove(component);
 	}
 	
 	/**
