@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<title>Stendhal Text Client</title>
+
+<!-- for ie -->
+<script src="/json.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<!-- <script src="/marauroa-compressed.js"></script> -->
+<script type="text/javascript" src="marauroa.js"></script>
+<script type="text/javascript" src="client-framework.js"></script>
+<script type="text/javascript" src="message-factory.js"></script>
+<script type="text/javascript" src="perception.js"></script>
+<script type="text/javascript" src="rpobject-factory.js"></script>
+
+</head>
+<body>
+
+<script>
+	function addLine(txt) {
+		var el = document.createElement('p');
+		el.innerHTML = txt;
+		document.getElementById('chat').appendChild(el);
+		document.getElementById('chat').scrollTop = 1000000;
+	}
+
+	function send(){
+		var val = document.getElementById('text').value;
+		var array = val.split(" ");
+		if (array[0] == "/choosecharacter") {
+			marauroa.clientFramework.chooseCharacter(array[1]);
+		} else if (val == '/close') {
+			addLine('<em>closing...</em>');
+			marauroa.clientFramework.close();
+		} else {
+			var action = {
+				"type": "chat",
+				"text": val
+			};
+			marauroa.clientFramework.sendAction(action);
+		}
+		document.getElementById('text').value = '';
+	}
+
+	function esc(msg){
+		return msg.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	};
+
+	marauroa.rpobjectFactory._default = function() {
+		this.onEvent = function(e) {
+			if (e.c == "private_text") {
+				addLine(e.a.text);
+			}
+		}
+	}
+
+	marauroa.clientFramework.onConnect = function(reason, error){
+	}
+	marauroa.clientFramework.onDisconnect = function(reason, error){
+		addLine('<b>Disconnected: '+error+'</b>');
+	}
+
+	marauroa.clientFramework.connect(null, null);
+
+</script>
+
+<h1>Sample chat client</h1>
+<form id="form" onsubmit="send(); return false">
+	<input type="text" autocomplete="off" id="text">
+	<input type="submit" value="Send">
+</form>
+<div id="chat" style="height:200px">
+<p>Connecting...</p>
+</div>
+</body>
+</html>
