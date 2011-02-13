@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.trade;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -69,10 +70,12 @@ public class MarketTest {
 		zone.add(market);
 		Item item = SingletonRepository.getEntityManager().getItem("axe");
 		bob.equipToInventoryOnly(item);
-		
+		assertEquals(bob, item.getContainer());
 		Offer offer = market.createOffer(bob, item, 10, 1);
 		
 		assertTrue(market.getOffers().contains(offer));
+		assertFalse(offer.getItem().getContainer().equals(bob));
+		assertTrue(offer.getItem().getContainer().equals(offer));
 		assertNull(bob.getFirstEquipped("axe"));
 	}
 
