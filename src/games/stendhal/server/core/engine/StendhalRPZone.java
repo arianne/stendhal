@@ -1400,10 +1400,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private static final Map<String, String> zoneNameMappings = new HashMap<String, String>();
 
 	static {
-		zoneNameMappings.put("0_athor_ship_w2", "Athor ferry");
-		zoneNameMappings.put("-1_athor_ship_w2", "Athor ferry");
-		zoneNameMappings.put("-2_athor_ship_w2", "Athor ferry");
-		zoneNameMappings.put("hell", "Hell");
+		zoneNameMappings.put("0_athor_ship_w2", "on Athor ferry");
+		zoneNameMappings.put("-1_athor_ship_w2", "on Athor ferry");
+		zoneNameMappings.put("-2_athor_ship_w2", "on Athor ferry");
+		zoneNameMappings.put("hell", "in Hell");
 	}
 	
 	/**
@@ -1420,13 +1420,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 		String result = "";
 		final Pattern p = Pattern.compile("^(-?[\\d]|int)_(.+)$");
 		final Matcher m = p.matcher(zoneName);
+		int levelValue = -1;
 		if (m.matches()) {
 			final String level = m.group(1);
 			String remainder = m.group(2);
 			if ("int".equals(level)) {
 				return "inside a building in " + Grammar.makeUpperCaseWord(getInteriorName(zoneName));
 			} else if (level.startsWith("-")) {
-				int levelValue;
 				try {
 					levelValue = Integer.parseInt(level);
 				} catch (final NumberFormatException e) {
@@ -1439,7 +1439,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 				}
 			} else if (level.matches("^\\d")) { 
 				/* positive floor */
-				int levelValue;
 				try {
 					levelValue = Integer.parseInt(level);
 				} catch (final NumberFormatException e) {
@@ -1451,7 +1450,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					} else {
 						result = "above the ground level at ";
 					}
-				}
+				} 
 			}
 			final StringBuilder sb = new StringBuilder();
 			final String[] directions = new String[] { ".+_n\\d?e\\d?($|_).*",
@@ -1474,6 +1473,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 			String direction = sb.toString();
 			if (direction.length() > 0) {
 				result += direction + "of ";
+			} else if (levelValue == 0)  {
+				// if level 0 and no other direction we need an extra in for grammar
+				result =" in ";
 			}
 			// here we need to capitalise the city name
 			result += Grammar.makeUpperCaseWord(remainder.replaceAll("_", " "));

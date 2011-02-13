@@ -50,12 +50,12 @@ public class StendhalRPZoneTest {
 	@Test
 	public void testDescribeString() {
 		assertEquals(StendhalRPZone.describe("int_fado_tavern"),"inside a building in Fado");
-		assertEquals(StendhalRPZone.describe("0_semos_city"),"Semos city");
+		assertEquals(StendhalRPZone.describe("0_semos_city"),"in Semos city");
 		assertEquals(StendhalRPZone.describe("0_semos_mountain_n_w4"),"north west of Semos mountain");
 		assertEquals(StendhalRPZone.describe("-3_semos_dungeon"),"deep below ground level at Semos dungeon");
 		assertEquals(StendhalRPZone.describe("-1_ados_caves"),"below ground level at Ados caves");
 		assertEquals(StendhalRPZone.describe("6_kikareukin_islands"),"high above the ground level at Kikareukin islands");
-		assertEquals(StendhalRPZone.describe("hell"),"Hell");
+		assertEquals(StendhalRPZone.describe("hell"),"in Hell");
 	}
 
 }
