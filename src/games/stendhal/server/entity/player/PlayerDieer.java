@@ -145,19 +145,24 @@ public class PlayerDieer {
 		}
 
 		String zoneinfo = player.getZone().describe();
-		int x = player.getZone().getWidth();
-		int y = player.getZone().getHeight();
-		int lastx = player.getX();
-		int lasty = player.getY();
-		String northsouth = (lasty < y/3) ? "north " : ( (lasty > 2*y/3) ? "south " : "");
-		String eastwest = (lastx < x/3) ? "west" : ( (lastx > 2*x/3) ? "east" : "");
-		String pos = (northsouth + eastwest);
-		if (pos.equals("")) {
-			pos = "center";
+		String locationmsg = "You died " + zoneinfo;
+		if(!player.getZone().isInterior()) {
+			// only tell the more precise location inside the zone if it's not an interior
+			int x = player.getZone().getWidth();
+			int y = player.getZone().getHeight();
+			int lastx = player.getX();
+			int lasty = player.getY();
+			String northsouth = (lasty < y/3) ? "north " : ( (lasty > 2*y/3) ? "south " : "");
+			String eastwest = (lastx < x/3) ? "west" : ( (lastx > 2*x/3) ? "east" : "");
+			String pos = (northsouth + eastwest);
+			if (pos.equals("")) {
+				pos = "center";
+			}
+			locationmsg += " in the " + pos + " part";
 		}
 		respawnInAfterLife();
-		player.sendPrivateText(NotificationType.INFORMATION,
-				"You died in the "+ pos +" region of "+ zoneinfo +".");
+		
+		player.sendPrivateText(NotificationType.INFORMATION, locationmsg +".");
 		if (numberOfDrops > 0) {
 			Collection<String> strings = new LinkedList<String>();
 			for (Item item : this.drops) {
