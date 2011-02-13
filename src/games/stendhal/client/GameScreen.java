@@ -43,6 +43,7 @@ import java.util.ListIterator;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 
 import org.apache.log4j.Logger;
 
@@ -304,7 +305,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget {
 			entities.put(entity, view);
 			addEntityView(view);
 			if (entity.isUser()) {
-				center();
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						center();
+					}
+				});
 			}
 		}
 	}
