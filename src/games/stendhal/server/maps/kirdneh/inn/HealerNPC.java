@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.ListProducedItemsOfClassAction;
 import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -64,11 +65,12 @@ public class HealerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Gis' a kiss!");
+				addReply("drinks", null, new ListProducedItemsOfClassAction("drink","I like [items]. *hic*"));
 				addReply("kiss", "ew sloppy");
 				addReply(":*", "*:");
 				addJob("Wuh? Uhh. Heal. Yeah. tha's it.");
 				addHealer(this, 250);
-				addHelp("Gimme money for beer. I heal, gis' cash.");
+				addHelp("Gimme money for #drinks. I heal, gis' cash.");
 				addQuest("Bah.");
  				addGoodbye("pffff bye");
 			}
