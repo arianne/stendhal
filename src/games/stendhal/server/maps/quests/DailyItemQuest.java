@@ -18,7 +18,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
@@ -266,7 +265,6 @@ public class DailyItemQuest extends AbstractQuest {
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		actions.add(new IncreaseXPDependentOnLevelAction(8, 90.0));
 		actions.add(new IncreaseKarmaAction(10.0));
-		actions.add(new ProcessReachedQuestAchievementsAction());
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,

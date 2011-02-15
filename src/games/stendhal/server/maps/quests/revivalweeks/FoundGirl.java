@@ -27,7 +27,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestToYearAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -196,7 +195,7 @@ public class FoundGirl implements LoadableContent {
 			ConversationStates.INFORMATION_4,
 			"\"I will be your friend.\"", null);
 
-		ChatAction reward = new MultipleActions(new IncreaseKarmaAction(10), new IncreaseXPAction(25), new SetQuestToYearAction("susi"), new ProcessReachedQuestAchievementsAction());
+		ChatAction reward = new MultipleActions(new IncreaseKarmaAction(10), new IncreaseXPAction(25), new SetQuestToYearAction("susi"));
 		npc.add(ConversationStates.INFORMATION_4, 
 			"",
 			new TriggerExactlyInListCondition("I will be your friend.", "I will be your friend"),
@@ -227,7 +226,7 @@ public class FoundGirl implements LoadableContent {
 				null);
 
 		// lowercase "and" is ignored, even in full match mode
-		ChatAction reward = new MultipleActions(new IncreaseKarmaAction(15), new IncreaseXPAction(50), new SetQuestToYearAction("susi"), new ProcessReachedQuestAchievementsAction());
+		ChatAction reward = new MultipleActions(new IncreaseKarmaAction(15), new IncreaseXPAction(50), new SetQuestToYearAction("susi"));
 		npc.add(ConversationStates.INFORMATION_8, "",
 				new TriggerExactlyInListCondition("And the other gold.", "And the other gold", "the other gold.", "the other gold"),
 				ConversationStates.ATTENDING,

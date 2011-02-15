@@ -16,7 +16,6 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -267,7 +266,6 @@ public class UltimateCollector extends AbstractQuest {
 				"Wow, it's incredible to see this close up! Many thanks. Now, perhaps we can #deal together.",
 				new MultipleActions(new DropRecordedItemAction(QUEST_SLOT), 
 									new SetQuestAction(QUEST_SLOT, "done"),
-									new ProcessReachedQuestAchievementsAction(),
 									new IncreaseXPAction(100000)));
 		
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,

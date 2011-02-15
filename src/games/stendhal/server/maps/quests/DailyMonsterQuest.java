@@ -26,7 +26,6 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
@@ -453,7 +452,6 @@ public class DailyMonsterQuest extends AbstractQuest {
 				new MultipleActions(
 						new IncreaseXPDependentOnLevelAction(5, 95.0),
 						new IncreaseKarmaAction(5.0),
-						new ProcessReachedQuestAchievementsAction(),
 						new IncrementQuestAction(QUEST_SLOT, 2, 1),
 						new SetQuestToTimeStampAction(QUEST_SLOT,1),
 						new SetQuestAction(QUEST_SLOT,0,"done")

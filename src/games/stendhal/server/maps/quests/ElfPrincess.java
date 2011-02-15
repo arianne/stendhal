@@ -28,7 +28,6 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.ProcessReachedQuestAchievementsAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -213,9 +212,8 @@ public class ElfPrincess extends AbstractQuest {
                                     new IncreaseXPAction(5000), 
                                     new IncreaseKarmaAction(15),
 									addRandomNumberOfItemsAction, 
-                                    new SetQuestAction(QUEST_SLOT, 0, "flower_brought"), 
-									new IncrementQuestAction(QUEST_SLOT, 2, 1),
-									new ProcessReachedQuestAchievementsAction()));
+									new SetQuestAction(QUEST_SLOT, 0, "flower_brought"),
+									new IncrementQuestAction(QUEST_SLOT, 2, 1)));
 
 		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("flower", "Rhosyd"),
