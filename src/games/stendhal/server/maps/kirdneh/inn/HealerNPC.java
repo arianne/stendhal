@@ -14,15 +14,18 @@ package games.stendhal.server.maps.kirdneh.inn;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.ListProducedItemDetailAction;
 import games.stendhal.server.entity.npc.action.ListProducedItemsOfClassAction;
 import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
+import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -65,7 +68,15 @@ public class HealerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Gis' a kiss!");
-				addReply("drinks", null, new ListProducedItemsOfClassAction("drink","I like [items]. *hic*"));
+				addReply("drinks", null, new ListProducedItemsOfClassAction("drink","I like [#items]. *hic*"));
+				add(
+					ConversationStates.ATTENDING,
+					"",
+					new TriggerInListCondition(SingletonRepository.getProducerRegister().getProducedItemNames("drink")),
+					ConversationStates.ATTENDING,
+					null,
+					new ListProducedItemDetailAction()				
+				);
 				addReply("kiss", "ew sloppy");
 				addReply(":*", "*:");
 				addJob("Wuh? Uhh. Heal. Yeah. tha's it.");
