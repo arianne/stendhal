@@ -18,7 +18,6 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
@@ -61,7 +60,7 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 														// Elisabeth, Kirdneh
 														new QuestStateStartsWithCondition("chocolate_for_elisabeth","eating;"),
 														// Jef, Kirdneh
-														new QuestInStateCondition("find_jefs_mom",0,"flower_brought_to_jef"),
+														new QuestCompletedCondition("find_jefs_mom"),
 														// Hughie, Ados farmhouse
 														new AndCondition(new QuestActiveCondition("fishsoup_for_hughie"), new QuestNotInStateCondition("fishsoup_for_hughie", "start")))));
 		
