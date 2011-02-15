@@ -132,7 +132,7 @@ public class ProducerRegister {
 				ProducerBehaviour behaviour = producer.second();
 				String activity =  behaviour.getProductionActivity();
 				String product =  behaviour.getProductName();
-				return npcName + " " + activity + "s " + product + ".";
+				return npcName + " " + Grammar.plural(activity) + " " + Grammar.plural(product) + ".";
 			}
 		}
 		return "";
@@ -189,6 +189,27 @@ public class ProducerRegister {
 			}
 		}
 		return res;
+	}
+	
+	/**
+	 * gets description of the produced item
+	 *
+	 * @param itemName produced item
+	 * @return details about the produced item
+	 */
+	public String getProducedItemDetails(final String itemName) {
+		for (final Pair<String, ProducerBehaviour> producer : producers) {
+			ProducerBehaviour behaviour = producer.second();
+			String product =  behaviour.getProductName();
+
+			if(itemName.equals(product)) {
+				String npcName = producer.first();
+				String activity =  behaviour.getProductionActivity();
+				String resources = behaviour.getRequiredResourceNames(1);
+				return  npcName + " " + Grammar.plural(activity) + " " + Grammar.plural(product) + ", which need " + resources + " each.";
+			}
+		}
+		return "";
 	}
 	
 }
