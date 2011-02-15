@@ -182,7 +182,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @return trigger string
      */
     public Expression getTriggerExpression() {
-        // Return an empty expression for an empty senctence.
+        // Return an empty expression for an empty sentence.
         if (expressions.isEmpty()) {
             return Expression.EMPTY_EXPRESSION;
         }
@@ -205,7 +205,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 				}
 			}
 	
-			// If the sentence constists only of a list of single objects (amount=1),
+			// If the sentence consists only of a list of single objects (amount=1),
 			// return it as "A and B and C and ..."
 			if (simpleObjects == expressions.size())
 				return new Expression(objects.toString(), ExpressionType.OBJECT);
@@ -461,7 +461,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
     /**
      * Return the complete text of the sentence with unchanged case, but with trimmed white space. 
-     * There should be only as less code places as possible to rely on this method.
+     * There should be only as few code places as possible to rely on this method.
      *
      * @return string
      */
@@ -481,7 +481,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * Return the original parsed text of the sentence.
      * Leading and trailing white space is already trimmed.
      * 
-     * deprecate: There should be only as less code places as possible
+     * deprecate: There should be only as few code places as possible
      * to rely on this method.
      *
      * @return string
