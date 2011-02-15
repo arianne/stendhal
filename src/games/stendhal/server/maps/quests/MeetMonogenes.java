@@ -44,7 +44,7 @@ import java.util.List;
 public class MeetMonogenes extends AbstractQuest {
 	@Override
 	public String getSlotName() {
-		return "meetMonogenes";
+		return "Monogenes";
 	}
 	@Override
 	public void addToWorld() {
