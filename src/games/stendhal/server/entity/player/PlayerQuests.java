@@ -14,6 +14,7 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.SingletonRepository;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -98,6 +99,8 @@ class PlayerQuests {
 		if ((status == null) || !status.equals(oldStatus)) {
 			new GameEvent(player.getName(), "quest", name, status).raise();
 		}
+		// check for reached achievements
+		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
 	}
 
 	
