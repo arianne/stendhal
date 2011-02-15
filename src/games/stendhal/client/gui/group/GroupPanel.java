@@ -209,6 +209,12 @@ class GroupPanel {
 		if (!isInAGroup) {
 			inviteButton.setToolTipText(START_GROUP_TOOLTIP);
 		}
+		// Enable any still valid invites at leaving a group
+		if (!isInAGroup) {
+			for (JComponent button : invites.values()) {
+				button.setEnabled(true);
+			}
+		}
 	}
 	
 	/**
@@ -222,6 +228,13 @@ class GroupPanel {
 		if (name.equals(User.getCharacterName())) {
 			inviteButton.setEnabled(true);
 			inviteButton.setToolTipText(INVITE_TOOLTIP);
+		}
+		// The same invite will not work more than once
+		expireInvite(name);
+		// The others are still valid, but can not be used while a member of a
+		// group
+		for (JComponent button : invites.values()) {
+			button.setEnabled(false);
 		}
 	}
 	
