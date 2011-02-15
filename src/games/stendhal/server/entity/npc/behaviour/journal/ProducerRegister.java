@@ -194,6 +194,8 @@ public class ProducerRegister {
 	/**
 	 * gets description of the produced item
 	 *
+	 * Note: if more than one NPC makes the item, just the details of the first NPC in the list who makes it are returned 
+	 * 
 	 * @param itemName produced item
 	 * @return details about the produced item
 	 */
