@@ -41,7 +41,7 @@ public class GroupInviteEvent extends RPEvent {
 	 * @param expire true, if this invited has expired, false if it is still valid
 	 */
 	public GroupInviteEvent(String leader, boolean expire) {
-		super(Events.GROUP_CHANGE);
+		super(Events.GROUP_INVITE);
 		put("leader", leader);
 		if (expire) {
 			put("expire", "");
