@@ -104,15 +104,16 @@ public class HealerNPC implements ZoneConfigurator {
 		        null, new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			        	currentBehavRes = new BehaviourResult(true, "heal", 1, null);
-
-			        	final int cost = healerBehaviour.getCharge(currentBehavRes, player);
-			        	
+                        String badboymsg = "";
+			        	int cost = healerBehaviour.getCharge(currentBehavRes, player);
 			        	if (player.isBadBoy()) {
-							// don't heal player killers at all
-							raiser.say("I don't heal killers. Go away.");
-							raiser.setCurrentState(ConversationStates.IDLE);
-						} else if (cost != 0) {
-	                    	raiser.say("For " + cost + " cash, ok?");
+			        		cost = cost * 2;
+			        		badboymsg = " Its more for nasty ones.";
+			        		currentBehavRes.setAmount(2);
+			        	}
+			        	
+						if (cost != 0) {
+	                    	raiser.say("For " + cost + " cash, ok?" + badboymsg);
 	                    }
 			        }
 		        });
