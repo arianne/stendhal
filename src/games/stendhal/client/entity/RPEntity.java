@@ -71,6 +71,11 @@ public abstract class RPEntity extends ActiveEntity {
 	 * Title Type property.
 	 */
 	public static final Property PROP_TITLE_TYPE = new Property();
+	
+	/**
+	 * Hp and max HP property.
+	 */
+	public static final Property PROP_HP_RATIO = new Property();
 
 	/**
 	 * The value of an outfit that isn't set.
@@ -948,6 +953,7 @@ public abstract class RPEntity extends ActiveEntity {
 				if (hp == 0) {
 					onDeath(attackers);
 				}
+				fireChange(PROP_HP_RATIO);
 			}
 
 			/*
