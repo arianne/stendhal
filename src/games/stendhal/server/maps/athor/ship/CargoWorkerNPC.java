@@ -90,6 +90,7 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 
 			npc.setPosition(24, 42);
 			npc.setEntityClass("seller2npc");
+			npc.setDescription ("You see Klaas who takes care of the cargo. He hates rats!");
 			zone.add(npc);	
 	}
 }

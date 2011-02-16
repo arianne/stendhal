@@ -133,6 +133,7 @@ public class WalkingWomanNPC implements ZoneConfigurator  {
 		};
 		npc.setPosition(5, 49);
 		npc.setEntityClass("swimmer7npc");
+		npc.setDescription ("The girl close to you is Kelicia, a girl who walks along the coast.");
 		zone.add(npc);		
 	}
 }

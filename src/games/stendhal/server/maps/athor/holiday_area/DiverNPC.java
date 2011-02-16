@@ -55,6 +55,7 @@ public class DiverNPC implements ZoneConfigurator  {
 		};
 		npc.setPosition(36, 28);
 		npc.setEntityClass("swimmer2npc");
+		npc.setDescription ("You see Dorinel who enjoys the sun.");
 		zone.add(npc);		
 	}
 }

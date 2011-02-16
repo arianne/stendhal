@@ -53,6 +53,7 @@ public class HusbandNPC implements ZoneConfigurator  {
 		};
 		npc.setPosition(27, 44);
 		npc.setEntityClass("swimmer5npc");
+		npc.setDescription ("You see John at the beach. He enjoys his holidays with his wife, Jane.");
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);		
 	}

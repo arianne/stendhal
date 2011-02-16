@@ -157,6 +157,7 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 
 			npc.setPosition(29, 34);
 			npc.setEntityClass("pirate_sailor2npc");
+			npc.setDescription ("Jackie helps passangers to disembark to the coast. She is a real pirate girl!");
 			npc.setDirection(Direction.LEFT);
 			zone.add(npc);	
 	}

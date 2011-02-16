@@ -134,6 +134,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 
 			npc.setPosition(16, 88);
 			npc.setEntityClass("woman_008_npc");
+			npc.setDescription ("You see Jessica. She takes passengers to the ship with her rowing boat.");
 			npc.setDirection(Direction.LEFT);
 			zone.add(npc);	
 	}

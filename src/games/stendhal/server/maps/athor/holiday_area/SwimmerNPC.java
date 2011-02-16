@@ -52,6 +52,7 @@ public class SwimmerNPC implements ZoneConfigurator  {
 		};
 		npc.setPosition(67, 63);
 		npc.setEntityClass("swimmer3npc");
+		npc.setDescription ("You see Enrique swimming around in a pool while he tries to establish a record.");
 		zone.add(npc);		
 	}
 }

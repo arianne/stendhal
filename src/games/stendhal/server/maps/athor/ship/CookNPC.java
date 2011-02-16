@@ -85,6 +85,7 @@ public class CookNPC implements ZoneConfigurator  {
 
 			npc.setPosition(27, 28);
 			npc.setEntityClass("tavernbarmaidnpc");
+			npc.setDescription ("Laura runs the galley on the ferry. Talk with her if you are hungry or thirsty.");
 			zone.add(npc);	
 
 	}
