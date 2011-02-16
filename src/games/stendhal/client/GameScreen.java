@@ -50,7 +50,8 @@ import org.apache.log4j.Logger;
 /**
  * The game screen. This manages and renders the visual elements of the game.
  */
-public class GameScreen extends JComponent implements IGameScreen, DropTarget {
+public class GameScreen extends JComponent implements IGameScreen, DropTarget,
+	GameObjects.GameObjectListener {
 	/**
 	 * serial version uid
 	 */
@@ -228,7 +229,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget {
 		entities = new HashMap<IEntity, EntityView>();
 
 		// create ground
-		//ground = new GroundContainer(client, this, sw, sh);
 		ground = new GroundContainer(client, this, this);
 
 		// register native event handler
@@ -241,6 +241,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget {
 		 * affected.
 		 */
 		setIgnoreRepaint(true);
+		client.getGameObjects().addGameObjectListener(this);
 	}
 
 	/**

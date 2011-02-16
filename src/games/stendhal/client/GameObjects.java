@@ -17,7 +17,6 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.events.EventDispatcher;
-import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.listener.RPObjectChangeListener;
 
 import java.awt.geom.Rectangle2D;
@@ -25,7 +24,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -49,6 +50,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * holds the reference to the singleton instance.
 	 */
 	private static GameObjects instance;
+	
+	/**
+	 * Objects to be notified about added and removed top level entities. The
+	 * list is modified rarely, so it uses copy-on-write for thread safety.
+	 */
+	private final List<GameObjectListener> gameObjectListeners = new CopyOnWriteArrayList<GameObjectListener>(); 
 
 	/**
 	 * @param collisionMap
@@ -74,6 +81,24 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 		}
 
 		return instance;
+	}
+	
+	/**
+	 * Add a new game GameObjectListener.
+	 * 
+	 * @param listener
+	 */
+	public void addGameObjectListener(GameObjectListener listener) {
+		gameObjectListeners.add(listener);
+	}
+	
+	/**
+	 * Remove a GameObjectListener.
+	 * 
+	 * @param listener
+	 */
+	public void removeGameObjectListener(GameObjectListener listener) {
+		gameObjectListeners.remove(listener);
 	}
 
 	/**
@@ -196,8 +221,9 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 			logger.error("No entity for: " + object);
 		} else {
 			if (entity.isOnGround()) {
-				GameScreen.get().addEntity(entity);
-				MapPanelController.get().addEntity(entity);
+				for (GameObjectListener listener : gameObjectListeners) {
+					listener.addEntity(entity);
+				}
 			}
 
 			logger.debug("added " + entity);
@@ -255,8 +281,9 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 		final IEntity entity = objects.remove(FQID.create(object));
 
 		if (entity != null) {
-			GameScreen.get().removeEntity(entity);
-			MapPanelController.get().removeEntity(entity);
+			for (GameObjectListener listener : gameObjectListeners) {
+				listener.removeEntity(entity);
+			}
 			entity.release();
 		}
 	}
@@ -471,5 +498,25 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 
 			return sbuf.toString();
 		}
+	}
+	
+	/**
+	 * Interface for objects that need to follow new top level entities being
+	 * added to, or removed from the current zone.
+	 */
+	public interface GameObjectListener {
+		/**
+		 * Called when a top level entity is added to the user's zone.
+		 * 
+		 * @param entity
+		 */
+		void addEntity(IEntity entity);
+		
+		/**
+		 * Called when a top level entity is removed from the user's zone.
+		 * 
+		 * @param entity
+		 */
+		void removeEntity(IEntity entity);
 	}
 }

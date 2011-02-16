@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.RemovableSprite;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 
@@ -27,22 +26,6 @@ public interface IGameScreen {
 
 	/** Prepare screen for the next frame to be rendered and move it if needed .*/
 	void nextFrame();
-
-	/**
-	 * Add an entity.
-	 *
-	 * @param entity
-	 *            An entity.
-	 */
-	void addEntity(IEntity entity);
-
-	/**
-	 * Remove an entity.
-	 *
-	 * @param entity
-	 *            An entity.
-	 */
-	void removeEntity(final IEntity entity);
 
 	/**
 	 * Center the view.

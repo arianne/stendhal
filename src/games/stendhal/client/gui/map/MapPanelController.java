@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.map;
 
+import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.DomesticAnimal;
 import games.stendhal.client.entity.EntityChangeListener;
@@ -30,13 +31,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
-public class MapPanelController {
+public class MapPanelController implements GameObjects.GameObjectListener {
 	private static final boolean supermanMode = (System.getProperty("stendhal.superman") != null);
-	private static MapPanelController instance;
 	private MapPanel panel;
 	final Map<IEntity, MapObject> mapObjects = new ConcurrentHashMap<IEntity, MapObject>();
 	double x, y;
-	
+
 	/**
 	 * <code>true</code> if the map should be repainted, <code>false</code>
 	 * otherwise.
@@ -45,7 +45,7 @@ public class MapPanelController {
 	
 	public MapPanelController(final StendhalClient client) {
 		panel = new MapPanel(this, client);
-		instance = this;
+		client.getGameObjects().addGameObjectListener(this);
 	}
 	
 	/**
@@ -55,14 +55,6 @@ public class MapPanelController {
 	 */
 	void setNeedsRefresh(boolean needed) {
 		needsRefresh = needed;
-	}
-	
-	/**
-	 * Get the instance
-	 * @return the controller instance
-	 */
-	public static MapPanelController get() {
-		return instance;
 	}
 	
 	/**
