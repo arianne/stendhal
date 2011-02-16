@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -55,6 +56,11 @@ class GroupPanel {
 	 * the clicking point.
 	 */
 	private static final int POPUP_OFFSET = 5;
+	/**
+	 * Width of the indenting of the member list compared to the other text 
+	 * in the panel.
+	 */
+	private static final int LIST_INDENT = 5;
 	/** Tooltip for inviting members for a new group */
 	private static final String START_GROUP_TOOLTIP = "Start a new group";
 	/** Tooptip for inviting members to an existing group */
@@ -127,12 +133,12 @@ class GroupPanel {
 		memberListComponent.setOpaque(false);
 		memberListComponent.addMouseListener(new MemberListMouseListener());
 		/*
-		 * Indent the list a bit so that it's clearly separate from the header.
-		 * Using alignment will still allow the left side to be used if the list
-		 * is really short of space.
+		 * JList is too dumb to set its preferred width correctly. Using expand
+		 * + borders as a workaround. Unfortunately that prevents the unused
+		 * space being squeezed out if the panel is too narrow.
 		 */
-		memberListComponent.setAlignmentX(0.1f);
-		pane.add(memberListComponent);
+		memberListComponent.setBorder(BorderFactory.createEmptyBorder(0, LIST_INDENT, 0, LIST_INDENT));
+		pane.add(memberListComponent, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
 		// Add a place for the invitation buttons. It will usually be invisible 
 		inviteContainer = SBoxLayout.createContainer(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING);
