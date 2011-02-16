@@ -14,7 +14,6 @@ package games.stendhal.server.maps.kirdneh.inn;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -25,7 +24,7 @@ import games.stendhal.server.entity.npc.action.ListProducedItemDetailAction;
 import games.stendhal.server.entity.npc.action.ListProducedItemsOfClassAction;
 import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
-import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
+import games.stendhal.server.entity.npc.condition.TriggerIsProducedItemOfClassCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -72,7 +71,7 @@ public class HealerNPC implements ZoneConfigurator {
 				add(
 					ConversationStates.ATTENDING,
 					"",
-					new TriggerInListCondition(SingletonRepository.getProducerRegister().getProducedItemNames("drink")),
+					new TriggerIsProducedItemOfClassCondition("drink"),
 					ConversationStates.ATTENDING,
 					null,
 					new ListProducedItemDetailAction()				
