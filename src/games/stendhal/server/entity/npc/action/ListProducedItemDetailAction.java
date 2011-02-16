@@ -33,7 +33,7 @@ public class ListProducedItemDetailAction implements ChatAction {
 
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		String itemName = sentence.getObjectName();
+		String itemName = sentence.getOriginalText();
 		String message = producerRegister.getProducedItemDetails(itemName);
 		raiser.say(message);	
 	}
