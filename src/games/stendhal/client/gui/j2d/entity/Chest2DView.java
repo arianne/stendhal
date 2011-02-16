@@ -252,11 +252,11 @@ class Chest2DView extends StateEntity2DView {
 	 */
 	@Override
 	public void release() {
-		SlotWindow window = slotWindow;
+		final SlotWindow window = slotWindow;
 		if (window != null) {
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					slotWindow.close();
+					window.close();
 				}
 			});
 		}
