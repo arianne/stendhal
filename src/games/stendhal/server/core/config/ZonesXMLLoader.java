@@ -117,11 +117,15 @@ public final class ZonesXMLLoader {
 	protected void load(final InputStream in) throws SAXException, IOException {	
 		final Document doc = XMLUtil.parse(in);
 
+		// just to speed up starting of the server in while developing
+		// add -Dstendhal.zone.regex=".*semos.*" (for example) to your server start script just after the "java "
+		// or for multiple regions: -Dstendhal.zone.regex="*semos.*|.*fado.*"
+		final String regex = System.getProperty("stendhal.zone.regex", ".*");
+
 		/*
 		 * Load each zone
 		 */
-		for (final Element element : XMLUtil.getElements(doc.getDocumentElement(),
-				"zone")) {
+		for (final Element element : XMLUtil.getElements(doc.getDocumentElement(), "zone")) {
 			final ZoneDesc zdesc = readZone(element);
 
 			if (zdesc == null) {
@@ -129,6 +133,9 @@ public final class ZonesXMLLoader {
 			}
 
 			final String name = zdesc.getName();
+			if (!name.matches(regex) && !name.equals("int_semos_townhall") && !name.equals("int_semos_guard_house")) {
+				continue;
+			}
 
 			logger.info("Loading zone: " + name);
 

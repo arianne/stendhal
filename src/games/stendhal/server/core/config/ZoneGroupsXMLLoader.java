@@ -47,25 +47,18 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 		final GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri);
 		final List<URI> zoneGroups = groupsLoader.load();
 
-		// just to speed up starting of the server in while developing
-		// add -Dstendhal.zone.regex=".*semos.*" (for example) to your server start script just after the "java "
-		// or for multiple regions: -Dstendhal.zone.regex="*semos.*|.*fado.*"
-		final String regex = System.getProperty("stendhal.zone.regex", ".*");
-
 		// Load each group
 		for (final URI tempUri : zoneGroups) {
-			if (tempUri.toString().matches(regex)) {
-				LOGGER.debug("Loading zone group [" + tempUri + "]");
-	
-				final ZonesXMLLoader loader = new ZonesXMLLoader(tempUri);
-	
-				try {
-					loader.load();
-				} catch (final SAXException ex) {
-					LOGGER.error("Error loading zone group: " + tempUri, ex);
-				} catch (final IOException ex) {
-					LOGGER.error("Error loading zone group: " + tempUri, ex);
-				}
+			LOGGER.debug("Loading zone group [" + tempUri + "]");
+
+			final ZonesXMLLoader loader = new ZonesXMLLoader(tempUri);
+
+			try {
+				loader.load();
+			} catch (final SAXException ex) {
+				LOGGER.error("Error loading zone group: " + tempUri, ex);
+			} catch (final IOException ex) {
+				LOGGER.error("Error loading zone group: " + tempUri, ex);
 			}
 		}
 	}
