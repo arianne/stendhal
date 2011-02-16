@@ -12,6 +12,9 @@
 package games.stendhal.client.gui.group;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 
@@ -23,8 +26,10 @@ import javax.swing.SwingUtilities;
 /**
  * Controller for the group information data.
  */
-public class GroupPanelController {
-	static GroupPanelController instance;
+public class GroupPanelController implements GameObjects.GameObjectListener {
+	private static class Holder {
+		static GroupPanelController instance = new GroupPanelController();
+	}
 	
 	final GroupPanel panel;
 	/**
@@ -67,12 +72,16 @@ public class GroupPanelController {
 						ClientSingletonRepository.getUserInterface().addEventLine(
 								new HeaderLessEventLine(message, NotificationType.CLIENT));
 						grouped = false;
+						GameObjects.getInstance().removeGameObjectListener(GroupPanelController.this);
 					}
 					panel.setMembers(null);
 				} else {
 					panel.showHeader("<html>Looting: " + lootMode + "</html>");
 					panel.setMembers(members);
 					panel.setLeader(leader);
+					if (!grouped) {
+						GameObjects.getInstance().addGameObjectListener(GroupPanelController.this);
+					}
 					grouped = true;
 				}	
 			}
@@ -105,15 +114,32 @@ public class GroupPanelController {
 		});
 	}
 	
+	public void addEntity(final IEntity entity) {
+		if (entity instanceof Player) {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					panel.addPlayer((Player) entity);
+				}
+			});
+		}
+	}
+	
+	public void removeEntity(final IEntity entity) {
+		if (entity instanceof Player) {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					panel.removePlayer(entity);
+				}
+			});
+		}
+	}
+	
 	/**
 	 * Get the GroupPaneController instance.
 	 * 
 	 * @return instance
 	 */
-	public static synchronized GroupPanelController get() {
-		if (instance == null) {
-			instance = new GroupPanelController();
-		}
-		return instance;
+	public static GroupPanelController get() {
+		return Holder.instance;
 	}
 }

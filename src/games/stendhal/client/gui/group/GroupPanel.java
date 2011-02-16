@@ -12,6 +12,8 @@
 package games.stendhal.client.gui.group;
 
 import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.MousePopupAdapter;
 import games.stendhal.client.gui.j2DClient;
@@ -21,7 +23,6 @@ import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,7 +41,6 @@ import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
-import javax.swing.ListCellRenderer;
 
 /**
  * A component for showing the information about the adventurer group the user
@@ -280,37 +280,32 @@ class GroupPanel {
 	}
 	
 	/**
-	 * A cell renderer for the member list.
+	 * Called, when a player is added to the zone. The player is not necessarily
+	 * a member of the group.
+	 * 
+	 * @param player
 	 */
-	private static class MemberCellRenderer implements ListCellRenderer {
-		private final JLabel label;
-		final Font boldFont;
-		final Font normalFont;
-		
-		MemberCellRenderer() {
-			label = new JLabel();
-			label.setOpaque(false);
-			Font f = label.getFont();
-			if ((f.getStyle() & Font.BOLD) != 0) {
-				boldFont = f;
-				normalFont = f.deriveFont(f.getStyle() ^ Font.BOLD);
-			} else {
-				normalFont = f;
-				boldFont = f.deriveFont(f.getStyle() | Font.BOLD);
-			}
+	void addPlayer(Player player) {
+		Member member = memberList.getMember(player.getName());
+		if (member != null) {
+			player.addChangeListener(new MemberHealthListener(member, memberList));
+			member.setHpRatio(player.getHpRatio());
+			member.setPresent(true);
+			memberList.memberChanged(member);
 		}
-
-		public Component getListCellRendererComponent(JList list, Object value,
-				int index, boolean isSelected, boolean cellHasFocus) {
-			Member member = (Member) value;
-			label.setText(member.getName());
-			if (member.isLeader()) {
-				label.setFont(boldFont);
-			} else {
-				label.setFont(normalFont);
-			}
-			
-			return label;
+	}
+	
+	/**
+	 * Called, when a player is removed from the zone. The player is not
+	 * necessarily a member of the group.
+	 * 
+	 * @param player
+	 */
+	void removePlayer(IEntity player) {
+		Member member = memberList.getMember(player.getName());
+		if (member != null) {
+			member.setPresent(false);
+			memberList.memberChanged(member);
 		}
 	}
 	

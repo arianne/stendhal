@@ -12,11 +12,14 @@
 package games.stendhal.client.gui.group;
 
 /**
- * Represents a group member.
+ * Represents a group member. Present members are those that the client has
+ * direct information about, ie. the players on the same zone.
  */
 class Member implements Comparable<Member> {
 	private final String name;
 	private boolean leader;
+	private float hpRatio;
+	private boolean present;
 	
 	/**
 	 * Create a new member.
@@ -59,6 +62,50 @@ class Member implements Comparable<Member> {
 		return changed;
 	}
 	
+	/**
+	 * Check if the member is present.
+	 * 
+	 * @return <code>true</code> if the member is present, <code>false</code>
+	 * 	otherwise
+	 */
+	boolean isPresent() {
+		return present;
+	}
+	
+	/**
+	 * Set the member present or absent.
+	 * 
+	 * @param present
+	 */
+	void setPresent(boolean present) {
+		this.present = present;
+	}
+	
+	/**
+	 * Get the ratio of the member's current HP vs her maximum HP. The value
+	 * is reliable only if the member is present.
+	 * 
+	 * @return HP ratio
+	 */
+	float getHpRatio() {
+		return hpRatio;
+	}
+	
+	/**
+	 * Set the ratio of the member's current HP vs her maximum HP.
+	 * 
+	 * @param ratio new HP ratio 
+	 * @return <code>true</code> if the ratio changed significantly from the old
+	 * 	stored value, <code>false</code> otherwise
+	 */
+	boolean setHpRatio(float ratio) {
+		if (Math.abs(ratio - hpRatio) < 0.01) {
+			return false;
+		}
+		this.hpRatio = ratio;
+		return true;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Member) {
@@ -73,7 +120,7 @@ class Member implements Comparable<Member> {
 	}
 
 	public int compareTo(Member member) {
-		// There really should be only one member, but check for consistent
+		// There really should be only one leader, but check for consistent
 		// ordering
 		if (leader != member.leader) {
 			return (leader) ? -1 : 1;

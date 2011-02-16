@@ -97,6 +97,19 @@ public class MemberListModel extends AbstractListModel {
 	}
 	
 	/**
+	 * To be called when a member changes a value that makes a difference in
+	 * drawing it.
+	 * 
+	 * @param member
+	 */
+	void memberChanged(Member member) {
+		int index = memberList.indexOf(member);
+		if (index != -1) {
+			this.fireContentsChanged(this, index, index);
+		}
+	}
+	
+	/**
 	 * Get data of a specified group member.
 	 *  
 	 * @param name member name
