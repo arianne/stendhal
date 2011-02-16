@@ -69,31 +69,77 @@ public class MemberListModel extends AbstractListModel {
 	 * @param members
 	 */
 	void setMembers(List<String> members) {
-		// Very dumb way to update the list. Adding and removing individual
-		// members as they change would be cleaner
-		
-		int size = memberList.size();
-		memberMap.clear();
-		memberList.clear();
-		if (size > 0) {
-			this.fireIntervalRemoved(this, 0, size - 1);
-		}
-		
 		if (members == null) {
+			int size = memberList.size();
+			memberMap.clear();
+			memberList.clear();
+			if (size > 0) {
+				this.fireIntervalRemoved(this, 0, size - 1);
+			}
+			
 			return;
 		}
-		
-		for (String name : members) {
-			if (memberMap.containsKey(name)) {
-				// Already a member. Skip to next
-				continue;
+		// Find out the added members
+		List<String> newMembers = new ArrayList<String>(members);
+		newMembers.removeAll(memberMap.keySet());
+		addMembers(newMembers);
+		// Then the removed members
+		List<String> removedMembers = new ArrayList<String>(memberMap.keySet());
+		removedMembers.removeAll(members);
+		removeMembers(removedMembers);
+	}
+	
+	/**
+	 * Add a group of new members.
+	 * 
+	 * @param newMembers
+	 */
+	private void addMembers(List<String> newMembers) {
+		if (newMembers.isEmpty()) {
+			return;
+		}
+		int startIndex = -1;
+		int endIndex = -1;
+		for (String name : newMembers) {
+			Member member = new Member(name);
+			memberMap.put(name, member);
+			memberList.add(member);
+			int index = memberList.indexOf(member);
+			if (startIndex == -1) {
+				startIndex = index;
+				endIndex = index;
 			} else {
-				Member member = new Member(name);
-				memberList.add(member);
-				memberMap.put(name, member);
+				startIndex = Math.min(startIndex, index);
+				endIndex = Math.max(endIndex, index);
 			}
 		}
-		this.fireIntervalAdded(this, 0, members.size() - 1);
+		fireIntervalAdded(this, startIndex, endIndex);
+	}
+	
+	/**
+	 * Remove a group of members.
+	 * 
+	 * @param members removed members
+	 */
+	private void removeMembers(List<String> members) {
+		if (members.isEmpty()) {
+			return;
+		}
+		int startIndex = -1;
+		int endIndex = -1;
+		for (String name : members) {
+			Member member = memberMap.remove(name);
+			int index = memberList.indexOf(member);
+			memberList.remove(index);
+			if (startIndex == -1) {
+				startIndex = index;
+				endIndex = index;
+			} else {
+				startIndex = Math.min(startIndex, index);
+				endIndex = Math.max(endIndex, index);
+			}
+		}
+		fireIntervalRemoved(this, startIndex, endIndex);
 	}
 	
 	/**
