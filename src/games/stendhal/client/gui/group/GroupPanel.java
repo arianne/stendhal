@@ -42,11 +42,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
 
+import org.apache.log4j.Logger;
+
 /**
  * A component for showing the information about the adventurer group the user
  * belongs to.
  */
 class GroupPanel {
+	private static final Logger logger = Logger.getLogger(GroupPanel.class);
 	/**
 	 * The amount of pixels that popup menus will be shifted up and left from
 	 * the clicking point.
@@ -284,14 +287,33 @@ class GroupPanel {
 	 * a member of the group.
 	 * 
 	 * @param player
+	 * @return <code>true</code> if the added player was is member,
+	 * 	<code>false</code> otherwise. 
 	 */
-	void addPlayer(Player player) {
+	boolean addPlayer(Player player) {
 		Member member = memberList.getMember(player.getName());
+		
 		if (member != null) {
 			player.addChangeListener(new MemberHealthListener(member, memberList));
 			member.setHpRatio(player.getHpRatio());
 			member.setPresent(true);
 			memberList.memberChanged(member);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Called for new members that are present at the zone.
+	 * 
+	 * @param players
+	 */
+	void addPlayers(List<Player> players) {
+		for (Player player : players) {
+			if (!addPlayer(player)) {
+				logger.error("Added player is not a member even though she should be. Player: " + player.getName(), new Throwable());
+			}
 		}
 	}
 	

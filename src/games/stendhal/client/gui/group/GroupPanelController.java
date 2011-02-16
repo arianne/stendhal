@@ -18,7 +18,12 @@ import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
@@ -32,6 +37,7 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 	}
 	
 	final GroupPanel panel;
+	final Set<String> members = new HashSet<String>();
 	/**
 	 * Grouping status of the player. <code>true</code> if the player is in a
 	 * group <code>false</code> otherwise.
@@ -83,9 +89,48 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 						GameObjects.getInstance().addGameObjectListener(GroupPanelController.this);
 					}
 					grouped = true;
-				}	
+				}
 			}
 		});
+		
+		if (members != null) {
+			// Clear non members
+			this.members.retainAll(members);
+			// Find out the new members. This needs to be done in a copy,
+			// because the event dispatch thread may not have done its work
+			// with the original list.
+			List<String> newMembers = new LinkedList<String>(members); 
+			newMembers.removeAll(this.members);
+			
+			syncPlayerStatus(newMembers);
+
+			this.members.addAll(newMembers);
+		} else {
+			this.members.clear();
+		}
+	}
+	
+	/**
+	 * Update the status of players just added to the group.
+	 * 
+	 * @param names new members
+	 */
+	private void syncPlayerStatus(List<String> names) {
+		final List<Player> players = new ArrayList<Player>();
+		for (IEntity entity : GameObjects.getInstance()) {
+			if (entity instanceof Player) {
+				if (names.contains(entity.getName())) {
+					players.add((Player) entity);
+				}
+			}
+		}
+		if (!players.isEmpty()) {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					panel.addPlayers(players);
+				}
+			});
+		}
 	}
 	
 	/**
