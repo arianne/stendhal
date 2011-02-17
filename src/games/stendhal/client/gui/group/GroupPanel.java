@@ -118,6 +118,8 @@ class GroupPanel {
 					SlashActionRepository.get("group").execute(args, "");
 					initialized = true;
 				}
+				// Needed only once
+				pane.removeComponentListener(this);
 			}
 		});
 		
@@ -245,6 +247,12 @@ class GroupPanel {
 		for (JComponent button : invites.values()) {
 			button.setEnabled(false);
 		}
+		/*
+		 * If the user was already in a group at login time, she may get a group
+		 * message before switching to the group tab. Suppress the initial
+		 * status request in that case.
+		 */
+		initialized = true;
 	}
 	
 	/**
