@@ -15,6 +15,7 @@ package games.stendhal.client.gui.imageviewer;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.ComponentPaintCache;
 import games.stendhal.client.gui.ComponentPaintCache.Cacheable;
+import games.stendhal.client.gui.ScrolledViewport;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -25,7 +26,6 @@ import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
@@ -38,6 +38,8 @@ import marauroa.common.game.RPSlot;
  */
 public final class ItemListImageViewerEvent extends ViewPanel {
 	private static final long serialVersionUID = -6114543463410539585L;
+	/** Scrolling speed when using the mouse wheel. */
+	private static final int SCROLLING_SPEED = 8;
 
 	private RPEvent event;
 
@@ -68,12 +70,13 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		if (event.getSlot("content").size() > 6) {
 			// Speed up drawing. The html table won't change anyway.
 			JPanel panel = new CachedPanel();
-			JScrollPane scrollPane = new JScrollPane();
+			ScrolledViewport viewPort = new ScrolledViewport(panel);
+			// More reasonable scrolling speed when using the mouse wheel
+			viewPort.setScrollingSpeed(SCROLLING_SPEED);
 			panel.add(label);
-			scrollPane.setViewportView(panel);
 			Dimension screenSize = stendhal.getScreenSize();
-			scrollPane.setPreferredSize(new Dimension(screenSize.width - 80, screenSize.height - 100));
-			add(scrollPane, BorderLayout.CENTER);
+			viewPort.getComponent().setPreferredSize(new Dimension(screenSize.width - 80, screenSize.height - 100));
+			add(viewPort.getComponent(), BorderLayout.CENTER);
 		} else {
 			add(label);
 		}

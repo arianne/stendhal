@@ -54,6 +54,16 @@ public class ScrolledViewport {
 	}
 	
 	/**
+	 * Set the scrolling speed when using the mouse wheel.
+	 * 
+	 * @param speed
+	 */
+	public void setScrollingSpeed(int speed) {
+		scrollPane.getHorizontalScrollBar().setUnitIncrement(speed);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(speed);
+	}
+	
+	/**
 	 * Listener for following scroll bar visibility changes.
 	 */
 	private class ScrollBarVisibilityChangeListener extends ComponentAdapter {

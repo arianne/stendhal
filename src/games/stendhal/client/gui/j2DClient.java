@@ -83,6 +83,8 @@ import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient implements UserInterface {
+	/** Scrolling speed when using the mouse wheel. */
+	private static final int SCROLLING_SPEED = 8;
 
 	/**
 	 * A shared [singleton] copy.
@@ -417,7 +419,9 @@ public class j2DClient implements UserInterface {
 		minimap = new MapPanelController(client);
 		final StatsPanelController stats = StatsPanelController.get();
 		final BuddyPanelController buddies = new BuddyPanelController();
-		final JComponent buddyPane = new ScrolledViewport((JComponent) buddies.getComponent()).getComponent();
+		ScrolledViewport buddyScroll = new ScrolledViewport((JComponent) buddies.getComponent());
+		buddyScroll.setScrollingSpeed(SCROLLING_SPEED);
+		final JComponent buddyPane = buddyScroll.getComponent();
 		buddyPane.setBorder(null);
 		
 		final JComponent leftColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
