@@ -12,12 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.events;
 
-import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.group.GroupPanelController;
-import games.stendhal.common.NotificationType;
 
 /**
  * The group has changed (players added, removed, etc)
@@ -32,15 +29,7 @@ public class GroupChangeEvent extends Event<RPEntity> {
 	@Override
 	public void execute() {
 		if (event.has("members")) {
-
 			User.updateGroupStatus(event.getList("members"), event.get("lootmode"));
-			String message = "Current group status:  leader: " 
-				+ event.get("leader") 
-				+ "; members: " + event.get("members").replace("\t", ", ")
-				+ "; lootmode: " + event.get("lootmode");
-			ClientSingletonRepository.getUserInterface().addEventLine(
-				new HeaderLessEventLine(message, NotificationType.CLIENT));
-			
 			GroupPanelController.get().update(event.getList("members"), event.get("leader"), event.get("lootmode"));
 		} else {
 			User.updateGroupStatus(null, null);
