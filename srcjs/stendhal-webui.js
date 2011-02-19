@@ -2,7 +2,7 @@ stendhal = {};
 stendhal.ui = {
 	html: {
 		esc: function(msg){
-			return msg.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+			return msg.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace("\n", "<br>");
 		}
 	},
 	addChatLogLine: function(type, msg) {
