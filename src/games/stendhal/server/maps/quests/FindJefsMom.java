@@ -143,7 +143,7 @@ public class FindJefsMom extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"I hope that you will find my mum soon and tell me, if she is fine after.",
+				"I hope that you will find my mum soon and tell me, if she is #fine after.",
 				null);
 		
 		npc.add(
@@ -242,7 +242,7 @@ public class FindJefsMom extends AbstractQuest {
 									new SetQuestToTimeStampAction(QUEST_SLOT,1)));
 		
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("flower", "zantedeschia", "fine", "amber", "done"),
+				Arrays.asList("flower", "zantedeschia", "fine", "amber", "done", "mum", "mother", "mom"),
 				new NotCondition(new PlayerHasItemWithHimCondition("zantedeschia")),
 				ConversationStates.ATTENDING,
 				"Please, that isn't nice. You didn't find my mother and you can neither prove that you did. I don't believe in you, sorry.",
