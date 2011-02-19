@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
@@ -148,7 +149,7 @@ public class FindJefsMom extends AbstractQuest {
 				("yet"),
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"The only thing I know is, that she broke up with her former boyfriend, #Roger #Frampton earlier...",
+				"The only thing I know is, that she had a little argument with her boyfriend, #Roger #Frampton earlier...",
 				null);
 		
 		npc.add(
@@ -164,7 +165,7 @@ public class FindJefsMom extends AbstractQuest {
 				Arrays.asList("Roger Frampton", "Roger", "Frampton"),
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"He had been my mums' lover before they broke up earlier. Maybe he has some more information about her current residence. He currently sells houses somewhere here in Kirdneh.",
+				"Maybe Roger has some guess about where she went to. I'm not sure where he is either, I just know he sells houses somewhere here in Kirdneh.",
 				null);
 		
 	}
@@ -195,7 +196,7 @@ public class FindJefsMom extends AbstractQuest {
 	    amber.add(ConversationStates.ATTENDING, "Jef",
 		     	new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start")),
 		    	ConversationStates.IDLE,
-		    	"I don't trust you. Your voice shivered while you told me my sons name. I bet he is fine and happy and save.", 
+		    	"I don't trust you. Your voice shivered while you told me my sons name. I bet he is fine and happy and safe.", 
 		    	null);
 	    
 	   
@@ -213,7 +214,7 @@ public class FindJefsMom extends AbstractQuest {
 				redlionfishamount = Rand.roll1D6();
 				red_lionfish.setQuantity(redlionfishamount);
 				player.equipOrPutOnGround(red_lionfish);
-				npc.say("Thank you! Take these " + Integer.toString(redlionfishamount) + " red lionfishes! I got some from a guy who visited Amazon island some time ago, maybe you need them.");
+				npc.say("Thank you! Take " + Grammar.thisthese(redlionfishamount) + " " +  Grammar.quantityplnoun(redlionfishamount,"red lionfish","") + "! I got some from a guy who visited Amazon island some time ago, maybe you need " + Grammar.itthem(redlionfishamount) + " for something.");
 				
 			}
 		};
@@ -269,11 +270,11 @@ public class FindJefsMom extends AbstractQuest {
 			res.add("Jef asked me to take a look at his mother Amber who didn't return from the market yet. I hope she will listen to me after I told her the name of her son, Jef.");
 		}
 		if ("found_mom".equals(questState)) {
-			res.add("I found Amber, Jefs mother, while she walked around somewhere in Fado forest. She gave me a flower for her son and told me, that I have to tell him that she is fine.");
+			res.add("I found Amber, Jef's mother, while she walked around somewhere in Fado forest. She gave me a flower for her son and told me, that I have to tell him that she is fine.");
 		}
         if (isCompleted(player)) {
             if (isRepeatable(player)) {
-                res.add("Its been a while since I checked on Jefs mother and should ask Jef, if he wants me to take a look after her again.");
+                res.add("Its been a while since I checked on Jef's mother and should ask Jef, if he wants me to take a look after her again.");
             } else {
                 res.add("I told Jef that his mother is fine. He wants to leave his mother alone for some time now.");
             }			
@@ -293,10 +294,5 @@ public class FindJefsMom extends AbstractQuest {
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"done"),
 				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
-	}
-	
-	@Override
-	public boolean isCompleted(final Player player) {
-		return new QuestStateStartsWithCondition(QUEST_SLOT,"done").fire(player, null, null);
 	}
 }
