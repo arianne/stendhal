@@ -36,6 +36,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerCanEquipItemCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -135,6 +136,15 @@ public class FindJefsMom extends AbstractQuest {
 			"Oh. Ok. I can understand you... You look like a busy hero so I'll not try to convince you of helping me out.",
 			new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, "rejected"),
 					new DecreaseKarmaAction(10.0)));
+		
+		// Player asks for quest but is already on it
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"I hope that you will find my mum soon and tell me, if she is fine after.",
+				null);
 		
 		npc.add(
 				ConversationStates.ATTENDING,
