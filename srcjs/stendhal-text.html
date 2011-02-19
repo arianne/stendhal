@@ -40,19 +40,6 @@ p.logsupport {color: #ff7200}
 
 <script>
 
-	function send(){
-		var val = document.getElementById('chatbar').value;
-		var array = val.split(" ");
-		if (array[0] == "/choosecharacter") {
-			marauroa.clientFramework.chooseCharacter(array[1]);
-		} else if (val == '/close') {
-			marauroa.clientFramework.close();
-		} else {
-			stendhal.slashActionRepository.execute(val);
-		}
-		document.getElementById('chatbar').value = '';
-	}
-
 	function esc(msg){
 		return msg.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	};
@@ -74,10 +61,11 @@ p.logsupport {color: #ff7200}
 
 	marauroa.clientFramework.connect(null, null);
 
+	document.onkeydown=stendhal.ui.chatBar.keydown;
 </script>
 
 <h1>Sample chat client</h1>
-<form id="form" onsubmit="send(); return false">
+<form id="form" onsubmit="stendhal.ui.chatBar.send(); return false">
 	<input type="text" name="chatbar" id="chatbar" style="width:90%">
 	<input type="submit" value="Send">
 </form>
