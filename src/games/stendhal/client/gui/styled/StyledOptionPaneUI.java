@@ -20,7 +20,7 @@ import java.awt.GridBagConstraints;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicOptionPaneUI;
@@ -109,7 +109,7 @@ public class StyledOptionPaneUI extends BasicOptionPaneUI {
 		 * instead with the defaults of JLabel.
 		 */
 		 if (msg instanceof String) {
-			 JTextField text = new JTextField((String) msg);
+			 JTextArea text = new JTextArea((String) msg);
 			 text.setEditable(false);
 			 text.setBorder(null);
 			 text.setOpaque(false);
