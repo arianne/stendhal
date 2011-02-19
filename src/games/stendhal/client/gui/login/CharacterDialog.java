@@ -26,6 +26,7 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -220,6 +221,8 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		label.append("</html>");
 		
 		JButton playerButton = new JButton(label.toString(), icon);
+		// Reduce the margins. The buttons are large enough as they are.
+		playerButton.setMargin(new Insets(1, 1, 1, 1));
 		
 		playerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent evt) {
