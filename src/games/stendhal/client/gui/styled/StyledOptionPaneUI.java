@@ -12,14 +12,16 @@
  ***************************************************************************/
 package games.stendhal.client.gui.styled;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicOptionPaneUI;
 
@@ -68,21 +70,7 @@ public class StyledOptionPaneUI extends BasicOptionPaneUI {
 			 * Set the color to transparent so that the background panel shows
 			 * through.
 			 */
-			Color transparent = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-			optionPane.setBackground(transparent);
-			
-			Container parent = optionPane.getParent();
-			if (parent instanceof JComponent) {
-				/*
-				 * Totally confusingly the color does not seem to make any 
-				 * difference, as long as it's set to something. If it's not
-				 * changed it gets painted in gray.
-				 *
-				 * Setting it to something sane anyway, in case the result is
-				 * different in some swing versions.
-				 */
-				((JComponent) parent).setBackground(transparent);
-			}
+			optionPane.setOpaque(false);
 			
 			cleaned = true;
 		}
@@ -109,5 +97,27 @@ public class StyledOptionPaneUI extends BasicOptionPaneUI {
 				cleanComponents(child);
 			}
 		}
+	}
+	
+	@Override
+	protected void addMessageComponents(Container container,
+		GridBagConstraints cons, Object msg, int maxll,
+		boolean internallyCreated) {
+		/*
+		 * A workaround to the well known flaw in JLabel that the text
+		 * can not be made selectable. Use a non editable JTextField
+		 * instead with the defaults of JLabel.
+		 */
+		 if (msg instanceof String) {
+			 JTextField text = new JTextField((String) msg);
+			 text.setEditable(false);
+			 text.setBorder(null);
+			 text.setOpaque(false);
+			 text.setForeground(style.getForeground());
+			 text.setFont(UIManager.getFont("Label.font"));
+			 
+			 msg = text;
+		 }
+		 super.addMessageComponents(container, cons, msg, maxll, internallyCreated);
 	}
 }
