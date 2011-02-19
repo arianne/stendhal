@@ -182,7 +182,7 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 		},
 		getMinParams: 0,
-		getMaxParams: 0
+		getMaxParams: 1
 	},
 
 	execute: function(line) {
@@ -194,6 +194,7 @@ stendhal.slashActionRepository = {
 			array.shift();
 		}
 		name = name.substr(1);
+		var action;
 		if (typeof(this[name]) == "undefined") {
 			action = this["_default"];
 		} else {
@@ -201,9 +202,9 @@ stendhal.slashActionRepository = {
 		}
 		
 		if (action.getMinParams <= array.length) {
-			remainder = "";
+			var remainder = "";
 			for (var i = action.getMaxParams; i < array.length; i++) {
-				remainder = remainder + " " + array[i];
+				remainder = remainder + array[i] + " ";
 			}
 			array.slice(action.getMaxParams);
 			return action.execute(name, array, remainder);
