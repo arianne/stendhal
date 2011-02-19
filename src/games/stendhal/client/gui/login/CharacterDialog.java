@@ -73,6 +73,11 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	private static final int IMAGE_WIDTH = 32;
 	/** Height of a player image in pixels */
 	private static final int IMAGE_HEIGHT = 48;
+	/**
+	 * Maximum number of characters / account. A soft limit since this
+	 * is client side.
+	 */
+	private static final int MAX_CHARACTERS = 16;
 	
 	
 	/** Area containing buttons for each character */
@@ -128,6 +133,10 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		// Action buttons. Should these be of uniform size?
 		JButton newCharButton = new JButton("New Character");
 		newCharButton.addActionListener(new CreateCharacterAction(this));
+		// Disable creating unreasonable amounts of characters. Enough is enough.
+		if (characters.keySet().size() >= MAX_CHARACTERS) {
+			newCharButton.setEnabled(false);
+		}
 		buttonBar.add(newCharButton);
 		
 		JButton exitButton = new JButton("Cancel");
