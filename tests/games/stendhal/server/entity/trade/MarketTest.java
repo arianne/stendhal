@@ -21,6 +21,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.actions.CIDSubmitAction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.transformer.OfferTransformer;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
@@ -30,6 +31,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import java.util.List;
 
 import marauroa.common.Log4J;
+import marauroa.common.game.RPObject;
 import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.AfterClass;
@@ -77,6 +79,10 @@ public class MarketTest {
 		assertFalse(offer.getItem().getContainer().equals(bob));
 		assertTrue(offer.getItem().getContainer().equals(offer));
 		assertNull(bob.getFirstEquipped("axe"));
+		Offer object = (Offer) new OfferTransformer().transform(offer);
+		assertEquals(offer, object);
+		assertFalse(object.getItem().getContainer().equals(bob));
+		assertTrue(object.getItem().getContainer().equals(offer));
 	}
 
 	/**
