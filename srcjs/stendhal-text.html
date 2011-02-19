@@ -34,11 +34,7 @@ p.logprivmsg {color: #AAA}
 		} else if (val == '/close') {
 			marauroa.clientFramework.close();
 		} else {
-			var action = {
-				"type": "chat",
-				"text": val
-			};
-			marauroa.clientFramework.sendAction(action);
+			stendhal.slashActionRepository.execute(val);
 		}
 		document.getElementById('chatbar').value = '';
 	}
