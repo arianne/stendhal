@@ -11,5 +11,8 @@ stendhal.ui = {
 		e.innerHTML = stendhal.ui.html.esc(msg);
 		document.getElementById('chat').appendChild(e);
 		document.getElementById('chat').scrollTop = 1000000;
+	},
+	clearChatLog: function() {
+		document.getElementById("chat").innerHTML = "";
 	}
 }

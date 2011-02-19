@@ -41,6 +41,15 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
+	"clear": {
+		execute: function(type, params, remainder) {
+			stendhal.ui.clearChatLog();
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
 	"gag": {
 		execute: function(type, params, remainder) {
 			var action = {
@@ -191,7 +200,7 @@ stendhal.slashActionRepository = {
 			action = this[name];
 		}
 		
-		if (action.getMinParams < array.length) {
+		if (action.getMinParams <= array.length) {
 			remainder = "";
 			for (var i = action.getMaxParams; i < array.length; i++) {
 				remainder = remainder + " " + array[i];
@@ -205,5 +214,3 @@ stendhal.slashActionRepository = {
 	}
 }
 stendhal.slashActionRepository.supporta = stendhal.slashActionRepository.supportanswer;
-stendhal.slashActionRepository.names = stendhal.slashActionRepository.who;
-
