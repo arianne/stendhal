@@ -24,6 +24,7 @@ import games.stendhal.client.gui.layout.SLayout;
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.event.ActionEvent;
@@ -42,8 +43,8 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 
 import marauroa.client.BannedAddressException;
 import marauroa.client.TimeoutException;
@@ -63,6 +64,10 @@ public final class CharacterDialog extends JDialog implements Runnable {
 
 	/** Maximum dialog width in pixels */
 	private static final int DIALOG_WIDTH = 640;
+	/** Maximum dialog height in pixels */
+	private static final int DIALOG_HEIGHT = 480;
+	/** Maximum number of character buttons per row */
+	private static final int MAX_COLUMNS = 4;
 	/** Width of a player image in pixels */
 	private static final int IMAGE_WIDTH = 32;
 	/** Height of a player image in pixels */
@@ -101,9 +106,13 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		}
 		
 		// Create the character area
-		characterPanel = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
+		characterPanel = new JPanel();
+		characterPanel.setBorder(null);
+		// Do not add empty places if the first row is not full
+		int columns = Math.min(MAX_COLUMNS, characters.keySet().size());
+		GridLayout grid = new GridLayout(0, columns);
+		characterPanel.setLayout(grid);
 		JScrollPane scroll = new JScrollPane(characterPanel);
-		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		add(scroll, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
 		addCharacters(characters);
@@ -129,7 +138,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		buttonBar.add(exitButton);
 		
 		pack();
-		setSize(Math.min(getWidth(), DIALOG_WIDTH), getHeight());
+		setSize(Math.min(getWidth(), DIALOG_WIDTH), Math.min(getHeight(), DIALOG_HEIGHT));
 		if (owner != null) {
 			owner.setEnabled(false);
 			this.setLocationRelativeTo(owner);
@@ -151,7 +160,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	private void addCharacters(final Map<String, RPObject> characters) {
 		for (Entry<String, RPObject> character : characters.entrySet()) {
 			JButton button = createCharacterButton(character.getKey(), character.getValue());
-			characterPanel.add(button, SBoxLayout.constraint(SLayout.EXPAND_X));
+			characterPanel.add(button);
 		}
 	}
 	
