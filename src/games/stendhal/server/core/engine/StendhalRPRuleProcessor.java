@@ -64,6 +64,7 @@ import marauroa.server.game.rp.RPServerManager;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+
 /**
  * adds game rules for Stendhal to the marauroa environment.
  *
@@ -137,8 +138,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return onlinePlayers;
 	}
 
-	@Override
-    public void setContext(final RPServerManager rpman) {
+	public void setContext(final RPServerManager rpman) {
 		try {
 			/*
 			 * Print version information.
@@ -185,8 +185,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	@Override
-    public boolean checkGameVersion(final String game, final String version) {
+	public boolean checkGameVersion(final String game, final String version) {
 		try {
 			if (!game.equals(Configuration.getConfiguration().get("server_typeGame", "stendhal"))) {
 				return false;
@@ -246,13 +245,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return onlinePlayers.getOnlinePlayer(name);
 	}
 
-	@Override
-    public boolean onActionAdd(final RPObject caster, final RPAction action, final List<RPAction> actionList) {
+	public boolean onActionAdd(final RPObject caster, final RPAction action, final List<RPAction> actionList) {
 		return true;
 	}
 
-	@Override
-    public void execute(final RPObject caster, final RPAction action) {
+	public void execute(final RPObject caster, final RPAction action) {
 		CommandCenter.execute(caster, action);
 	}
 
@@ -261,8 +258,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/** Notify it when a new turn happens. */
-	@Override
-    public synchronized void beginTurn() {
+	public synchronized void beginTurn() {
 		final long start = System.nanoTime();
 
 		try {
@@ -322,8 +318,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	protected void executePlayerLogic() {
 		getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-			@Override
-            public void execute(final Player player) {
+			public void execute(final Player player) {
 				try {
 					player.logic();
 				} catch (final Exception e) {
@@ -351,8 +346,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 
-	@Override
-    public synchronized void endTurn() {
+	public synchronized void endTurn() {
 		final int currentTurn = getTurn();
 		try {
 
@@ -422,8 +416,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	@Override
-    public synchronized boolean onInit(final RPObject object) {
+	public synchronized boolean onInit(final RPObject object) {
 		try {
 			if (object == null) {
 				logger.error("onInit: object = null", new Throwable());
@@ -515,8 +508,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	@Override
-    public synchronized boolean onExit(final RPObject object) {
+	public synchronized boolean onExit(final RPObject object) {
 		if (object instanceof Player) {
 			try {
 				final Player player = (Player) object;
@@ -553,19 +545,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	@Override
-    public synchronized void onTimeout(final RPObject object) {
+	public synchronized void onTimeout(final RPObject object) {
 		onExit(object);
 	}
 
-	@Override
-    public AccountResult createAccount(final String username, final String password, final String email) {
+	public AccountResult createAccount(final String username, final String password, final String email) {
 		final AccountCreator creator = new AccountCreator(username, password, email);
 		return creator.create();
 	}
 
-	@Override
-    public CharacterResult createCharacter(final String username, final String character, final RPObject template) {
+	public CharacterResult createCharacter(final String username, final String character, final RPObject template) {
 		final CharacterCreator creator = new CharacterCreator(username, character, template);
 		return creator.create();
 	}
@@ -595,8 +584,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 		new Task<Player>() {
 
-			@Override
-            public void execute(final Player player) {
+			public void execute(final Player player) {
 				player.sendPrivateText(NotificationType.SUPPORT, message);
 				player.notifyWorldAboutChanges();
 			}
@@ -605,8 +593,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 		new FilterCriteria<Player>() {
 
-			@Override
-            public boolean passes(final Player p) {
+			public boolean passes(final Player p) {
 				return p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT;
 			}
 
@@ -642,16 +629,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		if (instance != null) {
 			if (isOnline) {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-					@Override
-                    public void execute(final Player player) {
+					public void execute(final Player player) {
 						player.notifyOnline(playerToNotifyAbout.getName());
 					}
 				});
 
 			} else {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-					@Override
-                    public void execute(final Player player) {
+					public void execute(final Player player) {
 						player.notifyOffline(playerToNotifyAbout.getName());
 					}
 				});
@@ -666,8 +651,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private void updatePlayerNameListForPlayersOnLogin(final Player playerToNotifyAbout) {
 		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-			@Override
-            public void execute(final Player player) {
+			public void execute(final Player player) {
 				if(playerToNotifyAbout.isGhost()) {
 					playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
 					if (player.isGhost()) {
@@ -690,8 +674,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private void updatePlayerNameListForPlayersOnLogout(final Player playerToNotifyAbout) {
 		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-			@Override
-            public void execute(final Player player) {
+			public void execute(final Player player) {
 				player.addEvent(new PlayerLoggedOutEvent(playerToNotifyAbout.getName()));
 			}
 		});
