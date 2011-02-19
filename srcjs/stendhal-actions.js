@@ -43,7 +43,7 @@ stendhal.slashActionRepository = {
 
 	"clear": {
 		execute: function(type, params, remainder) {
-			stendhal.ui.clearChatLog();
+			stendhal.ui.chatLog.clear();
 			return true;
 		},
 		getMinParams: 0,
@@ -208,7 +208,7 @@ stendhal.slashActionRepository = {
 			array.slice(action.getMaxParams);
 			return action.execute(name, array, remainder);
 		} else {
-			stendhal.ui.addChatLogLine("error", "Missing arguments. Try /help");
+			stendhal.ui.chatLog.addLine("error", "Missing arguments. Try /help");
 			return false;
 		}
 	}
