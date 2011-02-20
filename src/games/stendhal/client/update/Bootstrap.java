@@ -19,7 +19,6 @@ import java.util.StringTokenizer;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
-import javax.swing.UIManager;
 
 /**
  * Starts a program after doing some classpath magic.
@@ -401,7 +400,7 @@ public class Bootstrap {
 	 * @return string
 	 */
 	String stacktraceToString(Throwable e) {
-		StringBuilder sb = new StringBuilder("<html>");
+		StringBuilder sb = new StringBuilder();
 		sb.append(e.getMessage());
 		for (StackTraceElement frame : e.getStackTrace()) {
 			sb.append("\r\n");
