@@ -9,7 +9,7 @@ body {font-family: "Arial"}
 p.logerror {color: #F00}
 p.logprivmsg {color: #444}
 p.logclient {color: #888}
-p.logerror {color: #red}
+p.logerror {color: #F00}
 p.loginformation {color: #ffc800}
 p.lognegative {color: #f00}
 p.lognormal {color: #000}
@@ -57,7 +57,7 @@ p.logsupport {color: #ff7200}
 	}
 	marauroa.clientFramework.onAvailableCharacterDetails = function(characters) {
 		if (window.location.hash) {
-			marauroa.clientFramework.chooseCharacter(window.location.hash);
+			marauroa.clientFramework.chooseCharacter(window.location.hash.substring(1));
 		} else {
 			marauroa.clientFramework.chooseCharacter(marauroa.util.first(characters).a.name);
 		}
