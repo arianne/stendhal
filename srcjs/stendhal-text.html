@@ -63,6 +63,13 @@ p.logsupport {color: #ff7200}
 		}
 	}
 
+	marauroa.clientFramework.onLoginFailed = function(reason, text) {
+		alert("Login failed. Please login on the Stendhal website first.");
+		marauroa.clientFramework.close();
+		document.getElementById("chatbar").disabled = true;
+		document.getElementById("chat").style.backgroundColor = "#AAA";
+	}
+
 	marauroa.clientFramework.connect(null, null);
 
 	document.onkeydown=stendhal.ui.chatBar.keydown;
