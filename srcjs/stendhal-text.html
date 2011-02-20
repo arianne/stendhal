@@ -56,7 +56,11 @@ p.logsupport {color: #ff7200}
 		stendhal.ui.chatLog.addLine("error", "Disconnected: " + error);
 	}
 	marauroa.clientFramework.onAvailableCharacterDetails = function(characters) {
-		marauroa.clientFramework.chooseCharacter(marauroa.util.first(characters).a.name);
+		if (window.location.hash) {
+			marauroa.clientFramework.chooseCharacter(window.location.hash);
+		} else {
+			marauroa.clientFramework.chooseCharacter(marauroa.util.first(characters).a.name);
+		}
 	}
 
 	marauroa.clientFramework.connect(null, null);
