@@ -6,26 +6,32 @@ Changelog
 
 *features*
 - achievements system with notification in game of reached achievement and website integration
-- group system for sharing loots and chatting, with a GUI to aid group management
+- group system for sharing loots and chatting
 - show Production activity in the Travel Log
-- settings dialog
 
 *world*
 - sheep growing quest from Nishiya
 - Help Jef by finding his mom, Amber, in a new quest
 - Caroline moved into her refurbished house in Ados 
-- NPC conversation with improved and unified responses of producers and merchandisers
 - the required item to collect (if chosen from a list) is displayed in more quest histories
 - message about where you died, on death
 - sound on level up
 - configurable archer range: orc spearman can throw further
 - damage type of the arrows is used for archer players
+- player killers pay more to get healed by NPCs
+- NPCs who can list what produced items are available in the world. Katerina and Alice Farmer are examples
+
+*client*
+- character selection screen has a grid layout
+- settings dialog for sound, clickmode, decorative fonts
+- a GUI to aid group management
+- better multi-monitor behaviour
 
 *fixes*
 - numerous small gui code fixes
 - all defined achievements can now be reached
-- simplfied chest syncing to remove flicker
-- better multi-monitor behaviour
+- simplified chest syncing to remove flicker
+- NPC conversation with improved and unified responses of producers and merchandisers
 
 
 0.91 
