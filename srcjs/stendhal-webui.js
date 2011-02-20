@@ -95,7 +95,17 @@ stendhal.ui = {
 		addLine: function(type, msg) {
 			var e = document.createElement('p');
 			e.className = "log" + stendhal.ui.html.esc(type);
-			e.innerHTML = stendhal.ui.html.esc(msg);
+			var date = new Date();
+			var time = "" + date.getHours() + ":";
+			if (date.getHours < 10) {
+				time = "0" + time;
+			}
+			if (date.getMinutes() < 10) {
+				time = time + "0";
+			};
+			time = time + date.getMinutes();
+			
+			e.innerHTML = "[" + time + "] " + stendhal.ui.html.esc(msg);
 			document.getElementById('chat').appendChild(e);
 			document.getElementById('chat').scrollTop = 1000000;
 		},
