@@ -16,16 +16,12 @@ package games.stendhal.server.maps.semos.house;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.pathfinder.FixedPath;
-import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.npc.condition.AdminCondition;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -60,15 +56,14 @@ public class AdminHelpNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(6, 11));
-				nodes.add(new Node(12,11));
-				setPath(new FixedPath(nodes, true));
+				// do not walk so that admins can 
+				// idle here 24/7 without using cpu and bandwith.
 			}
-			
+
 		};
 		new HealerAdder().addHealer(npc, 0);
-		npc.setPosition(6, 11);
+		npc.setPosition(9, 7);
+		npc.setDirection(Direction.DOWN);
 		npc.setEntityClass("beautifulgirlnpc");
 		zone.add(npc);
 	}
