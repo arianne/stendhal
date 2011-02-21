@@ -71,7 +71,15 @@ public class StatusIconPanel extends JComponent {
 	 */
 	protected void setEating(boolean isEating) {
 		if (eating.isVisible() != isEating) {
-			eating.setVisible(isEating);
+			// A hack to prevent eating and choking icons appearing 
+			// at the same time
+			if (isEating) {
+				if (!choking.isVisible()) {
+					eating.setVisible(true);
+				}
+			} else {
+				eating.setVisible(false);
+			}
 		}
 	}
 	
