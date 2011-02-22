@@ -473,7 +473,7 @@ public class LoginDialog extends JDialog {
 			handleError("You are running an incompatible version of Stendhal. Please update",
 					"Invalid version");
 		} catch (final TimeoutException e) {
-			handleError("Server is not available right now. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
+			handleError("Server is not available right now.\nThe server may be down or, if you are using a custom server,\nyou may have entered its name and port number incorrectly.",
 					"Error Logging In");
 		} catch (final LoginFailedException e) {
 			handleError(e.getMessage(), "Login failed");
