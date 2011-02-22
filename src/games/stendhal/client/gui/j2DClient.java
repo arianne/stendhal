@@ -35,6 +35,7 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
+import games.stendhal.client.gui.spells.Spells;
 import games.stendhal.client.gui.stats.StatsPanelController;
 import games.stendhal.client.gui.styled.StyledTabbedPaneUI;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
@@ -147,6 +148,8 @@ public class j2DClient implements UserInterface {
 
 	/** the inventory.*/
 	private SlotWindow inventory;
+	
+	private Spells spells;
 	
 	private User lastuser;
 	
@@ -486,6 +489,11 @@ public class j2DClient implements UserInterface {
 		containerPanel.addRepaintable(keyring);
 		client.addFeatureChangeListener(keyring);
 		
+		spells = new Spells();
+		spells.setAlignmentX(Component.LEFT_ALIGNMENT);
+		containerPanel.addRepaintable(spells);
+		client.addFeatureChangeListener(spells);
+		
 		return containerPanel;
 	}
 	
@@ -510,6 +518,9 @@ public class j2DClient implements UserInterface {
 		 * by feature change 
 		 */
 		keyring.setVisible(false);
+		
+		// spells should also be invisible until revealed by a feature change
+		spells.setVisible(false);
 	}
 
 	private void checkAndComplainAboutJavaImplementation() {
@@ -619,6 +630,7 @@ public class j2DClient implements UserInterface {
 					if (user != lastuser) {
 						character.setPlayer(user);
 						keyring.setSlot(user, "keyring");
+						spells.setSlot(user, "spells");
 						inventory.setSlot(user, "bag");
 						lastuser = user;
 					}
