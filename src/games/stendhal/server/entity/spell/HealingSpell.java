@@ -56,7 +56,7 @@ public class HealingSpell extends Spell {
 				return true;
 			}
 		}
-		return false;
+		return true;
 	}
 	
 }
