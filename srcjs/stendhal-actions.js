@@ -31,7 +31,7 @@ stendhal.slashActionRepository = {
 	"chat": {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: "chat",
+				type: type,
 				text: remainder
 			};
 			marauroa.clientFramework.sendAction(action);
@@ -91,6 +91,19 @@ stendhal.slashActionRepository = {
 				marauroa.clientFramework.sendAction(action);
 				return true;
 			}
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
+	"me": {
+		execute: function(type, params, remainder) {
+			var action = {
+				type: "emote",
+				text: remainder
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
 		},
 		getMinParams: 0,
 		getMaxParams: 0
