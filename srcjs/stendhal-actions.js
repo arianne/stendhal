@@ -143,7 +143,7 @@ stendhal.slashActionRepository = {
 			var action = {
 				type: "teleport",
 				target: params[0],
-				zone: param[1],
+				zone: params[1],
 				x: params[2],
 				y: params[3]
 			};
