@@ -91,7 +91,7 @@ public class j2DClient implements UserInterface {
 	 * A shared [singleton] copy.
 	 */
 	private static j2DClient sharedUI;
-	
+
 	/**
 	 * Get the default UI.
 	 * @return  the instance
@@ -126,7 +126,7 @@ public class j2DClient implements UserInterface {
 	private JLayeredPane pane;
 
 	private KTextEdit gameLog;
-	
+
 	private ContainerPanel containerPanel;
 
 	private boolean gameRunning;
@@ -148,11 +148,11 @@ public class j2DClient implements UserInterface {
 
 	/** the inventory.*/
 	private SlotWindow inventory;
-	
+
 	private Spells spells;
-	
+
 	private User lastuser;
-	
+
 	private boolean offline;
 
 
@@ -184,7 +184,7 @@ public class j2DClient implements UserInterface {
 				addEventLine(new HeaderLessEventLine("Unsynced: Resynchronizing...",
 						NotificationType.CLIENT));
 			}
-			
+
 		}
 	};
 
@@ -208,7 +208,7 @@ public class j2DClient implements UserInterface {
 		this.client = client;
 		this.userContext = userContext;
 		setDefault(this);
-				
+
 		Dimension screenSize = stendhal.getScreenSize();
 
 		/*
@@ -223,7 +223,7 @@ public class j2DClient implements UserInterface {
 		 */
 		pane.setMaximumSize(screenSize);
 		pane.setMinimumSize(new Dimension(screenSize.width, 0));
-	
+
 		/*
 		 * Create the main game screen
 		 */
@@ -231,17 +231,17 @@ public class j2DClient implements UserInterface {
 		screenController = new ScreenController(screen);
 		GameScreen.setDefaultScreen(screen);
 		screen.setMinimumSize(new Dimension(screenSize.width, 0));
-		
+
 		// ... and put it on the ground layer of the pane
 		pane.add(screen, Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
 
 		client.setScreen(screen);
 		positionChangeListener.add(screenController);
 
-				
+
 		final KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.get().getPlayerList().getNamesList());
 		chatText.addKeyListener(tabcompletion);
-		
+
 		/*
 		 * Always redirect focus to chat field
 		 */
@@ -255,7 +255,7 @@ public class j2DClient implements UserInterface {
 			}
 		});
 
-		
+
 		// On Screen windows
 		/*
 		 * Quit dialog
@@ -293,7 +293,7 @@ public class j2DClient implements UserInterface {
 		final WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
 		windowManager.setDefaultProperties("chest", false, 100, 190);
-		
+
 		/*
 		 * Finally create the window, and place all the components in it
 		 */
@@ -303,40 +303,40 @@ public class j2DClient implements UserInterface {
 		JComponent glassPane = DragLayer.get();
 		mainFrame.getMainFrame().setGlassPane(glassPane);
 		glassPane.setVisible(true);
-		
+
 		// *** Create the layout ***
 		// left side panel
 		JComponent leftColumn = createLeftPanel();
-		
+
 		// Chat entry and chat log
 		final JComponent chatBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		// Set maximum size to prevent the entry requesting massive widths, but
-		// force expand if there's extra space anyway 
+		// force expand if there's extra space anyway
 		chatText.getPlayerChatText().setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
 		chatBox.add(chatText.getPlayerChatText(), SBoxLayout.constraint(SLayout.EXPAND_X));
-		
+
 		chatBox.add(gameLog, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		chatBox.setMinimumSize(chatText.getPlayerChatText().getMinimumSize());
 		chatBox.setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
-		
+
 		// Give the user the ability to make the the game area less tall
 		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
 		splitPane.setBorder(null);
 		// Works for showing the resize, but is extremely flickery
 		//splitPane.setContinuousLayout(true);
 		pane.addComponentListener(new SplitPaneResizeListener(screen, splitPane));
-		
+
 		containerPanel = createContainerPanel();
-		
+
 		// Avoid panel drawing overhead
 		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
 		mainFrame.getMainFrame().setContentPane(windowContent);
-		
+
 		// Finally add the left pane, and the games screen + chat combo
 		// Make the panel take any horizontal resize
 		windowContent.add(leftColumn, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		leftColumn.setMinimumSize(new Dimension());
-		
+
 		/*
 		 * Put the splitpane and the container panel to a subcontainer to make
 		 * squeezing the window affect the left pane first rather than the right
@@ -346,7 +346,7 @@ public class j2DClient implements UserInterface {
 		rightSide.add(containerPanel, SBoxLayout.constraint(SLayout.EXPAND_Y));
 		rightSide.setMinimumSize(rightSide.getPreferredSize());
 		windowContent.add(rightSide, SBoxLayout.constraint(SLayout.EXPAND_Y));
-				
+
 		/*
 		 * Handle focus assertion and window closing
 		 */
@@ -371,7 +371,7 @@ public class j2DClient implements UserInterface {
 				requestQuit();
 			}
 		});
-		
+
 		mainFrame.getMainFrame().pack();
 		setInitialWindowStates();
 
@@ -380,7 +380,7 @@ public class j2DClient implements UserInterface {
 		 *  different java versions seem to take the window decorations
 		 *  in account in rather random ways.
 		 */
-		final int width = mainFrame.getMainFrame().getWidth() 
+		final int width = mainFrame.getMainFrame().getWidth()
 		- minimap.getComponent().getWidth() - containerPanel.getWidth();
 		final int height = mainFrame.getMainFrame().getHeight() - gameLog.getHeight();
 
@@ -393,7 +393,7 @@ public class j2DClient implements UserInterface {
 		 */
 		Rectangle maxBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
 		Dimension current = mainFrame.getMainFrame().getSize();
-		mainFrame.getMainFrame().setSize(Math.min(current.width, maxBounds.width), 
+		mainFrame.getMainFrame().setSize(Math.min(current.width, maxBounds.width),
 				Math.min(current.height, maxBounds.height));
 
 		/*
@@ -405,17 +405,17 @@ public class j2DClient implements UserInterface {
 				maxBounds.height  - 80));
 
 		directionRelease = null;
-	
+
 		// register the slash actions in the client side command line parser
 		SlashActionRepository.register();
 
 		checkAndComplainAboutJavaImplementation();
 		WorldObjects.addWorldListener(getSoundSystemFacade());
 	} // constructor
-	
+
 	/**
 	 * Create the left side panel of the client.
-	 * 
+	 *
 	 * @return A component containing the components left of the game screen
 	 */
 	private JComponent createLeftPanel() {
@@ -426,11 +426,11 @@ public class j2DClient implements UserInterface {
 		buddyScroll.setScrollingSpeed(SCROLLING_SPEED);
 		final JComponent buddyPane = buddyScroll.getComponent();
 		buddyPane.setBorder(null);
-		
+
 		final JComponent leftColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		leftColumn.add(minimap.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
 		leftColumn.add(stats.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
-		
+
 		// Add a background for the tabs. The column itself has none.
 		JPanel tabBackground = new JPanel();
 		tabBackground.setBorder(null);
@@ -444,24 +444,24 @@ public class j2DClient implements UserInterface {
 		}
 		tabs.setFocusable(false);
 		tabs.add("Friends", buddyPane);
-		
+
 		tabs.add("Group", GroupPanelController.get().getComponent());
-		
+
 		tabBackground.add(tabs, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		leftColumn.add(tabBackground, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
-		
+
 		return leftColumn;
 	}
-	
+
 	/**
 	 * Create the container panel (right side panel), and its child components.
-	 * 
+	 *
 	 * @return container panel
 	 */
 	private ContainerPanel createContainerPanel() {
 		ContainerPanel containerPanel = new ContainerPanel();
 		containerPanel.setMinimumSize(new Dimension(0, 0));
-		
+
 		/*
 		 * Contents of the containerPanel
 		 */
@@ -472,31 +472,31 @@ public class j2DClient implements UserInterface {
 		settings.add("rp");
 		settings.add("help");
 		containerPanel.add(settings, SBoxLayout.constraint(SLayout.EXPAND_X));
-		
+
 		// Character window
 		character = new Character();
 		character.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(character);
-		
+
 		// Create the bag window
 		inventory = new SlotWindow("bag", 3, 4);
 		inventory.setCloseable(false);
 		inventory.setInspector(containerPanel);
 		containerPanel.addRepaintable(inventory);
-		
+
 		keyring = new KeyRing();
 		keyring.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(keyring);
 		client.addFeatureChangeListener(keyring);
-		
+
 		spells = new Spells();
 		spells.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(spells);
 		client.addFeatureChangeListener(spells);
-		
+
 		return containerPanel;
 	}
-	
+
 	/**
 	 * Modify the states of the on screen windows. The window manager normally
 	 * restores the state of the window as it was on the previous session. For
@@ -515,10 +515,10 @@ public class j2DClient implements UserInterface {
 		inventory.setVisible(true);
 		/*
 		 * Keyring, on the other hand, *should* be hidden until revealed
-		 * by feature change 
+		 * by feature change
 		 */
 		keyring.setVisible(false);
-		
+
 		// spells should also be invisible until revealed by a feature change
 		spells.setVisible(false);
 	}
@@ -526,9 +526,9 @@ public class j2DClient implements UserInterface {
 	private void checkAndComplainAboutJavaImplementation() {
 		final String vmName = System.getProperty("java.vm.name", "unknown").toLowerCase(Locale.ENGLISH);
 		if ((vmName.indexOf("hotspot") < 0) && (vmName.indexOf("openjdk") < 0)) {
-			final String text = "Stendhal is developed and tested on Sun Java and OpenJDK. You are using " 
-				+ System.getProperty("java.vm.vendor", "unknown") + " " 
-				+ System.getProperty("java.vm.name", "unknown") 
+			final String text = "Stendhal is developed and tested on Sun Java and OpenJDK. You are using "
+				+ System.getProperty("java.vm.vendor", "unknown") + " "
+				+ System.getProperty("java.vm.name", "unknown")
 				+ " so there may be some problems like a black or grey screen.\n"
 				+ " If you have coding experience with your JDK, we are looking for help.";
 			addEventLine(new HeaderLessEventLine(text, NotificationType.ERROR));
@@ -553,14 +553,14 @@ public class j2DClient implements UserInterface {
 
 	/**
 	 * Start the game loop thread.
-	 * 
+	 *
 	 * @param gameScreen
 	 */
 	public void startGameLoop(final GameScreen gameScreen) {
 		Thread loop = new Thread(new Runnable() {
 			public void run() {
 				gameLoop(gameScreen);
-				// gameLoop runs until the client quit 
+				// gameLoop runs until the client quit
 				cleanup();
 			}
 		}, "Game loop");
@@ -579,7 +579,7 @@ public class j2DClient implements UserInterface {
 		} catch (RuntimeException e) {
 			logger.error(e, e);
 		}
-		
+
 		// keep looping until the game ends
 		long refreshTime = System.currentTimeMillis();
 		long lastFpsTime = refreshTime;
@@ -599,10 +599,10 @@ public class j2DClient implements UserInterface {
 				final long now = System.currentTimeMillis();
 				final int delta = (int) (now - refreshTime);
 				refreshTime = now;
-	
+
 				logger.debug("Move objects");
 				gameObjects.update(delta);
-	
+
 				if (gameLayers.isAreaChanged()) {
 					// Same thread as the ClientFramework loop, so these should
 					// be save
@@ -637,20 +637,20 @@ public class j2DClient implements UserInterface {
 				}
 
 				triggerPainting();
-	
+
 				logger.debug("Query network");
-	
+
 				if (client.loop(0)) {
 					lastMessageHandle = refreshTime;
 				}
-	
+
 				/*
 				 * Process delayed direction release
 				 */
 				if ((directionRelease != null) && directionRelease.hasExpired()) {
 					client.removeDirection(directionRelease.getDirection(),
 							directionRelease.isFacing());
-	
+
 					directionRelease = null;
 				}
 
@@ -659,10 +659,10 @@ public class j2DClient implements UserInterface {
 						logger.debug("FPS: " + fps);
 						final long freeMemory = Runtime.getRuntime().freeMemory() / 1024;
 						final long totalMemory = Runtime.getRuntime().totalMemory() / 1024;
-	
+
 						logger.debug("Total/Used memory: " + totalMemory + "/"
 								+ (totalMemory - freeMemory));
-	
+
 						fps = 0;
 						lastFpsTime = refreshTime;
 					}
@@ -687,16 +687,16 @@ public class j2DClient implements UserInterface {
 						logger.info("Waiting " + wait + " ms");
 						wait = 100L;
 					}
-	
+
 					try {
 						Thread.sleep(wait);
 					} catch (final InterruptedException e) {
 						logger.error(e, e);
 					}
 				}
-	
+
 				logger.debug("End sleeping");
-	
+
 				if (!gameRunning) {
 					logger.info("Request logout");
 					try {
@@ -722,7 +722,7 @@ public class j2DClient implements UserInterface {
 				logger.error(e, e);
 			}
 		}
-	
+
 		getSoundSystemFacade().exit();
 	}
 
@@ -964,10 +964,10 @@ public class j2DClient implements UserInterface {
 			final boolean isTalking) {
 		screenController.addText(x, y, text, type, isTalking);
 	}
-	
+
 	/**
 	 * Display a box for a reached achievement
-	 * 
+	 *
 	 * @param title the title of the achievement
 	 * @param description the description of the achievement
 	 * @param category the category of the achievement
@@ -994,10 +994,10 @@ public class j2DClient implements UserInterface {
 		final OutfitDialog dialog = new OutfitDialog(mainFrame.getMainFrame(), "Set outfit", outfit);
 		dialog.setVisible(true);
 	}
-	
+
 	/**
 	 * Get the main window component.
-	 * 
+	 *
 	 * @return main window
 	 */
 	public Frame getMainFrame() {
@@ -1032,9 +1032,9 @@ public class j2DClient implements UserInterface {
 	 */
 	public void setChatLine(final String text) {
 		chatText.setChatLine(text);
-		
+
 	}
-	
+
 	public void clearGameLog() {
 		gameLog.clear();
 	}
@@ -1186,20 +1186,20 @@ public class j2DClient implements UserInterface {
 	public StendhalClient getClient() {
 		return client;
 	}
-	
+
 	/**
-	 * The layered pane where the game screen is does not automatically resize 
+	 * The layered pane where the game screen is does not automatically resize
 	 * the game screen. This handler is needed to do that work.
 	 */
 	private static class SplitPaneResizeListener implements ComponentListener {
-		private Component child;
-		private JSplitPane splitPane;
-		
+		private final Component child;
+		private final JSplitPane splitPane;
+
 		public SplitPaneResizeListener(Component child, JSplitPane splitPane) {
 			this.child = child;
 			this.splitPane = splitPane;
 		}
-		
+
 		public void componentHidden(ComponentEvent e) {
 			// do nothing
 		}
@@ -1245,10 +1245,13 @@ public class j2DClient implements UserInterface {
 	public SoundSystemFacade getSoundSystemFacade() {
 		if (soundSystemFacade == null) {
 			try {
-				soundSystemFacade = new games.stendhal.client.sound.sound.SoundSystemFacadeImpl();
+				if ((j2DClient.class.getClassLoader().getResource("data/sound/harp-1.ogg") != null)
+						|| (j2DClient.class.getClassLoader().getResource("data/music/the_old_tavern.ogg") != null)) {
+					soundSystemFacade = new games.stendhal.client.sound.sound.SoundSystemFacadeImpl();
+				} else {
+					soundSystemFacade = new NoSoundFacade();
+				}
 			} catch (RuntimeException e) {
-				soundSystemFacade = new NoSoundFacade();
-				logger.error(e, e);
 				soundSystemFacade = new NoSoundFacade();
 				logger.error(e, e);
 			}
