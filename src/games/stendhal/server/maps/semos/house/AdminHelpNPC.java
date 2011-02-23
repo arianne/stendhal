@@ -56,16 +56,16 @@ public class AdminHelpNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				// do not walk so that admins can 
+				// do not walk so that admins can
 				// idle here 24/7 without using cpu and bandwith.
 			}
 
 		};
 		new HealerAdder().addHealer(npc, 0);
-		npc.setPosition(9, 7);
+		npc.setPosition(16, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.setEntityClass("beautifulgirlnpc");
 		zone.add(npc);
 	}
-	
+
 }
