@@ -41,13 +41,13 @@ import java.util.List;
 
 /**
  * QUEST: Sheep Growing for Nishiya
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li>Nishiya (the sheep seller in Semos village)</li>
  * <li>Sato (the sheep buyer in Semos city)</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li>Nishiya asks you to grow a sheep.</li>
@@ -55,13 +55,13 @@ import java.util.List;
  * <li>Sheep is handed over to Sato.</li>
  * <li>Nishiya thanks you.</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li>Maximum of (XP to level 2) or (30XP)</li>
  * <li>Karma: 10</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li>None</li>
@@ -87,7 +87,7 @@ public class SheepGrowing extends AbstractQuest {
 		preparePlayerHandsOverSheepStep();
 		preparePlayerReturnsStep();
 	}
-	
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -100,7 +100,7 @@ public class SheepGrowing extends AbstractQuest {
 			return res;
 		}
 		res.add("Nishiya asked me if I could raise a sheep for him.");
-		
+
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.equals("rejected")) {
 			res.add("I told Nishiya that I have to do other things now... maybe I have time for the task later.");
@@ -116,30 +116,30 @@ public class SheepGrowing extends AbstractQuest {
 		}
 		return res;
 	}
-	
+
 	@Override
 	public String getName() {
 		return TITLE;
 	}
-	
+
 	/**
 	 * General information for the player related to the quest.
 	 */
 	private void generalInformationDialogs() {
 		final SpeakerNPC npc = npcs.get("Nishiya");
-		
+
 		npc.add(ConversationStates.ATTENDING, "Sato", null, ConversationStates.ATTENDING, "Sato is the sheep buyer of Semos city. " +
 				"You will find him if you follow the path to the east.", null);
 		npc.add(ConversationStates.QUEST_OFFERED, "Sato", null, ConversationStates.QUEST_OFFERED, "Sato is the sheep buyer of Semos city. " +
 				"You will find him if you follow the path to the east.", null);
-		
+
 		List<String> berryStrings = new ArrayList<String>();
 		berryStrings.add("red berries");
 		berryStrings.add("berries");
 		berryStrings.add("sheepfood");
 		berryStrings.add("sheep food");
 		npc.addReply(berryStrings, "Sheep like to eat the red berries from the aeryberry bushes.");
-		
+
 		npc.addReply("sheep", "I sell fluffy sheep, it's my #job.");
 	}
 	/**
@@ -147,7 +147,7 @@ public class SheepGrowing extends AbstractQuest {
 	 */
 	private void preparePlayerGetsSheepStep() {
 		final SpeakerNPC npc = npcs.get("Nishiya");
-		
+
 		// If quest is not done or started yet ask player for help (if he does not have a sheep already)
 		ChatCondition playerHasNoSheep = new ChatCondition() {
 			public boolean fire(Player player, Sentence sentence, Entity npc) {
@@ -157,8 +157,8 @@ public class SheepGrowing extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(playerHasNoSheep, 
-						new QuestNotInStateCondition(QUEST_SLOT, "start"), 
+				new AndCondition(playerHasNoSheep,
+						new QuestNotInStateCondition(QUEST_SLOT, "start"),
 						new QuestNotInStateCondition(QUEST_SLOT, "handed_over"),
 						new QuestNotInStateCondition(QUEST_SLOT, "done")),
 				ConversationStates.QUEST_OFFERED,
@@ -167,17 +167,17 @@ public class SheepGrowing extends AbstractQuest {
 				"You only have to let it eat some red berries until it reaches a weight of " + Sheep.MAX_WEIGHT + "." +
 				"Would you do that?",
 				new SetQuestAction(QUEST_SLOT, "asked"));
-		
+
 		// If quest is offered and player says no reject the quest
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
-				new AndCondition(playerHasNoSheep, 
+				new AndCondition(playerHasNoSheep,
 						new QuestInStateCondition(QUEST_SLOT, "asked")),
 				ConversationStates.IDLE,
 				"Ok... then I have to work twice as hard these days...",
 				new SetQuestAction(QUEST_SLOT, "rejected"));
-		
+
 		// If quest is still active but not handed over do not give an other sheep to the player
 		npc.add(
 				ConversationStates.ATTENDING,
@@ -190,7 +190,7 @@ public class SheepGrowing extends AbstractQuest {
 				"I already gave you one of my sheep. " +
 				"If you left it on its own I can sell you a new one. Just say #buy #sheep.",
 				null);
-		
+
 		// If quest is offered and player says yes, give a sheep to him.
 		List<ChatAction> sheepActions = new LinkedList<ChatAction>();
 		sheepActions.add(new SetQuestAction(QUEST_SLOT, "start"));
@@ -203,7 +203,7 @@ public class SheepGrowing extends AbstractQuest {
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
-				new AndCondition(playerHasNoSheep, 
+				new AndCondition(playerHasNoSheep,
 						new QuestInStateCondition(QUEST_SLOT, "asked")),
 				ConversationStates.IDLE,
 				"Thanks! *smiles* Here is your fluffy fosterling. Be careful with her. " +
@@ -239,7 +239,7 @@ public class SheepGrowing extends AbstractQuest {
 			}
 		});
 		removeSheepAction.add(new SetQuestAction(QUEST_SLOT, "handed_over"));
-		
+
 		// Hand-Over condition
 		ChatCondition playerHasFullWeightSheep = new ChatCondition() {
 			public boolean fire(Player player, Sentence sentence, Entity npc) {
@@ -247,13 +247,7 @@ public class SheepGrowing extends AbstractQuest {
 					&& player.getSheep().getWeight() >= Sheep.MAX_WEIGHT;
 			}
 		};
-		ChatCondition sheepIsNearEnough = new ChatCondition() {
-			public boolean fire(Player player, Sentence sentence, Entity npc) {
-				return player.hasSheep() 
-					&& npc.squaredDistance(player.getSheep()) <= 5 * 5;
-			}
-		};
-		
+
 		// Sato asks for sheep
 		final SpeakerNPC npc = npcs.get("Sato");
 		npc.add(
@@ -261,12 +255,21 @@ public class SheepGrowing extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT,"start"),
-						playerHasFullWeightSheep,
-						sheepIsNearEnough),
+						playerHasFullWeightSheep),
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				"Hello. What a nice and healthy sheep is following you there! Is that one for me?",
 				null);
-		
+
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT,"start"),
+						new NotCondition(playerHasFullWeightSheep)),
+				ConversationStates.IDLE,
+				"Hello. You should have sheep from Nishiya for me, he owes me one! But I want a full weight one, so come back when you have one. Bye!",
+				null);
+
 		// Player answers yes - Sheep is given to Sato
 		npc.add(
 				ConversationStates.QUEST_ITEM_BROUGHT,
@@ -279,7 +282,7 @@ public class SheepGrowing extends AbstractQuest {
 				"It is a gift for a friend of mine and it would be a shame if I had no birthday present. " +
 				"Give thanks to Nishiya.",
 				new MultipleActions(removeSheepAction));
-		
+
 		// Player answers no - Sheep stays at player
 		npc.add(
 				ConversationStates.QUEST_ITEM_BROUGHT,
@@ -292,7 +295,7 @@ public class SheepGrowing extends AbstractQuest {
 				"He wanted to send me one a while ago...",
 				null);
 	}
-	
+
 	/**
 	 * The step where the player returns to Nishiya to get his reward.
 	 */
@@ -312,7 +315,7 @@ public class SheepGrowing extends AbstractQuest {
 		});
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction( 10 ));
-		
+
 		final SpeakerNPC npc = npcs.get("Nishiya");
 		// Asks player if he handed over the sheep
 		npc.add(
@@ -331,7 +334,7 @@ public class SheepGrowing extends AbstractQuest {
 				"Thank you! You doesn't know how much I have to do these days. " +
 				"You really helped me out.",
 				new MultipleActions(reward));
-		// Player answers no - 
+		// Player answers no -
 		npc.add(
 				ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.NO_MESSAGES,
@@ -339,7 +342,7 @@ public class SheepGrowing extends AbstractQuest {
 				ConversationStates.IDLE,
 				"Well... ok. But don't forget it. Sato needs the sheep very soon.",
 				null);
-		
+
 		// Player asks for quest after solving the quest
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
@@ -348,7 +351,7 @@ public class SheepGrowing extends AbstractQuest {
 				"Sorry. I have nothing to do for you at the moment. But thank you again for your help.",
 				null);
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;
