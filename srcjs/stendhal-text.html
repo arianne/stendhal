@@ -40,10 +40,6 @@ p.logsupport {color: #ff7200}
 
 <script>
 
-	function esc(msg){
-		return msg.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-	};
-
 	marauroa.rpobjectFactory._default = function() {
 		this.onEvent = function(e) {
 			if (e.c == "private_text") {
