@@ -79,15 +79,15 @@ import java.util.List;
  * <ul>
  * <li> Once every 7200 hours. (5 days)</li>
  * </ul>
- * 
+ *
  * @author Vanessa Julius
- * 
+ *
  */
 public class FindJefsMom extends AbstractQuest {
 
-	// 7200 hours (5 days)
-	private static final int REQUIRED_MINUTES = 2;
-	
+	// 7200 minutes (5 days)
+	private static final int REQUIRED_MINUTES = 7200;
+
 	private static final String QUEST_SLOT = "find_jefs_mom";
 
 
@@ -107,21 +107,21 @@ public class FindJefsMom extends AbstractQuest {
 
 		// player asks about quest which he has done already and he is allowed to repeat it
 				npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
-				ConversationStates.QUEST_OFFERED, 
-				"It is a long time ago that you watched out for my mum. May I ask you to take a look at her again and tell me if she is still fine, please?",
-				null);	
-			
-		// player asks about quest but time didn't pass yet
-		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1,REQUIRED_MINUTES))), 
+				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
+				ConversationStates.QUEST_OFFERED,
+				"It is a long time ago that you watched out for my mum. May I ask you to take a look at her again and tell me if she is still fine, please?",
+				null);
+
+		// player asks about quest but time didn't pass yet
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1,REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I don't want to disturb my mum at the moment, it seems like she needs some time on herself, so you don't have to look out for her currently. You can ask me again in"));
 
-		
+
 		// Player agrees to find mum
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
@@ -136,16 +136,16 @@ public class FindJefsMom extends AbstractQuest {
 			"Oh. Ok. I can understand you... You look like a busy hero so I'll not try to convince you of helping me out.",
 			new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, "rejected"),
 					new DecreaseKarmaAction(10.0)));
-		
+
 		// Player asks for quest but is already on it
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I hope that you will find my mum soon and tell me, if she is #fine after.",
 				null);
-		
+
 		npc.add(
 				ConversationStates.ATTENDING,
 				Arrays.asList("mum", "mother", "mom"),
@@ -153,7 +153,7 @@ public class FindJefsMom extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"My mother Amber left me for buying some food on the market, but she didn't return #yet.",
 				null);
-		
+
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
 				("yet"),
@@ -161,7 +161,7 @@ public class FindJefsMom extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"The only thing I know is, that she had a little argument with her boyfriend, #Roger #Frampton earlier...",
 				null);
-		
+
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
 				("Jef"),
@@ -169,7 +169,7 @@ public class FindJefsMom extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"Yes, that is me :)",
 				null);
-				
+
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
 				Arrays.asList("Roger Frampton", "Roger", "Frampton"),
@@ -177,7 +177,7 @@ public class FindJefsMom extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"Maybe Roger has some guess about where she went to. I'm not sure where he is either, I just know he sells houses somewhere here in Kirdneh.",
 				null);
-		
+
 	}
 
 	private void findMomStep() {
@@ -187,34 +187,34 @@ public class FindJefsMom extends AbstractQuest {
 		amber.add(ConversationStates.ATTENDING, "Jef",
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0,"start"),
 							 new PlayerCanEquipItemCondition("zantedeschia")),
-                          
-			ConversationStates.IDLE, 
+
+			ConversationStates.IDLE,
 			"Oh I see :) My son Jef asked you to take a look after me. He is such a nice and gentle boy! Please give him this zantedeschia here. I love these flowers! Please give it to him and tell him that I'm #fine.",
-			new MultipleActions(new EquipItemAction("zantedeschia", 1, true), 
-                                new SetQuestAction(QUEST_SLOT, 0, "found_mom"))); 
-                             
+			new MultipleActions(new EquipItemAction("zantedeschia", 1, true),
+                                new SetQuestAction(QUEST_SLOT, 0, "found_mom")));
+
 
 		// don't put the flower on the ground - if player has no space, tell them
 		amber.add(ConversationStates.ATTENDING, "Jef",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 								 new NotCondition(new PlayerCanEquipItemCondition("zantedeschia"))),
-				ConversationStates.IDLE, 
+				ConversationStates.IDLE,
 				"Oh, I wanted to give you a flower for my son to show him that I'm fine, but as I see now, you don't have enough space for equipping it. Please return to me when you will have made some space in your bags!",
 				null);
-		    
+
         // don't give the flower if the quest state isn't start
 	    amber.add(ConversationStates.ATTENDING, "Jef",
 		     	new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start")),
 		    	ConversationStates.IDLE,
-		    	"I don't trust you. Your voice shivered while you told me my sons name. I bet he is fine and happy and safe.", 
+		    	"I don't trust you. Your voice shivered while you told me my sons name. I bet he is fine and happy and safe.",
 		    	null);
-	    
-	   
+
+
 	}
 
 	private void bringFlowerToJefStep() {
 		final SpeakerNPC npc = npcs.get("Jef");
-		
+
 		ChatAction addRandomNumberOfItemsAction = new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				//add random number of red lionfish
@@ -225,22 +225,22 @@ public class FindJefsMom extends AbstractQuest {
 				red_lionfish.setQuantity(redlionfishamount);
 				player.equipOrPutOnGround(red_lionfish);
 				npc.say("Thank you! Take " + Grammar.thisthese(redlionfishamount) + " " +  Grammar.quantityplnoun(redlionfishamount,"red lionfish","") + "! I got some from a guy who visited Amazon island some time ago, maybe you need " + Grammar.itthem(redlionfishamount) + " for something.");
-				
+
 			}
 		};
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("flower", "zantedeschia", "fine", "amber", "done"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "found_mom"), new PlayerHasItemWithHimCondition("zantedeschia")),
 				ConversationStates.ATTENDING, null,
-				new MultipleActions(new DropItemAction("zantedeschia"), 
-                                    new IncreaseXPAction(5000), 
+				new MultipleActions(new DropItemAction("zantedeschia"),
+                                    new IncreaseXPAction(5000),
                                     new IncreaseKarmaAction(15),
                             		new SetQuestToTimeStampAction(QUEST_SLOT, 1),
-									addRandomNumberOfItemsAction, 
-                                    new SetQuestAction(QUEST_SLOT, 0, "done"), 
+									addRandomNumberOfItemsAction,
+                                    new SetQuestAction(QUEST_SLOT, 0, "done"),
 									new IncrementQuestAction(QUEST_SLOT, 2, 1),
 									new SetQuestToTimeStampAction(QUEST_SLOT,1)));
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("flower", "zantedeschia", "fine", "amber", "done", "mum", "mother", "mom"),
 				new NotCondition(new PlayerHasItemWithHimCondition("zantedeschia")),
@@ -272,7 +272,7 @@ public class FindJefsMom extends AbstractQuest {
         final String questStateFull = player.getQuest(QUEST_SLOT);
         final String[] parts = questStateFull.split(";");
         final String questState = parts[0];
-        
+
         if ("rejected".equals(questState)) {
 			res.add("Finding his mum somewhere costs me too much time at the moment, that is why I rejected his request to find her.");
 		}
@@ -287,19 +287,19 @@ public class FindJefsMom extends AbstractQuest {
                 res.add("Its been a while since I checked on Jef's mother and should ask Jef, if he wants me to take a look after her again.");
             } else {
                 res.add("I told Jef that his mother is fine. He wants to leave his mother alone for some time now.");
-            }			
+            }
 		}
 
 		return res;
-	
+
 	}
 
 	@Override
 	public String getName() {
 		return "FindJefsMom";
 	}
-	
-	
+
+
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"done"),
