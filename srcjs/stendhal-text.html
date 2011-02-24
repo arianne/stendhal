@@ -66,9 +66,19 @@ p.logsupport {color: #ff7200}
 		document.getElementById("chat").style.backgroundColor = "#AAA";
 	}
 
-	marauroa.clientFramework.connect(null, null);
-
 	document.onkeydown=stendhal.ui.chatBar.keydown;
+
+	marauroa.perceptionListener.onModifiedAdded = function(object, changes) {
+		if (typeof(changes) != "undefined" && typeof(changes.a.text) != "undefined") {
+			if (changes.a.text.match("^!me") == "!me") {
+				stendhal.ui.chatLog.addLine("emote", changes.a.text.replace(/^!me/, object.name));
+			} else {
+				stendhal.ui.chatLog.addLine("normal", object.name + ": " + changes.a.text);
+			}
+		}
+	}
+
+	marauroa.clientFramework.connect(null, null);
 </script>
 
 <h1>Sample chat client</h1>
