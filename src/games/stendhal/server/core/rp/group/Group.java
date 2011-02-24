@@ -38,7 +38,7 @@ import marauroa.common.game.RPEvent;
  */
 public class Group {
 	private static long TIMEOUT = 5*60*1000;
-	private static int MAX_MEMBERS = 3;
+	private static int MAX_MEMBERS = 5;
 
 	private final HashMap<String, Long> membersAndLastSeen = new LinkedHashMap<String, Long>();
 	private final HashMap<String, Long> openInvites = new HashMap<String, Long>();
