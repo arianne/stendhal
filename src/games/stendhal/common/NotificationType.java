@@ -140,7 +140,8 @@ public enum NotificationType {
 
 	public static final Color COLOR_POSITIVE = Color.green;
 
-	public static final Color COLOR_GROUP = new Color(99, 61, 139);
+	// dark blue
+	public static final Color COLOR_GROUP = new Color(00, 00, 160);
 
 	// muted purple
 	public static final Color COLOR_EMOTE = new Color(99, 61, 139);
