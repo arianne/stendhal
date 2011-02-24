@@ -22,8 +22,8 @@ import java.awt.Color;
  * This would be similar to logical styles vs. physical styles in HTML.
  */
 public enum NotificationType {
-	
-	
+
+
 	CLIENT("client") {
 		@Override
 		public Color getColor() {
@@ -140,7 +140,8 @@ public enum NotificationType {
 
 	public static final Color COLOR_POSITIVE = Color.green;
 
-	public static final Color COLOR_GROUP = new Color(99, 61, 139);
+	// dark blue
+	public static final Color COLOR_GROUP = new Color(00, 00, 160);
 
 	// muted purple
 	public static final Color COLOR_EMOTE = new Color(99, 61, 139);
@@ -149,8 +150,8 @@ public enum NotificationType {
 
 	// dark green
 	public static final Color COLOR_RESPONSE = new Color(0x006400);
-	
-	// dark brown 
+
+	// dark brown
 	public static final Color COLOR_SCENE_SETTING = new Color(0x572002);
 
 	public static final Color COLOR_SIGNIFICANT_NEGATIVE = Color.pink;
@@ -161,21 +162,21 @@ public enum NotificationType {
 
 	// purple
 	public static final Color COLOR_TUTORIAL = new Color(172, 0, 172);
-	
+
 	// strong bright orange
 	public static final Color COLOR_SUPPORT = new Color(0xff7200);
-	
+
 	// TODO: review thinking here of using constants.
 	// these are tied to the ones in client.KTextEdit.gui.initStylesForTextPane
 	// so should we tie them together somehow?
 	// also the definitions are crazy.
-	
+
 	// normal is bold
 	public static final String NORMALSTYLE = "normal";
 	// regular is not bold
 	public static final String REGULAR = "regular";
 	// fwiw, "bold" is blue, italic, bigger than normal, bold and blue.
-	
+
 	/**
 	 * The mapping mnemonic.
 	 */
