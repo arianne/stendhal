@@ -16,9 +16,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 
 /**
  * Starts a program after doing some classpath magic.
@@ -240,7 +238,7 @@ public class Bootstrap {
 			} catch (final IOException e) {
 				JOptionPane.showMessageDialog(
 					null,
-					new SelectableLabel("Sorry, an error occurred while downloading the update. Could not write bootProperties"));
+					"Sorry, an error occurred while downloading the update. Could not write bootProperties");
 			}
 		}
 
@@ -314,9 +312,9 @@ public class Bootstrap {
 
 				final int res = JOptionPane.showConfirmDialog(
 						null,
-						new SelectableLabel(" Sorry an error occurred because of inconsistent code signing.\n"
+						" Sorry an error occurred because of inconsistent code signing.\n"
 						+ " Delete update files so that they are downloaded again after you restart Stendhal?\n"
-						+ " Note: This exception can occur if you include signed jars into a self build client."),
+						+ " Note: This exception can occur if you include signed jars into a self build client.",
 						"Stendhal", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
 				if (res == JOptionPane.YES_OPTION) {
@@ -337,8 +335,8 @@ public class Bootstrap {
 			} catch (final Exception err) {
 				err.printStackTrace(System.err);
 				JOptionPane.showMessageDialog(null,
-						new SelectableLabel("Something nasty happened while trying to start your self build client: "
-								+ err));
+						"Something nasty happened while trying to start your self build client: "
+								+ err);
 			}
 		}
 	}
@@ -365,8 +363,7 @@ public class Bootstrap {
 		} else if (e instanceof LinkageError || e instanceof SecurityException) {
 			final int res = JOptionPane.showConfirmDialog(
 					null,
-					new SelectableLabel(message 
-					+ " Sorry an error occurred because of an inconsistent update state. Delete update files so that they are downloaded again after you restart Stendhal?"),
+					message + " Sorry an error occurred because of an inconsistent update state. Delete update files so that they are downloaded again after you restart Stendhal?",
 					"Stendhal", JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
@@ -376,9 +373,8 @@ public class Bootstrap {
 			String errorMessage = stacktraceToString(e);
 			JOptionPane.showMessageDialog(
 					null,
-					new SelectableLabel(
 					message + " An unexpected error occurred.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
-							+ errorMessage));
+							+ errorMessage);
 		}
 		System.exit(1);
 	}
@@ -390,7 +386,7 @@ public class Bootstrap {
 		try {
 			saveBootProp();
 		} catch (final IOException e1) {
-			JOptionPane.showMessageDialog(null,	new SelectableLabel("Could not write jar.properties"));
+			JOptionPane.showMessageDialog(null,	"Could not write jar.properties");
 		}
 	}
 
@@ -407,26 +403,5 @@ public class Bootstrap {
 			sb.append(frame.toString());
 		}
 		return sb.toString();
-	}
-	
-	/**
-	 * A fake label component to work around JLabels not being
-	 * selectable. JOptionPane creates JLabels for strings, but keeps
-	 * custom components, like this.
-	 */
-	private static class SelectableLabel extends JTextArea {
-		SelectableLabel(String text) {
-			super(text);
-			setEditable(false);
-			setBorder(null);
-			setOpaque(false);
-			/*
-			 * Get the font directly from JLabel, in case the user is
-			 * using a theme where it does not come from an UIManager
-			 * property.
-			 */
-			JLabel tmp = new JLabel();
-			setFont(tmp.getFont());
-		}
 	}
 }
