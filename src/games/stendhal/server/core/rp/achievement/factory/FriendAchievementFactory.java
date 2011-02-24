@@ -93,6 +93,11 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 				return player.getKarma()>250;
 			}
 		}));
+		
+		// meet Santa Claus and Easter Bunny
+		achievements.add(createAchievement("friend.meet.seasonal", "Still Believing", "Meet Santa Claus and Easter Bunny",
+												Achievement.EASY_BASE_SCORE, new AndCondition(new QuestWithPrefixCompletedCondition("meet_santa_"), new QuestWithPrefixCompletedCondition("meet_bunny_"))));
+		
 		return achievements;
 	}
 

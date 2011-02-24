@@ -49,12 +49,6 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 		//Maze
 		questAchievements.add(createAchievement("quest.special.maze", "Pathfinder", "Finish the maze", 
 												Achievement.EASY_BASE_SCORE, new QuestStateGreaterThanCondition("maze", 2, 0)));
-		// Meet Santa Claus
-		questAchievements.add(createAchievement("quest.special.santa", "Santa likes me!", "Find Santa Claus",
-												Achievement.EASY_BASE_SCORE, new QuestWithPrefixCompletedCondition("meet_santa_")));
-		// Meet Easter Bunny
-		questAchievements.add(createAchievement("quest.special.bunny", "Happy Easter, Bunny!", "Find Easter Bunny",
-												Achievement.EASY_BASE_SCORE, new QuestWithPrefixCompletedCondition("meet_bunny_")));
 
 		// Ados Deathmatch
 		// disabled. Currently the wrong index is being checked (it would be index 6) 
