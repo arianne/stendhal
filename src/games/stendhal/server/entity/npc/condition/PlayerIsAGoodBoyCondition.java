@@ -10,10 +10,7 @@ import games.stendhal.server.entity.player.Player;
  * @author madmetzger
  */
 public class PlayerIsAGoodBoyCondition implements ChatCondition {
-
-	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		return !player.isBadBoy();
 	}
-	
 }
