@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.group.Group;
@@ -105,6 +106,10 @@ public class GroupManagementAction implements ActionListener {
 		}
 		if (player == targetPlayer) {
 			player.sendPrivateText(NotificationType.ERROR, "You cannot invite yourself into a group.");
+			return;
+		}
+		if (targetPlayer.isGhost() && player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode").intValue()) {
+			player.sendPrivateText(NotificationType.ERROR, "Player " + targetPlayer.getName() + " is not online");
 			return;
 		}
 
