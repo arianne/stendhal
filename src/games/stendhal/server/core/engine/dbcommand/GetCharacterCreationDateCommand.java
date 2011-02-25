@@ -24,8 +24,8 @@ import marauroa.server.game.db.DAORegister;
  *
  * @author kymara
  */
-public class GetCharacterCreationDateCommand extends AbstractDBCommand { 
-	private String charname;
+public class GetCharacterCreationDateCommand extends AbstractDBCommand {
+	private final String charname;
 	private Date date = null;
 
 	/**
@@ -40,7 +40,7 @@ public class GetCharacterCreationDateCommand extends AbstractDBCommand {
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException {
 		CharacterDAO dao = DAORegister.get().get(CharacterDAO.class);
-		date = dao.getCreationDate(charname);
+		date = dao.getCreationDate(transaction, charname);
 	}
 
 	/**

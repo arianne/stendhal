@@ -29,7 +29,7 @@ import marauroa.server.db.TransactionPool;
  *
  */
 public class AchievementDAO {
-	
+
 	/**
 	 * logs a reached achievement into the database
 	 *
@@ -39,19 +39,19 @@ public class AchievementDAO {
 	 */
 	public void saveReachedAchievement(Integer achievementId, String playerName) throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();
-		saveReachedAchievement(achievementId, playerName, transaction);
+		saveReachedAchievement(transaction, achievementId, playerName);
 		TransactionPool.get().commit(transaction);
 	}
-	
+
 	/**
 	 * logs a reached achievement into the database
 	 *
+	 * @param transaction
 	 * @param achievementId
 	 * @param playerName
-	 * @param transaction
 	 * @throws SQLException
 	 */
-	public void saveReachedAchievement(Integer achievementId, String playerName, DBTransaction transaction) throws SQLException {
+	public void saveReachedAchievement(DBTransaction transaction, Integer achievementId, String playerName) throws SQLException {
 		String query  = "INSERT INTO reached_achievement " +
 						"(charname, achievement_id) VALUES" +
 						"('[charname]','[achievement_id]');";
@@ -70,7 +70,7 @@ public class AchievementDAO {
 	 */
 	public int saveAchievement(Achievement achievement) throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();
-		int achievementId = saveAchievement(achievement, transaction);
+		int achievementId = saveAchievement(transaction, achievement);
 		TransactionPool.get().commit(transaction);
 		return achievementId;
 	}
@@ -83,8 +83,7 @@ public class AchievementDAO {
 	 * @return the id of the stored achievement
 	 * @throws SQLException
 	 */
-	public int saveAchievement(Achievement achievement,
-			DBTransaction transaction) throws SQLException {
+	public int saveAchievement(DBTransaction transaction, Achievement achievement) throws SQLException {
 		int achievementId = 0;
 		String query = 	"INSERT INTO achievement " +
 						"(identifier, title, category, description, base_score) VALUES " +
@@ -99,17 +98,17 @@ public class AchievementDAO {
 		achievementId = transaction.getLastInsertId("achievement", "id");
 		return achievementId;
 	}
-	
+
 	/**
 	 * Updates the achievement with the given id
 	 *
 	 * @param id
 	 * @param achievement
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public void updateAchievement(Integer id, Achievement achievement) throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();
-		updateAchievement(id, achievement, transaction);
+		updateAchievement(transaction, id, achievement);
 		TransactionPool.get().commit(transaction);
 	}
 
@@ -119,10 +118,9 @@ public class AchievementDAO {
 	 * @param id
 	 * @param achievement
 	 * @param transaction
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
-	public void updateAchievement(Integer id, Achievement achievement,
-			DBTransaction transaction) throws SQLException {
+	public void updateAchievement(DBTransaction transaction, Integer id, Achievement achievement) throws SQLException {
 		String query = "UPDATE achievement SET " +
 						"identifier='[identifier]', " +
 						"title='[title]', " +
@@ -171,28 +169,28 @@ public class AchievementDAO {
 		}
 		return map;
 	}
-	
+
 	/**
 	 * Loads all achievements a player has reached
 	 * @param playerName
 	 * @return set identifiers of achievements reached by playerName
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public Set<String> loadAllReachedAchievementsOfPlayer(String playerName) throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();
-		Set<String> set = loadAllReachedAchievementsOfPlayer(playerName, transaction);
+		Set<String> set = loadAllReachedAchievementsOfPlayer(transaction, playerName);
 		TransactionPool.get().commit(transaction);
 		return set;
 	}
-	
+
 	/**
 	 * Loads all achievements a player has reached
 	 * @param playerName
 	 * @param transaction
 	 * @return set identifiers of achievements reached by playerName
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
-	public Set<String> loadAllReachedAchievementsOfPlayer(String playerName, DBTransaction transaction) throws SQLException {
+	public Set<String> loadAllReachedAchievementsOfPlayer(DBTransaction transaction, String playerName) throws SQLException {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("playername", playerName);
 		String query = "SELECT identifier FROM achievement a JOIN reached_achievement ra ON ra.achievement_id = a.id WHERE ra.charname = '[playername]';";

@@ -27,8 +27,8 @@ import marauroa.server.game.db.DAORegister;
  * @author hendrik
  */
 public class ReadCharactersFromHallOfFameCommand extends AbstractDBCommand {
-	private String fametype;
-	
+	private final String fametype;
+
 	private List<String> characterNames;
 	private int max = 10;
 	private boolean ascending = true;
@@ -49,8 +49,7 @@ public class ReadCharactersFromHallOfFameCommand extends AbstractDBCommand {
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException {
 		StendhalHallOfFameDAO dao = DAORegister.get().get(StendhalHallOfFameDAO.class);
-		characterNames = dao.getCharactersByFametype(fametype, max, ascending);
-
+		characterNames = dao.getCharactersByFametype(transaction, fametype, max, ascending);
 	}
 
 	/**

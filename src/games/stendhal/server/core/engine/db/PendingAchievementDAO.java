@@ -28,31 +28,33 @@ import marauroa.server.db.TransactionPool;
  *
  */
 public class PendingAchievementDAO {
-	
+
 	/**
-	 * Get details on pending achievements for a given player 
+	 * Delete used records for a pending achievement for a given player
 	 *
-	 * @param charname 
-	 * return details as param and count
+	 * @param transaction
+	 * @param charname
 	 * @throws SQLException
 	 */
-	public Map<String, Map<String, Integer>> getPendingAchievementDetails(String charname) throws SQLException {
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		Map<String, Map<String, Integer>> map = getPendingAchievementDetails(charname, transaction);
-		TransactionPool.get().commit(transaction);
-		return map;
+	public void deletePendingAchievementDetails(DBTransaction transaction, String charname) throws SQLException {
+		String query  = "DELETE FROM pending_achievement " +
+						"WHERE charname = '[charname]';";
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("charname", charname);
+		transaction.execute(query, parameters);
 	}
-	
+
+
 	/**
-	 * Get details on pending achievements for a given player 
+	 * Get details on pending achievements for a given player
 	 *
-	 * @param charname 
 	 * @param transaction
+	 * @param charname
 	 * @return details as param and count
 	 * @throws SQLException
 	 */
-	public Map<String, Map<String, Integer>> getPendingAchievementDetails(String charname, DBTransaction transaction) throws SQLException {
-		
+	public Map<String, Map<String, Integer>> getPendingAchievementDetails(DBTransaction transaction, String charname) throws SQLException {
+
 		MapOfMaps<String, String, Integer> map = new MapOfMaps<String, String, Integer>();
 		String query  = "SELECT identifier, param, cnt FROM pending_achievement " +
 		                "JOIN achievement on achievement_id = achievement.id " +
@@ -69,33 +71,31 @@ public class PendingAchievementDAO {
 		return map;
 	}
 
-	
+
+	/**
+	 * Get details on pending achievements for a given player
+	 *
+	 * @param charname
+	 * return details as param and count
+	 * @throws SQLException
+	 */
+	public Map<String, Map<String, Integer>> getPendingAchievementDetails(String charname) throws SQLException {
+		DBTransaction transaction = TransactionPool.get().beginWork();
+		Map<String, Map<String, Integer>> map = getPendingAchievementDetails(transaction, charname);
+		TransactionPool.get().commit(transaction);
+		return map;
+	}
+
 	/**
 	 * Delete used records for a pending achievement for a given player
 	 *
-	 * @param charname 
+	 * @param charname
 	 * @throws SQLException
 	 */
 	public void deletePendingAchievementDetails(String charname) throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();
-		deletePendingAchievementDetails(charname, transaction);
+		deletePendingAchievementDetails(transaction, charname);
 		TransactionPool.get().commit(transaction);
 	}
-	
-	/**
-	 * Delete used records for a pending achievement for a given player
-	 *
-	 * @param charname 
-	 * @param transaction
-	 * @throws SQLException
-	 */
-	public void deletePendingAchievementDetails(String charname, DBTransaction transaction) throws SQLException {
-		String query  = "DELETE FROM pending_achievement " +
-						"WHERE charname = '[charname]';";
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("charname", charname);
-		transaction.execute(query, parameters);
-	}
-
 
 }

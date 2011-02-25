@@ -27,13 +27,13 @@ import marauroa.server.game.db.DAORegister;
  * @author kymara
  */
 public class StoreMessageCommand extends AbstractDBCommand {
-	
-	private String source;
-	private String target;
-	private String message;
-	private String messagetype;
+
+	private final String source;
+	private final String target;
+	private final String message;
+	private final String messagetype;
 	private String accountName;
-	
+
 	/**
 	 * creates a new StoreMessageCommand
 	 *
@@ -44,30 +44,30 @@ public class StoreMessageCommand extends AbstractDBCommand {
 	 */
 	public StoreMessageCommand(String source, String target, String message, String messagetype) {
 		this.source = source;
-		this.target = target;		
-		this.message = message;	
-		this.messagetype = messagetype;	
+		this.target = target;
+		this.message = message;
+		this.messagetype = messagetype;
 	}
 
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException {
 		CharacterDAO characterdao = DAORegister.get().get(CharacterDAO.class);
-		accountName = characterdao.getAccountName(target);
+		accountName = characterdao.getAccountName(transaction, target);
 		if (accountName != null) {
 			PostmanDAO postmandao = DAORegister.get().get(PostmanDAO.class);
-			postmandao.storeMessage(source, target, message, messagetype);
+			postmandao.storeMessage(transaction, source, target, message, messagetype);
 		}
 	}
-	
+
 	/**
 	 * checks if account name could be found - which tells if the character whom the message was for, existed
 	 *
 	 * @return true if an account was found for that character name
 	 */
 	public boolean targetCharacterExists() {
-		return accountName != null; 
+		return accountName != null;
 	}
-	
+
 	/**
 	 * To access the character name we queried
 	 *
@@ -76,7 +76,7 @@ public class StoreMessageCommand extends AbstractDBCommand {
 	public String getTarget() {
 		return target;
 	}
-	
+
 	/**
 	 * To access the source message sender
 	 *
@@ -85,9 +85,9 @@ public class StoreMessageCommand extends AbstractDBCommand {
 	public String getSource() {
 		return source;
 	}
-	
+
 	/**
-	 * To access the message 
+	 * To access the message
 	 *
 	 * @return message
 	 */
