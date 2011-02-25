@@ -29,7 +29,7 @@ public class PlayerRPClass {
 		final RPClass player = new RPClass("player");
 		player.isA("rpentity");
 
-		// Note: text and private_text need to be kept because volatile 
+		// Note: text and private_text need to be kept because volatile
 		//       attributes have been stored to the database in the past.
 		//       And old characters, who logged out in the same turn as a
 		//       private_text was set, cannot be loaded without this definition.
@@ -49,7 +49,7 @@ public class PlayerRPClass {
 		player.addAttribute("dead", Type.FLAG, Definition.PRIVATE);
 
 		player.addAttribute("outfit", Type.INT);
-		player.addAttribute("outfit_org", Type.INT);
+		player.addAttribute("outfit_org", Type.INT, Definition.HIDDEN);
 		// player.addAttribute("outfit_path", Type.STRING);
 
 		player.addAttribute("away", Type.LONG_STRING, Definition.VOLATILE);
@@ -60,11 +60,11 @@ public class PlayerRPClass {
 		player.addAttribute("adminlevel", Type.INT);
 		player.addAttribute("invisible", Type.FLAG, Definition.HIDDEN);
 		player.addAttribute("ghostmode", Type.FLAG);
-		player.addAttribute("teleclickmode", Type.FLAG);
+		player.addAttribute("teleclickmode", Type.FLAG, Definition.HIDDEN);
 
 		player.addAttribute("release", Type.STRING, Definition.PRIVATE);
 
-		player.addAttribute("age", Type.INT);
+		player.addAttribute("age", Type.INT, Definition.HIDDEN);
 
 		// Store sheep at DB
 		player.addRPSlot("#flock", 1, Definition.HIDDEN);
@@ -93,7 +93,7 @@ public class PlayerRPClass {
 		player.addRPSlot("!buddy", 1, Definition.PRIVATE);
 		// using additionally a proof of concept for buddies here
 		player.addAttribute("buddies", Type.MAP, Definition.PRIVATE);
-		
+
 		player.addRPSlot("!ignore", 1, Definition.PRIVATE);
 		player.addAttribute("online", Type.LONG_STRING,
 				(byte) (Definition.PRIVATE | Definition.VOLATILE));
