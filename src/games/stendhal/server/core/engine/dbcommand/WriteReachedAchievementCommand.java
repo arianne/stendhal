@@ -23,14 +23,14 @@ import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
 /**
  * command to log a reached achievement to the database
- * 
+ *
  * @author madmetzger
  */
 public class WriteReachedAchievementCommand extends AbstractDBCommand {
 
 	private final Integer id;
 	private final String playerName;
-	
+
 	/**
 	 * create a new command
 	 * @param id database id of the achievement
@@ -45,7 +45,7 @@ public class WriteReachedAchievementCommand extends AbstractDBCommand {
 	public void execute(DBTransaction transaction) throws SQLException,
 			IOException {
 		AchievementDAO dao = DAORegister.get().get(AchievementDAO.class);
-		dao.saveReachedAchievement(id, playerName, transaction);
+		dao.saveReachedAchievement(transaction, id, playerName);
 	}
 
 	/**

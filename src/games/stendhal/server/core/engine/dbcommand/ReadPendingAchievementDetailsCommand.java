@@ -27,10 +27,10 @@ import marauroa.server.game.db.DAORegister;
 /**
  * Reads details for pending or partially gained achievements from a table
  *
- * @author kymara 
+ * @author kymara
  */
 public class ReadPendingAchievementDetailsCommand extends AbstractDBCommand {
-	
+
 	private final Player player;
 	private Map<String, Map<String, Integer>> details = new HashMap<String, Map<String, Integer>>();
 
@@ -44,17 +44,17 @@ public class ReadPendingAchievementDetailsCommand extends AbstractDBCommand {
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException,
 			IOException {
-		details = DAORegister.get().get(PendingAchievementDAO.class).getPendingAchievementDetails(getPlayer().getName(), transaction);
+		details = DAORegister.get().get(PendingAchievementDAO.class).getPendingAchievementDetails(transaction, getPlayer().getName());
 	}
 
 	public Map<String, Map<String, Integer>> getDetails() {
 		return details;
 	}
-	
+
 	public Map<String, Integer> getDetails(String identifier) {
 		return details.get(identifier);
 	}
-	
+
 	public Player getPlayer() {
 		return player;
 	}

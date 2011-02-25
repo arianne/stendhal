@@ -24,10 +24,10 @@ import marauroa.server.game.db.DAORegister;
 /**
  * Deletes used details for pending or partially gained achievements from a table
  *
- * @author kymara 
+ * @author kymara
  */
 public class DeletePendingAchievementDetailsCommand extends AbstractDBCommand {
-	
+
 	private final Player player;
 
 	/**
@@ -40,7 +40,7 @@ public class DeletePendingAchievementDetailsCommand extends AbstractDBCommand {
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException,
 			IOException {
-		DAORegister.get().get(PendingAchievementDAO.class).deletePendingAchievementDetails(player.getName(), transaction);
+		DAORegister.get().get(PendingAchievementDAO.class).deletePendingAchievementDetails(transaction, player.getName());
 	}
 
 	/**

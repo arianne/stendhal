@@ -28,8 +28,8 @@ import marauroa.server.game.db.DAORegister;
  * @author kymara / M. Fuchs
  */
 public class QueryCanonicalCharacterNamesCommand extends AbstractDBCommand {
-	private Player player;
-	private Collection<String> namesToCheck;
+	private final Player player;
+	private final Collection<String> namesToCheck;
 	private Collection<String> validNames;
 
 	/**
@@ -51,9 +51,9 @@ public class QueryCanonicalCharacterNamesCommand extends AbstractDBCommand {
 
 		for(String name : namesToCheck) {
 			// check for existing accounts (may be merged with the following call into only one DB query)
-			if (dao.getAccountName(name) != null) {
+			if (dao.getAccountName(transaction, name) != null) {
 				// get the real character name independent from the client character case
-				String canonicalName = dao.getCanonicalName(name);
+				String canonicalName = dao.getCanonicalName(transaction, name);
 
 				if (canonicalName != null) {
 					validNames.add(canonicalName);
@@ -61,7 +61,7 @@ public class QueryCanonicalCharacterNamesCommand extends AbstractDBCommand {
 			}
 		}
 	}
-	
+
 	/**
 	 * To access the player sending the query
 	 *
@@ -91,7 +91,7 @@ public class QueryCanonicalCharacterNamesCommand extends AbstractDBCommand {
 
 	/**
 	 * Returns a string suitable for debug output of this DBCommand.
-	 * 
+	 *
 	 * @return debug string
 	 */
 	@Override

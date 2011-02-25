@@ -25,7 +25,7 @@ import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
 
 public class ReadAchievementsForPlayerCommand extends AbstractDBCommand {
-	
+
 	private Set<String> identifiers = new HashSet<String>();
 	private final Player player;
 
@@ -39,7 +39,7 @@ public class ReadAchievementsForPlayerCommand extends AbstractDBCommand {
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException,
 			IOException {
-		identifiers = DAORegister.get().get(AchievementDAO.class).loadAllReachedAchievementsOfPlayer(getPlayer().getName(), transaction);
+		identifiers = DAORegister.get().get(AchievementDAO.class).loadAllReachedAchievementsOfPlayer(transaction, getPlayer().getName());
 	}
 
 	public Set<String> getIdentifiers() {
