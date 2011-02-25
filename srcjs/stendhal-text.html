@@ -51,6 +51,14 @@ p.logsupport {color: #ff7200}
 	marauroa.clientFramework.onDisconnect = function(reason, error){
 		stendhal.ui.chatLog.addLine("error", "Disconnected: " + error);
 	}
+
+	marauroa.clientFramework.onLoginFailed = function(reason, text) {
+		alert("Login failed. Please login on the Stendhal website first.");
+		marauroa.clientFramework.close();
+		document.getElementById("chatbar").disabled = true;
+		document.getElementById("chat").style.backgroundColor = "#AAA";
+	}
+
 	marauroa.clientFramework.onAvailableCharacterDetails = function(characters) {
 		if (window.location.hash) {
 			marauroa.clientFramework.chooseCharacter(window.location.hash.substring(1));
@@ -59,12 +67,15 @@ p.logsupport {color: #ff7200}
 		}
 	}
 
-	marauroa.clientFramework.onLoginFailed = function(reason, text) {
-		alert("Login failed. Please login on the Stendhal website first.");
-		marauroa.clientFramework.close();
-		document.getElementById("chatbar").disabled = true;
-		document.getElementById("chat").style.backgroundColor = "#AAA";
+
+	marauroa.clientFramework.onTransferREQ = function(items) {
+		for (var i in items) {
+			if (typeof(items[i].name) != "undefined" && items[i].name.match(".collision$")) {
+				items[i].ack = true;
+			}
+		}
 	}
+
 
 	document.onkeydown=stendhal.ui.chatBar.keydown;
 
