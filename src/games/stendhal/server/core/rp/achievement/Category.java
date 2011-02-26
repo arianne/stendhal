@@ -24,8 +24,6 @@ public enum Category {
 	FIGHTING,
 	/** solving quests */
 	QUEST,
-	/** groups of achievements */
-	META,
 	/** visiting groups of outside zones */
 	OUTSIDE_ZONE,
 	/** visiting groups of underground zones */

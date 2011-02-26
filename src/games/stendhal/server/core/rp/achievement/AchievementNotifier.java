@@ -304,12 +304,6 @@ public final class AchievementNotifier {
 				reached.add(achievement);
 			}
 		}
-		//check for meta achievements and add them to the reached list
-		if(!reached.isEmpty()) {
-			if(achievements.containsKey(Category.META)) {
-				reached.addAll(checkAchievements(player, achievements.get(Category.META)));
-			}
-		}
 		return reached;
 	}
 	
