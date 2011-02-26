@@ -25,7 +25,6 @@ import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -65,10 +64,11 @@ public class AchievementBoxFactory {
 		// Get the category image
 		// initialize category image with empty image in case loading the image fails
 		BufferedImage categoryImage = gc.createCompatibleImage(32, 32, Transparency.BITMASK);
+		String imageName = ACHIEVEMENT_IMAGE_FOLDER + category.toLowerCase(Locale.ENGLISH) + ".png";
 		try {
-			categoryImage = ImageIO.read(new File(ACHIEVEMENT_IMAGE_FOLDER+category.toLowerCase(Locale.ENGLISH)+".png"));
+			categoryImage = ImageIO.read(AchievementBoxFactory.class.getClassLoader().getResourceAsStream(imageName));
 		} catch (IOException e) {
-			Logger.getLogger(AchievementBoxFactory.class).error("Error loading achievement box image.", e);
+			Logger.getLogger(AchievementBoxFactory.class).error("Error loading achievement box image: " + imageName, e);
 		}
 		// Calculate size for the message box
 		String fontName = WtWindowManager.getInstance().getProperty("ui.logfont", FONT_NAME);
