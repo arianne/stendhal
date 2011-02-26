@@ -63,7 +63,6 @@ public abstract class AbstractAchievementFactory {
 		list.add(new FightingAchievementFactory());
 		list.add(new FriendAchievementFactory());
 		list.add(new ItemAchievementFactory());
-		list.add(new MetaAchievementFactory());
 		list.add(new ObtainAchievementsFactory());
 		list.add(new ProductionAchievementFactory());
 		list.add(new QuestAchievementFactory());
