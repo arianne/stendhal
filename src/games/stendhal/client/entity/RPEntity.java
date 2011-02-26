@@ -137,7 +137,11 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private boolean choking;
 
-	private long combatIconTime;
+	/**
+	 * Time stamp of previous attack event. Volatile to prevent reordering
+	 * assignments with <code>resolution</code>.
+	 */
+	private volatile long combatIconTime;
 
 	private final List<TextIndicator> textIndicators;
 
@@ -154,12 +158,10 @@ public abstract class RPEntity extends ActiveEntity {
 	
 
 	/**
-	 * The type of effect to show.
-	 * 
-	 * These are NOT mutually exclusive - Maybe use bitmask and apply in
-	 * priority order.
+	 * The result of previous attack against this entity. Volatile to prevent
+	 * reordering assignments with <code>combatIconTime</code>.
 	 */
-	private Resolution resolution;
+	private volatile Resolution resolution;
 
 	private int atkXP;
 
@@ -437,6 +439,13 @@ public abstract class RPEntity extends ActiveEntity {
 		showBladeStrike = null;
 	}
 
+	/**
+	 * Check if the entity is defending against an attack right now. The entity
+	 * is defending if the last attack happened within 1.2s.
+	 * 
+	 * @return <code>true</code> if the entity is defending against an attack,
+	 * 	<code>false</code> otherwise 
+	 */
 	public boolean isDefending() {
 		return (isBeingAttacked() && (System.currentTimeMillis()
 				- combatIconTime < 4 * 300));
@@ -497,16 +506,18 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When this entity blocks the attack by attacker
 	public void onBlocked(final IEntity attacker) {
-		combatIconTime = System.currentTimeMillis();
+		// Resolution must be set before isDefending may return true.
 		resolution = Resolution.BLOCKED;
+		combatIconTime = System.currentTimeMillis();
 	}
 
 	
 	
 	// When this entity is damaged by attacker with damage amount
 	public void onDamaged(final Entity attacker, final int damage) {
-		combatIconTime = System.currentTimeMillis();
+		// Resolution must be set before isDefending may return true.
 		resolution = Resolution.HIT;
+		combatIconTime = System.currentTimeMillis();
 		/*try {
 			SoundSystemFacade.get().play(attackSounds[Rand.rand(attackSounds.length)], x, y, SoundLayer.CREATURE_NOISE, 100);
 		} catch (final NullPointerException e) {
@@ -563,8 +574,9 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When this entity skip attacker's attack.
 	public void onMissed(final IEntity attacker) {
-		combatIconTime = System.currentTimeMillis();
+		// Resolution must be set before isDefending may return true.
 		resolution = Resolution.MISSED;
+		combatIconTime = System.currentTimeMillis();
 	}
 
 	// When entity is poisoned
