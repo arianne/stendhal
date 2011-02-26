@@ -264,9 +264,7 @@ public final class AchievementNotifier {
 			sb.append("You have reached ");
 			sb.append(Integer.valueOf(reached.size()));
 			sb.append(" new "+Grammar.plnoun(reached.size(), "achievement")+". Please check #http://stendhalgame.org for details.");
-			if (System.getProperty("stendhal.achievement") != null) {
-				player.sendPrivateText(sb.toString());
-			}
+			player.sendPrivateText(sb.toString());
 		}
 	}
 	
@@ -351,10 +349,8 @@ public final class AchievementNotifier {
 	 */
 	private void notifyPlayerAboutReachedAchievement(Player player,
 			Achievement achievement) {
-		if (System.getProperty("stendhal.achievement") != null) {
 			player.addEvent(new ReachedAchievementEvent(achievement));
 			player.addEvent(new SoundEvent("yay-1", SoundLayer.USER_INTERFACE));
-		}
 	}
 
 	/**
