@@ -86,10 +86,13 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 			final String[] parts = player.getQuest(QUEST_SLOT).split(";");
 
 			// is quest slot already time stamped?
-			if(parts.length>=2) {
+			if(parts.length>2) {
 				int newcount = MathHelper.parseInt(parts[2])+missingcount;
 				player.setQuest(QUEST_SLOT, 2, "" + newcount);
 				return;
+			} else if (parts.length==2) {
+				// the count was not stored, so we just store the count we had in the table
+				player.setQuest(QUEST_SLOT, 2, "" + missingcount);
 			} else {
 				// we didn't store a time before. so we just choose the value '1' for a long ago system time
 				player.setQuest(QUEST_SLOT, 1, "1");
@@ -112,5 +115,5 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 			player.incLootForItem(detail.getKey(), detail.getValue());
 		}
 	}
-	
+    
 }
