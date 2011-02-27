@@ -89,9 +89,11 @@ p.logsupport {color: #ff7200}
 				stendhal.ui.chatLog.addLine("normal", object.name + ": " + changes.a.text);
 			}
 		}
+		stendhal.ui.minimap.drawEntities();
 	}
 
 	marauroa.clientFramework.connect(null, null);
+
 </script>
 
 <h1>Sample chat client</h1>
@@ -103,5 +105,8 @@ p.logsupport {color: #ff7200}
 <p>Connecting...</p>
 <noscript>JavaScript is required by the Stendhal Web Client.</noscript>
 </div>
+
+<canvas style="border: 1px solid black" id="minimap" width="1024" height="1024">Sorry, this part of the page only works in modern web browsers.</canvas>
+
 </body>
 </html>

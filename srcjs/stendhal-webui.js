@@ -113,5 +113,30 @@ stendhal.ui = {
 		clear: function() {
 			document.getElementById("chat").innerHTML = "";
 		}
+	},
+
+
+	//*************************************************************************
+	//                                 Chat Log                                
+	//*************************************************************************
+
+	minimap: {
+		drawEntities: function() {
+			var zoom = 10;
+			var canvas = document.getElementById("minimap");
+			this.ctx = canvas.getContext("2d");
+			this.ctx.fillStyle = "rgb(255,255,255)";
+			this.ctx.fillRect(0, 0, canvas.width, canvas.height);
+			this.ctx.fillStyle = "rgb(255,0,0)";
+			this.ctx.strokeStyle = "rgb(0,0,0)";
+
+			for (var i in marauroa.currentZone) {
+				var o = marauroa.currentZone[i];
+				if (typeof(o.x) != "undefined" && typeof(o.y) != "undefined") {
+					this.ctx.fillText(o.id, o.x * zoom, o.y * zoom);
+					this.ctx.strokeRect(o.x * zoom, o.y * zoom, o.width * zoom, o.height * zoom);
+				}
+			}
+		}
 	}
 }
