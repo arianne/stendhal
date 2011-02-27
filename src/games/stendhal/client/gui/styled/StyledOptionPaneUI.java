@@ -71,6 +71,17 @@ public class StyledOptionPaneUI extends BasicOptionPaneUI {
 			 * through.
 			 */
 			optionPane.setOpaque(false);
+			// Same for the parent container
+			Container parent = optionPane.getParent();
+			if (parent instanceof JComponent) {
+				((JComponent) parent).setOpaque(false);
+				/*
+				 * This is a workaround for setOpaque not working correctly in
+				 * java 1.5 if the background color is not set. The color does
+				 * not actually matter, as it gets never drawn.
+				 */
+				((JComponent) parent).setBackground(style.getPlainColor());
+			}
 			
 			cleaned = true;
 		}
