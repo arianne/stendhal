@@ -33,9 +33,9 @@ import marauroa.server.db.command.ResultHandle;
  * @author kymara
  */
 public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnListener {
-	
-	private ResultHandle handle = new ResultHandle();
-	
+
+	private final ResultHandle handle = new ResultHandle();
+
 	public void onLoggedIn(Player player) {
 		DBCommand command = new ReadPendingAchievementDetailsCommand(player);
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
@@ -50,46 +50,49 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 			return;
 		}
 		Player player = command.getPlayer();
-		
+
 		updateElfPrincessAchievement(player, command.getDetails("quest.special.elf_princess.0025"));
 		updateItemLoots(player, command.getDetails("item.set.black"));
 		updateItemLoots(player, command.getDetails("item.set.chaos"));
 		updateItemLoots(player, command.getDetails("item.set.shadow"));
 		updateItemLoots(player, command.getDetails("item.set.golden"));
-		
+
 		// Could also check for reached achievements here. This is also checked on login but the order may vary due to the async access?
-		
+
 		// delete the entries. We don't need feedback
 		DBCommand deletecommand = new DeletePendingAchievementDetailsCommand(player);
 		DBCommandQueue.get().enqueue(deletecommand);
-		
+
 	}
 
 	private static void updateElfPrincessAchievement(final Player player, final Map<String, Integer> details) {
-		
+
 		// nothing to update
 		if (details == null) {
 			return;
 		}
-		
+
 		final String QUEST_SLOT = "elf_princess";
 
 		// if player didn't start this quest yet, do nothing (shouldn't be details in this case but check anyway)
 		if(!player.hasQuest(QUEST_SLOT)) {
 			return;
 		}
-		
+
 		// param (key) should be "" for this one, all we need to know is the count
 		int missingcount = details.get("");
-		
+
 		if (missingcount > 0) {
 			final String[] parts = player.getQuest(QUEST_SLOT).split(";");
 
 			// is quest slot already time stamped?
-			if(parts.length>=2) {
+			if(parts.length>2) {
 				int newcount = MathHelper.parseInt(parts[2])+missingcount;
 				player.setQuest(QUEST_SLOT, 2, "" + newcount);
 				return;
+			} else if (parts.length==2) {
+				// the count was not stored, so we just store the count we had in the table
+				player.setQuest(QUEST_SLOT, 2, "" + missingcount);
 			} else {
 				// we didn't store a time before. so we just choose the value '1' for a long ago system time
 				player.setQuest(QUEST_SLOT, 1, "1");
@@ -98,19 +101,19 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 			}
 		}
 	}
-	
+
 	private static void updateItemLoots(final Player player, final Map<String, Integer> details) {
 
 		// nothing to update
 		if (details == null) {
 			return;
 		}
-		
+
 		// update player loots which have been stored as param (key) = itemname, count (value) = number of loots
 		for (Map.Entry<String, Integer> detail : details.entrySet())
 		{
 			player.incLootForItem(detail.getKey(), detail.getValue());
 		}
 	}
-	
+
 }
