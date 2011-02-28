@@ -168,7 +168,7 @@ public class WellSource extends PlayerActivityEntity {
 			player.incObtainedForItem(item.getName(), item.getQuantity());
 			SingletonRepository.getAchievementNotifier().onObtain(player);
 			player.sendPrivateText("You were lucky and found "
-					+ Grammar.quantityplnoun(amount, itemName, "a"));
+					+ Grammar.quantityplnoun(amount, itemName, "a")+ ".");
 		} else {
 			player.sendPrivateText("Your wish didn't come true.");
 		}
