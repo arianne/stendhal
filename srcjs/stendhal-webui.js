@@ -125,7 +125,7 @@ stendhal.ui = {
 			var zoom = 10;
 			var canvas = document.getElementById("minimap");
 			this.ctx = canvas.getContext("2d");
-			this.ctx.fillStyle = "rgb(255,255,255)";
+			this.ctx.fillStyle = "rgb(224,224,224)";
 			this.ctx.fillRect(0, 0, canvas.width, canvas.height);
 			this.ctx.fillStyle = "rgb(255,0,0)";
 			this.ctx.strokeStyle = "rgb(0,0,0)";
