@@ -27,6 +27,7 @@ p.logsupport {color: #ff7200}
 <script src="json.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <!-- <script src="/marauroa-compressed.js"></script> -->
+<!--[if IE]><script type="text/javascript" src="<?php echo STENDHAL_FOLDER; ?>/css/excanvas.compiled.js"></script><![endif]-->
 <script type="text/javascript" src="marauroa.js"></script>
 <script type="text/javascript" src="client-framework.js"></script>
 <script type="text/javascript" src="message-factory.js"></script>
@@ -34,19 +35,18 @@ p.logsupport {color: #ff7200}
 <script type="text/javascript" src="rpobject-factory.js"></script>
 
 <script type="text/javascript" src="stendhal-webui.js"></script>
+<script type="text/javascript" src="stendhal-entities.js"></script>
 <script type="text/javascript" src="stendhal-actions.js"></script>
 </head>
 <body>
 
 <script>
 
-	marauroa.rpobjectFactory._default = function() {
-		this.onEvent = function(e) {
-			if (e.c == "private_text") {
-				stendhal.ui.chatLog.addLine(e.a.texttype.toLowerCase(), e.a.text);
-			} else if (e.c == "text") {
-				stendhal.ui.chatLog.addLine("normal", this.name + ": " + e.a.text);
-			} 
+	marauroa.rpobjectFactory._default.onEvent = function(e) {
+		if (e.c == "private_text") {
+			stendhal.ui.chatLog.addLine(e.a.texttype.toLowerCase(), e.a.text);
+		} else if (e.c == "text") {
+			stendhal.ui.chatLog.addLine("normal", this.name + ": " + e.a.text);
 		}
 	}
 
@@ -89,6 +89,9 @@ p.logsupport {color: #ff7200}
 				stendhal.ui.chatLog.addLine("normal", object.name + ": " + changes.a.text);
 			}
 		}
+	}
+
+	marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 		stendhal.ui.minimap.drawEntities();
 	}
 
