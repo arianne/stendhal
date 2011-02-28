@@ -91,8 +91,8 @@ public class OldWomanNPC implements ZoneConfigurator {
 				nodes.add(new Node(47,99));
 				nodes.add(new Node(33,99));
 				nodes.add(new Node(33,88));
-				nodes.add(new Node(58,88));
-				nodes.add(new Node(58,69));
+				nodes.add(new Node(60,88));
+				nodes.add(new Node(60,69));
 				nodes.add(new Node(45,69));
 				nodes.add(new Node(45,49));
 				nodes.add(new Node(52,49));
