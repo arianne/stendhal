@@ -91,7 +91,7 @@ public class RatChefNPC implements ZoneConfigurator {
                     "I have heard that sugar canes need a warm and humid climate to thrive. Maybe you might find some on Athor island");
 				addOffer("I will serve you crepes suzette au chocolate if you ask me to #bake one!");
 				addHelp("Ask me to #bake you my special #chocolate #crepes suzette, that's what I offer.");
-				addGoodbye("Au revoire voyageur... And come back to visit me anytime you like!");
+				addGoodbye("Au revoir voyageur... And come back to visit me anytime you like!");
 
 				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("flour", 1);
