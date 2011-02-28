@@ -42,7 +42,7 @@ p.logsupport {color: #ff7200}
 
 <script>
 
-	marauroa.rpobjectFactory._default.onEvent = function(e) {
+	marauroa.rpobjectFactory.entity.prototype.onEvent = function(e) {
 		if (e.c == "private_text") {
 			stendhal.ui.chatLog.addLine(e.a.texttype.toLowerCase(), e.a.text);
 		} else if (e.c == "text") {

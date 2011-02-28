@@ -134,6 +134,11 @@ stendhal.ui = {
 				var o = marauroa.currentZone[i];
 				if (typeof(o.x) != "undefined" && typeof(o.y) != "undefined") {
 					this.ctx.fillText(o.id, o.x * zoom, o.y * zoom);
+					if (typeof(o.minimapStyle) != "undefined") {
+						this.ctx.strokeStyle = o.minimapStyle;
+					} else {
+						this.ctx.strokeStyle = "rgb(128, 128, 128)";
+					}
 					this.ctx.strokeRect(o.x * zoom, o.y * zoom, o.width * zoom, o.height * zoom);
 				}
 			}
