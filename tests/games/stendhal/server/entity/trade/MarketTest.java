@@ -31,7 +31,6 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import java.util.List;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.AfterClass;
