@@ -46,7 +46,17 @@ p.logsupport {color: #ff7200}
 		if (e.c == "private_text") {
 			stendhal.ui.chatLog.addLine(e.a.texttype.toLowerCase(), e.a.text);
 		} else if (e.c == "text") {
-			stendhal.ui.chatLog.addLine("normal", this.name + ": " + e.a.text);
+			stendhal.ui.chatLog.addLine("normal", this.title + ": " + e.a.text);
+		}
+	}
+
+	marauroa.rpobjectFactory.entity.prototype.set = function(key, value) {
+		if (key == 'name')) {
+			if (typeof(this['title']) == "undefined") {
+				this['title'] = value;
+			}
+		} else {
+			this[key] = value;
 		}
 	}
 
@@ -55,7 +65,7 @@ p.logsupport {color: #ff7200}
 	}
 
 	marauroa.clientFramework.onLoginFailed = function(reason, text) {
-		alert("Login failed. Please login on the Stendhal website first.");
+		alert("Login failed. Please login on the Stendhal website first and make sure you open the client on an https://-URL");
 		marauroa.clientFramework.close();
 		document.getElementById("chatbar").disabled = true;
 		document.getElementById("chat").style.backgroundColor = "#AAA";
