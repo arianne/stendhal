@@ -210,7 +210,7 @@ public class GardenerNPC implements ZoneConfigurator {
 				new ProducerAdder().addProducer(this, behaviour,
 				        "Fine day, isn't it?");
 				addQuest("I'd love a cup of #tea, it's thirsty work, gardening. If you bring me a #sandwich too I'll #swap you for a magic scroll.");
-				addReply("tea", "Old Granny Graham may brew you a cup. She's in that big cottage over there.");
+				addReply(Arrays.asList("tea", "cup of tea"), "Old Granny Graham may brew you a cup. She's in that big cottage over there.");
 				addGoodbye("Bye. Enjoy the rest of the gardens.");
 			}
 		};
