@@ -62,8 +62,8 @@ public class LibrarianNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("I am the librarian");
-				addHelp("Just ask me to #explain something");
+				addJob("I am the librarian.");
+				addHelp("Just ask me to #explain something.");
 				add(ConversationStates.ATTENDING, "explain", null, ConversationStates.ATTENDING, null,
 				        new ChatAction() {
 					        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
@@ -87,9 +87,9 @@ public class LibrarianNPC implements ZoneConfigurator {
 					        }
 				        });
 				addReply("wikipedia",
-						"Wikipedia is an Internet based project to create a #free encyclopedia");
+						"Wikipedia is an Internet based project to create a #free encyclopedia.");
 				addReply("free",
-				        "The Wikipedia content may be used according to the rules specified in the Creative Commons Attribution-ShareAlike License which can be found at #http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License");
+				        "The Wikipedia content may be used according to the rules specified in the Creative Commons Attribution-ShareAlike License which can be found at #http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License .");
 				addGoodbye();
 			}
 		};
