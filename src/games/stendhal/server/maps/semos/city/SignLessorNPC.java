@@ -18,9 +18,11 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import games.stendhal.server.entity.mapstuff.office.RentedSignList;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -66,31 +68,31 @@ public class SignLessorNPC implements ZoneConfigurator {
 		rentedSignList = new RentedSignList(zone, shape);
 		buildNPC(zone);
 	}
-	
+
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Gordon") {
-			
+
 			@Override
 			public void createDialog() {
 				addGreeting("Hi, I #rent signs and #remove outdated ones.");
 				addJob("I #rent signs for a day.");
 				addHelp("If you want to #rent a sign, just tell me what I should write on it.");
 				setPlayerChatTimeout(CHAT_TIMEOUT);
-				
-				add(ConversationStates.ATTENDING, "rent", 
-					new LevelLessThanCondition(6), 
+
+				add(ConversationStates.ATTENDING, "",
+					new AndCondition(getRentMatchCond(), new LevelLessThanCondition(6)),
 					ConversationStates.ATTENDING, 
 					"Oh sorry, I don't rent signs to people who have so little experience as you.",
 					null);
 
-				add(ConversationStates.ATTENDING, "rent", 
-					new AndCondition(new LevelGreaterThanCondition(5), new NotCondition(new TextHasParameterCondition())), 
+				add(ConversationStates.ATTENDING, "", 
+					new AndCondition(getRentMatchCond(), new LevelGreaterThanCondition(5), new NotCondition(new TextHasParameterCondition())), 
 					ConversationStates.ATTENDING, 
 					"Just tell me #rent followed by the text I should write on it.",
 					null);
 
-				add(ConversationStates.ATTENDING, "rent", 
-					new AndCondition(new LevelGreaterThanCondition(5), new TextHasParameterCondition()), 
+				add(ConversationStates.ATTENDING, "", 
+					new AndCondition(getRentMatchCond(), new LevelGreaterThanCondition(5), new TextHasParameterCondition()), 
 					ConversationStates.BUY_PRICE_OFFERED, 
 					null,
 					new ChatAction() {
@@ -169,7 +171,6 @@ public class SignLessorNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 
-
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -185,6 +186,21 @@ public class SignLessorNPC implements ZoneConfigurator {
 		npc.setEntityClass("signguynpc");
 		zone.add(npc);
 		npc.setDescription("You see Gordon. He keeps an eye on the signs close to him.");
+	}
+
+	private static ChatCondition getRentMatchCond() {
+		return new ChatCondition() {
+			public boolean fire(Player player, Sentence sentence, Entity npc) {
+				String txt = sentence.getOriginalText();
+
+            	//TODO replaced by using sentence matching "[you] rent"
+				if (txt.startsWith("rent") || txt.startsWith("you rent")) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
 	}
 
 	class RentSignChatAction implements ChatAction {
