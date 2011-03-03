@@ -66,7 +66,7 @@ public class BalloonForBobbyTest {
 		en.step(player, "hi");
 		assertEquals("Hm?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds", getReply(npc));
+		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds...", getReply(npc));
 		en.step(player, "job");
 		assertEquals("A Job? Is that something you can eat?", getReply(npc));
 		en.step(player, "balloon");
