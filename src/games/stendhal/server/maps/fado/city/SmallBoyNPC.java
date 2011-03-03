@@ -63,7 +63,7 @@ public class SmallBoyNPC implements ZoneConfigurator {
 				addGreeting("Hm?");
 				addQuest("Would you get me a #balloon? Unless the mine town weeks are currently on,"
 						+ " then I can get my own :)");
-				addHelp("I wonder if a #balloon could fly high enough to touch the clouds");
+				addHelp("I wonder if a #balloon could fly high enough to touch the clouds...");
 				addJob("A Job? Is that something you can eat?");
 				addReply("balloon", "One day, i will have enough balloons to fly away!");
 				addReply(Arrays.asList("xkcd", "tables", "sql", "student", "drop", "table"), 
