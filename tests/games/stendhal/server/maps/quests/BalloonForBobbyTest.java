@@ -89,7 +89,7 @@ public class BalloonForBobbyTest {
 		en.step(player, "balloon");
 		assertEquals("You don't even have a balloon for me :(", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds", getReply(npc));
+		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds...", getReply(npc));
 		en.step(player, "job");
 		assertEquals("A Job? Is that something you can eat?", getReply(npc));
 		en.step(player, "quest");
@@ -107,7 +107,7 @@ public class BalloonForBobbyTest {
 		en.step(player, "no");
 		assertEquals("*pouts*", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds", getReply(npc));
+		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds...", getReply(npc));
 		en.step(player, "job");
 		assertEquals("A Job? Is that something you can eat?", getReply(npc));
 		en.step(player, "quest");
@@ -136,7 +136,7 @@ public class BalloonForBobbyTest {
 		en.step(player, "hi");
 		assertEquals("Hm?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds", getReply(npc));
+		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds...", getReply(npc));
 		en.step(player, "quest");
 		assertEquals("Would you get me a #balloon? Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
 		en.step(player, "balloon");
@@ -154,7 +154,7 @@ public class BalloonForBobbyTest {
 		en.step(player, "hi");
 		assertEquals("Hm?", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds", getReply(npc));
+		assertEquals("I wonder if a #balloon could fly high enough to touch the clouds...", getReply(npc));
 		en.step(player, "quest");
 		assertEquals("Would you get me a #balloon? Unless the mine town weeks are currently on, then I can get my own :)", getReply(npc));
 		en.step(player, "balloon");
