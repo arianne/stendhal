@@ -183,6 +183,14 @@ public class MapPanelController implements GameObjects.GameObjectListener {
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					panel.positionChanged(x, y);
+					/*
+					 * Set the refresh flag after the map offset has been
+					 * actually updated. The position listener for moving map
+					 * objects sets it, but it happens in the game loop thread
+					 * and may be unset before the map panel has actually got
+					 * the correct map offset. 
+					 */
+					setNeedsRefresh(true);
 				}
 			});
 		}
