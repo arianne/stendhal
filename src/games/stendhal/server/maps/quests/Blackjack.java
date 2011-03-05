@@ -363,6 +363,18 @@ public class Blackjack extends AbstractQuest {
 					}
 
 					@Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+						if (sentence.hasError()) {
+							fireSentenceError(player, sentence, npc);
+						} else {
+							BehaviourResult res = behaviour.parseRequest(sentence);
+
+							// don't use res.wasFound() and avoid to call fireRequestError()
+							fireRequestOK(res, player, sentence, npc);
+						}
+					}
+
+					@Override
 					public void fireRequestOK(final BehaviourResult res, Player player, Sentence sentence, EventRaiser npc) {
 						stake = res.getAmount();
 
@@ -410,6 +422,7 @@ public class Blackjack extends AbstractQuest {
 				"While away your time on Athor Ferry with a challenging game of Blackjack.",
 				true);
 	}
+
 	@Override
 	public String getSlotName() {
 		return "blackjack";
