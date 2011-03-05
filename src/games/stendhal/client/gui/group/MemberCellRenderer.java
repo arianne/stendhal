@@ -82,6 +82,8 @@ class MemberCellRenderer implements ListCellRenderer {
 	 * HP bar component with a grayed out mode for absent members.
 	 */
 	private static class HPBar extends JComponent {
+		private static final long serialVersionUID = 1L;
+
 		/** Default preferred width of the component */
 		private static final int DEFAULT_WIDTH = 20;
 		/** Default preferred height of the component */
