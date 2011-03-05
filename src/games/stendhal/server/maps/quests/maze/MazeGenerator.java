@@ -469,6 +469,8 @@ public class MazeGenerator {
 		double normalized = timediff / (double) (DEFAULT_SOLVING_TIME * MathHelper.MILLISECONDS_IN_ONE_MINUTE);
 		// theoretical maximum e * DEFAULT_REWARD_POINTS
 		int points = (int) (DEFAULT_REWARD_POINTS * Math.exp(1 - normalized));
+		// Give at least one xp for persistent but hopelessly slow players
+		points = Math.max(points, 1);
 
 		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), "M", points, true));
 		new SetQuestAction("maze", 0, "done").fire(player, null, null);
@@ -497,6 +499,8 @@ public class MazeGenerator {
 
 	/**
 	 * Access the portal from MazeTest.
+	 * 
+	 * @return the exit portal
 	 */
 	public Portal getPortal() {
 		return portal;
