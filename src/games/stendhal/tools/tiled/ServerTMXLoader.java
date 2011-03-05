@@ -287,7 +287,7 @@ public class ServerTMXLoader {
 		 * System.out.println("Time ellapsed (ms):
 		 * "+(System.currentTimeMillis()-start)); /
 		 */
-		map = new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/semos/village_w.tmx");
+		map = new ServerTMXLoader().readMap("tiled/Level 0/semos/village_w.tmx");
 		map.build();
 		System.out.printf("MAP W: %d H:%d\n", map.width, map.height);
 		final List<TileSetDefinition> tilesets = map.getTilesets();
