@@ -192,14 +192,14 @@ public class ItemPanel extends JComponent implements DropTarget {
 		
 		// Fill in appropriate action data
 		RPAction action = new RPAction();
-		action.put("type", "equip");
-		action.put("source_path", entity.getPath());
+		action.put(EquipActionConsts.TYPE, "equip");
+		action.put(EquipActionConsts.SOURCE_PATH, entity.getPath());
 		List<String> targetPath = parent.getPath();
 		targetPath.add(getName());
-		action.put("target_path", targetPath);
+		action.put(EquipActionConsts.TARGET_PATH, targetPath);
 		
 		if (amount >= 1) {
-			action.put("quantity", amount);
+			action.put(EquipActionConsts.QUANTITY, amount);
 		}
 
 		// ** Compatibility. Fill old style object address data **
@@ -302,7 +302,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 			final RPObject content = view.getEntity().getRPObject();
 			final RPAction action = new RPAction();
 			
-			action.put("type", "equip");
+			action.put(EquipActionConsts.TYPE, "equip");
 			// source object and content from THIS container
 			action.put(EquipActionConsts.BASE_OBJECT, parent.getID().getObjectID());
 			action.put(EquipActionConsts.BASE_SLOT, getName());
