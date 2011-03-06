@@ -47,16 +47,5 @@
 
 	document.onkeydown=stendhal.ui.chatBar.keydown;
 
-	marauroa.perceptionListener.onModifiedAdded = function(object, changes) {
-		if (typeof(changes) != "undefined" && typeof(changes.a.text) != "undefined") {
-			if (changes.a.text.match("^!me") == "!me") {
-				stendhal.ui.chatLog.addLine("emote", changes.a.text.replace(/^!me/, object.name));
-			} else {
-				stendhal.ui.chatLog.addLine("normal", object.title + ": " + changes.a.text);
-			}
-		}
-	}
-
-
 
 	marauroa.clientFramework.connect(null, null);
