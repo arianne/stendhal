@@ -193,6 +193,7 @@ stendhal.slashActionRepository = {
 				}
 			}
 			marauroa.clientFramework.sendAction(action);
+			return true;
 		},
 		getMinParams: 0,
 		getMaxParams: 1
