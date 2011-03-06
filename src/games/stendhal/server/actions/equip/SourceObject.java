@@ -170,7 +170,7 @@ class SourceObject extends MoveableObject {
 						+ " as source. player zone: " + player.getZone() + " object zone: " + parent.getZone());
 			}
 			
-			final RPSlot slot = ((EntitySlot) parent.getSlot(slotName)).getWriteableSlot();
+			final RPSlot slot = ((EntitySlot) entity.getSlot(slotName)).getWriteableSlot();
 			if (!isValidBaseSlot(player, slot)) {
 				return invalidSource;
 			}
