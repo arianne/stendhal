@@ -183,6 +183,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		// Unique database ID for logging
 		entity.addAttribute("logid", Type.INT, Definition.HIDDEN);
 
+		// Name of the container slot, if the item has one
+		entity.addAttribute("slot_name", Type.STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
+		
+		// Container slot
 		entity.addRPSlot("content", 8, Definition.PRIVATE);
 	}
 
