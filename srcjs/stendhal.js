@@ -1,20 +1,3 @@
-	marauroa.rpobjectFactory.entity.prototype.onEvent = function(e) {
-		if (e.c == "private_text") {
-			stendhal.ui.chatLog.addLine(e.a.texttype.toLowerCase(), e.a.text);
-		} else if (e.c == "text") {
-			stendhal.ui.chatLog.addLine("normal", this.title + ": " + e.a.text);
-		}
-	}
-
-	marauroa.rpobjectFactory.entity.prototype.set = function(key, value) {
-		if (key == 'name') {
-			if (typeof(this['title']) == "undefined") {
-				this['title'] = value;
-			}
-		} else {
-			this[key] = value;
-		}
-	}
 
 	marauroa.clientFramework.onDisconnect = function(reason, error){
 		stendhal.ui.chatLog.addLine("error", "Disconnected: " + error);
