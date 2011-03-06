@@ -79,7 +79,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		haunchyEng.step(player, "coal");
 		assertEquals("Coal isn't easy to find. You normally can find it somewhere in the ground but perhaps you are lucky and find some in the old Semos Mine tunnels...", getReply(haunchy));
 		haunchyEng.step(player, "yes");
-		assertEquals("Thank you! If you have found some, say #coal to me so I know you have it. I'll be sure to give you a nice and tasty reward.", getReply(haunchy));
+		assertEquals("Thank you! If you have found 25 pieces, say #coal to me so I know you have it. I'll be sure to give you a nice and tasty reward.", getReply(haunchy));
 		haunchyEng.step(player, "coal");
 		assertEquals("You don't have the coal amount which I need yet. Go and pick some more pieces up, please.", getReply(haunchy));
 		haunchyEng.step(player, "bye");

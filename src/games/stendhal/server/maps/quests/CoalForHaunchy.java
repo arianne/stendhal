@@ -125,7 +125,7 @@ public class CoalForHaunchy extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
-				"Thank you! If you have found some, say #coal to me so I know you have it. I'll be sure to give you a nice and tasty reward.",
+				"Thank you! If you have found 25 pieces, say #coal to me so I know you have it. I'll be sure to give you a nice and tasty reward.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
 
 		// Player says no, they've lost karma.
