@@ -13,6 +13,7 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.common.EquipActionConsts;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -59,9 +60,48 @@ class DestinationObject extends MoveableObject {
 	public DestinationObject(final RPAction action, final Player player) {
 		super(player);
 		valid = false;
-		// dropped into another item
-		if (action.has(EquipActionConsts.TARGET_OBJECT)
+		if (action.has(EquipActionConsts.TARGET_PATH)) {
+			List<String> path = action.getList(EquipActionConsts.TARGET_PATH);
+			Iterator<String> it = path.iterator();
+			parent = EquipUtil.getEntityFromId(player, MathHelper.parseInt(it.next()));
+			
+			// check slot
+			if (parent == null) {
+				logger.warn("cannot find target entity for action " + action);
+				// Not valid...
+				return;
+			}
+			// is the top level parent a player and not the current one?
+			if ((parent instanceof Player)
+					&& !parent.getID().equals(player.getID())) {
+				logger.warn("trying to drop an item into another players inventory");
+				// trying to drop an item into another players inventory
+				return;
+			}
+			// Walk the slot path
+			slot = null;
+			while (it.hasNext()) {
+				slot = it.next();
+				if (!parent.hasSlot(slot)) {
+					logger.error(player.getName() + " tried to use non existing slot " + slot + " of " + parent
+							+ " as destination. player zone: " + player.getZone() + " object zone: " + parent.getZone());
+					return;
+				}
+				final RPSlot rpslot = parent.getSlot(slot);
+				if (it.hasNext()) {
+					final RPObject.ID itemId = new RPObject.ID(MathHelper.parseInt(it.next()), "");
+					if (!rpslot.has(itemId)) {
+						return;
+					}
+					parent = (Entity) rpslot.get(itemId);
+				}
+			}
+			valid = slot != null;
+			return;
+		} else if (action.has(EquipActionConsts.TARGET_OBJECT)
 				&& action.has(EquipActionConsts.TARGET_SLOT)) {
+			// ** Compatibility mode **
+			
 			// get base item and slot
 			parent = EquipUtil.getEntityFromId(player,
 					action.getInt(EquipActionConsts.TARGET_OBJECT));
@@ -226,7 +266,12 @@ class DestinationObject extends MoveableObject {
 	@Override
 	public boolean checkDistance(final Entity other, final double distance) {
 		if (parent != null) {
-			return (other.nextTo(parent, distance));
+			Entity base = parent;
+			RPObject obj = parent.getBaseContainer();
+			if (obj instanceof Entity) {
+				base = (Entity) obj;
+			}
+			return (other.nextTo(base, distance));
 		}
 
 		// Should be dropped to the ground. Do a proper distance calculation
@@ -291,7 +336,7 @@ class DestinationObject extends MoveableObject {
 				// yep, so it is not stacked. simply add it
 				rpslot.add(entity);
 			}
-			SingletonRepository.getRPWorld().modify(parent);
+			SingletonRepository.getRPWorld().modify(parent.getBaseContainer());
 		} else {
 			// drop the entity to the ground. Do this always in the player's
 			// zone.
