@@ -87,7 +87,6 @@ marauroa.rpobjectFactory.createRPObject = function(rpclass) {
 	if (typeof(this[rpclass]) != "undefined") {
 		ctor = this[rpclass];
 	}
-	marauroa.log.debug("createRPObject: ", rpclass, ctor)
 	return marauroa.util.fromProto(ctor);
 }
 
