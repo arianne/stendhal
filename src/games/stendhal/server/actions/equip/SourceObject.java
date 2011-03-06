@@ -13,6 +13,7 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.common.EquipActionConsts;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
@@ -24,6 +25,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 
+import java.util.Iterator;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
@@ -50,9 +52,9 @@ class SourceObject extends MoveableObject {
 		if ((action == null) || (player == null)) {
 			return invalidSource;
 		}
-
-		// base item must be there
-		if (!action.has(EquipActionConsts.BASE_ITEM)) {
+ 
+		// source item must be there
+		if (!action.has(EquipActionConsts.SOURCE_PATH) && !action.has(EquipActionConsts.BASE_ITEM)) {
 			logger.warn("action does not have a base item. action: " + action);
 
 			return invalidSource;
@@ -63,7 +65,10 @@ class SourceObject extends MoveableObject {
 		}
 
 		SourceObject source;
-		if (action.has(EquipActionConsts.BASE_OBJECT)) {
+		if (action.has(EquipActionConsts.SOURCE_PATH)) {
+			source = createSource(action, player);
+			// Otherwise use compatibility mode
+		} else if (action.has(EquipActionConsts.BASE_OBJECT)) {
 			source = createSourceForContainedItem(action, player);
 		} else {
 			source = createSourceForNonContainedItem(action, player);
@@ -135,6 +140,71 @@ class SourceObject extends MoveableObject {
 			checkIfLootingIsRewardable(player, corpse, source, (Item) entity);
 		}
 
+		return source;
+	}
+	
+	/**
+	 * Create a SourceObject for an item path.
+	 * 
+	 * @param action
+	 * @param player
+	 * @return source object
+	 */
+	private static SourceObject createSource(RPAction action, final Player player) {
+		List<String> path = action.getList(EquipActionConsts.SOURCE_PATH);
+		Iterator<String> it = path.iterator();
+		// The ultimate parent object
+		Entity parent = EquipUtil.getEntityFromId(player, MathHelper.parseInt(it.next()));
+		if (parent == null) {
+			return invalidSource;
+		}
+		
+		// Walk the slot path
+		Entity entity = parent;
+		String slotName = null;
+		while (it.hasNext()) {
+			slotName = it.next();
+			if (!entity.hasSlot(slotName)) {
+				player.sendPrivateText("Source " + slotName + " does not exist");
+				logger.error(player.getName() + " tried to use non existing slot " + slotName + " of " + entity
+						+ " as source. player zone: " + player.getZone() + " object zone: " + parent.getZone());
+			}
+			
+			final RPSlot slot = ((EntitySlot) parent.getSlot(slotName)).getWriteableSlot();
+			if (!isValidBaseSlot(player, slot)) {
+				return invalidSource;
+			}
+			if (!it.hasNext()) {
+				logger.error("Missing item id");
+				return invalidSource;
+			}
+			final RPObject.ID itemId = new RPObject.ID(MathHelper.parseInt(it.next()), "");
+			if (!slot.has(itemId)) {
+				logger.debug("Base item(" + entity + ") doesn't contain item(" + itemId + ") on given slot(" + slotName
+						+ ")");
+				return invalidSource;
+			}
+			
+			entity = (Entity) slot.get(itemId);
+			if (!(entity instanceof Item)) {
+				player.sendPrivateText("Oh, that " + entity.getDescriptionName(true)
+						+ " is not an item and therefore cannot be equipped");
+				return invalidSource;
+			}
+		}
+		// wipe parent, if the item is not contained
+		if (parent == entity) {
+			parent = null;
+		}
+		
+		SourceObject source = new SourceObject(player, parent, slotName, (Item) entity);
+		
+		// handle logging of looting items
+		if (parent instanceof Corpse) {
+			Corpse corpse = (Corpse) parent;
+			checkIfLootingIsRewardable(player, corpse, source, (Item) entity);
+		}
+		
 		return source;
 	}
 

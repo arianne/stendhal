@@ -17,14 +17,17 @@ package games.stendhal.common;
  * TODO everywhere use this constants instead of plain strings
  */
 public interface EquipActionConsts {
-
+	String TARGET_PATH = "target_path";
+	String SOURCE_PATH = "source_path";
+	
+	// Compatibility object addressing
 	String BASE_ITEM = "baseitem";
 	String BASE_SLOT = "baseslot";
-
 	String BASE_OBJECT = "baseobject";
 
 	String TYPE = "type";
 
+	// Compatibility object addressing
 	String TARGET_OBJECT = "targetobject";
 	String TARGET_SLOT = "targetslot";
 
