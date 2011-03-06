@@ -163,11 +163,11 @@ ORDER BY points DESC) As scoretable,
 
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
-SELECT scoretable.name, 'R', @rownum:=@rownum+1 as rank, scoretable.points,  CURRENT_DATE(), 0
+SELECT scoretable.name, 'R', @rownum:=@rownum+1 as rank, scoretable.points, CURRENT_DATE(), 0
 FROM (
-SELECT name, xp*score/(age+1) As points FROM character_stats
+SELECT c.name, xp*(ifnull(score,0)+0.0001)/(age+1) As points, score FROM character_stats c
 JOIN (
-SELECT charname, sum(1/cnt) As score 
+SELECT name, sum(1/cnt) As score 
 FROM reached_achievement ra
 JOIN 
     (SELECT achievement_id, count(*) as cnt FROM reached_achievement 
@@ -175,19 +175,19 @@ JOIN
      JOIN character_stats on name = charname 
      WHERE admin<=600 
      GROUP BY achievement_id) t ON ra.achievement_id = t.achievement_id 
-JOIN character_stats ON name = charname
+RIGHT JOIN character_stats ON name = charname
 WHERE admin<=600 
-GROUP BY charname 
-) temp on temp.charname = name
-order by xp*score/(age+1) desc) As scoretable,
+GROUP BY name 
+) temp on temp.name = c.name
+order by xp*(ifnull(score,0)+0.0001)/(age+1) desc) As scoretable,
 (SELECT @rownum:=0) r;
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
-SELECT scoretable.name, 'R', @rownum:=@rownum+1 as rank, scoretable.points,  CURRENT_DATE(), 1
+SELECT scoretable.name, 'R', @rownum:=@rownum+1 as rank, scoretable.points, CURRENT_DATE(), 1
 FROM (
-SELECT name, xp*score/(age+1) As points FROM character_stats
+SELECT c.name, xp*(ifnull(score,0)+0.0001)/(age+1) As points, score FROM character_stats c
 JOIN (
-SELECT charname, sum(1/cnt) As score 
+SELECT name, sum(1/cnt) As score 
 FROM reached_achievement ra
 JOIN 
     (SELECT achievement_id, count(*) as cnt FROM reached_achievement 
@@ -195,10 +195,10 @@ JOIN
      JOIN character_stats on name = charname 
      WHERE admin<=600 
      GROUP BY achievement_id) t ON ra.achievement_id = t.achievement_id 
-JOIN character_stats ON name = charname
+RIGHT JOIN character_stats ON name = charname
 WHERE admin<=600 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
-GROUP BY charname 
-) temp on temp.charname = name
-order by xp*score/(age+1) desc) As scoretable,
+GROUP BY name 
+) temp on temp.name = c.name
+order by xp*(ifnull(score,0)+0.0001)/(age+1) desc) As scoretable,
 (SELECT @rownum:=0) r;
 
