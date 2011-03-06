@@ -31,6 +31,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
@@ -189,14 +190,19 @@ public class ItemPanel extends JComponent implements DropTarget {
 			return;
 		}
 		
-		
-		final RPAction action = new RPAction();
-		// looks like an equip
+		// Fill in appropriate action data
+		RPAction action = new RPAction();
 		action.put("type", "equip");
+		action.put("source_path", entity.getPath());
+		List<String> targetPath = parent.getPath();
+		targetPath.add(getName());
+		action.put("target_path", targetPath);
+		
 		if (amount >= 1) {
 			action.put("quantity", amount);
 		}
 
+		// ** Compatibility. Fill old style object address data **
 		// fill 'moved from' parameters
 		final RPObject rpObject = entity.getRPObject();
 		if (rpObject.isContained()) {
@@ -209,7 +215,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 		// 'move to'
 		action.put(EquipActionConsts.TARGET_OBJECT, parent.getID().getObjectID());
 		action.put(EquipActionConsts.TARGET_SLOT, getName());
-
+		
 		StendhalClient.get().send(action);
 	}
 	
