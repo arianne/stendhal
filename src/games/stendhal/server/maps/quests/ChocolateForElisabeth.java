@@ -174,7 +174,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "eating;"))),
 				ConversationStates.ATTENDING,	
-				"Waaaaaaaa! Where is my chocolate ....",
+				"Waaaaaaaa! Where is my chocolate ...",
 				null);
 		
 		// Player agrees to get the chocolate
@@ -259,7 +259,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 
 		mummyNPC.addReply("strong", "I tried to get some chocolate for Elisabeth a few times, but I couldn't make my way through the assassins and bandits running around #there.");
 		
-		mummyNPC.addReply("there", "They live in and around the Ados castle. Take care there! I also heard about #someone who sells chocolate bars");
+		mummyNPC.addReply("there", "They live in and around the Ados castle. Take care there! I also heard about #someone who sells chocolate bars.");
 		
 		mummyNPC.addReply("someone", "I never visited that guy because he seems to be really... well he works somewhere where I don't want to be in Ados.");
 		
