@@ -14,6 +14,7 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.entity.item.Container;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
@@ -50,7 +51,7 @@ public abstract class EquipmentAction implements ActionListener {
 
 	/** the list of valid container classes. */
 	private static final Class< ? >[] validContainerClasses = new Class< ? >[] {
-			Player.class, Chest.class, Corpse.class };
+			Player.class, Chest.class, Corpse.class, Container.class };
 
 	/** List of the valid container classes for easy access. */
 	protected final List<Class< ? >> validContainerClassesList = Arrays.asList(validContainerClasses);
