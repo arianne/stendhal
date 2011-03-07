@@ -31,6 +31,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -299,17 +300,23 @@ public class ItemPanel extends JComponent implements DropTarget {
 		 * Send an action for grabbing the item to the bag.
 		 */
 		private void moveItemToBag() {
-			final RPObject content = view.getEntity().getRPObject();
 			final RPAction action = new RPAction();
 			
 			action.put(EquipActionConsts.TYPE, "equip");
+			action.put(EquipActionConsts.SOURCE_PATH, view.getEntity().getPath());
+			action.put(EquipActionConsts.TARGET_PATH, 
+					Arrays.asList(Integer.toString(User.get().getID().getObjectID()), "bag"));
+			
+			// Compatibility item identification data
 			// source object and content from THIS container
+			final RPObject content = view.getEntity().getRPObject();
 			action.put(EquipActionConsts.BASE_OBJECT, parent.getID().getObjectID());
 			action.put(EquipActionConsts.BASE_SLOT, getName());
 			action.put(EquipActionConsts.BASE_ITEM, content.getID().getObjectID());
 			// target is player's bag
 			action.put(EquipActionConsts.TARGET_OBJECT, User.get().getID().getObjectID());
 			action.put(EquipActionConsts.TARGET_SLOT, "bag");
+			
 			StendhalClient.get().send(action);
 		}
 	}
