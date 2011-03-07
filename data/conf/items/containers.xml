@@ -198,7 +198,7 @@
   </item>
 
   <item name="keyring">
-    <type class="container" subclass="keyring" tiledid="-1"/>
+    <type class="container" subclass="keyring" tileid="-1"/>
     <description>You see a keyring.</description>
     <implementation class-name="games.stendhal.server.entity.item.Container"/>
     <attributes>
