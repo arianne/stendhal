@@ -13,14 +13,6 @@ marauroa.rpobjectFactory.entity.set = function(key, value) {
 		this[key] = value;
 	}
 }
-marauroa.rpobjectFactory.entity.onEvent = function(e) {
-	if (e.c == "private_text") {
-		stendhal.ui.chatLog.addLine(e.a.texttype.toLowerCase(), e.a.text);
-	} else if (e.c == "text") {
-		stendhal.ui.chatLog.addLine("normal", this.title + ": " + e.a.text);
-	}
-}
-
 
 
 /**
@@ -81,12 +73,4 @@ marauroa.rpobjectFactory.npc.minimapStyle = "rgb(0,0,255)";
 
 
 
-/** factory method */
-marauroa.rpobjectFactory.createRPObject = function(rpclass) {
-	var ctor = this.entity;
-	if (typeof(this[rpclass]) != "undefined") {
-		ctor = this[rpclass];
-	}
-	return marauroa.util.fromProto(ctor);
-}
-
+marauroa.rpobjectFactory._default = marauroa.rpobjectFactory.entity;
