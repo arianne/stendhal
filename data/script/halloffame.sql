@@ -130,7 +130,7 @@ ORDER BY points DESC;
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT scoretable.charname, '@', @rownum:=@rownum+1 as rank, scoretable.points, CURRENT_DATE(), 0 
 FROM (
-SELECT charname, sum(1/cnt) As points 
+SELECT charname, round(1000000*sum(1/cnt)) As points 
 FROM reached_achievement ra
 JOIN 
     (SELECT achievement_id, count(*) as cnt FROM reached_achievement 
@@ -147,7 +147,7 @@ ORDER BY points DESC) As scoretable,
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT scoretable.charname, '@', @rownum:=@rownum+1 as rank, scoretable.points, CURRENT_DATE(), 1 
 FROM (
-SELECT charname, sum(1/cnt) As points 
+SELECT charname, round(1000000*sum(1/cnt)) As points 
 FROM reached_achievement ra
 JOIN 
     (SELECT achievement_id, count(*) as cnt FROM reached_achievement 
@@ -165,7 +165,7 @@ ORDER BY points DESC) As scoretable,
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT scoretable.name, 'R', @rownum:=@rownum+1 as rank, scoretable.points, CURRENT_DATE(), 0
 FROM (
-SELECT c.name, xp*(ifnull(score,0)+0.0001)/(age+1) As points, score FROM character_stats c
+SELECT c.name, round(xp*(ifnull(score,0)+0.0001)/(age+1)) As points, score FROM character_stats c
 JOIN (
 SELECT name, sum(1/cnt) As score 
 FROM reached_achievement ra
@@ -185,7 +185,7 @@ order by xp*(ifnull(score,0)+0.0001)/(age+1) desc) As scoretable,
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT scoretable.name, 'R', @rownum:=@rownum+1 as rank, scoretable.points, CURRENT_DATE(), 1
 FROM (
-SELECT c.name, xp*(ifnull(score,0)+0.0001)/(age+1) As points, score FROM character_stats c
+SELECT c.name, round(xp*(ifnull(score,0)+0.0001)/(age+1)) As points, score FROM character_stats c
 JOIN (
 SELECT name, sum(1/cnt) As score 
 FROM reached_achievement ra
