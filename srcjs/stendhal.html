@@ -24,6 +24,15 @@ p.logtutorial {color: #ac00ac}
 p.logsupport {color: #ff7200}
 li.online {color: #0A0}
 li.offline {color: #A00}
+div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px solid black; background-color:#CCC; float: left; padding: 1px; margin: 2px}
+.equipment {position:relative; height:160px; border: 1px solid black}
+#head {position:absolute; top:0px; left:40px}
+#lhand {position:absolute; top:50px; left:80px}
+#rhand {position:absolute; top:50px; left:0px}
+#armor {position:absolute; top:40px; left:40px}
+#legs {position:absolute; top:80px; left:40px}
+#feet {position:absolute; top:120px; left:40px}
+#cloak {position:absolute; top:90px; left:80px}
 </style>
 
 <script src="json.js"></script>
@@ -44,10 +53,13 @@ li.offline {color: #A00}
 <body>
 
 <script type="text/javascript">
+stendhal.server="http://localhost";
 marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 	stendhal.ui.minimap.drawEntities();
 	stendhal.ui.buddyList.update();
+	stendhal.ui.equip.update();
 	stendhal.ui.bag.update();
+	stendhal.ui.keyring.update();
 }
 </script>
 
@@ -61,8 +73,45 @@ marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 <noscript>JavaScript is required by the Stendhal Web Client.</noscript>
 </div>
 
-<div id="buddyList" style="border: 1px solid black; padding: 1em; width: 10em; float: left"></div>
-<div id="bag" style="border: 1px solid black; padding: 1em; width: 10em; float: left"></div>
+<div id="buddyList" style="border: 1px solid black; width: 10em; float: left"></div>
+
+<div style="float: left; width:130px">
+<div id="equipment" class="equipment">
+<div id="head" class="itemSlot"></div>
+<div id="lhand" class="itemSlot"></div>
+<div id="rhand" class="itemSlot"></div>
+<div id="armor" class="itemSlot"></div>
+<div id="legs" class="itemSlot"></div>
+<div id="feet" class="itemSlot"></div>
+<div id="cloak" class="itemSlot"></div>
+</div>
+</div>
+
+<div id="bag" style="border: 1px solid black; width: 120px; padding: 2px; float: left">
+<div id="bag0" class="itemSlot"></div>
+<div id="bag1" class="itemSlot"></div>
+<div id="bag2" class="itemSlot"></div>
+<div id="bag3" class="itemSlot"></div>
+<div id="bag4" class="itemSlot"></div>
+<div id="bag5" class="itemSlot"></div>
+<div id="bag6" class="itemSlot"></div>
+<div id="bag7" class="itemSlot"></div>
+<div id="bag8" class="itemSlot"></div>
+<div id="bag9" class="itemSlot"></div>
+<div id="bag10" class="itemSlot"></div>
+<div id="bag11" class="itemSlot"></div>
+</div>
+
+<div id="keyring" style="border: 1px solid black; width: 80px; padding: 2px; float: left">
+<div id="keyring0" class="itemSlot"></div>
+<div id="keyring1" class="itemSlot"></div>
+<div id="keyring2" class="itemSlot"></div>
+<div id="keyring3" class="itemSlot"></div>
+<div id="keyring4" class="itemSlot"></div>
+<div id="keyring5" class="itemSlot"></div>
+<div id="keyring6" class="itemSlot"></div>
+<div id="keyring7" class="itemSlot"></div>
+</div>
 
 <canvas style="border: 1px solid black" id="minimap" width="1024" height="1024">Sorry, this part of the page only works in modern web browsers.</canvas>
 

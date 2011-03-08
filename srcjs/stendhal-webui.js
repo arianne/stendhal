@@ -178,16 +178,52 @@ stendhal.ui = {
 	//                                   Bag                                   
 	//*************************************************************************
 
-	bag: {
+	equip: {
+		slots: ["head", "lhand", "rhand", "armor", "legs", "feet", "cloak"],
+
 		update: function() {
-			var div = document.getElementById("bag");
-			var html = "";
-			for (var i in marauroa.me.bag) {
-				if (!isNaN(i)) {
-					html = html + "<li>" + marauroa.me.bag[i].title + "</li>";
+			for (var i in this.slots) {
+				var s = marauroa.me[this.slots[i]];
+				if (typeof(s) != "undefined") {
+					var o = s.first();
+					marauroa.log.warn(s, o);
+					if (typeof(o) != "undefined") {
+						document.getElementById(this.slots[i]).style.backgroundImage = "url('" + stendhal.server + "/data/sprites/items/" + o.class + "/" + o.subclass + ".png " + "')";
+					} else {
+						document.getElementById(this.slots[i]).style.backgroundImage = "none";
+					}
+				} else {
+					document.getElementById(this.slots[i]).style.backgroundImage = "none";
 				}
 			}
-			div.innerHTML = "<ul>" + html + "</ul>";
+		}
+	},
+
+	bag: {
+		update: function() {
+			stendhal.ui.itemContainerWindow.render("bag", 12);
+		}
+	},
+
+	keyring: {
+		update: function() {
+			stendhal.ui.itemContainerWindow.render("keyring", 8);
+		}
+	},
+
+	itemContainerWindow: {
+		render: function(name, size) {
+			var cnt = 0;
+			for (var i in marauroa.me[name]) {
+				if (!isNaN(i)) {
+					var o = marauroa.me[name][i];
+					document.getElementById(name + cnt).style.backgroundImage = "url('" + stendhal.server + "/data/sprites/items/" + o.class + "/" + o.subclass + ".png " + "')";
+					cnt++;
+				}
+			}
+			for (var i = cnt; i < size; i++) {
+				document.getElementById(name + i).style.backgroundImage = "none";
+			}
 		}
 	}
 }
