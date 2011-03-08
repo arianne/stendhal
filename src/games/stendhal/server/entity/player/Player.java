@@ -2219,13 +2219,23 @@ public class Player extends RPEntity {
 	}
 	
 	/**
-	 * Gets the amount a player as harvested of an item
+	 * Gets the amount a player has harvested of an item
 	 * 
 	 * @param item the item name
 	 * @return the harvested amount
 	 */
 	public int getQuantityOfHarvestedItems(String item) {
 		return itemCounter.getQuantityOfHarvestedItems(item);
+	}
+	
+	/**
+	 * Gets the amount a player has harvested of an item
+	 * 
+	 * @param item the item name
+	 * @return the harvested amount
+	 */
+	public int getQuantityOfBoughtItems(String item) {
+		return itemCounter.getQuantityOfBoughtItems(item);
 	}
 	
 	/**
@@ -2278,6 +2288,15 @@ public class Player extends RPEntity {
 	 */
 	public void incHarvestedForItem(String name, int quantity) {
 		itemCounter.incHarvestedForItem(name, quantity);
+	}
+	
+	/**
+	 * Increases the amount of successful buyings for the given item
+	 * @param name the item name
+	 * @param quantity 
+	 */
+	public void incBoughtForItem(String name, int quantity) {
+		itemCounter.incBoughtForItem(name, quantity);
 	}
 
 	/**

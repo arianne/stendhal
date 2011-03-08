@@ -25,6 +25,8 @@ public class PlayerLootedItemsHandler {
 	
 	private final Map<String, Integer> harvested;
 	
+	private final Map<String, Integer> bought;
+	
 	/**
 	 * Create a new PlayerLootedItemsHandler for a player
 	 * 
@@ -37,6 +39,7 @@ public class PlayerLootedItemsHandler {
 		obtained = new HashMap<String, Integer>();
 		mined = new HashMap<String, Integer>();
 		harvested = new HashMap<String, Integer>();
+		bought = new HashMap<String, Integer>();
 		if(player.hasMap(LOOTED_ITEMS)) {
 			for(String item : player.getMap(LOOTED_ITEMS).keySet()) {
 				if(item.contains("produced.")) {
@@ -51,7 +54,11 @@ public class PlayerLootedItemsHandler {
 				if(item.contains("harvested.")) {
 					harvested.put(item.replace("harvested.", ""), player.getInt(LOOTED_ITEMS, item));
 				}
-				if(!item.contains("produced.") && !item.contains("obtained.") && !item.contains("mined.") && !item.contains("harvested.")) {
+				if(item.contains("bought.")) {
+					bought.put(item.replace("bought.", ""), player.getInt(LOOTED_ITEMS, item));
+				}
+				if(!item.contains("produced.") && !item.contains("obtained.") && !item.contains("mined.") 
+						&& !item.contains("harvested.") && !item.contains("bought.")) {
 					looted.put(item, player.getInt(LOOTED_ITEMS, item));
 				}
 			}
@@ -92,6 +99,19 @@ public class PlayerLootedItemsHandler {
 	public int getQuantityOfHarvestedItems(String item) {
 		if(harvested.containsKey(item)) {
 			return harvested.get(item);
+		}
+		return 0;
+	}
+	
+	/**
+	 * Retrieve the amount of much an item was bought by a player
+	 * 
+	 * @param item
+	 * @return the harvested quantity
+	 */
+	public int getQuantityOfBoughtItems(String item) {
+		if(bought.containsKey(item)) {
+			return bought.get(item);
 		}
 		return 0;
 	}
@@ -201,6 +221,25 @@ public class PlayerLootedItemsHandler {
 		int increased = current + count;
 		harvested.put(item, increased);
 		player.put(LOOTED_ITEMS, "harvested."+item, increased);
+	}
+	
+	/**
+	 * Increases the quantity an item was bought
+	 * 
+	 * @param item
+	 * @param count
+	 */
+	public void incBoughtForItem(String item, int count) {
+		if(!player.has(LOOTED_ITEMS, "bought."+item)) {
+			player.put(LOOTED_ITEMS, "bought."+item, 0);
+		}
+		if(!bought.containsKey(item)) {
+			bought.put(item, 0);
+		}
+		int current = player.getInt(LOOTED_ITEMS, "bought."+item);
+		int increased = current + count;
+		bought.put(item, increased);
+		player.put(LOOTED_ITEMS, "bought."+item, increased);
 	}
 
 	/**

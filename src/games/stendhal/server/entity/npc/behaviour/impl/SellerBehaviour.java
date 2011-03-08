@@ -98,6 +98,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 				seller.say("Congratulations! Here "
 						+ Grammar.isare(amount) + " your "
 						+ Grammar.plnoun(amount, chosenItemName) + "!");
+				player.incBoughtForItem(chosenItemName, amount);
 				return true;
 			} else {
 				seller.say("Sorry, but you cannot equip the "
