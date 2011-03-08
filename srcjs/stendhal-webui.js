@@ -158,13 +158,15 @@ stendhal.ui = {
 			var div = document.getElementById("buddyList");
 			var html = "";
 			for (var i in marauroa.me.buddies) {
-				var styleClass;
-				if (marauroa.me.buddies[i] == "true") {
-					styleClass = "online";
-				} else {
-					styleClass = "offline";
+				if (marauroa.me.buddies.hasOwnProperty(i)) {
+					var styleClass;
+					if (marauroa.me.buddies[i] == "true") {
+						styleClass = "online";
+					} else {
+						styleClass = "offline";
+					}
+					html = html + "<li class='" + styleClass + "'>" + i + "</li>";
 				}
-				html = html + "<li class='" + styleClass + "'>" + i + "</li>";
 			}
 			div.innerHTML = "<ul>" + html + "</ul>";
 		}
@@ -181,7 +183,9 @@ stendhal.ui = {
 			var div = document.getElementById("bag");
 			var html = "";
 			for (var i in marauroa.me.bag) {
-				html = html + "<li>" + marauroa.me.bag[i].title + "</li>";
+				if (!isNaN(i)) {
+					html = html + "<li>" + marauroa.me.bag[i].title + "</li>";
+				}
 			}
 			div.innerHTML = "<ul>" + html + "</ul>";
 		}
