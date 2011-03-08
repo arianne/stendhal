@@ -22,6 +22,8 @@ p.logsignificant_negative {color: #ff8f8f}
 p.logsignificant_positive {color: #4169e1}
 p.logtutorial {color: #ac00ac}
 p.logsupport {color: #ff7200}
+li.online {color: #0A0}
+li.offline {color: #A00}
 </style>
 
 <script src="json.js"></script>
@@ -44,6 +46,8 @@ p.logsupport {color: #ff7200}
 <script type="text/javascript">
 marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 	stendhal.ui.minimap.drawEntities();
+	stendhal.ui.buddyList.update();
+	stendhal.ui.bag.update();
 }
 </script>
 
@@ -57,7 +61,11 @@ marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 <noscript>JavaScript is required by the Stendhal Web Client.</noscript>
 </div>
 
+<div id="buddyList" style="border: 1px solid black; padding: 1em; width: 10em; float: left"></div>
+<div id="bag" style="border: 1px solid black; padding: 1em; width: 10em; float: left"></div>
+
 <canvas style="border: 1px solid black" id="minimap" width="1024" height="1024">Sorry, this part of the page only works in modern web browsers.</canvas>
+
 
 </body>
 </html>

@@ -116,8 +116,9 @@ stendhal.ui = {
 	},
 
 
+
 	//*************************************************************************
-	//                                 Chat Log                                
+	//                                Mini Map                                 
 	//*************************************************************************
 
 	minimap: {
@@ -142,6 +143,47 @@ stendhal.ui = {
 					this.ctx.strokeRect(o.x * zoom, o.y * zoom, o.width * zoom, o.height * zoom);
 				}
 			}
+		}
+	},
+
+
+
+
+	//*************************************************************************
+	//                               Buddy List                                
+	//*************************************************************************
+
+	buddyList: {
+		update: function() {
+			var div = document.getElementById("buddyList");
+			var html = "";
+			for (var i in marauroa.me.buddies) {
+				var styleClass;
+				if (marauroa.me.buddies[i] == "true") {
+					styleClass = "online";
+				} else {
+					styleClass = "offline";
+				}
+				html = html + "<li class='" + styleClass + "'>" + i + "</li>";
+			}
+			div.innerHTML = "<ul>" + html + "</ul>";
+		}
+	},
+
+
+
+	//*************************************************************************
+	//                                   Bag                                   
+	//*************************************************************************
+
+	bag: {
+		update: function() {
+			var div = document.getElementById("bag");
+			var html = "";
+			for (var i in marauroa.me.bag) {
+				html = html + "<li>" + marauroa.me.bag[i].title + "</li>";
+			}
+			div.innerHTML = "<ul>" + html + "</ul>";
 		}
 	}
 }
