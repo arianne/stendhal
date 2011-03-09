@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.entity.EntityChangeListener;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.entity.ContentChangeListener;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
-import games.stendhal.client.entity.factory.EntityFactory;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -24,15 +24,16 @@ import java.util.List;
 
 import javax.swing.JComponent;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * A view of an RPSlot in a grid of ItemPanels.
  */
-public class SlotGrid extends JComponent implements EntityChangeListener {
+public class SlotGrid extends JComponent implements ContentChangeListener {
 	/**
 	 * serial version uid
 	 */
@@ -47,8 +48,7 @@ public class SlotGrid extends JComponent implements EntityChangeListener {
 	private IEntity parent;
 	/** Name of the shown slot */
 	private String slotName;
-	/** A slot containing the shown entities */
-	private RPSlot shownSlot;
+
 	
 	public SlotGrid(int width, int height) {
 		setLayout(new GridLayout(height, width, PADDING, PADDING));
@@ -68,6 +68,10 @@ public class SlotGrid extends JComponent implements EntityChangeListener {
 	 * @param slot
 	 */
 	public void setSlot(final IEntity parent, final String slot) {
+		if (this.parent != null) {
+			this.parent.removeContentChangeListener(this);
+		}
+		
 		this.parent = parent;
 		this.slotName = slot;
 
@@ -79,15 +83,8 @@ public class SlotGrid extends JComponent implements EntityChangeListener {
 			panel.setName(slot);
 		}
 
-		parent.addChangeListener(this);
-		shownSlot = null;
-		rescanSlotContent();
-	}
-	
-	public void entityChanged(IEntity entity, Object property) {
-		if (property == IEntity.PROP_CONTENT) {
-			rescanSlotContent();
-		}
+		parent.addContentChangeListener(this);
+		scanSlotContent();
 	}
 	
 	/**
@@ -102,56 +99,108 @@ public class SlotGrid extends JComponent implements EntityChangeListener {
 	}
 	
 	/**
-	 * Rescans the content of the slot.
+	 * Scans the content of the slot.
 	 */
-	private void rescanSlotContent() {
+	private void scanSlotContent() {
 		if ((parent == null) || (slotName == null)) {
 			return;
 		}
 
+		// Clear the panels, in case they are not already empty
+		for (ItemPanel panel : panels) {
+			panel.setEntity(null);
+		}
 		final RPSlot rpslot = parent.getSlot(slotName);
-		
-		// Skip if not changed
-		if ((shownSlot != null) && shownSlot.equals(rpslot)) {
+		// Treat the entire slot contents as a content change
+		contentAdded(rpslot);
+	}
+
+	public void contentAdded(RPSlot added) {
+		// We are interested only in one slot
+		if (slotName.equals(added.getName())) {
+			for (RPObject obj : added) {
+				handleAdded(obj);
+			}
+		}
+	}
+	
+	/**
+	 * Handle an added or modified item.
+	 * 
+	 * @param obj changed or added object
+	 */
+	private void handleAdded(RPObject obj) {
+		ID id = obj.getID();
+		for (ItemPanel panel : panels) {
+			IEntity entity = panel.getEntity();
+			if (entity != null && id.equals(entity.getRPObject().getID())) {
+				// Changed rather than added.
+				return;
+			}
+		}
+		// Actually added. Get the corresponding entity
+		IEntity entity = GameObjects.getInstance().get(obj);
+		if (entity == null) {
+			logger.error("Unable to find entity for: " + obj,
+					new Throwable("here"));
 			return;
 		}
-
-		final Iterator<ItemPanel> iter = panels.iterator();
-
-		/*
-		 * Fill from contents
-		 */
-		if (rpslot != null) {
-			RPSlot newSlot = (RPSlot) rpslot.clone();
-
-			for (final RPObject object : newSlot) {
-				if (!iter.hasNext()) {
-					logger.error("More objects than slots: " + slotName);
-					break;
-				}
-
-				IEntity entity = EntityFactory.createEntity(object);
-
-				if (entity == null) {
-					logger.warn("Unable to find entity for: " + object,
-							new Throwable("here"));
-					continue;
-				}
-
-				iter.next().setEntity(entity);
+		
+		// Tuck it in the first free slot
+		for (ItemPanel panel : panels) {
+			if (panel.getEntity() == null) {
+				panel.setEntity(entity);
+				return;
 			}
-			
-			shownSlot = newSlot;
-		} else {
-			shownSlot = null;
-			logger.error("No slot found: " + slotName);
 		}
+		
+		logger.error("More objects than slots: " + slotName);
+	}
 
-		/*
-		 * Clear remaining holders
-		 */
-		while (iter.hasNext()) {
-			iter.next().setEntity(null);
+	public void contentRemoved(RPSlot removed) {
+		// We are interested only in one slot
+		if (slotName.equals(removed.getName())) {
+			for (RPObject obj : removed) {
+				ID id = obj.getID();
+				for (ItemPanel panel : panels) {
+					IEntity entity = panel.getEntity();
+					if (entity != null && id.equals(entity.getRPObject().getID())) {
+						if (obj.size() == 1) {
+							// The object was removed
+							panel.setEntity(null);
+							continue;
+						}
+					}
+				}
+			}
+			compressSlots();
+		}
+	}
+	
+	/**
+	 * Shift item panel contents so that the empty ones are last.
+	 */
+	private void compressSlots() {
+		Iterator<ItemPanel> emptyIt = panels.iterator();
+		Iterator<ItemPanel> fullIt = panels.iterator();
+		// fullIt is always at least as far as emptyIt
+		while (fullIt.hasNext()) {
+			ItemPanel full = fullIt.next();
+			ItemPanel empty = emptyIt.next();
+			if (empty.getEntity() == null) {
+				// Found an empty slot. Try to move an entity from some filled
+				// one after it to it. Find the next filled slot.
+				while (full.getEntity() == null) {
+					if (fullIt.hasNext()) {
+						full = fullIt.next();
+					} else {
+						// Finished scanning the slots
+						return;
+					}
+				}
+				// Found a filled slot. Move the entity to the empty one
+				full.moveViewTo(empty);
+			}
 		}
 	}
 }

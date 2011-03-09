@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.entity.EntityChangeListener;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.entity.ContentChangeListener;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -29,12 +29,15 @@ import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * Window for showing the equipment the player is wearing.
  */
-public class Character extends InternalManagedWindow implements EntityChangeListener {
+public class Character extends InternalManagedWindow implements ContentChangeListener {
 	/**
 	 * serial version uid
 	 */
@@ -44,6 +47,7 @@ public class Character extends InternalManagedWindow implements EntityChangeList
 	private static final int PADDING = 1;
 	/** The pixel amount the hand slots should be below the armor slot */
 	private static final int HAND_YSHIFT = 10;
+	private static final Logger logger = Logger.getLogger(Character.class);
 	
 	/** ItemPanels searchable by the respective slot name */
 	private final Map<String, ItemPanel> slotPanels = new HashMap<String, ItemPanel>();
@@ -67,7 +71,7 @@ public class Character extends InternalManagedWindow implements EntityChangeList
 	 */
 	public void setPlayer(final User userEntity) {
 		player = userEntity;
-		userEntity.addChangeListener(this);
+		userEntity.addContentChangeListener(this);
 		refreshContents();
 	}
 	
@@ -144,7 +148,7 @@ public class Character extends InternalManagedWindow implements EntityChangeList
 		// traverse all displayed slots
 		for (final Entry<String, ItemPanel> entry : slotPanels.entrySet()) {
 			final RPSlot slot = player.getSlot(entry.getKey());
-
+			
 			if (slot == null) {
 				continue;
 			}
@@ -159,7 +163,7 @@ public class Character extends InternalManagedWindow implements EntityChangeList
 				if (iter.hasNext()) {
 					final RPObject object = iter.next();
 
-					IEntity entity = EntityFactory.createEntity(object);
+					IEntity entity = GameObjects.getInstance().get(object);
 
 					entitySlot.setEntity(entity);
 				} else {
@@ -169,8 +173,7 @@ public class Character extends InternalManagedWindow implements EntityChangeList
 		}
 
 		/*
-		 * Refresh gets called from outside the EDT. Either via entityChanged or
-		 * from setUser
+		 * Refresh gets called from outside the EDT.
 		 */
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -179,9 +182,51 @@ public class Character extends InternalManagedWindow implements EntityChangeList
 		});
 	}
 
-	public void entityChanged(IEntity entity, Object property) {
-		if (property == IEntity.PROP_CONTENT) {
-			refreshContents();
+	public void contentAdded(RPSlot added) {
+		ItemPanel panel = slotPanels.get(added.getName());
+		if (panel == null) {
+			// Not a slot we are interested in
+			return;
+		}
+		
+		for (RPObject obj : added) {
+			ID id = obj.getID();
+			IEntity entity = panel.getEntity();
+			if (entity != null && id.equals(entity.getRPObject().getID())) {
+				// Changed rather than added.
+				return;
+			}
+			// Actually added, fetch the corresponding entity
+			entity = GameObjects.getInstance().get(obj);
+			if (entity == null) {
+				logger.error("Unable to find entity for: " + obj,
+						new Throwable("here"));
+				return;
+			}
+			panel.setEntity(entity);
+		}
+	}
+
+	public void contentRemoved(RPSlot removed) {
+		ItemPanel panel = slotPanels.get(removed.getName());
+		if (panel == null) {
+			// Not a slot we are interested in
+			return;
+		}
+		for (RPObject obj : removed) {
+			ID id = obj.getID();
+			IEntity entity = panel.getEntity();
+			if (entity != null && id.equals(entity.getRPObject().getID())) {
+				if (obj.size() == 1) {
+					// The object was removed
+					panel.setEntity(null);
+					continue;
+				}
+			} else {
+				logger.error("Tried removing wrong object from a panel. "
+						+ "removing: " + obj + " , but panel contains: "
+						+ panel.getEntity(), new Throwable());
+			}
 		}
 	}
 }
