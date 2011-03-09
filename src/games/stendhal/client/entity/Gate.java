@@ -188,4 +188,12 @@ public class Gate implements IEntity {
 		}
 		return path;
 	}
+
+	public void addContentChangeListener(ContentChangeListener listener) {
+		// unused
+	}
+
+	public void removeContentChangeListener(ContentChangeListener listener) {
+		// unused
+	}
 }

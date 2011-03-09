@@ -253,4 +253,17 @@ public interface IEntity {
 	 * 	complete path to the entity
 	 */
 	public List<String> getPath();
+	
+	/**
+	 * Add a listener for content changes
+	 * 
+	 * @param listener
+	 */
+	void addContentChangeListener(ContentChangeListener listener);
+	/**
+	 * Remove a content change listener.
+	 * 
+	 * @param listener
+	 */
+	void removeContentChangeListener(ContentChangeListener listener);
 }
