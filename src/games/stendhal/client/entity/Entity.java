@@ -18,6 +18,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -43,6 +44,8 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * Change listeners.
 	 */
 	protected EntityChangeListener[] changeListeners;
+	
+	private final List<ContentChangeListener> contentChangeListeners = new CopyOnWriteArrayList<ContentChangeListener>(); 
 
 	/** The arianne object associated with this game entity. */
 	protected RPObject rpObject;
@@ -122,7 +125,13 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		changeListeners = newListeners;
 	}
 
+	public void addContentChangeListener(final ContentChangeListener listener) {
+		contentChangeListeners.add(listener);
+	}
 
+	public void removeContentChangeListener(final ContentChangeListener listener) {
+		contentChangeListeners.remove(listener);
+	}
 
 	/**
 	 * Fire change to all registered listeners.
@@ -603,6 +612,11 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		if (!changes.slots().isEmpty()) {
 			fireChange(PROP_CONTENT);
 		}
+		for (RPSlot slot : changes.slots()) {
+			for (ContentChangeListener listener : contentChangeListeners) {
+				listener.contentAdded(slot);
+			}
+		}
 
 		/*
 		 * Position changes
@@ -691,6 +705,11 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		 */
 		if (!changes.slots().isEmpty()) {
 			fireChange(PROP_CONTENT);
+		}
+		for (RPSlot slot : changes.slots()) {
+			for (ContentChangeListener listener : contentChangeListeners) {
+				listener.contentRemoved(slot);
+			}
 		}
 	}
 
