@@ -179,7 +179,7 @@ stendhal.ui = {
 	//*************************************************************************
 
 	equip: {
-		slots: ["head", "lhand", "rhand", "armor", "legs", "feet", "cloak"],
+		slots: ["head", "lhand", "rhand", "finger", "armor", "cloak", "legs", "feet"],
 
 		update: function() {
 			for (var i in this.slots) {
