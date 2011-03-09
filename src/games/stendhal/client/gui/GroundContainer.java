@@ -354,16 +354,19 @@ public class GroundContainer extends MouseHandler implements Inspector,
 		}
 		
 		RPObject parent = item.getContainer();
+		action.put(EquipActionConsts.SOURCE_PATH, entity.getPath());
 		if (parent != null) {
 			// looks like an drop
 			action.put("type", "drop");
 			
+			// Compatibility object addressing
 			action.put(EquipActionConsts.BASE_OBJECT, parent.getID().getObjectID());
 			action.put(EquipActionConsts.BASE_SLOT, item.getContainerSlot().getName());
 		} else {
 			// it is a displace
 			action.put("type", "displace");
 		}
+		// Compatibility object addressing
 		action.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
 
 		if (amount >= 1) {
