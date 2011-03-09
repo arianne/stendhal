@@ -155,7 +155,6 @@ public class ItemPanel extends JComponent implements DropTarget {
 				setCursor(cursorRepository.get(StendhalCursor.ITEM_PICK_UP_FROM_SLOT));
 			}
 		} else {
-			view = null;
 			setCursor(null);
 		}
 	}
