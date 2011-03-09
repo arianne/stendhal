@@ -40,8 +40,6 @@ import javax.swing.JPopupMenu;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
-
 public class ItemPanel extends JComponent implements DropTarget {
 	/**
 	 * serial version uid
@@ -131,28 +129,57 @@ public class ItemPanel extends JComponent implements DropTarget {
 		}
 
 		if (entity != null) {
-			view = EntityViewFactory.create(entity);
-
-			if (view != null) {
-				view.setContained(true);
-				view.setInspector(inspector);
-				if (parent.isUser()) {
-					setCursor(cursorRepository.get(view.getCursor()));
-				} else {
-					setCursor(cursorRepository.get(StendhalCursor.ITEM_PICK_UP_FROM_SLOT));
-				}
-			} else {
-				Logger.getLogger(ItemPanel.class).error("Failed to create view for entity: "
-						+ entity);
-			}
+			setEntityView(EntityViewFactory.create(entity));
 		} else {
-			view = null;
-			setCursor(null);
+			setEntityView(null);
 		}
 		
 		// The old popup menu is no longer valid
 		popupMenu = null;
 		repaint();
+	}
+	
+	/**
+	 * Set the entity view.
+	 * 
+	 * @param view new view, or <code>null</code>
+	 */
+	private void setEntityView(EntityView view) {
+		this.view = view;
+		if (view != null) {
+			view.setContained(true);
+			view.setInspector(inspector);
+			if (parent.isUser()) {
+				setCursor(cursorRepository.get(view.getCursor()));
+			} else {
+				setCursor(cursorRepository.get(StendhalCursor.ITEM_PICK_UP_FROM_SLOT));
+			}
+		} else {
+			view = null;
+			setCursor(null);
+		}
+	}
+	
+	/**
+	 * Get the shown entity.
+	 * 
+	 * @return entity, or <code>null</code> if the panel contains no entity
+	 */
+	IEntity getEntity() {
+		if (view != null) {
+			return view.getEntity();
+		}
+		return null;
+	}
+	
+	/**
+	 * Move the contents of the panel to another ItemPanel.
+	 * 
+	 * @param other the panel to move the contents
+	 */
+	void moveViewTo(ItemPanel other) {
+		other.setEntityView(view);
+		setEntityView(null);
 	}
 	
 	/**
