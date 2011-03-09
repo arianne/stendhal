@@ -609,9 +609,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		/*
 		 * Content changes
 		 */
-		if (!changes.slots().isEmpty()) {
-			fireChange(PROP_CONTENT);
-		}
 		for (RPSlot slot : changes.slots()) {
 			for (ContentChangeListener listener : contentChangeListeners) {
 				listener.contentAdded(slot);
@@ -703,9 +700,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		/*
 		 * Content changes
 		 */
-		if (!changes.slots().isEmpty()) {
-			fireChange(PROP_CONTENT);
-		}
 		for (RPSlot slot : changes.slots()) {
 			for (ContentChangeListener listener : contentChangeListeners) {
 				listener.contentRemoved(slot);
