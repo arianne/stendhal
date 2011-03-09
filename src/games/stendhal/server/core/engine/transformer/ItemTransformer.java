@@ -19,6 +19,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.UpdateConverter;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 public class ItemTransformer {
 	private static Logger logger = Logger.getLogger(ItemTransformer.class);
@@ -88,6 +89,15 @@ public class ItemTransformer {
 
 			if (rpobject.has("logid")) {
 				item.put("logid", rpobject.get("logid"));
+			}
+			
+			// Contents, if the item has slot(s)
+			for (RPSlot slot : rpobject.slots()) {
+				RPSlot itemSlot = item.getSlot(slot.getName());
+				for (RPObject obj : slot) {
+					// Transform the contents too
+					itemSlot.add(transform(obj));
+				}
 			}
 			
 			return item;
