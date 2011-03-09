@@ -105,8 +105,8 @@ public class RPObjectChangeDispatcher {
 			final RPObject changes) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in client");
-			object.applyDifferences(changes, null);
 			fireChangedAdded(object, changes);
+			object.applyDifferences(changes, null);
 		} catch (final Exception e) {
 			logger.error("dispatchModifyAdded failed, object is " + object
 					+ ", changes is " + changes, e);
@@ -128,8 +128,8 @@ public class RPObjectChangeDispatcher {
 				logger.debug("Object(" + object.getID() + ") modified in client");
 				logger.debug("Original(" + object + ") modified in client");
 
-				object.applyDifferences(null, changes);
 				fireChangedRemoved(object, changes);
+				object.applyDifferences(null, changes);
 
 				logger.debug("Modified(" + object + ") modified in client");
 				logger.debug("Changes(" + changes + ") modified in client");
