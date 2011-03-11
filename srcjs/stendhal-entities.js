@@ -2,6 +2,7 @@
  * General entity
  */
 marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFactory._default);
+marauroa.rpobjectFactory.entity.minimapShow = false;
 marauroa.rpobjectFactory.entity.minimapStyle = "rgb(200,255,200)";
 marauroa.rpobjectFactory.entity.set = function(key, value) {
 	marauroa.rpobjectFactory.entity.proto.set.apply(this, arguments);
@@ -26,6 +27,7 @@ marauroa.rpobjectFactory.item.minimapStyle = "rgb(0,255,0)";
  * Player
  */
 marauroa.rpobjectFactory.player = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
+marauroa.rpobjectFactory.player.minimapShow = true;
 marauroa.rpobjectFactory.player.minimapStyle = "rgb(255, 255, 255)";
 
 /** updates a property value */
@@ -60,6 +62,7 @@ marauroa.rpobjectFactory.creature.minimapStyle = "rgb(255,255,0)";
  * Portal
  */
 marauroa.rpobjectFactory.portal = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
+marauroa.rpobjectFactory.portal.minimapShow = true;
 marauroa.rpobjectFactory.portal.minimapStyle = "rgb(0,0,0)";
 
 

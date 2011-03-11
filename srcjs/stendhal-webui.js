@@ -133,7 +133,7 @@ stendhal.ui = {
 
 			for (var i in marauroa.currentZone) {
 				var o = marauroa.currentZone[i];
-				if (typeof(o.x) != "undefined" && typeof(o.y) != "undefined") {
+				if (typeof(o.x) != "undefined" && typeof(o.y) != "undefined" && (o.minimapShow || (marauroa.me.adminlevel && marauroa.me.adminlevel >= 600))) {
 					// not supported by IE <= 8
 					if (typeof(this.ctx.fillText) != "undefined") {
 						this.ctx.fillText(o.id, o.x * zoom, o.y * zoom);
