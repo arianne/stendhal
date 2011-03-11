@@ -32,7 +32,7 @@ public class OutsideZoneAchievementFactory extends AbstractAchievementFactory {
 		list.add(createAchievement("zone.outside.fado", "Far South", "Visit all outside zones in the Fado region", 
 									Achievement.MEDIUM_BASE_SCORE, 
 									new PlayerVisitedZonesInRegionCondition("fado", Boolean.TRUE, Boolean.TRUE)));
-		list.add(createAchievement("zone.outside.orril", "Scout", "Visit all outside zones in the Fado region", 
+		list.add(createAchievement("zone.outside.orril", "Scout", "Visit all outside zones in the Orril region", 
 									Achievement.MEDIUM_BASE_SCORE, 
 									new PlayerVisitedZonesInRegionCondition("orril", Boolean.TRUE, Boolean.TRUE)));
 		list.add(createAchievement("zone.outside.amazon", "Jungle Explorer", "Visit all outside zones in the Amazon region", 
