@@ -134,7 +134,10 @@ stendhal.ui = {
 			for (var i in marauroa.currentZone) {
 				var o = marauroa.currentZone[i];
 				if (typeof(o.x) != "undefined" && typeof(o.y) != "undefined") {
-					this.ctx.fillText(o.id, o.x * zoom, o.y * zoom);
+					// not supported by IE <= 8
+					if (typeof(this.ctx.fillText) != "undefined") {
+						this.ctx.fillText(o.id, o.x * zoom, o.y * zoom);
+					}
 					if (typeof(o.minimapStyle) != "undefined") {
 						this.ctx.strokeStyle = o.minimapStyle;
 					} else {
@@ -188,7 +191,7 @@ stendhal.ui = {
 					var o = s.first();
 					marauroa.log.warn(s, o);
 					if (typeof(o) != "undefined") {
-						document.getElementById(this.slots[i]).style.backgroundImage = "url('" + stendhal.server + "/data/sprites/items/" + o.class + "/" + o.subclass + ".png " + "')";
+						document.getElementById(this.slots[i]).style.backgroundImage = "url(" + stendhal.server + "/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png" + ")";
 					} else {
 						document.getElementById(this.slots[i]).style.backgroundImage = "none";
 					}
@@ -217,7 +220,7 @@ stendhal.ui = {
 			for (var i in marauroa.me[name]) {
 				if (!isNaN(i)) {
 					var o = marauroa.me[name][i];
-					document.getElementById(name + cnt).style.backgroundImage = "url('" + stendhal.server + "/data/sprites/items/" + o.class + "/" + o.subclass + ".png " + "')";
+					document.getElementById(name + cnt).style.backgroundImage = "url(" + stendhal.server + "/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png " + ")";
 					cnt++;
 				}
 			}
