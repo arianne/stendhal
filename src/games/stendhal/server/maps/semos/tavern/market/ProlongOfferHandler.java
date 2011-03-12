@@ -78,7 +78,9 @@ public class ProlongOfferHandler extends OfferHandler {
 						} else {
 							message.append("Do you want to prolong your offer of ");
 							message.append(Grammar.quantityplnoun(quantity, o.getItem().getName(), "one"));
-							message.append(" for ");
+							message.append(" at a price of ");
+							message.append(o.getPrice());
+							message.append(" for a fee of ");
 							message.append(TradingUtility.calculateFee(player, o.getPrice()).intValue());
 							message.append(" money?");
 						}
