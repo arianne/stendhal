@@ -1,6 +1,14 @@
 Changelog
 ---------
 
+0.93
+
+*world*
+- added ghost hound (rare) to Semos mountain cemetery
+
+*website*
+- new rankings for best player and hall of fame using achievements
+- My & My Friends view shows true rankings
 
 0.92
 
