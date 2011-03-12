@@ -835,7 +835,7 @@
       <item value="wooden arrow" quantity="[5,15]" probability="10.0"/>
       <item value="shadow boots" quantity="[1,1]" probability="0.25"/>
       <item value="crossbow" quantity="[1,1]" probability="3.5"/>
-      <item value="hunter crossbow" quantity="[1,1]" probability="5.0E-4"/>
+      <item value="hunter crossbow" quantity="[1,1]" probability="0.0005"/>
     </drops>
     <equips>
       <slot name="lhand" item="golden arrow" quantity="10000"/>

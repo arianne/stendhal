@@ -300,7 +300,7 @@
       <item value="money" quantity="[50,120]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
       <item value="shadow armor" quantity="[1,1]" probability="1.2"/>
-      <item value="black armor" quantity="[1,1]" probability="5.0E-4"/>
+      <item value="black armor" quantity="[1,1]" probability="0.0005"/>
       <item value="black boots" quantity="[1,1]" probability="0.2"/>
       <item value="golden cloak" quantity="[1,1]" probability="0.5"/>
       <item value="black shield" quantity="[1,1]" probability="0.01"/>
@@ -337,7 +337,7 @@
       <item value="money" quantity="[50,120]" probability="100.0"/>
       <item value="golden armor" quantity="[1,1]" probability="1.5"/>
       <item value="shadow armor" quantity="[1,1]" probability="1.2"/>
-      <item value="black armor" quantity="[1,1]" probability="5.0E-4"/>
+      <item value="black armor" quantity="[1,1]" probability="0.0005"/>
       <item value="black boots" quantity="[1,1]" probability="0.2"/>
       <item value="golden cloak" quantity="[1,1]" probability="2.0"/>
       <item value="chaos cloak" quantity="[1,1]" probability="1.0"/>
