@@ -80,7 +80,8 @@
     </attributes>
     <level value="45"/>
     <experience value="1250"/>
-    <respawn value="1690"/>
+    <!-- once in 6 weeks, but two are in the world -->
+    <respawn value="12096000"/>
     <corpse name="animal"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="75.0"/>
@@ -98,6 +99,7 @@
       <profile name="offensive"/>
       <profile name="patrolling"/>
       <profile name="lifesteal" params="0.05"/>
+      <profile name="rare"/>
     </ai>
   </creature>
   <creature name="bloody zombie">
