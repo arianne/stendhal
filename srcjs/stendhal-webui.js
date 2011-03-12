@@ -241,7 +241,6 @@ stendhal.ui = {
 				var s = marauroa.me[this.slots[i]];
 				if (typeof(s) != "undefined") {
 					var o = s.first();
-					marauroa.log.warn(s, o);
 					if (typeof(o) != "undefined") {
 						document.getElementById(this.slots[i]).style.backgroundImage = "url(" + stendhal.server + "/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png" + ")";
 					} else {
