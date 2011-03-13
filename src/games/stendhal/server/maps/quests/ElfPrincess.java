@@ -13,10 +13,13 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -176,13 +179,54 @@ public class ElfPrincess extends AbstractQuest {
 				"I gave you a flower not five minutes past! Her Royal Highness can enjoy that one for a while.",
 				null);
 	    
+	    final ChatCondition lostFlowerCondition = new AndCondition(new GreetingMatchesNameCondition(rose.getName()),
+				 // had got the flower before and was supposed to take it to the princess next
+	    		 new QuestInStateCondition(QUEST_SLOT, 0, "got_flower"),
+				 // check chest and so on first - maybe the player does still have it (though we can't check house chests or the floor)
+				 new ChatCondition() {
+				     public boolean fire(final Player player, final Sentence sentence, final Entity entity) { 
+				    	 return player.getTotalNumberOf("rhosyd") == 0;
+				     }
+				 },
+				// just to check there is space
+				new PlayerCanEquipItemCondition("rhosyd"),
+				// note: older quest slots will pass this automatically, but they are old now.
+                new TimePassedCondition(QUEST_SLOT, 1, 12*MathHelper.MINUTES_IN_ONE_WEEK));
+	   	    
+	    // if the player never had a timestamp stored (older quest) we have now added timestamp 1.
+	    // but that was a while ago that we changed it (November 2010?)
+		rose.add(ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			lostFlowerCondition,
+			ConversationStates.QUESTION_1, 
+			"Hello dearie. Did you lose the flower I gave you last? If you need another say #yes but it's bad luck for me to have to give you it again, so you better be sure!",
+			null);
+		
+		rose.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES,
+				lostFlowerCondition,
+				ConversationStates.IDLE,
+				"Heres a new flower to take the pretty lady, but mind you don't lose that one.",
+				new MultipleActions(new EquipItemAction("rhosyd", 1, true), 
+                        new SetQuestAction(QUEST_SLOT, 0, "got_flower"), 
+                        // dock some karma for losing the flower
+                        new IncreaseKarmaAction(-20.0), 
+                        new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
+		
+		rose.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.NO_MESSAGES,
+				lostFlowerCondition,
+				ConversationStates.IDLE,
+				"No worries dearie, you probably got it somewhere!",
+				null);
+		
         // don't give the flower if the quest state isn't start
-        // possibly: unless it's been over 12 weeks and are in state got_flower?
-        // trouble is old slots don't have a timestamp and so TimePassed will return true	
+        // unless it's been over 12 weeks and are in state got_flower?
 	    rose.add(ConversationStates.IDLE,
 		    	ConversationPhrases.GREETING_MESSAGES,
 		    	new AndCondition(new GreetingMatchesNameCondition(rose.getName()),
-		    					 new QuestNotInStateCondition(QUEST_SLOT, 0, "start")),
+		    					 new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
+		    					 new NotCondition(lostFlowerCondition)),
 		    	ConversationStates.IDLE,
 		    	"I've got nothing for you today, sorry dearie. I'll be on my way now, bye.", 
 		    	null);
