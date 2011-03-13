@@ -12,6 +12,35 @@
  ***************************************************************************/
 
 stendhal.slashActionRepository = {
+	"adminnote": {
+		execute: function(type, params, remainder) {
+			var action = {
+				"type": type,
+				"target": params[0],
+				"note": remainder
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
+	},
+
+	"adminlevel": {
+		execute: function(type, params, remainder) {
+			var action = {
+				"type": type,
+				"target": params[0],
+			};
+			if (params.length >= 2) {
+				action.newlevel = params[1];
+			}
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 2
+	},
 
 	"ban": {
 		execute: function(type, params, remainder) {
@@ -124,6 +153,22 @@ stendhal.slashActionRepository = {
 		getMaxParams: 1
 	},
 
+	"summonat": {
+		execute: function(type, params, remainder) {
+			var action = {
+				"type": type,
+				target: params[0],
+				slot: params[1],
+				amount: params[2],
+				item: remainder
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 3,
+		getMaxParams: 3
+	},
+
 	"support": {
 		execute: function(type, params, remainder) {
 			var action = {
@@ -221,7 +266,7 @@ stendhal.slashActionRepository = {
 				remainder = remainder + array[i] + " ";
 			}
 			array.slice(action.getMaxParams);
-			return action.execute(name, array, remainder);
+			return action.execute(name, array, remainder.trim());
 		} else {
 			stendhal.ui.chatLog.addLine("error", "Missing arguments. Try /help");
 			return false;
