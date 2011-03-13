@@ -742,6 +742,8 @@ For example say:  11  if you want the room called Water of Love.
 </zone>
 
 <zone name="int_imorgens_house" file="interiors/fado/imorgens_house.tmx">
+ <configurator class-name="games.stendhal.server.maps.fado.forest.OldWitchNPC" />
+
  <portal x="4" y="14" ref="entrance">
   <destination zone="0_fado_forest_s" ref="imorgens_house_entrance"/>
  </portal>
