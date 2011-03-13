@@ -673,7 +673,7 @@
   
   <creature name="high lich">
     <type class="undead" subclass="high_lich" tileid="undead_fallen.png:4"/>
-    <description></description>
+    <description>The terrible grinning skull of a high lich leers at you as it prepares to slaughter you in a myriad of magical ways.</description>
     <attributes>
       <atk value="693"/>
       <def value="123"/>
