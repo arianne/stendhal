@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.imageviewer;
 
-import games.stendhal.client.stendhal;
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.gui.ComponentPaintCache;
 import games.stendhal.client.gui.ComponentPaintCache.Cacheable;
 import games.stendhal.client.gui.ScrolledViewport;
@@ -74,7 +74,7 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 			// More reasonable scrolling speed when using the mouse wheel
 			viewPort.setScrollingSpeed(SCROLLING_SPEED);
 			panel.add(label);
-			Dimension screenSize = stendhal.getScreenSize();
+			Dimension screenSize = GameScreen.get().getSize();
 			viewPort.getComponent().setPreferredSize(new Dimension(screenSize.width - 80, screenSize.height - 100));
 			add(viewPort.getComponent(), BorderLayout.CENTER);
 		} else {
