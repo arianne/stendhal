@@ -11,7 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-
+/**
+ * Tests for PlayerMinedNumberOfItemsCondition
+ * 
+ * @author madmetzger
+ *
+ */
 public class PlayerMinedNumberOfItemsConditionTest {
 
 	@Before
