@@ -135,16 +135,7 @@ public class PlayerLootedItemsHandler {
 	 * @param count the amount to increase
 	 */
 	public void incLootForItem(String item, int count) {
-		if(!player.has(LOOTED_ITEMS, item)) {
-			player.put(LOOTED_ITEMS, item, 0);
-		}
-		if(!looted.containsKey(item)) {
-			looted.put(item, 0);
-		}
-		int current = player.getInt(LOOTED_ITEMS, item);
-		int increased = current + count;
-		looted.put(item, increased);
-		player.put(LOOTED_ITEMS, item, increased);
+		handlePrefixedCounting(item, count, "", looted);
 	}
 
 	/**
@@ -154,16 +145,7 @@ public class PlayerLootedItemsHandler {
 	 * @param count the amount to increase
 	 */
 	public void incProducedForItem(String item, int count) {
-		if(!player.has(LOOTED_ITEMS, "produced."+item)) {
-			player.put(LOOTED_ITEMS, "produced."+item, 0);
-		}
-		if(!looted.containsKey(item)) {
-			looted.put(item, 0);
-		}
-		int current = player.getInt(LOOTED_ITEMS, "produced."+item);
-		int increased = current + count;
-		produced.put(item, increased);
-		player.put(LOOTED_ITEMS, "produced."+item, increased);
+		handlePrefixedCounting(item, count, "produced.", produced);
 	}
 
 	/**
@@ -173,16 +155,7 @@ public class PlayerLootedItemsHandler {
 	 * @param count the amount to increase
 	 */
 	public void incObtainedForItem(String item, int count) {
-		if(!player.has(LOOTED_ITEMS, "obtained."+item)) {
-			player.put(LOOTED_ITEMS, "obtained."+item, 0);
-		}
-		if(!obtained.containsKey(item)) {
-			obtained.put(item, 0);
-		}
-		int current = player.getInt(LOOTED_ITEMS, "obtained."+item);
-		int increased = current + count;
-		obtained.put(item, increased);
-		player.put(LOOTED_ITEMS, "obtained."+item, increased);
+		handlePrefixedCounting(item, count, "obtained.", obtained);
 	}
 	
 	/**
@@ -192,16 +165,7 @@ public class PlayerLootedItemsHandler {
 	 * @param count
 	 */
 	public void incMinedForItem(String item, int count) {
-		if(!player.has(LOOTED_ITEMS, "mined."+item)) {
-			player.put(LOOTED_ITEMS, "mined."+item, 0);
-		}
-		if(!mined.containsKey(item)) {
-			mined.put(item, 0);
-		}
-		int current = player.getInt(LOOTED_ITEMS, "mined."+item);
-		int increased = current + count;
-		mined.put(item, increased);
-		player.put(LOOTED_ITEMS, "mined."+item, increased);
+		handlePrefixedCounting(item, count, "mined.", mined);
 	}
 	
 	/**
@@ -211,16 +175,7 @@ public class PlayerLootedItemsHandler {
 	 * @param count
 	 */
 	public void incHarvestedForItem(String item, int count) {
-		if(!player.has(LOOTED_ITEMS, "harvested."+item)) {
-			player.put(LOOTED_ITEMS, "harvested."+item, 0);
-		}
-		if(!harvested.containsKey(item)) {
-			harvested.put(item, 0);
-		}
-		int current = player.getInt(LOOTED_ITEMS, "harvested."+item);
-		int increased = current + count;
-		harvested.put(item, increased);
-		player.put(LOOTED_ITEMS, "harvested."+item, increased);
+		handlePrefixedCounting(item, count, "harvested.", harvested);
 	}
 	
 	/**
@@ -230,16 +185,30 @@ public class PlayerLootedItemsHandler {
 	 * @param count
 	 */
 	public void incBoughtForItem(String item, int count) {
-		if(!player.has(LOOTED_ITEMS, "bought."+item)) {
-			player.put(LOOTED_ITEMS, "bought."+item, 0);
+		handlePrefixedCounting(item, count, "bought.", bought);
+	}
+
+	/**
+	 * handles redundant storage of counted items in player object and a separate map
+	 * 
+	 * @param item the item to count
+	 * @param count how much to increment
+	 * @param prefix the prefix to use for the map withing the player object
+	 * @param redundantMap additional map for storing
+	 */
+	private void handlePrefixedCounting(String item, int count, String prefix, Map<String, Integer> redundantMap) {
+		StringBuilder key = new StringBuilder(prefix);
+		key.append(item);
+		if(!player.has(LOOTED_ITEMS, key.toString())) {
+			player.put(LOOTED_ITEMS, key.toString(), 0);
 		}
-		if(!bought.containsKey(item)) {
-			bought.put(item, 0);
+		if(!redundantMap.containsKey(item)) {
+			redundantMap.put(item, 0);
 		}
-		int current = player.getInt(LOOTED_ITEMS, "bought."+item);
+		int current = player.getInt(LOOTED_ITEMS, key.toString());
 		int increased = current + count;
-		bought.put(item, increased);
-		player.put(LOOTED_ITEMS, "bought."+item, increased);
+		redundantMap.put(item, increased);
+		player.put(LOOTED_ITEMS, key.toString(), increased);
 	}
 
 	/**
