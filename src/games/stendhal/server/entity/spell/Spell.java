@@ -15,15 +15,17 @@ import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
+import games.stendhal.server.entity.npc.condition.PlayerManaGreaterThanCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Dateable;
 
 import java.util.Arrays;
 import java.util.List;
 
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
@@ -77,37 +79,50 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * @param target the entity the spell is aimed at
 	 */
 	public void cast(Player caster, Entity target) {
+		if(checkPreConditions(caster, target)) {
+			//deduct mana
+			caster.setMana(caster.getMana() - getMana());
+			doEffects(caster, target);
+			//set last casting time for calculation of cooldown
+			setTimestamp(System.currentTimeMillis());
+			//log gameEvent
+		}
+	}
+	
+	private boolean checkPreConditions(Player caster, Entity target) {
+		//TODO
+		//     * use/implement standard conditions for checks
+		//     * use/implement standard actions for mana usage etc
+		
 		//check for sufficient mana
-		int currentMana = caster.getMana();
-		if (currentMana < getMana() ) {
+		if (!new PlayerManaGreaterThanCondition(getMana()-1).fire(caster, null, null)) {
 			caster.sendPrivateText("You have not sufficent mana to cast your spell \""+getName()+"\".");
-			return;
+			return false;
 		}
+		
 		//check minimum level
-		if (caster.getLevel() < getMinimumLevel()) {
+		if (new LevelLessThanCondition(getMinimumLevel()).fire(caster, null, null)) {
 			caster.sendPrivateText("You did not reach the minimum level for your spell \""+getName()+"\" yet.");
-			return;
+			return false;
 		}
-		long earliestPossibleNextCastingTime = getTimestamp() + getCooldown(); 
+		
+		long earliestPossibleNextCastingTime = getTimestamp() + getCooldown()*1000; 
 		if(System.currentTimeMillis() < earliestPossibleNextCastingTime) {
 			caster.sendPrivateText("Your spell \""+getName()+"\" did not yet cool down.");
-			return;
+			return false;
 		}
+		
 		//check if target is valid for spell?
 		if (!isTargetValid(caster, target)) {
 			caster.sendPrivateText("The target is not valid for your spell \""+getName()+"\".");
-			return;
+			return false;
 		}
 		//check other preconditions like having learned that school?
 		//check for right equipment
-		//deduct mana
-		caster.setMana(currentMana - getMana());
-		doEffects(caster, target);
-		//set last casting time for calculation of cooldown
-		setTimestamp(System.currentTimeMillis());
-		//log gameEvent
+		//no check failed so preconditions are fulfilled
+		return true;
 	}
-	
+
 	/**
 	 * Provides the concrete behaviour of each concrete spell, i.e. a healing effect should done here
 	 * 
