@@ -136,7 +136,7 @@ JOIN
     (SELECT achievement_id, count(*) as cnt FROM reached_achievement 
      JOIN achievement on achievement.id = achievement_id 
      JOIN character_stats on name = charname 
-     WHERE admin<=600 
+     WHERE admin<=600 and category != 'SPECIAL'
      GROUP BY achievement_id) t ON ra.achievement_id = t.achievement_id 
 JOIN character_stats ON name = charname
 WHERE admin<=600
@@ -153,7 +153,7 @@ JOIN
     (SELECT achievement_id, count(*) as cnt FROM reached_achievement 
      JOIN achievement on achievement.id = achievement_id 
      JOIN character_stats on name = charname 
-     WHERE admin<=600 
+     WHERE admin<=600 and category != 'SPECIAL'
      GROUP BY achievement_id) t ON ra.achievement_id = t.achievement_id 
 JOIN character_stats ON name = charname
 WHERE admin<=600 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
@@ -173,7 +173,7 @@ JOIN
     (SELECT achievement_id, count(*) as cnt FROM reached_achievement 
      JOIN achievement on achievement.id = achievement_id 
      JOIN character_stats on name = charname 
-     WHERE admin<=600 
+     WHERE admin<=600 and category != 'SPECIAL'
      GROUP BY achievement_id) t ON ra.achievement_id = t.achievement_id 
 RIGHT JOIN character_stats ON name = charname
 WHERE admin<=600 
@@ -193,7 +193,7 @@ JOIN
     (SELECT achievement_id, count(*) as cnt FROM reached_achievement 
      JOIN achievement on achievement.id = achievement_id 
      JOIN character_stats on name = charname 
-     WHERE admin<=600 
+     WHERE admin<=600 and category != 'SPECIAL'
      GROUP BY achievement_id) t ON ra.achievement_id = t.achievement_id 
 RIGHT JOIN character_stats ON name = charname
 WHERE admin<=600 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
