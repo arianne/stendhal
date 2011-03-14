@@ -60,6 +60,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 		if (player.drop(res.getChosenItemName(), res.getAmount())) {
 			payPlayer(res, player);
 			seller.say("Thanks! Here is your money.");
+			player.incSoldForItem(res.getChosenItemName(), res.getAmount());
 			return true;
 		} else {
 			StringBuilder stringBuilder = new StringBuilder();
