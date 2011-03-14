@@ -2273,6 +2273,15 @@ public class Player extends RPEntity {
 	}
 	
 	/**
+	 * Increases the count of obtains from the well for the given item
+	 * @param name the item name
+	 * @param quantity 
+	 */
+	public void incSoldForItem(String name, int quantity) {
+		itemCounter.incSoldForItem(name, quantity);
+	}
+	
+	/**
 	 * Increases the amount of successful minings for the given item
 	 * @param name the item name
 	 * @param quantity 

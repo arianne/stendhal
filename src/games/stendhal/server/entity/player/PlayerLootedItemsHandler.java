@@ -27,6 +27,8 @@ public class PlayerLootedItemsHandler {
 	
 	private final Map<String, Integer> bought;
 	
+	private final Map<String, Integer> sold;
+	
 	/**
 	 * Create a new PlayerLootedItemsHandler for a player
 	 * 
@@ -40,6 +42,7 @@ public class PlayerLootedItemsHandler {
 		mined = new HashMap<String, Integer>();
 		harvested = new HashMap<String, Integer>();
 		bought = new HashMap<String, Integer>();
+		sold = new HashMap<String, Integer>();
 		if(player.hasMap(LOOTED_ITEMS)) {
 			for(String item : player.getMap(LOOTED_ITEMS).keySet()) {
 				if(item.contains("produced.")) {
@@ -57,8 +60,11 @@ public class PlayerLootedItemsHandler {
 				if(item.contains("bought.")) {
 					bought.put(item.replace("bought.", ""), player.getInt(LOOTED_ITEMS, item));
 				}
+				if(item.contains("sold.")) {
+					bought.put(item.replace("sold.", ""), player.getInt(LOOTED_ITEMS, item));
+				}
 				if(!item.contains("produced.") && !item.contains("obtained.") && !item.contains("mined.") 
-						&& !item.contains("harvested.") && !item.contains("bought.")) {
+						&& !item.contains("harvested.") && !item.contains("bought.") && !item.contains("sold.")) {
 					looted.put(item, player.getInt(LOOTED_ITEMS, item));
 				}
 			}
@@ -186,6 +192,16 @@ public class PlayerLootedItemsHandler {
 	 */
 	public void incBoughtForItem(String item, int count) {
 		handlePrefixedCounting(item, count, "bought.", bought);
+	}
+	
+	/**
+	 * Increases the quantity an item was sold
+	 * 
+	 * @param item
+	 * @param count
+	 */
+	public void incSoldForItem(String item, int count) {
+		handlePrefixedCounting(item, count, "sold.", sold);
 	}
 
 	/**
