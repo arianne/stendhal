@@ -90,7 +90,6 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	}
 	
 	private boolean checkPreConditions(Player caster, Entity target) {
-		//TODO
 		//     * use/implement standard conditions for checks
 		//     * use/implement standard actions for mana usage etc
 		
@@ -106,7 +105,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 			return false;
 		}
 		
-		long earliestPossibleNextCastingTime = getTimestamp() + getCooldown()*1000; 
+		long earliestPossibleNextCastingTime = getTimestamp() + getCooldown()*1000L; 
 		if(System.currentTimeMillis() < earliestPossibleNextCastingTime) {
 			caster.sendPrivateText("Your spell \""+getName()+"\" did not yet cool down.");
 			return false;
@@ -228,9 +227,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public String getName() {
 		if (has(ATTR_NAME)) {
 			return get(ATTR_NAME);
-		} else {
-			return null;
 		}
+		return null;
 	}
 	
 	/**
@@ -241,9 +239,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public int getAmount() {
 		if (has(ATTR_AMOUNT)) {
 			return getInt(ATTR_AMOUNT);
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 	
 	/**
@@ -254,9 +251,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public int getAtk() {
 		if (has(ATTR_ATK)) {
 			return getInt(ATTR_ATK);
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 	
 	/**
@@ -267,9 +263,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public int getCooldown() {
 		if (has(ATTR_COOLDOWN)) {
 			return getInt(ATTR_COOLDOWN);
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 	
 	/**
@@ -280,9 +275,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public int getDef() {
 		if (has(ATTR_DEF)) {
 			return getInt(ATTR_DEF);
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 	
 	/**
@@ -293,9 +287,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public double getLifesteal() {
 		if (has(ATTR_LIFESTEAL)) {
 			return getDouble(ATTR_LIFESTEAL);
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 	
 	/**
@@ -306,9 +299,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public int getMana() {
 		if (has(ATTR_MANA)) {
 			return getInt(ATTR_MANA);
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 	
 	/**
@@ -319,9 +311,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public int getMinimumLevel() {
 		if (has(ATTR_MINIMUMLEVEL)) {
 			return getInt(ATTR_MINIMUMLEVEL);
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 	
 	/**
@@ -332,9 +323,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public int getRange() {
 		if (has(ATTR_RANGE)) {
 			return getInt(ATTR_RANGE);
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 	
 	/**
@@ -345,9 +335,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public int getRate() {
 		if (has(ATTR_RATE)) {
 			return getInt(ATTR_RATE);
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 	
 	/**
@@ -358,9 +347,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	public int getRegen() {
 		if (has(ATTR_REGEN)) {
 			return getInt(ATTR_REGEN);
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 
 	public long getTimestamp() {
