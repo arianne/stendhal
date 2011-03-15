@@ -137,11 +137,14 @@ class DeathmatchEngine implements TurnListener {
 			return; 
 		}
 
-		// spawn new monster
-		if (((new Date()).getTime() - deathmatchState.getStateTime() > CreatureSpawner.SPAWN_DELAY)) {
+		int numberPlayers = dmInfo.getArena().getPlayers().size();
+		// spawn new monster, with the spawn delay proportional to player level
+		// and inversely proportional to the number of players in the ring
+		// and always spawning if there is no creature
+		// for level 20 players it is always just 20 seconds
+		if (((new Date()).getTime() - deathmatchState.getStateTime() > (300*(player.getLevel()-20)/(1+numberPlayers) + CreatureSpawner.SPAWN_DELAY)) || spawner.areAllCreaturesDead()) {
 			final DeathMatchCreature mycreature = spawner.spawnNewCreature(
 					deathmatchState.getQuestLevel(), player, dmInfo);
-
 			// in case there is not enough space to place the creature,
 			// mycreature is null
 			if (mycreature != null) {

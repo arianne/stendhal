@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deathmatch;
 
+import java.util.List;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
@@ -61,6 +63,10 @@ public class DeathmatchArea implements LoginListener {
 	public boolean contains(final Player player) {
 
 		return area.contains(player);
+	}
+	
+	public List<Player> getPlayers() {
+		return area.getPlayers();
 	}
 
 }
