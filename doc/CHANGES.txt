@@ -6,6 +6,8 @@ Changelog
 *world*
 - added ghost hound (rare) to Semos mountain cemetery
 - Imorgen and her mother Mircea moved into a house in Fado forest
+- Ambers way changed a bit for holding her back from Aldrin
+- Jef answers to all keywords now he has information for
 
 *website*
 - new rankings for best player and hall of fame using achievements
