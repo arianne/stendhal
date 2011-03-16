@@ -5,6 +5,7 @@ Changelog
 
 *world*
 - added ghost hound (rare) to Semos mountain cemetery
+- Imorgen and her mother Mircea moved into a house in Fado forest
 
 *website*
 - new rankings for best player and hall of fame using achievements
