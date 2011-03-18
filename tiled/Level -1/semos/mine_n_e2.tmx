@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/ground/brown.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png" trans="ff00ff"/>
  </tileset>
@@ -76,12 +75,12 @@
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Wyw3CMAwA0LICh/IbpnOw/yJkAJAQTWPHvCf5mNZxnMjLAgAAAMB2is4AAAAAAAAAAAAAAACI8oxOAABIxWwAAAAAAAAAAAAAAAAAAAAAsM/a4tLiOmgdudxa3Fs8Bq0j3jn59wDow/tMJZ/6WZ/HmKHuM+S4R/X9HUntYB6j72v0+xD9f+b3rod69VXG/syQ0zc5ZMgT/knFO1dxT8BxKs9/v+q5l17zX6X6VuA8AAAAAAAAAAAAAAAAAAAAAAAAAKjqBe/L3PoAAAEA
+   H4sIAAAAAAAAAO3WzRGCMBAGUGzBA/5QjD3oyf4bMQXoDCMhmyzvzeyNwJewgUwTAAAAAI9TdAIAAAAAAAAAAHr0ig4AADTxjg4AQDj/AgA4hufK65wNAAAAAAAAAAAAAAAAAAAAALaZS11KXRuNoy+3UvdSS6NxxDt3fj8A6vB9JpNf/azPY4yw7iNk3CL7/PZk7WAcrfdr9Pch+vmM71sP1eqrHvuzh0xrMvSQE44k457LOCdgP5nPf/+qOZda579M65uB9wEAAAAAAAAAAAAAAAAAAAAAAABAVh8DlG5qAAABAA==
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dS04CQRSGURai+H5i4laMjowOfGtQ2P+QO3ADnS7qFtXnJF/CgME/Ip2mC2YzAACYrqfoOXsEAAAAAABUss4eAADQKddZ0K+PAe/1WQD9esgeAABU8Zg9AIAm3WUPAACKu88eAAAAAOwkz4kCQFuGnPcAAACgH2/Re/YI0nxHP/+v3befnr9olT1iYvynEwAAANuwF+1H8xEdRIeVd1PGUXQcnYzoNDqrPZwizqOL6HJEV9F17eEUsYhuCnRbezgAAAAAAFvn3DgA9MvZFOiba3kAAAAAWuU3yoAh3O8GwPUjAAAAAAC0z3e7AP15iV6zR5DmM/rKHkGaZfSbPQKAJnmeDwAAAHbPBifQ+7gAAAEA
+   H4sIAAAAAAAAAO3dO27CQBSGURZCIG8SEilbQaJMCgh5IPLYf5lbsAHLZu5kfI70SRQUf4Us44HJBAAAxus5eskeAQAAAAAAhfxmDwAAaJTrLGjXW4f3+iyAdq2zBwAAAJBmlT0AAAAAAACogudEAaAuXc57AAAA0I7XaJc9gjSf0f742n378fmOfrJHjIz/dAIAAOAUptFZNOvRPDovvJthXESX0VWPrqOb0sMZxG20iO56dB8tSw9nEA/R4wA9lR4OAAAAAMDJOTcOAO1yNgXa5loeAAAAgFr5jTKgC/e7AXD9CAAAAAAA9fPdLkB7NtE2ewRp3qOP7BGkOURf2SMAqJLn+QAAAOD/+QOkJQCMAAABAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="128" height="128">
