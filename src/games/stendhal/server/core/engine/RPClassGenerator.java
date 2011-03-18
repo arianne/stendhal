@@ -44,6 +44,7 @@ import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.mapstuff.useable.FishSource;
 import games.stendhal.server.entity.mapstuff.useable.GoldSource;
 import games.stendhal.server.entity.mapstuff.useable.UseableEntity;
+import games.stendhal.server.entity.mapstuff.useable.WaterSpringSource;
 import games.stendhal.server.entity.mapstuff.useable.WellSource;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
@@ -126,6 +127,11 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass("gold_source")) {
 			GoldSource.generateRPClass();
 		}
+	
+		if (!RPClass.hasRPClass("water_source")) {
+			WaterSpringSource.generateRPClass();
+		}
+
 		if (!RPClass.hasRPClass("well_source")) {
 			WellSource.generateRPClass();
 		}
