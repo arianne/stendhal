@@ -235,6 +235,7 @@ public class EntityViewFactory {
 
 		register("walkblocker", null, null, WalkBlocker2DView.class);
 		register("well_source", null, null, WellSource2DView.class);
+		register("water_source", null, null, WaterSpringSource2DView.class);
 	}
 
 	/**

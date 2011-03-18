@@ -100,6 +100,7 @@ public final class EntityMap {
 		register("gold_source", null, null, UseableEntity.class);
 		register("fish_source", null, null, UseableEntity.class);
 		register("well_source", null, null, UseableEntity.class);
+		register("water_source", null, null, UseableEntity.class);
 
 		register("area", null, null, InvisibleEntity.class);
 
