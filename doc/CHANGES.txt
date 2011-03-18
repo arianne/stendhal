@@ -7,6 +7,7 @@ Changelog
 - added ghost hound (rare) to Semos mountain cemetery
 - Imorgen and her mother Mircea moved into a house in Fado forest
 - deathmatch creature spawn time dependent on player level and (inversely) on number of players in ring
+- get fresh water at some hidden new springs
 
 *website*
 - new rankings for best player and hall of fame using achievements
