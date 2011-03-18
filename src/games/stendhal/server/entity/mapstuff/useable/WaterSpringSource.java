@@ -37,7 +37,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	/**
 	 * The chance that filling flask is successful.
 	 */
-	private static final double FINDING_PROBABILITY = 0.80;
+	private static final double FINDING_PROBABILITY = 0.50;
 
 	/**
 	 * How long it takes to fill the bottle (in seconds). 
@@ -159,7 +159,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 			player.sendPrivateText("You were lucky and filled "
 					+ Grammar.quantityplnoun(amount, itemName, "a")+ ".");
 		} else {
-			player.sendPrivateText("Oh no! You spilled the water and let the flask fall into the water. Now it's gone.");
+			player.sendPrivateText("Oh no! You spilled the water and let the flask fall into it. Now it's gone.");
 		}
 	}
 
