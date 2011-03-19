@@ -111,7 +111,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 		}
 	}
 
-	protected Item getAskedItem(final String askedItem) {
+	public Item getAskedItem(final String askedItem) {
 		final Item item = SingletonRepository.getEntityManager().getItem(askedItem);
 		return item;
 	}
