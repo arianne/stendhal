@@ -138,4 +138,24 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye.", getReply(npc));
 	}
 
+	/**
+	 * Tests seller Jenny.
+	 */
+	@Test
+	public void testJennySelling() {
+		final SpeakerNPC npc = getNPC("Jenny");
+		final Engine en = npc.getEngine();
+
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", getReply(npc));
+
+		equipWithMoney(player, 30);
+		assertTrue(en.step(player, "buy 3 pansy seed"));
+		assertEquals("3 pansy seeds will cost 30. Do you want to buy them?", getReply(npc));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("Congratulations! Here are your pansy seeds!", getReply(npc));
+
+		assertTrue(player.isEquipped("seed", 3));
+	}
 }
