@@ -319,18 +319,19 @@ import marauroa.common.Pair;
 			final String monsters = player.getQuest(QUEST_SLOT, 1);
 			int killed=getKilledCreaturesNumber(player);
 			int killsnumber = enemyForces.get(monsters).first();
+			int moneyreward = 10000*Rand.roll1D6();
 			if(killed == killsnumber) {
 				// player killed no more no less then needed soldiers
-				npc.say("Good work! Take these coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.");
+				npc.say("Good work! Take these " + moneyreward + " coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.");
 			} else {
 				// player killed more then needed soldiers
 				npc.say("Pretty good! You killed "+(killed-killsnumber)+" extra "+
-						Grammar.plnoun(killed-killsnumber, "soldier")+"! Take these coins, and remember, I may wish you to do this job again in one week!");
+						Grammar.plnoun(killed-killsnumber, "soldier")+"! Take these " + moneyreward + " coins, and remember, I may wish you to do this job again in one week!");
 			}
 			int karmabonus = 5*(2*killed/(killsnumber)-1);
 			final StackableItem money = (StackableItem)
 					SingletonRepository.getEntityManager().getItem("money");
-			money.setQuantity(10000*Rand.roll1D6());
+			money.setQuantity(moneyreward);
 			player.setQuest(QUEST_SLOT, "done;"+System.currentTimeMillis());
 			player.equipOrPutOnGround(money);
 			player.addKarma(karmabonus);

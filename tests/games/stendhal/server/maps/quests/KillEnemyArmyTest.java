@@ -192,10 +192,10 @@ public class KillEnemyArmyTest {
 		int tempmoneys = player.getEquippedItemClass("bag", "money").getQuantity();
 		double tempkarma = player.getKarma();
 		en.step(player, "quest");
-        assertEquals("Good work! Take these coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.", getReply(npc));
-        assertEquals(tempxp, player.getXP()-100000);
         int moneys = player.getEquippedItemClass("bag", "money").getQuantity();
         int moneysdiff = moneys - tempmoneys;
+        assertEquals("Good work! Take these " + moneysdiff + " coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.", getReply(npc));
+        assertEquals(tempxp, player.getXP()-100000);
         assertTrue((moneysdiff>9999)&&(moneysdiff<60001));
         assertTrue((moneysdiff-(moneysdiff/10000)*10000)==0);
         assertEquals(tempkarma, player.getKarma()-5, 0.000001);
@@ -253,11 +253,14 @@ public class KillEnemyArmyTest {
 		
 		en.step(player, "hi");
 		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
+		int tempmoneys = player.getEquippedItemClass("bag", "money").getQuantity();
 
 		en.step(player, "quest");
+        int moneys = player.getEquippedItemClass("bag", "money").getQuantity();
+        int moneysdiff = moneys - tempmoneys;
 		assertEquals("Pretty good! You killed "+(killed-killsnumb)+
 				" extra " +	Grammar.plnoun(killed-killsnumb, "soldier")+
-				"! Take these coins, and remember, I may wish you to do this job again in one week!", getReply(npc));
+				"! Take these " + moneysdiff + " coins, and remember, I may wish you to do this job again in one week!", getReply(npc));
 		assertEquals(tempkarma, player.getKarma()-15.0, 0.000001);
 		questHistory.clear();
         questHistory.add("I completed Despot's Halb Errvl task and got my reward!");
