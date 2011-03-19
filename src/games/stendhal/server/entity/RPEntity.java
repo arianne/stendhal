@@ -1597,6 +1597,7 @@ public abstract class RPEntity extends GuidedEntity {
 		if (amount <= 0) {
 			return false;
 		}
+
 		int found = 0;
 
 		for (final String slotName : Constants.CARRYING_SLOTS) {
@@ -1608,8 +1609,9 @@ public abstract class RPEntity extends GuidedEntity {
 				}
 
 				final Item item = (Item) object;
+				final String itemName = item.getName();
 
-				if (item.getName().equals(name)) {
+				if (itemName.equals(name)) {
 					found += item.getQuantity();
 
 					if (found >= amount) {
@@ -1618,6 +1620,7 @@ public abstract class RPEntity extends GuidedEntity {
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -1656,6 +1659,7 @@ public abstract class RPEntity extends GuidedEntity {
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -1681,6 +1685,7 @@ public abstract class RPEntity extends GuidedEntity {
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -1756,6 +1761,7 @@ public abstract class RPEntity extends GuidedEntity {
 				}
 			}
 		}
+
 		// no slot, free slot or wrong item type
 		return false;
 	}
@@ -1783,6 +1789,7 @@ public abstract class RPEntity extends GuidedEntity {
 				}
 			}
 		}
+
 		// no slot, free slot or wrong item type
 		return null;
 	}
@@ -1795,9 +1802,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 *         left hand.
 	 */
 	public Item getWeapon() {
-
-		final String[] weaponsClasses = { "club", "sword", "axe", "ranged",
-				"missile" };
+		final String[] weaponsClasses = {"club", "sword", "axe", "ranged", "missile"};
 
 		for (final String weaponClass : weaponsClasses) {
 			final String[] slots = { "lhand", "rhand" };
@@ -1808,11 +1813,11 @@ public abstract class RPEntity extends GuidedEntity {
 				}
 			}
 		}
+
 		return null;
 	}
 
 	public List<Item> getWeapons() {
-
 		final List<Item> weapons = new ArrayList<Item>();
 		Item weaponItem = getWeapon();
 		if (weaponItem != null) {
@@ -1840,6 +1845,7 @@ public abstract class RPEntity extends GuidedEntity {
 				}
 			}
 		}
+
 		return weapons;
 	}
 
@@ -1857,6 +1863,7 @@ public abstract class RPEntity extends GuidedEntity {
 				return weapon;
 			}
 		}
+
 		return null;
 	}
 
@@ -1878,6 +1885,7 @@ public abstract class RPEntity extends GuidedEntity {
 				return item;
 			}
 		}
+
 		return null;
 	}
 
@@ -1906,6 +1914,7 @@ public abstract class RPEntity extends GuidedEntity {
 				holdsOtherWeapon = true;
 			}
 		}
+
 		if (holdsOtherWeapon) {
 			return null;
 		} else {
@@ -1974,6 +1983,7 @@ public abstract class RPEntity extends GuidedEntity {
 		if (getLevel() > 0) {
 			text += " It is level " + getLevel() + ".";
 		}
+
 		return text;
 	}
 
