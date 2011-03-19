@@ -21,6 +21,7 @@ import games.stendhal.server.util.TimeUtil;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.log4j.Logger;
 /**
  * 
  * Tells the time remaining between the timestamp on quest slot + delay time, and now.
@@ -31,6 +32,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class SayTimeRemainingAction implements ChatAction {
 
+	protected static final Logger logger = Logger.getLogger(SayTimeRemainingAction.class);	
+	
 	private final String questname;
 	private final String message;
 	private final int delay;
@@ -82,14 +85,16 @@ public class SayTimeRemainingAction implements ChatAction {
 		} else {
 			final String[] tokens = player.getQuest(questname).split(";"); 
 			final long delayInMilliseconds = delay * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-		
+			if (tokens.length - 1 < arg) {
+				logger.warn("Incorrect argument " + arg + " given for quest slot " + questname);
+				return;
+			}
 			// timeRemaining is ''time when quest was done +
 			// delay - time now''
 			// if this is > 0, the time has not yet passed
-			final long timeRemaining = (Long.parseLong(tokens[arg]) + delayInMilliseconds)
+			final long timeRemaining = (MathHelper.parseLong(tokens[arg]) + delayInMilliseconds)
 				- System.currentTimeMillis();
-			// TODO: return an error if tokens.length < arg 
-			// TODO: catch the number format exception in case tokens[arg] is no number? or does parseLong do this?
+			// MathHelper.parseLong will catch the number format exception in case tokens[arg] is no number and return 0
 			raiser.say(message + " " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
 		}
 	}
