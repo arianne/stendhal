@@ -511,9 +511,12 @@ import marauroa.common.Pair;
 			}
 		}
 		
-		if(player.getQuest(QUEST_SLOT, 0).equals("done")) {
+		if(isCompleted(player)) {
 			history.add("I completed Despot's Halb Errvl task and got my reward!");
-		}		
+		}	
+		if (isRepeatable(player)) {
+			history.add("Despot Halb Errvl is getting paranoid again about his safety, I can offer my services now.");
+		} 
 		return history; 
  	}
 }
