@@ -269,7 +269,7 @@ public class KillEnemyArmyTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 	}
-	
+
 	@Test
 	public void TestRequestQuestAgain() {
 		player.setQuest(QUEST_SLOT, "done;"+System.currentTimeMillis());
@@ -278,8 +278,9 @@ public class KillEnemyArmyTest {
 		en.step(player, "yes");
 		assertEquals("Well state what you want then!", getReply(npc));
 		en.step(player, "quest");
-		assertTrue(getReply(npc).equals("You have to check again in 7 days.") ||
-				   getReply(npc).equals("You have to check again in 1 week."));
+		String reply = getReply(npc);
+		assertTrue(reply.equals("You have to check again in 7 days.") ||
+				   reply.equals("You have to check again in 1 week."));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 	}
