@@ -22,18 +22,19 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledInSumForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -41,8 +42,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Pair;
-
-import org.apache.log4j.Logger;
 
 
 /**
@@ -73,10 +72,9 @@ import org.apache.log4j.Logger;
 
 	private static final String QUEST_NPC = "Despot Halb Errvl";
 	private static final String QUEST_SLOT = "kill_enemy_army";
-	private final long questdelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
+	private static final int delay = MathHelper.MINUTES_IN_ONE_WEEK;
 	private SpeakerNPC npc;
-	private static Logger logger = Logger.getLogger(KillEnemyArmy.class);
-
+	
 	protected HashMap<String, Pair<Integer, String>> enemyForces = new HashMap<String, Pair<Integer,String>>();
 	protected HashMap<String, List<String>> enemys = new HashMap<String, List<String>>();
 
@@ -239,35 +237,6 @@ import org.apache.log4j.Logger;
 	}
 
 	/**
-	 * function will return NPC answer how much time remains.
-	 * @param player - chatting player.
-	 * @param currenttime - current system time stamp.
-	 * @return - NPC's reply string.
-	 */
-	private String getNPCTextReply(final Player player, final Long currenttime) {
-		String reply = "";
-		String questLast = player.getQuest(QUEST_SLOT, 1);
-		if (questLast != null) {
-			final long timeRemaining = (Long.parseLong(questLast) +
-					questdelay - currenttime);
-
-			if (timeRemaining > 0) {
-				reply = "You have to check again in "
-						+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-						+ ".";
-			} else {
-				// something wrong.
-				reply = "I don't want to decide about you now.";
-				logger.error("wrong time count for player "+player.getName()+": "+
-						"current time is "+currenttime+
-						", last quest time is "+questLast,
-						new Throwable());
-			}
-		}
-		return(reply);
-	}
-
-	/**
 	 * function returns difference between recorded number of enemy creatures
 	 *     and currently killed creatures numbers.
 	 * @param player - player for who we counting this
@@ -407,8 +376,8 @@ import org.apache.log4j.Logger;
 				new OrCondition(
 					new QuestNotStartedCondition(QUEST_SLOT),
 					new AndCondition(
-						new QuestInStateCondition(QUEST_SLOT, 0, "done"),
-						new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK))),
+						new QuestCompletedCondition(QUEST_SLOT),
+						new TimePassedCondition(QUEST_SLOT, 1, delay))),
 				ConversationStates.ATTENDING,
 				null,
 				new GiveQuestAction());
@@ -417,16 +386,12 @@ import org.apache.log4j.Logger;
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
-						new QuestInStateCondition(QUEST_SLOT, 0, "done"),
+						new QuestCompletedCondition(QUEST_SLOT),
 						new NotCondition(
-								new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK))),
+								new TimePassedCondition(QUEST_SLOT, 1, delay))),
 				ConversationStates.ATTENDING,
 				null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-							npc.say(getNPCTextReply(player, System.currentTimeMillis()));
-					}
-		});
+				new SayTimeRemainingAction(QUEST_SLOT, 1, delay, "You have to check again in "));
 
 		// explanations
 		npc.add(ConversationStates.ATTENDING,
@@ -509,6 +474,12 @@ import org.apache.log4j.Logger;
 	public int getMinLevel() {
 		return 80;
 	}	
+	
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
+						 new TimePassedCondition(QUEST_SLOT,1,delay)).fire(player, null, null);
+	}
 	
  	@Override
  	public List<String> getHistory(final Player player) {
