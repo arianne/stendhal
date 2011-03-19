@@ -114,6 +114,10 @@ public class PlayerDieer {
 				Rand.rand(ringList).damage();
 				penaltyFactor = 0.99 + (karma / 100.0);
 			}
+			
+			// round to 3 decimal places (i.e as a percentage it will be one decimal place)
+			penaltyFactor = (double) Math.round(penaltyFactor * 1000) / 1000;
+
 			// note on karma: players can only hit the maximums of these ranges if they themselves had over 100 Karma, less than -100 karma, respectively.
 			// and even then, some chance will mean they are not guaranteed to hit the maximum 
 			// (just because we call useKarma(-100.0,100.0) doesn't mean that a player with over 100.0 karma will get 100.0 used. He is just more likely to get 100.0 used.)
@@ -131,9 +135,14 @@ public class PlayerDieer {
 			player.update();
 		}
 
-		// this is for telling the player what % of their old value, the skills are now. so, some loss of precision is ok. 
-		final int skillPercentage = (int) Math.round(penaltyFactor * 100.0);
-		
+		// this is for telling the player what % of their old value, the skills are now. so, some loss of precision is ok
+		// but we don't want to say it is 100% when it is not.
+		final String skillPercentage;
+		if (penaltyFactor > 0.99 && penaltyFactor < 1) {
+			skillPercentage = String.format("%.1f",penaltyFactor * 100.0);
+		} else {
+			skillPercentage = String.format("%.0f",penaltyFactor * 100.0);
+		}
 		player.setHP(player.getBaseHP());
 
 		player.returnToOriginalOutfit();
