@@ -95,7 +95,8 @@ public class SayTimeRemainingAction implements ChatAction {
 			final long timeRemaining = (MathHelper.parseLong(tokens[arg]) + delayInMilliseconds)
 				- System.currentTimeMillis();
 			// MathHelper.parseLong will catch the number format exception in case tokens[arg] is no number and return 0
-			raiser.say(message + " " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+			// we trim the message of whitespace so that if the developer added a space at the end we don't now duplicate it
+			raiser.say(message.trim() + " " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
 		}
 	}
 
