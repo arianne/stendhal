@@ -269,4 +269,19 @@ public class KillEnemyArmyTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 	}
+	
+	@Test
+	public void TestRequestQuestAgain() {
+		
+		player.setQuest(QUEST_SLOT, "done;"+System.currentTimeMillis());
+		en.step(player, "hi");
+		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
+		en.step(player, "yes");
+		assertEquals("Well state what you want then!", getReply(npc));
+		en.step(player, "quest");
+		assertEquals("You have to check again in 7 days.", getReply(npc));
+		en.step(player, "bye");
+		assertEquals("Bye.", getReply(npc));
+	
+	}
 }
