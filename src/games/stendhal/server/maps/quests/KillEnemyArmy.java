@@ -73,7 +73,6 @@ import marauroa.common.Pair;
 	private static final String QUEST_NPC = "Despot Halb Errvl";
 	private static final String QUEST_SLOT = "kill_enemy_army";
 	private static final int delay = MathHelper.MINUTES_IN_ONE_WEEK;
-	private SpeakerNPC npc;
 	
 	protected HashMap<String, Pair<Integer, String>> enemyForces = new HashMap<String, Pair<Integer,String>>();
 	protected HashMap<String, List<String>> enemys = new HashMap<String, List<String>>();
@@ -295,7 +294,7 @@ import marauroa.common.Pair;
 		public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 			final String monstersType = chooseRandomEnemys();
 			player.setQuest(QUEST_SLOT, 1, monstersType);
-			npc.say("I need help to defeat #enemy " + monstersType +
+			speakerNPC.say("I need help to defeat #enemy " + monstersType +
 					" armies. They are a grave concern. Kill at least " + enemyForces.get(monstersType).first()+
 					" of any "+ monstersType +
 					" soldiers and I will reward you.");
@@ -322,10 +321,10 @@ import marauroa.common.Pair;
 			int moneyreward = 10000*Rand.roll1D6();
 			if(killed == killsnumber) {
 				// player killed no more no less then needed soldiers
-				npc.say("Good work! Take these " + moneyreward + " coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.");
+				speakerNPC.say("Good work! Take these " + moneyreward + " coins. And if you need an assassin job again, ask me in one week. My advisors tell me they may try to fight me again.");
 			} else {
 				// player killed more then needed soldiers
-				npc.say("Pretty good! You killed "+(killed-killsnumber)+" extra "+
+				speakerNPC.say("Pretty good! You killed "+(killed-killsnumber)+" extra "+
 						Grammar.plnoun(killed-killsnumber, "soldier")+"! Take these " + moneyreward + " coins, and remember, I may wish you to do this job again in one week!");
 			}
 			int karmabonus = 5*(2*killed/(killsnumber)-1);
@@ -370,6 +369,8 @@ import marauroa.common.Pair;
 	 * add quest state to npc's fsm.
 	 */
 	private void step_1() {
+		
+		SpeakerNPC npc = npcs.get(QUEST_NPC);
 
 		// quest can be given
 		npc.add(ConversationStates.ATTENDING,
@@ -392,7 +393,7 @@ import marauroa.common.Pair;
 								new TimePassedCondition(QUEST_SLOT, 1, delay))),
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, 1, delay, "You have to check again in "));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, delay, "You have to check again in"));
 
 		// explanations
 		npc.add(ConversationStates.ATTENDING,
@@ -448,7 +449,6 @@ import marauroa.common.Pair;
 	 */
 	@Override
 	public void addToWorld() {
-		npc = npcs.get(QUEST_NPC);
 		super.addToWorld();
 		fillQuestInfo(
 				"Kill Enemy Army",
