@@ -17,6 +17,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 
@@ -139,10 +140,10 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	/**
-	 * Tests seller Jenny.
+	 * Tests buying pansy seed from Jenny.
 	 */
 	@Test
-	public void testJennySelling() {
+	public void testSellingPansySeed() {
 		final SpeakerNPC npc = getNPC("Jenny");
 		final Engine en = npc.getEngine();
 
@@ -155,7 +156,28 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Congratulations! Here are your pansy seeds!", getReply(npc));
-
 		assertTrue(player.isEquipped("seed", 3));
+	}
+
+	/**
+	 * Tests buying daisies seed from Jenny.
+	 */
+	@Test
+	public void testSellingDaisiesSeed() {
+		final SpeakerNPC npc = getNPC("Jenny");
+		final Engine en = npc.getEngine();
+
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.", getReply(npc));
+
+		equipWithMoney(player, 20);
+		assertTrue(en.step(player, "buy daisies seed"));
+		assertEquals("A daisies seed will cost 20. Do you want to buy it?", getReply(npc));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("Congratulations! Here is your daisies seed!", getReply(npc));
+		assertTrue(player.isEquipped("seed"));
+		Item seed = player.getFirstEquipped("seed");
+		assertEquals("daisies", seed.getInfoString());
 	}
 }
