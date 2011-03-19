@@ -14,7 +14,6 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.constants.SoundLayer;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -105,10 +104,10 @@ public class SellerAdder {
 							// When the user tries to buy several of a non-stackable
 							// item, he is forced to buy only one.
 							if (res.getAmount() != 1) {
-								final Item item = SingletonRepository.getEntityManager().getItem(chosenItemName);
+								final Item item = sellerBehaviour.getAskedItem(chosenItemName);
 
 								if (item == null) {
-									logger.error("Trying to sell an nonexistent item: " + chosenItemName);
+									logger.error("Trying to sell a nonexistent item: " + chosenItemName);
 								} else if (!(item instanceof StackableItem)) {
 									builder.append("You can only buy one " + chosenItemName + " at a time. ");
 									res.setAmount(1);
