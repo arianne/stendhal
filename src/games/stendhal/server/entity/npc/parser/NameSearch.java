@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.parser;
 
 import games.stendhal.common.Grammar;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -23,15 +25,18 @@ import java.util.Set;
  */
 public final class NameSearch {
     NameSearch(final Set<String> names) {
-        this.names = names;
+        for(String name : names) {
+        	parsedNames.put(name, ConversationParser.parse(name));
+        }
+
         this.name = null;
         this.amount = 1;
     }
 
-    private final Set<String> names;
+    private final Map<String, Sentence> parsedNames = new HashMap<String, Sentence>(); // map of parsed names to search for
 
-    private String name;
-    private int amount;
+    private String name;	// name we found as matching
+    private int amount;		// item count from the matching expression
 
     /**
      * Searches for item to match the given Expression.
@@ -42,20 +47,23 @@ public final class NameSearch {
     public boolean search(final Expression item) {
         // see if the word matches an item in our list
         final String itemName = item.getNormalized();
+        final String pluralName = Grammar.plural(itemName);
 
-        if (names.contains(itemName)) {
-            name = itemName;
-            amount = item.getAmount();
-            return true;
-        }
+        for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+        	final Sentence parsed = e.getValue();
 
-        // see if instead the plural matches
-        final String plural = Grammar.plural(itemName);
+        	if (parsed.matchesNormalized(itemName)) {
+                name = e.getKey();
+                amount = item.getAmount();
+                return true;
+        	}
 
-        if (names.contains(plural)) {
-            name = plural;
-            amount = item.getAmount();
-            return true;
+        	// see if instead the plural matches
+        	if (parsed.matchesNormalized(pluralName)) {
+                name = e.getKey();
+                amount = item.getAmount();
+                return true;
+            }
         }
 
         return false;
