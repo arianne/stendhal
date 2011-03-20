@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -7,9 +18,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.scroll.RainbowBeansScroll;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -47,6 +61,7 @@ public class RainbowBeansTest {
 		questSlot = quest.getSlotName();
 		
 		player = PlayerTestHelper.createPlayer("bob");
+		zone.add(player);
 	}
 
 	@Test
@@ -140,5 +155,24 @@ public class RainbowBeansTest {
 		assertEquals("Alright, here's the beans. Once you take them, you come down in about 30 minutes. And if you get nervous up there, hit one of the green panic squares to take you back here.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
+	}
+	
+	/**
+	 * Check for proper behavior when beans are used too soon after previous
+	 * use.
+	 */
+	@Test
+	public void testTooFastUse() {
+		long now = System.currentTimeMillis();
+		player.setQuest(questSlot,"bought;" + now + ";taken;" + now);
+		PlayerTestHelper.equipWithItem(player, "rainbow beans");
+		Item beans = player.getFirstEquipped("rainbow beans");
+		if (beans instanceof RainbowBeansScroll) {
+			((RainbowBeansScroll) beans).onUsed(player);
+		} else {
+			fail();
+		}
+		assertEquals("You were just sick from overuse of the rainbow beans. Classy!", PlayerTestHelper.getPrivateReply(player));
+		assertFalse("Beans should be used up", player.isEquipped("rainbow beans"));
 	}
 }
