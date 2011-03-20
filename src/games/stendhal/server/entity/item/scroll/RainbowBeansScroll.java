@@ -1,6 +1,17 @@
 /*
  * $Id$
  */
+/***************************************************************************
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
 import games.stendhal.common.MathHelper;
@@ -57,11 +68,12 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 				// so are not allowed to go yet. but don't reset the last time taken.
 				// the private text doesn't get sent because events are lost on zone change. (marauroa bug)
 				player.sendPrivateText("You were just sick from overuse of the rainbow beans. Classy!");
-				this.removeOne();
 				final Item sick = SingletonRepository.getEntityManager().getItem("vomit");
 				player.getZone().add(sick);
 				sick.setPosition(player.getX(), player.getY() + 1);
-				return false;
+				// Success, so that the beans still gets used up, even though
+				// the player was not teleported.
+				return true;
 			} else {
 				// don't overwrite the last bought time from Pdiddi, this is in tokens[1]
 				player.setQuest(QUEST_SLOT, "bought;" + tokens[1] + ";taken;" + System.currentTimeMillis());
