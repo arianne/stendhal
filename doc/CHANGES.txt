@@ -17,6 +17,7 @@ Changelog
 *fixes*
 - Ambers way changed a bit for holding her back from Aldrin
 - Jef answers to all keywords now he has information for
+- death penalty rounded before application and reported as suitable precision to player
 
 0.92
 
