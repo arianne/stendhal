@@ -85,7 +85,8 @@ public class SayTimeRemainingUntilTimeReachedAction implements ChatAction {
 		}
 
         final long timeRemaining = (timestamp - System.currentTimeMillis());
-        raiser.say(message + " " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+        // trim of white spaces so that the coder doesn't have to remember whether to add a space or not
+        raiser.say(message.trim() + " " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
 
 	}
 
