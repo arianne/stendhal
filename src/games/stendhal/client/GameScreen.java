@@ -743,12 +743,20 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 * positioning.
 		 */
 		sx = Math.max(sx, 0);
-		// Allow placing beyond the map, but only if the area is on the screen
-		sx = Math.min(sx, Math.max(getWidth() + svx, convertWorldToScreen(ww)) - sprite.getWidth());
+		/*
+		 * Allow placing beyond the map, but only if the area is on the screen.
+		 * Do not try to adjust the coordinates if the world size is not known
+		 * yet (as in immediately after a zone change)
+		 */
+		if (ww != 0) {
+			sx = Math.min(sx, Math.max(getWidth() + svx, convertWorldToScreen(ww)) - sprite.getWidth());
+		}
 
 		sy = Math.max(sy, 0);
-		// Allow placing beyond the map, but only if the area is on the screen
-		sy = Math.min(sy, Math.max(getHeight() + svy, convertWorldToScreen(wh)) - sprite.getHeight());
+		// Same for the Y coordinate
+		if (wh != 0) {
+			sy = Math.min(sy, Math.max(getHeight() + svy, convertWorldToScreen(wh)) - sprite.getHeight());
+		}
 
 		boolean found = true;
 
