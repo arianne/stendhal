@@ -201,6 +201,7 @@ public class KillEnemyArmyTest {
         assertEquals(tempkarma, player.getKarma()-5, 0.000001);
         questHistory.clear();
         questHistory.add("I completed Despot's Halb Errvl task and got my reward!");
+        questHistory.add("I've bloodthirstily slain 1 whole army for Despot Halb Errvl.");
 		assertEquals(questHistory, quest.getHistory(player));
 		
         en.step(player, "bye");
@@ -264,6 +265,7 @@ public class KillEnemyArmyTest {
 		assertEquals(tempkarma, player.getKarma()-15.0, 0.000001);
 		questHistory.clear();
         questHistory.add("I completed Despot's Halb Errvl task and got my reward!");
+        questHistory.add("I've bloodthirstily slain 1 whole army for Despot Halb Errvl.");
 		assertEquals(questHistory, quest.getHistory(player));
 
 		en.step(player, "bye");

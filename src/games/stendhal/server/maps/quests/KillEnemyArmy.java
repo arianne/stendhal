@@ -22,7 +22,12 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledInSumForQuestCondition;
@@ -293,14 +298,13 @@ import marauroa.common.Pair;
 		 */
 		public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 			final String monstersType = chooseRandomEnemys();
-			player.setQuest(QUEST_SLOT, 1, monstersType);
 			speakerNPC.say("I need help to defeat #enemy " + monstersType +
 					" armies. They are a grave concern. Kill at least " + enemyForces.get(monstersType).first()+
 					" of any "+ monstersType +
 					" soldiers and I will reward you.");
 			final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>();
 			List<String> sortedcreatures = enemys.get(monstersType);
-			player.setQuest(QUEST_SLOT, "start");
+			player.setQuest(QUEST_SLOT, 0, "start");
 			player.setQuest(QUEST_SLOT, 1, monstersType);
 			for(int i=0; i<sortedcreatures.size(); i++) {
 				toKill.put(sortedcreatures.get(i), new Pair<Integer, Integer>(0,0));
@@ -331,10 +335,10 @@ import marauroa.common.Pair;
 			final StackableItem money = (StackableItem)
 					SingletonRepository.getEntityManager().getItem("money");
 			money.setQuantity(moneyreward);
-			player.setQuest(QUEST_SLOT, "done;"+System.currentTimeMillis());
+
 			player.equipOrPutOnGround(money);
 			player.addKarma(karmabonus);
-			player.addXP(100000);			
+		
 		}
 	}
 
@@ -428,7 +432,14 @@ import marauroa.common.Pair;
 		    				  new KilledInSumForQuestCondition(QUEST_SLOT, 2, enemyForces.get(enemy).first())),
 		    		  ConversationStates.ATTENDING,
 		    		  null,
-		    		  new RewardPlayerAction());
+		    		  new MultipleActions(
+		    				  new RewardPlayerAction(),
+		    				  new IncreaseXPAction(100000),
+		    				  new IncrementQuestAction(QUEST_SLOT,3,1),
+		    				  // empty the 2nd index as we use it later
+		    				  new SetQuestAction(QUEST_SLOT,2,""),
+		    				  new SetQuestToTimeStampAction(QUEST_SLOT,1),
+		    				  new SetQuestAction(QUEST_SLOT,0,"done")));
 
 		      // player killed not enough enemies.
 		      npc.add(ConversationStates.ATTENDING,
@@ -518,6 +529,11 @@ import marauroa.common.Pair;
 		if (isRepeatable(player)) {
 			history.add("Despot Halb Errvl is getting paranoid again about his safety, I can offer my services now.");
 		} 
+		int repetitions = player.getNumberOfRepetitions(getSlotName(), 3);
+		if (repetitions > 0) {
+			history.add("I've bloodthirstily slain "
+					+ Grammar.quantityplnoun(repetitions, "whole army") + " for Despot Halb Errvl.");
+		}
 		return history; 
  	}
 }
