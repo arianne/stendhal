@@ -297,7 +297,7 @@ public class FindGhostsTest {
 		en.step(player, "hi");
 		assertEquals("Wooouhhhhhh!", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Thank you! I feel better now that I know the names of other spirits on Fauimoni.",
+		assertEquals("Thank you! I feel better now that I know the names of other spirits on Faiumoni.",
 				getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye", getReply(npc));

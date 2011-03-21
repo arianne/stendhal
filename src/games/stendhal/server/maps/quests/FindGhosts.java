@@ -48,7 +48,7 @@ import org.apache.log4j.Logger;
  * 
  * STEPS:
  * <ul>
- * <li> Carena asks you to find the 4 other spirits on Fauimoni</li>
+ * <li> Carena asks you to find the 4 other spirits on Faiumoni</li>
  * <li> You go find them and remember their names</li>
  * <li> You return and say the names</li>
  * <li> Carena checks you have met them, then gives reward</li>
@@ -125,7 +125,7 @@ public class FindGhosts extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Thank you! I feel better now that I know the names of other spirits on Fauimoni.",
+			"Thank you! I feel better now that I know the names of other spirits on Faiumoni.",
 			null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,

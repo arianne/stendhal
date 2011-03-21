@@ -43,7 +43,7 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 		// this includes a lot of foods! at time of writing, this is at least:
 		// pie, cheese sausage, sausage, fish pie, apple pie, cherry pie, crepes suzette, sandwich, bread, pizza
 		// grilled steak is made using quest code and not production code so we add an extra condition, and it doesn't adhere to standard completion guidelines
-		achievements.add(createAchievement("production.class.food", "Gourmet", "Order all food types available from Fauimoni's cooks",
+		achievements.add(createAchievement("production.class.food", "Gourmet", "Order all food types available from Faiumoni's cooks",
 				Achievement.MEDIUM_BASE_SCORE,
 				new AndCondition(
 						new PlayerProducedNumberOfItemsCondition(1, foods),
@@ -55,7 +55,7 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 		
 		// soups and koboldish torcibud are made using quest code so we add extra conditions for those
 		// at time of writing, the other drinks are fierywater, tea, pina colada, and mega potion (which we may remove)
-		achievements.add(createAchievement("production.class.drink", "Thirsty Worker", "Order all drink types available from Fauimoni's cooks",
+		achievements.add(createAchievement("production.class.drink", "Thirsty Worker", "Order all drink types available from Faiumoni's cooks",
 				Achievement.MEDIUM_BASE_SCORE,
 				new AndCondition(
 						new PlayerProducedNumberOfItemsCondition(1, drinks),
