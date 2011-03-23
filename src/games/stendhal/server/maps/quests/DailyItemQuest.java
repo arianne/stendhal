@@ -201,6 +201,17 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("grilled steak",1);
 	}
 	
+	private ChatAction startQuestAction() {
+		// common place to get the start quest actions as we can both starts it and abort and start again
+		
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
+		actions.add(new StartRecordingRandomItemCollectionAction(QUEST_SLOT,0,items,"Ados is in need of supplies. Go fetch [item]"
+				+ " and say #complete, once you've brought it."));	
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		
+		return new MultipleActions(actions);
+	}
+	
 	private void getQuest() {
 		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
@@ -227,10 +238,7 @@ public class DailyItemQuest extends AbstractQuest {
 				new SayTimeRemainingAction(QUEST_SLOT,1, delay, "I can only give you a new quest once a day. Please check back in"));
 		
 		
-		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new StartRecordingRandomItemCollectionAction(QUEST_SLOT,0,items,"Ados is in need of supplies. Go fetch [item]"
-				+ " and say #complete, once you've brought it."));	
-		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+
 		
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT),
@@ -238,7 +246,7 @@ public class DailyItemQuest extends AbstractQuest {
 												 new TimePassedCondition(QUEST_SLOT,1,delay))), 
 				ConversationStates.ATTENDING,
 				null,
-				new MultipleActions(actions));
+				startQuestAction());
 	}
 	
 	private void completeQuest() {
@@ -293,8 +301,9 @@ public class DailyItemQuest extends AbstractQuest {
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 						 		 new TimePassedCondition(QUEST_SLOT,1,expireDelay)), 
 				ConversationStates.ATTENDING, 
-				"I see. Please, ask me for another #quest when you think you can help Ados again.", 
-				new SetQuestAction(QUEST_SLOT, 0, "done"));
+				null, 
+				// start quest again immediately
+				startQuestAction());
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.ABORT_MESSAGES,

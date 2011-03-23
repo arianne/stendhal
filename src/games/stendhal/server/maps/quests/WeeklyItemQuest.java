@@ -149,6 +149,17 @@ public class WeeklyItemQuest extends AbstractQuest {
 		items.put("red dragon cloak",1);
 	}
 	
+	private ChatAction startQuestAction() {
+		// common place to get the start quest actions as we can both starts it and abort and start again
+		
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
+		actions.add(new StartRecordingRandomItemCollectionAction(QUEST_SLOT,0,items,"I want Kirdneh's museum to be the greatest in the land! Please fetch [item]"
+				+ " and say #complete, once you've brought it."));	
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		
+		return new MultipleActions(actions);
+	}
+	
 	private void getQuest() {
 		final SpeakerNPC npc = npcs.get("Hazel");
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
@@ -186,7 +197,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 												 new TimePassedCondition(QUEST_SLOT,1,delay))), 
 				ConversationStates.ATTENDING,
 				null,
-				new MultipleActions(actions));
+				startQuestAction());
 	}
 	
 	private void completeQuest() {
@@ -252,8 +263,8 @@ public class WeeklyItemQuest extends AbstractQuest {
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 						 		 new TimePassedCondition(QUEST_SLOT,1,expireDelay)), 
 				ConversationStates.ATTENDING, 
-				"I see. Please, ask me for another #quest when you think you can help Kirdneh museum again.", 
-				new SetQuestAction(QUEST_SLOT, 0, "done"));
+				null, 
+				startQuestAction());
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.ABORT_MESSAGES,

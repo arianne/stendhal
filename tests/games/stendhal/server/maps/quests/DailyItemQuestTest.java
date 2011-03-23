@@ -127,8 +127,6 @@ public class DailyItemQuestTest {
 		en.step(player, "task");
 		assertEquals("You're already on a quest to fetch a dwarf cloak. Say #complete if you brought it! Perhaps there are no supplies of that left at all! You could fetch #another item if you like, or return with what I first asked you.", getReply(npc));
 		en.step(player, "another");
-		assertEquals("I see. Please, ask me for another #quest when you think you can help Ados again.", getReply(npc));
-		en.step(player, "quest");
 		assertTrue(getReply(npc).startsWith("Ados is in need of supplies. Go fetch "));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));

@@ -125,8 +125,6 @@ public class WeeklyItemQuestTest {
 		en.step(player, "task");
 		assertEquals("You're already on a quest to bring the museum a dark dagger. Please say #complete if you have it with you. But, perhaps that is now too rare an item. I can give you #another task, or you can return with what I first asked you.", getReply(npc));
 		en.step(player, "another");
-		assertEquals("I see. Please, ask me for another #quest when you think you can help Kirdneh museum again.", getReply(npc));
-		en.step(player, "quest");
 		assertTrue(getReply(npc).startsWith("I want Kirdneh's museum to be the greatest in the land! Please fetch "));
 		en.step(player, "bye");
 		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
