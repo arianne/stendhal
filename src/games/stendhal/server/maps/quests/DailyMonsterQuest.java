@@ -84,11 +84,11 @@ public class DailyMonsterQuest extends AbstractQuest {
 	/** All creatures, sorted by level. */
 	private static List<Creature> sortedcreatures;	
 	
-	private static void refreshCreaturesList() {
+	private static void refreshCreaturesList(final String excludedCreature) {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		sortedcreatures = new LinkedList<Creature>();
 		for (Creature creature : creatures) {
-			if (!creature.isRare()) {
+			if (!creature.isRare() && !creature.getName().equals(excludedCreature)) {
 				sortedcreatures.add(creature);
 			}
 		}
@@ -99,7 +99,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	 * constructor for quest
 	 */
 	public DailyMonsterQuest() {
-		refreshCreaturesList();
+		refreshCreaturesList(null);
 	}
 	
 	static class DailyQuestAction implements ChatAction {
@@ -110,14 +110,23 @@ public class DailyMonsterQuest extends AbstractQuest {
 			final String questInfo = player.getQuest(QUEST_SLOT);
 			String questCount = null;
 			String questLast = null;
-
+			
+            String previousCreature = null;
+            
 			if (questInfo != null) {
 				final String[] tokens = (questInfo + ";0;0;0").split(";");
+				if(!"done".equals(tokens[0])) {
+					// can't use this method because this class is static
+					// previousCreature = getCreatureToKillFromPlayer(player);
+					String[] split = tokens[0].split(",");
+					previousCreature = split[0];
+				}
 				//questLast = tokens[1];
 				questCount = tokens[2];
 			}
 			
-			refreshCreaturesList();
+			refreshCreaturesList(previousCreature);
+			
 			// Creature selection magic happens here
 			final Creature pickedCreature = pickIdealCreature(player.getLevel(),
 					false, sortedcreatures);
@@ -129,12 +138,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 
 			String creatureName = pickedCreature.getName();
-
-			// don't ask level 0 players to kill a bat as this cannot be found
-			// anywhere they have a chance to survive.
-			if ("bat".equals(creatureName)) {
-				creatureName = "rat";
-			}
+			
 			
 			raiser.say("Semos is in need of help. Go kill " + Grammar.a_noun(creatureName)
 					+ " and say #complete, once you're done.");
@@ -244,29 +248,6 @@ public class DailyMonsterQuest extends AbstractQuest {
 		*/
 	}	
 
-	static class DailyQuestAbortAction implements ChatAction {
-
-		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-			final String questInfo = player.getQuest(QUEST_SLOT);
-			String questCount = null;
-			String questLast = null;
-			
-			logger.info("Inside DailyQuestAbortAction");
-			if (questInfo != null) {
-				final String[] tokens = (questInfo + ";0;0;0").split(";");
-				questLast = tokens[1];
-				questCount = tokens[2];
-			}
-
-			raiser.say("As you wish, ask me for another #quest when you think you have what it takes to help Semos again.");
-			// Don't make the player wait any longer and don't
-			// credit the player with a count increase?
-			// questCount = "" + (Integer.valueOf(questCount) + 1 );
-			// questLast = "" + (new Date()).getTime();
-			player.setQuest(QUEST_SLOT, "done" + ";" + questLast + ";"	+ questCount);
-		}
-	}
-
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -322,7 +303,11 @@ public class DailyMonsterQuest extends AbstractQuest {
 	private String getCreatureToKillFromPlayer(Player player) {
 		String actualQuestSlot = player.getQuest(QUEST_SLOT, 0);
 		String[] split = actualQuestSlot.split(",");
-		return split[0];
+		if (split.length > 1) {
+			// only return object if the slot was in the format expected (i.e. not done;timestamp;count etc)
+			return split[0];
+		}
+		return null;
 	}
 
 	/**
@@ -487,7 +472,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				new TimePassedCondition(QUEST_SLOT, 1, expireDelay),
 				ConversationStates.ATTENDING, 
 				null, 
-				new DailyQuestAbortAction());
+				new DailyQuestAction());
 	}
 
 	@Override
