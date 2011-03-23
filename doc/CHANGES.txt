@@ -8,6 +8,7 @@ Changelog
 - Imorgen and her mother Mircea moved into a house in Fado forest
 - deathmatch creature spawn time dependent on player level and (inversely) on number of players in ring
 - get fresh water at some hidden new springs
+- Kill Enemy Army quest history with more detail and records number of completions
 
 *website*
 - new rankings for best player and hall of fame using achievements
@@ -18,6 +19,8 @@ Changelog
 - Ambers way changed a bit for holding her back from Aldrin
 - Jef answers to all keywords now he has information for
 - death penalty rounded before application and reported as suitable precision to player
+- daily/weekly quests are restarted immediately when aborted
+- daily monster quest creature to kill can't be requested again by Mayor if it was aborted this time
 
 0.92
 
