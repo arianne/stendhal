@@ -235,11 +235,10 @@ public class FindJefsMom extends AbstractQuest {
 				new MultipleActions(new DropItemAction("zantedeschia"),
                                     new IncreaseXPAction(5000),
                                     new IncreaseKarmaAction(15),
-                            		new SetQuestToTimeStampAction(QUEST_SLOT, 1),
-									addRandomNumberOfItemsAction,
-                                    new SetQuestAction(QUEST_SLOT, 0, "done"),
+									addRandomNumberOfItemsAction,                       
 									new IncrementQuestAction(QUEST_SLOT, 2, 1),
-									new SetQuestToTimeStampAction(QUEST_SLOT,1)));
+									new SetQuestToTimeStampAction(QUEST_SLOT,1),
+									new SetQuestAction(QUEST_SLOT, 0, "done")));
 
 		
 	}
