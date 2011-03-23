@@ -40,13 +40,7 @@ public class AttackableCreature extends Creature {
 		List<RPEntity> res = this.getAttackingRPEntities();
 
 		if (master != null) {
-			if (res.isEmpty()) {
-				res = master.getAttackingRPEntities();
-			} else {
-				res = new ArrayList<RPEntity>();
-				res.addAll(this.getAttackingRPEntities());
-				res.addAll(master.getAttackingRPEntities());
-			}
+			res.addAll(master.getAttackingRPEntities());
 		}
 		return res;
 	}
