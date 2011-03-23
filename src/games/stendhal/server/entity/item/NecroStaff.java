@@ -148,7 +148,7 @@ public class NecroStaff extends Item implements UseListener {
 				StendhalRPAction.placeat(zone, creature, Integer.parseInt(inspected.get("x")), Integer.parseInt(inspected.get("y")));
 				zone.remove(inspected);
 				creature.init();
-				creature.setMaster(user);
+				creature.setMaster(user.getTitle());
 				creature.clearDropItemList();
 				creature.put("title_type", "friend");
 				

@@ -130,7 +130,7 @@ public class SummonScroll extends Scroll {
 		StendhalRPAction.placeat(zone, creature, x, y);
 
 		creature.init();
-		creature.setMaster(player);
+		creature.setMaster(player.getTitle());
 		creature.clearDropItemList();
 		creature.put("title_type", "friend");
 

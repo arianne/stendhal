@@ -12,9 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +25,8 @@ import java.util.List;
  */
 public class AttackableCreature extends Creature {
 
-	private RPEntity master;
+	/** name of player who summoned the attackable creature */
+	private String master;
 
 	/**
 	 * Class Constructor.
@@ -38,9 +40,11 @@ public class AttackableCreature extends Creature {
 	@Override
 	public List<RPEntity> getEnemyList() {
 		List<RPEntity> res = this.getAttackingRPEntities();
-
-		if (master != null) {
-			res.addAll(master.getAttackingRPEntities());
+		
+		Player masterPlayer = SingletonRepository.getRuleProcessor().getPlayer(master);
+		
+		if (masterPlayer != null) {
+			res.addAll(masterPlayer.getAttackingRPEntities());
 		}
 		return res;
 	}
@@ -51,7 +55,7 @@ public class AttackableCreature extends Creature {
 	 * @param master
 	 *            master
 	 */
-	public void setMaster(final RPEntity master) {
+	public void setMaster(final String master) {
 		this.master = master;
 	}
 
