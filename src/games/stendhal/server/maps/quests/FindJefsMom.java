@@ -77,7 +77,7 @@ import java.util.List;
  *
  * REPETITIONS:
  * <ul>
- * <li> Once every 7200 hours. (5 days)</li>
+ * <li> Once every 7200 minutes. (5 days)</li>
  * </ul>
  *
  * @author Vanessa Julius
@@ -150,31 +150,31 @@ public class FindJefsMom extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				Arrays.asList("mum", "mother", "mom"),
 				null,
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.ATTENDING,
 				"My mother Amber left me for buying some food on the market, but she didn't return #yet.",
 				null);
 
 		npc.add(
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.ATTENDING,
 				("yet"),
 				null,
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.ATTENDING,
 				"The only thing I know is, that she had a little argument with her boyfriend, #Roger #Frampton earlier...",
 				null);
 
 		npc.add(
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.ATTENDING,
 				("Jef"),
 				null,
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.ATTENDING,
 				"Yes, that is me :)",
 				null);
 
 		npc.add(
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.ATTENDING,
 				Arrays.asList("Roger Frampton", "Roger", "Frampton"),
 				null,
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.ATTENDING,
 				"Maybe Roger has some guess about where she went to. I'm not sure where he is either, I just know he sells houses somewhere here in Kirdneh.",
 				null);
 
@@ -192,7 +192,7 @@ public class FindJefsMom extends AbstractQuest {
 			"Oh I see :) My son Jef asked you to take a look after me. He is such a nice and gentle boy! Please give him this zantedeschia here. I love these flowers! Please give it to him and tell him that I'm #fine.",
 			new MultipleActions(new EquipItemAction("zantedeschia", 1, true),
                                 new SetQuestAction(QUEST_SLOT, 0, "found_mom")));
-
+		
 
 		// don't put the flower on the ground - if player has no space, tell them
 		amber.add(ConversationStates.ATTENDING, "Jef",
@@ -235,19 +235,12 @@ public class FindJefsMom extends AbstractQuest {
 				new MultipleActions(new DropItemAction("zantedeschia"),
                                     new IncreaseXPAction(5000),
                                     new IncreaseKarmaAction(15),
-                            		new SetQuestToTimeStampAction(QUEST_SLOT, 1),
-									addRandomNumberOfItemsAction,
-                                    new SetQuestAction(QUEST_SLOT, 0, "done"),
+									addRandomNumberOfItemsAction,                       
 									new IncrementQuestAction(QUEST_SLOT, 2, 1),
-									new SetQuestToTimeStampAction(QUEST_SLOT,1)));
+									new SetQuestToTimeStampAction(QUEST_SLOT,1),
+									new SetQuestAction(QUEST_SLOT, 0, "done")));
 
-		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("flower", "zantedeschia", "fine", "amber", "done", "mum", "mother", "mom"),
-				new NotCondition(new PlayerHasItemWithHimCondition("zantedeschia")),
-				ConversationStates.ATTENDING,
-				"Please, that isn't nice. You didn't find my mother and you can neither prove that you did. I don't believe in you, sorry.",
-				null);
-
+		
 	}
 
 	@Override
