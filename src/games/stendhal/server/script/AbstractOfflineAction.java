@@ -44,10 +44,10 @@ public abstract class AbstractOfflineAction extends ScriptImpl {
 		if (!validateParameters(admin, args)) {
 			return;
 		}
-		String playerName = args.get(0);
+		String characterName = args.get(0);
 
 		// check that player is offline
-		if (StendhalRPRuleProcessor.get().getPlayer(playerName) != null) {
+		if (StendhalRPRuleProcessor.get().getPlayer(characterName) != null) {
 			admin.sendPrivateText("This player is currently online. Please use the normal commands.");
 			return;
 		}
@@ -58,18 +58,18 @@ public abstract class AbstractOfflineAction extends ScriptImpl {
 		try {
 
 			// check that the player exists
-			if (!characterDAO.hasCharacter(playerName)) {
+			if (!characterDAO.hasCharacter(characterName)) {
 				admin.sendPrivateText("No player with that name.");
 				TransactionPool.get().commit(transaction);
 				return;
 			}
-
-			RPObject object = characterDAO.loadCharacter(transaction, playerName, playerName);
+			String username = DAORegister.get().get(CharacterDAO.class).getAccountName(transaction, characterName);
+			RPObject object = characterDAO.loadCharacter(transaction, username, characterName);
 
 			process(admin, object, args);
 
 			// safe it back
-			characterDAO.storeCharacter(transaction, playerName, playerName, object);
+			characterDAO.storeCharacter(transaction, username, characterName, object);
 			TransactionPool.get().commit(transaction);
 
 			// remove from world
