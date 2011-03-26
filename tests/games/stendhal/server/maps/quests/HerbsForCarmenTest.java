@@ -109,7 +109,7 @@ public class HerbsForCarmenTest {
 		assertEquals("Hargh, thats not good! But ok, its your choice. But remember, I will tell the others that I can't heal them much longer, because YOU didn't want to help me.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		// ------------------------------------------------------------------------
 		// agree to help and check about each ingredient
 		en.step(player, "hi");
@@ -117,7 +117,7 @@ public class HerbsForCarmenTest {
 		en.step(player, "quest");
 		assertEquals("Hey, are you going to help me yet?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Oh how nice. Please bring me those ingredients: 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcini, and 2 #'pieces of wood'.", getReply(npc));
+		assertEquals("Oh how nice. Please bring me those ingredients: 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcino, and 2 #'pieces of wood'.", getReply(npc));
 		en.step(player, "apples");
 		assertEquals("Apples have many vitamins, I saw some apple trees on the east of semos.", getReply(npc));
 		en.step(player, "sprigs of arandula");
@@ -130,13 +130,13 @@ public class HerbsForCarmenTest {
 		assertEquals("Wood is great resource with many different purposes. Of course you can find logs in a forest.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		// --------------------------------------------------------------
 		// Return and check what is needed, say you don't have anything
 		en.step(player, "hi");
 		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
 		en.step(player, "ingredients");
-		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcini, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
+		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcino, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Ok, well just let me know if I can #help you with anything else.", getReply(npc));
 		en.step(player, "bye");
@@ -147,7 +147,7 @@ public class HerbsForCarmenTest {
 		en.step(player, "hi");
 		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
 		en.step(player, "ingredients");
-		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcini, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
+		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcino, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Great, what did you bring?", getReply(npc));
 		en.step(player, "apple");
@@ -177,7 +177,7 @@ public class HerbsForCarmenTest {
 		en.step(player, "hi");
 		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
 		en.step(player, "ingredients");
-		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcini, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
+		assertEquals("I need 3 #apples, 5 #'sprigs of arandula', a #'button mushroom', a #porcino, and 2 #'pieces of wood'. Did you bring something?", getReply(npc));
 		en.step(player, "wood");
 		assertEquals("You don't have a piece of wood with you!", getReply(npc));
 		en.step(player, "woos"); // misspelled "wood"

@@ -176,7 +176,7 @@ public class BarMaidNPCTest {
 		sentence = new SentenceImplementation(sell, new Expression("porcini", ExpressionType.OBJECT));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(), is(ConversationStates.SELL_PRICE_OFFERED));
-		assertThat("offer text", getReply(barMaid), is("A porcini is worth 30. Do you want to sell it?"));
+		assertThat("offer text", getReply(barMaid), is("A porcino is worth 30. Do you want to sell it?"));
 
 		engine.setCurrentState(ConversationStates.ATTENDING);
 		final Expression porcini = new Expression("porcini", ExpressionType.OBJECT);
