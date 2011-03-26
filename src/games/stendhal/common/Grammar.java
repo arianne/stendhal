@@ -1155,7 +1155,8 @@ public class Grammar {
 			if (word.endsWith("ed")) {
 				verb.isPast = true;
 			}
-		} else if ((word.length() > 3) && word.endsWith("s")) {
+		} else if (word.length() > 3 && word.endsWith("s") &&
+					!Grammar.isVowel(word.charAt(word.length()-2))) {
 			verb = new Verb(word.substring(0, word.length() - 1));
 		} else if (isGerund(word)) {
 			verb = new Verb(word.substring(0, word.length() - 3));
