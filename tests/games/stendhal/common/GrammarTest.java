@@ -354,7 +354,7 @@ public class GrammarTest {
 		testPluralisationAndSingularisation("pies", "pie");
 		testPluralisationAndSingularisation("button mushrooms",
 				"button mushroom");
-		testPluralisationAndSingularisation("porcini", "porcini");
+		testPluralisationAndSingularisation("porcini", "porcino");
 		testPluralisationAndSingularisation("toadstools", "toadstool");
 		testPluralisationAndSingularisation("bottles of beer", "beer");
 		testPluralisationAndSingularisation("flasks of wine", "flask of wine");
