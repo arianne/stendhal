@@ -105,6 +105,7 @@ import games.stendhal.server.maps.quests.ThePiedPiper;
 import games.stendhal.server.maps.quests.ToysCollector;
 import games.stendhal.server.maps.quests.UltimateCollector;
 import games.stendhal.server.maps.quests.VampireSword;
+import games.stendhal.server.maps.quests.WaterForJane;
 import games.stendhal.server.maps.quests.WeaponsCollector;
 import games.stendhal.server.maps.quests.WeaponsCollector2;
 import games.stendhal.server.maps.quests.WeeklyItemQuest;
@@ -238,6 +239,7 @@ public class StendhalQuestSystem {
 		loadQuest(new ToysCollector());
 		loadQuest(new UltimateCollector());
 		loadQuest(new VampireSword());
+		loadQuest(new WaterForJane());
 		loadQuest(new WeaponsCollector());
 		loadQuest(new WeaponsCollector2());
 		loadQuest(new WeeklyItemQuest());
