@@ -129,4 +129,47 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(en.step(player, "yes"));
 	}
 
+	/**
+	 * Tests for selling porcini.
+	 */
+	@Test
+	public void testSellPorcini() {
+		final SpeakerNPC npc = getNPC("Siandra");
+		final Engine en = npc.getEngine();
+
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Hi!", getReply(npc));
+
+		assertTrue(en.step(player, "sell porcini"));
+		assertEquals("A porcino is worth 30. Do you want to sell it?", getReply(npc));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("Sorry! You don't have any porcino.", getReply(npc));
+
+		assertTrue(en.step(player, "sell 2 porcini"));
+		assertEquals("2 porcini are worth 60. Do you want to sell them?", getReply(npc));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("Sorry! You don't have that many porcini.", getReply(npc));
+
+		 // equip the player with enough porcini to be sold
+		assertFalse(player.isEquipped("porcini", 1));
+		assertTrue(equipWithStackableItem(player, "porcini", 3));
+        assertTrue(player.isEquipped("porcini", 3));
+        assertFalse(player.isEquipped("porcini", 4));
+
+		assertTrue(en.step(player, "sell porcino"));
+		assertEquals("A porcino is worth 5. Do you want to sell it?", getReply(npc));
+
+		 // ensure we currently don't have any money
+		assertFalse(player.isEquipped("money", 1));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("Thanks! Here is your money.", getReply(npc));
+
+		 // check if we got the promised money and the cheese is gone into Siandra's hands
+		assertTrue(player.isEquipped("money", 5));
+        assertTrue(player.isEquipped("porcini", 2));
+        assertFalse(player.isEquipped("porcini", 3));
+	}
 }
