@@ -170,10 +170,10 @@ public class HerbsForCarmenTest {
 		player.getSlot("bag").add(arandula);
 		Item porcini = ItemTestHelper.createItem("porcini", 1);
 		player.getSlot("bag").add(porcini);
-		
+
 		//-----------------------------------------------------------------
 		// bring some of the ingredients. try to take one twice
-				
+
 		en.step(player, "hi");
 		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
 		en.step(player, "ingredients");
@@ -186,17 +186,17 @@ public class HerbsForCarmenTest {
 		assertEquals("Good, do you have anything else?", getReply(npc));
 		en.step(player, "apple");
 		assertEquals("Good, do you have anything else?", getReply(npc));
-		en.step(player, "porcini");
+		en.step(player, "porcino");
 		assertEquals("Good, do you have anything else?", getReply(npc));
 		en.step(player, "porcini");
-		assertEquals("You have already brought porcini for me but thank you anyway.", getReply(npc));
-		en.step(player, "pircini"); // misspelled "porcini"
-		assertEquals("You have already brought porcini for me but thank you anyway.", getReply(npc));
+		assertEquals("You have already brought 1 porcino for me but thank you anyway.", getReply(npc));
+		en.step(player, "porcinis"); // misspelled "porcini"
+		assertEquals("You have already brought 1 porcino for me but thank you anyway.", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Ok, well just let me know if I can #help you with anything else.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		final int xp = player.getXP();
 		Item apples2= ItemTestHelper.createItem("apple", 2);
 		player.getSlot("bag").add(apples2);
@@ -226,14 +226,14 @@ public class HerbsForCarmenTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		assertTrue(player.isQuestCompleted(questSlot));
-		
+
 		en.step(player, "hi");
 		assertEquals("Hi, if I can #help, just say.", getReply(npc));
 		en.step(player, "quest");
 		assertEquals("There's nothing I need right now, thank you.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		assertTrue(player.isEquipped("minor potion", 5));
 	}
 }

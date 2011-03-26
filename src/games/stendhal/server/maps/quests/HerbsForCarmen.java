@@ -176,7 +176,7 @@ public class HerbsForCarmen extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.ATTENDING,
-			Arrays.asList("button mushroom","porcini"),
+			Arrays.asList("button mushroom","porcino","porcini","porcinis"),
 			null,
 			ConversationStates.ATTENDING,
 			"Someone told me there are many different mushrooms in the Semos forest, follow the path south from here.",
@@ -230,12 +230,28 @@ public class HerbsForCarmen extends AbstractQuest {
 		/* add triggers for the item names */
 		final ItemCollection items = new ItemCollection();
 		items.addFromQuestStateString(NEEDED_ITEMS);
-		for (final Map.Entry<String, Integer> item : items.entrySet()) {
-			npc.add(ConversationStates.QUESTION_2, item.getKey(), null,
+		for (final Map.Entry<String, Integer> entry : items.entrySet()) {
+			String itemName = entry.getKey();
+
+			String singular = Grammar.singular(itemName);
+			List<String> sl = new ArrayList<String>();
+			sl.add(itemName);
+
+			// handle the porcino/porcini singular/plural case with item name "porcini"
+			if (!singular.equals(itemName)) {
+				sl.add(singular);
+			}
+			// also allow to understand the misspelled "porcinis"
+			if (itemName.equals("porcini")) {
+				sl.add("porcinis");
+			}
+
+			npc.add(ConversationStates.QUESTION_2, sl, null,
 					ConversationStates.QUESTION_2, null,
 					new CollectRequestedItemsAction(
-							item.getKey(), QUEST_SLOT,
-							"Good, do you have anything else?", "You have already brought " + item.getKey()  + " for me but thank you anyway.",
+							itemName, QUEST_SLOT,
+							"Good, do you have anything else?", "You have already brought " +
+								Grammar.quantityplnoun(entry.getValue(), itemName) + " for me but thank you anyway.",
 							completeAction, ConversationStates.ATTENDING));
 		}
 
