@@ -717,6 +717,17 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
+     * Check if the Sentence matches the beginning of the given String. The match Sentence can contain explicit expressions,
+     * which are compared after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in upper case.
+     *
+     * @param text
+     * @return true, if the text matches
+     */
+    public boolean matchesStartNormalized(final String text) {
+        return ConversationParser.parseAsMatcher(text).matchesStart(this);
+    }
+
+    /**
      * Check if the Sentence completely matches the given Sentence. The match Sentence can contain explicit expressions,
      * which are compared after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in upper case.
      *
@@ -825,7 +836,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         }
 
         if (!ret.found()) {
-            // check unknown words, e.g. in "sell porcinis"
+            // check unknown/misspelled words, e.g. in "sell porcinis"
             item = getUnknownTypeExpression(0);
 
             if (item != null) {
