@@ -636,7 +636,7 @@ public class Grammar {
 			return enoun + "il" + postfix;
 		} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
-		} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
+		} else if (enoun.endsWith("porcini") || enoun.endsWith("porcino")) {
 			return enoun.substring(0, enoun.length() - 1) + "i" + postfix;
 		} else if ((enoun.length() > 2) && enoun.endsWith("y")
 				&& isConsonant(enoun.charAt(enoun.length() - 2))) {
@@ -689,7 +689,7 @@ public class Grammar {
 
 			// first of all handle words which do not change
 		} else if (enoun.endsWith("money") || enoun.endsWith("dice")
-				|| enoun.endsWith("porcini") || enoun.endsWith("sheep")
+				|| enoun.endsWith("sheep")
 				|| enoun.endsWith("legs") || enoun.endsWith("boots")
 				|| enoun.equals("deer") || enoun.equals("moose")) {
 			return enoun + postfix;
@@ -747,6 +747,8 @@ public class Grammar {
 			return enoun + "ni" + postfix;
 		} else if (enoun.endsWith("djinn") || enoun.endsWith("efreet")) {
 			return enoun + "i" + postfix;
+		} else if (enoun.endsWith("porcini") || enoun.endsWith("porcino")) {
+			return enoun.substring(0, enoun.length() - 1) + "o" + postfix;
 		} else if (enoun.endsWith("lotus") || enoun.endsWith("wumpus")
 				|| enoun.endsWith("deus")) {
 			return enoun + postfix;
@@ -788,7 +790,7 @@ public class Grammar {
 	public static String plnoun(final int quantity, final String noun) {
 		final String enoun = fullForm(noun);
 		if (quantity == 1) {
-			return enoun;
+			return singular(enoun);
 		} else {
 			return plural(noun);
 		}
@@ -825,16 +827,17 @@ public class Grammar {
 	 *         appropriate
 	 */
 	public static String quantityplnoun(final int quantity, final String noun, final String one) {
-		final String end = plnoun(quantity, noun);
+		final String word = plnoun(quantity, noun);
+
 		if (quantity == 1) {
 			if (one.equals("a")) {
-				return a_noun(end);
+				return a_noun(word);
 			} else if (one.equals("A")) {
-				return A_noun(end);
+				return A_noun(word);
 			} else if (one.equals("")) {
-				return end;
+				return word;
 			} else {
-				return one + " " + end;
+				return one + " " + word;
 			}
 		} else {
 			return Integer.toString(quantity) + " " + plural(noun);	
