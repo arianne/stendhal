@@ -47,6 +47,7 @@ public final class NameSearch {
     public boolean search(final Expression item) {
         // see if the word matches an item in our list
         final String itemName = item.getNormalized();
+        final String singularName = Grammar.singular(itemName);
         final String pluralName = Grammar.plural(itemName);
 
         for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
@@ -58,11 +59,21 @@ public final class NameSearch {
                 return true;
         	}
 
+        	if (!singularName.equals(itemName)) {
+	        	if (parsed.matchesNormalized(singularName)) {
+	                name = e.getKey();
+	                amount = item.getAmount();
+	                return true;
+	        	}
+        	}
+
         	// see if instead the plural matches
-        	if (parsed.matchesNormalized(pluralName)) {
-                name = e.getKey();
-                amount = item.getAmount();
-                return true;
+        	if (!pluralName.equals(itemName)) {
+	        	if (parsed.matchesNormalized(pluralName)) {
+	                name = e.getKey();
+	                amount = item.getAmount();
+	                return true;
+	        	}
             }
         }
 

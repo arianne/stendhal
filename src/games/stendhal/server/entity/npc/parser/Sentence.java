@@ -204,7 +204,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 					break;
 				}
 			}
-	
+
 			// If the sentence consists only of a list of single objects (amount=1),
 			// return it as "A and B and C and ..."
 			if (simpleObjects == expressions.size())
@@ -782,7 +782,6 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
         	 
             return (matchStart && (e2 == null));
         }
-
     }
 
     /**
@@ -825,6 +824,17 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
             }
         }
 
+        if (!ret.found()) {
+            // check unknown words, e.g. in "sell porcinis"
+            item = getUnknownTypeExpression(0);
+
+            if (item != null) {
+                if (ret.search(item)) {
+                    return ret;
+                }
+            }
+        }
+        
         return ret;
     }
 
