@@ -22,7 +22,8 @@ Changelog
 - daily/weekly quests are restarted immediately when aborted
 - daily monster quest creature to kill can't be requested again by Mayor if it was aborted this time
 
-0.92
+0.92: Achievements and Expedition Groups
+26th February 2011
 
 *features*
 - achievements system with notification in game of reached achievement and website integration
@@ -54,7 +55,8 @@ Changelog
 - NPC conversation with improved and unified responses of producers and merchandisers
 - improved server side performance by changing Creature.getArea() to not create lots and lots of short lived objects
 
-0.91 
+0.91: Quest progress
+2nd January 2011
 
 *world*
 - full health bonus when you level up
@@ -76,7 +78,8 @@ Changelog
 0.90.1
 - fixed a bug which prevented logging in without at least one saved profile
 
-0.90
+0.90: Seasons Greetings
+10th December 2010
 
 *world*
 - quest for Ortiv Milquetoast in Kirdneh River House
@@ -100,7 +103,8 @@ Changelog
 
 
 
-0.89
+0.89: Food, flowers and fights
+24th November 2010
 
 *features*
 - quantity selector for control-drop
@@ -134,7 +138,8 @@ Changelog
 
 
 
-0.88
+0.88: Newcomers and new trading
+15th October 2010
 
 *features*
 - right click on a player to start trading with them using a GUI
@@ -163,10 +168,13 @@ Changelog
 - display ranks on character page
 
 
-0.87.1 
+0.87.1: Bug fix release
+14th September 2010
+
 - fixed an issue causing the client to be unresponsive for some windows users
 
-0.87
+0.87: New client!
+13th September 2010
 
 *world*
 - NPCs have an 'ear' icon when they are attending a player
@@ -194,7 +202,8 @@ Changelog
 
 
 
-0.86
+0.86: The Wizards Circle
+26th July 2010
 
 *world*
 - new quest at the wizards tower in semos mountain
@@ -231,7 +240,9 @@ Changelog
 - support messages will get sent using postman if the player was offline
 - postman uses an admin action to store messages in table
 
-0.85
+0.85: Wood, wood everywhere
+27th June 2010
+
 *features*
 - all gui components use a new wood panel theme (even ones which did not have wood before)
 - character selection dialog after account login
@@ -266,7 +277,9 @@ Changelog
 
 
 
-0.84
+0.84: Don't deny the desperate Despot
+2nd June 2010
+
 *features*
 - new quest from Balduin if you have completed all other quests to get or collect rare weapons
 - daily and weekly item quests can ask for more than one of each item at once
@@ -305,7 +318,9 @@ Changelog
 - bugfixes including player display on firefox
 - spouse of a married player is displayed 
 
-0.83
+0.83: Dark or Light, Fire or Ice?
+30th April 2010
+
 *features*
 - Rat City extended
 - Find the Rat Children quest
@@ -350,6 +365,8 @@ Changelog
 
 
 0.82.1
+28th March 2010
+
 *bugfixes*
 - new command /clickmode to toggle between single click walking and double click walking
 - fixed movement to drop target (only Microsoft Windows was affected)
@@ -357,7 +374,9 @@ Changelog
 - fixed pets not ownable
 
 
-0.82
+0.82: Spring is coming!
+26th March 2010
+
 *features
 - single click movement
 - Easter Bunny
@@ -411,7 +430,9 @@ your error log files and pleace continue to do so.
 - updated to Marauroa 3.5 to fix an issue with null-values in the timedate columns in gameEvents and account
 
 
-0.81
+0.81: Music to your ears
+20th February 2010
+
 *features*
 - player stats moved from the character window to the side panel
 - a dragbar for making the game screen smaller (handy for netbooks)
@@ -448,7 +469,9 @@ your error log files and pleace continue to do so.
 0.80.1: server only release
 * fixed logout while dying
 
-0.80
+0.80: Harold's new job, Trade Manager!
+8th January 2010
+
 *features*
 - Player-to-player trading facilitated by Harold in Semos Tavern
 - a maze created especially for you by Haizen
@@ -490,7 +513,9 @@ your error log files and pleace continue to do so.
 0.79.1: server only release
 - fixed a duplicated corpse bug
 
-0.79
+0.79: Back to reality
+13th November 2009
+
 * changes for players
 - fixed an issue which made Stendhal unplayable on Ubuntu 9.10 with nvidia drivers on Sun JDK.
 - chat bar responds faster to typed letters on some systems
@@ -505,7 +530,9 @@ your error log files and pleace continue to do so.
 - added $ignore and $spam supportanswer shortcuts, also changed the $abuse shortcut to $notsupport 
 
 
-0.78
+0.78: Semos Mine Town Revival Weeks
+22th October 2009
+
 * changes for players
 - various map fixes
 - added a note about logging on account creation
@@ -521,7 +548,9 @@ your error log files and pleace continue to do so.
 - check that the player in /jail-command exists
 
 
-0.77
+0.77: Adventure Island Awaits
+2nd September 2009
+
 - improvements to the test infrastructure, now including coverage reports and various statistics about code quality
 - more corpses redrawn and new kinds added
 - now all a player's money is shown in the hall of fame (including money in bank chests)
@@ -546,13 +575,17 @@ your error log files and pleace continue to do so.
 - buddy list is sorted alphabetically
 - outside semos tavern is a better seating area
 
-0.76
+0.76: Ported to Marauroa 3.0
+2nd August 2009
+
 - ported to the latest release of marauroa with supports multi threaded database access
 - support for OpenJDK IcedTea (thanks to omair)
 - corpse images used are now specified in xml
 - corpses redrawn and new kinds added
 
-0.75
+0.75: Beauty and Balance
+12th July 2009
+
 - the corpse of a raid creature can only be looted by player that the raid creature attacked
 - min level for items which makes them less effective if player is less then min level for using item
   - attacking items have slower rate to hit if user less than min level
@@ -574,7 +607,9 @@ your error log files and pleace continue to do so.
   - new command /adminnote
   - /gmhelp_script and /gmehlp_alter replaced by /gmhelp script and /gmhelp alter
 
-0.74
+0.74: What goes around comes around
+23rd May 2009
+
 - player karma affects what skills they lose on death 
  --max 20% for non ring wearers with negative karma, and 10% as before if player karma was 0. if they had positive karma they lose less
  --Ring wearers lose max 2%, average 1% and less with positive karma
@@ -619,7 +654,9 @@ your error log files and pleace continue to do so.
 - Iquest.getName() abstract in Abstractquest. every quest knows its name now (not the descriptive one yet)
 - moved a lot of tilesets to correct homes
 
-0.73
+0.73: Houses sweet houses!
+31st March 2009
+
 - rare monsters that do not appear in DM or daily quests: pegasus and centaur
 - lord durin, a high level boss in ados abandoned keep
 - new npc condition and action for events with any kind of delay to be checked
@@ -663,7 +700,9 @@ to players inside
 - can ask npc what houses are available
 - many houses redecorated inside to use new tiles
 
-0.72
+0.72: New abilities
+22nd February 2009
+
 *Features*
 - dagobert creates personal vaults for players, so they can access semos bank slot without spies
 - vaults contain a wastebin for disposing of items; other items left on ground get returned to player on leaving
@@ -717,7 +756,9 @@ unicorn added for now
 - LoginDialog positions caret on name now
 
 
-0.71
+0.71: Semos Mine Town Revival Weeks!
+30th November 2008
+
 - chatlog stops automatic scroll on when not at bottom of text 
 - chatlog highlighted pink if the scroll was halted and there are unread messages
 - tab-completion toggles through all online players in chat line
@@ -741,7 +782,9 @@ semos and ados)
 - semos mine town revival weeks celebrated - outfit lender + more
 - jailreport is available to level 50 admins, and takes an optional player argument
 
-0.70
+0.70: Rules of War
+3rd October 2008
+
 - damage calculations place greater emphasis on weapon attack and level
 instead of mainly base skills (this means heavy weapons are now better against
 strong creatures than a dagger type)
@@ -783,7 +826,9 @@ engaged player is online
 - admin inspect and admin destroy now work for contained items too.
 - pushing creatures with an area > 4 is no longer possible
 
-0.69
+0.69: Wrath of Angels
+12th August 2008
+
 - 7 kikareukin clouds added
 - archangel and dark archangel, new creatures
 - corrected xp of golden death
@@ -818,7 +863,9 @@ engaged player is online
 - -D switch available if you want your eating/poisoned/choking icons drawn on top most layer
 - on death player is told what items their corpse contains
 
-0.68.1
+0.68.1: Fix it and tidy up
+30th June 2008
+
 - sentence can be set for website
 - new raid scripts
 - map fixes
@@ -836,7 +883,9 @@ engaged player is online
 - unused classes in client removed
 - some shop selling/buying bugs fixed
 
-0.68 
+0.68: Gnome Sweet Gnome
+29th May 2008
+
 - character panel shows atk_xp needed to level up instead of total atk_xp
 - pizza is edible and can be made at the wofol bakery
 - ados tavern got a makeover and new staff
@@ -872,7 +921,9 @@ engaged player is online
 - milk now available from semos farm
 - honey now availble from beekeeper in fado forest
 
-0.67
+0.67: Happy Valentines
+14th February 2008
+
 - new players start in semos guardhouse
 - hayunn naratha gives an initial quest to new players
 - weekly item quest from kirdneh museum
@@ -902,7 +953,9 @@ engaged player is online
 - recognition of player and NPC names in commands like: /look, /use, /own, /attack
 
 
-0.66
+0.66: Embracing Marauroa 2.x
+8th January 2008
+
 - added image viewer (ask Monogenes about a map of Semos)
 - added SignLessorNPC so player can rent a sign for a day
 - improved interaction with NPCs (for example they understand number spelled out as words)
@@ -917,7 +970,9 @@ engaged player is online
 - fixed a problem with access to chests
 - added additional log to simplify querying of item history
 
-0.65
+0.65: Christmas is coming!
+3rd December 2007
+
 - semos city decorated for Christmas!
 - meet santa as he wanders around, get a hat and stocking
 - more new and replacement graphics 
@@ -937,7 +992,9 @@ kikareukin islands.
   - some client pathfinding bugs fixed
   - doors should use correct sprite now, closed doors have a reject message
 
-0.64
+0.64: *grr* Baby Dragons! *grr*
+15th November 2007
+
 - new city of kirdneh, east of fado forest
 - player houses in ados
 - kalavan city gardens
@@ -950,7 +1007,9 @@ kikareukin islands.
   - started to improve the way quests are coded
   - improved state transition diagrams for NPCs
 
-0.63
+0.63: Huge, strange, sweet, wild, safe
+18th October 2007
+
 - Codebase ported to Marauroa 2.0
 - New Zones:
  - dreamscape, take rainbow beans to get there for a short time until you come down
@@ -1011,7 +1070,9 @@ kikareukin islands.
  - ados bank, townhall_0 both easier to travel across 
  - level 170-210 creatures rebalanced
 
-0.62
+0.62: Sky towers and deep dungeons
+13th August 2007
+
 - Keyring 2 slots bigger to accommodate new items players may acquire
 - On entering centre zone for first time, get atmospheric message
 - Nalwor tower open; resident princess with a quest
@@ -1034,7 +1095,9 @@ kikareukin islands.
 - Speed up creature logic
 - Bug fixes to some quests 
 
-0.61 June 22, 2007
+0.61: Wofol opens its doors
+22nd June 2007
+
 - Houses in Kobold City (Wofol) have opened their doors
 - NPCs in Kobold include a weapons trader and a mountain dwarf who needs errands running
 - Ados Barracks buys good armor, shields and legs
@@ -1047,7 +1110,9 @@ kikareukin islands.
 - Make a Wish at Wishing Wells, to get money, gold nuggets, gems, wood, etc
 - Added several new creatures for levels 30-90: sheepmen, frogmen and several undead creatures.
 
-0.60 May 22, 2007
+0.60: A Marriage of Beauty and Chaos
+22nd May 2007
+
 - Fado city is open
 - a woman in fado collects cloaks
 - the tavern maid in fado makes a special soup
@@ -1076,7 +1141,9 @@ kikareukin islands.
 - Refactored all the creatures' drops so they do drop less but more useful stuff.
 - Added new maps that communicate drows mines with ados caves.
 
-0.59 Apr 14, 2007
+0.59: Beach or Battle? Pizza or Perish? You decide ...
+14th April 2007
+
 World:
 - introduced scoring system in deathmatch instead of XP
 - Added a kobold totem at the kobolds city. ( for level > 50 )
@@ -1110,7 +1177,9 @@ Technical:
 - zone xml now uses <parameter> values for factory arguments, and entity types may include <attribute> values to set instance attributes
 - use zone level/coordinates from data/conf/zones/*.xml instead of tmx files
 
-0.58 Mar 10, 2007
+0.58: Vampires roam Semos Catacombs!
+10th March 2007
+
 - name/HPbar is now visible, alltime
 - When client is minimised, stop stendhal drawing.
 - we only allow one support message per minute.
@@ -1129,7 +1198,9 @@ Technical:
 - catacombs in semos plains n
 - vampire sword quest
 
-0.57  Jan 27, 2007
+0.57: big changes for a little world!
+27th January 2007
+
 - sheep food now shows up in the minimap as an obstical
 - multiple login profile support (for those that use multiple servers)
 - gui now tracks which arrows keys are still held when multiple were pressed
@@ -1157,7 +1228,9 @@ Technical:
 - monks and elementals are worshipping on the mountains to the west
 - Balduin is excited about weapons from the new creatures
 
-0.56  Dec 19, 2006
+0.56: Merry Christmas!
+19th December 2006
+
 - added Ados City with new people
 - one of Haizen's experiments went horribly wrong wrong, causing dragons to get much smarter
 - added pies
@@ -1173,13 +1246,15 @@ Technical:
   - improved logging of game events
 
 
-0.55.1 Nov 4, 2006
+0.55.1 
+Nov 4, 2006
 - fixed /drop
 - readded missing files for key autorepeat handling on Linux based systems
 - improved downloading files on update to retry in case the SF webserver is having some problems
 
 
-0.55  Oct 31, 2006
+0.55: Halloween night!
+ Oct 31, 2006
 - improved language of nearly all NPCs
 - smart updater for future versions (so that you do not have to download the complete client on every new version)
 - Semos Mine Town Revival Weeks
@@ -1190,13 +1265,16 @@ Technical:
 - game masters can walk through walls
 
 
-0.54.1 Oct 07, 2006  (Server Only Bugfix Release)
+0.54.1: Server Only Bugfix Release
+Oct 07, 2006
+
 - fixed a problem with zone file int_ados_magician_house which causes the server not to start
 - fixed /drop on items dragged directly from bank to bag
 - fixed dice gambling to only accept dices thrown on the table inside Semos Tavern
 - fixed consolation price of dice gambling to be a bottle of beer
 
-0.54 Oct 01, 2006
+0.54: Dice Gambling
+Oct 01, 2006
 
 - added dice gambling in Semos Tavern with golden trousers as the jackpot
 - fixed lag because of broken key handling on X11 (Linux)
@@ -1208,7 +1286,8 @@ Technical:
 - changed our default server to stendhalgame.org
 - converted admin / game master commands from groovy to reloadable java classes
 
-0.53 Sep 03, 2006
+0.53: Archers and Farmers
+Sep 03, 2006
 
 - added regrowing grain fields which can be harvested
 - added a windmill and an NPC who mills flour from grain
@@ -1216,7 +1295,9 @@ Technical:
 - gave archer elf and archer kobold something to shoot
 - made iron casting take time
 
-0.52 Aug 14, 2006
+0.52 
+Aug 14, 2006
+
 - players
   - display of item based ATK and DEF is now calculated by the server
   - fixed a bug which caused quest items to be lost if your bag is full
@@ -1251,7 +1332,8 @@ Technical:
   - support for two weapons as pair (swapped slots rhand and lhand on client) (they are not yet in game)
 
 
-0.51.2 Jul 10, 2006
+0.51.2 
+Jul 10, 2006
 (unofficial server-only release)
 
 - deathmatch: monsters above each other on the same spot
@@ -1275,13 +1357,15 @@ Marauroa:
 - removed a buggy debug-message from marauroa with used 2-5 times more cpu-time than the creature.logic-loop
 
 
-0.51.1 Jul XX, 2006
+0.51.1 
+Jul XX, 2006
 
 - Fixed elves Nalwor teleporter.
 - Fixed bug at drops on creatures.
 
 
-0.51 June 21, 2006
+0.51: Deathmatch happiness
+June 21, 2006
 
 - Speed up server connection because of a bug.
 - Fixed strange cases where avatars keeps on game after logout.
@@ -1295,7 +1379,8 @@ Marauroa:
 - Added Wood on the forest quest.
 
 
-0.50 June 17, 2006
+0.50 
+June 17, 2006
 
 - Fixed MacOS display and focus bug.
 - Added magic scrolls.
@@ -1324,7 +1409,8 @@ Marauroa:
 - Added NPC "Bario" with new quest
 
 
-0.48 Apr 31, 2006
+0.48: Buddies 
+Apr 31, 2006
 
 - Added jail command
 - Added protection zone around Semos
@@ -1353,7 +1439,8 @@ Marauroa:
 
 - Fixed a important problem at StendhalPlayerDatabase
 
-0.47 Mar 23, 2006
+0.47: Liches and Kobolds
+Mar 23, 2006
 
 - Fixed location of version file.
 - Fixed teleport bug.
@@ -1373,7 +1460,8 @@ Marauroa:
 - Better corpse representation
 
 
-0.46 Mar 10, 2006
+0.46 
+Mar 10, 2006
 
 - Fixed sheep
 - Fixed blacksmith animations.
@@ -1396,7 +1484,8 @@ Marauroa:
 - Weakened XP earn limits.
 
 
-0.45 Mar 01, 2006
+0.45: Diplodocus!
+Mar 01, 2006
 
 - Fixed ambient sounds.
 - Fixed sheep quest.
@@ -1416,7 +1505,8 @@ Marauroa:
 - Added new zones ( in this release 3 new zones, but really around 20 more ).
 
 
-0.44 Jan 29, 2006
+0.44 
+Jan 29, 2006
 
 - Fixed a null pointer bug at creature logic.
 - Fixed Drink and food queue so you can consume potions even if full.
@@ -1441,7 +1531,8 @@ Marauroa:
   - Black bear
 
 
-0.43 Jan 20, 2006
+0.43 
+Jan 20, 2006
 
 - Exit of tavern now belongs to tavern.
 - Fixed a bug when player recieve text but client.getPlayer() stills return null.
@@ -1470,7 +1561,8 @@ Marauroa:
   - Orc chief
 
 
-0.42 Jan 14, 2006
+0.42: Venom rats are bad!
+Jan 14, 2006
 
 - Added Venom rat.
 - On death player lose Levels, XP, ATK and DEF.
@@ -1493,7 +1585,8 @@ Marauroa:
 - Fixed food stackable bug.
 
 
-0.41 Jan 03, 2005
+0.41 
+Jan 03, 2005
 
 - Fixed a bug on legs slot name.
 - When selling an item, we search first inside bag.
@@ -1561,7 +1654,8 @@ Marauroa:
 - Added critical hit/critical failure
 
 
-0.39 Oct 23, 2005
+0.39: Money!
+Oct 23, 2005
 
 - Fixed ghost sheep bug
 - Added minimap
@@ -1584,7 +1678,8 @@ Marauroa:
 - Create a batch converter for maps.
 
 
-0.32 Sep 24, 2005
+0.32 
+Sep 24, 2005
 
 - Many bug fixes
 - Support for chests ( disabled )
@@ -1593,7 +1688,8 @@ Marauroa:
 - Threaded A*
 
 
-0.31 Jul 08, 2005
+0.31 
+Jul 08, 2005
 
 - Fixed a bug at statistics system.
 - Speed up combat
@@ -1610,7 +1706,8 @@ Marauroa:
 - Modifiable server name at login text area
 
 
-0.30 Jul 03, 2005
+0.30: Items system and new RP Combat system
+Jul 03, 2005
 
 - Added items system
 - Fixed close bug
@@ -1631,7 +1728,8 @@ Marauroa:
 - Sato doesn't kill sheeps anymore
 
 
-0.25 Jun 09, 2005
+0.25: bugs fixes and initial support for items
+Jun 09, 2005
 
 - Fixed a bug on dead
 - Fixed a bug on cache timestamp
@@ -1648,7 +1746,8 @@ Marauroa:
 - Added own and release sheep commands
 
 
-0.20 Jun 05, 2005
+0.20: new Monsters, more dungeons and better eXPerience 
+Jun 05, 2005
 
 - Added new monsters
 - Implemented shared XP
@@ -1668,7 +1767,8 @@ Marauroa:
 - Added new RP values
 
 
-0.13 May 30, 2005
+0.13: Better RP than before 
+May 30, 2005
 
 - Added API for identifing several attackers.
 - Improved creature AI to attack anyone near it.
@@ -1689,7 +1789,8 @@ Marauroa:
 - Fixed portal collision bug
 
 
-0.12 May 22, 2005
+0.12 
+May 22, 2005
 
 - Fixed a severe bug that happens when a creature respawn over a player.
 - Disabled the attack yourself feature
@@ -1701,7 +1802,8 @@ Marauroa:
 - Improved client speed
 
 
-0.11 May 20, 2005
+0.11: Monsters, dungeons and eXPerience
+May 20, 2005
 
 - Added Rat
 - Added Cave Rat
@@ -1717,7 +1819,8 @@ Marauroa:
 - Fixed rendering order
 
 
-0.10 May 12, 2005
+0.10 
+May 12, 2005
 
 - Color game dialog log console.
 - Major server and client refactoring
@@ -1729,7 +1832,8 @@ Marauroa:
 - Major bug fixes
 
 
-0.03 Apr 28, 2005
+0.03 
+Apr 28, 2005
 
 - Added A*
 - Fixed a bug with Sheep weight due to signed/unsigned
@@ -1745,7 +1849,8 @@ Marauroa:
 - Optional collision detection boxes.
 
 
-0.02 Apr 17, 2005
+0.02: Sheeps and food
+Apr 17, 2005
 
 - Fixed a problem related to message sorting
 - Removed EntryPointNotFoundException
@@ -1757,7 +1862,8 @@ Marauroa:
 - Added chat dialog
 
 
-0.01 Apr 05, 2005
+0.01
+Apr 05, 2005
 
 - Added bigger maps
 - Changed the way maps are loaded
