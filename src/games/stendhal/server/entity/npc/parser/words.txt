@@ -563,6 +563,7 @@ karma	OBJ	karmas
 katana	OBJ	katanas
 kekik	OBJ	kekiks
 key	OBJ	keys
+keyring	OBJ keyrings
 kingdom	OBJ	kingdoms
 kirdneh	OBJ-NAM	kirdnehs
 kitchen	OBJ	kitchens
@@ -1135,6 +1136,7 @@ i	SUB-PRO	we
 ida	SUB-NAM
 idea	SUB
 ilisa	SUB-NAM
+imorgen	SUB-NAM
 imp	SUB
 imperator	SUB
 io	SUB-NAM
@@ -1225,6 +1227,7 @@ merenwen	SUB-NAM
 mick	SUB-NAM
 milquetoast	SUB-NAM
 minotaur	SUB
+mircea	SUB-NAM
 mirg	SUB-NAM
 miss	SUB
 mistress	SUB
@@ -1596,6 +1599,7 @@ simple	ADJ
 slim	ADJ
 small	ADJ
 snug	ADJ
+solid	ADJ
 spare	ADJ
 special	ADJ
 spooky	ADJ
