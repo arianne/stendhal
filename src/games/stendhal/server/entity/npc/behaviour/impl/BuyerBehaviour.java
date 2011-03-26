@@ -67,7 +67,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 			stringBuilder.append("Sorry! You don't have ");
 			if (res.getAmount() == 1) {
 				stringBuilder.append("any");
-				} else {
+			} else {
 				stringBuilder.append("that many");
 			}
 

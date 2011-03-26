@@ -211,9 +211,12 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry! You don't have that many plate shields.", getReply(npc));
 
-		 // equip the player with enough plate shield to be sold
+		 // equip the player with four plate shields to be sold
 		assertFalse(player.isEquipped("plate shield", 1));
-		assertTrue(equipWithStackableItem(player, "plate shield", 4));
+		assertTrue(equipWithItem(player, "plate shield"));
+		assertTrue(equipWithItem(player, "plate shield"));
+		assertTrue(equipWithItem(player, "plate shield"));
+		assertTrue(equipWithItem(player, "plate shield"));
         assertTrue(player.isEquipped("plate shield", 4));
         assertFalse(player.isEquipped("plate shield", 5));
 

@@ -42,42 +42,61 @@ public final class NameSearch {
      * Searches for item to match the given Expression.
      *
      * @param item
-     * @return item name, or null if no match
+     * @return true if we found a match
      */
     public boolean search(final Expression item) {
         // see if the word matches an item in our list
         final String itemName = item.getNormalized();
         final String singularName = Grammar.singular(itemName);
         final String pluralName = Grammar.plural(itemName);
+        boolean found = false;
 
         for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-        	final Sentence parsed = e.getValue();
+        	Sentence parsed = e.getValue();
 
-        	if (parsed.matchesNormalized(itemName)) {
+        	if (itemName.endsWith(parsed.getOriginalText()) ||
+	    			itemName.endsWith(parsed.getNormalized()) ||
+	        		parsed.matchesNormalized(itemName)) {
                 name = e.getKey();
-                amount = item.getAmount();
-                return true;
+        		found = true;
+        		break;
         	}
+        }
 
-        	if (!singularName.equals(itemName)) {
-	        	if (parsed.matchesNormalized(singularName)) {
+    	if (!found && !singularName.equals(itemName)) {
+            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+            	Sentence parsed = e.getValue();
+
+            	if (singularName.endsWith(parsed.getOriginalText()) ||
+	            		singularName.endsWith(parsed.getNormalized()) ||
+	                	parsed.matchesStartNormalized(singularName)) {
 	                name = e.getKey();
-	                amount = item.getAmount();
-	                return true;
+	        		found = true;
+	        		break;
 	        	}
         	}
+    	}
 
-        	// see if instead the plural matches
-        	if (!pluralName.equals(itemName)) {
-	        	if (parsed.matchesNormalized(pluralName)) {
+    	// see if instead the plural matches
+    	if (!found && !pluralName.equals(itemName)) {
+            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+            	Sentence parsed = e.getValue();
+
+            	if (pluralName.endsWith(parsed.getOriginalText()) ||
+	            		pluralName.endsWith(parsed.getNormalized()) ||
+	                	parsed.matchesStartNormalized(pluralName)) {
 	                name = e.getKey();
-	                amount = item.getAmount();
-	                return true;
+	        		found = true;
+	        		break;
 	        	}
             }
         }
 
-        return false;
+    	if (found) {
+            amount = item.getAmount();
+            return true;
+    	} else
+    		return false;
     }
 
     /**
