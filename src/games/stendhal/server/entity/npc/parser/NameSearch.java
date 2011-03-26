@@ -46,11 +46,9 @@ public final class NameSearch {
      */
     public boolean search(final Expression item) {
         // see if the word matches an item in our list
-        final String itemName = item.getNormalized();
-        final String singularName = Grammar.singular(itemName);
-        final String pluralName = Grammar.plural(itemName);
         boolean found = false;
 
+        final String itemName = item.getNormalized();
         for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
         	Sentence parsed = e.getValue();
 
@@ -63,34 +61,59 @@ public final class NameSearch {
         	}
         }
 
-    	if (!found && !singularName.equals(itemName)) {
-            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-            	Sentence parsed = e.getValue();
-
-            	if (singularName.endsWith(parsed.getOriginalText()) ||
-	            		singularName.endsWith(parsed.getNormalized()) ||
-	                	parsed.matchesStartNormalized(singularName)) {
-	                name = e.getKey();
-	        		found = true;
-	        		break;
-	        	}
-        	}
-    	}
-
-    	// see if instead the plural matches
-    	if (!found && !pluralName.equals(itemName)) {
-            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-            	Sentence parsed = e.getValue();
-
-            	if (pluralName.endsWith(parsed.getOriginalText()) ||
-	            		pluralName.endsWith(parsed.getNormalized()) ||
-	                	parsed.matchesStartNormalized(pluralName)) {
-	                name = e.getKey();
-	        		found = true;
-	        		break;
-	        	}
+        if (!found) {
+	    	// see if instead the plural matches
+	        final String pluralName = Grammar.plural(itemName);
+	    	if (!pluralName.equals(itemName)) {
+	            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+	            	Sentence parsed = e.getValue();
+	
+	            	if (pluralName.endsWith(parsed.getOriginalText()) ||
+		            		pluralName.endsWith(parsed.getNormalized()) ||
+		                	parsed.matchesStartNormalized(pluralName)) {
+		                name = e.getKey();
+		        		found = true;
+		        		break;
+		        	}
+	            }
             }
         }
+
+        if (!found) {
+        	// see if instead the singular matches
+	        final String singularName = Grammar.singular(itemName);
+	    	if (!singularName.equals(itemName)) {
+	            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+	            	Sentence parsed = e.getValue();
+
+	            	if (singularName.endsWith(parsed.getOriginalText()) ||
+		            		singularName.endsWith(parsed.getNormalized()) ||
+		                	parsed.matchesStartNormalized(singularName)) {
+		                name = e.getKey();
+		        		found = true;
+		        		break;
+		        	}
+	        	}
+	    	}
+
+	        if (!found) {
+	        	// special case to handle misspelled "double" plurals
+		        final String singular2 = Grammar.singular(singularName);
+		    	if (!singular2.equals(singularName)) {
+		            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+		            	Sentence parsed = e.getValue();
+		
+		            	if (singularName.endsWith(parsed.getOriginalText()) ||
+			            		singularName.endsWith(parsed.getNormalized()) ||
+			                	parsed.matchesStartNormalized(singularName)) {
+			                name = e.getKey();
+			        		found = true;
+			        		break;
+			        	}
+		        	}
+		    	}
+	        }
+    	}
 
     	if (found) {
             amount = item.getAmount();

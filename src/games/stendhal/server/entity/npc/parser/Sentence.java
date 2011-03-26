@@ -840,7 +840,15 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
             item = getUnknownTypeExpression(0);
 
             if (item != null) {
-                if (ret.search(item)) {
+            	if (!item.hasAmount()) {
+                    Expression num = getNumeral(0);
+
+                    if (num != null) {
+                    	item.setAmount(num.getAmount());
+                    }
+            	}
+
+            	if (ret.search(item)) {
                     return ret;
                 }
             }

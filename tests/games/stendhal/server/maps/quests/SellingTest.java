@@ -155,7 +155,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry! You don't have that many porcini.", getReply(npc));
 
-		assertTrue(en.step(player, "sell 99 porcinis"));
+		assertTrue(en.step(player, "sell 99 porcinis")); // misspelled plural instead of the correct "porcini"
 		assertEquals("99 porcini are worth 2970. Do you want to sell them?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
@@ -168,7 +168,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
         assertFalse(player.isEquipped("porcini", 4));
 
 		assertTrue(en.step(player, "sell porcino"));
-		assertEquals("A porcino is worth 5. Do you want to sell it?", getReply(npc));
+		assertEquals("A porcino is worth 30. Do you want to sell it?", getReply(npc));
 
 		 // ensure we currently don't have any money
 		assertFalse(player.isEquipped("money", 1));

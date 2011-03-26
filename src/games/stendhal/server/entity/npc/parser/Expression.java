@@ -209,6 +209,13 @@ public final class Expression {
 		}
 	}
 
+    /**
+     * @return true if there is an explicit amount.
+     */
+    public boolean hasAmount() {
+		return amount != null;
+	}
+
 	/**
 	 * @return amount as long integer value, default to 1.
 	 */
