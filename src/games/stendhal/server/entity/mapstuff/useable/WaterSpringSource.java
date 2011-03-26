@@ -32,7 +32,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	/**
 	 * The reward
 	 */
-	private static final String[] items = { "water bottle" };
+	private static final String[] items = { "water" };
 	
 	/**
 	 * The chance that filling flask is successful.
@@ -144,7 +144,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 			final String itemName = items[Rand.rand(items.length)];
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 			int amount = 1;
-			if (itemName.equals("water bottle"))
+			if (itemName.equals("water"))
 					 {
 				/*
 				 * Bound powerful items.

@@ -136,7 +136,7 @@
     </equipable>
   </item>
   
-    <item name="water bottle">
+    <item name="water">
     <type class="drink" subclass="waterbottle" tileid="-1"/>
     <description>You see a bottle of fresh spring water. It's really tasty and fresh.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
