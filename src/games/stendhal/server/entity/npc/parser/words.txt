@@ -686,7 +686,7 @@ playground	OBJ	playgrounds
 plural	OBJ	plurals
 point	OBJ	points
 poison	OBJ-FOO-FLU	poisons
-porcini	OBJ-FOO	porcini
+porcino	OBJ-FOO	porcini
 portal	OBJ	portals
 position	OBJ	positions
 pot	OBJ	pots
