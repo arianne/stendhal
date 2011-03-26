@@ -70,7 +70,7 @@ import marauroa.common.game.RPObjectNotFoundException;
 
 public class FishermansLicenseQuiz extends AbstractQuest {
 	static final String QUEST_SLOT = "fishermans_license1";
-	
+
 	// TODO: use standard conditions and actions
 
 	private final List<String> speciesList = Arrays.asList("trout", "perch",
@@ -215,7 +215,13 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						if (sentence.getTriggerExpression().matches(ConversationParser.createTriggerExpression(getCurrentSpecies()))) {
+						String species = getCurrentSpecies();
+						String obj = sentence.getObjectName();
+
+						if ((obj!=null && obj.contains(species)) ||
+								sentence.getOriginalText().endsWith(species) ||
+								sentence.getNormalized().endsWith(species) ||
+								sentence.getTriggerExpression().matches(ConversationParser.createTriggerExpression(species))) {
 							if (currentSpeciesNo == speciesList.size() - 1) {
 								npc.say("Correct! Congratulations, you have passed the first part of the #exam.");
 								cleanUpTable();
