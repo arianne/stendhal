@@ -29,7 +29,7 @@ import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
- * Test buying ice cream.
+ * Tests for the Granny Graham NPC.
  *
  * @author Martin Fuchs
  */
