@@ -79,10 +79,9 @@ public class GoldSource extends PlayerActivityEntity {
 	 */
 	public GoldSource(final String itemName) {
 		this.itemName = itemName;
-
-		setRPClass("gold_source");
-		put("type", "gold_source");
-
+		put("class", "source");
+		put("name", "gold_source");
+		setMenu("Prospect");
 		setDescription("You see something golden glittering.");
 	}
 

@@ -55,10 +55,9 @@ public class FishSource extends PlayerActivityEntity {
 	 */
 	public FishSource(final String itemName) {
 		this.itemName = itemName;
-
-		setRPClass("fish_source");
-		put("type", "fish_source");
-
+		put("class", "source");
+		put("name", "fish_source");
+		setMenu("Fish");
 		setDescription("There is something in the water.");
 	}
 	
