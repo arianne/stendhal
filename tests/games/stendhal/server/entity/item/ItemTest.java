@@ -363,7 +363,6 @@ public class ItemTest {
 				new HashMap<String, String>());
 		// ignore attribute listing because their sort order is not reliable
 		assertTrue(mo.toString(), mo.toString().contains("Item, RPObject with Attributes of Class(item):"));
-		assertTrue(mo.toString(), mo.toString().contains("and RPSlots"));
 	}
 
 	/**
