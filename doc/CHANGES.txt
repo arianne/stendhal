@@ -21,6 +21,9 @@ Changelog
 - death penalty rounded before application and reported as suitable precision to player
 - daily/weekly quests are restarted immediately when aborted
 - daily monster quest creature to kill can't be requested again by Mayor if it was aborted this time
+- improvements in understanding item names when talking with merchandizers
+- fixed "porcino" singular and made NPC parser understand (some) misspelled words like "porcinis"
+- non-exact answer matching in the fishermans license quiz
 
 0.92: Achievements and Expedition Groups
 26th February 2011
